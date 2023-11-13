@@ -1,0 +1,95 @@
+\documentclass[a4paper, 11pt]{article}
+\usepackage{comment} % enables the use of multi-line comments (\ifx \fi) 
+\usepackage{lipsum} %This package just generates Lorem Ipsum filler text. 
+\usepackage{fullpage} % changes the margin
+\usepackage{libertine}
+\linespread{1.1}
+\begin{document}
+%Header-Make sure you update this information!!!!
+\noindent
+\large\textbf{Thesis Proposal} \hfill \textbf{Renato Neves} \\
+Date: \today
+
+\section*{A Metric Equational System for Quantum Computation}
+
+\subsection*{Motivation}
+
+The notion of program equivalence and underlying theories typically hinges on
+the idea that equivalence is binary, \emph{i.e.} programs are either equivalent
+or they are not~\cite{winskel93}. Whilst in the case of classical programming
+such is usually fine, in other computational paradigms it is a too
+coarse-grained perspective~\cite{dahlqvist23b}. This is manifested in quantum
+computation at multiple fronts \cite{han19,dahlqvist23b,watrous18}. For
+example, the fact that one works only with a finite set of basic quantum gates,
+and that these are used to approximate the remaining ones, already strongly
+suggests the development of appropriate notions of \emph{approximate} program
+equivalence~\cite{dahlqvist23b}. Also the central issue of
+quantum decoherence calls for such notions, for it is unreasonable to expect
+that our idealised quantum algorithm will run perfectly on a quantum device.
+What we observe is instead a mere approximation~\cite{han19,preskill18}.  Yet
+another example is found in the day-to-day substitution of `costly' quantum
+operations by less costly ones, which although not the same are regarded as
+being approximately the same.
+
+A notion of approximate equivalence for quantum programming was introduced and
+briefly studied in~\cite{dahlqvist23b}. Technically it uses linear
+$\lambda$-calculus as basis which has well-known deep connections to both logic
+and category theory~\cite{girard95,benton94}. It then integrates the notion of
+approximate equivalence in the calculus via the so-called diamond norm, which
+induces a metric (roughly, a distance function) on the space of quantum
+programs (seen as completely positive trace-preserving
+super-operators)~\cite{watrous18}. Some positive results were achieved in this
+setting but much remains to be done, as detailed next.
+
+\subsection*{Goals}
+
+\dots 
+\subsection*{Research Plan}
+
+The concurrent quantum language adopted for this project is an \emph{extension}
+of the imperative concurrent language proposed in~\cite{brookes96} with basic
+quantum features, more specifically a set of unitary gates and measurements.
+The semantics of the concurrent language without quantum features is also
+present in~\cite{brookes96}. We will start by first implementing this simpler
+semantics in \textsc{Haskell}.  The next step is to study the quantum
+simulation library for \textsc{Haskell} presented in~\cite{altenkirch10}, which
+we will use for simulating programs written in our concurrent quantum
+language.
+
+We will then move on to the main goal of the project: to implement a semantics
+for the aforementioned concurrent quantum language. Next we will explore the
+use of concurrency, w.r.t. the reduction of superposition times, in different
+famous quantum algorithms/protocols.  The final step of the project is to write
+a report detailing the conclusions obtained throughout the work. The research
+plan is summarised in the table below. 
+
+As an additional assurance that the project will proceed according to plan, a Ph.D.
+student supervised by professors Renato Neves and Luís Barbosa will act as
+co-supervisor as well. This student is one of the main contributors of the
+quantum concurrent language that is object of implementation in this project,
+and is therefore a valuable element of the supervising team. 
+
+\begin{center}
+\begin{tabular}{ | c | c | c | c | c | c | c | c | c | c | c | }
+  \hline
+  Task & Oct & Nov & Dez & Jan & Fev & Mar & Apr & May & Jun & Jul \\
+  \hline
+  Implementation of~\cite{brookes96} & X & X &  & & & & & & & \\
+  \hline
+  Study of Quantum Concurr.  & & & X & X  & & & & & & \\
+  \hline
+  Implementation & & & & X  & X & X & & & & \\
+  \hline
+  Case-studies & & & &  & & & X & X & & \\
+  \hline
+  Dissertation & & & &  & & & & & X & X \\
+  \hline
+\end{tabular}
+\end{center}
+
+
+%% Bibliography
+\bibliographystyle{alpha}
+\bibliography{biblio}
+
+\end{document}
