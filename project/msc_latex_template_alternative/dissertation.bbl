@@ -1,0 +1,222 @@
+\begin{thebibliography}{35}
+\providecommand{\natexlab}[1]{#1}
+\providecommand{\url}[1]{\texttt{#1}}
+\expandafter\ifx\csname urlstyle\endcsname\relax
+  \providecommand{\doi}[1]{doi: #1}\else
+  \providecommand{\doi}{doi: \begingroup \urlstyle{rm}\Url}\fi
+
+\bibitem[Barendregt et~al.(1984)]{barendregt1984lambda}
+Hendrik~P Barendregt et~al.
+\newblock \emph{The lambda calculus}, volume~3.
+\newblock North-Holland Amsterdam, 1984.
+
+\bibitem[Benton(1994)]{benton1994mixed}
+P~Nick Benton.
+\newblock A mixed linear and non-linear logic: Proofs, terms and models.
+\newblock In \emph{International Workshop on Computer Science Logic}, pages
+  121--135. Springer, 1994.
+
+\bibitem[Bichsel et~al.(2020)Bichsel, Baader, Gehr, and
+  Vechev]{bichsel2020silq}
+Benjamin Bichsel, Maximilian Baader, Timon Gehr, and Martin Vechev.
+\newblock Silq: A high-level quantum language with safe uncomputation and
+  intuitive semantics.
+\newblock In \emph{Proceedings of the 41st ACM SIGPLAN Conference on
+  Programming Language Design and Implementation}, pages 286--300, 2020.
+
+\bibitem[Burgholzer and Wille(2020)]{burgholzer2020advanced}
+Lukas Burgholzer and Robert Wille.
+\newblock Advanced equivalence checking for quantum circuits.
+\newblock \emph{IEEE Transactions on Computer-Aided Design of Integrated
+  Circuits and Systems}, 40\penalty0 (9):\penalty0 1810--1824, 2020.
+
+\bibitem[Calderbank and Shor(1996)]{calderbank1996good}
+A~Robert Calderbank and Peter~W Shor.
+\newblock Good quantum error-correcting codes exist.
+\newblock \emph{Physical Review A}, 54\penalty0 (2):\penalty0 1098, 1996.
+
+\bibitem[Chong et~al.(2017)Chong, Franklin, and
+  Martonosi]{chong2017programming}
+Frederic~T Chong, Diana Franklin, and Margaret Martonosi.
+\newblock Programming languages and compiler design for realistic quantum
+  hardware.
+\newblock \emph{Nature}, 549\penalty0 (7671):\penalty0 180--187, 2017.
+
+\bibitem[Crole(1993)]{crole1993categories}
+Roy~L Crole.
+\newblock \emph{Categories for types}.
+\newblock Cambridge University Press, 1993.
+
+\bibitem[Dahlqvist and Neves(2022)]{dahlqvist2022syntactic}
+Fredrik Dahlqvist and Renato Neves.
+\newblock The syntactic side of autonomous categories enriched over generalised
+  metric spaces.
+\newblock \emph{arXiv preprint arXiv:2208.14356}, 2022.
+
+\bibitem[Dahlqvist and Neves(2023)]{dahlqvist2023complete}
+Fredrik Dahlqvist and Renato Neves.
+\newblock A complete v-equational system for graded lambda-calculus.
+\newblock \emph{arXiv preprint arXiv:2304.02082}, 2023.
+
+\bibitem[Feynman(1982)]{feynman2018simulating}
+Richard~P. Feynman.
+\newblock Simulating physics with computers.
+\newblock \emph{International Journal of Theoretical Physics}, 21\penalty0
+  (6-7), 1982.
+
+\bibitem[Fowler et~al.(2012)Fowler, Mariantoni, Martinis, and
+  Cleland]{fowler2012surface}
+Austin~G Fowler, Matteo Mariantoni, John~M Martinis, and Andrew~N Cleland.
+\newblock Surface codes: Towards practical large-scale quantum computation.
+\newblock \emph{Physical Review A}, 86\penalty0 (3):\penalty0 032324, 2012.
+
+\bibitem[Girard et~al.(1995)Girard, Lafont, and Regnier]{girard1995advances}
+Jean-Yves Girard, Yves Lafont, and Laurent Regnier.
+\newblock \emph{Advances in linear logic}, volume 222.
+\newblock Cambridge University Press, 1995.
+
+\bibitem[Gottesman(1997)]{gottesman1997stabilizer}
+Daniel Gottesman.
+\newblock \emph{Stabilizer codes and quantum error correction}.
+\newblock California Institute of Technology, 1997.
+
+\bibitem[Green et~al.(2013)Green, Lumsdaine, Ross, Selinger, and
+  Valiron]{green2013quipper}
+Alexander~S Green, Peter~LeFanu Lumsdaine, Neil~J Ross, Peter Selinger, and
+  Beno{\^\i}t Valiron.
+\newblock Quipper: a scalable quantum programming language.
+\newblock In \emph{Proceedings of the 34th ACM SIGPLAN conference on
+  Programming language design and implementation}, pages 333--342, 2013.
+
+\bibitem[Grover(1996)]{grover1996fast}
+Lov~K Grover.
+\newblock A fast quantum mechanical algorithm for database search.
+\newblock In \emph{Proceedings of the twenty-eighth annual ACM symposium on
+  Theory of computing}, pages 212--219, 1996.
+
+\bibitem[Harrow et~al.(2002)Harrow, Recht, and Chuang]{harrow2002efficient}
+Aram~W Harrow, Benjamin Recht, and Isaac~L Chuang.
+\newblock Efficient discrete approximations of quantum gates.
+\newblock \emph{Journal of Mathematical Physics}, 43\penalty0 (9):\penalty0
+  4445--4451, 2002.
+
+\bibitem[Hung et~al.(2019)Hung, Hietala, Zhu, Ying, Hicks, and
+  Wu]{hung2019quantitative}
+Shih-Han Hung, Kesha Hietala, Shaopeng Zhu, Mingsheng Ying, Michael Hicks, and
+  Xiaodi Wu.
+\newblock Quantitative robustness analysis of quantum programs.
+\newblock \emph{Proceedings of the ACM on Programming Languages}, 3\penalty0
+  (POPL):\penalty0 1--29, 2019.
+
+\bibitem[Mardare et~al.(2016)Mardare, Panangaden, and
+  Plotkin]{mardare2016quantitative}
+Radu Mardare, Prakash Panangaden, and Gordon Plotkin.
+\newblock Quantitative algebraic reasoning.
+\newblock In \emph{Proceedings of the 31st Annual ACM/IEEE Symposium on Logic
+  in Computer Science}, pages 700--709, 2016.
+
+\bibitem[Mardare et~al.(2017)Mardare, Panangaden, and
+  Plotkin]{mardare2017axiomatizability}
+Radu Mardare, Prakash Panangaden, and Gordon Plotkin.
+\newblock On the axiomatizability of quantitative algebras.
+\newblock In \emph{2017 32nd Annual ACM/IEEE Symposium on Logic in Computer
+  Science (LICS)}, pages 1--12. IEEE, 2017.
+
+\bibitem[Murali et~al.(2019)Murali, Baker, Javadi-Abhari, Chong, and
+  Martonosi]{murali2019noise}
+Prakash Murali, Jonathan~M Baker, Ali Javadi-Abhari, Frederic~T Chong, and
+  Margaret Martonosi.
+\newblock Noise-adaptive compiler mappings for noisy intermediate-scale quantum
+  computers.
+\newblock In \emph{Proceedings of the twenty-fourth international conference on
+  architectural support for programming languages and operating systems}, pages
+  1015--1029, 2019.
+
+\bibitem[Nielsen and Chuang(2010)]{nielsen2010quantum}
+Michael~A Nielsen and Isaac~L Chuang.
+\newblock \emph{Quantum computation and quantum information}.
+\newblock Cambridge university press, 2010.
+
+\bibitem[Preskill(2018)]{preskill2018quantum}
+John Preskill.
+\newblock Quantum computing in the nisq era and beyond.
+\newblock \emph{Quantum}, 2:\penalty0 79, 2018.
+
+\bibitem[{Qiskit contributors}(2023)]{Qiskit}
+{Qiskit contributors}.
+\newblock Qiskit: An open-source framework for quantum computing, 2023.
+
+\bibitem[Selinger(2004)]{selinger2004towards}
+Peter Selinger.
+\newblock Towards a quantum programming language.
+\newblock \emph{Mathematical Structures in Computer Science}, 14\penalty0
+  (4):\penalty0 527--586, 2004.
+
+\bibitem[Selinger(2013)]{selinger2013lecture}
+Peter Selinger.
+\newblock Lecture notes on the lambda calculus, 2013.
+
+\bibitem[Selinger et~al.(2009)Selinger, Valiron, et~al.]{selinger2009quantum}
+Peter Selinger, Beno{\i}t Valiron, et~al.
+\newblock Quantum lambda calculus.
+\newblock \emph{Semantic techniques in quantum computation}, pages 135--172,
+  2009.
+
+\bibitem[Shor(1994)]{shor1994algorithms}
+Peter~W Shor.
+\newblock Algorithms for quantum computation: discrete logarithms and
+  factoring.
+\newblock In \emph{Proceedings 35th annual symposium on foundations of computer
+  science}, pages 124--134. Ieee, 1994.
+
+\bibitem[Steane(1996)]{steane1996error}
+Andrew~M Steane.
+\newblock Error correcting codes in quantum theory.
+\newblock \emph{Physical Review Letters}, 77\penalty0 (5):\penalty0 793, 1996.
+
+\bibitem[Svore et~al.(2018)Svore, Geller, Troyer, Azariah, Granade, Heim,
+  Kliuchnikov, Mykhailova, Paz, and Roetteler]{svore2018q}
+Krysta Svore, Alan Geller, Matthias Troyer, John Azariah, Christopher Granade,
+  Bettina Heim, Vadym Kliuchnikov, Mariia Mykhailova, Andres Paz, and Martin
+  Roetteler.
+\newblock Q\# enabling scalable quantum computing and development with a
+  high-level dsl.
+\newblock In \emph{Proceedings of the real world domain specific languages
+  workshop 2018}, pages 1--10, 2018.
+
+\bibitem[Tao et~al.(2021)Tao, Shi, Yao, Hui, Chong, and Gu]{tao2021gleipnir}
+Runzhou Tao, Yunong Shi, Jianan Yao, John Hui, Frederic~T Chong, and Ronghui
+  Gu.
+\newblock Gleipnir: toward practical error analysis for quantum programs.
+\newblock In \emph{Proceedings of the 42nd ACM SIGPLAN International Conference
+  on Programming Language Design and Implementation}, pages 48--64, 2021.
+
+\bibitem[Wallman and Emerson(2016)]{wallman2016noise}
+Joel~J Wallman and Joseph Emerson.
+\newblock Noise tailoring for scalable quantum computation via randomized
+  compiling.
+\newblock \emph{Physical Review A}, 94\penalty0 (5):\penalty0 052325, 2016.
+
+\bibitem[Watrous(2018)]{watrous2018theory}
+John Watrous.
+\newblock \emph{The theory of quantum information}.
+\newblock Cambridge university press, 2018.
+
+\bibitem[Winskel(1993)]{winskel1993formal}
+Glynn Winskel.
+\newblock \emph{The formal semantics of programming languages: an
+  introduction}.
+\newblock MIT press, 1993.
+
+\bibitem[Wootters and Zurek(1982)]{wootters1982single}
+William~K Wootters and Wojciech~H Zurek.
+\newblock A single quantum cannot be cloned.
+\newblock \emph{Nature}, 299\penalty0 (5886):\penalty0 802--803, 1982.
+
+\bibitem[Zorzi(2016)]{zorzi2016quantum}
+Margherita Zorzi.
+\newblock On quantum lambda calculi: a foundational perspective.
+\newblock \emph{Mathematical Structures in Computer Science}, 26\penalty0
+  (7):\penalty0 1107--1195, 2016.
+
+\end{thebibliography}

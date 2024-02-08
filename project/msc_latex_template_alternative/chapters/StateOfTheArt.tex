@@ -1,0 +1,449 @@
+\chapter{State of the Art}
+
+\section{Linear Lambda Calculus}
+
+
+The Lambda-Calculus, developed by Church and Curry in the 1930s, serves as a formal language capturing the key attribute of higher-order functional languages, treating functions as first-class citizens, allowing them to be passed as arguments [\cite{barendregt1984lambda}].  Beyond its foundational aspects, this calculus incorporates extensions for modeling side effects, including probabilistic or non-deterministic behaviors and shared memory. Centered around the expression of higher-order functions, where functions can serve as inputs or outputs, it emerges as a potent computational tool.  Higher-order functions form a pivotal abstraction in practical programming languages such as LISP, Scheme, ML, and Haskell.
+
+% Exemplo de função que só se possa usar uma vez, porque não estou a perceber? 
+
+In quantum information theory, the role of higher-order functions encompasses two fundamental aspects. The first involves the concept of entangled functions and how well-known quantum phenomena find natural descriptions through such functions. The second concerns the interplay between classical objects and quantum objects in a higher-order context. Quantum computation conventionally handles classical and quantum data, while the higher-order context introduces a third data type: functions. These functions fall into two categories - those "quantum-like" (entangled, single-use) and those "classical-like" (duplicable, reusable). Remarkably, this classification transcends input/output types, highlighting the coexistence of quantum-like functions operating on classical data and classical-like functions operating on quantum data. [\cite{selinger2009quantum}].
+
+\subsection{Syntax}
+The grammar and term formation rules of the linear lambda calculus, discussed in [\cite{dahlqvist2022syntactic}], are presented in this subsection.
+
+The definition of the grammar for linear lambda calculus is as follows, where $G$ represents a set of ground types.
+\vspace{-10pt}
+\begin{equation} \label{eq:grammar}
+\centering
+\hspace{95pt} \mathbb{A} ::= X \in G \hspace{3 pt} \vert \hspace{3 pt} \mathbb{I}  \hspace{3 pt}  \vert \hspace{3 pt} \mathbb{A}  \otimes  \mathbb{A} \hspace{3 pt} \vert \hspace{3 pt} \mathbb{A} \oplus \mathbb{A} \hspace{3 pt}  \vert \hspace{3 pt}   \mathbb{A} \multimap  \mathbb{A}
+\end{equation}
+\vspace{-25pt}
+
+ Regarding the term formation rules, $\Sigma$ corresponds to a class of sorted operation symbols $f: \mathbb{A}_{1}, \ldots, \mathbb{A}_{n} \xrightarrow{} \mathbb{A}$, where $n \geq 1$.   Typing contexts are represented as lists $x_{1}: \mathbb{A}_{1}, \ldots, x_{n}: \mathbb{A}_{n}$ of typed variables, with each variable $x_i$ (where $1 \leq i \leq n$) occurring at most once in $x_1, \ldots, x_n$. The typing contexts are denoted by greek letters $\Gamma$, $\Delta$, and $E$.
+The concept of shuffling is employed to construct a linear typing system that ensures the admissibility of the exchange rule and enables unambiguous reference to judgment's denotations $[\![ \Gamma \triangleright v: \mathbb{A} ]\!]$. Shuffling is defined as a permutation of typed variables in a sequence of contexts, $\Gamma_1, \ldots, \Gamma_n$, preserving the relative order of variables within each $\Gamma_i$. For instance, if $\Gamma_1=x:\mathbb{A}, y:\mathbb{B}$ and $\Gamma_2=z:\mathbb{C}$, then $z:\mathbb{C}, x:\mathbb{A}, y:\mathbb{B}$ is a valid shuffle of $\Gamma_1, \Gamma_2$. On the other hand, $y:\mathbb{B}, x:\mathbb{A}, z:\mathbb{C}$ is not a shuffle because it alters the occurrence order of $x$ and $y$ in $\Gamma_1$. The set of shuffles in $\Gamma_1, \ldots, \Gamma_n$ is denoted as $\text{Sf} (\Gamma_1, \ldots, \Gamma_n)$.
+The term formation rules of the linear lambda calculus are shown in
+\autoref{fig:typing_rules_linear}.
+\vspace{-10pt}
+\begin{figure} [H]
+\begin{equation*}
+\begin{split}
+\begin{aligned}
+&
+\begin{minipage}[t]{0.3\textwidth}
+$\begin{array}{c}
+     \Gamma_{i} \triangleright v_{i}: \mathbb{A}_{i} \quad f: \mathbb{A}_{1}, \ldots, \mathbb{A}_{n} \xrightarrow{} \mathbb{A} \in \Sigma \quad E \in \text{Sf}(\Gamma_{1}; \ldots; \Gamma_{n})\\
+    \hline
+   E \triangleright f( v_{1},\ldots,v_{n}): \mathbb{A}
+\end{array}
+$
+\end{minipage}
+\hspace{168pt}
+\text{(ax)} 
+ \hspace{10pt}
+\begin{minipage}[t]{0.3\textwidth}
+$\begin{array}{c}
+      \\
+    \hline
+   x:\mathbb{A} \triangleright x:\mathbb{A}
+\end{array}
+$ \end{minipage}
+\hspace{-60pt} \text{(hyp)} \\
+&
+\begin{minipage}[t]{0.3\textwidth}
+$\begin{array}{c}
+     \\
+    \hline
+   - \triangleright *: \mathbb{I}
+\end{array}
+$
+\end{minipage}
+\hspace{-80pt}
+\text{($\mathbb{I}_{i}$)} 
+ \hspace{20pt}
+\begin{minipage}[t]{0.3\textwidth}
+$\begin{array}{c}
+     \Gamma \triangleright v: \mathbb{A} \otimes \mathbb{B} \quad  \Delta,x: \mathbb{A}, y: \mathbb{B}  \triangleright w: \mathbb{C}  \quad E \in \text{Sf}(\Gamma;\Delta)\\
+    \hline
+   E\triangleright \text{pm } v \text{ to } x \otimes y. w :\mathbb{C}
+\end{array}
+$ \end{minipage}
+\hspace{144pt} (\otimes_{e}) \\
+&
+\begin{minipage}[t]{0.3\textwidth}
+$\begin{array}{c}
+     \Gamma \triangleright v: \mathbb{A} \quad  \Delta \triangleright w: \mathbb{B}  \quad E \in \text{Sf}(\Gamma;\Delta) \\
+    \hline
+   E \triangleright v \otimes w: \mathbb{A} \otimes \mathbb{B} 
+\end{array}
+$
+\end{minipage}
+\hspace{60pt} (\otimes_{i}) 
+ \hspace{20pt}
+ \begin{minipage}[t]{0.3\textwidth}
+$\begin{array}{c}
+     \Gamma \triangleright v: \mathbb{I} \quad  \Delta \triangleright w: \mathbb{A}  \quad E \in \text{Sf}(\Gamma;\Delta)  \\
+    \hline
+   E \triangleright v \text { to } *.w: \mathbb{A}  
+\end{array}
+$ \end{minipage}
+\hspace{55pt} (\mathbb{I}_{e}) \\
+&
+\begin{minipage}[t]{0.3\textwidth}
+$\begin{array}{c}
+     \Gamma,x:\mathbb{A} \triangleright v: \mathbb{B} \\
+    \hline
+   \Gamma \triangleright \lambda x:\mathbb{A} . v: \mathbb{A} \multimap \mathbb{B} 
+\end{array}
+$
+\end{minipage}
+\hspace{-20pt} (\multimap_{i}) 
+ \hspace{5pt}
+ \begin{minipage}[t]{0.3\textwidth}
+$\begin{array}{c}
+     \Gamma \triangleright v: \mathbb{A} \multimap \mathbb{B} \quad  \Delta \triangleright w: \mathbb{A}  \quad E \in \text{Sf}(\Gamma;\Delta)  \\
+    \hline
+   E \triangleright v w: \mathbb{B}  
+\end{array}
+$ \end{minipage}
+\hspace{83pt} (\multimap_{e}) 
+\hspace{5pt}
+\begin{minipage}[t]{0.3\textwidth}
+$\begin{array}{c}
+     \Gamma \triangleright v: \mathbb{A}  \\
+    \hline
+   \Gamma \triangleright \text{dis}(v):  \mathbb{I} 
+\end{array}
+$
+\end{minipage}
+\hspace{-63pt} (\text{dis})
+\end{aligned}
+\end{split}
+\end{equation*}
+\caption{Term formation rules of affine lambda calculus.}
+\label{fig:typing_rules_linear}
+\end{figure}
+\vspace{-8pt}
+The no-cloning theorem states that it is impossible to duplicate a quantum bit [\cite{wootters1982single}]. This principle is upheld by the type system outlined in \autoref{fig:typing_rules_linear}, which does not allow the repeated use of a variable (seen as a quantum resource).
+Nevertheless, the linearity
+constraint is often deemed too restrictive, prompting research into relaxing it in various computational paradigms. In [\cite{dahlqvist2023complete}], the controlled use of a resource multiple times is explored within approximate program equivalence paradigms. Moreover, the grammar introduced allows the specification of how many times a resource can be used—a notion particularly relevant in quantum computation, especially within the NISQ era where resources are scarce.
+\vspace{-5pt}
+\subsection{Metric equational system}
+Metric equations [\cite{mardare2016quantitative}, \cite{mardare2017axiomatizability}] are a strong candidate for reasoning about approximate program equivalence. These equations take the form of $t=_{\epsilon} s$, where  $\epsilon$ is a non-negative rational representing the ``maximum distance" between the two terms $t$ and $s$. The metric equational system for linear lambda calculus is depicted in \autoref{fig:metric deductive system} [\cite{dahlqvist2022syntactic}].
+\vspace{-10pt}
+\begin{figure} [H]
+\begin{equation*}
+\begin{split}
+\begin{aligned}
+&
+\begin{minipage}[t]{0.3\textwidth}
+$\begin{array}{c}
+     \\
+    \hline
+   v=_{0}v
+\end{array}
+$
+\end{minipage}
+\hspace{-90pt}
+\text{(refl)} 
+ \hspace{55pt}
+\begin{minipage}[t]{0.3\textwidth}
+$\begin{array}{c}
+    v=_{q}w \quad w=_{r}u  \\
+    \hline
+   v=_{q + r} u
+\end{array}
+$ \end{minipage}
+\hspace{-40pt} \text{(trans)} 
+\hspace{55pt}
+\begin{minipage}[t]{0.3\textwidth}
+$\begin{array}{c}
+    v=_{q}w \quad r\geq q  \\
+    \hline
+   v=_{r} w
+\end{array}
+$ \end{minipage}
+\hspace{-45pt} \text{(weak)} \\
+&
+\begin{minipage}[t]{0.3\textwidth}
+$\begin{array}{c}
+    \forall r > q . \hspace{4pt} v=_{r} w \\
+    \hline
+   v=_{q}w
+\end{array}
+$
+\end{minipage}
+\hspace{-45pt}
+\text{(arch)} 
+ \hspace{40pt}
+\begin{minipage}[t]{0.3\textwidth}
+$\begin{array}{c}
+    \forall i \leq n. \hspace{4pt} v=_{q_i} w\\
+    \hline
+   v=_{\vee q_i} w
+\end{array}
+$ \end{minipage}
+\hspace{-40pt} \text{(join)} 
+\hspace{40pt}
+\begin{minipage}[t]{0.3\textwidth}
+$\begin{array}{c}
+    v=_{q} w \quad v'=_{r} w' \\
+    \hline
+   v \otimes v' =_{q + r} w \otimes w'
+\end{array}
+$ \end{minipage}
+\hspace{-45pt}  \\
+&
+\begin{minipage}[t]{0.3\textwidth}
+$\begin{array}{c}
+   \forall i \leq n. \hspace{4pt} v_{i}=_{q_i} w_{i}\\
+    \hline
+   f(v_{1},...,v_{n})=_{\Sigma q_i} f(w_{1},...,,w_{n}) 
+\end{array}
+$
+\end{minipage}
+ \hspace{34pt}
+\begin{minipage}[t]{0.3\textwidth}
+$\begin{array}{c}
+   v=_{q}w  \quad v'=_{r}w'\\
+    \hline
+    v \text { to } *.v' =_{q+r} w \text { to } *.w'
+\end{array}
+$ \end{minipage}
+\hspace{0pt}
+\begin{minipage}[t]{0.3\textwidth}
+$\begin{array}{c}
+    v=_{q} w  \\
+    \hline
+  \lambda x : \mathbb{A}. \hspace{4pt} v=_{q} \lambda x:\mathbb{A}. \hspace{4pt} w
+\end{array}
+$ \end{minipage}
+\hspace{20pt}  \\
+&
+\begin{minipage}[t]{0.3\textwidth}
+$\begin{array}{c}
+    v=_{q} w \quad  v'=_{r} w'  \\
+    \hline
+   \text{pm} \hspace{4pt} v \hspace{4pt} \text{to} \hspace{4pt} x \otimes y. \hspace{4pt} v'=_{q + r}\text{pm} \hspace{4pt} w \hspace{4pt} \text{to} \hspace{4pt} x \otimes y .  \hspace{4pt} w'
+\end{array}
+$
+\end{minipage}
+\hspace{200pt}
+\begin{minipage}[t]{0.3\textwidth}
+$\begin{array}{c}
+    v =_{q} w \quad v'=_{r} w'   \\
+    \hline
+  v v' =_{q + r} w w'
+\end{array}
+$ \end{minipage}
+ \\
+ &
+\begin{minipage}[t]{0.3\textwidth}
+$\begin{array}{c}
+  \Gamma \triangleright v =_{q} w: \mathbb{A} \quad \Delta \in \text{perm}(\Gamma)\\
+    \hline
+   \Delta \triangleright v =_{q} w: \mathbb{A}
+\end{array}
+$
+\end{minipage}
+\hspace{180pt}
+\begin{minipage}[t]{0.3\textwidth}
+$\begin{array}{c}
+    v =_{q} w \quad v'=_{r} w'    \\
+    \hline
+  v[v'/x]=_{q + r} w[w'/x]
+\end{array}
+$ \end{minipage}
+\hspace{10pt}
+\end{aligned}
+\end{split}
+\end{equation*}
+\caption{Metric equational system}
+\label{fig:metric deductive system}
+\end{figure}
+\vspace{-5pt}
+In the quantum paradigm, a potential notion of approximate equivalence arises from the so-called diamond norm [\cite{watrous2018theory}], which induces a metric (roughly, a distance function) on the space of quantum programs (seen semantically as completely positive trace-preserving super-operators). This norm relies on another norm known as the trace norm. The $\lVert  \rVert_{1}$ latter is defined by  $\lVert A \rVert_{1} = \text{Tr}\sqrt{A^{\dag}A}$  for matrices $A \in \mathbb{C}^{n\times n}$.
+The trace distance between two super-operators $E, E': \mathbb{C}^{n\times n} \xrightarrow{} \mathbb{C}^{m\times m }$,  denoted as $T(E,E')$, is defined as follows:
+\begin{equation} \label{eq:trace_distance}
+\begin{centering}
+\hspace{80pt}
+ T(E,E')= \max\{\lVert (E-E') A \rVert_{1} \hspace{2pt}  \vert \hspace{2pt}  \lVert A \rVert_{1}=1\} 
+ \end{centering}
+\end{equation}
+Unfortunately, this norm is not stable under tensoring [\cite{watrous2018theory}], and consequently, the diamond norm, which is based on the trace norm, is used instead. The diamond norm between two super-operators $E, E': \mathbb{C}^{n\times n} \xrightarrow{} \mathbb{C}^{m\times m }$ is defined as:
+\begin{equation}  \label{eq:diamond_distance}
+\begin{centering}
+\hspace{110pt}
+ \lVert E-E'\rVert_{\diamondsuit} =  T(E \otimes I_{n},E' \otimes I_{n}) 
+ \end{centering}
+\end{equation}
+where $I_{n} $ is the identity super-operator over the space $\mathbb{C}^{n\times n}$.
+The notion of a diamond norm is used in [\cite{dahlqvist2022syntactic}] which introduces a simple metric theory based on the idea of approximating a quantum operation. The authors argue that their deductive system allows to compute an approximate distance between two quantum programs easily as opposed to computing an exact distance ``semantically" which tends to involve quite complex operators. 
+Other works in this spirit include [\cite{hung2019quantitative}] and [\cite{tao2021gleipnir}]. They reason about the issue of noise in a quantum while-language by developing a deductive system to determine how similar a quantum program is from its idealised, noise-free version. The former introduces the ($Q$,$\lambda$)-diamond norm which analyzes the output error given that the input quantum state satisfies some quantum predicate $Q$ to degree $\lambda$. However, it does not specify any practical method for obtaining non-trivial quantum predicates. In fact, the methods used in [\cite{hung2019quantitative}] cannot produce any post conditions other than $(I,0)$ (\textit{i.e.}, the identity matrix $I$ to degree 0, analogous to a ``true” predicate) for large quantum programs. The latter specifically addresses and delves into this aspect. 
+
+\vspace{-7pt}
+
+\subsection{Interpretation}
+In order to define the interpretation of judgments $\Gamma \triangleright v: \mathbb{A}$, it is necessary to establish some notation first. Considering $v \in V$, $w \in W$, and $u \in U$  where $V, W, U$ represent vector spaces,  $\textsc{sw}_{V,W} : V\otimes W \xrightarrow{} W \otimes V$, denotes the swap operator, defined as $\textsc{sw}_{V,W}= v\otimes w \mapsto w \otimes v$;    $\rho_{V} : \mathbb{C} \otimes V \xrightarrow{} V $ is the left unitor defined as $\rho_{V}= 1 \otimes v \mapsto v $; $\lambda_{V} : V  \otimes \mathbb{C} \xrightarrow{} V $ is the right unitor defined as $\lambda_{V}= v \otimes 1 \mapsto v$; $\alpha_{V,W,U} : V  \otimes (W \otimes U) \xrightarrow{} (V  \otimes W) \otimes U$ is the left associator, defined as $\alpha_{V,W,U}= v \otimes (w \otimes u) \mapsto (v \otimes w) \otimes u $; and $!_{V}: V \xrightarrow{} \mathbb{C}$ is the trace operation applied to a vector, defined as  $!_{V}= v \xrightarrow{} \text{Tr} \hspace{1pt}v$. Moreover, for all operators $f: V \otimes W \xrightarrow{} U$, the operator $\overline{f} : V \xrightarrow{} (W \multimap U)$ denotes the corresponding curried version, defined as $\overline{f}(v) = w \mapsto  f(v,w)$. The subscripts in these operators will be omitted unless ambiguity arises.
+
+For all ground types $X \in G$  the interpretation of $[\![X]\!]$  is postulated as a vector space $V$. Types are interpreted inductively using the unit $\mathbb{I}$, the tensor $\otimes$, and the linear map $\multimap$. Given a non-empty context $\Gamma=\Gamma',x: \mathbb{A}$, its interpretation is defined by $[\![\Gamma',x: \mathbb{A}]\!] = [\![\Gamma']\!] \otimes [\![\mathbb{A}]\!]$ if $\Gamma'$ is non-empty and $[\![\Gamma',x: \mathbb{A}]\!] = [\![\mathbb{A}]\!]$ otherwise. The empty context $-$ is interpreted as $[\![-]\!] = \mathbb{I}$. Given $X_{1}, . . . ,X_{n} \in V$, the $n$-tensor $(\ldots (X_1 \otimes X_2) \otimes \ldots ) \otimes X_{n}$ is denoted as $X_1 \otimes \ldots \otimes X_{n}$, and similarly for operators. 
+
+
+``Housekeeping" operators are employed to handle interactions between context interpretation and the vectorial model. Given $\Gamma_{1}, \ldots, \Gamma_{n}$, the operator that splits $[\![\Gamma_{1}, \ldots, \Gamma_{n}]\!]$ into $[\![\Gamma_{1}]\!] \otimes \ldots \otimes [\![\Gamma_{n}]\!]  $ is denoted by $\text{sp}_{\Gamma_1;\ldots;\Gamma_n}: [\![\Gamma_{1}, \ldots, \Gamma_{n}]\!] \xrightarrow{} [\![\Gamma_{1}]\!] \otimes \ldots \otimes [\![\Gamma_{n}]\!] $.
+On the other hand, $\text{jn}_{\Gamma_1;\ldots;\Gamma_n}$ denotes the inverse of $\text{sp}_{\Gamma_1;\ldots;\Gamma_n}$. Next, given $\Gamma, x : \mathbb{A}, y : \mathbb{B},\Delta$, the operator permuting $x$ and $y$ is denoted by $\text{exch}_{\Gamma, x : \mathbb{A}, y : \mathbb{B},\Delta}: [\![\Gamma, x : \mathbb{A}, y : \mathbb{B},\Delta]\!] \xrightarrow{} [\![\Gamma, y : \mathbb{B}, x : \mathbb{A}, \Delta]\!] $. The shuffling operator $\text{sh}_{E}: [\![E]\!] \xrightarrow{} [\![\Gamma_1, \ldots, \Gamma_n ]\!]$ is defined as a suitable composition
+of exchange operators.
+
+For every operation symbol $f: \mathbb{A}_{1}, \ldots, \mathbb{A}_{n} \xrightarrow{} \mathbb{A}$ we assume the existence of an operator $[\![f]\!]: [\![\mathbb{A}_{1}]\!] \otimes \ldots \otimes [\![\mathbb{A}_{n}]\!] \xrightarrow{}  [\![\mathbb{A}]\!] $.
+The interpretation of judgments is defined by induction over derivations according to the rules in \autoref{fig:denotational_sem} [\cite{dahlqvist2022syntactic}].
+\vspace{-7pt}
+\begin{figure} [H]
+\begin{equation*}
+\begin{split}
+\begin{aligned}
+&
+\begin{minipage}[t]{0.3\textwidth}
+$\begin{array}{c}
+      [\![\Gamma_{i} \triangleright v_{i}: \mathbb{A}_{i} ]\!]=m_{i}  \quad f: \mathbb{A}_{1}, \ldots, \mathbb{A}_{n} \in \Sigma \quad E \in \text{Sf}(\Gamma_{1}; \ldots; \Gamma_{n})\\
+    \hline
+  [\![E \triangleright f( v_{1},\ldots,v_{n}): \mathbb{A} ]\!] = [\![ f]\!] \cdot (m_{1}\otimes \ldots \otimes m_{n}) \cdot \text{sp}_{\Gamma_1;\ldots;\Gamma_n}\cdot \text{sh}_{E}
+\end{array}
+$
+\end{minipage}
+\hspace{204pt}
+\begin{minipage}[t]{0.3\textwidth}
+$\begin{array}{c}
+      \\
+    \hline
+  [\![ x:\mathbb{A} \triangleright x:\mathbb{A}]\!] = \text{id}_{[\![\mathbb{A} ]\!]}
+\end{array}
+$ \end{minipage} \\
+&
+\begin{minipage}[t]{0.3\textwidth}
+$\begin{array}{c}
+     \\  
+    \hline
+   [\![ - \triangleright *: \mathbb{I}]\!] = \text{id}_{[\![\mathbb{I} ]\!]}
+\end{array}
+$
+\end{minipage}
+\hspace{-31pt}
+\begin{minipage}[t]{0.3\textwidth}
+$\begin{array}{c}
+      [\![\Gamma \triangleright v: \mathbb{A} \otimes \mathbb{B} ]\!]=m  \quad [\![\Delta,x: \mathbb{A}, y: \mathbb{B}  \triangleright w: \mathbb{C} ]\!] =n  \quad E \in \text{Sf}(\Gamma;\Delta)\\
+    \hline
+  [\![ E\triangleright \text{pm } v \text{ to } x \otimes y. w :\mathbb{C}]\!] = n \cdot \text{jn}_{\Delta;\mathbb{A};\mathbb{B}} \cdot \alpha \cdot \text{sw}\cdot (m \otimes \text{id}) \cdot \text{sp}_{\Gamma;\Delta} \cdot \text{sh}_{E}
+\end{array}
+$ \end{minipage} \\
+&
+\begin{minipage}[t]{0.3\textwidth}
+$\begin{array}{c}  
+     [\![ \Gamma \triangleright v: \mathbb{A} ]\!] =m \quad [\![\Delta \triangleright w: \mathbb{B} ]\!]=n \quad E \in \text{Sf}(\Gamma;\Delta) \\
+    \hline
+  [\![ E \triangleright v \otimes w: \mathbb{A} \otimes \mathbb{B} ]\!] = (m \otimes n) \cdot \text{sp}_{\Gamma;\Delta} \cdot \text{sh}_{E}
+\end{array} 
+$
+\end{minipage}\\
+&
+ \begin{minipage}[t]{0.3\textwidth}
+$\begin{array}{c} 
+    [\![\Gamma \triangleright v: \mathbb{I} ]\!]=m  \quad [\![\Delta \triangleright w: \mathbb{A}]\!]=n \quad E \in \text{Sf}(\Gamma;\Delta)  \\
+    \hline
+  [\![E \triangleright v \text { to } *.w: \mathbb{A} ]\!]=n \cdot \lambda \cdot (m \otimes \text{id}) \cdot \text{sp}_{\Gamma;\Delta} \cdot \text{sh}_{E}
+\end{array}
+$ \end{minipage} 
+\hspace{130 pt}
+\begin{minipage}[t]{0.3\textwidth}
+$\begin{array}{c} 
+     [\![\Gamma,x:\mathbb{A} \triangleright v: \mathbb{B} ]\!] = m \\
+    \hline
+   [\![ \Gamma \triangleright \lambda x:\mathbb{A} . \hspace{2pt } v: \mathbb{A} \multimap \mathbb{B}]\!] = \overline{m \cdot \text{jn}_{\Gamma;\mathbb{A}}}
+\end{array}
+$
+\end{minipage} \\
+&
+ \begin{minipage}[t]{0.3\textwidth}
+$\begin{array}{c} 
+     [\![\Gamma \triangleright v: \mathbb{A} \multimap \mathbb{B} ]\!] = m \quad [\![  \Delta \triangleright w: \mathbb{A} ]\!] =n \quad E \in S\hspace{-3pt}f(\Gamma;\Delta)  \\
+    \hline
+  [\![ E \triangleright v w: \mathbb{A} ]\!] = \text{app} \cdot (m \otimes n) \cdot \text{sp}_{\Gamma;\Delta} \cdot \text{sh}_{E}
+\end{array}
+$ \end{minipage}
+\hspace{190 pt} %[\![ ]\!]
+\begin{minipage}[t]{0.3\textwidth}
+$\begin{array}{c}
+     [\![\Gamma \triangleright v: \mathbb{A}]\!]  = f \\
+    \hline
+   [\![ \Gamma \triangleright \text{dis}(v):  \mathbb{I} ]\!] = !_{[\![ \mathbb{A} ]\!]} \cdot f
+\end{array}
+$
+\end{minipage}
+\end{aligned}
+\end{split}
+\end{equation*}
+\caption{Judgment interpretation}
+\label{fig:denotational_sem}
+\end{figure}
+
+% Perguntar ao professor Renato: "Equations corresponding to the axiomatics of autonomous categories" e onde por o background de quantum computing. Also é para fazer glossário com simbolos matemáticos?
+
+\section{Quantum Lambda Calculus}
+
+
+In the case of quantum lambda calculus, which combines classical and quantum features, it is natural to consider two distinct basic data types: a type $\textit{bit}$ of classical bits and a type $\textit{qbit}$ of quantum bits.  The interpretation of these types is defined as  $[\![\textit{bit}]\!]=\mathbb{C}\oplus\mathbb{C}$ and $[\![\textit{qbit}]\!]=\mathbb{C}^{2\cdot 2}$. The type $\mathbb{I}$ is interpreted as $[\![\mathbb{I}]\!]=\mathbb{C}$.
+
+The following operations are considered: $\textit{new} \hspace{2pt} 0  :\mathbb{I}  \multimap \textit{bit} $, $\textit{new} \hspace{2pt} 1  :\mathbb{I}  \multimap \textit{bit} $, $q : \textit{bit}  \multimap \textit{qbit}$, $\textit{meas}:\textit{qbit} \xrightarrow{} \textit{bit}$, and $\textit{U}:\textit{qbit},\ldots,\textit{qbit} \xrightarrow{} \textit{qbit}^{\otimes n}$. Their correspondent judgment interpretation is shown in \autoref{fig:interpret_ops}. 
+
+
+
+\begin{figure}[H]
+\begin{equation*}
+\begin{split}
+\begin{aligned}
+&
+\hspace{0pt}
+\begin{minipage}[t]{0.45\textwidth}
+$\begin{aligned}
+  [\![\textit{new} \, 0 ]\!] : \hspace{2pt}& \mathbb{C} \multimap \llbracket \textit{bit} \rrbracket  \\
+& 1 \mapsto (1,0)
+\end{aligned}$
+\end{minipage}
+\hspace{-30pt}
+\begin{minipage}[t]{0.45\textwidth}
+$\begin{aligned}
+  [\![\textit{new} \, 1 ]\!] :\hspace{2pt}& \mathbb{C} \multimap \llbracket \textit{bit} \rrbracket  \\
+  & 1 \mapsto (0,1)
+\end{aligned}$
+\end{minipage} 
+\hspace{-30pt}
+\begin{minipage}[t]{0.45\textwidth}
+$\begin{aligned}
+  [\![q ]\!] : \hspace{2pt}&\llbracket \textit{bit} \rrbracket \multimap \llbracket \textit{qbit} \rrbracket\\
+   &(a,b) \mapsto \big(\begin{smallmatrix}
+  a & 0\\
+  0 & b
+\end{smallmatrix}\big) 
+\end{aligned}$
+\end{minipage} \\
+&
+\hspace{0pt}
+\begin{minipage}[t]{0.45\textwidth}
+$\begin{aligned}
+  [\![\textit{meas}]\!]:\hspace{2pt} & \llbracket \textit{qbit} \rrbracket \xrightarrow{} \llbracket \textit{bit} \rrbracket  \\
+  &\rho \mapsto ( \text{Tr} (M_{0} \rho M_{0}^{\dag}), \text{Tr} (M_{1} \rho M_{1}^{\dag})) 
+\end{aligned}$
+\end{minipage} 
+\hspace{118pt}
+\begin{minipage}[t]{0.45\textwidth}
+$\begin{aligned}
+  [\![\textit{U} ]\!] : \hspace{2pt} & \llbracket \textit{qbit} \rrbracket^{\otimes n} \xrightarrow{} \llbracket 
+  \textit{qbit} \rrbracket^{\otimes n} \\
+  & \rho \mapsto U \rho \hspace{2pt}  U^{\dag}
+% & \rho,...,\rho_{n} \mapsto U \hspace{-2pt}\left(\bigotimes_{i=1}^{n}\rho_{i}\right ) U^{\dag}
+\end{aligned}$
+\end{minipage} \\
+\end{aligned}
+\end{split}
+\end{equation*}
+\caption{Judgment interpretation of the operations in quantum lambda calculus.}
+\label{fig:interpret_ops}
+\end{figure}
