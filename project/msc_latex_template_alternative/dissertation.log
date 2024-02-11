@@ -1,10 +1,10 @@
-This is pdfTeX, Version 3.141592653-2.6-1.40.25 (MiKTeX 24.1) (preloaded format=pdflatex 2024.2.8)  8 FEB 2024 21:53
+This is pdfTeX, Version 3.141592653-2.6-1.40.25 (MiKTeX 24.1) (preloaded format=pdflatex 2024.2.8)  11 FEB 2024 18:10
 entering extended mode
  restricted \write18 enabled.
  file:line:error style messages enabled.
  %&-line parsing enabled.
-**"c:/Users/mona_/OneDrive/Ambiente de Trabalho/Universidade/Tese/Dissertaco-Equivalence-for-Quantum-Processes-from-theory-to-practice/project/msc_latex_template_alternative/dissertation.tex"
-(c:/Users/mona_/OneDrive/Ambiente de Trabalho/Universidade/Tese/Dissertaco-Equivalence-for-Quantum-Processes-from-theory-to-practice/project/msc_latex_template_alternative/dissertation.tex
+**"c:/Users/mona_/OneDrive/Ambiente de Trabalho/Universidade/Tese/Msc-Bruna/project/msc_latex_template_alternative/dissertation.tex"
+(c:/Users/mona_/OneDrive/Ambiente de Trabalho/Universidade/Tese/Msc-Bruna/project/msc_latex_template_alternative/dissertation.tex
 LaTeX2e <2023-11-01> patch level 1
 L3 programming layer <2024-01-22>
 (C:\Users\mona_\AppData\Local\Programs\MiKTeX\tex/latex/base\report.cls
@@ -1192,7 +1192,19 @@ Package: accents 2006/05/12 v1.4 Math Accent Tools
 \cc@code=\count411
 \cc@group=\count412
 \cc@skewchar=\count413
-) (C:\Users\mona_\AppData\Local\Programs\MiKTeX\tex/latex/quantikz\quantikz.sty
+) (C:\Users\mona_\AppData\Local\Programs\MiKTeX\tex/latex/tikz-cd\tikz-cd.sty
+Package: tikz-cd 2021/05/04 v1.0 Commutative diagrams with TikZ
+ (C:\Users\mona_\AppData\Local\Programs\MiKTeX\tex/latex/tikz-cd\tikzlibrarycd.code.tex (C:\Users\mona_\AppData\Local\Programs\MiKTeX\tex/generic/pgf/frontendlayer/tikz/libraries\tikzlibrarymatrix.code.tex
+File: tikzlibrarymatrix.code.tex 2023-01-15 v3.1.10 (3.1.10)
+) (C:\Users\mona_\AppData\Local\Programs\MiKTeX\tex/generic/pgf/frontendlayer/tikz/libraries\tikzlibraryquotes.code.tex
+File: tikzlibraryquotes.code.tex 2023-01-15 v3.1.10 (3.1.10)
+) (C:\Users\mona_\AppData\Local\Programs\MiKTeX\tex/generic/pgf/libraries\pgflibraryarrows.meta.code.tex
+File: pgflibraryarrows.meta.code.tex 2023-01-15 v3.1.10 (3.1.10)
+\pgfarrowinset=\dimen350
+\pgfarrowlength=\dimen351
+\pgfarrowwidth=\dimen352
+\pgfarrowlinewidth=\dimen353
+))) (C:\Users\mona_\AppData\Local\Programs\MiKTeX\tex/latex/quantikz\quantikz.sty
 Package: quantikz 2023/05/24 typeset quantum circuit diagrams
  (C:\Users\mona_\AppData\Local\Programs\MiKTeX\tex/latex/quantikz\tikzlibraryquantikz2.code.tex (C:\Users\mona_\AppData\Local\Programs\MiKTeX\tex/latex/xargs\xargs.sty
 Package: xargs 2008/03/22 v1.1  extended macro definitions  (mpg)
@@ -1212,17 +1224,7 @@ File: l3backend-pdftex.def 2024-01-04 L3 backend support: PDF output (pdfTeX)
 \l__pdf_internal_box=\box142
 ))
 Package: xparse 2023-10-10 L3 Experimental document command parser
-) (C:\Users\mona_\AppData\Local\Programs\MiKTeX\tex/latex/tikz-cd\tikzlibrarycd.code.tex (C:\Users\mona_\AppData\Local\Programs\MiKTeX\tex/generic/pgf/frontendlayer/tikz/libraries\tikzlibrarymatrix.code.tex
-File: tikzlibrarymatrix.code.tex 2023-01-15 v3.1.10 (3.1.10)
-) (C:\Users\mona_\AppData\Local\Programs\MiKTeX\tex/generic/pgf/frontendlayer/tikz/libraries\tikzlibraryquotes.code.tex
-File: tikzlibraryquotes.code.tex 2023-01-15 v3.1.10 (3.1.10)
-) (C:\Users\mona_\AppData\Local\Programs\MiKTeX\tex/generic/pgf/libraries\pgflibraryarrows.meta.code.tex
-File: pgflibraryarrows.meta.code.tex 2023-01-15 v3.1.10 (3.1.10)
-\pgfarrowinset=\dimen350
-\pgfarrowlength=\dimen351
-\pgfarrowwidth=\dimen352
-\pgfarrowlinewidth=\dimen353
-)) (C:\Users\mona_\AppData\Local\Programs\MiKTeX\tex/generic/pgf/frontendlayer/tikz/libraries\tikzlibrarydecorations.pathreplacing.code.tex (C:\Users\mona_\AppData\Local\Programs\MiKTeX\tex/generic/pgf/frontendlayer/tikz/libraries\tikzlibrarydecorations.code.tex (C:\Users\mona_\AppData\Local\Programs\MiKTeX\tex/generic/pgf/modules\pgfmoduledecorations.code.tex
+) (C:\Users\mona_\AppData\Local\Programs\MiKTeX\tex/generic/pgf/frontendlayer/tikz/libraries\tikzlibrarydecorations.pathreplacing.code.tex (C:\Users\mona_\AppData\Local\Programs\MiKTeX\tex/generic/pgf/frontendlayer/tikz/libraries\tikzlibrarydecorations.code.tex (C:\Users\mona_\AppData\Local\Programs\MiKTeX\tex/generic/pgf/modules\pgfmoduledecorations.code.tex
 \pgfdecoratedcompleteddistance=\dimen354
 \pgfdecoratedremainingdistance=\dimen355
 \pgfdecoratedinputsegmentcompleteddistance=\dimen356
@@ -1272,16 +1274,21 @@ File: umsb.fd 2013/01/14 v3.01 AMS symbols B
 LaTeX Font Info:    Trying to load font information for U+stmry on input line 1044.
  (C:\Users\mona_\AppData\Local\Programs\MiKTeX\tex/latex/stmaryrd\ustmry.fd)
 \c@wirenumberpermute=\count422
-))
+)) (C:\Users\mona_\AppData\Local\Programs\MiKTeX\tex/latex/oberdiek\aliascnt.sty
+Package: aliascnt 2018/09/07 v1.5 Alias counters (HO)
+)
+\c@theorem=\count423
+\c@corollary=\count424
+\c@lemma=\count425
 \glswrite=\write4
 \glo@main@file=\write5
 \openout5 = `dissertation.glo'.
 
-Package glossaries Info: Writing glossary file dissertation.glo on input line 9.
+Package glossaries Info: Writing glossary file dissertation.glo on input line 18.
 \glo@acronym@file=\write6
 \openout6 = `dissertation.acn'.
 
-Package glossaries Info: Writing glossary file dissertation.acn on input line 9.
+Package glossaries Info: Writing glossary file dissertation.acn on input line 18.
 \dissertation@idxfile=\write7
 \openout7 = `dissertation.idx'.
 
@@ -1291,48 +1298,41 @@ Package csquotes Info: Checking for multilingual support...
 Package csquotes Info: ... found 'babel' package.
 Package csquotes Info: Adjusting default style.
 Package csquotes Info: Redefining alias 'default' -> 'english'.
-LaTeX Font Info:    Trying to load font information for T1+SourceSansPro-TLF on input line 61.
+LaTeX Font Info:    Trying to load font information for T1+SourceSansPro-TLF on input line 70.
 (C:\Users\mona_\AppData\Local\Programs\MiKTeX\tex/latex/sourcesanspro\t1sourcesanspro-tlf.fd
 File: T1SourceSansPro-TLF.fd 2020/01/19 (autoinst) Font definitions for T1/SourceSansPro-TLF.
 )
 LaTeX Font Info:    Font shape `T1/SourceSansPro-TLF/m/n' aliased to
-(Font)              `T1/SourceSansPro-TLF/regular/n' on input line 61.
+(Font)              `T1/SourceSansPro-TLF/regular/n' on input line 70.
 LaTeX Font Info:    Font shape `T1/SourceSansPro-TLF/regular/n' will be
-(Font)              scaled to size 12.0pt on input line 61.
- (dissertation.aux
-
-LaTeX Warning: Label `eq:proof_bool' multiply defined.
-
-
-LaTeX Warning: Label `eq:proof_bool@cref' multiply defined.
-
-)
+(Font)              scaled to size 12.0pt on input line 70.
+ (dissertation.aux)
 \openout1 = `dissertation.aux'.
 
-LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 61.
-LaTeX Font Info:    ... okay on input line 61.
-LaTeX Font Info:    Checking defaults for OMS/cmsy/m/n on input line 61.
-LaTeX Font Info:    ... okay on input line 61.
-LaTeX Font Info:    Checking defaults for OT1/cmr/m/n on input line 61.
-LaTeX Font Info:    ... okay on input line 61.
-LaTeX Font Info:    Checking defaults for T1/cmr/m/n on input line 61.
-LaTeX Font Info:    ... okay on input line 61.
-LaTeX Font Info:    Checking defaults for TS1/cmr/m/n on input line 61.
-LaTeX Font Info:    ... okay on input line 61.
-LaTeX Font Info:    Checking defaults for OMX/cmex/m/n on input line 61.
-LaTeX Font Info:    ... okay on input line 61.
-LaTeX Font Info:    Checking defaults for U/cmr/m/n on input line 61.
-LaTeX Font Info:    ... okay on input line 61.
-LaTeX Font Info:    Checking defaults for PD1/pdf/m/n on input line 61.
-LaTeX Font Info:    ... okay on input line 61.
-LaTeX Font Info:    Checking defaults for PU/pdf/m/n on input line 61.
-LaTeX Font Info:    ... okay on input line 61.
-LaTeX Font Info:    Checking defaults for LY1/ptm/m/n on input line 61.
-LaTeX Font Info:    Trying to load font information for LY1+ptm on input line 61.
+LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 70.
+LaTeX Font Info:    ... okay on input line 70.
+LaTeX Font Info:    Checking defaults for OMS/cmsy/m/n on input line 70.
+LaTeX Font Info:    ... okay on input line 70.
+LaTeX Font Info:    Checking defaults for OT1/cmr/m/n on input line 70.
+LaTeX Font Info:    ... okay on input line 70.
+LaTeX Font Info:    Checking defaults for T1/cmr/m/n on input line 70.
+LaTeX Font Info:    ... okay on input line 70.
+LaTeX Font Info:    Checking defaults for TS1/cmr/m/n on input line 70.
+LaTeX Font Info:    ... okay on input line 70.
+LaTeX Font Info:    Checking defaults for OMX/cmex/m/n on input line 70.
+LaTeX Font Info:    ... okay on input line 70.
+LaTeX Font Info:    Checking defaults for U/cmr/m/n on input line 70.
+LaTeX Font Info:    ... okay on input line 70.
+LaTeX Font Info:    Checking defaults for PD1/pdf/m/n on input line 70.
+LaTeX Font Info:    ... okay on input line 70.
+LaTeX Font Info:    Checking defaults for PU/pdf/m/n on input line 70.
+LaTeX Font Info:    ... okay on input line 70.
+LaTeX Font Info:    Checking defaults for LY1/ptm/m/n on input line 70.
+LaTeX Font Info:    Trying to load font information for LY1+ptm on input line 70.
  (C:\Users\mona_\AppData\Local\Programs\MiKTeX\tex/latex/ly1\ly1ptm.fd
 File: ly1ptm.fd 2001/02/01 font definitions for LY1/ptm using Berry names.
 )
-LaTeX Font Info:    ... okay on input line 61.
+LaTeX Font Info:    ... okay on input line 70.
 
 *geometry* driver: auto-detecting
 *geometry* detected driver: pdftex
@@ -1381,16 +1381,16 @@ Package caption Info: wrapfig package is loaded.
 Package caption Info: End \AtBeginDocument code.
  (C:\Users\mona_\AppData\Local\Programs\MiKTeX\tex/context/base/mkii\supp-pdf.mkii
 [Loading MPS to PDF converter (version 2006.09.02).]
-\scratchcounter=\count423
+\scratchcounter=\count426
 \scratchdimen=\dimen362
 \scratchbox=\box148
-\nofMPsegments=\count424
-\nofMParguments=\count425
+\nofMPsegments=\count427
+\nofMParguments=\count428
 \everyMPshowfont=\toks72
-\MPscratchCnt=\count426
+\MPscratchCnt=\count429
 \MPscratchDim=\dimen363
-\MPnumerator=\count427
-\makeMPintoPDFobject=\count428
+\MPnumerator=\count430
+\makeMPintoPDFobject=\count431
 \everyMPtoPDFconversion=\toks73
 ) (C:\Users\mona_\AppData\Local\Programs\MiKTeX\tex/latex/epstopdf-pkg\epstopdf-base.sty
 Package: epstopdf-base 2020-01-24 v2.11 Base part for package epstopdf
@@ -1398,12 +1398,12 @@ Package epstopdf-base Info: Redefining graphics rule for `.eps' on input line 48
  (C:\Users\mona_\AppData\Local\Programs\MiKTeX\tex/latex/00miktex\epstopdf-sys.cfg
 File: epstopdf-sys.cfg 2021/03/18 v2.0 Configuration of epstopdf for MiKTeX
 ))
-Package hyperref Info: Link coloring ON on input line 61.
+Package hyperref Info: Link coloring ON on input line 70.
  (dissertation.out) (dissertation.out)
 \@outlinefile=\write8
 \openout8 = `dissertation.out'.
 
-\c@lstlisting=\count429
+\c@lstlisting=\count432
  (dissertation.glsdefs) (covers/Covers.tex
 <images/logos/UM.jpg, id=134, 1084.05pt x 1084.05pt>
 File: images/logos/UM.jpg Graphic file (type jpg)
@@ -1630,18 +1630,18 @@ No file dissertation.gls.
 
 ]
 LaTeX Font Info:    Font shape `T1/SourceSansPro-TLF/m/n' aliased to
-(Font)              `T1/SourceSansPro-TLF/regular/n' on input line 101.
+(Font)              `T1/SourceSansPro-TLF/regular/n' on input line 110.
 LaTeX Font Info:    Font shape `T1/SourceSansPro-TLF/regular/n' will be
-(Font)              scaled to size 24.88pt on input line 101.
+(Font)              scaled to size 24.88pt on input line 110.
 LaTeX Font Info:    Font shape `T1/SourceSansPro-TLF/b/n' aliased to
-(Font)              `T1/SourceSansPro-TLF/bold/n' on input line 101.
+(Font)              `T1/SourceSansPro-TLF/bold/n' on input line 110.
 LaTeX Font Info:    Font shape `T1/SourceSansPro-TLF/bold/n' will be
-(Font)              scaled to size 24.88pt on input line 101.
+(Font)              scaled to size 24.88pt on input line 110.
 
 pdfTeX warning (ext4): destination with the same identifier (name{page.1}) has been already used, duplicate ignored
 <to be read again> 
                    \relax 
-l.101 \part{Introductory material}
+l.110 \part{Introductory material}
                                    [1
 
 
@@ -1649,7 +1649,7 @@ l.101 \part{Introductory material}
 pdfTeX warning (ext4): destination with the same identifier (name{page.2}) has been already used, duplicate ignored
 <to be read again> 
                    \relax 
-l.101 \part{Introductory material}
+l.110 \part{Introductory material}
                                    [2] (chapters/Introduction.tex
 Chapter 1.
 LaTeX Font Info:    Font shape `T1/SourceSansPro-TLF/m/n' aliased to
@@ -1824,7 +1824,7 @@ Overfull \hbox (16.6937pt too wide) in paragraph at lines 120--120
  []
 
 
-Overfull \hbox (318.90155pt too wide) in paragraph at lines 120--120
+Overfull \hbox (316.33351pt too wide) in paragraph at lines 120--120
 []$[]$ 
  []
 
@@ -1832,61 +1832,109 @@ Overfull \hbox (318.90155pt too wide) in paragraph at lines 120--120
 LaTeX Warning: Reference `appendice:teleport' on page 18 undefined on input line 144.
 
 
-Overfull \hbox (278.5163pt too wide) in paragraph at lines 179--179
+Overfull \hbox (266.99078pt too wide) in paragraph at lines 179--179
 []$[]$ 
  []
 
-[18]) (chapters/Applications.tex [19] [20
+[18]
+Overfull \hbox (0.16577pt too wide) detected at line 215
+ $[][]$  
+ []
+
+[19]
+Overfull \hbox (7.25737pt too wide) detected at line 238
+ $[][]$  
+ []
+
+
+LaTeX Font Warning: Font shape `T1/SourceSansPro-TLF/m/scit' undefined
+(Font)              using `T1/SourceSansPro-TLF/m/sc' instead on input line 265.
+
+
+LaTeX Font Warning: Font shape `T1/SourceSansPro-TLF/m/scit' undefined
+(Font)              using `T1/SourceSansPro-TLF/m/sc' instead on input line 265.
+
+
+Overfull \hbox (1.69264pt too wide) in paragraph at lines 268--269
+[]\T1/SourceSansPro-TLF/regular/n/12 Which is equiv-a-lent to show-ing that for any vec-tor spaces $\OML/cmm/m/it/12 V$\T1/SourceSansPro-TLF/regular/n/12 , $\OML/cmm/m/it/12 W$\T1/SourceSansPro-TLF/regular/n/12 , $\OML/cmm/m/it/12 U$\T1/SourceSansPro-TLF/regular/n/12 , and $\OML/cmm/m/it/12 Z$ \T1/SourceSansPro-TLF/regular/n/12 and super-operators
+ []
+
+[20]
+
+LaTeX Font Warning: Font shape `T1/SourceSansPro-TLF/m/scit' undefined
+(Font)              using `T1/SourceSansPro-TLF/m/sc' instead on input line 298.
+
+
+LaTeX Font Warning: Font shape `T1/SourceSansPro-TLF/m/scit' undefined
+(Font)              using `T1/SourceSansPro-TLF/m/sc' instead on input line 298.
+
+
+Overfull \hbox (31.31474pt too wide) detected at line 317
+ $[][]$  
+ []
+
+
+Underfull \vbox (badness 10000) has occurred while \output is active []
+
+ [21]
+Underfull \vbox (badness 10000) has occurred while \output is active []
+
+ [22]
+Overfull \hbox (4.29063pt too wide) detected at line 375
+ $[][]$  
+ []
+
+) (chapters/Applications.tex [23] [24
 
 ]
 Chapter 5.
-) (chapters/ConclusionsAndFutureWork.tex [21] [22
+) (chapters/ConclusionsAndFutureWork.tex [25] [26
 
 ]
 Chapter 6.
-) (chapters/PlannedSchedule.tex [23] [24
+) (chapters/PlannedSchedule.tex [27] [28
 
 ]
 Chapter 7.
 \@gls@deffile=\write12
 \openout12 = `dissertation.glsdefs'.
 
-) (dissertation.bbl [25] [26
+) (dissertation.bbl [29] [30
 
-] [27]
+] [31]
 Underfull \hbox (badness 1394) in paragraph at lines 127--134
 []\T1/SourceSansPro-TLF/regular/n/12 Prakash Mu-rali, Jonathan M Baker, Ali Javadi-Abhari, Fred-eric T Chong, and Mar-garet
  []
 
-[28] [29]) [30]
+[32] [33]) [34]
 runsystem(makeindex dissertation.idx)...executed safely (allowed).
 
- (dissertation.ind) [31
+ (dissertation.ind) [35
 
 
-] [32] (appendices/SupportWork.tex
+] [36] (appendices/SupportWork.tex
 Appendix A.
-) (appendices/DetailsOfResults.tex [33
+) (appendices/DetailsOfResults.tex [37
 
-] [34
+] [38
 
 ]
 Appendix B.
-) (appendices/Listings.tex [35] [36
+) (appendices/Listings.tex [39] [40
 
 ]
 Appendix C.
-) (appendices/Tooling.tex [37] [38
+) (appendices/Tooling.tex [41] [42
 
 ]
 Appendix D.
-) (covers/BackCover.tex [39
-\indexentry{\LaTeX  }{39}
-\indexentry{TeX!TeX Users Group (TUG)}{39}
-\indexentry{TeX!TeX Users Group (TUG)}{39}
-] [40
+) (covers/BackCover.tex [43
+\indexentry{\LaTeX  }{43}
+\indexentry{TeX!TeX Users Group (TUG)}{43}
+\indexentry{TeX!TeX Users Group (TUG)}{43}
+] [44
 
-] [41
+] [45
 
 ]
 pdfTeX warning (ext4): destination with the same identifier (name{page.1}) has been already used, duplicate ignored
@@ -1902,20 +1950,17 @@ L3 programming layer <2024-01-22>
 
 LaTeX Warning: There were undefined references.
 
-
-LaTeX Warning: There were multiply-defined labels.
-
 Package rerunfilecheck Info: File `dissertation.out' has not changed.
 (rerunfilecheck)             Checksum: 9FA2CB4B6EDDEEE0E74EB5DAFB12DDD3;4478.
  ) 
 Here is how much of TeX's memory you used:
- 46269 strings out of 474542
- 947672 string characters out of 5744447
+ 46483 strings out of 474542
+ 949951 string characters out of 5744447
  1950978 words of memory out of 5000000
- 67422 multiletter control sequences out of 15000+600000
+ 67610 multiletter control sequences out of 15000+600000
  753591 words of font info for 97 fonts, out of 8000000 for 9000
  1141 hyphenation exceptions out of 8191
- 109i,36n,108p,2564b,687s stack positions out of 10000i,1000n,20000p,200000b,200000s
+ 109i,36n,108p,2505b,885s stack positions out of 10000i,1000n,20000p,200000b,200000s
 
 pdfTeX warning (dest): name{glo:pdr} has been referenced but does not exist, replaced by a fixed one
 
@@ -1923,9 +1968,9 @@ pdfTeX warning (dest): name{glo:pdr} has been referenced but does not exist, rep
 pdfTeX warning (dest): name{glo:soa} has been referenced but does not exist, replaced by a fixed one
 
  <C:\Users\mona_\AppData\Local\MiKTeX\fonts/pk/ljfour/jknappen/ec/dpi600\ectt1200.pk><C:/Users/mona_/AppData/Local/Programs/MiKTeX/fonts/type1/adobe/sourcesanspro/SourceSansPro-Bold.pfb><C:/Users/mona_/AppData/Local/Programs/MiKTeX/fonts/type1/adobe/sourcesanspro/SourceSansPro-It.pfb><C:/Users/mona_/AppData/Local/Programs/MiKTeX/fonts/type1/adobe/sourcesanspro/SourceSansPro-Light.pfb><C:/Users/mona_/AppData/Local/Programs/MiKTeX/fonts/type1/adobe/sourcesanspro/SourceSansPro-Regular.pfb><C:/Users/mona_/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmex10.pfb><C:/Users/mona_/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmmi12.pfb><C:/Users/mona_/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmmi6.pfb><C:/Users/mona_/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmmi8.pfb><C:/Users/mona_/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmr12.pfb><C:/Users/mona_/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmr6.pfb><C:/Users/mona_/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmr8.pfb><C:/Users/mona_/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmsy10.pfb><C:/Users/mona_/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmsy8.pfb><C:/Users/mona_/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/symbols/msam10.pfb><C:/Users/mona_/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/symbols/msbm10.pfb><C:/Users/mona_/AppData/Local/Programs/MiKTeX/fonts/type1/public/hoekwater/stmary10.pfb>
-Output written on dissertation.pdf (62 pages, 858848 bytes).
+Output written on dissertation.pdf (66 pages, 877617 bytes).
 PDF statistics:
- 781 PDF objects out of 1000 (max. 8388607)
- 155 named destinations out of 1000 (max. 500000)
+ 830 PDF objects out of 1000 (max. 8388607)
+ 174 named destinations out of 1000 (max. 500000)
  324 words of extra memory for PDF output out of 10000 (max. 10000000)
 

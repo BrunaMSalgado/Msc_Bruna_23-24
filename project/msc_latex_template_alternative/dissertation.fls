@@ -1,6 +1,6 @@
-PWD c:\Users\mona_\OneDrive\Ambiente de Trabalho\Universidade\Tese\Dissertaco-Equivalence-for-Quantum-Processes-from-theory-to-practice\project\msc_latex_template_alternative
+PWD c:\Users\mona_\OneDrive\Ambiente de Trabalho\Universidade\Tese\Msc-Bruna\project\msc_latex_template_alternative
 INPUT C:\Users\mona_\AppData\Local\MiKTeX\miktex\data\le\pdftex\pdflatex.fmt
-INPUT c:\Users\mona_\OneDrive\Ambiente de Trabalho\Universidade\Tese\Dissertaco-Equivalence-for-Quantum-Processes-from-theory-to-practice\project\msc_latex_template_alternative\dissertation.tex
+INPUT c:\Users\mona_\OneDrive\Ambiente de Trabalho\Universidade\Tese\Msc-Bruna\project\msc_latex_template_alternative\dissertation.tex
 OUTPUT dissertation.log
 INPUT C:\Users\mona_\AppData\Local\Programs\MiKTeX\tex\latex\base\report.cls
 INPUT C:\Users\mona_\AppData\Local\Programs\MiKTeX\tex\latex\base\report.cls
@@ -451,6 +451,17 @@ INPUT C:\Users\mona_\AppData\Local\Programs\MiKTeX\tex\latex\tools\multicol.sty
 INPUT C:\Users\mona_\AppData\Local\Programs\MiKTeX\tex\latex\tools\multicol.sty
 INPUT C:\Users\mona_\AppData\Local\Programs\MiKTeX\tex\latex\accents\accents.sty
 INPUT C:\Users\mona_\AppData\Local\Programs\MiKTeX\tex\latex\accents\accents.sty
+INPUT C:\Users\mona_\AppData\Local\Programs\MiKTeX\tex\latex\tikz-cd\tikz-cd.sty
+INPUT C:\Users\mona_\AppData\Local\Programs\MiKTeX\tex\latex\tikz-cd\tikz-cd.sty
+INPUT C:\Users\mona_\AppData\Local\Programs\MiKTeX\tex\latex\tikz-cd\tikzlibrarycd.code.tex
+INPUT C:\Users\mona_\AppData\Local\Programs\MiKTeX\tex\latex\tikz-cd\tikzlibrarycd.code.tex
+INPUT C:\Users\mona_\AppData\Local\Programs\MiKTeX\tex\generic\pgf\frontendlayer\tikz\libraries\tikzlibrarymatrix.code.tex
+INPUT C:\Users\mona_\AppData\Local\Programs\MiKTeX\tex\generic\pgf\frontendlayer\tikz\libraries\tikzlibrarymatrix.code.tex
+INPUT C:\Users\mona_\AppData\Local\Programs\MiKTeX\tex\generic\pgf\frontendlayer\tikz\libraries\tikzlibraryquotes.code.tex
+INPUT C:\Users\mona_\AppData\Local\Programs\MiKTeX\tex\generic\pgf\frontendlayer\tikz\libraries\tikzlibraryquotes.code.tex
+INPUT C:\Users\mona_\AppData\Local\Programs\MiKTeX\tex\generic\pgf\libraries\pgflibraryarrows.meta.code.tex
+INPUT C:\Users\mona_\AppData\Local\Programs\MiKTeX\tex\generic\pgf\libraries\pgflibraryarrows.meta.code.tex
+INPUT C:\Users\mona_\AppData\Local\Programs\MiKTeX\tex\generic\pgf\libraries\pgflibraryarrows.meta.code.tex
 INPUT C:\Users\mona_\AppData\Local\Programs\MiKTeX\tex\latex\quantikz\quantikz.sty
 INPUT C:\Users\mona_\AppData\Local\Programs\MiKTeX\tex\latex\quantikz\quantikz.sty
 INPUT C:\Users\mona_\AppData\Local\Programs\MiKTeX\tex\latex\quantikz\tikzlibraryquantikz2.code.tex
@@ -466,15 +477,6 @@ INPUT C:\Users\mona_\AppData\Local\Programs\MiKTeX\tex\latex\l3kernel\expl3.sty
 INPUT C:\Users\mona_\AppData\Local\Programs\MiKTeX\tex\latex\l3kernel\expl3.sty
 INPUT C:\Users\mona_\AppData\Local\Programs\MiKTeX\tex\latex\l3backend\l3backend-pdftex.def
 INPUT C:\Users\mona_\AppData\Local\Programs\MiKTeX\tex\latex\l3backend\l3backend-pdftex.def
-INPUT C:\Users\mona_\AppData\Local\Programs\MiKTeX\tex\latex\tikz-cd\tikzlibrarycd.code.tex
-INPUT C:\Users\mona_\AppData\Local\Programs\MiKTeX\tex\latex\tikz-cd\tikzlibrarycd.code.tex
-INPUT C:\Users\mona_\AppData\Local\Programs\MiKTeX\tex\generic\pgf\frontendlayer\tikz\libraries\tikzlibrarymatrix.code.tex
-INPUT C:\Users\mona_\AppData\Local\Programs\MiKTeX\tex\generic\pgf\frontendlayer\tikz\libraries\tikzlibrarymatrix.code.tex
-INPUT C:\Users\mona_\AppData\Local\Programs\MiKTeX\tex\generic\pgf\frontendlayer\tikz\libraries\tikzlibraryquotes.code.tex
-INPUT C:\Users\mona_\AppData\Local\Programs\MiKTeX\tex\generic\pgf\frontendlayer\tikz\libraries\tikzlibraryquotes.code.tex
-INPUT C:\Users\mona_\AppData\Local\Programs\MiKTeX\tex\generic\pgf\libraries\pgflibraryarrows.meta.code.tex
-INPUT C:\Users\mona_\AppData\Local\Programs\MiKTeX\tex\generic\pgf\libraries\pgflibraryarrows.meta.code.tex
-INPUT C:\Users\mona_\AppData\Local\Programs\MiKTeX\tex\generic\pgf\libraries\pgflibraryarrows.meta.code.tex
 INPUT C:\Users\mona_\AppData\Local\Programs\MiKTeX\tex\generic\pgf\frontendlayer\tikz\libraries\tikzlibrarydecorations.pathreplacing.code.tex
 INPUT C:\Users\mona_\AppData\Local\Programs\MiKTeX\tex\generic\pgf\frontendlayer\tikz\libraries\tikzlibrarydecorations.pathreplacing.code.tex
 INPUT C:\Users\mona_\AppData\Local\Programs\MiKTeX\tex\generic\pgf\frontendlayer\tikz\libraries\tikzlibrarydecorations.code.tex
@@ -539,6 +541,8 @@ INPUT C:\Users\mona_\AppData\Local\Programs\MiKTeX\tex\latex\stmaryrd\ustmry.fd
 INPUT C:\Users\mona_\AppData\Local\MiKTeX\fonts\tfm\public\stmaryrd\stmary10.tfm
 INPUT C:\Users\mona_\AppData\Local\MiKTeX\fonts\tfm\public\stmaryrd\stmary8.tfm
 INPUT C:\Users\mona_\AppData\Local\MiKTeX\fonts\tfm\public\stmaryrd\stmary6.tfm
+INPUT C:\Users\mona_\AppData\Local\Programs\MiKTeX\tex\latex\oberdiek\aliascnt.sty
+INPUT C:\Users\mona_\AppData\Local\Programs\MiKTeX\tex\latex\oberdiek\aliascnt.sty
 OUTPUT dissertation.glo
 OUTPUT dissertation.acn
 OUTPUT dissertation.idx

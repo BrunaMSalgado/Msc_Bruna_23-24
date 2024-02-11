@@ -1,20 +1,20 @@
 # Fdb version 4
-["bibtex dissertation"] 1707428047.28046 "dissertation.aux" "dissertation.bbl" "dissertation" 1707429226.21977 0
-  "./dissertation.bib" 1707427894 13889 51814a2234b4974cb1df95bca24b3316 ""
+["bibtex dissertation"] 1707674899.05322 "dissertation.aux" "dissertation.bbl" "dissertation" 1707675018.13105 0
+  "./dissertation.bib" 1707477495 14001 527df2b1c9338e501954f376ef231100 ""
   "C:/Users/mona_/AppData/Local/Programs/MiKTeX/bibtex/bst/natbib/plainnat.bst" 1284455456 26816 ffe5423d2019860bad9f54bc402fac15 ""
-  "dissertation.aux" 1707429225 12997 998ddb05972b6ff5c3d6a83363ef1adb "pdflatex"
+  "dissertation.aux" 1707675017 14215 1f4344116bfc461aac0c6153eaaa68b9 "pdflatex"
   (generated)
   "dissertation.bbl"
   "dissertation.blg"
   (rewritten before read)
-["makeindex dissertation.idx"] 1707427402.87635 "dissertation.idx" "dissertation.ind" "dissertation" 1707429226.21946 0
-  "dissertation.idx" 1707429224 0 d41d8cd98f00b204e9800998ecf8427e "pdflatex"
+["makeindex dissertation.idx"] 1707674633.14726 "dissertation.idx" "dissertation.ind" "dissertation" 1707675018.13076 0
+  "dissertation.idx" 1707675016 0 d41d8cd98f00b204e9800998ecf8427e "pdflatex"
   (generated)
   "dissertation.ilg"
   "dissertation.ind"
   (rewritten before read)
-["pdflatex"] 1707429223.53325 "c:/Users/mona_/OneDrive/Ambiente de Trabalho/Universidade/Tese/Dissertaco-Equivalence-for-Quantum-Processes-from-theory-to-practice/project/msc_latex_template_alternative/dissertation.tex" "dissertation.pdf" "dissertation" 1707429226.22013 0
-  "C:/Users/mona_/AppData/Local/MiKTeX/fonts/map/pdftex/pdftex.map" 1707427055 160937 603e22e08170edc06ed9528cd53c6d8f ""
+["pdflatex"] 1707675015.08527 "c:/Users/mona_/OneDrive/Ambiente de Trabalho/Universidade/Tese/Msc-Bruna/project/msc_latex_template_alternative/dissertation.tex" "dissertation.pdf" "dissertation" 1707675018.13136 0
+  "C:/Users/mona_/AppData/Local/MiKTeX/fonts/map/pdftex/pdftex.map" 1707521889 160937 603e22e08170edc06ed9528cd53c6d8f ""
   "C:/Users/mona_/AppData/Local/MiKTeX/fonts/pk/ljfour/jknappen/ec/dpi600/ectt1200.pk" 1707388464 24152 3e545305a22afc1727d797555de0170d ""
   "C:/Users/mona_/AppData/Local/MiKTeX/fonts/tfm/public/stmaryrd/stmary10.tfm" 1707388460 848 f478e0761563bbc369eca609a1741348 ""
   "C:/Users/mona_/AppData/Local/MiKTeX/fonts/tfm/public/stmaryrd/stmary5.tfm" 1707388463 848 e1bc58a31b9ed9c3729ffea165acfaac ""
@@ -287,6 +287,7 @@
   "C:/Users/mona_/AppData/Local/Programs/MiKTeX/tex/latex/mweights/mweights.sty" 1570501985 4953 67f29a12ea26221103fce6bae3433e60 ""
   "C:/Users/mona_/AppData/Local/Programs/MiKTeX/tex/latex/natbib/natbib.sty" 1292249081 46712 1c8843383c0bd05870c45fa0ebea6cc2 ""
   "C:/Users/mona_/AppData/Local/Programs/MiKTeX/tex/latex/nextpage/nextpage.sty" 1251940771 1745 04b0f50af5d59a9cf3c17f3f4452ed12 ""
+  "C:/Users/mona_/AppData/Local/Programs/MiKTeX/tex/latex/oberdiek/aliascnt.sty" 1701783979 2652 813491e2bc95c1dafbb39cd7c54b380b ""
   "C:/Users/mona_/AppData/Local/Programs/MiKTeX/tex/latex/pagecolor/pagecolor.sty" 1681820886 9888 bce9a9132a3f756ede24729ac30ff1e9 ""
   "C:/Users/mona_/AppData/Local/Programs/MiKTeX/tex/latex/pdfcol/pdfcol.sty" 1663942424 8086 ac143843b6ea88d172677dc3ed532925 ""
   "C:/Users/mona_/AppData/Local/Programs/MiKTeX/tex/latex/pgf/basiclayer/pgf.sty" 1673775190 1090 bae35ef70b3168089ef166db3e66f5b2 ""
@@ -317,6 +318,7 @@
   "C:/Users/mona_/AppData/Local/Programs/MiKTeX/tex/latex/tcolorbox/tcbskinsjigsaw.code.tex" 1704904354 10040 27e9c9197a2de0b5b4144c323ddb740a ""
   "C:/Users/mona_/AppData/Local/Programs/MiKTeX/tex/latex/tcolorbox/tcbtheorems.code.tex" 1704904354 12634 be174de0bbe693a928b66aec9f31293c ""
   "C:/Users/mona_/AppData/Local/Programs/MiKTeX/tex/latex/tcolorbox/tcolorbox.sty" 1704904354 103614 1ca07ac773e16c641eabdcbf98c7511d ""
+  "C:/Users/mona_/AppData/Local/Programs/MiKTeX/tex/latex/tikz-cd/tikz-cd.sty" 1620478817 823 2375f30bf77af9357d3b4834b054bf52 ""
   "C:/Users/mona_/AppData/Local/Programs/MiKTeX/tex/latex/tikz-cd/tikzlibrarycd.code.tex" 1620478817 23059 b4b98da760150611227e2533f15fe352 ""
   "C:/Users/mona_/AppData/Local/Programs/MiKTeX/tex/latex/tikzfill/tikzfill-common.sty" 1691489948 2573 42712c9e0a2df004e43df5b3c95f0c1e ""
   "C:/Users/mona_/AppData/Local/Programs/MiKTeX/tex/latex/tikzfill/tikzfill.image.sty" 1691489948 1120 ba535da48caa03bf1fd3f03ea87779f8 ""
@@ -345,10 +347,10 @@
   "appendices/Listings.tex" 1707388022 44 a258667f6664df950ce1bcf302b707ff ""
   "appendices/SupportWork.tex" 1707388022 68 3ac7e85bb7b447dc681b239dcd4599ca ""
   "appendices/Tooling.tex" 1707388022 133 8785c726e96d33d3003d1f52ef25417c ""
-  "c:/Users/mona_/OneDrive/Ambiente de Trabalho/Universidade/Tese/Dissertaco-Equivalence-for-Quantum-Processes-from-theory-to-practice/project/msc_latex_template_alternative/dissertation.tex" 1707429223 3020 9f32fbc57ad660e9d903dce0e8765dd1 ""
+  "c:/Users/mona_/OneDrive/Ambiente de Trabalho/Universidade/Tese/Msc-Bruna/project/msc_latex_template_alternative/dissertation.tex" 1707675014 3270 a82988d1bd341b0a2fdc60983ecd7ebb ""
   "chapters/Applications.tex" 1707388022 121 061c2755b36cd1424d3e8c18bf174b63 ""
   "chapters/ConclusionsAndFutureWork.tex" 1707388022 128 ee4bd95d20b09ad30c6f7388879266c6 ""
-  "chapters/Contribution.tex" 1707428042 7807 04857a6f00afe499d1b4bbc2e7003069 ""
+  "chapters/Contribution.tex" 1707674782 19664 ebedef62be012ab76062b87ca0e91892 ""
   "chapters/Introduction.tex" 1707426363 6244 2a7fab7eac2b2712f6330d312c75e73c ""
   "chapters/PlannedSchedule.tex" 1707388022 841 efe45e78012b7edac3fae3850c30d37a ""
   "chapters/ProblemAndChallenges.tex" 1707388022 1081 e276dfd91969a1168c3d3deedcabe6eb ""
@@ -356,17 +358,17 @@
   "covers/BackCover.tex" 1707388022 320 a987714a8b9261f76bca17abafd1ab8d ""
   "covers/Covers.tex" 1707388022 800 779cd207d3ea79312a48243187c9a6b2 ""
   "dissertation.acr" 0 -1 0 ""
-  "dissertation.aux" 1707429225 12997 998ddb05972b6ff5c3d6a83363ef1adb "pdflatex"
-  "dissertation.bbl" 1707428047 9510 78fd96057cc2fbcd7f9416b79cde3bfe "bibtex dissertation"
+  "dissertation.aux" 1707675017 14215 1f4344116bfc461aac0c6153eaaa68b9 "pdflatex"
+  "dissertation.bbl" 1707674899 9510 78fd96057cc2fbcd7f9416b79cde3bfe "bibtex dissertation"
   "dissertation.gls" 0 -1 0 ""
-  "dissertation.glsdefs" 1707429225 1020 5d594c7f1c2de639121d66f4cf6ebe47 "pdflatex"
-  "dissertation.ind" 1707429225 0 d41d8cd98f00b204e9800998ecf8427e "makeindex dissertation.idx"
-  "dissertation.lof" 1707429225 1176 7253d940e20dca3fc231e595dece3113 "pdflatex"
-  "dissertation.lot" 1707429225 343 2f3debdb7777bb194b5c447007cc7391 "pdflatex"
-  "dissertation.out" 1707429225 4478 9fa2cb4b6eddeee0e74eb5dafb12ddd3 "pdflatex"
+  "dissertation.glsdefs" 1707675017 1020 5d594c7f1c2de639121d66f4cf6ebe47 "pdflatex"
+  "dissertation.ind" 1707675017 0 d41d8cd98f00b204e9800998ecf8427e "makeindex dissertation.idx"
+  "dissertation.lof" 1707675017 1176 7253d940e20dca3fc231e595dece3113 "pdflatex"
+  "dissertation.lot" 1707675017 343 d02becb424e39a9c7325fd269c7a50a8 "pdflatex"
+  "dissertation.out" 1707675017 4478 9fa2cb4b6eddeee0e74eb5dafb12ddd3 "pdflatex"
   "dissertation.sty" 1707388022 4093 a2c47dfb7262b055e5457b022a813e14 ""
-  "dissertation.tex" 1707429223 3020 9f32fbc57ad660e9d903dce0e8765dd1 ""
-  "dissertation.toc" 1707429225 2651 9ab99cefdc0db586176a44f5ffdbf439 "pdflatex"
+  "dissertation.tex" 1707675014 3270 a82988d1bd341b0a2fdc60983ecd7ebb ""
+  "dissertation.toc" 1707675017 2705 e0cf659aea864b2f043684cc4157bfb9 "pdflatex"
   "images/CCBY.png" 1707388022 5980 a81089c221076f7922e56e2bb2a7629e ""
   "images/CCBYNC.png" 1707388022 6991 4fdab0eb79d15eeaab8d6e7136a2fe7e ""
   "images/CCBYNCND.png" 1707388022 7261 493a469b1d4089c60e862c74929a7288 ""

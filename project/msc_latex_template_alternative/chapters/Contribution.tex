@@ -113,7 +113,7 @@ $
 $\begin{array}{c} 
     [\![\Gamma\triangleright v: \mathbb{A} \oplus \mathbb{B} ]\!] = b \quad [\![\Delta, x:\mathbb{A} \triangleright w: \mathbb{C} ]\!] = p  \quad  [\![\Delta,x:\mathbb{B} \triangleright w_{2}: \mathbb{C} ]\!] = q    \quad E \in \text{Sf}(\Gamma;\Delta)  \\
     \hline
-  [\![E \triangleright \text{ cond } v \hspace{2pt}  \{\text{inl} (x) \Rightarrow w ; \hspace{1pt} \text{inr} (y) \Rightarrow u\}: \mathbb{C} ]\!] =   \text{either}(p,q) \cdot \text{dist} \cdot \text{sw} \cdot (b \otimes \text{id}) \cdot \text{sp}_{\Gamma;\Delta} \cdot \text{sh}_{E}
+  [\![E \triangleright \text{ case } v \hspace{2pt}  \{\text{inl} (x) \Rightarrow w ; \hspace{1pt} \text{inr} (y) \Rightarrow u\}: \mathbb{C} ]\!] =   \text{either}(p,q) \cdot \text{dist} \cdot \text{sw} \cdot (b \otimes \text{id}) \cdot \text{sp}_{\Gamma;\Delta} \cdot \text{sh}_{E}
 \end{array}
 $ \end{minipage}
 \end{aligned}
@@ -123,7 +123,7 @@ $ \end{minipage}
 \label{fig:denotational_sem cond}
 \end{figure}
 
-\subparagraph{Proof} In order to validate the judgment interpretation for conditionals, it is necessary to demonstrate its correctness.
+\paragraph{Proof} In order to validate the judgment interpretation for conditionals, it is necessary to demonstrate its correctness.
 
 For the booleans: 
 \begin{equation} \label{eq:proof_bool}
@@ -133,10 +133,10 @@ For the booleans:
 \end{aligned}   
 \end{equation}
 Now, for the conditional statement:
-\begin{equation} \label{eq:proof_bool}
+\begin{equation} \label{eq:proof_bool_2}
  \begin{aligned} 
     [\![E]\!] & \xrightarrow{\hspace{2pt}\text{sh}_{E}\hspace{2pt}}   [\![\Gamma,\Delta ]\!]   \xrightarrow{\hspace{1pt}\text{sp}_{\Gamma;\Delta}\hspace{1pt}}  [\![\Gamma ]\!] \otimes [\![\Delta ]\!] \xrightarrow{ b \hspace{1pt} \otimes \hspace{1pt} \text{id}} ([\![\mathbb{A} ]\!] \oplus [\![\mathbb{B} ]\!]) \otimes [\![\Delta ]\!] \xrightarrow{\hspace{2pt}\text{sw}\hspace{2pt}}  [\![\Delta ]\!] \otimes ([\![\mathbb{A} ]\!] \oplus [\![\mathbb{B} ]\!])  \\
-    & \xrightarrow{\hspace{3pt}\text{dist}\hspace{3pt}} ([\![\Delta ]\!] \otimes [\![\mathbb{A} ]\!]  ) \oplus (  [\![\Delta ]\!] \otimes [\![\mathbb{B} ]\!] ) \xrightarrow{\hspace{1pt}\text{either}(p,q)\hspace{1pt}} \![\mathbb{C} ]\!]
+    & \xrightarrow{\hspace{3pt}\text{dist}\hspace{3pt}} ([\![\Delta ]\!] \otimes [\![\mathbb{A} ]\!]  ) \oplus (  [\![\Delta ]\!] \otimes [\![\mathbb{B} ]\!] ) \xrightarrow{\hspace{1pt}\text{either}(p,q)\hspace{1pt}} [\![\mathbb{C} ]\!]
 \end{aligned}   
 \end{equation}
 
@@ -144,7 +144,7 @@ Now, for the conditional statement:
 The quantum lambda calculus with conditionals is illustrated with an example —the quantum teleportation protocol— in \autoref{appendice:teleport}.
 
 
-While the validation of its correctness is ongoing, the metric equations for conditionals are presented in \autoref{fig:metric conditionals}. Note that the first two equations are redundant.
+The metric equations for conditionals are presented in \autoref{fig:metric conditionals}. Note that the first two equations are redundant.
 \begin{figure} [H]
 \begin{equation*}
 \begin{split}
@@ -154,7 +154,7 @@ While the validation of its correctness is ongoing, the metric equations for con
 $\begin{array}{c}
   v =_{q} w \\
     \hline
-   \text{irl}(v) =_{q} \text{irl}(w)
+   \text{inl}(v) =_{q} \text{inl}(w)
 \end{array}
 $
 \end{minipage}
@@ -172,7 +172,7 @@ $ \end{minipage} \\
 $\begin{array}{c}
    v =_{q} v' \quad w=_{r} w' \quad u=_{s}u'   \\
     \hline
-  \text{ cond } v \hspace{2pt}  \{\text{irl} (x) \Rightarrow w ; \hspace{1pt} \text{inr} (y) \Rightarrow u\} =_{\text{max}(q + r;q + s )} \text{ cond } v' \hspace{2pt}  \{\text{irl} (x) \Rightarrow w' ; \hspace{1pt} \text{inr} (y) \Rightarrow u'\} 
+  \text{ case } v \hspace{2pt}  \{\text{inl} (x) \Rightarrow w ; \hspace{1pt} \text{inr} (y) \Rightarrow u\} =_{q+\text{max}(r, s )} \text{ case } v' \hspace{2pt}  \{\text{inl} (x) \Rightarrow w' ; \hspace{1pt} \text{inr} (y) \Rightarrow u'\} 
 \end{array}
 $ \end{minipage}
 \end{aligned}
@@ -182,7 +182,207 @@ $ \end{minipage}
 \label{fig:metric conditionals}
 \end{figure}
 
-\vspace{-20pt}
+\paragraph{Proof} In order to validate the metric equational system for conditionals, it is necessary to demonstrate its correctness.
+
+For the booleans:
+
+
+
+
+%Pergunta: nós só precisamos de trace norm e diamond norm em quantica. Usmos a operator norm porque é mais gereal, ou seja a trace norm está nela contida? Also no livro do waltrous eles chamam operator norm de shatten norm em dimensão infinita
+
+
+Now, regarding the metric equation for the conditional statement, before validating its correctness, it is necessary to prove a few intermediate results. One of these results makes use of the operator norm for a super-operator $E$, defined as:
+\begin{equation} \label{eq:op_norm}
+  \lVert E \rVert_{\sigma} = \text{sup} \{ \lVert E(v) \rVert \hspace{2pt} | \hspace{2pt} \lVert v \rVert = 1 \}
+\end{equation}
+
+The first step is to demonstrate that for any super-operators $P$ and $Q$ the following holds:
+\begin{lemma}\label{lem1}
+  $\lVert [P,Q] \rVert_{\sigma} \leq \max \{ \lVert P \rVert_{\sigma}, \lVert Q \rVert_{\sigma} \}$
+\end{lemma}
+
+
+
+$\textit{Proof.}$ \quad Employing the definition of the operator norm in \autoref{eq:op_norm}, it follows that:
+\begin{equation} \label{eq:cond_opnorm2}
+  \begin{split}
+  &\text{sup}{\{ \lVert [P,Q] (v) \rVert  \hspace{2pt} |  \hspace{2pt}  \lVert v \rVert=1  \}}  \leq \text{max} \{  \text{sup} \{ \lVert P (w) \rVert  \hspace{2pt} |  \hspace{2pt}  \lVert w \rVert =1 \}, \text{sup} \{\lVert Q (u) \rVert  \hspace{2pt} |  \hspace{2pt}  \lVert u \rVert=1  \} \} \\
+  & = \text{sup}{\{ \lVert [P,Q] (w+u) \rVert  \hspace{2pt} |  \hspace{2pt}  \lVert w+u \rVert=1  \}} \leq \text{max} \{  \text{sup} \{ \lVert P (w) \rVert  \hspace{2pt} |  \hspace{2pt}  \lVert w \rVert = 1, \lVert Q (u) \rVert  \hspace{2pt} |  \hspace{2pt}  \lVert u \rVert=1  \} \} \\
+  & =  \text{sup}{\{ \lVert P (w) + Q (u) \rVert  \hspace{2pt} |  \hspace{2pt}  \lVert w+u \rVert=1  \}} \leq \text{max} \{  \text{sup} \{ \lVert P (w) \rVert  \hspace{2pt} |  \hspace{2pt}  \lVert w \rVert =1, \lVert Q (u) \rVert  \hspace{2pt} |  \hspace{2pt}  \lVert u \rVert=1  \} \} \\
+  &  =  \text{sup}{\{ \lVert P (w) + Q (u) \rVert  \hspace{2pt} |  \hspace{2pt}  \lVert w+u \rVert=1  \}} \leq \text{sup} \{  \text{max} \{ \lVert P (w) \rVert  \hspace{2pt} |  \hspace{2pt}  \lVert w \rVert =1, \lVert Q (u) \rVert  \hspace{2pt} |  \hspace{2pt}  \lVert u \rVert=1  \} \} \\
+\end{split}
+\end{equation}
+
+Therefore, by the triangle inequality, proving the inequality in \autoref{eq:cond_opnorm3} suffices to establish  \autoref{lem1}.
+\begin{equation} \label{eq:cond_opnorm3}
+  \begin{split}
+  \text{sup}{\{ \lVert P (w)  \rVert + \lVert Q (u)  \rVert  \hspace{2pt} |  \hspace{2pt}  \lVert w+u \rVert_{1}=1  \}} \leq \text{sup} \{  \text{max} \{ \lVert P (w) \rVert  \hspace{2pt} |  \hspace{2pt}  \lVert w  \rVert =1, \lVert Q (u) \rVert  \hspace{2pt} |  \hspace{2pt}  \lVert u \rVert=1  \} \} \\
+  \end{split}
+\end{equation}
+
+
+This can be rewritten as:
+
+\begin{equation} 
+  \begin{split}
+  \lVert w + u   \rVert = 1 \wedge \{ \lVert P (w)  \rVert + \lVert Q (u)  \rVert  \hspace{2pt} |  \hspace{2pt}  \lVert w+u \rVert=1  \}  \leq \text{max}   \left\{ \dfrac{1}{\lVert w \rVert} \lVert P (w) \rVert  \hspace{2pt},  \dfrac{1}{\lVert u \rVert} \lVert Q (u) \rVert   \right\}
+\end{split}
+\end{equation}
+
+As a result,
+\begin{equation} 
+  \begin{split}
+  \lVert w + u   \rVert = 1 \wedge \text{sup}{\{ \lVert P (w)  \rVert + \lVert Q (u)  \rVert  \hspace{2pt} |  \hspace{2pt}  \lVert w+u \rVert_{1}  \}}  \leq \text{max}   \left\{  \left\lVert P \left( \dfrac{1}{\lVert w \rVert} w \right) \right\rVert  \hspace{2pt},  \left\lVert Q \left( \dfrac{1}{\lVert u \rVert} u \right) \right\rVert   \right\}
+\end{split}
+\end{equation}
+
+This is equivalent to demonstrating that for $a+b=1$,
+\begin{equation} 
+\begin{split}
+\hspace{110 pt}
+    x + y  \leq  \max \left\{   \dfrac{1}{a}x  ,   \dfrac{1}{b} y   \right\} \\
+\end{split}
+\end{equation}
+
+This is done by arguing by \textit{reductio ad absurdum}, \textit{i.e.}, supposing otherwise leads to a contradiction:
+\begin{equation} 
+\begin{split} 
+    \hspace{90pt}&
+     x + y  >  \max \left\{   \dfrac{1}{a}x  ,   \dfrac{1}{b} y   \right\} \\
+    & \Rightarrow  x + y > \dfrac{1}{a}x  \wedge x + y > \dfrac{1}{b}y \\
+    & \Rightarrow  a (x + y) > x  \wedge b (x + y)> y \\
+    & \Rightarrow  a x + a y > x  \wedge b x + by > y \\
+    & \Rightarrow  a x + a y > x  \wedge (1-a) x + (1-a)y > y\\
+    & \Rightarrow  a x + a y > x  \wedge x-ax + y -ay > y\\
+    & \Rightarrow  x < a x + a y   \wedge x > a x + a y  \\
+\end{split}
+\end{equation}
+
+Next, it is necessary to demonstrate that for any operators $P$ and $Q$ and the identity operator $I$, the following holds:
+
+\begin{lemma}\label{lem2}
+  $( [P,Q] \otimes I) \cdot  [\textsc{Il} \otimes I, \textsc{Ir} \otimes I ]  = [P \otimes I, Q \otimes I]$
+\end{lemma}
+
+Which is equivalent to showing that for any vector spaces $V$, $W$, $U$, and $Z$  and super-operators $P: V \xrightarrow{} Z$, $Q: W \xrightarrow{} Z$, and $I: U \xrightarrow{} U$, the following diagram holds:
+
+\vspace{10pt}
+
+\begin{tikzpicture}
+  \matrix (m) [matrix of math nodes,row sep=4em,column sep=7em,minimum width=2em]
+  {
+    V \otimes U \oplus W \otimes U & (V  \oplus W) \otimes U \\
+     Z \otimes U \\};
+  \path[-stealth]
+    (m-1-1) edge node [left] {$[P \otimes I, Q \otimes I]$} (m-2-1)
+            edge node [above, minimum width=20em] {$[\textsc{Il} \otimes I,\textsc{Ir} \otimes I ]$} (m-1-2) % Adjusted minimum width
+    (m-1-2) edge node [right=0.25cm] {$[P,Q] \otimes I$} (m-2-1);
+\end{tikzpicture}
+
+\vspace{10pt}
+
+\textit{Proof.} \quad The proof is straightforward:
+\begin{equation}
+\begin{split}
+    & ( [P,Q] \otimes I) \cdot  [\textsc{Il} \otimes I, \textsc{Ir} \otimes I ]  \\
+    &=  [([P,Q] \otimes I) \cdot (\textsc{Il} \otimes I),([P,Q] \otimes I) \cdot (\textsc{Ir} \otimes I) ]\\
+    &=  [P \otimes I, Q \otimes I]
+\end{split}
+\end{equation}
+
+\vspace{15pt}
+Subsequently, it is imperative to prove the following:
+
+\begin{lemma} \label{lem3}
+  $  \lVert [\textsc{Il} \otimes I, \textsc{Ir} \otimes I ]  \rVert_{1} = 1   $
+\end{lemma}
+
+\vspace{10pt}
+
+\textit{Proof.} \quad Employing the definition of the trace norm for a super-operator in \autoref{eq:trace_distance},  considering vector spaces $V$, $W$ and $U$ and vectors $v_i \in V$, $w_i \in W$ and $u_i \in U$, it follows that:
+\begin{equation}
+\begin{split}
+    & \lVert [\textsc{Il} \otimes I, \textsc{Ir} \otimes I ]  \rVert_{1}  \\
+    &= \text{max} \{ \lVert [\textsc{Il} \otimes I, \textsc{Ir} \otimes I ] (A) \rVert_{1} \hspace{2pt} \vert \hspace{2pt}  \lVert A\rVert_{1} =1   \} \\
+    &= \text{max} \left\{ \left\lVert [\textsc{Il} \otimes I, \textsc{Ir} \otimes I ] \left(\sum_{i} v_i \otimes u_i,\sum_{i} w_i \otimes u_i  \right) \right\rVert_{1} \hspace{2pt} \Bigg\vert \hspace{2pt}  \left\lVert \left(\sum_{i} v_i \otimes u_i,\sum_{i} w_i \otimes u_i  \right) \right\rVert_{1} =1    \right\} \\
+    & =\text{max} \left\{ \left\lVert \textsc{Il} \otimes I \left(\sum_{i} v_i \otimes u_i  \right)  +  \textsc{Ir} \otimes I \left(\sum_{i} w_i \otimes u_i  \right) \right\rVert_{1} \hspace{2pt} \Bigg\vert \hspace{2pt}  \left\lVert \left(\sum_{i} v_i \otimes u_i,\sum_{i} w_i \otimes u_i  \right) \right\rVert_{1} =1    \right\} \\
+    & = \text{max} \Bigg\{ \left\lVert \textsc{Il} \left(\sum_{i} v_i  \right) \otimes I \left(\sum_{i} u_i  \right) + \textsc{Ir} \left(\sum_{i} w_i \right)\otimes I \left(\sum_{i} u_i  \right) \right\rVert_{1} \hspace{2pt} \\
+    & \hspace{50pt}\Bigg\vert \hspace{2pt}  \left\lVert \left(\sum_{i} v_i \otimes u_i,\sum_{i} w_i \otimes u_i  \right) \right\rVert_{1} =1    \Bigg\} \\
+    &= \text{max} \Bigg\{ \left\lVert \left(\sum_{i} v_i,0  \right) \otimes \sum_{i} u_i +  \left(0,\sum_{i} w_i \right) \otimes \sum_{i} u_i   \right\rVert_{1}  \hspace{2pt} \Bigg\vert \hspace{2pt}  \left\lVert \left(\sum_{i} v_i \otimes u_i,\sum_{i} w_i \otimes u_i  \right) \right\rVert_{1} =1    \Bigg\} \\
+    &= \text{max} \Bigg\{ \left\lVert \left(\sum_{i} v_i \otimes  u_i ,0  \right) + \left(0,\sum_{i} w_i \otimes u_i  \right)   \right\rVert_{1}  \hspace{2pt} \Bigg\vert \hspace{2pt}  \left\lVert \left(\sum_{i} v_i \otimes u_i,\sum_{i} w_i \otimes u_i  \right) \right\rVert_{1} =1    \Bigg\} \\
+    &= \text{max} \Bigg\{ \left\lVert \left(\sum_{i} v_i \otimes  u_i ,\sum_{i} w_i \otimes u_i   \right)    \right\rVert_{1}  \hspace{2pt} \Bigg\vert \hspace{2pt}  \left\lVert \left(\sum_{i} v_i \otimes u_i,\sum_{i} w_i \otimes u_i  \right) \right\rVert_{1} =1    \Bigg\} \\
+    &=1
+\end{split}
+\end{equation}
+
+
+Now, it is finally possible to approach the proof of the metric equation for the conditional statement. Considering the the semantics of the "case" rule in \autoref{fig:denotational_sem cond}, proving that the "case" rule in \autoref{fig:metric conditionals} is valid is equivalent to demonstrating that for any super-operators $P$ and $Q$ and their respective erroneous versions $P'$ and $Q'$, the following holds:
+\begin{theorem} \label {theorem:1.1}
+  $\text{d} ([P,Q],[P',Q']) \leq \text{max} \{\text{d} (P,P'),\text{d} (Q,Q')\}$
+\end{theorem}
+\vspace{10pt}
+\textit {Proof.} 
+Here, $\text{d}(A,B)$ denotes the distance between super-operators $A$ and $B$, which in the quantum paradigm corresponds to the diamond norm between the two super-operators. Hence, employing the definition of the diamond norm in \autoref{eq:diamond_distance}, and denoting $ [\textsc{Il} \otimes I, \textsc{Ir} \otimes I ]$ by $i$ it follows that:
+
+%\begin{equation}
+%\begin{split}
+  %& \text{d} ([P,Q],[P',Q'])  \\
+  %&=   \lVert  [P,Q] \otimes I - [P',Q'] \otimes I   \rVert_{1}  \\
+  %&=   \lVert [P \otimes I, Q \otimes I]  - [P' \otimes I, Q' \otimes I]  \rVert_{1}  \\
+  %&=  \lVert [P - P' \otimes I, Q-Q' \otimes I]  \rVert_{1}   \\
+  %&= \lVert [P -P', Q-Q' ] \otimes I \cdot i \rVert_{1}  \\
+%\end{split}
+%\end{equation}
+
+\begin{equation} \label{eq:proof_theorem1.1_esq}
+  \begin{split}
+    & \text{d} ([P,Q],[P',Q'])  \\
+    &=  \lVert  [P,Q] \otimes I - [P',Q'] \otimes I   \rVert_{1}  \\
+    &=   \lVert [P \otimes I, Q \otimes I] \cdot i  - [P' \otimes I, Q' \otimes I]  \cdot i  \rVert_{1}  \\
+    &=  \lVert [P - P' \otimes I, Q-Q' \otimes I] \cdot i  \rVert_{1}   \\
+    & \leq \lVert [P - P' \otimes I, Q-Q' \otimes I]  \rVert_{1} \lVert i  \rVert_{1}  \\
+    &=  \lVert [P - P' \otimes I, Q-Q' \otimes I]  \rVert_{1} \hspace{200 pt} \text{by  \autoref{lem3}} \\
+  \end{split}
+  \end{equation}
+
+
+
+%\begin{equation}
+  %\begin{split}
+    %& \text{d} ([P,Q],[P',Q'])  \\
+    %&=   \lVert  [P,Q] \otimes I - [P',Q'] \otimes I    \rVert_{1} \hspace{2pt} \\
+    %&=   \lVert  [P-P',Q-Q'] \otimes I  \rVert_{1}   \\
+    %&=    \lVert  [P-P',Q-Q'] \rVert_{1} \lVert I \rVert_{1}\hspace{2pt} \\
+    %&=    \lVert  [P-P',Q-Q'] \rVert_{1} \hspace{2pt} \\
+  %\end{split}
+  %\end{equation}
+
+  % The spectral norm is submultiplicative with respect to compositions and multiplicative with respect to tensor products,
+
+  % Flar sobre definições de normas
+
+
+%m
+
+and
+\begin{equation} \label {eq:proof_theorem1.1_dir}
+\begin{split}
+   &  \text{max} \{\text{d} (P,P'),\text{d} (Q,Q')\} \\
+   &=  \text{max} \{ \text{max} \{ \lVert (P \otimes I - P' \otimes I) (v)  \rVert_{1} \vert \lVert v \rVert_{1}=1 \}, \text{max} \{ \lVert (Q \otimes I - Q' \otimes I) (w)  \rVert_{1} \vert \lVert w \rVert_{1}=1 \} \} \\
+   &=  \text{max} \{ \text{max} \{ \lVert (P \otimes I - P' \otimes I) (v)  \rVert_{1} ,  \lVert (Q \otimes I - Q' \otimes I) (w)  \rVert_{1} \vert  \lVert v \rVert_{1}=1 \wedge \lVert w \rVert_{1}=1  \} \} \\
+\end{split}
+\end{equation}
+
+Finally, with results in \autoref{eq:proof_theorem1.1_esq} and \autoref{eq:proof_theorem1.1_dir}, by Lemma \autoref{lem1}, it follows that $\text{d} ([P,Q],[P',Q']) \leq \text{max} \{\text{d} (P,P'),\text{d} (Q,Q')\}$, which concludes the proof of theorem \autoref{theorem:1.1}.
+
+
+
+
+
+
+%hefferon2006linear
+
 
 \subsection{Ilustration: Noisy Quantum Teleportation}
 

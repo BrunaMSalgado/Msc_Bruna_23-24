@@ -1,11 +1,20 @@
 \documentclass[12pt,a4paper,fleqn,twoside,openright]{report}
 \usepackage{dissertation}
 \usepackage{accents}
-\usepackage{tikz} % Useless, but might be handy to draw fancier lines.
+\usepackage{tikz-cd} % Useless, but might be handy to draw fancier lines.
 \usepackage{amssymb} % To provide the \varnothing symbol
 \usepackage{amsmath}
 \usepackage{quantikz}
 \usepackage{mathtools}
+\usepackage{hyperref}
+\usepackage{aliascnt}
+\usepackage{amsthm}
+\usepackage{hyperref}
+
+\newtheorem{theorem}{Theorem}[section]
+\newtheorem{corollary}{Corollary}[theorem]
+\newtheorem{lemma}{Lemma}[section]
+\providecommand*{\lemmaautorefname}{Lemma}
 \makeglossaries
 \makeindex
 
