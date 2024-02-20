@@ -6,6 +6,9 @@ Main result(s) and their scientific evidence
 
 \section{Summary}
 
+%ToDo: Extending the quantum model with conditionals -> Talk about the model (operadores como morfismos, a nossa estrutura algebrica é o espaços vetorias); CPTP model; measurents and the diamond norm é menor ou igual a um; examples (qualtum walk)
+%\todo[inline]{The original todo note withouth changed colours.\newline Here's another line.}
+%ToDo: Discard operations -> The operator should de unique (but there is for instance trace and the null operator_maps everything to zero) and is unique bacausce only trace is trace preserving; example: mallicious attack discard a qubit ou outside of quantum teleportation : setting a qubit do 0, by discarding it and initiating a new one
 
 \section{Integration of conditionals}
 
@@ -184,6 +187,12 @@ $ \end{minipage}
 
 \paragraph{Proof} In order to validate the metric equational system for conditionals, it is necessary to demonstrate its correctness.
 
+The diamond norm is a particular instance of the operator norm. The operator norm [\cite{guide2006infinite}] for a super-operator $E$ is defined as:
+\begin{equation} \label{eq:op_norm}
+  \lVert E \rVert_{\sigma} = \text{sup} \{ \lVert E(v) \rVert \hspace{2pt} | \hspace{2pt} \lVert v \rVert = 1 \}
+\end{equation}
+
+
 For the booleans:
 
 
@@ -192,10 +201,7 @@ For the booleans:
 %Pergunta: nós só precisamos de trace norm e diamond norm em quantica. Usmos a operator norm porque é mais gereal, ou seja a trace norm está nela contida? Also no livro do waltrous eles chamam operator norm de shatten norm em dimensão infinita
 
 
-Now, regarding the metric equation for the conditional statement, before validating its correctness, it is necessary to prove a few intermediate results. One of these results makes use of the operator norm for a super-operator $E$, defined as:
-\begin{equation} \label{eq:op_norm}
-  \lVert E \rVert_{\sigma} = \text{sup} \{ \lVert E(v) \rVert \hspace{2pt} | \hspace{2pt} \lVert v \rVert = 1 \}
-\end{equation}
+Now, regarding the metric equation for the conditional statement, before validating its correctness, it is necessary to prove a few intermediate results. 
 
 The first step is to demonstrate that for any super-operators $P$ and $Q$ the following holds:
 \begin{lemma}\label{lem1}
@@ -259,26 +265,42 @@ This is done by arguing by \textit{reductio ad absurdum}, \textit{i.e.}, supposi
 \end{split}
 \end{equation}
 
-Next, it is necessary to demonstrate that for any operators $P$ and $Q$ and the identity operator $I$, the following holds:
+\vspace{5pt}
+
+Subsequently, it is imperative to prove that:
+\begin{lemma}\label{lemiso}
+  $ i= [\textsc{Il} \otimes I, \textsc{Ir} \otimes I ]$ \text{is an isomorphism}.
+\end{lemma}
+
+\textit{Proof.} \quad The proof is as follows:
+
+For any vector spaces $V$, $W$, and $U$, $i: (V \otimes U) \oplus (W \otimes U) \xrightarrow{} (V  \oplus W) \otimes U $. If $V$ has dimension $m$, $W$ has dimension $n$ and $U$ has dimension $o$, then the space $(V \otimes U) \oplus (W \otimes U) $ has dimension $m+o$ [\cite{hefferon2006linear}]
+
+If spaces have the same dimension then they are isomorphic.
+
+Next, it is necessary to demonstrate that for any operators $P$ and $Q$, the identity operator $I$, and an isomorphism $i=[\textsc{Il} \otimes I, \textsc{Ir} \otimes I ]$ the following holds:
 
 \begin{lemma}\label{lem2}
-  $( [P,Q] \otimes I) \cdot  [\textsc{Il} \otimes I, \textsc{Ir} \otimes I ]  = [P \otimes I, Q \otimes I]$
+  $( [P,Q] \otimes I) \cdot  i  = [P \otimes I, Q \otimes I]$
 \end{lemma}
 
 Which is equivalent to showing that for any vector spaces $V$, $W$, $U$, and $Z$  and super-operators $P: V \xrightarrow{} Z$, $Q: W \xrightarrow{} Z$, and $I: U \xrightarrow{} U$, the following diagram holds:
 
 \vspace{10pt}
 
+
 \begin{tikzpicture}
   \matrix (m) [matrix of math nodes,row sep=4em,column sep=7em,minimum width=2em]
   {
     V \otimes U \oplus W \otimes U & (V  \oplus W) \otimes U \\
-     Z \otimes U \\};
+     Z \otimes U \\
+  };
   \path[-stealth]
     (m-1-1) edge node [left] {$[P \otimes I, Q \otimes I]$} (m-2-1)
-            edge node [above, minimum width=20em] {$[\textsc{Il} \otimes I,\textsc{Ir} \otimes I ]$} (m-1-2) % Adjusted minimum width
-    (m-1-2) edge node [right=0.25cm] {$[P,Q] \otimes I$} (m-2-1);
+    (m-1-1) edge node [above] {$i$} (m-1-2)
+    (m-1-2) edge node [right=0.2cm] {$[P,Q] \otimes I$} (m-2-1);
 \end{tikzpicture}
+
 
 \vspace{10pt}
 
@@ -292,6 +314,57 @@ Which is equivalent to showing that for any vector spaces $V$, $W$, $U$, and $Z$
 \end{equation}
 
 \vspace{15pt}
+
+Furhtermore, it is imperative to show that the following relation holds:
+
+\begin{lemma}\label{lemi-1}
+  $ [P \otimes I, Q \otimes I] \cdot  i^{-1}  = [P,Q] \otimes I$
+\end{lemma}
+
+Demonstrating this is equivalent to establishing that for any vector spaces $V$, $W$, $U$, and $Z$, and super-operators $P: V \xrightarrow{} Z$, $Q: W \xrightarrow{} Z$, and $I: U \xrightarrow{} U$, the following diagram commutes:
+\vspace{5pt}
+
+\begin{tikzpicture}
+  \matrix (m) [matrix of math nodes,row sep=4em,column sep=7em,minimum width=2em]
+  {
+    V \otimes U \oplus W \otimes U & (V  \oplus W) \otimes U \\
+     Z \otimes U \\
+  };
+  \path[-stealth]
+    (m-1-1) edge node [left] {$[P \otimes I, Q \otimes I]$} (m-2-1)
+    (m-1-2) edge node [above] {$i^{-1}$} (m-1-1)
+    (m-1-2) edge node [right=0.2cm] {$[P,Q] \otimes I$} (m-2-1);
+\end{tikzpicture}
+
+
+\textit{Proof.} \quad The proof is as follows:
+\begin{equation}
+\begin{split}
+    & ( [P,Q] \otimes I) \cdot  i  = [P \otimes I, Q \otimes I]  \hspace{100pt} & \text{\{\autoref{lem2}\}} \\
+    \Leftrightarrow &  \hspace{2pt} ( [P,Q] \otimes I) \cdot  i \cdot i^{-1} = [P \otimes I, Q \otimes I] \cdot  i^{-1}\\
+    \Leftrightarrow &  \hspace{2pt} ( [P,Q] \otimes I)  = [P \otimes I, Q \otimes I] \cdot  i^{-1}  &\text{\{\autoref{lem2}\}} \\
+\end{split}
+\end{equation}
+
+\vspace{10pt}
+
+With bla e bla it has been proven that the diagram bellow is valid:
+\vspace{5pt}
+
+\begin{tikzpicture}
+  \matrix (m) [matrix of math nodes,row sep=4em,column sep=7em,minimum width=2em]
+  {
+    V \otimes U \oplus W \otimes U & (V  \oplus W) \otimes U \\
+     Z \otimes U \\
+  };
+  \path[-stealth]
+    (m-1-1) edge node [left] {$[P \otimes I, Q \otimes I]$} (m-2-1)
+    edge[bend left=5] node [above] {$i$}  (m-1-2) % Adjusted minimum width
+    (m-1-2) edge node [right=0.5cm] {$[P,Q] \otimes I$} (m-2-1)
+    (m-1-2) edge[bend right=-5] node [below] {$i^{-1}$} (m-1-1); % Added the label to the arrow
+\end{tikzpicture}
+
+
 Subsequently, it is imperative to prove the following:
 
 \begin{lemma} \label{lem3}
@@ -303,15 +376,15 @@ Subsequently, it is imperative to prove the following:
 \textit{Proof.} \quad Employing the definition of the trace norm for a super-operator in \autoref{eq:trace_distance},  considering vector spaces $V$, $W$ and $U$ and vectors $v_i \in V$, $w_i \in W$ and $u_i \in U$, it follows that:
 \begin{equation}
 \begin{split}
-    & \lVert [\textsc{Il} \otimes I, \textsc{Ir} \otimes I ]  \rVert_{1}  \\
-    &= \text{max} \{ \lVert [\textsc{Il} \otimes I, \textsc{Ir} \otimes I ] (A) \rVert_{1} \hspace{2pt} \vert \hspace{2pt}  \lVert A\rVert_{1} =1   \} \\
-    &= \text{max} \left\{ \left\lVert [\textsc{Il} \otimes I, \textsc{Ir} \otimes I ] \left(\sum_{i} v_i \otimes u_i,\sum_{i} w_i \otimes u_i  \right) \right\rVert_{1} \hspace{2pt} \Bigg\vert \hspace{2pt}  \left\lVert \left(\sum_{i} v_i \otimes u_i,\sum_{i} w_i \otimes u_i  \right) \right\rVert_{1} =1    \right\} \\
-    & =\text{max} \left\{ \left\lVert \textsc{Il} \otimes I \left(\sum_{i} v_i \otimes u_i  \right)  +  \textsc{Ir} \otimes I \left(\sum_{i} w_i \otimes u_i  \right) \right\rVert_{1} \hspace{2pt} \Bigg\vert \hspace{2pt}  \left\lVert \left(\sum_{i} v_i \otimes u_i,\sum_{i} w_i \otimes u_i  \right) \right\rVert_{1} =1    \right\} \\
-    & = \text{max} \Bigg\{ \left\lVert \textsc{Il} \left(\sum_{i} v_i  \right) \otimes I \left(\sum_{i} u_i  \right) + \textsc{Ir} \left(\sum_{i} w_i \right)\otimes I \left(\sum_{i} u_i  \right) \right\rVert_{1} \hspace{2pt} \\
-    & \hspace{50pt}\Bigg\vert \hspace{2pt}  \left\lVert \left(\sum_{i} v_i \otimes u_i,\sum_{i} w_i \otimes u_i  \right) \right\rVert_{1} =1    \Bigg\} \\
-    &= \text{max} \Bigg\{ \left\lVert \left(\sum_{i} v_i,0  \right) \otimes \sum_{i} u_i +  \left(0,\sum_{i} w_i \right) \otimes \sum_{i} u_i   \right\rVert_{1}  \hspace{2pt} \Bigg\vert \hspace{2pt}  \left\lVert \left(\sum_{i} v_i \otimes u_i,\sum_{i} w_i \otimes u_i  \right) \right\rVert_{1} =1    \Bigg\} \\
-    &= \text{max} \Bigg\{ \left\lVert \left(\sum_{i} v_i \otimes  u_i ,0  \right) + \left(0,\sum_{i} w_i \otimes u_i  \right)   \right\rVert_{1}  \hspace{2pt} \Bigg\vert \hspace{2pt}  \left\lVert \left(\sum_{i} v_i \otimes u_i,\sum_{i} w_i \otimes u_i  \right) \right\rVert_{1} =1    \Bigg\} \\
-    &= \text{max} \Bigg\{ \left\lVert \left(\sum_{i} v_i \otimes  u_i ,\sum_{i} w_i \otimes u_i   \right)    \right\rVert_{1}  \hspace{2pt} \Bigg\vert \hspace{2pt}  \left\lVert \left(\sum_{i} v_i \otimes u_i,\sum_{i} w_i \otimes u_i  \right) \right\rVert_{1} =1    \Bigg\} \\
+    & \lVert [\textsc{Il} \otimes I, \textsc{Ir} \otimes I ]  \rVert  \\
+    &= \text{max} \{ \lVert [\textsc{Il} \otimes I, \textsc{Ir} \otimes I ] (A) \rVert \hspace{2pt} \vert \hspace{2pt}  \lVert A\rVert =1   \} \\
+    &= \text{max} \left\{ \left\lVert [\textsc{Il} \otimes I, \textsc{Ir} \otimes I ] \left(\sum_{i} v_i \otimes u_i,\sum_{i} w_i \otimes u_i  \right) \right\rVert \hspace{2pt} \Bigg\vert \hspace{2pt}  \left\lVert \left(\sum_{i} v_i \otimes u_i,\sum_{i} w_i \otimes u_i  \right) \right\rVert =1    \right\} \\
+    & =\text{max} \left\{ \left\lVert \textsc{Il} \otimes I \left(\sum_{i} v_i \otimes u_i  \right)  +  \textsc{Ir} \otimes I \left(\sum_{i} w_i \otimes u_i  \right) \right\rVert \hspace{2pt} \Bigg\vert \hspace{2pt}  \left\lVert \left(\sum_{i} v_i \otimes u_i,\sum_{i} w_i \otimes u_i  \right) \right\rVert =1    \right\} \\
+    & = \text{max} \Bigg\{ \left\lVert \textsc{Il} \left(\sum_{i} v_i  \right) \otimes I \left(\sum_{i} u_i  \right) + \textsc{Ir} \left(\sum_{i} w_i \right)\otimes I \left(\sum_{i} u_i  \right) \right\rVert \hspace{2pt} \\
+    & \hspace{50pt}\Bigg\vert \hspace{2pt}  \left\lVert \left(\sum_{i} v_i \otimes u_i,\sum_{i} w_i \otimes u_i  \right) \right\rVert =1    \Bigg\} \\
+    &= \text{max} \Bigg\{ \left\lVert \left(\sum_{i} v_i,0  \right) \otimes \sum_{i} u_i +  \left(0,\sum_{i} w_i \right) \otimes \sum_{i} u_i   \right\rVert  \hspace{2pt} \Bigg\vert \hspace{2pt}  \left\lVert \left(\sum_{i} v_i \otimes u_i,\sum_{i} w_i \otimes u_i  \right) \right\rVert =1    \Bigg\} \\
+    &= \text{max} \Bigg\{ \left\lVert \left(\sum_{i} v_i \otimes  u_i ,0  \right) + \left(0,\sum_{i} w_i \otimes u_i  \right)   \right\rVert  \hspace{2pt} \Bigg\vert \hspace{2pt}  \left\lVert \left(\sum_{i} v_i \otimes u_i,\sum_{i} w_i \otimes u_i  \right) \right\rVert =1    \Bigg\} \\
+    &= \text{max} \Bigg\{ \left\lVert \left(\sum_{i} v_i \otimes  u_i ,\sum_{i} w_i \otimes u_i   \right)    \right\rVert  \hspace{2pt} \Bigg\vert \hspace{2pt}  \left\lVert \left(\sum_{i} v_i \otimes u_i,\sum_{i} w_i \otimes u_i  \right) \right\rVert =1    \Bigg\} \\
     &=1
 \end{split}
 \end{equation}
@@ -338,11 +411,11 @@ Here, $\text{d}(A,B)$ denotes the distance between super-operators $A$ and $B$, 
 \begin{equation} \label{eq:proof_theorem1.1_esq}
   \begin{split}
     & \text{d} ([P,Q],[P',Q'])  \\
-    &=  \lVert  [P,Q] \otimes I - [P',Q'] \otimes I   \rVert_{1}  \\
-    &=   \lVert [P \otimes I, Q \otimes I] \cdot i  - [P' \otimes I, Q' \otimes I]  \cdot i  \rVert_{1}  \\
-    &=  \lVert [P - P' \otimes I, Q-Q' \otimes I] \cdot i  \rVert_{1}   \\
-    & \leq \lVert [P - P' \otimes I, Q-Q' \otimes I]  \rVert_{1} \lVert i  \rVert_{1}  \\
-    &=  \lVert [P - P' \otimes I, Q-Q' \otimes I]  \rVert_{1} \hspace{200 pt} \text{by  \autoref{lem3}} \\
+    &=  \lVert  [P,Q] \otimes I - [P',Q'] \otimes I   \rVert  \\
+    &=   \lVert [P \otimes I, Q \otimes I] \cdot i  - [P' \otimes I, Q' \otimes I]  \cdot i  \rVert  \\
+    &=  \lVert [P - P' \otimes I, Q-Q' \otimes I] \cdot i  \rVert   \\
+    & \leq \lVert [P - P' \otimes I, Q-Q' \otimes I]  \rVert \lVert i  \rVert  \\
+    &=  \lVert [P - P' \otimes I, Q-Q' \otimes I]  \rVert \hspace{200 pt} \text{by  \autoref{lem3}} \\
   \end{split}
   \end{equation}
 
@@ -369,8 +442,8 @@ and
 \begin{equation} \label {eq:proof_theorem1.1_dir}
 \begin{split}
    &  \text{max} \{\text{d} (P,P'),\text{d} (Q,Q')\} \\
-   &=  \text{max} \{ \text{max} \{ \lVert (P \otimes I - P' \otimes I) (v)  \rVert_{1} \vert \lVert v \rVert_{1}=1 \}, \text{max} \{ \lVert (Q \otimes I - Q' \otimes I) (w)  \rVert_{1} \vert \lVert w \rVert_{1}=1 \} \} \\
-   &=  \text{max} \{ \text{max} \{ \lVert (P \otimes I - P' \otimes I) (v)  \rVert_{1} ,  \lVert (Q \otimes I - Q' \otimes I) (w)  \rVert_{1} \vert  \lVert v \rVert_{1}=1 \wedge \lVert w \rVert_{1}=1  \} \} \\
+   &=  \text{max} \{ \text{max} \{ \lVert (P \otimes I - P' \otimes I) (v)  \rVert \vert \lVert v \rVert=1 \}, \text{max} \{ \lVert (Q \otimes I - Q' \otimes I) (w)  \rVert \vert \lVert w \rVert=1 \} \} \\
+   &=  \text{max} \{ \text{max} \{ \lVert (P \otimes I - P' \otimes I) (v)  \rVert ,  \lVert (Q \otimes I - Q' \otimes I) (w)  \rVert \vert  \lVert v \rVert=1 \wedge \lVert w \rVert=1  \} \} \\
 \end{split}
 \end{equation}
 

@@ -1,4 +1,4 @@
-\begin{thebibliography}{35}
+\begin{thebibliography}{37}
 \providecommand{\natexlab}[1]{#1}
 \providecommand{\url}[1]{\texttt{#1}}
 \expandafter\ifx\csname urlstyle\endcsname\relax
@@ -94,11 +94,21 @@ Lov~K Grover.
 \newblock In \emph{Proceedings of the twenty-eighth annual ACM symposium on
   Theory of computing}, pages 212--219, 1996.
 
+\bibitem[Guide(2006)]{guide2006infinite}
+A~Hitchhiker’s Guide.
+\newblock \emph{Infinite dimensional analysis}.
+\newblock Springer, 2006.
+
 \bibitem[Harrow et~al.(2002)Harrow, Recht, and Chuang]{harrow2002efficient}
 Aram~W Harrow, Benjamin Recht, and Isaac~L Chuang.
 \newblock Efficient discrete approximations of quantum gates.
 \newblock \emph{Journal of Mathematical Physics}, 43\penalty0 (9):\penalty0
   4445--4451, 2002.
+
+\bibitem[Hefferon(2006)]{hefferon2006linear}
+Jim Hefferon.
+\newblock \emph{Linear algebra}.
+\newblock -, 2006.
 
 \bibitem[Hung et~al.(2019)Hung, Hietala, Zhu, Ying, Hicks, and
   Wu]{hung2019quantitative}

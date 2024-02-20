@@ -1,0 +1,52 @@
+\newcommand{\etalchar}[1]{$^{#1}$}
+\begin{thebibliography}{HHZ{\etalchar{+}}19}
+
+\bibitem[Ben94]{benton94}
+P~Nick Benton.
+\newblock A mixed linear and non-linear logic: Proofs, terms and models.
+\newblock In {\em International Workshop on Computer Science Logic}, pages
+  121--135. Springer, 1994.
+
+\bibitem[DN23a]{dahlqvist23b}
+Fredrik Dahlqvist and Renato Neves.
+\newblock A complete v-equational system for graded lambda-calculus.
+\newblock {\em CoRR}, abs/2304.02082, 2023.
+
+\bibitem[DN23b]{dahlqvist23}
+Fredrik Dahlqvist and Renato Neves.
+\newblock The syntactic side of autonomous categories enriched over generalised
+  metric spaces, 2023.
+
+\bibitem[GLR95]{girard95}
+Jean-Yves Girard, Yves Lafont, and Laurent Regnier.
+\newblock {\em Advances in linear logic}, volume 222.
+\newblock Cambridge University Press, 1995.
+
+\bibitem[HHZ{\etalchar{+}}19]{han19}
+Shih-Han Hung, Kesha Hietala, Shaopeng Zhu, Mingsheng Ying, Michael Hicks, and
+  Xiaodi Wu.
+\newblock Quantitative robustness analysis of quantum programs.
+\newblock {\em Proc. ACM Program. Lang.}, 3(POPL), jan 2019.
+
+\bibitem[NC10]{nielsen_chuang_2010}
+Michael~A. Nielsen and Isaac~L. Chuang.
+\newblock {\em Quantum Computation and Quantum Information: 10th Anniversary
+  Edition}.
+\newblock Cambridge University Press, 2010.
+
+\bibitem[Pre18]{preskill18}
+John Preskill.
+\newblock Quantum computing in the nisq era and beyond.
+\newblock {\em Quantum}, 2:79, 2018.
+
+\bibitem[Wat18]{watrous18}
+John Watrous.
+\newblock {\em The theory of quantum information}.
+\newblock Cambridge university press, 2018.
+
+\bibitem[Win93]{winskel93}
+Glynn Winskel.
+\newblock {\em The formal semantics of programming languages: an introduction}.
+\newblock MIT press, 1993.
+
+\end{thebibliography}
