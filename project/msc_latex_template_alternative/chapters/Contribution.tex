@@ -265,7 +265,7 @@ This is done by arguing by \textit{reductio ad absurdum}, \textit{i.e.}, supposi
 \end{split}
 \end{equation}
 
-\vspace{5pt}
+\vspace{10pt}
 
 Subsequently, it is imperative to prove that:
 \begin{lemma}\label{lemiso}
@@ -276,7 +276,7 @@ Subsequently, it is imperative to prove that:
 
 For any vector spaces $V$, $W$, and $U$, $i: (V \otimes U) \oplus (W \otimes U) \xrightarrow{} (V  \oplus W) \otimes U $. If $V$ has dimension $m$, $W$ has dimension $n$, and $U$ has dimension $o$, then the space $(V \otimes U) \oplus (W \otimes U) $ has dimension $mo+no=(m+n)\cdot o$. Similarly, the space $(V\oplus W) \otimes U$ has dimension $(m+n)\cdot o$. Hence, the spaces have the same dimension. Given that spaces with the same dimension are isomorphic [\cite{hefferon2006linear}], it follows that $i$ is an isomorphism.
 
-\vspace{5pt}
+\vspace{10pt}
 
 Next, it is necessary to demonstrate that for any operators $P$ and $Q$, the identity operator $I$, and an isomorphism $i=[\textsc{Il} \otimes I, \textsc{Ir} \otimes I ]$ the following holds:
 
@@ -364,40 +364,105 @@ With \autoref{lem2} and \autoref{lemi-1}, it has been proved that the diagram be
     (m-1-2) edge[bend right=-5] node [below] {$i^{-1}$} (m-1-1); % Added the label to the arrow
 \end{tikzpicture}
 
-\vspace{5pt}
+\vspace{10pt}
 
-Subsequently, it is imperative to prove the following:
+
+Afterward, it is necessary to prove that the identity operator $I$ has a norm equal to 1.
+\begin{lemma} \label{lemid}
+  $ \lVert I \rVert_{\sigma} = 1   $
+\end{lemma}
+
+\textit{Proof.} \quad Using the definition of operator norm in \autoref{eq:op_norm}, it follows that:
+\begin{equation} 
+\begin{split}
+  \lVert I \rVert_{\sigma} = \text{sup} \{\lVert I (v) \rVert \hspace{2pt} \vert \hspace{2pt}  \lVert v\rVert =1 \} = \text{sup} \{\lVert v \rVert \hspace{2pt} \vert \hspace{2pt}  \lVert v\rVert =1 \} = 1
+\end{split}
+\end{equation}
+
+\vspace{10pt}
+
+Thereafter, it is imperative to show that the injection operators $\textsc{Il}$ and $\textsc{Ir}$ are have a norm equal to 1.
+
+\begin{lemma} \label{lemil}
+  $ \lVert \textsc{Il} \rVert_{\sigma} = 1   $
+\end{lemma}
+
+\begin{lemma} \label{lemir}
+  $ \lVert \textsc{Ir} \rVert_{\sigma} = 1   $
+\end{lemma} 
+
+\textit{Proof.} \quad Employing the definition of operator norm as defined in \autoref{eq:op_norm}, it ensues that:
+\begin{equation} 
+\begin{split}
+  \lVert \textsc{Il} \rVert_{\sigma} &= \text{sup} \{\lVert \textsc{Il} (v) \rVert \hspace{2pt} \vert \hspace{2pt}  \lVert v\rVert =1 \} = \text{sup} \{\lVert (v,0) \rVert \hspace{2pt} \vert \hspace{2pt}  \lVert v\rVert =1 \} = \text{sup} \{\lVert v \rVert + \lVert 0 \rVert  \hspace{2pt} \vert \hspace{2pt}  \lVert v\rVert =1 \} \\
+  & = \text{sup} \{\lVert v \rVert \hspace{2pt} + 0    \hspace{2pt}  \vert \lVert v\rVert =1 \} \hspace{160 pt} \text{ \{Positive definiteness\}} \\
+  & = \text{sup} \{\lVert v \rVert \hspace{2pt} \vert \hspace{2pt}  \lVert v\rVert =1 \} = 1
+\end{split}
+\end{equation}
+
+The proof for \autoref{lemir} is analogous to the proof for \autoref{lemil}.
+\begin{equation} 
+  \begin{split}
+    \lVert \textsc{Ir} \rVert_{\sigma} &= \text{sup} \{\lVert \textsc{Ir} (v) \rVert \hspace{2pt} \vert \hspace{2pt}  \lVert v\rVert =1 \} = \text{sup} \{\lVert (0,v) \rVert \hspace{2pt} \vert \hspace{2pt}  \lVert v\rVert =1 \} = \text{sup} \{ \lVert 0 \rVert +\lVert v \rVert   \hspace{2pt} \vert \hspace{2pt}  \lVert v\rVert =1 \} \\
+    & = \text{sup} \{0+\lVert v \rVert \hspace{2pt}     \hspace{2pt}  \vert \lVert v\rVert =1 \} \hspace{160 pt} \text{ \{Positive definiteness\}} \\
+    & = \text{sup} \{\lVert v \rVert \hspace{2pt} \vert \hspace{2pt}  \lVert v\rVert =1 \} = 1
+  \end{split}
+  \end{equation}
+
+%Next, it is necessary to demonstrate that the coproduct of two super-operators $P$ and $Q$ has a norm equal to 1.
+%\begin{lemma} \label{lemeither}
+  %$  \lVert [P, Q]  \rVert_{\sigma} = 1   $
+%\end{lemma}
+
+%\textit{Proof.} \quad Utilizing the definition of the operator norm as defined in Equation \ref{eq:op_norm}, it follows that:
+%\begin{equation} 
+  %\begin{split}
+    %\lVert [P, Q]  \rVert_{\sigma}  \\
+  %\end{split}
+  %\end{equation}
+%\vspace{10pt}
+
+Now, it is possivel to prove that $i$ has a norm equal to 1.
 
 \begin{lemma} \label{lem3}
-  $  \lVert [\textsc{Il} \otimes I, \textsc{Ir} \otimes I ]  \rVert_{1} = 1   $
+  $  \lVert [\textsc{Il} \otimes I, \textsc{Ir} \otimes I ]  \rVert_{\sigma} = 1 $
 \end{lemma}
 
 \vspace{10pt}
 
-\textit{Proof.} \quad Employing the definition of the trace norm for a super-operator in \autoref{eq:trace_distance},  considering vector spaces $V$, $W$ and $U$ and vectors $v_i \in V$, $w_i \in W$ and $u_i \in U$, it follows that:
-\begin{equation}
-\begin{split}
-    & \lVert [\textsc{Il} \otimes I, \textsc{Ir} \otimes I ]  \rVert  \\
-    &= \text{max} \{ \lVert [\textsc{Il} \otimes I, \textsc{Ir} \otimes I ] (A) \rVert \hspace{2pt} \vert \hspace{2pt}  \lVert A\rVert =1   \} \\
-    &= \text{max} \left\{ \left\lVert [\textsc{Il} \otimes I, \textsc{Ir} \otimes I ] \left(\sum_{i} v_i \otimes u_i,\sum_{i} w_i \otimes u_i  \right) \right\rVert \hspace{2pt} \Bigg\vert \hspace{2pt}  \left\lVert \left(\sum_{i} v_i \otimes u_i,\sum_{i} w_i \otimes u_i  \right) \right\rVert =1    \right\} \\
-    & =\text{max} \left\{ \left\lVert \textsc{Il} \otimes I \left(\sum_{i} v_i \otimes u_i  \right)  +  \textsc{Ir} \otimes I \left(\sum_{i} w_i \otimes u_i  \right) \right\rVert \hspace{2pt} \Bigg\vert \hspace{2pt}  \left\lVert \left(\sum_{i} v_i \otimes u_i,\sum_{i} w_i \otimes u_i  \right) \right\rVert =1    \right\} \\
-    & = \text{max} \Bigg\{ \left\lVert \textsc{Il} \left(\sum_{i} v_i  \right) \otimes I \left(\sum_{i} u_i  \right) + \textsc{Ir} \left(\sum_{i} w_i \right)\otimes I \left(\sum_{i} u_i  \right) \right\rVert \hspace{2pt} \\
-    & \hspace{50pt}\Bigg\vert \hspace{2pt}  \left\lVert \left(\sum_{i} v_i \otimes u_i,\sum_{i} w_i \otimes u_i  \right) \right\rVert =1    \Bigg\} \\
-    &= \text{max} \Bigg\{ \left\lVert \left(\sum_{i} v_i,0  \right) \otimes \sum_{i} u_i +  \left(0,\sum_{i} w_i \right) \otimes \sum_{i} u_i   \right\rVert  \hspace{2pt} \Bigg\vert \hspace{2pt}  \left\lVert \left(\sum_{i} v_i \otimes u_i,\sum_{i} w_i \otimes u_i  \right) \right\rVert =1    \Bigg\} \\
-    &= \text{max} \Bigg\{ \left\lVert \left(\sum_{i} v_i \otimes  u_i ,0  \right) + \left(0,\sum_{i} w_i \otimes u_i  \right)   \right\rVert  \hspace{2pt} \Bigg\vert \hspace{2pt}  \left\lVert \left(\sum_{i} v_i \otimes u_i,\sum_{i} w_i \otimes u_i  \right) \right\rVert =1    \Bigg\} \\
-    &= \text{max} \Bigg\{ \left\lVert \left(\sum_{i} v_i \otimes  u_i ,\sum_{i} w_i \otimes u_i   \right)    \right\rVert  \hspace{2pt} \Bigg\vert \hspace{2pt}  \left\lVert \left(\sum_{i} v_i \otimes u_i,\sum_{i} w_i \otimes u_i  \right) \right\rVert =1    \Bigg\} \\
-    &=1
-\end{split}
-\end{equation}
+\textit{Proof.} \quad Employing the definition of the operator-norm in \autoref{eq:op_norm}, it follows that:
+\begin{equation} 
+  \begin{split}
+    \lVert [\textsc{Il} \otimes I, \textsc{Ir} \otimes I]  \rVert_{\sigma}  \\
+  \end{split}   
+  \end{equation}
+
+Finally, it is possible to demontrate that $i^{-1}$ has a norm equal to 1
+
+\begin{lemma} \label{lem4}
+  $  \lVert i^{-1}  \rVert_{\sigma} = 1 $
+\end{lemma}
+
+\textit{Proof.} \quad Given that $i$ is an isomophism, it follows that 
+\begin{equation} 
+  \begin{split}
+    &\lVert i \cdot i^{-1}  \rVert_{\sigma} = 1  \\
+    \leq \hspace{2pt}& \lVert i  \rVert_{\sigma} \cdot \lVert i^{-1}  \rVert_{\sigma} = 1 \hspace{50pt} & \text{\{Norm submultiplicative with respect to compositions\}} \\
+    \Leftrightarrow & 1 \cdot \lVert i^{-1}  \rVert_{\sigma} = 1 & \text{\{\autoref{lem4}\}}  \\
+    \Leftrightarrow &  \lVert i^{-1}  \rVert_{\sigma} = 1  \\
+  \end{split}   
+  \end{equation}
 
 
-Now, it is finally possible to approach the proof of the metric equation for the conditional statement. Considering the the semantics of the "case" rule in \autoref{fig:denotational_sem cond}, proving that the "case" rule in \autoref{fig:metric conditionals} is valid is equivalent to demonstrating that for any super-operators $P$ and $Q$ and their respective erroneous versions $P'$ and $Q'$, the following holds:
+
+
+Now, it is finally possible to adress the proof of the metric equation for the conditional statement. Considering the the semantics of the "case" rule in \autoref{fig:denotational_sem cond}, proving that the "case" rule in \autoref{fig:metric conditionals} is valid is equivalent to demonstrating that for any super-operators $P$ and $Q$ and their respective erroneous versions $P'$ and $Q'$, the following holds:
 \begin{theorem} \label {theorem:1.1}
   $\text{d} ([P,Q],[P',Q']) \leq \text{max} \{\text{d} (P,P'),\text{d} (Q,Q')\}$
 \end{theorem}
 \vspace{10pt}
 \textit {Proof.} 
-Here, $\text{d}(A,B)$ denotes the distance between super-operators $A$ and $B$, which in the quantum paradigm corresponds to the diamond norm between the two super-operators. Hence, employing the definition of the diamond norm in \autoref{eq:diamond_distance}, and denoting $ [\textsc{Il} \otimes I, \textsc{Ir} \otimes I ]$ by $i$ it follows that:
+Here, $\text{d}(A,B)$ denotes the distance between super-operators $A$ and $B$, which in the quantum paradigm corresponds to the diamond norm between the two super-operators. Hence, denoting $ [\textsc{Il} \otimes I, \textsc{Ir} \otimes I ]$ by $i$ it follows that:
 
 %\begin{equation}
 %\begin{split}
@@ -412,25 +477,53 @@ Here, $\text{d}(A,B)$ denotes the distance between super-operators $A$ and $B$, 
 \begin{equation} \label{eq:proof_theorem1.1_esq}
   \begin{split}
     & \text{d} ([P,Q],[P',Q'])  \\
-    &=  \lVert  [P,Q] \otimes I - [P',Q'] \otimes I   \rVert  \\
-    &=   \lVert [P \otimes I, Q \otimes I] \cdot i  - [P' \otimes I, Q' \otimes I]  \cdot i  \rVert  \\
-    &=  \lVert [P - P' \otimes I, Q-Q' \otimes I] \cdot i  \rVert   \\
-    & \leq \lVert [P - P' \otimes I, Q-Q' \otimes I]  \rVert \lVert i  \rVert  \\
-    &=  \lVert [P - P' \otimes I, Q-Q' \otimes I]  \rVert \hspace{200 pt} \text{by  \autoref{lem3}} \\
+    &=  \lVert  [P,Q] \otimes I - [P',Q'] \otimes I   \rVert_{\sigma}  \\
+    &=   \lVert [P \otimes I, Q \otimes I] \cdot i^{-1}  - [P' \otimes I, Q' \otimes I]  \cdot i^{-1}  \rVert_{\sigma}   \hspace{165pt}  \text{\{\autoref{lemi-1}\}} \\
+    &=  \lVert [P - P' \otimes I, Q-Q' \otimes I] \cdot i^{-1}  \rVert_{\sigma}   \\
+    & \leq \lVert [P - P' \otimes I, Q-Q' \otimes I]  \rVert \lVert i^{-1}  \rVert \rVert_{\sigma} \hspace{20pt} \text{\{Norm submultiplicative with respect to compositions\}}  \\  
+    &=  \lVert [(P - P') \otimes I, (Q-Q') \otimes I]  \rVert_{\sigma} \hspace{235pt} \text{ \{\autoref{lem4}\}} \\
+  \end{split}
+  \end{equation}
+and
+\begin{equation} \label {eq:proof_theorem1.1_dir}
+\begin{split}
+   &  \text{max} \{\text{d} (P,P'),\text{d} (Q,Q')\} \\
+   = &  \text{max}\{ \lVert P \otimes I - P' \otimes I \rVert_{\sigma}, \lVert Q \otimes I - Q'\otimes I \rVert_{\sigma} \}\\
+   = &  \text{max}\{ \lVert (P - P') \otimes I \rVert_{\sigma}, \lVert (Q - Q') \otimes I \rVert_{\sigma} \}\\
+\end{split}
+\end{equation}
+
+Finally, by  \autoref{lem1}, it can be deduced that $\text{d} ([P,Q],[P',Q']) \leq \text{max} \{\text{d} (P,P'),\text{d} (Q,Q')\}$, which concludes the proof of theorem \autoref{theorem:1.1}.
+
+\vspace{10pt}
+
+An alternative method to establish \autoref{theorem:1.1} is now presented.
+\vspace{5pt}
+\textit {Proof.} The proof is as follows:
+\begin{equation}
+  \begin{split}
+    & \text{d} ([P,Q],[P',Q'])  \\
+    &=   \lVert  [P,Q] \otimes I - [P',Q'] \otimes I    \rVert_{\sigma} \hspace{2pt} \\
+    &=   \lVert  ([P,Q]  - [P',Q']) \otimes I    \rVert_{\sigma} \hspace{2pt} \\
+    &=   \lVert  [P-P',Q-Q'] \otimes I  \rVert_{\sigma}   \\
+    &=    \lVert  [P-P',Q-Q'] \rVert_{\sigma} \lVert I \rVert_{\sigma}\hspace{2pt} & \hspace {40pt} \text{\{Norm multiplicative with respect to tensor products\}} \\ 
+    &=    \lVert  [P-P',Q-Q'] \rVert_{\sigma} & \text{\{\autoref{lemid}\}}  \\
+  \end{split}
+  \end{equation}
+Moreover,
+\begin{equation} 
+  \begin{split}
+     &  \text{max} \{\text{d} (P,P'),\text{d} (Q,Q')\} \\
+     = &  \text{max}\{ \lVert P \otimes I - P' \otimes I \rVert_{\sigma}, \lVert Q \otimes I - Q'\otimes I \rVert_{\sigma} \}\\
+     = &  \text{max}\{ \lVert (P - P') \otimes I \rVert_{\sigma}, \lVert (Q - Q') \otimes I \rVert_{\sigma} \}\\
+     = &\text{max}\{ \lVert (P - P') \rVert_{\sigma} \lVert  I \rVert_{\sigma}, \lVert (Q - Q') \rVert_{\sigma} \lVert I \rVert_{\sigma} \} &  \text{\{Norm multiplicative with respect to tensor products\}} \\
+     = & \text{max}\{ \lVert (P - P') \rVert_{\sigma}, \lVert (Q - Q') \rVert_{\sigma}  \}  & \text{\{\autoref{lemid}\}}  \\
   \end{split}
   \end{equation}
 
+Therefore, by \autoref{lem1}, it can be deduced that $\text{d} ([P,Q],[P',Q']) \leq \text{max} \{\text{d} (P,P'),\text{d} (Q,Q')\}$, which concludes the proof of theorem \autoref{theorem:1.1}.
 
 
-%\begin{equation}
-  %\begin{split}
-    %& \text{d} ([P,Q],[P',Q'])  \\
-    %&=   \lVert  [P,Q] \otimes I - [P',Q'] \otimes I    \rVert_{1} \hspace{2pt} \\
-    %&=   \lVert  [P-P',Q-Q'] \otimes I  \rVert_{1}   \\
-    %&=    \lVert  [P-P',Q-Q'] \rVert_{1} \lVert I \rVert_{1}\hspace{2pt} \\
-    %&=    \lVert  [P-P',Q-Q'] \rVert_{1} \hspace{2pt} \\
-  %\end{split}
-  %\end{equation}
 
   % The spectral norm is submultiplicative with respect to compositions and multiplicative with respect to tensor products,
 
@@ -438,21 +531,6 @@ Here, $\text{d}(A,B)$ denotes the distance between super-operators $A$ and $B$, 
 
 
 %m
-
-and
-\begin{equation} \label {eq:proof_theorem1.1_dir}
-\begin{split}
-   &  \text{max} \{\text{d} (P,P'),\text{d} (Q,Q')\} \\
-   &=  \text{max} \{ \text{max} \{ \lVert (P \otimes I - P' \otimes I) (v)  \rVert \vert \lVert v \rVert=1 \}, \text{max} \{ \lVert (Q \otimes I - Q' \otimes I) (w)  \rVert \vert \lVert w \rVert=1 \} \} \\
-   &=  \text{max} \{ \text{max} \{ \lVert (P \otimes I - P' \otimes I) (v)  \rVert ,  \lVert (Q \otimes I - Q' \otimes I) (w)  \rVert \vert  \lVert v \rVert=1 \wedge \lVert w \rVert=1  \} \} \\
-\end{split}
-\end{equation}
-
-Finally, with results in \autoref{eq:proof_theorem1.1_esq} and \autoref{eq:proof_theorem1.1_dir}, by Lemma \autoref{lem1}, it follows that $\text{d} ([P,Q],[P',Q']) \leq \text{max} \{\text{d} (P,P'),\text{d} (Q,Q')\}$, which concludes the proof of theorem \autoref{theorem:1.1}.
-
-
-
-
 
 
 %hefferon2006linear
