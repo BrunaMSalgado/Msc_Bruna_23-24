@@ -144,7 +144,7 @@ Now, for the conditional statement:
 \end{equation}
 
 
-The quantum lambda calculus with conditionals is illustrated with an example —the quantum teleportation protocol— in \autoref{appendice:teleport}.
+The quantum lambda calculus with conditionals is illustrated with an example —the quantum teleportation protocol— in \autoref{sec:teleport}.
 
 
 The metric equations for conditionals are presented in \autoref{fig:metric conditionals}. Note that the first two equations are redundant.
@@ -192,16 +192,88 @@ The diamond norm is a particular instance of the operator norm. The operator nor
   \lVert E \rVert_{\sigma} = \text{sup} \{ \lVert E(v) \rVert \hspace{2pt} | \hspace{2pt} \lVert v \rVert = 1 \}
 \end{equation}
 
+\vspace{15pt}
 
-For the booleans:
+For the \textbf{injections}:
 
+Firstly, it is necessary to prove that the identity operator $I$ has a norm equal to 1.
+\begin{lemma} \label{lemid}
+  $ \lVert I \rVert_{\sigma} = 1   $
+\end{lemma}
 
+\textit{Proof.} \quad Using the definition of operator norm in \autoref{eq:op_norm}, it follows that:
+\begin{equation} 
+\begin{split}
+  \lVert I \rVert_{\sigma} = \text{sup} \{\lVert I (v) \rVert \hspace{2pt} \vert \hspace{2pt}  \lVert v\rVert =1 \} = \text{sup} \{\lVert v \rVert \hspace{2pt} \vert \hspace{2pt}  \lVert v\rVert =1 \} = 1
+\end{split}
+\end{equation}
 
+\vspace{10pt}
 
-%Pergunta: nós só precisamos de trace norm e diamond norm em quantica. Usmos a operator norm porque é mais gereal, ou seja a trace norm está nela contida? Also no livro do waltrous eles chamam operator norm de shatten norm em dimensão infinita
+Thereafter, it is imperative to show that the injection operators $\textsc{Il}$ and $\textsc{Ir}$ are have a norm equal to 1.
 
+\begin{lemma} \label{lemil}
+  $ \lVert \textsc{Il} \rVert_{\sigma} = 1   $
+\end{lemma}
 
-Now, regarding the metric equation for the conditional statement, before validating its correctness, it is necessary to prove a few intermediate results. 
+\begin{lemma} \label{lemir}
+  $ \lVert \textsc{Ir} \rVert_{\sigma} = 1   $
+\end{lemma} 
+
+\textit{Proof.} \quad Employing the definition of operator norm as defined in \autoref{eq:op_norm}, it ensues that:
+\begin{equation} 
+\begin{split}
+  \lVert \textsc{Il} \rVert_{\sigma} &= \text{sup} \{\lVert \textsc{Il} (v) \rVert \hspace{2pt} \vert \hspace{2pt}  \lVert v\rVert =1 \} = \text{sup} \{\lVert (v,0) \rVert \hspace{2pt} \vert \hspace{2pt}  \lVert v\rVert =1 \} = \text{sup} \{\lVert v \rVert + \lVert 0 \rVert  \hspace{2pt} \vert \hspace{2pt}  \lVert v\rVert =1 \} \\
+  & = \text{sup} \{\lVert v \rVert \hspace{2pt} + 0    \hspace{2pt}  \vert \lVert v\rVert =1 \} \hspace{160 pt} \text{ \{Positive definiteness\}} \\
+  & = \text{sup} \{\lVert v \rVert \hspace{2pt} \vert \hspace{2pt}  \lVert v\rVert =1 \} = 1
+\end{split}
+\end{equation}
+
+The proof for \autoref{lemir} is analogous to the proof for \autoref{lemil}.
+\begin{equation} 
+  \begin{split}
+    \lVert \textsc{Ir} \rVert_{\sigma} &= \text{sup} \{\lVert \textsc{Ir} (v) \rVert \hspace{2pt} \vert \hspace{2pt}  \lVert v\rVert =1 \} = \text{sup} \{\lVert (0,v) \rVert \hspace{2pt} \vert \hspace{2pt}  \lVert v\rVert =1 \} = \text{sup} \{ \lVert 0 \rVert +\lVert v \rVert   \hspace{2pt} \vert \hspace{2pt}  \lVert v\rVert =1 \} \\
+    & = \text{sup} \{0+\lVert v \rVert \hspace{2pt}     \hspace{2pt}  \vert \lVert v\rVert =1 \} \hspace{160 pt} \text{ \{Positive definiteness\}} \\
+    & = \text{sup} \{\lVert v \rVert \hspace{2pt} \vert \hspace{2pt}  \lVert v\rVert =1 \} = 1
+  \end{split}
+  \end{equation}
+
+Futhermore, given the submultiplicative property of the operator norm, for any super-operators $P$ and $Q$,where $\lVert P \rVert_{\sigma} =1  $ the following holds:
+\begin{lemma}\label{lemleq}
+  $\lVert PQ \rVert_{\sigma} \leq  \lVert Q \rVert_{\sigma}, \quad \lVert P \rVert_{\sigma}  =1 $ 
+\end{lemma}
+
+Using these properties it is possible to prove the validity of the metric equations for the injections. Demonstrating the correctness of the metric equations for the injections is equivalent to proving that for any  non‑negative rational $q$ and super-operators $v$ and $w$ such that $d(v,w) \leq q$, where  $d(v,w)$ represents the distance between $v$ and $w$ the following holds:
+
+\begin{theorem} \label{theoremil}
+  $d(\textsc{Il}(v),\textsc{Il} (w)) \leq q$
+\end{theorem}
+\vspace{10pt}
+\begin{theorem} \label{theoremir}
+  $d(\textsc{Ir}(v),\textsc{Ir} (w)) \leq q$
+\end{theorem}
+\vspace{10pt}
+\textit{Proof.} \quad In the quantum paradigm, the distance between two super-operators $E$ and $E'$ corresponds to the diamond norm between $E$ and $E'$. Therefore,
+\begin{equation}
+\begin{split}
+  d(v,w) \leq q \Leftrightarrow \lVert v \otimes I - w \otimes I \rVert_{\sigma} \leq q
+\end{split}
+\end{equation}
+
+As a result, to prove that $d(\textsc{Il}(v),\textsc{Il} (w)) \leq q$, it suffices to show that:
+\begin{align}
+  \lVert \textsc{Il}\otimes I (v \otimes I)-\textsc{Il} \otimes I (w \otimes I)\rVert_{\sigma} \leq \lVert v \otimes I - w \otimes I \rVert_{\sigma} \\
+  \lVert \textsc{Ir}\otimes I (v \otimes I)-\textsc{Ir} \otimes I (w \otimes I)\rVert_{\sigma} \leq \lVert v \otimes I - w \otimes I \rVert_{\sigma} 
+\end{align}
+Given that $\textsc{Il}$ and $\textsc{Ir}$ possess a norm equal to 1, as established by Lemmas \ref{lemil} and \ref{lemir} respectively, and considering the multiplicative property of the operator norm with respect to tensor products alongside the fact that the identity operator also exhibits a norm equal to 1, as demonstrated in  \autoref{lemid}, it follows that both $\lVert \textsc{Il} \otimes I \rVert_{\sigma}$ and $\lVert \textsc{Ir} \otimes I \rVert_{\sigma}$ are equal to one 1. Hence, by \autoref{lemleq},
+\begin{align}
+   \lVert \textsc{Il}\otimes I (v \otimes I)-\textsc{Il} \otimes I (w \otimes I)\rVert_{\sigma}=\lVert \textsc{Il}\otimes I (v \otimes I-w \otimes I)\rVert_{\sigma} \leq \lVert v \otimes I - w \otimes I \rVert_{\sigma} \\
+   \lVert \textsc{Ir}\otimes I (v \otimes I)-\textsc{Ir} \otimes I (w \otimes I)\rVert_{\sigma}=\lVert \textsc{Ir}\otimes I (v \otimes I-w \otimes I)\rVert_{\sigma} \leq \lVert v \otimes I - w \otimes I \rVert_{\sigma}
+\end{align}
+
+\vspace{10pt}
+
+Now, regarding the metric equation for the \textbf{conditional statement}, before validating its correctness, it is necessary to prove a few intermediate results. 
 
 The first step is to demonstrate that for any super-operators $P$ and $Q$ the following holds:
 \begin{lemma}\label{lem1}
@@ -367,47 +439,7 @@ With \autoref{lem2} and \autoref{lemi-1}, it has been proved that the diagram be
 \vspace{10pt}
 
 
-Afterward, it is necessary to prove that the identity operator $I$ has a norm equal to 1.
-\begin{lemma} \label{lemid}
-  $ \lVert I \rVert_{\sigma} = 1   $
-\end{lemma}
 
-\textit{Proof.} \quad Using the definition of operator norm in \autoref{eq:op_norm}, it follows that:
-\begin{equation} 
-\begin{split}
-  \lVert I \rVert_{\sigma} = \text{sup} \{\lVert I (v) \rVert \hspace{2pt} \vert \hspace{2pt}  \lVert v\rVert =1 \} = \text{sup} \{\lVert v \rVert \hspace{2pt} \vert \hspace{2pt}  \lVert v\rVert =1 \} = 1
-\end{split}
-\end{equation}
-
-\vspace{10pt}
-
-Thereafter, it is imperative to show that the injection operators $\textsc{Il}$ and $\textsc{Ir}$ are have a norm equal to 1.
-
-\begin{lemma} \label{lemil}
-  $ \lVert \textsc{Il} \rVert_{\sigma} = 1   $
-\end{lemma}
-
-\begin{lemma} \label{lemir}
-  $ \lVert \textsc{Ir} \rVert_{\sigma} = 1   $
-\end{lemma} 
-
-\textit{Proof.} \quad Employing the definition of operator norm as defined in \autoref{eq:op_norm}, it ensues that:
-\begin{equation} 
-\begin{split}
-  \lVert \textsc{Il} \rVert_{\sigma} &= \text{sup} \{\lVert \textsc{Il} (v) \rVert \hspace{2pt} \vert \hspace{2pt}  \lVert v\rVert =1 \} = \text{sup} \{\lVert (v,0) \rVert \hspace{2pt} \vert \hspace{2pt}  \lVert v\rVert =1 \} = \text{sup} \{\lVert v \rVert + \lVert 0 \rVert  \hspace{2pt} \vert \hspace{2pt}  \lVert v\rVert =1 \} \\
-  & = \text{sup} \{\lVert v \rVert \hspace{2pt} + 0    \hspace{2pt}  \vert \lVert v\rVert =1 \} \hspace{160 pt} \text{ \{Positive definiteness\}} \\
-  & = \text{sup} \{\lVert v \rVert \hspace{2pt} \vert \hspace{2pt}  \lVert v\rVert =1 \} = 1
-\end{split}
-\end{equation}
-
-The proof for \autoref{lemir} is analogous to the proof for \autoref{lemil}.
-\begin{equation} 
-  \begin{split}
-    \lVert \textsc{Ir} \rVert_{\sigma} &= \text{sup} \{\lVert \textsc{Ir} (v) \rVert \hspace{2pt} \vert \hspace{2pt}  \lVert v\rVert =1 \} = \text{sup} \{\lVert (0,v) \rVert \hspace{2pt} \vert \hspace{2pt}  \lVert v\rVert =1 \} = \text{sup} \{ \lVert 0 \rVert +\lVert v \rVert   \hspace{2pt} \vert \hspace{2pt}  \lVert v\rVert =1 \} \\
-    & = \text{sup} \{0+\lVert v \rVert \hspace{2pt}     \hspace{2pt}  \vert \lVert v\rVert =1 \} \hspace{160 pt} \text{ \{Positive definiteness\}} \\
-    & = \text{sup} \{\lVert v \rVert \hspace{2pt} \vert \hspace{2pt}  \lVert v\rVert =1 \} = 1
-  \end{split}
-  \end{equation}
 
 %Next, it is necessary to demonstrate that the coproduct of two super-operators $P$ and $Q$ has a norm equal to 1.
 %\begin{lemma} \label{lemeither}
@@ -425,22 +457,52 @@ The proof for \autoref{lemir} is analogous to the proof for \autoref{lemil}.
 Now, it is possivel to prove that $i$ has a norm equal to 1.
 
 \begin{lemma} \label{lem3}
-  $  \lVert [\textsc{Il} \otimes I, \textsc{Ir} \otimes I ]  \rVert_{\sigma} = 1 $
+  $  \lVert i\rVert_{\sigma} = 1 $
 \end{lemma}
 
 \vspace{10pt}
 
-\textit{Proof.} \quad Employing the definition of the operator-norm in \autoref{eq:op_norm}, it follows that:
-\begin{equation} 
+\textit{Proof.} \quad Employing the definition of the operator norm as defined in \autoref{eq:op_norm}, it follows that:
+\begin{equation}
   \begin{split}
-    \lVert [\textsc{Il} \otimes I, \textsc{Ir} \otimes I]  \rVert_{\sigma}  \\
-  \end{split}   
+      & \hspace{3pt} \lVert [\textsc{Il} \otimes I, \textsc{Ir} \otimes I ]  \rVert_{}  \\
+      &= \text{max} \{ \lVert [\textsc{Il} \otimes I, \textsc{Ir} \otimes I ] (A) \rVert \hspace{2pt} \vert \hspace{2pt}  \lVert A\rVert =1   \} \\
+      &= \text{max} \left\{ \left\lVert [\textsc{Il} \otimes I, \textsc{Ir} \otimes I ] \left(\sum_{i} v_i \otimes u_i,\sum_{i} w_i \otimes u_i  \right) \right\rVert \hspace{2pt} \Bigg\vert \hspace{2pt}  \left\lVert \left(\sum_{i} v_i \otimes u_i,\sum_{i} w_i \otimes u_i  \right) \right\rVert =1    \right\} \\
+      & =\text{max} \left\{ \left\lVert \textsc{Il} \otimes I \left(\sum_{i} v_i \otimes u_i  \right)  +  \textsc{Ir} \otimes I \left(\sum_{i} w_i \otimes u_i  \right) \right\rVert \hspace{2pt} \Bigg\vert \hspace{2pt}  \left\lVert \left(\sum_{i} v_i \otimes u_i,\sum_{i} w_i \otimes u_i  \right) \right\rVert =1    \right\} \\
+      & = \text{max} \Bigg\{ \left\lVert \textsc{Il} \left(\sum_{i} v_i  \right) \otimes I \left(\sum_{i} u_i  \right) + \textsc{Ir} \left(\sum_{i} w_i \right)\otimes I \left(\sum_{i} u_i  \right) \right\rVert \hspace{2pt} \\
+      & \hspace{50pt}\Bigg\vert \hspace{2pt}  \left\lVert \left(\sum_{i} v_i \otimes u_i,\sum_{i} w_i \otimes u_i  \right) \right\rVert =1    \Bigg\} \\
+      &= \text{max} \Bigg\{ \left\lVert \left(\sum_{i} v_i,0  \right) \otimes \sum_{i} u_i +  \left(0,\sum_{i} w_i \right) \otimes \sum_{i} u_i   \right\rVert  \hspace{2pt} \Bigg\vert \hspace{2pt}  \left\lVert \left(\sum_{i} v_i \otimes u_i,\sum_{i} w_i \otimes u_i  \right) \right\rVert =1    \Bigg\} \\
+      &= \text{max} \Bigg\{ \left\lVert \left(\sum_{i} v_i \otimes  u_i ,0  \right) + \left(0,\sum_{i} w_i \otimes u_i  \right)   \right\rVert  \hspace{2pt} \Bigg\vert \hspace{2pt}  \left\lVert \left(\sum_{i} v_i \otimes u_i,\sum_{i} w_i \otimes u_i  \right) \right\rVert =1    \Bigg\} \\
+      &= \text{max} \Bigg\{ \left\lVert \left(\sum_{i} v_i \otimes  u_i ,\sum_{i} w_i \otimes u_i   \right)    \right\rVert  \hspace{2pt} \Bigg\vert \hspace{2pt}  \left\lVert \left(\sum_{i} v_i \otimes u_i,\sum_{i} w_i \otimes u_i  \right) \right\rVert =1    \Bigg\} \\
+      &=1
+  \end{split}
   \end{equation}
 
-Finally, it is possible to demontrate that $i^{-1}$ has a norm equal to 1
+%Hence, by \autoref{lem1}, it follows that:
+%\begin{equation} 
+  %\begin{split}
+    %\lVert [\textsc{Il} \otimes I, \textsc{Ir} \otimes I]  \rVert_{\sigma} &\leq \text{max} \{ \lVert\textsc{Il} \otimes I \rVert_{\sigma}, \lVert\textsc{Ir} \otimes I \rVert_{\sigma} \} \\
+   %& \leq \text{max} \{ 1, 1 \}\\
+   %& \leq 1
+  %\end{split}   
+  %\end{equation}
+
+%On the other hand, employing the definition of the operator norm as defined in \autoref{eq:op_norm}, it follows that:
+%\begin{equation} 
+  %\begin{split}
+    %\lVert i  \rVert_{\sigma}&=\lVert [\textsc{Il} \otimes I, \textsc{Ir} \otimes I]  \rVert_{\sigma}  \\
+    %& = \text{sup} \{ \lVert [\textsc{Il} \otimes I , \textsc{Ir} \otimes I ] (v) \rVert \hspace{2pt} | \hspace{2pt} \lVert v \rVert = 1 \} \\
+    %&= \text{sup} \{ \lVert [\textsc{Il} \otimes I , \textsc{Ir} \otimes I ] (u+w) \rVert \hspace{2pt} | \hspace{2pt} \lVert w+u \rVert = 1 \}\\
+    %&= \text{sup} \{ \lVert \textsc{Il} \otimes I  (w) + \textsc{Ir} \otimes I  (u) \rVert \hspace{2pt} | \hspace{2pt} \lVert w+u \rVert = 1 \} \\
+    %&=
+  %\end{split}   
+  %\end{equation}
+
+  
+Finally, it is possible to demontrate that $i^{-1}$ has a norm less or equal to 1
 
 \begin{lemma} \label{lem4}
-  $  \lVert i^{-1}  \rVert_{\sigma} = 1 $
+  $  \lVert i^{-1}  \rVert_{\sigma} \leq 1 $
 \end{lemma}
 
 \textit{Proof.} \quad Given that $i$ is an isomophism, it follows that 
@@ -456,13 +518,13 @@ Finally, it is possible to demontrate that $i^{-1}$ has a norm equal to 1
 
 
 
-Now, it is finally possible to adress the proof of the metric equation for the conditional statement. Considering the the semantics of the "case" rule in \autoref{fig:denotational_sem cond}, proving that the "case" rule in \autoref{fig:metric conditionals} is valid is equivalent to demonstrating that for any super-operators $P$ and $Q$ and their respective erroneous versions $P'$ and $Q'$, the following holds:
+Now, it is finally possible to adress the proof of the metric equation for the conditional statement. Considering the the semantics of the "case" rule in \autoref{fig:denotational_sem cond}, proving that the "case" rule in \autoref{fig:metric conditionals} is valid is equivalent to demonstrating that for any super-operators $P$ and $Q$ and their respective erroneous versions $P'$ and $Q'$, denoting the distance between super-operators $A$ and $B$ as $d(A,B)$,  the following holds:
 \begin{theorem} \label {theorem:1.1}
   $\text{d} ([P,Q],[P',Q']) \leq \text{max} \{\text{d} (P,P'),\text{d} (Q,Q')\}$
 \end{theorem}
 \vspace{10pt}
 \textit {Proof.} 
-Here, $\text{d}(A,B)$ denotes the distance between super-operators $A$ and $B$, which in the quantum paradigm corresponds to the diamond norm between the two super-operators. Hence, denoting $ [\textsc{Il} \otimes I, \textsc{Ir} \otimes I ]$ by $i$ it follows that:
+In the quantum paradigm, the distance between two super-operators  corresponds to the diamond norm between the two super-operators. Hence, denoting $ [\textsc{Il} \otimes I, \textsc{Ir} \otimes I ]$ by $i$ it follows that:
 
 %\begin{equation}
 %\begin{split}
@@ -481,7 +543,7 @@ Here, $\text{d}(A,B)$ denotes the distance between super-operators $A$ and $B$, 
     &=   \lVert [P \otimes I, Q \otimes I] \cdot i^{-1}  - [P' \otimes I, Q' \otimes I]  \cdot i^{-1}  \rVert_{\sigma}   \hspace{165pt}  \text{\{\autoref{lemi-1}\}} \\
     &=  \lVert [P - P' \otimes I, Q-Q' \otimes I] \cdot i^{-1}  \rVert_{\sigma}   \\
     & \leq \lVert [P - P' \otimes I, Q-Q' \otimes I]  \rVert \lVert i^{-1}  \rVert \rVert_{\sigma} \hspace{20pt} \text{\{Norm submultiplicative with respect to compositions\}}  \\  
-    &=  \lVert [(P - P') \otimes I, (Q-Q') \otimes I]  \rVert_{\sigma} \hspace{235pt} \text{ \{\autoref{lem4}\}} \\
+    & \leq \lVert [(P - P') \otimes I, (Q-Q') \otimes I]  \rVert_{\sigma} \hspace{235pt} \text{ \{\autoref{lem4}\}} \\
   \end{split}
   \end{equation}
 and
@@ -506,19 +568,20 @@ An alternative method to establish \autoref{theorem:1.1} is now presented.
     &=   \lVert  [P,Q] \otimes I - [P',Q'] \otimes I    \rVert_{\sigma} \hspace{2pt} \\
     &=   \lVert  ([P,Q]  - [P',Q']) \otimes I    \rVert_{\sigma} \hspace{2pt} \\
     &=   \lVert  [P-P',Q-Q'] \otimes I  \rVert_{\sigma}   \\
-    &=    \lVert  [P-P',Q-Q'] \rVert_{\sigma} \lVert I \rVert_{\sigma}\hspace{2pt} & \hspace {40pt} \text{\{Norm multiplicative with respect to tensor products\}} \\ 
+    &=    \lVert  [P-P',Q-Q'] \rVert_{\sigma} \lVert I \rVert_{\sigma}\hspace{2pt} & \hspace {20pt} \text{\{Norm multiplicative with respect to tensor products\}} \\ 
     &=    \lVert  [P-P',Q-Q'] \rVert_{\sigma} & \text{\{\autoref{lemid}\}}  \\
   \end{split}
   \end{equation}
 Moreover,
-\begin{equation} 
+\begin{equation}
   \begin{split}
      &  \text{max} \{\text{d} (P,P'),\text{d} (Q,Q')\} \\
      = &  \text{max}\{ \lVert P \otimes I - P' \otimes I \rVert_{\sigma}, \lVert Q \otimes I - Q'\otimes I \rVert_{\sigma} \}\\
      = &  \text{max}\{ \lVert (P - P') \otimes I \rVert_{\sigma}, \lVert (Q - Q') \otimes I \rVert_{\sigma} \}\\
-     = &\text{max}\{ \lVert (P - P') \rVert_{\sigma} \lVert  I \rVert_{\sigma}, \lVert (Q - Q') \rVert_{\sigma} \lVert I \rVert_{\sigma} \} &  \text{\{Norm multiplicative with respect to tensor products\}} \\
+     = &\text{max}\{ \lVert (P - P') \rVert_{\sigma} \lVert  I \rVert_{\sigma}, \lVert (Q - Q') \rVert_{\sigma} \lVert I \rVert_{\sigma} \} & \hspace{60pt} \text{\{Norm multiplicative with}\\
+     && \text{respect to tensor products\}} \\
      = & \text{max}\{ \lVert (P - P') \rVert_{\sigma}, \lVert (Q - Q') \rVert_{\sigma}  \}  & \text{\{\autoref{lemid}\}}  \\
-  \end{split}
+    \end{split}
   \end{equation}
 
 Therefore, by \autoref{lem1}, it can be deduced that $\text{d} ([P,Q],[P',Q']) \leq \text{max} \{\text{d} (P,P'),\text{d} (Q,Q')\}$, which concludes the proof of theorem \autoref{theorem:1.1}.
@@ -534,6 +597,61 @@ Therefore, by \autoref{lem1}, it can be deduced that $\text{d} ([P,Q],[P',Q']) \
 
 
 %hefferon2006linear
+
+
+\subsection{Quantum Teleportation} \label{sec:teleport}
+
+ The circuit corresponding to the implementation of the quantum teleportation protocol is depicted in \autoref{fig:teleport} .
+\begin{figure} [H]
+    \centering
+    \begin{quantikz} [column sep=0.2cm, row sep=0.5cm] 
+        \lstick{$\ket{\psi}$} & \qw & \qw & \qw & \qw & \qw& \ctrl{1}& \gate{H}& \qw &  \meter{} &  \setwiretype{c} &  &  &  \ctrl[vertical
+wire=c]{2}  \\
+        \lstick{$\ket{0}$} & \qw &\gate{H} & \qw  & \ctrl{1}& \qw & \targ{} & \qw &  \qw & \meter{} & \setwiretype{c} & \ctrl[vertical
+wire=c]{1} \\
+        \lstick{$\ket{0}$} & \qw &  \qw & \qw &  \targ{} & \qw &\qw & \qw& \qw & \qw & \qw & \gate{X} & \qw & \gate{Z} 
+   \end{quantikz}
+    \caption{Quantum Teleportation Protocol}
+    \label{fig:teleport}
+\end{figure}
+
+%\begin{figure} [H]
+    %\centering
+    %\begin{quantikz} [column sep=0.2cm, row sep=0.5cm] 
+        %\lstick{$\ket{0}$} & \qw & \qw & \qw & \qw & \qw& \ctrl{1}& \gate{H}& \qw &  \meter{} & \qw & \qw & \qw & \ctrl{2} & \qw \\
+        %\lstick{$\ket{0}$} & \qw &\gate{H} & \qw  & \ctrl{1}& \qw & \targ{} & \qw &  \qw & \meter{} & \qw & \ctrl{1} & \qw & \qw & \qw \\
+        %\lstick{$\ket{0}$} & \qw &  \qw & \qw &  \targ{} & \qw &\qw & \qw& \qw & \qw & \qw & \gate{X} & \qw & \gate{Z} & \qw 
+   %\end{quantikz}
+    %\caption{Quantum Teleportation Protocol}
+    %\label{fig:teleport}
+%\end{figure}
+
+
+
+When formalizing the quantum teleportation protocol within the lambda calculus framework, each part of the protocol is instantiated as a distinct function. This entails the definition of three specific functions:
+\begin{align*}
+   \hspace{100pt} & \textbf{EPR}: \hspace{5pt} \mathbb{I} \multimap (\textit{qbit} \otimes \textit{qbit}) \\ 
+    &\textbf{BellMeasure}: \hspace{5pt} \textit{qbit} \otimes \textit{qbit}  \multimap \textit{bit} \otimes \textit{bit} \\
+    &\textbf{Correction}: \hspace{5pt} \textit{qbit} \otimes \textit{bit} \otimes \textit{bit}  \multimap \textit{qbit} \\
+\end{align*}
+
+Considering the unitary operations $H: \textit{qubit} \xrightarrow{}  \textit{qubit}$, $X: \textit{qubit} \xrightarrow{}  \textit{qubit}$, $Z: \textit{qubit} \xrightarrow{}  \textit{qubit}$, $I: \textit{qubit} \xrightarrow{}  \textit{qubit}$, and $\textit{CNOT}: \textit{qubit}, \textit{qubit} \xrightarrow{}  \textit{qubit} \otimes \textit{qubit}$ , these functions are defined as follows:
+
+\begin{align*}
+  \hspace{-28pt}
+      &\textbf{EPR} =  - \triangleright  \textit{CNOT} \hspace{2pt} (\textit{H}\hspace{2pt} (q  \hspace{2pt}    ( \textit{new}   \hspace{2pt}  0 \hspace{1pt}(*))),(q  \hspace{2pt}   ( \textit{new}   \hspace{2pt}  0 \hspace{1pt}(*))))  \\ 
+      \hspace{-28pt}
+      &\textbf{BellMeasure} =  q: \text{qubit}, q_{2}: \text{qubit}  \triangleright  (\text{pm}  \hspace{5pt} \textit{CNOT} (q_{1},q_{2})  \hspace{2pt}  \text{to} \hspace{2pt} x \otimes y.  \hspace{2pt}  \textit{meas} (\textit{H} (x)) \otimes \textit{meas} (y) ) \\
+      \hspace{-28pt}
+      &\textbf{Correction}= q: \text{qubit}, x: \text{bit},  y: \text{bit} \triangleright  \text{cond}\hspace{2pt} x  \hspace{2pt}  \{\text{inl} (x_{0}) \Rightarrow  (\text{cond}\hspace{2pt} y  \hspace{2pt}  \{\text{inl} (y_{0})  \Rightarrow  \textit{Z} (\textit{X}(q));  \\
+      \hspace{-28pt}
+      &\hspace{335pt} \text{inr} (y_{1}) \Rightarrow{} \textit{Z}(q))\}\\
+      \hspace{-28pt}
+      & \hspace{240pt}\text{inr} (x_{1})  \Rightarrow  (\text{cond}\hspace{2pt} y  \hspace{2pt}  \{\text{inl} (y_{0})  \Rightarrow  \hspace{2pt}   \textit{X} (q); \\
+      \hspace{-28pt}
+      & \hspace{335pt} \hspace{5pt} \text{inr} (y_{1}) \Rightarrow{}  \textit{I}(q)\})\}
+ \end{align*}
+
 
 
 \subsection{Ilustration: Noisy Quantum Teleportation}
