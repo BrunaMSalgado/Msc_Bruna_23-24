@@ -607,19 +607,32 @@ Next, one has to prove that for any super-operators $P$ and $Q$ and their respec
 
 \subsection{Quantum Teleportation} \label{sec:teleport}
 
- The circuit corresponding to the implementation of the quantum teleportation protocol is depicted in \autoref{fig:teleport} .
+
 \begin{figure} [H]
-    \centering
-    \begin{quantikz} [column sep=0.2cm, row sep=0.5cm] 
-        \lstick{$\ket{\psi}$} & \qw & \qw & \qw & \qw & \qw& \ctrl{1}& \gate{H}& \qw &  \meter{} &  \setwiretype{c} &  &  &  \ctrl[vertical
+  \centering
+  \begin{quantikz} [column sep=0.2cm, row sep=0.5cm] 
+      \lstick{$\ket{\psi}$}  & \qw &\qw & \qw & \qw & \qw& \ctrl{1}\gategroup[2,steps=4,style={dashed,rounded
+      corners,fill=blue!20, inner
+      xsep=2pt},background,label style={label
+      position=below,anchor=north,yshift=-0.2cm}]{{\sc
+      BellMeasure}} & \gate{H} & \qw & \meter{} & \setwiretype{c}  &  & \gategroup[3,steps=4,style={dashed,rounded
+      corners,fill=blue!20, inner
+      xsep=2pt},background,label style={label
+      position=below,anchor=north,yshift=-0.2cm}]{{\sc
+      Correction}}  &  & & \ctrl[vertical
 wire=c]{2}  \\
-        \lstick{$\ket{0}$} & \qw &\gate{H} & \qw  & \ctrl{1}& \qw & \targ{} & \qw &  \qw & \meter{} & \setwiretype{c} & \ctrl[vertical
+      \lstick {$\ket{0}$}  &\gate{H}\gategroup[2,steps=3,style={dashed,rounded
+      corners,fill=blue!20, inner
+      xsep=2pt},background,label style={label
+      position=below,anchor=north,yshift=-0.2cm}]{{\sc
+      EPR}} & \qw  & \ctrl{1}& \qw & \qw & \targ{} & \qw & \qw & \meter{} & \setwiretype{c} & & & \ctrl[vertical
 wire=c]{1} \\
-        \lstick{$\ket{0}$} & \qw &  \qw & \qw &  \targ{} & \qw &\qw & \qw& \qw & \qw & \qw & \gate{X} & \qw & \gate{Z} 
-   \end{quantikz}
-    \caption{Quantum Teleportation Protocol}
-    \label{fig:teleport}
+      \lstick{$\ket{0}$}  &  \qw & \qw &  \targ{} & \qw &\qw&\qw & \qw & \qw& \qw & \qw & \qw &  \qw & \gate{X} & \qw & \gate{Z} 
+ \end{quantikz}
+  \caption{Quantum Teleportation Protocol}
+  \label{fig:teleport}
 \end{figure}
+
 
 %\begin{figure} [H]
     %\centering
