@@ -248,7 +248,6 @@ Using these properties it is possible to prove the validity of the metric equati
 \begin{theorem} \label{theoremil}
   $d(\textsc{Il}(v),\textsc{Il} (w)) \leq q$
 \end{theorem}
-\vspace{10pt}
 \begin{theorem} \label{theoremir}
   $d(\textsc{Ir}(v),\textsc{Ir} (w)) \leq q$
 \end{theorem}
@@ -586,6 +585,13 @@ Moreover,
 
 Therefore, by \autoref{lem1}, it can be deduced that $\text{d} ([P,Q],[P',Q']) \leq \text{max} \{\text{d} (P,P'),\text{d} (Q,Q')\}$, which concludes the proof of theorem \autoref{theorem:1.1}.
 
+\vspace{10pt}
+
+Next, one has to prove that for any super-operators $P$ and $Q$ and their respective erroneous versions $P'$ and $Q'$, the following holds:
+\begin{lemma} \label {lemmasum}
+  $  \lVert P\cdot Q - P'\cdot Q'  \rVert_{\sigma} \leq  \lVert P - P'  \rVert_{\sigma} + \lVert Q - Q' \rVert_{\sigma}   $
+\end{lemma} 
+
 
 
   % The spectral norm is submultiplicative with respect to compositions and multiplicative with respect to tensor products,
@@ -658,4 +664,22 @@ Considering the unitary operations $H: \textit{qubit} \xrightarrow{}  \textit{qu
 
 \vspace{0pt}
 
-To study decoherence in a quantum channel within the presented metric deductive system, one can consider the application of a dephasing channel in the quantum teleportation protocol with a certain probability $p$. This is exemplified for probabilities $p=0.5$ and $p=0.25$. It is worth noting that similar exercises can be done for scenarios such as a malicious attack involving a bit flip during measurement or the presence of a noisy channel.
+%To study decoherence in a quantum channel within the presented metric deductive system, one can consider the application of a dephasing channel in the quantum teleportation protocol with a certain probability $p$. This is exemplified for probabilities $p=0.5$ and $p=0.25$. It is worth noting that similar exercises can be done for scenarios such as a malicious attack involving a bit flip during measurement or the presence of a noisy channel.
+
+
+
+\begin{figure} [H]
+  \centering
+  \begin{quantikz} [column sep=0.2cm, row sep=0.5cm] 
+      \lstick{$\ket{\psi}$} & \qw & \qw & \qw & \qw & \qw& \ctrl{1}& \gate{H}& \qw & \qw & \targ{} &\qw &\qw &\qw &\qw&   \meter{} &  \setwiretype{c} &  &  &  \ctrl[vertical
+wire=c]{2}  \\
+      \lstick{$\ket{0}$} & \qw &\gate{H} & \qw  & \ctrl{1}& \qw & \targ{} & \qw &  \qw & \qw & \qw & \qw &\targ{} &\qw &\qw  & \meter{} & \setwiretype{c} & \ctrl[vertical
+wire=c]{1} \\
+      \lstick{$\ket{0}$} & \qw &  \qw & \qw &  \targ{} & \qw &\qw & \qw & \qw & \qw& \qw & \qw & \qw & \qw &\qw &\qw &\qw & \gate{X} & \qw & \gate{Z} \\
+      \lstick{$\ket{0}$} & \qw &  \qw & \qw &  \qw & \qw &\qw & \qw & \qw & \qw& \qw & \gate{R_X(\frac{\pi}{2})} & \ctrl{-2} & \qw & \qw & \qw & \qw &\qw &\qw &\qw \\
+      \lstick{$\ket{0}$} & \qw &  \qw & \qw &  \qw & \qw &\qw & \qw & \qw & \gate{R_X(\frac{\pi}{2})} & \ctrl{-4}  & \qw & \qw & \qw & \qw & \qw & \qw &\qw &\qw &\qw   \\
+ \end{quantikz}
+  \caption{Quantum Teleportation Protocol with bit flip with a 50\% probability. }
+  \label{fig:dephasing}
+\end{figure}
+
