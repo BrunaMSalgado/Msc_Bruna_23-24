@@ -684,13 +684,13 @@ Considering the unitary operations $H: \textit{qubit} \xrightarrow{}  \textit{qu
 \begin{figure} [H]
   \centering
   \begin{quantikz} [column sep=0.2cm, row sep=0.5cm] 
-      \lstick{$\ket{\psi}$} & \qw & \qw & \qw & \qw & \qw& \ctrl{1}& \gate{H}& \qw & \qw & \targ{} &\qw &\qw &\qw &\qw&   \meter{} &  \setwiretype{c} &  &  &  \ctrl[vertical
+      \lstick{$\ket{\psi}$} & \qw & \qw & \qw & \qw & \qw& \ctrl{1}& \gate{H}& \qw & \qw & \targ{} &\qw &\qw &\qw &\qw& \qw&  \meter{} &  \setwiretype{c} &  &  &  \ctrl[vertical
 wire=c]{2}  \\
-      \lstick{$\ket{0}$} & \qw &\gate{H} & \qw  & \ctrl{1}& \qw & \targ{} & \qw &  \qw & \qw & \qw & \qw &\targ{} &\qw &\qw  & \meter{} & \setwiretype{c} & \ctrl[vertical
+      \lstick{$\ket{0}$} & \qw &\gate{H} & \qw  & \ctrl{1}& \qw & \qw & \targ{} & \qw &  \qw & \qw & \qw & \qw &\targ{} &\qw &\qw  & \meter{} & \setwiretype{c} & \ctrl[vertical
 wire=c]{1} \\
-      \lstick{$\ket{0}$} & \qw &  \qw & \qw &  \targ{} & \qw &\qw & \qw & \qw & \qw& \qw & \qw & \qw & \qw &\qw &\qw &\qw & \gate{X} & \qw & \gate{Z} \\
-      \lstick{$\ket{0}$} & \qw &  \qw & \qw &  \qw & \qw &\qw & \qw & \qw & \qw& \qw & \gate{R_X(\frac{\pi}{2})} & \ctrl{-2} & \qw & \qw & \qw & \qw &\qw &\qw &\qw \\
-      \lstick{$\ket{0}$} & \qw &  \qw & \qw &  \qw & \qw &\qw & \qw & \qw & \gate{R_X(\frac{\pi}{2})} & \ctrl{-4}  & \qw & \qw & \qw & \qw & \qw & \qw &\qw &\qw &\qw   \\
+      \lstick{$\ket{0}$} & \qw &  \qw & \qw &  \targ{} & \qw &\qw & \qw & \qw & \qw& \qw & \qw & \qw & \qw &\qw &\qw &\qw & \qw & \gate{X} & \qw & \gate{Z} \\
+      \lstick{$\ket{0}$} & \qw &  \qw & \qw &  \qw & \qw &\qw & \qw & \qw & \qw& \qw & \qw & \gate{R_X(\frac{\pi}{2})} & \ctrl{-2} & \gate{\text{Disc}} \\
+      \lstick{$\ket{0}$} & \qw &  \qw & \qw &  \qw & \qw &\qw & \qw & \qw & \gate{R_X(\frac{\pi}{2})} & \ctrl{-4}  & \gate{\text{Disc}}   \\
  \end{quantikz}
   \caption{Quantum Teleportation Protocol with bit flip with a 50\% probability. }
   \label{fig:dephasing}
