@@ -384,9 +384,35 @@ $
 \label{fig:denotational_sem}
 \end{figure}
 
+
 % Perguntar ao professor Renato: "Equations corresponding to the axiomatics of autonomous categories" e onde por o background de quantum computing. Also é para fazer glossário com simbolos matemáticos?
 
+Linear $\lambda$-calculus comes equipped with a class of equations, given in \autoref{fig:equations-linear-lambda}, specifically equations-in-context $\Gamma \triangleright v = w : \mathbb {A}$.
 
+\begin{figure}[H]
+  \centering
+  \begin{tabular}{ |c|c| }
+      \hline 
+      Monoidal structure & Higher-order structure \\
+      \hline
+      pm $v \otimes w$ to $x \otimes y.$ $u = u[v/x,w/y]$& \\
+      pm $v$ to $x \otimes y.$ $u[x \otimes y/z] = u[v/z]$ & $(\lambda x : A.$ $v) w = v[w/x]$\\
+      $* \text { to } *.$ $v = v$ & $\lambda x : A.(v x) = v$ \\
+      $v$ to $*$ . $w[* / z] = w[v / z]$ & \\
+      \hline
+      \multicolumn{2}{|c|}{Commuting conversions} \\
+      \hline
+      \multicolumn{2}{|c|}{$u[v \text{ to } \ast . w/z] = v \text{ to } \ast . u[w/z]$}  \\
+      \multicolumn{2}{|c|}{$u[$pm $v$ to $x \otimes y.$ $w/z] =$ pm $v$ to $x \otimes y.$ $u[w/z]$} \\
+      \hline
+      \multicolumn{2}{|c|}{Discard} \\
+      \hline
+      \multicolumn{2}{|c|}{$v = \text{dis}(x_1) \text{ to } \ast.$ $\ldots$ $\text{dis}(x_{n-1}) \text{ to } \ast \text{ dis}(x_{n})$} \\
+      \hline
+  \end{tabular}
+  \caption{Equations-in-context for linear lambda calculus}
+  \label{fig:equations-linear-lambda}
+\end{figure}
 \section{Quantum Computing Preliminaries} \label{sec:Quantum Computing Preliminaries}
 This section presents background on quantum information and quantum computation [\cite{nielsen2010quantum}].
 

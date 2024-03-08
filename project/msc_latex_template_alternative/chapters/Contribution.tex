@@ -6,11 +6,20 @@ Main result(s) and their scientific evidence
 
 \section{Summary}
 
-%ToDo: Extending the quantum model with conditionals -> Talk about the model (operadores como morfismos, a nossa estrutura algebrica é o espaços vetorias); CPTP model; measurents and the diamond norm é menor ou igual a um; examples (qualtum walk)
+%ToDo: Extending the quantum model with measurements -> Talk about the model (operadores como morfismos, a nossa estrutura algebrica é o espaços vetorias); CPTP model; measurents and the diamond norm é menor ou igual a um; examples (qualtum walk)
 %\todo[inline]{The original todo note withouth changed colours.\newline Here's another line.}
-%ToDo: Discard operations -> The operator should de unique (but there is for instance trace and the null operator_maps everything to zero) and is unique bacausce only trace is trace preserving; example: mallicious attack discard a qubit ou outside of quantum teleportation : setting a qubit do 0, by discarding it and initiating a new one
 
-\section{Integration of conditionals}
+
+\section{Measurements}
+
+In order to established that the theory introduced is valid in quantum programming, it is necessary to build a model. The model can be seen as a category where the morphisms are the CPTP super-operators (quantum channels). The algebric structure of this model is given by the vector spaces. .
+Any completely-positive and trace-preserving map has a diamond norm equal to one [\cite{watrous2018theory}]. Since the measurement operation is completely positive and trace-preserving, its  diamond norm is equal to one. This is a desirable property, as it ensures that the measurement operation does not increase the distance between states, and as a consequence, composition of programs remains valid.
+
+ %Note also the existence of a operator $ \text{r} : \text{Iso} \xrightarrow[]{} \text{CPTP}$ that sends an operator $T$ to the mapping $A \mapsto TAT^{\dag}$
+
+\subsection{Example: Deutsch-Jozsa Algorithm}
+
+\section{Conditionals}
 
 The notion of approximate equivalence for quantum programming explored in [\cite{dahlqvist2022syntactic}] does not encompass classical control flow. As a result, preliminary work based on [\cite{crole1993categories,selinger2013lecture}]   has been undertaken to address the integration of conditionals. 
 
@@ -220,7 +229,12 @@ Thereafter, it is imperative to show that the injection operators $\textsc{Il}$ 
   $ \lVert \textsc{Ir} \rVert_{\sigma} = 1   $
 \end{lemma} 
 
-\textit{Proof.} \quad Employing the definition of operator norm as defined in \autoref{eq:op_norm}, it ensues that:
+\textit{Proof.} \quad The norm of a tuple is defined as the sum of the norms of its components, \textit{i.e.}, for any vectors $v$ and $w$:
+\begin{equation} \label{eq:norm_tuple}
+  \lVert (v,w) \rVert = \lVert v \rVert + \lVert w \rVert
+\end{equation}
+
+Employing the definition of operator norm as defined in \autoref{eq:op_norm}, it ensues that:
 \begin{equation} 
 \begin{split}
   \lVert \textsc{Il} \rVert_{\sigma} &= \text{sup} \{\lVert \textsc{Il} (v) \rVert \hspace{2pt} \vert \hspace{2pt}  \lVert v\rVert =1 \} = \text{sup} \{\lVert (v,0) \rVert \hspace{2pt} \vert \hspace{2pt}  \lVert v\rVert =1 \} = \text{sup} \{\lVert v \rVert + \lVert 0 \rVert  \hspace{2pt} \vert \hspace{2pt}  \lVert v\rVert =1 \} \\
@@ -456,49 +470,27 @@ With \autoref{lem2} and \autoref{lemi-1}, it has been proved that the diagram be
 Now, it is possivel to prove that $i$ has a norm equal to 1.
 
 \begin{lemma} \label{lem3}
-  $  \lVert i\rVert_{\sigma} = 1 $
+  $  \lVert i\rVert_{\sigma} \geq 1 $
 \end{lemma}
 
 \vspace{10pt}
 
-\textit{Proof.} \quad Employing the definition of the operator norm as defined in \autoref{eq:op_norm}, it follows that:
+\textit{Proof.} \quad Considering the vector $(v \otimes u, 0)$ with $\lVert(v \otimes u, 0)\rVert = 1$, and  attending the multiplicative property of the operator norm with respect to tensor products, along with the definition of the norm of a tuple as in \autoref{eq:norm_tuple}, it follows that $\lVert v \rVert = 1$ and $\lVert u \rVert =1.$. Therefore, using this same property and definition, it is possible to demonstrate that the following holds:
+  \begin{equation}
+    \begin{split}
+      \lVert [\textsc{Il} \otimes I, \textsc{Ir} \otimes I ] (v \otimes u, 0) \rVert = (v, 0)\otimes u = (\lVert v \rVert + \lVert 0 \rVert ) \lVert u \rVert = \lVert v \rVert \lVert u \rVert =1
+    \end{split}
+  \end{equation}
+ 
+Given the definition of the operator norm as presented in \autoref{eq:op_norm}, it follows that:
 \begin{equation}
   \begin{split}
-      & \hspace{3pt} \lVert [\textsc{Il} \otimes I, \textsc{Ir} \otimes I ]  \rVert_{}  \\
-      &= \text{max} \{ \lVert [\textsc{Il} \otimes I, \textsc{Ir} \otimes I ] (A) \rVert \hspace{2pt} \vert \hspace{2pt}  \lVert A\rVert =1   \} \\
-      &= \text{max} \left\{ \left\lVert [\textsc{Il} \otimes I, \textsc{Ir} \otimes I ] \left(\sum_{i} v_i \otimes u_i,\sum_{i} w_i \otimes u_i  \right) \right\rVert \hspace{2pt} \Bigg\vert \hspace{2pt}  \left\lVert \left(\sum_{i} v_i \otimes u_i,\sum_{i} w_i \otimes u_i  \right) \right\rVert =1    \right\} \\
-      & =\text{max} \left\{ \left\lVert \textsc{Il} \otimes I \left(\sum_{i} v_i \otimes u_i  \right)  +  \textsc{Ir} \otimes I \left(\sum_{i} w_i \otimes u_i  \right) \right\rVert \hspace{2pt} \Bigg\vert \hspace{2pt}  \left\lVert \left(\sum_{i} v_i \otimes u_i,\sum_{i} w_i \otimes u_i  \right) \right\rVert =1    \right\} \\
-      & = \text{max} \Bigg\{ \left\lVert \textsc{Il} \left(\sum_{i} v_i  \right) \otimes I \left(\sum_{i} u_i  \right) + \textsc{Ir} \left(\sum_{i} w_i \right)\otimes I \left(\sum_{i} u_i  \right) \right\rVert \hspace{2pt} \\
-      & \hspace{50pt}\Bigg\vert \hspace{2pt}  \left\lVert \left(\sum_{i} v_i \otimes u_i,\sum_{i} w_i \otimes u_i  \right) \right\rVert =1    \Bigg\} \\
-      &= \text{max} \Bigg\{ \left\lVert \left(\sum_{i} v_i,0  \right) \otimes \sum_{i} u_i +  \left(0,\sum_{i} w_i \right) \otimes \sum_{i} u_i   \right\rVert  \hspace{2pt} \Bigg\vert \hspace{2pt}  \left\lVert \left(\sum_{i} v_i \otimes u_i,\sum_{i} w_i \otimes u_i  \right) \right\rVert =1    \Bigg\} \\
-      &= \text{max} \Bigg\{ \left\lVert \left(\sum_{i} v_i \otimes  u_i ,0  \right) + \left(0,\sum_{i} w_i \otimes u_i  \right)   \right\rVert  \hspace{2pt} \Bigg\vert \hspace{2pt}  \left\lVert \left(\sum_{i} v_i \otimes u_i,\sum_{i} w_i \otimes u_i  \right) \right\rVert =1    \Bigg\} \\
-      &= \text{max} \Bigg\{ \left\lVert \left(\sum_{i} v_i \otimes  u_i ,\sum_{i} w_i \otimes u_i   \right)    \right\rVert  \hspace{2pt} \Bigg\vert \hspace{2pt}  \left\lVert \left(\sum_{i} v_i \otimes u_i,\sum_{i} w_i \otimes u_i  \right) \right\rVert =1    \Bigg\} \\
-      &=1
+      & \hspace{3pt} \lVert [\textsc{Il} \otimes I, \textsc{Ir} \otimes I ]  \rVert_{\sigma}  = \text{sup} \{ \lVert [\textsc{Il} \otimes I , \textsc{Ir} \otimes I ] (a) \rVert \hspace{2pt} | \hspace{2pt} \lVert a \rVert = 1 \} \\
   \end{split}
   \end{equation}
+  From this, it can be deduced that $\lVert i \rVert_{\sigma} \geq 1$.
 
-%Hence, by \autoref{lem1}, it follows that:
-%\begin{equation} 
-  %\begin{split}
-    %\lVert [\textsc{Il} \otimes I, \textsc{Ir} \otimes I]  \rVert_{\sigma} &\leq \text{max} \{ \lVert\textsc{Il} \otimes I \rVert_{\sigma}, \lVert\textsc{Ir} \otimes I \rVert_{\sigma} \} \\
-   %& \leq \text{max} \{ 1, 1 \}\\
-   %& \leq 1
-  %\end{split}   
-  %\end{equation}
-
-%On the other hand, employing the definition of the operator norm as defined in \autoref{eq:op_norm}, it follows that:
-%\begin{equation} 
-  %\begin{split}
-    %\lVert i  \rVert_{\sigma}&=\lVert [\textsc{Il} \otimes I, \textsc{Ir} \otimes I]  \rVert_{\sigma}  \\
-    %& = \text{sup} \{ \lVert [\textsc{Il} \otimes I , \textsc{Ir} \otimes I ] (v) \rVert \hspace{2pt} | \hspace{2pt} \lVert v \rVert = 1 \} \\
-    %&= \text{sup} \{ \lVert [\textsc{Il} \otimes I , \textsc{Ir} \otimes I ] (u+w) \rVert \hspace{2pt} | \hspace{2pt} \lVert w+u \rVert = 1 \}\\
-    %&= \text{sup} \{ \lVert \textsc{Il} \otimes I  (w) + \textsc{Ir} \otimes I  (u) \rVert \hspace{2pt} | \hspace{2pt} \lVert w+u \rVert = 1 \} \\
-    %&=
-  %\end{split}   
-  %\end{equation}
-
-  
-Subsequently, it is possible to demontrate that $i^{-1}$ has a norm less or equal to 1
+Subsequently, it is possible to demontrate that $i^{-1}$ has a norm greater than or equal to 1,
 
 \begin{lemma} \label{lem4}
   $  \lVert i^{-1}  \rVert_{\sigma} \leq 1 $
@@ -509,7 +501,7 @@ Subsequently, it is possible to demontrate that $i^{-1}$ has a norm less or equa
   \begin{split}
     &\lVert i \cdot i^{-1}  \rVert_{\sigma} = 1  \\
     \leq \hspace{2pt}& \lVert i  \rVert_{\sigma} \cdot \lVert i^{-1}  \rVert_{\sigma} = 1 \hspace{50pt} & \text{\{Norm submultiplicative with respect to compositions\}} \\
-    \Leftrightarrow & 1 \cdot \lVert i^{-1}  \rVert_{\sigma} = 1 & \text{\{\autoref{lem4}\}}  \\
+    \leq & 1 \cdot \lVert i^{-1}  \rVert_{\sigma} = 1 & \text{\{\autoref{lem4}\}}  \\
     \Leftrightarrow &  \lVert i^{-1}  \rVert_{\sigma} = 1  \\
   \end{split}   
   \end{equation}
@@ -708,29 +700,51 @@ Considering the unitary operations $H: \textit{qubit} \xrightarrow{}  \textit{qu
       & \hspace{335pt} \hspace{5pt} \text{inr} (y_{1}) \Rightarrow{}  \textit{I}(q)\})\}
  \end{align*}
 
+Regarding the interpretation of the quantum teleportation protocol, the state of the qubit to be teleported before measurement is calculated as follows,
+\begin{equation}
+  \begin{split}
+&  |\psi\rangle \otimes |0\rangle \otimes |0\rangle = ( \alpha|0\rangle + \beta|1\rangle) \otimes |0\rangle \otimes |0\rangle  \\
+\xmapsto{I\otimes H \otimes I} \quad &  ( \alpha|0\rangle + \beta|1\rangle) \otimes \frac{1}{\sqrt{2}} (|00\rangle + |10\rangle )  \\
+\xmapsto{I \hspace{1pt} \otimes \hspace{1pt} CNOT} \quad & ( \alpha|0\rangle + \beta|1\rangle) \otimes \frac{1}{\sqrt{2}} (|00\rangle + |11\rangle ) = \frac{1}{\sqrt{2}} (\alpha|000\rangle + \alpha|011\rangle + \beta|110\rangle + \beta|101\rangle)\\
+ \xmapsto[]{H \otimes I \otimes I} \quad & \frac{1}{\sqrt{2}} (\alpha |000\rangle +\alpha |001\rangle +  \alpha|011\rangle + \alpha|111\rangle + \beta )  \\
+  \end{split}
+\end{equation}
 
 
 \subsection{Ilustration: Noisy Quantum Teleportation}
 
-\vspace{0pt}
-
 %To study decoherence in a quantum channel within the presented metric deductive system, one can consider the application of a dephasing channel in the quantum teleportation protocol with a certain probability $p$. This is exemplified for probabilities $p=0.5$ and $p=0.25$. It is worth noting that similar exercises can be done for scenarios such as a malicious attack involving a bit flip during measurement or the presence of a noisy channel.
 
-
-
 \begin{figure} [H]
   \centering
-  \begin{quantikz} [column sep=0.2cm, row sep=0.5cm] 
-      \lstick{$\ket{\psi}$} & \qw & \qw & \qw & \qw & \qw &\qw& \ctrl{1}& \gate{H}& \qw  & \targ{} &\qw &\qw &\qw &\qw& \qw&  \meter{} &  \setwiretype{c} &  &  &  \ctrl[vertical
+  \begin{quantikz} [column sep=0.2cm, row sep=0.5cm,wire
+    types={n,n,n,n,n}]%
+      \lstick{$\ket{\psi}$}  & \qw &\qw & \qw & \qw & \qw &  \ctrl{1} \qw \gategroup[2,steps=2,style={dashed,rounded
+      corners,fill=blue!20, inner
+      xsep=2pt},background,label style={label
+      position=below,anchor=north,yshift=-0.2cm}]{{\sc
+      B}} & \gate{H} \qw & \qw & \qw &\qw \gategroup[5,steps=9,style={dashed,rounded
+      corners,fill=blue!20, inner
+      xsep=2pt},background,label style={label
+      position=below,anchor=north,yshift=-0.2cm}]{{\sc
+      C}}  & \qw & \qw & \qw & \targ{} \qw  & \qw & \qw & \qw & \qw & \qw & \qw & \meter{} \qw \gategroup[3,steps=6,style={dashed,rounded
+      corners,fill=blue!20, inner
+      xsep=2pt},background,label style={label
+      position=below,anchor=north,yshift=-0.2cm}]{{\sc
+      D}}     & \setwiretype{c}  &  &  & & \ctrl[vertical
 wire=c]{2}  \\
-      \lstick{$\ket{0}$} & \qw &\gate{H} & \qw  & \ctrl{1}& \qw & \qw & \targ{} & \qw &  \qw & \qw & \qw & \qw &\targ{} &\qw &\qw  & \meter{} & \setwiretype{c} & \ctrl[vertical
+      \lstick {$\ket{0}$}  &\gate{H}\gategroup[2,steps=3,style={dashed,rounded
+      corners,fill=blue!20, inner
+      xsep=2pt},background,label style={label
+      position=below,anchor=north,yshift=-0.2cm}]{{\sc
+      A}} & \qw  & \ctrl{1} \qw& \qw & \qw  & \targ{} \qw & \qw & \qw & \qw & \qw& \qw & \qw & \qw & \qw &  \qw & \qw &  \targ{} \qw & \qw & \qw & \qw & \meter{} \qw & \setwiretype{c}  & & \ctrl[vertical
 wire=c]{1} \\
-      \lstick{$\ket{0}$} & \qw &  \qw & \qw &  \targ{} & \qw &\qw & \qw & \qw & \qw& \qw & \qw & \qw & \qw &\qw &\qw &\qw & \qw & \gate{X} & \qw & \gate{Z} \\
-      \lstick{$\ket{0}$} & \qw &  \qw & \qw &  \qw & \qw &\qw & \qw & \qw & \qw& \qw & \qw & \gate{R_X(\frac{\pi}{2})} & \ctrl{-2} & \gate{\text{Disc}} \\
-      \lstick{$\ket{0}$} & \qw &  \qw & \qw &  \qw & \qw &\qw & \qw & \qw & \gate{R_X(\frac{\pi}{2})} & \ctrl{-4}  & \gate{\text{Disc}}   \\
- \end{quantikz}
-  \caption{Quantum Teleportation Protocol with bit flip with a 50\% probability. }
-  \label{fig:dephasing}
+      \lstick{$\ket{0}$}  &  \qw & \qw &  \targ{} \qw \qw & \qw &\qw&\qw & \qw & \qw& \qw & \qw & \qw & \qw& \qw & \qw & \qw & \qw &  \qw & \qw & \qw & \qw & \qw & \qw & \qw &  \gate{X} \qw & \qw & \gate{Z} \qw\\
+       &   & &  &  & & &  &  & & & & \lstick{$\ket{0}$}  & \qw & \qw & \qw  & \gate{R_X(\frac{\pi}{2})} \qw& \ctrl{-2} \qw & \gate{\text{Disc}} \qw  \\
+      &   &  & & & & &  &  & & & & \lstick{$\ket{0}$}   &\gate{R_X(\frac{\pi}{2})} \qw  & \ctrl{-4} \qw & \gate{\text{Disc}} \qw & &  &  &  &  &   & &  &  &  &  &  
+    \end{quantikz}
+  \caption{Quantum Teleportation Protocol: Bit flip with a 50\% probability before measurement.}
+  \label{fig:teleport_bit_flip}
 \end{figure}
 
 
@@ -738,32 +752,39 @@ wire=c]{1} \\
 \begin{figure} [H]
   \centering
   \begin{quantikz} [column sep=0.2cm, row sep=0.5cm] 
-      \lstick{$\ket{\psi}$} & \qw & \qw & \qw & \qw & \qw &\qw& \ctrl{1}& \gate{H}& \qw  & \targ{} &\qw &\qw &\qw &\qw& \qw&  \meter{} &  \setwiretype{c} &  &  &  \ctrl[vertical
+      \lstick{$\ket{\psi}$}  & \qw &\qw & \qw & \qw & \qw& \qw & \qw &\qw  & \ctrl{1}\gategroup[2,steps=4,style={dashed,rounded
+      corners,fill=blue!20, inner
+      xsep=2pt},background,label style={label
+      position=below,anchor=north,yshift=-0.2cm}]{{\sc
+      BellMeasure}} & \gate{H} & \qw & \meter{} & \setwiretype{c}  &  & \gategroup[3,steps=4,style={dashed,rounded
+      corners,fill=blue!20, inner
+      xsep=2pt},background,label style={label
+      position=below,anchor=north,yshift=-0.2cm}]{{\sc
+      Correction}}  &  & & \ctrl[vertical
 wire=c]{2}  \\
-      \lstick{$\ket{0}$} & \qw &\gate{H} & \qw  & \ctrl{1}& \qw & \qw & \targ{} & \qw &  \qw & \qw & \qw & \qw &\targ{} &\qw &\qw  & \meter{} & \setwiretype{c} & \ctrl[vertical
+      \lstick {$\ket{0}$}  &\gate{H}\gategroup[2,steps=3,style={dashed,rounded
+      corners,fill=blue!20, inner
+      xsep=2pt},background,label style={label
+      position=below,anchor=north,yshift=-0.2cm}]{{\sc
+      EPR}}  & \qw  & \ctrl{1}& \qw &    & \gate{D(p)}\gategroup[1,steps=1,style={dashed,rounded
+      corners,fill=blue!20, inner
+      xsep=2pt},background,label style={label
+      position=below,anchor=north,yshift=-0.2cm}]{{\sc
+      Dephasing}}  & \qw & \qw & \targ{} & \qw & \qw & \meter{} & \setwiretype{c} & & & \ctrl[vertical
 wire=c]{1} \\
-      \lstick{$\ket{0}$} & \qw &  \qw & \qw &  \targ{} & \qw &\qw & \qw & \qw & \qw& \qw & \qw & \qw & \qw &\qw &\qw &\qw & \qw & \gate{X} & \qw & \gate{Z} \\
-      \lstick{$\ket{0}$} & \qw &  \qw & \qw &  \qw & \qw &\qw & \qw & \qw & \qw& \qw & \qw & \gate{R_X(\frac{\pi}{2})} & \ctrl{-2} & \gate{\text{Disc}} \\
-      \lstick{$\ket{0}$} & \qw &  \qw & \qw &  \qw & \qw &\qw & \qw & \qw & \gate{R_X(\frac{\pi}{2})} & \ctrl{-4}  & \gate{\text{Disc}}   \\
+      \lstick{$\ket{0}$}  &  \qw & \qw &  \targ{} & \qw \qw & & \qw & \qw &\qw&\qw & \qw & \qw& \qw & \qw & \qw &  \qw & \gate{X} & \qw & \gate{Z} 
  \end{quantikz}
-  \caption{Quantum Teleportation Protocol with bit flip with a 50\% probability. }
-  \label{fig:dephasing}
+  \caption{Quantum Teleportation Protocol: Dephasing with probability $p$ after EPR pair creation.}
+  \label{fig:teleport_dephasing}
 \end{figure}
 
+\section{Discard Operation} \label{sec:discarding}
+
+The discard operation was defined as the trace, and therefore is also completely positive and trace-preserving.
+
+%One might question why the interpretation of the discard operation was defined as the trace, considering that alternatives like the null operator, which maps everything to zero, seem plausible. However, the trace is the only operator that is completely positive and trace-preserving, which, as previously established, is a requirement for quantum operations. In contrast, the null operator fails to preserve the trace, rendering it unsuitable for this purpose.
+%fig:equations-linear-lambda
 
 
 
-
-%\begin{figure} [H]
-  %\centering
-  %\begin{quantikz} [column sep=0.2cm, row sep=0.5cm] 
-      %\lstick{$\ket{\psi}$} & \qw & \qw & \qw & \ctrl{1}& \gate{H}& \qw  & \targ{} &\qw& \qw& \qw & \qw &\qw & \qw& \meter{} &  \setwiretype{c} &  &  &  \ctrl[vertical
-%wire=c]{2}  \\
-      %\lstick{$\ket{0}$} & \qw &\gate{H} & \ctrl{1}& \qw & \targ{} & \qw & \qw & \qw & \qw & \qw & \qw & \qw &\targ{} &\qw &\qw  & \meter{} & \setwiretype{c} & \ctrl[vertical
-%wire=c]{1} \\
-      %\lstick{$\ket{0}$} & \qw &  \qw &  \targ{} & \qw & \qw & \qw& \qw & \qw & \qw & \qw & \qw & \qw &\qw &\qw &\qw &\qw & \qw & \gate{X} & \qw & \gate{Z} \\
-      %\hspace{100 pt } & \hspace{-50pt} \lstick{$\ket{0}$} 
- %\end{quantikz}
-  %\caption{Quantum Teleportation Protocol with bit flip with a 50\% probability. }
-  %\label{fig:dephasing}
-%\end{figure}
+%ToDo: Discard operations -> The operator should de unique (but there is for instance trace and the null operator_maps everything to zero) and is unique bacausce only trace is trace preserving; example: mallicious attack discard a qubit ou outside of quantum teleportation : setting a qubit do 0, by discarding it and initiating a new one

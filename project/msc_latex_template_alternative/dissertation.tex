@@ -164,3 +164,18 @@ Prove that the norm of the commutator of two operators is less than or equal to 
         &=1
     \end{split}
     \end{equation}
+
+    \begin{equation}
+        \begin{split}
+            & \hspace{3pt} \lVert [\textsc{Il} \otimes I, \textsc{Ir} \otimes I ]  \rVert_{}  \\
+            &= \text{max} \{ \lVert [\textsc{Il} \otimes I, \textsc{Ir} \otimes I ] (A) \rVert \hspace{2pt} \vert \hspace{2pt}  \lVert A\rVert =1   \} \\
+            &= \text{max} \left\{ \left\lVert [\textsc{Il} \otimes I, \textsc{Ir} \otimes I ] \left(\sum_{i} v_i \otimes u_i,\sum_{i} w_i \otimes u_i  \right) \right\rVert \hspace{2pt} \Bigg\vert \hspace{2pt}  \left\lVert \left(\sum_{i} v_i \otimes u_i,\sum_{i} w_i \otimes u_i  \right) \right\rVert =1    \right\} \\
+            & =\text{max} \left\{ \left\lVert \textsc{Il} \otimes I \left(\sum_{i} v_i \otimes u_i  \right)  +  \textsc{Ir} \otimes I \left(\sum_{i} w_i \otimes u_i  \right) \right\rVert \hspace{2pt} \Bigg\vert \hspace{2pt}  \left\lVert \left(\sum_{i} v_i \otimes u_i,\sum_{i} w_i \otimes u_i  \right) \right\rVert =1    \right\} \\
+            & = \text{max} \Bigg\{ \left\lVert \textsc{Il} \left(\sum_{i} v_i  \right) \otimes I \left(\sum_{i} u_i  \right) + \textsc{Ir} \left(\sum_{i} w_i \right)\otimes I \left(\sum_{i} u_i  \right) \right\rVert \hspace{2pt} \\
+            & \hspace{50pt}\Bigg\vert \hspace{2pt}  \left\lVert \left(\sum_{i} v_i \otimes u_i,\sum_{i} w_i \otimes u_i  \right) \right\rVert =1    \Bigg\} \\
+            &= \text{max} \Bigg\{ \left\lVert \left(\sum_{i} v_i,0  \right) \otimes \sum_{i} u_i +  \left(0,\sum_{i} w_i \right) \otimes \sum_{i} u_i   \right\rVert  \hspace{2pt} \Bigg\vert \hspace{2pt}  \left\lVert \left(\sum_{i} v_i \otimes u_i,\sum_{i} w_i \otimes u_i  \right) \right\rVert =1    \Bigg\} \\
+            &= \text{max} \Bigg\{ \left\lVert \left(\sum_{i} v_i \otimes  u_i ,0  \right) + \left(0,\sum_{i} w_i \otimes u_i  \right)   \right\rVert  \hspace{2pt} \Bigg\vert \hspace{2pt}  \left\lVert \left(\sum_{i} v_i \otimes u_i,\sum_{i} w_i \otimes u_i  \right) \right\rVert =1    \Bigg\} \\
+            &= \text{max} \Bigg\{ \left\lVert \left(\sum_{i} v_i \otimes  u_i ,\sum_{i} w_i \otimes u_i   \right)    \right\rVert  \hspace{2pt} \Bigg\vert \hspace{2pt}  \left\lVert \left(\sum_{i} v_i \otimes u_i,\sum_{i} w_i \otimes u_i  \right) \right\rVert =1    \Bigg\} \\
+            &=1
+        \end{split}
+        \end{equation}
