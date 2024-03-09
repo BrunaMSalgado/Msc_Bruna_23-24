@@ -686,34 +686,158 @@ When formalizing the quantum teleportation protocol within the lambda calculus f
 Considering the unitary operations $H: \textit{qubit} \xrightarrow{}  \textit{qubit}$, $X: \textit{qubit} \xrightarrow{}  \textit{qubit}$, $Z: \textit{qubit} \xrightarrow{}  \textit{qubit}$, $I: \textit{qubit} \xrightarrow{}  \textit{qubit}$, and $\textit{CNOT}: \textit{qubit}, \textit{qubit} \xrightarrow{}  \textit{qubit} \otimes \textit{qubit}$ , these functions are defined as follows:
 
 \begin{align*}
-  \hspace{-28pt}
-      &\textbf{EPR} =  - \triangleright  \textit{CNOT} \hspace{2pt} (\textit{H}\hspace{2pt} (q  \hspace{2pt}    ( \textit{new}   \hspace{2pt}  0 \hspace{1pt}(*))),(q  \hspace{2pt}   ( \textit{new}   \hspace{2pt}  0 \hspace{1pt}(*))))  \\ 
+  \hspace{-28pt} &\textbf{EPR} =  - \triangleright  \textit{CNOT} \hspace{2pt} (\textit{H}\hspace{2pt} (q  \hspace{2pt}    ( \textit{new}   \hspace{2pt}  0 \hspace{1pt}(*))),(q  \hspace{2pt}   ( \textit{new}   \hspace{2pt}  0 \hspace{1pt}(*))))  \\ 
       \hspace{-28pt}
       &\textbf{BellMeasure} =  q: \text{qubit}, q_{2}: \text{qubit}  \triangleright  (\text{pm}  \hspace{5pt} \textit{CNOT} (q_{1},q_{2})  \hspace{2pt}  \text{to} \hspace{2pt} x \otimes y.  \hspace{2pt}  \textit{meas} (\textit{H} (x)) \otimes \textit{meas} (y) ) \\
       \hspace{-28pt}
-      &\textbf{Correction}= q: \text{qubit}, x: \text{bit},  y: \text{bit} \triangleright  \text{cond}\hspace{2pt} x  \hspace{2pt}  \{\text{inl} (x_{0}) \Rightarrow  (\text{cond}\hspace{2pt} y  \hspace{2pt}  \{\text{inl} (y_{0})  \Rightarrow  \textit{Z} (\textit{X}(q));  \\
+      &\textbf{Correction}= q: \text{qubit}, x: \text{bit},  y: \text{bit} \triangleright  \text{cond}\hspace{2pt} x  \hspace{2pt}  \{\text{inl} (x_{0}) \Rightarrow  (\text{cond}\hspace{2pt} y  \hspace{2pt}  \{\text{inl} (y_{0})  \Rightarrow{}  \textit{I}(q)\} ; \\
       \hspace{-28pt}
-      &\hspace{335pt} \text{inr} (y_{1}) \Rightarrow{} \textit{Z}(q))\}\\
+      & \hspace{335pt} \hspace{5pt} \text{inr} (y_{1}) \Rightarrow  \hspace{2pt}   \textit{X} (q)); \\
+      & \hspace{240pt}\text{inr} (x_{1})  \Rightarrow  (\text{cond}\hspace{2pt} y  \hspace{2pt}  \{\text{inl} (y_{0})  \Rightarrow   \textit{Z}(q);  \\
       \hspace{-28pt}
-      & \hspace{240pt}\text{inr} (x_{1})  \Rightarrow  (\text{cond}\hspace{2pt} y  \hspace{2pt}  \{\text{inl} (y_{0})  \Rightarrow  \hspace{2pt}   \textit{X} (q); \\
-      \hspace{-28pt}
-      & \hspace{335pt} \hspace{5pt} \text{inr} (y_{1}) \Rightarrow{}  \textit{I}(q)\})\}
+      &\hspace{335pt} \text{inr} (y_{1}) \Rightarrow{} \textit{Z} (\textit{X}(q)) \})\}
  \end{align*}
 
-Regarding the interpretation of the quantum teleportation protocol, the state of the qubit to be teleported before measurement is calculated as follows,
+
+
+
+Regarding the interpretation of the quantum teleportation protocol, considering $\rho = |\phi\rangle \langle \phi|$ as the state of the system before measurement, $|\phi\rangle$  is calculated as follows, where $|\psi\rangle$ is the state of the qubit to be teleported:
 \begin{equation}
   \begin{split}
 &  |\psi\rangle \otimes |0\rangle \otimes |0\rangle = ( \alpha|0\rangle + \beta|1\rangle) \otimes |0\rangle \otimes |0\rangle  \\
 \xmapsto{I\otimes H \otimes I} \quad &  ( \alpha|0\rangle + \beta|1\rangle) \otimes \frac{1}{\sqrt{2}} (|00\rangle + |10\rangle )  \\
 \xmapsto{I \hspace{1pt} \otimes \hspace{1pt} CNOT} \quad & ( \alpha|0\rangle + \beta|1\rangle) \otimes \frac{1}{\sqrt{2}} (|00\rangle + |11\rangle ) = \frac{1}{\sqrt{2}} (\alpha|000\rangle + \alpha|011\rangle + \beta|110\rangle + \beta|101\rangle)\\
- \xmapsto[]{H \otimes I \otimes I} \quad & \frac{1}{\sqrt{2}} (\alpha |000\rangle +\alpha |001\rangle +  \alpha|011\rangle + \alpha|111\rangle + \beta )  \\
+ \xmapsto[]{H \otimes I \otimes I} \quad & \frac{1}{2} (\alpha |000\rangle +\alpha |001\rangle +  \alpha|011\rangle + \alpha|111\rangle + \beta|010\rangle - \beta|110\rangle + \beta|101\rangle - \beta|001\rangle )  \\
+ = \quad & \frac{1}{2} (|00\rangle \otimes (\alpha |0\rangle + \beta|1\rangle ) + |01\rangle \otimes (\alpha |1\rangle + \beta|0\rangle) + |10\rangle \otimes (\alpha |0\rangle - \beta|1\rangle )   \\
+  & + |11\rangle \otimes (\alpha |1\rangle - \beta|0\rangle)) \\
+ = \quad & |00\rangle \otimes |\psi\rangle  + |01\rangle \otimes X|\psi\rangle + |10\rangle \otimes Z |\psi\rangle + |11\rangle \otimes XZ|\psi\rangle = |\phi\rangle  \\
   \end{split}
 \end{equation}
+
+Regarding the remaining steps of the protocol, 
+\begin{equation}
+  \begin{split}
+    |\phi\rangle \langle \phi| = \quad & \frac{1}{4} (|00\rangle \langle 00| \otimes |\psi\rangle \langle \psi| + |00\rangle  \langle 01| \otimes |\psi\rangle \langle \psi| X + |00\rangle  \langle 10| \otimes |\psi\rangle \langle \psi| Z     \\ 
+    & + |00\rangle  \langle 11| \otimes |\psi\rangle \langle \psi| ZX + X|01 \rangle \langle 00| \otimes |\psi\rangle \langle \psi| + |01 \rangle \langle 01| \otimes X|\psi\rangle \langle \psi|X    \\
+    & + |01 \rangle \langle 10| \otimes X|\psi\rangle \langle \psi|Z + |01 \rangle \langle 11| \otimes X|\psi\rangle \langle \psi|ZX  + |10 \rangle \langle 00| \otimes Z|\psi\rangle \langle \psi|   \\
+    & + |10 \rangle \langle 01| \otimes Z|\psi\rangle \langle \psi| X + |10 \rangle \langle 10| \otimes Z|\psi\rangle \langle \psi| Z + |10 \rangle \langle 11| \otimes Z|\psi\rangle \langle \psi| ZX \\
+    & + |00 \rangle \langle 11| \otimes |\psi\rangle \langle \psi| ZX + |01 \rangle \langle 11| \otimes X|\psi\rangle \langle \psi| ZX + |10 \rangle \langle 11| \otimes Z|\psi\rangle \langle \psi| ZX  \\
+    & + |11 \rangle \langle 11| \otimes ZX|\psi\rangle \langle \psi| ZX) \\
+    \xmapsto{ \text{meas } \otimes \hspace{1pt} \text{meas} \hspace{1pt}  \otimes \hspace{1pt} I} \quad & \Big(\Big(\frac{1}{4} |\psi\rangle \langle \psi|, \frac{1}{4} X|\psi\rangle \langle \psi|X\Big),(\frac{1}{4} Z|\psi\rangle \langle \psi|Z, \frac{1}{4}  XZ|\psi\rangle \langle \psi|ZX \Big)\Big) \\
+    \xmapsto{(CX, CX)} \quad & \Big(\Big(\frac{1}{4} |\psi\rangle \langle \psi|, \frac{1}{4} |\psi\rangle \langle \psi|\Big),(\frac{1}{4} Z|\psi\rangle \langle \psi|Z, \frac{1}{4}  Z|\psi\rangle \langle \psi|Z \Big)\Big) \\ 
+     \xmapsto{CZ} \quad& \Big(\Big(\frac{1}{4} |\psi\rangle \langle \psi|, \frac{1}{4} |\psi\rangle \langle \psi|\Big),(\frac{1}{4} |\psi\rangle \langle \psi|, \frac{1}{4}  |\psi\rangle \langle \psi| \Big)\Big)
+  \end{split}
+\end{equation}
+
 
 
 \subsection{Ilustration: Noisy Quantum Teleportation}
 
 %To study decoherence in a quantum channel within the presented metric deductive system, one can consider the application of a dephasing channel in the quantum teleportation protocol with a certain probability $p$. This is exemplified for probabilities $p=0.5$ and $p=0.25$. It is worth noting that similar exercises can be done for scenarios such as a malicious attack involving a bit flip during measurement or the presence of a noisy channel.
+
+
+
+\begin{figure} [H]
+  \centering
+  \begin{quantikz} [column sep=0.2cm, row sep=0.5cm] 
+      \lstick{$\ket{\psi}$}  & \qw &\qw & \qw & \qw & \qw& \qw & \qw &\qw  & \ctrl{1}\gategroup[2,steps=4,style={dashed,rounded
+      corners,fill=blue!20, inner
+      xsep=2pt},background,label style={label
+      position=below,anchor=north,yshift=-0.2cm}]{{\sc
+      BellMeasure}} & \gate{H} & \qw & \meter{} & \setwiretype{c}  &  & \gategroup[3,steps=4,style={dashed,rounded
+      corners,fill=blue!20, inner
+      xsep=2pt},background,label style={label
+      position=below,anchor=north,yshift=-0.2cm}]{{\sc
+      Correction}}  &  & & \ctrl[vertical
+wire=c]{2}  \\
+      \lstick {$\ket{0}$}  &\gate{H}\gategroup[2,steps=3,style={dashed,rounded
+      corners,fill=blue!20, inner
+      xsep=2pt},background,label style={label
+      position=below,anchor=north,yshift=-0.2cm}]{{\sc
+      EPR}}  & \qw  & \ctrl{1}& \qw &    & \gate{D(p)}\gategroup[1,steps=1,style={dashed,rounded
+      corners,fill=blue!20, inner
+      xsep=2pt},background,label style={label
+      position=below,anchor=north,yshift=-0.2cm}]{{\sc
+      Dephasing}}  & \qw & \qw & \targ{} & \qw & \qw & \meter{} & \setwiretype{c} & & & \ctrl[vertical
+wire=c]{1} \\
+      \lstick{$\ket{0}$}  &  \qw & \qw &  \targ{} & \qw \qw & & \qw & \qw &\qw&\qw & \qw & \qw& \qw & \qw & \qw &  \qw & \gate{X} & \qw & \gate{Z} 
+ \end{quantikz}
+  \caption{Quantum Teleportation Protocol: Dephasing with probability $p$ after EPR pair creation.}
+  \label{fig:teleport_dephasing}
+\end{figure}
+
+
+
+\begin{figure} [H]
+  \centering
+  \begin{quantikz} [column sep=0.2cm, row sep=0.5cm] 
+      \lstick{$\ket{\psi}$}  & \qw &\qw & \qw & \qw & \qw& \ctrl{1}\gategroup[2,steps=4,style={dashed,rounded
+      corners,fill=blue!20, inner
+      xsep=2pt},background,label style={label
+      position=below,anchor=north,yshift=-0.2cm}]{{\sc
+      BellMeasure}} & \gate{H} & \qw & \meter{} & \setwiretype{c}  &  & \gategroup[3,steps=4,style={dashed,rounded
+      corners,fill=blue!20, inner
+      xsep=2pt},background,label style={label
+      position=below,anchor=north,yshift=-0.2cm}]{{\sc
+      Correction}}  &  & & \ctrl[vertical
+wire=c]{2}  \\
+      \lstick {$\ket{0}$}  &\gate{H}\gategroup[2,steps=3,style={dashed,rounded
+      corners,fill=blue!20, inner
+      xsep=2pt},background,label style={label
+      position=below,anchor=north,yshift=-0.2cm}]{{\sc
+      EPR}} & \qw  & \ctrl{1}& \qw & \qw & \targ{} & \qw & \qw & \meter{} & \setwiretype{c} & & & \ctrl[vertical
+wire=c]{1} \\
+      \lstick{$\ket{0}$}  &  \qw & \qw &  \targ{} & \qw &\qw&\qw & \qw & \qw& \qw & \qw & \qw &  \qw & \gate{X} & \qw & \gate{Z} & \qw & \qw   & \gate{A(\gamma)}\gategroup[1,steps=2,style={dashed,rounded
+      corners,fill=blue!20, inner
+      xsep=2pt},background,label style={label
+      position=below,anchor=north,yshift=-0.2cm}]{{\sc
+      { \hspace{40 pt} Amplitude Damping}}} & \qw
+ \end{quantikz}
+  \caption{Quantum Teleportation Protocol: Amplitude Dampling with probability $\gamma$ after Correction.}
+  \label{fig:teleport_amplitude_damping}
+\end{figure}
+
+
+
+
+\begin{figure} [H]
+  \centering
+  \begin{quantikz} [column sep=0.2cm, row sep=0.5cm] 
+      \lstick{$\ket{\psi}$}  & \qw &\qw & \qw & \qw & \qw& \ctrl{1}\gategroup[2,steps=4,style={dashed,rounded
+      corners,fill=blue!20, inner
+      xsep=2pt},background,label style={label
+      position=below,anchor=north,yshift=-0.2cm}]{{\sc
+      BellMeasure}} & \gate{H^{\epsilon}} & \qw & \meter{} & \setwiretype{c}  &  & \gategroup[3,steps=4,style={dashed,rounded
+      corners,fill=blue!20, inner
+      xsep=2pt},background,label style={label
+      position=below,anchor=north,yshift=-0.2cm}]{{\sc
+      Correction}}  &  & & \ctrl[vertical
+wire=c]{2}  \\
+      \lstick {$\ket{0}$}  &\gate{H^{\epsilon}}\gategroup[2,steps=3,style={dashed,rounded
+      corners,fill=blue!20, inner
+      xsep=2pt},background,label style={label
+      position=below,anchor=north,yshift=-0.2cm}]{{\sc
+      EPR}} & \qw  & \ctrl{1}& \qw & \qw & \targ{} & \qw & \qw & \meter{} & \setwiretype{c} & & & \ctrl[vertical
+wire=c]{1} \\
+      \lstick{$\ket{0}$}  &  \qw & \qw &  \targ{} & \qw &\qw&\qw & \qw & \qw& \qw & \qw & \qw &  \qw & \gate{X} & \qw & \gate{Z} 
+ \end{quantikz}
+  \caption{Quantum Teleportation Protocol: Erroneous implementation of the Hadamard gate. $H^{\epsilon}$ is regarded as the composition $R_{y}(\frac{\pi}{2})\cdot P(\pi + \epsilon)$.}
+  \label{fig:teleport_h}
+\end{figure}
+
+\section{Discard Operation} \label{sec:discarding}
+
+The discard operation was defined as the trace, and therefore is also completely positive and trace-preserving.
+
+%One might question why the interpretation of the discard operation was defined as the trace, considering that alternatives like the null operator, which maps everything to zero, seem plausible. However, the trace is the only operator that is completely positive and trace-preserving, which, as previously established, is a requirement for quantum operations. In contrast, the null operator fails to preserve the trace, rendering it unsuitable for this purpose.
+%fig:equations-linear-lambda
+
+%ToDo: Discard operations -> The operator should de unique (but there is for instance trace and the null operator_maps everything to zero) and is unique bacausce only trace is trace preserving; example: mallicious attack discard a qubit ou outside of quantum teleportation : setting a qubit do 0, by discarding it and initiating a new one
+
+\subsection{Example: Proving an equivalence using the discard equation}
+
+\subsection{Ilustration: A malicious attack on the quantum teleportation protocol}
+
 
 \begin{figure} [H]
   \centering
@@ -751,40 +875,11 @@ wire=c]{1} \\
 
 \begin{figure} [H]
   \centering
-  \begin{quantikz} [column sep=0.2cm, row sep=0.5cm] 
-      \lstick{$\ket{\psi}$}  & \qw &\qw & \qw & \qw & \qw& \qw & \qw &\qw  & \ctrl{1}\gategroup[2,steps=4,style={dashed,rounded
-      corners,fill=blue!20, inner
-      xsep=2pt},background,label style={label
-      position=below,anchor=north,yshift=-0.2cm}]{{\sc
-      BellMeasure}} & \gate{H} & \qw & \meter{} & \setwiretype{c}  &  & \gategroup[3,steps=4,style={dashed,rounded
-      corners,fill=blue!20, inner
-      xsep=2pt},background,label style={label
-      position=below,anchor=north,yshift=-0.2cm}]{{\sc
-      Correction}}  &  & & \ctrl[vertical
-wire=c]{2}  \\
-      \lstick {$\ket{0}$}  &\gate{H}\gategroup[2,steps=3,style={dashed,rounded
-      corners,fill=blue!20, inner
-      xsep=2pt},background,label style={label
-      position=below,anchor=north,yshift=-0.2cm}]{{\sc
-      EPR}}  & \qw  & \ctrl{1}& \qw &    & \gate{D(p)}\gategroup[1,steps=1,style={dashed,rounded
-      corners,fill=blue!20, inner
-      xsep=2pt},background,label style={label
-      position=below,anchor=north,yshift=-0.2cm}]{{\sc
-      Dephasing}}  & \qw & \qw & \targ{} & \qw & \qw & \meter{} & \setwiretype{c} & & & \ctrl[vertical
-wire=c]{1} \\
-      \lstick{$\ket{0}$}  &  \qw & \qw &  \targ{} & \qw \qw & & \qw & \qw &\qw&\qw & \qw & \qw& \qw & \qw & \qw &  \qw & \gate{X} & \qw & \gate{Z} 
- \end{quantikz}
-  \caption{Quantum Teleportation Protocol: Dephasing with probability $p$ after EPR pair creation.}
-  \label{fig:teleport_dephasing}
+  \begin{quantikz} [column sep=0.2cm, row sep=0.5cm,wire
+    types={n,n}]%
+      \lstick{$\ket{\phi}$}  & \qw & \qw & \qw & \qw & \qw & \gate{U} \qw & & \\
+      & & \lstick {$\ket{0}$}  & \qw &\gate{R_X(\frac{\pi}{2})} \qw & \qw & \ctrl{-1} \qw & \qw & \gate{\text{Disc}} \qw \\
+    \end{quantikz}
+  \caption{T operation}
+  \label{fig:Operation_T}
 \end{figure}
-
-\section{Discard Operation} \label{sec:discarding}
-
-The discard operation was defined as the trace, and therefore is also completely positive and trace-preserving.
-
-%One might question why the interpretation of the discard operation was defined as the trace, considering that alternatives like the null operator, which maps everything to zero, seem plausible. However, the trace is the only operator that is completely positive and trace-preserving, which, as previously established, is a requirement for quantum operations. In contrast, the null operator fails to preserve the trace, rendering it unsuitable for this purpose.
-%fig:equations-linear-lambda
-
-
-
-%ToDo: Discard operations -> The operator should de unique (but there is for instance trace and the null operator_maps everything to zero) and is unique bacausce only trace is trace preserving; example: mallicious attack discard a qubit ou outside of quantum teleportation : setting a qubit do 0, by discarding it and initiating a new one
