@@ -12,10 +12,9 @@ Main result(s) and their scientific evidence
 
 \section{Measurements}
 
-In order to established that the theory introduced is valid in quantum programming, it is necessary to build a model. The model can be seen as a category where the morphisms are the CPTP super-operators (quantum channels). The algebric structure of this model is given by the vector spaces. .
+In order to established that the theory introduced is valid in quantum programming, it is necessary to build a model. The model can be seen as a category where the morphisms are the CPTP super-operators (quantum channels). The algebric structure of this model is given by the vector spaces. 
 Any completely-positive and trace-preserving map has a diamond norm equal to one [\cite{watrous2018theory}]. Since the measurement operation is completely positive and trace-preserving, its  diamond norm is equal to one. This is a desirable property, as it ensures that the measurement operation does not increase the distance between states, and as a consequence, composition of programs remains valid.
 
- %Note also the existence of a operator $ \text{r} : \text{Iso} \xrightarrow[]{} \text{CPTP}$ that sends an operator $T$ to the mapping $A \mapsto TAT^{\dag}$
 
 \subsection{Example: Deutsch's Algorithm}
 
@@ -33,14 +32,151 @@ In 1985, David Deutsch presented an algorithm that determines whether a function
 
 Using lambda calculus, the Deutsch-Jozsa Algorithm can be expressed as:
 \begin{align*}
-\text{DeutschJozsa} :    \hspace{5pt} (\textit{qbit} \otimes \textit{qbit} \multimap \textit{qbit} \otimes \textit{qbit}) \multimap \textit{bit} \otimes \textit{qbit}
+\text{Deutsch} :    \hspace{5pt} (\textit{qbit} \otimes \textit{qbit} \multimap \textit{qbit} \otimes \textit{qbit}) \multimap \textit{bit} \otimes \textit{qbit}
 \end{align*}
 \begin{align*}
-\text{DeutschJozsa} = & \hspace{3pt} U_{f}: \textit{qbit} \otimes \textit{qbit} \multimap \textit{qbit} \otimes \textit{qbit} \hspace{3pt} \triangleright \hspace{3pt}  \\ 
+\text{Deutsch} = & \hspace{3pt} U_{f}: \textit{qbit} \otimes \textit{qbit} \multimap \textit{qbit} \otimes \textit{qbit} \hspace{3pt} \triangleright \hspace{3pt}  \\ 
 & \text{pm} \hspace{4pt}  U_{f}(H(q  \hspace{2pt}   ( \textit{new}   \hspace{2pt}  0 \hspace{1pt}(*))),(H(q  \hspace{2pt}   ( \textit{new}   \hspace{2pt}  1 \hspace{1pt}(*)))) \hspace{2pt}  \textit{to} \hspace{2pt} q_{1} \otimes q_{2} \hspace{1pt}. \hspace{3pt} \textit{meas} (H( q_{1})) \otimes q_{2}
  \end{align*}
 
-$U_{f}$ encodes function $f: \ket{x}$
+Regarding the interpretation of the Deutsch Algorithm, one has that:
+\begin{equation}
+\begin{split}
+ & \ket{0} \otimes \ket{1} \\
+ \xmapsto{ H \otimes H} \quad & \frac{1}{\sqrt{2}}(\ket{0} + \ket{1}) \otimes \ket{-} \\
+\end{split}
+\end{equation}
+
+With respecto to  quantum oracle $U_f$, it is possible to show that:
+\begin{equation}
+\begin{split}
+  &\ket{x} \otimes \ket{-} =   \ket{x} \otimes \frac{1}{\sqrt{2}}(\ket{0} - \ket{1}) = \frac{1}{\sqrt{2}}(\ket{x} \otimes \ket{0} - \ket{x} \otimes \ket{1})) \\
+  \xmapsto{ \hspace{2pt} U_{f} \hspace{2pt}} \hspace{4pt} &  \frac{1}{\sqrt{2}}(\ket{x} \otimes \ket{0 \oplus f(x)} - \ket{x} \otimes \ket{1 \oplus f(x)}) &\hspace{50pt} \{\text{Defn. of } U_f\} \\
+  = \hspace{4pt}  & \frac{1}{\sqrt{2}}(\ket{x} \ket{f(x)} - \ket{x} \ket{\neg f(x)}) & \{0\oplus x=x, 1\oplus x = \neg x\} \\
+  = \hspace{4pt}  & \frac{1}{\sqrt{2}}(\ket{x} \otimes (\ket{f(x)}-\ket{\neg f(x)}))
+ \end{split}
+\end{equation}
+
+Proceding by case distinction:
+\begin{equation}
+  \frac{1}{\sqrt{2}}(\ket{x} \otimes (\ket{f(x)}-\ket{\neg f(x)}) = 
+  \begin{cases}
+    \ket{x} \otimes \frac{1}{\sqrt{2}}(\ket{0}-\ket{1}) &\text{ if } f(x)=0    \\
+    \ket{x} \otimes \frac{1}{\sqrt{2}}(\ket{1}-\ket{0}) &\text{ if }   f(x)= 1 
+  \end{cases}
+\end{equation}
+
+And conclude that
+\begin{equation}
+ \ket{x} \otimes  \frac{1}{\sqrt{2}}(\ket{f(x)}-\ket{\neg f(x)}) = (-1)^{f(x)} \ket{x} \otimes \frac{1}{\sqrt{2}}(\ket{0}-\ket{1}) = (-1)^{f(x)} \ket{x} \otimes \ket{-}
+\end{equation}
+
+Returning to the interpretation of the Deutsch Algorithm, one has that:
+\begin{equation}
+\begin{split}
+  \quad & \frac{1}{\sqrt{2}}(\ket{0} + \ket{1}) \otimes \ket{-}\\
+  \xmapsto{ \hspace{5 pt} U_{f} \hspace{5pt}} \quad & \frac{1}{\sqrt{2}}( U_{f} \ket{0} \otimes \ket{-} + U_{f} \ket{1} \otimes \ket{-})) \\
+  = \quad & \frac{1}{\sqrt{2}}( (-1)^{f(0)} \ket{0} \otimes \ket{-} + (-1)^{f(1)} \ket{1} \otimes \ket{-}) \\
+  = \quad &
+  \begin{cases}
+    (\pm 1) \ket{+} \otimes \ket{-} &\text{ if }   f(0)= f(1) \\
+    (\pm 1) \ket{-} \otimes \ket{-} &\text{ if }   f(0) \neq f(1)
+  \end{cases} \\
+  \xmapsto{ \hspace{2pt} H \otimes I \hspace{2pt}} \quad & 
+  \begin{cases}
+    (\pm 1) \ket{0} \otimes \ket{-} &\text{ if }   f(0)= f(1) \\
+    (\pm 1) \ket{1} \otimes \ket{-} &\text{ if }   f(0) \neq f(1)\\
+  \end{cases} 
+\end{split}
+\end{equation}
+
+Attending to the interpretation of quantum states, concerning the measurement of the first qubit, one has that:
+\begin{equation}
+\begin{split}
+  \quad &
+  \begin{cases}
+    \ket{0} \bra{0} \otimes \ket{-} \bra{-}  &\text{ if }   f(0)= f(1) \\
+    \ket{1} \bra{1} \otimes \ket{-} \bra{-} &\text{ if }   f(0) \neq f(1)
+  \end{cases} \\
+  \xmapsto{ \hspace{2pt} \textit{meas} \otimes I \hspace{2pt}} \quad &
+  \begin{cases}
+   (\ket{-} \bra{-},0)  &\text{ if }   f(0)= f(1) \\
+   (0,\ket{-} \bra{-}) &\text{ if }   f(0) \neq f(1) 
+  \end{cases} \\
+\end {split}
+\end{equation} 
+
+
+A measurement error is characterized by reading a "1" as a "0" or vice versa. Furthermore, it's important to note that measurement errors do not impact all states uniformly [\cite{tannu2019mitigating}]. Consequently, there is a discrepancy in how frequently the state "1" is incorrectly read as "0" compared to how often the state "0" is measured as "1" or vice versa.
+
+For example, considering there is a 10\% chance of measuring a "0" as a "1" and a 30\% chance of measuring a "1" as a "0", the resulting state after measurement is:
+\begin{equation}
+\begin{split}
+  \quad &
+  \begin{cases}
+   (0.9\ket{-} \bra{-},0.1\ket{-} \bra{-})  &\text{ if }   f(0)= f(1) \\
+   (0.3\ket{-} \bra{-}, 0.7\ket{-} \bra{-}) &\text{ if }   f(0) \neq f(1) 
+  \end{cases} \\
+\end {split}
+\end{equation}
+
+The norm of a tuple is defined as the sum of the norms of its components, \textit{i.e.}, for any operators $v$ and $w$:
+\begin{equation} \label{eq:norm_tuple}
+  \lVert (v,w) \rVert = \lVert v \rVert + \lVert w \rVert
+\end{equation}
+
+As a result, the discrepancy between the ideal and actual measurement results corresponds to:
+\begin{equation}
+  \begin{split}
+    \quad &
+    \begin{cases}
+      \lVert(\ket{-} \bra{-},0) - (0.9\ket{-} \bra{-},0.1\ket{-} \bra{-})   \rVert &\text{ if }   f(0)= f(1) \\
+      \lVert (0,\ket{-} \bra{-}) - (0.3\ket{-} \bra{-}, 0.7\ket{-} \bra{-}) \rVert &\text{ if }   f(0) \neq f(1) 
+    \end{cases} \\
+    = \quad &
+    \begin{cases}
+      \lVert(0.1\ket{-} \bra{-},-0.1\ket{-} \bra{-})   \rVert &\text{ if }   f(0)= f(1) \\
+      \lVert (-0.3\ket{-} \bra{-}, 0.3\ket{-} \bra{-}) \rVert &\text{ if }   f(0) \neq f(1)
+    \end{cases} \\
+    = \quad &
+    \begin{cases}
+      \lVert 0.1\ket{-} \bra{-}\rVert + \lVert - 0.1 \ket{-} \bra{-}\rVert &\text{ if }   f(0)= f(1) \\
+      \lVert -0.3\ket{-} \bra{-}\rVert + \lVert - 0.3 \ket{-} \bra{-}\rVert &\text{ if }   f(0) \neq f(1)
+    \end{cases} \\
+  \end {split}
+  \end{equation}
+
+  Employing \autoref{eq:Bloch_vector}, it is easily concluded that the Bloch vector of the state $\ket{-} \bra{-}$ is $(-1,0,0)$. Consequently,  the discrepancy between the ideal and actual measurement results is:
+  \begin{equation}
+    \begin{split}
+      & 
+      \begin{cases}
+        \lVert (-0.1,0,0) \rVert_{2} + \lVert (0.1,0,0) \ket{-} \bra{-}\rVert_{2} &\text{ if }   f(0)= f(1) \\
+        \lVert(0.3,0,0)\ket{-} \bra{-}\rVert_{2} + \lVert (-0.3,0,0) \ket{-} \bra{-}\rVert_{2} &\text{ if }   f(0) \neq f(1)
+      \end{cases} \\
+      = \quad &
+      \begin{cases}
+        \sqrt{(-0.1)^{2} + 0^{2} + 0^{2}} + \sqrt{(0.1)^{2} + 0^{2} + 0^{2}} &\text{ if }   f(0)= f(1) \\
+        \sqrt{(0.3)^{2} + 0^{2} + 0^{2}} + \sqrt{(-0.3)^{2} + 0^{2} + 0^{2}} &\text{ if }   f(0) \neq f(1)
+      \end{cases} \\
+      = \quad &
+      \begin{cases}
+        2 \sqrt{0.01} &\text{ if }   f(0)= f(1) \\
+        2 \sqrt{0.09}  &\text{ if }   f(0) \neq f(1)
+      \end{cases} \\
+    \end{split}
+\end{equation}
+
+Via the metric deductive system in \autoref{fig:metric deductive system}, it is easily verified that for an arbitrary error $\epsilon$:
+\begin{align*}
+   & \hspace{3pt} U_{f}: \textit{qbit} \otimes \textit{qbit} \multimap \textit{qbit} \otimes \textit{qbit} \hspace{3pt} \triangleright \hspace{3pt}  \\ 
+  & \text{pm} \hspace{4pt}  U_{f}(H(q  \hspace{2pt}   ( \textit{new}   \hspace{2pt}  0 \hspace{1pt}(*))),(H(q  \hspace{2pt}   ( \textit{new}   \hspace{2pt}  1 \hspace{1pt}(*)))) \hspace{2pt}  \textit{to} \hspace{2pt} q_{1} \otimes q_{2} \hspace{1pt}. \hspace{3pt} \textit{meas} (H( q_{1})) \otimes q_{2} \\
+  =_{\epsilon}& \\
+   & \hspace{3pt} U_{f}: \textit{qbit} \otimes \textit{qbit} \multimap \textit{qbit} \otimes \textit{qbit} \hspace{3pt} \triangleright \hspace{3pt}  \\ 
+  & \text{pm} \hspace{4pt}  U_{f}(H(q  \hspace{2pt}   ( \textit{new}   \hspace{2pt}  0 \hspace{1pt}(*))),(H(q  \hspace{2pt}   ( \textit{new}   \hspace{2pt}  1 \hspace{1pt}(*)))) \hspace{2pt}  \textit{to} \hspace{2pt} q_{1} \otimes q_{2} \hspace{1pt}. \hspace{3pt} \textit{meas}^{\epsilon} (H( q_{1})) \otimes q_{2}
+   \end{align*}
+
+Therefore, $\text{Deutsch}=_{\epsilon} \text{Deutsch}^{\epsilon}$, and consequently, for scenario under consideration, if $f$ is a constant function, $\text{Deutsch} ={2 \sqrt{0.01}} \text{Deutsch}^{0.1,0.3}$; otherwise, $\text{Deutsch} =_{2 \sqrt{0.09}} \text{Deutsch}^{0.1,0.3}$.
 
 \section{Conditionals}
 
@@ -252,12 +388,7 @@ Thereafter, it is imperative to show that the injection operators $\textsc{Il}$ 
   $ \lVert \textsc{Ir} \rVert_{\sigma} = 1   $
 \end{lemma} 
 
-\textit{Proof.} \quad The norm of a tuple is defined as the sum of the norms of its components, \textit{i.e.}, for any vectors $v$ and $w$:
-\begin{equation} \label{eq:norm_tuple}
-  \lVert (v,w) \rVert = \lVert v \rVert + \lVert w \rVert
-\end{equation}
-
-Employing the definition of operator norm as defined in \autoref{eq:op_norm}, it ensues that:
+\textit{Proof.} \quad Employing the definition of operator norm as defined in \autoref{eq:op_norm}, it ensues that:
 \begin{equation} 
 \begin{split}
   \lVert \textsc{Il} \rVert_{\sigma} &= \text{sup} \{\lVert \textsc{Il} (v) \rVert \hspace{2pt} \vert \hspace{2pt}  \lVert v\rVert =1 \} = \text{sup} \{\lVert (v,0) \rVert \hspace{2pt} \vert \hspace{2pt}  \lVert v\rVert =1 \} = \text{sup} \{\lVert v \rVert + \lVert 0 \rVert  \hspace{2pt} \vert \hspace{2pt}  \lVert v\rVert =1 \} \\
@@ -498,7 +629,7 @@ Now, it is possivel to prove that $i$ has a norm equal to 1.
 
 \vspace{10pt}
 
-\textit{Proof.} \quad Considering the vector $(v \otimes u, 0)$ with $\lVert(v \otimes u, 0)\rVert = 1$, and  attending the multiplicative property of the operator norm with respect to tensor products, along with the definition of the norm of a tuple as in \autoref{eq:norm_tuple}, it follows that $\lVert v \rVert = 1$ and $\lVert u \rVert =1.$. Therefore, using this same property and definition, it is possible to demonstrate that the following holds:
+\textit{Proof.} \quad Considering the vector $(v \otimes u, 0)$ with $\lVert(v \otimes u, 0)\rVert = 1$, and  attending the multiplicative property of the operator norm with respect to tensor products, along with the definition of the norm of a tuple as in \autoref{eq:norm_tuple}, it holds that $\lVert v \rVert = 1$ and $\lVert u \rVert =1$. Therefore, using this same property and definition, it is possible to demonstrate that the following holds:
   \begin{equation}
     \begin{split}
       \lVert [\textsc{Il} \otimes I, \textsc{Ir} \otimes I ] (v \otimes u, 0) \rVert = (v, 0)\otimes u = (\lVert v \rVert + \lVert 0 \rVert ) \lVert u \rVert = \lVert v \rVert \lVert u \rVert =1
@@ -739,9 +870,9 @@ Regarding the interpretation of the quantum teleportation protocol, considering 
 \begin{equation}
   \begin{split}
 &  |\psi\rangle \otimes |0\rangle \otimes |0\rangle = ( \alpha|0\rangle + \beta|1\rangle) \otimes |0\rangle \otimes |0\rangle  \\
-\xmapsto{I\otimes H \otimes I} \quad &  ( \alpha|0\rangle + \beta|1\rangle) \otimes \frac{1}{\sqrt{2}} (|00\rangle + |10\rangle )  \\
+\xmapsto{ \hspace{5pt} I\otimes H \otimes I  \hspace{5pt}} \quad &  ( \alpha|0\rangle + \beta|1\rangle) \otimes \frac{1}{\sqrt{2}} (|00\rangle + |10\rangle )  \\
 \xmapsto{I \hspace{1pt} \otimes \hspace{1pt} CNOT} \quad & ( \alpha|0\rangle + \beta|1\rangle) \otimes \frac{1}{\sqrt{2}} (|00\rangle + |11\rangle ) = \frac{1}{\sqrt{2}} (\alpha|000\rangle + \alpha|011\rangle + \beta|110\rangle + \beta|101\rangle)\\
- \xmapsto[]{H \otimes I \otimes I} \quad & \frac{1}{2} (\alpha |000\rangle +\alpha |001\rangle +  \alpha|011\rangle + \alpha|111\rangle + \beta|010\rangle - \beta|110\rangle + \beta|101\rangle - \beta|001\rangle )  \\
+ \xmapsto[]{\hspace{5pt} H \otimes I \otimes I \hspace{5pt}} \quad & \frac{1}{2} (\alpha |000\rangle +\alpha |001\rangle +  \alpha|011\rangle + \alpha|111\rangle + \beta|010\rangle - \beta|110\rangle + \beta|101\rangle - \beta|001\rangle )  \\
  = \quad & \frac{1}{2} (|00\rangle \otimes (\alpha |0\rangle + \beta|1\rangle ) + |01\rangle \otimes (\alpha |1\rangle + \beta|0\rangle) + |10\rangle \otimes (\alpha |0\rangle - \beta|1\rangle )   \\
   & + |11\rangle \otimes (\alpha |1\rangle - \beta|0\rangle)) \\
  = \quad & |00\rangle \otimes |\psi\rangle  + |01\rangle \otimes X|\psi\rangle + |10\rangle \otimes Z |\psi\rangle + |11\rangle \otimes XZ|\psi\rangle = |\phi\rangle  \\
@@ -758,8 +889,8 @@ Regarding the remaining steps of the protocol,
     & + |00 \rangle \langle 11| \otimes |\psi\rangle \langle \psi| ZX + |01 \rangle \langle 11| \otimes X|\psi\rangle \langle \psi| ZX + |10 \rangle \langle 11| \otimes Z|\psi\rangle \langle \psi| ZX  \\
     & + |11 \rangle \langle 11| \otimes ZX|\psi\rangle \langle \psi| ZX) \\
     \xmapsto{ \text{meas } \otimes \hspace{1pt} \text{meas} \hspace{1pt}  \otimes \hspace{1pt} I} \quad & \Big(\Big(\frac{1}{4} |\psi\rangle \langle \psi|, \frac{1}{4} X|\psi\rangle \langle \psi|X\Big),(\frac{1}{4} Z|\psi\rangle \langle \psi|Z, \frac{1}{4}  XZ|\psi\rangle \langle \psi|ZX \Big)\Big) \\
-    \xmapsto{(CX, CX)} \quad & \Big(\Big(\frac{1}{4} |\psi\rangle \langle \psi|, \frac{1}{4} |\psi\rangle \langle \psi|\Big),(\frac{1}{4} Z|\psi\rangle \langle \psi|Z, \frac{1}{4}  Z|\psi\rangle \langle \psi|Z \Big)\Big) \\ 
-     \xmapsto{CZ} \quad& \Big(\Big(\frac{1}{4} |\psi\rangle \langle \psi|, \frac{1}{4} |\psi\rangle \langle \psi|\Big),(\frac{1}{4} |\psi\rangle \langle \psi|, \frac{1}{4}  |\psi\rangle \langle \psi| \Big)\Big)
+    \xmapsto{\hspace{10pt}(CX, CX)\hspace{10pt}} \quad & \Big(\Big(\frac{1}{4} |\psi\rangle \langle \psi|, \frac{1}{4} |\psi\rangle \langle \psi|\Big),(\frac{1}{4} Z|\psi\rangle \langle \psi|Z, \frac{1}{4}  Z|\psi\rangle \langle \psi|Z \Big)\Big) \\ 
+     \xmapsto{\hspace{22pt} CZ \hspace{23pt}} \quad& \Big(\Big(\frac{1}{4} |\psi\rangle \langle \psi|, \frac{1}{4} |\psi\rangle \langle \psi|\Big),(\frac{1}{4} |\psi\rangle \langle \psi|, \frac{1}{4}  |\psi\rangle \langle \psi| \Big)\Big)
   \end{split}
 \end{equation}
 
@@ -769,7 +900,25 @@ Regarding the remaining steps of the protocol,
 
 %To study decoherence in a quantum channel within the presented metric deductive system, one can consider the application of a dephasing channel in the quantum teleportation protocol with a certain probability $p$. This is exemplified for probabilities $p=0.5$ and $p=0.25$. It is worth noting that similar exercises can be done for scenarios such as a malicious attack involving a bit flip during measurement or the presence of a noisy channel.
 
+\subsubsection{Noisy Quantum Teleportation: Decoherence}
 
+To study decoherence in a quantum channel within the presented metric deductive system, one can consider the application of a dephasing channel in the quantum teleportation protocol with a certain probability $p$.
+
+
+The Kraus operators of the dephasing channel with probability $p$ are expressed as:
+\begin{equation}
+    \hspace{100pt} A_{0}= \frac{\sqrt{2-p}}{\sqrt{2}} I,  A_{1}= \frac{\sqrt{p}}{\sqrt{2}} Z
+\end{equation}
+
+Considering a density operator $\rho$
+\begin{equation}
+    \hspace{55pt} \rho = |\alpha|^{2} |0\rangle \langle 0 | + \alpha \beta^{\dag} |0\rangle \langle 1 | + \alpha^{\dag} \beta |1\rangle \langle 0 | + |\beta|^{2} |1\rangle \langle 1 | 
+\end{equation}
+using these operators, it is possible to easily verify  that after applying the dephasing channel with probability $p$, the resulting operator $\rho'$ is given by: 
+\begin{equation} \label{eq:dephasing_result}
+     \rho' =  A_{0} \rho A_{0}^{\dag} + A_{1} \rho A_{1}^{\dag} = |\alpha|^{2} |0\rangle \langle 0 | +  (1-p) \alpha \beta^{\dag} |0\rangle \langle 1 | +  (1-p) \alpha^{\dag}  \beta |1\rangle \langle 0 | + |\beta|^{2} |1\rangle \langle 1 | 
+\end{equation}
+This shows that the dephasing channel with probability $p$ preserves the diagonal elements of the density matrix while attenuating the off-diagonal elements by a factor of $(1-p)$.
 
 \begin{figure} [H]
   \centering
@@ -800,7 +949,7 @@ wire=c]{1} \\
   \label{fig:teleport_dephasing}
 \end{figure}
 
-
+\subsubsection{Noisy Quantum Teleportation: Amplitude Damping}
 
 \begin{figure} [H]
   \centering
@@ -831,7 +980,7 @@ wire=c]{1} \\
   \label{fig:teleport_amplitude_damping}
 \end{figure}
 
-
+\subsubsection{Noisy Quantum Teleportation: An erroneous implementation of the Hadamard gate}
 
 
 \begin{figure} [H]

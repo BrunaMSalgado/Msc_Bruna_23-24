@@ -1,4 +1,4 @@
-\begin{thebibliography}{39}
+\begin{thebibliography}{40}
 \providecommand{\natexlab}[1]{#1}
 \providecommand{\url}[1]{\texttt{#1}}
 \expandafter\ifx\csname urlstyle\endcsname\relax
@@ -206,6 +206,13 @@ Krysta Svore, Alan Geller, Matthias Troyer, John Azariah, Christopher Granade,
   high-level dsl.
 \newblock In \emph{Proceedings of the real world domain specific languages
   workshop 2018}, pages 1--10, 2018.
+
+\bibitem[Tannu and Qureshi(2019)]{tannu2019mitigating}
+Swamit~S Tannu and Moinuddin~K Qureshi.
+\newblock Mitigating measurement errors in quantum computers by exploiting
+  state-dependent bias.
+\newblock In \emph{Proceedings of the 52nd annual IEEE/ACM international
+  symposium on microarchitecture}, pages 279--290, 2019.
 
 \bibitem[Tao et~al.(2021)Tao, Shi, Yao, Hui, Chong, and Gu]{tao2021gleipnir}
 Runzhou Tao, Yunong Shi, Jianan Yao, John Hui, Frederic~T Chong, and Ronghui

@@ -262,7 +262,17 @@ $ \end{minipage}
 \label{fig:metric deductive system}
 \end{figure}
 \vspace{-5pt}
-In the quantum paradigm, a potential notion of approximate equivalence arises from the so-called diamond norm [\cite{watrous2018theory}], which induces a metric (roughly, a distance function) on the space of quantum programs (seen semantically as completely positive trace-preserving super-operators). This norm relies on another norm known as the trace norm. The $\lVert  \rVert_{1}$ latter is defined by  $\lVert A \rVert_{1} = \text{Tr}\sqrt{A^{\dag}A}$  for matrices $A \in \mathbb{C}^{n\times n}$.
+
+\todo[inline,size=\normalsize]{add more information about where the trace norm derives from (spectral theorem)}
+
+In the quantum paradigm, a potential notion of approximate equivalence arises from the so-called diamond norm [\cite{watrous2018theory}], which induces a metric (roughly, a distance function) on the space of quantum programs (seen semantically as completely positive trace-preserving super-operators). This norm relies on another norm known as the trace norm. The $\lVert  \rVert_{1}$ latter is defined by  $\lVert A \rVert_{1} = \text{Tr}\sqrt{A^{\dag}A}$  for matrices $A \in \mathbb{C}^{n\times n}$. The trace norm induces a metric on the set of density matrices which is defined by $d(\rho, \sigma) = \lVert \rho -\sigma\rVert_{1}$. On the other hand, it is well known that the distance $d(vv^{\dag}, uu^{\dag})$ between two quantum states $v$ and $u$ is their Euclidean distance in the Bloch
+sphere [\cite{wallman2016noise,nielsen2010quantum}]. The Euclidean norm of a vector $u \in \mathbb{C}^{n} $ is defined as:
+\begin{equation} \label{eq:euclidean_distance}
+\begin{centering}
+\hspace{80pt}
+\lVert u \rVert_{2} = \sqrt{\langle u, u\rangle} 
+ \end{centering}
+\end{equation}
 The trace distance between two super-operators $E, E': \mathbb{C}^{n\times n} \xrightarrow{} \mathbb{C}^{m\times m }$,  denoted as $T(E,E')$, is defined as follows:
 \begin{equation} \label{eq:trace_distance}
 \begin{centering}
@@ -278,6 +288,17 @@ Unfortunately, this norm is not stable under tensoring [\cite{watrous2018theory}
  \end{centering}
 \end{equation}
 where $I_{n} $ is the identity super-operator over the space $\mathbb{C}^{n\times n}$.
+
+
+Consider an operator  $ \text{r} : (\mathbb{C}^{n} \xrightarrow[]{} \mathbb{C}^{m}) \xrightarrow[]{} (\mathbb{C}^{n\times n}\xrightarrow[]{} \mathbb{C}^{m\times m})$ that sends an operator $T$ to the mapping $A \mapsto TAT^{\dag}$. The exact calculation of distances induced by $\lVert \rVert_{\diamondsuit}$ tends to be quite complicated, but a useful property for calculating the distance between quantum channels in the image of $r$ is provided [\cite{watrous2018theory}]:
+Consider two operators $T, S : n \xrightarrow{} m$. There exists a unit vector $v \in \mathbb{C}^{n}$ such that, 
+\begin{equation} \label{eq:norm_iso_r}
+\begin{centering}
+\lVert r(T) (vv^{\dag})-r(S) (vv^{\dag}) \rVert_{1} = \lVert r(T)-r(S) \rVert_{\diamondsuit}
+ \end{centering}
+\end{equation}
+
+
 The notion of a diamond norm is used in [\cite{dahlqvist2022syntactic}] which introduces a simple metric theory based on the idea of approximating a quantum operation. The authors argue that their deductive system allows to compute an approximate distance between two quantum programs easily as opposed to computing an exact distance ``semantically" which tends to involve quite complex operators. 
 Other works in this spirit include [\cite{hung2019quantitative}] and [\cite{tao2021gleipnir}]. They reason about the issue of noise in a quantum while-language by developing a deductive system to determine how similar a quantum program is from its idealised, noise-free version. The former introduces the ($Q$,$\lambda$)-diamond norm which analyzes the output error given that the input quantum state satisfies some quantum predicate $Q$ to degree $\lambda$. However, it does not specify any practical method for obtaining non-trivial quantum predicates. In fact, the methods used in [\cite{hung2019quantitative}] cannot produce any post conditions other than $(I,0)$ (\textit{i.e.}, the identity matrix $I$ to degree 0, analogous to a ``true” predicate) for large quantum programs. The latter specifically addresses and delves into this aspect. 
 
@@ -434,6 +455,8 @@ $E$ is called trace-preserving if $\text{Tr} \hspace{ 2pt} E A = \text{Tr} A$ [\
 
 For every super-operator $ E: \mathcal{D}(n) \xrightarrow{} \mathcal{D}(m)$, there exists a set of Kraus operators $\{\epsilon_{k}\}_{k}$ such that $ E(\rho)= \Sigma_{k} \hspace{2pt} \epsilon_{k}\hspace{2pt} \rho \hspace{2pt} \epsilon_{k}^{\dag}$  for any input $\rho \in  \mathcal{D}(n) $. Note that the set of Kraus operators is finite if the Hilbert space is finite-dimensional. The Kraus form of $E$ is written as $E = \Sigma_{k} \hspace{2pt} \epsilon_{k} \circ  \epsilon_{k}^{\dag}$.
 
+\todo[inline,size=\normalsize]{add trace, partial trace, reduced density matrix, and respective Bloch Vector} %\label{eq:Bloch\_vector})}
+
 \section{Quantum Lambda Calculus}
 
 
@@ -495,3 +518,4 @@ $\begin{aligned}
 \caption{Judgment interpretation of the operations in quantum lambda calculus.}
 \label{fig:interpret_ops}
 \end{figure}
+
