@@ -1,4 +1,4 @@
-\begin{thebibliography}{38}
+\begin{thebibliography}{39}
 \providecommand{\natexlab}[1]{#1}
 \providecommand{\url}[1]{\texttt{#1}}
 \expandafter\ifx\csname urlstyle\endcsname\relax
@@ -57,6 +57,13 @@ Fredrik Dahlqvist and Renato Neves.
 Fredrik Dahlqvist and Renato Neves.
 \newblock A complete v-equational system for graded lambda-calculus.
 \newblock \emph{arXiv preprint arXiv:2304.02082}, 2023.
+
+\bibitem[Deutsch(1985)]{deutsch1985quantum}
+David Deutsch.
+\newblock Quantum theory, the church--turing principle and the universal
+  quantum computer.
+\newblock \emph{Proceedings of the Royal Society of London. A. Mathematical and
+  Physical Sciences}, 400\penalty0 (1818):\penalty0 97--117, 1985.
 
 \bibitem[Feynman(1982)]{feynman2018simulating}
 Richard~P. Feynman.

@@ -17,7 +17,30 @@ Any completely-positive and trace-preserving map has a diamond norm equal to one
 
  %Note also the existence of a operator $ \text{r} : \text{Iso} \xrightarrow[]{} \text{CPTP}$ that sends an operator $T$ to the mapping $A \mapsto TAT^{\dag}$
 
-\subsection{Example: Deutsch-Jozsa Algorithm}
+\subsection{Example: Deutsch's Algorithm}
+
+In 1985, David Deutsch presented an algorithm that determines whether a function $f$ is constant for a single-bit input (\textit{i.e.}, either equal to 1 for all $x$ or equal to 0 for all $x$) or balanced (\textit{i.e.}, equal to 1 for half of the values of x and equal to 0 for the other half) [\cite{deutsch1985quantum}]. Classically, to determine which case holds requires running $f$ twice. Quantumly, it suffices to run f once. The Deutsch-Jozsa Algorithm is a simple example of a quantum algorithm that outperforms its classical counterpart. The algorithm is based on the concept of a quantum oracle, which is a black box that implements a unitary transformation $U_f$ such that $U_f \ket{x}\ket{y} = \ket{x}\ket{y \oplus f(x)}$, where $\oplus$ denotes addition modulo 2. The quantum circuit implementing Deutsch’s algorithm is presented in  \autoref{fig:Deutsch-Jozsa}.
+
+\begin{figure} [H]
+  \centering
+  \begin{quantikz} [column sep=0.2cm, row sep=0.5cm] 
+    \lstick{$\ket{0}$} &  \qw & \gate{H} & \gate[wires=2]{U_f} & \gate{H} & \meter{} \\
+    \lstick{$\ket{1}$} &  \qw & \gate{H} & \qw & \qw & \qw\\ 
+  \end{quantikz}
+  \caption{Quantum circuit implementing Deutsch’s algorithm}
+  \label{fig:Deutsch-Jozsa}
+\end{figure}
+
+Using lambda calculus, the Deutsch-Jozsa Algorithm can be expressed as:
+\begin{align*}
+\text{DeutschJozsa} :    \hspace{5pt} (\textit{qbit} \otimes \textit{qbit} \multimap \textit{qbit} \otimes \textit{qbit}) \multimap \textit{bit} \otimes \textit{qbit}
+\end{align*}
+\begin{align*}
+\text{DeutschJozsa} = & \hspace{3pt} U_{f}: \textit{qbit} \otimes \textit{qbit} \multimap \textit{qbit} \otimes \textit{qbit} \hspace{3pt} \triangleright \hspace{3pt}  \\ 
+& \text{pm} \hspace{4pt}  U_{f}(H(q  \hspace{2pt}   ( \textit{new}   \hspace{2pt}  0 \hspace{1pt}(*))),(H(q  \hspace{2pt}   ( \textit{new}   \hspace{2pt}  1 \hspace{1pt}(*)))) \hspace{2pt}  \textit{to} \hspace{2pt} q_{1} \otimes q_{2} \hspace{1pt}. \hspace{3pt} \textit{meas} (H( q_{1})) \otimes q_{2}
+ \end{align*}
+
+$U_{f}$ encodes function $f: \ket{x}$
 
 \section{Conditionals}
 
@@ -636,6 +659,11 @@ Now, it is finally possible to adress the proof of the metric equation for the c
 
 \subsection{Quantum Teleportation} \label{sec:teleport}
 
+\todo[inline,size=\normalsize]{Write an introduction to quantum teleportation}
+
+
+
+The circuit corresponding to the implementation of the quantum teleportation protocol is depicted in \autoref{fig:teleport}.
 
 \begin{figure} [H]
   \centering
@@ -699,7 +727,13 @@ Considering the unitary operations $H: \textit{qubit} \xrightarrow{}  \textit{qu
  \end{align*}
 
 
-
+ Designating the qubit to be teleported as $q_0$, one can conceptualize the teleportation procedure as follows:
+ \begin{align*}
+     \hspace{130 pt}& \text{pm} \hspace{5pt} \textbf{EPR}\hspace{1pt} (*) \hspace{5pt} \text{to} \hspace{5pt}  q_{1} \otimes q_{2}.  \notag \\
+     & \text{pm}\hspace{5pt} \textbf{BellMeasure} \hspace{1pt} (q_0,q_{1}) \hspace{5pt}  \text{to} \hspace{5pt} c_{0}\otimes c_{1} . \notag \\
+     & \text{pm} \hspace{5pt}  \textbf{Correction} \hspace{1pt} ( q_{2},  c_{0}, c_{1} ) \hspace{5pt} \text{to} \hspace{5pt}  q. \hspace{2pt}  q
+ \end{align*}
+ 
 
 Regarding the interpretation of the quantum teleportation protocol, considering $\rho = |\phi\rangle \langle \phi|$ as the state of the system before measurement, $|\phi\rangle$  is calculated as follows, where $|\psi\rangle$ is the state of the qubit to be teleported:
 \begin{equation}
