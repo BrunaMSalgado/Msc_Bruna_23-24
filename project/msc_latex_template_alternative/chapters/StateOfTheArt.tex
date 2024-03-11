@@ -263,7 +263,7 @@ $ \end{minipage}
 \end{figure}
 \vspace{-5pt}
 
-\todo[inline,size=\normalsize]{add more information about where the trace norm derives from (spectral theorem)}
+
 
 In the quantum paradigm, a potential notion of approximate equivalence arises from the so-called diamond norm [\cite{watrous2018theory}], which induces a metric (roughly, a distance function) on the space of quantum programs (seen semantically as completely positive trace-preserving super-operators). This norm relies on another norm known as the trace norm. The $\lVert  \rVert_{1}$ latter is defined by  $\lVert A \rVert_{1} = \text{Tr}\sqrt{A^{\dag}A}$  for matrices $A \in \mathbb{C}^{n\times n}$. The trace norm induces a metric on the set of density matrices which is defined by $d(\rho, \sigma) = \lVert \rho -\sigma\rVert_{1}$. On the other hand, it is well known that the distance $d(vv^{\dag}, uu^{\dag})$ between two quantum states $v$ and $u$ is their Euclidean distance in the Bloch
 sphere [\cite{wallman2016noise,nielsen2010quantum}]. The Euclidean norm of a vector $u \in \mathbb{C}^{n} $ is defined as:
@@ -455,7 +455,13 @@ $E$ is called trace-preserving if $\text{Tr} \hspace{ 2pt} E A = \text{Tr} A$ [\
 
 For every super-operator $ E: \mathcal{D}(n) \xrightarrow{} \mathcal{D}(m)$, there exists a set of Kraus operators $\{\epsilon_{k}\}_{k}$ such that $ E(\rho)= \Sigma_{k} \hspace{2pt} \epsilon_{k}\hspace{2pt} \rho \hspace{2pt} \epsilon_{k}^{\dag}$  for any input $\rho \in  \mathcal{D}(n) $. Note that the set of Kraus operators is finite if the Hilbert space is finite-dimensional. The Kraus form of $E$ is written as $E = \Sigma_{k} \hspace{2pt} \epsilon_{k} \circ  \epsilon_{k}^{\dag}$.
 
-\todo[inline,size=\normalsize]{add trace, partial trace, reduced density matrix, and respective Bloch Vector} %\label{eq:Bloch\_vector})}
+A matrix $A \in  \mathbb{C}^{n\times n}$ is Hermitian if $A = A^{\dag}$.
+A matrix $A \in \mathbb{C}^{n\times n}$ is said to be normal if $AA^{\dag} =  A^{\dag}A$. Clearly every Hermitian matrix is normal. Note also that for every matrix $A \in C^{n\times n}$ the matrix $A^{\dag}A$ is Hermitian. Next, it is well-known that by appealing to the spectral theorem [NC16], every normal matrix $A \in  \mathbb{C}^{n\times n}$ can be expressed as a linear combination $\sum_{i} \lambda_{i}b_{i}b_{i}^{\dag}$ where the set $\{b_{i}, \ldots , b{n}\}$ is an orthonormal basis of $\mathbb{C}^{n}$. Using this last result we can extend any function $f:\mathbb{C} \xrightarrow{} \mathbb{C}$, to normal matrices via,
+\begin{equation} \label{eq:apply_f_diag}
+  f(A) = \sum_{i} f(\lambda_{i})b_{i}b_{i}^{\dag}
+\end{equation}
+
+\todo[inline,size=\normalsize]{add trace, partial trace, reduced density matrix, and respective Bloch Vector, put the last paragragh in the right place and rewrite it} %\label{eq:Bloch\_vector})}
 
 \section{Quantum Lambda Calculus}
 

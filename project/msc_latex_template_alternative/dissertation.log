@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.141592653-2.6-1.40.25 (MiKTeX 24.1) (preloaded format=pdflatex 2024.2.8)  10 MAR 2024 20:25
+This is pdfTeX, Version 3.141592653-2.6-1.40.25 (MiKTeX 24.1) (preloaded format=pdflatex 2024.2.8)  11 MAR 2024 19:54
 entering extended mode
  restricted \write18 enabled.
  file:line:error style messages enabled.
@@ -1319,7 +1319,14 @@ LaTeX Font Info:    Font shape `T1/SourceSansPro-TLF/m/n' aliased to
 (Font)              `T1/SourceSansPro-TLF/regular/n' on input line 80.
 LaTeX Font Info:    Font shape `T1/SourceSansPro-TLF/regular/n' will be
 (Font)              scaled to size 12.0pt on input line 80.
- (dissertation.aux)
+ (dissertation.aux
+
+LaTeX Warning: Label `eq:dephasing_result' multiply defined.
+
+
+LaTeX Warning: Label `eq:dephasing_result@cref' multiply defined.
+
+)
 \openout1 = `dissertation.aux'.
 
 LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 80.
@@ -1753,7 +1760,6 @@ Overfull \hbox (17.90512pt too wide) detected at line 260
  $[][]$ 
  []
 
-Package hyperref Info: bookmark level for unknown todo defaults to 0 on input line 266.
 [9]
 Overfull \hbox (4.33856pt too wide) in paragraph at lines 275--277
 \T1/SourceSansPro-TLF/regular/n/12 The trace dis-tance be-tween two super-operators $\OML/cmm/m/it/12 E; E[] \OT1/cmr/m/n/12 : \U/msb/m/n/12 C[] [] C[]$\T1/SourceSansPro-TLF/regular/n/12 , de-noted as $\OML/cmm/m/it/12 T\OT1/cmr/m/n/12 (\OML/cmm/m/it/12 E; E[]\OT1/cmr/m/n/12 )$\T1/SourceSansPro-TLF/regular/n/12 ,
@@ -1819,7 +1825,9 @@ Overfull \hbox (15.83379pt too wide) in paragraph at lines 442--443
 Underfull \vbox (badness 10000) has occurred while \output is active []
 
  [13]
-Overfull \hbox (99.33127pt too wide) detected at line 517
+Package hyperref Info: bookmark level for unknown todo defaults to 0 on input line 464.
+
+Overfull \hbox (99.33127pt too wide) detected at line 523
  $[][]$ 
  []
 
@@ -1984,65 +1992,67 @@ Overfull \hbox (2.04366pt too wide) detected at line 895
  $[][]$  
  []
 
-[34] [35]
-Underfull \vbox (badness 3240) has occurred while \output is active []
+[34] [35] [36] [37]
+Overfull \hbox (3.09543pt too wide) in paragraph at lines 1006--1007
+[]\T1/SourceSansPro-TLF/regular/n/12 Applying these Kraus op-er-a-tors to the den-sity op-er-a-tor $\OML/cmm/m/it/12 ^^Z \OT1/cmr/m/n/12 = \OMS/cmsy/m/n/12 j\OML/cmm/m/it/12 \OMS/cmsy/m/n/12 j[]j\OT1/cmr/m/n/12 0\OMS/cmsy/m/n/12 ih\OT1/cmr/m/n/12 0\OMS/cmsy/m/n/12 j \OT1/cmr/m/n/12 + \OML/cmm/m/it/12 ^^L[]\OMS/cmsy/m/n/12 j\OT1/cmr/m/n/12 0\OMS/cmsy/m/n/12 ih\OT1/cmr/m/n/12 1\OMS/cmsy/m/n/12 j \OT1/cmr/m/n/12 + \OML/cmm/m/it/12 []^^L\OMS/cmsy/m/n/12 j\OT1/cmr/m/n/12 1\OMS/cmsy/m/n/12 ih\OT1/cmr/m/n/12 0\OMS/cmsy/m/n/12 j \OT1/cmr/m/n/12 +
+ []
 
- [36]
-Overfull \hbox (2.67719pt too wide) in paragraph at lines 1052--1053
+
+Overfull \hbox (2.67719pt too wide) in paragraph at lines 1112--1113
  [][] 
  []
 
-) (chapters/Applications.tex [37] [38
+[38]) (chapters/Applications.tex [39] [40
 
 ]
 Chapter 5.
-) (chapters/ConclusionsAndFutureWork.tex [39] [40
+) (chapters/ConclusionsAndFutureWork.tex [41] [42
 
 ]
 Chapter 6.
-) (chapters/PlannedSchedule.tex [41] [42
+) (chapters/PlannedSchedule.tex [43] [44
 
 ]
 Chapter 7.
 \@gls@deffile=\write12
 \openout12 = `dissertation.glsdefs'.
 
-) (dissertation.bbl [43] [44
+) (dissertation.bbl [45] [46
 
-] [45]
+] [47]
 Underfull \hbox (badness 1394) in paragraph at lines 144--151
 []\T1/SourceSansPro-TLF/regular/n/12 Prakash Mu-rali, Jonathan M Baker, Ali Javadi-Abhari, Fred-eric T Chong, and Mar-garet
  []
 
-[46] [47]) [48]
+[48] [49]) [50]
 runsystem(makeindex dissertation.idx)...executed safely (allowed).
 
- (dissertation.ind) [49
+ (dissertation.ind) [51
 
 
-] [50] (appendices/SupportWork.tex
+] [52] (appendices/SupportWork.tex
 Appendix A.
-) (appendices/DetailsOfResults.tex [51
+) (appendices/DetailsOfResults.tex [53
 
-] [52
+] [54
 
 ]
 Appendix B.
-) (appendices/Listings.tex [53] [54
+) (appendices/Listings.tex [55] [56
 
 ]
 Appendix C.
-) (appendices/Tooling.tex [55] [56
+) (appendices/Tooling.tex [57] [58
 
 ]
 Appendix D.
-) (covers/BackCover.tex [57
-\indexentry{\LaTeX  }{57}
-\indexentry{TeX!TeX Users Group (TUG)}{57}
-\indexentry{TeX!TeX Users Group (TUG)}{57}
-] [58
+) (covers/BackCover.tex [59
+\indexentry{\LaTeX  }{59}
+\indexentry{TeX!TeX Users Group (TUG)}{59}
+\indexentry{TeX!TeX Users Group (TUG)}{59}
+] [60
 
-] [59
+] [61
 
 ]
 pdfTeX warning (ext4): destination with the same identifier (name{page.1}) has been already used, duplicate ignored
@@ -2058,13 +2068,16 @@ L3 programming layer <2024-01-22>
 
 LaTeX Warning: There were undefined references.
 
+
+LaTeX Warning: There were multiply-defined labels.
+
 Package rerunfilecheck Info: File `dissertation.out' has not changed.
 (rerunfilecheck)             Checksum: 15C3EE1B6A2F07CCE1193B0560E9515B;6014.
  ) 
 Here is how much of TeX's memory you used:
- 52283 strings out of 474542
- 1092865 string characters out of 5744447
- 2135978 words of memory out of 5000000
+ 52291 strings out of 474542
+ 1092969 string characters out of 5744447
+ 2142978 words of memory out of 5000000
  73319 multiletter control sequences out of 15000+600000
  772489 words of font info for 100 fonts, out of 8000000 for 9000
  1141 hyphenation exceptions out of 8191
@@ -2076,9 +2089,9 @@ pdfTeX warning (dest): name{glo:pdr} has been referenced but does not exist, rep
 pdfTeX warning (dest): name{glo:soa} has been referenced but does not exist, replaced by a fixed one
 
  <C:\Users\mona_\AppData\Local\MiKTeX\fonts/pk/ljfour/jknappen/ec/dpi600\ectt1200.pk><C:/Users/mona_/AppData/Local/Programs/MiKTeX/fonts/type1/adobe/sourcesanspro/SourceSansPro-Bold.pfb><C:/Users/mona_/AppData/Local/Programs/MiKTeX/fonts/type1/adobe/sourcesanspro/SourceSansPro-It.pfb><C:/Users/mona_/AppData/Local/Programs/MiKTeX/fonts/type1/adobe/sourcesanspro/SourceSansPro-Light.pfb><C:/Users/mona_/AppData/Local/Programs/MiKTeX/fonts/type1/adobe/sourcesanspro/SourceSansPro-Regular.pfb><C:/Users/mona_/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmex10.pfb><C:/Users/mona_/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmmi12.pfb><C:/Users/mona_/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmmi6.pfb><C:/Users/mona_/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmmi8.pfb><C:/Users/mona_/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmr12.pfb><C:/Users/mona_/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmr6.pfb><C:/Users/mona_/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmr8.pfb><C:/Users/mona_/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmsy10.pfb><C:/Users/mona_/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmsy6.pfb><C:/Users/mona_/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmsy8.pfb><C:/Users/mona_/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/symbols/msam10.pfb><C:/Users/mona_/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/symbols/msbm10.pfb><C:/Users/mona_/AppData/Local/Programs/MiKTeX/fonts/type1/public/hoekwater/stmary10.pfb>
-Output written on dissertation.pdf (80 pages, 985092 bytes).
+Output written on dissertation.pdf (82 pages, 996096 bytes).
 PDF statistics:
- 1097 PDF objects out of 1200 (max. 8388607)
- 254 named destinations out of 1000 (max. 500000)
+ 1119 PDF objects out of 1200 (max. 8388607)
+ 262 named destinations out of 1000 (max. 500000)
  380 words of extra memory for PDF output out of 10000 (max. 10000000)
 

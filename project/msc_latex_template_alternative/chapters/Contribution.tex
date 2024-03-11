@@ -130,18 +130,18 @@ As a result, the discrepancy between the ideal and actual measurement results co
   \begin{split}
     \quad &
     \begin{cases}
-      \lVert(\ket{-} \bra{-},0) - (0.9\ket{-} \bra{-},0.1\ket{-} \bra{-})   \rVert &\text{ if }   f(0)= f(1) \\
-      \lVert (0,\ket{-} \bra{-}) - (0.3\ket{-} \bra{-}, 0.7\ket{-} \bra{-}) \rVert &\text{ if }   f(0) \neq f(1) 
+      \lVert(\ket{-} \bra{-},0) - (0.9\ket{-} \bra{-},0.1\ket{-} \bra{-})   \rVert_{\diamondsuit} &\text{ if }   f(0)= f(1) \\
+      \lVert (0,\ket{-} \bra{-}) - (0.3\ket{-} \bra{-}, 0.7\ket{-} \bra{-}) \rVert_{\diamondsuit} &\text{ if }   f(0) \neq f(1) 
     \end{cases} \\
     = \quad &
     \begin{cases}
-      \lVert(0.1\ket{-} \bra{-},-0.1\ket{-} \bra{-})   \rVert &\text{ if }   f(0)= f(1) \\
-      \lVert (-0.3\ket{-} \bra{-}, 0.3\ket{-} \bra{-}) \rVert &\text{ if }   f(0) \neq f(1)
+      \lVert(0.1\ket{-} \bra{-},-0.1\ket{-} \bra{-})   \rVert_{\diamondsuit} &\text{ if }   f(0)= f(1) \\
+      \lVert (-0.3\ket{-} \bra{-}, 0.3\ket{-} \bra{-}) \rVert_{\diamondsuit} &\text{ if }   f(0) \neq f(1)
     \end{cases} \\
     = \quad &
     \begin{cases}
-      \lVert 0.1\ket{-} \bra{-}\rVert + \lVert - 0.1 \ket{-} \bra{-}\rVert &\text{ if }   f(0)= f(1) \\
-      \lVert -0.3\ket{-} \bra{-}\rVert + \lVert - 0.3 \ket{-} \bra{-}\rVert &\text{ if }   f(0) \neq f(1)
+      \lVert 0.1\ket{-} \bra{-}\rVert_{\diamondsuit} + \lVert - 0.1 \ket{-} \bra{-}\rVert_{\diamondsuit} &\text{ if }   f(0)= f(1) \\
+      \lVert -0.3\ket{-} \bra{-}\rVert_{\diamondsuit} + \lVert - 0.3 \ket{-} \bra{-}\rVert_{\diamondsuit} &\text{ if }   f(0) \neq f(1)
     \end{cases} \\
   \end {split}
   \end{equation}
@@ -907,19 +907,16 @@ To study decoherence in a quantum channel within the presented metric deductive 
 
 The Kraus operators of the dephasing channel with probability $p$ are expressed as:
 \begin{equation}
-    \hspace{100pt} A_{0}= \frac{\sqrt{2-p}}{\sqrt{2}} I,  A_{1}= \frac{\sqrt{p}}{\sqrt{2}} Z
+    \hspace{100pt} D_{0}= \frac{\sqrt{2-p}}{\sqrt{2}} I,  D_{1}= \frac{\sqrt{p}}{\sqrt{2}} Z
 \end{equation}
 
-Considering a density operator $\rho$
-\begin{equation}
-    \hspace{55pt} \rho = |\alpha|^{2} |0\rangle \langle 0 | + \alpha \beta^{\dag} |0\rangle \langle 1 | + \alpha^{\dag} \beta |1\rangle \langle 0 | + |\beta|^{2} |1\rangle \langle 1 | 
-\end{equation}
-using these operators, it is possible to easily verify  that after applying the dephasing channel with probability $p$, the resulting operator $\rho'$ is given by: 
+Considering a density operator $\rho=|\alpha|^{2} |0\rangle \langle 0 | + \alpha \beta^{\dag} |0\rangle \langle 1 | + \alpha^{\dag} \beta |1\rangle \langle 0 | + |\beta|^{2} |1\rangle \langle 1 |$, using these Kraus operators, it is possible to easily verify  that after applying the dephasing channel with probability $p$, the resulting operator $\rho'$ is given by: 
 \begin{equation} \label{eq:dephasing_result}
      \rho' =  A_{0} \rho A_{0}^{\dag} + A_{1} \rho A_{1}^{\dag} = |\alpha|^{2} |0\rangle \langle 0 | +  (1-p) \alpha \beta^{\dag} |0\rangle \langle 1 | +  (1-p) \alpha^{\dag}  \beta |1\rangle \langle 0 | + |\beta|^{2} |1\rangle \langle 1 | 
 \end{equation}
 This shows that the dephasing channel with probability $p$ preserves the diagonal elements of the density matrix while attenuating the off-diagonal elements by a factor of $(1-p)$.
 
+The circuit representing the introduction of decoherence after EPR is illustrated in \autoref{fig:teleport_dephasing}.
 \begin{figure} [H]
   \centering
   \begin{quantikz} [column sep=0.2cm, row sep=0.5cm] 
@@ -937,7 +934,7 @@ wire=c]{2}  \\
       corners,fill=blue!20, inner
       xsep=2pt},background,label style={label
       position=below,anchor=north,yshift=-0.2cm}]{{\sc
-      EPR}}  & \qw  & \ctrl{1}& \qw &    & \gate{D(p)}\gategroup[1,steps=1,style={dashed,rounded
+      EPR}}  & \qw  & \ctrl{1}& \qw &    & \gate{D_{p}}\gategroup[1,steps=1,style={dashed,rounded
       corners,fill=blue!20, inner
       xsep=2pt},background,label style={label
       position=below,anchor=north,yshift=-0.2cm}]{{\sc
@@ -949,7 +946,69 @@ wire=c]{1} \\
   \label{fig:teleport_dephasing}
 \end{figure}
 
+In this case, to facilate the analysis, the quantum teleportion protocol is devided in four parts: EPR, BellMeasure, Identity and Correction. This entails the definition of an aditional function:
+\begin{equation*}
+  \textbf{Identity}: \hspace{5pt} \textit{qbit}  \multimap \textit{qbit} \\
+\end{equation*}
+Considering the unitary operations $I: \textit{qubit} \xrightarrow{} \textit{qubit}$, and $D_{p}: \textit{qubit} \xrightarrow{}  \textit{qubit}$  the ideal version of this function, \textbf{Identity}, and its respective version subjected to decoherence with probability $p$, $\textbf{Identity}^{p}$,  are defined as follows:
+\begin{align}
+  &\textbf{Identity} =  q: \text{qubit}  \triangleright  I (q)  \\
+  &\textbf{Identity}^{p} =  q: \text{qubit}  \triangleright  D_{p} (q)
+\end{align}
+
+Designating the qubit to be teleported as $q_0$, one can conceptualize the teleportation procedure as follows:
+\begin{align*}
+    \hspace{130 pt}& \text{pm} \hspace{5pt} \textbf{EPR}\hspace{1pt} (*) \hspace{5pt} \text{to} \hspace{5pt}  q_{1} \otimes q_{2}.  \notag \\
+    & \text{pm}\hspace{5pt} \textbf{Identity} \hspace{1pt} (q_{1}) \hspace{5pt}  \text{to} \hspace{5pt} id\_q_{1}. \notag \\
+    & \text{pm}\hspace{5pt} \textbf{BellMeasure} \hspace{1pt} (q_0,id\_q_{1}) \hspace{5pt}  \text{to} \hspace{5pt} c_{0}\otimes c_{1} . \notag \\
+    & \text{pm} \hspace{5pt}  \textbf{Correction} \hspace{1pt} ( q_{2},  c_{0}, c_{1} ) \hspace{5pt} \text{to} \hspace{5pt}  q. \hspace{2pt}  q
+\end{align*}
+
+To evaluate the disparity between the ideal implementation of the quantum teleportation protocol and its realization subjected to decoherence, the initial step involves computing the distance between the density operators of the ideal and noisy implementations of the EPR state, denoted as $\rho$ and $\rho'$, respectively.
+
+\begin{equation}
+  \begin{split}
+& |0\rangle \bra{0} \otimes |0\rangle \bra{0}  \\
+\xmapsto{ \hspace{10pt} \text{EPR} \hspace{10pt} } \quad &  \frac{1}{2} (|00\rangle \bra{00} + \ket{00}\bra{11} + |11\rangle \bra{00} + |11\rangle \bra{11}) = \rho \\
+\xmapsto{ \hspace{2pt} D(p) \otimes I  \hspace{2pt}} \quad &  \frac{1}{2} (|00\rangle \bra{00} + (1-p) \ket{00}\bra{11} + (1-p) |11\rangle \bra{00} + |11\rangle \bra{11} ) = \rho' \\
+  \end{split}
+\end{equation}
+
+The distance between the $r$-image of the mapping $1 \mapsto \frac{1}{2} (|00\rangle \bra{00} + \ket{00}\bra{11} + |11\rangle \bra{00} + |11\rangle \bra{11})$ and the mapping $1 \mapsto \frac{1}{2} (|00\rangle \bra{00} + (1-p) \ket{00}\bra{11} + (1-p) |11\rangle \bra{00} + |11\rangle \bra{11} )$ is given by: $f(p)= \lVert\frac{p}{2}(\ket{00}\bra{11}+|11\rangle \bra{00})\rVert_{1}$. Therefore, attending to \autoref{eq:norm_iso_r}, $\lVert \rho-\rho'(p) \rVert_{\diamondsuit} = f(p)$.
+\begin{equation}
+  \begin{split}
+    \quad&f(p) = \left\lVert\frac{p}{2}\left(\ket{00}\bra{11}+|11\rangle \bra{00}\right)\right\rVert_{1} \\
+   = \quad &  \text{tr}\left(\sqrt{\frac{p^{2}}{4}(\ket{00}\bra{11}+|11\rangle \bra{00})(\ket{00}\bra{11}+|11\rangle \bra{00})^{\dag}}\right)  \quad & \{\lVert \rVert_{1} \text{ defn. for matrices}\} \\
+   =  \quad &  \text{tr} \left(\sqrt{ \frac{p^{2}}{4} (\ket{00}\bra{00}+|11\rangle \bra{11})} \right) & \\
+    =  \quad &  \text{tr} \left( \frac{p}{2}(\ket{00}\bra{00}+|11\rangle \bra{11}) \right) & \{ \text{\autoref{eq:apply_f_diag}}\} \\
+    =  \quad &  \frac{p}{2} + \frac{p}{2} = p & \\
+  \end{split}
+\end{equation}
+
+Therefore, the distance between the ideal and noisy implementations of the EPR state is given by $\lVert \rho-\rho'(p) \rVert_{\diamondsuit} = p$.
+
+Next, via the metric deductive system in \autoref{fig:metric deductive system}, it is easily verified that for an error $p$,
+\begin{equation}
+\begin{split}
+    &q: \text{qubit}  \triangleright  I (q) =_{p} q: \text{qubit} \triangleright D_{p} (q)   \\    
+\end{split}
+\end{equation}
+Therefore $\textbf{Identity} =_{p} \textbf{Identity}^{p}$ and finally, considering the entirety of the quantum teleportation protocol denoted as $\textbf{QTP}$, it follows that $\textbf{QTP} =_{p} \hspace{3pt}\textbf{QTP}^{p}$. This final metric equation indicates that by bounding the error associated with the application of decoherence with a specified probability $p$ to the initial qubit before measurement, it becomes feasible to limit the overall error of the entire quantum teleportation protocol. 
+
+
 \subsubsection{Noisy Quantum Teleportation: Amplitude Damping}
+Next, the amplitude damping channel is considered as a source of noise in the quantum teleportation protocol. The amplitude damping channel with probability $\gamma$ is described by the Kraus operators:
+
+\begin{equation}
+     A_{0}= \ket{0} \bra{0} + \sqrt{1-\gamma} \ket{1} \bra{1} ,  A_{1}= \sqrt{\gamma} \ket{0} \bra{1}
+\end{equation}
+
+Applying these Kraus operators to the density operator $\rho=|\alpha|^{2} |0\rangle \langle 0 | + \alpha \beta^{\dag} |0\rangle \langle 1 | + \alpha^{\dag} \beta |1\rangle \langle 0 | + |\beta|^{2} |1\rangle \langle 1 |$, the the resulting operator $\rho'$ is given by:
+\begin{equation} \label{eq:dephasing_result}
+     \rho' =  A_{0} \rho A_{0}^{\dag} + A_{1} \rho A_{1}^{\dag} = |\alpha|^{2}
+\end{equation}
+This shows that the dephasing channel with probability $p$ preserves the diagonal elements of the density matrix while attenuating the off-diagonal elements by a factor of $(1-p)$.
+
 
 \begin{figure} [H]
   \centering
@@ -970,11 +1029,11 @@ wire=c]{2}  \\
       position=below,anchor=north,yshift=-0.2cm}]{{\sc
       EPR}} & \qw  & \ctrl{1}& \qw & \qw & \targ{} & \qw & \qw & \meter{} & \setwiretype{c} & & & \ctrl[vertical
 wire=c]{1} \\
-      \lstick{$\ket{0}$}  &  \qw & \qw &  \targ{} & \qw &\qw&\qw & \qw & \qw& \qw & \qw & \qw &  \qw & \gate{X} & \qw & \gate{Z} & \qw & \qw   & \gate{A(\gamma)}\gategroup[1,steps=2,style={dashed,rounded
+      \lstick{$\ket{0}$}  &  \qw & \qw &  \targ{} & \qw &\qw&\qw & \qw & \qw& \qw & \qw & \qw &  \qw & \gate{X} & \qw & \gate{Z} & \qw & \qw   & \gate{A_{\gamma}}\gategroup[1,steps=2,style={dashed,rounded
       corners,fill=blue!20, inner
       xsep=2pt},background,label style={label
       position=below,anchor=north,yshift=-0.2cm}]{{\sc
-      { \hspace{40 pt} Amplitude Damping}}} & \qw
+      { \hspace{50 pt} Amplitude Damping}}} & \qw
  \end{quantikz}
   \caption{Quantum Teleportation Protocol: Amplitude Dampling with probability $\gamma$ after Correction.}
   \label{fig:teleport_amplitude_damping}
