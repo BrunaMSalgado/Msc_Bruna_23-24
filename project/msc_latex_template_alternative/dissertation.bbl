@@ -1,4 +1,4 @@
-\begin{thebibliography}{40}
+\begin{thebibliography}{43}
 \providecommand{\natexlab}[1]{#1}
 \providecommand{\url}[1]{\texttt{#1}}
 \expandafter\ifx\csname urlstyle\endcsname\relax
@@ -169,6 +169,21 @@ John Preskill.
 {Qiskit contributors}.
 \newblock Qiskit: An open-source framework for quantum computing, 2023.
 
+\bibitem[Salles et~al.(2008)Salles, de~Melo, Almeida, Hor-Meyll, Walborn,
+  Ribeiro, and Davidovich]{salles2008experimental}
+Alejo Salles, Fernando de~Melo, MP~Almeida, Malena Hor-Meyll, SP~Walborn,
+  PH~Souto Ribeiro, and Luiz Davidovich.
+\newblock Experimental investigation of the dynamics of entanglement: Sudden
+  death, complementarity, and continuous monitoring of the environment.
+\newblock \emph{Physical Review A}, 78\penalty0 (2):\penalty0 022322, 2008.
+
+\bibitem[Schlosshauer(2005)]{schlosshauer2005decoherence}
+Maximilian Schlosshauer.
+\newblock Decoherence, the measurement problem, and interpretations of quantum
+  mechanics.
+\newblock \emph{Reviews of Modern physics}, 76\penalty0 (4):\penalty0 1267,
+  2005.
+
 \bibitem[Selinger(2004)]{selinger2004towards}
 Peter Selinger.
 \newblock Towards a quantum programming language.
@@ -226,6 +241,13 @@ Joel~J Wallman and Joseph Emerson.
 \newblock Noise tailoring for scalable quantum computation via randomized
   compiling.
 \newblock \emph{Physical Review A}, 94\penalty0 (5):\penalty0 052325, 2016.
+
+\bibitem[Wang et~al.(2011)Wang, Jiang, Zhang, Zhang, and Zhang]{Wang_2011}
+Jing Wang, Li~Jiang, Han Zhang, Hanzhuang Zhang, and Liquan Zhang.
+\newblock Fidelity of structured amplitude-damping channels.
+\newblock \emph{Physica Scripta}, 83\penalty0 (4):\penalty0 045008, mar 2011.
+\newblock \doi{10.1088/0031-8949/83/04/045008}.
+\newblock URL \url{https://dx.doi.org/10.1088/0031-8949/83/04/045008}.
 
 \bibitem[Watrous(2018)]{watrous2018theory}
 John Watrous.

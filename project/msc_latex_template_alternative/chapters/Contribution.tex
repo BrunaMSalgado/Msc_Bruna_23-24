@@ -902,8 +902,10 @@ Regarding the remaining steps of the protocol,
 
 \subsubsection{Noisy Quantum Teleportation: Decoherence}
 
-To study decoherence in a quantum channel within the presented metric deductive system, one can consider the application of a dephasing channel in the quantum teleportation protocol with a certain probability $p$.
+%\cite{zurek1991decoherence}
 
+Realistic quantum systems are never isolated, but are immersed
+in the surrounding environment and interact continuously with it [\cite{schlosshauer2005decoherence}]. Decoherence can be seen as the consequence of that  `openness' of quantum systems to their  environments .  To study decoherence in a quantum channel within the presented metric deductive system, one can consider the application of a dephasing channel in the quantum teleportation protocol with a certain probability $p$.
 
 The Kraus operators of the dephasing channel with probability $p$ are expressed as:
 \begin{equation}
@@ -997,15 +999,20 @@ Therefore $\textbf{Identity} =_{p} \textbf{Identity}^{p}$ and finally, consideri
 
 
 \subsubsection{Noisy Quantum Teleportation: Amplitude Damping}
-Next, the amplitude damping channel is considered as a source of noise in the quantum teleportation protocol. The amplitude damping channel with probability $\gamma$ is described by the Kraus operators:
+Next, the amplitude-damping channel is considered as a source of noise in the quantum teleportation protocol. Similarly to the dephasing channel, the amplitude damping channel serves as a model illustrating the dissipation of energy between a qubit and its environment. An example of this type of noise is found in the spontaneous emission of a photon by a two-level atom into an electromagnetic field environment with either a finite or infinite number of modes at zero temperature [\cite{salles2008experimental, Wang_2011}].
 
+
+The amplitude damping channel with probability $\gamma$ is described by the Kraus operators:
 \begin{equation}
      A_{0}= \ket{0} \bra{0} + \sqrt{1-\gamma} \ket{1} \bra{1} ,  A_{1}= \sqrt{\gamma} \ket{0} \bra{1}
 \end{equation}
 
 Applying these Kraus operators to the density operator $\rho=|\alpha|^{2} |0\rangle \langle 0 | + \alpha \beta^{\dag} |0\rangle \langle 1 | + \alpha^{\dag} \beta |1\rangle \langle 0 | + |\beta|^{2} |1\rangle \langle 1 |$, the the resulting operator $\rho'$ is given by:
 \begin{equation} \label{eq:dephasing_result}
-     \rho' =  A_{0} \rho A_{0}^{\dag} + A_{1} \rho A_{1}^{\dag} = |\alpha|^{2}
+  \begin{split}
+     \rho' & =  A_{0} \rho A_{0}^{\dag} + A_{1} \rho A_{1}^{\dag} \\
+     & = (|\alpha|^{2} + \gamma |\beta|^{2}) \ket{0}\bra{0} + \sqrt{1-\gamma} \hspace{1pt} \alpha \beta^{\dag} \ket{0}\bra{1} + \sqrt{1-\gamma} \hspace{1pt} \alpha^{\dag} \beta \ket{1}\bra{0} + (1-\gamma) |\beta|^{2} \ket{1}\bra{1}
+  \end{split}
 \end{equation}
 This shows that the dephasing channel with probability $p$ preserves the diagonal elements of the density matrix while attenuating the off-diagonal elements by a factor of $(1-p)$.
 
