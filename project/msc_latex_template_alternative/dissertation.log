@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.141592653-2.6-1.40.25 (MiKTeX 24.1) (preloaded format=pdflatex 2024.2.8)  11 MAR 2024 20:57
+This is pdfTeX, Version 3.141592653-2.6-1.40.25 (MiKTeX 24.1) (preloaded format=pdflatex 2024.2.8)  12 MAR 2024 21:53
 entering extended mode
  restricted \write18 enabled.
  file:line:error style messages enabled.
@@ -1827,7 +1827,7 @@ Underfull \vbox (badness 10000) has occurred while \output is active []
  [13]
 Package hyperref Info: bookmark level for unknown todo defaults to 0 on input line 464.
 
-Overfull \hbox (99.33127pt too wide) detected at line 523
+Overfull \hbox (99.33127pt too wide) detected at line 531
  $[][]$ 
  []
 
@@ -1992,70 +1992,99 @@ Overfull \hbox (2.04366pt too wide) detected at line 895
  $[][]$  
  []
 
-[34] [35] [36] [37]
-Overfull \hbox (3.09543pt too wide) in paragraph at lines 1010--1011
+[34] [35] [36]
+Underfull \vbox (badness 1642) has occurred while \output is active []
+
+ [37]
+Overfull \hbox (3.09543pt too wide) in paragraph at lines 1012--1013
 []\T1/SourceSansPro-TLF/regular/n/12 Applying these Kraus op-er-a-tors to the den-sity op-er-a-tor $\OML/cmm/m/it/12 ^^Z \OT1/cmr/m/n/12 = \OMS/cmsy/m/n/12 j\OML/cmm/m/it/12 \OMS/cmsy/m/n/12 j[]j\OT1/cmr/m/n/12 0\OMS/cmsy/m/n/12 ih\OT1/cmr/m/n/12 0\OMS/cmsy/m/n/12 j \OT1/cmr/m/n/12 + \OML/cmm/m/it/12 ^^L[]\OMS/cmsy/m/n/12 j\OT1/cmr/m/n/12 0\OMS/cmsy/m/n/12 ih\OT1/cmr/m/n/12 1\OMS/cmsy/m/n/12 j \OT1/cmr/m/n/12 + \OML/cmm/m/it/12 []^^L\OMS/cmsy/m/n/12 j\OT1/cmr/m/n/12 1\OMS/cmsy/m/n/12 ih\OT1/cmr/m/n/12 0\OMS/cmsy/m/n/12 j \OT1/cmr/m/n/12 +
+ []
+
+[38]
+Overfull \hbox (7.80183pt too wide) in paragraph at lines 1077--1078
+[]\T1/SourceSansPro-TLF/regular/n/12 Given [][]Equa-tion 4.51[][][], des-ig-nat-ing $[] []$ as the state $\OT1/cmr/m/n/12 (\OMS/cmsy/m/n/12 j\OML/cmm/m/it/12 \OMS/cmsy/m/n/12 j[] \OT1/cmr/m/n/12 + \OML/cmm/m/it/12 ^^M\OMS/cmsy/m/n/12 j\OML/cmm/m/it/12 ^^L\OMS/cmsy/m/n/12 j[]\OT1/cmr/m/n/12 ) [] [] + [] \OML/cmm/m/it/12 ^^L[] [] [] \OT1/cmr/m/n/12 +
+ []
+
+
+Overfull \hbox (38.15503pt too wide) detected at line 1084
+ $\OML/cmm/m/it/12 ^^Z \OMS/cmsy/m/n/12 ^^@ \OML/cmm/m/it/12 ^^Z[] \OT1/cmr/m/n/12 = [][][]([] [] \OMS/cmsy/m/n/12 ^^@ j\OML/cmm/m/it/12  []\OMS/cmsy/m/n/12 ih\OML/cmm/m/it/12  []\OMS/cmsy/m/n/12 j\OT1/cmr/m/n/12 )\OML/cmm/m/it/12 ; []\OT1/cmr/m/n/12 ([] [] \OMS/cmsy/m/n/12 ^^@ j\OML/cmm/m/it/12  []\OMS/cmsy/m/n/12 ih\OML/cmm/m/it/12  []\OMS/cmsy/m/n/12 j\OT1/cmr/m/n/12 )[]\OML/cmm/m/it/12 ; [][]\OT1/cmr/m/n/12 ([] [] \OMS/cmsy/m/n/12 ^^@ j\OML/cmm/m/it/12  []\OMS/cmsy/m/n/12 ih\OML/cmm/m/it/12  []\OMS/cmsy/m/n/12 j\OT1/cmr/m/n/12 )\OML/cmm/m/it/12 ; []\OT1/cmr/m/n/12 ([] [] \OMS/cmsy/m/n/12 ^^@ j\OML/cmm/m/it/12  []\OMS/cmsy/m/n/12 ih\OML/cmm/m/it/12  []\OMS/cmsy/m/n/12 j\OT1/cmr/m/n/12 )[][]$  
+ []
+
+
+LaTeX Warning: Reference `eq:Bloch_vector' on page 39 undefined on input line 1093.
+
+[39
+pdfTeX warning (ext4): destination with the same identifier (name{equation.4.4.54}) has been already used, duplicate ignored
+<argument> ...shipout:D \box_use:N \l_shipout_box 
+                                                  \__shipout_drop_firstpage_...
+l.1132   \end{equation}
+                       ]
+Overfull \hbox (61.49208pt too wide) detected at line 1145
+ $[][]$  
  []
 
 
 Underfull \vbox (badness 10000) has occurred while \output is active []
 
- [38]
-Overfull \hbox (2.67719pt too wide) in paragraph at lines 1118--1119
+ [40]
+Underfull \vbox (badness 10000) has occurred while \output is active []
+
+ [41]
+Overfull \hbox (2.67719pt too wide) in paragraph at lines 1220--1221
  [][] 
  []
 
-) (chapters/Applications.tex [39] [40]
+) (chapters/Applications.tex [42]
 Chapter 5.
-) (chapters/ConclusionsAndFutureWork.tex [41
+) (chapters/ConclusionsAndFutureWork.tex [43
 
-] [42
+] [44
 
 ]
 Chapter 6.
-) (chapters/PlannedSchedule.tex [43] [44
+) (chapters/PlannedSchedule.tex [45] [46
 
 ]
 Chapter 7.
 \@gls@deffile=\write12
 \openout12 = `dissertation.glsdefs'.
 
-) (dissertation.bbl [45] [46
+) (dissertation.bbl [47] [48
 
-] [47]
+] [49]
 Underfull \hbox (badness 1394) in paragraph at lines 144--151
 []\T1/SourceSansPro-TLF/regular/n/12 Prakash Mu-rali, Jonathan M Baker, Ali Javadi-Abhari, Fred-eric T Chong, and Mar-garet
  []
 
-[48] [49]) [50]
+[50] [51]) [52]
 runsystem(makeindex dissertation.idx)...executed safely (allowed).
 
- (dissertation.ind) [51
+ (dissertation.ind) [53
 
 
-] [52] (appendices/SupportWork.tex
+] [54] (appendices/SupportWork.tex
 Appendix A.
-) (appendices/DetailsOfResults.tex [53
+) (appendices/DetailsOfResults.tex [55
 
-] [54
+] [56
 
 ]
 Appendix B.
-) (appendices/Listings.tex [55] [56
+) (appendices/Listings.tex [57] [58
 
 ]
 Appendix C.
-) (appendices/Tooling.tex [57] [58
+) (appendices/Tooling.tex [59] [60
 
 ]
 Appendix D.
-) (covers/BackCover.tex [59
-\indexentry{\LaTeX  }{59}
-\indexentry{TeX!TeX Users Group (TUG)}{59}
-\indexentry{TeX!TeX Users Group (TUG)}{59}
-] [60
+) (covers/BackCover.tex [61
+\indexentry{\LaTeX  }{61}
+\indexentry{TeX!TeX Users Group (TUG)}{61}
+\indexentry{TeX!TeX Users Group (TUG)}{61}
+] [62
 
-] [61
+] [63
 
 ]
 pdfTeX warning (ext4): destination with the same identifier (name{page.1}) has been already used, duplicate ignored
@@ -2078,10 +2107,10 @@ Package rerunfilecheck Info: File `dissertation.out' has not changed.
 (rerunfilecheck)             Checksum: 15C3EE1B6A2F07CCE1193B0560E9515B;6014.
  ) 
 Here is how much of TeX's memory you used:
- 52303 strings out of 474542
- 1093288 string characters out of 5744447
- 2154978 words of memory out of 5000000
- 73328 multiletter control sequences out of 15000+600000
+ 52315 strings out of 474542
+ 1093497 string characters out of 5744447
+ 2099978 words of memory out of 5000000
+ 73332 multiletter control sequences out of 15000+600000
  772489 words of font info for 100 fonts, out of 8000000 for 9000
  1141 hyphenation exceptions out of 8191
  109i,36n,108p,2505b,1397s stack positions out of 10000i,1000n,20000p,200000b,200000s
@@ -2092,9 +2121,9 @@ pdfTeX warning (dest): name{glo:pdr} has been referenced but does not exist, rep
 pdfTeX warning (dest): name{glo:soa} has been referenced but does not exist, replaced by a fixed one
 
  <C:\Users\mona_\AppData\Local\MiKTeX\fonts/pk/ljfour/jknappen/ec/dpi600\ecrm1200.pk> <C:\Users\mona_\AppData\Local\MiKTeX\fonts/pk/ljfour/jknappen/ec/dpi600\ectt1200.pk><C:/Users/mona_/AppData/Local/Programs/MiKTeX/fonts/type1/adobe/sourcesanspro/SourceSansPro-Bold.pfb><C:/Users/mona_/AppData/Local/Programs/MiKTeX/fonts/type1/adobe/sourcesanspro/SourceSansPro-It.pfb><C:/Users/mona_/AppData/Local/Programs/MiKTeX/fonts/type1/adobe/sourcesanspro/SourceSansPro-Light.pfb><C:/Users/mona_/AppData/Local/Programs/MiKTeX/fonts/type1/adobe/sourcesanspro/SourceSansPro-Regular.pfb><C:/Users/mona_/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmex10.pfb><C:/Users/mona_/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmmi12.pfb><C:/Users/mona_/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmmi6.pfb><C:/Users/mona_/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmmi8.pfb><C:/Users/mona_/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmr12.pfb><C:/Users/mona_/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmr6.pfb><C:/Users/mona_/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmr8.pfb><C:/Users/mona_/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmsy10.pfb><C:/Users/mona_/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmsy6.pfb><C:/Users/mona_/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmsy8.pfb><C:/Users/mona_/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/symbols/msam10.pfb><C:/Users/mona_/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/symbols/msbm10.pfb><C:/Users/mona_/AppData/Local/Programs/MiKTeX/fonts/type1/public/hoekwater/stmary10.pfb>
-Output written on dissertation.pdf (82 pages, 1006547 bytes).
+Output written on dissertation.pdf (84 pages, 1019991 bytes).
 PDF statistics:
- 1151 PDF objects out of 1200 (max. 8388607)
- 265 named destinations out of 1000 (max. 500000)
+ 1177 PDF objects out of 1200 (max. 8388607)
+ 273 named destinations out of 1000 (max. 500000)
  380 words of extra memory for PDF output out of 10000 (max. 10000000)
 

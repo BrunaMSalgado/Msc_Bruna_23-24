@@ -880,7 +880,7 @@ Regarding the interpretation of the quantum teleportation protocol, considering 
 \end{equation}
 
 Regarding the remaining steps of the protocol, 
-\begin{equation}
+\begin{equation} \label{eq:teleport_measure}
   \begin{split}
     |\phi\rangle \langle \phi| = \quad & \frac{1}{4} (|00\rangle \langle 00| \otimes |\psi\rangle \langle \psi| + |00\rangle  \langle 01| \otimes |\psi\rangle \langle \psi| X + |00\rangle  \langle 10| \otimes |\psi\rangle \langle \psi| Z     \\ 
     & + |00\rangle  \langle 11| \otimes |\psi\rangle \langle \psi| ZX + X|01 \rangle \langle 00| \otimes |\psi\rangle \langle \psi| + |01 \rangle \langle 01| \otimes X|\psi\rangle \langle \psi|X    \\
@@ -890,7 +890,7 @@ Regarding the remaining steps of the protocol,
     & + |11 \rangle \langle 11| \otimes ZX|\psi\rangle \langle \psi| ZX) \\
     \xmapsto{ \text{meas } \otimes \hspace{1pt} \text{meas} \hspace{1pt}  \otimes \hspace{1pt} I} \quad & \Big(\Big(\frac{1}{4} |\psi\rangle \langle \psi|, \frac{1}{4} X|\psi\rangle \langle \psi|X\Big),(\frac{1}{4} Z|\psi\rangle \langle \psi|Z, \frac{1}{4}  XZ|\psi\rangle \langle \psi|ZX \Big)\Big) \\
     \xmapsto{\hspace{10pt}(CX, CX)\hspace{10pt}} \quad & \Big(\Big(\frac{1}{4} |\psi\rangle \langle \psi|, \frac{1}{4} |\psi\rangle \langle \psi|\Big),(\frac{1}{4} Z|\psi\rangle \langle \psi|Z, \frac{1}{4}  Z|\psi\rangle \langle \psi|Z \Big)\Big) \\ 
-     \xmapsto{\hspace{22pt} CZ \hspace{23pt}} \quad& \Big(\Big(\frac{1}{4} |\psi\rangle \langle \psi|, \frac{1}{4} |\psi\rangle \langle \psi|\Big),(\frac{1}{4} |\psi\rangle \langle \psi|, \frac{1}{4}  |\psi\rangle \langle \psi| \Big)\Big)
+     \xmapsto{\hspace{22pt} CZ \hspace{23pt}} \quad& \Big(\Big(\frac{1}{4} |\psi\rangle \langle \psi|, \frac{1}{4} |\psi\rangle \langle \psi|\Big),\Big(\frac{1}{4} |\psi\rangle \langle \psi|, \frac{1}{4}  |\psi\rangle \langle \psi| \Big)\Big)
   \end{split}
 \end{equation}
 
@@ -948,11 +948,14 @@ wire=c]{1} \\
   \label{fig:teleport_dephasing}
 \end{figure}
 
-In this case, to facilate the analysis, the quantum teleportion protocol is devided in four parts: EPR, BellMeasure, Identity and Correction. This entails the definition of an aditional function:
+In this case, to facilate the analysis, the quantum teleportion protocol is devided in four parts: EPR, BellMeasure, Identity and Correction. This entails the definition of an aditional function and respective version subjected to decoherence with probability $p$:
 \begin{equation*}
+  \begin{split}
   \textbf{Identity}: \hspace{5pt} \textit{qbit}  \multimap \textit{qbit} \\
+  \textbf{Identity}^{p}: \hspace{5pt} \textit{qbit}  \multimap \textit{qbit}
+  \end{split}
 \end{equation*}
-Considering the unitary operations $I: \textit{qubit} \xrightarrow{} \textit{qubit}$, and $D_{p}: \textit{qubit} \xrightarrow{}  \textit{qubit}$  the ideal version of this function, \textbf{Identity}, and its respective version subjected to decoherence with probability $p$, $\textbf{Identity}^{p}$,  are defined as follows:
+Considering the unitary operation $I: \textit{qubit} \xrightarrow{} \textit{qubit}$, and the operation $D_{p}: \textit{qubit} \xrightarrow{}  \textit{qubit}$  the ideal version of this function, \textbf{Identity}, and its respective version subjected to decoherence with probability $p$, $\textbf{Identity}^{p}$,  are defined as follows:
 \begin{align}
   &\textbf{Identity} =  q: \text{qubit}  \triangleright  I (q)  \\
   &\textbf{Identity}^{p} =  q: \text{qubit}  \triangleright  D_{p} (q)
@@ -980,9 +983,9 @@ The distance between the $r$-image of the mapping $1 \mapsto \frac{1}{2} (|00\ra
 \begin{equation}
   \begin{split}
     \quad&f(p) = \left\lVert\frac{p}{2}\left(\ket{00}\bra{11}+|11\rangle \bra{00}\right)\right\rVert_{1} \\
-   = \quad &  \text{tr}\left(\sqrt{\frac{p^{2}}{4}(\ket{00}\bra{11}+|11\rangle \bra{00})(\ket{00}\bra{11}+|11\rangle \bra{00})^{\dag}}\right)  \quad & \{\lVert \rVert_{1} \text{ defn. for matrices}\} \\
-   =  \quad &  \text{tr} \left(\sqrt{ \frac{p^{2}}{4} (\ket{00}\bra{00}+|11\rangle \bra{11})} \right) & \\
-    =  \quad &  \text{tr} \left( \frac{p}{2}(\ket{00}\bra{00}+|11\rangle \bra{11}) \right) & \{ \text{\autoref{eq:apply_f_diag}}\} \\
+   = \quad &  \text{Tr}\left(\sqrt{\frac{p^{2}}{4}(\ket{00}\bra{11}+|11\rangle \bra{00})(\ket{00}\bra{11}+|11\rangle \bra{00})^{\dag}}\right)  \quad & \{\lVert \rVert_{1} \text{ defn. for matrices}\} \\
+   =  \quad &  \text{Tr} \left(\sqrt{ \frac{p^{2}}{4} (\ket{00}\bra{00}+|11\rangle \bra{11})} \right) & \\
+    =  \quad &  \text{Tr} \left( \frac{p}{2}(\ket{00}\bra{00}+|11\rangle \bra{11}) \right) & \{ \text{\autoref{eq:apply_f_diag}}\} \\
     =  \quad &  \frac{p}{2} + \frac{p}{2} = p & \\
   \end{split}
 \end{equation}
@@ -995,8 +998,7 @@ Next, via the metric deductive system in \autoref{fig:metric deductive system}, 
     &q: \text{qubit}  \triangleright  I (q) =_{p} q: \text{qubit} \triangleright D_{p} (q)   \\    
 \end{split}
 \end{equation}
-Therefore $\textbf{Identity} =_{p} \textbf{Identity}^{p}$ and finally, considering the entirety of the quantum teleportation protocol denoted as $\textbf{QTP}$, it follows that $\textbf{QTP} =_{p} \hspace{3pt}\textbf{QTP}^{p}$. This final metric equation indicates that by bounding the error associated with the application of decoherence with a specified probability $p$ to the initial qubit before measurement, it becomes feasible to limit the overall error of the entire quantum teleportation protocol. 
-
+Therefore $\textbf{Identity} =_{p} \textbf{Identity}^{p}$ and finally, considering the entirety of the quantum teleportation protocol denoted as $\textbf{QTP}$, it follows that $\textbf{QTP} =_{p} \hspace{3pt}\textbf{QTP}^{p}$. This final metric equation indicates that by bounding the error associated with the application of decoherence with a specified probability $p$ to the initial qubit before measurement, it becomes feasible to limit the overall error of the entire quantum teleportation protocol. Moreover, it is interesting to observe that the error associated with the application of decoherence with a certain probability $p$ in one of the qubits corresponds exactly to that probability $p$.
 
 \subsubsection{Noisy Quantum Teleportation: Amplitude Damping}
 Next, the amplitude-damping channel is considered as a source of noise in the quantum teleportation protocol. Similarly to the dephasing channel, the amplitude damping channel serves as a model illustrating the dissipation of energy between a qubit and its environment. An example of this type of noise is found in the spontaneous emission of a photon by a two-level atom into an electromagnetic field environment with either a finite or infinite number of modes at zero temperature [\cite{salles2008experimental, Wang_2011}].
@@ -1014,9 +1016,9 @@ Applying these Kraus operators to the density operator $\rho=|\alpha|^{2} |0\ran
      & = (|\alpha|^{2} + \gamma |\beta|^{2}) \ket{0}\bra{0} + \sqrt{1-\gamma} \hspace{1pt} \alpha \beta^{\dag} \ket{0}\bra{1} + \sqrt{1-\gamma} \hspace{1pt} \alpha^{\dag} \beta \ket{1}\bra{0} + (1-\gamma) |\beta|^{2} \ket{1}\bra{1}
   \end{split}
 \end{equation}
-This shows that the dephasing channel with probability $p$ preserves the diagonal elements of the density matrix while attenuating the off-diagonal elements by a factor of $(1-p)$.
+It is possible to observe that as $\gamma$ increases, while the $\ket{1} \bra{1}$ component, alongside the non-diagonal elements, are attenuated, the $\ket{0} \bra{0}$ element is amplified. 
 
-
+The circuit representing the introduction of amplitude damping after the correction step is presented in \autoref{fig:teleport_amplitude_damping}.
 \begin{figure} [H]
   \centering
   \begin{quantikz} [column sep=0.2cm, row sep=0.5cm] 
@@ -1045,6 +1047,106 @@ wire=c]{1} \\
   \caption{Quantum Teleportation Protocol: Amplitude Dampling with probability $\gamma$ after Correction.}
   \label{fig:teleport_amplitude_damping}
 \end{figure}
+
+Once again, a fourth part of the teleportation protocol, the Identity, is considered to facilitate the error analysis. In this case, the erroneous version of the Identity function, $\textbf{Identity}^{\gamma}$, is defined as follows:
+\begin{equation}
+  \textbf{Identity}^{\gamma} =  q: \text{qubit}  \triangleright  A_{\gamma} (q)
+\end{equation}
+
+Considering the operation $A_{\gamma}: \textit{qubit} \xrightarrow{}  \textit{qubit}$  the ideal version of this function, \textbf{Identity}, and its respective version subjected to decoherence with probability $p$, $\textbf{Identity}^{p}$,  are defined as follows:
+\begin{align}
+  &\textbf{Identity}^{p} =  q: \text{qubit}  \triangleright  A_{\gamma} (q)
+\end{align}
+
+Designating the qubit to be teleported as $q_0$, one can conceptualize the teleportation procedure as follows:
+\begin{equation}
+  \begin{split}
+    \hspace{130 pt}& \text{pm} \hspace{5pt} \textbf{EPR}\hspace{1pt} (*) \hspace{5pt} \text{to} \hspace{5pt}  q_{1} \otimes q_{2}.  \notag \\
+    & \text{pm}\hspace{5pt} \textbf{BellMeasure} \hspace{1pt} (q_0,q_{1}) \hspace{5pt}  \text{to} \hspace{5pt} c_{0}\otimes c_{1} . \notag \\
+    & \text{pm} \hspace{5pt}  \textbf{Correction} \hspace{1pt} ( q_{2},  c_{0}, c_{1} ) \hspace{5pt} \text{to} \hspace{5pt}  q. \hspace{2pt}  \textbf{Identity}(q)
+  \end{split}
+\end{equation}
+
+The first step to evaluate the distance between the ideal quantum teleportation protocol and the one subjected to amplitude damping with probability $\gamma$ is to compute the distance between the density operators of the ideal and noisy implementations of the teleported qubit, denoted as $\rho$ and $\rho'$, respectively.
+
+As shown in \autoref{eq:teleport_measure}, the state of the teleported qubit is 
+\begin{equation*}
+  \rho = \Big(\Big(\frac{1}{4} |\psi\rangle \langle \psi|, \frac{1}{4} |\psi\rangle \langle \psi|\Big),(\frac{1}{4} |\psi\rangle \langle \psi|, \frac{1}{4}  |\psi\rangle \langle \psi| \Big)\Big)
+\end{equation*}
+
+Given \autoref{eq:dephasing_result}, designating $\ket{\psi'}\bra{\psi'}$ as the state $(|\alpha|^{2} + \gamma |\beta|^{2}) \ket{0}\bra{0} + \sqrt{1-\gamma} \hspace{1pt} \alpha \beta^{\dag} \ket{0}\bra{1} + \sqrt{1-\gamma} \hspace{1pt} \alpha^{\dag} \beta \ket{1}\bra{0} + (1-\gamma) |\beta|^{2} \ket{1}\bra{1}$, the state of the teleported qubit after amplitude damping with probability $\gamma$ is:
+\begin{equation*}
+  \rho' = \Big(\Big(\frac{1}{4} |\psi'\rangle \langle \psi'|, \frac{1}{4} |\psi'\rangle \langle \psi'|\Big),\Big(\frac{1}{4} |\psi'\rangle \langle \psi'|, \frac{1}{4}  |\psi'\rangle \langle \psi'| \Big)\Big)
+\end{equation*}
+As a result,
+\begin{equation}
+  \rho-\rho'  = \Big(\Big(\frac{1}{4} ( \ket{\psi}\bra{\psi} -|\psi'\rangle \langle \psi'|), \frac{1}{4} ( \ket{\psi}\bra{\psi} -|\psi'\rangle \langle \psi'|)\Big),\Big(\frac{1}{4} ( \ket{\psi}\bra{\psi} -|\psi'\rangle \langle \psi'|), \frac{1}{4}  ( \ket{\psi}\bra{\psi} -|\psi'\rangle \langle \psi'| )\Big)\Big)
+\end{equation}
+Where,
+\begin{equation}
+  \begin{split}
+   \ket{\psi}\bra{\psi} - \ket{\psi'}\bra{\psi'}  = & |\alpha|^{2} |0\rangle \langle 0 | + \alpha \beta^{\dag} |0\rangle \langle 1 | + \alpha^{\dag} \beta |1\rangle \langle 0 | + |\beta|^{2} |1\rangle \langle 1 |  - \big((|\alpha|^{2} + \gamma |\beta|^{2}) \ket{0}\bra{0}
+   \\ & + \sqrt{1-\gamma} \hspace{1pt} \alpha \beta^{\dag} \ket{0}\bra{1} + \sqrt{1-\gamma} \hspace{1pt} \alpha^{\dag} \beta \ket{1}\bra{0} + (1-\gamma) |\beta|^{2} \ket{1}\bra{1}\big)\\
+   = &  \gamma |\beta|^{2} |0\rangle \langle 0 | + (1-\sqrt{1-\gamma}) (\alpha \beta^{\dag} |0\rangle \langle 1 | + \alpha^{\dag} \beta |1\rangle \langle 0 |) - \gamma |\beta|^{2} |1\rangle \langle 1 |  
+  \end{split}
+\end{equation}
+Employing \autoref{eq:Bloch_vector}, the components of the Bloch vector of the state $\ket{\psi}\bra{\psi} - \ket{\psi'}\bra{\psi'}$ are as follows:
+\begin{equation}
+  \begin{split}
+    r_{x} = &  \text{Tr} \left[ \begin{pmatrix}
+  \gamma |\beta|^{2} & (1-\sqrt{1-\gamma}) \alpha \beta^{\dag}\\
+  (1-\sqrt{1-\gamma}) \alpha^{\dag} \beta & -\gamma |\beta|^{2} 
+  \end{pmatrix} \cdot \begin{pmatrix}
+  0&1\\
+  1&0
+  \end{pmatrix} \right]  \\
+  = & \text{Tr} \left[ \begin{pmatrix}
+  (1-\sqrt{1-\gamma}) \alpha \beta^{\dag} & \gamma |\beta|^{2}\\
+  -\gamma |\beta|^{2} & (1-\sqrt{1-\gamma}) \alpha^{\dag} \beta
+  \end{pmatrix} \right] = (1-\sqrt{1-\gamma}) (\alpha \beta^{\dag}  + \alpha^{\dag} \beta) \\
+  & \\
+  r_{y} = &  \text{Tr} \left[ \begin{pmatrix}
+  \gamma |\beta|^{2} & (1-\sqrt{1-\gamma}) \alpha \beta^{\dag}\\
+  (1-\sqrt{1-\gamma}) \alpha^{\dag} \beta & -\gamma |\beta|^{2}
+  \end{pmatrix} \cdot \begin{pmatrix}
+  0&-i\\
+  i&0
+  \end{pmatrix} \right]  \\
+  = & \text{Tr} \left[ \begin{pmatrix}
+  i (1-\sqrt{1-\gamma}) \alpha \beta^{\dag} & -i \gamma |\beta|^{2}\\
+  i \gamma |\beta|^{2} & -i (1-\sqrt{1-\gamma}) \alpha^{\dag} \beta
+  \end{pmatrix} \right] = i(1-\sqrt{1-\gamma}) (\alpha \beta^{\dag} - \alpha^{\dag} \beta) \\
+  & \\
+  r_{z} = &  \text{Tr} \left[ \begin{pmatrix}
+  \gamma |\beta|^{2} & (1-\sqrt{1-\gamma}) \alpha \beta^{\dag}\\
+  (1-\sqrt{1-\gamma}) \alpha^{\dag} \beta & - \gamma |\beta|^{2}
+  \end{pmatrix} \cdot \begin{pmatrix}
+  1&0\\
+  0&-1
+  \end{pmatrix} \right]  \\
+  = & \text{Tr} \left[ \begin{pmatrix}
+  \gamma |\beta|^{2} & -(1-\sqrt{1-\gamma}) \alpha \beta^{\dag}\\
+  (1-\sqrt{1-\gamma}) \alpha^{\dag} \beta & \gamma |\beta|^{2}
+  \end{pmatrix} \right] = \gamma |\beta|^{2} + \gamma |\beta|^{2} = 2\gamma |\beta|^{2}
+  \end{split}
+  \end{equation}
+  Consequently, and knowing that the distance between two vectors corresponds to their Euclidean distance, it follows that the distance between the ideal and noisy implementations of the teleported qubit corresponds to:
+\begin{equation}
+  \begin{split}
+  & \lVert \rho-\rho' \rVert_{\diamondsuit} \\
+  =&  \left\lVert \Big(\Big(\frac{1}{4} ( \ket{\psi}\bra{\psi} -|\psi'\rangle \langle \psi'|), \frac{1}{4} ( \ket{\psi}\bra{\psi} -|\psi'\rangle \langle \psi'|)\Big),\Big(\frac{1}{4} ( \ket{\psi}\bra{\psi} -|\psi'\rangle \langle \psi'|), \frac{1}{4}  ( \ket{\psi}\bra{\psi} -|\psi'\rangle \langle \psi'| )\Big)\Big)\right\rVert_{\diamondsuit} \\
+   = \hspace{2pt}&  4 \cdot \left\lVert \frac{1}{4} \ket{\psi}\bra{\psi} -|\psi'\rangle \langle \psi'|  \right\rVert_{\diamondsuit}  \hspace{237pt} \{\text{\autoref{eq:norm_tuple}}\} \\
+   = \hspace{2pt}&  4 \cdot \left\lVert \frac{1}{4} \left((1-\sqrt{1-\gamma}) (\alpha \beta^{\dag}  + \alpha^{\dag} \beta) ,i(1-\sqrt{1-\gamma}) (\alpha \beta^{\dag} - \alpha^{\dag} \beta),2\gamma |\beta|^{2}\right)  \right\rVert_{2} \\
+   = \hspace{2pt}&  4 \cdot \sqrt{ \frac{1}{16} \left( (1-\sqrt{1-\gamma}) (\alpha \beta^{\dag}  + \alpha^{\dag} \beta)\right)^{2} + \left(i(1-\sqrt{1-\gamma}) (\alpha \beta^{\dag} - \alpha^{\dag} \beta)\right)^{2} + \left(2\gamma |\beta|^{2}\right)^{2}} \hspace{10pt} \{\text{\autoref{eq:euclidean_distance}}\}\\
+   = \hspace{2pt}&  4 \cdot \sqrt{ \frac{1}{16} \left( (1-\sqrt{1-\gamma}) (\alpha \beta^{\dag}  + \alpha^{\dag} \beta)\right)^{2}  - \left((1-\sqrt{1-\gamma}) (\alpha \beta^{\dag} - \alpha^{\dag} \beta)\right)^{2} + \left(2\gamma |\beta|^{2}\right)^{2}} \\
+   = \hspace{2pt}&  4 \cdot \sqrt{ \frac{1}{16} \cdot 4 \cdot  (1-\sqrt{1-\gamma})^{2} |\alpha|^{2}|\beta|^{2} + 4 \gamma^{2} |\beta|^{4}} \\
+   = \hspace{2pt}&  2 \cdot \sqrt{  (1-\sqrt{1-\gamma})^{2} |\alpha|^{2}|\beta|^{2} + \gamma^{2} |\beta|^{4}} \\
+\end{split}
+\end{equation}
+Note that, as expected when $\gamma \xrightarrow{}0$ or $\beta \xrightarrow{}0$ ,$\lVert \rho-\rho' \rVert_{\diamondsuit}\xrightarrow{}0$, and when $\gamma \xrightarrow{}1$, $\lVert \rho-\rho' \rVert_{\diamondsuit}\xrightarrow{} 2 \left(\sqrt{|\alpha|^{2}|\beta|^{2} + \gamma^{2} |\beta|^{4}}\right)$.
+
+From this result, it follows that $\textbf{Identity} =_{ 2 \cdot \sqrt{  (1-\sqrt{1-\gamma})^{2} |\alpha|^{2}|\beta|^{2}+ \gamma^{2} |\beta|^{4}}} \textbf{Identity}^{\gamma}$. Thus, $ \\ \textbf{QTP} =_{2 \cdot \sqrt{  (1-\sqrt{1-\gamma})^{2} |\alpha|^{2}|\beta|^{2} + \gamma^{2} |\beta|^{4}}} \hspace{3pt}\textbf{QTP}^{\gamma}$.
+%Problema: Definir operações cptp não unitarias no quantum lambda calculus-> cena operadores de kraus
 
 \subsubsection{Noisy Quantum Teleportation: An erroneous implementation of the Hadamard gate}
 

@@ -468,7 +468,7 @@ A matrix $A \in \mathbb{C}^{n\times n}$ is said to be normal if $AA^{\dag} =  A^
 
 In the case of quantum lambda calculus, which combines classical and quantum features, it is natural to consider two distinct basic data types: a type $\textit{bit}$ of classical bits and a type $\textit{qbit}$ of quantum bits.  The interpretation of these types is defined as  $[\![\textit{bit}]\!]=\mathbb{C}\oplus\mathbb{C}$ and $[\![\textit{qbit}]\!]=\mathbb{C}^{2\cdot 2}$. The type $\mathbb{I}$ is interpreted as $[\![\mathbb{I}]\!]=\mathbb{C}$.
 
-The following operations are considered: $\textit{new} \hspace{2pt} 0  :\mathbb{I}  \multimap \textit{bit} $, $\textit{new} \hspace{2pt} 1  :\mathbb{I}  \multimap \textit{bit} $, $q : \textit{bit}  \multimap \textit{qbit}$, $\textit{meas}:\textit{qbit} \xrightarrow{} \textit{bit}$, and $\textit{U}:\textit{qbit},\ldots,\textit{qbit} \xrightarrow{} \textit{qbit}^{\otimes n}$. Their correspondent judgment interpretation is shown in \autoref{fig:interpret_ops}. 
+The following operations are considered: $\textit{new} \hspace{2pt} 0  :\mathbb{I}  \multimap \textit{bit} $, $\textit{new} \hspace{2pt} 1  :\mathbb{I}  \multimap \textit{bit} $, $q : \textit{bit}  \multimap \textit{qbit}$, $\textit{meas}:\textit{qbit} \xrightarrow{} \textit{bit}$, $\textit{U}:\textit{qbit},\ldots,\textit{qbit} \xrightarrow{} \textit{qbit}^{\otimes n}$, and $\textit{K}_{0}, \ldots, \textit{K}_{1} :\textit{qbit},\ldots,\textit{qbit} \xrightarrow{} \textit{qbit}^{\otimes n}$. Their correspondent judgment interpretation is shown in \autoref{fig:interpret_ops}. 
 
 
 
@@ -509,13 +509,21 @@ $\begin{aligned}
   &\rho \mapsto ( \text{Tr} (M_{0} \rho M_{0}^{\dag}), \text{Tr} (M_{1} \rho M_{1}^{\dag})) 
 \end{aligned}$
 \end{minipage} 
-\hspace{118pt}
+\hspace{0pt}
 \begin{minipage}[t]{0.45\textwidth}
 $\begin{aligned}
   [\![\textit{U} ]\!] : \hspace{2pt} & \llbracket \textit{qbit} \rrbracket^{\otimes n} \xrightarrow{} \llbracket 
   \textit{qbit} \rrbracket^{\otimes n} \\
   & \rho \mapsto U \rho \hspace{2pt}  U^{\dag}
 % & \rho,...,\rho_{n} \mapsto U \hspace{-2pt}\left(\bigotimes_{i=1}^{n}\rho_{i}\right ) U^{\dag}
+\end{aligned}$
+\end{minipage} 
+\hspace{-70pt}
+\begin{minipage}[t]{0.45\textwidth}
+$\begin{aligned}
+  [\![\textit{K}_{0}, \ldots,\textit{K}_{n}]\!] : \hspace{2pt} & \llbracket \textit{qbit} \rrbracket^{\otimes n} \xrightarrow{} \llbracket 
+  \textit{qbit} \rrbracket^{\otimes n} \\
+& \rho \mapsto \sum_{i} K_{i} \rho K_{i}^{\dag} 
 \end{aligned}$
 \end{minipage} \\
 \end{aligned}
