@@ -995,7 +995,7 @@ Therefore, the distance between the ideal and noisy implementations of the EPR s
 Next, via the metric deductive system in \autoref{fig:metric deductive system}, it is easily verified that for an error $p$,
 \begin{equation}
 \begin{split}
-    &q: \text{qubit}  \triangleright  I (q) =_{p} q: \text{qubit} \triangleright D_{p} (q)   \\    
+    &q: \text{qbit}  \triangleright  I (q) =_{p} q: \text{qbit} \triangleright D_{p} (q)   \\    
 \end{split}
 \end{equation}
 Therefore $\textbf{Identity} =_{p} \textbf{Identity}^{p}$ and finally, considering the entirety of the quantum teleportation protocol denoted as $\textbf{QTP}$, it follows that $\textbf{QTP} =_{p} \hspace{3pt}\textbf{QTP}^{p}$. This final metric equation indicates that by bounding the error associated with the application of decoherence with a specified probability $p$ to the initial qubit before measurement, it becomes feasible to limit the overall error of the entire quantum teleportation protocol. Moreover, it is interesting to observe that the error associated with the application of decoherence with a certain probability $p$ in one of the qubits corresponds exactly to that probability $p$.
@@ -1055,7 +1055,7 @@ Once again, a fourth part of the teleportation protocol, the Identity, is consid
 
 Considering the operation $A_{\gamma}: \textit{qubit} \xrightarrow{}  \textit{qubit}$  the ideal version of this function, \textbf{Identity}, and its respective version subjected to decoherence with probability $p$, $\textbf{Identity}^{p}$,  are defined as follows:
 \begin{align}
-  &\textbf{Identity}^{p} =  q: \text{qubit}  \triangleright  A_{\gamma} (q)
+  &\textbf{Identity}^{p} =  q: \text{qbit}  \triangleright  A_{\gamma} (q)
 \end{align}
 
 Designating the qubit to be teleported as $q_0$, one can conceptualize the teleportation procedure as follows:
@@ -1148,8 +1148,9 @@ Note that, as expected when $\gamma \xrightarrow{}0$ or $\beta \xrightarrow{}0$ 
 From this result, it follows that $\textbf{Identity} =_{ 2 \cdot \sqrt{  (1-\sqrt{1-\gamma})^{2} |\alpha|^{2}|\beta|^{2}+ \gamma^{2} |\beta|^{4}}} \textbf{Identity}^{\gamma}$. Thus, $ \\ \textbf{QTP} =_{2 \cdot \sqrt{  (1-\sqrt{1-\gamma})^{2} |\alpha|^{2}|\beta|^{2} + \gamma^{2} |\beta|^{4}}} \hspace{3pt}\textbf{QTP}^{\gamma}$.
 %Problema: Definir operações cptp não unitarias no quantum lambda calculus-> cena operadores de kraus
 
-\subsubsection{Noisy Quantum Teleportation: An erroneous implementation of the Hadamard gate}
+\subsubsection{Noisy Quantum Teleportation: An imperfect implementation of the Hadamard gate}
 
+Now, it will be considered an imperfect implementation of an Hadamard gate, denoted as $H^{\epsilon}$. In this example,$ H^{\epsilon}$ is regarded as the composition $R_{y}(\frac{\pi}{2})\cdot P(\pi + \epsilon)$. This type of imperfection is inevitable during the implementation of quantum gates.
 
 \begin{figure} [H]
   \centering
