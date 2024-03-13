@@ -466,9 +466,12 @@ A matrix $A \in \mathbb{C}^{n\times n}$ is said to be normal if $AA^{\dag} =  A^
 \section{Quantum Lambda Calculus}
 
 
+
+\todo[inline,size=\normalsize]{Adicionar os operadores CPTP que vou usar} %\label{eq:Bloch\_vector})}
+
 In the case of quantum lambda calculus, which combines classical and quantum features, it is natural to consider two distinct basic data types: a type $\textit{bit}$ of classical bits and a type $\textit{qbit}$ of quantum bits.  The interpretation of these types is defined as  $[\![\textit{bit}]\!]=\mathbb{C}\oplus\mathbb{C}$ and $[\![\textit{qbit}]\!]=\mathbb{C}^{2\cdot 2}$. The type $\mathbb{I}$ is interpreted as $[\![\mathbb{I}]\!]=\mathbb{C}$.
 
-The following operations are considered: $\textit{new} \hspace{2pt} 0  :\mathbb{I}  \multimap \textit{bit} $, $\textit{new} \hspace{2pt} 1  :\mathbb{I}  \multimap \textit{bit} $, $q : \textit{bit}  \multimap \textit{qbit}$, $\textit{meas}:\textit{qbit} \xrightarrow{} \textit{bit}$, $\textit{U}:\textit{qbit},\ldots,\textit{qbit} \xrightarrow{} \textit{qbit}^{\otimes n}$, and $\textit{K}_{0}, \ldots, \textit{K}_{1} :\textit{qbit},\ldots,\textit{qbit} \xrightarrow{} \textit{qbit}^{\otimes n}$. Their correspondent judgment interpretation is shown in \autoref{fig:interpret_ops}. 
+The following operations are considered: $\textit{new} \hspace{2pt} 0  :\mathbb{I}  \multimap \textit{bit} $, $\textit{new} \hspace{2pt} 1  :\mathbb{I}  \multimap \textit{bit} $, $q : \textit{bit}  \multimap \textit{qbit}$, $\textit{meas}:\textit{qbit} \xrightarrow{} \textit{bit}$, and $\textit{U}:\textit{qbit},\ldots,\textit{qbit} \xrightarrow{} \textit{qbit}^{\otimes n}$. Their correspondent judgment interpretation is shown in \autoref{fig:interpret_ops}. . 
 
 
 

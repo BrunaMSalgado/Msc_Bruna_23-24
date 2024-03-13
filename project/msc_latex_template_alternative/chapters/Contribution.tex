@@ -1,6 +1,9 @@
 \chapter{Contribution}
 
-Main result(s) and their scientific evidence
+
+
+\todo[inline,size=\normalsize]{Por tudo relativo a operacoes direito: interpretacao e definir operacoes nao unitarias}
+
 
 \section{Introduction}
 
@@ -867,11 +870,12 @@ Considering the unitary operations $H: \textit{qubit} \xrightarrow{}  \textit{qu
  
 
 Regarding the interpretation of the quantum teleportation protocol, considering $\rho = |\phi\rangle \langle \phi|$ as the state of the system before measurement, $|\phi\rangle$  is calculated as follows, where $|\psi\rangle$ is the state of the qubit to be teleported:
-\begin{equation}
+\begin{equation}  \label{eq:teleport_1}
   \begin{split}
 &  |\psi\rangle \otimes |0\rangle \otimes |0\rangle = ( \alpha|0\rangle + \beta|1\rangle) \otimes |0\rangle \otimes |0\rangle  \\
 \xmapsto{ \hspace{5pt} I\otimes H \otimes I  \hspace{5pt}} \quad &  ( \alpha|0\rangle + \beta|1\rangle) \otimes \frac{1}{\sqrt{2}} (|00\rangle + |10\rangle )  \\
-\xmapsto{I \hspace{1pt} \otimes \hspace{1pt} CNOT} \quad & ( \alpha|0\rangle + \beta|1\rangle) \otimes \frac{1}{\sqrt{2}} (|00\rangle + |11\rangle ) = \frac{1}{\sqrt{2}} (\alpha|000\rangle + \alpha|011\rangle + \beta|110\rangle + \beta|101\rangle)\\
+\xmapsto{I \hspace{1pt} \otimes \hspace{1pt} CNOT} \quad & ( \alpha|0\rangle + \beta|1\rangle) \otimes \frac{1}{\sqrt{2}} (|00\rangle + |11\rangle ) = \frac{1}{\sqrt{2}} (\alpha|000\rangle + \alpha|011\rangle + \beta|100\rangle + \beta|111\rangle)\\
+\xmapsto{ CNOT \hspace{1pt} \otimes \hspace{1pt} I } \quad &  \frac{1}{\sqrt{2}} (\alpha|000\rangle + \alpha|011\rangle + \beta|110\rangle + \beta|101\rangle)\\
  \xmapsto[]{\hspace{5pt} H \otimes I \otimes I \hspace{5pt}} \quad & \frac{1}{2} (\alpha |000\rangle +\alpha |001\rangle +  \alpha|011\rangle + \alpha|111\rangle + \beta|010\rangle - \beta|110\rangle + \beta|101\rangle - \beta|001\rangle )  \\
  = \quad & \frac{1}{2} (|00\rangle \otimes (\alpha |0\rangle + \beta|1\rangle ) + |01\rangle \otimes (\alpha |1\rangle + \beta|0\rangle) + |10\rangle \otimes (\alpha |0\rangle - \beta|1\rangle )   \\
   & + |11\rangle \otimes (\alpha |1\rangle - \beta|0\rangle)) \\
@@ -888,8 +892,8 @@ Regarding the remaining steps of the protocol,
     & + |10 \rangle \langle 01| \otimes Z|\psi\rangle \langle \psi| X + |10 \rangle \langle 10| \otimes Z|\psi\rangle \langle \psi| Z + |10 \rangle \langle 11| \otimes Z|\psi\rangle \langle \psi| ZX \\
     & + |00 \rangle \langle 11| \otimes |\psi\rangle \langle \psi| ZX + |01 \rangle \langle 11| \otimes X|\psi\rangle \langle \psi| ZX + |10 \rangle \langle 11| \otimes Z|\psi\rangle \langle \psi| ZX  \\
     & + |11 \rangle \langle 11| \otimes ZX|\psi\rangle \langle \psi| ZX) \\
-    \xmapsto{ \text{meas } \otimes \hspace{1pt} \text{meas} \hspace{1pt}  \otimes \hspace{1pt} I} \quad & \Big(\Big(\frac{1}{4} |\psi\rangle \langle \psi|, \frac{1}{4} X|\psi\rangle \langle \psi|X\Big),(\frac{1}{4} Z|\psi\rangle \langle \psi|Z, \frac{1}{4}  XZ|\psi\rangle \langle \psi|ZX \Big)\Big) \\
-    \xmapsto{\hspace{10pt}(CX, CX)\hspace{10pt}} \quad & \Big(\Big(\frac{1}{4} |\psi\rangle \langle \psi|, \frac{1}{4} |\psi\rangle \langle \psi|\Big),(\frac{1}{4} Z|\psi\rangle \langle \psi|Z, \frac{1}{4}  Z|\psi\rangle \langle \psi|Z \Big)\Big) \\ 
+    \xmapsto{ \text{meas } \otimes \hspace{1pt} \text{meas} \hspace{1pt}  \otimes \hspace{1pt} I} \quad & \Big(\Big(\frac{1}{4} |\psi\rangle \langle \psi|, \frac{1}{4} X|\psi\rangle \langle \psi|X\Big),\Big(\frac{1}{4} Z|\psi\rangle \langle \psi|Z, \frac{1}{4}  XZ|\psi\rangle \langle \psi|ZX \Big)\Big) \\
+    \xmapsto{\hspace{10pt}(CX, CX)\hspace{10pt}} \quad & \Big(\Big(\frac{1}{4} |\psi\rangle \langle \psi|, \frac{1}{4} |\psi\rangle \langle \psi|\Big),\Big(\frac{1}{4} Z|\psi\rangle \langle \psi|Z, \frac{1}{4}  Z|\psi\rangle \langle \psi|Z \Big)\Big) \\ 
      \xmapsto{\hspace{22pt} CZ \hspace{23pt}} \quad& \Big(\Big(\frac{1}{4} |\psi\rangle \langle \psi|, \frac{1}{4} |\psi\rangle \langle \psi|\Big),\Big(\frac{1}{4} |\psi\rangle \langle \psi|, \frac{1}{4}  |\psi\rangle \langle \psi| \Big)\Big)
   \end{split}
 \end{equation}
@@ -957,8 +961,8 @@ In this case, to facilate the analysis, the quantum teleportion protocol is devi
 \end{equation*}
 Considering the unitary operation $I: \textit{qubit} \xrightarrow{} \textit{qubit}$, and the operation $D_{p}: \textit{qubit} \xrightarrow{}  \textit{qubit}$  the ideal version of this function, \textbf{Identity}, and its respective version subjected to decoherence with probability $p$, $\textbf{Identity}^{p}$,  are defined as follows:
 \begin{align}
-  &\textbf{Identity} =  q: \text{qubit}  \triangleright  I (q)  \\
-  &\textbf{Identity}^{p} =  q: \text{qubit}  \triangleright  D_{p} (q)
+  &\textbf{Identity} =  q: \text{qubit}  \triangleright  I (q) : : \text{qubit} \\
+  &\textbf{Identity}^{p} =  q: \text{qubit}  \triangleright  D_{p} (q) :: \text{qubit}
 \end{align}
 
 Designating the qubit to be teleported as $q_0$, one can conceptualize the teleportation procedure as follows:
@@ -995,7 +999,7 @@ Therefore, the distance between the ideal and noisy implementations of the EPR s
 Next, via the metric deductive system in \autoref{fig:metric deductive system}, it is easily verified that for an error $p$,
 \begin{equation}
 \begin{split}
-    &q: \text{qbit}  \triangleright  I (q) =_{p} q: \text{qbit} \triangleright D_{p} (q)   \\    
+    &q: \text{qbit}  \triangleright  I (q) =_{p} q: \text{qbit} \triangleright D_{p} (q)  : \text{qubit} \\    
 \end{split}
 \end{equation}
 Therefore $\textbf{Identity} =_{p} \textbf{Identity}^{p}$ and finally, considering the entirety of the quantum teleportation protocol denoted as $\textbf{QTP}$, it follows that $\textbf{QTP} =_{p} \hspace{3pt}\textbf{QTP}^{p}$. This final metric equation indicates that by bounding the error associated with the application of decoherence with a specified probability $p$ to the initial qubit before measurement, it becomes feasible to limit the overall error of the entire quantum teleportation protocol. Moreover, it is interesting to observe that the error associated with the application of decoherence with a certain probability $p$ in one of the qubits corresponds exactly to that probability $p$.
@@ -1050,12 +1054,12 @@ wire=c]{1} \\
 
 Once again, a fourth part of the teleportation protocol, the Identity, is considered to facilitate the error analysis. In this case, the erroneous version of the Identity function, $\textbf{Identity}^{\gamma}$, is defined as follows:
 \begin{equation}
-  \textbf{Identity}^{\gamma} =  q: \text{qubit}  \triangleright  A_{\gamma} (q)
+  \textbf{Identity}^{\gamma} =  q: \text{qubit}  \triangleright  A_{\gamma} (q) : \text{qubit}
 \end{equation}
 
 Considering the operation $A_{\gamma}: \textit{qubit} \xrightarrow{}  \textit{qubit}$  the ideal version of this function, \textbf{Identity}, and its respective version subjected to decoherence with probability $p$, $\textbf{Identity}^{p}$,  are defined as follows:
 \begin{align}
-  &\textbf{Identity}^{p} =  q: \text{qbit}  \triangleright  A_{\gamma} (q)
+  &\textbf{Identity}^{p} =  q: \text{qbit}  \triangleright  A_{\gamma} : \text{qbit} (q)
 \end{align}
 
 Designating the qubit to be teleported as $q_0$, one can conceptualize the teleportation procedure as follows:
@@ -1150,7 +1154,8 @@ From this result, it follows that $\textbf{Identity} =_{ 2 \cdot \sqrt{  (1-\sqr
 
 \subsubsection{Noisy Quantum Teleportation: An imperfect implementation of the Hadamard gate}
 
-Now, it will be considered an imperfect implementation of an Hadamard gate, denoted as $H^{\epsilon}$. In this example,$ H^{\epsilon}$ is regarded as the composition $R_{y}(\frac{\pi}{2})\cdot P(\pi + \epsilon)$. This type of imperfection is inevitable during the implementation of quantum gates.
+Now, it will be considered an imperfect implementation of a Hadamard gate, denoted as $H^{\epsilon}$. Therefore, a new operation is added $H^{\epsilon}: \textit{qbit} \xrightarrow{} \textit{qbit}$ and it is postulated as an axiom that $q:\textit{qbit} \hspace{2pt} \triangleright H =_{\epsilon} H^{\epsilon}:\textit{qbit}$.
+ In this example, considering the Hadamard gate as the composition $R_y(\frac{\pi}{2}) \cdot P(\pi)$, $H^{\epsilon}$ is regarded as the composition $R_y(\frac{\pi}{2}) \cdot P(\pi+\delta)$. This imperfect implementation deviates from a precise rotation of $\pi$ radians along the $z$-axis,  rotating by $\pi+\delta$ radians instead.  This type of imperfection is inevitable during the implementation of quantum gates. The circuit representing the introduction of an erroneous Hadamard gate is presented in \autoref{fig:teleport_h}.
 
 \begin{figure} [H]
   \centering
@@ -1176,6 +1181,244 @@ wire=c]{1} \\
   \caption{Quantum Teleportation Protocol: Erroneous implementation of the Hadamard gate. $H^{\epsilon}$ is regarded as the composition $R_{y}(\frac{\pi}{2})\cdot P(\pi + \epsilon)$.}
   \label{fig:teleport_h}
 \end{figure}
+
+As usual, the initial step consists of evaluating the distance between the density operators of the ideal and noisy implementations of the Hadamard gate within each block. With respect to the EPR block, as presented in  \autoref{eq:teleport_1} the ideal state of the EPR pair is $\frac{1}{2} (|00\rangle \bra{00} + \ket{00}\bra{11} + |11\rangle \bra{00} + |11\rangle \bra{11})$. Regarding, the imperfect Hadamard gate one has that:
+\begin{equation}
+  \begin{split}
+    &  \ket{0} \otimes \ket{0}   \\
+\xmapsto{ \hspace{5pt}  H^{\epsilon} \otimes I  \hspace{5pt}} \quad & R_{y}\left(\frac{\pi}{2}\right)\cdot P(\pi + \epsilon) \ket{0} \otimes \ket{0} =R_{y}\left(\frac{\pi}{2}\right)\ket{0} \otimes \ket{0} =  \frac{1}{\sqrt{2}} (\ket{0} + \ket{1})  \otimes \ket{0} = \frac{1}{\sqrt{2}} (|00\rangle + |10\rangle )   \\
+\xmapsto{\hspace{1pt} CNOT \hspace{1pt}} \quad & \frac{1}{\sqrt{2}} (|00\rangle + |11\rangle) = \ket{\Phi} \\
+  \end{split}
+\end{equation}
+Therefore, the state of the EPR pair with an imperfect Hadamard gate is $\ket{\Phi} \bra{\Phi} = \frac{1}{2} (|00\rangle \bra{00} + \ket{00}\bra{11} + |11\rangle \bra{00} + |11\rangle \bra{11})$. Hence, the imperfect Hadamard gate does not affect the state of the EPR pair and, as a result, the distance between the ideal and noisy implementations of the EPR pair is zero, $\textbf{EPR}=_{0}\textbf{EPR}^{\epsilon}$.
+
+Next, it is necessary to repeat this exercise regarding the BellMeasure block. As shown in \autoref{eq:teleport_measure}, the ideal state of the BellMeasure block is $\\ \rho = \Big(\Big(\frac{1}{4} |\psi\rangle \langle \psi|, \frac{1}{4} X|\psi\rangle \langle \psi|X\Big),(\frac{1}{4} Z|\psi\rangle \langle \psi|Z, \frac{1}{4}  XZ|\psi\rangle \langle \psi|ZX \Big)\Big)$. Regarding the imperfect Hadamard gate, knowing that:
+\begin{equation}
+  \begin{split}
+    &\alpha \ket{0} + \beta \ket{1} \\
+    \xmapsto{ \hspace{2pt} H^{\epsilon} \hspace{2pt}} \quad & R_{y}\left(\frac{\pi}{2}\right)\cdot P(\pi + \epsilon) (\alpha \ket{0} + \beta \ket{1}) = R_{y}\left(\frac{\pi}{2}\right)\cdot \left( \alpha \ket{0} + e^{i(\pi+\epsilon)}\beta \ket{1} \right) \\
+    = \quad & R_{y}\left(\frac{\pi}{2}\right)\cdot \left( \alpha \ket{0} - e^{i\epsilon}\beta \ket{1} \right) = \frac{1}{\sqrt{2}} \left(\left( \alpha + e^{i\epsilon} \beta\right) \ket{0} + \left( \alpha - e^{\epsilon} \beta\right)  \ket{1} \right)\\
+  \end{split}
+\end{equation}
+It follows, that:
+\begin{equation}
+  \begin{split}
+    &  \ket{\psi} \otimes \ket{0} \otimes  \ket{0} \\
+    \xmapsto{ \hspace{10pt} \text{EPR} \hspace{10pt} } \quad &  \frac{1}{\sqrt{2}} (\alpha|000\rangle + \alpha|011\rangle + \beta|100\rangle + \beta|111\rangle)\\
+    \xmapsto{ CNOT \hspace{1pt} \otimes \hspace{1pt} I } \quad &  \frac{1}{\sqrt{2}} (\alpha|000\rangle + \alpha|011\rangle + \beta|110\rangle + \beta|101\rangle)\\ 
+    \xmapsto[]{\hspace{5pt} H^{\epsilon} \otimes I \otimes I \hspace{5pt}} \quad &  \frac{1}{2}  \left(\alpha  (\ket{000}+\ket{100}+\ket{011}+\ket{111}) + \beta e^{i\epsilon} (\ket{010}-\ket{110}+\ket{001}-\ket{101}) \right) \\
+    \quad & = \frac{1}{2}  \left(\alpha  (\ket{000}+\ket{100}+\ket{011}+\ket{111}) + \beta e^{i\epsilon} (\ket{010}-\ket{110}+\ket{001}-\ket{101}) \right)  \\
+    \quad & = \frac{1}{2} (|00\rangle \otimes (\alpha |0\rangle + \beta e^{i\epsilon}|1\rangle ) + |01\rangle \otimes (\alpha |1\rangle + e^{i\epsilon} \beta|0\rangle) + |10\rangle \otimes (\alpha |0\rangle - e^{i\epsilon}\beta|1\rangle ))\\
+  & + |11\rangle \otimes (\alpha |1\rangle - e^{i\epsilon} \beta|0\rangle))\\
+   \quad & = |00\rangle \otimes  P(\epsilon) |\psi\rangle  + |01\rangle \otimes X P(\epsilon)|\psi\rangle + |10\rangle \otimes Z  P(\epsilon) |\psi\rangle + |11\rangle \otimes XZ P(\epsilon) |\psi\rangle\\
+   & = |\phi'\rangle  \\
+  \end{split}
+\end{equation}
+
+Finally, measuring the first two qubits:
+\begin{equation}
+\begin{split}
+  |\phi'\rangle \langle \phi'|  \xmapsto{ \text{meas }  \otimes \hspace{1pt} \text{meas} \hspace{1pt}  \otimes \hspace{1pt} I} \hspace{2pt}& \Big(\Big(\frac{1}{4} P(\epsilon)|\psi\rangle \langle \psi| P^{\dag}(\epsilon), \frac{1}{4} XP(\epsilon)|\psi\rangle \langle \psi|XP^{\dag}(\epsilon)\Big),\\
+  &\Big(\frac{1}{4} ZP(\epsilon)|\psi\rangle \langle \psi|P^{\dag}(\epsilon)Z, \frac{1}{4}  XZP(\epsilon)|\psi\rangle \langle \psi|P^{\dag}(\epsilon)ZX \Big)\Big) = \rho'\\
+\end{split}
+\end{equation}
+Given that,
+\begin{equation}
+  \begin{split}
+    |\psi\rangle \langle \psi|- P(\epsilon)|\psi\rangle \langle \psi| P^{\dag}(\epsilon)= & |\alpha|^{2} |0\rangle \langle 0 | + \alpha \beta^{\dag} |0\rangle \langle 1 | + \alpha^{\dag} \beta |1\rangle \langle 0 | + |\beta|^{2} |1\rangle \langle 1 |  - \\
+    & (|\alpha|^{2} |0\rangle \langle 0| + e^{-i\epsilon}\alpha \beta^{\dag} |0\rangle \langle 1 | + e^{i\epsilon} \alpha^{\dag} \beta |1\rangle \langle 0 | + |\beta|^{2} |1\rangle \langle 1 |)\\
+ = & (1-e^{-i\epsilon}) \alpha \beta^{\dag} |0\rangle \langle 1 | + (1-e^{i\epsilon}) \alpha^{\dag} \beta |1\rangle \langle 0 | 
+  \end{split}
+\end {equation}
+\begin{equation}
+  \begin{split}
+    X\ket{\psi}\bra{\psi}X - XP(\epsilon)|\psi\rangle \langle \psi|XP^{\dag}(\epsilon) = & |\alpha|^{2} |1\rangle \langle 1 | + \alpha \beta^{\dag} |1\rangle \langle 0 | + \alpha^{\dag} \beta |0\rangle \langle 1 | + |\beta|^{2} |0\rangle \langle 0 |  - \\
+    & (|\alpha|^{2} |1\rangle \langle 1| + e^{-i\epsilon}\alpha \beta^{\dag} |1\rangle \langle 0 | + e^{i\epsilon} \alpha^{\dag} \beta |0\rangle \langle 1 | + |\beta|^{2} |0\rangle \langle 0 |)\\
+  = & (1-e^{-i\epsilon}) \alpha \beta^{\dag} |1\rangle \langle 0 | + (1-e^{i\epsilon}) \alpha^{\dag} \beta |0\rangle \langle 1 |
+  \end{split}
+\end {equation}
+\begin{equation}
+  \begin{split}
+    Z \ket{\psi}\bra{\psi}Z - ZP(\epsilon)|\psi\rangle \langle \psi|P^{\dag}(\epsilon)Z = & |\alpha|^{2} |0\rangle \langle 0 | - \alpha \beta^{\dag} |0\rangle \langle 1 | - \alpha^{\dag} \beta |1\rangle \langle 0 | + |\beta|^{2} |1\rangle \langle 1 |  - \\
+    & (|\alpha|^{2} |0\rangle \langle 0| - e^{-i\epsilon}\alpha \beta^{\dag} |0\rangle \langle 1 | - e^{i\epsilon} \alpha^{\dag} \beta |1\rangle \langle 0 | + |\beta|^{2} |1\rangle \langle 1 |)\\
+  = & (e^{-i\epsilon}-1) \alpha \beta^{\dag} |0\rangle \langle 1 | + (e^{i\epsilon}-1) \alpha^{\dag} \beta |1\rangle \langle 0 |
+  \end{split}
+\end {equation}
+\begin{equation}
+  \begin{split}
+    XZ \ket{\psi}\bra{\psi}ZX - XZP(\epsilon)|\psi\rangle \langle \psi|P^{\dag}(\epsilon)ZX = & |\alpha|^{2} |1\rangle \langle 1 | - \alpha \beta^{\dag} |1\rangle \langle 0 | - \alpha^{\dag} \beta |0\rangle \langle 1 | + |\beta|^{2} |0\rangle \langle 0 |  - \\
+    & (|\alpha|^{2} |1\rangle \langle 1| - e^{-i\epsilon}\alpha \beta^{\dag} |1\rangle \langle 0 | - e^{i\epsilon} \alpha^{\dag} \beta |0\rangle \langle 1 | + |\beta|^{2} |0\rangle \langle 0 |)\\
+  = & (e^{-i\epsilon}-1) \alpha \beta^{\dag} |1\rangle \langle 0 | + (e^{i\epsilon}-1) \alpha^{\dag} \beta |0\rangle \langle 1 |
+  \end{split}
+\end {equation}
+Consequently,
+\begin{equation}
+\begin{split}
+\rho-\rho' = & \Big(\Big(\frac{1}{4} |\psi\rangle \langle \psi| - \frac{1}{4} P(\epsilon)|\psi\rangle \langle \psi| P^{\dag}(\epsilon), \frac{1}{4} XP(\epsilon)|\psi\rangle \langle \psi|XP^{\dag}(\epsilon) - \frac{1}{4} XP(\epsilon)|\psi\rangle \langle \psi|XP^{\dag}(\epsilon)\Big),\\
+&\Big(\frac{1}{4} ZP(\epsilon)|\psi\rangle \langle \psi|P^{\dag}(\epsilon)Z - \frac{1}{4} ZP(\epsilon)|\psi\rangle \langle \psi|P^{\dag}(\epsilon)Z, \\
+& \frac{1}{4}P(\epsilon)  XZ|\psi\rangle \langle \psi|P^{\dag}(\epsilon)ZX - \frac{1}{4}  XZP(\epsilon) |\psi\rangle \langle \psi|P^{\dag}(\epsilon)ZX \Big)\Big)\\
+= &\Big(\Big(\frac{1}{4}(1-e^{-i\epsilon}) \alpha \beta^{\dag} |0\rangle \langle 1 | + \frac{1}{4}(1-e^{i\epsilon}) \alpha^{\dag} \beta |1\rangle \langle 0 |,\frac{1}{4}(1-e^{-i\epsilon}) \alpha \beta^{\dag} |1\rangle \langle 0 | + \frac{1}{4}(1-e^{i\epsilon}) \alpha^{\dag} \beta |0\rangle \langle 1 |\Big) , \\
+& \Big(\frac{1}{4}(e^{-i\epsilon}-1) \alpha \beta^{\dag} |0\rangle \langle 1 | + \frac{1}{4}(e^{i\epsilon}-1) \alpha^{\dag} \beta |1\rangle \langle 0 |, \frac{1}{4}(e^{-i\epsilon}-1) \alpha \beta^{\dag} |1\rangle \langle 0 | + \frac{1}{4}(e^{i\epsilon}-1) \alpha^{\dag} \beta |0\rangle \langle 1 | |\Big)\Big)\\
+= & \left(\left(\frac{1}{4}\sigma,\frac{1}{4}\sigma'\right),\left(\frac{1}{4}\sigma'',\frac{1}{4}\sigma'''\right)\right)
+\end{split}
+\end{equation}
+
+
+Employing \autoref{eq:Bloch_vector}, the components of the Bloch vector of each state $\sigma,\sigma',\sigma'',\sigma'''$ are as follows:
+
+\begin{equation}
+  \begin{split}
+    r_{x} = &  \text{Tr} \left[ \begin{pmatrix}
+ 0 & (1-e^{-i\epsilon})\alpha \beta^{\dag} \\
+ (1-e^{i\epsilon})\alpha^{\dag} \beta  & 0
+  \end{pmatrix} \cdot \begin{pmatrix}
+  0&1\\
+  1&0
+  \end{pmatrix} \right]  \\
+  = & \text{Tr} \left[ \begin{pmatrix}
+    (1-e^{-i\epsilon})\alpha \beta^{\dag}  & 0\\
+  0 &  (1-e^{i\epsilon})\alpha^{\dag} \beta
+  \end{pmatrix} \right] = (1-e^{-i\epsilon})\alpha \beta^{\dag}  + (1-e^{i\epsilon})\alpha^{\dag} \beta \\
+  r_{y} = &  \text{Tr} \left[ \begin{pmatrix}
+  0 & (1-e^{-i\epsilon})\alpha \beta^{\dag} \\
+  (1-e^{i\epsilon})\alpha^{\dag} \beta  & 0
+  \end{pmatrix} \cdot \begin{pmatrix}
+  0&-i\\
+  i&0
+  \end{pmatrix} \right]  \\
+  = & \text{Tr} \left[ \begin{pmatrix}
+    i(1-e^{-i\epsilon})\alpha \beta^{\dag}  & 0\\
+  0 &  -i(1-e^{i\epsilon})\alpha^{\dag} \beta
+  \end{pmatrix} \right] = i(1-e^{-i\epsilon})\alpha \beta^{\dag}  - i(1-e^{i\epsilon})\alpha^{\dag} \beta \\
+  r_{z} = &  \text{Tr} \left[ \begin{pmatrix}
+  0 & (1-e^{-i\epsilon})\alpha \beta^{\dag} \\
+  (1-e^{i\epsilon})\alpha^{\dag} \beta  & 0
+  \end{pmatrix} \cdot \begin{pmatrix}
+  1&0\\
+  0&-1
+  \end{pmatrix} \right]  \\
+  = & \text{Tr} \left[ \begin{pmatrix}
+    0&(1-e^{-i\epsilon})\alpha \beta^{\dag} \\
+    -(1-e^{i\epsilon})\alpha^{\dag} \beta  & 0
+  \end{pmatrix} \right] = 0 \\
+  \end{split}
+  \end{equation}
+
+  \begin{equation}
+    \begin{split}
+      r_{x} = &  \text{Tr} \left[ \begin{pmatrix}
+  0 & (1-e^{i\epsilon}) \alpha^{\dag} \beta  \\  
+  (1-e^{-i\epsilon}) \alpha \beta^{\dag}& 0
+  \end{pmatrix} \cdot \begin{pmatrix}
+  0&1\\
+  1&0
+  \end{pmatrix} \right]  \\
+  = & \text{Tr} \left[ \begin{pmatrix}
+    (1-e^{i\epsilon}) \alpha^{\dag} \beta  & 0\\
+  0 &  (1-e^{-i\epsilon}) \alpha \beta^{\dag}
+  \end{pmatrix} \right] = (1-e^{i\epsilon}) \alpha^{\dag} \beta + (1-e^{-i\epsilon}) \alpha \beta^{\dag} \\
+  r_{y} = &  \text{Tr} \left[ \begin{pmatrix}
+  0 & (1-e^{i\epsilon}) \alpha^{\dag} \beta  \\
+  (1-e^{-i\epsilon}) \alpha \beta^{\dag}& 0
+  \end{pmatrix} \cdot \begin{pmatrix}
+  0&-i\\
+  i&0
+  \end{pmatrix} \right]  \\
+  = & \text{Tr} \left[ \begin{pmatrix}
+    i(1-e^{i\epsilon}) \alpha^{\dag} \beta  & 0\\
+  0 &  -i(1-e^{-i\epsilon}) \alpha \beta^{\dag}
+  \end{pmatrix} \right] = i(1-e^{i\epsilon}) \alpha^{\dag} \beta  - i(1-e^{-i\epsilon}) \alpha \beta^{\dag} \\
+  r_{z} = &  \text{Tr} \left[ \begin{pmatrix}
+  0 & (1-e^{i\epsilon}) \alpha^{\dag} \beta  \\
+  (1-e^{-i\epsilon}) \alpha \beta^{\dag}& 0
+  \end{pmatrix} \cdot \begin{pmatrix}
+  1&0\\
+  0&-1
+  \end{pmatrix} \right]  \\
+  = & \text{Tr} \left[ \begin{pmatrix}
+    0&(1-e^{i\epsilon}) \alpha^{\dag} \beta  \\
+    -(1-e^{-i\epsilon}) \alpha \beta^{\dag}& 0
+  \end{pmatrix} \right] = 0 \\
+    \end{split}
+    \end{equation}
+
+\begin{equation}
+\begin{split}
+  r_{x} = &  \text{Tr} \left[ \begin{pmatrix}
+0 & (e^{-i\epsilon}-1) \alpha \beta^{\dag} \\
+(e^{i\epsilon}-1) \alpha^{\dag} \beta  & 0
+\end{pmatrix} \cdot \begin{pmatrix}
+0&1\\
+1&0
+\end{pmatrix} \right]  \\
+= & \text{Tr} \left[ \begin{pmatrix}
+  (e^{-i\epsilon}-1) \alpha \beta^{\dag}  & 0\\
+0 &  (e^{i\epsilon}-1) \alpha^{\dag} \beta
+\end{pmatrix} \right] = (e^{-i\epsilon}-1) \alpha \beta^{\dag}  + (e^{i\epsilon}-1) \alpha^{\dag} \beta \\
+r_{y} = &  \text{Tr} \left[ \begin{pmatrix}
+  0 & (e^{-i\epsilon}-1) \alpha \beta^{\dag} \\
+  (e^{i\epsilon}-1) \alpha^{\dag} \beta  & 0
+  \end{pmatrix} \cdot \begin{pmatrix}
+  0&-i\\
+  i&0
+  \end{pmatrix} \right]  \\
+  = & \text{Tr} \left[ \begin{pmatrix}
+    i(e^{-i\epsilon}-1) \alpha \beta^{\dag}  & 0\\
+  0 &  -i(e^{i\epsilon}-1) \alpha^{\dag} \beta
+  \end{pmatrix} \right] = i(e^{-i\epsilon}-1) \alpha \beta^{\dag}  - i(e^{i\epsilon}-1) \alpha^{\dag} \beta \\
+  r_{z} = &  \text{Tr} \left[ \begin{pmatrix}
+  0 & (e^{-i\epsilon}-1) \alpha \beta^{\dag} \\
+  (e^{i\epsilon}-1) \alpha^{\dag} \beta  & 0
+  \end{pmatrix} \cdot \begin{pmatrix}
+  1&0\\
+  0&-1
+  \end{pmatrix} \right]  \\
+  = & \text{Tr} \left[ \begin{pmatrix}
+    0&(e^{-i\epsilon}-1) \alpha \beta^{\dag} \\
+    -(e^{i\epsilon}-1) \alpha^{\dag} \beta  & 0
+  \end{pmatrix} \right] = 0 \\
+\end{split}
+\end{equation}
+
+\begin{equation}
+  \begin{split}
+    r_{x} = &  \text{Tr} \left[ \begin{pmatrix}
+0 & (e^{i\epsilon}-1) \alpha^{\dag} \beta  \\
+(e^{-i\epsilon}-1) \alpha \beta^{\dag}& 0
+\end{pmatrix} \cdot \begin{pmatrix}
+0&1\\
+1&0
+\end{pmatrix} \right]  \\
+= & \text{Tr} \left[ \begin{pmatrix}
+  (e^{i\epsilon}-1) \alpha^{\dag} \beta  & 0\\
+0 &  (e^{-i\epsilon}-1) \alpha \beta^{\dag}
+\end{pmatrix} \right] = (e^{i\epsilon}-1) \alpha^{\dag} \beta  + (e^{-i\epsilon}-1) \alpha \beta^{\dag} \\
+r_{y} = &  \text{Tr} \left[ \begin{pmatrix}
+  0 & (e^{i\epsilon}-1) \alpha^{\dag} \beta  \\
+  (e^{-i\epsilon}-1) \alpha \beta^{\dag}& 0
+  \end{pmatrix} \cdot \begin{pmatrix}
+  0&-i\\
+  i&0
+  \end{pmatrix} \right]  \\
+  = & \text{Tr} \left[ \begin{pmatrix}
+    i(e^{i\epsilon}-1) \alpha^{\dag} \beta  & 0\\
+  0 &  -i(e^{-i\epsilon}-1) \alpha \beta^{\dag}
+  \end{pmatrix} \right] = i(e^{i\epsilon}-1) \alpha^{\dag} \beta  - i(e^{-i\epsilon}-1) \alpha \beta^{\dag} \\
+  r_{z} = &  \text{Tr} \left[ \begin{pmatrix}
+  0 & (e^{i\epsilon}-1) \alpha^{\dag} \beta  \\
+  (e^{-i\epsilon}-1) \alpha \beta^{\dag}& 0
+  \end{pmatrix} \cdot \begin{pmatrix}
+  1&0\\
+  0&-1
+  \end{pmatrix} \right]  \\
+  = & \text{Tr} \left[ \begin{pmatrix}
+    0&(e^{i\epsilon}-1) \alpha^{\dag} \beta  \\
+    -(e^{-i\epsilon}-1) \alpha \beta^{\dag}& 0
+  \end{pmatrix} \right] = 0 \\
+  \end{split}
+\end{equation}
+
+
 
 \section{Discard Operation} \label{sec:discarding}
 

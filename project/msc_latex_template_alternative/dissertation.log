@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.141592653-2.6-1.40.25 (MiKTeX 24.1) (preloaded format=pdflatex 2024.2.8)  12 MAR 2024 22:12
+This is pdfTeX, Version 3.141592653-2.6-1.40.25 (MiKTeX 24.1) (preloaded format=pdflatex 2024.2.8)  13 MAR 2024 17:50
 entering extended mode
  restricted \write18 enabled.
  file:line:error style messages enabled.
@@ -1827,13 +1827,13 @@ Underfull \vbox (badness 10000) has occurred while \output is active []
  [13]
 Package hyperref Info: bookmark level for unknown todo defaults to 0 on input line 464.
 
-Overfull \hbox (99.33127pt too wide) detected at line 531
+Overfull \hbox (99.33127pt too wide) detected at line 534
  $[][]$ 
  []
 
 ) (chapters/ProblemAndChallenges.tex [14]
 Chapter 3.
-<images/UM.jpg, id=581, 1084.05pt x 1084.05pt>
+<images/UM.jpg, id=582, 1084.05pt x 1084.05pt>
 File: images/UM.jpg Graphic file (type jpg)
 <use images/UM.jpg>
 Package pdftex.def Info: images/UM.jpg  used on input line 8.
@@ -1853,23 +1853,23 @@ Package pdftex.def Info: images/UM.jpg  used on input line 25.
 ] [18] (chapters/Contribution.tex
 Chapter 4.
 
-Overfull \hbox (21.76161pt too wide) in paragraph at lines 21--22
+Overfull \hbox (21.76161pt too wide) in paragraph at lines 24--25
 [] []$\T1/SourceSansPro-TLF/regular/n/12 , where $\OMS/cmsy/m/n/12 ^^H$ \T1/SourceSansPro-TLF/regular/n/12 de-notes ad-di-tion mod-ulo 2. The quan-tum cir-cuit im-ple-ment-ing Deutsch's
  []
 
 [19
 
 ]
-Overfull \hbox (17.12372pt too wide) detected at line 58
+Overfull \hbox (17.12372pt too wide) detected at line 61
  $[][]$  
  []
 
 [20] [21]
 
-LaTeX Warning: Reference `eq:Bloch_vector' on page 22 undefined on input line 149.
+LaTeX Warning: Reference `eq:Bloch_vector' on page 22 undefined on input line 152.
 
 
-Overfull \hbox (7.0513pt too wide) in paragraph at lines 179--180
+Overfull \hbox (7.0513pt too wide) in paragraph at lines 182--183
 \T1/SourceSansPro-TLF/regular/n/12 con-stant func-tion, $[] \OT1/cmr/m/n/12 = [][][]$\T1/SourceSansPro-TLF/regular/n/12 ; oth-er-wise, $[] \OT1/cmr/m/n/12 =[] [][]$\T1/SourceSansPro-TLF/regular/n/12 . 
  []
 
@@ -1877,60 +1877,52 @@ Overfull \hbox (7.0513pt too wide) in paragraph at lines 179--180
 Underfull \vbox (badness 3229) has occurred while \output is active []
 
  [22]
-Overfull \hbox (195.36078pt too wide) in paragraph at lines 226--226
+Overfull \hbox (195.36078pt too wide) in paragraph at lines 229--229
 []$[]$ 
  []
 
 
-Overfull \hbox (28.74187pt too wide) in paragraph at lines 254--254
+Overfull \hbox (28.74187pt too wide) in paragraph at lines 257--257
 []$[]$ 
  []
 
 
-Overfull \hbox (13.28183pt too wide) in paragraph at lines 291--291
+Overfull \hbox (13.28183pt too wide) in paragraph at lines 294--294
 []$[]$ 
  []
 
 
-Overfull \hbox (16.6937pt too wide) in paragraph at lines 291--291
+Overfull \hbox (16.6937pt too wide) in paragraph at lines 294--294
 []$[]$ 
  []
 
 
-Overfull \hbox (316.33351pt too wide) in paragraph at lines 291--291
+Overfull \hbox (316.33351pt too wide) in paragraph at lines 294--294
 []$[]$ 
  []
 
 [23]
-Overfull \hbox (266.99078pt too wide) in paragraph at lines 350--350
+Overfull \hbox (266.99078pt too wide) in paragraph at lines 353--353
 []$[]$ 
  []
 
 [24]
 
 LaTeX Font Warning: Font shape `T1/SourceSansPro-TLF/m/scit' undefined
-(Font)              using `T1/SourceSansPro-TLF/m/sc' instead on input line 384.
+(Font)              using `T1/SourceSansPro-TLF/m/sc' instead on input line 387.
 
 
 LaTeX Font Warning: Font shape `T1/SourceSansPro-TLF/m/scit' undefined
-(Font)              using `T1/SourceSansPro-TLF/m/sc' instead on input line 388.
+(Font)              using `T1/SourceSansPro-TLF/m/sc' instead on input line 391.
 
 
-Overfull \hbox (12.45505pt too wide) in paragraph at lines 409--410
+Overfull \hbox (12.45505pt too wide) in paragraph at lines 412--413
 []\T1/SourceSansPro-TLF/regular/n/12 Futhermore, given the sub-mul-ti-plica-tive prop-erty of the op-er-a-tor norm, for any super-operators
  []
 
 [25]
 
 LaTeX Font Warning: Font shape `T1/SourceSansPro-TLF/m/scit' undefined
-(Font)              using `T1/SourceSansPro-TLF/m/sc' instead on input line 417.
-
-
-LaTeX Font Warning: Font shape `T1/SourceSansPro-TLF/m/scit' undefined
-(Font)              using `T1/SourceSansPro-TLF/m/sc' instead on input line 417.
-
-
-LaTeX Font Warning: Font shape `T1/SourceSansPro-TLF/m/scit' undefined
 (Font)              using `T1/SourceSansPro-TLF/m/sc' instead on input line 420.
 
 
@@ -1938,12 +1930,20 @@ LaTeX Font Warning: Font shape `T1/SourceSansPro-TLF/m/scit' undefined
 (Font)              using `T1/SourceSansPro-TLF/m/sc' instead on input line 420.
 
 
-Overfull \hbox (0.16577pt too wide) detected at line 460
+LaTeX Font Warning: Font shape `T1/SourceSansPro-TLF/m/scit' undefined
+(Font)              using `T1/SourceSansPro-TLF/m/sc' instead on input line 423.
+
+
+LaTeX Font Warning: Font shape `T1/SourceSansPro-TLF/m/scit' undefined
+(Font)              using `T1/SourceSansPro-TLF/m/sc' instead on input line 423.
+
+
+Overfull \hbox (0.16577pt too wide) detected at line 463
  $[][]$  
  []
 
 [26]
-Overfull \hbox (7.25737pt too wide) detected at line 483
+Overfull \hbox (7.25737pt too wide) detected at line 486
  $[][]$  
  []
 
@@ -1953,24 +1953,24 @@ Underfull \vbox (badness 10000) has occurred while \output is active []
  [27]
 
 LaTeX Font Warning: Font shape `T1/SourceSansPro-TLF/m/scit' undefined
-(Font)              using `T1/SourceSansPro-TLF/m/sc' instead on input line 511.
+(Font)              using `T1/SourceSansPro-TLF/m/sc' instead on input line 514.
 
 
 LaTeX Font Warning: Font shape `T1/SourceSansPro-TLF/m/scit' undefined
-(Font)              using `T1/SourceSansPro-TLF/m/sc' instead on input line 511.
+(Font)              using `T1/SourceSansPro-TLF/m/sc' instead on input line 514.
 
 
-Overfull \hbox (1.69264pt too wide) in paragraph at lines 526--527
+Overfull \hbox (1.69264pt too wide) in paragraph at lines 529--530
 []\T1/SourceSansPro-TLF/regular/n/12 Which is equiv-a-lent to show-ing that for any vec-tor spaces $\OML/cmm/m/it/12 V$\T1/SourceSansPro-TLF/regular/n/12 , $\OML/cmm/m/it/12 W$\T1/SourceSansPro-TLF/regular/n/12 , $\OML/cmm/m/it/12 U$\T1/SourceSansPro-TLF/regular/n/12 , and $\OML/cmm/m/it/12 Z$ \T1/SourceSansPro-TLF/regular/n/12 and super-operators
  []
 
 [28] [29] [30]
-Overfull \hbox (36.55727pt too wide) detected at line 713
+Overfull \hbox (36.55727pt too wide) detected at line 716
  $[][]$  
  []
 
 
-Overfull \hbox (0.82002pt too wide) in paragraph at lines 723--725
+Overfull \hbox (0.82002pt too wide) in paragraph at lines 726--728
 []\T1/SourceSansPro-TLF/regular/n/12 Finally, by [][]Lemma 4.4.5[][][], it can be de-duced that $[]\OT1/cmr/m/n/12 ([\OML/cmm/m/it/12 P; Q\OT1/cmr/m/n/12 ]\OML/cmm/m/it/12 ; \OT1/cmr/m/n/12 [\OML/cmm/m/it/12 P[]; Q[]\OT1/cmr/m/n/12 ]) \OMS/cmsy/m/n/12 ^^T []f[]\OT1/cmr/m/n/12 (\OML/cmm/m/it/12 P; P[]\OT1/cmr/m/n/12 )\OML/cmm/m/it/12 ; []\OT1/cmr/m/n/12 (\OML/cmm/m/it/12 Q; Q[]\OT1/cmr/m/n/12 )\OMS/cmsy/m/n/12 g$\T1/SourceSansPro-TLF/regular/n/12 ,
  []
 
@@ -1978,17 +1978,17 @@ Overfull \hbox (0.82002pt too wide) in paragraph at lines 723--725
 Underfull \vbox (badness 10000) has occurred while \output is active []
 
  [31]
-Overfull \hbox (16.80399pt too wide) in paragraph at lines 752--753
+Overfull \hbox (16.80399pt too wide) in paragraph at lines 755--756
 []\T1/SourceSansPro-TLF/regular/n/12 Therefore, by [][]Lemma 4.4.5[][][], it can be de-duced that $[]\OT1/cmr/m/n/12 ([\OML/cmm/m/it/12 P; Q\OT1/cmr/m/n/12 ]\OML/cmm/m/it/12 ; \OT1/cmr/m/n/12 [\OML/cmm/m/it/12 P[]; Q[]\OT1/cmr/m/n/12 ]) \OMS/cmsy/m/n/12 ^^T []f[]\OT1/cmr/m/n/12 (\OML/cmm/m/it/12 P; P[]\OT1/cmr/m/n/12 )\OML/cmm/m/it/12 ; []\OT1/cmr/m/n/12 (\OML/cmm/m/it/12 Q; Q[]\OT1/cmr/m/n/12 )\OMS/cmsy/m/n/12 g$\T1/SourceSansPro-TLF/regular/n/12 ,
  []
 
 [32] [33]
-Overfull \hbox (16.25623pt too wide) detected at line 858
+Overfull \hbox (16.25623pt too wide) detected at line 861
 []
  []
 
 
-Overfull \hbox (2.04366pt too wide) detected at line 895
+Overfull \hbox (2.04366pt too wide) detected at line 899
  $[][]$  
  []
 
@@ -1996,92 +1996,142 @@ Overfull \hbox (2.04366pt too wide) detected at line 895
 Underfull \vbox (badness 1642) has occurred while \output is active []
 
  [37]
-Overfull \hbox (3.09543pt too wide) in paragraph at lines 1012--1013
+Overfull \hbox (3.09543pt too wide) in paragraph at lines 1016--1017
 []\T1/SourceSansPro-TLF/regular/n/12 Applying these Kraus op-er-a-tors to the den-sity op-er-a-tor $\OML/cmm/m/it/12 ^^Z \OT1/cmr/m/n/12 = \OMS/cmsy/m/n/12 j\OML/cmm/m/it/12 \OMS/cmsy/m/n/12 j[]j\OT1/cmr/m/n/12 0\OMS/cmsy/m/n/12 ih\OT1/cmr/m/n/12 0\OMS/cmsy/m/n/12 j \OT1/cmr/m/n/12 + \OML/cmm/m/it/12 ^^L[]\OMS/cmsy/m/n/12 j\OT1/cmr/m/n/12 0\OMS/cmsy/m/n/12 ih\OT1/cmr/m/n/12 1\OMS/cmsy/m/n/12 j \OT1/cmr/m/n/12 + \OML/cmm/m/it/12 []^^L\OMS/cmsy/m/n/12 j\OT1/cmr/m/n/12 1\OMS/cmsy/m/n/12 ih\OT1/cmr/m/n/12 0\OMS/cmsy/m/n/12 j \OT1/cmr/m/n/12 +
  []
 
 [38]
-Overfull \hbox (7.80183pt too wide) in paragraph at lines 1077--1078
+Overfull \hbox (7.80183pt too wide) in paragraph at lines 1081--1082
 []\T1/SourceSansPro-TLF/regular/n/12 Given [][]Equa-tion 4.51[][][], des-ig-nat-ing $[] []$ as the state $\OT1/cmr/m/n/12 (\OMS/cmsy/m/n/12 j\OML/cmm/m/it/12 \OMS/cmsy/m/n/12 j[] \OT1/cmr/m/n/12 + \OML/cmm/m/it/12 ^^M\OMS/cmsy/m/n/12 j\OML/cmm/m/it/12 ^^L\OMS/cmsy/m/n/12 j[]\OT1/cmr/m/n/12 ) [] [] + [] \OML/cmm/m/it/12 ^^L[] [] [] \OT1/cmr/m/n/12 +
  []
 
 
-Overfull \hbox (38.15503pt too wide) detected at line 1084
+Overfull \hbox (38.15503pt too wide) detected at line 1088
  $\OML/cmm/m/it/12 ^^Z \OMS/cmsy/m/n/12 ^^@ \OML/cmm/m/it/12 ^^Z[] \OT1/cmr/m/n/12 = [][][]([] [] \OMS/cmsy/m/n/12 ^^@ j\OML/cmm/m/it/12  []\OMS/cmsy/m/n/12 ih\OML/cmm/m/it/12  []\OMS/cmsy/m/n/12 j\OT1/cmr/m/n/12 )\OML/cmm/m/it/12 ; []\OT1/cmr/m/n/12 ([] [] \OMS/cmsy/m/n/12 ^^@ j\OML/cmm/m/it/12  []\OMS/cmsy/m/n/12 ih\OML/cmm/m/it/12  []\OMS/cmsy/m/n/12 j\OT1/cmr/m/n/12 )[]\OML/cmm/m/it/12 ; [][]\OT1/cmr/m/n/12 ([] [] \OMS/cmsy/m/n/12 ^^@ j\OML/cmm/m/it/12  []\OMS/cmsy/m/n/12 ih\OML/cmm/m/it/12  []\OMS/cmsy/m/n/12 j\OT1/cmr/m/n/12 )\OML/cmm/m/it/12 ; []\OT1/cmr/m/n/12 ([] [] \OMS/cmsy/m/n/12 ^^@ j\OML/cmm/m/it/12  []\OMS/cmsy/m/n/12 ih\OML/cmm/m/it/12  []\OMS/cmsy/m/n/12 j\OT1/cmr/m/n/12 )[][]$  
  []
 
 
-LaTeX Warning: Reference `eq:Bloch_vector' on page 39 undefined on input line 1093.
+LaTeX Warning: Reference `eq:Bloch_vector' on page 39 undefined on input line 1097.
 
 [39
 pdfTeX warning (ext4): destination with the same identifier (name{equation.4.4.54}) has been already used, duplicate ignored
 <argument> ...shipout:D \box_use:N \l_shipout_box 
                                                   \__shipout_drop_firstpage_...
-l.1132   \end{equation}
+l.1136   \end{equation}
                        ]
-Overfull \hbox (61.49208pt too wide) detected at line 1145
+Overfull \hbox (61.49208pt too wide) detected at line 1149
  $[][]$  
  []
 
 
 Underfull \vbox (badness 10000) has occurred while \output is active []
 
- [40] [41]
-Overfull \hbox (2.67719pt too wide) in paragraph at lines 1221--1222
+ [40]
+Underfull \vbox (badness 10000) has occurred while \output is active []
+
+ [41]
+Overfull \hbox (44.18358pt too wide) detected at line 1192
+ $[][]$  
+ []
+
+
+Overfull \hbox (3.3769pt too wide) in paragraph at lines 1192--1194
+\T1/SourceSansPro-TLF/regular/n/12 Therefore, the state of the EPR pair with an im-per-fect Hadamard gate is $[] [] \OT1/cmr/m/n/12 = [](\OMS/cmsy/m/n/12 j\OT1/cmr/m/n/12 00\OMS/cmsy/m/n/12 i [] \OT1/cmr/m/n/12 +
+ []
+
+
+Overfull \hbox (35.11423pt too wide) in paragraph at lines 1195--1196
+\OML/cmm/m/it/12 ^^Z \OT1/cmr/m/n/12 = [][][]\OMS/cmsy/m/n/12 j\OML/cmm/m/it/12  \OMS/cmsy/m/n/12 ih\OML/cmm/m/it/12  \OMS/cmsy/m/n/12 j\OML/cmm/m/it/12 ; []X\OMS/cmsy/m/n/12 j\OML/cmm/m/it/12  \OMS/cmsy/m/n/12 ih\OML/cmm/m/it/12  \OMS/cmsy/m/n/12 j\OML/cmm/m/it/12 X[]; \OT1/cmr/m/n/12 ([]\OML/cmm/m/it/12 Z\OMS/cmsy/m/n/12 j\OML/cmm/m/it/12  \OMS/cmsy/m/n/12 ih\OML/cmm/m/it/12  \OMS/cmsy/m/n/12 j\OML/cmm/m/it/12 Z; []XZ\OMS/cmsy/m/n/12 j\OML/cmm/m/it/12  \OMS/cmsy/m/n/12 ih\OML/cmm/m/it/12  \OMS/cmsy/m/n/12 j\OML/cmm/m/it/12 ZX[][]$\T1/SourceSansPro-TLF/regular/n/12 . Re-gard-ing the im-per-fect Hadamard
+ []
+
+
+Overfull \hbox (7.50989pt too wide) detected at line 1216
+ $[][]$  
+ []
+
+
+Underfull \vbox (badness 3780) has occurred while \output is active []
+
+ [42]
+Overfull \hbox (6.05948pt too wide) detected at line 1239
+ $[][]$  
+ []
+
+
+Overfull \hbox (42.06494pt too wide) detected at line 1253
+ $[][]$  
+ []
+
+[43]
+Overfull \hbox (47.5141pt too wide) detected at line 1264
+ $[][]$  
+ []
+
+
+LaTeX Warning: Reference `eq:Bloch_vector' on page 44 undefined on input line 1267.
+
+[44]
+Underfull \vbox (badness 10000) has occurred while \output is active []
+
+ [45]
+Overfull \hbox (2.67719pt too wide) in paragraph at lines 1464--1465
  [][] 
  []
 
-) (chapters/Applications.tex [42]
-Chapter 5.
-) (chapters/ConclusionsAndFutureWork.tex [43
 
-] [44
+Underfull \vbox (badness 10000) has occurred while \output is active []
+
+ [46]) (chapters/Applications.tex [47] [48
+
+]
+Chapter 5.
+) (chapters/ConclusionsAndFutureWork.tex [49] [50
 
 ]
 Chapter 6.
-) (chapters/PlannedSchedule.tex [45] [46
+) (chapters/PlannedSchedule.tex [51] [52
 
 ]
 Chapter 7.
 \@gls@deffile=\write12
 \openout12 = `dissertation.glsdefs'.
 
-) (dissertation.bbl [47] [48
+) (dissertation.bbl [53] [54
 
-] [49]
+] [55]
 Underfull \hbox (badness 1394) in paragraph at lines 144--151
 []\T1/SourceSansPro-TLF/regular/n/12 Prakash Mu-rali, Jonathan M Baker, Ali Javadi-Abhari, Fred-eric T Chong, and Mar-garet
  []
 
-[50] [51]) [52]
+[56] [57]) [58]
 runsystem(makeindex dissertation.idx)...executed safely (allowed).
 
- (dissertation.ind) [53
+ (dissertation.ind) [59
 
 
-] [54] (appendices/SupportWork.tex
+] [60] (appendices/SupportWork.tex
 Appendix A.
-) (appendices/DetailsOfResults.tex [55
+) (appendices/DetailsOfResults.tex [61
 
-] [56
+] [62
 
 ]
 Appendix B.
-) (appendices/Listings.tex [57] [58
+) (appendices/Listings.tex [63] [64
 
 ]
 Appendix C.
-) (appendices/Tooling.tex [59] [60
+) (appendices/Tooling.tex [65] [66
 
 ]
 Appendix D.
-) (covers/BackCover.tex [61
-\indexentry{\LaTeX  }{61}
-\indexentry{TeX!TeX Users Group (TUG)}{61}
-\indexentry{TeX!TeX Users Group (TUG)}{61}
-] [62
+) (covers/BackCover.tex [67
+\indexentry{\LaTeX  }{67}
+\indexentry{TeX!TeX Users Group (TUG)}{67}
+\indexentry{TeX!TeX Users Group (TUG)}{67}
+] [68
 
-] [63
+] [69
 
 ]
 pdfTeX warning (ext4): destination with the same identifier (name{page.1}) has been already used, duplicate ignored
@@ -2104,10 +2154,10 @@ Package rerunfilecheck Info: File `dissertation.out' has not changed.
 (rerunfilecheck)             Checksum: 15C3EE1B6A2F07CCE1193B0560E9515B;6014.
  ) 
 Here is how much of TeX's memory you used:
- 52315 strings out of 474542
- 1093497 string characters out of 5744447
- 2099978 words of memory out of 5000000
- 73332 multiletter control sequences out of 15000+600000
+ 52342 strings out of 474542
+ 1093875 string characters out of 5744447
+ 2100978 words of memory out of 5000000
+ 73338 multiletter control sequences out of 15000+600000
  772489 words of font info for 100 fonts, out of 8000000 for 9000
  1141 hyphenation exceptions out of 8191
  109i,36n,108p,2505b,1397s stack positions out of 10000i,1000n,20000p,200000b,200000s
@@ -2118,9 +2168,9 @@ pdfTeX warning (dest): name{glo:pdr} has been referenced but does not exist, rep
 pdfTeX warning (dest): name{glo:soa} has been referenced but does not exist, replaced by a fixed one
 
  <C:\Users\mona_\AppData\Local\MiKTeX\fonts/pk/ljfour/jknappen/ec/dpi600\ecrm1200.pk> <C:\Users\mona_\AppData\Local\MiKTeX\fonts/pk/ljfour/jknappen/ec/dpi600\ectt1200.pk><C:/Users/mona_/AppData/Local/Programs/MiKTeX/fonts/type1/adobe/sourcesanspro/SourceSansPro-Bold.pfb><C:/Users/mona_/AppData/Local/Programs/MiKTeX/fonts/type1/adobe/sourcesanspro/SourceSansPro-It.pfb><C:/Users/mona_/AppData/Local/Programs/MiKTeX/fonts/type1/adobe/sourcesanspro/SourceSansPro-Light.pfb><C:/Users/mona_/AppData/Local/Programs/MiKTeX/fonts/type1/adobe/sourcesanspro/SourceSansPro-Regular.pfb><C:/Users/mona_/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmex10.pfb><C:/Users/mona_/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmmi12.pfb><C:/Users/mona_/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmmi6.pfb><C:/Users/mona_/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmmi8.pfb><C:/Users/mona_/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmr12.pfb><C:/Users/mona_/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmr6.pfb><C:/Users/mona_/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmr8.pfb><C:/Users/mona_/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmsy10.pfb><C:/Users/mona_/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmsy6.pfb><C:/Users/mona_/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmsy8.pfb><C:/Users/mona_/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/symbols/msam10.pfb><C:/Users/mona_/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/symbols/msbm10.pfb><C:/Users/mona_/AppData/Local/Programs/MiKTeX/fonts/type1/public/hoekwater/stmary10.pfb>
-Output written on dissertation.pdf (84 pages, 1020353 bytes).
+Output written on dissertation.pdf (90 pages, 1038587 bytes).
 PDF statistics:
- 1177 PDF objects out of 1200 (max. 8388607)
- 273 named destinations out of 1000 (max. 500000)
+ 1224 PDF objects out of 1440 (max. 8388607)
+ 294 named destinations out of 1000 (max. 500000)
  380 words of extra memory for PDF output out of 10000 (max. 10000000)
 
