@@ -1418,6 +1418,58 @@ r_{y} = &  \text{Tr} \left[ \begin{pmatrix}
   \end{split}
 \end{equation}
 
+As a result, and given that the distance between two vectors corresponds to their Euclidean distance, it follows that the distance between the ideal and noisy implementations of the Hadamard gate in the BellMeasure block corresponds to:
+\begin{equation}
+  \begin{split}
+  \lVert \rho-\rho' \rVert_{\diamondsuit} = & \left\lVert \left( \left( \frac{1}{4} \sigma,\frac{1}{4} \sigma'  \right),  \left(\frac{1}{4} \sigma'',\frac{1}{4} \sigma''' \right)\right) \right\rVert_{\diamondsuit} \\
+  = & \left\lVert \frac{1}{4} \sigma \right\rVert_{\diamondsuit} + \left\lVert \frac{1}{4} \sigma' \right\rVert_{\diamondsuit} + \left\lVert \frac{1}{4} \sigma'' \right\rVert_{\diamondsuit} + \left\lVert \frac{1}{4} \sigma''' \right\rVert_{\diamondsuit} \hspace{110pt} \{\text  {\autoref{eq:norm_tuple}}\} \\
+  = & \left\lVert \frac{1}{4} ((1-e^{-i\epsilon})\alpha \beta^{\dag}  + (1-e^{i\epsilon})\alpha^{\dag} \beta, i(1-e^{-i\epsilon})\alpha \beta^{\dag}-i(1-e^{i\epsilon})\alpha^{\dag} \beta) \right\rVert_{2} + \\
+  & \left\lVert \frac{1}{4} ((1-e^{i\epsilon}) \alpha^{\dag} \beta + (1-e^{-i\epsilon}) \alpha \beta^{\dag}, i(1-e^{i\epsilon}) \alpha^{\dag} \beta  - i(1-e^{-i\epsilon}) \alpha \beta^{\dag}) \right\rVert_{2} + \\
+  & \left\lVert \frac{1}{4} ((e^{-i\epsilon}-1) \alpha \beta^{\dag}  + (e^{i\epsilon}-1) \alpha^{\dag} \beta, i(e^{-i\epsilon}-1) \alpha \beta^{\dag}  - i(e^{i\epsilon}-1) \alpha^{\dag} \beta) \right\rVert_{2} + \\
+  & \left\lVert \frac{1}{4} ((e^{i\epsilon}-1) \alpha^{\dag} \beta  + (e^{-i\epsilon}-1) \alpha \beta^{\dag}, i(e^{i\epsilon}-1) \alpha^{\dag} \beta  - i(e^{-i\epsilon}-1) \alpha \beta^{\dag}) \right\rVert_{2}  \\
+\end{split}
+\end{equation}
+
+Applying \autoref{eq:euclidean_distance} to each term, it follows that:
+
+\begin{equation}
+  \begin{split}
+    \lVert \rho-\rho' \rVert_{\diamondsuit} = &\frac{1}{4} \sqrt{((1-e^{-i\epsilon})\alpha \beta^{\dag}  + (1-e^{i\epsilon})\alpha^{\dag} \beta)^{2} + (i ((1-e^{-i\epsilon})\alpha \beta^{\dag}-(1-e^{i\epsilon})\alpha^{\dag} \beta))^{2}} \\
+    & + \frac{1}{4} \sqrt{((1-e^{i\epsilon}) \alpha^{\dag} \beta + (1-e^{-i\epsilon}) \alpha \beta^{\dag})^{2} + (i ((1-e^{i\epsilon}) \alpha^{\dag} \beta - (1-e^{-i\epsilon}) \alpha \beta^{\dag}))^{2}} \\
+    & + \frac{1}{4} \sqrt{((e^{-i\epsilon}-1) \alpha \beta^{\dag}  + (e^{i\epsilon}-1) \alpha^{\dag} \beta)^{2} + (i((e^{-i\epsilon}-1) \alpha \beta^{\dag}  - (e^{i\epsilon}-1) \alpha^{\dag} \beta))^{2}} \\
+    & + \frac{1}{4} \sqrt{((e^{i\epsilon}-1) \alpha^{\dag} \beta  + (e^{-i\epsilon}-1) \alpha \beta^{\dag})^{2} + (i((e^{i\epsilon}-1) \alpha^{\dag} \beta  - (e^{-i\epsilon}-1) \alpha \beta^{\dag}))^{2}} \\
+    = & \frac{1}{4} \sqrt{((1-e^{-i\epsilon})\alpha \beta^{\dag}  + (1-e^{i\epsilon})\alpha^{\dag} \beta)^{2} + (i ((1-e^{-i\epsilon})\alpha \beta^{\dag}-(1-e^{i\epsilon})\alpha^{\dag} \beta))^{2}} \\ 
+    & +\frac{1}{4} \sqrt{((1-e^{-i\epsilon})\alpha \beta^{\dag}  + (1-e^{i\epsilon})\alpha^{\dag} \beta)^{2} + (-(i ((1-e^{-i\epsilon})\alpha \beta^{\dag}-(1-e^{i\epsilon})\alpha^{\dag} \beta)))^{2}}\\
+    & +  \frac{1}{4} \sqrt{(-((1-e^{-i\epsilon})\alpha \beta^{\dag}  + (1-e^{i\epsilon})\alpha^{\dag} \beta))^{2} + (i ((1-e^{-i\epsilon})\alpha \beta^{\dag}-(1-e^{i\epsilon})\alpha^{\dag} \beta))^{2}} \\
+    & + \frac{1}{4} \sqrt{(-((1-e^{-i\epsilon})\alpha \beta^{\dag}  + (1-e^{i\epsilon})\alpha^{\dag} \beta))^{2} + (-(i ((1-e^{-i\epsilon})\alpha \beta^{\dag}-(1-e^{i\epsilon})\alpha^{\dag} \beta)))^{2}}\\
+    &=  \frac{1}{4} \sqrt{((1-e^{-i\epsilon})\alpha \beta^{\dag}  + (1-e^{i\epsilon})\alpha^{\dag} \beta)^{2} + (i ((1-e^{-i\epsilon})\alpha \beta^{\dag}-(1-e^{i\epsilon})\alpha^{\dag} \beta))^{2}}\\
+    &=  \sqrt{4(1-e^{-i\epsilon})(1-e^{i\epsilon})|\alpha|^{2}|\beta|^{2}} = 2 \sqrt{(1-e^{i\epsilon}-e^{-i\epsilon}+1)|\alpha|^{2}|\beta|^{2}} \\
+    &= 2\sqrt{2(1-\cos(\epsilon))|\alpha|^{2}|\beta|^{2}} = 2\sqrt{2} \sqrt{(1-\cos(\epsilon))|\alpha|^{2}|\beta|^{2}} \\
+  \end{split}
+\end{equation}
+
+  It is possible to observe that when $\epsilon = 0$, the distance between the ideal and noisy implementations of the Hadamard gate in the BellMeasure block is zero, which is consistent with the fact that the ideal and noisy implementations are the same. The same goes for $\epsilon = \pi$, $\alpha= 0$ and  $\beta= 0$ given that only the non-diagonal components of the density matrix are affected by an erroneous phase gate. 
+
+%\begin{equation}
+  %\begin{split}
+    %&\left\lVert \frac{1}{4} ((1-e^{-i\epsilon})\alpha \beta^{\dag}  + (1-e^{i\epsilon})\alpha^{\dag} \beta, i(1-e^{-i\epsilon})\alpha \beta^{\dag}-i(1-e^{i\epsilon})\alpha^{\dag} \beta) \right\rVert_{2} = \\
+     %& = \frac{1}{4} \sqrt{((1-e^{-i\epsilon})\alpha \beta^{\dag}  + (1-e^{i\epsilon})\alpha^{\dag} \beta)^{2} + (i ((1-e^{-i\epsilon})\alpha \beta^{\dag}-(1-e^{i\epsilon})\alpha^{\dag} \beta))^{2}} \\
+    %&= \frac{1}{4} \sqrt{((1-e^{-i\epsilon})\alpha \beta^{\dag}  + (1-e^{i\epsilon})\alpha^{\dag} \beta)^{2} - ((1-e^{-i\epsilon})\alpha \beta^{\dag}-(1-e^{i\epsilon})\alpha^{\dag} \beta)^{2}} \\
+    %&= \frac{1}{4} \sqrt{4(1-e^{-i\epsilon})(1-e^{i\epsilon})|\alpha|^{2}|\beta|^{2}} = \frac{1}{2} \sqrt{(1-e^{i\epsilon}-e^{-i\epsilon}+1)|\alpha|^{2}|\beta|^{2}} \\
+    %&= \frac{1}{2} \sqrt{2(1-\cos(\epsilon))|\alpha|^{2}|\beta|^{2}} = \frac{1}{\sqrt{2}} \sqrt{(1-\cos(\epsilon))|\alpha|^{2}|\beta|^{2}} \\
+%\end{split}
+%\end{equation}
+
+
+%\begin{equation}
+  %\begin{split}
+    %&\left\lVert \frac{1}{4} ((e^{-i\epsilon}-1) \alpha \beta^{\dag}  + (e^{i\epsilon}-1) \alpha^{\dag} \beta, i(e^{-i\epsilon}-1) \alpha \beta^{\dag}  - i(e^{i\epsilon}-1) \alpha^{\dag} \beta) \right\rVert_{2} = \\
+    %& = \frac{1}{4} \sqrt{(-((e^{-i\epsilon}-1) \alpha \beta^{\dag}  + (e^{i\epsilon}-1) \alpha^{\dag} \beta))^{2} + (-i ((e^{-i\epsilon}-1) \alpha \beta^{\dag}-(e^{i\epsilon}-1) \alpha^{\dag} \beta))^{2}} \\ 
+    %& = \frac{1}{4} \sqrt{((e^{-i\epsilon}-1) \alpha \beta^{\dag}  + (e^{i\epsilon}-1) \alpha^{\dag} \beta)^{2} + (i ((e^{-i\epsilon}-1) \alpha \beta^{\dag}-(e^{i\epsilon}-1) \alpha^{\dag} \beta))^{2}} \\
+    %&=  \left\lVert \frac{1}{4} ((e^{-i\epsilon}-1) \alpha \beta^{\dag}  + (e^{i\epsilon}-1) \alpha^{\dag} \beta, i(e^{-i\epsilon}-1) \alpha \beta^{\dag}  - i(e^{i\epsilon}-1) \alpha^{\dag} \beta) \right\rVert_{2}\\
+    %&=\frac{1}{\sqrt{2}} \sqrt{(1-\cos(\epsilon))|\alpha|^{2}|\beta|^{2}}
+%\end{split}
+%\end{equation}
 
 
 \section{Discard Operation} \label{sec:discarding}
