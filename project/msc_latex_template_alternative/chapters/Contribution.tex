@@ -1149,7 +1149,7 @@ Employing \autoref{eq:Bloch_vector}, the components of the Bloch vector of the s
 \end{equation}
 Note that, as expected when $\gamma \xrightarrow{}0$ or $\beta \xrightarrow{}0$ ,$\lVert \rho-\rho' \rVert_{\diamondsuit}\xrightarrow{}0$, and when $\gamma \xrightarrow{}1$, $\lVert \rho-\rho' \rVert_{\diamondsuit}\xrightarrow{} 2 \left(\sqrt{|\alpha|^{2}|\beta|^{2} + \gamma^{2} |\beta|^{4}}\right)$.
 
-From this result, it follows that $\textbf{Identity} =_{ 2 \cdot \sqrt{  (1-\sqrt{1-\gamma})^{2} |\alpha|^{2}|\beta|^{2}+ \gamma^{2} |\beta|^{4}}} \textbf{Identity}^{\gamma}$. Thus, $ \\ \textbf{QTP} =_{2 \cdot \sqrt{  (1-\sqrt{1-\gamma})^{2} |\alpha|^{2}|\beta|^{2} + \gamma^{2} |\beta|^{4}}} \hspace{3pt}\textbf{QTP}^{\gamma}$.
+From this result, it follows that $\textbf{Identity} =_{ 2 \cdot \sqrt{  (1-\sqrt{1-\gamma})^{2} |\alpha|^{2}|\beta|^{2}+ \gamma^{2} |\beta|^{4}}} \textbf{Identity}^{A(\gamma)}$. Thus, $ \\ \textbf{QTP} =_{2 \cdot \sqrt{  (1-\sqrt{1-\gamma})^{2} |\alpha|^{2}|\beta|^{2} + \gamma^{2} |\beta|^{4}}} \hspace{3pt}\textbf{QTP}^{A(\gamma)}$.
 %Problema: Definir operações cptp não unitarias no quantum lambda calculus-> cena operadores de kraus
 
 \subsubsection{Noisy Quantum Teleportation: An imperfect implementation of the Hadamard gate}
@@ -1190,7 +1190,7 @@ As usual, the initial step consists of evaluating the distance between the densi
 \xmapsto{\hspace{1pt} CNOT \hspace{1pt}} \quad & \frac{1}{\sqrt{2}} (|00\rangle + |11\rangle) = \ket{\Phi} \\
   \end{split}
 \end{equation}
-Therefore, the state of the EPR pair with an imperfect Hadamard gate is $\ket{\Phi} \bra{\Phi} = \frac{1}{2} (|00\rangle \bra{00} + \ket{00}\bra{11} + |11\rangle \bra{00} + |11\rangle \bra{11})$. Hence, the imperfect Hadamard gate does not affect the state of the EPR pair and, as a result, the distance between the ideal and noisy implementations of the EPR pair is zero, $\textbf{EPR}=_{0}\textbf{EPR}^{\epsilon}$.
+Therefore, the state of the EPR pair with an imperfect Hadamard gate is $\ket{\Phi} \bra{\Phi} = \frac{1}{2} (|00\rangle \bra{00} + \ket{00}\bra{11} + |11\rangle \bra{00} + |11\rangle \bra{11})$. Hence, the imperfect Hadamard gate does not affect the state of the EPR pair and, as a result, the distance between the ideal and noisy implementations of the EPR pair is zero, $\textbf{EPR}=_{0}\textbf{EPR}^{H(\epsilon)}$.
 
 Next, it is necessary to repeat this exercise regarding the BellMeasure block. As shown in \autoref{eq:teleport_measure}, the ideal state of the BellMeasure block is $\\ \rho = \Big(\Big(\frac{1}{4} |\psi\rangle \langle \psi|, \frac{1}{4} X|\psi\rangle \langle \psi|X\Big),(\frac{1}{4} Z|\psi\rangle \langle \psi|Z, \frac{1}{4}  XZ|\psi\rangle \langle \psi|ZX \Big)\Big)$. Regarding the imperfect Hadamard gate, knowing that:
 \begin{equation}
@@ -1448,7 +1448,9 @@ Applying \autoref{eq:euclidean_distance} to each term, it follows that:
   \end{split}
 \end{equation}
 
-  It is possible to observe that when $\epsilon = 0$, the distance between the ideal and noisy implementations of the Hadamard gate in the BellMeasure block is zero, which is consistent with the fact that the ideal and noisy implementations are the same. The same goes for $\epsilon = \pi$, $\alpha= 0$ and  $\beta= 0$ given that only the non-diagonal components of the density matrix are affected by an erroneous phase gate. 
+  It is possible to observe that when $\epsilon = 0$, the distance between the ideal and noisy implementations of the Hadamard gate in the BellMeasure block is zero, which is consistent with the fact that the ideal and noisy implementations are the same. The same goes for $\epsilon = \pi$, $\alpha= 0$ and  $\beta= 0$ given that only the non-diagonal components of the density matrix are affected by an erroneous phase gate.
+  
+  Given this result it is possible to conclude that $\textbf{BellMeasure}=_{ 2\sqrt{2} \sqrt{(1-\cos(\epsilon))|\alpha|^{2}|\beta|^{2}}}\textbf{BellMeasure}^{H(\epsilon)}$. Hence, $\textbf{QTP}=_{0+2\sqrt{2} \sqrt{(1-\cos(\epsilon))|\alpha|^{2}|\beta|^{2}}}\textbf{QTP}^{H(\epsilon)}$, \textit{i.e.}, $\textbf{QTP}=_{2\sqrt{2} \sqrt{(1-\cos(\epsilon))|\alpha|^{2}|\beta|^{2}}}\textbf{QTP}^{H(\epsilon)}$ .
 
 %\begin{equation}
   %\begin{split}
@@ -1481,9 +1483,34 @@ The discard operation was defined as the trace, and therefore is also completely
 
 %ToDo: Discard operations -> The operator should de unique (but there is for instance trace and the null operator_maps everything to zero) and is unique bacausce only trace is trace preserving; example: mallicious attack discard a qubit ou outside of quantum teleportation : setting a qubit do 0, by discarding it and initiating a new one
 
-\subsection{Example: Proving an equivalence using the discard equation}
+\subsection{Example: Proving an equivalence using the discard equation-in-context}
+
+This subsection aims to ilustrate how to prove that
+\begin{equation}
+  - \triangleright \text{disc} \hspace{1pt} (q \hspace{1pt} (\textit{new}\hspace{1pt}0 \hspace{1pt}(*))) \hspace{1pt} \text{to} *. \hspace{1pt} q \hspace{1pt} (\textit{new}\hspace{1pt}0 \hspace{1pt}(*)): \textit{qbit} = - \triangleright q \hspace{1pt} (\textit{new}\hspace{1pt}0 \hspace{1pt}(*)): \textit{qbit} 
+\end{equation}
+using the discard equation-in-context.
+
+The discard equation in  the bottom line  in \autoref{fig:equations-linear-lambda} states that all judgements $\Gamma \triangleright v : \mathbb{I}$ (with $\Gamma = x_{1} : \mathbb{A}_1, . . . , x_{n} : \mathbb{A}_n)$ carry no different information than that of just discarding all variables available in context $\Gamma$. Therefore considering an empty context $\Gamma = - $, the discard equation states that:
+\begin{equation}
+  - \triangleright v: \mathbb{I} = - \triangleright *: \mathbb{I}
+\end{equation}
+Given that as established in \autoref{fig:typing_rules_linear}, $ \text{dis}(v):  \mathbb{I}$, it follows that:
+\begin{equation}
+ - \triangleright \text{disc} \hspace{1pt} (q \hspace{1pt} (\textit{new}\hspace{1pt}0 \hspace{1pt}(*))) \hspace{1pt} \text{to} *. \hspace{1pt} q \hspace{1pt} (\textit{new}\hspace{1pt}0 \hspace{1pt}(*)): \textit{qbit} = - \triangleright * \hspace{1pt} \text{to} *. \hspace{1pt} q \hspace{1pt} (\textit{new}\hspace{1pt}0 \hspace{1pt}(*)): \textit{qbit}
+\end{equation}
+Subsequently applying the rule  $ \hspace{2pt} * \hspace{2pt} \text{to} \hspace{2pt}* . \hspace{2pt}v = v$ in \autoref{fig:equations-linear-lambda}, it holds that
+\begin{equation}
+  \begin{split}
+  - \triangleright \text{disc} \hspace{1pt} (q \hspace{1pt} (\textit{new}\hspace{1pt}0 \hspace{1pt}(*))) \hspace{1pt} \text{to} *. \hspace{1pt} q \hspace{1pt} (\textit{new}\hspace{1pt}0 \hspace{1pt}(*)): \textit{qbit} =& - \triangleright * \hspace{1pt} \text{to} *. \hspace{1pt} q \hspace{1pt} (\textit{new}\hspace{1pt}0 \hspace{1pt}(*)): \textit{qbit}\\
+  & = - \triangleright q \hspace{1pt} (\textit{new}\hspace{1pt}0 \hspace{1pt}(*)): \textit{qbit} 
+\end{split}
+\end{equation}
 
 \subsection{Ilustration: A malicious attack on the quantum teleportation protocol}
+
+
+
 
 
 \begin{figure} [H]
@@ -1494,23 +1521,19 @@ The discard operation was defined as the trace, and therefore is also completely
       corners,fill=blue!20, inner
       xsep=2pt},background,label style={label
       position=below,anchor=north,yshift=-0.2cm}]{{\sc
-      B}} & \gate{H} \qw & \qw & \qw &\qw \gategroup[5,steps=9,style={dashed,rounded
+      B}} & \gate{H} \qw & \qw & \qw &\qw \gategroup[5,steps=16,style={dashed,rounded
       corners,fill=blue!20, inner
       xsep=2pt},background,label style={label
       position=below,anchor=north,yshift=-0.2cm}]{{\sc
-      C}}  & \qw & \qw & \qw & \targ{} \qw  & \qw & \qw & \qw & \qw & \qw & \qw & \meter{} \qw \gategroup[3,steps=6,style={dashed,rounded
-      corners,fill=blue!20, inner
-      xsep=2pt},background,label style={label
-      position=below,anchor=north,yshift=-0.2cm}]{{\sc
-      D}}     & \setwiretype{c}  &  &  & & \ctrl[vertical
+      C}}  & \qw & \qw & \qw & \targ{} \qw  & \qw & \qw & \qw & \qw  & \meter{} \qw      & \setwiretype{c}  &  &  & & \ctrl[vertical
 wire=c]{2}  \\
       \lstick {$\ket{0}$}  &\gate{H}\gategroup[2,steps=3,style={dashed,rounded
       corners,fill=blue!20, inner
       xsep=2pt},background,label style={label
       position=below,anchor=north,yshift=-0.2cm}]{{\sc
-      A}} & \qw  & \ctrl{1} \qw& \qw & \qw  & \targ{} \qw & \qw & \qw & \qw & \qw& \qw & \qw & \qw & \qw &  \qw & \qw &  \targ{} \qw & \qw & \qw & \qw & \meter{} \qw & \setwiretype{c}  & & \ctrl[vertical
+      A}} & \qw  & \ctrl{1} \qw& \qw & \qw  & \targ{} \qw & \qw & \qw & \qw & \qw& \qw & \qw & \qw & \qw &  \qw & \qw &  \targ{} \qw & \qw &   \meter{} \qw & \setwiretype{c}  & & \ctrl[vertical
 wire=c]{1} \\
-      \lstick{$\ket{0}$}  &  \qw & \qw &  \targ{} \qw \qw & \qw &\qw&\qw & \qw & \qw& \qw & \qw & \qw & \qw& \qw & \qw & \qw & \qw &  \qw & \qw & \qw & \qw & \qw & \qw & \qw &  \gate{X} \qw & \qw & \gate{Z} \qw\\
+      \lstick{$\ket{0}$}  &  \qw & \qw &  \targ{} \qw \qw & \qw &\qw&\qw & \qw & \qw& \qw & \qw & \qw & \qw& \qw & \qw & \qw & \qw &  \qw & \qw & \qw & \qw & \qw &  \gate{X} \qw & \qw & \gate{Z} \qw\\
        &   & &  &  & & &  &  & & & & \lstick{$\ket{0}$}  & \qw & \qw & \qw  & \gate{R_X(\frac{\pi}{2})} \qw& \ctrl{-2} \qw & \gate{\text{Disc}} \qw  \\
       &   &  & & & & &  &  & & & & \lstick{$\ket{0}$}   &\gate{R_X(\frac{\pi}{2})} \qw  & \ctrl{-4} \qw & \gate{\text{Disc}} \qw & &  &  &  &  &   & &  &  &  &  &  
     \end{quantikz}

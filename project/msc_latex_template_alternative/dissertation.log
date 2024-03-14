@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.141592653-2.6-1.40.25 (MiKTeX 24.1) (preloaded format=pdflatex 2024.2.8)  13 MAR 2024 21:42
+This is pdfTeX, Version 3.141592653-2.6-1.40.25 (MiKTeX 24.1) (preloaded format=pdflatex 2024.2.8)  14 MAR 2024 15:19
 entering extended mode
  restricted \write18 enabled.
  file:line:error style messages enabled.
@@ -1827,7 +1827,7 @@ Underfull \vbox (badness 10000) has occurred while \output is active []
  [13]
 Package hyperref Info: bookmark level for unknown todo defaults to 0 on input line 464.
 
-Overfull \hbox (99.33127pt too wide) detected at line 534
+Overfull \hbox (99.33127pt too wide) detected at line 526
  $[][]$ 
  []
 
@@ -2082,64 +2082,72 @@ Overfull \hbox (19.71158pt too wide) detected at line 1449
 Underfull \vbox (badness 10000) has occurred while \output is active []
 
  [46]
-Overfull \hbox (2.67719pt too wide) in paragraph at lines 1516--1517
+Overfull \hbox (29.69307pt too wide) in paragraph at lines 1453--1454
+[]\T1/SourceSansPro-TLF/regular/n/12 Given this re-sult it is pos-si-ble to con-clude that $[] \OT1/cmr/m/n/12 =[] [][]$\T1/SourceSansPro-TLF/regular/n/12 .
+ []
+
+
+Underfull \vbox (badness 10000) has occurred while \output is active []
+
+ [47]
+Overfull \hbox (2.67719pt too wide) in paragraph at lines 1539--1540
  [][] 
  []
 
 
 Underfull \vbox (badness 10000) has occurred while \output is active []
 
- [47]) (chapters/Applications.tex [48]
-Chapter 5.
-) (chapters/ConclusionsAndFutureWork.tex [49
+ [48]) (chapters/Applications.tex [49] [50
 
-] [50
+]
+Chapter 5.
+) (chapters/ConclusionsAndFutureWork.tex [51] [52
 
 ]
 Chapter 6.
-) (chapters/PlannedSchedule.tex [51] [52
+) (chapters/PlannedSchedule.tex [53] [54
 
 ]
 Chapter 7.
 \@gls@deffile=\write12
 \openout12 = `dissertation.glsdefs'.
 
-) (dissertation.bbl [53] [54
+) (dissertation.bbl [55] [56
 
-] [55]
+] [57]
 Underfull \hbox (badness 1394) in paragraph at lines 144--151
 []\T1/SourceSansPro-TLF/regular/n/12 Prakash Mu-rali, Jonathan M Baker, Ali Javadi-Abhari, Fred-eric T Chong, and Mar-garet
  []
 
-[56] [57]) [58]
+[58] [59]) [60]
 runsystem(makeindex dissertation.idx)...executed safely (allowed).
 
- (dissertation.ind) [59
+ (dissertation.ind) [61
 
 
-] [60] (appendices/SupportWork.tex
+] [62] (appendices/SupportWork.tex
 Appendix A.
-) (appendices/DetailsOfResults.tex [61
+) (appendices/DetailsOfResults.tex [63
 
-] [62
+] [64
 
 ]
 Appendix B.
-) (appendices/Listings.tex [63] [64
+) (appendices/Listings.tex [65] [66
 
 ]
 Appendix C.
-) (appendices/Tooling.tex [65] [66
+) (appendices/Tooling.tex [67] [68
 
 ]
 Appendix D.
-) (covers/BackCover.tex [67
-\indexentry{\LaTeX  }{67}
-\indexentry{TeX!TeX Users Group (TUG)}{67}
-\indexentry{TeX!TeX Users Group (TUG)}{67}
-] [68
+) (covers/BackCover.tex [69
+\indexentry{\LaTeX  }{69}
+\indexentry{TeX!TeX Users Group (TUG)}{69}
+\indexentry{TeX!TeX Users Group (TUG)}{69}
+] [70
 
-] [69
+] [71
 
 ]
 pdfTeX warning (ext4): destination with the same identifier (name{page.1}) has been already used, duplicate ignored
@@ -2159,13 +2167,13 @@ LaTeX Warning: There were undefined references.
 LaTeX Warning: There were multiply-defined labels.
 
 Package rerunfilecheck Info: File `dissertation.out' has not changed.
-(rerunfilecheck)             Checksum: 15C3EE1B6A2F07CCE1193B0560E9515B;6014.
+(rerunfilecheck)             Checksum: B03643AAD86AE54D440C79C9C8E92BBE;6069.
  ) 
 Here is how much of TeX's memory you used:
- 52344 strings out of 474542
- 1093905 string characters out of 5744447
- 2100978 words of memory out of 5000000
- 73338 multiletter control sequences out of 15000+600000
+ 52271 strings out of 474542
+ 1092057 string characters out of 5744447
+ 2094978 words of memory out of 5000000
+ 73259 multiletter control sequences out of 15000+600000
  772489 words of font info for 100 fonts, out of 8000000 for 9000
  1141 hyphenation exceptions out of 8191
  109i,36n,108p,2505b,1397s stack positions out of 10000i,1000n,20000p,200000b,200000s
@@ -2176,9 +2184,9 @@ pdfTeX warning (dest): name{glo:pdr} has been referenced but does not exist, rep
 pdfTeX warning (dest): name{glo:soa} has been referenced but does not exist, replaced by a fixed one
 
  <C:\Users\mona_\AppData\Local\MiKTeX\fonts/pk/ljfour/jknappen/ec/dpi600\ecrm1200.pk> <C:\Users\mona_\AppData\Local\MiKTeX\fonts/pk/ljfour/jknappen/ec/dpi600\ectt1200.pk><C:/Users/mona_/AppData/Local/Programs/MiKTeX/fonts/type1/adobe/sourcesanspro/SourceSansPro-Bold.pfb><C:/Users/mona_/AppData/Local/Programs/MiKTeX/fonts/type1/adobe/sourcesanspro/SourceSansPro-It.pfb><C:/Users/mona_/AppData/Local/Programs/MiKTeX/fonts/type1/adobe/sourcesanspro/SourceSansPro-Light.pfb><C:/Users/mona_/AppData/Local/Programs/MiKTeX/fonts/type1/adobe/sourcesanspro/SourceSansPro-Regular.pfb><C:/Users/mona_/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmex10.pfb><C:/Users/mona_/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmmi12.pfb><C:/Users/mona_/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmmi6.pfb><C:/Users/mona_/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmmi8.pfb><C:/Users/mona_/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmr12.pfb><C:/Users/mona_/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmr6.pfb><C:/Users/mona_/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmr8.pfb><C:/Users/mona_/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmsy10.pfb><C:/Users/mona_/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmsy6.pfb><C:/Users/mona_/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmsy8.pfb><C:/Users/mona_/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/symbols/msam10.pfb><C:/Users/mona_/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/symbols/msbm10.pfb><C:/Users/mona_/AppData/Local/Programs/MiKTeX/fonts/type1/public/hoekwater/stmary10.pfb>
-Output written on dissertation.pdf (90 pages, 1043239 bytes).
+Output written on dissertation.pdf (92 pages, 1047767 bytes).
 PDF statistics:
- 1232 PDF objects out of 1440 (max. 8388607)
- 296 named destinations out of 1000 (max. 500000)
+ 1249 PDF objects out of 1440 (max. 8388607)
+ 302 named destinations out of 1000 (max. 500000)
  380 words of extra memory for PDF output out of 10000 (max. 10000000)
 
