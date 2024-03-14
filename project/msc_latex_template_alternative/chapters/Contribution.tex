@@ -850,7 +850,7 @@ Considering the unitary operations $H: \textit{qubit} \xrightarrow{}  \textit{qu
 \begin{align*}
   \hspace{-28pt} &\textbf{EPR} =  - \triangleright  \textit{CNOT} \hspace{2pt} (\textit{H}\hspace{2pt} (q  \hspace{2pt}    ( \textit{new}   \hspace{2pt}  0 \hspace{1pt}(*))),(q  \hspace{2pt}   ( \textit{new}   \hspace{2pt}  0 \hspace{1pt}(*))))  \\ 
       \hspace{-28pt}
-      &\textbf{BellMeasure} =  q: \text{qubit}, q_{2}: \text{qubit}  \triangleright  (\text{pm}  \hspace{5pt} \textit{CNOT} (q_{1},q_{2})  \hspace{2pt}  \text{to} \hspace{2pt} x \otimes y.  \hspace{2pt}  \textit{meas} (\textit{H} (x)) \otimes \textit{meas} (y) ) \\
+      &\textbf{BellMeasure} =  q_{1}: \text{qubit}, q_{2}: \text{qubit}  \triangleright  (\text{pm}  \hspace{5pt} \textit{CNOT} (q_{1},q_{2})  \hspace{2pt}  \text{to} \hspace{2pt} x \otimes y.  \hspace{2pt}  \textit{meas} (\textit{H} (x)) \otimes \textit{meas} (y) ) \\
       \hspace{-28pt}
       &\textbf{Correction}= q: \text{qubit}, x: \text{bit},  y: \text{bit} \triangleright  \text{cond}\hspace{2pt} x  \hspace{2pt}  \{\text{inl} (x_{0}) \Rightarrow  (\text{cond}\hspace{2pt} y  \hspace{2pt}  \{\text{inl} (y_{0})  \Rightarrow{}  \textit{I}(q)\} ; \\
       \hspace{-28pt}
@@ -961,8 +961,8 @@ In this case, to facilate the analysis, the quantum teleportion protocol is devi
 \end{equation*}
 Considering the unitary operation $I: \textit{qubit} \xrightarrow{} \textit{qubit}$, and the operation $D_{p}: \textit{qubit} \xrightarrow{}  \textit{qubit}$  the ideal version of this function, \textbf{Identity}, and its respective version subjected to decoherence with probability $p$, $\textbf{Identity}^{p}$,  are defined as follows:
 \begin{align}
-  &\textbf{Identity} =  q: \text{qubit}  \triangleright  I (q) : : \text{qubit} \\
-  &\textbf{Identity}^{p} =  q: \text{qubit}  \triangleright  D_{p} (q) :: \text{qubit}
+  &\textbf{Identity} =  q: \text{qubit}  \triangleright  I (q) :  \text{qubit} \\
+  &\textbf{Identity}^{p} =  q: \text{qubit}  \triangleright  D_{p} (q) : \text{qubit}
 \end{align}
 
 Designating the qubit to be teleported as $q_0$, one can conceptualize the teleportation procedure as follows:
@@ -1052,14 +1052,14 @@ wire=c]{1} \\
   \label{fig:teleport_amplitude_damping}
 \end{figure}
 
-Once again, a fourth part of the teleportation protocol, the Identity, is considered to facilitate the error analysis. In this case, the erroneous version of the Identity function, $\textbf{Identity}^{\gamma}$, is defined as follows:
+Once again, a fourth part of the teleportation protocol, the $\textbf{Identity}$, is considered to facilitate the error analysis. In this case, it is neccessay to define the erroneous version of $\textbf{Identity}$, $\textbf{Identity}^{A(\gamma)}$:
 \begin{equation}
-  \textbf{Identity}^{\gamma} =  q: \text{qubit}  \triangleright  A_{\gamma} (q) : \text{qubit}
+  \textbf{Identity}^{A(\gamma)} : \textit{qbit}  \multimap \textit{qbit} 
 \end{equation}
 
-Considering the operation $A_{\gamma}: \textit{qubit} \xrightarrow{}  \textit{qubit}$  the ideal version of this function, \textbf{Identity}, and its respective version subjected to decoherence with probability $p$, $\textbf{Identity}^{p}$,  are defined as follows:
+Considering the operation $A_{\gamma}: \textit{qubit} \xrightarrow{}  \textit{qubit}$  the respective version of $\textbf{Identity}$  subjected to amplitude damping with probability $\gamma$, $\textbf{Identity}^{A(\gamma)}$,  is defined as follows:
 \begin{align}
-  &\textbf{Identity}^{p} =  q: \text{qbit}  \triangleright  A_{\gamma} : \text{qbit} (q)
+  &\textbf{Identity}^{A(\gamma)} =  q: \text{qbit}  \triangleright  A_{\gamma} (q) : \text{qbit} 
 \end{align}
 
 Designating the qubit to be teleported as $q_0$, one can conceptualize the teleportation procedure as follows:
@@ -1509,7 +1509,34 @@ Subsequently applying the rule  $ \hspace{2pt} * \hspace{2pt} \text{to} \hspace{
 
 \subsection{Ilustration: A malicious attack on the quantum teleportation protocol}
 
-Now, consider a malicious attack on the quantum teleportation protocol that consists of a bit-flip with 50\% probability before measurement.  The operation of fliping a bit with 50\% probability can be concieved as the composition $I otimes \text{disc} \cdot $
+Now, consider a malicious attack on the quantum teleportation protocol in the form of a bit-flip occurring with a 50\% probability before measurement.   More generally,  one can define an operation $T$ that applies a unitary operation $U$ to the state given as input with 50\% probability. Operation $T$ can be defined as follows:
+\begin{equation*}
+\begin{split}
+  &T: \hspace{5pt} \textit{qbit},...,\textit{qbit}  \multimap \textit{qbit}^{\otimes n} \\
+  &T= q_{1}:\textit{qbit},...,q_{n}:\textit{qbit} \hspace{2pt}\triangleright \text{pm} \hspace{2pt} CU ( R_{X}^{\frac{\pi}{2}} (q \hspace{1pt} (\textit{new}\hspace{1pt}0 \hspace{1pt}(*))) ,q_{1},...,q_{n}) \hspace{2pt} \text{to} \hspace{2pt} newq \otimes qf. \hspace{2pt} \textit{disc} (newq) 
+\end {split}
+\end{equation*}
+
+%The operation of flipping a bit with 50\% probability can be conceived as the composition $(I \otimes \text{disc}) \cdot \textit{CNOT} \cdot (I \otimes R_{X}\left(\frac{\pi}{2}\right)) $ after the creation of a new qubit.
+
+This operation is depicted in \autoref{fig:Operation_T}.
+
+\begin{figure} [H]
+  \centering
+  \begin{quantikz} [column sep=0.2cm, row sep=0.5cm,wire
+    types={n,n}]%
+      \lstick{$\ket{\phi}$}  &\qw \gategroup[2,steps=9,style={dashed,rounded
+      corners,fill=blue!20, inner
+      xsep=2pt},background,label style={label
+      position=below,anchor=north,yshift=-0.2cm}]{{\sc
+      T}} & \qw  & \qw   & \qw  & \qw & \qw & \gate{U} \qw &\qw & \qw & \qw \\
+      & & & \lstick {$\ket{0}$}  & \qw &\gate{R_X(\frac{\pi}{2})} \qw & \qw & \ctrl{-1} \qw & \qw & \gate{\text{Disc}} \qw 
+    \end{quantikz}
+  \caption{T operation}
+  \label{fig:Operation_T}
+\end{figure}
+
+
 
 \begin{figure} [H]
   \centering
@@ -1540,17 +1567,3 @@ wire=c]{1} \\
 \end{figure}
 
 
-\begin{figure} [H]
-  \centering
-  \begin{quantikz} [column sep=0.2cm, row sep=0.5cm,wire
-    types={n,n}]%
-      \lstick{$\ket{\phi}$}  &\qw \gategroup[2,steps=9,style={dashed,rounded
-      corners,fill=blue!20, inner
-      xsep=2pt},background,label style={label
-      position=below,anchor=north,yshift=-0.2cm}]{{\sc
-      T}} & \qw  & \qw   & \qw  & \qw & \qw & \gate{U} \qw & & \\
-      & & & \lstick {$\ket{0}$}  & \qw &\gate{R_X(\frac{\pi}{2})} \qw & \qw & \ctrl{-1} \qw & \qw & \gate{\text{Disc}} \qw 
-    \end{quantikz}
-  \caption{T operation}
-  \label{fig:Operation_T}
-\end{figure}
