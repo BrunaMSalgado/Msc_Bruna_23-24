@@ -893,12 +893,18 @@ Regarding the remaining steps of the protocol,
     & + |00 \rangle \langle 11| \otimes |\psi\rangle \langle \psi| ZX + |01 \rangle \langle 11| \otimes X|\psi\rangle \langle \psi| ZX + |10 \rangle \langle 11| \otimes Z|\psi\rangle \langle \psi| ZX  \\
     & + |11 \rangle \langle 11| \otimes ZX|\psi\rangle \langle \psi| ZX) \\
     \xmapsto{ \text{meas } \otimes \hspace{1pt} \text{meas} \hspace{1pt}  \otimes \hspace{1pt} I} \quad & \Big(\Big(\frac{1}{4} |\psi\rangle \langle \psi|, \frac{1}{4} X|\psi\rangle \langle \psi|X\Big),\Big(\frac{1}{4} Z|\psi\rangle \langle \psi|Z, \frac{1}{4}  XZ|\psi\rangle \langle \psi|ZX \Big)\Big) \\
-    \xmapsto{\hspace{10pt}(CX, CX)\hspace{10pt}} \quad & \Big(\Big(\frac{1}{4} |\psi\rangle \langle \psi|, \frac{1}{4} |\psi\rangle \langle \psi|\Big),\Big(\frac{1}{4} Z|\psi\rangle \langle \psi|Z, \frac{1}{4}  Z|\psi\rangle \langle \psi|Z \Big)\Big) \\ 
-     \xmapsto{\hspace{22pt} CZ \hspace{23pt}} \quad& \Big(\Big(\frac{1}{4} |\psi\rangle \langle \psi|, \frac{1}{4} |\psi\rangle \langle \psi|\Big),\Big(\frac{1}{4} |\psi\rangle \langle \psi|, \frac{1}{4}  |\psi\rangle \langle \psi| \Big)\Big)
+    %\xmapsto{\hspace{10pt}(CX, CX)\hspace{10pt}} \quad & \Big(\Big(\frac{1}{4} |\psi\rangle \langle \psi|, \frac{1}{4} |\psi\rangle \langle \psi|\Big),\Big(\frac{1}{4} Z|\psi\rangle \langle \psi|Z, \frac{1}{4}  Z|\psi\rangle \langle \psi|Z \Big)\Big) \\ 
+     %\xmapsto{\hspace{22pt} CZ \hspace{23pt}} \quad& \Big(\Big(\frac{1}{4} |\psi\rangle \langle \psi|, \frac{1}{4} |\psi\rangle \langle \psi|\Big),\Big(\frac{1}{4} |\psi\rangle \langle \psi|, \frac{1}{4}  |\psi\rangle \langle \psi| \Big)\Big)
   \end{split}
 \end{equation}
 
-
+With respect to the final step of the protocol, attending to the interpretation of the conditional statement (\autoref{fig:denotational_sem cond}), the state of the system after the application of the correction function is given by:
+\begin{equation} \label{eq:teleport_correction}
+  \begin{split}
+  &\frac{1}{4}|\psi\rangle \langle \psi| + \frac{1}{4} X X|\psi\rangle \langle \psi|XX +\frac{1}{4} ZZ|\psi\rangle \langle \psi|ZZ + \frac{1}{4} ZXXZ|\psi\rangle \langle \psi|ZXXZ  \\
+  =& \frac{1}{4} \left( |\psi\rangle \langle \psi| + |\psi\rangle \langle \psi| + |\psi\rangle \langle \psi|+ |\psi\rangle \langle \psi| \right) =  |\psi\rangle \langle \psi|
+  \end{split}
+\end{equation}
 
 \subsection{Ilustration: Noisy Quantum Teleportation}
 
@@ -1073,23 +1079,12 @@ Designating the qubit to be teleported as $q_0$, one can conceptualize the telep
 
 The first step to evaluate the distance between the ideal quantum teleportation protocol and the one subjected to amplitude damping with probability $\gamma$ is to compute the distance between the density operators of the ideal and noisy implementations of the teleported qubit, denoted as $\rho$ and $\rho'$, respectively.
 
-As shown in \autoref{eq:teleport_measure}, the state of the teleported qubit is 
-\begin{equation*}
-  \rho = \Big(\Big(\frac{1}{4} |\psi\rangle \langle \psi|, \frac{1}{4} |\psi\rangle \langle \psi|\Big),(\frac{1}{4} |\psi\rangle \langle \psi|, \frac{1}{4}  |\psi\rangle \langle \psi| \Big)\Big)
-\end{equation*}
+As shown in \autoref{eq:teleport_correction}, the state of the teleported qubit is $\rho=\ket{\psi}\bra{\psi}$. Given \autoref{eq:dephasing_result}, the state of the teleported qubit after amplitude damping with probability $\gamma$ is $(|\alpha|^{2} + \gamma |\beta|^{2}) \ket{0}\bra{0} + \sqrt{1-\gamma} \hspace{1pt} \alpha \beta^{\dag} \ket{0}\bra{1} + \sqrt{1-\gamma} \hspace{1pt} \alpha^{\dag} \beta \ket{1}\bra{0} + (1-\gamma) |\beta|^{2} \ket{1}\bra{1}$, which is denoted as $\rho'$.
 
-Given \autoref{eq:dephasing_result}, designating $\ket{\psi'}\bra{\psi'}$ as the state $(|\alpha|^{2} + \gamma |\beta|^{2}) \ket{0}\bra{0} + \sqrt{1-\gamma} \hspace{1pt} \alpha \beta^{\dag} \ket{0}\bra{1} + \sqrt{1-\gamma} \hspace{1pt} \alpha^{\dag} \beta \ket{1}\bra{0} + (1-\gamma) |\beta|^{2} \ket{1}\bra{1}$, the state of the teleported qubit after amplitude damping with probability $\gamma$ is:
-\begin{equation*}
-  \rho' = \Big(\Big(\frac{1}{4} |\psi'\rangle \langle \psi'|, \frac{1}{4} |\psi'\rangle \langle \psi'|\Big),\Big(\frac{1}{4} |\psi'\rangle \langle \psi'|, \frac{1}{4}  |\psi'\rangle \langle \psi'| \Big)\Big)
-\end{equation*}
 As a result,
 \begin{equation}
-  \rho-\rho'  = \Big(\Big(\frac{1}{4} ( \ket{\psi}\bra{\psi} -|\psi'\rangle \langle \psi'|), \frac{1}{4} ( \ket{\psi}\bra{\psi} -|\psi'\rangle \langle \psi'|)\Big),\Big(\frac{1}{4} ( \ket{\psi}\bra{\psi} -|\psi'\rangle \langle \psi'|), \frac{1}{4}  ( \ket{\psi}\bra{\psi} -|\psi'\rangle \langle \psi'| )\Big)\Big)
-\end{equation}
-Where,
-\begin{equation}
   \begin{split}
-   \ket{\psi}\bra{\psi} - \ket{\psi'}\bra{\psi'}  = & |\alpha|^{2} |0\rangle \langle 0 | + \alpha \beta^{\dag} |0\rangle \langle 1 | + \alpha^{\dag} \beta |1\rangle \langle 0 | + |\beta|^{2} |1\rangle \langle 1 |  - \big((|\alpha|^{2} + \gamma |\beta|^{2}) \ket{0}\bra{0}
+   \rho - \rho' = & |\alpha|^{2} |0\rangle \langle 0 | + \alpha \beta^{\dag} |0\rangle \langle 1 | + \alpha^{\dag} \beta |1\rangle \langle 0 | + |\beta|^{2} |1\rangle \langle 1 |  - \big((|\alpha|^{2} + \gamma |\beta|^{2}) \ket{0}\bra{0}
    \\ & + \sqrt{1-\gamma} \hspace{1pt} \alpha \beta^{\dag} \ket{0}\bra{1} + \sqrt{1-\gamma} \hspace{1pt} \alpha^{\dag} \beta \ket{1}\bra{0} + (1-\gamma) |\beta|^{2} \ket{1}\bra{1}\big)\\
    = &  \gamma |\beta|^{2} |0\rangle \langle 0 | + (1-\sqrt{1-\gamma}) (\alpha \beta^{\dag} |0\rangle \langle 1 | + \alpha^{\dag} \beta |1\rangle \langle 0 |) - \gamma |\beta|^{2} |1\rangle \langle 1 |  
   \end{split}
@@ -1138,12 +1133,11 @@ Employing \autoref{eq:Bloch_vector}, the components of the Bloch vector of the s
 \begin{equation}
   \begin{split}
   & \lVert \rho-\rho' \rVert_{\diamondsuit} \\
-  =&  \left\lVert \Big(\Big(\frac{1}{4} ( \ket{\psi}\bra{\psi} -|\psi'\rangle \langle \psi'|), \frac{1}{4} ( \ket{\psi}\bra{\psi} -|\psi'\rangle \langle \psi'|)\Big),\Big(\frac{1}{4} ( \ket{\psi}\bra{\psi} -|\psi'\rangle \langle \psi'|), \frac{1}{4}  ( \ket{\psi}\bra{\psi} -|\psi'\rangle \langle \psi'| )\Big)\Big)\right\rVert_{\diamondsuit} \\
-   = \hspace{2pt}&  4 \cdot \left\lVert \frac{1}{4} \ket{\psi}\bra{\psi} -|\psi'\rangle \langle \psi'|  \right\rVert_{\diamondsuit}  \hspace{237pt} \{\text{\autoref{eq:norm_tuple}}\} \\
-   = \hspace{2pt}&  4 \cdot \left\lVert \frac{1}{4} \left((1-\sqrt{1-\gamma}) (\alpha \beta^{\dag}  + \alpha^{\dag} \beta) ,i(1-\sqrt{1-\gamma}) (\alpha \beta^{\dag} - \alpha^{\dag} \beta),2\gamma |\beta|^{2}\right)  \right\rVert_{2} \\
-   = \hspace{2pt}&  4 \cdot \sqrt{ \frac{1}{16} \left( (1-\sqrt{1-\gamma}) (\alpha \beta^{\dag}  + \alpha^{\dag} \beta)\right)^{2} + \left(i(1-\sqrt{1-\gamma}) (\alpha \beta^{\dag} - \alpha^{\dag} \beta)\right)^{2} + \left(2\gamma |\beta|^{2}\right)^{2}} \hspace{10pt} \{\text{\autoref{eq:euclidean_distance}}\}\\
-   = \hspace{2pt}&  4 \cdot \sqrt{ \frac{1}{16} \left( (1-\sqrt{1-\gamma}) (\alpha \beta^{\dag}  + \alpha^{\dag} \beta)\right)^{2}  - \left((1-\sqrt{1-\gamma}) (\alpha \beta^{\dag} - \alpha^{\dag} \beta)\right)^{2} + \left(2\gamma |\beta|^{2}\right)^{2}} \\
-   = \hspace{2pt}&  4 \cdot \sqrt{ \frac{1}{16} \cdot 4 \cdot  (1-\sqrt{1-\gamma})^{2} |\alpha|^{2}|\beta|^{2} + 4 \gamma^{2} |\beta|^{4}} \\
+   = \hspace{2pt}&    \left\lVert  \ket{\psi}\bra{\psi} -|\psi'\rangle \langle \psi'|  \right\rVert_{\diamondsuit}  \\
+   = \hspace{2pt}&    \left\lVert  \left((1-\sqrt{1-\gamma}) (\alpha \beta^{\dag}  + \alpha^{\dag} \beta) ,i(1-\sqrt{1-\gamma}) (\alpha \beta^{\dag} - \alpha^{\dag} \beta),2\gamma |\beta|^{2}\right)  \right\rVert_{2} \\
+   = \hspace{2pt}&  \sqrt{ \left( (1-\sqrt{1-\gamma}) (\alpha \beta^{\dag}  + \alpha^{\dag} \beta)\right)^{2} + \left(i(1-\sqrt{1-\gamma}) (\alpha \beta^{\dag} - \alpha^{\dag} \beta)\right)^{2} + \left(2\gamma |\beta|^{2}\right)^{2}} \hspace{10pt} \{\text{\autoref{eq:euclidean_distance}}\}\\
+   = \hspace{2pt}&   \sqrt{  \left( (1-\sqrt{1-\gamma}) (\alpha \beta^{\dag}  + \alpha^{\dag} \beta)\right)^{2}  - \left((1-\sqrt{1-\gamma}) (\alpha \beta^{\dag} - \alpha^{\dag} \beta)\right)^{2} + \left(2\gamma |\beta|^{2}\right)^{2}} \\
+   = \hspace{2pt}&  \sqrt{  4 \cdot  (1-\sqrt{1-\gamma})^{2} |\alpha|^{2}|\beta|^{2} + 4 \gamma^{2} |\beta|^{4}} \\
    = \hspace{2pt}&  2 \cdot \sqrt{  (1-\sqrt{1-\gamma})^{2} |\alpha|^{2}|\beta|^{2} + \gamma^{2} |\beta|^{4}} \\
 \end{split}
 \end{equation}
@@ -1536,6 +1530,19 @@ This operation is depicted in \autoref{fig:Operation_T}.
   \label{fig:Operation_T}
 \end{figure}
 
+Regarding the calculations, applying operation $T$ to the state $\ket{\psi}$, one has that:
+\begin{equation} \label{eq:operation_T}
+  \begin{split}
+  &\ket{\phi} \bra{\phi}\\
+ \xmapsto{I \hspace{1pt} \otimes \hspace{1pt} q \hspace{1pt} (\textit{new}\hspace{1pt}0 \hspace{1pt}(*))} \quad & \ket{\phi} \bra{\phi} \otimes \ket{0} \bra{0} \\
+  \xmapsto{\hspace{8pt} I \hspace{1pt} \hspace{1pt} \otimes R_{X}(\frac{\pi}{2})\hspace{8pt}} \quad  & \ket{\phi} \bra{\phi} \otimes \frac{1}{2} \left( \ket{0}\bra{0} -i \ket{0}\bra{1} + i \ket{1}\bra{0} + \ket{1}\bra{1} \right)  \\
+  & = \frac{1}{2} \left( \ket{\phi} \bra{\phi}  \ket{0}\bra{0} -i \ket{\phi} \bra{\phi}\ket{0}\bra{1} + i \ket{\phi} \bra{\phi} \ket{1}\bra{0} + \ket{\phi} \bra{\phi}  \ket{1}\bra{1} \right) \\
+  \xmapsto{\hspace{22pt} \text{CU} \hspace{22pt}} \quad & \frac{1}{2} \left( \ket{\phi} \bra{\phi} \ket{0}\bra{0} - i\ket{\phi} \bra{\phi}\ket{0}\bra{1} U^{\dag} + i \hspace{1pt} U\ket{\phi} \bra{\phi} \ket{1}\bra{0} + U \ket{\phi} \bra{\phi}  \ket{1}\bra{1}U^{\dag} \right) \\ 
+  \xmapsto{\hspace{13pt} I \hspace{1pt}\otimes \hspace{1pt} \text{Disc} \hspace{14pt}} \quad & \frac{1}{2} \left(\ket{\phi} \bra{\phi} + U\ket{\phi} \bra{\phi}U^{\dag} \right) \\
+  \end{split} 
+\end{equation}
+
+Revisiting the example at hand, the circuit that represents the quantum teleportation protocol with a bit flip with a 50\% probability  prior to measurement measurement is depicted in \autoref{fig:teleport_bit_flip}.
 
 
 \begin{figure} [H]
@@ -1545,25 +1552,46 @@ This operation is depicted in \autoref{fig:Operation_T}.
       \lstick{$\ket{\psi}$}  & \qw &\qw & \qw & \qw & \qw &  \ctrl{1} \qw \gategroup[2,steps=2,style={dashed,rounded
       corners,fill=blue!20, inner
       xsep=2pt},background,label style={label
-      position=below,anchor=north,yshift=-0.2cm}]{{\sc
-      B}} & \gate{H} \qw & \qw & \qw &\qw \gategroup[5,steps=16,style={dashed,rounded
+      position=above,anchor=south,yshift=-0.2cm}]{{\sc
+      TeleportIntra-gate}} & \gate{H} \qw & \qw & \qw &\qw \gategroup[5,steps=18,style={dashed,rounded
       corners,fill=blue!20, inner
       xsep=2pt},background,label style={label
       position=below,anchor=north,yshift=-0.2cm}]{{\sc
-      C}}  & \qw & \qw & \qw & \targ{} \qw  & \qw & \qw & \qw & \qw  & \meter{} \qw      & \setwiretype{c}  &  &  & & \ctrl[vertical
+      TMeasureCorrection}}  & \qw & \qw & \qw & \targ{} \qw  & \qw & \qw & \qw & \qw & \qw & \qw  & \qw& \meter{} \qw      & \setwiretype{c}  &  &  & & \ctrl[vertical
 wire=c]{2}  \\
-      \lstick {$\ket{0}$}  &\gate{H}\gategroup[2,steps=3,style={dashed,rounded
+      \lstick {$\ket{0}$}  &\gate{H} \qw \gategroup[2,steps=3,style={dashed,rounded
       corners,fill=blue!20, inner
       xsep=2pt},background,label style={label
       position=below,anchor=north,yshift=-0.2cm}]{{\sc
-      A}} & \qw  & \ctrl{1} \qw& \qw & \qw  & \targ{} \qw & \qw & \qw & \qw & \qw& \qw & \qw & \qw & \qw &  \qw & \qw &  \targ{} \qw & \qw &   \meter{} \qw & \setwiretype{c}  & & \ctrl[vertical
+      EPR}} & \qw  & \ctrl{1} \qw & \qw & \qw  & \targ{} \qw & \qw & \qw & \qw & \qw& \qw & \qw & \qw & \qw &  \qw & \qw & \qw & \qw &  \qw &  \targ{} \qw & \qw& \meter{} \qw & \setwiretype{c}  & & \ctrl[vertical
 wire=c]{1} \\
-      \lstick{$\ket{0}$}  &  \qw & \qw &  \targ{} \qw \qw & \qw &\qw&\qw & \qw & \qw& \qw & \qw & \qw & \qw& \qw & \qw & \qw & \qw &  \qw & \qw & \qw & \qw & \qw &  \gate{X} \qw & \qw & \gate{Z} \qw\\
-       &   & &  &  & & &  &  & & & & \lstick{$\ket{0}$}  & \qw & \qw & \qw  & \gate{R_X(\frac{\pi}{2})} \qw& \ctrl{-2} \qw & \gate{\text{Disc}} \qw  \\
-      &   &  & & & & &  &  & & & & \lstick{$\ket{0}$}   &\gate{R_X(\frac{\pi}{2})} \qw  & \ctrl{-4} \qw & \gate{\text{Disc}} \qw & &  &  &  &  &   & &  &  &  &  &  
+      \lstick{$\ket{0}$}  &  \qw & \qw &  \targ{} \qw \qw & \qw &\qw&\qw & \qw & \qw& \qw & \qw & \qw & \qw& \qw & \qw & \qw & \qw &  \qw & \qw & \qw & \qw & \qw & \qw & \qw& \qw& \gate{X} \qw & \qw & \gate{Z} \qw\\
+       &   & &  &  & & &  &  & & & & & & &  & & & \lstick{$\ket{0}$}  & \gate{R_X(\frac{\pi}{2})} \qw& \ctrl{-2} \qw & \gate{\text{Disc}} \qw  \\
+      &   &  & & & & &  &  & & & & \lstick{$\ket{0}$}   &\gate{R_X(\frac{\pi}{2})} \qw  & \ctrl{-4} \qw & \gate{\text{Disc}} \qw & && &  &  &  &  &   & &  &  &  &  &  &
     \end{quantikz}
-  \caption{Quantum Teleportation Protocol: Bit flip with a 50\% probability before measurement.}
+  \caption{Quantum Teleportation Protocol: Bit flip with  50\% probability before measurement.}
   \label{fig:teleport_bit_flip}
 \end{figure}
+In this case, the quantum teleportation protocol is divided into three parts: \textbf{EPR}, \textbf{TeleportIntra-gate} and \textbf{TMeasureCorrection}. As a result, it is necessary to define the new functions (note that the function \textbf{EPR} is the same as the one defined in \autoref{sec:teleport}):
+
+\begin{align*}
+   &\textbf{BellMeasure}: \hspace{5pt} \textit{qbit} \otimes \textit{qbit}  \multimap \textit{qbit} \otimes \textit{qbit} \\
+   &\textbf{TeleportIntra-gate}: \hspace{5pt} \textit{qbit} \otimes \textit{qbit} \otimes \textit{qbit}  \multimap \textit{qbit} \otimes \textit{qbit} \otimes \textit{qbit} \\
+   &\textbf{TMeasureCorrection}: \hspace{5pt} \textit{qbit} \otimes \textit{qbit} \otimes \textit{qbit}  \multimap \textit{qbit} \\
+\end{align*}
+
+Considering the operation $T_{X \otimes I \otimes I}$ as the operation $T$ with the unitary $U$ represented by $X \otimes I \otimes I$, and similarly, $T_{I \otimes X \otimes I}$ as $T$ with $U$ denoted by $I \otimes U \otimes I$, these funtions can be defined as follows:
 
 
+\begin{align*}
+      \hspace{-28pt}
+      &\textbf{TeleportIntra-gate} =  q_{1}: \text{qubit}, q_{2}: \text{qubit}  \triangleright  (\text{pm}  \hspace{5pt} \textit{CNOT} (q_{1},q_{2})  \hspace{2pt}  \text{to} \hspace{2pt} x \otimes y.  \hspace{2pt}  \textit{H} (x) \otimes y) \\
+      &\textbf{TMeasureCorrection}= q_{1}: \text{qbit}, q_{2}: \text{qbit},  q_{3}: \text{qbit} \triangleright \text{pm} \hspace{2pt} T_{X \otimes I \otimes I} (q_{1},q_{2},q_{3}) \hspace{2pt} \text{to} \hspace{2pt} x \otimes y \otimes q . \hspace{2pt}  \\
+      &  \hspace{125pt} \text{cond}\hspace{2pt} \textit{meas} (x ) \\
+      &\textbf{TMeasureCorrection}= q_{1}: \text{qbit}, q_{2}: \text{qbit},  q_{3}: \text{bit} \triangleright  \text{cond}\hspace{2pt} x  \hspace{2pt}  \{\text{inl} (x_{0}) \Rightarrow  (\text{cond}\hspace{2pt} y  \hspace{2pt}  \{\text{inl} (y_{0})  \Rightarrow{}  \textit{I}(q)\} ; \\
+      \hspace{-28pt}
+      & \hspace{335pt} \hspace{5pt} \text{inr} (y_{1}) \Rightarrow  \hspace{2pt}   \textit{X} (q)); \\
+      & \hspace{240pt}\text{inr} (x_{1})  \Rightarrow  (\text{cond}\hspace{2pt} y  \hspace{2pt}  \{\text{inl} (y_{0})  \Rightarrow   \textit{Z}(q);  \\
+      \hspace{-28pt}
+      &\hspace{335pt} \text{inr} (y_{1}) \Rightarrow{} \textit{Z} (\textit{X}(q)) \})\}
+ \end{align*}
