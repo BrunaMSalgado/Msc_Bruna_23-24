@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.141592653-2.6-1.40.25 (MiKTeX 24.1) (preloaded format=pdflatex 2024.2.8)  15 MAR 2024 17:34
+This is pdfTeX, Version 3.141592653-2.6-1.40.25 (MiKTeX 24.1) (preloaded format=pdflatex 2024.2.8)  15 MAR 2024 22:00
 entering extended mode
  restricted \write18 enabled.
  file:line:error style messages enabled.
@@ -2077,7 +2077,7 @@ Overfull \hbox (3.27301pt too wide) detected at line 1543
  []
 
 
-Overfull \hbox (19.74857pt too wide) in paragraph at lines 1571--1572
+Overfull \hbox (19.74857pt too wide) in paragraph at lines 1570--1571
  [][] 
  []
 
@@ -2085,19 +2085,16 @@ Overfull \hbox (19.74857pt too wide) in paragraph at lines 1571--1572
 Underfull \vbox (badness 10000) has occurred while \output is active []
 
  [48]
-Overfull \hbox (11.10995pt too wide) in paragraph at lines 1575--1576
+Overfull \hbox (11.10995pt too wide) in paragraph at lines 1574--1575
 []\T1/SourceSansPro-TLF/regular/n/12 In this case, the quan-tum tele-por-ta-tion pro-to-col is di-vided into three parts: \T1/SourceSansPro-TLF/bold/n/12 EPR\T1/SourceSansPro-TLF/regular/n/12 , \T1/SourceSansPro-TLF/bold/n/12 TeleportIntra-
  []
 
 
-Overfull \hbox (50.91998pt too wide) detected at line 1597
+Overfull \hbox (21.31525pt too wide) detected at line 1593
 []
  []
 
-
-Underfull \vbox (badness 10000) has occurred while \output is active []
-
- [49]) (chapters/Applications.tex [50]
+[49]) (chapters/Applications.tex [50]
 Chapter 5.
 ) (chapters/ConclusionsAndFutureWork.tex [51
 
@@ -2172,7 +2169,7 @@ Package rerunfilecheck Info: File `dissertation.out' has not changed.
 Here is how much of TeX's memory you used:
  52489 strings out of 474542
  1097395 string characters out of 5744447
- 2078978 words of memory out of 5000000
+ 2081978 words of memory out of 5000000
  73476 multiletter control sequences out of 15000+600000
  772489 words of font info for 100 fonts, out of 8000000 for 9000
  1141 hyphenation exceptions out of 8191
@@ -2184,7 +2181,7 @@ pdfTeX warning (dest): name{glo:pdr} has been referenced but does not exist, rep
 pdfTeX warning (dest): name{glo:soa} has been referenced but does not exist, replaced by a fixed one
 
  <C:\Users\mona_\AppData\Local\MiKTeX\fonts/pk/ljfour/jknappen/ec/dpi600\ecrm1200.pk> <C:\Users\mona_\AppData\Local\MiKTeX\fonts/pk/ljfour/jknappen/ec/dpi600\ectt1200.pk><C:/Users/mona_/AppData/Local/Programs/MiKTeX/fonts/type1/adobe/sourcesanspro/SourceSansPro-Bold.pfb><C:/Users/mona_/AppData/Local/Programs/MiKTeX/fonts/type1/adobe/sourcesanspro/SourceSansPro-It.pfb><C:/Users/mona_/AppData/Local/Programs/MiKTeX/fonts/type1/adobe/sourcesanspro/SourceSansPro-Light.pfb><C:/Users/mona_/AppData/Local/Programs/MiKTeX/fonts/type1/adobe/sourcesanspro/SourceSansPro-Regular.pfb><C:/Users/mona_/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmex10.pfb><C:/Users/mona_/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmmi12.pfb><C:/Users/mona_/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmmi6.pfb><C:/Users/mona_/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmmi8.pfb><C:/Users/mona_/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmr12.pfb><C:/Users/mona_/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmr6.pfb><C:/Users/mona_/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmr8.pfb><C:/Users/mona_/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmsy10.pfb><C:/Users/mona_/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmsy6.pfb><C:/Users/mona_/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmsy8.pfb><C:/Users/mona_/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/symbols/msam10.pfb><C:/Users/mona_/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/symbols/msbm10.pfb><C:/Users/mona_/AppData/Local/Programs/MiKTeX/fonts/type1/public/hoekwater/stmary10.pfb>
-Output written on dissertation.pdf (92 pages, 1052276 bytes).
+Output written on dissertation.pdf (92 pages, 1052739 bytes).
 PDF statistics:
  1251 PDF objects out of 1440 (max. 8388607)
  303 named destinations out of 1000 (max. 500000)

@@ -852,9 +852,9 @@ Considering the unitary operations $H: \textit{qubit} \xrightarrow{}  \textit{qu
       \hspace{-28pt}
       &\textbf{BellMeasure} =  q_{1}: \text{qubit}, q_{2}: \text{qubit}  \triangleright  (\text{pm}  \hspace{5pt} \textit{CNOT} (q_{1},q_{2})  \hspace{2pt}  \text{to} \hspace{2pt} x \otimes y.  \hspace{2pt}  \textit{meas} (\textit{H} (x)) \otimes \textit{meas} (y) ) \\
       \hspace{-28pt}
-      &\textbf{Correction}= q: \text{qubit}, x: \text{bit},  y: \text{bit} \triangleright  \text{cond}\hspace{2pt} x  \hspace{2pt}  \{\text{inl} (x_{0}) \Rightarrow  (\text{cond}\hspace{2pt} y  \hspace{2pt}  \{\text{inl} (y_{0})  \Rightarrow{}  \textit{I}(q)\} ; \\
+      &\textbf{Correction}= q: \text{qubit}, x: \text{bit},  y: \text{bit} \triangleright  \text{cond}\hspace{2pt} x  \hspace{2pt}  \{\text{inl} (x_{0}) \Rightarrow  (\text{cond}\hspace{2pt} y  \hspace{2pt}  \{\text{inl} (y_{0})  \Rightarrow{}  \textit{I}(q); \\
       \hspace{-28pt}
-      & \hspace{335pt} \hspace{5pt} \text{inr} (y_{1}) \Rightarrow  \hspace{2pt}   \textit{X} (q)); \\
+      & \hspace{335pt} \hspace{5pt} \text{inr} (y_{1}) \Rightarrow  \hspace{2pt}   \textit{X} (q))\} ; \\
       & \hspace{240pt}\text{inr} (x_{1})  \Rightarrow  (\text{cond}\hspace{2pt} y  \hspace{2pt}  \{\text{inl} (y_{0})  \Rightarrow   \textit{Z}(q);  \\
       \hspace{-28pt}
       &\hspace{335pt} \text{inr} (y_{1}) \Rightarrow{} \textit{Z} (\textit{X}(q)) \})\}
@@ -1542,8 +1542,7 @@ Regarding the calculations, applying operation $T$ to the state $\ket{\psi}$, on
   \end{split} 
 \end{equation}
 
-Revisiting the example at hand, the circuit that represents the quantum teleportation protocol with a bit flip with a 50\% probability  prior to measurement measurement is depicted in \autoref{fig:teleport_bit_flip}.
-
+Revisiting the example at hand, the circuit that represents the quantum teleportation protocol with a 50\% probability of occurring a bit flip prior to measurement is depicted in \autoref{fig:teleport_bit_flip}.
 
 \begin{figure} [H]
   \centering
@@ -1586,12 +1585,16 @@ Considering the operation $T_{X \otimes I \otimes I}$ as the operation $T$ with 
 \begin{align*}
       \hspace{-28pt}
       &\textbf{TeleportIntra-gate} =  q_{1}: \text{qubit}, q_{2}: \text{qubit}  \triangleright  (\text{pm}  \hspace{5pt} \textit{CNOT} (q_{1},q_{2})  \hspace{2pt}  \text{to} \hspace{2pt} x \otimes y.  \hspace{2pt}  \textit{H} (x) \otimes y) \\
-      &\textbf{TMeasureCorrection}= q_{1}: \text{qbit}, q_{2}: \text{qbit},  q_{3}: \text{qbit} \triangleright \text{pm} \hspace{2pt} T_{X \otimes I \otimes I} (q_{1},q_{2},q_{3}) \hspace{2pt} \text{to} \hspace{2pt} x \otimes y \otimes q . \hspace{2pt}  \\
-      &  \hspace{125pt} \text{cond}\hspace{2pt} \textit{meas} (x ) \\
-      &\textbf{TMeasureCorrection}= q_{1}: \text{qbit}, q_{2}: \text{qbit},  q_{3}: \text{bit} \triangleright  \text{cond}\hspace{2pt} x  \hspace{2pt}  \{\text{inl} (x_{0}) \Rightarrow  (\text{cond}\hspace{2pt} y  \hspace{2pt}  \{\text{inl} (y_{0})  \Rightarrow{}  \textit{I}(q)\} ; \\
-      \hspace{-28pt}
-      & \hspace{335pt} \hspace{5pt} \text{inr} (y_{1}) \Rightarrow  \hspace{2pt}   \textit{X} (q)); \\
-      & \hspace{240pt}\text{inr} (x_{1})  \Rightarrow  (\text{cond}\hspace{2pt} y  \hspace{2pt}  \{\text{inl} (y_{0})  \Rightarrow   \textit{Z}(q);  \\
-      \hspace{-28pt}
-      &\hspace{335pt} \text{inr} (y_{1}) \Rightarrow{} \textit{Z} (\textit{X}(q)) \})\}
+      &\textbf{TMeasureCorrection}= q_{1}: \text{qbit}, q_{2}: \text{qbit},  q_{3}: \text{qbit} \triangleright \text{pm} \hspace{2pt} T_{X \otimes I \otimes I} (q_{1},q_{2},q_{3}) \hspace{2pt} \text{to} \hspace{2pt} a \otimes b \otimes c . \hspace{2pt}   \\
+      &\hspace{125pt} \text{pm} \hspace{2pt} T_{I \otimes X \otimes I} (a,b,c) \hspace{2pt} \text{to} \hspace{2pt} d \otimes e \otimes q. \\
+      & \hspace{125pt} \text{pm} \hspace{2pt} \textit{meas} (d) \otimes \textit{meas} (e)  \hspace{2pt} \text{to} \hspace{2pt} x \otimes y. \hspace{2pt} \\
+      &  \hspace{125pt} \text{cond}\hspace{2pt} x \hspace{2pt}  \{\text{inl} (x_{0}) \Rightarrow  (\text{cond}\hspace{2pt} y  \hspace{2pt}  \{\text{inl} (y_{0})  \Rightarrow{}  \textit{I}(q) ;  \hspace{5pt} \text{inr} (y_{1}) \Rightarrow  \hspace{2pt}   \textit{X} (q)) \}; \\
+      & \hspace{167pt}\text{inr} (x_{1})  \Rightarrow  (\text{cond}\hspace{2pt} y  \hspace{2pt}  \{\text{inl} (y_{0})  \Rightarrow   \textit{Z}(q); \text{inr} (y_{1}) \Rightarrow{} \textit{Z} (\textit{X}(q)) \})\}
+ \end{align*}
+
+ Designating the qubit to be teleported as $q_0$, one can conceptualize he quantum teleportation protocol with a 50\% probability of occurring a bit flip prior to measurement as follows:
+ \begin{align*}
+     \hspace{130 pt}& \text{pm} \hspace{5pt} \textbf{EPR}\hspace{1pt} (*) \hspace{5pt} \text{to} \hspace{5pt}  q_{1} \otimes q_{2}.  \notag \\
+     & \text{pm}\hspace{5pt} \textbf{TeleportIntra-gate} \hspace{1pt} (q_0,q_{1}) \hspace{5pt}  \text{to} \hspace{5pt} tiq_{0}\otimes tiq_{1} . \notag \\
+     & \text{pm} \hspace{5pt}  \textbf{TMeasureCorrection} \hspace{1pt} ( tiq_{0},  tiq_{1}, q_{2} ) \hspace{5pt} \text{to} \hspace{5pt}  q. \hspace{2pt}  q
  \end{align*}
