@@ -1583,7 +1583,6 @@ Considering the operation $T_{X \otimes I \otimes I}$ as the operation $T$ with 
 
 
 \begin{align*}
-      \hspace{-28pt}
       &\textbf{TeleportIntra-gate} =  q_{1}: \text{qubit}, q_{2}: \text{qubit}  \triangleright  (\text{pm}  \hspace{5pt} \textit{CNOT} (q_{1},q_{2})  \hspace{2pt}  \text{to} \hspace{2pt} x \otimes y.  \hspace{2pt}  \textit{H} (x) \otimes y) \\
       &\textbf{TMeasureCorrection}= q_{1}: \text{qbit}, q_{2}: \text{qbit},  q_{3}: \text{qbit} \triangleright \text{pm} \hspace{2pt} T_{X \otimes I \otimes I} (q_{1},q_{2},q_{3}) \hspace{2pt} \text{to} \hspace{2pt} a \otimes b \otimes c . \hspace{2pt}   \\
       &\hspace{125pt} \text{pm} \hspace{2pt} T_{I \otimes X \otimes I} (a,b,c) \hspace{2pt} \text{to} \hspace{2pt} d \otimes e \otimes q. \\
@@ -1594,7 +1593,56 @@ Considering the operation $T_{X \otimes I \otimes I}$ as the operation $T$ with 
 
  Designating the qubit to be teleported as $q_0$, one can conceptualize he quantum teleportation protocol with a 50\% probability of occurring a bit flip prior to measurement as follows:
  \begin{align*}
-     \hspace{130 pt}& \text{pm} \hspace{5pt} \textbf{EPR}\hspace{1pt} (*) \hspace{5pt} \text{to} \hspace{5pt}  q_{1} \otimes q_{2}.  \notag \\
+     \hspace{90pt}& \text{pm} \hspace{5pt} \textbf{EPR}\hspace{1pt} (*) \hspace{5pt} \text{to} \hspace{5pt}  q_{1} \otimes q_{2}.  \notag \\
      & \text{pm}\hspace{5pt} \textbf{TeleportIntra-gate} \hspace{1pt} (q_0,q_{1}) \hspace{5pt}  \text{to} \hspace{5pt} tiq_{0}\otimes tiq_{1} . \notag \\
      & \text{pm} \hspace{5pt}  \textbf{TMeasureCorrection} \hspace{1pt} ( tiq_{0},  tiq_{1}, q_{2} ) \hspace{5pt} \text{to} \hspace{5pt}  q. \hspace{2pt}  q
  \end{align*}
+ 
+ Per \autoref{eq:teleport_correction}, the state of the system post-teleportation protocol corresponds to $\ket{\psi}\bra{\psi}$ in the absence of a malicious attack, denoted as $\rho$.
+
+ Regarding the first two  parts of the teleportation protocol, given \autoref{eq:teleport_1}, one has that:
+\begin{equation} \label{eq:teleport_T_part1}
+  \begin{split}
+  &\ket{\psi} \bra{\psi} \otimes \ket{0} \bra{0} \otimes \ket{0} \bra{0} \\
+  \xmapsto{ \hspace{26pt} \text{EPR} \hspace{27pt} } \quad &  \frac{1}{\sqrt{2}} (\alpha|000\rangle + \alpha|011\rangle + \beta|100\rangle + \beta|111\rangle)\\
+  \xmapsto{ \hspace{3pt} \text{TeleportIntra-gate} \hspace{3pt} } \quad & |00\rangle \otimes |\psi\rangle  + |01\rangle \otimes X|\psi\rangle + |10\rangle \otimes Z |\psi\rangle + |11\rangle \otimes XZ|\psi\rangle = |\phi\rangle  \\
+  \end{split}
+\end{equation}
+
+Consequently, the state of the system post-teleportation protocol corresponds to $\ket{\phi}\bra{\phi}$. With respect to $\textbf{TMeasureCorrection}$, considering that,
+\begin{equation}
+  \begin{split}
+     & |\phi\rangle = |00\rangle \otimes |\psi\rangle  + |01\rangle \otimes X|\psi\rangle + |10\rangle \otimes Z |\psi\rangle + |11\rangle \otimes XZ|\psi\rangle \\
+      \xmapsto{ \hspace{3pt} X \otimes I \otimes I \hspace{3pt} } \quad &  |10\rangle \otimes |\psi\rangle  + |11\rangle \otimes X|\psi\rangle + |00\rangle \otimes Z |\psi\rangle + |01\rangle \otimes XZ|\psi\rangle \\
+      & = |00\rangle \otimes Z |\psi\rangle + |01\rangle \otimes XZ|\psi\rangle + |10\rangle \otimes |\psi\rangle  + |11\rangle \otimes X|\psi\rangle = |\phi'\rangle
+  \end{split}
+  \end{equation}
+And,
+\begin{equation}
+  \begin{split}
+     & |\phi\rangle = |00\rangle \otimes |\psi\rangle  + |01\rangle \otimes X|\psi\rangle + |10\rangle \otimes Z |\psi\rangle + |11\rangle \otimes XZ|\psi\rangle \\
+      \xmapsto{ \hspace{3pt} I \otimes X \otimes I \hspace{3pt} } \quad &  |01\rangle \otimes |\psi\rangle  + |00\rangle \otimes X|\psi\rangle + |11\rangle \otimes Z |\psi\rangle + |10\rangle \otimes XZ|\psi\rangle \\
+      & = |00\rangle \otimes X|\psi\rangle + |01\rangle \otimes |\psi\rangle + |10\rangle \otimes XZ |\psi\rangle + |11\rangle \otimes Z|\psi\rangle = |\phi''\rangle
+  \end{split}
+  \end{equation}
+  And finally,
+  \begin{equation}
+  \begin{split}
+     & |\phi'\rangle = |00\rangle \otimes Z |\psi\rangle + |01\rangle \otimes XZ|\psi\rangle + |10\rangle \otimes |\psi\rangle  + |11\rangle \otimes X|\psi\rangle \\
+     \xmapsto{ \hspace{3pt} I \otimes X \otimes I \hspace{3pt} } \quad & |01\rangle \otimes Z |\psi\rangle + |00\rangle \otimes XZ|\psi\rangle + |11\rangle \otimes |\psi\rangle + |10\rangle \otimes X|\psi\rangle \\
+      & = |00\rangle \otimes XZ|\psi\rangle + |01\rangle \otimes Z|\psi\rangle + |10\rangle \otimes X|\psi\rangle + |11\rangle \otimes |\psi\rangle = |\phi'''\rangle
+  \end{split}
+  \end{equation}
+It follows that,
+  \begin{equation} \label{eq:teleport_T_part2}
+    \begin{split}
+    & \ket{\phi}\bra{\phi} \\
+     \xmapsto{ \hspace{12pt} T_{X \otimes I \otimes I} \hspace{12pt} } \quad & \frac{1}{2} \left( \ket{\phi} \bra{\phi} + \ket{\phi'} \bra{\phi'}  \right) \hspace{200pt} \{\text{\autoref{eq:operation_T}}\}\\
+    \xmapsto{ \hspace{12pt} T_{I \otimes X \otimes I} \hspace{12pt} } \quad & \frac{1}{4} \left( \ket{\phi} \bra{\phi} + \ket{\phi'} \bra{\phi'} + \ket{\phi''} \bra{\phi''} + \ket{\phi'''} \bra{\phi'''}  \right)  \hspace{82pt} \{\text{\autoref{eq:operation_T}}\}\\
+    \xmapsto{ \text{meas } \otimes \hspace{1pt} \text{meas} \otimes  I} \quad & \frac{1}{4} \Big(\Big(\Big(\frac{1}{4} |\psi\rangle \langle \psi|, \frac{1}{4} X|\psi\rangle \langle \psi|X\Big),\Big(\frac{1}{4} Z|\psi\rangle \langle \psi|Z, \frac{1}{4}  XZ|\psi\rangle \langle \psi|ZX \Big)\Big) \\
+    & + \Big(\Big(\frac{1}{4} Z|\psi\rangle \langle \psi|Z, \frac{1}{4} XZ|\psi\rangle \langle \psi|XZ\Big),\Big(\frac{1}{4} |\psi\rangle \langle \psi|, \frac{1}{4}  X|\psi\rangle \langle \psi|X \Big)\Big)\\
+    & + \Big(\Big(\frac{1}{4} X|\psi\rangle \langle \psi|X, \frac{1}{4} |\psi\rangle \langle \psi|\Big),\Big(\frac{1}{4} XZ|\psi\rangle \langle \psi|ZX, \frac{1}{4}  Z|\psi\rangle \langle \psi|Z \Big)\Big) \\
+   & + \Big(\Big(\frac{1}{4} XZ|\psi\rangle \langle \psi|ZX, \frac{1}{4} Z|\psi\rangle \langle \psi|Z\Big),\Big(\frac{1}{4} X|\psi\rangle \langle \psi|X, \frac{1}{4}  |\psi\rangle \langle \psi| \Big)\Big) \Big) \\    
+    \end{split}
+  \end{equation}
+Next, regarding the condicional statements, taking into account that applying correction to $\Big(\Big(\frac{1}{4} |\psi\rangle \langle \psi|, \frac{1}{4} X|\psi\rangle \langle \psi|X\Big),\Big(\frac{1}{4} Z|\psi\rangle \langle \psi|Z, \frac{1}{4}  XZ|\psi\rangle \langle \psi|ZX \Big)\Big) $ results in the state $\ket{\psi}$ (\autoref{eq:teleport_correction}), and moreover, %resto dos estados

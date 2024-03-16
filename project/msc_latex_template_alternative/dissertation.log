@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.141592653-2.6-1.40.25 (MiKTeX 24.1) (preloaded format=pdflatex 2024.2.8)  15 MAR 2024 22:00
+This is pdfTeX, Version 3.141592653-2.6-1.40.25 (MiKTeX 24.1) (preloaded format=pdflatex 2024.2.8)  16 MAR 2024 22:37
 entering extended mode
  restricted \write18 enabled.
  file:line:error style messages enabled.
@@ -2090,61 +2090,76 @@ Overfull \hbox (11.10995pt too wide) in paragraph at lines 1574--1575
  []
 
 
-Overfull \hbox (21.31525pt too wide) detected at line 1593
+Overfull \hbox (21.31525pt too wide) detected at line 1592
 []
  []
 
-[49]) (chapters/Applications.tex [50]
-Chapter 5.
-) (chapters/ConclusionsAndFutureWork.tex [51
+[49]
+Overfull \hbox (2.03236pt too wide) in paragraph at lines 1612--1613
+[]\T1/SourceSansPro-TLF/regular/n/12 Consequently, the state of the sys-tem post-teleportation pro-to-col cor-re-sponds to $[] []$. With
+ []
 
-] [52
+
+Overfull \hbox (5.2203pt too wide) detected at line 1647
+ $[][]$  
+ []
+
+[50]) (chapters/Applications.tex
+Overfull \hbox (24.28467pt too wide) in paragraph at lines 1647--1
+[][][]\OMS/cmsy/m/n/12 j\OML/cmm/m/it/12  \OMS/cmsy/m/n/12 ih\OML/cmm/m/it/12  \OMS/cmsy/m/n/12 j\OML/cmm/m/it/12 ; []X\OMS/cmsy/m/n/12 j\OML/cmm/m/it/12  \OMS/cmsy/m/n/12 ih\OML/cmm/m/it/12  \OMS/cmsy/m/n/12 j\OML/cmm/m/it/12 X[]; [][]Z\OMS/cmsy/m/n/12 j\OML/cmm/m/it/12  \OMS/cmsy/m/n/12 ih\OML/cmm/m/it/12  \OMS/cmsy/m/n/12 j\OML/cmm/m/it/12 Z; []XZ\OMS/cmsy/m/n/12 j\OML/cmm/m/it/12  \OMS/cmsy/m/n/12 ih\OML/cmm/m/it/12  \OMS/cmsy/m/n/12 j\OML/cmm/m/it/12 ZX[][]$ \T1/SourceSansPro-TLF/regular/n/12 re-sults in the state $[]$ ([][]Equa-tion 4.43[][][]),
+ []
+
+[51] [52
+
+]
+Chapter 5.
+) (chapters/ConclusionsAndFutureWork.tex [53] [54
 
 ]
 Chapter 6.
-) (chapters/PlannedSchedule.tex [53] [54
+) (chapters/PlannedSchedule.tex [55] [56
 
 ]
 Chapter 7.
 \@gls@deffile=\write12
 \openout12 = `dissertation.glsdefs'.
 
-) (dissertation.bbl [55] [56
+) (dissertation.bbl [57] [58
 
-] [57]
+] [59]
 Underfull \hbox (badness 1394) in paragraph at lines 144--151
 []\T1/SourceSansPro-TLF/regular/n/12 Prakash Mu-rali, Jonathan M Baker, Ali Javadi-Abhari, Fred-eric T Chong, and Mar-garet
  []
 
-[58] [59]) [60]
+[60] [61]) [62]
 runsystem(makeindex dissertation.idx)...executed safely (allowed).
 
- (dissertation.ind) [61
+ (dissertation.ind) [63
 
 
-] [62] (appendices/SupportWork.tex
+] [64] (appendices/SupportWork.tex
 Appendix A.
-) (appendices/DetailsOfResults.tex [63
+) (appendices/DetailsOfResults.tex [65
 
-] [64
+] [66
 
 ]
 Appendix B.
-) (appendices/Listings.tex [65] [66
+) (appendices/Listings.tex [67] [68
 
 ]
 Appendix C.
-) (appendices/Tooling.tex [67] [68
+) (appendices/Tooling.tex [69] [70
 
 ]
 Appendix D.
-) (covers/BackCover.tex [69
-\indexentry{\LaTeX  }{69}
-\indexentry{TeX!TeX Users Group (TUG)}{69}
-\indexentry{TeX!TeX Users Group (TUG)}{69}
-] [70
+) (covers/BackCover.tex [71
+\indexentry{\LaTeX  }{71}
+\indexentry{TeX!TeX Users Group (TUG)}{71}
+\indexentry{TeX!TeX Users Group (TUG)}{71}
+] [72
 
-] [71
+] [73
 
 ]
 pdfTeX warning (ext4): destination with the same identifier (name{page.1}) has been already used, duplicate ignored
@@ -2167,10 +2182,10 @@ Package rerunfilecheck Info: File `dissertation.out' has not changed.
 (rerunfilecheck)             Checksum: B03643AAD86AE54D440C79C9C8E92BBE;6069.
  ) 
 Here is how much of TeX's memory you used:
- 52489 strings out of 474542
- 1097395 string characters out of 5744447
+ 52500 strings out of 474542
+ 1097578 string characters out of 5744447
  2081978 words of memory out of 5000000
- 73476 multiletter control sequences out of 15000+600000
+ 73480 multiletter control sequences out of 15000+600000
  772489 words of font info for 100 fonts, out of 8000000 for 9000
  1141 hyphenation exceptions out of 8191
  109i,36n,108p,2505b,1395s stack positions out of 10000i,1000n,20000p,200000b,200000s
@@ -2181,9 +2196,9 @@ pdfTeX warning (dest): name{glo:pdr} has been referenced but does not exist, rep
 pdfTeX warning (dest): name{glo:soa} has been referenced but does not exist, replaced by a fixed one
 
  <C:\Users\mona_\AppData\Local\MiKTeX\fonts/pk/ljfour/jknappen/ec/dpi600\ecrm1200.pk> <C:\Users\mona_\AppData\Local\MiKTeX\fonts/pk/ljfour/jknappen/ec/dpi600\ectt1200.pk><C:/Users/mona_/AppData/Local/Programs/MiKTeX/fonts/type1/adobe/sourcesanspro/SourceSansPro-Bold.pfb><C:/Users/mona_/AppData/Local/Programs/MiKTeX/fonts/type1/adobe/sourcesanspro/SourceSansPro-It.pfb><C:/Users/mona_/AppData/Local/Programs/MiKTeX/fonts/type1/adobe/sourcesanspro/SourceSansPro-Light.pfb><C:/Users/mona_/AppData/Local/Programs/MiKTeX/fonts/type1/adobe/sourcesanspro/SourceSansPro-Regular.pfb><C:/Users/mona_/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmex10.pfb><C:/Users/mona_/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmmi12.pfb><C:/Users/mona_/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmmi6.pfb><C:/Users/mona_/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmmi8.pfb><C:/Users/mona_/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmr12.pfb><C:/Users/mona_/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmr6.pfb><C:/Users/mona_/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmr8.pfb><C:/Users/mona_/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmsy10.pfb><C:/Users/mona_/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmsy6.pfb><C:/Users/mona_/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmsy8.pfb><C:/Users/mona_/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/symbols/msam10.pfb><C:/Users/mona_/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/symbols/msbm10.pfb><C:/Users/mona_/AppData/Local/Programs/MiKTeX/fonts/type1/public/hoekwater/stmary10.pfb>
-Output written on dissertation.pdf (92 pages, 1052739 bytes).
+Output written on dissertation.pdf (94 pages, 1059456 bytes).
 PDF statistics:
- 1251 PDF objects out of 1440 (max. 8388607)
- 303 named destinations out of 1000 (max. 500000)
+ 1276 PDF objects out of 1440 (max. 8388607)
+ 310 named destinations out of 1000 (max. 500000)
  380 words of extra memory for PDF output out of 10000 (max. 10000000)
 
