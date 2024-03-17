@@ -1,4 +1,4 @@
-\begin{thebibliography}{43}
+\begin{thebibliography}{48}
 \providecommand{\natexlab}[1]{#1}
 \providecommand{\url}[1]{\texttt{#1}}
 \expandafter\ifx\csname urlstyle\endcsname\relax
@@ -9,6 +9,15 @@
 Hendrik~P Barendregt et~al.
 \newblock \emph{The lambda calculus}, volume~3.
 \newblock North-Holland Amsterdam, 1984.
+
+\bibitem[Bennett et~al.(1993)Bennett, Brassard, Cr{\'e}peau, Jozsa, Peres, and
+  Wootters]{bennett1993teleporting}
+Charles~H Bennett, Gilles Brassard, Claude Cr{\'e}peau, Richard Jozsa, Asher
+  Peres, and William~K Wootters.
+\newblock Teleporting an unknown quantum state via dual classical and
+  einstein-podolsky-rosen channels.
+\newblock \emph{Physical review letters}, 70\penalty0 (13):\penalty0 1895,
+  1993.
 
 \bibitem[Benton(1994)]{benton1994mixed}
 P~Nick Benton.
@@ -23,6 +32,14 @@ Benjamin Bichsel, Maximilian Baader, Timon Gehr, and Martin Vechev.
   intuitive semantics.
 \newblock In \emph{Proceedings of the 41st ACM SIGPLAN Conference on
   Programming Language Design and Implementation}, pages 286--300, 2020.
+
+\bibitem[Briegel et~al.(1998)Briegel, D{\"u}r, Cirac, and
+  Zoller]{briegel1998quantum}
+H-J Briegel, Wolfgang D{\"u}r, Juan~I Cirac, and Peter Zoller.
+\newblock Quantum repeaters: the role of imperfect local operations in quantum
+  communication.
+\newblock \emph{Physical Review Letters}, 81\penalty0 (26):\penalty0 5932,
+  1998.
 
 \bibitem[Burgholzer and Wille(2020)]{burgholzer2020advanced}
 Lukas Burgholzer and Robert Wille.
@@ -65,6 +82,12 @@ David Deutsch.
 \newblock \emph{Proceedings of the Royal Society of London. A. Mathematical and
   Physical Sciences}, 400\penalty0 (1818):\penalty0 97--117, 1985.
 
+\bibitem[Einstein et~al.(1935)Einstein, Podolsky, and Rosen]{einstein1935can}
+Albert Einstein, Boris Podolsky, and Nathan Rosen.
+\newblock Can quantum-mechanical description of physical reality be considered
+  complete?
+\newblock \emph{Physical review}, 47\penalty0 (10):\penalty0 777, 1935.
+
 \bibitem[Feynman(1982)]{feynman2018simulating}
 Richard~P. Feynman.
 \newblock Simulating physics with computers.
@@ -86,6 +109,12 @@ Jean-Yves Girard, Yves Lafont, and Laurent Regnier.
 Daniel Gottesman.
 \newblock \emph{Stabilizer codes and quantum error correction}.
 \newblock California Institute of Technology, 1997.
+
+\bibitem[Gottesman and Chuang(1999)]{gottesman1999demonstrating}
+Daniel Gottesman and Isaac~L Chuang.
+\newblock Demonstrating the viability of universal quantum computation using
+  teleportation and single-qubit operations.
+\newblock \emph{Nature}, 402\penalty0 (6760):\penalty0 390--393, 1999.
 
 \bibitem[Green et~al.(2013)Green, Lumsdaine, Ross, Selinger, and
   Valiron]{green2013quipper}
@@ -124,6 +153,11 @@ Shih-Han Hung, Kesha Hietala, Shaopeng Zhu, Mingsheng Ying, Michael Hicks, and
 \newblock Quantitative robustness analysis of quantum programs.
 \newblock \emph{Proceedings of the ACM on Programming Languages}, 3\penalty0
   (POPL):\penalty0 1--29, 2019.
+
+\bibitem[Kimble(2008)]{kimble2008quantum}
+H~Jeff Kimble.
+\newblock The quantum internet.
+\newblock \emph{Nature}, 453\penalty0 (7198):\penalty0 1023--1030, 2008.
 
 \bibitem[Mardare et~al.(2016)Mardare, Panangaden, and
   Plotkin]{mardare2016quantitative}

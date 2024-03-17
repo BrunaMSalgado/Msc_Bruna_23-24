@@ -793,8 +793,9 @@ Now, it is finally possible to adress the proof of the metric equation for the c
 
 \subsection{Quantum Teleportation} \label{sec:teleport}
 
-\autoref{bennett1993teleporting} introduced the concept of quantum teleportation, which is a protocol that allows the transfer of quantum information from one qubit to another. The protocol is based on the entanglement of two qubits and the transmission of two classical bits. The quantum teleportation protocol is a fundamental building block for quantum communication and quantum computation.
-
+[\cite{bennett1993teleporting}] introduced the concept of quantum teleportation, which is a protocol that allows the transfer of   unknown quantum states between distant parties.  The quantum teleportation protocol is a fundamental building block for quantum communication, quantum computation, and quantum networks, its applications ranging
+from secure quantum communication to distributed quantum computing [\cite{briegel1998quantum,gottesman1999demonstrating,kimble2008quantum}]. %Quantum teleportation enables the development of quantum repeaters, a pivotal technology for the establishment of quantum communication networks, and in general the framework of quantum Internet [\cite{briegel1998quantum,ghalaii2020capacity}].  
+%The protocol is based on the entanglement of two qubits and the transmission of two classical bits. Indeed, quantum teleportation can be seen as the rotocol in quantum information that most clearly demonstrates the character of quantum entanglement as a resource: without its presence, such a quantum state transfer would not be possible within the laws of quantum mechanics.
 
 
 The circuit corresponding to the implementation of the quantum teleportation protocol is depicted in \autoref{fig:teleport}.
@@ -836,14 +837,15 @@ wire=c]{1} \\
     %\label{fig:teleport}
 %\end{figure}
 
-
-
 When formalizing the quantum teleportation protocol within the lambda calculus framework, each part of the protocol is instantiated as a distinct function. This entails the definition of three specific functions:
 \begin{align*}
    \hspace{100pt} & \textbf{EPR}: \hspace{5pt} \mathbb{I} \multimap (\textit{qbit} \otimes \textit{qbit}) \\ 
     &\textbf{BellMeasure}: \hspace{5pt} \textit{qbit} \otimes \textit{qbit}  \multimap \textit{bit} \otimes \textit{bit} \\
     &\textbf{Correction}: \hspace{5pt} \textit{qbit} \otimes \textit{bit} \otimes \textit{bit}  \multimap \textit{qbit} \\
 \end{align*}
+
+
+The only part that is not self- explanatory is EPR, an acronym derived from a famous article written in 1935 by Albert Einstein, Boris Podolsky, and Nathan Rosen , where these authors questioned the completeness of Quantum Mechanics [\cite{einstein1935can}].
 
 Considering the unitary operations $H: \textit{qubit} \xrightarrow{}  \textit{qubit}$, $X: \textit{qubit} \xrightarrow{}  \textit{qubit}$, $Z: \textit{qubit} \xrightarrow{}  \textit{qubit}$, $I: \textit{qubit} \xrightarrow{}  \textit{qubit}$, and $\textit{CNOT}: \textit{qubit}, \textit{qubit} \xrightarrow{}  \textit{qubit} \otimes \textit{qubit}$ , these functions are defined as follows:
 
