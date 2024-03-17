@@ -793,7 +793,7 @@ Now, it is finally possible to adress the proof of the metric equation for the c
 
 \subsection{Quantum Teleportation} \label{sec:teleport}
 
-\todo[inline,size=\normalsize]{Write an introduction to quantum teleportation}
+\autoref{bennett1993teleporting} introduced the concept of quantum teleportation, which is a protocol that allows the transfer of quantum information from one qubit to another. The protocol is based on the entanglement of two qubits and the transmission of two classical bits. The quantum teleportation protocol is a fundamental building block for quantum communication and quantum computation.
 
 
 
@@ -1089,8 +1089,8 @@ As a result,
    = &  \gamma |\beta|^{2} |0\rangle \langle 0 | + (1-\sqrt{1-\gamma}) (\alpha \beta^{\dag} |0\rangle \langle 1 | + \alpha^{\dag} \beta |1\rangle \langle 0 |) - \gamma |\beta|^{2} |1\rangle \langle 1 |  
   \end{split}
 \end{equation}
-Employing \autoref{eq:Bloch_vector}, the components of the Bloch vector of the state $\ket{\psi}\bra{\psi} - \ket{\psi'}\bra{\psi'}$ are as follows:
-\begin{equation}
+Employing \autoref{eq:Bloch_vector}, the components of the Bloch vector of the state $\rho-\rho'$ are as follows:
+\begin{equation} \label{eq:bloch_ap}
   \begin{split}
     r_{x} = &  \text{Tr} \left[ \begin{pmatrix}
   \gamma |\beta|^{2} & (1-\sqrt{1-\gamma}) \alpha \beta^{\dag}\\
@@ -1133,8 +1133,7 @@ Employing \autoref{eq:Bloch_vector}, the components of the Bloch vector of the s
 \begin{equation}
   \begin{split}
   & \lVert \rho-\rho' \rVert_{\diamondsuit} \\
-   = \hspace{2pt}&    \left\lVert  \ket{\psi}\bra{\psi} -|\psi'\rangle \langle \psi'|  \right\rVert_{\diamondsuit}  \\
-   = \hspace{2pt}&    \left\lVert  \left((1-\sqrt{1-\gamma}) (\alpha \beta^{\dag}  + \alpha^{\dag} \beta) ,i(1-\sqrt{1-\gamma}) (\alpha \beta^{\dag} - \alpha^{\dag} \beta),2\gamma |\beta|^{2}\right)  \right\rVert_{2} \\
+   = \hspace{2pt}&    \left\lVert  \left((1-\sqrt{1-\gamma}) (\alpha \beta^{\dag}  + \alpha^{\dag} \beta) ,i(1-\sqrt{1-\gamma}) (\alpha \beta^{\dag} - \alpha^{\dag} \beta),2\gamma |\beta|^{2}\right)  \right\rVert_{2} \hspace{50pt}  \{\text{\autoref{eq:bloch_ap}}\}  \\
    = \hspace{2pt}&  \sqrt{ \left( (1-\sqrt{1-\gamma}) (\alpha \beta^{\dag}  + \alpha^{\dag} \beta)\right)^{2} + \left(i(1-\sqrt{1-\gamma}) (\alpha \beta^{\dag} - \alpha^{\dag} \beta)\right)^{2} + \left(2\gamma |\beta|^{2}\right)^{2}} \hspace{10pt} \{\text{\autoref{eq:euclidean_distance}}\}\\
    = \hspace{2pt}&   \sqrt{  \left( (1-\sqrt{1-\gamma}) (\alpha \beta^{\dag}  + \alpha^{\dag} \beta)\right)^{2}  - \left((1-\sqrt{1-\gamma}) (\alpha \beta^{\dag} - \alpha^{\dag} \beta)\right)^{2} + \left(2\gamma |\beta|^{2}\right)^{2}} \\
    = \hspace{2pt}&  \sqrt{  4 \cdot  (1-\sqrt{1-\gamma})^{2} |\alpha|^{2}|\beta|^{2} + 4 \gamma^{2} |\beta|^{4}} \\
@@ -1645,4 +1644,96 @@ It follows that,
    & + \Big(\Big(\frac{1}{4} XZ|\psi\rangle \langle \psi|ZX, \frac{1}{4} Z|\psi\rangle \langle \psi|Z\Big),\Big(\frac{1}{4} X|\psi\rangle \langle \psi|X, \frac{1}{4}  |\psi\rangle \langle \psi| \Big)\Big) \Big) \\    
     \end{split}
   \end{equation}
-Next, regarding the condicional statements, taking into account that applying correction to $\Big(\Big(\frac{1}{4} |\psi\rangle \langle \psi|, \frac{1}{4} X|\psi\rangle \langle \psi|X\Big),\Big(\frac{1}{4} Z|\psi\rangle \langle \psi|Z, \frac{1}{4}  XZ|\psi\rangle \langle \psi|ZX \Big)\Big) $ results in the state $\ket{\psi}$ (\autoref{eq:teleport_correction}), and moreover, %resto dos estados
+Next, regarding the condicional statements, applying correction to $\Big(\Big(\frac{1}{4} |\psi\rangle \langle \psi|, \frac{1}{4} X|\psi\rangle \langle \psi|X\Big),\Big(\frac{1}{4} Z|\psi\rangle \langle \psi|Z, \frac{1}{4}  XZ|\psi\rangle \langle \psi|ZX \Big)\Big) $ results in the state $\ket{\psi}$ (\autoref{eq:teleport_correction}). Moreover, with respect to  $\Big(\Big(\frac{1}{4} |\psi\rangle \langle \psi|, \frac{1}{4} X|\psi\rangle \langle \psi|X\Big),\Big(\frac{1}{4} Z|\psi\rangle \langle \psi|Z, \frac{1}{4}  XZ|\psi\rangle \langle \psi|ZX \Big)\Big) $ one has that applying the condicional statements: 
+\begin{equation}
+  \begin{split}
+    &\frac{1}{4} Z\ket{\psi}\bra{\psi}Z + \frac{1}{4} XXZ\ket{\psi}\bra{\psi}ZXX+ \frac{1}{4} Z\ket{\psi}\bra{\psi}Z + \frac{1}{4} ZXX\ket{\psi}\bra{\psi}XXZ \\
+    =& \frac{1}{4} Z\ket{\psi}\bra{\psi}Z + \frac{1}{4} Z\ket{\psi}\bra{\psi}Z + \frac{1}{4} Z\ket{\psi}\bra{\psi}Z + \frac{1}{4} Z\ket{\psi}\bra{\psi}Z =  Z\ket{\psi}\bra{\psi}Z \\
+  \end{split}
+\end{equation}
+Furthermore, applying correction to $\Big(\Big(\frac{1}{4} X|\psi\rangle \langle \psi|X, \frac{1}{4} |\psi\rangle \langle \psi|\Big),\Big(\frac{1}{4} XZ|\psi\rangle \langle \psi|ZX, \frac{1}{4}  Z|\psi\rangle \langle \psi|Z \Big)\Big)$ results in
+\begin{equation}
+  \begin{split}
+    &\frac{1}{4} X\ket{\psi}\bra{\psi}X + \frac{1}{4} X\ket{\psi}\bra{\psi}X + \frac{1}{4} ZXZ|\psi\rangle \langle \psi|ZXZ +  \frac{1}{4}  ZXZ|\psi\rangle \langle \psi|ZXZ \\
+    =& \frac{1}{4} X\ket{\psi}\bra{\psi}X + \frac{1}{4} X\ket{\psi}\bra{\psi}X + \frac{1}{4} X\ket{\psi}\bra{\psi}X + \frac{1}{4} X\ket{\psi}\bra{\psi}X = X\ket{\psi}\bra{\psi}X \\	
+  \end{split}
+\end{equation}
+And, at last, regarding $\Big(\Big(\frac{1}{4} XZ|\psi\rangle \langle \psi|ZX, \frac{1}{4} Z|\psi\rangle \langle \psi|Z\Big),\Big(\frac{1}{4} X|\psi\rangle \langle \psi|X, \frac{1}{4}  |\psi\rangle \langle \psi| \Big)\Big)$, 
+\begin{equation}
+  \begin{split}
+    &\frac{1}{4} XZ\ket{\psi}\bra{\psi}ZX + \frac{1}{4} XZ\ket{\psi}\bra{\psi}ZX + \frac{1}{4} ZX\ket{\psi}\bra{\psi}XZ +  \frac{1}{4}  ZX\ket{\psi}\bra{\psi}XZ \\
+   = & \frac{1}{4} XZ\ket{\psi}\bra{\psi}ZX + \frac{1}{4} XZ\ket{\psi}\bra{\psi}ZX + \frac{1}{4} XZ\ket{\psi}\bra{\psi}ZX + \frac{1}{4} XZ\ket{\psi}\bra{\psi}ZX \\
+   = & ZX\ket{\psi}\bra{\psi}XZ \\
+  \end{split}
+\end{equation}
+
+Consequentlty, applying the conditional statements to the state obtained in \autoref{eq:teleport_T_part2}, it follows that,
+\begin{equation}
+  \begin{split}
+    & \frac{1}{4} \left( \ket{\psi}\bra{\psi} + Z\ket{\psi}\bra{\psi}Z + X\ket{\psi}\bra{\psi}X + ZX\ket{\psi}\bra{\psi}XZ   \right) \\
+    = &  \frac{1}{4} ( |\alpha|^{2} |0\rangle \langle 0 | + \alpha \beta^{\dag} |0\rangle \langle 1 | + \alpha^{\dag} \beta |1\rangle \langle 0 | + |\beta|^{2} |1\rangle \langle 1 | \\
+     & + |\alpha|^{2} \ket{0}\bra{0} - \alpha \beta^{\dag}  \ket{0}\bra{1}  - \alpha^{\dag} \beta \ket{1}\bra{0} + |\beta|^{2} \ket{1}\bra{1}  \\
+     &+ |\beta|^{2} \ket{0}\bra{0} +  \alpha^{\dag}  \beta \ket{0}\bra{1}  +  \alpha \beta^{\dag} \ket{1}\bra{0} + |\alpha|^{2} \ket{1}\bra{1} \\
+     & + |\beta|^{2} \ket{0}\bra{0} -  \alpha^{\dag}  \beta \ket{0}\bra{1}  -  \alpha \beta^{\dag} \ket{1}\bra{0} + |\alpha|^{2} \ket{1}\bra{1} ) \\
+     = &  \frac{|\alpha|^{2} + |\beta|^{2} } {2}  \ket{0}\bra{0} +  \frac{|\alpha|^{2} + |\beta|^{2} } {2}  \ket{1}\bra{1} = \rho'\\
+  \end{split}
+\end{equation}
+
+Therefore, $\rho-\rho'$ corresponds to:
+\begin{equation}
+  \begin{split}
+    \rho-\rho' = & |\alpha|^{2} \ket{0}\bra{0} + \alpha \beta^{\dag}  \ket{0}\bra{1}  + \alpha^{\dag} \beta \ket{1}\bra{0} + |\beta|^{2} \ket{1}\bra{1} \\ 
+    &- \left( \frac{|\alpha|^{2} + |\beta|^{2} } {2}  \ket{0}\bra{0} +  \frac{|\alpha|^{2} + |\beta|^{2} } {2}  \ket{1}\bra{1} \right) \\
+    =  & \frac{|\alpha|^{2} - |\beta|^{2} } {2}  \ket{0}\bra{0} + \alpha \beta^{\dag}  \ket{0}\bra{1}  + \alpha^{\dag} \beta \ket{1}\bra{0} + \frac{|\beta|^{2} - |\alpha|^{2} } {2}  \ket{1}\bra{1} \\
+  \end{split}
+  \end{equation}
+
+Employing \autoref{eq:Bloch_vector}, the components of the Bloch vector of the state $\rho-\rho'$ are as follows:
+\begin{equation} {\label{eq:bloch_vector_T}}
+  \begin{split}
+    r_{x} = &  \text{Tr} \left[ \begin{pmatrix}
+      \frac{|\alpha|^{2} - |\beta|^{2} } {2} & \alpha \beta^{\dag}\\
+      \alpha^{\dag} \beta & \frac{ |\beta|^{2} - |\alpha|^{2} } {2} 
+  \end{pmatrix} \cdot \begin{pmatrix}
+  0&1\\
+  1&0
+  \end{pmatrix} \right]  =  \text{Tr} \left[ \begin{pmatrix}
+    \alpha \beta^{\dag} & \frac{|\alpha|^{2} - |\beta|^{2} } {2} \\
+    \frac{|\beta|^{2} - |\alpha|^{2} } {2} & \alpha^{\dag} \beta
+\end{pmatrix} \right] = \alpha \beta^{\dag} + \alpha^{\dag} \beta \\
+r_{y} = &  \text{Tr} \left[ \begin{pmatrix}
+  \frac{|\alpha|^{2} - |\beta|^{2} } {2} & \alpha \beta^{\dag}\\
+  \alpha^{\dag} \beta & \frac{ |\beta|^{2} - |\alpha|^{2} } {2}
+\end{pmatrix} \cdot \begin{pmatrix}
+0&-i\\
+i&0
+\end{pmatrix} \right]  =  \text{Tr} \left[ \begin{pmatrix}
+  i \alpha \beta^{\dag} & \frac{|\alpha|^{2} - |\beta|^{2} } {2} \\
+  \frac{|\beta|^{2} - |\alpha|^{2} } {2} & -i\alpha^{\dag} \beta
+\end{pmatrix} \right] = i(\alpha \beta^{\dag} - \alpha^{\dag} \beta) \\
+r_{z} = &  \text{Tr} \left[ \begin{pmatrix}
+  \frac{|\alpha|^{2} - |\beta|^{2} } {2} & \alpha \beta^{\dag}\\
+  \alpha^{\dag} \beta & \frac{ |\beta|^{2} - |\alpha|^{2} } {2}
+\end{pmatrix} \cdot \begin{pmatrix}
+1&0\\
+0&-1
+\end{pmatrix} \right]  =  \text{Tr} \left[ \begin{pmatrix}
+  \frac{|\alpha|^{2} - |\beta|^{2} } {2} & -\alpha \beta^{\dag}\\
+  \alpha^{\dag} \beta & -\frac{ |\beta|^{2} - |\alpha|^{2} } {2}
+\end{pmatrix} \right] = |\alpha|^{2} - |\beta|^{2}
+  \end{split}
+  \end{equation}
+
+Considering that the distance between two vectors corresponds to their Euclidean distance, it follows that the distance between the ideal state and its version subjected to the malicious attack is given by:
+
+\begin{equation}
+  \begin{split}
+  & \lVert \rho-\rho' \rVert_{\diamondsuit} \\
+   = \hspace{2pt}&    \left\lVert  \left(\alpha \beta^{\dag} + \alpha^{\dag} \beta , i(\alpha \beta^{\dag} - \alpha^{\dag} \beta),  |\alpha|^{2} - |\beta|^{2} \right)  \right\rVert_{2} \hspace{150pt} & \{\text{\autoref{eq:bloch_vector_T}}\}\\
+   = \hspace{2pt}& \sqrt{(\alpha \beta^{\dag} + \alpha^{\dag} \beta)^{2} + (i(\alpha \beta^{\dag} - \alpha^{\dag} \beta))^{2} + (|\alpha|^{2} - |\beta|^{2})^{2}} & \{\text{\autoref{eq:euclidean_distance}}\}\\
+   =  \hspace{2pt}& \sqrt{(\alpha \beta^{\dag} + \alpha^{\dag} \beta)^{2} + -(\alpha \beta^{\dag} - \alpha^{\dag} \beta)^{2} + (|\alpha|^{2} - |\beta|^{2})^{2}} \\
+   =  \hspace{2pt}&  \sqrt{ 4\alpha \beta^{\dag} \alpha^{\dag} \beta + |\alpha|^{4} - 2|\alpha|^{2}|\beta|^{2} + |\beta|^{4}}= \sqrt{ 4|\alpha|^{2}|\beta|^{2} + |\alpha|^{4} - 2|\alpha|^{2}|\beta|^{2} + |\beta|^{4}} \\
+   = \hspace{2pt}&  \sqrt{ |\alpha|^{4} + 2|\alpha|^{2}|\beta|^{2} + |\beta|^{4}} = \sqrt{(|\alpha|^{2} + |\beta|^{2})^{2}} = |\alpha|^{2} + |\beta|^{2} = 1
+\end{split}
+\end{equation}
+

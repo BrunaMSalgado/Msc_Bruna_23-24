@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.141592653-2.6-1.40.25 (MiKTeX 24.1) (preloaded format=pdflatex 2024.2.8)  16 MAR 2024 22:37
+This is pdfTeX, Version 3.141592653-2.6-1.40.25 (MiKTeX 24.1) (preloaded format=pdflatex 2024.2.8)  17 MAR 2024 18:05
 entering extended mode
  restricted \write18 enabled.
  file:line:error style messages enabled.
@@ -1982,184 +1982,216 @@ Overfull \hbox (16.80399pt too wide) in paragraph at lines 755--756
 []\T1/SourceSansPro-TLF/regular/n/12 Therefore, by [][]Lemma 4.4.5[][][], it can be de-duced that $[]\OT1/cmr/m/n/12 ([\OML/cmm/m/it/12 P; Q\OT1/cmr/m/n/12 ]\OML/cmm/m/it/12 ; \OT1/cmr/m/n/12 [\OML/cmm/m/it/12 P[]; Q[]\OT1/cmr/m/n/12 ]) \OMS/cmsy/m/n/12 ^^T []f[]\OT1/cmr/m/n/12 (\OML/cmm/m/it/12 P; P[]\OT1/cmr/m/n/12 )\OML/cmm/m/it/12 ; []\OT1/cmr/m/n/12 (\OML/cmm/m/it/12 Q; Q[]\OT1/cmr/m/n/12 )\OMS/cmsy/m/n/12 g$\T1/SourceSansPro-TLF/regular/n/12 ,
  []
 
-[32] [33]
+[32]
+
+LaTeX Warning: Reference `bennett1993teleporting' on page 33 undefined on input line 796.
+
+
+Underfull \vbox (badness 6001) has occurred while \output is active []
+
+ [33]
 Overfull \hbox (20.57573pt too wide) detected at line 861
 []
  []
 
 
+Underfull \vbox (badness 10000) has occurred while \output is active []
+
+ [34]
 Overfull \hbox (1.97133pt too wide) detected at line 899
  $[][]$  
  []
 
-[34] [35] [36] [37]
+
+Underfull \vbox (badness 5388) has occurred while \output is active []
+
+ [35] [36]
+Underfull \vbox (badness 1845) has occurred while \output is active []
+
+ [37]
 Overfull \hbox (3.09543pt too wide) in paragraph at lines 1022--1023
 []\T1/SourceSansPro-TLF/regular/n/12 Applying these Kraus op-er-a-tors to the den-sity op-er-a-tor $\OML/cmm/m/it/12 ^^Z \OT1/cmr/m/n/12 = \OMS/cmsy/m/n/12 j\OML/cmm/m/it/12 \OMS/cmsy/m/n/12 j[]j\OT1/cmr/m/n/12 0\OMS/cmsy/m/n/12 ih\OT1/cmr/m/n/12 0\OMS/cmsy/m/n/12 j \OT1/cmr/m/n/12 + \OML/cmm/m/it/12 ^^L[]\OMS/cmsy/m/n/12 j\OT1/cmr/m/n/12 0\OMS/cmsy/m/n/12 ih\OT1/cmr/m/n/12 1\OMS/cmsy/m/n/12 j \OT1/cmr/m/n/12 + \OML/cmm/m/it/12 []^^L\OMS/cmsy/m/n/12 j\OT1/cmr/m/n/12 1\OMS/cmsy/m/n/12 ih\OT1/cmr/m/n/12 0\OMS/cmsy/m/n/12 j \OT1/cmr/m/n/12 +
  []
 
-[38]
-
-LaTeX Warning: Reference `eq:Bloch_vector' on page 39 undefined on input line 1092.
-
-
-Underfull \vbox (badness 10000) has occurred while \output is active []
-
- [39
+[38] [39]
 pdfTeX warning (ext4): destination with the same identifier (name{equation.4.4.55}) has been already used, duplicate ignored
-<argument> ...shipout:D \box_use:N \l_shipout_box 
-                                                  \__shipout_drop_firstpage_...
-l.1131   \end{equation}
-                       ]
-Overfull \hbox (30.8007pt too wide) detected at line 1143
+<to be read again> 
+                   \relax 
+l.1085 \begin{equation}
+                       
+
+LaTeX Warning: Reference `eq:Bloch_vector' on page 40 undefined on input line 1092.
+
+
+Overfull \hbox (30.8007pt too wide) detected at line 1142
  $[][]$  
  []
 
-[40]
-Overfull \hbox (44.18358pt too wide) detected at line 1186
+[40] [41]
+Overfull \hbox (44.18358pt too wide) detected at line 1185
  $[][]$  
  []
 
 
-Overfull \hbox (3.3769pt too wide) in paragraph at lines 1186--1188
+Overfull \hbox (3.3769pt too wide) in paragraph at lines 1185--1187
 \T1/SourceSansPro-TLF/regular/n/12 Therefore, the state of the EPR pair with an im-per-fect Hadamard gate is $[] [] \OT1/cmr/m/n/12 = [](\OMS/cmsy/m/n/12 j\OT1/cmr/m/n/12 00\OMS/cmsy/m/n/12 i [] \OT1/cmr/m/n/12 +
  []
 
-[41]
-Overfull \hbox (35.11423pt too wide) in paragraph at lines 1189--1190
+
+Overfull \hbox (35.11423pt too wide) in paragraph at lines 1188--1189
 \OML/cmm/m/it/12 ^^Z \OT1/cmr/m/n/12 = [][][]\OMS/cmsy/m/n/12 j\OML/cmm/m/it/12  \OMS/cmsy/m/n/12 ih\OML/cmm/m/it/12  \OMS/cmsy/m/n/12 j\OML/cmm/m/it/12 ; []X\OMS/cmsy/m/n/12 j\OML/cmm/m/it/12  \OMS/cmsy/m/n/12 ih\OML/cmm/m/it/12  \OMS/cmsy/m/n/12 j\OML/cmm/m/it/12 X[]; \OT1/cmr/m/n/12 ([]\OML/cmm/m/it/12 Z\OMS/cmsy/m/n/12 j\OML/cmm/m/it/12  \OMS/cmsy/m/n/12 ih\OML/cmm/m/it/12  \OMS/cmsy/m/n/12 j\OML/cmm/m/it/12 Z; []XZ\OMS/cmsy/m/n/12 j\OML/cmm/m/it/12  \OMS/cmsy/m/n/12 ih\OML/cmm/m/it/12  \OMS/cmsy/m/n/12 j\OML/cmm/m/it/12 ZX[][]$\T1/SourceSansPro-TLF/regular/n/12 . Re-gard-ing the im-per-fect Hadamard
  []
 
 
-Overfull \hbox (7.50989pt too wide) detected at line 1210
+Overfull \hbox (7.50989pt too wide) detected at line 1209
  $[][]$  
  []
 
 
-Underfull \vbox (badness 4156) has occurred while \output is active []
-
- [42]
-Overfull \hbox (6.05948pt too wide) detected at line 1233
- $[][]$  
- []
-
-
-Overfull \hbox (42.06494pt too wide) detected at line 1247
- $[][]$  
- []
-
-
-Overfull \hbox (47.5141pt too wide) detected at line 1258
- $[][]$  
- []
-
-
-LaTeX Warning: Reference `eq:Bloch_vector' on page 43 undefined on input line 1261.
-
-[43]
 Underfull \vbox (badness 10000) has occurred while \output is active []
 
- [44]
-Underfull \vbox (badness 5878) has occurred while \output is active []
-
- [45]
-Overfull \hbox (19.71158pt too wide) detected at line 1443
+ [42]
+Overfull \hbox (6.05948pt too wide) detected at line 1232
  $[][]$  
  []
 
-[46]
-Overfull \hbox (29.69307pt too wide) in paragraph at lines 1447--1448
+
+Overfull \hbox (42.06494pt too wide) detected at line 1246
+ $[][]$  
+ []
+
+[43]
+Overfull \hbox (47.5141pt too wide) detected at line 1257
+ $[][]$  
+ []
+
+
+LaTeX Warning: Reference `eq:Bloch_vector' on page 44 undefined on input line 1260.
+
+[44]
+Underfull \vbox (badness 10000) has occurred while \output is active []
+
+ [45]
+Overfull \hbox (19.71158pt too wide) detected at line 1442
+ $[][]$  
+ []
+
+
+Underfull \vbox (badness 10000) has occurred while \output is active []
+
+ [46]
+Overfull \hbox (29.69307pt too wide) in paragraph at lines 1446--1447
 []\T1/SourceSansPro-TLF/regular/n/12 Given this re-sult it is pos-si-ble to con-clude that $[] \OT1/cmr/m/n/12 =[] [][]$\T1/SourceSansPro-TLF/regular/n/12 .
  []
 
-[47]
-Overfull \hbox (3.27301pt too wide) detected at line 1543
+
+Underfull \vbox (badness 10000) has occurred while \output is active []
+
+ [47] [48]
+Overfull \hbox (3.27301pt too wide) detected at line 1542
  $[][]$  
  []
 
 
-Overfull \hbox (19.74857pt too wide) in paragraph at lines 1570--1571
+Overfull \hbox (19.74857pt too wide) in paragraph at lines 1569--1570
  [][] 
  []
 
 
-Underfull \vbox (badness 10000) has occurred while \output is active []
-
- [48]
-Overfull \hbox (11.10995pt too wide) in paragraph at lines 1574--1575
+Overfull \hbox (11.10995pt too wide) in paragraph at lines 1573--1574
 []\T1/SourceSansPro-TLF/regular/n/12 In this case, the quan-tum tele-por-ta-tion pro-to-col is di-vided into three parts: \T1/SourceSansPro-TLF/bold/n/12 EPR\T1/SourceSansPro-TLF/regular/n/12 , \T1/SourceSansPro-TLF/bold/n/12 TeleportIntra-
  []
 
-
-Overfull \hbox (21.31525pt too wide) detected at line 1592
+[49]
+Overfull \hbox (21.31525pt too wide) detected at line 1591
 []
  []
 
-[49]
-Overfull \hbox (2.03236pt too wide) in paragraph at lines 1612--1613
+
+Overfull \hbox (2.03236pt too wide) in paragraph at lines 1611--1612
 []\T1/SourceSansPro-TLF/regular/n/12 Consequently, the state of the sys-tem post-teleportation pro-to-col cor-re-sponds to $[] []$. With
  []
 
-
-Overfull \hbox (5.2203pt too wide) detected at line 1647
+[50]
+Overfull \hbox (5.2203pt too wide) detected at line 1646
  $[][]$  
  []
 
-[50]) (chapters/Applications.tex
-Overfull \hbox (24.28467pt too wide) in paragraph at lines 1647--1
-[][][]\OMS/cmsy/m/n/12 j\OML/cmm/m/it/12  \OMS/cmsy/m/n/12 ih\OML/cmm/m/it/12  \OMS/cmsy/m/n/12 j\OML/cmm/m/it/12 ; []X\OMS/cmsy/m/n/12 j\OML/cmm/m/it/12  \OMS/cmsy/m/n/12 ih\OML/cmm/m/it/12  \OMS/cmsy/m/n/12 j\OML/cmm/m/it/12 X[]; [][]Z\OMS/cmsy/m/n/12 j\OML/cmm/m/it/12  \OMS/cmsy/m/n/12 ih\OML/cmm/m/it/12  \OMS/cmsy/m/n/12 j\OML/cmm/m/it/12 Z; []XZ\OMS/cmsy/m/n/12 j\OML/cmm/m/it/12  \OMS/cmsy/m/n/12 ih\OML/cmm/m/it/12  \OMS/cmsy/m/n/12 j\OML/cmm/m/it/12 ZX[][]$ \T1/SourceSansPro-TLF/regular/n/12 re-sults in the state $[]$ ([][]Equa-tion 4.43[][][]),
+
+Overfull \hbox (162.75095pt too wide) in paragraph at lines 1646--1648
+\T1/SourceSansPro-TLF/regular/n/12 Next, re-gard-ing the condi-cional state-ments, ap-ply-ing cor-rec-tion to $[][][]\OMS/cmsy/m/n/12 j\OML/cmm/m/it/12  \OMS/cmsy/m/n/12 ih\OML/cmm/m/it/12  \OMS/cmsy/m/n/12 j\OML/cmm/m/it/12 ; []X\OMS/cmsy/m/n/12 j\OML/cmm/m/it/12  \OMS/cmsy/m/n/12 ih\OML/cmm/m/it/12  \OMS/cmsy/m/n/12 j\OML/cmm/m/it/12 X[]; [][]Z\OMS/cmsy/m/n/12 j\OML/cmm/m/it/12  \OMS/cmsy/m/n/12 ih\OML/cmm/m/it/12  \OMS/cmsy/m/n/12 j\OML/cmm/m/it/12 Z; []XZ\OMS/cmsy/m/n/12 j\OML/cmm/m/it/12  \OMS/cmsy/m/n/12 ih\OML/cmm/m/it/12  \OMS/cmsy/m/n/12 j\OML/cmm/m/it/12 ZX[][]$
  []
 
-[51] [52
+
+Overfull \hbox (151.12817pt too wide) in paragraph at lines 1646--1648
+\T1/SourceSansPro-TLF/regular/n/12 re-sults in the state $[]$ ([][]Equa-tion 4.43[][][]). More-over, with re-spect to $[][][]\OMS/cmsy/m/n/12 j\OML/cmm/m/it/12  \OMS/cmsy/m/n/12 ih\OML/cmm/m/it/12  \OMS/cmsy/m/n/12 j\OML/cmm/m/it/12 ; []X\OMS/cmsy/m/n/12 j\OML/cmm/m/it/12  \OMS/cmsy/m/n/12 ih\OML/cmm/m/it/12  \OMS/cmsy/m/n/12 j\OML/cmm/m/it/12 X[]; [][]Z\OMS/cmsy/m/n/12 j\OML/cmm/m/it/12  \OMS/cmsy/m/n/12 ih\OML/cmm/m/it/12  \OMS/cmsy/m/n/12 j\OML/cmm/m/it/12 Z; []XZ\OMS/cmsy/m/n/12 j\OML/cmm/m/it/12  \OMS/cmsy/m/n/12 ih\OML/cmm/m/it/12  \OMS/cmsy/m/n/12 j\OML/cmm/m/it/12 ZX[][]$
+ []
+
+
+Overfull \hbox (14.38391pt too wide) in paragraph at lines 1653--1655
+\T1/SourceSansPro-TLF/regular/n/12 Furthermore, ap-ply-ing cor-rec-tion to $[][][]\OML/cmm/m/it/12 X\OMS/cmsy/m/n/12 j\OML/cmm/m/it/12  \OMS/cmsy/m/n/12 ih\OML/cmm/m/it/12  \OMS/cmsy/m/n/12 j\OML/cmm/m/it/12 X; []\OMS/cmsy/m/n/12 j\OML/cmm/m/it/12  \OMS/cmsy/m/n/12 ih\OML/cmm/m/it/12  \OMS/cmsy/m/n/12 j[]\OML/cmm/m/it/12 ; [][]XZ\OMS/cmsy/m/n/12 j\OML/cmm/m/it/12  \OMS/cmsy/m/n/12 ih\OML/cmm/m/it/12  \OMS/cmsy/m/n/12 j\OML/cmm/m/it/12 ZX; []Z\OMS/cmsy/m/n/12 j\OML/cmm/m/it/12  \OMS/cmsy/m/n/12 ih\OML/cmm/m/it/12  \OMS/cmsy/m/n/12 j\OML/cmm/m/it/12 Z[][]$
+ []
+
+[51]
+
+LaTeX Warning: Reference `eq:Bloch_vector' on page 52 undefined on input line 1691.
+
+[52]
+Overfull \hbox (23.7476pt too wide) detected at line 1738
+ $[][]$  
+ []
+
+) (chapters/Applications.tex [53] [54
 
 ]
 Chapter 5.
-) (chapters/ConclusionsAndFutureWork.tex [53] [54
+) (chapters/ConclusionsAndFutureWork.tex [55] [56
 
 ]
 Chapter 6.
-) (chapters/PlannedSchedule.tex [55] [56
+) (chapters/PlannedSchedule.tex [57] [58
 
 ]
 Chapter 7.
 \@gls@deffile=\write12
 \openout12 = `dissertation.glsdefs'.
 
-) (dissertation.bbl [57] [58
+) (dissertation.bbl [59] [60
 
-] [59]
+] [61]
 Underfull \hbox (badness 1394) in paragraph at lines 144--151
 []\T1/SourceSansPro-TLF/regular/n/12 Prakash Mu-rali, Jonathan M Baker, Ali Javadi-Abhari, Fred-eric T Chong, and Mar-garet
  []
 
-[60] [61]) [62]
+[62] [63]) [64]
 runsystem(makeindex dissertation.idx)...executed safely (allowed).
 
- (dissertation.ind) [63
+ (dissertation.ind) [65
 
 
-] [64] (appendices/SupportWork.tex
+] [66] (appendices/SupportWork.tex
 Appendix A.
-) (appendices/DetailsOfResults.tex [65
+) (appendices/DetailsOfResults.tex [67
 
-] [66
+] [68
 
 ]
 Appendix B.
-) (appendices/Listings.tex [67] [68
+) (appendices/Listings.tex [69] [70
 
 ]
 Appendix C.
-) (appendices/Tooling.tex [69] [70
+) (appendices/Tooling.tex [71] [72
 
 ]
 Appendix D.
-) (covers/BackCover.tex [71
-\indexentry{\LaTeX  }{71}
-\indexentry{TeX!TeX Users Group (TUG)}{71}
-\indexentry{TeX!TeX Users Group (TUG)}{71}
-] [72
+) (covers/BackCover.tex [73
+\indexentry{\LaTeX  }{73}
+\indexentry{TeX!TeX Users Group (TUG)}{73}
+\indexentry{TeX!TeX Users Group (TUG)}{73}
+] [74
 
-] [73
+] [75
 
 ]
 pdfTeX warning (ext4): destination with the same identifier (name{page.1}) has been already used, duplicate ignored
@@ -2182,10 +2214,10 @@ Package rerunfilecheck Info: File `dissertation.out' has not changed.
 (rerunfilecheck)             Checksum: B03643AAD86AE54D440C79C9C8E92BBE;6069.
  ) 
 Here is how much of TeX's memory you used:
- 52500 strings out of 474542
- 1097578 string characters out of 5744447
- 2081978 words of memory out of 5000000
- 73480 multiletter control sequences out of 15000+600000
+ 52511 strings out of 474542
+ 1097742 string characters out of 5744447
+ 2111978 words of memory out of 5000000
+ 73483 multiletter control sequences out of 15000+600000
  772489 words of font info for 100 fonts, out of 8000000 for 9000
  1141 hyphenation exceptions out of 8191
  109i,36n,108p,2505b,1395s stack positions out of 10000i,1000n,20000p,200000b,200000s
@@ -2196,9 +2228,9 @@ pdfTeX warning (dest): name{glo:pdr} has been referenced but does not exist, rep
 pdfTeX warning (dest): name{glo:soa} has been referenced but does not exist, replaced by a fixed one
 
  <C:\Users\mona_\AppData\Local\MiKTeX\fonts/pk/ljfour/jknappen/ec/dpi600\ecrm1200.pk> <C:\Users\mona_\AppData\Local\MiKTeX\fonts/pk/ljfour/jknappen/ec/dpi600\ectt1200.pk><C:/Users/mona_/AppData/Local/Programs/MiKTeX/fonts/type1/adobe/sourcesanspro/SourceSansPro-Bold.pfb><C:/Users/mona_/AppData/Local/Programs/MiKTeX/fonts/type1/adobe/sourcesanspro/SourceSansPro-It.pfb><C:/Users/mona_/AppData/Local/Programs/MiKTeX/fonts/type1/adobe/sourcesanspro/SourceSansPro-Light.pfb><C:/Users/mona_/AppData/Local/Programs/MiKTeX/fonts/type1/adobe/sourcesanspro/SourceSansPro-Regular.pfb><C:/Users/mona_/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmex10.pfb><C:/Users/mona_/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmmi12.pfb><C:/Users/mona_/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmmi6.pfb><C:/Users/mona_/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmmi8.pfb><C:/Users/mona_/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmr12.pfb><C:/Users/mona_/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmr6.pfb><C:/Users/mona_/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmr8.pfb><C:/Users/mona_/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmsy10.pfb><C:/Users/mona_/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmsy6.pfb><C:/Users/mona_/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmsy8.pfb><C:/Users/mona_/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/symbols/msam10.pfb><C:/Users/mona_/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/symbols/msbm10.pfb><C:/Users/mona_/AppData/Local/Programs/MiKTeX/fonts/type1/public/hoekwater/stmary10.pfb>
-Output written on dissertation.pdf (94 pages, 1059456 bytes).
+Output written on dissertation.pdf (96 pages, 1067845 bytes).
 PDF statistics:
- 1276 PDF objects out of 1440 (max. 8388607)
- 310 named destinations out of 1000 (max. 500000)
+ 1304 PDF objects out of 1440 (max. 8388607)
+ 318 named destinations out of 1000 (max. 500000)
  380 words of extra memory for PDF output out of 10000 (max. 10000000)
 
