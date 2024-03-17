@@ -1020,7 +1020,7 @@ The amplitude damping channel with probability $\gamma$ is described by the Krau
 \end{equation}
 
 Applying these Kraus operators to the density operator $\rho=|\alpha|^{2} |0\rangle \langle 0 | + \alpha \beta^{\dag} |0\rangle \langle 1 | + \alpha^{\dag} \beta |1\rangle \langle 0 | + |\beta|^{2} |1\rangle \langle 1 |$, the the resulting operator $\rho'$ is given by:
-\begin{equation} \label{eq:dephasing_result}
+\begin{equation} \label{eq:ad_result}
   \begin{split}
      \rho' & =  A_{0} \rho A_{0}^{\dag} + A_{1} \rho A_{1}^{\dag} \\
      & = (|\alpha|^{2} + \gamma |\beta|^{2}) \ket{0}\bra{0} + \sqrt{1-\gamma} \hspace{1pt} \alpha \beta^{\dag} \ket{0}\bra{1} + \sqrt{1-\gamma} \hspace{1pt} \alpha^{\dag} \beta \ket{1}\bra{0} + (1-\gamma) |\beta|^{2} \ket{1}\bra{1}
@@ -1079,7 +1079,7 @@ Designating the qubit to be teleported as $q_0$, one can conceptualize the telep
 
 The first step to evaluate the distance between the ideal quantum teleportation protocol and the one subjected to amplitude damping with probability $\gamma$ is to compute the distance between the density operators of the ideal and noisy implementations of the teleported qubit, denoted as $\rho$ and $\rho'$, respectively.
 
-As shown in \autoref{eq:teleport_correction}, the state of the teleported qubit is $\rho=\ket{\psi}\bra{\psi}$. Given \autoref{eq:dephasing_result}, the state of the teleported qubit after amplitude damping with probability $\gamma$ is $(|\alpha|^{2} + \gamma |\beta|^{2}) \ket{0}\bra{0} + \sqrt{1-\gamma} \hspace{1pt} \alpha \beta^{\dag} \ket{0}\bra{1} + \sqrt{1-\gamma} \hspace{1pt} \alpha^{\dag} \beta \ket{1}\bra{0} + (1-\gamma) |\beta|^{2} \ket{1}\bra{1}$, which is denoted as $\rho'$.
+As shown in \autoref{eq:teleport_correction}, the state of the teleported qubit is $\rho=\ket{\psi}\bra{\psi}$. Given \autoref{eq:ad_result}, the state of the teleported qubit after amplitude damping with probability $\gamma$ is $(|\alpha|^{2} + \gamma |\beta|^{2}) \ket{0}\bra{0} + \sqrt{1-\gamma} \hspace{1pt} \alpha \beta^{\dag} \ket{0}\bra{1} + \sqrt{1-\gamma} \hspace{1pt} \alpha^{\dag} \beta \ket{1}\bra{0} + (1-\gamma) |\beta|^{2} \ket{1}\bra{1}$, which is denoted as $\rho'$.
 
 As a result,
 \begin{equation}
