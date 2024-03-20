@@ -847,14 +847,14 @@ When formalizing the quantum teleportation protocol within the lambda calculus f
 
 The only part that is not self- explanatory is EPR, an acronym derived from a famous article written in 1935 by Albert Einstein, Boris Podolsky, and Nathan Rosen , where these authors questioned the completeness of Quantum Mechanics [\cite{einstein1935can}].
 
-Considering the unitary operations $H: \textit{qubit} \xrightarrow{}  \textit{qubit}$, $X: \textit{qubit} \xrightarrow{}  \textit{qubit}$, $Z: \textit{qubit} \xrightarrow{}  \textit{qubit}$, $I: \textit{qubit} \xrightarrow{}  \textit{qubit}$, and $\textit{CNOT}: \textit{qubit}, \textit{qubit} \xrightarrow{}  \textit{qubit} \otimes \textit{qubit}$ , these functions are defined as follows:
+Considering the unitary operations $H: \textit{qbit} \xrightarrow{}  \textit{qbit}$, $X: \textit{qbit} \xrightarrow{}  \textit{qbit}$, $Z: \textit{qbit} \xrightarrow{}  \textit{qbit}$, $I: \textit{qbit} \xrightarrow{}  \textit{qbit}$, and $\textit{CNOT}: \textit{qbit}, \textit{qbit} \xrightarrow{}  \textit{qbit} \otimes \textit{qbit}$ , these functions are defined as follows:
 
 \begin{align*}
   \hspace{-28pt} &\textbf{EPR} =  - \triangleright  \textit{CNOT} \hspace{2pt} (\textit{H}\hspace{2pt} (q  \hspace{2pt}    ( \textit{new}   \hspace{2pt}  0 \hspace{1pt}(*))),(q  \hspace{2pt}   ( \textit{new}   \hspace{2pt}  0 \hspace{1pt}(*))))  \\ 
       \hspace{-28pt}
-      &\textbf{BellMeasure} =  q_{1}: \text{qubit}, q_{2}: \text{qubit}  \triangleright  (\text{pm}  \hspace{5pt} \textit{CNOT} (q_{1},q_{2})  \hspace{2pt}  \text{to} \hspace{2pt} x \otimes y.  \hspace{2pt}  \textit{meas} (\textit{H} (x)) \otimes \textit{meas} (y) ) \\
+      &\textbf{BellMeasure} =  q_{1}: \textit{qbit}, q_{2}: \textit{qbit}  \triangleright  (\text{pm}  \hspace{5pt} \textit{CNOT} (q_{1},q_{2})  \hspace{2pt}  \text{to} \hspace{2pt} x \otimes y.  \hspace{2pt}  \textit{meas} (\textit{H} (x)) \otimes \textit{meas} (y) ) \\
       \hspace{-28pt}
-      &\textbf{Correction}= q: \text{qubit}, x: \text{bit},  y: \text{bit} \triangleright  \text{cond}\hspace{2pt} x  \hspace{2pt}  \{\text{inl} (x_{0}) \Rightarrow  (\text{cond}\hspace{2pt} y  \hspace{2pt}  \{\text{inl} (y_{0})  \Rightarrow{}  \textit{I}(q); \\
+      &\textbf{Correction}= q: \textit{qbit}, x: \text{bit},  y: \text{bit} \triangleright  \text{cond}\hspace{2pt} x  \hspace{2pt}  \{\text{inl} (x_{0}) \Rightarrow  (\text{cond}\hspace{2pt} y  \hspace{2pt}  \{\text{inl} (y_{0})  \Rightarrow{}  \textit{I}(q); \\
       \hspace{-28pt}
       & \hspace{335pt} \hspace{5pt} \text{inr} (y_{1}) \Rightarrow  \hspace{2pt}   \textit{X} (q))\} ; \\
       & \hspace{240pt}\text{inr} (x_{1})  \Rightarrow  (\text{cond}\hspace{2pt} y  \hspace{2pt}  \{\text{inl} (y_{0})  \Rightarrow   \textit{Z}(q);  \\
@@ -865,7 +865,7 @@ Considering the unitary operations $H: \textit{qubit} \xrightarrow{}  \textit{qu
 
  Designating the qubit to be teleported as $q_0$, one can conceptualize the teleportation procedure as follows:
  \begin{align*}
-     \hspace{130 pt}& \text{pm} \hspace{5pt} \textbf{EPR}\hspace{1pt} (*) \hspace{5pt} \text{to} \hspace{5pt}  q_{1} \otimes q_{2}.  \notag \\
+    \hspace{100 pt} q_{0}: \textit{qbit}\hspace{3 pt} \triangleright \hspace{3 pt} & \text{pm} \hspace{5pt} \textbf{EPR}\hspace{1pt} (*) \hspace{5pt} \text{to} \hspace{5pt}  q_{1} \otimes q_{2}.  \notag \\
      & \text{pm}\hspace{5pt} \textbf{BellMeasure} \hspace{1pt} (q_0,q_{1}) \hspace{5pt}  \text{to} \hspace{5pt} c_{0}\otimes c_{1} . \notag \\
      & \text{pm} \hspace{5pt}  \textbf{Correction} \hspace{1pt} ( q_{2},  c_{0}, c_{1} ) \hspace{5pt} \text{to} \hspace{5pt}  q. \hspace{2pt}  q
  \end{align*}
@@ -967,10 +967,10 @@ In this case, to facilate the analysis, the quantum teleportion protocol is devi
   \textbf{Identity}^{p}: \hspace{5pt} \textit{qbit}  \multimap \textit{qbit}
   \end{split}
 \end{equation*}
-Considering the unitary operation $I: \textit{qubit} \xrightarrow{} \textit{qubit}$, and the operation $D_{p}: \textit{qubit} \xrightarrow{}  \textit{qubit}$  the ideal version of this function, \textbf{Identity}, and its respective version subjected to decoherence with probability $p$, $\textbf{Identity}^{p}$,  are defined as follows:
+Considering the unitary operation $I: \textit{qbit} \xrightarrow{} \textit{qbit}$, and the operation $D_{p}: \textit{qbit} \xrightarrow{}  \textit{qbit}$  the ideal version of this function, \textbf{Identity}, and its respective version subjected to decoherence with probability $p$, $\textbf{Identity}^{p}$,  are defined as follows:
 \begin{align}
-  &\textbf{Identity} =  q: \text{qubit}  \triangleright  I (q) :  \text{qubit} \\
-  &\textbf{Identity}^{p} =  q: \text{qubit}  \triangleright  D_{p} (q) : \text{qubit}
+  &\textbf{Identity} =  q: \textit{qbit}  \triangleright  I (q) :  \textit{qbit} \\
+  &\textbf{Identity}^{p} =  q: \textit{qbit}  \triangleright  D_{p} (q) : \textit{qbit}
 \end{align}
 
 Designating the qubit to be teleported as $q_0$, one can conceptualize the teleportation procedure as follows:
@@ -1007,7 +1007,7 @@ Therefore, the distance between the ideal and noisy implementations of the EPR s
 Next, via the metric deductive system in \autoref{fig:metric deductive system}, it is easily verified that for an error $p$,
 \begin{equation}
 \begin{split}
-    &q: \text{qbit}  \triangleright  I (q) =_{p} q: \text{qbit} \triangleright D_{p} (q)  : \text{qubit} \\    
+    &q: \textit{qbit}  \triangleright  I (q) =_{p} q: \textit{qbit} \triangleright D_{p} (q)  : \textit{qbit} \\    
 \end{split}
 \end{equation}
 Therefore $\textbf{Identity} =_{p} \textbf{Identity}^{p}$ and finally, considering the entirety of the quantum teleportation protocol denoted as $\textbf{QTP}$, it follows that $\textbf{QTP} =_{p} \hspace{3pt}\textbf{QTP}^{p}$. This final metric equation indicates that by bounding the error associated with the application of decoherence with a specified probability $p$ to the initial qubit before measurement, it becomes feasible to limit the overall error of the entire quantum teleportation protocol. Moreover, it is interesting to observe that the error associated with the application of decoherence with a certain probability $p$ in one of the qubits corresponds exactly to that probability $p$.
@@ -1065,9 +1065,9 @@ Once again, a fourth part of the teleportation protocol, the $\textbf{Identity}$
   \textbf{Identity}^{A(\gamma)} : \textit{qbit}  \multimap \textit{qbit} 
 \end{equation}
 
-Considering the operation $A_{\gamma}: \textit{qubit} \xrightarrow{}  \textit{qubit}$  the respective version of $\textbf{Identity}$  subjected to amplitude damping with probability $\gamma$, $\textbf{Identity}^{A(\gamma)}$,  is defined as follows:
+Considering the operation $A_{\gamma}: \textit{qbit} \xrightarrow{}  \textit{qbit}$  the respective version of $\textbf{Identity}$  subjected to amplitude damping with probability $\gamma$, $\textbf{Identity}^{A(\gamma)}$,  is defined as follows:
 \begin{align}
-  &\textbf{Identity}^{A(\gamma)} =  q: \text{qbit}  \triangleright  A_{\gamma} (q) : \text{qbit} 
+  &\textbf{Identity}^{A(\gamma)} =  q: \textit{qbit}  \triangleright  A_{\gamma} (q) : \textit{qbit} 
 \end{align}
 
 Designating the qubit to be teleported as $q_0$, one can conceptualize the teleportation procedure as follows:
@@ -1584,8 +1584,8 @@ Considering the operation $T_{X \otimes I \otimes I}$ as the operation $T$ with 
 
 
 \begin{align*}
-      &\textbf{TeleportIntra-gate} =  q_{1}: \text{qubit}, q_{2}: \text{qubit}  \triangleright  (\text{pm}  \hspace{5pt} \textit{CNOT} (q_{1},q_{2})  \hspace{2pt}  \text{to} \hspace{2pt} x \otimes y.  \hspace{2pt}  \textit{H} (x) \otimes y) \\
-      &\textbf{TMeasureCorrection}= q_{1}: \text{qbit}, q_{2}: \text{qbit},  q_{3}: \text{qbit} \triangleright \text{pm} \hspace{2pt} T_{X \otimes I \otimes I} (q_{1},q_{2},q_{3}) \hspace{2pt} \text{to} \hspace{2pt} a \otimes b \otimes c . \hspace{2pt}   \\
+      &\textbf{TeleportIntra-gate} =  q_{1}: \textit{qbit}, q_{2}: \textit{qbit}  \triangleright  (\text{pm}  \hspace{5pt} \textit{CNOT} (q_{1},q_{2})  \hspace{2pt}  \text{to} \hspace{2pt} x \otimes y.  \hspace{2pt}  \textit{H} (x) \otimes y) \\
+      &\textbf{TMeasureCorrection}= q_{1}: \textit{qbit}, q_{2}: \textit{qbit},  q_{3}: \textit{qbit} \triangleright \text{pm} \hspace{2pt} T_{X \otimes I \otimes I} (q_{1},q_{2},q_{3}) \hspace{2pt} \text{to} \hspace{2pt} a \otimes b \otimes c . \hspace{2pt}   \\
       &\hspace{125pt} \text{pm} \hspace{2pt} T_{I \otimes X \otimes I} (a,b,c) \hspace{2pt} \text{to} \hspace{2pt} d \otimes e \otimes q. \\
       & \hspace{125pt} \text{pm} \hspace{2pt} \textit{meas} (d) \otimes \textit{meas} (e)  \hspace{2pt} \text{to} \hspace{2pt} x \otimes y. \hspace{2pt} \\
       &  \hspace{125pt} \text{cond}\hspace{2pt} x \hspace{2pt}  \{\text{inl} (x_{0}) \Rightarrow  (\text{cond}\hspace{2pt} y  \hspace{2pt}  \{\text{inl} (y_{0})  \Rightarrow{}  \textit{I}(q) ;  \hspace{5pt} \text{inr} (y_{1}) \Rightarrow  \hspace{2pt}   \textit{X} (q)) \}; \\
