@@ -777,6 +777,7 @@ INPUT .\images\UM.jpg
 INPUT .\images\UM.jpg
 INPUT .\images\UM.jpg
 INPUT .\images\UM.jpg
+OUTPUT dissertation.glsdefs
 INPUT .\chapters\Contribution.tex
 INPUT .\chapters\Contribution.tex
 INPUT .\chapters\Contribution.tex
@@ -795,6 +796,20 @@ INPUT .\chapters\Applications.tex
 INPUT .\chapters\Applications.tex
 INPUT .\chapters\Applications.tex
 INPUT chapters\Applications.tex
+INPUT .\images\qsd_0.png
+INPUT .\images\qsd_0.png
+INPUT .\images\qsd_0.png
+INPUT .\images\qsd_0.png
+INPUT .\images\qsd_0.png
+INPUT .\images\qsd_0.png
+INPUT .\images\qsd_0.png
+INPUT .\images\qsd_1.png
+INPUT .\images\qsd_1.png
+INPUT .\images\qsd_1.png
+INPUT .\images\qsd_1.png
+INPUT .\images\qsd_1.png
+INPUT .\images\qsd_1.png
+INPUT .\images\qsd_1.png
 INPUT .\chapters\ConclusionsAndFutureWork.tex
 INPUT .\chapters\ConclusionsAndFutureWork.tex
 INPUT .\chapters\ConclusionsAndFutureWork.tex
@@ -805,7 +820,6 @@ INPUT .\chapters\PlannedSchedule.tex
 INPUT .\chapters\PlannedSchedule.tex
 INPUT .\chapters\PlannedSchedule.tex
 INPUT chapters\PlannedSchedule.tex
-OUTPUT dissertation.glsdefs
 INPUT .\dissertation.bbl
 INPUT .\dissertation.bbl
 INPUT dissertation.bbl
