@@ -23,7 +23,7 @@ respect to the angle bisector of \ket{\psi_0}  and \ket{\psi_1}, and \ket{v_i} 
     \end{center}
 \caption{Optimal minimum error measurement for discriminating between the pure states \ket{\psi_0}  and  \ket{\psi_1}. This is a
 projective measurement onto the states \ket{v_0}  and  \ket{v_1}, symmetrically located on either side of the signal states and shown in red here. $\gamma$ is  the angle between the states \ket{\psi_0}  and  \ket{\psi_1}. $\beta$ is the angle between the states \ket{\psi_0}  and  \ket{v_0} \big/ \ket{\psi_1}  and  \ket{v_1} .}
-\label{fig:qsd0}
+\label{fig:qsd}
 \end{figure}
 
 The probability of success using the best strategy is
@@ -34,45 +34,66 @@ The probability of success using the best strategy is
 
 \subsection{QSD for two pure states: quantum lambda calculus formulation}
 
-Since the quantum lambda calculus presented allows only for explicit projective measurements in the computational basis, it is necessary to rotate the state \ket{\psi} so that \ket{v_0} and \ket{v_1} coincide with the computational basis. This can be done by applying a rotation $R_{\alpha}$ to the state \ket{\psi} such that $R_{\alpha} \ket{v_0} = \ket{0}$. 
+Since the quantum lambda calculus presented allows only for explicit projective measurements in the computational basis, it is necessary to rotate the state \ket{\psi} so that \ket{v_0} and \ket{v_1} coincide with the computational basis. This can be done by applying a unitary $U$ to the state \ket{\psi} such that $U \ket{v_0} = \ket{0}$. 
 
-\begin{figure} [H] 
-    \centering
-    \begin{center}
-        \includegraphics[width=0.6\textwidth]{images/qsd_1.png}
-    \end{center}
-\caption{Optimal minimum error measurement for discriminating between the pure states \ket{\psi_0}  and  \ket{\psi_1}. $\gamma$ is  the angle between the states \ket{\psi_0}  and  \ket{\psi_1}. $\beta$ is the angle between the states \ket{\psi_0}  and  \ket{v_0} \big/ \ket{\psi_1}  and  \ket{v_1}. $\theta$ is the angle between the states \ket{\psi_0}  and \ket{0} - the polar angle in the Bloch Sphere. $\alpha$ is the angle between the states \ket{v_0}  and \ket{0} .}
-\label{fig:qsd1}
-\end{figure}
+Observing \autoref{fig:qsd} is possible to conclude that $\beta =  \frac{\frac{\pi}{2}-\gamma}{2} = \frac{\pi}{4} - \frac{\gamma}{2}$. Therefore,
 
-Observing \autoref{fig:qsd1} is possible to conclude that $\alpha = \theta - \beta = \theta - \left(\frac{\frac{\pi}{2}-\gamma}{2} \right) = \theta -  {\frac{\pi}{4}}+\frac{\gamma}{8} $. Given the direction of the rotation, the angle $\alpha$ is negative, so the rotation is $R_{-\alpha}$ which also correspons to $R^{\dag}_{\alpha}$.
-
-As a result, the quantum discrimination for two pure states can be formulated as follows:
-\begin{align*}
-    q: \textit{qbit}\hspace{3 pt} \triangleright \hspace{3 pt} \textit{meas} (R^{\dag}_{\alpha} (q)) 
- \end{align*}
-
-
-Attending to \autoref{eq:qubit_bs}, when $q = \ket{\psi_{0}}$ this program is interpreted as follows:
-
-\begin{equation}  \label{eq:teleport_1}
+\begin{equation}
     \begin{split}
-  &  \ket{\psi}=   \cos\left(\frac{\theta}{2}\right) \ket{0} + e^{i\phi}\sin\left(\frac{\theta}{2}\right)\ket{1} \\
-    \xmapsto{R^{\dag}_{\alpha} (q)} \quad & \left(\cos\left(  \frac{\theta}{2} -  {\frac{\pi}{8}}+\frac{\gamma}{4}\right) \cos\left(\frac{\theta}{2}\right) + \sin\left(\frac{\theta}{2} -  {\frac{\pi}{8}}+\frac{\gamma}{4}\right) e^{i\phi}\sin\left(\frac{\theta}{2}\right) \right)\ket{0}  \\
-  & - \left(\sin\left(\frac{\theta}{2} -  {\frac{\pi}{8}}+\frac{\gamma}{4}\right) \cos\left(\frac{\theta}{2}\right)   + \cos\left(  \frac{\theta}{2} -  {\frac{\pi}{8}}+\frac{\gamma}{4}\right) e^{i\phi}\sin\left(\frac{\theta}{2}\right)\right)\ket{1}   \\
-  = & \left( \frac{\cos\left(\theta -  {\frac{\pi}{8}}+\frac{\gamma}{4} \right) + \cos\left({-\frac{\pi}{8}}+\frac{\gamma}{4} \right) + e^{i\phi} ( \cos\left({-\frac{\pi}{8}}+\frac{\gamma}{4}\right) - \cos\left(\theta -  {\frac{\pi}{8}}+\frac{\gamma}{4} \right))}{2} \right)   \ket{0}  \\
-  & + \left( \frac{-\sin\left(\theta -  {\frac{\pi}{8}}+\frac{\gamma}{4} \right) - \sin\left({-\frac{\pi}{8}}+\frac{\gamma}{4} \right) + e^{i\phi} (\sin\left({-\frac{\pi}{8}}+\frac{\gamma}{4}\right) - \sin\left(\theta -  {\frac{\pi}{8}}+\frac{\gamma}{4} \right))}{2}  \right) \ket{1}  \\
-  \xmapsto{ \hspace{1pt} \textit{meas} (R^{\dag}_{\alpha} (q))} \quad & \Big( \frac{ \cos^{2}\left(\theta -  {\frac{\pi}{8}}+\frac{\gamma}{4} \right) + \cos\left(\theta -  {\frac{\pi}{8}}+\frac{\gamma}{4}\right)\cos\left( {-\frac{\pi}{8}}+\frac{\gamma}{4}\right) + e^{-i\phi}  \cos\left(\theta -  {\frac{\pi}{8}}+\frac{\gamma}{4}\right) \cos\left( {-\frac{\pi}{8}}+\frac{\gamma}{4}\right) } {4} \\ %
-  & \frac {-e^{-i\phi} \cos^{2}\left(\theta - {\frac{\pi}{8}}+\frac{\gamma}{4} \right)  + \cos\left( {-\frac{\pi}{8}}+\frac{\gamma}{4}\right) \cos\left(\theta -  {\frac{\pi}{8}}+\frac{\gamma}{4}\right) + \cos^{2}\left( {-\frac{\pi}{8}}+\frac{\gamma}{4} \right)     } {4} \\
-  & \frac {+ e^{-i\phi} \cos^{2}\left({-\frac{\pi}{8}}+\frac{\gamma}{4} \right)- e^{-i\phi} \cos\left( {-\frac{\pi}{8}}+\frac{\gamma}{4}\right) \cos\left(\theta -  {\frac{\pi}{8}}+\frac{\gamma}{4}\right)  + e^{i\phi} \cos\left( {-\frac{\pi}{8}}+\frac{\gamma}{4}\right) \cos\left(\theta -  {\frac{\pi}{8}}+\frac{\gamma}{4}\right)     } {4}  \\
-  & \frac {+ e^{i\phi} \cos^{2}\left( {-\frac{\pi}{8}}+\frac{\gamma}{4} \right) +  \cos^{2}\left(- {\frac{\pi}{8}}+\frac{\gamma}{4} \right) -  \cos\left( {-\frac{\pi}{8}}+\frac{\gamma}{4}\right) \cos\left(\theta -  {\frac{\pi}{8}}+\frac{\gamma}{4}\right) } {4}\\
-  & \frac{-  e^{i\phi}\cos^{2}\left(\theta -  {\frac{\pi}{8}}+\frac{\gamma}{4} \right) - e^{i\phi} \cos\left(\theta -  {\frac{\pi}{8}}+\frac{\gamma}{4}\right)\cos\left( {-\frac{\pi}{8}}+\frac{\gamma}{4}\right) -   \cos\left(\theta -  {\frac{\pi}{8}}+\frac{\gamma}{4}\right) \cos\left( {-\frac{\pi}{8}}+\frac{\gamma}{4}\right) } {4} \\
-  & + \cos^{2}\left(\theta - {\frac{\pi}{8}}+\frac{\gamma}{4} \right), \ldots \Big) \\
-  = & \Big( \frac {2 \cos^{2}\left(\theta - {\frac{\pi}{8}}+\frac{\gamma}{4} \right) - (e^{-i \phi} + e^{i \phi})  \cos^{2}\left(\theta - {\frac{\pi}{8}}+\frac{\gamma}{4} \right)  + 2 \cos^{2}\left({-\frac{\pi}{8}}+\frac{\gamma}{4} \right)     } {4}  \\
-  &  \frac {+(e^{-i \phi} + e^{i \phi}) \cos^{2}\left({-\frac{\pi}{8}}+\frac{\gamma}{4} \right)} {4}, \ldots \Big) \\
-  = & \Big( \frac {\cos^{2}\left(\theta - {\frac{\pi}{8}}+\frac{\gamma}{2} \right) - \cos(\phi)  \cos^{2}\left(\theta - {\frac{\pi}{8}}+\frac{\gamma}{4} \right)  +  \cos^{2}\left({-\frac{\pi}{8}}+\frac{\gamma}{2} \right)     } {2}  \\
-  &  \frac {+ \cos (\phi) \cos^{2}\left({-\frac{\pi}{8}}+\frac{\gamma}{4} \right)} {2}, \ldots \Big) \\
+        \ket{v_0} =R^{\dag}_{\beta} \ket{\psi_0} & = \begin{pmatrix}
+        \cos{ \left(\frac{\pi}{4} - \frac{\gamma}{2}\right)}  & \sin{ \left(\frac{\pi}{4} - \frac{\gamma}{2}\right)} \\
+       - \sin{ \left(\frac{\pi}{4} - \frac{\gamma}{2}\right)}  &  \cos{ \left(\frac{\pi}{4} - \frac{\gamma}{2}\right)} \end{pmatrix} \begin{pmatrix}
+        \cos{ \left(\frac{\theta}{2}\right)}   \\
+       e^{i \phi}\sin{ \left(\frac{\theta}{2}\right)}  \end{pmatrix} \\
+       & = \begin{pmatrix}
+        \cos{ \left(\frac{\pi}{4} - \frac{\gamma}{2}\right)}  \cos{ \left(\frac{\theta}{2}\right)}  + \sin{ \left(\frac{\pi}{4} - \frac{\gamma}{2}\right)} e^{i \phi}\sin{ \left(\frac{\theta}{2}\right)}  \\
+       - \sin{ \left(\frac{\pi}{4} - \frac{\gamma}{2}\right)}  \cos{ \left(\frac{\theta}{2}\right)}  +  \cos{ \left(\frac{\pi}{4} - \frac{\gamma}{2}\right)} e^{i \phi}\sin{ \left(\frac{\theta}{2}\right)}   \end{pmatrix} 
     \end{split}
-  \end{equation}
+\end{equation}
 
+Consequently, 
+
+\begin{equation}
+    \begin{split}
+        \ket{v_1}  = \begin{pmatrix}
+         \sin{ \left(\frac{\pi}{4} - \frac{\gamma}{2}\right)}  \cos{ \left(\frac{\theta}{2}\right)}  -  \cos{ \left(\frac{\pi}{4} - \frac{\gamma}{2}\right)} e^{i \phi}\sin{ \left(\frac{\theta}{2}\right)}   
+        \\
+        \cos{ \left(\frac{\pi}{4} - \frac{\gamma}{2}\right)}  \cos{ \left(\frac{\theta}{2}\right)}  + \sin{ \left(\frac{\pi}{4} - \frac{\gamma}{2}\right)} e^{i \phi}\sin{ \left(\frac{\theta}{2}\right)}  \end{pmatrix} 
+    \end{split}
+\end{equation}
+
+As a result,
+\begin{equation}
+    \begin{split}
+        U =  \begin{pmatrix} \cos{ \left(\frac{\pi}{4} - \frac{\gamma}{2}\right)}  \cos{ \left(\frac{\theta}{2}\right)}  + \sin{ \left(\frac{\pi}{4} - \frac{\gamma}{2}\right)} e^{-i \phi}\sin{ \left(\frac{\theta}{2}\right)}  & - \sin{ \left(\frac{\pi}{4} - \frac{\gamma}{2}\right)}  \cos{ \left(\frac{\theta}{2}\right)}  +  \cos{ \left(\frac{\pi}{4} - \frac{\gamma}{2}\right)} e^{-i \phi}\sin{ \left(\frac{\theta}{2}\right)}   \\
+            \sin{ \left(\frac{\pi}{4} - \frac{\gamma}{2}\right)}  \cos{ \left(\frac{\theta}{2}\right)}  -  \cos{ \left(\frac{\pi}{4} - \frac{\gamma}{2}\right)} e^{-i \phi}\sin{ \left(\frac{\theta}{2}\right)}  &  \cos{ \left(\frac{\pi}{4} - \frac{\gamma}{2}\right)}  \cos{ \left(\frac{\theta}{2}\right)}  + \sin{ \left(\frac{\pi}{4} - \frac{\gamma}{2}\right)} e^{-i \phi}\sin{ \left(\frac{\theta}{2}\right)}  \end{pmatrix} 
+    \end{split}
+\end{equation}
+
+When $\ket{\psi} = \ket{\psi_0}$, one has that,
+\begin{equation}
+    \begin{split}
+        &U \ket{\psi} = \\
+        &\scriptsize{
+            \begin{pmatrix} 
+                \left[\cos{ \left(\frac{\pi}{4} - \frac{\gamma}{2}\right)}  \cos{ \left(\frac{\theta}{2}\right)}  + \sin{ \left(\frac{\pi}{4} - \frac{\gamma}{2}\right)} e^{-i \phi}\sin{ \left(\frac{\theta}{2}\right)}\right] \cos{ \left(\frac{\theta}{2}\right)}  +  
+                \left[ - \sin{ \left(\frac{\pi}{4} - \frac{\gamma}{2}\right)}  \cos{ \left(\frac{\theta}{2}\right)}  +  \cos{ \left(\frac{\pi}{4} - \frac{\gamma}{2}\right)} e^{-i \phi}\sin{ \left(\frac{\theta}{2}\right)} \right] e^{i \phi}\sin{ \left(\frac{\theta}{2}\right)} \\
+                \left[\sin{ \left(\frac{\pi}{4} - \frac{\gamma}{2}\right)}  \cos{ \left(\frac{\theta}{2}\right)}  -  \cos{ \left(\frac{\pi}{4} - \frac{\gamma}{2}\right)} e^{-i \phi}\sin{ \left(\frac{\theta}{2}\right)}\right]\cos{ \left(\frac{\theta}{2}\right)} + \left[ \cos{ \left(\frac{\pi}{4} - \frac{\gamma}{2}\right)}  \cos{ \left(\frac{\theta}{2}\right)}  + \sin{ \left(\frac{\pi}{4} - \frac{\gamma}{2}\right)} e^{-i \phi}\sin{ \left(\frac{\theta}{2}\right)} \right] e^{i \phi}\sin{ \left(\frac{\theta}{2}\right)}
+            \end{pmatrix}  } \\
+        & = \begin{pmatrix} \cos{ \left(\frac{\pi}{4} - \frac{\gamma}{2}\right)} \frac{\cos{ \left(\theta\right)}+1} {2}   + e^{-i \phi} \sin{ \left(\frac{\pi}{4} - \frac{\gamma}{2}\right)} \frac{\sin{ \left(\theta\right)}} {2} - e^{i \phi} \sin{ \left(\frac{\pi}{4} - \frac{\gamma}{2}\right)} \frac{\sin{ \left(\theta\right)}} {2} +  \cos{ \left(\frac{\pi}{4} - \frac{\gamma}{2}\right)} \frac{\cos{ 1- \left(\theta\right)}} {2} \\
+        \sin{ \left(\frac{\pi}{4} - \frac{\gamma}{2}\right)} \frac{\cos{ \left(\theta\right)}+1} {2}   - e^{-i \phi} \cos{ \left(\frac{\pi}{4} - \frac{\gamma}{2}\right)} \frac{\sin{ \left(\theta\right)}} {2} + e^{i \phi} \cos{ \left(\frac{\pi}{4} - \frac{\gamma}{2}\right)} \frac{\sin{ \left(\theta\right)}} {2} +  \sin{ \left(\frac{\pi}{4} - \frac{\gamma}{2}\right)} \frac{\cos{ 1- \left(\theta\right)}} {2}  
+            \end{pmatrix} \\
+            & = \begin{pmatrix} \cos{ \left(\frac{\pi}{4} - \frac{\gamma}{2}\right)}   + (e^{-i \phi}-e^{i \phi}) \sin{ \left(\frac{\pi}{4} - \frac{\gamma}{2}\right)} \frac{\sin{ \left(\theta\right)}} {2} \\
+            \sin{ \left(\frac{\pi}{4} - \frac{\gamma}{2}\right)} \  (- e^{-i \phi} + e^{i \phi} ) \cos{ \left(\frac{\pi}{4} - \frac{\gamma}{2}\right)} \frac{\sin{ \left(\theta\right)}} {2} \end{pmatrix} \\
+            & = \begin{pmatrix} \cos{ \left(\frac{\pi}{4} - \frac{\gamma}{2}\right)}   + 2i \sin{(\phi)} (\cos{ \left(\frac{\pi}{4} - \frac{\gamma}{2}-\theta\right)} - \cos{ \left(\frac{\pi}{4} - \frac{\gamma}{2}+\theta \right)} )\\
+            \sin{ \left(\frac{\pi}{4} - \frac{\gamma}{2}\right)} \  - 2i \sin{(\phi)} (\sin{ \left(\frac{\pi}{4} - \frac{\gamma}{2}+\theta\right)} - \sin{ \left(\frac{\pi}{4} - \frac{\gamma}{2}-\theta \right)} ) \end{pmatrix} 
+    \end{split}
+\end{equation}
+
+%Given the direction of the rotation, the angle $\alpha$ is negative, so the rotation is $R_{-\alpha}$ which also correspons to $R^{\dag}_{\alpha}$.
+
+%As a result, the quantum discrimination for two pure states can be formulated as follows:
+%\begin{align*}
+  %q: \textit{qbit}\hspace{3 pt} \triangleright \hspace{3 pt} \textit{meas} (U (q)) 
+%\end{align*}
 
