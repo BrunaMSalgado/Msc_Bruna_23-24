@@ -280,7 +280,10 @@ With respect to the second property, considering the case statements in  \autore
   \item If $\Delta, y: \mathbb{B}  \simeq_{\pi} \Delta', y': \mathbb{B}'$, then $\mathbb{C}=\mathbb{C}'$
 \end{enumerate}
  
-2 and 3 imply that if $\Delta \simeq_{\pi} \Delta $, then $\mathbb{C}=\mathbb{C}'$. "If $\Gamma,\Delta \simeq_{\pi} \Delta $, then $\mathbb{C}=\mathbb{C}'$ ",  also implies that if $\Delta \simeq_{\pi} \Gamma', \Delta' $, then $\mathbb{C}=\mathbb{C}'$. Moreover, given that $E \in \text{Sf}(\Gamma;\Delta)$ and  $E' \in \text{Sf}(\Gamma';\Delta')$, it follows that $\Gamma, \Delta \simeq_{\pi} \Gamma', \Delta'$. Consequently, $E \simeq_{\pi} E' $, then $\mathbb{C}$ must be equal to $\mathbb{C}'$.
+2 and 3 imply that if $\Delta \simeq_{\pi} \Delta' $, then $\mathbb{C}=\mathbb{C}'$. Since contexts $\Gamma$ and  $\Gamma'$ aren't associated with terms of types $\mathbb{C}$ and $\mathbb{C}'$, it is possible to state that if $\Delta \simeq_{\pi} \Delta $, and $\Gamma \simeq_{\pi} \Gamma'$, then $\mathbb{C}=\mathbb{C}'$. Given the requirement that the terms are well typed, it is also possible to state that  if $ \Gamma,\Delta \simeq_{\pi} \Gamma', \Delta' $, then $\mathbb{C}=\mathbb{C}'$. Moreover, given that $E \in \text{Sf}(\Gamma;\Delta)$ and  $E' \in \text{Sf}(\Gamma';\Delta')$, it follows that $\Gamma, \Delta \simeq_{\pi} \Gamma', \Delta'$. Consequently, if $E \simeq_{\pi} E' $, then $\mathbb{C}$ must be equal to $\mathbb{C}'$.
+
+Finally, concerning the third property, it is necessary to demonstrate that the case statement in \autoref{fig:typing_rules_cond} has a unique derivation. By induction hypothesis, the terms $\Gamma \triangleright v: \mathbb{A} \oplus \mathbb{B}$; $\Delta, x: \mathbb{A} \triangleright w: \mathbb{C}$; and $\Delta, y: \mathbb{B} \triangleright u: \mathbb{C}$ each have unique derivations. Given that, according to the term formation rules in \autoref{fig:typing_rules_cond} and \autoref{fig:typing_rules_linear}, the case statement can only be derived from these previously mentioned terms, one can conclude that the case statement has a unique derivation.
+
 
 \qed
 
@@ -288,6 +291,66 @@ With respect to the second property, considering the case statements in  \autore
 
 \begin{lemma} \label {exh_and_sub} (\text{Exchange and Substitution}) For every judgement $\Gamma,x:\mathbb{A}, y:\mathbb{B}, \Delta \triangleright v: \mathbb{C}$ it is possible to derive $\Gamma, y:\mathbb{B}, x:\mathbb{A}, \Delta \triangleright v: \mathbb{C}$. For all judgements  $\Gamma,x:\mathbb{A} \triangleright v: \mathbb{B}$ and $\Delta \triangleright w: \mathbb{A}$ it is possible to derive $ \Gamma, \Delta \triangleright v[w/x]: \mathbb{B}$.
 \end{lemma}
+
+\paragraph{Proof}
+
+Regarding the exchange property, for the case statement it is necessary to prove that for every judgement $\Gamma, x:\mathbb{A}, y:\mathbb{B}, \Delta \triangleright \text{ cond } v \hspace{2pt} \{\text{inl}_{\mathbb{D}}  (a) \Rightarrow w ; \hspace{1pt} \text{inr}_{\mathbb{E}}  (b) \Rightarrow u\}: \mathbb{C}$, it is possible to derive $\Gamma, y:\mathbb{B}, x:\mathbb{A}, \Delta \triangleright \text{ cond } v \hspace{2pt} \{\text{inl}_{\mathbb{D}} (a) \Rightarrow w ; \hspace{1pt} \text{inr}_{\mathbb{E}} (b) \Rightarrow u\}: \mathbb{C}$. By, induction hypothesis, and then aplying the case rule, one has that:
+
+
+\begin{figure} [H]
+  \begin{equation*}
+  \begin{split}
+  \begin{aligned}
+  &\hspace{-40pt}
+  \begin{minipage}[t]{0.3\textwidth}
+    \small
+  $\begin{array}{c}
+       E,  x:\mathbb{A}, y:\mathbb{B}, \Delta  \triangleright v: \mathbb{A} \oplus \mathbb{B} \quad \Sigma, a:\mathbb{D}, x:\mathbb{A}, y:\mathbb{B},  \Delta \triangleright w: \mathbb{C} \quad \Sigma, b:\mathbb{E},x:\mathbb{A}, y:\mathbb{B},  \Delta \triangleright u : \mathbb{C}   \quad \Gamma \in \text{Sf}(E;\Sigma)  \\
+      \hline
+      E,   y:\mathbb{B}, x:\mathbb{A}, \Delta  \triangleright v: \mathbb{A} \oplus \mathbb{B} \quad \Sigma, a:\mathbb{D}, y:\mathbb{B}, x:\mathbb{A}, \Delta \triangleright w: \mathbb{C} \quad \Sigma, b:\mathbb{E}, y:\mathbb{B}, x:\mathbb{A}, \Delta \triangleright u : \mathbb{C}   \quad \Gamma \in \text{Sf}(E;\Sigma)
+     \\
+     \hline 
+     \Gamma, y:\mathbb{B}, x:\mathbb{A}, \Delta \triangleright \text{ cond } v \hspace{2pt} \{\text{inl}_{\mathbb{D}} (a) \Rightarrow w ; \hspace{1pt} \text{inr}_{\mathbb{E}} (b) \Rightarrow u\}: \mathbb{C}
+  \end{array}
+  $
+  \end{minipage}
+  \end{aligned}
+  \end{split}
+  \end{equation*}
+  \end{figure}
+
+  With respect to the substitution property, for the case statement it is necessary to prove that for all judgements $E, z:\mathbb{D} \triangleright  \text{ cond } v \hspace{2pt} \{\text{inl}_{\mathbb{A}}  (x) \Rightarrow w ; \hspace{1pt} \text{inr}_{\mathbb{B}}  (y) \Rightarrow u\}: \mathbb{C}$ and $\Sigma\triangleright a: \mathbb{D}$ it is possible to derive $ E, \Sigma  \triangleright \text{ cond } v \hspace{2pt} \{\text{inl}_{\mathbb{A}}  (x) \Rightarrow w ; \hspace{1pt} \text{inr}_{\mathbb{B}}  (y) \Rightarrow u\}[a/z]: \mathbb{C}$. Apllying the exchange property, then the induction and finally the case rule, one has that:
+
+  \begin{figure} [H]
+    \begin{equation*}
+    \begin{split}
+    \begin{aligned}
+    &\hspace{-10pt}
+    \begin{minipage}[t]{0.3\textwidth}
+      \small
+    $\begin{array}{c}
+      \Gamma,z:\mathbb{D} \triangleright v: \mathbb{A} \oplus \mathbb{B} \quad \Delta, z:\mathbb{D}, x: \mathbb{A} \triangleright w: \mathbb{C} \quad \Delta, z:\mathbb{D}, y: \mathbb{B}  \triangleright u : \mathbb{C}   \quad E \in \text{Sf}(\Gamma;\Delta) \quad \Sigma\triangleright a: \mathbb{D}
+      \\
+      \hline
+      \Gamma,z:\mathbb{D} \triangleright v: \mathbb{A} \oplus \mathbb{B} \quad \Delta,  x: \mathbb{A}, z:\mathbb{D}, \triangleright w: \mathbb{C} \quad \Delta,  y: \mathbb{B}, z:\mathbb{D},  \triangleright u : \mathbb{C}   \quad E \in \text{Sf}(\Gamma;\Delta) \quad \Sigma\triangleright a: \mathbb{D}
+      \\
+      \hline
+      \Gamma, \Sigma \triangleright v[a/z]: \mathbb{A} \oplus \mathbb{B} \quad \Delta, x: \mathbb{A},  \Sigma  \triangleright w[a/z]: \mathbb{C} \quad \Delta, y: \mathbb{B}, \Sigma   \triangleright u[a/z] : \mathbb{C}   \quad E \in \text{Sf}(\Gamma;\Delta) 
+      \\
+      \hline
+      E, \Sigma  \triangleright \text{ cond } v[a/z] \hspace{2pt} \{\text{inl} (x) \Rightarrow w[a/z] ; \hspace{1pt} \text{inr} (y) \Rightarrow u[a/z]\}: \mathbb{C}
+      \\
+      \hline
+      E, \Sigma  \triangleright \text{ cond } v \hspace{2pt} \{\text{inl}_{\mathbb{A}}  (x) \Rightarrow w ; \hspace{1pt} \text{inr}_{\mathbb{B}}  (y) \Rightarrow u\}[a/z]: \mathbb{C}
+    \end{array}
+    $
+    \end{minipage}
+    \end{aligned}
+    \end{split}
+    \end{equation*}
+    \end{figure}
+
+
 
 \subsection{Interpretation}
 Considering  $v \in V$, $w \in W$, and $u \in U$ where $V, W, U$ represent vector spaces, $\textsc{Il}_{V}: V \xrightarrow{} V\oplus W$, denotes the left injection operator, defined as $\textsc{Il}_{V}= v \mapsto (v,0) $; $\textsc{Ir}_{V}: V \xrightarrow{} W \oplus V$, denotes the right injection operator, defined as $\textsc{Ir}_{V}= v \mapsto (0,v) $; and $\text{dist}_{V, W,U}: V \otimes  \left(W \oplus U\right) \xrightarrow{} \left(V \otimes W\right) \oplus \left(V \otimes U\right)$, denotes the distributive property of the tensor product over the direct sum, defined as $\text{dist}_{V, W,U} =  v \otimes  \left(w, u\right) \mapsto \left(v \otimes w, v \otimes u\right)$. The subscripts in these operators will be omitted unless ambiguity arises. Moreover, the operation \text{either} corresponds to:
