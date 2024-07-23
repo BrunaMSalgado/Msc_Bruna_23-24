@@ -1,6 +1,6 @@
 \chapter{Background}
 
-\section{Linear Lambda Calculus}
+\section{Affine Lambda Calculus}
 
 
 The Lambda-Calculus, developed by Church and Curry in the 1930s, serves as a formal language capturing the key attribute of higher-order functional languages, treating functions as first-class citizens, allowing them to be passed as arguments [\cite{barendregt1984lambda}].  Beyond its foundational aspects, this calculus incorporates extensions for modeling side effects, including probabilistic or non-deterministic behaviors and shared memory. Centered around the expression of higher-order functions, where functions can serve as inputs or outputs, it emerges as a potent computational tool.  Higher-order functions form a pivotal abstraction in practical programming languages such as LISP, Scheme, ML, and Haskell.
@@ -127,7 +127,37 @@ $
 The no-cloning theorem states that it is impossible to duplicate a quantum bit [\cite{wootters1982single}]. This principle is upheld by the type system outlined in \autoref{fig:typing_rules_linear}, which does not allow the repeated use of a variable (seen as a quantum resource).
 Nevertheless, the linearity
 constraint is often deemed too restrictive, prompting research into relaxing it in various computational paradigms. In [\cite{dahlqvist2023complete}], the controlled use of a resource multiple times is explored within approximate program equivalence paradigms. Moreover, the grammar introduced allows the specification of how many times a resource can be used—a notion particularly relevant in quantum computation, especially within the NISQ era where resources are scarce.
-\vspace{-5pt}
+
+Linear $\lambda$-calculus comes equipped with a class of equations, given in \autoref{fig:equations-linear-lambda}, specifically equations-in-context $\Gamma \triangleright v = w : \mathbb {A}$.
+
+\begin{figure}[H]
+  \centering
+  \begin{tabular}{ |c|c| }
+      \hline 
+      Monoidal structure & Higher-order structure \\
+      \hline
+      pm $v \otimes w$ to $x \otimes y.$ $u = u[v/x,w/y]$& \\
+      pm $v$ to $x \otimes y.$ $u[x \otimes y/z] = u[v/z]$ & $(\lambda x : A.$ $v) w = v[w/x]$\\
+      $* \text { to } *.$ $v = v$ & $\lambda x : A.(v x) = v$ \\
+      $v$ to $*$ . $w[* / z] = w[v / z]$ & \\
+      \hline
+      \multicolumn{2}{|c|}{Commuting conversions} \\
+      \hline
+      \multicolumn{2}{|c|}{$u[v \text{ to } \ast . w/z] = v \text{ to } \ast . u[w/z]$}  \\
+      \multicolumn{2}{|c|}{$u[$pm $v$ to $x \otimes y.$ $w/z] =$ pm $v$ to $x \otimes y.$ $u[w/z]$} \\
+      \hline
+      \multicolumn{2}{|c|}{Discard} \\
+      \hline
+      \multicolumn{2}{|c|}{$v: \mathbb{I} = \text{dis}(x_1) \text{ to } \ast.$ $\ldots$ $\text{dis}(x_{n-1}) \text{ to } \ast \text{ dis}(x_{n})$} \\
+      \hline
+  \end{tabular}
+  \caption{Equations-in-context for affine lambda calculus}
+  \label{fig:equations-linear-lambda}
+\end{figure}
+\section{Quantum Computing Preliminaries} \label{sec:Quantum Computing Preliminaries}
+This section presents background on quantum information and quantum computation [\cite{nielsen2010quantum}].
+
+
 \subsection{Metric equational system}
 Metric equations [\cite{mardare2016quantitative}, \cite{mardare2017axiomatizability}] are a strong candidate for reasoning about approximate program equivalence. These equations take the form of $t=_{\epsilon} s$, where  $\epsilon$ is a non-negative rational representing the ``maximum distance" between the two terms $t$ and $s$. The metric equational system for linear lambda calculus is depicted in \autoref{fig:metric deductive system} [\cite{dahlqvist2022syntactic}].
 \vspace{-10pt}
@@ -408,34 +438,7 @@ $
 
 % Perguntar ao professor Renato: "Equations corresponding to the axiomatics of autonomous categories" e onde por o background de quantum computing. Also é para fazer glossário com simbolos matemáticos?
 
-Linear $\lambda$-calculus comes equipped with a class of equations, given in \autoref{fig:equations-linear-lambda}, specifically equations-in-context $\Gamma \triangleright v = w : \mathbb {A}$.
 
-\begin{figure}[H]
-  \centering
-  \begin{tabular}{ |c|c| }
-      \hline 
-      Monoidal structure & Higher-order structure \\
-      \hline
-      pm $v \otimes w$ to $x \otimes y.$ $u = u[v/x,w/y]$& \\
-      pm $v$ to $x \otimes y.$ $u[x \otimes y/z] = u[v/z]$ & $(\lambda x : A.$ $v) w = v[w/x]$\\
-      $* \text { to } *.$ $v = v$ & $\lambda x : A.(v x) = v$ \\
-      $v$ to $*$ . $w[* / z] = w[v / z]$ & \\
-      \hline
-      \multicolumn{2}{|c|}{Commuting conversions} \\
-      \hline
-      \multicolumn{2}{|c|}{$u[v \text{ to } \ast . w/z] = v \text{ to } \ast . u[w/z]$}  \\
-      \multicolumn{2}{|c|}{$u[$pm $v$ to $x \otimes y.$ $w/z] =$ pm $v$ to $x \otimes y.$ $u[w/z]$} \\
-      \hline
-      \multicolumn{2}{|c|}{Discard} \\
-      \hline
-      \multicolumn{2}{|c|}{$v: \mathbb{I} = \text{dis}(x_1) \text{ to } \ast.$ $\ldots$ $\text{dis}(x_{n-1}) \text{ to } \ast \text{ dis}(x_{n})$} \\
-      \hline
-  \end{tabular}
-  \caption{Equations-in-context for affine lambda calculus}
-  \label{fig:equations-linear-lambda}
-\end{figure}
-\section{Quantum Computing Preliminaries} \label{sec:Quantum Computing Preliminaries}
-This section presents background on quantum information and quantum computation [\cite{nielsen2010quantum}].
 
 The basic unit of information in quantum computation is a quantum bit or qubit [\cite{perdrix2008quantum}]. The state of a single qubit is described by a normalized vector of the 2-dimensional Hilbert space $\mathbb{C}^{2}$. When global phases are ignored we can represent a quantum state $\ket{\psi} \in \mathbb{C}^{2}$ in the form,
 \begin{equation} \label{eq:qubit_bs}

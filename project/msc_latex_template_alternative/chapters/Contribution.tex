@@ -1,4 +1,4 @@
-\chapter{Contribution}
+\chapter{Conditionals}
 
 
 
@@ -185,7 +185,7 @@ Therefore, $\text{Deutsch}=_{\epsilon} \text{Deutsch}^{\epsilon}$, and consequen
 
 The notion of approximate equivalence for quantum programming explored in [\cite{dahlqvist2022syntactic}] does not encompass classical control flow. As a result, preliminary work based on [\cite{crole1993categories,selinger2013lecture}]   has been undertaken to address the integration of conditionals. 
 
-\subsection{Integration of conditionals}
+\subsection{Syntax}
 
 The term formation rules for conditionals are depicted in
 \autoref{fig:typing_rules_cond}. 
@@ -231,6 +231,65 @@ $
 \caption{Term formation rules for conditionals}
 \label{fig:typing_rules_cond}
 \end{figure}
+
+
+\subsubsection{Properties}
+The rules presented in \autoref{fig:typing_rules_cond} are subject 
+the properties in \autoref{theorem:unique_der}.
+
+
+\begin{theorem} \label {theorem:unique_der}
+ Lambda calculus with conditionals has the following properties:
+\begin{enumerate}
+  \item for all judgements $\Gamma \triangleright v$ and $\Gamma' \triangleright v$, te($\Gamma$) $\simeq_{\pi}$  te($\Gamma'$); 
+  \item additionally if $\Gamma \triangleright v: \mathbb{A}, \Gamma'\triangleright v: \mathbb{A}'$, and $\Gamma \simeq_{\pi} \Gamma' $, then $\mathbb{A}$ must be equal to $\mathbb{A}'$;
+  \item all judgements $\Gamma \triangleright v:\mathbb{A}$ have a unique derivation.
+\end{enumerate}
+\end{theorem}
+
+\paragraph{Proof} 
+
+Regarding the first property, considering the case statement in  \autoref{fig:typing_rules_cond} and 
+
+\begin{figure} [H]
+  \begin{equation*}
+  \begin{split}
+  \begin{aligned}
+  & \hspace{15pt}
+  \begin{minipage}[t]{0.3\textwidth}
+  $\begin{array}{c}
+       \Gamma'\triangleright v: \mathbb{A} \oplus \mathbb{B} \quad \Delta', x': \mathbb{A'} \triangleright w: \mathbb{C} \quad \Delta, y': \mathbb{B'}  \triangleright u : \mathbb{C}   \quad E' \in \text{Sf}(\Gamma';\Delta')  \\
+      \hline
+     E' \triangleright \text{ cond } v \hspace{2pt} \{\text{inl} (x) \Rightarrow w ; \hspace{1pt} \text{inr} (y) \Rightarrow u\}: \mathbb{C} 
+  \end{array}
+  $
+  \end{minipage} 
+  \end{aligned}
+  \end{split}
+  \end{equation*}
+  \caption{Case statement}
+\label{case'}
+  \end{figure}
+
+we want to prove that te($E$) $\simeq_{\pi}$  te($E'$). By induction hypothesis, te($\Gamma$) $\simeq_{\pi}$  te($\Gamma'$), te($\Delta,x$) $\simeq_{\pi}$  te($\Delta',x'$) and te($\Delta,y$) $\simeq_{\pi}$  te($\Delta',y'$). Given that both case statements are well-typed, this implies that  te($\Delta$) $\simeq_{\pi}$  te($\Delta'$), te($x$) $\simeq_{\pi}$  te($x'$), and te($y$) $\simeq_{\pi}$  te($y'$). Since, $E \in \text{Sf}(\Gamma;\Delta)$ and  $E' \in \text{Sf}(\Gamma';\Delta')$, one has that te($E$) $\simeq_{\pi}$  te($\Gamma, \Delta$) and te($E'$) $\simeq_{\pi}$  te($\Gamma', \Delta'$). Consequently, te($E$) $\simeq_{\pi}$  te($E'$).
+
+With respect to the second property, considering the case statements in  \autoref{fig:typing_rules_cond} and \autoref{case'}, we want to prove that if $E \triangleright \text{ cond } v \hspace{2pt} \{\text{inl} (x) \Rightarrow w ; \hspace{1pt} \text{inr} (y) \Rightarrow u\}: \mathbb{C}, \Gamma'\triangleright \text{ cond } v \hspace{2pt} \{\text{inl} (x) \Rightarrow w ; \hspace{1pt} \text{inr} (y) \Rightarrow u\}: \mathbb{C}'$, and $E \simeq_{\pi} E' $, then $\mathbb{C}$ must be equal to $\mathbb{C}'$. By induction hypothesis, one has that,
+\begin{enumerate}
+  \item If $\Gamma \simeq_{\pi} \Gamma'$, then $\mathbb{A} \oplus \mathbb{B}=\mathbb{A}' \oplus \mathbb{B}'$;
+  \item If  $\Delta, x: \mathbb{A}  \simeq_{\pi} \Delta', x': \mathbb{A}'$, then $\mathbb{C}=\mathbb{C}'$;
+  \item If $\Delta, y: \mathbb{B}  \simeq_{\pi} \Delta', y': \mathbb{B}'$, then $\mathbb{C}=\mathbb{C}'$
+\end{enumerate}
+ 
+2 and 3 imply that if $\Delta \simeq_{\pi} \Delta $, then $\mathbb{C}=\mathbb{C}'$. "If $\Gamma,\Delta \simeq_{\pi} \Delta $, then $\mathbb{C}=\mathbb{C}'$ ",  also implies that if $\Delta \simeq_{\pi} \Gamma', \Delta' $, then $\mathbb{C}=\mathbb{C}'$. Moreover, given that $E \in \text{Sf}(\Gamma;\Delta)$ and  $E' \in \text{Sf}(\Gamma';\Delta')$, it follows that $\Gamma, \Delta \simeq_{\pi} \Gamma', \Delta'$. Consequently, $E \simeq_{\pi} E' $, then $\mathbb{C}$ must be equal to $\mathbb{C}'$.
+
+\qed
+
+
+
+\begin{lemma} \label {exh_and_sub} (\text{Exchange and Substitution}) For every judgement $\Gamma,x:\mathbb{A}, y:\mathbb{B}, \Delta \triangleright v: \mathbb{C}$ it is possible to derive $\Gamma, y:\mathbb{B}, x:\mathbb{A}, \Delta \triangleright v: \mathbb{C}$. For all judgements  $\Gamma,x:\mathbb{A} \triangleright v: \mathbb{B}$ and $\Delta \triangleright w: \mathbb{A}$ it is possible to derive $ \Gamma, \Delta \triangleright v[w/x]: \mathbb{B}$.
+\end{lemma}
+
+\subsection{Interpretation}
 Considering  $v \in V$, $w \in W$, and $u \in U$ where $V, W, U$ represent vector spaces, $\textsc{Il}_{V}: V \xrightarrow{} V\oplus W$, denotes the left injection operator, defined as $\textsc{Il}_{V}= v \mapsto (v,0) $; $\textsc{Ir}_{V}: V \xrightarrow{} W \oplus V$, denotes the right injection operator, defined as $\textsc{Ir}_{V}= v \mapsto (0,v) $; and $\text{dist}_{V, W,U}: V \otimes  \left(W \oplus U\right) \xrightarrow{} \left(V \otimes W\right) \oplus \left(V \otimes U\right)$, denotes the distributive property of the tensor product over the direct sum, defined as $\text{dist}_{V, W,U} =  v \otimes  \left(w, u\right) \mapsto \left(v \otimes w, v \otimes u\right)$. The subscripts in these operators will be omitted unless ambiguity arises. Moreover, the operation \text{either} corresponds to:
 \begin{figure} [H]
 \begin{equation}
@@ -285,7 +344,7 @@ $
 \hspace{-25pt}
  \begin{minipage}[t]{0.3\textwidth}
 $\begin{array}{c} 
-    [\![\Gamma\triangleright v: \mathbb{A} \oplus \mathbb{B} ]\!] = b \quad [\![\Delta, x:\mathbb{A} \triangleright w: \mathbb{C} ]\!] = p  \quad  [\![\Delta,x:\mathbb{B} \triangleright w_{2}: \mathbb{C} ]\!] = q    \quad E \in \text{Sf}(\Gamma;\Delta)  \\
+    [\![\Gamma\triangleright v: \mathbb{A} \oplus \mathbb{B} ]\!] = b \quad [\![\Delta, x:\mathbb{A} \triangleright w: \mathbb{C} ]\!] = p  \quad  [\![\Delta,y:\mathbb{B} \triangleright u: \mathbb{C} ]\!] = q    \quad E \in \text{Sf}(\Gamma;\Delta)  \\
     \hline
   [\![E \triangleright \text{ case } v \hspace{2pt}  \{\text{inl} (x) \Rightarrow w ; \hspace{1pt} \text{inr} (y) \Rightarrow u\}: \mathbb{C} ]\!] =   \text{either}(p,q) \cdot \text{dist} \cdot \text{sw} \cdot (b \otimes \text{id}) \cdot \text{sp}_{\Gamma;\Delta} \cdot \text{sh}_{E}
 \end{array}
@@ -317,7 +376,7 @@ Now, for the conditional statement:
 
 The quantum lambda calculus with conditionals is illustrated with an example —the quantum teleportation protocol— in \autoref{sec:teleport}.
 
-
+\subsection{Metric equations}
 The metric equations for conditionals are presented in \autoref{fig:metric conditionals}. Note that the first two equations are redundant.
 \begin{figure} [H]
 \begin{equation*}
