@@ -199,27 +199,27 @@ The term formation rules for conditionals are depicted in
 $\begin{array}{c}
      \Gamma \triangleright v: \mathbb{A} \\
     \hline
-   \Gamma \triangleright \text{inl}(v):  \mathbb{A} \oplus \mathbb{B}
+   \Gamma \triangleright \text{inl}_{\mathbb{B}}(v):  \mathbb{A} \oplus \mathbb{B}
 \end{array}
 $
 \end{minipage}
-\hspace{-38pt}
+\hspace{-30pt}
 \text{(inl)} 
  \hspace{20pt}
 \begin{minipage}[t]{0.3\textwidth}
 $\begin{array}{c}
       \Gamma \triangleright v:  \mathbb{B} \\
     \hline
-   \Gamma \triangleright \text{inr}(v): \mathbb{A} \oplus \mathbb{B}
+   \Gamma \triangleright \text{inr}_{\mathbb{A}}(v): \mathbb{A} \oplus \mathbb{B}
 \end{array}
 $ \end{minipage} 
-\hspace{-35pt} \text{(inr)} \\
+\hspace{-30pt} \text{(inr)} \\
 &\hspace{15pt}
 \begin{minipage}[t]{0.3\textwidth}
 $\begin{array}{c}
      \Gamma\triangleright v: \mathbb{A} \oplus \mathbb{B} \quad \Delta, x: \mathbb{A} \triangleright w: \mathbb{C} \quad \Delta, y: \mathbb{B}  \triangleright u : \mathbb{C}   \quad E \in \text{Sf}(\Gamma;\Delta)  \\
     \hline
-   E \triangleright \text{ cond } v \hspace{2pt} \{\text{inl} (x) \Rightarrow w ; \hspace{1pt} \text{inr} (y) \Rightarrow u\}: \mathbb{C} 
+   E \triangleright \text{ cond } v \hspace{2pt} \{\text{inl}_{\mathbb{B}} (x) \Rightarrow w ; \hspace{1pt} \text{inr}_{\mathbb{A}} (y) \Rightarrow u\}: \mathbb{C} 
 \end{array}
 $
 \end{minipage}
@@ -258,32 +258,81 @@ Regarding the first property, considering the case statement in  \autoref{fig:ty
   & \hspace{15pt}
   \begin{minipage}[t]{0.3\textwidth}
   $\begin{array}{c}
-       \Gamma'\triangleright v: \mathbb{A} \oplus \mathbb{B} \quad \Delta', x': \mathbb{A'} \triangleright w: \mathbb{C} \quad \Delta, y': \mathbb{B'}  \triangleright u : \mathbb{C}   \quad E' \in \text{Sf}(\Gamma';\Delta')  \\
+       \Gamma'\triangleright v: \mathbb{A} \oplus \mathbb{B} \quad \Delta', x: \mathbb{A} \triangleright w: \mathbb{C} \quad \Delta', y: \mathbb{B}  \triangleright u : \mathbb{C}   \quad E' \in \text{Sf}(\Gamma';\Delta')  \\
       \hline
-     E' \triangleright \text{ cond } v \hspace{2pt} \{\text{inl} (x) \Rightarrow w ; \hspace{1pt} \text{inr} (y) \Rightarrow u\}: \mathbb{C} 
+     E' \triangleright \text{ cond } v \hspace{2pt} \{\text{inl}_{\mathbb{B}} (x) \Rightarrow w ; \hspace{1pt} \text{inr}_{\mathbb{A}} (y) \Rightarrow u\}: \mathbb{C} 
   \end{array}
   $
   \end{minipage} 
   \end{aligned}
   \end{split}
   \end{equation*}
-  \caption{Case statement}
-\label{case'}
   \end{figure}
 
-we want to prove that te($E$) $\simeq_{\pi}$  te($E'$). By induction hypothesis, te($\Gamma$) $\simeq_{\pi}$  te($\Gamma'$), te($\Delta,x$) $\simeq_{\pi}$  te($\Delta',x'$) and te($\Delta,y$) $\simeq_{\pi}$  te($\Delta',y'$). Given that both case statements are well-typed, this implies that  te($\Delta$) $\simeq_{\pi}$  te($\Delta'$), te($x$) $\simeq_{\pi}$  te($x'$), and te($y$) $\simeq_{\pi}$  te($y'$). Since, $E \in \text{Sf}(\Gamma;\Delta)$ and  $E' \in \text{Sf}(\Gamma';\Delta')$, one has that te($E$) $\simeq_{\pi}$  te($\Gamma, \Delta$) and te($E'$) $\simeq_{\pi}$  te($\Gamma', \Delta'$). Consequently, te($E$) $\simeq_{\pi}$  te($E'$).
+we want to prove that te($E$) $\simeq_{\pi}$  te($E'$). By induction hypothesis, te($\Gamma$) $\simeq_{\pi}$  te($\Gamma$), te($\Delta,x$) $\simeq_{\pi}$  te($\Delta',x$) and te($\Delta,y$) $\simeq_{\pi}$  te($\Delta',y$). This implies that  te($\Delta$) $\simeq_{\pi}$ te($\Delta'$). Since, $E \in \text{Sf}(\Gamma;\Delta)$ and  $E' \in \text{Sf}(\Gamma';\Delta')$, one has that te($E$) $\simeq_{\pi}$  te($\Gamma, \Delta$) and te($E'$) $\simeq_{\pi}$  te($\Gamma', \Delta'$). Consequently, te($E$) $\simeq_{\pi}$  te($E'$).
 
-With respect to the second property, considering the case statements in  \autoref{fig:typing_rules_cond} and \autoref{case'}, we want to prove that if $E \triangleright \text{ cond } v \hspace{2pt} \{\text{inl} (x) \Rightarrow w ; \hspace{1pt} \text{inr} (y) \Rightarrow u\}: \mathbb{C}, \Gamma'\triangleright \text{ cond } v \hspace{2pt} \{\text{inl} (x) \Rightarrow w ; \hspace{1pt} \text{inr} (y) \Rightarrow u\}: \mathbb{C}'$, and $E \simeq_{\pi} E' $, then $\mathbb{C}$ must be equal to $\mathbb{C}'$. By induction hypothesis, one has that,
-\begin{enumerate}
-  \item If $\Gamma \simeq_{\pi} \Gamma'$, then $\mathbb{A} \oplus \mathbb{B}=\mathbb{A}' \oplus \mathbb{B}'$;
-  \item If  $\Delta, x: \mathbb{A}  \simeq_{\pi} \Delta', x': \mathbb{A}'$, then $\mathbb{C}=\mathbb{C}'$;
-  \item If $\Delta, y: \mathbb{B}  \simeq_{\pi} \Delta', y': \mathbb{B}'$, then $\mathbb{C}=\mathbb{C}'$
-\end{enumerate}
- 
-2 and 3 imply that if $\Delta \simeq_{\pi} \Delta' $, then $\mathbb{C}=\mathbb{C}'$. Since contexts $\Gamma$ and  $\Gamma'$ aren't associated with terms of types $\mathbb{C}$ and $\mathbb{C}'$, it is possible to state that if $\Delta \simeq_{\pi} \Delta $, and $\Gamma \simeq_{\pi} \Gamma'$, then $\mathbb{C}=\mathbb{C}'$. Given the requirement that the terms are well typed, it is also possible to state that  if $ \Gamma,\Delta \simeq_{\pi} \Gamma', \Delta' $, then $\mathbb{C}=\mathbb{C}'$. Moreover, given that $E \in \text{Sf}(\Gamma;\Delta)$ and  $E' \in \text{Sf}(\Gamma';\Delta')$, it follows that $\Gamma, \Delta \simeq_{\pi} \Gamma', \Delta'$. Consequently, if $E \simeq_{\pi} E' $, then $\mathbb{C}$ must be equal to $\mathbb{C}'$.
+With respect to the second property, considering the case statement in  \autoref{fig:typing_rules_cond} and  
 
-Finally, concerning the third property, it is necessary to demonstrate that the case statement in \autoref{fig:typing_rules_cond} has a unique derivation. By induction hypothesis, the terms $\Gamma \triangleright v: \mathbb{A} \oplus \mathbb{B}$; $\Delta, x: \mathbb{A} \triangleright w: \mathbb{C}$; and $\Delta, y: \mathbb{B} \triangleright u: \mathbb{C}$ each have unique derivations. Given that, according to the term formation rules in \autoref{fig:typing_rules_cond} and \autoref{fig:typing_rules_linear}, the case statement can only be derived from these previously mentioned terms, one can conclude that the case statement has a unique derivation.
+\begin{figure} [H]
+  \begin{equation*}
+  \begin{split}
+  \begin{aligned}
+  & \hspace{15pt}
+  \begin{minipage}[t]{0.3\textwidth}
+  $\begin{array}{c}
+       \Gamma\triangleright v: \mathbb{A} \oplus \mathbb{B} \quad \Delta', x: \mathbb{A} \triangleright w: \mathbb{C'} \quad \Delta', y: \mathbb{B}  \triangleright u : \mathbb{C'}   \quad E' \in \text{Sf}(\Gamma';\Delta')  \\
+      \hline
+     E' \triangleright \text{ cond } v \hspace{2pt} \{\text{inl}_{\mathbb{B}}  (x) \Rightarrow w ; \hspace{1pt} \text{inr}_{\mathbb{A}}  (y) \Rightarrow u\}: \mathbb{C'} 
+  \end{array}
+  $
+  \end{minipage} 
+  \end{aligned}
+  \end{split}
+  \end{equation*}
+  \end{figure}
 
+we want to prove that if $E \triangleright \text{ cond } v \hspace{2pt} \{\text{inl} (x) \Rightarrow w ; \hspace{1pt} \text{inr} (y) \Rightarrow u\}: \mathbb{C}$; $\Gamma'\triangleright \text{ cond } v \hspace{2pt} \{\text{inl} (x) \Rightarrow w ; \hspace{1pt} \text{inr} (y) \Rightarrow u\}: \mathbb{C}'$, and $E \simeq_{\pi} E' $, then $\mathbb{C}$ must be equal to $\mathbb{C}'$. Assuming, that  $E \simeq_{\pi} E' $ and knowing that $E \in \text{Sf}(\Gamma;\Delta)$ and  $E' \in \text{Sf}(\Gamma';\Delta')$, one has that
+
+\begin{align*}
+  & x: \mathbb{A}  \in \Delta & \\
+  \implies & x: \mathbb{A}  \in E \hspace{50pt} \{E \in \text{Sf}(\Gamma;\Delta)\} \\
+  \implies & x: \mathbb{A} \in E' \hspace{50pt} \{ E \simeq_{\pi} E' \}  \\
+  \implies & x: \mathbb{A}  \in \Delta' \hspace{50pt} \{\text{All terms are well typed and contexts do not share variables}\}
+\end{align*}
+
+This proves that $\Delta \simeq_{\pi} \Delta'$. Therefore, by induction hypothesis on the premises of the conditional statement, one has that $\mathbb{C}$ must be equal to $\mathbb{C}'$.
+  
+
+
+Finally, concerning the third property it is necessary to demonstrate that the case statement in \autoref{fig:typing_rules_cond} has a unique derivation. This means proving that the premises in \autoref{fig:typing_rules_cond} and in
+
+\begin{figure} [H]
+  \begin{equation*}
+  \begin{split}
+  \begin{aligned}
+  & \hspace{15pt}
+  \begin{minipage}[t]{0.3\textwidth}
+  $\begin{array}{c}
+       \Gamma\triangleright v: \mathbb{A} \oplus \mathbb{B} \quad \Delta', x: \mathbb{A} \triangleright w: \mathbb{C'} \quad \Delta', y: \mathbb{B}  \triangleright u : \mathbb{C}   \quad E' \in \text{Sf}(\Gamma';\Delta')  \\
+      \hline
+     E \triangleright \text{ cond } v \hspace{2pt} \{\text{inl}_{\mathbb{B}}  (x) \Rightarrow w ; \hspace{1pt} \text{inr}_{\mathbb{A}}  (y) \Rightarrow u\}: \mathbb{C} 
+  \end{array}
+  $
+  \end{minipage} 
+  \end{aligned}
+  \end{split}
+  \end{equation*}
+  \end{figure}
+
+are equal, more concretely that $\Gamma = \Gamma'$ and $\Delta = \Delta'$. 
+
+\begin{align*}
+  & x: \mathbb{A}  \in \Gamma & \\
+  \implies & x: \mathbb{A}  \in E \land   te(x:\mathbb{A}) \in \Gamma'  \hspace{50pt} \{E \in \text{Sf}(\Gamma;\Delta), te(\Gamma) \simeq_{\pi}  te(\Gamma') \} \\
+  \implies & x: \mathbb{A}  \in E \land  x:\mathbb{A} \in \Gamma'  \hspace{70pt} \{ E \in \text{Sf}(\Gamma;\Delta),E \in \text{Sf}(\Gamma';\Delta') \} \\
+\end{align*}
+
+This last implication is related with the fact that in $E$, there can only exist one  variable designated by $x$. Given that a shuff preserves the relative order of the variables in each context, it follows that $\Gamma = \Gamma'$. The same reasoning can be applied to $\Delta$ and $\Delta'$, which concludes the proof. 
 
 \qed
 
@@ -294,7 +343,16 @@ Finally, concerning the third property, it is necessary to demonstrate that the 
 
 \paragraph{Proof}
 
-Regarding the exchange property, for the case statement it is necessary to prove that for every judgement $\Gamma, x:\mathbb{A}, y:\mathbb{B}, \Delta \triangleright \text{ cond } v \hspace{2pt} \{\text{inl}_{\mathbb{D}}  (a) \Rightarrow w ; \hspace{1pt} \text{inr}_{\mathbb{E}}  (b) \Rightarrow u\}: \mathbb{C}$, it is possible to derive $\Gamma, y:\mathbb{B}, x:\mathbb{A}, \Delta \triangleright \text{ cond } v \hspace{2pt} \{\text{inl}_{\mathbb{D}} (a) \Rightarrow w ; \hspace{1pt} \text{inr}_{\mathbb{E}} (b) \Rightarrow u\}: \mathbb{C}$. By, induction hypothesis, and then aplying the case rule, one has that:
+Regarding the exchange property, for the case statement it is necessary to prove that for every judgement $\Gamma, x:\mathbb{A}, y:\mathbb{B}, \Delta \triangleright \text{ cond } v \hspace{2pt} \{\text{inl}_{\mathbb{E}}  (a) \Rightarrow w ; \hspace{1pt} \text{inr}_{\mathbb{D}}  (b) \Rightarrow u\}: \mathbb{C}$, it is possible to derive $\Gamma, y:\mathbb{B}, x:\mathbb{A}, \Delta \triangleright \text{ cond } v \hspace{2pt} \{\text{inl}_{\mathbb{E}} (a) \Rightarrow w ; \hspace{1pt} \text{inr}_{\mathbb{D}} (b) \Rightarrow u\}: \mathbb{C}$. It is necessary to cosiderer three scenarios:
+\begin{enumerate}
+  \item $x:\mathbb{A}, y:\mathbb{B}$ are variables in the context of $v$;
+  \item $x:\mathbb{A}, y:\mathbb{B}$ are variables in the context of $w$ and $u$;
+  \item  $x:\mathbb{A}$ is a variable in the context of $v$ and $y:\mathbb{B}$ is a variable in the context of $w$ and $u$.
+\end{enumerate}
+
+
+
+By, induction hypothesis, and then aplying the case rule, one has that:
 
 
 \begin{figure} [H]
@@ -310,7 +368,7 @@ Regarding the exchange property, for the case statement it is necessary to prove
       E,   y:\mathbb{B}, x:\mathbb{A}, \Delta  \triangleright v: \mathbb{A} \oplus \mathbb{B} \quad \Sigma, a:\mathbb{D}, y:\mathbb{B}, x:\mathbb{A}, \Delta \triangleright w: \mathbb{C} \quad \Sigma, b:\mathbb{E}, y:\mathbb{B}, x:\mathbb{A}, \Delta \triangleright u : \mathbb{C}   \quad \Gamma \in \text{Sf}(E;\Sigma)
      \\
      \hline 
-     \Gamma, y:\mathbb{B}, x:\mathbb{A}, \Delta \triangleright \text{ cond } v \hspace{2pt} \{\text{inl}_{\mathbb{D}} (a) \Rightarrow w ; \hspace{1pt} \text{inr}_{\mathbb{E}} (b) \Rightarrow u\}: \mathbb{C}
+     \Gamma, y:\mathbb{B}, x:\mathbb{A}, \Delta \triangleright \text{ cond } v \hspace{2pt} \{\text{inl}_{\mathbb{E}} (a) \Rightarrow w ; \hspace{1pt} \text{inr}_{\mathbb{D}} (b) \Rightarrow u\}: \mathbb{C}
   \end{array}
   $
   \end{minipage}
@@ -338,10 +396,10 @@ Regarding the exchange property, for the case statement it is necessary to prove
       \Gamma, \Sigma \triangleright v[a/z]: \mathbb{A} \oplus \mathbb{B} \quad \Delta, x: \mathbb{A},  \Sigma  \triangleright w[a/z]: \mathbb{C} \quad \Delta, y: \mathbb{B}, \Sigma   \triangleright u[a/z] : \mathbb{C}   \quad E \in \text{Sf}(\Gamma;\Delta) 
       \\
       \hline
-      E, \Sigma  \triangleright \text{ cond } v[a/z] \hspace{2pt} \{\text{inl} (x) \Rightarrow w[a/z] ; \hspace{1pt} \text{inr} (y) \Rightarrow u[a/z]\}: \mathbb{C}
+      E, \Sigma  \triangleright \text{ cond } v[a/z] \hspace{2pt} \{\text{inl}_{\mathbb{B}} (x) \Rightarrow w[a/z] ; \hspace{1pt} \text{inr}_{\mathbb{A}} (y) \Rightarrow u[a/z]\}: \mathbb{C}
       \\
       \hline
-      E, \Sigma  \triangleright \text{ cond } v \hspace{2pt} \{\text{inl}_{\mathbb{A}}  (x) \Rightarrow w ; \hspace{1pt} \text{inr}_{\mathbb{B}}  (y) \Rightarrow u\}[a/z]: \mathbb{C}
+      E, \Sigma  \triangleright \text{ cond } v \hspace{2pt} \{\text{inl}_{\mathbb{B}}  (x) \Rightarrow w ; \hspace{1pt} \text{inr}_{\mathbb{A}}  (y) \Rightarrow u\}[a/z]: \mathbb{C}
     \end{array}
     $
     \end{minipage}
@@ -578,16 +636,16 @@ $\textit{Proof.}$ \quad Employing the definition of the operator norm in \autore
 \begin{equation} \label{eq:cond_opnorm2}
   \begin{split}
   &\text{sup}{\{ \lVert [P,Q] (v) \rVert  \hspace{2pt} |  \hspace{2pt}  \lVert v \rVert=1  \}}  \leq \text{max} \{  \text{sup} \{ \lVert P (w) \rVert  \hspace{2pt} |  \hspace{2pt}  \lVert w \rVert =1 \}, \text{sup} \{\lVert Q (u) \rVert  \hspace{2pt} |  \hspace{2pt}  \lVert u \rVert=1  \} \} \\
-  & = \text{sup}{\{ \lVert [P,Q] (w+u) \rVert  \hspace{2pt} |  \hspace{2pt}  \lVert w+u \rVert=1  \}} \leq \text{max} \{  \text{sup} \{ \lVert P (w) \rVert  \hspace{2pt} |  \hspace{2pt}  \lVert w \rVert = 1, \lVert Q (u) \rVert  \hspace{2pt} |  \hspace{2pt}  \lVert u \rVert=1  \} \} \\
-  & =  \text{sup}{\{ \lVert P (w) + Q (u) \rVert  \hspace{2pt} |  \hspace{2pt}  \lVert w+u \rVert=1  \}} \leq \text{max} \{  \text{sup} \{ \lVert P (w) \rVert  \hspace{2pt} |  \hspace{2pt}  \lVert w \rVert =1, \lVert Q (u) \rVert  \hspace{2pt} |  \hspace{2pt}  \lVert u \rVert=1  \} \} \\
-  &  =  \text{sup}{\{ \lVert P (w) + Q (u) \rVert  \hspace{2pt} |  \hspace{2pt}  \lVert w+u \rVert=1  \}} \leq \text{sup} \{  \text{max} \{ \lVert P (w) \rVert  \hspace{2pt} |  \hspace{2pt}  \lVert w \rVert =1, \lVert Q (u) \rVert  \hspace{2pt} |  \hspace{2pt}  \lVert u \rVert=1  \} \} \\
+  & = \text{sup}{\{ \lVert [P,Q] (w,u) \rVert  \hspace{2pt} |  \hspace{2pt}  \lVert w \rVert+ \lVert u \rVert=1  \}} \leq \text{max} \{  \text{sup} \{ \lVert P (w) \rVert  \hspace{2pt} |  \hspace{2pt}  \lVert w \rVert = 1, \lVert Q (u) \rVert  \hspace{2pt} |  \hspace{2pt}  \lVert u \rVert=1  \} \} \\
+  & =  \text{sup}{\{ \lVert P (w) + Q (u) \rVert  \hspace{2pt} |  \hspace{2pt}  \lVert w \rVert+ \lVert u \rVert=1 \rVert=1  \}} \leq \text{max} \{  \text{sup} \{ \lVert P (w) \rVert  \hspace{2pt} |  \hspace{2pt}  \lVert w \rVert =1, \lVert Q (u) \rVert  \hspace{2pt} |  \hspace{2pt}  \lVert u \rVert=1  \} \} \\
+  &  =  \text{sup}{\{ \lVert P (w) + Q (u) \rVert  \hspace{2pt} |  \hspace{2pt}  \lVert w \rVert+ \lVert u \rVert=1 \}} \leq \text{sup} \{  \text{max} \{ \lVert P (w) \rVert  \hspace{2pt} |  \hspace{2pt}  \lVert w \rVert =1, \lVert Q (u) \rVert  \hspace{2pt} |  \hspace{2pt}  \lVert u \rVert=1  \} \} \\
 \end{split}
 \end{equation}
 
 Therefore, by the triangle inequality, proving the inequality in \autoref{eq:cond_opnorm3} suffices to establish  \autoref{lem1}.
 \begin{equation} \label{eq:cond_opnorm3}
   \begin{split}
-  \text{sup}{\{ \lVert P (w)  \rVert + \lVert Q (u)  \rVert  \hspace{2pt} |  \hspace{2pt}  \lVert w+u \rVert_{1}=1  \}} \leq \text{sup} \{  \text{max} \{ \lVert P (w) \rVert  \hspace{2pt} |  \hspace{2pt}  \lVert w  \rVert =1, \lVert Q (u) \rVert  \hspace{2pt} |  \hspace{2pt}  \lVert u \rVert=1  \} \} \\
+  \text{sup}{\{ \lVert P (w)  \rVert + \lVert Q (u)  \rVert  \hspace{2pt} |  \hspace{2pt}  \lVert w \rVert+ \lVert u \rVert=1  \}} \leq \text{sup} \{  \text{max} \{ \lVert P (w) \rVert  \hspace{2pt} |  \hspace{2pt}  \lVert w  \rVert =1, \lVert Q (u) \rVert  \hspace{2pt} |  \hspace{2pt}  \lVert u \rVert=1  \} \} \\
   \end{split}
 \end{equation}
 
@@ -596,14 +654,14 @@ This can be rewritten as:
 
 \begin{equation} 
   \begin{split}
-  \lVert w + u   \rVert = 1 \wedge \{ \lVert P (w)  \rVert + \lVert Q (u)  \rVert  \hspace{2pt} |  \hspace{2pt}  \lVert w+u \rVert=1  \}  \leq \text{max}   \left\{ \dfrac{1}{\lVert w \rVert} \lVert P (w) \rVert  \hspace{2pt},  \dfrac{1}{\lVert u \rVert} \lVert Q (u) \rVert   \right\}
+    \lVert w \rVert+ \lVert u \rVert=1 \wedge \text{sup} \{ \lVert P (w)  \rVert + \lVert Q (u)  \rVert  \hspace{2pt}   \}  \leq \text{max}   \left\{ \dfrac{1}{\lVert w \rVert} \lVert P (w) \rVert  \hspace{2pt},  \dfrac{1}{\lVert u \rVert} \lVert Q (u) \rVert   \right\}
 \end{split}
 \end{equation}
 
 As a result,
 \begin{equation} 
   \begin{split}
-  \lVert w + u   \rVert = 1 \wedge \text{sup}{\{ \lVert P (w)  \rVert + \lVert Q (u)  \rVert  \hspace{2pt} |  \hspace{2pt}  \lVert w+u \rVert_{1}  \}}  \leq \text{max}   \left\{  \left\lVert P \left( \dfrac{1}{\lVert w \rVert} w \right) \right\rVert  \hspace{2pt},  \left\lVert Q \left( \dfrac{1}{\lVert u \rVert} u \right) \right\rVert   \right\}
+    \lVert w \rVert+ \lVert u \rVert=1 \wedge \text{sup}{\{ \lVert P (w)  \rVert + \lVert Q (u)  \rVert    \}}  \leq \text{max}   \left\{  \left\lVert P \left( \dfrac{1}{\lVert w \rVert} w \right) \right\rVert  \hspace{2pt},  \left\lVert Q \left( \dfrac{1}{\lVert u \rVert} u \right) \right\rVert   \right\}
 \end{split}
 \end{equation}
 
@@ -757,7 +815,7 @@ Now, it is possivel to prove that $i$ has a norm equal to 1.
 \textit{Proof.} \quad Considering the vector $(v \otimes u, 0)$ with $\lVert(v \otimes u, 0)\rVert = 1$, and  attending the multiplicative property of the operator norm with respect to tensor products, along with the definition of the norm of a tuple as in \autoref{eq:norm_tuple}, it holds that $\lVert v \rVert = 1$ and $\lVert u \rVert =1$. Therefore, using this same property and definition, it is possible to demonstrate that the following holds:
   \begin{equation}
     \begin{split}
-      \lVert [\textsc{Il} \otimes I, \textsc{Ir} \otimes I ] (v \otimes u, 0) \rVert = (v, 0)\otimes u = (\lVert v \rVert + \lVert 0 \rVert ) \lVert u \rVert = \lVert v \rVert \lVert u \rVert =1
+      \lVert [\textsc{Il} \otimes I, \textsc{Ir} \otimes I ] (v \otimes u, 0) \rVert = \lVert(v, 0) \otimes u \rVert = (\lVert v \rVert + \lVert 0 \rVert ) \lVert u \rVert = \lVert v \rVert \lVert u \rVert =1
     \end{split}
   \end{equation}
  
@@ -851,6 +909,8 @@ Finally, by  \autoref{lem1}, it can be deduced that $\text{d} ([P,Q],[P',Q']) \l
 
 An alternative method to establish \autoref{theorem:1.1} is now presented.
 \vspace{5pt}
+
+
 \textit {Proof.} The proof is as follows:
 \begin{equation}
   \begin{split}
