@@ -313,7 +313,7 @@ Finally, concerning the third property it is necessary to demonstrate that the c
   & \hspace{15pt}
   \begin{minipage}[t]{0.3\textwidth}
   $\begin{array}{c}
-       \Gamma\triangleright v: \mathbb{A} \oplus \mathbb{B} \quad \Delta', x: \mathbb{A} \triangleright w: \mathbb{C'} \quad \Delta', y: \mathbb{B}  \triangleright u : \mathbb{C}   \quad E' \in \text{Sf}(\Gamma';\Delta')  \\
+       \Gamma'\triangleright v: \mathbb{A} \oplus \mathbb{B} \quad \Delta', x: \mathbb{A} \triangleright w: \mathbb{C'} \quad \Delta', y: \mathbb{B}  \triangleright u : \mathbb{C}   \quad E' \in \text{Sf}(\Gamma';\Delta')  \\
       \hline
      E \triangleright \text{ cond } v \hspace{2pt} \{\text{inl}_{\mathbb{B}}  (x) \Rightarrow w ; \hspace{1pt} \text{inr}_{\mathbb{A}}  (y) \Rightarrow u\}: \mathbb{C} 
   \end{array}
@@ -332,7 +332,7 @@ are equal, more concretely that $\Gamma = \Gamma'$ and $\Delta = \Delta'$.
   \implies & x: \mathbb{A}  \in E \land  x:\mathbb{A} \in \Gamma'  \hspace{70pt} \{ E \in \text{Sf}(\Gamma;\Delta),E \in \text{Sf}(\Gamma';\Delta') \} \\
 \end{align*}
 
-This last implication is related with the fact that in $E$, there can only exist one  variable designated by $x$. Given that a shuff preserves the relative order of the variables in each context, it follows that $\Gamma = \Gamma'$. The same reasoning can be applied to $\Delta$ and $\Delta'$, which concludes the proof. 
+This last implication is related with the fact that in $E$, there can only exist one  variable designated by $x$. Given that a shuffle preserves the relative order of the variables in each context, it follows that $\Gamma = \Gamma'$. The same reasoning can be applied to $\Delta$ and $\Delta'$, which concludes the proof. 
 
 \qed
 
@@ -343,30 +343,26 @@ This last implication is related with the fact that in $E$, there can only exist
 
 \paragraph{Proof}
 
-Regarding the exchange property, for the case statement it is necessary to prove that for every judgement $\Gamma, x:\mathbb{A}, y:\mathbb{B}, \Delta \triangleright \text{ cond } v \hspace{2pt} \{\text{inl}_{\mathbb{E}}  (a) \Rightarrow w ; \hspace{1pt} \text{inr}_{\mathbb{D}}  (b) \Rightarrow u\}: \mathbb{C}$, it is possible to derive $\Gamma, y:\mathbb{B}, x:\mathbb{A}, \Delta \triangleright \text{ cond } v \hspace{2pt} \{\text{inl}_{\mathbb{E}} (a) \Rightarrow w ; \hspace{1pt} \text{inr}_{\mathbb{D}} (b) \Rightarrow u\}: \mathbb{C}$. It is necessary to cosiderer three scenarios:
+Regarding the exchange property, for the case statement it is necessary to prove that for every judgment $\Gamma, x:\mathbb{A}, y:\mathbb{B}, \Delta \triangleright \text{ cond } v \hspace{2pt} \{\text{inl}_{\mathbb{E}}  (a) \Rightarrow w ; \hspace{1pt} \text{inr}_{\mathbb{D}}  (b) \Rightarrow u\}: \mathbb{C}$, it is possible to derive $\Gamma, y:\mathbb{B}, x:\mathbb{A}, \Delta \triangleright \text{ cond } v \hspace{2pt} \{\text{inl}_{\mathbb{E}} (a) \Rightarrow w ; \hspace{1pt} \text{inr}_{\mathbb{D}} (b) \Rightarrow u\}: \mathbb{C}$. It is necessary to consider three scenarios:
 \begin{enumerate}
   \item $x:\mathbb{A}, y:\mathbb{B}$ are variables in the context of $v$;
   \item $x:\mathbb{A}, y:\mathbb{B}$ are variables in the context of $w$ and $u$;
   \item  $x:\mathbb{A}$ is a variable in the context of $v$ and $y:\mathbb{B}$ is a variable in the context of $w$ and $u$.
 \end{enumerate}
 
-
-
-By, induction hypothesis, and then aplying the case rule, one has that:
-
+With respect to the first case, by induction hypothesis and applying the case rule, one has that:
 
 \begin{figure} [H]
   \begin{equation*}
   \begin{split}
   \begin{aligned}
-  &\hspace{-40pt}
+  &\hspace{-20pt}
   \begin{minipage}[t]{0.3\textwidth}
     \small
   $\begin{array}{c}
-       E,  x:\mathbb{A}, y:\mathbb{B}, \Delta  \triangleright v: \mathbb{A} \oplus \mathbb{B} \quad \Sigma, a:\mathbb{D}, x:\mathbb{A}, y:\mathbb{B},  \Delta \triangleright w: \mathbb{C} \quad \Sigma, b:\mathbb{E},x:\mathbb{A}, y:\mathbb{B},  \Delta \triangleright u : \mathbb{C}   \quad \Gamma \in \text{Sf}(E;\Sigma)  \\
+       \Gamma,  x:\mathbb{A}, y:\mathbb{B}  \triangleright v: \mathbb{D} \oplus \mathbb{E} \quad \Delta, a:\mathbb{D} \triangleright w: \mathbb{C} \quad \Delta, b:\mathbb{E} \triangleright u : \mathbb{C}   \quad E \in \text{Sf}(\Gamma, x:\mathbb{A}, y:\mathbb{B}; \Delta )  \\
       \hline
-      E,   y:\mathbb{B}, x:\mathbb{A}, \Delta  \triangleright v: \mathbb{A} \oplus \mathbb{B} \quad \Sigma, a:\mathbb{D}, y:\mathbb{B}, x:\mathbb{A}, \Delta \triangleright w: \mathbb{C} \quad \Sigma, b:\mathbb{E}, y:\mathbb{B}, x:\mathbb{A}, \Delta \triangleright u : \mathbb{C}   \quad \Gamma \in \text{Sf}(E;\Sigma)
-     \\
+      \Gamma,  y:\mathbb{B}, x:\mathbb{A}\triangleright v: \mathbb{D} \oplus \mathbb{E} \quad \Delta, a:\mathbb{D} \triangleright w: \mathbb{C} \quad \Delta, b:\mathbb{E} \triangleright u : \mathbb{C}   \quad E\in \text{Sf}(\Gamma,y:\mathbb{B},x:\mathbb{A}; \Delta )  \\
      \hline 
      \Gamma, y:\mathbb{B}, x:\mathbb{A}, \Delta \triangleright \text{ cond } v \hspace{2pt} \{\text{inl}_{\mathbb{E}} (a) \Rightarrow w ; \hspace{1pt} \text{inr}_{\mathbb{D}} (b) \Rightarrow u\}: \mathbb{C}
   \end{array}
@@ -377,7 +373,61 @@ By, induction hypothesis, and then aplying the case rule, one has that:
   \end{equation*}
   \end{figure}
 
-  With respect to the substitution property, for the case statement it is necessary to prove that for all judgements $E, z:\mathbb{D} \triangleright  \text{ cond } v \hspace{2pt} \{\text{inl}_{\mathbb{A}}  (x) \Rightarrow w ; \hspace{1pt} \text{inr}_{\mathbb{B}}  (y) \Rightarrow u\}: \mathbb{C}$ and $\Sigma\triangleright a: \mathbb{D}$ it is possible to derive $ E, \Sigma  \triangleright \text{ cond } v \hspace{2pt} \{\text{inl}_{\mathbb{A}}  (x) \Rightarrow w ; \hspace{1pt} \text{inr}_{\mathbb{B}}  (y) \Rightarrow u\}[a/z]: \mathbb{C}$. Apllying the exchange property, then the induction and finally the case rule, one has that:
+Next, for the second case, by induction hypothesis and applying the case rule, one has that:
+
+
+\begin{figure} [H]
+  \begin{equation*}
+  \begin{split}
+  \begin{aligned}
+  &\hspace{-20pt}
+  \begin{minipage}[t]{0.3\textwidth}
+    \small
+  $\begin{array}{c}
+       \Gamma \triangleright v: \mathbb{D} \oplus \mathbb{E} \quad x:\mathbb{A}, y:\mathbb{B},\Delta  , a:\mathbb{D} \triangleright w: \mathbb{C} \quad \Delta, x:\mathbb{A}, y:\mathbb{B}, b:\mathbb{E} \triangleright u : \mathbb{C}   \quad E \in \text{Sf}(\Gamma; x:\mathbb{A}, y:\mathbb{B}, \Delta )  \\
+      \hline
+      \Gamma  \triangleright v: \mathbb{D} \oplus \mathbb{E} \quad  y:\mathbb{B}, x:\mathbb{A},\Delta, a:\mathbb{D} \triangleright w: \mathbb{C} \quad \Delta, y:\mathbb{B}, x:\mathbb{A},b:\mathbb{E} \triangleright u : \mathbb{C}   \quad E \in \text{Sf}(\Gamma; y:\mathbb{B},x:\mathbb{A}, \Delta )  \\
+     \hline 
+     \Gamma, y:\mathbb{B}, x:\mathbb{A}, \Delta \triangleright \text{ cond } v \hspace{2pt} \{\text{inl}_{\mathbb{E}} (a) \Rightarrow w ; \hspace{1pt} \text{inr}_{\mathbb{D}} (b) \Rightarrow u\}: \mathbb{C}
+  \end{array}
+  $
+  \end{minipage}
+  \end{aligned}
+  \end{split}
+  \end{equation*}
+  \end{figure}
+
+  Finally, for the third case, considering the premises
+
+  \begin{figure} [H]
+    \begin{equation*}
+    \begin{split}
+    \begin{aligned}
+    &\hspace{-20pt}
+    \begin{minipage}[t]{0.3\textwidth}
+      \small
+    $\begin{array}{c}
+         \Gamma,x:\mathbb{A} \triangleright v: \mathbb{D} \oplus \mathbb{E} \quad \Delta,  y:\mathbb{B}, a:\mathbb{D} \triangleright w: \mathbb{C} \quad \Delta,  y:\mathbb{B}, b:\mathbb{E} \triangleright u : \mathbb{C}   \quad E \in \text{Sf}(\Gamma, x:\mathbb{A};  \Delta,y:\mathbb{B} )  \\
+    \end{array}
+    $
+    \end{minipage}
+    \end{aligned}
+    \end{split}
+    \end{equation*}
+    \end{figure}
+and attending to the definition of shuffle, a possibility for $E  \in \text{Sf}(\Gamma, x:\mathbb{A};  \Delta,y:\mathbb{B})$ is $\Gamma, y:\mathbb{B}, x:\mathbb{A}, \Delta$, given that the relative order of the variables  in $\Gamma, x:\mathbb{A}$ and $ \Delta,y:\mathbb{B}$ is preserved. As a result, it is possible to derive $\Gamma, y:\mathbb{B}, x:\mathbb{A}, \Delta \triangleright \text{ cond } v \hspace{2pt} \{\text{inl}_{\mathbb{E}} (a) \Rightarrow w ; \hspace{1pt} \text{inr}_{\mathbb{D}} (b) \Rightarrow u\}: \mathbb{C}$.
+
+%shuffle is a permutation of typed variables in a context sequence $\Gamma_1, . . . ,  \Gamma_n$ such that for all $i \leq n$ the
+%relative order of the variables in $\Gamma_i$ is preserved, 
+
+
+  With respect to the substitution property, for the case statement it is necessary to prove that for all judgements $E, z:\mathbb{D} \triangleright  \text{ cond } v \hspace{2pt} \{\text{inl}_{\mathbb{A}}  (x) \Rightarrow w ; \hspace{1pt} \text{inr}_{\mathbb{B}}  (y) \Rightarrow u\}: \mathbb{C}$ and $\Sigma\triangleright a: \mathbb{D}$ it is possible to derive $ E, \Sigma  \triangleright \text{ cond } v \hspace{2pt} \{\text{inl}_{\mathbb{A}}  (x) \Rightarrow w ; \hspace{1pt} \text{inr}_{\mathbb{B}}  (y) \Rightarrow u\}[a/z]: \mathbb{C}$. In this case, it is necessary to consider two scenarios:
+  \begin{enumerate}
+    \item $z:\mathbb{D}$ is a variable in the context of $v$;
+    \item $z:\mathbb{D}$ is a variable in the context of $w$ and $u$.
+  \end{enumerate}
+  
+  Regarding the first case, by induction and applying the case rule, one has that:
 
   \begin{figure} [H]
     \begin{equation*}
@@ -387,19 +437,16 @@ By, induction hypothesis, and then aplying the case rule, one has that:
     \begin{minipage}[t]{0.3\textwidth}
       \small
     $\begin{array}{c}
-      \Gamma,z:\mathbb{D} \triangleright v: \mathbb{A} \oplus \mathbb{B} \quad \Delta, z:\mathbb{D}, x: \mathbb{A} \triangleright w: \mathbb{C} \quad \Delta, z:\mathbb{D}, y: \mathbb{B}  \triangleright u : \mathbb{C}   \quad E \in \text{Sf}(\Gamma;\Delta) \quad \Sigma\triangleright a: \mathbb{D}
+      \Gamma,z:\mathbb{D} \triangleright v: \mathbb{A} \oplus \mathbb{B} \quad \Delta, x: \mathbb{A} \triangleright w: \mathbb{C} \quad \Delta, y: \mathbb{B}  \triangleright u : \mathbb{C}   \quad E \in \text{Sf}(\Gamma;\Delta) \quad \Sigma\triangleright a: \mathbb{D}
       \\
       \hline
-      \Gamma,z:\mathbb{D} \triangleright v: \mathbb{A} \oplus \mathbb{B} \quad \Delta,  x: \mathbb{A}, z:\mathbb{D}, \triangleright w: \mathbb{C} \quad \Delta,  y: \mathbb{B}, z:\mathbb{D},  \triangleright u : \mathbb{C}   \quad E \in \text{Sf}(\Gamma;\Delta) \quad \Sigma\triangleright a: \mathbb{D}
+      \Gamma, \Sigma \triangleright v[a/z]: \mathbb{A} \oplus \mathbb{B} \quad \Delta, x: \mathbb{A} \triangleright w: \mathbb{C} \quad \Delta, y: \mathbb{B}  \triangleright u : \mathbb{C}   \quad E \in \text{Sf}(\Gamma, \Sigma;\Delta) 
       \\
       \hline
-      \Gamma, \Sigma \triangleright v[a/z]: \mathbb{A} \oplus \mathbb{B} \quad \Delta, x: \mathbb{A},  \Sigma  \triangleright w[a/z]: \mathbb{C} \quad \Delta, y: \mathbb{B}, \Sigma   \triangleright u[a/z] : \mathbb{C}   \quad E \in \text{Sf}(\Gamma;\Delta) 
+      E \triangleright \text{ cond } v \hspace{2pt} \{\text{inl}_{\mathbb{B}} (x) \Rightarrow w[a/z] ; \hspace{1pt} \text{inr}_{\mathbb{A}} (y) \Rightarrow u[a/z]\}: \mathbb{C}
       \\
       \hline
-      E, \Sigma  \triangleright \text{ cond } v[a/z] \hspace{2pt} \{\text{inl}_{\mathbb{B}} (x) \Rightarrow w[a/z] ; \hspace{1pt} \text{inr}_{\mathbb{A}} (y) \Rightarrow u[a/z]\}: \mathbb{C}
-      \\
-      \hline
-      E, \Sigma  \triangleright \text{ cond } v \hspace{2pt} \{\text{inl}_{\mathbb{B}}  (x) \Rightarrow w ; \hspace{1pt} \text{inr}_{\mathbb{A}}  (y) \Rightarrow u\}[a/z]: \mathbb{C}
+      E  \triangleright \text{ cond } v \hspace{2pt} \{\text{inl}_{\mathbb{B}}  (x) \Rightarrow w ; \hspace{1pt} \text{inr}_{\mathbb{A}}  (y) \Rightarrow u\}[a/z]: \mathbb{C}
     \end{array}
     $
     \end{minipage}
@@ -408,7 +455,43 @@ By, induction hypothesis, and then aplying the case rule, one has that:
     \end{equation*}
     \end{figure}
 
+% NOTA: Ver situação do E
 
+The second case is similar to the first one,  applying the exchange property, then the induction and finally the case rule, one has that
+
+\begin{figure} [H]
+  \begin{equation*}
+  \begin{split}
+  \begin{aligned}
+  &\hspace{-10pt}
+  \begin{minipage}[t]{0.3\textwidth}
+    \small
+  $\begin{array}{c}
+    \Gamma \triangleright v: \mathbb{A} \oplus \mathbb{B} \quad \Delta, z:\mathbb{D}, x: \mathbb{A} \triangleright w: \mathbb{C} \quad \Delta ,z:\mathbb{D}, z:\mathbb{D}, y: \mathbb{B}  \triangleright u : \mathbb{C}   \quad E \in \text{Sf}(\Gamma;\Delta) \quad \Sigma\triangleright a: \mathbb{D}
+    \\
+    \hline
+    \Gamma \triangleright v: \mathbb{A} \oplus \mathbb{B} \quad \Delta,   x: \mathbb{A},z:\mathbb{D}  \triangleright w: \mathbb{C} \quad \Delta,  y: \mathbb{B},z:\mathbb{D}   \triangleright u : \mathbb{C}   \quad E \in \text{Sf}(\Gamma;\Delta) \quad \Sigma\triangleright a: \mathbb{D}
+    \\
+    \hline
+    \Gamma \triangleright v: \mathbb{A} \oplus \mathbb{B} \quad \Delta, x: \mathbb{A},\Sigma \triangleright w[a/z]: \mathbb{C} \quad \Delta, y: \mathbb{B},\Sigma  \triangleright u[a/z] : \mathbb{C}   \quad E \in \text{Sf}(\Gamma;\Delta) 
+    \\
+    \hline
+    \Gamma \triangleright v: \mathbb{A} \oplus \mathbb{B} \quad \Delta,\Sigma, x: \mathbb{A} \triangleright w[a/z]: \mathbb{C} \quad \Delta,\Sigma, y: \mathbb{B} \triangleright u[a/z] : \mathbb{C}   \quad E \in \text{Sf}(\Gamma;\Delta,\Sigma) 
+    \\
+    \hline
+    E \triangleright \text{ cond } v[a/z] \hspace{2pt} \{\text{inl}_{\mathbb{B}} (x) \Rightarrow w ; \hspace{1pt} \text{inr}_{\mathbb{A}} (y) \Rightarrow u\}: \mathbb{C}
+    \\
+    \hline
+    E  \triangleright \text{ cond } v \hspace{2pt} \{\text{inl}_{\mathbb{B}}  (x) \Rightarrow w ; \hspace{1pt} \text{inr}_{\mathbb{A}}  (y) \Rightarrow u\}[a/z]: \mathbb{C}
+  \end{array}
+  $
+  \end{minipage}
+  \end{aligned}
+  \end{split}
+  \end{equation*}
+  \end{figure}
+
+%NOTA: Ver situação do E e 4a derivação
 
 \subsection{Interpretation}
 Considering  $v \in V$, $w \in W$, and $u \in U$ where $V, W, U$ represent vector spaces, $\textsc{Il}_{V}: V \xrightarrow{} V\oplus W$, denotes the left injection operator, defined as $\textsc{Il}_{V}= v \mapsto (v,0) $; $\textsc{Ir}_{V}: V \xrightarrow{} W \oplus V$, denotes the right injection operator, defined as $\textsc{Ir}_{V}= v \mapsto (0,v) $; and $\text{dist}_{V, W,U}: V \otimes  \left(W \oplus U\right) \xrightarrow{} \left(V \otimes W\right) \oplus \left(V \otimes U\right)$, denotes the distributive property of the tensor product over the direct sum, defined as $\text{dist}_{V, W,U} =  v \otimes  \left(w, u\right) \mapsto \left(v \otimes w, v \otimes u\right)$. The subscripts in these operators will be omitted unless ambiguity arises. Moreover, the operation \text{either} corresponds to:
@@ -495,7 +578,48 @@ Now, for the conditional statement:
 \end{equation}
 
 
-The quantum lambda calculus with conditionals is illustrated with an example —the quantum teleportation protocol— in \autoref{sec:teleport}.
+Next, it is necessary to demonstrate that the interpretation of exchange and substitution holds for injections and the case statement.
+
+\begin{lemma} \label{interpret_exch} (\text{Exchange}) For all judgements $\Gamma,x:\mathbb{A}, y:\mathbb{B}, \Delta \triangleright v: \mathbb{C}$, the following equation holds: $[\![\Gamma,x:\mathbb{A}, y:\mathbb{B}, \Delta \triangleright v: \mathbb{C}]\!] = [\![\Gamma,y:\mathbb{B},x:\mathbb{A},  \Delta \triangleright v: \mathbb{C}]\! ] \cdot \text{exch}_{\Gamma, x : \mathbb{A}, y : \mathbb{B},\Delta} $ 
+\end{lemma}
+
+\paragraph{Proof}
+It is necessary to consider three scenarios:
+\begin{enumerate}
+  \item $x:\mathbb{A}, y:\mathbb{B}$ are variables in the context of $v$;
+  \item $x:\mathbb{A}, y:\mathbb{B}$ are variables in the context of $w$ and $u$;
+  \item  $x:\mathbb{A}$ is a variable in the context of $v$ and $y:\mathbb{B}$ is a variable in the context of $w$ and $u$.
+\end{enumerate}
+
+For the first case, 
+{\footnotesize
+\begin{equation*}
+  \begin{split}
+    & [\![\Gamma,x:\mathbb{A}, y:\mathbb{B}, \Delta \triangleright \text{ case }  \hspace{2pt}  \{\text{inl}_{\mathbb{D}} (a) \Rightarrow w ; \hspace{1pt} \text{inr}_{\mathbb{E}} (b) \Rightarrow u\}: \mathbb{C}]\!] \\
+ = & \hspace{2pt}  \text{either}([\![ \Delta, a:\mathbb{D} \triangleright w ]\!],[\![ \Delta, b:\mathbb{E} \triangleright w ]\!]) \cdot \text{dist} \cdot \text{sw} \cdot ([\![\Gamma,x:\mathbb{A}, y:\mathbb{B} \triangleright v : \mathbb{D} \oplus \mathbb{E}  ]\!] \otimes \text{id}) \cdot \text{sp}_{\Gamma,x:\mathbb{A}, y:\mathbb{B};\Delta} \cdot \text{sh}_{E} \\
+ = &  \hspace{2pt}  \text{either}([\![ \Delta, a:\mathbb{D} \triangleright w ]\!],[\![ \Delta, b:\mathbb{E} \triangleright w ]\!]) \cdot \text{dist} \cdot \text{sw} \cdot ([\![\Gamma,y:\mathbb{B},x:\mathbb{A}  \triangleright v: \mathbb{C}]\! ] \cdot \text{exch}_{\Gamma, x : \mathbb{A}, y : \mathbb{B}} \otimes \text{id}) \cdot \text{sp}_{\Gamma,x:\mathbb{A}, y:\mathbb{B};\Delta} \cdot \text{sh}_{E} \\
+ = & \hspace{2pt}  \text{either}([\![ \Delta, a:\mathbb{D} \triangleright w ]\!],[\![ \Delta, b:\mathbb{E} \triangleright w ]\!]) \cdot \text{dist} \cdot \text{sw} \cdot ([\![\Gamma, y:\mathbb{B}, x:\mathbb{A}, \triangleright v : \mathbb{D} \oplus \mathbb{E}  ]\!] \otimes \text{id}) \cdot \text{exch}_{\Gamma, x : \mathbb{A}, y : \mathbb{B}, \Delta} \cdot \text{sp}_{\Gamma,x:\mathbb{A}, y:\mathbb{B};\Delta} \cdot \text{sh}_{E} \\
+ = &  \hspace{2pt}  \text{either}([\![ \Delta, a:\mathbb{D} \triangleright w ]\!],[\![ \Delta, b:\mathbb{E} \triangleright w ]\!]) \cdot \text{dist} \cdot \text{sw} \cdot ([\![\Gamma, y:\mathbb{B}, x:\mathbb{A}, \triangleright v : \mathbb{D} \oplus \mathbb{E}  ]\!] \otimes \text{id}) \cdot \text{sp}_{\Gamma, y:\mathbb{B},x:\mathbb{A};\Delta} \cdot \text{exch}_{\Gamma, x : \mathbb{A}, y : \mathbb{B}, \Delta}  \cdot \text{sh}_{E} \\
+ = &\hspace{2pt}  \text{either}([\![ \Delta, a:\mathbb{D} \triangleright w ]\!],[\![ \Delta, b:\mathbb{E} \triangleright w ]\!]) \cdot \text{dist} \cdot \text{sw} \cdot ([\![\Gamma, y:\mathbb{B}, x:\mathbb{A}, \triangleright v : \mathbb{D} \oplus \mathbb{E}  ]\!] \otimes \text{id}) \cdot \text{sp}_{\Gamma, y:\mathbb{B},x:\mathbb{A};\Delta}  \cdot \text{sh}_{E}  \cdot \text{exch}_{\Gamma, x : \mathbb{A}, y : \mathbb{B}, \Delta} \\
+ = & \hspace{2pt} [\![\Gamma,y:\mathbb{B}, x:\mathbb{A}, \Delta \triangleright \text{ case }  \hspace{2pt}  \{\text{inl}_{\mathbb{D}} (a) \Rightarrow w ; \hspace{1pt} \text{inr}_{\mathbb{E}} (b) \Rightarrow u\}: \mathbb{C}]\!] \cdot \text{exch}_{\Gamma, x : \mathbb{A}, y : \mathbb{B}, \Delta} 
+\end{split}
+\end{equation*}
+}
+
+\vspace{5pt}
+Next, regarding the second case,
+{\footnotesize
+\begin{equation*}
+  \begin{split}
+    & [\![\Gamma,x:\mathbb{A}, y:\mathbb{B}, \Delta \triangleright \text{ case }  \hspace{2pt}  \{\text{inl}_{\mathbb{D}} (a) \Rightarrow w ; \hspace{1pt} \text{inr}_{\mathbb{E}} (b) \Rightarrow u\}: \mathbb{C}]\!] \\
+    & =  \hspace{2pt}  \text{either}([\![x:\mathbb{A}, y:\mathbb{B}, \Delta, a:\mathbb{D} \triangleright w ]\!],[\![ x:\mathbb{A}, y:\mathbb{B},\Delta, b:\mathbb{E} \triangleright w ]\!]) \cdot \text{dist} \cdot \text{sw} \cdot ([\![\Gamma, \triangleright v : \mathbb{D} \oplus \mathbb{E}  ]\!] \otimes \text{id}) \cdot \text{sp}_{\Gamma,x:\mathbb{A}, y:\mathbb{B};\Delta} \cdot \text{sh}_{E} \\
+    & =
+\end{split}
+\end{equation*}
+}
+
+\subsection{ \boldmath $\beta$ and $\eta$ Reductions}
+
 
 \subsection{Metric equations}
 The metric equations for conditionals are presented in \autoref{fig:metric conditionals}. Note that the first two equations are redundant.
