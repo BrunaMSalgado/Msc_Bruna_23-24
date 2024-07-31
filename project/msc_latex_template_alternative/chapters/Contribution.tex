@@ -612,8 +612,31 @@ Next, regarding the second case,
 \begin{equation*}
   \begin{split}
     & [\![\Gamma,x:\mathbb{A}, y:\mathbb{B}, \Delta \triangleright \text{ case }  \hspace{2pt}  \{\text{inl}_{\mathbb{D}} (a) \Rightarrow w ; \hspace{1pt} \text{inr}_{\mathbb{E}} (b) \Rightarrow u\}: \mathbb{C}]\!] \\
-    & =  \hspace{2pt}  \text{either}([\![x:\mathbb{A}, y:\mathbb{B}, \Delta, a:\mathbb{D} \triangleright w ]\!],[\![ x:\mathbb{A}, y:\mathbb{B},\Delta, b:\mathbb{E} \triangleright w ]\!]) \cdot \text{dist} \cdot \text{sw} \cdot ([\![\Gamma, \triangleright v : \mathbb{D} \oplus \mathbb{E}  ]\!] \otimes \text{id}) \cdot \text{sp}_{\Gamma,x:\mathbb{A}, y:\mathbb{B};\Delta} \cdot \text{sh}_{E} \\
-    & =
+     =  &\hspace{2pt}  \text{either}([\![  x:\mathbb{A},y:\mathbb{B}, \Delta, a:\mathbb{D} \triangleright w ]\!],[\![  x:\mathbb{A}, y:\mathbb{B},\Delta, b:\mathbb{E} \triangleright w ]\!]) \cdot \text{dist} \cdot \text{sw} \cdot ([\![\Gamma \triangleright v : \mathbb{D} \oplus \mathbb{E}  ]\!] \otimes \text{id}) \cdot \text{sp}_{\Gamma,x:\mathbb{A}, y:\mathbb{B};\Delta} \cdot \text{sh}_{E} \\
+    = & \hspace{2pt}  \text{either}([\![ y:\mathbb{B}, x:\mathbb{A}, \Delta, a:\mathbb{D} \triangleright w ]\!] \cdot \text{exch}_{ x : \mathbb{A}, y : \mathbb{B}, \Delta,a:\mathbb{D}},[\![ y:\mathbb{B}, x:\mathbb{A},\Delta, b:\mathbb{E} \triangleright w ]\!] \cdot \text{exch}_{x : \mathbb{A}, y : \mathbb{B}, \Delta,b:\mathbb{E}} ) \cdot \text{dist} \cdot \\ 
+    &\text{sw} \cdot ([\![\Gamma \triangleright v : \mathbb{D} \oplus \mathbb{E}  ]\!] \otimes \text{id}) \cdot \text{sp}_{\Gamma,x:\mathbb{A}, y:\mathbb{B};\Delta} \cdot \text{sh}_{E} \\
+    =  &\hspace{2pt}  \text{either}([\![ y:\mathbb{B}, x:\mathbb{A}, \Delta, a:\mathbb{D} \triangleright w ]\!],[\![   y:\mathbb{B}, x:\mathbb{A},\Delta, b:\mathbb{E} \triangleright w ]\!]) \cdot \text{dist}  \cdot  \text{exch}_{ x : \mathbb{A}, y : \mathbb{B}, \Delta, \mathbb{D} \oplus \mathbb{E} } \cdot \text{sw}  \cdot ([\![\Gamma \triangleright v : \mathbb{D} \oplus \mathbb{E}  ]\!] \otimes \text{id}) \\ 
+    &\cdot \text{sp}_{\Gamma,x:\mathbb{A}, y:\mathbb{B};\Delta} \cdot \text{sh}_{E}\\
+    = &\hspace{2pt}  \text{either}([\![ y:\mathbb{B}, x:\mathbb{A}, \Delta, a:\mathbb{D} \triangleright w ]\!],[\![   y:\mathbb{B}, x:\mathbb{A},\Delta, b:\mathbb{E} \triangleright w ]\!]) \cdot \text{dist}  \cdot   \text{sw}  \cdot \text{exch}_{\mathbb{D} \oplus \mathbb{E}, x : \mathbb{A}, y : \mathbb{B}, \Delta } \cdot ([\![\Gamma \triangleright v : \mathbb{D} \oplus \mathbb{E}  ]\!] \otimes \text{id}) \\ 
+    &\cdot \text{sp}_{\Gamma,x:\mathbb{A}, y:\mathbb{B};\Delta} \cdot \text{sh}_{E}\\
+    = &\hspace{2pt}  \text{either}([\![ y:\mathbb{B}, x:\mathbb{A}, \Delta, a:\mathbb{D} \triangleright w ]\!],[\![   y:\mathbb{B}, x:\mathbb{A},\Delta, b:\mathbb{E} \triangleright w ]\!]) \cdot \text{dist}  \cdot   \text{sw}  \cdot  ([\![\Gamma \triangleright v : \mathbb{D} \oplus \mathbb{E}  ]\!] \otimes \text{id}) \cdot \text{exch}_{\Gamma, x : \mathbb{A}, y : \mathbb{B}, \Delta }  \\ 
+    &\cdot \text{sp}_{\Gamma,x:\mathbb{A}, y:\mathbb{B};\Delta} \cdot \text{sh}_{E}\\
+    = &\hspace{2pt}  \text{either}([\![ y:\mathbb{B}, x:\mathbb{A}, \Delta, a:\mathbb{D} \triangleright w ]\!],[\![   y:\mathbb{B}, x:\mathbb{A},\Delta, b:\mathbb{E} \triangleright w ]\!]) \cdot \text{dist}  \cdot   \text{sw}  \cdot  ([\![\Gamma \triangleright v : \mathbb{D} \oplus \mathbb{E}  ]\!] \otimes \text{id}) \cdot \text{sp}_{\Gamma, y:\mathbb{B},x:\mathbb{A};\Delta} \\ 
+    & \cdot \text{sh}_{E}  \cdot \text{exch}_{\Gamma, x : \mathbb{A}, y : \mathbb{B}, \Delta } \\
+    = & \hspace{2pt} [\![\Gamma,y:\mathbb{B}, x:\mathbb{A}, \Delta \triangleright \text{ case }  \hspace{2pt}  \{\text{inl}_{\mathbb{D}} (a) \Rightarrow w ; \hspace{1pt} \text{inr}_{\mathbb{E}} (b) \Rightarrow u\}: \mathbb{C}]\!] \cdot \text{exch}_{\Gamma, x : \mathbb{A}, y : \mathbb{B}, \Delta} 
+\end{split}
+\end{equation*}
+}
+
+\hspace{5pt}
+
+Finally, for the third case, 
+
+{\footnotesize
+\begin{equation*}
+  \begin{split}
+    & [\![\Gamma,x:\mathbb{A}, y:\mathbb{B}, \Delta \triangleright \text{ case }  \hspace{2pt}  \{\text{inl}_{\mathbb{D}} (a) \Rightarrow w ; \hspace{1pt} \text{inr}_{\mathbb{E}} (b) \Rightarrow u\}: \mathbb{C}]\!] \\
+     =  &\hspace{2pt}  \text{either}([\![ y:\mathbb{B}, \Delta, a:\mathbb{D} \triangleright w ]\!],[\![ y:\mathbb{B},\Delta, b:\mathbb{E} \triangleright w ]\!]) \cdot \text{dist} \cdot \text{sw} \cdot ([\![\Gamma,x:\mathbb{A} \triangleright v : \mathbb{D} \oplus \mathbb{E}  ]\!] \otimes \text{id}) \cdot \text{sp}_{\Gamma,x:\mathbb{A}, y:\mathbb{B};\Delta} \cdot \text{sh}_{E} \\
 \end{split}
 \end{equation*}
 }
