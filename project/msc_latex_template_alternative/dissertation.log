@@ -1,4 +1,4 @@
-This is XeTeX, Version 3.141592653-2.6-0.999995 (MiKTeX 24.1) (preloaded format=xelatex 2024.7.31)  5 AUG 2024 12:48
+This is XeTeX, Version 3.141592653-2.6-0.999995 (MiKTeX 24.1) (preloaded format=xelatex 2024.7.31)  5 AUG 2024 20:03
 entering extended mode
  restricted \write18 enabled.
  file:line:error style messages enabled.
@@ -1635,7 +1635,7 @@ File: images/CCBYNCND.png Graphic file (type bmp)
 ]) (dissertation.toc
 
 LaTeX Font Warning: Font shape `U/stmry/b/n' undefined
-(Font)              using `U/stmry/m/n' instead on input line 27.
+(Font)              using `U/stmry/m/n' instead on input line 26.
 
 [11
 
@@ -1729,11 +1729,6 @@ Overfull \hbox (41.05194pt too wide) detected at line 122
  []
 
 [6]
-Overfull \hbox (11.64398pt too wide) in paragraph at lines 158--159
-\TU/SourceSansPro(0)/m/n/12 This section presents background on quantum information and quantum computation [[][]Nielsen
- []
-
-
 Overfull \hbox (30.13834pt too wide) in paragraph at lines 289--289
 []$[]$ 
  []
@@ -1753,7 +1748,10 @@ Overfull \hbox (17.90512pt too wide) detected at line 290
  $[][]$ 
  []
 
-[7]
+
+Underfull \vbox (badness 10000) has occurred while \output is active []
+
+ [7]
 Overfull \hbox (4.34256pt too wide) in paragraph at lines 305--307
 \TU/SourceSansPro(0)/m/n/12 The trace distance between two super-operators $\OML/cmm/m/it/12 E; E[] \OT1/cmr/m/n/12 : \U/msb/m/n/12 C[] [] C[]$\TU/SourceSansPro(0)/m/n/12 , denoted as $\OML/cmm/m/it/12 T\OT1/cmr/m/n/12 (\OML/cmm/m/it/12 E; E[]\OT1/cmr/m/n/12 )$\TU/SourceSansPro(0)/m/n/12 ,
  []
@@ -1797,17 +1795,22 @@ Overfull \hbox (21.90512pt too wide) detected at line 433
  []
 
 
+Overfull \hbox (11.64398pt too wide) in paragraph at lines 445--446
+\TU/SourceSansPro(0)/m/n/12 This section presents background on quantum information and quantum computation [[][]Nielsen
+ []
+
+
 Underfull \vbox (badness 10000) has occurred while \output is active []
 
  [10]
-Overfull \hbox (16.2395pt too wide) in paragraph at lines 452--453
+Overfull \hbox (16.2395pt too wide) in paragraph at lines 457--458
 \TU/SourceSansPro(0)/m/n/12 each $\OML/cmm/m/it/12 m$\TU/SourceSansPro(0)/m/n/12 . Moreover, after a measurement yielding outcome $\OML/cmm/m/it/12 m$\TU/SourceSansPro(0)/m/n/12 , the state collapses to $\OML/cmm/m/it/12 M[]^^ZM[]\OT1/cmr/m/n/12 /\OML/cmm/m/it/12 p[]$\TU/SourceSansPro(0)/m/n/12 . 
  []
 
 [11]
-Package hyperref Info: bookmark level for unknown todo defaults to 0 on input line 480.
+Package hyperref Info: bookmark level for unknown todo defaults to 0 on input line 485.
  [12]
-Overfull \hbox (99.33127pt too wide) detected at line 544
+Overfull \hbox (99.33127pt too wide) detected at line 549
  $[][]$ 
  []
 
@@ -1816,37 +1819,40 @@ Overfull \hbox (99.33127pt too wide) detected at line 544
 ]
 Chapter 3.
 [15]
-Overfull \hbox (17.12372pt too wide) detected at line 61
+Overfull \hbox (17.12372pt too wide) detected at line 55
  $[][]$  
  []
 
 [16] [17]
-Overfull \hbox (7.05316pt too wide) in paragraph at lines 182--183
+Overfull \hbox (7.05316pt too wide) in paragraph at lines 176--177
 \TU/SourceSansPro(0)/m/n/12 constant function, $[] \OT1/cmr/m/n/12 = [][][]$\TU/SourceSansPro(0)/m/n/12 ; otherwise, $[] \OT1/cmr/m/n/12 =[] [][]$\TU/SourceSansPro(0)/m/n/12 . 
  []
 
-[18]
-Overfull \hbox (195.36078pt too wide) in paragraph at lines 229--229
+
+Underfull \vbox (badness 3668) has occurred while \output is active []
+
+ [18]
+Overfull \hbox (195.36078pt too wide) in paragraph at lines 223--223
 []$[]$ 
  []
 
 
-Overfull \hbox (212.19412pt too wide) in paragraph at lines 268--268
+Overfull \hbox (212.19412pt too wide) in paragraph at lines 262--262
 []$[]$ 
  []
 
 [19]
-Overfull \hbox (214.99968pt too wide) in paragraph at lines 290--290
+Overfull \hbox (214.99968pt too wide) in paragraph at lines 284--284
 []$[]$ 
  []
 
 
-Overfull \hbox (20.79633pt too wide) detected at line 301
+Overfull \hbox (20.79633pt too wide) detected at line 295
 []
  []
 
 
-Overfull \hbox (214.99968pt too wide) in paragraph at lines 323--323
+Overfull \hbox (214.99968pt too wide) in paragraph at lines 317--317
 []$[]$ 
  []
 
@@ -1855,64 +1861,64 @@ Underfull \vbox (badness 6141) has occurred while \output is active []
 
  [20]
 LaTeX Font Info:    Font shape `TU/SourceSansPro(0)/m/n' will be
-(Font)              scaled to size 10.95pt on input line 372.
+(Font)              scaled to size 10.95pt on input line 366.
 
-Overfull \hbox (278.8753pt too wide) in paragraph at lines 372--372
+Overfull \hbox (278.8753pt too wide) in paragraph at lines 366--366
 []$[]$ 
  []
 
 
-Overfull \hbox (334.0864pt too wide) in paragraph at lines 396--396
+Overfull \hbox (334.0864pt too wide) in paragraph at lines 390--390
 []$[]$ 
  []
 
 [21]
-Overfull \hbox (305.9283pt too wide) in paragraph at lines 415--415
+Overfull \hbox (305.9283pt too wide) in paragraph at lines 409--409
 []$[]$ 
  []
 
 
-Overfull \hbox (249.48032pt too wide) in paragraph at lines 454--454
+Overfull \hbox (249.48032pt too wide) in paragraph at lines 448--448
 []$[]$ 
  []
 
 
-Overfull \hbox (304.00705pt too wide) in paragraph at lines 490--490
+Overfull \hbox (304.00705pt too wide) in paragraph at lines 484--484
 []$[]$ 
  []
 
 [22]
-Overfull \hbox (28.74187pt too wide) in paragraph at lines 520--520
+Overfull \hbox (28.74187pt too wide) in paragraph at lines 514--514
 []$[]$ 
  []
 
 
-Overfull \hbox (13.28185pt too wide) in paragraph at lines 557--557
+Overfull \hbox (13.28185pt too wide) in paragraph at lines 551--551
 []$[]$ 
  []
 
 
-Overfull \hbox (16.69374pt too wide) in paragraph at lines 557--557
+Overfull \hbox (16.69374pt too wide) in paragraph at lines 551--551
 []$[]$ 
  []
 
 
-Overfull \hbox (316.33372pt too wide) in paragraph at lines 557--557
+Overfull \hbox (316.33372pt too wide) in paragraph at lines 551--551
 []$[]$ 
  []
 
 [23]
 LaTeX Font Info:    Font shape `TU/SourceSansPro(0)/m/n' will be
-(Font)              scaled to size 7.0pt on input line 605.
+(Font)              scaled to size 7.0pt on input line 599.
 LaTeX Font Info:    Font shape `TU/SourceSansPro(0)/m/n' will be
-(Font)              scaled to size 5.0pt on input line 605.
+(Font)              scaled to size 5.0pt on input line 599.
 
-Overfull \hbox (19.33452pt too wide) detected at line 606
+Overfull \hbox (19.33452pt too wide) detected at line 600
  $[][]$ 
  []
 
 
-Overfull \hbox (14.48228pt too wide) detected at line 628
+Overfull \hbox (14.48228pt too wide) detected at line 622
  $[][]$ 
  []
 
@@ -1925,30 +1931,30 @@ Underfull \vbox (badness 10000) has occurred while \output is active []
  [26]
 
 Package hyperref Warning: Token not allowed in a PDF string (Unicode):
-(hyperref)                removing `math shift' on input line 707.
+(hyperref)                removing `math shift' on input line 701.
 
 
 Package hyperref Warning: Token not allowed in a PDF string (Unicode):
-(hyperref)                removing `\beta' on input line 707.
+(hyperref)                removing `\beta' on input line 701.
 
 
 Package hyperref Warning: Token not allowed in a PDF string (Unicode):
-(hyperref)                removing `math shift' on input line 707.
+(hyperref)                removing `math shift' on input line 701.
 
 
 Package hyperref Warning: Token not allowed in a PDF string (Unicode):
-(hyperref)                removing `math shift' on input line 707.
+(hyperref)                removing `math shift' on input line 701.
 
 
 Package hyperref Warning: Token not allowed in a PDF string (Unicode):
-(hyperref)                removing `\eta' on input line 707.
+(hyperref)                removing `\eta' on input line 701.
 
 
 Package hyperref Warning: Token not allowed in a PDF string (Unicode):
-(hyperref)                removing `math shift' on input line 707.
+(hyperref)                removing `math shift' on input line 701.
 
 
-Overfull \hbox (266.99095pt too wide) in paragraph at lines 743--743
+Overfull \hbox (266.99095pt too wide) in paragraph at lines 737--737
 []$[]$ 
  []
 
@@ -1958,80 +1964,80 @@ Underfull \vbox (badness 10000) has occurred while \output is active []
  [27]
 
 LaTeX Font Warning: Font shape `TU/SourceSansPro(0)/m/scit' undefined
-(Font)              using `TU/SourceSansPro(0)/m/sc' instead on input line 777.
+(Font)              using `TU/SourceSansPro(0)/m/sc' instead on input line 771.
 
 
 LaTeX Font Warning: Font shape `TU/SourceSansPro(0)/m/scit' undefined
-(Font)              using `TU/SourceSansPro(0)/m/sc' instead on input line 781.
+(Font)              using `TU/SourceSansPro(0)/m/sc' instead on input line 775.
 
 [28]
-Overfull \hbox (12.45999pt too wide) in paragraph at lines 802--803
+Overfull \hbox (12.45999pt too wide) in paragraph at lines 796--797
 []\TU/SourceSansPro(0)/m/n/12 Futhermore, given the submultiplicative property of the operator norm, for any super-operators
  []
 
 
 LaTeX Font Warning: Font shape `TU/SourceSansPro(0)/m/scit' undefined
-(Font)              using `TU/SourceSansPro(0)/m/sc' instead on input line 810.
+(Font)              using `TU/SourceSansPro(0)/m/sc' instead on input line 804.
 
 
 LaTeX Font Warning: Font shape `TU/SourceSansPro(0)/m/scit' undefined
-(Font)              using `TU/SourceSansPro(0)/m/sc' instead on input line 810.
+(Font)              using `TU/SourceSansPro(0)/m/sc' instead on input line 804.
 
 
 LaTeX Font Warning: Font shape `TU/SourceSansPro(0)/m/scit' undefined
-(Font)              using `TU/SourceSansPro(0)/m/sc' instead on input line 813.
+(Font)              using `TU/SourceSansPro(0)/m/sc' instead on input line 807.
 
 
 LaTeX Font Warning: Font shape `TU/SourceSansPro(0)/m/scit' undefined
-(Font)              using `TU/SourceSansPro(0)/m/sc' instead on input line 813.
+(Font)              using `TU/SourceSansPro(0)/m/sc' instead on input line 807.
 
 [29]
-Overfull \hbox (38.49901pt too wide) detected at line 853
+Overfull \hbox (38.49901pt too wide) detected at line 847
  $[][]$  
  []
 
 
-Overfull \hbox (7.01337pt too wide) detected at line 860
+Overfull \hbox (7.01337pt too wide) detected at line 854
  $[][]$  
  []
 
 [30]
 
 LaTeX Font Warning: Font shape `TU/SourceSansPro(0)/m/scit' undefined
-(Font)              using `TU/SourceSansPro(0)/m/sc' instead on input line 904.
+(Font)              using `TU/SourceSansPro(0)/m/sc' instead on input line 898.
 
 
 LaTeX Font Warning: Font shape `TU/SourceSansPro(0)/m/scit' undefined
-(Font)              using `TU/SourceSansPro(0)/m/sc' instead on input line 904.
+(Font)              using `TU/SourceSansPro(0)/m/sc' instead on input line 898.
 
 
-Overfull \hbox (1.69952pt too wide) in paragraph at lines 919--920
+Overfull \hbox (1.69952pt too wide) in paragraph at lines 913--914
 []\TU/SourceSansPro(0)/m/n/12 Which is equivalent to showing that for any vector spaces $\OML/cmm/m/it/12 V$\TU/SourceSansPro(0)/m/n/12 , $\OML/cmm/m/it/12 W$\TU/SourceSansPro(0)/m/n/12 , $\OML/cmm/m/it/12 U$\TU/SourceSansPro(0)/m/n/12 , and $\OML/cmm/m/it/12 Z$ \TU/SourceSansPro(0)/m/n/12 and super-operators
  []
 
 [31] [32] [33]
-Overfull \hbox (36.55734pt too wide) detected at line 1106
+Overfull \hbox (36.55734pt too wide) detected at line 1100
  $[][]$  
  []
 
 
-Overfull \hbox (0.82385pt too wide) in paragraph at lines 1116--1118
-[]\TU/SourceSansPro(0)/m/n/12 Finally, by [][]Lemma 3.4.8[][][], it can be deduced that $[]\OT1/cmr/m/n/12 ([\OML/cmm/m/it/12 P; Q\OT1/cmr/m/n/12 ]\OML/cmm/m/it/12 ; \OT1/cmr/m/n/12 [\OML/cmm/m/it/12 P[]; Q[]\OT1/cmr/m/n/12 ]) \OMS/cmsy/m/n/12 ^^T []f[]\OT1/cmr/m/n/12 (\OML/cmm/m/it/12 P; P[]\OT1/cmr/m/n/12 )\OML/cmm/m/it/12 ; []\OT1/cmr/m/n/12 (\OML/cmm/m/it/12 Q; Q[]\OT1/cmr/m/n/12 )\OMS/cmsy/m/n/12 g$\TU/SourceSansPro(0)/m/n/12 ,
+Overfull \hbox (0.82385pt too wide) in paragraph at lines 1110--1112
+[]\TU/SourceSansPro(0)/m/n/12 Finally, by [][]Lemma 3.2.8[][][], it can be deduced that $[]\OT1/cmr/m/n/12 ([\OML/cmm/m/it/12 P; Q\OT1/cmr/m/n/12 ]\OML/cmm/m/it/12 ; \OT1/cmr/m/n/12 [\OML/cmm/m/it/12 P[]; Q[]\OT1/cmr/m/n/12 ]) \OMS/cmsy/m/n/12 ^^T []f[]\OT1/cmr/m/n/12 (\OML/cmm/m/it/12 P; P[]\OT1/cmr/m/n/12 )\OML/cmm/m/it/12 ; []\OT1/cmr/m/n/12 (\OML/cmm/m/it/12 Q; Q[]\OT1/cmr/m/n/12 )\OMS/cmsy/m/n/12 g$\TU/SourceSansPro(0)/m/n/12 ,
  []
 
 
 Underfull \vbox (badness 10000) has occurred while \output is active []
 
  [34]
-Overfull \hbox (16.80786pt too wide) in paragraph at lines 1147--1148
-[]\TU/SourceSansPro(0)/m/n/12 Therefore, by [][]Lemma 3.4.8[][][], it can be deduced that $[]\OT1/cmr/m/n/12 ([\OML/cmm/m/it/12 P; Q\OT1/cmr/m/n/12 ]\OML/cmm/m/it/12 ; \OT1/cmr/m/n/12 [\OML/cmm/m/it/12 P[]; Q[]\OT1/cmr/m/n/12 ]) \OMS/cmsy/m/n/12 ^^T []f[]\OT1/cmr/m/n/12 (\OML/cmm/m/it/12 P; P[]\OT1/cmr/m/n/12 )\OML/cmm/m/it/12 ; []\OT1/cmr/m/n/12 (\OML/cmm/m/it/12 Q; Q[]\OT1/cmr/m/n/12 )\OMS/cmsy/m/n/12 g$\TU/SourceSansPro(0)/m/n/12 ,
+Overfull \hbox (16.80786pt too wide) in paragraph at lines 1141--1142
+[]\TU/SourceSansPro(0)/m/n/12 Therefore, by [][]Lemma 3.2.8[][][], it can be deduced that $[]\OT1/cmr/m/n/12 ([\OML/cmm/m/it/12 P; Q\OT1/cmr/m/n/12 ]\OML/cmm/m/it/12 ; \OT1/cmr/m/n/12 [\OML/cmm/m/it/12 P[]; Q[]\OT1/cmr/m/n/12 ]) \OMS/cmsy/m/n/12 ^^T []f[]\OT1/cmr/m/n/12 (\OML/cmm/m/it/12 P; P[]\OT1/cmr/m/n/12 )\OML/cmm/m/it/12 ; []\OT1/cmr/m/n/12 (\OML/cmm/m/it/12 Q; Q[]\OT1/cmr/m/n/12 )\OMS/cmsy/m/n/12 g$\TU/SourceSansPro(0)/m/n/12 ,
  []
 
 [35]
 Underfull \vbox (badness 1852) has occurred while \output is active []
 
  [36]
-Overfull \hbox (14.26767pt too wide) detected at line 1255
+Overfull \hbox (14.26767pt too wide) detected at line 1249
 []
  []
 
@@ -2039,7 +2045,7 @@ Overfull \hbox (14.26767pt too wide) detected at line 1255
 Underfull \vbox (badness 10000) has occurred while \output is active []
 
  [37]
-Overfull \hbox (1.97134pt too wide) detected at line 1293
+Overfull \hbox (1.97134pt too wide) detected at line 1287
  $[][]$  
  []
 
@@ -2050,12 +2056,12 @@ Underfull \vbox (badness 5431) has occurred while \output is active []
 Underfull \vbox (badness 1852) has occurred while \output is active []
 
  [40]
-Overfull \hbox (3.09906pt too wide) in paragraph at lines 1416--1417
+Overfull \hbox (3.09906pt too wide) in paragraph at lines 1410--1411
 []\TU/SourceSansPro(0)/m/n/12 Applying these Kraus operators to the density operator $\OML/cmm/m/it/12 ^^Z \OT1/cmr/m/n/12 = \OMS/cmsy/m/n/12 j\OML/cmm/m/it/12 ^^K\OMS/cmsy/m/n/12 j[]j\OT1/cmr/m/n/12 0\OMS/cmsy/m/n/12 ih\OT1/cmr/m/n/12 0\OMS/cmsy/m/n/12 j \OT1/cmr/m/n/12 + \OML/cmm/m/it/12 ^^K^^L[]\OMS/cmsy/m/n/12 j\OT1/cmr/m/n/12 0\OMS/cmsy/m/n/12 ih\OT1/cmr/m/n/12 1\OMS/cmsy/m/n/12 j \OT1/cmr/m/n/12 + \OML/cmm/m/it/12 ^^K[]^^L\OMS/cmsy/m/n/12 j\OT1/cmr/m/n/12 1\OMS/cmsy/m/n/12 ih\OT1/cmr/m/n/12 0\OMS/cmsy/m/n/12 j \OT1/cmr/m/n/12 +
  []
 
 [41] [42] [43]
-Overfull \hbox (30.80078pt too wide) detected at line 1536
+Overfull \hbox (30.80078pt too wide) detected at line 1530
  $[][]$  
  []
 
@@ -2063,22 +2069,22 @@ Overfull \hbox (30.80078pt too wide) detected at line 1536
 Underfull \vbox (badness 10000) has occurred while \output is active []
 
  [44]
-Overfull \hbox (44.18358pt too wide) detected at line 1579
+Overfull \hbox (44.18358pt too wide) detected at line 1573
  $[][]$  
  []
 
 
-Overfull \hbox (3.38263pt too wide) in paragraph at lines 1579--1581
+Overfull \hbox (3.38263pt too wide) in paragraph at lines 1573--1575
 \TU/SourceSansPro(0)/m/n/12 Therefore, the state of the EPR pair with an imperfect Hadamard gate is $[] [] \OT1/cmr/m/n/12 = [](\OMS/cmsy/m/n/12 j\OT1/cmr/m/n/12 00\OMS/cmsy/m/n/12 i [] \OT1/cmr/m/n/12 +
  []
 
 
-Overfull \hbox (35.5162pt too wide) in paragraph at lines 1582--1583
+Overfull \hbox (35.5162pt too wide) in paragraph at lines 1576--1577
 \OML/cmm/m/it/12 ^^Z \OT1/cmr/m/n/12 = [][][]\OMS/cmsy/m/n/12 j\OML/cmm/m/it/12  \OMS/cmsy/m/n/12 ih\OML/cmm/m/it/12  \OMS/cmsy/m/n/12 j\OML/cmm/m/it/12 ; []X\OMS/cmsy/m/n/12 j\OML/cmm/m/it/12  \OMS/cmsy/m/n/12 ih\OML/cmm/m/it/12  \OMS/cmsy/m/n/12 j\OML/cmm/m/it/12 X[]; \OT1/cmr/m/n/12 ([]\OML/cmm/m/it/12 Z\OMS/cmsy/m/n/12 j\OML/cmm/m/it/12  \OMS/cmsy/m/n/12 ih\OML/cmm/m/it/12  \OMS/cmsy/m/n/12 j\OML/cmm/m/it/12 Z; []XZ\OMS/cmsy/m/n/12 j\OML/cmm/m/it/12  \OMS/cmsy/m/n/12 ih\OML/cmm/m/it/12  \OMS/cmsy/m/n/12 j\OML/cmm/m/it/12 ZX[][]$\TU/SourceSansPro(0)/m/n/12 . Regarding the imperfect Hadamard
  []
 
 
-Overfull \hbox (7.50989pt too wide) detected at line 1603
+Overfull \hbox (7.50989pt too wide) detected at line 1597
  $[][]$  
  []
 
@@ -2086,17 +2092,17 @@ Overfull \hbox (7.50989pt too wide) detected at line 1603
 Underfull \vbox (badness 3769) has occurred while \output is active []
 
  [45]
-Overfull \hbox (6.05948pt too wide) detected at line 1626
+Overfull \hbox (6.05948pt too wide) detected at line 1620
  $[][]$  
  []
 
 
-Overfull \hbox (42.06494pt too wide) detected at line 1640
+Overfull \hbox (42.06494pt too wide) detected at line 1634
  $[][]$  
  []
 
 [46]
-Overfull \hbox (47.5141pt too wide) detected at line 1651
+Overfull \hbox (47.5141pt too wide) detected at line 1645
  $[][]$  
  []
 
@@ -2110,22 +2116,22 @@ Underfull \vbox (badness 10000) has occurred while \output is active []
 Underfull \vbox (badness 5802) has occurred while \output is active []
 
  [49]
-Overfull \hbox (19.71158pt too wide) detected at line 1836
+Overfull \hbox (19.71158pt too wide) detected at line 1830
  $[][]$  
  []
 
 [50]
-Overfull \hbox (29.69255pt too wide) in paragraph at lines 1840--1841
+Overfull \hbox (29.69255pt too wide) in paragraph at lines 1834--1835
 []\TU/SourceSansPro(0)/m/n/12 Given this result it is possible to conclude that $[] \OT1/cmr/m/n/12 =[] [][]$\TU/SourceSansPro(0)/m/n/12 .
  []
 
 [51]
-Overfull \hbox (3.27301pt too wide) detected at line 1936
+Overfull \hbox (3.27301pt too wide) detected at line 1930
  $[][]$  
  []
 
 
-Overfull \hbox (19.74863pt too wide) in paragraph at lines 1963--1964
+Overfull \hbox (19.74863pt too wide) in paragraph at lines 1957--1958
  [][] 
  []
 
@@ -2133,32 +2139,32 @@ Overfull \hbox (19.74863pt too wide) in paragraph at lines 1963--1964
 Underfull \vbox (badness 10000) has occurred while \output is active []
 
  [52]
-Overfull \hbox (11.51599pt too wide) in paragraph at lines 1967--1968
+Overfull \hbox (11.51599pt too wide) in paragraph at lines 1961--1962
 []\TU/SourceSansPro(0)/m/n/12 In this case, the quantum teleportation protocol is divided into three parts: \TU/SourceSansPro(0)/b/n/12 EPR\TU/SourceSansPro(0)/m/n/12 , \TU/SourceSansPro(0)/b/n/12 TeleportIntra-
  []
 
 
-Overfull \hbox (21.9406pt too wide) detected at line 1985
+Overfull \hbox (21.9406pt too wide) detected at line 1979
 []
  []
 
 [53]
-Overfull \hbox (5.22041pt too wide) detected at line 2040
+Overfull \hbox (5.22041pt too wide) detected at line 2034
  $[][]$  
  []
 
 [54]
-Overfull \hbox (162.75449pt too wide) in paragraph at lines 2040--2042
+Overfull \hbox (162.75449pt too wide) in paragraph at lines 2034--2036
 \TU/SourceSansPro(0)/m/n/12 Next, regarding the condicional statements, applying correction to $[][][]\OMS/cmsy/m/n/12 j\OML/cmm/m/it/12  \OMS/cmsy/m/n/12 ih\OML/cmm/m/it/12  \OMS/cmsy/m/n/12 j\OML/cmm/m/it/12 ; []X\OMS/cmsy/m/n/12 j\OML/cmm/m/it/12  \OMS/cmsy/m/n/12 ih\OML/cmm/m/it/12  \OMS/cmsy/m/n/12 j\OML/cmm/m/it/12 X[]; [][]Z\OMS/cmsy/m/n/12 j\OML/cmm/m/it/12  \OMS/cmsy/m/n/12 ih\OML/cmm/m/it/12  \OMS/cmsy/m/n/12 j\OML/cmm/m/it/12 Z; []XZ\OMS/cmsy/m/n/12 j\OML/cmm/m/it/12  \OMS/cmsy/m/n/12 ih\OML/cmm/m/it/12  \OMS/cmsy/m/n/12 j\OML/cmm/m/it/12 ZX[][]$
  []
 
 
-Overfull \hbox (151.53317pt too wide) in paragraph at lines 2040--2042
+Overfull \hbox (151.53317pt too wide) in paragraph at lines 2034--2036
 \TU/SourceSansPro(0)/m/n/12 results in the state $[]$ ([][]Equation 3.43[][][]). Moreover, with respect to $[][][]\OMS/cmsy/m/n/12 j\OML/cmm/m/it/12  \OMS/cmsy/m/n/12 ih\OML/cmm/m/it/12  \OMS/cmsy/m/n/12 j\OML/cmm/m/it/12 ; []X\OMS/cmsy/m/n/12 j\OML/cmm/m/it/12  \OMS/cmsy/m/n/12 ih\OML/cmm/m/it/12  \OMS/cmsy/m/n/12 j\OML/cmm/m/it/12 X[]; [][]Z\OMS/cmsy/m/n/12 j\OML/cmm/m/it/12  \OMS/cmsy/m/n/12 ih\OML/cmm/m/it/12  \OMS/cmsy/m/n/12 j\OML/cmm/m/it/12 Z; []XZ\OMS/cmsy/m/n/12 j\OML/cmm/m/it/12  \OMS/cmsy/m/n/12 ih\OML/cmm/m/it/12  \OMS/cmsy/m/n/12 j\OML/cmm/m/it/12 ZX[][]$
  []
 
 
-Overfull \hbox (14.38568pt too wide) in paragraph at lines 2047--2049
+Overfull \hbox (14.38568pt too wide) in paragraph at lines 2041--2043
 \TU/SourceSansPro(0)/m/n/12 Furthermore, applying correction to $[][][]\OML/cmm/m/it/12 X\OMS/cmsy/m/n/12 j\OML/cmm/m/it/12  \OMS/cmsy/m/n/12 ih\OML/cmm/m/it/12  \OMS/cmsy/m/n/12 j\OML/cmm/m/it/12 X; []\OMS/cmsy/m/n/12 j\OML/cmm/m/it/12  \OMS/cmsy/m/n/12 ih\OML/cmm/m/it/12  \OMS/cmsy/m/n/12 j[]\OML/cmm/m/it/12 ; [][]XZ\OMS/cmsy/m/n/12 j\OML/cmm/m/it/12  \OMS/cmsy/m/n/12 ih\OML/cmm/m/it/12  \OMS/cmsy/m/n/12 j\OML/cmm/m/it/12 ZX; []Z\OMS/cmsy/m/n/12 j\OML/cmm/m/it/12  \OMS/cmsy/m/n/12 ih\OML/cmm/m/it/12  \OMS/cmsy/m/n/12 j\OML/cmm/m/it/12 Z[][]$
  []
 
@@ -2166,7 +2172,7 @@ Overfull \hbox (14.38568pt too wide) in paragraph at lines 2047--2049
 Underfull \vbox (badness 1867) has occurred while \output is active []
 
  [55]
-Overfull \hbox (23.7477pt too wide) detected at line 2132
+Overfull \hbox (23.7477pt too wide) detected at line 2126
  $[][]$  
  []
 
@@ -2229,15 +2235,15 @@ L3 programming layer <2024-01-22>
 LaTeX Font Warning: Some font shapes were not available, defaults substituted.
 
 Package rerunfilecheck Info: File `dissertation.out' has not changed.
-(rerunfilecheck)             Checksum: B67033FD6FB2BA01BCFA0B5CA06DDCDF;6005.
+(rerunfilecheck)             Checksum: 59DD6A4F481222CF19EB4C70A03860AF;5971.
  ) 
 Here is how much of TeX's memory you used:
- 53743 strings out of 409673
- 1144722 string characters out of 5774704
- 2048630 words of memory out of 5000000
- 74883 multiletter control sequences out of 15000+600000
+ 53744 strings out of 409673
+ 1144770 string characters out of 5774704
+ 2047630 words of memory out of 5000000
+ 74884 multiletter control sequences out of 15000+600000
  578475 words of font info for 158 fonts, out of 8000000 for 9000
  1348 hyphenation exceptions out of 8191
  109i,36n,121p,2505b,1395s stack positions out of 10000i,1000n,20000p,200000b,200000s
 
-Output written on dissertation.xdv (92 pages, 1410752 bytes).
+Output written on dissertation.xdv (92 pages, 1409568 bytes).
