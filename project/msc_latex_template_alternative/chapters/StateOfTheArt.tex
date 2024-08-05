@@ -10,16 +10,13 @@ The Lambda-Calculus, developed by Church and Curry in the 1930s, serves as a for
 In quantum information theory, the role of higher-order functions encompasses two fundamental aspects. The first involves the concept of entangled functions and how well-known quantum phenomena find natural descriptions through such functions. The second concerns the interplay between classical objects and quantum objects in a higher-order context. Quantum computation conventionally handles classical and quantum data, while the higher-order context introduces a third data type: functions. These functions fall into two categories - those "quantum-like" (entangled, single-use) and those "classical-like" (duplicable, reusable). Remarkably, this classification transcends input/output types, highlighting the coexistence of quantum-like functions operating on classical data and classical-like functions operating on quantum data. [\cite{selinger2009quantum}].
 
 \subsection{Syntax}
-The grammar and term formation rules of the linear lambda calculus, discussed in [\cite{dahlqvist2022syntactic}], are presented in this subsection.
+The grammar and term formation rules of the affine lambda calculus, discussed in [\cite{dahlqvist2022syntactic}], are presented in this subsection.
 
-The definition of the grammar for linear lambda calculus is as follows, where $G$ represents a set of ground types.
-\vspace{-10pt}
+The definition of the grammar for affine lambda calculus is as follows, where $G$ represents a set of ground types.
 \begin{equation} \label{eq:grammar}
 \centering
 \hspace{95pt} \mathbb{A} ::= X \in G \hspace{3 pt} \vert \hspace{3 pt} \mathbb{I}  \hspace{3 pt}  \vert \hspace{3 pt} \mathbb{A}  \otimes  \mathbb{A} \hspace{3 pt} \vert \hspace{3 pt} \mathbb{A} \oplus \mathbb{A} \hspace{3 pt}  \vert \hspace{3 pt}   \mathbb{A} \multimap  \mathbb{A}
 \end{equation}
-\vspace{-25pt}
-
  Regarding the term formation rules, $\Sigma$ corresponds to a class of sorted operation symbols $f: \mathbb{A}_{1}, \ldots, \mathbb{A}_{n} \xrightarrow{} \mathbb{A}$, where $n \geq 1$.   Typing contexts are represented as lists $x_{1}: \mathbb{A}_{1}, \ldots, x_{n}: \mathbb{A}_{n}$ of typed variables, with each variable $x_i$ (where $1 \leq i \leq n$) occurring at most once in $x_1, \ldots, x_n$. The typing contexts are denoted by greek letters $\Gamma$, $\Delta$, and $E$.
 The concept of shuffling is employed to construct a linear typing system that ensures the admissibility of the exchange rule and enables unambiguous reference to judgment's denotations $[\![ \Gamma \triangleright v: \mathbb{A} ]\!]$. Shuffling is defined as a permutation of typed variables in a sequence of contexts, $\Gamma_1, \ldots, \Gamma_n$, preserving the relative order of variables within each $\Gamma_i$. For instance, if $\Gamma_1=x:\mathbb{A}, y:\mathbb{B}$ and $\Gamma_2=z:\mathbb{C}$, then $z:\mathbb{C}, x:\mathbb{A}, y:\mathbb{B}$ is a valid shuffle of $\Gamma_1, \Gamma_2$. On the other hand, $y:\mathbb{B}, x:\mathbb{A}, z:\mathbb{C}$ is not a shuffle because it alters the occurrence order of $x$ and $y$ in $\Gamma_1$. The set of shuffles in $\Gamma_1, \ldots, \Gamma_n$ is denoted as $\text{Sf} (\Gamma_1, \ldots, \Gamma_n)$.
 The term formation rules of the linear lambda calculus are shown in
@@ -436,9 +433,70 @@ $
 \end{figure}
 
 
-% Perguntar ao professor Renato: "Equations corresponding to the axiomatics of autonomous categories" e onde por o background de quantum computing. Also é para fazer glossário com simbolos matemáticos?
 
 \section{Graded Lambda Calculus} \label{sec:Graded Lambda Calculus}
+
+\todo[inline,size=\normalsize]{Intro} %\label{eq:Bloch\_vector})}
+
+\subsection{Syntax}
+
+Here, the following grammar of types is used.
+\begin{equation*} \label{eq:grammar_graded}
+  \centering
+   \mathbb{A} ::= X  \hspace{3 pt} \vert \hspace{3 pt} \mathbb{I}  \hspace{3 pt}  \vert \hspace{3 pt} \mathbb{A}  \otimes  \mathbb{A} \hspace{3 pt} \vert \hspace{3 pt} \mathbb{A} \oplus \mathbb{A} \hspace{3 pt}  \vert \hspace{3 pt}   \mathbb{A} \multimap  \mathbb{A} \vert \hspace{3 pt} !_{r} \mathbb{A} \hspace{100pt} {X \in G,r \in \mathbb{N}} 
+  \end{equation*}
+
+
+  \begin{figure} [H]
+    \begin{equation*}
+    \begin{split}
+    \begin{aligned}
+    &
+    \begin{minipage}[t]{0.3\textwidth}
+    $\begin{array}{c}
+         \Gamma_{i} \triangleright v_{i}: !_{r\cdot s_{i}} \mathbb{A}_{i} \quad x_{1}:!_{ s_{1}} \mathbb{A}_{1},\ldots, x_{n}:!_{s_{n}} \mathbb{A}_{n}\triangleright u: \mathbb{A} \quad E \in \text{Sf}(\Gamma_{1}; \ldots; \Gamma_{n})\\
+        \hline
+       E \triangleright \text{pr}_{(r,[s_1,\ldots,s_n])} v_1, \ldots, v_n \text{ fr } x_1, \ldots, x_n. \hspace{1pt} u : !_{r} \mathbb{A}
+    \end{array}
+    $
+    \end{minipage}
+    \hspace{213pt}
+    (!_{i})
+     \hspace{10pt}
+    \begin{minipage}[t]{0.3\textwidth}
+    $\begin{array}{c}
+      \Gamma  \triangleright v : !_{1} \mathbb{A} \\
+        \hline
+        \Gamma \triangleright \text{dr } v:\mathbb{A}
+    \end{array}
+    $ \end{minipage}
+    \hspace{-70pt} (!_{e}) \\
+    &
+    \begin{minipage}[t]{0.3\textwidth}
+    $\begin{array}{c}
+        \Gamma \triangleright v : !_{0} \mathbb{A} \hspace{7pt} \Delta \triangleright u: \mathbb{B} \hspace{7pt} E \in \text{Sf}(\Gamma, \Delta)\\
+        \hline
+       E \triangleright v.\hspace{1pt}u: \mathbb{B}
+    \end{array}
+    $
+    \end{minipage}
+    \hspace{45pt}
+    (!_{0})
+    \hspace{5pt}
+    \begin{minipage}[t]{0.3\textwidth}
+    $\begin{array}{c}
+      \Gamma\triangleright v: !_{n+m} \mathbb{A} \hspace{7pt} \Delta,x:!_{n} \mathbb{A}, y:!_{m} \mathbb{B}\triangleright u: \mathbb{B} \hspace{7pt} E \in\text{Sf}(\Gamma, \Delta)\\
+        \hline
+       E \triangleright \text{cp}_{(n,m)} v \text{ to } x,y.  \hspace{1pt} u: \mathbb{B}
+    \end{array}
+    $ \end{minipage}
+    \hspace{135pt} (!_{n+m}) \\
+    \end{aligned}
+    \end{split}
+    \end{equation*}
+    \caption{Term formation rules of graded lambda calculus.}
+    \label{fig:typing_rules_graded}
+    \end{figure}
 
 
 \section{Quantum Computing Preliminaries} \label{sec:Quantum Computing Preliminaries}
