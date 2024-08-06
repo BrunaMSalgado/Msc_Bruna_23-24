@@ -213,7 +213,7 @@ $ \end{minipage}
 $\begin{array}{c}
      \Gamma\triangleright v: \mathbb{A} \oplus \mathbb{B} \quad \Delta, x: \mathbb{A} \triangleright w: \mathbb{C} \quad \Delta, y: \mathbb{B}  \triangleright u : \mathbb{C}   \quad E \in \text{Sf}(\Gamma;\Delta)  \\
     \hline
-   E \triangleright \text{ cond } v \hspace{2pt} \{\text{inl}_{\mathbb{B}} (x) \Rightarrow w ; \hspace{1pt} \text{inr}_{\mathbb{A}} (y) \Rightarrow u\}: \mathbb{C} 
+   E \triangleright \text{ case } v \hspace{2pt} \{\text{inl}_{\mathbb{B}} (x) \Rightarrow w ; \hspace{1pt} \text{inr}_{\mathbb{A}} (y) \Rightarrow u\}: \mathbb{C} 
 \end{array}
 $
 \end{minipage}
@@ -254,7 +254,7 @@ Regarding the first property, considering the case statement in  \autoref{fig:ty
   $\begin{array}{c}
        \Gamma'\triangleright v: \mathbb{A} \oplus \mathbb{B} \quad \Delta', x: \mathbb{A} \triangleright w: \mathbb{C} \quad \Delta', y: \mathbb{B}  \triangleright u : \mathbb{C}   \quad E' \in \text{Sf}(\Gamma';\Delta')  \\
       \hline
-     E' \triangleright \text{ cond } v \hspace{2pt} \{\text{inl}_{\mathbb{B}} (x) \Rightarrow w ; \hspace{1pt} \text{inr}_{\mathbb{A}} (y) \Rightarrow u\}: \mathbb{C} 
+     E' \triangleright \text{ case } v \hspace{2pt} \{\text{inl}_{\mathbb{B}} (x) \Rightarrow w ; \hspace{1pt} \text{inr}_{\mathbb{A}} (y) \Rightarrow u\}: \mathbb{C} 
   \end{array}
   $
   \end{minipage} 
@@ -276,7 +276,7 @@ With respect to the second property, considering the case statement in  \autoref
   $\begin{array}{c}
        \Gamma\triangleright v: \mathbb{A} \oplus \mathbb{B} \quad \Delta', x: \mathbb{A} \triangleright w: \mathbb{C'} \quad \Delta', y: \mathbb{B}  \triangleright u : \mathbb{C'}   \quad E' \in \text{Sf}(\Gamma';\Delta')  \\
       \hline
-     E' \triangleright \text{ cond } v \hspace{2pt} \{\text{inl}_{\mathbb{B}}  (x) \Rightarrow w ; \hspace{1pt} \text{inr}_{\mathbb{A}}  (y) \Rightarrow u\}: \mathbb{C'} 
+     E' \triangleright \text{ case } v \hspace{2pt} \{\text{inl}_{\mathbb{B}}  (x) \Rightarrow w ; \hspace{1pt} \text{inr}_{\mathbb{A}}  (y) \Rightarrow u\}: \mathbb{C'} 
   \end{array}
   $
   \end{minipage} 
@@ -285,7 +285,7 @@ With respect to the second property, considering the case statement in  \autoref
   \end{equation*}
   \end{figure}
 
-we want to prove that if $E \triangleright \text{ cond } v \hspace{2pt} \{\text{inl} (x) \Rightarrow w ; \hspace{1pt} \text{inr} (y) \Rightarrow u\}: \mathbb{C}$; $\Gamma'\triangleright \text{ cond } v \hspace{2pt} \{\text{inl} (x) \Rightarrow w ; \hspace{1pt} \text{inr} (y) \Rightarrow u\}: \mathbb{C}'$, and $E \simeq_{\pi} E' $, then $\mathbb{C}$ must be equal to $\mathbb{C}'$. Assuming, that  $E \simeq_{\pi} E' $ and knowing that $E \in \text{Sf}(\Gamma;\Delta)$ and  $E' \in \text{Sf}(\Gamma';\Delta')$, one has that
+we want to prove that if $E \triangleright \text{ case } v \hspace{2pt} \{\text{inl} (x) \Rightarrow w ; \hspace{1pt} \text{inr} (y) \Rightarrow u\}: \mathbb{C}$; $\Gamma'\triangleright \text{ case } v \hspace{2pt} \{\text{inl} (x) \Rightarrow w ; \hspace{1pt} \text{inr} (y) \Rightarrow u\}: \mathbb{C}'$, and $E \simeq_{\pi} E' $, then $\mathbb{C}$ must be equal to $\mathbb{C}'$. Assuming, that  $E \simeq_{\pi} E' $ and knowing that $E \in \text{Sf}(\Gamma;\Delta)$ and  $E' \in \text{Sf}(\Gamma';\Delta')$, one has that
 
 \begin{align*}
   & x: \mathbb{A}  \in \Delta & \\
@@ -309,7 +309,7 @@ Finally, concerning the third property it is necessary to demonstrate that the c
   $\begin{array}{c}
        \Gamma'\triangleright v: \mathbb{A} \oplus \mathbb{B} \quad \Delta', x: \mathbb{A} \triangleright w: \mathbb{C'} \quad \Delta', y: \mathbb{B}  \triangleright u : \mathbb{C}   \quad E' \in \text{Sf}(\Gamma';\Delta')  \\
       \hline
-     E \triangleright \text{ cond } v \hspace{2pt} \{\text{inl}_{\mathbb{B}}  (x) \Rightarrow w ; \hspace{1pt} \text{inr}_{\mathbb{A}}  (y) \Rightarrow u\}: \mathbb{C} 
+     E \triangleright \text{ case } v \hspace{2pt} \{\text{inl}_{\mathbb{B}}  (x) \Rightarrow w ; \hspace{1pt} \text{inr}_{\mathbb{A}}  (y) \Rightarrow u\}: \mathbb{C} 
   \end{array}
   $
   \end{minipage} 
@@ -337,7 +337,7 @@ This last implication is related with the fact that in $E$, there can only exist
 
 \paragraph{Proof}
 
-Regarding the exchange property, for the case statement it is necessary to prove that for every judgment $\Gamma, x:\mathbb{A}, y:\mathbb{B}, \Delta \triangleright \text{ cond } v \hspace{2pt} \{\text{inl}_{\mathbb{E}}  (a) \Rightarrow w ; \hspace{1pt} \text{inr}_{\mathbb{D}}  (b) \Rightarrow u\}: \mathbb{C}$, it is possible to derive $\Gamma, y:\mathbb{B}, x:\mathbb{A}, \Delta \triangleright \text{ cond } v \hspace{2pt} \{\text{inl}_{\mathbb{E}} (a) \Rightarrow w ; \hspace{1pt} \text{inr}_{\mathbb{D}} (b) \Rightarrow u\}: \mathbb{C}$. It is necessary to consider three scenarios:
+Regarding the exchange property, for the case statement it is necessary to prove that for every judgment $\Gamma, x:\mathbb{A}, y:\mathbb{B}, \Delta \triangleright \text{ case } v \hspace{2pt} \{\text{inl}_{\mathbb{E}}  (a) \Rightarrow w ; \hspace{1pt} \text{inr}_{\mathbb{D}}  (b) \Rightarrow u\}: \mathbb{C}$, it is possible to derive $\Gamma, y:\mathbb{B}, x:\mathbb{A}, \Delta \triangleright \text{ case } v \hspace{2pt} \{\text{inl}_{\mathbb{E}} (a) \Rightarrow w ; \hspace{1pt} \text{inr}_{\mathbb{D}} (b) \Rightarrow u\}: \mathbb{C}$. It is necessary to consider three scenarios:
 \begin{enumerate}
   \item $x:\mathbb{A}, y:\mathbb{B}$ are variables in the context of $v$;
   \item $x:\mathbb{A}, y:\mathbb{B}$ are variables in the context of $w$ and $u$;
@@ -358,7 +358,7 @@ With respect to the first case, by induction hypothesis and applying the case ru
       \hline
       \Gamma,  y:\mathbb{B}, x:\mathbb{A}\triangleright v: \mathbb{D} \oplus \mathbb{E} \quad \Delta, a:\mathbb{D} \triangleright w: \mathbb{C} \quad \Delta, b:\mathbb{E} \triangleright u : \mathbb{C}   \quad E\in \text{Sf}(\Gamma,y:\mathbb{B},x:\mathbb{A}; \Delta )  \\
      \hline 
-     \Gamma, y:\mathbb{B}, x:\mathbb{A}, \Delta \triangleright \text{ cond } v \hspace{2pt} \{\text{inl}_{\mathbb{E}} (a) \Rightarrow w ; \hspace{1pt} \text{inr}_{\mathbb{D}} (b) \Rightarrow u\}: \mathbb{C}
+     \Gamma, y:\mathbb{B}, x:\mathbb{A}, \Delta \triangleright \text{ case } v \hspace{2pt} \{\text{inl}_{\mathbb{E}} (a) \Rightarrow w ; \hspace{1pt} \text{inr}_{\mathbb{D}} (b) \Rightarrow u\}: \mathbb{C}
   \end{array}
   $
   \end{minipage}
@@ -382,7 +382,7 @@ Next, for the second case, by induction hypothesis and applying the case rule, o
       \hline
       \Gamma  \triangleright v: \mathbb{D} \oplus \mathbb{E} \quad  y:\mathbb{B}, x:\mathbb{A},\Delta, a:\mathbb{D} \triangleright w: \mathbb{C} \quad \Delta, y:\mathbb{B}, x:\mathbb{A},b:\mathbb{E} \triangleright u : \mathbb{C}   \quad E \in \text{Sf}(\Gamma; y:\mathbb{B},x:\mathbb{A}, \Delta )  \\
      \hline 
-     \Gamma, y:\mathbb{B}, x:\mathbb{A}, \Delta \triangleright \text{ cond } v \hspace{2pt} \{\text{inl}_{\mathbb{E}} (a) \Rightarrow w ; \hspace{1pt} \text{inr}_{\mathbb{D}} (b) \Rightarrow u\}: \mathbb{C}
+     \Gamma, y:\mathbb{B}, x:\mathbb{A}, \Delta \triangleright \text{ case } v \hspace{2pt} \{\text{inl}_{\mathbb{E}} (a) \Rightarrow w ; \hspace{1pt} \text{inr}_{\mathbb{D}} (b) \Rightarrow u\}: \mathbb{C}
   \end{array}
   $
   \end{minipage}
@@ -409,13 +409,13 @@ Next, for the second case, by induction hypothesis and applying the case rule, o
     \end{split}
     \end{equation*}
     \end{figure}
-and attending to the definition of shuffle, a possibility for $E  \in \text{Sf}(\Gamma, x:\mathbb{A};  \Delta,y:\mathbb{B})$ is $\Gamma, y:\mathbb{B}, x:\mathbb{A}, \Delta$, given that the relative order of the variables  in $\Gamma, x:\mathbb{A}$ and $ \Delta,y:\mathbb{B}$ is preserved. As a result, it is possible to derive $\Gamma, y:\mathbb{B}, x:\mathbb{A}, \Delta \triangleright \text{ cond } v \hspace{2pt} \{\text{inl}_{\mathbb{E}} (a) \Rightarrow w ; \hspace{1pt} \text{inr}_{\mathbb{D}} (b) \Rightarrow u\}: \mathbb{C}$.
+and attending to the definition of shuffle, a possibility for $E  \in \text{Sf}(\Gamma, x:\mathbb{A};  \Delta,y:\mathbb{B})$ is $\Gamma, y:\mathbb{B}, x:\mathbb{A}, \Delta$, given that the relative order of the variables  in $\Gamma, x:\mathbb{A}$ and $ \Delta,y:\mathbb{B}$ is preserved. As a result, it is possible to derive $\Gamma, y:\mathbb{B}, x:\mathbb{A}, \Delta \triangleright \text{ case } v \hspace{2pt} \{\text{inl}_{\mathbb{E}} (a) \Rightarrow w ; \hspace{1pt} \text{inr}_{\mathbb{D}} (b) \Rightarrow u\}: \mathbb{C}$.
 
 %shuffle is a permutation of typed variables in a context sequence $\Gamma_1, . . . ,  \Gamma_n$ such that for all $i \leq n$ the
 %relative order of the variables in $\Gamma_i$ is preserved, 
 
 
-  With respect to the substitution property, for the case statement it is necessary to prove that for all judgements $E, z:\mathbb{D} \triangleright  \text{ cond } v \hspace{2pt} \{\text{inl}_{\mathbb{A}}  (x) \Rightarrow w ; \hspace{1pt} \text{inr}_{\mathbb{B}}  (y) \Rightarrow u\}: \mathbb{C}$ and $\Sigma\triangleright a: \mathbb{D}$ it is possible to derive $ E, \Sigma  \triangleright \text{ cond } v \hspace{2pt} \{\text{inl}_{\mathbb{A}}  (x) \Rightarrow w ; \hspace{1pt} \text{inr}_{\mathbb{B}}  (y) \Rightarrow u\}[a/z]: \mathbb{C}$. In this case, it is necessary to consider two scenarios:
+  With respect to the substitution property, for the case statement it is necessary to prove that for all judgements $E, z:\mathbb{D} \triangleright  \text{ case } v \hspace{2pt} \{\text{inl}_{\mathbb{A}}  (x) \Rightarrow w ; \hspace{1pt} \text{inr}_{\mathbb{B}}  (y) \Rightarrow u\}: \mathbb{C}$ and $\Sigma\triangleright a: \mathbb{D}$ it is possible to derive $ E, \Sigma  \triangleright \text{ case } v \hspace{2pt} \{\text{inl}_{\mathbb{A}}  (x) \Rightarrow w ; \hspace{1pt} \text{inr}_{\mathbb{B}}  (y) \Rightarrow u\}[a/z]: \mathbb{C}$. In this case, it is necessary to consider two scenarios:
   \begin{enumerate}
     \item $z:\mathbb{D}$ is a variable in the context of $v$;
     \item $z:\mathbb{D}$ is a variable in the context of $w$ and $u$.
@@ -437,10 +437,10 @@ and attending to the definition of shuffle, a possibility for $E  \in \text{Sf}(
       \Gamma, \Sigma \triangleright v[a/z]: \mathbb{A} \oplus \mathbb{B} \quad \Delta, x: \mathbb{A} \triangleright w: \mathbb{C} \quad \Delta, y: \mathbb{B}  \triangleright u : \mathbb{C}   \quad E \in \text{Sf}(\Gamma, \Sigma;\Delta) 
       \\
       \hline
-      E \triangleright \text{ cond } v \hspace{2pt} \{\text{inl}_{\mathbb{B}} (x) \Rightarrow w[a/z] ; \hspace{1pt} \text{inr}_{\mathbb{A}} (y) \Rightarrow u[a/z]\}: \mathbb{C}
+      E \triangleright \text{ case } v \hspace{2pt} \{\text{inl}_{\mathbb{B}} (x) \Rightarrow w[a/z] ; \hspace{1pt} \text{inr}_{\mathbb{A}} (y) \Rightarrow u[a/z]\}: \mathbb{C}
       \\
       \hline
-      E  \triangleright \text{ cond } v \hspace{2pt} \{\text{inl}_{\mathbb{B}}  (x) \Rightarrow w ; \hspace{1pt} \text{inr}_{\mathbb{A}}  (y) \Rightarrow u\}[a/z]: \mathbb{C}
+      E  \triangleright \text{ case } v \hspace{2pt} \{\text{inl}_{\mathbb{B}}  (x) \Rightarrow w ; \hspace{1pt} \text{inr}_{\mathbb{A}}  (y) \Rightarrow u\}[a/z]: \mathbb{C}
     \end{array}
     $
     \end{minipage}
@@ -473,10 +473,10 @@ The second case is similar to the first one,  applying the exchange property, th
     \Gamma \triangleright v: \mathbb{A} \oplus \mathbb{B} \quad \Delta,\Sigma, x: \mathbb{A} \triangleright w[a/z]: \mathbb{C} \quad \Delta,\Sigma, y: \mathbb{B} \triangleright u[a/z] : \mathbb{C}   \quad E \in \text{Sf}(\Gamma;\Delta,\Sigma) 
     \\
     \hline
-    E \triangleright \text{ cond } v[a/z] \hspace{2pt} \{\text{inl}_{\mathbb{B}} (x) \Rightarrow w ; \hspace{1pt} \text{inr}_{\mathbb{A}} (y) \Rightarrow u\}: \mathbb{C}
+    E \triangleright \text{ case } v[a/z] \hspace{2pt} \{\text{inl}_{\mathbb{B}} (x) \Rightarrow w ; \hspace{1pt} \text{inr}_{\mathbb{A}} (y) \Rightarrow u\}: \mathbb{C}
     \\
     \hline
-    E  \triangleright \text{ cond } v \hspace{2pt} \{\text{inl}_{\mathbb{B}}  (x) \Rightarrow w ; \hspace{1pt} \text{inr}_{\mathbb{A}}  (y) \Rightarrow u\}[a/z]: \mathbb{C}
+    E  \triangleright \text{ case } v \hspace{2pt} \{\text{inl}_{\mathbb{B}}  (x) \Rightarrow w ; \hspace{1pt} \text{inr}_{\mathbb{A}}  (y) \Rightarrow u\}[a/z]: \mathbb{C}
   \end{array}
   $
   \end{minipage}
@@ -702,10 +702,114 @@ In this case, it is necessary to consider two scenarios:
 
 \todo[inline,size=\normalsize]{Fazer intro a o que isto é}
 
+In this subsection it will be shown that the following equations hold for the model considered.
+
+\begin{equation*}
+  \begin{split}
+    &\beta_{case}^{inl}: \text{ case } \text{inl}_{\mathbb{B}}(v) \hspace{2pt} \{\text{inl}_{\mathbb{B}} (x) \Rightarrow w ; \hspace{1pt} \text{inr}_{\mathbb{A}} (y) \Rightarrow u\}: \mathbb{C} = w[v/x] : \mathbb{C} \\
+    &\beta_{case}^{inr}: \text{ case } \text{inr}_{\mathbb{A}}(v) \hspace{2pt} \{\text{inl}_{\mathbb{B}} (x) \Rightarrow w ; \hspace{1pt} \text{inr}_{\mathbb{A}} (y) \Rightarrow u\}: \mathbb{C} = w[v/x] : \mathbb{C} \\ 
+    & \eta_{case}: \text{ case }(v) \hspace{2pt} \{\text{inl}_{\mathbb{B}} (y) \Rightarrow w [ \text{inl}_{\mathbb{B}}(y)/x] ; \hspace{1pt} \text{inr}_{\mathbb{A}} (z) \Rightarrow w [ \text{inr}_{\mathbb{A}}(z)/x]\}: \mathbb{C} = w[v/x] : \mathbb{C}
+  \end{split}
+\end{equation*}
+
+\paragraph{Proof} 
+
+%$\llbracket     \rrbracket$
+
+It is necessary to demonstrate that 
+\begin{equation*}
+  \begin{split}
+  &\llbracket  \text{ case } \text{inl}_{\mathbb{B}}(v) \hspace{2pt} \{\text{inl}_{\mathbb{B}} (x) \Rightarrow w ; \hspace{1pt} \text{inr}_{\mathbb{A}} (y) \Rightarrow u\}: \mathbb{C}\rrbracket = \llbracket w[v/x] : \mathbb{C} \rrbracket \\
+  & \llbracket  \text{ case } \text{inr}_{\mathbb{A}}(v) \hspace{2pt} \{\text{inl}_{\mathbb{B}} (x) \Rightarrow w ; \hspace{1pt} \text{inr}_{\mathbb{A}} (y) \Rightarrow u\}: \mathbb{C}\rrbracket = \llbracket w[v/x] : \mathbb{C} \rrbracket\\
+  & \llbracket \text{ case }(v) \hspace{2pt} \{\text{inl}_{\mathbb{B}} (y) \Rightarrow w [ \text{inl}_{\mathbb{B}}(y)/x] ; \hspace{1pt} \text{inr}_{\mathbb{A}} (z) \Rightarrow w [ \text{inr}_{\mathbb{A}}(z)/x]\}: \mathbb{C}\rrbracket = \llbracket w[v/x] : \mathbb{C} \rrbracket
+\end{split}
+\end{equation*}
+
+\vspace{10pt}
+
+Regarding the first equation,
+\begin{equation*}
+  \begin{split}
+    & \llbracket  \text{ case } \text{inl}_{\mathbb{B}}(v) \hspace{2pt} \{\text{inl}_{\mathbb{B}} (x) \Rightarrow w ; \hspace{1pt} \text{inr}_{\mathbb{A}} (y) \Rightarrow u\}: \mathbb{C}\rrbracket \\
+    = & [\llbracket\Delta, y: \mathbb{A} \triangleright w: \mathbb{C}\rrbracket,\llbracket\Delta, z: \mathbb{B} \triangleright u: \mathbb{C}\rrbracket] \cdot \text{dist} \cdot \text{sw} \cdot (\llbracket\Gamma \triangleright \text{inl}_{\mathbb{B}}(v): \mathbb{A} \oplus \mathbb{B}\rrbracket \otimes \text{id}) \cdot \text{sp}_{\Gamma;\Delta} \cdot \text{sh}_{E} \\
+    = & [\llbracket\Delta, y: \mathbb{A} \triangleright w: \mathbb{C}\rrbracket,\llbracket\Delta, z: \mathbb{B} \triangleright u: \mathbb{C}\rrbracket] \cdot \text{dist} \cdot \text{sw} \cdot (\textsc{Il} \cdot\llbracket \Gamma \triangleright v: \mathbb{A} \rrbracket \otimes  \text{id}) \cdot \text{sp}_{\Gamma;\Delta} \cdot \text{sh}_{E} \\
+    = & [\llbracket\Delta, y: \mathbb{A} \triangleright w: \mathbb{C}\rrbracket,\llbracket\Delta, z: \mathbb{B} \triangleright u: \mathbb{C}\rrbracket] \cdot \text{dist} \cdot \text{sw} \cdot (\textsc{Il} \otimes \text{id}) \cdot (\llbracket  \Gamma \triangleright v: \mathbb{A} \rrbracket \otimes  \text{id}) \cdot \text{sp}_{\Gamma;\Delta} \cdot \text{sh}_{E} \\
+    = & [\llbracket\Delta, y: \mathbb{A} \triangleright w: \mathbb{C}\rrbracket,\llbracket\Delta, z: \mathbb{B} \triangleright u: \mathbb{C}\rrbracket] \cdot \text{dist}  \cdot (\text{id} \otimes \textsc{Il}) \cdot   \text{sw} \cdot(\llbracket\Gamma \triangleright v: \mathbb{A} \rrbracket \otimes  \text{id}) \cdot \text{sp}_{\Gamma;\Delta} \cdot \text{sh}_{E} \\
+  \end{split}
+\end{equation*}
 
 
 
+Given that, $[\text{id} \otimes \textsc{Il},\text{id} \otimes \textsc{Ir}] \cdot \textsc{Il} = \text{id} \otimes \textsc{Il}$, it follows that the following diagram commutes.
 
+\vspace{10pt}
+
+\begin{tikzpicture}
+  \matrix (m) [matrix of math nodes,row sep=4em,column sep=7em,minimum width=2em]
+  {
+    X \otimes Y  &  X \otimes (Y  \oplus Y) \\
+     X  \otimes Y \oplus X \otimes Z \\
+  };
+  \path[-stealth]
+    (m-1-1) edge node [left] {$\textsc{Il}$} (m-2-1)
+    (m-1-1) edge node [above] {$\text{id} \otimes \textsc{Il}$} (m-1-2)
+    (m-2-1) edge[bend right=5] node [pos=0.5, shift={(0.75, -0.5)}] {$[\text{id} \otimes \textsc{Il},\text{id} \otimes \textsc{Ir}]$} (m-1-2)
+    (m-1-2) edge[bend left=-5] node [above==0.2cm] {$\text{dist}$} (m-2-1)
+    ;
+\end{tikzpicture}
+
+And as a result, one has that $ \text{dist}  \cdot (\text{id} \otimes \textsc{Il}) = \textsc{Il}$. Therefore,
+\begin{equation*}
+  \begin{split}
+    & [\llbracket\Delta, y: \mathbb{A} \triangleright w: \mathbb{C}\rrbracket,\llbracket\Delta, z: \mathbb{B} \triangleright u: \mathbb{C}\rrbracket] \cdot \text{dist}  \cdot (\text{id} \otimes \textsc{Il}) \cdot   \text{sw} \cdot(\llbracket\Gamma \triangleright v)«: \mathbb{A} \rrbracket \otimes  \text{id}) \cdot \text{sp}_{\Gamma;\Delta} \cdot \text{sh}_{E} \\
+    = & [\llbracket\Delta, y: \mathbb{A} \triangleright w: \mathbb{C}\rrbracket,\llbracket\Delta, z: \mathbb{B} \triangleright u: \mathbb{C}\rrbracket] \cdot \textsc{Il} \cdot   \text{sw} \cdot(\llbracket\Gamma \triangleright v: \mathbb{A} \rrbracket \otimes  \text{id}) \cdot \text{sp}_{\Gamma;\Delta} \cdot \text{sh}_{E} \\
+    = & \llbracket\Delta, y: \mathbb{A} \triangleright w: \mathbb{C}\rrbracket  \cdot   \text{sw} \cdot(\llbracket\Gamma \triangleright v: \mathbb{A} \rrbracket \otimes  \text{id}) \cdot \text{sp}_{\Gamma;\Delta} \cdot \text{sh}_{E} \\
+    = & \llbracket\Delta, y: \mathbb{A} \triangleright w: \mathbb{C}\rrbracket  \cdot( \text{id} \otimes \llbracket\Gamma \triangleright v: \mathbb{A} \rrbracket ) \cdot \text{sp}_{\Delta,\Gamma} \cdot \text{sh}_{E} \\
+    = & \llbracket w[v/x] : \mathbb{C} \rrbracket
+  \end{split}
+\end{equation*}
+
+\vspace{10pt}
+
+With respect to the third equation,
+\begin{equation*}
+  \begin{split}
+  & \llbracket \text{ case }(v) \hspace{2pt} \{\text{inl}_{\mathbb{B}} (y) \Rightarrow w [ \text{inl}_{\mathbb{B}}(y)/x] ; \hspace{1pt} \text{inr}_{\mathbb{A}} (z) \Rightarrow w [ \text{inr}_{\mathbb{A}}(z)/x]\}: \mathbb{C}\rrbracket \\
+  =& [\llbracket\Delta, y: \mathbb{B} \triangleright w [ \text{inl}_{\mathbb{B}}(y)/x]: \mathbb{C}\rrbracket,\llbracket\Delta, z: \mathbb{A} \triangleright w [ \text{inr}_{\mathbb{A}}(z)/x]: \mathbb{C}\rrbracket] \cdot \text{dist} \cdot \text{sw}  \\
+  & \cdot (\llbracket\Gamma \triangleright v: \mathbb{A} \oplus \mathbb{B}\rrbracket \otimes \text{id}) \cdot  \text{sp}_{\Gamma;\Delta} \cdot \text{sh}_{E} \\
+  = & [\llbracket\Delta, x: \mathbb{A} \oplus \mathbb{B} \triangleright w: \mathbb{C}\rrbracket \cdot \text{jn}_{\Delta;\mathbb{A} \oplus \mathbb{B}} \cdot (\text{id} \otimes \llbracket y : \mathbb{A} \triangleright \text{inl}_{\mathbb{B}}(y) :\mathbb{A} \oplus \mathbb{B}  \rrbracket) \cdot \text{sp}_{\Delta;\mathbb{A}}, \\
+  & \llbracket \Delta,x: \mathbb{A} \oplus \mathbb{B} \triangleright w: \mathbb{C}\rrbracket \cdot \text{jn}_{\Delta;\mathbb{A} \oplus \mathbb{B}} \cdot (\text{id} \otimes \llbracket z:\mathbb{B}  \triangleright \text{inr}_{\mathbb{A}}(z) :\mathbb{A} \oplus \mathbb{B}  \rrbracket) \cdot \text{sp}_{\Delta;\mathbb{B}}] \cdot \text{dist} \cdot \text{sw}      \\
+  & \cdot (\llbracket\Gamma \triangleright v: \mathbb{A} \oplus \mathbb{B}\rrbracket \otimes \text{id}) \cdot  \text{sp}_{\Gamma;\Delta} \cdot \text{sh}_{E} \\
+  = & [\llbracket\Delta, x: \mathbb{A} \oplus \mathbb{B} \triangleright w: \mathbb{C}\rrbracket \cdot \text{jn}_{\Delta;\mathbb{A} \oplus \mathbb{B}} \cdot (\text{id} \otimes \textsc{Il} \cdot \llbracket y : \mathbb{A}  \triangleright y :\mathbb{A}   \rrbracket) \cdot \text{sp}_{\Delta;\mathbb{A}}, \\
+  & \llbracket \Delta,x: \mathbb{A} \oplus \mathbb{B} \triangleright w: \mathbb{C}\rrbracket \cdot \text{jn}_{\Delta;\mathbb{A} \oplus \mathbb{B}} \cdot (\text{id} \otimes \textsc{Ir} \cdot \llbracket z:\mathbb{B}  \triangleright z : \mathbb{B}  \rrbracket) \cdot \text{sp}_{\Delta;\mathbb{B}}] \cdot \text{dist} \cdot \text{sw}      \\
+  & \cdot (\llbracket\Gamma \triangleright v: \mathbb{A} \oplus \mathbb{B}\rrbracket \otimes \text{id}) \cdot  \text{sp}_{\Gamma;\Delta} \cdot \text{sh}_{E} \\
+  = & [\llbracket\Delta, x: \mathbb{A} \oplus \mathbb{B} \triangleright w: \mathbb{C}\rrbracket \cdot \text{jn}_{\Delta;\mathbb{A} \oplus \mathbb{B}} \cdot (\text{id} \otimes \textsc{Il} \cdot \text{id}_{\llbracket\mathbb{A}\rrbracket}) \cdot \text{sp}_{\Delta;\mathbb{A}}, \\
+  & \llbracket \Delta,x: \mathbb{A} \oplus \mathbb{B} \triangleright w: \mathbb{C}\rrbracket \cdot \text{jn}_{\Delta;\mathbb{A} \oplus \mathbb{B}} \cdot (\text{id} \otimes \textsc{Ir} \cdot \text{id}_{\llbracket\mathbb{B}\rrbracket}) \cdot \text{sp}_{\Delta;\mathbb{B}}] \cdot \text{dist} \cdot \text{sw}      \\
+  & \cdot (\llbracket\Gamma \triangleright v: \mathbb{A} \oplus \mathbb{B}\rrbracket \otimes \text{id}) \cdot  \text{sp}_{\Gamma;\Delta} \cdot \text{sh}_{E} \\
+  = & \llbracket\Delta, x: \mathbb{A} \oplus \mathbb{B} \triangleright w: \mathbb{C}\rrbracket \cdot \text{jn}_{\Delta;\mathbb{A} \oplus \mathbb{B}} \cdot (\text{id} \otimes [\textsc{Il} \cdot \text{id}_{\llbracket\mathbb{A}\rrbracket} \cdot \text{sp}_{\Delta;\mathbb{A}},\\
+  &   \textsc{Ir} \cdot \text{id}_{\llbracket\mathbb{B}\rrbracket}) \cdot \text{sp}_{\Delta;\mathbb{B}} ] \cdot \text{dist} \cdot \text{sw} \cdot (\llbracket\Gamma \triangleright v: \mathbb{A} \oplus \mathbb{B}\rrbracket \otimes \text{id}) \cdot  \text{sp}_{\Gamma;\Delta} \cdot \text{sh}_{E} \\
+\end{split}
+\end{equation*}
+
+
+Considering that $[  \textsc{Il} \cdot \text{id},\textsc{Ir} \cdot \text{id}] = \text{id} + \text{id}  = \text{id}$, it follows that the following diagram commutes.
+
+\vspace{10pt}
+
+\begin{tikzpicture}
+  \matrix (m) [matrix of math nodes,row sep=4em,column sep=7em,minimum width=2em]
+  {
+    X \otimes (Y  \oplus Y)  &  X  \otimes Y \oplus X \otimes Z \\
+    X \otimes (Y  \oplus Y) \\
+  };
+  \path[-stealth]
+    (m-1-1) edge node [left] {id $\otimes $ id} (m-2-1)
+    edge[bend left=5] node [above] {$[\text{id} \otimes \textsc{Il},\text{id} \otimes \textsc{Ir}]$}  (m-1-2) % Adjusted minimum width
+    (m-1-2) edge node [pos=0.5, shift={(0.75, -0.5)}] {id  $\otimes [  \textsc{Il} \cdot \text{id},\textsc{Ir} \cdot \text{id}]$} (m-2-1)
+    (m-1-2) edge[bend right=-5] node [below] {dist} (m-1-1); % Added the label to the arrow
+\end{tikzpicture}
+
+And as a result, one has that $... \text{dist} = \text{id} \otimes \text{id}$. Therefore,
 
 \subsection{Metric equations}
 The metric equations for conditionals are presented in \autoref{fig:metric conditionals}. Note that the first two equations are redundant.
@@ -1246,7 +1350,7 @@ Considering the unitary operations $H: \textit{qbit} \xrightarrow{}  \textit{qbi
       \hspace{-28pt}
       &\textbf{BellMeasure} =  q_{1}: \textit{qbit}, q_{2}: \textit{qbit}  \triangleright  (\text{pm}  \hspace{5pt} \textit{CNOT} (q_{1},q_{2})  \hspace{2pt}  \text{to} \hspace{2pt} x \otimes y.  \hspace{2pt}  \textit{meas} (\textit{H} (x)) \otimes \textit{meas} (y) ) \\
       \hspace{-28pt}
-      &\textbf{Correction}= q: \textit{qbit}, x: \text{bit},  y: \text{bit} \triangleright  \text{cond}\hspace{2pt} x  \hspace{2pt}  \{\text{inl} (x_{0}) \Rightarrow  (\text{cond}\hspace{2pt} y  \hspace{2pt}  \{\text{inl} (y_{0})  \Rightarrow{}  \textit{I}(q); \\
+      &\textbf{Correction}= q: \textit{qbit}, x: \text{bit},  y: \text{bit} \triangleright  \text{ case }\hspace{2pt} x  \hspace{2pt}  \{\text{inl} (x_{0}) \Rightarrow  (\text{cond}\hspace{2pt} y  \hspace{2pt}  \{\text{inl} (y_{0})  \Rightarrow{}  \textit{I}(q); \\
       \hspace{-28pt}
       & \hspace{335pt} \hspace{5pt} \text{inr} (y_{1}) \Rightarrow  \hspace{2pt}   \textit{X} (q))\} ; \\
       & \hspace{240pt}\text{inr} (x_{1})  \Rightarrow  (\text{cond}\hspace{2pt} y  \hspace{2pt}  \{\text{inl} (y_{0})  \Rightarrow   \textit{Z}(q);  \\
@@ -1980,7 +2084,7 @@ Considering the operation $T_{X \otimes I \otimes I}$ as the operation $T$ with 
       &\textbf{TMeasureCorrection}= q_{1}: \textit{qbit}, q_{2}: \textit{qbit},  q_{3}: \textit{qbit} \triangleright \text{pm} \hspace{2pt} T_{X \otimes I \otimes I} (q_{1},q_{2},q_{3}) \hspace{2pt} \text{to} \hspace{2pt} a \otimes b \otimes c . \hspace{2pt}   \\
       &\hspace{125pt} \text{pm} \hspace{2pt} T_{I \otimes X \otimes I} (a,b,c) \hspace{2pt} \text{to} \hspace{2pt} d \otimes e \otimes q. \\
       & \hspace{125pt} \text{pm} \hspace{2pt} \textit{meas} (d) \otimes \textit{meas} (e)  \hspace{2pt} \text{to} \hspace{2pt} x \otimes y. \hspace{2pt} \\
-      &  \hspace{125pt} \text{cond}\hspace{2pt} x \hspace{2pt}  \{\text{inl} (x_{0}) \Rightarrow  (\text{cond}\hspace{2pt} y  \hspace{2pt}  \{\text{inl} (y_{0})  \Rightarrow{}  \textit{I}(q) ;  \hspace{5pt} \text{inr} (y_{1}) \Rightarrow  \hspace{2pt}   \textit{X} (q)) \}; \\
+      &  \hspace{125pt} \text{ case }\hspace{2pt} x \hspace{2pt}  \{\text{inl} (x_{0}) \Rightarrow  (\text{cond}\hspace{2pt} y  \hspace{2pt}  \{\text{inl} (y_{0})  \Rightarrow{}  \textit{I}(q) ;  \hspace{5pt} \text{inr} (y_{1}) \Rightarrow  \hspace{2pt}   \textit{X} (q)) \}; \\
       & \hspace{167pt}\text{inr} (x_{1})  \Rightarrow  (\text{cond}\hspace{2pt} y  \hspace{2pt}  \{\text{inl} (y_{0})  \Rightarrow   \textit{Z}(q); \text{inr} (y_{1}) \Rightarrow{} \textit{Z} (\textit{X}(q)) \})\}
  \end{align*}
 
