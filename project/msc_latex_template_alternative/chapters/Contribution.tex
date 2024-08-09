@@ -354,9 +354,11 @@ With respect to the first case, by induction hypothesis and applying the case ru
   \begin{minipage}[t]{0.3\textwidth}
     \small
   $\begin{array}{c}
-       \Gamma,  x:\mathbb{A}, y:\mathbb{B}  \triangleright v: \mathbb{D} \oplus \mathbb{E} \quad \Delta, a:\mathbb{D} \triangleright w: \mathbb{C} \quad \Delta, b:\mathbb{E} \triangleright u : \mathbb{C}   \quad E \in \text{Sf}(\Gamma, x:\mathbb{A}, y:\mathbb{B}; \Delta )  \\
+    \hspace{-62pt} \Sigma, a:\mathbb{D} \triangleright w: \mathbb{C}  \\  
+      \Gamma_{1},  x:\mathbb{A}, y:\mathbb{B}, \Gamma_{2}  \triangleright v: \mathbb{D} \oplus \mathbb{E} \quad  \Sigma, b:\mathbb{E} \triangleright u : \mathbb{C}\quad \Gamma,y:\mathbb{B},x:\mathbb{A};  \Delta \in \text{Sf}(\Gamma_{1}, x:\mathbb{A}, y:\mathbb{B},\Gamma_{2}; \Sigma )  \\
       \hline
-      \Gamma,  y:\mathbb{B}, x:\mathbb{A}\triangleright v: \mathbb{D} \oplus \mathbb{E} \quad \Delta, a:\mathbb{D} \triangleright w: \mathbb{C} \quad \Delta, b:\mathbb{E} \triangleright u : \mathbb{C}   \quad E\in \text{Sf}(\Gamma,y:\mathbb{B},x:\mathbb{A}; \Delta )  \\
+       \hspace{-62pt} \Sigma, a:\mathbb{D} \triangleright w: \mathbb{C}   \\  
+      \Gamma_{1},  y:\mathbb{B}, x:\mathbb{A},\Gamma_{2}\triangleright v: \mathbb{D} \oplus \mathbb{E} \quad \Sigma, b:\mathbb{E} \triangleright u : \mathbb{C} \quad \Gamma,y:\mathbb{B}, x:\mathbb{A}; \Delta\in \text{Sf}(\Gamma_{1},y:\mathbb{B},x:\mathbb{A},\Gamma_{2}; \Sigma )  \\
      \hline 
      \Gamma, y:\mathbb{B}, x:\mathbb{A}, \Delta \triangleright \text{ case } v \hspace{2pt} \{\text{inl}_{\mathbb{E}} (a) \Rightarrow w ; \hspace{1pt} \text{inr}_{\mathbb{D}} (b) \Rightarrow u\}: \mathbb{C}
   \end{array}
@@ -374,13 +376,15 @@ Next, for the second case, by induction hypothesis and applying the case rule, o
   \begin{equation*}
   \begin{split}
   \begin{aligned}
-  &\hspace{-20pt}
+  &\hspace{-25pt}
   \begin{minipage}[t]{0.3\textwidth}
     \small
   $\begin{array}{c}
-       \Gamma \triangleright v: \mathbb{D} \oplus \mathbb{E} \quad x:\mathbb{A}, y:\mathbb{B},\Delta  , a:\mathbb{D} \triangleright w: \mathbb{C} \quad \Delta, x:\mathbb{A}, y:\mathbb{B}, b:\mathbb{E} \triangleright u : \mathbb{C}   \quad E \in \text{Sf}(\Gamma; x:\mathbb{A}, y:\mathbb{B}, \Delta )  \\
+       \hspace{-153pt} \quad \Delta_{1}, x:\mathbb{A}, y:\mathbb{B},\Delta_{2}  , a:\mathbb{D} \triangleright w: \mathbb{C}   \\
+        \Sigma \triangleright v: \mathbb{D} \oplus \mathbb{E} \quad  \Delta_{1}, x:\mathbb{A}, y:\mathbb{B},\Delta_{2}, b:\mathbb{E} \triangleright u : \mathbb{C} \quad \Gamma, x:\mathbb{A},y:\mathbb{B};  \Delta \in \text{Sf}(\Sigma; \Delta_{1}, x:\mathbb{A}, y:\mathbb{B},\Delta_{2} ) \\
       \hline
-      \Gamma  \triangleright v: \mathbb{D} \oplus \mathbb{E} \quad  y:\mathbb{B}, x:\mathbb{A},\Delta, a:\mathbb{D} \triangleright w: \mathbb{C} \quad \Delta, y:\mathbb{B}, x:\mathbb{A},b:\mathbb{E} \triangleright u : \mathbb{C}   \quad E \in \text{Sf}(\Gamma; y:\mathbb{B},x:\mathbb{A}, \Delta )  \\
+      \hspace{-153pt} \quad \Delta_{1}, y:\mathbb{B}, x:\mathbb{A}, \Delta_{2}  , a:\mathbb{D} \triangleright w: \mathbb{C}   \\
+      \Sigma \triangleright v: \mathbb{D} \oplus \mathbb{E} \quad  \Delta_{1},  y:\mathbb{B}, x:\mathbb{A},\Delta_{2}, b:\mathbb{E} \triangleright u : \mathbb{C} \quad \Gamma, y:\mathbb{B},x:\mathbb{A};  \Delta \in \text{Sf}(\Sigma; \Delta_{1}, y:\mathbb{B}, x:\mathbb{A},\Delta_{2} ) \\
      \hline 
      \Gamma, y:\mathbb{B}, x:\mathbb{A}, \Delta \triangleright \text{ case } v \hspace{2pt} \{\text{inl}_{\mathbb{E}} (a) \Rightarrow w ; \hspace{1pt} \text{inr}_{\mathbb{D}} (b) \Rightarrow u\}: \mathbb{C}
   \end{array}
@@ -401,7 +405,8 @@ Next, for the second case, by induction hypothesis and applying the case rule, o
     \begin{minipage}[t]{0.3\textwidth}
       \small
     $\begin{array}{c}
-         \Gamma,x:\mathbb{A} \triangleright v: \mathbb{D} \oplus \mathbb{E} \quad \Delta,  y:\mathbb{B}, a:\mathbb{D} \triangleright w: \mathbb{C} \quad \Delta,  y:\mathbb{B}, b:\mathbb{E} \triangleright u : \mathbb{C}   \quad E \in \text{Sf}(\Gamma, x:\mathbb{A};  \Delta,y:\mathbb{B} )  \\
+      \hspace{-90pt} y:\mathbb{B}, \Delta,   a:\mathbb{D} \triangleright w: \mathbb{C}\\ 
+         \Gamma,x:\mathbb{A} \triangleright v: \mathbb{D} \oplus \mathbb{E} \quad  y:\mathbb{B},\Delta , b:\mathbb{E} \triangleright u : \mathbb{C}   \quad \Gamma, x:\mathbb{A},y:\mathbb{B},  \Delta \in \text{Sf}(\Gamma, x:\mathbb{A}; y:\mathbb{B},\Delta )  \\
     \end{array}
     $
     \end{minipage}
@@ -409,11 +414,13 @@ Next, for the second case, by induction hypothesis and applying the case rule, o
     \end{split}
     \end{equation*}
     \end{figure}
-and attending to the definition of shuffle, a possibility for $E  \in \text{Sf}(\Gamma, x:\mathbb{A};  \Delta,y:\mathbb{B})$ is $\Gamma, y:\mathbb{B}, x:\mathbb{A}, \Delta$, given that the relative order of the variables  in $\Gamma, x:\mathbb{A}$ and $ \Delta,y:\mathbb{B}$ is preserved. As a result, it is possible to derive $\Gamma, y:\mathbb{B}, x:\mathbb{A}, \Delta \triangleright \text{ case } v \hspace{2pt} \{\text{inl}_{\mathbb{E}} (a) \Rightarrow w ; \hspace{1pt} \text{inr}_{\mathbb{D}} (b) \Rightarrow u\}: \mathbb{C}$.
+and attending to the definition of shuffle, a possibility for $\Gamma, x:\mathbb{A},y:\mathbb{B},  \Delta \in \text{Sf}(\Gamma, x:\mathbb{A}; y:\mathbb{B},\Delta )$ is $\Gamma, y:\mathbb{B}, x:\mathbb{A}, \Delta$, given that the relative order of the variables  in $\Gamma, x:\mathbb{A}$ and $ \Delta,y:\mathbb{B}$ is preserved. As a result, it is possible to derive $\Gamma, y:\mathbb{B}, x:\mathbb{A}, \Delta \triangleright \text{ case } v \hspace{2pt} \{\text{inl}_{\mathbb{E}} (a) \Rightarrow w ; \hspace{1pt} \text{inr}_{\mathbb{D}} (b) \Rightarrow u\}: \mathbb{C}$.
 
 %shuffle is a permutation of typed variables in a context sequence $\Gamma_1, . . . ,  \Gamma_n$ such that for all $i \leq n$ the
 %relative order of the variables in $\Gamma_i$ is preserved, 
 
+
+\vspace{10pt}
 
   With respect to the substitution property, for the case statement it is necessary to prove that for all judgements $E, z:\mathbb{D} \triangleright  \text{ case } v \hspace{2pt} \{\text{inl}_{\mathbb{A}}  (x) \Rightarrow w ; \hspace{1pt} \text{inr}_{\mathbb{B}}  (y) \Rightarrow u\}: \mathbb{C}$ and $\Sigma\triangleright a: \mathbb{D}$ it is possible to derive $ E, \Sigma  \triangleright \text{ case } v \hspace{2pt} \{\text{inl}_{\mathbb{A}}  (x) \Rightarrow w ; \hspace{1pt} \text{inr}_{\mathbb{B}}  (y) \Rightarrow u\}[a/z]: \mathbb{C}$. In this case, it is necessary to consider two scenarios:
   \begin{enumerate}
@@ -427,20 +434,20 @@ and attending to the definition of shuffle, a possibility for $E  \in \text{Sf}(
     \begin{equation*}
     \begin{split}
     \begin{aligned}
-    &\hspace{-10pt}
+    &\hspace{-25pt}
     \begin{minipage}[t]{0.3\textwidth}
       \small
     $\begin{array}{c}
-      \Gamma,z:\mathbb{D} \triangleright v: \mathbb{A} \oplus \mathbb{B} \quad \Delta, x: \mathbb{A} \triangleright w: \mathbb{C} \quad \Delta, y: \mathbb{B}  \triangleright u : \mathbb{C}   \quad E \in \text{Sf}(\Gamma;\Delta) \quad \Sigma\triangleright a: \mathbb{D}
+      \Gamma,z:\mathbb{D} \triangleright v: \mathbb{A} \oplus \mathbb{B} \quad \Delta, x: \mathbb{A} \triangleright w: \mathbb{C} \quad \Delta, y: \mathbb{B}  \triangleright u : \mathbb{C}   \quad E,z:\mathbb{D}  \in \text{Sf}(\Gamma,z:\mathbb{D};\Delta) \quad \Sigma\triangleright a: \mathbb{D}
       \\
       \hline
-      \Gamma, \Sigma \triangleright v[a/z]: \mathbb{A} \oplus \mathbb{B} \quad \Delta, x: \mathbb{A} \triangleright w: \mathbb{C} \quad \Delta, y: \mathbb{B}  \triangleright u : \mathbb{C}   \quad E \in \text{Sf}(\Gamma, \Sigma;\Delta) 
+      \Gamma, \Sigma \triangleright v[a/z]: \mathbb{A} \oplus \mathbb{B} \quad \Delta, x: \mathbb{A} \triangleright w: \mathbb{C} \quad \Delta, y: \mathbb{B}  \triangleright u : \mathbb{C}   \quad E,\Sigma \in \text{Sf}(\Gamma, \Sigma;\Delta) 
       \\
       \hline
-      E \triangleright \text{ case } v \hspace{2pt} \{\text{inl}_{\mathbb{B}} (x) \Rightarrow w[a/z] ; \hspace{1pt} \text{inr}_{\mathbb{A}} (y) \Rightarrow u[a/z]\}: \mathbb{C}
+      E,\Sigma \triangleright \text{ case } v \hspace{2pt} \{\text{inl}_{\mathbb{B}} (x) \Rightarrow w[a/z] ; \hspace{1pt} \text{inr}_{\mathbb{A}} (y) \Rightarrow u[a/z]\}: \mathbb{C}
       \\
       \hline
-      E  \triangleright \text{ case } v \hspace{2pt} \{\text{inl}_{\mathbb{B}}  (x) \Rightarrow w ; \hspace{1pt} \text{inr}_{\mathbb{A}}  (y) \Rightarrow u\}[a/z]: \mathbb{C}
+      E,\Sigma  \triangleright \text{ case } v \hspace{2pt} \{\text{inl}_{\mathbb{B}}  (x) \Rightarrow w ; \hspace{1pt} \text{inr}_{\mathbb{A}}  (y) \Rightarrow u\}[a/z]: \mathbb{C}
     \end{array}
     $
     \end{minipage}
@@ -457,26 +464,28 @@ The second case is similar to the first one,  applying the exchange property, th
   \begin{equation*}
   \begin{split}
   \begin{aligned}
-  &\hspace{-10pt}
+  \hspace{-10pt}&
   \begin{minipage}[t]{0.3\textwidth}
     \small
   $\begin{array}{c}
-    \Gamma \triangleright v: \mathbb{A} \oplus \mathbb{B} \quad \Delta, z:\mathbb{D}, x: \mathbb{A} \triangleright w: \mathbb{C} \quad \Delta ,z:\mathbb{D}, y:\mathbb{B}, y: \mathbb{B}  \triangleright u : \mathbb{C}   \quad E \in \text{Sf}(\Gamma;\Delta) \quad \Sigma\triangleright a: \mathbb{D}
+    \hspace{-95pt} \Delta ,z:\mathbb{D}, y:\mathbb{B}, y: \mathbb{B}  \triangleright u : \mathbb{C} \\
+    \Gamma \triangleright v: \mathbb{A} \oplus \mathbb{B} \quad \Delta, z:\mathbb{D}, x: \mathbb{A} \triangleright w: \mathbb{C} \quad   \quad E,z:\mathbb{D}  \in \text{Sf}(\Gamma;\Delta,z:\mathbb{D}) \quad \Sigma\triangleright a: \mathbb{D}
     \\
     \hline
-    \Gamma \triangleright v: \mathbb{A} \oplus \mathbb{B} \quad \Delta,   x: \mathbb{A},z:\mathbb{D}  \triangleright w: \mathbb{C} \quad \Delta,  y: \mathbb{B},z:\mathbb{D}   \triangleright u : \mathbb{C}   \quad E \in \text{Sf}(\Gamma;\Delta) \quad \Sigma\triangleright a: \mathbb{D}
+    \hspace{-120pt} \Delta,  y: \mathbb{B},z:\mathbb{D}   \triangleright u : \mathbb{C} 
+    \\\Gamma \triangleright v: \mathbb{A} \oplus \mathbb{B} \quad \Delta,   x: \mathbb{A},z:\mathbb{D}  \triangleright w: \mathbb{C} \quad  \quad E,z:\mathbb{D}  \in \text{Sf}(\Gamma;\Delta,z:\mathbb{D} ) \quad \Sigma\triangleright a: \mathbb{D}
     \\
     \hline
-    \Gamma \triangleright v: \mathbb{A} \oplus \mathbb{B} \quad \Delta, x: \mathbb{A},\Sigma \triangleright w[a/z]: \mathbb{C} \quad \Delta, y: \mathbb{B},\Sigma  \triangleright u[a/z] : \mathbb{C}   \quad E \in \text{Sf}(\Gamma;\Delta) 
+  \Gamma \triangleright v: \mathbb{A} \oplus \mathbb{B} \quad \Delta, x: \mathbb{A},\Sigma \triangleright w[a/z]: \mathbb{C} \quad \Delta, y: \mathbb{B},\Sigma  \triangleright u[a/z] : \mathbb{C}   \quad E, \Sigma \in \text{Sf}(\Gamma;\Delta,\Sigma) 
     \\
     \hline
-    \Gamma \triangleright v: \mathbb{A} \oplus \mathbb{B} \quad \Delta,\Sigma, x: \mathbb{A} \triangleright w[a/z]: \mathbb{C} \quad \Delta,\Sigma, y: \mathbb{B} \triangleright u[a/z] : \mathbb{C}   \quad E \in \text{Sf}(\Gamma;\Delta,\Sigma) 
+    \Gamma \triangleright v: \mathbb{A} \oplus \mathbb{B} \quad \Delta,\Sigma, x: \mathbb{A} \triangleright w[a/z]: \mathbb{C} \quad \Delta,\Sigma, y: \mathbb{B} \triangleright u[a/z] : \mathbb{C}   \quad E, \Sigma \in \text{Sf}(\Gamma;\Delta,\Sigma) 
     \\
     \hline
-    E \triangleright \text{ case } v[a/z] \hspace{2pt} \{\text{inl}_{\mathbb{B}} (x) \Rightarrow w ; \hspace{1pt} \text{inr}_{\mathbb{A}} (y) \Rightarrow u\}: \mathbb{C}
+    E, \Sigma \triangleright \text{ case } v[a/z] \hspace{2pt} \{\text{inl}_{\mathbb{B}} (x) \Rightarrow w ; \hspace{1pt} \text{inr}_{\mathbb{A}} (y) \Rightarrow u\}: \mathbb{C}
     \\
     \hline
-    E  \triangleright \text{ case } v \hspace{2pt} \{\text{inl}_{\mathbb{B}}  (x) \Rightarrow w ; \hspace{1pt} \text{inr}_{\mathbb{A}}  (y) \Rightarrow u\}[a/z]: \mathbb{C}
+    E,\Sigma  \triangleright \text{ case } v \hspace{2pt} \{\text{inl}_{\mathbb{B}}  (x) \Rightarrow w ; \hspace{1pt} \text{inr}_{\mathbb{A}}  (y) \Rightarrow u\}[a/z]: \mathbb{C}
   \end{array}
   $
   \end{minipage}
@@ -519,6 +528,7 @@ $
 The interpretation of conditionals is illustrated in \autoref{fig:denotational_sem cond}.
 
 \begin{figure} [H]
+  {\small
 \begin{equation}
 \begin{split}
 \begin{aligned}
@@ -544,7 +554,7 @@ $
 $\begin{array}{c} 
     [\![\Gamma\triangleright v: \mathbb{A} \oplus \mathbb{B} ]\!] = b \quad [\![\Delta, x:\mathbb{A} \triangleright w: \mathbb{C} ]\!] = p  \quad  [\![\Delta,y:\mathbb{B} \triangleright u: \mathbb{C} ]\!] = q    \quad E \in \text{Sf}(\Gamma;\Delta)  \\
     \hline
-  [\![E \triangleright \text{ case } v \hspace{2pt}  \{\text{inl} (x) \Rightarrow w ; \hspace{1pt} \text{inr} (y) \Rightarrow u\}: \mathbb{C} ]\!] =   \text{either}(p,q) \cdot \text{dist} \cdot \text{sw} \cdot (b \otimes \text{id}) \cdot \text{sp}_{\Gamma;\Delta} \cdot \text{sh}_{E}
+  [\![E \triangleright \text{ case } v \hspace{2pt}  \{\text{inl} (x) \Rightarrow w ; \hspace{1pt} \text{inr} (y) \Rightarrow u\}: \mathbb{C} ]\!] =   [p \cdot \text{jn}_{\Delta,\mathbb{A}},q \cdot \text{jn}_{\Delta,\mathbb{B}}] \cdot \text{dist} \cdot \text{sw} \cdot (b \otimes \text{id}) \cdot \text{sp}_{\Gamma;\Delta} \cdot \text{sh}_{E}
 \end{array}
 $ \end{minipage}
 \end{aligned}
@@ -552,6 +562,7 @@ $ \end{minipage}
 \end{equation}
 \caption{Judgment interpretation for conditionals}
 \label{fig:denotational_sem cond}
+}
 \end{figure}
 
 \paragraph{Proof} In order to validate the judgment interpretation for conditionals, it is necessary to demonstrate its correctness.
@@ -567,7 +578,7 @@ Now, for the conditional statement:
 \begin{equation} \label{eq:proof_bool_2}
  \begin{aligned} 
     [\![E]\!] & \xrightarrow{\hspace{2pt}\text{sh}_{E}\hspace{2pt}}   [\![\Gamma,\Delta ]\!]   \xrightarrow{\hspace{1pt}\text{sp}_{\Gamma;\Delta}\hspace{1pt}}  [\![\Gamma ]\!] \otimes [\![\Delta ]\!] \xrightarrow{ b \hspace{1pt} \otimes \hspace{1pt} \text{id}} ([\![\mathbb{A} ]\!] \oplus [\![\mathbb{B} ]\!]) \otimes [\![\Delta ]\!] \xrightarrow{\hspace{2pt}\text{sw}\hspace{2pt}}  [\![\Delta ]\!] \otimes ([\![\mathbb{A} ]\!] \oplus [\![\mathbb{B} ]\!])  \\
-    & \xrightarrow{\hspace{3pt}\text{dist}\hspace{3pt}} ([\![\Delta ]\!] \otimes [\![\mathbb{A} ]\!]  ) \oplus (  [\![\Delta ]\!] \otimes [\![\mathbb{B} ]\!] ) \xrightarrow{\hspace{1pt}\text{either}(p,q)\hspace{1pt}} [\![\mathbb{C} ]\!]
+    & \xrightarrow{\hspace{3pt}\text{dist}\hspace{3pt}} ([\![\Delta ]\!] \otimes [\![\mathbb{A} ]\!]  ) \oplus (  [\![\Delta ]\!] \otimes [\![\mathbb{B} ]\!] ) \xrightarrow{\hspace{2pt}[p \cdot \text{jn}_{\Delta,\mathbb{A}},q \cdot \text{jn}_{\Delta,\mathbb{B}}]\hspace{2pt}} [\![\mathbb{C} ]\!]
 \end{aligned}   
 \end{equation}
 
@@ -654,6 +665,8 @@ In this case, it is necessary to consider two scenarios:
   \end{enumerate}
 
   For the first case,
+
+  \todo[inline,size=\normalsize]{ver Prof Renato onde tem reticencias} %\label{eq:Bloch\_vector})}
   \begin{equation*}
 \begin{split}
   &[\![E, \Sigma \triangleright \text{ case }  \hspace{2pt}  \{\text{inl}_{\mathbb{B}} (x) \Rightarrow w ; \hspace{1pt} \text{inr}_{\mathbb{A}} (y) \Rightarrow u\} [a/z]: \mathbb{C}]\!] \\
@@ -809,7 +822,18 @@ Considering that $[  \textsc{Il} \cdot \text{id},\textsc{Ir} \cdot \text{id}] = 
     (m-1-2) edge[bend right=-5] node [below] {dist} (m-1-1); % Added the label to the arrow
 \end{tikzpicture}
 
-And as a result, one has that $... \text{dist} = \text{id} \otimes \text{id}$. Therefore,
+And as a result, one has that $\text{id} \otimes [\textsc{Il} \cdot \text{id}_{\llbracket\mathbb{A}\rrbracket}, \textsc{Ir} \cdot \text{id}_{\llbracket\mathbb{B}\rrbracket}] \cdot \text{dist} = \text{id} \otimes \text{id}$. Therefore,
+
+\begin{equation*}
+  \begin{split}
+  & \llbracket\Delta, x: \mathbb{A} \oplus \mathbb{B} \triangleright w: \mathbb{C}\rrbracket \cdot \text{jn}_{\Delta;\mathbb{A} \oplus \mathbb{B}} \cdot (\text{id} \otimes [\textsc{Il} \cdot \text{id}_{\llbracket\mathbb{A}\rrbracket} \cdot \text{sp}_{\Delta;\mathbb{A}},\\
+  &   \textsc{Ir} \cdot \text{id}_{\llbracket\mathbb{B}\rrbracket}) \cdot \text{sp}_{\Delta;\mathbb{B}} ] \cdot \text{dist} \cdot \text{sw} \cdot (\llbracket\Gamma \triangleright v: \mathbb{A} \oplus \mathbb{B}\rrbracket \otimes \text{id}) \cdot  \text{sp}_{\Gamma;\Delta} \cdot \text{sh}_{E} \\
+  = & \llbracket\Delta, x: \mathbb{A} \oplus \mathbb{B} \triangleright w: \mathbb{C}\rrbracket \cdot \text{jn}_{\Delta;\mathbb{A} \oplus \mathbb{B}} \cdot (\text{id} \otimes \text{id}) \cdot \text{sp}_{\Delta;\mathbb{A} \oplus \mathbb{B}} \cdot \text{sw} \cdot (\llbracket\Gamma \triangleright v: \mathbb{A} \oplus \mathbb{B}\rrbracket \otimes \text{id}) \cdot \\
+  & \text{sp}_{\Gamma;\Delta} \cdot \text{sh}_{E} \\
+  = & \llbracket\Delta, x: \mathbb{A} \oplus \mathbb{B} \triangleright w: \mathbb{C}\rrbracket \cdot \text{jn}_{\Delta;\mathbb{A} \oplus \mathbb{B}}  \cdot \text{sp}_{\Delta;\mathbb{A} \oplus \mathbb{B}} \cdot \text{sw} \cdot (\llbracket\Gamma \triangleright v: \mathbb{A} \oplus \mathbb{B}\rrbracket \otimes \text{id}) \cdot \text{sp}_{\Gamma;\Delta} \cdot \text{sh}_{E} \\
+  = & \llbracket w[v/x] : \mathbb{C} \rrbracket
+\end{split}
+\end{equation*}
 
 \subsection{Metric equations}
 The metric equations for conditionals are presented in \autoref{fig:metric conditionals}. Note that the first two equations are redundant.
