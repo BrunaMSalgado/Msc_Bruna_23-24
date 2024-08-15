@@ -243,7 +243,37 @@ the properties in \autoref{theorem:unique_der}.
 
 \paragraph{Proof} 
 
-Regarding the first property, considering the case statement in  \autoref{fig:typing_rules_cond} and 
+Regarding the first property, for the injections, taking into account the inl and inr derivations in \autoref{fig:typing_rules_cond} and
+
+\begin{figure} [H]
+  \begin{equation*}
+  \begin{split}
+  \begin{aligned}
+  & \hspace{15pt}
+  \begin{minipage}[t]{0.3\textwidth}
+  $\begin{array}{c}
+     \Gamma' \triangleright v: \mathbb{A} \\
+    \hline
+   \Gamma' \triangleright \text{inl}_{\mathbb{B}}(v):  \mathbb{A} \oplus \mathbb{B}
+\end{array}
+$
+  \end{minipage} 
+ \hspace{20pt}
+\begin{minipage}[t]{0.3\textwidth}
+$\begin{array}{c}
+      \Gamma' \triangleright v:  \mathbb{B} \\
+    \hline
+   \Gamma' \triangleright \text{inr}_{\mathbb{A}}(v): \mathbb{A} \oplus \mathbb{B}
+\end{array}
+$ \end{minipage}
+  \end{aligned}
+  \end{split}
+  \end{equation*}
+  \end{figure}
+, it is necessary to prove that te($\Gamma$) $\simeq_{\pi}$  te($\Gamma'$). By induction hypothesis, te($\Gamma$) $\simeq_{\pi}$  te($\Gamma'$) and te($\Gamma$) $\simeq_{\pi}$  te($\Gamma'$). Therefore, te($\Gamma$) $\simeq_{\pi}$  te($\Gamma'$).
+
+
+Concerning the case statement, considering  \autoref{fig:typing_rules_cond} and 
 
 \begin{figure} [H]
   \begin{equation*}
@@ -265,7 +295,37 @@ Regarding the first property, considering the case statement in  \autoref{fig:ty
 
 we want to prove that te($E$) $\simeq_{\pi}$  te($E'$). By induction hypothesis, te($\Gamma$) $\simeq_{\pi}$  te($\Gamma$), te($\Delta,x$) $\simeq_{\pi}$  te($\Delta',x$) and te($\Delta,y$) $\simeq_{\pi}$  te($\Delta',y$). This implies that  te($\Delta$) $\simeq_{\pi}$ te($\Delta'$). Since, $E \in \text{Sf}(\Gamma;\Delta)$ and  $E' \in \text{Sf}(\Gamma';\Delta')$, one has that te($E$) $\simeq_{\pi}$  te($\Gamma, \Delta$) and te($E'$) $\simeq_{\pi}$  te($\Gamma', \Delta'$). Consequently, te($E$) $\simeq_{\pi}$  te($E'$).
 
-With respect to the second property, considering the case statement in  \autoref{fig:typing_rules_cond} and  
+With respect to the second property, for the injections, taking into account the inl and inr derivations in \autoref{fig:typing_rules_cond} and
+
+\begin{figure} [H]
+  \begin{equation*}
+  \begin{split}
+  \begin{aligned}
+  & \hspace{15pt}
+  \begin{minipage}[t]{0.3\textwidth}
+  $\begin{array}{c}
+     \Gamma' \triangleright v: \mathbb{A'} \\
+    \hline
+   \Gamma' \triangleright \text{inl}_{\mathbb{B}}(v):  \mathbb{A'} \oplus \mathbb{B}
+\end{array}
+$
+  \end{minipage} 
+ \hspace{20pt}
+\begin{minipage}[t]{0.3\textwidth}
+$\begin{array}{c}
+      \Gamma' \triangleright v:  \mathbb{B'} \\
+    \hline
+   \Gamma' \triangleright \text{inr}_{\mathbb{A}}(v): \mathbb{A} \oplus \mathbb{B'}
+\end{array}
+$ \end{minipage}
+  \end{aligned}
+  \end{split}
+  \end{equation*}
+  \end{figure}
+
+concerning the left injection it is neccessary to prove that if $\Gamma \triangleright \text{inl}_{\mathbb{B}}(v):  \mathbb{A} \oplus \mathbb{B}$, $\Gamma' \triangleright \text{inl}_{\mathbb{B}}(v):  \mathbb{A'} \oplus \mathbb{B}$, and $\Gamma \simeq_{\pi} \Gamma' $, then $\mathbb{A} \oplus \mathbb{B} $ must be equal to $\mathbb{A}'\oplus \mathbb{B}$. By induction hypothesis over the premises it follows that $\mathbb{A} $ must be equal to $\mathbb{A}'$. Consequentlty, $\mathbb{A}\oplus \mathbb{B}$ must be equal $\mathbb{A'}\oplus \mathbb{B}$  The same reasoning can be applied to the right injection.
+
+Regarding the case statement in considering \autoref{fig:typing_rules_cond} and  
 
 \begin{figure} [H]
   \begin{equation*}
@@ -298,7 +358,36 @@ This proves that $\Delta \simeq_{\pi} \Delta'$. Therefore, by induction hypothes
   
 
 
-Finally, concerning the third property it is necessary to demonstrate that the case statement in \autoref{fig:typing_rules_cond} has a unique derivation. This means proving that the premises in \autoref{fig:typing_rules_cond} and in
+Finally, concerning the third property, firstly it is necessary to demonstrate that the injections have unique derivations. This means proving that the premises of the inl and inr rules in \autoref{fig:typing_rules_cond} and in
+\begin{figure} [H]
+  \begin{equation*}
+  \begin{split}
+  \begin{aligned}
+  & \hspace{15pt}
+  \begin{minipage}[t]{0.3\textwidth}
+  $\begin{array}{c}
+     \Gamma' \triangleright v: \mathbb{A'} \\
+    \hline
+   \Gamma \triangleright \text{inl}_{\mathbb{B}}(v):  \mathbb{A'} \oplus \mathbb{B}
+\end{array}
+$
+  \end{minipage} 
+ \hspace{20pt}
+\begin{minipage}[t]{0.3\textwidth}
+$\begin{array}{c}
+      \Gamma' \triangleright v:  \mathbb{B'} \\
+    \hline
+   \Gamma \triangleright \text{inr}_{\mathbb{A}}(v): \mathbb{A} \oplus \mathbb{B'}
+\end{array}
+$ \end{minipage}
+  \end{aligned}
+  \end{split}
+  \end{equation*}
+  \end{figure}
+
+are equal, which means proving that $\Gamma = \Gamma'$. In both cases, the derivation in \autoref{fig:typing_rules_cond} enforces that $\Gamma = \Gamma'$.
+
+Now, it is necessary to demonstrate that the case statement in \autoref{fig:typing_rules_cond} has a unique derivation. This means proving that the premises in \autoref{fig:typing_rules_cond} and in
 
 \begin{figure} [H]
   \begin{equation*}
@@ -337,7 +426,31 @@ This last implication is related with the fact that in $E$, there can only exist
 
 \paragraph{Proof}
 
-Regarding the exchange property, for the case statement it is necessary to prove that for every judgment $\Gamma, x:\mathbb{A}, y:\mathbb{B}, \Delta \triangleright \text{ case } v \hspace{2pt} \{\text{inl}_{\mathbb{E}}  (a) \Rightarrow w ; \hspace{1pt} \text{inr}_{\mathbb{D}}  (b) \Rightarrow u\}: \mathbb{C}$, it is possible to derive $\Gamma, y:\mathbb{B}, x:\mathbb{A}, \Delta \triangleright \text{ case } v \hspace{2pt} \{\text{inl}_{\mathbb{E}} (a) \Rightarrow w ; \hspace{1pt} \text{inr}_{\mathbb{D}} (b) \Rightarrow u\}: \mathbb{C}$. It is necessary to consider three scenarios:
+Regarding the exchange property, for the left injection, it is necessary to demonstrate that for every judgement $\Gamma , x:\mathbb{A}, y:\mathbb{B},\Delta\triangleright \text{inl}_{\mathbb{D}}(v):  \mathbb{C} \oplus \mathbb{D}$, it is possible to derive $\Gamma ,y:\mathbb{B}, x:\mathbb{A}, \Delta \triangleright \text{inl}_{\mathbb{D}}(v):  \mathbb{C} \oplus \mathbb{D}$. By induction hypothesis on the premises of $\Gamma , x:\mathbb{A}, y:\mathbb{B},\Delta\triangleright \text{inl}_{\mathbb{D}}(v):  \mathbb{C} \oplus \mathbb{D}$ and applying the inl rule, one has that:
+
+\begin{figure} [H]
+  \begin{equation*}
+  \begin{split}
+  \begin{aligned}
+  &
+  \begin{minipage}[t]{0.3\textwidth}
+  $\begin{array}{c}
+    \Gamma, x:\mathbb{A}, y:\mathbb{B}, \Delta \triangleright v: \mathbb{C}  \\  
+      \hline
+      \Gamma,y:\mathbb{B}, x:\mathbb{A},  \Delta \triangleright v: \mathbb{C}  \\   
+      \hline
+       \Gamma, y:\mathbb{B}, x:\mathbb{A}, \Delta \triangleright \text{inl}_{\mathbb{D}}(v):  \mathbb{C} \oplus \mathbb{D}  
+  \end{array}
+  $
+  \end{minipage}
+  \end{aligned}
+  \end{split}
+  \end{equation*}
+  \end{figure}
+
+  For the right injection the proof is analogous.
+
+With respect to the case statement it is necessary to prove that for every judgment $\Gamma, x:\mathbb{A}, y:\mathbb{B}, \Delta \triangleright \text{ case } v \hspace{2pt} \{\text{inl}_{\mathbb{E}}  (a) \Rightarrow w ; \hspace{1pt} \text{inr}_{\mathbb{D}}  (b) \Rightarrow u\}: \mathbb{C}$, it is possible to derive $\Gamma, y:\mathbb{B}, x:\mathbb{A}, \Delta \triangleright \text{ case } v \hspace{2pt} \{\text{inl}_{\mathbb{E}} (a) \Rightarrow w ; \hspace{1pt} \text{inr}_{\mathbb{D}} (b) \Rightarrow u\}: \mathbb{C}$. It is necessary to consider three scenarios:
 \begin{enumerate}
   \item $x:\mathbb{A}, y:\mathbb{B}$ are variables in the context of $v$;
   \item $x:\mathbb{A}, y:\mathbb{B}$ are variables in the context of $w$ and $u$;
@@ -422,7 +535,32 @@ and attending to the definition of shuffle, a possibility for $\Gamma, y:\mathbb
 
 \vspace{10pt}
 
-  With respect to the substitution property, for the case statement it is necessary to prove that for all judgements $E, z:\mathbb{D} \triangleright  \text{ case } v \hspace{2pt} \{\text{inl}_{\mathbb{A}}  (x) \Rightarrow w ; \hspace{1pt} \text{inr}_{\mathbb{B}}  (y) \Rightarrow u\}: \mathbb{C}$ and $\Sigma\triangleright a: \mathbb{D}$ it is possible to derive $ E, \Sigma  \triangleright \text{ case } v \hspace{2pt} \{\text{inl}_{\mathbb{A}}  (x) \Rightarrow w ; \hspace{1pt} \text{inr}_{\mathbb{B}}  (y) \Rightarrow u\}[a/z]: \mathbb{C}$. In this case, it is necessary to consider two scenarios:
+With respect to the substitution property, for the left injection is necessary to demonstrate that for all judgements $\Gamma, x:\mathbb{C} \triangleright \text{inl}_{\mathbb{B}}(v):  \mathbb{A} \oplus \mathbb{B}$ and $\Delta \triangleright w: \mathbb{C}$ it is possible to derive $\Gamma, \Delta \triangleright \text{inl}_{\mathbb{B}}(v[w/x]):  \mathbb{A} \oplus \mathbb{B}$. By induction hypothesis,  and applying the inl rule, one has that:
+\begin{figure} [H]
+  \begin{equation*}
+  \begin{split}
+  \begin{aligned}
+  &
+  \begin{minipage}[t]{0.3\textwidth}
+  $\begin{array}{c}
+    \Gamma, x:\mathbb{C} \triangleright v: \mathbb{A} \quad \Delta \triangleright w: \mathbb{C}  \\  
+      \hline
+      \Gamma,  \Delta \triangleright v [w/x]: \mathbb{A}  \\   
+      \hline
+       \Gamma,  \Delta \triangleright \text{inl}_{\mathbb{B}}(v[w/x]):  \mathbb{A} \oplus \mathbb{B}  \\
+       \hline 
+       \Gamma,  \Delta \triangleright \text{inl}_{\mathbb{B}}(v) [w/x]:  \mathbb{A} \oplus \mathbb{B}  
+  \end{array}
+  $
+  \end{minipage}
+  \end{aligned}
+  \end{split}
+  \end{equation*}
+  \end{figure}
+
+  For the right injection the proof is analogous.
+  
+  Regarding the case statement it is necessary to prove that for all judgements $E, z:\mathbb{D} \triangleright  \text{ case } v \hspace{2pt} \{\text{inl}_{\mathbb{A}}  (x) \Rightarrow w ; \hspace{1pt} \text{inr}_{\mathbb{B}}  (y) \Rightarrow u\}: \mathbb{C}$ and $\Sigma\triangleright a: \mathbb{D}$ it is possible to derive $ E, \Sigma  \triangleright \text{ case } v \hspace{2pt} \{\text{inl}_{\mathbb{A}}  (x) \Rightarrow w ; \hspace{1pt} \text{inr}_{\mathbb{B}}  (y) \Rightarrow u\}[a/z]: \mathbb{C}$. In this case, it is necessary to consider two scenarios:
   \begin{enumerate}
     \item $z:\mathbb{D}$ is a variable in the context of $v$;
     \item $z:\mathbb{D}$ is a variable in the context of $w$ and $u$.
@@ -494,6 +632,7 @@ The second case is similar to the first one,  applying the exchange property, th
   \end{equation*}
   \end{figure}
 
+  \qed
 %NOTA: Ver situação do E e 4a derivação
 
 \subsection{Interpretation}
@@ -574,7 +713,7 @@ For the booleans:
      &[\![\Gamma ]\!]   \xrightarrow{\hspace{5pt}m\hspace{5pt}} [\![\mathbb{B} ]\!] \xrightarrow{\hspace{6pt}\textsc{Ir}\hspace{6pt}} [\![\mathbb{A} \oplus \mathbb{B}]\!]
 \end{aligned}   
 \end{equation}
-Now, for the conditional statement:
+Now, for the case statement:
 \begin{equation} \label{eq:proof_bool_2}
  \begin{aligned} 
     [\![E]\!] & \xrightarrow{\hspace{2pt}\text{sh}_{E}\hspace{2pt}}   [\![\Gamma,\Delta ]\!]   \xrightarrow{\hspace{1pt}\text{sp}_{\Gamma;\Delta}\hspace{1pt}}  [\![\Gamma ]\!] \otimes [\![\Delta ]\!] \xrightarrow{ b \hspace{1pt} \otimes \hspace{1pt} \text{id}} ([\![\mathbb{A} ]\!] \oplus [\![\mathbb{B} ]\!]) \otimes [\![\Delta ]\!] \xrightarrow{\hspace{2pt}\text{sw}\hspace{2pt}}  [\![\Delta ]\!] \otimes ([\![\mathbb{A} ]\!] \oplus [\![\mathbb{B} ]\!])  \\
@@ -589,7 +728,19 @@ Next, it is necessary to demonstrate that the interpretation of exchange and sub
 \end{lemma}
 
 \paragraph{Proof}
-It is necessary to consider three scenarios:
+Firstly, for the left injection,
+\begin{equation*}
+  \begin{split}
+    & \hspace{2pt} [\![\Gamma, x:\mathbb{A}, y:\mathbb{B},  \Delta \triangleright \text{inl}_{\mathbb{D}}(v):  \mathbb{C} \oplus \mathbb{D}]\!] \\
+    = & \textsc{Il} \cdot [\![\Gamma, x:\mathbb{A}, y:\mathbb{B},  \Delta \triangleright v: \mathbb{C}]\!] \\
+    = & \textsc{Il} \cdot [\![\Gamma,y:\mathbb{B},  x:\mathbb{A},  \Delta \triangleright v: \mathbb{C}]\!] \cdot \text{exch}_{\Gamma, \underline{ \mathbb{A}, \mathbb{B}} ,\Delta} \hspace{80pt} \{\text{by induction hypothesis}\}\\ 
+    = &\hspace{2pt} [\![\Gamma,y:\mathbb{B}, x:\mathbb{A},   \Delta \triangleright \text{inl}_{\mathbb{D}}(v):  \mathbb{C} \oplus \mathbb{D}]\!]
+  \end{split}
+\end{equation*}
+
+The proof for the right injection is analogous.
+
+Regarding the case statement, it is necessary to consider three scenarios:
 \begin{enumerate}
   \item $x:\mathbb{A}, y:\mathbb{B}$ are variables in the context of $v$;
   \item $x:\mathbb{A}, y:\mathbb{B}$ are variables in the context of $w$ and $u$;
@@ -659,7 +810,7 @@ Finally, for the third case, note that, the shuffle operator is permutation of t
 \end{equation*}
 
 
-
+\qed
 
 \hspace{10pt}
 
@@ -667,7 +818,20 @@ Finally, for the third case, note that, the shuffle operator is permutation of t
   $[\![\Gamma, \Delta \triangleright v[w/x]: \mathbb{B}]\!] = [\![\Gamma, x:\mathbb{A} \triangleright v: \mathbb{B}]\!]\cdot \text{jn}_{\Gamma;\mathbb{A}} \cdot (\text{id} \otimes [\![ \Delta  \triangleright w: \mathbb{A}]\!] ) \cdot \text{sp}_{\Gamma;\Delta}$ 
 \end{lemma}
 
-In this case, it is necessary to consider two scenarios:
+Regarding the left injection,
+\begin{equation*}
+  \begin{split}
+    & \hspace{2pt} [\![\Gamma,  \Delta \triangleright \text{inl}_{\mathbb{B}}(v) [w/x]:  \mathbb{A} \oplus \mathbb{B}]\!] \\
+    = & \textsc{Il} \cdot [\![\Gamma, \Delta  \triangleright v [w/x]: \mathbb{A}]\!]   \\
+    = & \textsc{Il} \cdot [\![\Gamma, x: \mathbb{C}  \triangleright v: \mathbb{A}]\!] \cdot \text{jn}_{\Gamma;\mathbb{C}} \cdot (\text{id} \otimes [\![ \Delta \triangleright w:\mathbb{C}  ]\!]) \cdot \text{sp}_{\Gamma;\Delta}   \\
+    = & [\![ \Gamma, x: \mathbb{C}  \triangleright \text{inl}_{\mathbb{B}}(v) [w/x]:  \mathbb{A} \oplus \mathbb{B}] ]\!] \cdot \text{jn}_{\Gamma;\mathbb{C}} \cdot (\text{id} \otimes [\![ \Delta \triangleright w:\mathbb{C}  ]\!]) \cdot \text{sp}_{\Gamma;\Delta}
+  \end{split}
+\end{equation*}
+
+The proof for the right injection is analogous.
+
+
+With respect to the case statement, in this case, it is necessary to consider two scenarios:
   \begin{enumerate}
     \item $z:\mathbb{D}$ is a variable in the context of $v$;
     \item $z:\mathbb{D}$ is a variable in the context of $w$ and $u$.
@@ -722,6 +886,8 @@ In this case, it is necessary to consider two scenarios:
       = & [\![E, z:\mathbb{D} \triangleright \text{ case }  \hspace{2pt}  \{\text{inl}_{\mathbb{B}} (x) \Rightarrow w ; \hspace{1pt} \text{inr}_{\mathbb{A}} (y) \Rightarrow u\} [a/z]: \mathbb{C}]\!] \cdot \text{jn}_{E; \mathbb{D}} \cdot (\text{id} \otimes [\![ \Sigma \triangleright a:\mathbb{D}  ]\!] ) \cdot \text{sp}_{E;\Sigma} \\
     \end{split}
       \end{equation*}
+
+      \qed
 
 \subsection{ \boldmath $\beta$ and $\eta$ Reductions}
 
@@ -882,6 +1048,7 @@ And as a result, one has that $\text{id} \otimes [\textsc{Il} \cdot \text{id}_{\
   = & \llbracket w[v/x] : \mathbb{C} \rrbracket
 \end{split}
 \end{equation*}
+\qed
 
 \subsection{Metric equations}
 The metric equations for conditionals are presented in \autoref{fig:metric conditionals}. Note that the first two equations are redundant.

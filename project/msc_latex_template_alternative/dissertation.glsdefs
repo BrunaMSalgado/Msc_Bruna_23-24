@@ -1,14 +1,14 @@
-\glsdefs@newdocentry{pdr}%
+\glsdefs@newdocentry{nisq}%
 {%
-name={\acronymfont {\glsentryshort {pdr}}},%
-sort={PDR},%
+name={\acronymfont {\glsentryshort {nisq}}},%
+sort={NISQ},%
 type={acronym},%
-first={PDR},%
-firstplural={PDRs},%
-text={PDR},%
-plural={PDRs},%
-description={Preliminary Dissertation Report},%
-descriptionplural={Preliminary Dissertation Report},%
+first={NISQ},%
+firstplural={NISQs},%
+text={NISQ},%
+plural={NISQs},%
+description={Noisy Intermediate-Scale Quantum},%
+descriptionplural={Noisy Intermediate-Scale Quantum},%
 symbol={\relax },%
 symbolplural={\relax },%
 user1={},%
@@ -17,38 +17,10 @@ user3={},%
 user4={},%
 user5={},%
 user6={},%
-long={Preliminary Dissertation Report},%
-longplural={Preliminary Dissertation Reports},%
-short={PDR},%
-shortplural={PDRs},%
-counter={page},%
-parent={},%
-%
-}%
-
-\glsdefs@newdocentry{soa}%
-{%
-name={\acronymfont {\glsentryshort {soa}}},%
-sort={SOA},%
-type={acronym},%
-first={SOA},%
-firstplural={SOAs},%
-text={SOA},%
-plural={SOAs},%
-description={State of the Art},%
-descriptionplural={State of the Art},%
-symbol={\relax },%
-symbolplural={\relax },%
-user1={},%
-user2={},%
-user3={},%
-user4={},%
-user5={},%
-user6={},%
-long={State of the Art},%
-longplural={State of the Arts},%
-short={SOA},%
-shortplural={SOAs},%
+long={Noisy Intermediate-Scale Quantum},%
+longplural={Noisy Intermediate-Scale Quantums},%
+short={NISQ},%
+shortplural={NISQs},%
 counter={page},%
 parent={},%
 %
