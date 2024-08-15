@@ -1,16 +1,22 @@
-\chapter{Background}
+\chapter{Metric Lambda Calculus}
 
-\section{Affine Lambda Calculus}
+The Lambda Calculus, developed by Church and Curry in the 1930s, serves as a formal language capturing the key attribute of higher-order functional languages, treating functions as first-class citizens, allowing them to be passed as arguments \cite{barendregt1984lambda}.  Lambda calculus has been proven to be universal in the sense that any computable function can be represented as an expression within the language. \cite{bernays1936alonzo} . Beyond its foundational aspects, this calculus incorporates extensions for modeling side effects, including probabilistic or non-deterministic behaviors and shared memory. Centered around the expression of higher-order functions, where functions can serve as inputs or outputs, it emerges as a potent computational tool.  Higher-order functions form a pivotal abstraction in practical programming languages such as LISP, Scheme, ML, and Haskell.
+
+This chapter introduces the metric lambda calculus presented in \cite{dahlqvist2022syntactic}. The metric lambda calculus is a generalization of the affine lambda calculus, which is a variant of the lambda calculus that enforces that each variable is used at most once. The metric lambda calculus extends the linear lambda calculus by introducing a metric equational system that allows reasoning about approximate program equivalence. This chapter provides an overview of the syntax and metric equational system of the metric lambda calculus.
 
 
-The Lambda-Calculus, developed by Church and Curry in the 1930s, serves as a formal language capturing the key attribute of higher-order functional languages, treating functions as first-class citizens, allowing them to be passed as arguments [\cite{barendregt1984lambda}].  Beyond its foundational aspects, this calculus incorporates extensions for modeling side effects, including probabilistic or non-deterministic behaviors and shared memory. Centered around the expression of higher-order functions, where functions can serve as inputs or outputs, it emerges as a potent computational tool.  Higher-order functions form a pivotal abstraction in practical programming languages such as LISP, Scheme, ML, and Haskell.
 
-% Exemplo de função que só se possa usar uma vez, porque não estou a perceber? 
+\section{The Lambda Calculus}
 
-In quantum information theory, the role of higher-order functions encompasses two fundamental aspects. The first involves the concept of entangled functions and how well-known quantum phenomena find natural descriptions through such functions. The second concerns the interplay between classical objects and quantum objects in a higher-order context. Quantum computation conventionally handles classical and quantum data, while the higher-order context introduces a third data type: functions. These functions fall into two categories - those "quantum-like" (entangled, single-use) and those "classical-like" (duplicable, reusable). Remarkably, this classification transcends input/output types, highlighting the coexistence of quantum-like functions operating on classical data and classical-like functions operating on quantum data. [\cite{selinger2009quantum}].
+The concept of a function takes a central role in the lambda calculus. But what exactly is a function?  In most mathematics, the “functions as graphs” paradigm the “functions as graphs” paradigm is the most elegant and appropriate framework for understanding functions. Within this paradigm, each function $f$ has a fixed domain $X$ and a fixed codomain $Y$. The function $f$ is then a subset of $X \times Y$ that satisfies the property that for each $x \in X$ there is a unique $y \in Y$ such that $(x,y) \in f$. Two functions $f$ and $g$ are equal if they yield the same output on each input, that is if $f(x) = g(x)$ for all $x \in X$. This perspective is known as the extensional view of functions, as it emphasizes that the only observable property of a function is how it maps inputs to outputs.
 
-\subsection{Syntax}
-The grammar and term formation rules of the affine lambda calculus, discussed in [\cite{dahlqvist2022syntactic}], are presented in this subsection.
+On the other hand, the “functions as rules” paradigm is more appropriate within computer science. In this context, defining a function involves specifying a rule or procedure for computing the function. Such a rule is often expressed in the form of a formula, for example, \( f(x) = x^2 \). As with the mathematical paradigm, two functions are considered extensionally equal if they exhibit the same input-output behavior. However, this view also introduces the notion of intensional equality: two functions are intensionally equal if they are defined by (essentially) the same formula.
+
+
+In the lambda calculus, functions are described explicitly as formulae. The function $f:x \mapsto f(x)$ as $\lambda x.f(x)$. The application of a function to an argument is simply the juxtaposition of the two expressions. For instance consider the function $f:x \mapsto x+1$, to compute $f(2)$ we write $(\lambda x.x+1)2$. 
+
+\section{Syntax}
+The grammar and term formation rules of the affine lambda calculus, discussed in \cite{dahlqvist2022syntactic}, are presented in this subsection.
 
 The definition of the grammar for affine lambda calculus is as follows, where $G$ represents a set of ground types.
 \begin{equation} \label{eq:grammar}
@@ -121,9 +127,9 @@ $
 \label{fig:typing_rules_linear}
 \end{figure}
 \vspace{-8pt}
-The no-cloning theorem states that it is impossible to duplicate a quantum bit [\cite{wootters1982single}]. This principle is upheld by the type system outlined in \autoref{fig:typing_rules_linear}, which does not allow the repeated use of a variable (seen as a quantum resource).
+The no-cloning theorem states that it is impossible to duplicate a quantum bit \cite{wootters1982single}. This principle is upheld by the type system outlined in \autoref{fig:typing_rules_linear}, which does not allow the repeated use of a variable (seen as a quantum resource).
 Nevertheless, the linearity
-constraint is often deemed too restrictive, prompting research into relaxing it in various computational paradigms. In [\cite{dahlqvist2023complete}], the controlled use of a resource multiple times is explored within approximate program equivalence paradigms. Moreover, the grammar introduced allows the specification of how many times a resource can be used—a notion particularly relevant in quantum computation, especially within the NISQ era where resources are scarce.
+constraint is often deemed too restrictive, prompting research into relaxing it in various computational paradigms. In \cite{dahlqvist2023complete}, the controlled use of a resource multiple times is explored within approximate program equivalence paradigms. Moreover, the grammar introduced allows the specification of how many times a resource can be used—a notion particularly relevant in quantum computation, especially within the NISQ era where resources are scarce.
 
 Linear $\lambda$-calculus comes equipped with a class of equations, given in \autoref{fig:equations-linear-lambda}, specifically equations-in-context $\Gamma \triangleright v = w : \mathbb {A}$.
 
@@ -155,8 +161,8 @@ Linear $\lambda$-calculus comes equipped with a class of equations, given in \au
 
 
 
-\subsection{Metric equational system}
-Metric equations [\cite{mardare2016quantitative}, \cite{mardare2017axiomatizability}] are a strong candidate for reasoning about approximate program equivalence. These equations take the form of $t=_{\epsilon} s$, where  $\epsilon$ is a non-negative rational representing the ``maximum distance" between the two terms $t$ and $s$. The metric equational system for linear lambda calculus is depicted in \autoref{fig:metric deductive system} [\cite{dahlqvist2022syntactic}].
+\section{Metric equational system}
+Metric equations \cite{mardare2016quantitative}, \cite{mardare2017axiomatizability} are a strong candidate for reasoning about approximate program equivalence. These equations take the form of $t=_{\epsilon} s$, where  $\epsilon$ is a non-negative rational representing the ``maximum distance" between the two terms $t$ and $s$. The metric equational system for linear lambda calculus is depicted in \autoref{fig:metric deductive system} \cite{dahlqvist2022syntactic}.
 \vspace{-10pt}
 \begin{figure} [H]
 \begin{equation*}
@@ -292,8 +298,60 @@ $ \end{minipage}
 
 
 
-In the quantum paradigm, a potential notion of approximate equivalence arises from the so-called diamond norm [\cite{watrous2018theory}], which induces a metric (roughly, a distance function) on the space of quantum programs (seen semantically as completely positive trace-preserving super-operators). This norm relies on another norm known as the trace norm. The $\lVert  \rVert_{1}$ latter is defined by  $\lVert A \rVert_{1} = \text{Tr}\sqrt{A^{\dag}A}$  for matrices $A \in \mathbb{C}^{n\times n}$. The trace norm induces a metric on the set of density matrices which is defined by $d(\rho, \sigma) = \lVert \rho -\sigma\rVert_{1}$. On the other hand, it is well known that the distance $d(vv^{\dag}, uu^{\dag})$ between two quantum states $v$ and $u$ is their Euclidean distance in the Bloch
-sphere [\cite{wallman2016noise,nielsen2010quantum}]. The Euclidean norm of a vector $u \in \mathbb{C}^{n} $ is defined as:
+
+
+
+
+\chapter{Quantum Meets Lambda Calculus} \label{sec:Quantum Lambda Calculus}
+
+In quantum information theory, the role of higher-order functions encompasses two fundamental aspects. The first involves the concept of entangled functions and how well-known quantum phenomena find natural descriptions through such functions. The second concerns the interplay between classical objects and quantum objects in a higher-order context. Quantum computation conventionally handles classical and quantum data, while the higher-order context introduces a third data type: functions. These functions fall into two categories - those "quantum-like" (entangled, single-use) and those "classical-like" (duplicable, reusable). Remarkably, this classification transcends input/output types, highlighting the coexistence of quantum-like functions operating on classical data and classical-like functions operating on quantum data. \cite{selinger2009quantum}.
+
+\section{Quantum Computing Preliminaries} \label{sec:Quantum Computing Preliminaries}
+This section presents background on quantum information and quantum computation \cite{nielsen2010quantum}.
+
+
+The basic unit of information in quantum computation is a quantum bit or qubit \cite{perdrix2008quantum}. The state of a single qubit is described by a normalized vector of the 2-dimensional Hilbert space $\mathbb{C}^{2}$. When global phases are ignored we can represent a quantum state $\ket{\psi} \in \mathbb{C}^{2}$ in the form,
+\begin{equation} \label{eq:qubit_bs}
+     \cos\left(\frac{\theta}{2}\right) \ket{0} + e^{i\phi}\sin\left(\frac{\theta}{2}\right)\ket{1}
+\end{equation}
+which corresponds to a point in the unit sphere where $\theta$ marks the latitude (\textit{i.e.} the polar angle) and $\phi$ marks the longitude (\textit{i.e.} the azimuthal angle). This representation is traditionally called the Bloch sphere representation. A point in the latter representation
+corresponds to the vector in $\mathbb{R}^{3}$ defined by $(\cos \phi \sin \theta, \sin \phi \sin \theta, \cos \theta)$ and often called Bloch vector.
+
+An $n$-qubit state can be represented by a unit vector in $2^n$-dimensional Hilbert space $\mathbb{C}^{2^{n}}$. An $n$-qubit mixed state can be represented by a density operator $ \mathbb{C}^{2^{n}} \xrightarrow{} \mathbb{C}^{2^{n}}$, whose matrix representation is $\rho = \Sigma_{i} \hspace{2pt} p_{i} \vert \phi_{i} \rangle \langle \phi_{i} \vert$. A density operator encodes uncertainty about the current state of the quantum system at hand. For example, a mixed state with half probability of $\vert 0 \rangle$ and $\vert 1 \rangle$ can be represented by $\frac{\vert 0 \rangle \langle 0 \vert + \vert 1 \rangle \langle 1 \vert}{2}=I/2$, where $I$ is the identity matrix.  One usually denotes density matrices by the greek letters $\rho$, $\sigma$, and so forth. The set of density operators is denoted by $\mathcal{D}_{n} \subseteq \mathbb{C}^{ 2^{n \times n}}$.
+
+Measurements extract classical information from quantum states.  If a measurement ${M_m}$ is performed on a state $\rho$, the outcome $m$ is observed with probability $p_m = \text{Tr}(M_{m} \rho M^{\dag}_{m})$ for each $m$. Moreover, after a measurement yielding outcome $m$, the state collapses to $M_{m}\rho M^{\dag}_{m}/p_{m}$. 
+
+
+Operations on quantum systems can be described using unitary operators. An operator, $U$, is unitary if its Hermitian conjugate is its own inverse, \textit{i.e.}, $U^{\dag} U= UU^{\dag} = I$. For a pure state $|\psi \rangle$, a unitary operator $U$ describes an evolution from $|\psi \rangle$ to $ U|\psi \rangle$. Similarly, for a density operator $\rho $, the corresponding evolution is $\rho \mapsto U\rho U^{\dag}$. For example, the bit flip gate $X=\big(\begin{smallmatrix}
+  0 & 1\\
+  1 & 0
+\end{smallmatrix}\big)$ maps  $\vert 0 \rangle$  to  $\vert 1 \rangle$ and  $\vert 1 \rangle$  to  $\vert 0 \rangle$. On the other hand, the Hadamard gate $H= \frac{1}{\sqrt{2}}\big(\begin{smallmatrix}
+  1 & 1\\
+  1 & -1
+\end{smallmatrix}\big)$ maps $\vert 0 \rangle$ to  $ \frac{\vert 0 \rangle + \vert 1 \rangle }{\sqrt{2}} $ (denoted as $\vert + \rangle $) and $\vert 1 \rangle$ to $ \frac{\vert 0 \rangle - \vert 1 \rangle }{\sqrt{2}} $ (denoted as $\vert - \rangle $). There are also multi-qubit gates, such as $C\hspace{-2pt}N\hspace{-1pt}O\hspace{-1pt}T$, which leaves the states $\vert 0 0 \rangle$ and  $\vert 0 1 \rangle$ unchanged, and maps $\vert 1 0 \rangle$ and $\vert 1 1 \rangle$ to each other.
+
+More broadly, the evolution of a quantum system can be defined by a super-operator $E$, which is a completely-positive and trace-preserving linear map from $\mathcal{D} (n)$ to $\mathcal{D} (m)$. A super-operator $E$ is called positive if it sends positive matrices to positive matrices, \textit{i.e.} $A \geq 0 \Rightarrow{} E A \geq 0$. A super-operator is said to be completely positive if, for any positive integer $k$ and any $k$-dimensional Hilbert space $\mathbb{C}^{2^{k}}$, the super-operator $E \otimes I_{\mathbb{C}^{2^{k}}}$ is a positive map on $\mathcal{D}(n \times k)$. Finally, a super-operator
+$E$ is called trace-preserving if $\text{Tr} \hspace{ 2pt} E A = \text{Tr} A$ \cite{watrous2018theory}. Completely-positive, trace-preserving super-operators are traditionally called quantum channels.
+
+For every super-operator $ E: \mathcal{D}(n) \xrightarrow{} \mathcal{D}(m)$, there exists a set of Kraus operators $\{\epsilon_{k}\}_{k}$ such that $ E(\rho)= \Sigma_{k} \hspace{2pt} \epsilon_{k}\hspace{2pt} \rho \hspace{2pt} \epsilon_{k}^{\dag}$  for any input $\rho \in  \mathcal{D}(n) $. Note that the set of Kraus operators is finite if the Hilbert space is finite-dimensional. The Kraus form of $E$ is written as $E = \Sigma_{k} \hspace{2pt} \epsilon_{k} \circ  \epsilon_{k}^{\dag}$.
+
+A matrix $A \in  \mathbb{C}^{n\times n}$ is Hermitian if $A = A^{\dag}$.
+A matrix $A \in \mathbb{C}^{n\times n}$ is said to be normal if $AA^{\dag} =  A^{\dag}A$. Clearly every Hermitian matrix is normal. Note also that for every matrix $A \in C^{n\times n}$ the matrix $A^{\dag}A$ is Hermitian. Next, it is well-known that by appealing to the spectral theorem [NC16], every normal matrix $A \in  \mathbb{C}^{n\times n}$ can be expressed as a linear combination $\sum_{i} \lambda_{i}b_{i}b_{i}^{\dag}$ where the set $\{b_{i}, \ldots , b{n}\}$ is an orthonormal basis of $\mathbb{C}^{n}$. Using this last result we can extend any function $f:\mathbb{C} \xrightarrow{} \mathbb{C}$, to normal matrices via,
+\begin{equation} \label{eq:apply_f_diag}
+  f(A) = \sum_{i} f(\lambda_{i})b_{i}b_{i}^{\dag}
+\end{equation}
+$\ldots$
+The Bloch vector is given by 
+\begin{equation}
+  \label{eq:Bloch_vector}
+  r_{\mu} = \text{Tr}(\rho \sigma_{\mu})
+  \end{equation}
+
+\todo[inline,size=\normalsize]{add trace, partial trace, reduced density matrix, and respective Bloch Vector, put the last paragragh in the right place and rewrite it} %\label{eq:Bloch\_vector})}
+
+
+In the quantum paradigm, a potential notion of approximate equivalence arises from the so-called diamond norm \cite{watrous2018theory}, which induces a metric (roughly, a distance function) on the space of quantum programs (seen semantically as completely positive trace-preserving super-operators). This norm relies on another norm known as the trace norm. The $\lVert  \rVert_{1}$ latter is defined by  $\lVert A \rVert_{1} = \text{Tr}\sqrt{A^{\dag}A}$  for matrices $A \in \mathbb{C}^{n\times n}$. The trace norm induces a metric on the set of density matrices which is defined by $d(\rho, \sigma) = \lVert \rho -\sigma\rVert_{1}$. On the other hand, it is well known that the distance $d(vv^{\dag}, uu^{\dag})$ between two quantum states $v$ and $u$ is their Euclidean distance in the Bloch
+sphere \cite{wallman2016noise,nielsen2010quantum}. The Euclidean norm of a vector $u \in \mathbb{C}^{n} $ is defined as:
 \begin{equation} \label{eq:euclidean_distance}
 \begin{centering}
 \hspace{80pt}
@@ -307,7 +365,7 @@ The trace distance between two super-operators $E, E': \mathbb{C}^{n\times n} \x
  T(E,E')= \max\{\lVert (E-E') A \rVert_{1} \hspace{2pt}  \vert \hspace{2pt}  \lVert A \rVert_{1}=1\} 
  \end{centering}
 \end{equation}
-Unfortunately, this norm is not stable under tensoring [\cite{watrous2018theory}], and consequently, the diamond norm, which is based on the trace norm, is used instead. The diamond norm between two super-operators $E, E': \mathbb{C}^{n\times n} \xrightarrow{} \mathbb{C}^{m\times m }$ is defined as:
+Unfortunately, this norm is not stable under tensoring \cite{watrous2018theory}, and consequently, the diamond norm, which is based on the trace norm, is used instead. The diamond norm between two super-operators $E, E': \mathbb{C}^{n\times n} \xrightarrow{} \mathbb{C}^{m\times m }$ is defined as:
 \begin{equation}  \label{eq:diamond_distance}
 \begin{centering}
 \hspace{110pt}
@@ -317,7 +375,7 @@ Unfortunately, this norm is not stable under tensoring [\cite{watrous2018theory}
 where $I_{n} $ is the identity super-operator over the space $\mathbb{C}^{n\times n}$.
 
 
-Consider an operator  $ \text{r} : (\mathbb{C}^{n} \xrightarrow[]{} \mathbb{C}^{m}) \xrightarrow[]{} (\mathbb{C}^{n\times n}\xrightarrow[]{} \mathbb{C}^{m\times m})$ that sends an operator $T$ to the mapping $A \mapsto TAT^{\dag}$. The exact calculation of distances induced by $\lVert \rVert_{\diamondsuit}$ tends to be quite complicated, but a useful property for calculating the distance between quantum channels in the image of $r$ is provided [\cite{watrous2018theory}]:
+Consider an operator  $ \text{r} : (\mathbb{C}^{n} \xrightarrow[]{} \mathbb{C}^{m}) \xrightarrow[]{} (\mathbb{C}^{n\times n}\xrightarrow[]{} \mathbb{C}^{m\times m})$ that sends an operator $T$ to the mapping $A \mapsto TAT^{\dag}$. The exact calculation of distances induced by $\lVert \rVert_{\diamondsuit}$ tends to be quite complicated, but a useful property for calculating the distance between quantum channels in the image of $r$ is provided \cite{watrous2018theory}:
 Consider two operators $T, S : n \xrightarrow{} m$. There exists a unit vector $v \in \mathbb{C}^{n}$ such that, 
 \begin{equation} \label{eq:norm_iso_r}
 \begin{centering}
@@ -326,12 +384,13 @@ Consider two operators $T, S : n \xrightarrow{} m$. There exists a unit vector $
 \end{equation}
 
 
-The notion of a diamond norm is used in [\cite{dahlqvist2022syntactic}] which introduces a simple metric theory based on the idea of approximating a quantum operation. The authors argue that their deductive system allows to compute an approximate distance between two quantum programs easily as opposed to computing an exact distance ``semantically" which tends to involve quite complex operators. 
-Other works in this spirit include [\cite{hung2019quantitative}] and [\cite{tao2021gleipnir}]. They reason about the issue of noise in a quantum while-language by developing a deductive system to determine how similar a quantum program is from its idealised, noise-free version. The former introduces the ($Q$,$\lambda$)-diamond norm which analyzes the output error given that the input quantum state satisfies some quantum predicate $Q$ to degree $\lambda$. However, it does not specify any practical method for obtaining non-trivial quantum predicates. In fact, the methods used in [\cite{hung2019quantitative}] cannot produce any post conditions other than $(I,0)$ (\textit{i.e.}, the identity matrix $I$ to degree 0, analogous to a ``true” predicate) for large quantum programs. The latter specifically addresses and delves into this aspect. 
 
-\vspace{-7pt}
 
-\subsection{Interpretation}
+
+
+
+\section{Quantum Lambda Calculus:Interpretation} \label{sec:Quantum Lambda Calculus:Interpretation}
+
 In order to define the interpretation of judgments $\Gamma \triangleright v: \mathbb{A}$, it is necessary to establish some notation first. Considering $v \in V$, $w \in W$, and $u \in U$  where $V, W, U$ represent vector spaces,  $\textsc{sw}_{V,W} : V\otimes W \xrightarrow{} W \otimes V$, denotes the swap operator, defined as $\textsc{sw}_{V,W}= v\otimes w \mapsto w \otimes v$;    $\rho_{V} : \mathbb{C} \otimes V \xrightarrow{} V $ is the left unitor defined as $\rho_{V}= 1 \otimes v \mapsto v $; $\lambda_{V} : V  \otimes \mathbb{C} \xrightarrow{} V $ is the right unitor defined as $\lambda_{V}= v \otimes 1 \mapsto v$; $\alpha_{V,W,U} : V  \otimes (W \otimes U) \xrightarrow{} (V  \otimes W) \otimes U$ is the left associator, defined as $\alpha_{V,W,U}= v \otimes (w \otimes u) \mapsto (v \otimes w) \otimes u $; and $!_{V}: V \xrightarrow{} \mathbb{C}$ is the trace operation applied to a vector, defined as  $!_{V}= v \xrightarrow{} \text{Tr} \hspace{1pt}v$. Moreover, for all operators $f: V \otimes W \xrightarrow{} U$, the operator $\overline{f} : V \xrightarrow{} (W \multimap U)$ denotes the corresponding curried version, defined as $\overline{f}(v) = w \mapsto  f(v,w)$. The subscripts in these operators will be omitted unless ambiguity arises.
 
 For all ground types $X \in G$  the interpretation of $[\![X]\!]$  is postulated as a vector space $V$. Types are interpreted inductively using the unit $\mathbb{I}$, the tensor $\otimes$, and the linear map $\multimap$. Given a non-empty context $\Gamma=\Gamma',x: \mathbb{A}$, its interpretation is defined by $[\![\Gamma',x: \mathbb{A}]\!] = [\![\Gamma']\!] \otimes [\![\mathbb{A}]\!]$ if $\Gamma'$ is non-empty and $[\![\Gamma',x: \mathbb{A}]\!] = [\![\mathbb{A}]\!]$ otherwise. The empty context $-$ is interpreted as $[\![-]\!] = \mathbb{I}$. Given $X_{1}, . . . ,X_{n} \in V$, the $n$-tensor $(\ldots (X_1 \otimes X_2) \otimes \ldots ) \otimes X_{n}$ is denoted as $X_1 \otimes \ldots \otimes X_{n}$, and similarly for operators. 
@@ -342,7 +401,7 @@ On the other hand, $\text{jn}_{\Gamma_1;\ldots;\Gamma_n}$ denotes the inverse of
 of exchange operators.
 
 For every operation symbol $f: \mathbb{A}_{1}, \ldots, \mathbb{A}_{n} \xrightarrow{} \mathbb{A}$ we assume the existence of an operator $[\![f]\!]: [\![\mathbb{A}_{1}]\!] \otimes \ldots \otimes [\![\mathbb{A}_{n}]\!] \xrightarrow{}  [\![\mathbb{A}]\!] $.
-The interpretation of judgments is defined by induction over derivations according to the rules in \autoref{fig:denotational_sem} [\cite{dahlqvist2022syntactic}].
+The interpretation of judgments is defined by induction over derivations according to the rules in \autoref{fig:denotational_sem} \cite{dahlqvist2022syntactic}.
 \vspace{-7pt}
 \begin{figure} [H]
 \begin{equation*}
@@ -434,119 +493,7 @@ $
 
 
 
-\section{Graded Lambda Calculus} \label{sec:Graded Lambda Calculus}
 
-\todo[inline,size=\normalsize]{Intro} %\label{eq:Bloch\_vector})}
-
-\subsection{Syntax}
-
-Here, the following grammar of types is used.
-\begin{equation*} \label{eq:grammar_graded}
-  \centering
-   \mathbb{A} ::= X  \hspace{3 pt} \vert \hspace{3 pt} \mathbb{I}  \hspace{3 pt}  \vert \hspace{3 pt} \mathbb{A}  \otimes  \mathbb{A} \hspace{3 pt} \vert \hspace{3 pt} \mathbb{A} \oplus \mathbb{A} \hspace{3 pt}  \vert \hspace{3 pt}   \mathbb{A} \multimap  \mathbb{A} \vert \hspace{3 pt} !_{r} \mathbb{A} \hspace{100pt} {X \in G,r \in \mathbb{N}} 
-  \end{equation*}
-
-
-  \begin{figure} [H]
-    {\small
-    \begin{equation*}
-    \begin{split}
-    \begin{aligned}
-    &
-    \begin{minipage}[t]{0.3\textwidth}
-    $\begin{array}{c}
-         \Gamma_{i} \triangleright v_{i}: !_{r\cdot s_{i}} \mathbb{A}_{i} \quad x_{1}:!_{ s_{1}} \mathbb{A}_{1},\ldots, x_{n}:!_{s_{n}} \mathbb{A}_{n}\triangleright u: \mathbb{A} \quad E \in \text{Sf}(\Gamma_{1}; \ldots; \Gamma_{n})\\
-        \hline
-       E \triangleright \text{pr}_{(r,[s_1,\ldots,s_n])} v_1, \ldots, v_n \text{ fr } x_1, \ldots, x_n. \hspace{1pt} u : !_{r} \mathbb{A}
-    \end{array}
-    $
-    \end{minipage}
-    \hspace{193pt}
-    (!_{i})
-     \hspace{10pt}
-    \begin{minipage}[t]{0.3\textwidth}
-    $\begin{array}{c}
-      \Gamma  \triangleright v : !_{1} \mathbb{A} \\
-        \hline
-        \Gamma \triangleright \text{dr } v:\mathbb{A}
-    \end{array}
-    $ \end{minipage}
-    \hspace{-74pt} (!_{e}) \\
-    &
-    \begin{minipage}[t]{0.3\textwidth}
-    $\begin{array}{c}
-        \Gamma \triangleright v : !_{0} \mathbb{A} \hspace{7pt} \Delta \triangleright u: \mathbb{B} \hspace{7pt} E \in \text{Sf}(\Gamma, \Delta)\\
-        \hline
-       E \triangleright v.\hspace{1pt}u: \mathbb{B}
-    \end{array}
-    $
-    \end{minipage}
-    \hspace{35pt}
-    (!_{0})
-    \hspace{5pt}
-    \begin{minipage}[t]{0.3\textwidth}
-    $\begin{array}{c}
-      \Gamma\triangleright v: !_{n+m} \mathbb{A} \hspace{7pt} \Delta,x:!_{n} \mathbb{A}, y:!_{m} \mathbb{B}\triangleright u: \mathbb{B} \hspace{7pt} E \in\text{Sf}(\Gamma, \Delta)\\
-        \hline
-       E \triangleright \text{cp}_{(n,m)} v \text{ to } x,y.  \hspace{1pt} u: \mathbb{B}
-    \end{array}
-    $ \end{minipage}
-    \hspace{120pt} (!_{n+m}) \\
-    \end{aligned}
-    \end{split}
-    \end{equation*}
-    }  
-    \caption{Term formation rules of graded lambda calculus.}
-    \label{fig:typing_rules_graded}
-    \end{figure}
- 
-
-\section{Quantum Computing Preliminaries} \label{sec:Quantum Computing Preliminaries}
-This section presents background on quantum information and quantum computation [\cite{nielsen2010quantum}].
-
-
-The basic unit of information in quantum computation is a quantum bit or qubit [\cite{perdrix2008quantum}]. The state of a single qubit is described by a normalized vector of the 2-dimensional Hilbert space $\mathbb{C}^{2}$. When global phases are ignored we can represent a quantum state $\ket{\psi} \in \mathbb{C}^{2}$ in the form,
-\begin{equation} \label{eq:qubit_bs}
-     \cos\left(\frac{\theta}{2}\right) \ket{0} + e^{i\phi}\sin\left(\frac{\theta}{2}\right)\ket{1}
-\end{equation}
-which corresponds to a point in the unit sphere where $\theta$ marks the latitude (\textit{i.e.} the polar angle) and $\phi$ marks the longitude (\textit{i.e.} the azimuthal angle). This representation is traditionally called the Bloch sphere representation. A point in the latter representation
-corresponds to the vector in $\mathbb{R}^{3}$ defined by $(\cos \phi \sin \theta, \sin \phi \sin \theta, \cos \theta)$ and often called Bloch vector.
-
-An $n$-qubit state can be represented by a unit vector in $2^n$-dimensional Hilbert space $\mathbb{C}^{2^{n}}$. An $n$-qubit mixed state can be represented by a density operator $ \mathbb{C}^{2^{n}} \xrightarrow{} \mathbb{C}^{2^{n}}$, whose matrix representation is $\rho = \Sigma_{i} \hspace{2pt} p_{i} \vert \phi_{i} \rangle \langle \phi_{i} \vert$. A density operator encodes uncertainty about the current state of the quantum system at hand. For example, a mixed state with half probability of $\vert 0 \rangle$ and $\vert 1 \rangle$ can be represented by $\frac{\vert 0 \rangle \langle 0 \vert + \vert 1 \rangle \langle 1 \vert}{2}=I/2$, where $I$ is the identity matrix.  One usually denotes density matrices by the greek letters $\rho$, $\sigma$, and so forth. The set of density operators is denoted by $\mathcal{D}_{n} \subseteq \mathbb{C}^{ 2^{n \times n}}$.
-
-Measurements extract classical information from quantum states.  If a measurement ${M_m}$ is performed on a state $\rho$, the outcome $m$ is observed with probability $p_m = \text{Tr}(M_{m} \rho M^{\dag}_{m})$ for each $m$. Moreover, after a measurement yielding outcome $m$, the state collapses to $M_{m}\rho M^{\dag}_{m}/p_{m}$. 
-
-
-Operations on quantum systems can be described using unitary operators. An operator, $U$, is unitary if its Hermitian conjugate is its own inverse, \textit{i.e.}, $U^{\dag} U= UU^{\dag} = I$. For a pure state $|\psi \rangle$, a unitary operator $U$ describes an evolution from $|\psi \rangle$ to $ U|\psi \rangle$. Similarly, for a density operator $\rho $, the corresponding evolution is $\rho \mapsto U\rho U^{\dag}$. For example, the bit flip gate $X=\big(\begin{smallmatrix}
-  0 & 1\\
-  1 & 0
-\end{smallmatrix}\big)$ maps  $\vert 0 \rangle$  to  $\vert 1 \rangle$ and  $\vert 1 \rangle$  to  $\vert 0 \rangle$. On the other hand, the Hadamard gate $H= \frac{1}{\sqrt{2}}\big(\begin{smallmatrix}
-  1 & 1\\
-  1 & -1
-\end{smallmatrix}\big)$ maps $\vert 0 \rangle$ to  $ \frac{\vert 0 \rangle + \vert 1 \rangle }{\sqrt{2}} $ (denoted as $\vert + \rangle $) and $\vert 1 \rangle$ to $ \frac{\vert 0 \rangle - \vert 1 \rangle }{\sqrt{2}} $ (denoted as $\vert - \rangle $). There are also multi-qubit gates, such as $C\hspace{-2pt}N\hspace{-1pt}O\hspace{-1pt}T$, which leaves the states $\vert 0 0 \rangle$ and  $\vert 0 1 \rangle$ unchanged, and maps $\vert 1 0 \rangle$ and $\vert 1 1 \rangle$ to each other.
-
-More broadly, the evolution of a quantum system can be defined by a super-operator $E$, which is a completely-positive and trace-preserving linear map from $\mathcal{D} (n)$ to $\mathcal{D} (m)$. A super-operator $E$ is called positive if it sends positive matrices to positive matrices, \textit{i.e.} $A \geq 0 \Rightarrow{} E A \geq 0$. A super-operator is said to be completely positive if, for any positive integer $k$ and any $k$-dimensional Hilbert space $\mathbb{C}^{2^{k}}$, the super-operator $E \otimes I_{\mathbb{C}^{2^{k}}}$ is a positive map on $\mathcal{D}(n \times k)$. Finally, a super-operator
-$E$ is called trace-preserving if $\text{Tr} \hspace{ 2pt} E A = \text{Tr} A$ [\cite{watrous2018theory}]. Completely-positive, trace-preserving super-operators are traditionally called quantum channels.
-
-For every super-operator $ E: \mathcal{D}(n) \xrightarrow{} \mathcal{D}(m)$, there exists a set of Kraus operators $\{\epsilon_{k}\}_{k}$ such that $ E(\rho)= \Sigma_{k} \hspace{2pt} \epsilon_{k}\hspace{2pt} \rho \hspace{2pt} \epsilon_{k}^{\dag}$  for any input $\rho \in  \mathcal{D}(n) $. Note that the set of Kraus operators is finite if the Hilbert space is finite-dimensional. The Kraus form of $E$ is written as $E = \Sigma_{k} \hspace{2pt} \epsilon_{k} \circ  \epsilon_{k}^{\dag}$.
-
-A matrix $A \in  \mathbb{C}^{n\times n}$ is Hermitian if $A = A^{\dag}$.
-A matrix $A \in \mathbb{C}^{n\times n}$ is said to be normal if $AA^{\dag} =  A^{\dag}A$. Clearly every Hermitian matrix is normal. Note also that for every matrix $A \in C^{n\times n}$ the matrix $A^{\dag}A$ is Hermitian. Next, it is well-known that by appealing to the spectral theorem [NC16], every normal matrix $A \in  \mathbb{C}^{n\times n}$ can be expressed as a linear combination $\sum_{i} \lambda_{i}b_{i}b_{i}^{\dag}$ where the set $\{b_{i}, \ldots , b{n}\}$ is an orthonormal basis of $\mathbb{C}^{n}$. Using this last result we can extend any function $f:\mathbb{C} \xrightarrow{} \mathbb{C}$, to normal matrices via,
-\begin{equation} \label{eq:apply_f_diag}
-  f(A) = \sum_{i} f(\lambda_{i})b_{i}b_{i}^{\dag}
-\end{equation}
-$\ldots$
-The Bloch vector is given by 
-\begin{equation}
-  \label{eq:Bloch_vector}
-  r_{\mu} = \text{Tr}(\rho \sigma_{\mu})
-  \end{equation}
-
-\todo[inline,size=\normalsize]{add trace, partial trace, reduced density matrix, and respective Bloch Vector, put the last paragragh in the right place and rewrite it} %\label{eq:Bloch\_vector})}
-
-
-
-\section{Quantum Lambda Calculus}
 
 
 

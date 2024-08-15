@@ -10,12 +10,12 @@
 \section{Measurements}
 
 In order to established that the theory introduced is valid in quantum programming, it is necessary to build a model. The model can be seen as a category where the morphisms are the CPTP super-operators (quantum channels). The algebric structure of this model is given by the vector spaces. 
-Any completely-positive and trace-preserving map has a diamond norm equal to one [\cite{watrous2018theory}]. Since the measurement operation is completely positive and trace-preserving, its  diamond norm is equal to one. This is a desirable property, as it ensures that the measurement operation does not increase the distance between states, and as a consequence, composition of programs remains valid.
+Any completely-positive and trace-preserving map has a diamond norm equal to one \cite{watrous2018theory}. Since the measurement operation is completely positive and trace-preserving, its  diamond norm is equal to one. This is a desirable property, as it ensures that the measurement operation does not increase the distance between states, and as a consequence, composition of programs remains valid.
 
 
 \subsection{Example: Deutsch's Algorithm}
 
-In 1985, David Deutsch presented an algorithm that determines whether a function $f$ is constant for a single-bit input (\textit{i.e.}, either equal to 1 for all $x$ or equal to 0 for all $x$) or balanced (\textit{i.e.}, equal to 1 for half of the values of x and equal to 0 for the other half) [\cite{deutsch1985quantum}]. Classically, to determine which case holds requires running $f$ twice. Quantumly, it suffices to run f once. The Deutsch-Jozsa Algorithm is a simple example of a quantum algorithm that outperforms its classical counterpart. The algorithm is based on the concept of a quantum oracle, which is a black box that implements a unitary transformation $U_f$ such that $U_f \ket{x}\ket{y} = \ket{x}\ket{y \oplus f(x)}$, where $\oplus$ denotes addition modulo 2. The quantum circuit implementing Deutsch’s algorithm is presented in  \autoref{fig:Deutsch-Jozsa}.
+In 1985, David Deutsch presented an algorithm that determines whether a function $f$ is constant for a single-bit input (\textit{i.e.}, either equal to 1 for all $x$ or equal to 0 for all $x$) or balanced (\textit{i.e.}, equal to 1 for half of the values of x and equal to 0 for the other half) \cite{deutsch1985quantum}. Classically, to determine which case holds requires running $f$ twice. Quantumly, it suffices to run f once. The Deutsch-Jozsa Algorithm is a simple example of a quantum algorithm that outperforms its classical counterpart. The algorithm is based on the concept of a quantum oracle, which is a black box that implements a unitary transformation $U_f$ such that $U_f \ket{x}\ket{y} = \ket{x}\ket{y \oplus f(x)}$, where $\oplus$ denotes addition modulo 2. The quantum circuit implementing Deutsch’s algorithm is presented in  \autoref{fig:Deutsch-Jozsa}.
 
 \begin{figure} [H]
   \centering
@@ -104,7 +104,7 @@ Attending to the interpretation of quantum states, concerning the measurement of
 \end{equation} 
 
 
-A measurement error is characterized by reading a "1" as a "0" or vice versa. Furthermore, it's important to note that measurement errors do not impact all states uniformly [\cite{tannu2019mitigating}]. Consequently, there is a discrepancy in how frequently the state "1" is incorrectly read as "0" compared to how often the state "0" is measured as "1" or vice versa.
+A measurement error is characterized by reading a "1" as a "0" or vice versa. Furthermore, it's important to note that measurement errors do not impact all states uniformly \cite{tannu2019mitigating}. Consequently, there is a discrepancy in how frequently the state "1" is incorrectly read as "0" compared to how often the state "0" is measured as "1" or vice versa.
 
 For example, considering there is a 10\% chance of measuring a "0" as a "1" and a 30\% chance of measuring a "1" as a "0", the resulting state after measurement is:
 \begin{equation}
@@ -177,7 +177,7 @@ Therefore, $\text{Deutsch}=_{\epsilon} \text{Deutsch}^{\epsilon}$, and consequen
 
 \section{Conditionals}
 
-The notion of approximate equivalence for quantum programming explored in [\cite{dahlqvist2022syntactic}] does not encompass classical control flow. As a result, preliminary work based on [\cite{crole1993categories,selinger2013lecture}]   has been undertaken to address the integration of conditionals. 
+The notion of approximate equivalence for quantum programming explored in \cite{dahlqvist2022syntactic} does not encompass classical control flow. As a result, preliminary work based on \cite{crole1993categories,selinger2013lecture}   has been undertaken to address the integration of conditionals. 
 
 \subsection{Syntax}
 
@@ -1091,7 +1091,7 @@ $ \end{minipage}
 
 \paragraph{Proof} In order to validate the metric equational system for conditionals, it is necessary to demonstrate its correctness.
 
-The diamond norm is a particular instance of the operator norm. The operator norm [\cite{guide2006infinite}] for a super-operator $E$ is defined as:
+The diamond norm is a particular instance of the operator norm. The operator norm \cite{guide2006infinite} for a super-operator $E$ is defined as:
 \begin{equation} \label{eq:op_norm}
   \lVert E \rVert_{\sigma} = \text{sup} \{ \lVert E(v) \rVert \hspace{2pt} | \hspace{2pt} \lVert v \rVert = 1 \}
 \end{equation}
@@ -1249,7 +1249,7 @@ Subsequently, it is imperative to prove that:
 
 \textit{Proof.} \quad The proof is as follows:
 
-For any vector spaces $V$, $W$, and $U$, $i: (V \otimes U) \oplus (W \otimes U) \xrightarrow{} (V  \oplus W) \otimes U $. If $V$ has dimension $m$, $W$ has dimension $n$, and $U$ has dimension $o$, then the space $(V \otimes U) \oplus (W \otimes U) $ has dimension $mo+no=(m+n)\cdot o$. Similarly, the space $(V\oplus W) \otimes U$ has dimension $(m+n)\cdot o$. Hence, the spaces have the same dimension. Given that spaces with the same dimension are isomorphic [\cite{hefferon2006linear}], it follows that $i$ is an isomorphism.
+For any vector spaces $V$, $W$, and $U$, $i: (V \otimes U) \oplus (W \otimes U) \xrightarrow{} (V  \oplus W) \otimes U $. If $V$ has dimension $m$, $W$ has dimension $n$, and $U$ has dimension $o$, then the space $(V \otimes U) \oplus (W \otimes U) $ has dimension $mo+no=(m+n)\cdot o$. Similarly, the space $(V\oplus W) \otimes U$ has dimension $(m+n)\cdot o$. Hence, the spaces have the same dimension. Given that spaces with the same dimension are isomorphic \cite{hefferon2006linear}, it follows that $i$ is an isomorphism.
 
 \vspace{10pt}
 
@@ -1528,8 +1528,8 @@ Now, it is finally possible to adress the proof of the metric equation for the c
 
 \subsection{Quantum Teleportation} \label{sec:teleport}
 
-[\cite{bennett1993teleporting}] introduced the concept of quantum teleportation, which is a protocol that allows the transfer of   unknown quantum states between distant parties.  The quantum teleportation protocol is a fundamental building block for quantum communication, quantum computation, and quantum networks, its applications ranging
-from secure quantum communication to distributed quantum computing [\cite{briegel1998quantum,gottesman1999demonstrating,kimble2008quantum}]. %Quantum teleportation enables the development of quantum repeaters, a pivotal technology for the establishment of quantum communication networks, and in general the framework of quantum Internet [\cite{briegel1998quantum,ghalaii2020capacity}].  
+\cite{bennett1993teleporting} introduced the concept of quantum teleportation, which is a protocol that allows the transfer of   unknown quantum states between distant parties.  The quantum teleportation protocol is a fundamental building block for quantum communication, quantum computation, and quantum networks, its applications ranging
+from secure quantum communication to distributed quantum computing \cite{briegel1998quantum,gottesman1999demonstrating,kimble2008quantum}. %Quantum teleportation enables the development of quantum repeaters, a pivotal technology for the establishment of quantum communication networks, and in general the framework of quantum Internet [\cite{briegel1998quantum,ghalaii2020capacity}].  
 %The protocol is based on the entanglement of two qubits and the transmission of two classical bits. Indeed, quantum teleportation can be seen as the rotocol in quantum information that most clearly demonstrates the character of quantum entanglement as a resource: without its presence, such a quantum state transfer would not be possible within the laws of quantum mechanics.
 
 
@@ -1580,7 +1580,7 @@ When formalizing the quantum teleportation protocol within the lambda calculus f
 \end{align*}
 
 
-The only part that is not self- explanatory is EPR, an acronym derived from a famous article written in 1935 by Albert Einstein, Boris Podolsky, and Nathan Rosen , where these authors questioned the completeness of Quantum Mechanics [\cite{einstein1935can}].
+The only part that is not self- explanatory is EPR, an acronym derived from a famous article written in 1935 by Albert Einstein, Boris Podolsky, and Nathan Rosen , where these authors questioned the completeness of Quantum Mechanics \cite{einstein1935can}.
 
 Considering the unitary operations $H: \textit{qbit} \xrightarrow{}  \textit{qbit}$, $X: \textit{qbit} \xrightarrow{}  \textit{qbit}$, $Z: \textit{qbit} \xrightarrow{}  \textit{qbit}$, $I: \textit{qbit} \xrightarrow{}  \textit{qbit}$, and $\textit{CNOT}: \textit{qbit}, \textit{qbit} \xrightarrow{}  \textit{qbit} \otimes \textit{qbit}$ , these functions are defined as follows:
 
@@ -1652,7 +1652,7 @@ With respect to the final step of the protocol, attending to the interpretation 
 %\cite{zurek1991decoherence}
 
 Realistic quantum systems are never isolated, but are immersed
-in the surrounding environment and interact continuously with it [\cite{schlosshauer2005decoherence}]. Decoherence can be seen as the consequence of that  `openness' of quantum systems to their  environments .  To study decoherence in a quantum channel within the presented metric deductive system, one can consider the application of a dephasing channel in the quantum teleportation protocol with a certain probability $p$.
+in the surrounding environment and interact continuously with it \cite{schlosshauer2005decoherence}. Decoherence can be seen as the consequence of that  `openness' of quantum systems to their  environments .  To study decoherence in a quantum channel within the presented metric deductive system, one can consider the application of a dephasing channel in the quantum teleportation protocol with a certain probability $p$.
 
 The Kraus operators of the dephasing channel with probability $p$ are expressed as:
 \begin{equation}
@@ -1748,7 +1748,7 @@ Next, via the metric deductive system in \autoref{fig:metric deductive system}, 
 Therefore $\textbf{Identity} =_{p} \textbf{Identity}^{p}$ and finally, considering the entirety of the quantum teleportation protocol denoted as $\textbf{QTP}$, it follows that $\textbf{QTP} =_{p} \hspace{3pt}\textbf{QTP}^{p}$. This final metric equation indicates that by bounding the error associated with the application of decoherence with a specified probability $p$ to the initial qubit before measurement, it becomes feasible to limit the overall error of the entire quantum teleportation protocol. Moreover, it is interesting to observe that the error associated with the application of decoherence with a certain probability $p$ in one of the qubits corresponds exactly to that probability $p$.
 
 \subsubsection{Noisy Quantum Teleportation: Amplitude Damping}
-Next, the amplitude-damping channel is considered as a source of noise in the quantum teleportation protocol. Similarly to the dephasing channel, the amplitude damping channel serves as a model illustrating the dissipation of energy between a qubit and its environment. An example of this type of noise is found in the spontaneous emission of a photon by a two-level atom into an electromagnetic field environment with either a finite or infinite number of modes at zero temperature [\cite{salles2008experimental, Wang_2011}].
+Next, the amplitude-damping channel is considered as a source of noise in the quantum teleportation protocol. Similarly to the dephasing channel, the amplitude damping channel serves as a model illustrating the dissipation of energy between a qubit and its environment. An example of this type of noise is found in the spontaneous emission of a photon by a two-level atom into an electromagnetic field environment with either a finite or infinite number of modes at zero temperature \cite{salles2008experimental, Wang_2011}.
 
 
 The amplitude damping channel with probability $\gamma$ is described by the Kraus operators:

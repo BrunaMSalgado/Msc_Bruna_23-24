@@ -1,4 +1,4 @@
-\begin{thebibliography}{48}
+\begin{thebibliography}{49}
 \providecommand{\natexlab}[1]{#1}
 \providecommand{\url}[1]{\texttt{#1}}
 \expandafter\ifx\csname urlstyle\endcsname\relax
@@ -24,6 +24,13 @@ P~Nick Benton.
 \newblock A mixed linear and non-linear logic: Proofs, terms and models.
 \newblock In \emph{International Workshop on Computer Science Logic}, pages
   121--135. Springer, 1994.
+
+\bibitem[Bernays(1936)]{bernays1936alonzo}
+Paul Bernays.
+\newblock Alonzo church. an unsolvable problem of elementary number theory.
+  american journal of mathematics, vol. 58 (1936), pp. 345--363.
+\newblock \emph{The Journal of Symbolic Logic}, 1\penalty0 (2):\penalty0
+  73--74, 1936.
 
 \bibitem[Bichsel et~al.(2020)Bichsel, Baader, Gehr, and
   Vechev]{bichsel2020silq}
@@ -64,16 +71,17 @@ Roy~L Crole.
 \newblock \emph{Categories for types}.
 \newblock Cambridge University Press, 1993.
 
-\bibitem[Dahlqvist and Neves(2022)]{dahlqvist2022syntactic}
+\bibitem[Dahlqvist and Neves(2023{\natexlab{a}})]{dahlqvist2022syntactic}
 Fredrik Dahlqvist and Renato Neves.
 \newblock The syntactic side of autonomous categories enriched over generalised
   metric spaces.
-\newblock \emph{arXiv preprint arXiv:2208.14356}, 2022.
+\newblock \emph{Logical Methods in Computer Science}, 19, 2023{\natexlab{a}}.
 
-\bibitem[Dahlqvist and Neves(2023)]{dahlqvist2023complete}
+\bibitem[Dahlqvist and Neves(2023{\natexlab{b}})]{dahlqvist2023complete}
 Fredrik Dahlqvist and Renato Neves.
 \newblock A complete v-equational system for graded lambda-calculus.
-\newblock \emph{arXiv preprint arXiv:2304.02082}, 2023.
+\newblock \emph{Electronic Notes in Theoretical Informatics and Computer
+  Science}, 3, 2023{\natexlab{b}}.
 
 \bibitem[Deutsch(1985)]{deutsch1985quantum}
 David Deutsch.
@@ -123,12 +131,6 @@ Alexander~S Green, Peter~LeFanu Lumsdaine, Neil~J Ross, Peter Selinger, and
 \newblock Quipper: a scalable quantum programming language.
 \newblock In \emph{Proceedings of the 34th ACM SIGPLAN conference on
   Programming language design and implementation}, pages 333--342, 2013.
-
-\bibitem[Grover(1996)]{grover1996fast}
-Lov~K Grover.
-\newblock A fast quantum mechanical algorithm for database search.
-\newblock In \emph{Proceedings of the twenty-eighth annual ACM symposium on
-  Theory of computing}, pages 212--219, 1996.
 
 \bibitem[Guide(2006)]{guide2006infinite}
 A~Hitchhiker’s Guide.
@@ -218,12 +220,6 @@ Maximilian Schlosshauer.
 \newblock \emph{Reviews of Modern physics}, 76\penalty0 (4):\penalty0 1267,
   2005.
 
-\bibitem[Selinger(2004)]{selinger2004towards}
-Peter Selinger.
-\newblock Towards a quantum programming language.
-\newblock \emph{Mathematical Structures in Computer Science}, 14\penalty0
-  (4):\penalty0 527--586, 2004.
-
 \bibitem[Selinger(2013)]{selinger2013lecture}
 Peter Selinger.
 \newblock Lecture notes on the lambda calculus, 2013.
@@ -233,6 +229,14 @@ Peter Selinger, Beno{\i}t Valiron, et~al.
 \newblock Quantum lambda calculus.
 \newblock \emph{Semantic techniques in quantum computation}, pages 135--172,
   2009.
+
+\bibitem[Serrano et~al.(2022)Serrano, Cruz-Lemus, Perez-Castillo, and
+  Piattini]{serrano2022quantum}
+Manuel~A Serrano, Jose~A Cruz-Lemus, Ricardo Perez-Castillo, and Mario
+  Piattini.
+\newblock Quantum software components and platforms: Overview and quality
+  assessment.
+\newblock \emph{ACM Computing Surveys}, 55\penalty0 (8):\penalty0 1--31, 2022.
 
 \bibitem[Shor(1994)]{shor1994algorithms}
 Peter~W Shor.
@@ -298,6 +302,11 @@ Glynn Winskel.
 William~K Wootters and Wojciech~H Zurek.
 \newblock A single quantum cannot be cloned.
 \newblock \emph{Nature}, 299\penalty0 (5886):\penalty0 802--803, 1982.
+
+\bibitem[Zhao(2020)]{zhao2020quantum}
+Jianjun Zhao.
+\newblock Quantum software engineering: Landscapes and horizons.
+\newblock \emph{arXiv preprint arXiv:2007.07047}, 2020.
 
 \bibitem[Zorzi(2016)]{zorzi2016quantum}
 Margherita Zorzi.
