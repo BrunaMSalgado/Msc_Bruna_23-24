@@ -16,17 +16,48 @@ On the other hand, the “functions as rules” paradigm is more appropriate wit
 
 In the lambda calculus, functions are described explicitly as formulae. The function $f:x \mapsto f(x)$ is represented as $\lambda x.f(x)$.  Applying a function to an argument is done by juxtaposing the two expressions. For instance consider the function $f:x \mapsto x+1$, to compute $f(2)$ one writes $(\lambda x.x+1)(2)$.
 
+The expression of higher‑order functions - functions whose inputs and/or outputs are themselves functions- in a simple manner is an essential feature of lambda calculus. For example, the composition operator $f,g \mapsto f \circ g$ is written as $\lambda f. \lambda g. \lambda x. f(g(x))$. Considering the functions $f:x \mapsto x^2$ and $g:x \mapsto x+1$, to compute $(f \circ g)(2)$ one writes $$(\lambda f. \lambda g. \lambda x. f(g(x)))(\lambda x.x^2)(\lambda x.x+1)(2).$$
+
+As mentioned above,  within  the “functions as rules” paradigm, is not
+always necessary to specify the domain and codomain of a function in advance. For instance, the identity function $f: x \mapsto x$, can have any set $X$ as its domain and codomain, provided that the domain and codomain are the same. In this case, one says that $f$ has type $X \rightarrow{} X$. In the case of the composition operator, $h=\lambda f. \lambda g. \lambda x. f(g(x))$, the domain and codomain of the functions $f$ and $g$ must match. Specifically, $f$ can have any set $X$ as its domain and any set  $Y$ as its codomain, provided that $Y$ is the domain of $g$. Similarly, $g$ can have any set $Z$ as its codomain.  Thus,  $h$ has type $$(X \rightarrow{} Y) \rightarrow{} (Y \rightarrow{} Z) \rightarrow{} (X \rightarrow{} Z).$$ 
+
+This flexibility regarding domains and codomains enables operations on functions that are not possible in ordinary mathematics. For instance, if $f = \lambda x.x$ is the identity function, then one has that $f(x) = x$ for any $x$. In particular, by substituting $f$ for $x$, one obtains $f(f) = (\lambda x.x)(f) = f$. Note that the equation $f(f) = f$ is not valid in conventional mathematics, as it is not permissible, due to set-theoretic constraints, for a function to belong to its own domain.
+
+Nevertheless, this remarkable aspect of lambda calculus, this work focuses on a more restricted version of the lambda calculus, known as the simply-typed lambda calculus. Here, each expression is always assigned a type, which is very similar to the situation in mathematics. A function may only be applied to an argument if the argument's type aligns with the function's expected domain. Consequently, terms such as $f(f)$ are not allowed, even if $f$ represents the identity function.
+
+
+
+%In order to be able to manipulate lambda-terms more easily, one can associate a type to each lambda-term
 
 
 \section{Syntax}
+
 The grammar and term formation rules of the affine lambda calculus, discussed in \cite{dahlqvist2022syntactic}, are presented in this subsection.
 
-The definition of the grammar for affine lambda calculus is as follows, where $G$ represents a set of ground types.
-\begin{equation} \label{eq:grammar}
+As previously mentioned, this work focuses on the simply-typed lambda calculus, this work focuses on the simply-typed lambda calculus, where each lambda term is assigned a type. Unlike sets, types are \emph{syntactic} objects, meaning they can be discussed independently of their elements. One can conceptualize types as names or labels for set. The definition of the grammar of types for affine lambda calculus is as follows, where $G$ represents a set of ground types.
+\begin{equation} \label{eq:grammartypes}
 \centering
-\hspace{95pt} \mathbb{A} ::= X \in G \hspace{3 pt} \vert \hspace{3 pt} \mathbb{I}  \hspace{3 pt}  \vert \hspace{3 pt} \mathbb{A}  \otimes  \mathbb{A} \hspace{3 pt} \vert \hspace{3 pt} \mathbb{A} \oplus \mathbb{A} \hspace{3 pt}  \vert \hspace{3 pt}   \mathbb{A} \multimap  \mathbb{A}
+\hspace{95pt} \mathbb{A} ::= X \in G \hspace{3 pt} \vert \hspace{3 pt} \mathbb{I}  \hspace{3 pt}  \vert \hspace{3 pt} \mathbb{A}  \otimes  \mathbb{A} \hspace{3 pt} \vert  \hspace{3 pt}  \mathbb{A} \multimap  \mathbb{A}
 \end{equation}
- Regarding the term formation rules, $\Sigma$ corresponds to a class of sorted operation symbols $f: \mathbb{A}_{1}, \ldots, \mathbb{A}_{n} \xrightarrow{} \mathbb{A}$, where $n \geq 1$.   Typing contexts are represented as lists $x_{1}: \mathbb{A}_{1}, \ldots, x_{n}: \mathbb{A}_{n}$ of typed variables, with each variable $x_i$ (where $1 \leq i \leq n$) occurring at most once in $x_1, \ldots, x_n$. The typing contexts are denoted by greek letters $\Gamma$, $\Delta$, and $E$.
+Note that this is an inductive definition. Ground types are things like booleans, integers, and so forth. The type $\mathbb{I}$ is the unit/empty type, which has only one element. The type $\mathbb{A} \otimes \mathbb{B}$ is the tensor product of types $\mathbb{A}$ and $\mathbb{B}$, while the type $\mathbb{A} \multimap \mathbb{B}$ is the type of linear maps from $\mathbb{A}$ to $\mathbb{B}$.
+
+The expressions of the lambda calculus are called lambda terms. In the  simply-typed lambda calculus, each lambda term is assigned a type. The terms without types are called \emph{raw typed lambda terms}. The grammar of \emph{raw typed lambda terms} is given bellow.
+\begin{equation*} \label{eq:grammarlambda}
+\begin{split}
+ v,v_1, \ldots, v_n,w \hspace{10 pt} ::= \hspace{10 pt}& x \hspace{3 pt} \vert \hspace{3 pt} f(v_1, \ldots, v_n) \hspace{3 pt} \vert \hspace{3 pt} *  \hspace{3 pt} \vert \hspace{3 pt} (\lambda x: \mathbb{A}. v )\hspace{3 pt} \vert \hspace{3 pt} (v w) \hspace{3 pt}  \vert \hspace{3 pt} v \otimes w \hspace{3 pt} \vert
+ \\&    \text{pm} \hspace{3 pt} v \hspace{3 pt} \text{to} \hspace{3 pt} x \otimes y. w  \hspace{3 pt}  \vert \hspace{3 pt} v \text{ to } *.w \hspace{3 pt} \vert \hspace{3 pt} \text{dis}(v)
+\end{split}
+\end{equation*}
+
+Here $x$ ranges over an infinite set of variables. $f \in \Sigma$, where  $\Sigma$ corresponds to a class of sorted operation symbols and $f(v_1, \ldots, v_n)$ corresponds to the aplication of the function $f$ to the arguments $v_1, \ldots, v_n$, the symbol $*$ is the unit element of the type $\mathbb{I}$. The term $(\lambda x: \mathbb{A}. v )$ is the lambda abstraction term, which represents a function that takes an argument of type $\mathbb{A}$ and returns the value of $v$. The term $(v w)$ is the application term, which applies the function $v$ to the argument $w$.  The term $v \otimes w$ is the tensor product of $v$ and $w$. The term $\text{pm} \hspace{3 pt} v \hspace{3 pt} \text{to} \hspace{3 pt} x \otimes y. w$ is the pattern-matching construct, which is used to deconstruct a tensor product into components $x$ and $y$. The term $v \text{ to } *.w$ is used to discard a variable $v$ of the unit type. The term $\text{dis}(v)$ is the discard term, which is used to discard a term $v$.
+
+\todo[inline,size=\normalsize]{Ver o que por antes do ::= porque v1,..., vn tb são termos } 
+
+To prevent the formation of nonsensical terms within the context of lambda calculus, such as $(v \otimes w (u))$, the typing rules are imposed.
+
+A typed term is a pair consisting of a term and its corresponding type. The notation $v:\mathbb{A}$ denotes that the term $v$ has type $\mathbb{A}$. Typing rules are formulated using typing judgments. A typing judgment is an expression of the form $x_{1}: \mathbb{A}_{1}, \ldots, x_{n}: \mathbb{A}_{n} \triangleright v: \mathbb{A}$ (where $n \geq 1$), which asserts that the term $v$ is a well-typed term of type $\mathbb{A}$ under the assumption that the variables $x_{1}, \ldots, x_{n}$ have types $\mathbb{A}_{1}, \ldots, \mathbb{A}_{n}$, respectively. 
+
+Typing contexts are represented as lists $x_{1}: \mathbb{A}_{1}, \ldots, x_{n}: \mathbb{A}_{n}$ of typed variables, with each variable $x_i$ (where $1 \leq i \leq n$) occurring at most once in $x_1, \ldots, x_n$. The typing contexts are denoted by greek letters $\Gamma$, $\Delta$, and $E$.
 The concept of shuffling is employed to construct a linear typing system that ensures the admissibility of the exchange rule and enables unambiguous reference to judgment's denotations $[\![ \Gamma \triangleright v: \mathbb{A} ]\!]$. Shuffling is defined as a permutation of typed variables in a sequence of contexts, $\Gamma_1, \ldots, \Gamma_n$, preserving the relative order of variables within each $\Gamma_i$. For instance, if $\Gamma_1=x:\mathbb{A}, y:\mathbb{B}$ and $\Gamma_2=z:\mathbb{C}$, then $z:\mathbb{C}, x:\mathbb{A}, y:\mathbb{B}$ is a valid shuffle of $\Gamma_1, \Gamma_2$. On the other hand, $y:\mathbb{B}, x:\mathbb{A}, z:\mathbb{C}$ is not a shuffle because it alters the occurrence order of $x$ and $y$ in $\Gamma_1$. The set of shuffles in $\Gamma_1, \ldots, \Gamma_n$ is denoted as $\text{Sf} (\Gamma_1, \ldots, \Gamma_n)$.
 The term formation rules of the linear lambda calculus are shown in
 \autoref{fig:typing_rules_linear}.
