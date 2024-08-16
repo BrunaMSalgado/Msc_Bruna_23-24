@@ -1,9 +1,10 @@
 \chapter{Metric Lambda Calculus}
 
-The Lambda Calculus, developed by Church and Curry in the 1930s, serves as a formal language capturing the key attribute of higher-order functional languages, treating functions as first-class citizens, allowing them to be passed as arguments \cite{barendregt1984lambda}.  Lambda calculus has been proven to be universal in the sense that any computable function can be represented as an expression within the language. \cite{bernays1936alonzo} . Beyond its foundational aspects, this calculus incorporates extensions for modeling side effects, including probabilistic or non-deterministic behaviors and shared memory. Centered around the expression of higher-order functions, where functions can serve as inputs or outputs, it emerges as a potent computational tool.  Higher-order functions form a pivotal abstraction in practical programming languages such as LISP, Scheme, ML, and Haskell.
+The Lambda Calculus, developed by Church and Curry in the 1930s, serves as a formal language capturing the key attribute of higher-order functional languages, treating functions as first-class citizens, allowing them to be passed as arguments \cite{barendregt1984lambda}.  Moreover, lambda calculus has been proven to be universal in the sense that any computable function can be represented as an expression within the language \cite{bernays1936alonzo} . Beyond its foundational aspects, this calculus incorporates extensions for modeling side effects, including probabilistic or non-deterministic behaviors and shared memory.  Higher-order functions form a pivotal abstraction in practical programming languages such as LISP, Scheme, ML, and Haskell.
 
-This chapter introduces the metric lambda calculus presented in \cite{dahlqvist2022syntactic}. The metric lambda calculus is a generalization of the affine lambda calculus, which is a variant of the lambda calculus that enforces that each variable is used at most once. The metric lambda calculus extends the linear lambda calculus by introducing a metric equational system that allows reasoning about approximate program equivalence. This chapter provides an overview of the syntax and metric equational system of the metric lambda calculus.
 
+This chapter introduces the metric lambda calculus as presented in \cite{dahlqvist2022syntactic}. The metric lambda calculus integrates notions of
+approximation into the equational system of affine lambda calculus, a variant of lambda calculus that restricts each variable to being used at most once. The metric lambda calculus incorporates a metric equational system, enabling reasoning about approximate program equivalence. This chapter offers a brief insight into lambda calculus and an overview of the syntax and metric equational system of the metric lambda calculus. For a more detailed study of lambda calculus theory, the reader is referred to \cite{barendregt1984lambda}.
 
 
 \section{The Lambda Calculus}
@@ -13,7 +14,9 @@ The concept of a function takes a central role in the lambda calculus. But what 
 On the other hand, the “functions as rules” paradigm is more appropriate within computer science. In this context, defining a function involves specifying a rule or procedure for computing the function. Such a rule is often expressed in the form of a formula, for example, \( f(x) = x^2 \). As with the mathematical paradigm, two functions are considered extensionally equal if they exhibit the same input-output behavior. However, this view also introduces the notion of intensional equality: two functions are intensionally equal if they are defined by (essentially) the same formula.
 
 
-In the lambda calculus, functions are described explicitly as formulae. The function $f:x \mapsto f(x)$ as $\lambda x.f(x)$. The application of a function to an argument is simply the juxtaposition of the two expressions. For instance consider the function $f:x \mapsto x+1$, to compute $f(2)$ we write $(\lambda x.x+1)2$. 
+In the lambda calculus, functions are described explicitly as formulae. The function $f:x \mapsto f(x)$ is represented as $\lambda x.f(x)$.  Applying a function to an argument is done by juxtaposing the two expressions. For instance consider the function $f:x \mapsto x+1$, to compute $f(2)$ one writes $(\lambda x.x+1)(2)$.
+
+
 
 \section{Syntax}
 The grammar and term formation rules of the affine lambda calculus, discussed in \cite{dahlqvist2022syntactic}, are presented in this subsection.
