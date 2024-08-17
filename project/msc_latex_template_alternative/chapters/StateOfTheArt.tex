@@ -49,7 +49,7 @@ The expressions of the lambda calculus are called lambda terms. In the simply-ty
 \begin{equation*} \label{eq:grammarlambda}
 \begin{split}
  v,v_1, \ldots, v_n,w \hspace{10 pt} ::= \hspace{10 pt}& x \hspace{3 pt} \vert \hspace{3 pt} f(v_1, \ldots, v_n) \hspace{3 pt} \vert \hspace{3 pt} *  \hspace{3 pt} \vert \hspace{3 pt} (\lambda x: \mathbb{A}. v )\hspace{3 pt} \vert \hspace{3 pt} (v w) \hspace{3 pt}  \vert \hspace{3 pt} v \otimes w \hspace{3 pt} \vert
- \\&    \text{pm} \hspace{3 pt} v \hspace{3 pt} \text{to} \hspace{3 pt} x \otimes y. w  \hspace{3 pt}  \vert \hspace{3 pt} v \text{ to } *.w \hspace{3 pt} \vert \hspace{3 pt} \text{dis}(v)
+ \\&    \text{pm} \hspace{3 pt} v \hspace{3 pt} \text{to} \hspace{3 pt} x \otimes y. w  \hspace{3 pt}  \vert \hspace{3 pt} v \hspace{3 pt} \text{ to } *.w \hspace{3 pt} \vert \hspace{3 pt} \text{dis}(v)
 \end{split}
 \end{equation*}
 
@@ -57,8 +57,19 @@ Here $x$ ranges over an infinite set of variables. $f \in \Sigma$, where  $\Sigm
 
 \todo[inline,size=\normalsize]{Ver o que por antes do ::= porque v1,..., vn tb são termos } 
 
-\paragraph*{Free and Bound Variables}
-In this setting there are two types of variables: bound variables and free variables.
+\subsection{Free and Bound Variables}
+An occurrence of a variable $x$ within a term of the form $\lambda x.v$ is referred to as bound.  Similarly, the variables $x$ and $y$ in the term $\text{pm} \hspace{3 pt} v \hspace{3 pt} \text{to} \hspace{3 pt} x \otimes y. w$ are also bound. A variable occurrence that is not bound is said to be free. For example, in the term $\lambda x.xy$, the variable $y$ is free, whereas the variable $x$ is bound.  
+
+The set of free variables of a term $v$ is denoted by $FV(v)$, and is defined inductively as follows:
+\begin{equation*}
+\begin{split}
+FV(x) &= \{x\}, &  FV(*) &= \emptyset,  \\
+FV(f(v_1, \ldots, v_n)), &= FV(v_1) \cup \ldots \cup FV(v_n)& FV(\lambda x: \mathbb{A}. v) &= FV(v) \backslash \{x\}, \\
+FV(v w) &= FV(v) \cup FV(w), & FV(v \otimes w) &= FV(v) \cup FV(w), \\
+FV(\text{pm} \hspace{3 pt} v \hspace{3 pt} \text{to} \hspace{3 pt} x \otimes y. w), &= FV(v) \cup (FV(w)  \backslash \{x,y\}) & FV(\text{dis}(v)) &= FV(v),\\
+FV(v \text{ to } *.w) &= FV(v) \cup FV(w). \\
+\end{split}
+\end{equation*}
 
 
 \subsection{Term formation rules}
@@ -181,8 +192,48 @@ The rule $(\mathbb{\otimes}_e)$ expresses if there is a term $w$ of type $\mathb
 The rule $(\mathbb{I}_e)$ states that if there is a term $w$ of type $\mathbb{A}$ and a term $v$ of type $\mathbb{I}$, then $v$ can be discarded, and only the term $w$ remains. 
 Finally, the rule $(\text{dis})$ asserts that a term $v$ of type $\mathbb{A}$ can be discarded, resulting in a term of type $\mathbb{I}$.
 
+For a better understanding of the rules, a few straightforward programming examples are provided.  For instance, the program that swaps the elements of a tensor product can be written as follows:
+\begin{equation*}
+\begin{split}
+& x : \mathbb{A},  y : \mathbb{B} \triangleright \text{pm} \hspace{3 pt} x \otimes y\hspace{3 pt} \text{to} \hspace{3 pt} a \otimes b. \hspace{1pt} b \otimes a : \mathbb{B} \otimes \mathbb{A}
+\end{split}
+\end{equation*}
+Now, to prove that this program is well-typed one can write the following typing derivation:
+\begin{equation*}
+\begin{split}
+1 \hspace{10 pt} & x : \mathbb{A} \triangleright x : \mathbb{A}  \hspace{10 pt} & {(\text{hyp})} \\
+2 \hspace{10 pt} &  y : \mathbb{B} \triangleright   y : \mathbb{B} \hspace{10 pt} & {(\text{hyp})} \\
+3 \hspace{10 pt} & x : \mathbb{A},  y : \mathbb{B} \triangleright x \otimes y : \mathbb{A} \otimes \mathbb{B} \hspace{10pt} & \text{($1,2,\otimes_i$)} \\
+4 \hspace{10 pt} &  b : \mathbb{B} \triangleright   b : \mathbb{B} \hspace{10 pt}&{(\text{hyp})} \\
+5 \hspace{10 pt} &   b : \mathbb{B} \triangleright  b : \mathbb{B} \hspace{10 pt}&{(\text{hyp})} \\
+6 \hspace{10 pt} & a : \mathbb{A},  b : \mathbb{B} \triangleright b \otimes a : \mathbb{B} \otimes \mathbb{A} \hspace{10pt} &\text{($4,5,\otimes_i$)} \\
+7\hspace{10 pt}& x : \mathbb{A},  y : \mathbb{B} \triangleright \text{pm} \hspace{3 pt} x \otimes y\hspace{3 pt} \text{to} \hspace{3 pt} a \otimes b. \hspace{1pt} b \otimes a : \mathbb{B} \otimes \mathbb{A}& \hspace{10pt} \text{($3,6,\otimes_e$)}
+\end{split}
+\end{equation*}
+Observe that in the notation of the third column, the numbers correspond to the premises utilized in the application of the rule.
+
+Another example is the function that recieves a tensor product and returns first element and discards the second:
+\begin{equation*}
+\begin{split}
+& - \triangleright \lambda x: \mathbb{A \otimes B}. \text{pm} \hspace{3 pt} x \hspace{3 pt} \text{to} \hspace{3 pt} a \otimes b. \hspace{1 pt} \text{dis}(b) \hspace{3 pt} \text{ to } *.a: \mathbb{A}
+\end{split}
+\end{equation*}
+Now, to prove that this program is well-typed one can write the following typing derivation:
+\begin{equation*}
+\begin{split}
+1  \hspace{10 pt} & b : \mathbb{B} \triangleright b : \mathbb{B}  \hspace{10 pt} & {(\text{hyp})} \\
+2 \hspace{10 pt} & b : \mathbb{B} \triangleright \text{dis}(b): \mathbb{I} \hspace{10 pt} & {(1,\text{dis})} \\
+3 \hspace{10 pt} & a : \mathbb{A} \triangleright a : \mathbb{A}  \hspace{10 pt} & {(\text{hyp})} \\
+4 \hspace{10 pt} &  a : \mathbb{A}, b : \mathbb{B}  \triangleright \text{dis}(b) \hspace{3 pt} \text{ to } *.a  & {(2,3,\mathbb{I}_{e})} \\
+5 \hspace{10 pt} & x : \mathbb{A \otimes B} \triangleright x : \mathbb{A \otimes B}  \hspace{10 pt} & {(\text{hyp})} \\
+6 \hspace{10 pt} & x : \mathbb{A \otimes B} \triangleright \text{pm} \hspace{3 pt} x \hspace{3 pt} \text{to} \hspace{3 pt} a \otimes b. \hspace{1 pt} \text{dis}(b) \hspace{3 pt} \text{ to } *.a : \mathbb{A} \hspace{10pt} & \text{($4,5,\otimes{I}_{e}$)} \\
+4 \hspace{10 pt} & - \triangleright \lambda x: \mathbb{A \otimes B}. \text{pm} \hspace{3 pt} x \hspace{3 pt} \text{to} \hspace{3 pt} a \otimes b. \hspace{1 pt} \text{dis}(b) \hspace{3 pt} \text{ to } *.a: \mathbb{A} \hspace{10pt} & \text{($6,\multimap_i$)}
+\end{split}
+\end{equation*}
+
 
 \todo[inline,size=\normalsize]{Isto fica aqui ou vai para o capítulo seguinte? } 
+\todo[inline,size=\normalsize]{Also fala-se de Type inference algorithm? Tipo existe...} 
 The no-cloning theorem states that it is impossible to duplicate a quantum bit \cite{wootters1982single}. This principle is upheld by the type system outlined in \autoref{fig:typing_rules_linear}, which does not allow the repeated use of a variable (seen as a quantum resource).
 
 %substituição e exchange
