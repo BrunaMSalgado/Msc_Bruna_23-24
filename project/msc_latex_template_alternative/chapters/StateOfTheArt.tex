@@ -74,7 +74,7 @@ FV(v \text{ to } *.w) &= FV(v) \cup FV(w). \\
 
 \subsection{Term formation rules}
 
-To prevent the formation of nonsensical terms within the context of lambda calculus, such as $(v \otimes w (u))$, the typing rules are imposed.
+To prevent the formation of nonsensical terms within the context of lambda calculus, such as $(v \otimes w) (u)$, the typing rules are imposed.
 
 A typed term is a pair consisting of a term and its corresponding type. The notation $v:\mathbb{A}$ denotes that the term $v$ has type $\mathbb{A}$. Typing rules are formulated using typing judgments. A typing judgment is an expression of the form $x_{1}: \mathbb{A}_{1}, \ldots, x_{n}: \mathbb{A}_{n} \triangleright v: \mathbb{A}$ (where $n \geq 1$), which asserts that the term $v$ is a well-typed term of type $\mathbb{A}$ under the assumption that each variable variable $x_{i}$ has type $\mathbb{A}_{i}$, for $1 \leq i \leq n$. The list $x_{1}: \mathbb{A}_{1}, \ldots, x_{n}: \mathbb{A}_{n}$ of typed variables is called the typing context of the judgment, and it might be empty.  Each variable $x_i$ (where $1 \leq i \leq n$) must occur at most once in $x_1, \ldots, x_n$. The typing contexts are denoted by Greek letters $\Gamma$, $\Delta$, and $E$. The empty context is denoted by $-$. Note that in the affine lambda calculus, different contexts do not share variables. For example, if $\Gamma = x:\mathbb{A},y:\mathbb{B}$ none of these variables can appear in any other context. 
 
@@ -498,6 +498,8 @@ $ \end{minipage}
 
 
 The rules (refl), (trans), and (sym)  generalize the properties of reflexivity, transitivity, and symmetry of equality.  Rule (weak) asserts that if two terms are at a maximum distance $q$ from each other, then they are also separated by any $r \geq q$. Rule (arch) states that if $v =_r w$ for all approximations $r$ of $q$, then it necessarily follows that $v =_q w$. The rule  (join) expresses that if several maximum distances between two terms are known, the actual maximum distance between them is the minimum of these distances. The rule that follows conveys that if the maximum distance between two terms $v$ and $w$ is $q$, and the maximum distance between terms $v'$ and $w'$ is $r$, then the maximum distance between the tensor products $v \otimes v'$ and $w \otimes w'$ is $q + r$. The remaining rules follow similar reasoning.
+
+% dizer o que é perm
 
 To ilustrate the usefulness of these equations, consider the program that recieves a tensor product, swaps its elements and then applies a function $f$ to to the new first element of the tensor pair:
 \begin{equation*}
