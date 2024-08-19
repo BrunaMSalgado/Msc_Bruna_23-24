@@ -41,7 +41,7 @@ As previously mentioned, this work focuses on the simply-typed lambda calculus, 
 \centering
 \hspace{95pt} \mathbb{A} ::= X \in G \hspace{3 pt} \vert \hspace{3 pt} \mathbb{I}  \hspace{3 pt}  \vert \hspace{3 pt} \mathbb{A}  \otimes  \mathbb{A} \hspace{3 pt} \vert  \hspace{3 pt}  \mathbb{A} \multimap  \mathbb{A}
 \end{equation}
-Note that this is an inductive definition. Ground types are things such as booleans, integers, and so forth. The type $\mathbb{I}$ is the unit/empty type, which has only one element. The type $\mathbb{A} \otimes \mathbb{B}$ is the tensor product of types $\mathbb{A}$ and $\mathbb{B}$, while the type $\mathbb{A} \multimap \mathbb{B}$ is the type of linear maps from $\mathbb{A}$ to $\mathbb{B}$.
+Note that this is an inductive definition. Ground types are things such as booleans, integers, and so forth. The type $\mathbb{I}$ is the unit/empty type, which has only one element. The type $\mathbb{A} \otimes \mathbb{A}$ correponds to the tensor of two types, while the type $\mathbb{A} \multimap \mathbb{B}$ is the type of linear maps one type to another.
 
 \subsection{(Raw)Terms}
 
@@ -205,8 +205,8 @@ Now, to prove that this program is well-typed one can write the following typing
 2 \hspace{10 pt} &  y : \mathbb{B} \triangleright   y : \mathbb{B} \hspace{10 pt} & {(\text{hyp})} \\
 3 \hspace{10 pt} & x : \mathbb{A},  y : \mathbb{B} \triangleright x \otimes y : \mathbb{A} \otimes \mathbb{B} \hspace{10pt} & \text{($1,2,\otimes_i$)} \\
 4 \hspace{10 pt} &  b : \mathbb{B} \triangleright   b : \mathbb{B} \hspace{10 pt}&{(\text{hyp})} \\
-5 \hspace{10 pt} &   b : \mathbb{B} \triangleright  b : \mathbb{B} \hspace{10 pt}&{(\text{hyp})} \\
-6 \hspace{10 pt} & a : \mathbb{A},  b : \mathbb{B} \triangleright b \otimes a : \mathbb{B} \otimes \mathbb{A} \hspace{10pt} &\text{($4,5,\otimes_i$)} \\
+5 \hspace{10 pt} &   a : \mathbb{A} \triangleright  a : \mathbb{A} \hspace{10 pt}&{(\text{hyp})} \\
+6 \hspace{10 pt} &   b : \mathbb{B},a : \mathbb{A} \triangleright b \otimes a : \mathbb{B} \otimes \mathbb{A} \hspace{10pt} &\text{($4,5,\otimes_i$)} \\
 7\hspace{10 pt}& x : \mathbb{A},  y : \mathbb{B} \triangleright \text{pm} \hspace{3 pt} x \otimes y\hspace{3 pt} \text{to} \hspace{3 pt} a \otimes b. \hspace{1pt} b \otimes a : \mathbb{B} \otimes \mathbb{A}& \hspace{10pt} \text{($3,6,\otimes_e$)}
 \end{split}
 \end{equation*}
@@ -227,14 +227,25 @@ To prove that this program is well-typed one can write the following typing deri
 4 \hspace{10 pt} &  a : \mathbb{A}, b : \mathbb{B}  \triangleright \text{dis}(b) \hspace{3 pt} \text{ to } *.a  & {(2,3,\mathbb{I}_{e})} \\
 5 \hspace{10 pt} & x : \mathbb{A \otimes B} \triangleright x : \mathbb{A \otimes B}  \hspace{10 pt} & {(\text{hyp})} \\
 6 \hspace{10 pt} & x : \mathbb{A \otimes B} \triangleright \text{pm} \hspace{3 pt} x \hspace{3 pt} \text{to} \hspace{3 pt} a \otimes b. \hspace{1 pt} \text{dis}(b) \hspace{3 pt} \text{ to } *.a : \mathbb{A} \hspace{10pt} & \text{($4,5,\otimes{I}_{e}$)} \\
-4 \hspace{10 pt} & - \triangleright \lambda x: \mathbb{A \otimes B}. \text{pm} \hspace{3 pt} x \hspace{3 pt} \text{to} \hspace{3 pt} a \otimes b. \hspace{1 pt} \text{dis}(b) \hspace{3 pt} \text{ to } *.a: \mathbb{A} \hspace{10pt} & \text{($6,\multimap_i$)}
+7 \hspace{10 pt} & - \triangleright \lambda x: \mathbb{A \otimes B}. \text{pm} \hspace{3 pt} x \hspace{3 pt} \text{to} \hspace{3 pt} a \otimes b. \hspace{1 pt} \text{dis}(b) \hspace{3 pt} \text{ to } *.a: \mathbb{A} \hspace{10pt} & \text{($6,\multimap_i$)}
 \end{split}
 \end{equation*}
 
 
-\todo[inline,size=\normalsize]{Isto fica aqui ou vai para o capítulo seguinte? } 
-\todo[inline,size=\normalsize]{Also fala-se de Type inference algorithm? Tipo existe...} 
-The no-cloning theorem states that it is impossible to duplicate a quantum bit \cite{wootters1982single}. This principle is upheld by the type system outlined in \autoref{fig:typing_rules_linear}, which does not allow the repeated use of a variable (seen as a quantum resource).
+\todo[inline,size=\normalsize]{Also fala-se de Type inference algorithm? Tipo existe...}
+
+\subsection{$\alpha$-equivalence}
+ 
+A natural notion of equivalence definition stems from the fact that terms that differ only in the names of their bound variables represent the same program. For instance, the functions $\lambda x:\mathbb{A}.x $ and $\lambda y:\mathbb{A}.y$ have the same input-output behavior, despite being represented by different lambda terms. This equivalence is called $\alpha$-equivalence.
+
+\begin{definition}
+  The $\alpha$-equivalence is an equivalence relation on lambda terms that is used to rename bound variables. To rename a variable $x$ as $y$ in a term $v$, denoted by $v\{y/x\}$, is to replace all occurrences of $x$ in $v$ by $y$. Two terms $v$ and $w$ are $\alpha$-equivalent, written $=_{\alpha}$, if one can be derived from the other by a series of
+  changes of bound variables
+\end{definition}
+
+\begin{convention}
+  Terms are considered up to $\alpha$-equivalence from now on.
+\end{convention}
 
 \subsection{Substitution}
 The substitution of a variable $x$ for a term $w$ in a term $v$ is denoted by $v[w/x]$. It is only  permitted  to replace free variables. For instance, $\lambda x. \hspace{1pt} x  \hspace{2pt} [v/x]$ is $\lambda x. \hspace{1pt} x  \hspace{2pt}$ and not  $\lambda x. \hspace{1pt} v  \hspace{2pt}$. Moreover, it is necessary to avoid the unintended binding of free variables. For example, $$(\text{pm} \hspace{3 pt} x \otimes y\hspace{3 pt} \text{to} \hspace{3 pt} a \otimes b. \hspace{1pt} b \otimes a \otimes z) \hspace{2 pt}  [z/\text{pm} \hspace{3 pt} c \otimes d\hspace{3 pt} \text{to} \hspace{3 pt} e \otimes f. \hspace{1pt} f \otimes e \otimes a]$$ is not the same as $$\text{pm} \hspace{3 pt} x \otimes y\hspace{3 pt} \text{to} \hspace{3 pt} a \otimes b. \hspace{1pt} b \otimes a \otimes (\text{pm} \hspace{3 pt} c \otimes d\hspace{3 pt} \text{to} \hspace{3 pt} e \otimes f. \hspace{1pt} f \otimes e \otimes a ). $$ Instead, the bounded variable $a$ must be renamed before the substitution, and in this case, the proper substitution is $$(\text{pm} \hspace{3 pt} x \otimes y\hspace{3 pt} \text{to} \hspace{3 pt} t \otimes b. \hspace{1pt} b \otimes t \otimes z) \hspace{2 pt}  [z/\text{pm} \hspace{3 pt} c \otimes d\hspace{3 pt} \text{to} \hspace{3 pt} e \otimes f. \hspace{1pt} f \otimes e \otimes a]$$ which is equal to $$\text{pm} \hspace{3 pt} x \otimes y\hspace{3 pt} \text{to} \hspace{3 pt} t \otimes b. \hspace{1pt} b \otimes t \otimes (\text{pm} \hspace{3 pt} c \otimes d\hspace{3 pt} \text{to} \hspace{3 pt} e \otimes f. \hspace{1pt} f \otimes e \otimes a) .$$
@@ -270,7 +281,7 @@ For, $\Gamma, x: \mathbb{A} \triangleright v: \mathbb{b}$ and $\Delta \triangler
 
 
 \subsection{Properties}
-\todo[inline,size=\normalsize]{Nas provas nós falamos das props que estão no artigo graded, as quais não incluem unique typing (a qual está no syntactic).} 
+
 
 The calculus defined in \autoref{fig:typing_rules_linear} possesses several desirable properties, which are listed below. Before proceeding, it is necessary to introduce some auxiliary notation. Given a context $\Gamma$, $te(\Gamma)$ denotes context $\Gamma$ with all types erased. The expression $\Gamma \simeq_{\pi} \Gamma'$ denotes that the contexts $\Gamma$ is a permutation of context $\Gamma'$.This notation also applies to non-repetitive lists of untyped variables $te(\Gamma)$. Additionally, a judgment $\Gamma \triangleright v: \mathbb{A}$ will often be abbreviated into $\Gamma \triangleright v $ or even just $v$ when no ambiguities arise.
 
@@ -286,34 +297,27 @@ The properties are as follows:
 
 
 \subsection{Equations-in-context}
-
-\todo[inline,size=\normalsize]{Fala-se de alpha-equivalence. -> when we speak of lambda terms being “equal”, we mean that they are alpha-equivalent}
-\todo[inline,size=\normalsize]{Como definir commuting conversions e o que é a eq de discard?}
-\todo[inline,size=\normalsize]{Usar itálico (no x) qd digo is designated x?}
-
-
-
 The simply typed lambda calculus is a formal language that captures operations like the application of a function to an argument and the elimination of variables. To express these operations there is a set of rules known as reduction rules. These rules fall into two primary categories: the $\beta$-reductions, which perform operations and enforce the implicit meaning of the term, and $\eta$-reductions, which simplify terms by exploiting the extensionality of functions. 
-There is also a secondary class of reductions - the commuting conversions. 
+There is also a secondary class of reductions known as commuting conversions, which serve to disambiguate terms that, while equivalent, have different representations.
 As a result, affine $\lambda$-calculus comes equipped with the so-called equations-in-context $\Gamma \triangleright v = w : \mathbb {A}$, depicted in \autoref{fig:equations-linear-lambda}.
 \begin{figure}[H]
   \centering
   \begin{tabular}{ |ccccc| }
     \hline
-$(\beta)$ & \hspace{-10pt} $\Gamma \triangleright (\lambda x : \mathbb{A}.$ $v) \hspace{1pt}  w = v[w/x]: \mathbb{B} $ & \hspace{-5pt} & ($\beta_{\otimes_{e}}$) & $ \hspace{-10pt}\Gamma \hspace{1pt}\triangleright \text{pm } v \otimes w$ to $x \otimes y.$ $u = u[v/x,w/y]:\mathbb{A}$ \\
-$(\eta)$ & \hspace{-7pt} $\Gamma \triangleright \lambda x : \mathbb{A} .(v \hspace{1pt} x) = v: \mathbb{A} \multimap \mathbb{B} $  & \hspace{-5pt} & ($\eta_{\otimes_{e}}$) & \hspace{-7pt} $\Gamma \hspace{1pt}\triangleright \text{pm } v$ to $x \otimes y.$ $u[x \otimes y/z] = u[v/z] :\mathbb{A} $ \\
-$(\beta_{\mathbb{I}_{e}})$ &  \hspace{-10pt} $ \Gamma \triangleright * \text { to } *.$ $v = v:\mathbb{A}$ &\hspace{-5pt} & $(\eta_{\mathbb{I}_{e}})$ & \hspace{-7pt}$\Gamma \triangleright v$ to $*$ . $w[* / z] = w[v / z]: \mathbb{A}$  \\
- $(c_{\mathbb{I}_{e}})$  &\multicolumn{4}{c|}{ $\Gamma \triangleright u[v \text{ to } \ast . w/z] = v \text{ to } \ast . u[w/z]:\mathbb{A}$ }\\
-($c_{\otimes_{e}}$) & \multicolumn{4}{c|}{ $\Gamma \triangleright u[$pm $v$ to $x \otimes y.$ $w/z] =$ pm $v$ to $x \otimes y.$ $u[w/z]: \mathbb{A} $ }\\
-($\text{dis}$) & \multicolumn{4}{c|}{ $\Gamma \triangleright v: \mathbb{I} = \text{dis}(x_1) \text{ to } \ast.$ $\ldots$ $\text{dis}(x_{n-1}) \text{ to } \ast \text{ dis}(x_{n}): \mathbb{ I}$ }\\
+$(\beta)$ &  $\Gamma, \Delta \triangleright (\lambda x : \mathbb{A}.$ $v) \hspace{1pt}  w = v[w/x]: \mathbb{B} $ & &$(\eta)$ &  $\Gamma  \triangleright \lambda x : \mathbb{A} .(v \hspace{1pt} x) = v: \mathbb{A} \multimap \mathbb{B} $ \\
+$(\beta_{\mathbb{I}_{e}})$ &   $ \Gamma \triangleright * \text { to } *.$ $v = v:\mathbb{A}$ && $(\eta_{\mathbb{I}_{e}})$ & $ \Delta, \Gamma \triangleright v$ to $*$ . $w[* / z] = w[v / z]: \mathbb{A}$  \\
+$(\beta_{\otimes_{e}})$   &\multicolumn{4}{c|}{$ \hspace{-10pt}  E, \Gamma, \Delta \hspace{1pt}\triangleright \text{pm } v \otimes w$ to $x \otimes y.$ $u = u[v/x,w/y]:\mathbb{A}$ }\\
+$(\eta_{\otimes_{e}})$   &\multicolumn{4}{c|}{$\Delta , \Gamma\hspace{1pt}\triangleright \text{pm } v$ to $x \otimes y.$ $u[x \otimes y/z] = u[v/z] :\mathbb{A} $}\\
+ $(c_{\mathbb{I}_{e}})$  &\multicolumn{4}{c|}{ $\Delta,\Gamma, E \triangleright u[v \text{ to } \ast . w/z] = v \text{ to } \ast . u[w/z]:\mathbb{A}$ }\\
+$(c_{\otimes_{e}})$ & \multicolumn{4}{c|}{ $\Delta,\Gamma, E  \triangleright u[$pm $v$ to $x \otimes y.$ $w/z] =$ pm $v$ to $x \otimes y.$ $u[w/z]: \mathbb{A} $ }\\
+$(\eta_{\text{dis}})$ & \multicolumn{4}{c|}{ $x_1:\mathbb{A}_1, \ldots,x_n:\mathbb{A}_n\triangleright v = \text{dis}(x_1) \text{ to } \ast.$ $\ldots$ $\text{dis}(x_{n-1}) \text{ to } \ast \text{ dis}(x_{n}): \mathbb{ I}$ }\\
 \hline
   \end{tabular}
 \caption{Equations-in-context for affine lambda calculus}
 \label{fig:equations-linear-lambda}
 \end{figure}
 
-It is evident that, for example, equation $(\beta)$ enforces the meaning of  $(\lambda x : \mathbb{A}.$ $v) \hspace{1pt}  w $, which is insterpreted as ``$v$ with $w$ in place of $x$". The equation $(\eta)$, on the other hand, is a simplification rule that states that a function that applies another function $v$ to an argument $x$ can be simplified to the function $v$ itself. The remaining equations follow similar reasoning. 
-
+It is evident that, for example, equation $(\beta)$ enforces the meaning of  $(\lambda x : \mathbb{A}.$ $v) \hspace{1pt} w $, which is interpreted as ``$v$ with $w$ in place of $x$". The equation $(\eta)$, on the other hand, is a simplification rule that states that a function that applies another function $v$ to an argument $x$ can be simplified to the function $v$ itself. The remaining $\beta$ e $\eta$ equations follow similar reasoning. The commuting conversion $(c_{\mathbb{I}_{e}})$ expresses that substituting a variable $z$ by a term that maps a term $v$ to the unit element $*$ in a term $w$ is equivalent to mapping a term $v$ to the unit element $*$ and then replacing $z$ by $w$. The other commuting conversion has a similar interpretation.
 %\begin{figure}[H]
   %\centering
   %\begin{tabular}{ |c|c| }
@@ -344,7 +348,7 @@ It is evident that, for example, equation $(\beta)$ enforces the meaning of  $(\
 
 \section{Metric equational system}
 Metric equations \cite{mardare2016quantitative}, \cite{mardare2017axiomatizability} are a strong candidate for reasoning about approximate program equivalence. These equations take the form of $t=_{\epsilon} s$, where  $\epsilon$ is a non-negative rational representing the ``maximum distance" between the two terms $t$ and $s$. The metric equational system for linear lambda calculus is depicted in \autoref{fig:metric deductive system}.
-\vspace{-10pt}
+
 \begin{figure} [H]
 \begin{equation*}
 \begin{split}
@@ -377,7 +381,7 @@ $\begin{array}{c}
    v=_{r} w
 \end{array}
 $ \end{minipage}
-\hspace{-45pt} \text{(weak)} \\
+\hspace{-50pt} \text{(weak)} \\
 &
 \begin{minipage}[t]{0.3\textwidth}
 $\begin{array}{c}
@@ -398,16 +402,24 @@ $\begin{array}{c}
 \end{array}
 $ \end{minipage}
 \hspace{-40pt} \text{(join)} 
-\hspace{40pt}
+\hspace{35pt}
 \begin{minipage}[t]{0.3\textwidth}
 $\begin{array}{c}
-    v=_{q} w \quad v'=_{r} w' \\
+    v=_{q} w \\
     \hline
-   v \otimes v' =_{q + r} w \otimes w'
+   w =_{q + r} w \otimes v
 \end{array}
 $ \end{minipage}
-\hspace{-45pt}  \\
+\hspace{-53pt}\text{(sym)}   \\
 &
+\begin{minipage}[t]{0.3\textwidth}
+  $\begin{array}{c}
+      v=_{q} w \quad v'=_{r} w' \\
+      \hline
+     v \otimes v' =_{q + r} w \otimes w'
+  \end{array}
+  $ \end{minipage}
+  \hspace{-14pt}
 \begin{minipage}[t]{0.3\textwidth}
 $\begin{array}{c}
    \forall i \leq n. \hspace{4pt} v_{i}=_{q_i} w_{i}\\
@@ -416,15 +428,7 @@ $\begin{array}{c}
 \end{array}
 $
 \end{minipage}
- \hspace{34pt}
-\begin{minipage}[t]{0.3\textwidth}
-$\begin{array}{c}
-   v=_{q}w  \quad v'=_{r}w'\\
-    \hline
-    v \text { to } *.v' =_{q+r} w \text { to } *.w'
-\end{array}
-$ \end{minipage}
-\hspace{0pt}
+ \hspace{47pt}
 \begin{minipage}[t]{0.3\textwidth}
 $\begin{array}{c}
     v=_{q} w  \\
@@ -442,14 +446,22 @@ $\begin{array}{c}
 \end{array}
 $
 \end{minipage}
-\hspace{200pt}
+\hspace{95pt}
 \begin{minipage}[t]{0.3\textwidth}
 $\begin{array}{c}
-    v =_{q} w \quad v'=_{r} w'   \\
+    v =_{q} w    \\
     \hline
-  v v' =_{q + r} w w'
+  \text{dis}(v) =_{q} \text{dis}(w)
 \end{array}
 $ \end{minipage}
+\hspace{-35pt}
+\begin{minipage}[t]{0.3\textwidth}
+  $\begin{array}{c}
+      v=_{q} w \quad v'=_{r} w' \\
+      \hline
+     v \hspace{1pt} v' =_{q + r} w \hspace{1pt}  w'
+  \end{array}
+  $ \end{minipage}
  \\
  &
 \begin{minipage}[t]{0.3\textwidth}
@@ -460,7 +472,15 @@ $\begin{array}{c}
 \end{array}
 $
 \end{minipage}
-\hspace{180pt}
+\hspace{36pt}
+\begin{minipage}[t]{0.3\textwidth}
+  $\begin{array}{c}
+     v=_{q}w  \quad v'=_{r}w'\\
+      \hline
+      v \text { to } *.v' =_{q+r} w \text { to } *.w'
+  \end{array}
+  $ \end{minipage}
+  \hspace{14pt}
 \begin{minipage}[t]{0.3\textwidth}
 $\begin{array}{c}
     v =_{q} w \quad v'=_{r} w'    \\
@@ -477,10 +497,18 @@ $ \end{minipage}
 \end{figure}
 
 
-The rules (refl) and (trans)  generalize the properties of reflexivity and transitivity of equality.  Rule (weak) asserts that if two terms are at a maximum distance $q$ from each other, then the distance between them is
-$r \geq q$. Rule (arch) states that if $v =_r w$ for all approximations $r$ of $q$ then it is also the case that $v =_q w$. Lastly, the rule  (join) expresses that if several maximum distances between two terms are known, the actual maximum distance between them is the minimum of these distances. 
+The rules (refl), (trans), and (sym)  generalize the properties of reflexivity, transitivity, and symmetry of equality.  Rule (weak) asserts that if two terms are at a maximum distance $q$ from each other, then they are also separated by any $r \geq q$. Rule (arch) states that if $v =_r w$ for all approximations $r$ of $q$, then it necessarily follows that $v =_q w$. The rule  (join) expresses that if several maximum distances between two terms are known, the actual maximum distance between them is the minimum of these distances. The rule that follows conveys that if the maximum distance between two terms $v$ and $w$ is $q$, and the maximum distance between terms $v'$ and $w'$ is $r$, then the maximum distance between the tensor products $v \otimes v'$ and $w \otimes w'$ is $q + r$. The remaining rules follow similar reasoning.
 
-\todo[inline,size=\normalsize]{Mencionar simetria?, ver weak}
+To ilustrate the usefulness of these equations, consider the program that recieves a tensor product, swaps its elements and then applies a function $f$ to to the new first element of the tensor pair:
+\begin{equation*}
+\begin{split}
+& x : \mathbb{A},  y : \mathbb{B} \triangleright \text{pm} \hspace{3 pt} x \otimes y\hspace{3 pt} \text{to} \hspace{3 pt} f(a) \otimes b. \hspace{1pt} b \otimes a : \mathbb{C} \otimes \mathbb{A} &
+\end{split}
+\end{equation*}
+
+
+
+
 
 
 
@@ -582,6 +610,7 @@ Consider two operators $T, S : n \xrightarrow{} m$. There exists a unit vector $
 
 
 
+The no-cloning theorem states that it is impossible to duplicate a quantum bit \cite{wootters1982single}. This principle is upheld by the type system outlined in \autoref{fig:typing_rules_linear}, which does not allow the repeated use of a variable (seen as a quantum resource).
 
 
 
