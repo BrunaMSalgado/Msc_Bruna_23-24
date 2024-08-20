@@ -1,9 +1,18 @@
-\begin{thebibliography}{50}
+\begin{thebibliography}{52}
 \providecommand{\natexlab}[1]{#1}
 \providecommand{\url}[1]{\texttt{#1}}
 \expandafter\ifx\csname urlstyle\endcsname\relax
   \providecommand{\doi}[1]{doi: #1}\else
   \providecommand{\doi}{doi: \begingroup \urlstyle{rm}\Url}\fi
+
+\bibitem[Backus et~al.(1960)Backus, Bauer, Green, Katz, McCarthy, Perlis,
+  Rutishauser, Samelson, Vauquois, Wegstein, et~al.]{backus1960report}
+John~W Backus, Friedrich~L Bauer, Julien Green, Charles Katz, John McCarthy,
+  Alan~J Perlis, Heinz Rutishauser, Klaus Samelson, Bernard Vauquois,
+  Joseph~Henry Wegstein, et~al.
+\newblock Report on the algorithmic language algol 60.
+\newblock \emph{Communications of the ACM}, 3\penalty0 (5):\penalty0 299--311,
+  1960.
 
 \bibitem[Barendregt et~al.(1984)]{barendregt1984lambda}
 Hendrik~P Barendregt et~al.
@@ -223,6 +232,12 @@ Maximilian Schlosshauer.
 \bibitem[Selinger(2013)]{selinger2013lecture}
 Peter Selinger.
 \newblock Lecture notes on the lambda calculus, 2013.
+
+\bibitem[Selinger and Valiron(2006)]{selinger2006lambda}
+Peter Selinger and Beno{\^\i}t Valiron.
+\newblock A lambda calculus for quantum computation with classical control.
+\newblock \emph{Mathematical Structures in Computer Science}, 16\penalty0
+  (3):\penalty0 527--552, 2006.
 
 \bibitem[Selinger et~al.(2009)Selinger, Valiron, et~al.]{selinger2009quantum}
 Peter Selinger, Beno{\i}t Valiron, et~al.

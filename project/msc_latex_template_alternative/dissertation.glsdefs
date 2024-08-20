@@ -26,3 +26,31 @@ parent={},%
 %
 }%
 
+\glsdefs@newdocentry{bnf}%
+{%
+name={\acronymfont {\glsentryshort {bnf}}},%
+sort={BNF},%
+type={acronym},%
+first={BNF},%
+firstplural={BNFs},%
+text={BNF},%
+plural={BNFs},%
+description={Backus-Naur Form},%
+descriptionplural={Backus-Naur Form},%
+symbol={\relax },%
+symbolplural={\relax },%
+user1={},%
+user2={},%
+user3={},%
+user4={},%
+user5={},%
+user6={},%
+long={Backus-Naur Form},%
+longplural={Backus-Naur Forms},%
+short={BNF},%
+shortplural={BNFs},%
+counter={page},%
+parent={},%
+%
+}%
+
