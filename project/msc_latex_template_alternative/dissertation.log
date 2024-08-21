@@ -1,4 +1,4 @@
-This is XeTeX, Version 3.141592653-2.6-0.999995 (MiKTeX 24.1) (preloaded format=xelatex 2024.7.31)  20 AUG 2024 20:25
+This is XeTeX, Version 3.141592653-2.6-0.999995 (MiKTeX 24.1) (preloaded format=xelatex 2024.7.31)  21 AUG 2024 23:44
 entering extended mode
  restricted \write18 enabled.
  file:line:error style messages enabled.
@@ -1646,14 +1646,14 @@ File: images/CCBYNCND.png Graphic file (type bmp)
 ]
 
 LaTeX Font Warning: Font shape `U/stmry/b/n' undefined
-(Font)              using `U/stmry/m/n' instead on input line 34.
+(Font)              using `U/stmry/m/n' instead on input line 35.
 
 )
 \tf@toc=\write9
 \openout9 = `dissertation.toc'.
 
  [12] (dissertation.lof
-Overfull \hbox (6.42403pt too wide) in paragraph at lines 18--18
+Overfull \hbox (6.42403pt too wide) in paragraph at lines 19--19
  [][] [][][]\TU/SourceSansPro(0)/m/n/12 Quantum Teleportation Protocol: Erroneous implementation of the Hadamard 
  []
 
@@ -1789,73 +1789,78 @@ Overfull \hbox (21.44798pt too wide) in paragraph at lines 567--568
 \TU/SourceSansPro(0)/m/n/12 Quantum lambda calculus integrates quantum computation with higher-order functions, thereby
  []
 
+File: images/bloch_sphere.jpg Graphic file (type bmp)
+<images/bloch_sphere.jpg>
 
-Overfull \hbox (7.99599pt too wide) in paragraph at lines 577--578
+Underfull \vbox (badness 10000) has occurred while \output is active []
+
+ [17
+
+]
+Overfull \hbox (7.99599pt too wide) in paragraph at lines 622--623
 \TU/SourceSansPro(0)/m/n/12 This section presents background on quantum information and quantum computation [][]Nielsen
  []
 
-[17
-
-]
-Overfull \hbox (16.2395pt too wide) in paragraph at lines 590--591
+[18]
+Overfull \hbox (16.2395pt too wide) in paragraph at lines 635--636
 \TU/SourceSansPro(0)/m/n/12 each $\OML/cmm/m/it/12 m$\TU/SourceSansPro(0)/m/n/12 . Moreover, after a measurement yielding outcome $\OML/cmm/m/it/12 m$\TU/SourceSansPro(0)/m/n/12 , the state collapses to $\OML/cmm/m/it/12 M[]^^ZM[]\OT1/cmr/m/n/12 /\OML/cmm/m/it/12 p[]$\TU/SourceSansPro(0)/m/n/12 . 
  []
 
 
 Underfull \vbox (badness 10000) has occurred while \output is active []
 
- [18]
-Overfull \hbox (4.34256pt too wide) in paragraph at lines 628--630
+ [19]
+Overfull \hbox (4.34256pt too wide) in paragraph at lines 675--677
 \TU/SourceSansPro(0)/m/n/12 The trace distance between two super-operators $\OML/cmm/m/it/12 E; E[] \OT1/cmr/m/n/12 : \U/msb/m/n/12 C[] [] C[]$\TU/SourceSansPro(0)/m/n/12 , denoted as $\OML/cmm/m/it/12 T\OT1/cmr/m/n/12 (\OML/cmm/m/it/12 E; E[]\OT1/cmr/m/n/12 )$\TU/SourceSansPro(0)/m/n/12 ,
  []
 
-[19]
+[20]
 LaTeX Font Info:    Font shape `TU/SourceSansPro(0)/m/sc' will be
-(Font)              scaled to size 12.0pt on input line 663.
- [20]
-Overfull \hbox (189.77567pt too wide) in paragraph at lines 757--757
+(Font)              scaled to size 12.0pt on input line 710.
+
+Overfull \hbox (189.77567pt too wide) in paragraph at lines 804--804
 []$[]$ 
  []
 
 
-Overfull \hbox (219.83922pt too wide) in paragraph at lines 757--757
+Overfull \hbox (219.83922pt too wide) in paragraph at lines 804--804
 []$[]$ 
  []
 
 
-Overfull \hbox (120.86447pt too wide) in paragraph at lines 757--757
+Overfull \hbox (120.86447pt too wide) in paragraph at lines 804--804
 []$[]$ 
  []
 
 
-Overfull \hbox (120.04332pt too wide) in paragraph at lines 757--757
+Overfull \hbox (120.04332pt too wide) in paragraph at lines 804--804
 []$[]$ 
  []
 
 
-Overfull \hbox (49.35582pt too wide) in paragraph at lines 757--757
+Overfull \hbox (49.35582pt too wide) in paragraph at lines 804--804
 []$[]$ 
  []
 
 
-Overfull \hbox (151.61688pt too wide) in paragraph at lines 757--757
+Overfull \hbox (151.61688pt too wide) in paragraph at lines 804--804
 []$[]$ 
  []
 
 
-Overfull \hbox (21.90512pt too wide) detected at line 758
+Overfull \hbox (21.90512pt too wide) detected at line 805
  $[][]$ 
  []
 
 
-Overfull \hbox (99.33127pt too wide) detected at line 825
+Underfull \vbox (badness 2762) has occurred while \output is active []
+
+ [21]
+Overfull \hbox (99.33127pt too wide) detected at line 872
  $[][]$ 
  []
 
-
-Underfull \vbox (badness 10000) has occurred while \output is active []
-
- [21]) (chapters/Contribution.tex [22]
+) (chapters/Contribution.tex [22]
 Chapter 4.
 
 Underfull \vbox (badness 10000) has occurred while \output is active []
@@ -2274,15 +2279,15 @@ L3 programming layer <2024-01-22>
 LaTeX Font Warning: Some font shapes were not available, defaults substituted.
 
 Package rerunfilecheck Info: File `dissertation.out' has not changed.
-(rerunfilecheck)             Checksum: C4C63AD2DCB8ECAA9A868307267B4F13;6389.
+(rerunfilecheck)             Checksum: D7467F06F29DC47D8E02EEA4447B16CC;6577.
  ) 
 Here is how much of TeX's memory you used:
- 53809 strings out of 409673
- 1146262 string characters out of 5774704
+ 53822 strings out of 409673
+ 1146576 string characters out of 5774704
  2048630 words of memory out of 5000000
- 74948 multiletter control sequences out of 15000+600000
+ 74960 multiletter control sequences out of 15000+600000
  578467 words of font info for 157 fonts, out of 8000000 for 9000
  1348 hyphenation exceptions out of 8191
  109i,36n,121p,2505b,1395s stack positions out of 10000i,1000n,20000p,200000b,200000s
 
-Output written on dissertation.xdv (101 pages, 1622028 bytes).
+Output written on dissertation.xdv (101 pages, 1628556 bytes).

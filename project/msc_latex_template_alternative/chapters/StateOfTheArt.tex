@@ -566,17 +566,50 @@ Knowing that $f(a)^{\epsilon} =_{\epsilon} f(a)$, it is possible to show that $P
 
 Quantum lambda calculus integrates quantum computation with higher-order functions, thereby emerging as a powerful tool for formal reasoning about quantum programs within a functional programming framework. This functional paradigm, with a static type system, offers the significant advantage of ensuring the absence of run-time errors, \textit{i.e.}, potential errors can be detected at compile-time, when the program is written, rather than during execution.
 
-The principal distinction between the quantum lambda calculus introduced in this section and the formulation proposed by Selinger \cite{selinger2006lambda,selinger2009quantum} lies in the handling of data duplication. In the present approach, as dictated by the type system in \autoref{fig:typing_rules_linear}, duplication of any data is strictly prohibited. In contrast, Selinger's approach permits the duplication of classical data while strictly forbidding the duplication of quantum data.
+The principal distinction between the quantum lambda calculus introduced in this section and the formulation proposed by Selinger \cite{selinger2006lambda,selinger2009quantum} lies in the handling of data duplication. In this aproach, as dictated by the type system in \autoref{fig:typing_rules_linear}, duplication of any data is strictly prohibited. In contrast, Selinger's approach permits the duplication of classical data while strictly forbidding the duplication of quantum data.
 Nonetheless, the controlled duplication of both classical and quantum data will be adressesd in \autoref{chap:graded}.
 
 
 \todo[inline,size=\normalsize]{Escrever intro ao capítulo: o que é que se vai abordar e tal} 
 
 
+\section{Mathematical Preliminaries} \label{sec:Math}
+
+It is impossible to present the theory of quantum information without introducing some concepts of linear algebra within finite-dimensional spaces. This section provides a brief overview of the aspects of linear algebra that are most pertinent to the study of quantum information.
+
 \section{Quantum Computing Preliminaries} \label{sec:Quantum Computing Preliminaries}
+
+\begin{figure} [H]
+  \centering
+  \includegraphics[width=0.5\textwidth]{images/bloch_sphere.jpg}
+  \caption{Bloch sphere representation of a qubit}
+  \label{fig:bloch_sphere}
+\end{figure}
 
 % o que falar e em que ordem
 
+% Topicos
+
+% bases algebra: vetores (espaço vetorial e subspaço), produto interno, produto tensorial, tensor, operadores lineares, soma direta, operadores hermiticos e normais, base ortonormal, hilbert space
+% eigenvectors, eigenvalues and spectral theorem
+
+%normas
+
+%esfera de bloch e bloch vector
+
+% Hilbert spaces, quantum states, and density operators and reducted density operators
+
+% trace and partial trace
+
+% Quantum operations (evolution) and measurements
+
+% Super-operators and cptp maps 
+
+% Kraus operators
+
+% pauli matrices and the stuff i am gonna use in qsd
+
+% superposition and interference
 
 
 
@@ -620,6 +653,8 @@ A matrix $A \in \mathbb{C}^{n\times n}$ is said to be normal if $AA^{\dag} =  A^
 \begin{equation} \label{eq:apply_f_diag}
   f(A) = \sum_{i} f(\lambda_{i})b_{i}b_{i}^{\dag}
 \end{equation}
+
+% mudar 3.2 para ser a def para matrizes
 $\ldots$
 The Bloch vector is given by 
 \begin{equation}
