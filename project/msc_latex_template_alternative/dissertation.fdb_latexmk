@@ -1,24 +1,24 @@
 # Fdb version 4
-["bibtex dissertation"] 1724278998.46833 "dissertation.aux" "dissertation.bbl" "dissertation" 1724280305.17558 0
+["bibtex dissertation"] 1724370187.89633 "dissertation.aux" "dissertation.bbl" "dissertation" 1724370196.30515 0
   "./dissertation.bib" 1724162659 19215 6985670acb3cacf734fbbfefbe5e0d92 ""
   "C:/Users/mona_/AppData/Local/Programs/MiKTeX/bibtex/bst/natbib/plainnat.bst" 1284455456 26816 ffe5423d2019860bad9f54bc402fac15 ""
-  "dissertation.aux" 1724280303 29441 684a0ce58ef0920f88e52f719eec8fcb "xelatex"
+  "dissertation.aux" 1724370194 31293 4bce28770cbe4a512d54ed640ed1f395 "xelatex"
   (generated)
   "dissertation.bbl"
   "dissertation.blg"
   (rewritten before read)
-["makeindex dissertation.idx"] 0 "dissertation.idx" "dissertation.ind" "dissertation" 1724280305.17542 -1
-  "dissertation.idx" 1724280299 0 d41d8cd98f00b204e9800998ecf8427e "xelatex"
+["makeindex dissertation.idx"] 1724337295.10352 "dissertation.idx" "dissertation.ind" "dissertation" 1724370196.30501 0
+  "dissertation.idx" 1724370189 0 d41d8cd98f00b204e9800998ecf8427e "xelatex"
   (generated)
   "dissertation.ilg"
   "dissertation.ind"
   (rewritten before read)
-["xdvipdfmx"] 1724280304.57641 "dissertation.xdv" "dissertation.pdf" "dissertation" 1724280305.18665 0
-  "dissertation.xdv" 1724280303 1628556 b8a5223a5f47543ad86d17bf01df3e89 "xelatex"
+["xdvipdfmx"] 1724370195.76876 "dissertation.xdv" "dissertation.pdf" "dissertation" 1724370196.31617 0
+  "dissertation.xdv" 1724370194 1664408 a83e47732e53d49620c5c786750d802d "xelatex"
   (generated)
   "dissertation.pdf"
   (rewritten before read)
-["xelatex"] 1724280297.00947 "c:/Users/mona_/OneDrive/Ambiente de Trabalho/Universidade/Tese/Msc-Bruna/project/msc_latex_template_alternative/dissertation.tex" "dissertation.xdv" "dissertation" 1724280305.17577 0
+["xelatex"] 1724370188.15029 "c:/Users/mona_/OneDrive/Ambiente de Trabalho/Universidade/Tese/Msc-Bruna/project/msc_latex_template_alternative/dissertation.tex" "dissertation.xdv" "dissertation" 1724370196.30533 0
   "C:/Users/mona_/AppData/Local/MiKTeX/fonts/tfm/public/stmaryrd/stmary10.tfm" 1707388460 848 f478e0761563bbc369eca609a1741348 ""
   "C:/Users/mona_/AppData/Local/MiKTeX/fonts/tfm/public/stmaryrd/stmary5.tfm" 1707388463 848 e1bc58a31b9ed9c3729ffea165acfaac ""
   "C:/Users/mona_/AppData/Local/MiKTeX/fonts/tfm/public/stmaryrd/stmary6.tfm" 1707388461 848 068dd119e13b75777e62821af7d4f2a6 ""
@@ -232,6 +232,8 @@
   "C:/Users/mona_/AppData/Local/Programs/MiKTeX/tex/latex/geometry/geometry.cfg" 1578053545 1104 7ac475a4e3466b0b43e138e9356bda83 ""
   "C:/Users/mona_/AppData/Local/Programs/MiKTeX/tex/latex/geometry/geometry.sty" 1578053545 42759 9cf6c5257b1bc7af01a58859749dd37a ""
   "C:/Users/mona_/AppData/Local/Programs/MiKTeX/tex/latex/glossaries-english/glossaries-english.ldf" 1432895212 3755 cfd7063dcf1f89f4d3681b9a8bd5be4d ""
+  "C:/Users/mona_/AppData/Local/Programs/MiKTeX/tex/latex/glossaries-extra/glossaries-extra-abbrstyles.def" 1696099470 213326 a794f44dfc85aad51cb880c72c35f5e5 ""
+  "C:/Users/mona_/AppData/Local/Programs/MiKTeX/tex/latex/glossaries-extra/glossaries-extra.sty" 1696099470 423078 740cf62b5b0a224866167f711f6f0cbd ""
   "C:/Users/mona_/AppData/Local/Programs/MiKTeX/tex/latex/glossaries-portuges/glossaries-portuges-utf8.ldf" 1432895729 3186 29f6c828da993c09c6effcee40b24b91 ""
   "C:/Users/mona_/AppData/Local/Programs/MiKTeX/tex/latex/glossaries-portuges/glossaries-portuges.ldf" 1432895729 3128 fb9b1247e1b7da212665e1f35191d08c ""
   "C:/Users/mona_/AppData/Local/Programs/MiKTeX/tex/latex/glossaries/base/glossaries.sty" 1696190272 235577 7329486ac0bfda16825e1574690851c7 ""
@@ -320,7 +322,6 @@
   "C:/Users/mona_/AppData/Local/Programs/MiKTeX/tex/latex/tools/tabularx.sty" 1700599895 7147 d45559f8a31b8c53ada0640516660003 ""
   "C:/Users/mona_/AppData/Local/Programs/MiKTeX/tex/latex/tools/verbatim.sty" 1700599895 7500 db31c3d04f8bc9010e47a5efbbace9ff ""
   "C:/Users/mona_/AppData/Local/Programs/MiKTeX/tex/latex/tracklang/tracklang.sty" 1670930869 9021 97184989e222403ee383aaf91e0f1ae0 ""
-  "C:/Users/mona_/AppData/Local/Programs/MiKTeX/tex/latex/translator/translator.sty" 1622471510 8765 56d370785f0143111ff9898b5adfe08e ""
   "C:/Users/mona_/AppData/Local/Programs/MiKTeX/tex/latex/trimspaces/trimspaces.sty" 1253169183 1380 971a51b00a14503ddf754cab24c3f209 ""
   "C:/Users/mona_/AppData/Local/Programs/MiKTeX/tex/latex/url/url.sty" 1388490452 12796 8edb7d69a20b857904dd0ea757c14ec9 ""
   "C:/Users/mona_/AppData/Local/Programs/MiKTeX/tex/latex/varwidth/varwidth.sty" 1238469540 10894 d359a13923460b2a73d4312d613554c8 ""
@@ -330,25 +331,22 @@
   "C:/Users/mona_/AppData/Local/Programs/MiKTeX/tex/latex/xfor/xfor.sty" 1233849756 2689 44855b72da58344b1c1d9b3087bce6ca ""
   "C:/Users/mona_/AppData/Local/Programs/MiKTeX/tex/latex/xkeyval/xkeyval.sty" 1656236919 4937 4ce600ce9bd4ec84d0250eb6892fcf4f ""
   "C:/Users/mona_/AppData/Local/Programs/MiKTeX/tex/latex/xstring/xstring.sty" 1693735632 123 a302f2c651a95033260db60e51527ae8 ""
-  "c:/Users/mona_/OneDrive/Ambiente de Trabalho/Universidade/Tese/Msc-Bruna/project/msc_latex_template_alternative/dissertation.tex" 1724162394 24647 d166ecf4482183ce8e57ae9773602fd7 ""
+  "c:/Users/mona_/OneDrive/Ambiente de Trabalho/Universidade/Tese/Msc-Bruna/project/msc_latex_template_alternative/dissertation.tex" 1724367949 26172 791341e40d911c381e0a988ba426a0a7 ""
   "chapters/Applications.tex" 1724176152 3104 89153b12fdfaa54c8d27aca6ce28cf68 ""
   "chapters/ConclusionsAndFutureWork.tex" 1707388022 128 ee4bd95d20b09ad30c6f7388879266c6 ""
-  "chapters/Contribution.tex" 1724089380 175970 e843452d9748234c7ce227a98903569c ""
+  "chapters/Contribution.tex" 1724363092 176013 2bf4c226afa80339374266108b989aaf ""
   "chapters/Introduction.tex" 1724180950 10747 06f5e8feff6469addcb97ecde95a45bf ""
-  "chapters/StateOfTheArt.tex" 1724280296 62880 2290219cac5f26645d688088b202d3fe ""
+  "chapters/StateOfTheArt.tex" 1724370177 66711 607ac3eea4cdb5bb014079624b42e134 ""
   "covers/BackCover.tex" 1707388022 320 a987714a8b9261f76bca17abafd1ab8d ""
   "covers/Covers.tex" 1723730337 805 4a06ebffa2d5d3fba4b4e49281362e43 ""
-  "dissertation.acr" 1724162299 448 3e23b04d01fcc74718f388eb9eafd0a2 ""
-  "dissertation.aux" 1724280303 29441 684a0ce58ef0920f88e52f719eec8fcb "xelatex"
-  "dissertation.bbl" 1724278998 14792 9f1dae4a107c473bdc8ee32e48babca7 "bibtex dissertation"
-  "dissertation.gls" 1723731493 0 d41d8cd98f00b204e9800998ecf8427e ""
-  "dissertation.glsdefs" 1724162365 1033 7f595b7055fdaa80b0151a29a5c43095 ""
-  "dissertation.ind" 1724280303 0 d41d8cd98f00b204e9800998ecf8427e "makeindex dissertation.idx"
-  "dissertation.lof" 1724280303 2461 b3a8eb21ee679c42f9dfbcf09365a7e9 "xelatex"
-  "dissertation.out" 1724280303 6577 d7467f06f29dc47d8e02eea4447b16cc "xelatex"
-  "dissertation.sty" 1707388022 4093 a2c47dfb7262b055e5457b022a813e14 ""
-  "dissertation.tex" 1724162394 24647 d166ecf4482183ce8e57ae9773602fd7 ""
-  "dissertation.toc" 1724280303 4292 542fece9eb23d901af5f4c44c137b8f2 "xelatex"
+  "dissertation.aux" 1724370194 31293 4bce28770cbe4a512d54ed640ed1f395 "xelatex"
+  "dissertation.bbl" 1724370188 14792 9f1dae4a107c473bdc8ee32e48babca7 "bibtex dissertation"
+  "dissertation.ind" 1724370194 0 d41d8cd98f00b204e9800998ecf8427e "makeindex dissertation.idx"
+  "dissertation.lof" 1724370194 2461 6edf7350f8ad907a0242cf7e0bf0859b "xelatex"
+  "dissertation.out" 1724370194 6748 91f2d868706282a4e1444da8043247e9 "xelatex"
+  "dissertation.sty" 1724337272 4099 794f05c0d85420788941ef59c64109b6 ""
+  "dissertation.tex" 1724367949 26172 791341e40d911c381e0a988ba426a0a7 ""
+  "dissertation.toc" 1724370194 4469 91254ea91adc559115b0feec52e8fcec "xelatex"
   "images/CCBY.png" 1707388022 5980 a81089c221076f7922e56e2bb2a7629e ""
   "images/CCBYNC.png" 1707388022 6991 4fdab0eb79d15eeaab8d6e7136a2fe7e ""
   "images/CCBYNCND.png" 1707388022 7261 493a469b1d4089c60e862c74929a7288 ""
@@ -365,11 +363,8 @@
   "preamble/Copyright.tex" 1707388022 3894 00edd619b2ab06f71e8efe10ec84457f ""
   "preamble/StatementofIntegrity.tex" 1707388022 493 e5351f69158f77df4240abc7cbaa2389 ""
   (generated)
-  "dissertation.acn"
   "dissertation.aux"
-  "dissertation.glo"
   "dissertation.idx"
-  "dissertation.ist"
   "dissertation.lof"
   "dissertation.log"
   "dissertation.out"

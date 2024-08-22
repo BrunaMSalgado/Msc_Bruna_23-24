@@ -61,7 +61,7 @@ Here $x$ ranges over an infinite set of variables. $f \in \Sigma$, where  $\Sigm
 \subsection{Free and Bound Variables}
 An occurrence of a variable $x$ within a term of the form $\lambda x.v$ is referred to as \emph{bound}.  Similarly, the variables $x$ and $y$ in the term $\text{pm} \hspace{3 pt} v \hspace{3 pt} \text{to} \hspace{3 pt} x \otimes y. w$ are also bound. A variable occurrence that is not bound is said to be \emph{free}. For example, in the term $\lambda x.xy$, the variable $y$ is free, whereas the variable $x$ is bound.  
 
-The set of free variables of a term $v$ is denoted by $FV(v)$, and is defined inductively as follows:
+The set of free variables of a term $v$ is denoted by \gls{fv}, and is defined inductively as follows:
 \begin{equation*}
 \begin{split}
 FV(x) &= \{x\}, &  FV(*) &= \emptyset,  \\
@@ -77,7 +77,8 @@ FV(v \text{ to } *.w) &= FV(v) \cup FV(w). \\
 
 To prevent the formation of nonsensical terms within the context of lambda calculus, such as $(v \otimes w) (u)$, the \emph{typing rules} are imposed.
 
-A typed term is a pair consisting of a term and its corresponding type. The notation $v:\mathbb{A}$ denotes that the term $v$ has type $\mathbb{A}$. Typing rules are formulated using typing \emph{judgments}. A typing judgment is an expression of the form $x_{1}: \mathbb{A}_{1}, \ldots, x_{n}: \mathbb{A}_{n} \triangleright v: \mathbb{A}$ (where $n \geq 1$), which asserts that the term $v$ is a well-typed term of type $\mathbb{A}$ under the assumption that each variable variable $x_{i}$ has type $\mathbb{A}_{i}$, for $1 \leq i \leq n$. The list $x_{1}: \mathbb{A}_{1}, \ldots, x_{n}: \mathbb{A}_{n}$ of typed variables is called the \emph{typing context} of the judgment, and it might be empty.  Each variable $x_i$ (where $1 \leq i \leq n$) must occur at most once in $x_1, \ldots, x_n$. The typing contexts are denoted by Greek letters $\Gamma$, $\Delta$, and $E$. The empty context is denoted by $-$. Note that in the affine lambda calculus, different contexts do not share variables. For example, if $\Gamma = x:\mathbb{A},y:\mathbb{B}$ none of these variables can appear in any other context. 
+A \emph{typed} term is a pair consisting of a term and its corresponding type. The notation \gls{typed-term} denotes that the term $v$ has type $\mathbb{A}$. Typing rules are formulated using \emph{typing judgments}. A typing judgment is an expression of the form $x_{1}: \mathbb{A}_{1}, \ldots, x_{n}: \mathbb{A}_{n} \hspace{1pt} \triangleright \hspace{1pt} v: \mathbb{A}$ (where $n \geq 1$), which asserts that the term $v$ is a well-typed term of type $\mathbb{A}$ under the assumption that each variable variable $x_{i}$ has type $\mathbb{A}_{i}$, for $1 \leq i \leq n$. The list $x_{1}: \mathbb{A}_{1}, \ldots, x_{n}: \mathbb{A}_{n}$ of typed variables is called the \emph{typing context} of the judgment, and it might be empty.  Each variable $x_i$ (where $1 \leq i \leq n$) must occur at most once in $x_1, \ldots, x_n$. The typing contexts are denoted by Greek letters \gls{typingcontexts}, and from now on, when referring to an abstract judgment, the notation \gls{judgement} will be employed.
+ The empty context is denoted by $-$. Note that in the affine lambda calculus, different contexts do not share variables. For example, if $\Gamma = x:\mathbb{A},y:\mathbb{B}$ none of these variables can appear in any other context. 
 
 
 The concept of \emph{shuffling} is employed to construct a linear typing system that ensures the admissibility of the exchange rule and enables unambiguous reference to judgment's denotation $[\![ \Gamma \triangleright v: \mathbb{A} ]\!]$. An admissible rule is not explicitly included in the formal definition of type theory, but its validity can be proven by demonstrating that whenever the premises can be derived, it is possible to construct a derivation of its conclusion. Shuffling is defined as a permutation of typed variables in a sequence of contexts, $\Gamma_1, \ldots, \Gamma_n$, preserving the relative order of variables within each $\Gamma_i$ \cite{shulman2019practical}. For instance, if $\Gamma_1=x:\mathbb{A}, y:\mathbb{B}$ and $\Gamma_2=z:\mathbb{C}$, then $z:\mathbb{C}, x:\mathbb{A}, y:\mathbb{B}$ is a valid shuffle of $\Gamma_1, \Gamma_2$. On the other hand, $y:\mathbb{B}, x:\mathbb{A}, z:\mathbb{C}$ is not a shuffle because it alters the occurrence order of $x$ and $y$ in $\Gamma_1$. The set of shuffles in $\Gamma_1, \ldots, \Gamma_n$ is denoted as $\text{Sf} (\Gamma_1, \ldots, \Gamma_n)$. A valid typing derivation is constructed using the inductive rules shown in \autoref{fig:typing_rules_linear}.
@@ -124,7 +125,7 @@ $
 $\begin{array}{c}
      \Gamma \triangleright v: \mathbb{A} \otimes \mathbb{B} \quad  \Delta,x: \mathbb{A}, y: \mathbb{B}  \triangleright w: \mathbb{C}  \quad E \in \text{Sf}(\Gamma;\Delta)\\
     \hline
-   E\triangleright \text{pm } v \text{ to } x \otimes y. w :\mathbb{C}
+   E\triangleright \text{pm } v \text{ to } x \otimes y. w :\mathbb{D}
 \end{array}
 $ \end{minipage}
 \hspace{117pt} (\otimes_{e}) 
@@ -189,7 +190,7 @@ The rule ($\mathbb{I}_{i}$) asserts that the unit element $*$ always has type $\
 The rule ($\multimap_i$) expresses that if $v$ is a term of type $\mathbb{B}$ with a variable $x$ of type $\mathbb{A}$, then $\lambda x:\mathbb{A} . v$ is a function of type $\mathbb{A} \multimap \mathbb{B} $. 
 The rule $(\multimap_e)$ states that a function of type $\mathbb{A} \multimap \mathbb{B}$  can be applied to an argument of type $\mathbb{A}$  to produce a result of type $\mathbb{B}$. 
 The rule $(\mathbb{\otimes}_i)$  asserts that if there is a term $v$ of type $\mathbb{A}$ and a term $w$ of type $\mathbb{B}$,  then the tensor of these terms is of type $\mathbb{A} \otimes \mathbb{B}$.
-The rule $(\mathbb{\otimes}_e)$ expresses if there is a term $w$ of type $\mathbb{C}$ with variables $x$ and $y$ of types $\mathbb{A}$ and $\mathbb{B}$, respectively, and a term $v$ of type $\mathbb{A} \otimes \mathbb{B}$, then $v$ can be deconstructed into $x \otimes y$. 
+The rule $(\mathbb{\otimes}_e)$ expresses if there is a term $w$ of type $\mathbb{D}$ with variables $x$ and $y$ of types $\mathbb{A}$ and $\mathbb{B}$, respectively, and a term $v$ of type $\mathbb{A} \otimes \mathbb{B}$, then $v$ can be deconstructed into $x \otimes y$. 
 The rule $(\mathbb{I}_e)$ states that if there is a term $w$ of type $\mathbb{A}$ and a term $v$ of type $\mathbb{I}$, then $v$ can be discarded, and only the term $w$ remains. 
 Finally, the rule $(\text{dis})$ asserts that a term $v$ of type $\mathbb{A}$ can be discarded, resulting in a term of type $\mathbb{I}$.
 
@@ -249,7 +250,7 @@ A natural notion of equivalence definition stems from the fact that terms that d
 \end{convention}
 
 \subsection{Substitution}
-The substitution of a variable $x$ for a term $w$ in a term $v$ is denoted by $v[w/x]$. It is only  permitted  to replace free variables. For instance, $\lambda x. \hspace{1pt} x  \hspace{2pt} [v/x]$ is $\lambda x. \hspace{1pt} x  \hspace{2pt}$ and not  $\lambda x. \hspace{1pt} v  \hspace{2pt}$. Moreover, it is necessary to avoid the unintended binding of free variables. For example, $$(\text{pm} \hspace{3 pt} x \otimes y\hspace{3 pt} \text{to} \hspace{3 pt} a \otimes b. \hspace{1pt} b \otimes a \otimes z) \hspace{2 pt}  [z/\text{pm} \hspace{3 pt} c \otimes d\hspace{3 pt} \text{to} \hspace{3 pt} e \otimes f. \hspace{1pt} f \otimes e \otimes a]$$ is not the same as $$\text{pm} \hspace{3 pt} x \otimes y\hspace{3 pt} \text{to} \hspace{3 pt} a \otimes b. \hspace{1pt} b \otimes a \otimes (\text{pm} \hspace{3 pt} c \otimes d\hspace{3 pt} \text{to} \hspace{3 pt} e \otimes f. \hspace{1pt} f \otimes e \otimes a ). $$ Instead, the bounded variable $a$ must be renamed before the substitution, and in this case, the proper substitution is $$(\text{pm} \hspace{3 pt} x \otimes y\hspace{3 pt} \text{to} \hspace{3 pt} t \otimes b. \hspace{1pt} b \otimes t \otimes z) \hspace{2 pt}  [z/\text{pm} \hspace{3 pt} c \otimes d\hspace{3 pt} \text{to} \hspace{3 pt} e \otimes f. \hspace{1pt} f \otimes e \otimes a]$$ which is equal to $$\text{pm} \hspace{3 pt} x \otimes y\hspace{3 pt} \text{to} \hspace{3 pt} t \otimes b. \hspace{1pt} b \otimes t \otimes (\text{pm} \hspace{3 pt} c \otimes d\hspace{3 pt} \text{to} \hspace{3 pt} e \otimes f. \hspace{1pt} f \otimes e \otimes a) .$$
+The substitution of a variable $x$ for a term $w$ in a term $v$ is denoted by \gls{substitution}. It is only  permitted  to replace free variables. For instance, $\lambda x. \hspace{1pt} x  \hspace{2pt} [v/x]$ is $\lambda x. \hspace{1pt} x  \hspace{2pt}$ and not  $\lambda x. \hspace{1pt} v  \hspace{2pt}$. Moreover, it is necessary to avoid the unintended binding of free variables. For example, $$(\text{pm} \hspace{3 pt} x \otimes y\hspace{3 pt} \text{to} \hspace{3 pt} a \otimes b. \hspace{1pt} b \otimes a \otimes z) \hspace{2 pt}  [z/\text{pm} \hspace{3 pt} c \otimes d\hspace{3 pt} \text{to} \hspace{3 pt} e \otimes f. \hspace{1pt} f \otimes e \otimes a]$$ is not the same as $$\text{pm} \hspace{3 pt} x \otimes y\hspace{3 pt} \text{to} \hspace{3 pt} a \otimes b. \hspace{1pt} b \otimes a \otimes (\text{pm} \hspace{3 pt} c \otimes d\hspace{3 pt} \text{to} \hspace{3 pt} e \otimes f. \hspace{1pt} f \otimes e \otimes a ). $$ Instead, the bounded variable $a$ must be renamed before the substitution, and in this case, the proper substitution is $$(\text{pm} \hspace{3 pt} x \otimes y\hspace{3 pt} \text{to} \hspace{3 pt} t \otimes b. \hspace{1pt} b \otimes t \otimes z) \hspace{2 pt}  [z/\text{pm} \hspace{3 pt} c \otimes d\hspace{3 pt} \text{to} \hspace{3 pt} e \otimes f. \hspace{1pt} f \otimes e \otimes a]$$ which is equal to $$\text{pm} \hspace{3 pt} x \otimes y\hspace{3 pt} \text{to} \hspace{3 pt} t \otimes b. \hspace{1pt} b \otimes t \otimes (\text{pm} \hspace{3 pt} c \otimes d\hspace{3 pt} \text{to} \hspace{3 pt} e \otimes f. \hspace{1pt} f \otimes e \otimes a) .$$
 
 Note that a simple way of ensuring these restrictions are satisfied is not allowing the variable $x$ to occur in the context of $w$ in $v[w/x]$. Since $x$ is in the context of $v$, this is always the case in the affine lambda calculus.
 
@@ -270,7 +271,7 @@ Given the typings judgments $\Gamma, x: \mathbb{A} \triangleright v:\mathbb{B}$ 
   \hspace{-23pt}\text{In the next two cases, }\Gamma,x: \mathbb{A} & \in \text{Sf}(\Gamma_1,\Gamma_2), \Gamma_1 \triangleright v \text{, and } \Gamma_2 \triangleright u  \\
   \hspace{-23pt}\Gamma, \Delta  \triangleright (v \otimes u)[w/x] &= \Gamma, \Delta  \triangleright v[w/x] \otimes u, & (\text{ if } x: \mathbb{A} \in \Gamma_1)\\ 
   \hspace{-23pt}\Gamma, \Delta  \triangleright (v \otimes u)[w/x] &= \Gamma, \Delta  \triangleright v \otimes u[w/x], & (\text{ if } x: \mathbb{A} \in \Gamma_2)\\
-  \hspace{-23pt}\text{In the next two cases, }\Gamma,x: \mathbb{A}  \in \text{Sf}(&\Gamma_1,\Gamma_2), \Gamma_1 \triangleright v \text{, and } \Gamma_2, y: \mathbb{C}, z:\mathbb{D} \triangleright u  \\
+  \hspace{-23pt}\text{In the next two cases, }\Gamma,x: \mathbb{A}  \in \text{Sf}(&\Gamma_1,\Gamma_2), \Gamma_1 \triangleright v \text{, and } \Gamma_2, y: \mathbb{D}, z:\mathbb{E} \triangleright u  \\
   \hspace{-23pt} \Gamma, \Delta  \triangleright (\text{pm} \hspace{3 pt} v \hspace{3 pt} \text{to} \hspace{3 pt} y \otimes z. u)[w/x] &= \Gamma, \Delta  \triangleright \text{pm} \hspace{3 pt} v[w/x] \hspace{3 pt} \text{to} \hspace{3 pt} y \otimes z. u,  &  (\text{ if } x: \mathbb{A} \in \Gamma_1) \\
   \hspace{-23pt} \Gamma, \Delta  \triangleright (\text{pm} \hspace{3 pt} v \hspace{3 pt} \text{to} \hspace{3 pt} y \otimes z. u)[w/x] &= \Gamma, \Delta  \triangleright \text{pm} \hspace{3 pt} v \hspace{3 pt} \text{to} \hspace{3 pt} y \otimes z. u[w/x],  &  (\text{ if } x: \mathbb{A} \in \Gamma_2) \\
   \hspace{-23pt}\text{In the next two cases, }\Gamma,x: \mathbb{A} &  \in \text{Sf}(\Gamma_1,\Gamma_2), \Gamma_1 \triangleright v \text{, and } \Gamma_2 \triangleright u  \\
@@ -292,7 +293,7 @@ The properties are as follows:
    \item for all judgements $\Gamma \triangleright v$ and $\Gamma' \triangleright v$, te($\Gamma$) $\simeq_{\pi}$  te($\Gamma'$); 
    \item additionally if $\Gamma \triangleright v: \mathbb{A}, \Gamma'\triangleright v: \mathbb{A}'$, and $\Gamma \simeq_{\pi} \Gamma' $, then $\mathbb{A}$ must be equal to $\mathbb{A}'$;
    \item all judgements $\Gamma \triangleright v:\mathbb{A}$ have a unique derivation.
-   \item (exchange) For every judgement $\Gamma,x:\mathbb{A}, y:\mathbb{B}, \Delta \triangleright v: \mathbb{C}$ it is possible to derive $\Gamma, y:\mathbb{B}, x:\mathbb{A}, \Delta \triangleright v: \mathbb{C}$. 
+   \item (exchange) For every judgement $\Gamma,x:\mathbb{A}, y:\mathbb{B}, \Delta \triangleright v: \mathbb{D}$ it is possible to derive $\Gamma, y:\mathbb{B}, x:\mathbb{A}, \Delta \triangleright v: \mathbb{D}$. 
    \item (substitution) For all judgements  $\Gamma,x:\mathbb{A} \triangleright v: \mathbb{B}$ and $\Delta \triangleright w: \mathbb{A}$ it is possible to derive $ \Gamma, \Delta \triangleright v[w/x]: \mathbb{B}$.
  \end{enumerate}
  
@@ -301,7 +302,7 @@ The properties are as follows:
 \subsection{Equations-in-context}
 The simply typed lambda calculus is a formal language that captures operations like the application of a function to an argument and the elimination of variables. To express these operations there is a set of rules known as reduction rules. These rules fall into two primary categories: the $\beta$\emph{-reductions}, which perform operations and enforce the implicit meaning of the term, and $\eta$\emph{-reductions}, which simplify terms by exploiting the extensionality of functions. 
 There is also a secondary class of reductions known as \emph{commuting conversions}, which serve to disambiguate terms that, while equivalent, have different representations.
-As a result, affine $\lambda$-calculus comes equipped with the so-called equations-in-context $\Gamma \triangleright v = w : \mathbb {A}$, depicted in \autoref{fig:equations-linear-lambda}.
+As a result, affine $\lambda$-calculus comes equipped with the so-called equations-in-context \gls{equation-in-context}, depicted in \autoref{fig:equations-linear-lambda}.
 \begin{figure}[H]
   \centering
   \begin{tabular}{ |ccccc| }
@@ -349,7 +350,9 @@ It is evident that, for example, equation $(\beta)$ enforces the meaning of  $(
 
 
 \section{Metric equational system}
-\emph{Metric equations} \cite{mardare2016quantitative}, \cite{mardare2017axiomatizability} are a strong candidate for reasoning about approximate program equivalence. These equations take the form of $t=_{\epsilon} s$, where  $\epsilon$ is a non-negative rational representing the ``maximum distance" between the two terms $t$ and $s$. The metric equational system for linear lambda calculus is depicted in \autoref{fig:metric deductive system}.
+\todo[inline,size=\normalsize]{Mete-se contexto e tipo nas eqs métricas? } 
+
+\emph{Metric equations} \cite{mardare2016quantitative}, \cite{mardare2017axiomatizability} are a strong candidate for reasoning about approximate program equivalence. These equations take the form of \gls{metric-equation}, where  $\epsilon$ is a non-negative rational representing the ``maximum distance" between the two terms $t$ and $s$. The metric equational system for linear lambda calculus is depicted in \autoref{fig:metric deductive system}.
 
 \begin{figure} [H]
 \begin{equation*}
@@ -505,13 +508,13 @@ Here, $\text{perm} (\Gamma)$ denotes the set of possible permutions of context $
 To ilustrate the usefulness of these equations, consider the program $P$ that recieves a tensor product, swaps its elements and then applies a function $f$ to to the new second element of the tensor  pair:
 \begin{equation*}
 \begin{split}
-& P = x : \mathbb{A},  y : \mathbb{B} \triangleright \text{pm} \hspace{3 pt} x \otimes y\hspace{3 pt} \text{to} \hspace{3 pt} a \otimes b. \hspace{1pt} b \otimes f(a) : \mathbb{C} \otimes \mathbb{A} &
+& P = x : \mathbb{A},  y : \mathbb{B} \triangleright \text{pm} \hspace{3 pt} x \otimes y\hspace{3 pt} \text{to} \hspace{3 pt} a \otimes b. \hspace{1pt} b \otimes f(a) : \mathbb{D} \otimes \mathbb{A} &
 \end{split}
 \end{equation*}
 Now, consider the case where $f$ is an idealized version of function $f^{\epsilon}$ mapping $a$ to $f(a)^{\epsilon}$. The program that applies the ``real'' function $f$ to the first element of the tensor pair is $P^{\epsilon}$:
 \begin{equation*}
   \begin{split}
-  & P^{\epsilon} = x : \mathbb{A},  y : \mathbb{B} \triangleright \text{pm} \hspace{3 pt} x \otimes y\hspace{3 pt} \text{to} \hspace{3 pt} a \otimes b. \hspace{1pt} b \otimes f(a)^{\epsilon}  : \mathbb{C} \otimes \mathbb{A} &
+  & P^{\epsilon} = x : \mathbb{A},  y : \mathbb{B} \triangleright \text{pm} \hspace{3 pt} x \otimes y\hspace{3 pt} \text{to} \hspace{3 pt} a \otimes b. \hspace{1pt} b \otimes f(a)^{\epsilon}  : \mathbb{D} \otimes \mathbb{A} &
   \end{split}
   \end{equation*}
 Knowing that $f(a)^{\epsilon} =_{\epsilon} f(a)$, it is possible to show that $P^{\epsilon} =_{\epsilon} P $ using the metric equational system. The prove is as follows. The types and contexts are omitted for brevity as no ambiguity arises.
@@ -570,14 +573,76 @@ The principal distinction between the quantum lambda calculus introduced in this
 Nonetheless, the controlled duplication of both classical and quantum data will be adressesd in \autoref{chap:graded}.
 
 
-\todo[inline,size=\normalsize]{Escrever intro ao capítulo: o que é que se vai abordar e tal} 
+\todo[inline,size=\normalsize]{Escrever intro ao capítulo: o que é que se vai abordar e tal e é baseada nos livros x e y} 
 
 
 \section{Mathematical Preliminaries} \label{sec:Math}
 
-It is impossible to present the theory of quantum information without introducing some concepts of linear algebra within finite-dimensional spaces. This section provides a brief overview of the aspects of linear algebra that are most pertinent to the study of quantum information.
+
+It is impossible to present the theory of quantum information without introducing some concepts of linear algebra within finite-dimensional spaces. This section provides a brief overview of the aspects of linear algebra that are most pertinent to the study of quantum information. 
+
+\subsubsection{Complex vector spaces}
+
+The basic objects of linear algebra are vector spaces. The vector spaces of interest in this work are the complex vector spaces, \gls{n-complex-space} and \gls{matrix-complex-space}, therefore, the following definition is given in the context of complex vector spaces. 
+
+\begin{definition}
+A vector space (over $\mathbb{C}$)  consists of a set $V$ whose elements are called vectors, together with two operations:
+\begin{itemize}
+  \item An operation called vector addition that takes two vectors $v, w \in V$ , and results in a third vector, written $v + w \in V$;
+  \item An operation called scalar multiplication that takes a scalar $r \in \mathbb{C}$ and a vector $v \in V$ , and results in a new vector, written $r \cdot v \in V$
+\end{itemize}
+which satisfy the following conditions (called axioms), for all $u, v, w \in V$ and $r, s \in \mathbb{C}$:
+
+\begin{enumerate}
+  \item Vector addition is commutative: $u + v = v + u$;
+  \item Vector addition is associative: $(u + v) + w = u + (v + w) f$;
+  \item There is a zero vector $0 \in V$ such that $v +0 = v$ for all $v \in V$;
+  \item Each $v \in V$ has an additive inverse $w \in V$ such that $w + v = 0$;
+  \item Scalar multiplication distributes over scalar addition, $(r+s) \cdot v = r \cdot v +s \cdot v$;
+  \item Scalar multiplication distributes over vector addition, $r \cdot (v + w) = r \cdot v + r \cdot w$;
+  \item Ordinary multiplication of scalars associates with scalar multiplication, $(rs) \cdot v = r \cdot (s \cdot v)$;
+  \item Multiplication by the scalar 1 is the identity operation, $1 \cdot v = v$.
+\end{enumerate}
+
+\end{definition}
+
+All vector spaces are assumed to be finite dimensional, unless otherwise noted.  
+
+In the case of the vector space $\mathbb{C}^{n}$, the space of all n-tuples of complex numbers, $(\alpha_1, \ldots , \alpha_n)$, addition and scalar multiplication are defined in the following standard way:
+\begin{itemize}
+  \item Addition: for vectors $u = (\alpha_1, \ldots , \alpha_n), v = (\beta_1, \ldots , \beta_n)  \in \mathbb{C}^{n}$, the vector $u + v \in \mathbb{C}^{n}$ is defined by the equation $(u + v) = (\alpha_1 + \beta_1, \ldots, \alpha_n+\beta_n)$.
+  \item Scalar multiplication: for a scalar $r \in \mathbb{C}$ and a vector $v = (\alpha_1, \ldots , \alpha_n) \in \mathbb{C}^{n}$, the vector $r \cdot v \in \mathbb{C}^{n}$ is defined by the equation $r \cdot v = (r \cdot \alpha_1, \ldots, r \cdot \alpha_n)$.
+\end{itemize}
+The zero vector in $\mathbb{C}^{n}$ is the vector with all entries equal to zero.
+
+$\mathbb{C}^{n \times n}$ is a vector space when addition is defined as matrix addition and scalar multiplication is defined as multiplication of each component by the scalar. The zero vector is the zero matrix, \textit{i.e.}, the matrix with all entries equal to zero.
+
+% produto tensorial e soma direta
+%operadores lineares e relação com matrizes, operadores hermitianos e normais e isometrias, op positivo e matriz positiva
+% traço e traço parcial
+% produto interno
+% espaços de hilbert 
+% dizer que o produto interno induz uma norma -> falar de norma euclideana e trace norm e de espaços normados
+%base ortonormal
+%teorema espectral
+
+
+
+% vector spaces and operators and their inner produts (the trace of operators involver inner products)
+%metric spaces e normed spaces
+
+
+
+
 
 \section{Quantum Computing Preliminaries} \label{sec:Quantum Computing Preliminaries}
+
+
+%\gls{ket}
+
+%\gls{bra}
+
+% In this context vectors in $\mathbb{C}^{2 \cdot n}$ are designated kets and denotes |Psi>. Nevetheless there is an expection: the zero vector which will still be represented as 0, given  |0> represents another vector.
 
 \begin{figure} [H]
   \centering

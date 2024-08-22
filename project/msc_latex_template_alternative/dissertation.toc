@@ -1,6 +1,8 @@
 \babel@toc {english}{}\relax 
 \contentsline {paragraph}{Keywords}{vii}{chapter*.4}%
 \contentsline {paragraph}{Palavras-chave}{ix}{chapter*.5}%
+\contentsline {chapter}{Acronyms}{xv}{section*.9}%
+\contentsline {chapter}{Notation}{xvii}{section*.11}%
 \contentsline {chapter}{\numberline {1}Introduction}{1}{chapter.1}%
 \contentsline {section}{\numberline {1.1}Motivation and Context}{1}{section.1.1}%
 \contentsline {section}{\numberline {1.2}Goals}{4}{section.1.2}%
@@ -19,35 +21,36 @@
 \contentsline {section}{\numberline {2.3}Metric equational system}{15}{section.2.3}%
 \contentsline {chapter}{\numberline {3}Quantum Meets Lambda Calculus}{17}{chapter.3}%
 \contentsline {section}{\numberline {3.1}Mathematical Preliminaries}{17}{section.3.1}%
-\contentsline {section}{\numberline {3.2}Quantum Computing Preliminaries}{18}{section.3.2}%
-\contentsline {section}{\numberline {3.3}Quantum Lambda Calculus:Interpretation}{21}{section.3.3}%
-\contentsline {chapter}{\numberline {4}Conditionals}{23}{chapter.4}%
-\contentsline {section}{\numberline {4.1}Measurements}{23}{section.4.1}%
-\contentsline {subsection}{\numberline {4.1.1}Example: Deutsch's Algorithm}{23}{subsection.4.1.1}%
-\contentsline {section}{\numberline {4.2}Conditionals}{27}{section.4.2}%
-\contentsline {subsection}{\numberline {4.2.1}Syntax}{27}{subsection.4.2.1}%
-\contentsline {subsubsection}{Properties}{27}{figure.caption.24}%
-\contentsline {paragraph}{Proof}{27}{Item.8}%
-\contentsline {paragraph}{Proof}{30}{lemma.4.2.1}%
-\contentsline {subsection}{\numberline {4.2.2}Interpretation}{33}{subsection.4.2.2}%
-\contentsline {paragraph}{Proof}{33}{figure.caption.39}%
-\contentsline {paragraph}{Proof}{34}{lemma.4.2.2}%
-\contentsline {subsection}{\numberline {4.2.3} \boldmath $\beta $ and $\eta $ Equations}{38}{subsection.4.2.3}%
-\contentsline {paragraph}{Proof}{39}{subsection.4.2.3}%
-\contentsline {subsection}{\numberline {4.2.4}Metric equations}{41}{subsection.4.2.4}%
-\contentsline {paragraph}{Proof}{41}{figure.caption.41}%
-\contentsline {subsection}{\numberline {4.2.5}Quantum Teleportation}{50}{subsection.4.2.5}%
-\contentsline {subsection}{\numberline {4.2.6}Ilustration: Noisy Quantum Teleportation}{52}{subsection.4.2.6}%
-\contentsline {subsubsection}{Noisy Quantum Teleportation: Decoherence}{52}{subsection.4.2.6}%
-\contentsline {subsubsection}{Noisy Quantum Teleportation: Amplitude Damping}{55}{equation.4.2.50}%
-\contentsline {subsubsection}{Noisy Quantum Teleportation: An imperfect implementation of the Hadamard gate}{58}{equation.4.2.57}%
-\contentsline {section}{\numberline {4.3}Discard Operation}{64}{section.4.3}%
-\contentsline {subsection}{\numberline {4.3.1}Example: Proving an equivalence using the discard equation-in-context}{64}{subsection.4.3.1}%
-\contentsline {subsection}{\numberline {4.3.2}Ilustration: A malicious attack on the quantum teleportation protocol}{64}{subsection.4.3.2}%
-\contentsline {chapter}{\numberline {5}Graded modalities}{71}{chapter.5}%
-\contentsline {section}{\numberline {5.1}Syntax}{71}{section.5.1}%
-\contentsline {section}{\numberline {5.2}Interpretation}{72}{section.5.2}%
-\contentsline {section}{\numberline {5.3}Quantum State Discrimination}{72}{section.5.3}%
-\contentsline {chapter}{\numberline {6}Conclusions and future work}{73}{chapter.6}%
-\contentsline {section}{\numberline {6.1}Conclusions}{73}{section.6.1}%
-\contentsline {section}{\numberline {6.2}Prospect for future work}{73}{section.6.2}%
+\contentsline {subsubsection}{Complex vector spaces}{18}{section.3.1}%
+\contentsline {section}{\numberline {3.2}Quantum Computing Preliminaries}{19}{section.3.2}%
+\contentsline {section}{\numberline {3.3}Quantum Lambda Calculus:Interpretation}{22}{section.3.3}%
+\contentsline {chapter}{\numberline {4}Conditionals}{25}{chapter.4}%
+\contentsline {section}{\numberline {4.1}Measurements}{25}{section.4.1}%
+\contentsline {subsection}{\numberline {4.1.1}Example: Deutsch's Algorithm}{25}{subsection.4.1.1}%
+\contentsline {section}{\numberline {4.2}Conditionals}{29}{section.4.2}%
+\contentsline {subsection}{\numberline {4.2.1}Syntax}{29}{subsection.4.2.1}%
+\contentsline {subsubsection}{Properties}{29}{figure.caption.27}%
+\contentsline {paragraph}{Proof}{29}{Item.16}%
+\contentsline {paragraph}{Proof}{32}{lemma.4.2.1}%
+\contentsline {subsection}{\numberline {4.2.2}Interpretation}{35}{subsection.4.2.2}%
+\contentsline {paragraph}{Proof}{35}{figure.caption.42}%
+\contentsline {paragraph}{Proof}{36}{lemma.4.2.2}%
+\contentsline {subsection}{\numberline {4.2.3} \boldmath $\beta $ and $\eta $ Equations}{40}{subsection.4.2.3}%
+\contentsline {paragraph}{Proof}{41}{subsection.4.2.3}%
+\contentsline {subsection}{\numberline {4.2.4}Metric equations}{44}{subsection.4.2.4}%
+\contentsline {paragraph}{Proof}{44}{figure.caption.44}%
+\contentsline {subsection}{\numberline {4.2.5}Quantum Teleportation}{52}{subsection.4.2.5}%
+\contentsline {subsection}{\numberline {4.2.6}Ilustration: Noisy Quantum Teleportation}{55}{subsection.4.2.6}%
+\contentsline {subsubsection}{Noisy Quantum Teleportation: Decoherence}{55}{subsection.4.2.6}%
+\contentsline {subsubsection}{Noisy Quantum Teleportation: Amplitude Damping}{57}{equation.4.2.50}%
+\contentsline {subsubsection}{Noisy Quantum Teleportation: An imperfect implementation of the Hadamard gate}{60}{equation.4.2.57}%
+\contentsline {section}{\numberline {4.3}Discard Operation}{67}{section.4.3}%
+\contentsline {subsection}{\numberline {4.3.1}Example: Proving an equivalence using the discard equation-in-context}{67}{subsection.4.3.1}%
+\contentsline {subsection}{\numberline {4.3.2}Ilustration: A malicious attack on the quantum teleportation protocol}{67}{subsection.4.3.2}%
+\contentsline {chapter}{\numberline {5}Graded modalities}{75}{chapter.5}%
+\contentsline {section}{\numberline {5.1}Syntax}{75}{section.5.1}%
+\contentsline {section}{\numberline {5.2}Interpretation}{76}{section.5.2}%
+\contentsline {section}{\numberline {5.3}Quantum State Discrimination}{76}{section.5.3}%
+\contentsline {chapter}{\numberline {6}Conclusions and future work}{77}{chapter.6}%
+\contentsline {section}{\numberline {6.1}Conclusions}{77}{section.6.1}%
+\contentsline {section}{\numberline {6.2}Prospect for future work}{77}{section.6.2}%

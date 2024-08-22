@@ -28,12 +28,75 @@
 \newtheorem{definition}{Definition}[section]
 \newtheorem{convention}{Convention}[section]
 \providecommand*{\lemmaautorefname}{Lemma}
-\makeglossaries
+\makenoidxglossaries 
 \makeindex
 \allowdisplaybreaks[1]
 
 \newacronym{nisq}{NISQ}{Noisy Intermediate-Scale Quantum}
 \newacronym{bnf}{BNF}{Backus-Naur Form}
+\newglossaryentry{ket}
+{
+    name=$\ket{\psi}$,
+    description={Vector in a Hilbert space. Also known as ket.}
+}
+\newglossaryentry{bra}
+{
+    name={$\bra{\psi}$},
+    description={$\ket{\psi}^{\dag}$. Also known as bra.}
+}
+\newglossaryentry{typingcontexts}
+{
+    name={$\Gamma, \Delta, E$},
+    description={Typical names for typing contexts.}
+}
+\newglossaryentry{judgement}
+{
+    name={$\Gamma \hspace{1pt} \triangleright \hspace{1pt}v: \mathbb{A}$},
+    description={ Typing judgement.}
+}
+\newglossaryentry{fv}
+{
+    name={$FV (v)$},
+    description={Set of free variables of a term $v$.}
+}
+\newglossaryentry{vectorspaces}
+{
+    name={V, W},
+    description={Typical names for vector spaces.}
+}
+\newglossaryentry{equation-in-context}
+{
+    name={$\Gamma \hspace{1pt} \triangleright \hspace{1pt} v = w : \mathbb {A}$},
+    description={Equation-in-context.}
+}
+\newglossaryentry{metric-equation}
+{
+    name={$ t =_{\epsilon} s$},
+    description={Metric equation.}
+}
+
+\newglossaryentry{typed-term}
+{
+    name={$v:\mathbb{A}$},
+    description={Typed term.}
+}
+\newglossaryentry{substitution}
+{
+    name={$v[w/x]$},
+    description={Substitution of a variable $x$ for a term $w$ in a term $v$.}
+}
+\newglossaryentry{n-complex-space}
+{
+    name={ $\mathbb{C}^{n}$},
+    description={n-dimensional complex space.}
+}
+\newglossaryentry{matrix-complex-space}
+{
+    name={ $\mathbb{C}^{n \times m}$},
+    description={Space of complex matrices of dimension $n \times m$.}
+}
+
+%comando para ir da source para o pdf: ctrl + Alt + J 
 
 %\logo{EAAD}{School of Architecture, Art and Design}{}
 %\logoB{EAAD}{School of Architecture, Art and Design}{}
@@ -115,10 +178,10 @@
 %\clearpage
 
 % Acronyms
-\printglossary[type=\acronymtype,nonumberlist, title={Acronyms}]
+\printnoidxglossary[sort = use,type=\acronymtype, title={Acronyms}]
 
 % Glossary
-\printglossary[title={Index of Symbols}, nonumberlist]
+\printnoidxglossary[sort = use,title={Notation}]
 
 \cleardoublepage
 \pagenumbering{arabic}

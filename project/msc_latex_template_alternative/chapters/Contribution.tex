@@ -211,9 +211,9 @@ $ \end{minipage}
 &\hspace{15pt}
 \begin{minipage}[t]{0.3\textwidth}
 $\begin{array}{c}
-     \Gamma\triangleright v: \mathbb{A} \oplus \mathbb{B} \quad \Delta, x: \mathbb{A} \triangleright w: \mathbb{C} \quad \Delta, y: \mathbb{B}  \triangleright u : \mathbb{C}   \quad E \in \text{Sf}(\Gamma;\Delta)  \\
+     \Gamma\triangleright v: \mathbb{A} \oplus \mathbb{B} \quad \Delta, x: \mathbb{A} \triangleright w: \mathbb{D} \quad \Delta, y: \mathbb{B}  \triangleright u : \mathbb{D}   \quad E \in \text{Sf}(\Gamma;\Delta)  \\
     \hline
-   E \triangleright \text{ case } v \hspace{2pt} \{\text{inl}_{\mathbb{B}} (x) \Rightarrow w ; \hspace{1pt} \text{inr}_{\mathbb{A}} (y) \Rightarrow u\}: \mathbb{C} 
+   E \triangleright \text{ case } v \hspace{2pt} \{\text{inl}_{\mathbb{B}} (x) \Rightarrow w ; \hspace{1pt} \text{inr}_{\mathbb{A}} (y) \Rightarrow u\}: \mathbb{D} 
 \end{array}
 $
 \end{minipage}
@@ -282,9 +282,9 @@ Concerning the case statement, considering  \autoref{fig:typing_rules_cond} and
   & \hspace{15pt}
   \begin{minipage}[t]{0.3\textwidth}
   $\begin{array}{c}
-       \Gamma'\triangleright v: \mathbb{A} \oplus \mathbb{B} \quad \Delta', x: \mathbb{A} \triangleright w: \mathbb{C} \quad \Delta', y: \mathbb{B}  \triangleright u : \mathbb{C}   \quad E' \in \text{Sf}(\Gamma';\Delta')  \\
+       \Gamma'\triangleright v: \mathbb{A} \oplus \mathbb{B} \quad \Delta', x: \mathbb{A} \triangleright w: \mathbb{D} \quad \Delta', y: \mathbb{B}  \triangleright u : \mathbb{D}   \quad E' \in \text{Sf}(\Gamma';\Delta')  \\
       \hline
-     E' \triangleright \text{ case } v \hspace{2pt} \{\text{inl}_{\mathbb{B}} (x) \Rightarrow w ; \hspace{1pt} \text{inr}_{\mathbb{A}} (y) \Rightarrow u\}: \mathbb{C} 
+     E' \triangleright \text{ case } v \hspace{2pt} \{\text{inl}_{\mathbb{B}} (x) \Rightarrow w ; \hspace{1pt} \text{inr}_{\mathbb{A}} (y) \Rightarrow u\}: \mathbb{D} 
   \end{array}
   $
   \end{minipage} 
@@ -345,7 +345,7 @@ Regarding the case statement in considering \autoref{fig:typing_rules_cond} and
   \end{equation*}
   \end{figure}
 
-we want to prove that if $E \triangleright \text{ case } v \hspace{2pt} \{\text{inl} (x) \Rightarrow w ; \hspace{1pt} \text{inr} (y) \Rightarrow u\}: \mathbb{C}$; $\Gamma'\triangleright \text{ case } v \hspace{2pt} \{\text{inl} (x) \Rightarrow w ; \hspace{1pt} \text{inr} (y) \Rightarrow u\}: \mathbb{C}'$, and $E \simeq_{\pi} E' $, then $\mathbb{C}$ must be equal to $\mathbb{C}'$. Assuming, that  $E \simeq_{\pi} E' $ and knowing that $E \in \text{Sf}(\Gamma;\Delta)$ and  $E' \in \text{Sf}(\Gamma';\Delta')$, one has that
+we want to prove that if $E \triangleright \text{ case } v \hspace{2pt} \{\text{inl} (x) \Rightarrow w ; \hspace{1pt} \text{inr} (y) \Rightarrow u\}: \mathbb{D}$; $\Gamma'\triangleright \text{ case } v \hspace{2pt} \{\text{inl} (x) \Rightarrow w ; \hspace{1pt} \text{inr} (y) \Rightarrow u\}: \mathbb{D}'$, and $E \simeq_{\pi} E' $, then $\mathbb{D}$ must be equal to $\mathbb{D}'$. Assuming, that  $E \simeq_{\pi} E' $ and knowing that $E \in \text{Sf}(\Gamma;\Delta)$ and  $E' \in \text{Sf}(\Gamma';\Delta')$, one has that
 
 \begin{align*}
   & x: \mathbb{A}  \in \Delta & \\
@@ -354,7 +354,7 @@ we want to prove that if $E \triangleright \text{ case } v \hspace{2pt} \{\text{
   \implies & x: \mathbb{A}  \in \Delta' \hspace{50pt} \{\text{All terms are well typed and contexts do not share variables}\}
 \end{align*}
 
-This proves that $\Delta \simeq_{\pi} \Delta'$. Therefore, by induction hypothesis on the premises of the conditional statement, one has that $\mathbb{C}$ must be equal to $\mathbb{C}'$.
+This proves that $\Delta \simeq_{\pi} \Delta'$. Therefore, by induction hypothesis on the premises of the conditional statement, one has that $\mathbb{D}$ must be equal to $\mathbb{D}'$.
   
 
 
@@ -396,9 +396,9 @@ Now, it is necessary to demonstrate that the case statement in \autoref{fig:typi
   & \hspace{15pt}
   \begin{minipage}[t]{0.3\textwidth}
   $\begin{array}{c}
-       \Gamma'\triangleright v: \mathbb{A} \oplus \mathbb{B} \quad \Delta', x: \mathbb{A} \triangleright w: \mathbb{C'} \quad \Delta', y: \mathbb{B}  \triangleright u : \mathbb{C}   \quad E' \in \text{Sf}(\Gamma';\Delta')  \\
+       \Gamma'\triangleright v: \mathbb{A} \oplus \mathbb{B} \quad \Delta', x: \mathbb{A} \triangleright w: \mathbb{C'} \quad \Delta', y: \mathbb{B}  \triangleright u : \mathbb{D}   \quad E' \in \text{Sf}(\Gamma';\Delta')  \\
       \hline
-     E \triangleright \text{ case } v \hspace{2pt} \{\text{inl}_{\mathbb{B}}  (x) \Rightarrow w ; \hspace{1pt} \text{inr}_{\mathbb{A}}  (y) \Rightarrow u\}: \mathbb{C} 
+     E \triangleright \text{ case } v \hspace{2pt} \{\text{inl}_{\mathbb{B}}  (x) \Rightarrow w ; \hspace{1pt} \text{inr}_{\mathbb{A}}  (y) \Rightarrow u\}: \mathbb{D} 
   \end{array}
   $
   \end{minipage} 
@@ -421,12 +421,12 @@ This last implication is related with the fact that in $E$, there can only exist
 
 
 
-\begin{lemma} \label {exh_and_sub} (\text{Exchange and Substitution}) For every judgement $\Gamma,x:\mathbb{A}, y:\mathbb{B}, \Delta \triangleright v: \mathbb{C}$ it is possible to derive $\Gamma, y:\mathbb{B}, x:\mathbb{A}, \Delta \triangleright v: \mathbb{C}$. For all judgements  $\Gamma,x:\mathbb{A} \triangleright v: \mathbb{B}$ and $\Delta \triangleright w: \mathbb{A}$ it is possible to derive $ \Gamma, \Delta \triangleright v[w/x]: \mathbb{B}$.
+\begin{lemma} \label {exh_and_sub} (\text{Exchange and Substitution}) For every judgement $\Gamma,x:\mathbb{A}, y:\mathbb{B}, \Delta \triangleright v: \mathbb{D}$ it is possible to derive $\Gamma, y:\mathbb{B}, x:\mathbb{A}, \Delta \triangleright v: \mathbb{D}$. For all judgements  $\Gamma,x:\mathbb{A} \triangleright v: \mathbb{B}$ and $\Delta \triangleright w: \mathbb{A}$ it is possible to derive $ \Gamma, \Delta \triangleright v[w/x]: \mathbb{B}$.
 \end{lemma}
 
 \paragraph{Proof}
 
-Regarding the exchange property, for the left injection, it is necessary to demonstrate that for every judgement $\Gamma , x:\mathbb{A}, y:\mathbb{B},\Delta\triangleright \text{inl}_{\mathbb{D}}(v):  \mathbb{C} \oplus \mathbb{D}$, it is possible to derive $\Gamma ,y:\mathbb{B}, x:\mathbb{A}, \Delta \triangleright \text{inl}_{\mathbb{D}}(v):  \mathbb{C} \oplus \mathbb{D}$. By induction hypothesis on the premises of $\Gamma , x:\mathbb{A}, y:\mathbb{B},\Delta\triangleright \text{inl}_{\mathbb{D}}(v):  \mathbb{C} \oplus \mathbb{D}$ and applying the inl rule, one has that:
+Regarding the exchange property, for the left injection, it is necessary to demonstrate that for every judgement $\Gamma , x:\mathbb{A}, y:\mathbb{B},\Delta\triangleright \text{inl}_{\mathbb{D}}(v):  \mathbb{D} \oplus \mathbb{D}$, it is possible to derive $\Gamma ,y:\mathbb{B}, x:\mathbb{A}, \Delta \triangleright \text{inl}_{\mathbb{D}}(v):  \mathbb{D} \oplus \mathbb{D}$. By induction hypothesis on the premises of $\Gamma , x:\mathbb{A}, y:\mathbb{B},\Delta\triangleright \text{inl}_{\mathbb{D}}(v):  \mathbb{D} \oplus \mathbb{D}$ and applying the inl rule, one has that:
 
 \begin{figure} [H]
   \begin{equation*}
@@ -435,11 +435,11 @@ Regarding the exchange property, for the left injection, it is necessary to demo
   &
   \begin{minipage}[t]{0.3\textwidth}
   $\begin{array}{c}
-    \Gamma, x:\mathbb{A}, y:\mathbb{B}, \Delta \triangleright v: \mathbb{C}  \\  
+    \Gamma, x:\mathbb{A}, y:\mathbb{B}, \Delta \triangleright v: \mathbb{D}  \\  
       \hline
-      \Gamma,y:\mathbb{B}, x:\mathbb{A},  \Delta \triangleright v: \mathbb{C}  \\   
+      \Gamma,y:\mathbb{B}, x:\mathbb{A},  \Delta \triangleright v: \mathbb{D}  \\   
       \hline
-       \Gamma, y:\mathbb{B}, x:\mathbb{A}, \Delta \triangleright \text{inl}_{\mathbb{D}}(v):  \mathbb{C} \oplus \mathbb{D}  
+       \Gamma, y:\mathbb{B}, x:\mathbb{A}, \Delta \triangleright \text{inl}_{\mathbb{D}}(v):  \mathbb{D} \oplus \mathbb{D}  
   \end{array}
   $
   \end{minipage}
@@ -450,7 +450,7 @@ Regarding the exchange property, for the left injection, it is necessary to demo
 
   For the right injection the proof is analogous.
 
-With respect to the case statement it is necessary to prove that for every judgment $\Gamma, x:\mathbb{A}, y:\mathbb{B}, \Delta \triangleright \text{ case } v \hspace{2pt} \{\text{inl}_{\mathbb{E}}  (a) \Rightarrow w ; \hspace{1pt} \text{inr}_{\mathbb{D}}  (b) \Rightarrow u\}: \mathbb{C}$, it is possible to derive $\Gamma, y:\mathbb{B}, x:\mathbb{A}, \Delta \triangleright \text{ case } v \hspace{2pt} \{\text{inl}_{\mathbb{E}} (a) \Rightarrow w ; \hspace{1pt} \text{inr}_{\mathbb{D}} (b) \Rightarrow u\}: \mathbb{C}$. It is necessary to consider three scenarios:
+With respect to the case statement it is necessary to prove that for every judgment $\Gamma, x:\mathbb{A}, y:\mathbb{B}, \Delta \triangleright \text{ case } v \hspace{2pt} \{\text{inl}_{\mathbb{E}}  (a) \Rightarrow w ; \hspace{1pt} \text{inr}_{\mathbb{D}}  (b) \Rightarrow u\}: \mathbb{D}$, it is possible to derive $\Gamma, y:\mathbb{B}, x:\mathbb{A}, \Delta \triangleright \text{ case } v \hspace{2pt} \{\text{inl}_{\mathbb{E}} (a) \Rightarrow w ; \hspace{1pt} \text{inr}_{\mathbb{D}} (b) \Rightarrow u\}: \mathbb{D}$. It is necessary to consider three scenarios:
 \begin{enumerate}
   \item $x:\mathbb{A}, y:\mathbb{B}$ are variables in the context of $v$;
   \item $x:\mathbb{A}, y:\mathbb{B}$ are variables in the context of $w$ and $u$;
@@ -467,13 +467,13 @@ With respect to the first case, by induction hypothesis and applying the case ru
   \begin{minipage}[t]{0.3\textwidth}
     \small
   $\begin{array}{c}
-    \hspace{-62pt} \Sigma, a:\mathbb{D} \triangleright w: \mathbb{C}  \\  
-      \Gamma_{1},  x:\mathbb{A}, y:\mathbb{B}, \Gamma_{2}  \triangleright v: \mathbb{D} \oplus \mathbb{E} \quad  \Sigma, b:\mathbb{E} \triangleright u : \mathbb{C}\quad \Gamma,y:\mathbb{B},x:\mathbb{A};  \Delta \in \text{Sf}(\Gamma_{1}, x:\mathbb{A}, y:\mathbb{B},\Gamma_{2}; \Sigma )  \\
+    \hspace{-62pt} E, a:\mathbb{D} \triangleright w: \mathbb{D}  \\  
+      \Gamma_{1},  x:\mathbb{A}, y:\mathbb{B}, \Gamma_{2}  \triangleright v: \mathbb{D} \oplus \mathbb{E} \quad  E, b:\mathbb{E} \triangleright u : \mathbb{D}\quad \Gamma,y:\mathbb{B},x:\mathbb{A};  \Delta \in \text{Sf}(\Gamma_{1}, x:\mathbb{A}, y:\mathbb{B},\Gamma_{2}; E )  \\
       \hline
-       \hspace{-62pt} \Sigma, a:\mathbb{D} \triangleright w: \mathbb{C}   \\  
-      \Gamma_{1},  y:\mathbb{B}, x:\mathbb{A},\Gamma_{2}\triangleright v: \mathbb{D} \oplus \mathbb{E} \quad \Sigma, b:\mathbb{E} \triangleright u : \mathbb{C} \quad \Gamma,y:\mathbb{B}, x:\mathbb{A}; \Delta\in \text{Sf}(\Gamma_{1},y:\mathbb{B},x:\mathbb{A},\Gamma_{2}; \Sigma )  \\
+       \hspace{-62pt} E, a:\mathbb{D} \triangleright w: \mathbb{D}   \\  
+      \Gamma_{1},  y:\mathbb{B}, x:\mathbb{A},\Gamma_{2}\triangleright v: \mathbb{D} \oplus \mathbb{E} \quad E, b:\mathbb{E} \triangleright u : \mathbb{D} \quad \Gamma,y:\mathbb{B}, x:\mathbb{A}; \Delta\in \text{Sf}(\Gamma_{1},y:\mathbb{B},x:\mathbb{A},\Gamma_{2}; E )  \\
      \hline 
-     \Gamma, y:\mathbb{B}, x:\mathbb{A}, \Delta \triangleright \text{ case } v \hspace{2pt} \{\text{inl}_{\mathbb{E}} (a) \Rightarrow w ; \hspace{1pt} \text{inr}_{\mathbb{D}} (b) \Rightarrow u\}: \mathbb{C}
+     \Gamma, y:\mathbb{B}, x:\mathbb{A}, \Delta \triangleright \text{ case } v \hspace{2pt} \{\text{inl}_{\mathbb{E}} (a) \Rightarrow w ; \hspace{1pt} \text{inr}_{\mathbb{D}} (b) \Rightarrow u\}: \mathbb{D}
   \end{array}
   $
   \end{minipage}
@@ -493,13 +493,13 @@ Next, for the second case, by induction hypothesis and applying the case rule, o
   \begin{minipage}[t]{0.3\textwidth}
     \small
   $\begin{array}{c}
-       \hspace{-153pt} \quad \Delta_{1}, x:\mathbb{A}, y:\mathbb{B},\Delta_{2}  , a:\mathbb{D} \triangleright w: \mathbb{C}   \\
-        \Sigma \triangleright v: \mathbb{D} \oplus \mathbb{E} \quad  \Delta_{1}, x:\mathbb{A}, y:\mathbb{B},\Delta_{2}, b:\mathbb{E} \triangleright u : \mathbb{C} \quad \Gamma, x:\mathbb{A},y:\mathbb{B};  \Delta \in \text{Sf}(\Sigma; \Delta_{1}, x:\mathbb{A}, y:\mathbb{B},\Delta_{2} ) \\
+       \hspace{-153pt} \quad \Delta_{1}, x:\mathbb{A}, y:\mathbb{B},\Delta_{2}  , a:\mathbb{D} \triangleright w: \mathbb{D}   \\
+        E \triangleright v: \mathbb{D} \oplus \mathbb{E} \quad  \Delta_{1}, x:\mathbb{A}, y:\mathbb{B},\Delta_{2}, b:\mathbb{E} \triangleright u : \mathbb{D} \quad \Gamma, x:\mathbb{A},y:\mathbb{B};  \Delta \in \text{Sf}(E; \Delta_{1}, x:\mathbb{A}, y:\mathbb{B},\Delta_{2} ) \\
       \hline
-      \hspace{-153pt} \quad \Delta_{1}, y:\mathbb{B}, x:\mathbb{A}, \Delta_{2}  , a:\mathbb{D} \triangleright w: \mathbb{C}   \\
-      \Sigma \triangleright v: \mathbb{D} \oplus \mathbb{E} \quad  \Delta_{1},  y:\mathbb{B}, x:\mathbb{A},\Delta_{2}, b:\mathbb{E} \triangleright u : \mathbb{C} \quad \Gamma, y:\mathbb{B},x:\mathbb{A};  \Delta \in \text{Sf}(\Sigma; \Delta_{1}, y:\mathbb{B}, x:\mathbb{A},\Delta_{2} ) \\
+      \hspace{-153pt} \quad \Delta_{1}, y:\mathbb{B}, x:\mathbb{A}, \Delta_{2}  , a:\mathbb{D} \triangleright w: \mathbb{D}   \\
+      E \triangleright v: \mathbb{D} \oplus \mathbb{E} \quad  \Delta_{1},  y:\mathbb{B}, x:\mathbb{A},\Delta_{2}, b:\mathbb{E} \triangleright u : \mathbb{D} \quad \Gamma, y:\mathbb{B},x:\mathbb{A};  \Delta \in \text{Sf}(E; \Delta_{1}, y:\mathbb{B}, x:\mathbb{A},\Delta_{2} ) \\
      \hline 
-     \Gamma, y:\mathbb{B}, x:\mathbb{A}, \Delta \triangleright \text{ case } v \hspace{2pt} \{\text{inl}_{\mathbb{E}} (a) \Rightarrow w ; \hspace{1pt} \text{inr}_{\mathbb{D}} (b) \Rightarrow u\}: \mathbb{C}
+     \Gamma, y:\mathbb{B}, x:\mathbb{A}, \Delta \triangleright \text{ case } v \hspace{2pt} \{\text{inl}_{\mathbb{E}} (a) \Rightarrow w ; \hspace{1pt} \text{inr}_{\mathbb{D}} (b) \Rightarrow u\}: \mathbb{D}
   \end{array}
   $
   \end{minipage}
@@ -518,8 +518,8 @@ Next, for the second case, by induction hypothesis and applying the case rule, o
     \begin{minipage}[t]{0.3\textwidth}
       \small
     $\begin{array}{c}
-      \hspace{70pt} \Delta_{1},y:\mathbb{B}, \Delta_{2},   a:\mathbb{D} \triangleright w: \mathbb{C} \quad \Gamma, x:\mathbb{A},y:\mathbb{B},  \Delta \in\\ 
-         \Gamma_{1},x:\mathbb{A},\Gamma_{2} \triangleright v: \mathbb{D} \oplus \mathbb{E} \quad \Delta_{1}, y:\mathbb{B},\Delta_{2} , b:\mathbb{E} \triangleright u : \mathbb{C}   \quad \hspace{2pt} \text{Sf}(\Gamma_{1}, x:\mathbb{A},\Gamma_{2}; \Delta_{2},y:\mathbb{B},\Delta_{1} )  \\
+      \hspace{70pt} \Delta_{1},y:\mathbb{B}, \Delta_{2},   a:\mathbb{D} \triangleright w: \mathbb{D} \quad \Gamma, x:\mathbb{A},y:\mathbb{B},  \Delta \in\\ 
+         \Gamma_{1},x:\mathbb{A},\Gamma_{2} \triangleright v: \mathbb{D} \oplus \mathbb{E} \quad \Delta_{1}, y:\mathbb{B},\Delta_{2} , b:\mathbb{E} \triangleright u : \mathbb{D}   \quad \hspace{2pt} \text{Sf}(\Gamma_{1}, x:\mathbb{A},\Gamma_{2}; \Delta_{2},y:\mathbb{B},\Delta_{1} )  \\
     \end{array}
     $
     \end{minipage}
@@ -527,7 +527,7 @@ Next, for the second case, by induction hypothesis and applying the case rule, o
     \end{split}
     \end{equation*}
     \end{figure}
-and attending to the definition of shuffle, a possibility for $\Gamma, y:\mathbb{B}, x:\mathbb{A}, \Delta \in \text{Sf}(\Gamma_{1}, x:\mathbb{A},\Gamma_{2}; \Delta_{2},y:\mathbb{B},\Delta_{1})$, given that in exchanging these variables the relative order of the variables in $\Gamma_{1}, x:\mathbb{A},\Gamma_{2}$ and $\Delta_{2},y:\mathbb{B},\Delta_{1}$ is preserved. As a result, it is possible to derive $\Gamma, y:\mathbb{B}, x:\mathbb{A}, \Delta \triangleright \text{ case } v \hspace{2pt} \{\text{inl}_{\mathbb{E}} (a) \Rightarrow w ; \hspace{1pt} \text{inr}_{\mathbb{D}} (b) \Rightarrow u\}: \mathbb{C}$.
+and attending to the definition of shuffle, a possibility for $\Gamma, y:\mathbb{B}, x:\mathbb{A}, \Delta \in \text{Sf}(\Gamma_{1}, x:\mathbb{A},\Gamma_{2}; \Delta_{2},y:\mathbb{B},\Delta_{1})$, given that in exchanging these variables the relative order of the variables in $\Gamma_{1}, x:\mathbb{A},\Gamma_{2}$ and $\Delta_{2},y:\mathbb{B},\Delta_{1}$ is preserved. As a result, it is possible to derive $\Gamma, y:\mathbb{B}, x:\mathbb{A}, \Delta \triangleright \text{ case } v \hspace{2pt} \{\text{inl}_{\mathbb{E}} (a) \Rightarrow w ; \hspace{1pt} \text{inr}_{\mathbb{D}} (b) \Rightarrow u\}: \mathbb{D}$.
 
 %shuffle is a permutation of typed variables in a context sequence $\Gamma_1, . . . ,  \Gamma_n$ such that for all $i \leq n$ the
 %relative order of the variables in $\Gamma_i$ is preserved, 
@@ -535,7 +535,7 @@ and attending to the definition of shuffle, a possibility for $\Gamma, y:\mathbb
 
 \vspace{10pt}
 
-With respect to the substitution property, for the left injection is necessary to demonstrate that for all judgements $\Gamma, x:\mathbb{C} \triangleright \text{inl}_{\mathbb{B}}(v):  \mathbb{A} \oplus \mathbb{B}$ and $\Delta \triangleright w: \mathbb{C}$ it is possible to derive $\Gamma, \Delta \triangleright \text{inl}_{\mathbb{B}}(v[w/x]):  \mathbb{A} \oplus \mathbb{B}$. By induction hypothesis,  and applying the inl rule, one has that:
+With respect to the substitution property, for the left injection is necessary to demonstrate that for all judgements $\Gamma, x:\mathbb{D} \triangleright \text{inl}_{\mathbb{B}}(v):  \mathbb{A} \oplus \mathbb{B}$ and $\Delta \triangleright w: \mathbb{D}$ it is possible to derive $\Gamma, \Delta \triangleright \text{inl}_{\mathbb{B}}(v[w/x]):  \mathbb{A} \oplus \mathbb{B}$. By induction hypothesis,  and applying the inl rule, one has that:
 \begin{figure} [H]
   \begin{equation*}
   \begin{split}
@@ -543,7 +543,7 @@ With respect to the substitution property, for the left injection is necessary t
   &
   \begin{minipage}[t]{0.3\textwidth}
   $\begin{array}{c}
-    \Gamma, x:\mathbb{C} \triangleright v: \mathbb{A} \quad \Delta \triangleright w: \mathbb{C}  \\  
+    \Gamma, x:\mathbb{D} \triangleright v: \mathbb{A} \quad \Delta \triangleright w: \mathbb{D}  \\  
       \hline
       \Gamma,  \Delta \triangleright v [w/x]: \mathbb{A}  \\   
       \hline
@@ -560,7 +560,7 @@ With respect to the substitution property, for the left injection is necessary t
 
   For the right injection the proof is analogous.
   
-  Regarding the case statement it is necessary to prove that for all judgements $E, z:\mathbb{D} \triangleright  \text{ case } v \hspace{2pt} \{\text{inl}_{\mathbb{A}}  (x) \Rightarrow w ; \hspace{1pt} \text{inr}_{\mathbb{B}}  (y) \Rightarrow u\}: \mathbb{C}$ and $\Sigma\triangleright a: \mathbb{D}$ it is possible to derive $ E, \Sigma  \triangleright \text{ case } v \hspace{2pt} \{\text{inl}_{\mathbb{A}}  (x) \Rightarrow w ; \hspace{1pt} \text{inr}_{\mathbb{B}}  (y) \Rightarrow u\}[a/z]: \mathbb{C}$. In this case, it is necessary to consider two scenarios:
+  Regarding the case statement it is necessary to prove that for all judgements $E, z:\mathbb{D} \triangleright  \text{ case } v \hspace{2pt} \{\text{inl}_{\mathbb{A}}  (x) \Rightarrow w ; \hspace{1pt} \text{inr}_{\mathbb{B}}  (y) \Rightarrow u\}: \mathbb{D}$ and $\Sigma\triangleright a: \mathbb{D}$ it is possible to derive $ E, \Sigma  \triangleright \text{ case } v \hspace{2pt} \{\text{inl}_{\mathbb{A}}  (x) \Rightarrow w ; \hspace{1pt} \text{inr}_{\mathbb{B}}  (y) \Rightarrow u\}[a/z]: \mathbb{D}$. In this case, it is necessary to consider two scenarios:
   \begin{enumerate}
     \item $z:\mathbb{D}$ is a variable in the context of $v$;
     \item $z:\mathbb{D}$ is a variable in the context of $w$ and $u$.
@@ -576,16 +576,16 @@ With respect to the substitution property, for the left injection is necessary t
     \begin{minipage}[t]{0.3\textwidth}
       \small
     $\begin{array}{c}
-      \Gamma,z:\mathbb{D} \triangleright v: \mathbb{A} \oplus \mathbb{B} \quad \Delta, x: \mathbb{A} \triangleright w: \mathbb{C} \quad \Delta, y: \mathbb{B}  \triangleright u : \mathbb{C}   \quad E,z:\mathbb{D}  \in \text{Sf}(\Gamma,z:\mathbb{D};\Delta) \quad \Sigma\triangleright a: \mathbb{D}
+      \Gamma_1,z:\mathbb{D} \triangleright v: \mathbb{A} \oplus \mathbb{B} \quad \Gamma_2, x: \mathbb{A} \triangleright w: \mathbb{D} \quad \Gamma_2, y: \mathbb{B}  \triangleright u : \mathbb{D}   \quad E,z:\mathbb{D}  \in \text{Sf}(\Gamma_1,z:\mathbb{D};\Gamma_2) \quad \Delta\triangleright a: \mathbb{D}
       \\
       \hline
-      \Gamma, \Sigma \triangleright v[a/z]: \mathbb{A} \oplus \mathbb{B} \quad \Delta, x: \mathbb{A} \triangleright w: \mathbb{C} \quad \Delta, y: \mathbb{B}  \triangleright u : \mathbb{C}   \quad E,\Sigma \in \text{Sf}(\Gamma, \Sigma;\Delta) 
+      \Gamma_1, \Delta \triangleright v[a/z]: \mathbb{A} \oplus \mathbb{B} \quad \Gamma_2, x: \mathbb{A} \triangleright w: \mathbb{D} \quad \Gamma_2, y: \mathbb{B}  \triangleright u : \mathbb{D}   \quad E,\Delta \in \text{Sf}(\Gamma_1, \Delta;\Gamma_2) 
       \\
       \hline
-      E,\Sigma \triangleright \text{ case } v \hspace{2pt} \{\text{inl}_{\mathbb{B}} (x) \Rightarrow w[a/z] ; \hspace{1pt} \text{inr}_{\mathbb{A}} (y) \Rightarrow u[a/z]\}: \mathbb{C}
+      E,\Delta \triangleright \text{ case } v \hspace{2pt} \{\text{inl}_{\mathbb{B}} (x) \Rightarrow w[a/z] ; \hspace{1pt} \text{inr}_{\mathbb{A}} (y) \Rightarrow u[a/z]\}: \mathbb{D}
       \\
       \hline
-      E,\Sigma  \triangleright \text{ case } v \hspace{2pt} \{\text{inl}_{\mathbb{B}}  (x) \Rightarrow w ; \hspace{1pt} \text{inr}_{\mathbb{A}}  (y) \Rightarrow u\}[a/z]: \mathbb{C}
+      E,\Delta  \triangleright \text{ case } v \hspace{2pt} \{\text{inl}_{\mathbb{B}}  (x) \Rightarrow w ; \hspace{1pt} \text{inr}_{\mathbb{A}}  (y) \Rightarrow u\}[a/z]: \mathbb{D}
     \end{array}
     $
     \end{minipage}
@@ -606,24 +606,24 @@ The second case is similar to the first one,  applying the exchange property, th
   \begin{minipage}[t]{0.3\textwidth}
     \small
   $\begin{array}{c}
-    \hspace{-95pt} \Delta ,z:\mathbb{D}, y:\mathbb{B}, y: \mathbb{B}  \triangleright u : \mathbb{C} \\
-    \Gamma \triangleright v: \mathbb{A} \oplus \mathbb{B} \quad \Delta, z:\mathbb{D}, x: \mathbb{A} \triangleright w: \mathbb{C} \quad   \quad E,z:\mathbb{D}  \in \text{Sf}(\Gamma;\Delta,z:\mathbb{D}) \quad \Sigma\triangleright a: \mathbb{D}
+    \hspace{-95pt} \Gamma_2 ,z:\mathbb{D},  y: \mathbb{B}  \triangleright u : \mathbb{D} \\
+    \Gamma_1 \triangleright v: \mathbb{A} \oplus \mathbb{B} \quad \Gamma_2, z:\mathbb{D}, x: \mathbb{A} \triangleright w: \mathbb{D} \quad   \quad E,z:\mathbb{D}  \in \text{Sf}(\Gamma_1;\Gamma_2,z:\mathbb{D}) \quad \Delta\triangleright a: \mathbb{D}
     \\
     \hline
-    \hspace{-120pt} \Delta,  y: \mathbb{B},z:\mathbb{D}   \triangleright u : \mathbb{C} 
-    \\\Gamma \triangleright v: \mathbb{A} \oplus \mathbb{B} \quad \Delta,   x: \mathbb{A},z:\mathbb{D}  \triangleright w: \mathbb{C} \quad  \quad E,z:\mathbb{D}  \in \text{Sf}(\Gamma;\Delta,z:\mathbb{D} ) \quad \Sigma\triangleright a: \mathbb{D}
+    \hspace{-120pt} \Gamma_2,  y: \mathbb{B},z:\mathbb{D}   \triangleright u : \mathbb{D} 
+    \\\Gamma_1 \triangleright v: \mathbb{A} \oplus \mathbb{B} \quad \Gamma_2,   x: \mathbb{A},z:\mathbb{D}  \triangleright w: \mathbb{D} \quad  \quad E,z:\mathbb{D}  \in \text{Sf}(\Gamma_1;\Gamma_2,z:\mathbb{D} ) \quad \Delta\triangleright a: \mathbb{D}
     \\
     \hline
-  \Gamma \triangleright v: \mathbb{A} \oplus \mathbb{B} \quad \Delta, x: \mathbb{A},\Sigma \triangleright w[a/z]: \mathbb{C} \quad \Delta, y: \mathbb{B},\Sigma  \triangleright u[a/z] : \mathbb{C}   \quad E, \Sigma \in \text{Sf}(\Gamma;\Delta,\Sigma) 
+  \Gamma_1 \triangleright v: \mathbb{A} \oplus \mathbb{B} \quad \Gamma_2, x: \mathbb{A},\Delta \triangleright w[a/z]: \mathbb{D} \quad \Gamma_2, y: \mathbb{B},\Delta  \triangleright u[a/z] : \mathbb{D}   \quad E, \Delta \in \text{Sf}(\Gamma_1;\Gamma_2,\Delta) 
     \\
     \hline
-    \Gamma \triangleright v: \mathbb{A} \oplus \mathbb{B} \quad \Delta,\Sigma, x: \mathbb{A} \triangleright w[a/z]: \mathbb{C} \quad \Delta,\Sigma, y: \mathbb{B} \triangleright u[a/z] : \mathbb{C}   \quad E, \Sigma \in \text{Sf}(\Gamma;\Delta,\Sigma) 
+    \Gamma_1 \triangleright v: \mathbb{A} \oplus \mathbb{B} \quad \Gamma_2,\Delta, x: \mathbb{A} \triangleright w[a/z]: \mathbb{D} \quad \Gamma_2,\Delta, y: \mathbb{B} \triangleright u[a/z] : \mathbb{D}   \quad E, \Delta \in \text{Sf}(\Gamma_1;\Gamma_2,\Delta) 
     \\
     \hline
-    E, \Sigma \triangleright \text{ case } v[a/z] \hspace{2pt} \{\text{inl}_{\mathbb{B}} (x) \Rightarrow w ; \hspace{1pt} \text{inr}_{\mathbb{A}} (y) \Rightarrow u\}: \mathbb{C}
+    E, \Delta \triangleright \text{ case } v[a/z] \hspace{2pt} \{\text{inl}_{\mathbb{B}} (x) \Rightarrow w ; \hspace{1pt} \text{inr}_{\mathbb{A}} (y) \Rightarrow u\}: \mathbb{D}
     \\
     \hline
-    E,\Sigma  \triangleright \text{ case } v \hspace{2pt} \{\text{inl}_{\mathbb{B}}  (x) \Rightarrow w ; \hspace{1pt} \text{inr}_{\mathbb{A}}  (y) \Rightarrow u\}[a/z]: \mathbb{C}
+    E,\Delta  \triangleright \text{ case } v \hspace{2pt} \{\text{inl}_{\mathbb{B}}  (x) \Rightarrow w ; \hspace{1pt} \text{inr}_{\mathbb{A}}  (y) \Rightarrow u\}[a/z]: \mathbb{D}
   \end{array}
   $
   \end{minipage}
@@ -691,9 +691,9 @@ $
 \hspace{-25pt}
  \begin{minipage}[t]{0.3\textwidth}
 $\begin{array}{c} 
-    [\![\Gamma\triangleright v: \mathbb{A} \oplus \mathbb{B} ]\!] = b \quad [\![\Delta, x:\mathbb{A} \triangleright w: \mathbb{C} ]\!] = p  \quad  [\![\Delta,y:\mathbb{B} \triangleright u: \mathbb{C} ]\!] = q    \quad E \in \text{Sf}(\Gamma;\Delta)  \\
+    [\![\Gamma\triangleright v: \mathbb{A} \oplus \mathbb{B} ]\!] = b \quad [\![\Delta, x:\mathbb{A} \triangleright w: \mathbb{D} ]\!] = p  \quad  [\![\Delta,y:\mathbb{B} \triangleright u: \mathbb{D} ]\!] = q    \quad E \in \text{Sf}(\Gamma;\Delta)  \\
     \hline
-  [\![E \triangleright \text{ case } v \hspace{2pt}  \{\text{inl} (x) \Rightarrow w ; \hspace{1pt} \text{inr} (y) \Rightarrow u\}: \mathbb{C} ]\!] =   [p \cdot \text{jn}_{\Delta;\mathbb{A}},q \cdot \text{jn}_{\Delta;\mathbb{B}}] \cdot \text{dist} \cdot \text{sw} \cdot (b \otimes \text{id}) \cdot \text{sp}_{\Gamma;\Delta} \cdot \text{sh}_{E}
+  [\![E \triangleright \text{ case } v \hspace{2pt}  \{\text{inl} (x) \Rightarrow w ; \hspace{1pt} \text{inr} (y) \Rightarrow u\}: \mathbb{D} ]\!] =   [p \cdot \text{jn}_{\Delta;\mathbb{A}},q \cdot \text{jn}_{\Delta;\mathbb{B}}] \cdot \text{dist} \cdot \text{sw} \cdot (b \otimes \text{id}) \cdot \text{sp}_{\Gamma;\Delta} \cdot \text{sh}_{E}
 \end{array}
 $ \end{minipage}
 \end{aligned}
@@ -717,24 +717,24 @@ Now, for the case statement:
 \begin{equation} \label{eq:proof_bool_2}
  \begin{aligned} 
     [\![E]\!] & \xrightarrow{\hspace{2pt}\text{sh}_{E}\hspace{2pt}}   [\![\Gamma,\Delta ]\!]   \xrightarrow{\hspace{1pt}\text{sp}_{\Gamma;\Delta}\hspace{1pt}}  [\![\Gamma ]\!] \otimes [\![\Delta ]\!] \xrightarrow{ b \hspace{1pt} \otimes \hspace{1pt} \text{id}} ([\![\mathbb{A} ]\!] \oplus [\![\mathbb{B} ]\!]) \otimes [\![\Delta ]\!] \xrightarrow{\hspace{2pt}\text{sw}\hspace{2pt}}  [\![\Delta ]\!] \otimes ([\![\mathbb{A} ]\!] \oplus [\![\mathbb{B} ]\!])  \\
-    & \xrightarrow{\hspace{3pt}\text{dist}\hspace{3pt}} ([\![\Delta ]\!] \otimes [\![\mathbb{A} ]\!]  ) \oplus (  [\![\Delta ]\!] \otimes [\![\mathbb{B} ]\!] ) \xrightarrow{\hspace{2pt}[p \cdot \text{jn}_{\Delta;\mathbb{A}},q \cdot \text{jn}_{\Delta;\mathbb{B}}]\hspace{2pt}} [\![\mathbb{C} ]\!]
+    & \xrightarrow{\hspace{3pt}\text{dist}\hspace{3pt}} ([\![\Delta ]\!] \otimes [\![\mathbb{A} ]\!]  ) \oplus (  [\![\Delta ]\!] \otimes [\![\mathbb{B} ]\!] ) \xrightarrow{\hspace{2pt}[p \cdot \text{jn}_{\Delta;\mathbb{A}},q \cdot \text{jn}_{\Delta;\mathbb{B}}]\hspace{2pt}} [\![\mathbb{D} ]\!]
 \end{aligned}   
 \end{equation}
 
 
 Next, it is necessary to demonstrate that the interpretation of exchange and substitution holds for injections and the case statement.
 
-\begin{lemma} \label{interpret_exch} (\text{Exchange}) For all judgements $\Gamma,x:\mathbb{A}, y:\mathbb{B}, \Delta \triangleright v: \mathbb{C}$, the following equation holds: $[\![\Gamma,x:\mathbb{A}, y:\mathbb{B}, \Delta \triangleright v: \mathbb{C}]\!] = [\![\Gamma,y:\mathbb{B},x:\mathbb{A},  \Delta \triangleright v: \mathbb{C}]\! ] \cdot \text{exch}_{\Gamma, \underline{ \mathbb{A}, \mathbb{B}} ,\Delta} $ 
+\begin{lemma} \label{interpret_exch} (\text{Exchange}) For all judgements $\Gamma,x:\mathbb{A}, y:\mathbb{B}, \Delta \triangleright v: \mathbb{D}$, the following equation holds: $[\![\Gamma,x:\mathbb{A}, y:\mathbb{B}, \Delta \triangleright v: \mathbb{D}]\!] = [\![\Gamma,y:\mathbb{B},x:\mathbb{A},  \Delta \triangleright v: \mathbb{D}]\! ] \cdot \text{exch}_{\Gamma, \underline{ \mathbb{A}, \mathbb{B}} ,\Delta} $ 
 \end{lemma}
 
 \paragraph{Proof}
 Firstly, for the left injection,
 \begin{equation*}
   \begin{split}
-    & \hspace{2pt} [\![\Gamma, x:\mathbb{A}, y:\mathbb{B},  \Delta \triangleright \text{inl}_{\mathbb{D}}(v):  \mathbb{C} \oplus \mathbb{D}]\!] \\
-    = & \textsc{Il} \cdot [\![\Gamma, x:\mathbb{A}, y:\mathbb{B},  \Delta \triangleright v: \mathbb{C}]\!] \\
-    = & \textsc{Il} \cdot [\![\Gamma,y:\mathbb{B},  x:\mathbb{A},  \Delta \triangleright v: \mathbb{C}]\!] \cdot \text{exch}_{\Gamma, \underline{ \mathbb{A}, \mathbb{B}} ,\Delta} \hspace{80pt} \{\text{by induction hypothesis}\}\\ 
-    = &\hspace{2pt} [\![\Gamma,y:\mathbb{B}, x:\mathbb{A},   \Delta \triangleright \text{inl}_{\mathbb{D}}(v):  \mathbb{C} \oplus \mathbb{D}]\!]
+    & \hspace{2pt} [\![\Gamma, x:\mathbb{A}, y:\mathbb{B},  \Delta \triangleright \text{inl}_{\mathbb{D}}(v):  \mathbb{D} \oplus \mathbb{D}]\!] \\
+    = & \textsc{Il} \cdot [\![\Gamma, x:\mathbb{A}, y:\mathbb{B},  \Delta \triangleright v: \mathbb{D}]\!] \\
+    = & \textsc{Il} \cdot [\![\Gamma,y:\mathbb{B},  x:\mathbb{A},  \Delta \triangleright v: \mathbb{D}]\!] \cdot \text{exch}_{\Gamma, \underline{ \mathbb{A}, \mathbb{B}} ,\Delta} \hspace{80pt} \{\text{by induction hypothesis}\}\\ 
+    = &\hspace{2pt} [\![\Gamma,y:\mathbb{B}, x:\mathbb{A},   \Delta \triangleright \text{inl}_{\mathbb{D}}(v):  \mathbb{D} \oplus \mathbb{D}]\!]
   \end{split}
 \end{equation*}
 
@@ -752,19 +752,19 @@ For the first case,
 \begin{equation*}
   \hspace{-20pt}
   \begin{split}
-    & \hspace{2pt} [\![\Gamma,x:\mathbb{A}, y:\mathbb{B}, \Delta \triangleright \text{ case }  \hspace{2pt}  \{\text{inl}_{\mathbb{E}} (a) \Rightarrow w ; \hspace{1pt} \text{inr}_{\mathbb{E}} (b) \Rightarrow u\}: \mathbb{C}]\!] \\
- = & \hspace{2pt}  \left[ [\![ \Sigma, a:\mathbb{D} \triangleright w ]\!] \cdot \text{jn}_{\Sigma;\mathbb{D}},[\![ \Sigma, b:\mathbb{E} \triangleright u]\!]\cdot \text{jn}_{\Sigma;\mathbb{E} }\right] \cdot \text{dist} \cdot \text{sw}  \\
-  & \cdot ([\![\Gamma_{1},x:\mathbb{A}, y:\mathbb{B},\Gamma_{2} \triangleright v : \mathbb{D} \oplus \mathbb{E}  ]\!] \otimes \text{id})  \cdot \text{sp}_{\Gamma_{1},\mathbb{A}, \mathbb{B},\Gamma_{2};\Sigma} \cdot \text{sh}_{\Gamma,\mathbb{A}, \mathbb{B},\Delta} \\
- = &  \hspace{2pt}  \left[ [\![ \Sigma, a:\mathbb{D} \triangleright w ]\!] \cdot \text{jn}_{\Sigma;\mathbb{D}},[\![ \Sigma, b:\mathbb{E} \triangleright u]\!]\cdot \text{jn}_{\Sigma;\mathbb{E} }\right] \cdot \text{dist} \cdot \text{sw}  \\
- & \cdot ([\![\Gamma_{1}, y:\mathbb{B},x:\mathbb{A},\Gamma_{2} \triangleright v: \mathbb{C}]\! ] \cdot \text{exch}_{\Gamma_{1}, \underline{\mathbb{A},\mathbb{B}},\Gamma_{2}} \otimes \text{id}) \cdot \text{sp}_{\Gamma_{1},\mathbb{A}, \mathbb{B},\Gamma_{2};\Sigma} \cdot \text{sh}_{\Gamma,\mathbb{A}, \mathbb{B},\Delta} \\
- = & \hspace{2pt}   \left[ [\![ \Sigma, a:\mathbb{D} \triangleright w ]\!] \cdot \text{jn}_{\Sigma;\mathbb{D}},[\![ \Sigma, b:\mathbb{E} \triangleright u]\!]\cdot \text{jn}_{\Sigma;\mathbb{E} }\right] \cdot \text{dist} \cdot \text{sw}  \\
- &\cdot ([\![\Gamma_{1}, y:\mathbb{B},x:\mathbb{A},\Gamma_{2}  \triangleright v : \mathbb{D} \oplus \mathbb{E}  ]\!] \otimes \text{id})\cdot \text{sp}_{\Gamma_{1}, \mathbb{B},\mathbb{A},\Gamma_{2};\Sigma} \cdot \text{exch}_{\Gamma_{1},\underline{\mathbb{A},\mathbb{B}},\Gamma_{2},\Sigma} \cdot \text{jn}_{\Gamma_{1},\mathbb{A}, \mathbb{B},\Gamma_{2};\Sigma}  \\
- &\cdot \text{sp}_{\Gamma_{1},\mathbb{A}, \mathbb{B},\Gamma_{2};\Sigma} \cdot \text{sh}_{\Gamma,\mathbb{A}, \mathbb{B},\Delta} \\
- = &  \hspace{2pt}  \left[ [\![ \Sigma, a:\mathbb{D} \triangleright w ]\!] \cdot \text{jn}_{\Sigma;\mathbb{D}},[\![ \Sigma, b:\mathbb{E} \triangleright u]\!]\cdot \text{jn}_{\Sigma;\mathbb{E} }\right]  \cdot \text{dist} \cdot \text{sw} \\
- & \cdot ([\![\Gamma_{1}, y:\mathbb{B},x:\mathbb{A},\Gamma_{2} \triangleright v : \mathbb{D} \oplus \mathbb{E}  ]\!] \otimes \text{id})\cdot \text{sp}_{\Gamma_{1},\mathbb{B},\mathbb{A}, \Gamma_{2};\Sigma} \cdot \text{exch}_{\Gamma,  \underline{\mathbb{A},  \mathbb{B}}, \Delta}  \cdot \text{sh}_{\Gamma,\mathbb{A}, \mathbb{B},\Delta} \\
- = &\hspace{2pt}  \left[ [\![ \Sigma, a:\mathbb{D} \triangleright w ]\!] \cdot \text{jn}_{\Sigma;\mathbb{D}},[\![ \Sigma, b:\mathbb{E} \triangleright u]\!]\cdot \text{jn}_{\Sigma;\mathbb{E} }\right]  \cdot \text{dist} \cdot \text{sw} \\
- & \cdot ([\![\Gamma_{1}, y:\mathbb{B},x:\mathbb{A},\Gamma_{2}  \triangleright v : \mathbb{D} \oplus \mathbb{E}  ]\!] \otimes \text{id}) \cdot \text{sp}_{\Gamma_{1},\mathbb{B},\mathbb{A}, \Gamma_{2};\Sigma}  \cdot \text{sh}_{\Gamma,\mathbb{B}, \mathbb{A},\Delta}  \cdot \text{exch}_{\Gamma,  \underline{\mathbb{A},\mathbb{B}}, \Delta} \\
- = & \hspace{2pt} [\![\Gamma,y:\mathbb{B}, x:\mathbb{A}, \Delta \triangleright \text{ case }  \hspace{2pt}  \{\text{inl}_{\mathbb{E}} (a) \Rightarrow w ; \hspace{1pt} \text{inr}_{\mathbb{E}} (b) \Rightarrow u\}: \mathbb{C}]\!] \cdot \text{exch}_{\Gamma,  \underline{\mathbb{A}, \mathbb{B}}, \Delta} 
+    & \hspace{2pt} [\![\Gamma,x:\mathbb{A}, y:\mathbb{B}, \Delta \triangleright \text{ case }  \hspace{2pt}  \{\text{inl}_{\mathbb{E}} (a) \Rightarrow w ; \hspace{1pt} \text{inr}_{\mathbb{E}} (b) \Rightarrow u\}: \mathbb{D}]\!] \\
+ = & \hspace{2pt}  \left[ [\![ E, a:\mathbb{D} \triangleright w ]\!] \cdot \text{jn}_{E;\mathbb{D}},[\![ E, b:\mathbb{E} \triangleright u]\!]\cdot \text{jn}_{E;\mathbb{E} }\right] \cdot \text{dist} \cdot \text{sw}  \\
+  & \cdot ([\![\Gamma_{1},x:\mathbb{A}, y:\mathbb{B},\Gamma_{2} \triangleright v : \mathbb{D} \oplus \mathbb{E}  ]\!] \otimes \text{id})  \cdot \text{sp}_{\Gamma_{1},\mathbb{A}, \mathbb{B},\Gamma_{2};E} \cdot \text{sh}_{\Gamma,\mathbb{A}, \mathbb{B},\Delta} \\
+ = &  \hspace{2pt}  \left[ [\![ E, a:\mathbb{D} \triangleright w ]\!] \cdot \text{jn}_{E;\mathbb{D}},[\![ E, b:\mathbb{E} \triangleright u]\!]\cdot \text{jn}_{E;\mathbb{E} }\right] \cdot \text{dist} \cdot \text{sw}  \\
+ & \cdot ([\![\Gamma_{1}, y:\mathbb{B},x:\mathbb{A},\Gamma_{2} \triangleright v: \mathbb{D}]\! ] \cdot \text{exch}_{\Gamma_{1}, \underline{\mathbb{A},\mathbb{B}},\Gamma_{2}} \otimes \text{id}) \cdot \text{sp}_{\Gamma_{1},\mathbb{A}, \mathbb{B},\Gamma_{2};E} \cdot \text{sh}_{\Gamma,\mathbb{A}, \mathbb{B},\Delta} \\
+ = & \hspace{2pt}   \left[ [\![ E, a:\mathbb{D} \triangleright w ]\!] \cdot \text{jn}_{E;\mathbb{D}},[\![ E, b:\mathbb{E} \triangleright u]\!]\cdot \text{jn}_{E;\mathbb{E} }\right] \cdot \text{dist} \cdot \text{sw}  \\
+ &\cdot ([\![\Gamma_{1}, y:\mathbb{B},x:\mathbb{A},\Gamma_{2}  \triangleright v : \mathbb{D} \oplus \mathbb{E}  ]\!] \otimes \text{id})\cdot \text{sp}_{\Gamma_{1}, \mathbb{B},\mathbb{A},\Gamma_{2};E} \cdot \text{exch}_{\Gamma_{1},\underline{\mathbb{A},\mathbb{B}},\Gamma_{2},E} \cdot \text{jn}_{\Gamma_{1},\mathbb{A}, \mathbb{B},\Gamma_{2};E}  \\
+ &\cdot \text{sp}_{\Gamma_{1},\mathbb{A}, \mathbb{B},\Gamma_{2};E} \cdot \text{sh}_{\Gamma,\mathbb{A}, \mathbb{B},\Delta} \\
+ = &  \hspace{2pt}  \left[ [\![ E, a:\mathbb{D} \triangleright w ]\!] \cdot \text{jn}_{E;\mathbb{D}},[\![ E, b:\mathbb{E} \triangleright u]\!]\cdot \text{jn}_{E;\mathbb{E} }\right]  \cdot \text{dist} \cdot \text{sw} \\
+ & \cdot ([\![\Gamma_{1}, y:\mathbb{B},x:\mathbb{A},\Gamma_{2} \triangleright v : \mathbb{D} \oplus \mathbb{E}  ]\!] \otimes \text{id})\cdot \text{sp}_{\Gamma_{1},\mathbb{B},\mathbb{A}, \Gamma_{2};E} \cdot \text{exch}_{\Gamma,  \underline{\mathbb{A},  \mathbb{B}}, \Delta}  \cdot \text{sh}_{\Gamma,\mathbb{A}, \mathbb{B},\Delta} \\
+ = &\hspace{2pt}  \left[ [\![ E, a:\mathbb{D} \triangleright w ]\!] \cdot \text{jn}_{E;\mathbb{D}},[\![ E, b:\mathbb{E} \triangleright u]\!]\cdot \text{jn}_{E;\mathbb{E} }\right]  \cdot \text{dist} \cdot \text{sw} \\
+ & \cdot ([\![\Gamma_{1}, y:\mathbb{B},x:\mathbb{A},\Gamma_{2}  \triangleright v : \mathbb{D} \oplus \mathbb{E}  ]\!] \otimes \text{id}) \cdot \text{sp}_{\Gamma_{1},\mathbb{B},\mathbb{A}, \Gamma_{2};E}  \cdot \text{sh}_{\Gamma,\mathbb{B}, \mathbb{A},\Delta}  \cdot \text{exch}_{\Gamma,  \underline{\mathbb{A},\mathbb{B}}, \Delta} \\
+ = & \hspace{2pt} [\![\Gamma,y:\mathbb{B}, x:\mathbb{A}, \Delta \triangleright \text{ case }  \hspace{2pt}  \{\text{inl}_{\mathbb{E}} (a) \Rightarrow w ; \hspace{1pt} \text{inr}_{\mathbb{E}} (b) \Rightarrow u\}: \mathbb{D}]\!] \cdot \text{exch}_{\Gamma,  \underline{\mathbb{A}, \mathbb{B}}, \Delta} 
 \end{split}
 \end{equation*}
 
@@ -775,21 +775,21 @@ Now, for the second case,
 
 \begin{equation*}
   \begin{split}
-    & [\![\Gamma,x:\mathbb{A}, y:\mathbb{B}, \Delta \triangleright \text{ case }  \hspace{2pt}  \{\text{inl}_{\mathbb{E}} (a) \Rightarrow w ; \hspace{1pt} \text{inr}_{\mathbb{E}} (b) \Rightarrow u\}: \mathbb{C}]\!] \\
+    & [\![\Gamma,x:\mathbb{A}, y:\mathbb{B}, \Delta \triangleright \text{ case }  \hspace{2pt}  \{\text{inl}_{\mathbb{E}} (a) \Rightarrow w ; \hspace{1pt} \text{inr}_{\mathbb{E}} (b) \Rightarrow u\}: \mathbb{D}]\!] \\
      =  &\left[[\![  \Delta_{1},x:\mathbb{A},y:\mathbb{B},  \Delta_{2}, a:\mathbb{D} \triangleright w ]\!] \cdot  \text{jn}_{\Delta_{1},\mathbb{A},\mathbb{B},  \Delta_{2},\mathbb{D}},[\![  \Delta_{1},x:\mathbb{A},y:\mathbb{B},  \Delta_{2}, b:\mathbb{E} \triangleright u ]\!] \cdot  \text{jn}_{\Delta_{1},\mathbb{A},\mathbb{B},  \Delta_{2},\mathbb{D}}\right]  \\
-     &\cdot \text{dist} \cdot \text{sw} \cdot ([\![\Sigma \triangleright v : \mathbb{D} \oplus \mathbb{E}  ]\!] \otimes \text{id}) \cdot \text{sp}_{\Sigma; \Delta_{1},\mathbb{A},\mathbb{B},  \Delta_{2}} \cdot \text{sh}_{\Gamma;\mathbb{A}, \mathbb{B},\Delta} \\
+     &\cdot \text{dist} \cdot \text{sw} \cdot ([\![E \triangleright v : \mathbb{D} \oplus \mathbb{E}  ]\!] \otimes \text{id}) \cdot \text{sp}_{E; \Delta_{1},\mathbb{A},\mathbb{B},  \Delta_{2}} \cdot \text{sh}_{\Gamma;\mathbb{A}, \mathbb{B},\Delta} \\
     = & \hspace{2pt}  [[\![\Delta_{1},y:\mathbb{B}, x:\mathbb{A},  \Delta_{2}, a:\mathbb{D} \triangleright w ]\!]  \cdot \text{exch}_{\Delta_{1},\underline{\mathbb{A},\mathbb{B}},  \Delta_{2},\mathbb{D}} \cdot \text{jn}_{\Delta_{1},\mathbb{A},\mathbb{B},  \Delta_{2},\mathbb{D}}, \\
     &   [\![\Delta_{1},y:\mathbb{B}, x:\mathbb{A},  \Delta_{2}, b:\mathbb{E} \triangleright w ]\!] \cdot \text{exch}_{\Delta_{1},\underline{\mathbb{A},\mathbb{B}},  \Delta_{2},\mathbb{E}} \cdot \text{jn}_{\Delta_{1},\mathbb{A},\mathbb{B},  \Delta_{2},\mathbb{E}} ] \cdot \text{dist} \cdot \text{sw}  \\
-    &\cdot ([\![\Sigma \triangleright v : \mathbb{D} \oplus \mathbb{E}  ]\!] \otimes \text{id}) \cdot\text{sp}_{\Sigma; \Delta_{1},\mathbb{A},\mathbb{B},  \Delta_{2}} \cdot \text{sh}_{\Gamma,\mathbb{A}, \mathbb{B},\Delta} \\
+    &\cdot ([\![E \triangleright v : \mathbb{D} \oplus \mathbb{E}  ]\!] \otimes \text{id}) \cdot\text{sp}_{E; \Delta_{1},\mathbb{A},\mathbb{B},  \Delta_{2}} \cdot \text{sh}_{\Gamma,\mathbb{A}, \mathbb{B},\Delta} \\
     =  &\hspace{2pt}  [[\![\Delta_{1},y:\mathbb{B}, x:\mathbb{A},  \Delta_{2}, a:\mathbb{D} \triangleright w ]\!]  \cdot \text{jn}_{\Delta_{1},\mathbb{B}, \mathbb{A}, \Delta_{2},\mathbb{D}}, [\![\Delta_{1},y:\mathbb{B}, x:\mathbb{A},  \Delta_{2}, b:\mathbb{E} \triangleright w ]\!] \cdot \text{jn}_{\Delta_{1},\mathbb{B}, \mathbb{A}, \Delta_{2},\mathbb{E}}]   \\ 
-    &\cdot \text{dist}  \cdot \text{sp}_{\Delta_{1},\mathbb{B},\mathbb{A},  \Delta_{2}; \mathbb{D} \oplus \mathbb{E} } \cdot \text{exch}_{ \Delta_{1},\underline{\mathbb{A},\mathbb{B}},  \Delta_{2}, \mathbb{D} \oplus \mathbb{E} } \cdot \text{jn}_{\Delta_{1},\mathbb{A},\mathbb{B},  \Delta_{2}; \mathbb{D} \oplus \mathbb{E} } \cdot \text{sw}\cdot ([\![\Sigma \triangleright v : \mathbb{D} \oplus \mathbb{E}  ]\!] \otimes \text{id})\\
-    & \cdot \text{sp}_{\Sigma; \Delta_{1},\mathbb{A},\mathbb{B},  \Delta_{2}} \cdot \text{sh}_{\Gamma,\mathbb{A}, \mathbb{B},\Delta} \\
+    &\cdot \text{dist}  \cdot \text{sp}_{\Delta_{1},\mathbb{B},\mathbb{A},  \Delta_{2}; \mathbb{D} \oplus \mathbb{E} } \cdot \text{exch}_{ \Delta_{1},\underline{\mathbb{A},\mathbb{B}},  \Delta_{2}, \mathbb{D} \oplus \mathbb{E} } \cdot \text{jn}_{\Delta_{1},\mathbb{A},\mathbb{B},  \Delta_{2}; \mathbb{D} \oplus \mathbb{E} } \cdot \text{sw}\cdot ([\![E \triangleright v : \mathbb{D} \oplus \mathbb{E}  ]\!] \otimes \text{id})\\
+    & \cdot \text{sp}_{E; \Delta_{1},\mathbb{A},\mathbb{B},  \Delta_{2}} \cdot \text{sh}_{\Gamma,\mathbb{A}, \mathbb{B},\Delta} \\
     = &\hspace{2pt}  [[\![\Delta_{1},y:\mathbb{B}, x:\mathbb{A},  \Delta_{2}, a:\mathbb{D} \triangleright w ]\!]  \cdot \text{jn}_{\Delta_{1},\mathbb{B}, \mathbb{A}, \Delta_{2},\mathbb{D}}, [\![\Delta_{1},y:\mathbb{B}, x:\mathbb{A},  \Delta_{2}, b:\mathbb{E} \triangleright w ]\!] \cdot \text{jn}_{\Delta_{1},\mathbb{B}, \mathbb{A}, \Delta_{2},\mathbb{E}}]  \\  
-    &\cdot \text{dist}  \cdot   \text{sw} \cdot  ([\![\Sigma \triangleright v : \mathbb{D} \oplus \mathbb{E}  ]\!] \otimes \text{id}) \cdot \text{sp}_{\Gamma;  \Delta_{1},\mathbb{B},\mathbb{A},  \Delta_{2}} \cdot \text{exch}_{\Gamma,  \Delta_{1},\underline{\mathbb{A},\mathbb{B}},  \Delta_{2}} \cdot \text{jn}_{\Gamma;  \Delta_{1},\mathbb{A},\mathbb{B},  \Delta_{2}} \\ 
-    &\cdot \text{sp}_{\Sigma; \Delta_{1},\mathbb{A},\mathbb{B},  \Delta_{2}} \cdot \text{sh}_{\Gamma,\mathbb{A}, \mathbb{B},\Delta}\\
+    &\cdot \text{dist}  \cdot   \text{sw} \cdot  ([\![E \triangleright v : \mathbb{D} \oplus \mathbb{E}  ]\!] \otimes \text{id}) \cdot \text{sp}_{\Gamma;  \Delta_{1},\mathbb{B},\mathbb{A},  \Delta_{2}} \cdot \text{exch}_{\Gamma,  \Delta_{1},\underline{\mathbb{A},\mathbb{B}},  \Delta_{2}} \cdot \text{jn}_{\Gamma;  \Delta_{1},\mathbb{A},\mathbb{B},  \Delta_{2}} \\ 
+    &\cdot \text{sp}_{E; \Delta_{1},\mathbb{A},\mathbb{B},  \Delta_{2}} \cdot \text{sh}_{\Gamma,\mathbb{A}, \mathbb{B},\Delta}\\
     = &\hspace{2pt}  [[\![\Delta_{1},y:\mathbb{B}, x:\mathbb{A},  \Delta_{2}, a:\mathbb{D} \triangleright w ]\!]  \cdot \text{jn}_{\Delta_{1},\mathbb{B}, \mathbb{A}, \Delta_{2},\mathbb{D}}, [\![\Delta_{1},y:\mathbb{B}, x:\mathbb{A},  \Delta_{2}, b:\mathbb{E} \triangleright w ]\!] \cdot \text{jn}_{\Delta_{1},\mathbb{B}, \mathbb{A}, \Delta_{2},\mathbb{E}}]   \\ 
-    & \cdot \text{dist}  \cdot   \text{sw}  \cdot  ([\![\Sigma \triangleright v : \mathbb{D} \oplus \mathbb{E}  ]\!] \otimes \text{id}) \cdot  \text{sp}_{\Sigma; \Delta_{1},\mathbb{B},\mathbb{A},  \Delta_{2}} \cdot \text{sh}_{\Gamma,\mathbb{B},\mathbb{A}, \Delta} \cdot \text{exch}_{\Gamma, \underline{\mathbb{A},  \mathbb{B}} , \Delta } \\
-    = & \hspace{2pt} [\![\Gamma,y:\mathbb{B}, x:\mathbb{A}, \Delta \triangleright \text{ case }  \hspace{2pt}  \{\text{inl}_{\mathbb{E}} (a) \Rightarrow w ; \hspace{1pt} \text{inr}_{\mathbb{E}} (b) \Rightarrow u\}: \mathbb{C}]\!] \cdot \text{exch}_{\Gamma,\underline{\mathbb{A},  \mathbb{B}}, \Delta} 
+    & \cdot \text{dist}  \cdot   \text{sw}  \cdot  ([\![E \triangleright v : \mathbb{D} \oplus \mathbb{E}  ]\!] \otimes \text{id}) \cdot  \text{sp}_{E; \Delta_{1},\mathbb{B},\mathbb{A},  \Delta_{2}} \cdot \text{sh}_{\Gamma,\mathbb{B},\mathbb{A}, \Delta} \cdot \text{exch}_{\Gamma, \underline{\mathbb{A},  \mathbb{B}} , \Delta } \\
+    = & \hspace{2pt} [\![\Gamma,y:\mathbb{B}, x:\mathbb{A}, \Delta \triangleright \text{ case }  \hspace{2pt}  \{\text{inl}_{\mathbb{E}} (a) \Rightarrow w ; \hspace{1pt} \text{inr}_{\mathbb{E}} (b) \Rightarrow u\}: \mathbb{D}]\!] \cdot \text{exch}_{\Gamma,\underline{\mathbb{A},  \mathbb{B}}, \Delta} 
 \end{split}
 \end{equation*}
 
@@ -800,12 +800,12 @@ Finally, for the third case, note that, the shuffle operator is permutation of t
 \begin{equation*}
   \hspace{-30pt}
   \begin{split}
-    & [\![\Gamma,x:\mathbb{A}, y:\mathbb{B}, \Delta \triangleright \text{ case }  \hspace{2pt}  \{\text{inl}_{\mathbb{E}} (a) \Rightarrow w ; \hspace{1pt} \text{inr}_{\mathbb{E}} (b) \Rightarrow u\}: \mathbb{C}]\!] \\
+    & [\![\Gamma,x:\mathbb{A}, y:\mathbb{B}, \Delta \triangleright \text{ case }  \hspace{2pt}  \{\text{inl}_{\mathbb{E}} (a) \Rightarrow w ; \hspace{1pt} \text{inr}_{\mathbb{E}} (b) \Rightarrow u\}: \mathbb{D}]\!] \\
      =  &\hspace{2pt}  \left[[\![ \Delta_{2},y:\mathbb{B},\Delta_{1}, a:\mathbb{D} \triangleright w ]\!] \cdot \text{jn}_{\Delta_{2},\mathbb{B},\Delta_{1};\mathbb{D}},[\![  \Delta_{2},y:\mathbb{B},\Delta_{1}, b:\mathbb{E} \triangleright u ]\!] \cdot \text{jn}_{\Delta_{2},\mathbb{B},\Delta_{1};\mathbb{E}}\right]\cdot \text{dist} \cdot \text{sw}  \\
      &\cdot ([\![\Delta_{2},y:\mathbb{B},\Delta_{1} \triangleright v : \mathbb{D} \oplus \mathbb{E}  ]\!] \otimes \text{id}) \cdot\text{sp}_{\Gamma_{1}, x:\mathbb{A},\Gamma_{2}; \Delta_{2},y:\mathbb{B},\Delta_{1}} \cdot \text{sh}_{\Gamma,\mathbb{A}, \mathbb{B},\Delta} \\
      = & \hspace{2pt}  \left[[\![ \Delta_{2},y:\mathbb{B},\Delta_{1}, a:\mathbb{D} \triangleright w ]\!] \cdot \text{jn}_{\Delta_{2},\mathbb{B},\Delta_{1};\mathbb{D}},[\![  \Delta_{2},y:\mathbb{B},\Delta_{1}, b:\mathbb{E} \triangleright u ]\!] \cdot \text{jn}_{\Delta_{2},\mathbb{B},\Delta_{1};\mathbb{E}}\right]\cdot \text{dist} \cdot \text{sw}  \\
      & \cdot ([\![\Delta_{2},y:\mathbb{B},\Delta_{1} \triangleright v : \mathbb{D} \oplus \mathbb{E}  ]\!] \otimes \text{id}) \cdot \text{sp}_{\Gamma_{1}, x:\mathbb{A},\Gamma_{2}; \Delta_{2},y:\mathbb{B},\Delta_{1}} \cdot \text{sh}_{\Gamma,\mathbb{A}, \mathbb{B},\Delta} \cdot \text{exch}_{\Gamma, \underline{ \mathbb{A}, \mathbb{B}}, \Delta} \\
-      = & \hspace{2pt} [\![\Gamma,y:\mathbb{B}, x:\mathbb{A}, \Delta \triangleright \text{ case }  \hspace{2pt}  \{\text{inl}_{\mathbb{E}} (a) \Rightarrow w ; \hspace{1pt} \text{inr}_{\mathbb{E}} (b) \Rightarrow u\}: \mathbb{C}]\!] \cdot \text{exch}_{\Gamma,\underline{\mathbb{A},  \mathbb{B}}, \Delta} 
+      = & \hspace{2pt} [\![\Gamma,y:\mathbb{B}, x:\mathbb{A}, \Delta \triangleright \text{ case }  \hspace{2pt}  \{\text{inl}_{\mathbb{E}} (a) \Rightarrow w ; \hspace{1pt} \text{inr}_{\mathbb{E}} (b) \Rightarrow u\}: \mathbb{D}]\!] \cdot \text{exch}_{\Gamma,\underline{\mathbb{A},  \mathbb{B}}, \Delta} 
 \end{split}
 \end{equation*}
 
@@ -823,8 +823,8 @@ Regarding the left injection,
   \begin{split}
     & \hspace{2pt} [\![\Gamma,  \Delta \triangleright \text{inl}_{\mathbb{B}}(v) [w/x]:  \mathbb{A} \oplus \mathbb{B}]\!] \\
     = & \textsc{Il} \cdot [\![\Gamma, \Delta  \triangleright v [w/x]: \mathbb{A}]\!]   \\
-    = & \textsc{Il} \cdot [\![\Gamma, x: \mathbb{C}  \triangleright v: \mathbb{A}]\!] \cdot \text{jn}_{\Gamma;\mathbb{C}} \cdot (\text{id} \otimes [\![ \Delta \triangleright w:\mathbb{C}  ]\!]) \cdot \text{sp}_{\Gamma;\Delta}   \\
-    = & [\![ \Gamma, x: \mathbb{C}  \triangleright \text{inl}_{\mathbb{B}}(v) [w/x]:  \mathbb{A} \oplus \mathbb{B}] ]\!] \cdot \text{jn}_{\Gamma;\mathbb{C}} \cdot (\text{id} \otimes [\![ \Delta \triangleright w:\mathbb{C}  ]\!]) \cdot \text{sp}_{\Gamma;\Delta}
+    = & \textsc{Il} \cdot [\![\Gamma, x: \mathbb{D}  \triangleright v: \mathbb{A}]\!] \cdot \text{jn}_{\Gamma;\mathbb{D}} \cdot (\text{id} \otimes [\![ \Delta \triangleright w:\mathbb{D}  ]\!]) \cdot \text{sp}_{\Gamma;\Delta}   \\
+    = & [\![ \Gamma, x: \mathbb{D}  \triangleright \text{inl}_{\mathbb{B}}(v) [w/x]:  \mathbb{A} \oplus \mathbb{B}] ]\!] \cdot \text{jn}_{\Gamma;\mathbb{D}} \cdot (\text{id} \otimes [\![ \Delta \triangleright w:\mathbb{D}  ]\!]) \cdot \text{sp}_{\Gamma;\Delta}
   \end{split}
 \end{equation*}
 
@@ -845,18 +845,18 @@ With respect to the case statement, in this case, it is necessary to consider tw
   
   \begin{equation*}
 \begin{split}
-  &[\![E, \Sigma \triangleright \text{ case }  \hspace{2pt}  \{\text{inl}_{\mathbb{B}} (x) \Rightarrow w ; \hspace{1pt} \text{inr}_{\mathbb{A}} (y) \Rightarrow u\} [a/z]: \mathbb{C}]\!] \\
-  =& \left[[\![ \Delta, x:\mathbb{A} \triangleright w : \mathbb{C}]\!] \cdot \text{jn}_{ \Delta;\mathbb{A}},[\![ \Delta, y:\mathbb{B} \triangleright u ]\!] \cdot \text{jn}_{ \Delta;\mathbb{B}}\right] \cdot \text{dist} \cdot \text{sw} \cdot ([\![\Gamma, \Sigma \triangleright v [a/z] : \mathbb{A} \oplus \mathbb{B}  ]\!] \otimes \text{id})  \\
-  & \cdot \text{sp}_{\Gamma, \Sigma;\Delta} \cdot \text{sh}_{E,\Sigma} \\
-  =&\left[[\![ \Delta, x:\mathbb{A} \triangleright w : \mathbb{C}]\!] \cdot \text{jn}_{ \Delta;\mathbb{A}},[\![ \Delta, y:\mathbb{B} \triangleright u ]\!] \cdot \text{jn}_{ \Delta;\mathbb{B}}\right] \cdot \text{dist} \cdot \text{sw} \cdot (([\![\Gamma, z:\mathbb{D} \triangleright v : \mathbb{A} \oplus \mathbb{B}  ]\!] \cdot \text{jn}_{\Gamma; \mathbb{D}} \\
-  & \cdot (\text{id} \otimes [\![ \Sigma \triangleright a:\mathbb{D}  ]\!] ) \cdot \text{sp}_{\Gamma;\Sigma} )\otimes \text{id}) \cdot \text{sp}_{\Gamma, \Sigma;\Delta} \cdot \text{sh}_{E,\Sigma}\\
-  = & \hspace{2pt} \left[[\![ \Delta, x:\mathbb{A} \triangleright w : \mathbb{C}]\!] \cdot \text{jn}_{ \Delta;\mathbb{A}},[\![ \Delta, y:\mathbb{B} \triangleright u ]\!] \cdot \text{jn}_{ \Delta;\mathbb{B}}\right] \cdot \text{dist} \cdot \text{sw} \cdot ([\![\Gamma, z:\mathbb{D} \triangleright v : \mathbb{A} \oplus \mathbb{B} ]\!] \otimes \text{id})   \\
-&  \cdot \text{sp}_{\Gamma, \mathbb{D};\Delta} \cdot \text{jn}_{\Gamma; \mathbb{D}; \Delta} \cdot (\text{id} \otimes [\![ \Sigma \triangleright a:\mathbb{D}   ]\!] \otimes \text{id} ) \cdot    \text{sp}_{\Gamma; \Sigma;\Delta} \cdot \text{sh}_{E,\Sigma}\\
-= &  \hspace{2pt} \left[[\![ \Delta, x:\mathbb{A} \triangleright w : \mathbb{C}]\!] \cdot \text{jn}_{ \Delta;\mathbb{A}},[\![ \Delta, y:\mathbb{B} \triangleright u ]\!] \cdot \text{jn}_{ \Delta;\mathbb{B}}\right] \cdot \text{dist} \cdot \text{sw} \cdot ([\![\Gamma, z:\mathbb{D} \triangleright v : \mathbb{A} \oplus \mathbb{B} ]\!] \otimes \text{id})   \\ 
-& ... \\
-= & \hspace{2pt}\left[[\![ \Delta, x:\mathbb{A} \triangleright w : \mathbb{C}]\!] \cdot \text{jn}_{ \Delta;\mathbb{A}},[\![ \Delta, y:\mathbb{B} \triangleright u ]\!] \cdot \text{jn}_{ \Delta;\mathbb{B}}\right] \cdot \text{dist} \cdot \text{sw} \cdot ([\![\Gamma, z:\mathbb{D} \triangleright v : \mathbb{A} \oplus \mathbb{B}  ]\!] \otimes \text{id}) \\
-  & \cdot \text{sp}_{\Gamma,\mathbb{D};\Delta}  \cdot \text{sh}_{E,\mathbb{D}} \cdot \text{jn}_{E; \mathbb{D}} \cdot (\text{id} \otimes [\![ \Sigma \triangleright a:\mathbb{D}  ]\!] ) \cdot \text{sp}_{E;\Sigma} \\
-= & [\![E,  z:\mathbb{D} \triangleright \text{ case }  \hspace{2pt}  \{\text{inl}_{\mathbb{B}} (x) \Rightarrow w ; \hspace{1pt} \text{inr}_{\mathbb{A}} (y) \Rightarrow u\}: \mathbb{C}]\!]  \cdot \text{jn}_{E; \mathbb{D}} \cdot (\text{id} \otimes [\![ \Sigma \triangleright a:\mathbb{D}  ]\!] ) \cdot \text{sp}_{E;\Sigma} \\
+  &[\![E, \Delta \triangleright \text{ case }  \hspace{2pt}  \{\text{inl}_{\mathbb{B}} (x) \Rightarrow w ; \hspace{1pt} \text{inr}_{\mathbb{A}} (y) \Rightarrow u\} [a/z]: \mathbb{D}]\!] \\
+  =& \left[[\![ \Gamma_2, x:\mathbb{A} \triangleright w : \mathbb{D}]\!] \cdot \text{jn}_{ \Gamma_2;\mathbb{A}},[\![ \Gamma_2, y:\mathbb{B} \triangleright u ]\!] \cdot \text{jn}_{ \Gamma_2;\mathbb{B}}\right] \cdot \text{dist} \cdot \text{sw} \cdot ([\![\Gamma_1, \Delta \triangleright v [a/z] : \mathbb{A} \oplus \mathbb{B}  ]\!]  \\
+  & \otimes \text{id})  \cdot \text{sp}_{\Gamma_1, \Delta;\Gamma_2} \cdot \text{sh}_{E,\Delta} \\
+  =&\left[[\![ \Gamma_2, x:\mathbb{A} \triangleright w : \mathbb{D}]\!] \cdot \text{jn}_{ \Gamma_2;\mathbb{A}},[\![ \Gamma_2, y:\mathbb{B} \triangleright u ]\!] \cdot \text{jn}_{ \Gamma_2;\mathbb{B}}\right] \cdot \text{dist} \cdot \text{sw} \cdot (([\![\Gamma_1, z:\mathbb{D} \triangleright v : \mathbb{A} \oplus \mathbb{B}  ]\!]  \\
+  & \cdot \text{jn}_{\Gamma_1; \mathbb{D}} \cdot (\text{id} \otimes [\![ \Delta \triangleright a:\mathbb{D}  ]\!] ) \cdot \text{sp}_{\Gamma_1;\Delta} )\otimes \text{id}) \cdot \text{sp}_{\Gamma_1, \Delta;\Gamma_2} \cdot \text{sh}_{E,\Delta}\\
+  = & \hspace{2pt} \left[[\![ \Gamma_2, x:\mathbb{A} \triangleright w : \mathbb{D}]\!] \cdot \text{jn}_{ \Gamma_2;\mathbb{A}},[\![ \Gamma_2, y:\mathbb{B} \triangleright u ]\!] \cdot \text{jn}_{ \Gamma_2;\mathbb{B}}\right] \cdot \text{dist} \cdot \text{sw} \cdot ([\![\Gamma_1, z:\mathbb{D} \triangleright v : \mathbb{A} \oplus \mathbb{B} ]\!]   \\
+& \otimes \text{id})  \cdot \text{sp}_{\Gamma_1, \mathbb{D};\Gamma_2} \cdot \text{jn}_{\Gamma_1; \mathbb{D}; \Gamma_2} \cdot (\text{id} \otimes [\![ \Delta \triangleright a:\mathbb{D}   ]\!] \otimes \text{id} ) \cdot    \text{sp}_{\Gamma_1; \Delta;\Gamma_2} \cdot \text{sh}_{E,\Delta}\\
+= &  \hspace{2pt} \left[[\![ \Gamma_2, x:\mathbb{A} \triangleright w : \mathbb{D}]\!] \cdot \text{jn}_{ \Gamma_2;\mathbb{A}},[\![ \Gamma_2, y:\mathbb{B} \triangleright u ]\!] \cdot \text{jn}_{ \Gamma_2;\mathbb{B}}\right] \cdot \text{dist} \cdot \text{sw} \cdot ([\![\Gamma_1, z:\mathbb{D} \triangleright v : \mathbb{A} \oplus \mathbb{B} ]\!]   \\ 
+& \otimes \text{id}) ... \\
+= & \hspace{2pt}\left[[\![ \Gamma_2, x:\mathbb{A} \triangleright w : \mathbb{D}]\!] \cdot \text{jn}_{ \Gamma_2;\mathbb{A}},[\![ \Gamma_2, y:\mathbb{B} \triangleright u ]\!] \cdot \text{jn}_{ \Gamma_2;\mathbb{B}}\right] \cdot \text{dist} \cdot \text{sw} \cdot ([\![\Gamma_1, z:\mathbb{D} \triangleright v : \mathbb{A} \oplus \mathbb{B}  ]\!] \\
+  & \otimes \text{id})  \cdot \text{sp}_{\Gamma_1,\mathbb{D};\Gamma_2}  \cdot \text{sh}_{E,\mathbb{D}} \cdot \text{jn}_{E; \mathbb{D}} \cdot (\text{id} \otimes [\![ \Delta \triangleright a:\mathbb{D}  ]\!] ) \cdot \text{sp}_{E;\Delta} \\
+= & \hspace{2pt} [\![E,  z:\mathbb{D} \triangleright \text{ case }  \hspace{2pt}  \{\text{inl}_{\mathbb{B}} (x) \Rightarrow w ; \hspace{1pt} \text{inr}_{\mathbb{A}} (y) \Rightarrow u\}: \mathbb{D}]\!]  \cdot \text{jn}_{E; \mathbb{D}} \cdot (\text{id} \otimes [\![ \Delta \triangleright a:\mathbb{D}  ]\!] ) \cdot \text{sp}_{E;\Delta} \\
 \end{split}
   \end{equation*}
 
@@ -865,25 +865,26 @@ With respect to the case statement, in this case, it is necessary to consider tw
   For the second case,
   \begin{equation*}
     \begin{split}
-      &[\![E, \Sigma \triangleright \text{ case }  \hspace{2pt}  \{\text{inl}_{\mathbb{B}} (x) \Rightarrow w ; \hspace{1pt} \text{inr}_{\mathbb{A}} (y) \Rightarrow u\} [a/z]: \mathbb{C}]\!] \\
-      =& \hspace{2pt}  \left[[\![ \Delta, \Sigma, x:\mathbb{A} \triangleright w [a/z] : \mathbb{C}  ]\!] \cdot \text{jn}_{\Delta, \Sigma, \mathbb{A}} ,[\![ \Delta, \Sigma, y:\mathbb{B} \triangleright u [a/z] : \mathbb{C} ]\!]\cdot \text{jn}_{\Delta, \Sigma, \mathbb{B}}\right] \cdot \text{dist} \cdot \text{sw}   \\
-      & \cdot ([\![\Gamma \triangleright v  : \mathbb{A} \oplus \mathbb{B}  ]\!] \otimes \text{id}) \cdot \text{sp}_{\Gamma; \Sigma,\Delta} \cdot \text{sh}_{E,\Sigma} \\
-      = & [[\![ \Delta,  x:\mathbb{A} , \Sigma \triangleright w [a/z] : \mathbb{C}  ]\!] \cdot \text{exch}_{\Delta,\Sigma,\mathbb{A}} \cdot \text{jn}_{\Delta, \Sigma, \mathbb{A}},[\![ \Delta,  y:\mathbb{B}, \Sigma \triangleright u [a/z] :\mathbb{C}  ]\!] \cdot \text{exch}_{\Delta, \Sigma,\mathbb{B}}    \\
-      & \cdot \text{jn}_{\Delta, \Sigma, \mathbb{B}} ]\cdot \text{dist} \cdot \text{sw} \cdot ([\![\Gamma \triangleright v  : \mathbb{A} \oplus \mathbb{B}  ]\!] \otimes \text{id}) \cdot \text{sp}_{\Gamma; \Sigma,\Delta} \cdot \text{sh}_{E,\Sigma} \\
-      = & \hspace{2pt} [[\![ \Delta, x:\mathbb{A},z:\mathbb{D} \triangleright w: \mathbb{C} ]\!]  \cdot \text{jn}_{\Delta,\mathbb{A}; \mathbb{D}} \cdot (\text{id} \otimes [\![ \Sigma \triangleright a:\mathbb{D}  ]\!] ) \cdot \text{sp}_{\Delta,\mathbb{A};\Sigma} \cdot  \text{exch}_{\Delta, \Sigma,\mathbb{A}} \cdot \text{jn}_{\Delta, \Sigma, \mathbb{A}} ,\\
-      & [\![ \Delta, y:\mathbb{B},z:\mathbb{D} \triangleright u : \mathbb{C}  ]\!]\cdot \text{jn}_{\Delta,\mathbb{A}; \mathbb{D}} \cdot (\text{id} \otimes [\![ \Sigma \triangleright a:\mathbb{D}  ]\!] ) \cdot \text{sp}_{\Delta,\mathbb{B};\Sigma} \cdot  \text{exch}_{\Delta, \Sigma,\mathbb{B}}]\cdot\text{jn}_{\Delta, \Sigma, \mathbb{B}}  \cdot \text{dist}   \\
-      & \cdot \text{sw} \cdot ([\![\Gamma \triangleright v  : \mathbb{A} \oplus \mathbb{B}  ]\!] \otimes \text{id}) \cdot \text{sp}_{\Gamma; \Sigma,\Delta} \cdot \text{sh}_{E,\Sigma} \\
-      = & \hspace{2pt}  \left[[\![ \Delta, x:\mathbb{A},z:\mathbb{D} \triangleright w: \mathbb{C}  ]\!] \cdot \text{exch}_{\Delta, \mathbb{D},\mathbb{A}} \cdot \text{jn}_{\Delta, \mathbb{D}, \mathbb{A}} ,   [\![ \Delta, y:\mathbb{B},z:\mathbb{D} \triangleright u : \mathbb{C}  ]\!] \cdot \text{exch}_{\Delta, \mathbb{D},\mathbb{B}}\cdot\text{jn}_{\Delta, \mathbb{D}, \mathbb{B}}\right]\\
-      & \cdot \text{dist} \cdot \text{sp}_{\Delta, \mathbb{D}; \mathbb{A}\oplus \mathbb{B} } \cdot \text{jn}_{\Delta; \mathbb{D}; \mathbb{A}\oplus \mathbb{B} } \cdot (\text{id} \otimes [\![ \Sigma \triangleright a:\mathbb{D}  ]\!]  \otimes \text{id}) \cdot \text{sp}_{\Delta;\Sigma,\mathbb{A}\oplus \mathbb{B}}  \cdot \text{sw}  \\
-      & \cdot ([\![\Gamma \triangleright v  : \mathbb{A} \oplus \mathbb{B}  ]\!] \otimes \text{id}) \cdot \text{sp}_{\Gamma; \Sigma,\Delta} \cdot \text{sh}_{E,\Sigma} \\
-      = & \hspace{2pt} \left[[\![ \Delta, x:\mathbb{A},z:\mathbb{D} \triangleright w: \mathbb{C}  ]\!] \cdot \text{exch}_{\Delta, \mathbb{D},\mathbb{A}} \cdot \text{jn}_{\Delta, \mathbb{D}, \mathbb{A}} ,   [\![ \Delta, y:\mathbb{B},z:\mathbb{D} \triangleright u : \mathbb{C}  ]\!] \cdot \text{exch}_{\Delta, \mathbb{D},\mathbb{B}}\cdot\text{jn}_{\Delta, \mathbb{D}, \mathbb{B}}\right]\\
-      & \cdot \text{dist} \cdot \text{sw} \cdot ([\![\Gamma \triangleright v  : \mathbb{A} \oplus \mathbb{B}  ]\!] \otimes \text{id}) \cdot \text{sp}_{\Gamma;\Delta, \mathbb{D}} \cdot  \text{jn}_{ \Gamma;\Delta; \mathbb{D}} \cdot (\text{id} \otimes [\![ \Sigma \triangleright a:\mathbb{D}  ]\!]  \otimes \text{id}) \\
-      & \cdot \text{sp}_{\Gamma;\Sigma;\Delta} \cdot \text{sh}_{E,\Sigma} \\
-      = &  \hspace{2pt}  \left[[\![ \Delta, x:\mathbb{A},z:\mathbb{D} \triangleright w: \mathbb{C}  ]\!] \cdot \text{exch}_{\Delta, \mathbb{D},\mathbb{A}} \cdot \text{jn}_{\Delta, \mathbb{D}, \mathbb{A}} ,   [\![ \Delta, y:\mathbb{B},z:\mathbb{D} \triangleright u : \mathbb{C}  ]\!] \cdot \text{exch}_{\Delta, \mathbb{D},\mathbb{B}}\cdot\text{jn}_{\Delta, \mathbb{D}, \mathbb{B}}\right]\\
-      & \cdot \text{dist} \cdot \text{sw} \cdot ([\![\Gamma \triangleright v  : \mathbb{A} \oplus \mathbb{B}  ]\!] \otimes \text{id}) \cdot \text{sp}_{\Gamma;\Delta, \mathbb{D}}  \cdot \text{sh}_{E,\mathbb{D}} \cdot \text{jn}_{E; \mathbb{D}} \cdot (\text{id} \otimes [\![ \Sigma \triangleright a:\mathbb{D}  ]\!] ) \cdot \text{sp}_{E;\Sigma}  \\
-      = &  \hspace{2pt} \left[[\![ \Delta, z:\mathbb{D}, x:\mathbb{A} \triangleright w: \mathbb{C}  ]\!] \cdot  \text{jn}_{\Delta, \mathbb{D}, \mathbb{A}} ,   [\![ \Delta, z:\mathbb{D} , y:\mathbb{B} \triangleright u : \mathbb{C}  ]\!] \cdot \text{jn}_{\Delta, \mathbb{D}, \mathbb{B}}\right] \cdot \text{dist} \cdot \text{sw}  \\
-      & \cdot ([\![\Gamma \triangleright v  : \mathbb{A} \oplus \mathbb{B}  ]\!] \otimes \text{id}) \cdot \text{sp}_{\Gamma; \Delta, \mathbb{D}} \cdot \text{sh}_{E,\mathbb{D}} \cdot \text{jn}_{E; \mathbb{D}} \cdot (\text{id} \otimes [\![ \Sigma \triangleright a:\mathbb{D}  ]\!] ) \cdot \text{sp}_{E;\Sigma} \\
-      = & [\![E, z:\mathbb{D} \triangleright \text{ case }  \hspace{2pt}  \{\text{inl}_{\mathbb{B}} (x) \Rightarrow w ; \hspace{1pt} \text{inr}_{\mathbb{A}} (y) \Rightarrow u\} [a/z]: \mathbb{C}]\!] \cdot \text{jn}_{E; \mathbb{D}} \cdot (\text{id} \otimes [\![ \Sigma \triangleright a:\mathbb{D}  ]\!] ) \cdot \text{sp}_{E;\Sigma} \\
+      &[\![E, \Delta \triangleright \text{ case }  \hspace{2pt}  \{\text{inl}_{\mathbb{B}} (x) \Rightarrow w ; \hspace{1pt} \text{inr}_{\mathbb{A}} (y) \Rightarrow u\} [a/z]: \mathbb{D}]\!] \\
+      =& \hspace{2pt}  \left[[\![ \Gamma_2, \Delta, x:\mathbb{A} \triangleright w [a/z] : \mathbb{D}  ]\!] \cdot \text{jn}_{\Gamma_2, \Delta, \mathbb{A}} ,[\![ \Gamma_2, \Delta, y:\mathbb{B} \triangleright u [a/z] : \mathbb{D} ]\!]\cdot \text{jn}_{\Gamma_2, \Delta, \mathbb{B}}\right] \cdot \text{dist} \cdot \text{sw}   \\
+      &  \cdot ([\![\Gamma_1 \triangleright v  : \mathbb{A} \oplus \mathbb{B}  ]\!] \otimes \text{id}) \cdot \text{sp}_{\Gamma_1; \Delta,\Gamma_2} \cdot \text{sh}_{E,\Delta} \\
+      = & \hspace{2pt}[[\![ \Gamma_2,  x:\mathbb{A} , \Delta \triangleright w [a/z] : \mathbb{D}  ]\!] \cdot \text{exch}_{\Gamma_2,\Delta,\mathbb{A}} \cdot \text{jn}_{\Gamma_2, \Delta, \mathbb{A}},[\![ \Gamma_2,  y:\mathbb{B}, \Delta \triangleright u [a/z] :\mathbb{D}  ]\!] \cdot \text{exch}_{\Gamma_2, \Delta,\mathbb{B}}    \\
+      & \cdot \text{jn}_{\Gamma_2, \Delta, \mathbb{B}} ]\cdot \text{dist} \cdot \text{sw} \cdot ([\![\Gamma_1 \triangleright v  : \mathbb{A} \oplus \mathbb{B}  ]\!] \otimes \text{id}) \cdot \text{sp}_{\Gamma_1; \Delta,\Gamma_2} \cdot \text{sh}_{E,\Delta} \\
+      = & \hspace{2pt} [[\![ \Gamma_2, x:\mathbb{A},z:\mathbb{D} \triangleright w: \mathbb{D} ]\!]  \cdot \text{jn}_{\Gamma_2,\mathbb{A}; \mathbb{D}} \cdot (\text{id} \otimes [\![ \Delta \triangleright a:\mathbb{D}  ]\!] ) \cdot \text{sp}_{\Gamma_2,\mathbb{A};\Delta} \cdot  \text{exch}_{\Gamma_2, \Delta,\mathbb{A}} \cdot \text{jn}_{\Gamma_2, \Delta, \mathbb{A}} ,\\
+      & [\![ \Gamma_2, y:\mathbb{B},z:\mathbb{D} \triangleright u : \mathbb{D}  ]\!]\cdot \text{jn}_{\Gamma_2,\mathbb{A}; \mathbb{D}} \cdot (\text{id} \otimes [\![ \Delta \triangleright a:\mathbb{D}  ]\!] ) \cdot \text{sp}_{\Gamma_2,\mathbb{B};\Delta} \cdot  \text{exch}_{\Gamma_2, \Delta,\mathbb{B}}]\cdot\text{jn}_{\Gamma_2, \Delta, \mathbb{B}}   \\
+      &  \cdot \text{dist} \cdot \text{sw} \cdot ([\![\Gamma_1 \triangleright v  : \mathbb{A} \oplus \mathbb{B}  ]\!] \otimes \text{id}) \cdot \text{sp}_{\Gamma_1; \Delta,\Gamma_2} \cdot \text{sh}_{E,\Delta} \\
+      = & \hspace{2pt}  [[\![ \Gamma_2, x:\mathbb{A},z:\mathbb{D} \triangleright w: \mathbb{D}  ]\!] \cdot \text{exch}_{\Gamma_2, \mathbb{D},\mathbb{A}} \cdot \text{jn}_{\Gamma_2, \mathbb{D}, \mathbb{A}} ,   [\![ \Gamma_2, y:\mathbb{B},z:\mathbb{D} \triangleright u : \mathbb{D}  ]\!] \cdot \text{exch}_{\Gamma_2, \mathbb{D},\mathbb{B}}\\
+      & \cdot\text{jn}_{\Gamma_2, \mathbb{D}, \mathbb{B}}]\cdot \text{dist} \cdot \text{sp}_{\Gamma_2, \mathbb{D}; \mathbb{A}\oplus \mathbb{B} } \cdot \text{jn}_{\Gamma_2; \mathbb{D}; \mathbb{A}\oplus \mathbb{B} } \cdot (\text{id} \otimes [\![ \Delta \triangleright a:\mathbb{D}  ]\!]  \otimes \text{id}) \cdot \text{sp}_{\Gamma_2;\Delta,\mathbb{A}\oplus \mathbb{B}}  \cdot \text{sw}  \\
+      & \cdot ([\![\Gamma_1 \triangleright v  : \mathbb{A} \oplus \mathbb{B}  ]\!] \otimes \text{id}) \cdot \text{sp}_{\Gamma_1; \Delta,\Gamma_2} \cdot \text{sh}_{E,\Delta} \\
+      = & \hspace{2pt} [[\![ \Gamma_2, x:\mathbb{A},z:\mathbb{D} \triangleright w: \mathbb{D}  ]\!] \cdot \text{exch}_{\Gamma_2, \mathbb{D},\mathbb{A}} \cdot \text{jn}_{\Gamma_2, \mathbb{D}, \mathbb{A}} ,   [\![ \Gamma_2, y:\mathbb{B},z:\mathbb{D} \triangleright u : \mathbb{D}  ]\!] \cdot \text{exch}_{\Gamma_2, \mathbb{D},\mathbb{B}}\\
+      & \cdot\text{jn}_{\Gamma_2, \mathbb{D}, \mathbb{B}}]\cdot \text{dist} \cdot \text{sw} \cdot ([\![\Gamma_1 \triangleright v  : \mathbb{A} \oplus \mathbb{B}  ]\!] \otimes \text{id}) \cdot \text{sp}_{\Gamma_1;\Gamma_2, \mathbb{D}} \cdot  \text{jn}_{ \Gamma_1;\Gamma_2; \mathbb{D}} \cdot (\text{id} \otimes [\![ \Delta \triangleright a:\mathbb{D}  ]\!]  \otimes \text{id}) \\
+      & \cdot \text{sp}_{\Gamma_1;\Delta;\Gamma_2} \cdot \text{sh}_{E,\Delta} \\
+      = &  \hspace{2pt}  [[\![ \Gamma_2, x:\mathbb{A},z:\mathbb{D} \triangleright w: \mathbb{D}  ]\!] \cdot \text{exch}_{\Gamma_2, \mathbb{D},\mathbb{A}} \cdot \text{jn}_{\Gamma_2, \mathbb{D}, \mathbb{A}} ,   [\![ \Gamma_2, y:\mathbb{B},z:\mathbb{D} \triangleright u : \mathbb{D}  ]\!] \cdot \text{exch}_{\Gamma_2, \mathbb{D},\mathbb{B}}\\
+      & \cdot\text{jn}_{\Gamma_2, \mathbb{D}, \mathbb{B}}]\cdot \text{dist} \cdot \text{sw} \cdot ([\![\Gamma_1 \triangleright v  : \mathbb{A} \oplus \mathbb{B}  ]\!] \otimes \text{id}) \cdot \text{sp}_{\Gamma_1;\Gamma_2, \mathbb{D}}  \cdot \text{sh}_{E,\mathbb{D}} \cdot \text{jn}_{E; \mathbb{D}} \cdot (\text{id} \otimes [\![ \Delta \triangleright a:\mathbb{D}  ]\!] ) \\
+      &\cdot \text{sp}_{E;\Delta}  \\
+      = &  \hspace{2pt} \left[[\![ \Gamma_2, z:\mathbb{D}, x:\mathbb{A} \triangleright w: \mathbb{D}  ]\!] \cdot  \text{jn}_{\Gamma_2, \mathbb{D}, \mathbb{A}} ,   [\![ \Gamma_2, z:\mathbb{D} , y:\mathbb{B} \triangleright u : \mathbb{D}  ]\!] \cdot \text{jn}_{\Gamma_2, \mathbb{D}, \mathbb{B}}\right] \cdot \text{dist} \cdot \text{sw}  \\
+      & \cdot ([\![\Gamma_1 \triangleright v  : \mathbb{A} \oplus \mathbb{B}  ]\!] \otimes \text{id}) \cdot \text{sp}_{\Gamma_1; \Gamma_2, \mathbb{D}} \cdot \text{sh}_{E,\mathbb{D}} \cdot \text{jn}_{E; \mathbb{D}} \cdot (\text{id} \otimes [\![ \Delta \triangleright a:\mathbb{D}  ]\!] ) \cdot \text{sp}_{E;\Delta} \\
+      = & \hspace{2pt}[\![E, z:\mathbb{D} \triangleright \text{ case }  \hspace{2pt}  \{\text{inl}_{\mathbb{B}} (x) \Rightarrow w ; \hspace{1pt} \text{inr}_{\mathbb{A}} (y) \Rightarrow u\} [a/z]: \mathbb{D}]\!] \cdot \text{jn}_{E; \mathbb{D}} \cdot (\text{id} \otimes [\![ \Delta \triangleright a:\mathbb{D}  ]\!] ) \cdot \text{sp}_{E;\Delta} \\
     \end{split}
       \end{equation*}
 
@@ -896,9 +897,9 @@ In this subsection it will be shown that the following equations hold for the mo
 
 \begin{equation*}
   \begin{split}
-    &(\beta_{case}^{inl}): \hspace{3pt} \Delta,\Gamma \triangleright \text{ case } \text{inl}_{\mathbb{B}}(v) \hspace{2pt} \{\text{inl}_{\mathbb{B}} (x) \Rightarrow w ; \hspace{1pt} \text{inr}_{\mathbb{A}} (y) \Rightarrow u\}= w[v/x] : \mathbb{C} \\
-    &(\beta_{case}^{inr}): \hspace{3pt} \Delta,\Gamma  \triangleright  \text{ case } \text{inr}_{\mathbb{A}}(v) \hspace{2pt} \{\text{inl}_{\mathbb{B}} (x) \Rightarrow w ; \hspace{1pt} \text{inr}_{\mathbb{A}} (y) \Rightarrow u\} = w[v/y] : \mathbb{C} \\ 
-    & (\eta_{case}): \hspace{3pt} \Delta,\Gamma  \triangleright  \text{ case }(v)\ \hspace{2pt} \{\text{inl}_{\mathbb{B}} (y) \Rightarrow w [ \text{inl}_{\mathbb{B}}(y)/x] ; \hspace{1pt} \text{inr}_{\mathbb{A}} (z) \Rightarrow w [ \text{inr}_{\mathbb{A}}(z)/x]\} = w[v/x] : \mathbb{C}
+    &(\beta_{case}^{inl}): \hspace{3pt} \Delta,\Gamma \triangleright \text{ case } \text{inl}_{\mathbb{B}}(v) \hspace{2pt} \{\text{inl}_{\mathbb{B}} (x) \Rightarrow w ; \hspace{1pt} \text{inr}_{\mathbb{A}} (y) \Rightarrow u\}= w[v/x] : \mathbb{D} \\
+    &(\beta_{case}^{inr}): \hspace{3pt} \Delta,\Gamma  \triangleright  \text{ case } \text{inr}_{\mathbb{A}}(v) \hspace{2pt} \{\text{inl}_{\mathbb{B}} (x) \Rightarrow w ; \hspace{1pt} \text{inr}_{\mathbb{A}} (y) \Rightarrow u\} = w[v/y] : \mathbb{D} \\ 
+    & (\eta_{case}): \hspace{3pt} \Delta,\Gamma  \triangleright  \text{ case }(v)\ \hspace{2pt} \{\text{inl}_{\mathbb{B}} (y) \Rightarrow w [ \text{inl}_{\mathbb{B}}(y)/x] ; \hspace{1pt} \text{inr}_{\mathbb{A}} (z) \Rightarrow w [ \text{inr}_{\mathbb{A}}(z)/x]\} = w[v/x] : \mathbb{D}
   \end{split}
 \end{equation*}
 
@@ -909,9 +910,9 @@ In this subsection it will be shown that the following equations hold for the mo
 It is necessary to demonstrate that 
 \begin{equation*}
   \begin{split}
-  &\llbracket \Delta,\Gamma \triangleright \text{ case } \text{inl}_{\mathbb{B}}(v) \hspace{2pt} \{\text{inl}_{\mathbb{B}} (x) \Rightarrow w ; \hspace{1pt} \text{inr}_{\mathbb{A}} (y) \Rightarrow u\}: \mathbb{C}\rrbracket = \llbracket \Delta,\Gamma \triangleright w[v/x] : \mathbb{C} \rrbracket \\
-  & \llbracket \Delta,\Gamma \triangleright \text{ case } \text{inr}_{\mathbb{A}}(v) \hspace{2pt} \{\text{inl}_{\mathbb{B}} (x) \Rightarrow w ; \hspace{1pt} \text{inr}_{\mathbb{A}} (y) \Rightarrow u\}: \mathbb{C}\rrbracket = \llbracket \Delta,\Gamma \triangleright w[v/x] : \mathbb{C} \rrbracket\\
-  & \llbracket \Delta,\Gamma \triangleright \text{ case }(v) \hspace{2pt} \{\text{inl}_{\mathbb{B}} (y) \Rightarrow w [ \text{inl}_{\mathbb{B}}(y)/x] ; \hspace{1pt} \text{inr}_{\mathbb{A}} (z) \Rightarrow w [ \text{inr}_{\mathbb{A}}(z)/x]\}: \mathbb{C}\rrbracket = \llbracket \Delta,\Gamma \triangleright w[v/x] : \mathbb{C} \rrbracket
+  &\llbracket \Delta,\Gamma \triangleright \text{ case } \text{inl}_{\mathbb{B}}(v) \hspace{2pt} \{\text{inl}_{\mathbb{B}} (x) \Rightarrow w ; \hspace{1pt} \text{inr}_{\mathbb{A}} (y) \Rightarrow u\}: \mathbb{D}\rrbracket = \llbracket \Delta,\Gamma \triangleright w[v/x] : \mathbb{D} \rrbracket \\
+  & \llbracket \Delta,\Gamma \triangleright \text{ case } \text{inr}_{\mathbb{A}}(v) \hspace{2pt} \{\text{inl}_{\mathbb{B}} (x) \Rightarrow w ; \hspace{1pt} \text{inr}_{\mathbb{A}} (y) \Rightarrow u\}: \mathbb{D}\rrbracket = \llbracket \Delta,\Gamma \triangleright w[v/x] : \mathbb{D} \rrbracket\\
+  & \llbracket \Delta,\Gamma \triangleright \text{ case }(v) \hspace{2pt} \{\text{inl}_{\mathbb{B}} (y) \Rightarrow w [ \text{inl}_{\mathbb{B}}(y)/x] ; \hspace{1pt} \text{inr}_{\mathbb{A}} (z) \Rightarrow w [ \text{inr}_{\mathbb{A}}(z)/x]\}: \mathbb{D}\rrbracket = \llbracket \Delta,\Gamma \triangleright w[v/x] : \mathbb{D} \rrbracket
 \end{split}
 \end{equation*}
 
@@ -920,14 +921,14 @@ It is necessary to demonstrate that
 Regarding the first equation,
 \begin{equation*}
   \begin{split}
-    & \llbracket \Delta,\Gamma \triangleright  \text{ case } \text{inl}_{\mathbb{B}}(v) \hspace{2pt} \{\text{inl}_{\mathbb{B}} (x) \Rightarrow w ; \hspace{1pt} \text{inr}_{\mathbb{A}} (y) \Rightarrow u\}: \mathbb{C}\rrbracket \\
-    = & [\llbracket\Delta, x: \mathbb{A} \triangleright w: \mathbb{C}\rrbracket \cdot \text{jn}_{\Delta;\mathbb{A}},\llbracket\Delta, y: \mathbb{B} \triangleright u: \mathbb{C}\rrbracket\cdot \text{jn}_{\Delta;\mathbb{B}}] \cdot \text{dist} \cdot \text{sw} \cdot (\llbracket\Gamma \triangleright \text{inl}_{\mathbb{B}}(v): \mathbb{A} \oplus \mathbb{B}\rrbracket  \\
+    & \llbracket \Delta,\Gamma \triangleright  \text{ case } \text{inl}_{\mathbb{B}}(v) \hspace{2pt} \{\text{inl}_{\mathbb{B}} (x) \Rightarrow w ; \hspace{1pt} \text{inr}_{\mathbb{A}} (y) \Rightarrow u\}: \mathbb{D}\rrbracket \\
+    = & [\llbracket\Delta, x: \mathbb{A} \triangleright w: \mathbb{D}\rrbracket \cdot \text{jn}_{\Delta;\mathbb{A}},\llbracket\Delta, y: \mathbb{B} \triangleright u: \mathbb{D}\rrbracket\cdot \text{jn}_{\Delta;\mathbb{B}}] \cdot \text{dist} \cdot \text{sw} \cdot (\llbracket\Gamma \triangleright \text{inl}_{\mathbb{B}}(v): \mathbb{A} \oplus \mathbb{B}\rrbracket  \\
     &\otimes \text{id}) \cdot \text{sp}_{\Gamma;\Delta} \cdot \text{sh}_{\Delta;\Gamma} \\
-    = & [\llbracket\Delta, x: \mathbb{A} \triangleright w: \mathbb{C}\rrbracket \cdot \text{jn}_{\Delta;\mathbb{A}},\llbracket\Delta, y: \mathbb{B} \triangleright u: \mathbb{C}\rrbracket \cdot \text{jn}_{\Delta;\mathbb{B}}] \cdot \text{dist} \cdot \text{sw} \cdot (\textsc{Il} \cdot\llbracket \Gamma \triangleright v: \mathbb{A} \rrbracket \otimes  \text{id}) \\
+    = & [\llbracket\Delta, x: \mathbb{A} \triangleright w: \mathbb{D}\rrbracket \cdot \text{jn}_{\Delta;\mathbb{A}},\llbracket\Delta, y: \mathbb{B} \triangleright u: \mathbb{D}\rrbracket \cdot \text{jn}_{\Delta;\mathbb{B}}] \cdot \text{dist} \cdot \text{sw} \cdot (\textsc{Il} \cdot\llbracket \Gamma \triangleright v: \mathbb{A} \rrbracket \otimes  \text{id}) \\
     & \cdot \text{sp}_{\Gamma;\Delta} \cdot \text{sh}_{\Delta;\Gamma} \\
-    = & [\llbracket\Delta, x: \mathbb{A} \triangleright w: \mathbb{C}\rrbracket \cdot \text{jn}_{\Delta;\mathbb{A}},\llbracket\Delta, y: \mathbb{B} \triangleright u: \mathbb{C}\rrbracket\cdot \text{jn}_{\Delta;\mathbb{B}}] \cdot \text{dist} \cdot \text{sw} \cdot (\textsc{Il} \otimes \text{id})  \cdot (\llbracket  \Gamma \triangleright v: \mathbb{A} \rrbracket   \\
+    = & [\llbracket\Delta, x: \mathbb{A} \triangleright w: \mathbb{D}\rrbracket \cdot \text{jn}_{\Delta;\mathbb{A}},\llbracket\Delta, y: \mathbb{B} \triangleright u: \mathbb{D}\rrbracket\cdot \text{jn}_{\Delta;\mathbb{B}}] \cdot \text{dist} \cdot \text{sw} \cdot (\textsc{Il} \otimes \text{id})  \cdot (\llbracket  \Gamma \triangleright v: \mathbb{A} \rrbracket   \\
     &\otimes  \text{id}) \cdot \text{sp}_{\Gamma;\Delta} \cdot \text{sh}_{\Delta;\Gamma} \\
-    = & [\llbracket\Delta, x: \mathbb{A} \triangleright w: \mathbb{C}\rrbracket \cdot \text{jn}_{\Delta;\mathbb{A}} ,\llbracket\Delta, y: \mathbb{B} \triangleright u: \mathbb{C}\rrbracket \cdot \text{jn}_{\Delta;\mathbb{B}}] \cdot \text{dist}  \cdot (\text{id} \otimes \textsc{Il}) \cdot   \text{sw} \cdot(\llbracket\Gamma \triangleright v: \mathbb{A} \rrbracket \\\ 
+    = & [\llbracket\Delta, x: \mathbb{A} \triangleright w: \mathbb{D}\rrbracket \cdot \text{jn}_{\Delta;\mathbb{A}} ,\llbracket\Delta, y: \mathbb{B} \triangleright u: \mathbb{D}\rrbracket \cdot \text{jn}_{\Delta;\mathbb{B}}] \cdot \text{dist}  \cdot (\text{id} \otimes \textsc{Il}) \cdot   \text{sw} \cdot(\llbracket\Gamma \triangleright v: \mathbb{A} \rrbracket \\\ 
     &\otimes  \text{id})  \cdot \text{sp}_{\Gamma;\Delta} \cdot \text{sh}_{\Delta;\Gamma} \\
   \end{split}
 \end{equation*}
@@ -955,14 +956,14 @@ Given that $[\text{id} \otimes \textsc{Il},\text{id} \otimes \textsc{Ir}] \cdot 
 And as a result, $ \text{dist}  \cdot (\text{id} \otimes \textsc{Il}) = \textsc{Il}$. Therefore,
 \begin{equation*}
   \begin{split}
-    & [\llbracket\Delta, x: \mathbb{A} \triangleright w: \mathbb{C}\rrbracket \cdot \text{jn}_{\Delta;\mathbb{A}} ,\llbracket\Delta, y: \mathbb{B} \triangleright u: \mathbb{C}\rrbracket \cdot \text{jn}_{\Delta;\mathbb{B}}] \cdot \text{dist}  \cdot (\text{id} \otimes \textsc{Il}) \cdot   \text{sw} \cdot(\llbracket\Gamma \triangleright v: \mathbb{A} \rrbracket\\\ 
+    & [\llbracket\Delta, x: \mathbb{A} \triangleright w: \mathbb{D}\rrbracket \cdot \text{jn}_{\Delta;\mathbb{A}} ,\llbracket\Delta, y: \mathbb{B} \triangleright u: \mathbb{D}\rrbracket \cdot \text{jn}_{\Delta;\mathbb{B}}] \cdot \text{dist}  \cdot (\text{id} \otimes \textsc{Il}) \cdot   \text{sw} \cdot(\llbracket\Gamma \triangleright v: \mathbb{A} \rrbracket\\\ 
     & \otimes  \text{id})  \cdot \text{sp}_{\Gamma;\Delta} \cdot \text{sh}_{\Delta; \Gamma} \\
-    = & [\llbracket\Delta, x: \mathbb{A} \triangleright w: \mathbb{C}\rrbracket\cdot \text{jn}_{\Delta;\mathbb{A}},\llbracket\Delta, y: \mathbb{B} \triangleright u: \mathbb{C}\rrbracket \cdot \text{jn}_{\Delta;\mathbb{B}}] \cdot \textsc{Il} \cdot   \text{sw} \cdot(\llbracket\Gamma \triangleright v: \mathbb{A} \rrbracket \otimes  \text{id}) \cdot \text{sp}_{\Gamma;\Delta}  \\
+    = & [\llbracket\Delta, x: \mathbb{A} \triangleright w: \mathbb{D}\rrbracket\cdot \text{jn}_{\Delta;\mathbb{A}},\llbracket\Delta, y: \mathbb{B} \triangleright u: \mathbb{D}\rrbracket \cdot \text{jn}_{\Delta;\mathbb{B}}] \cdot \textsc{Il} \cdot   \text{sw} \cdot(\llbracket\Gamma \triangleright v: \mathbb{A} \rrbracket \otimes  \text{id}) \cdot \text{sp}_{\Gamma;\Delta}  \\
     & \cdot \text{sh}_{\Delta; \Gamma} \\
-    = & \llbracket\Delta, x: \mathbb{A} \triangleright w: \mathbb{C}\rrbracket \cdot \text{jn}_{\Delta;\mathbb{A}}  \cdot   \text{sw} \cdot(\llbracket\Gamma \triangleright v: \mathbb{A} \rrbracket \otimes  \text{id}) \cdot \text{sp}_{\Gamma;\Delta} \cdot \text{sh}_{\Delta; \Gamma} \\
-    = & \llbracket\Delta, x: \mathbb{A} \triangleright w: \mathbb{C}\rrbracket \cdot \text{jn}_{\Delta;\mathbb{A}} \cdot( \text{id} \otimes \llbracket\Gamma \triangleright v: \mathbb{A} \rrbracket ) \cdot    \text{sw}  \cdot \text{sp}_{\Gamma;\Delta}  \cdot \text{sh}_{\Delta; \Gamma} \\
-    = & \llbracket\Delta, x: \mathbb{A} \triangleright w: \mathbb{C}\rrbracket \cdot \text{jn}_{\Delta;\mathbb{A}} \cdot( \text{id} \otimes \llbracket\Gamma \triangleright v: \mathbb{A} \rrbracket ) \cdot \text{sp}_{\Delta;\Gamma}\\
-    = & \llbracket w[v/x] : \mathbb{C} \rrbracket
+    = & \llbracket\Delta, x: \mathbb{A} \triangleright w: \mathbb{D}\rrbracket \cdot \text{jn}_{\Delta;\mathbb{A}}  \cdot   \text{sw} \cdot(\llbracket\Gamma \triangleright v: \mathbb{A} \rrbracket \otimes  \text{id}) \cdot \text{sp}_{\Gamma;\Delta} \cdot \text{sh}_{\Delta; \Gamma} \\
+    = & \llbracket\Delta, x: \mathbb{A} \triangleright w: \mathbb{D}\rrbracket \cdot \text{jn}_{\Delta;\mathbb{A}} \cdot( \text{id} \otimes \llbracket\Gamma \triangleright v: \mathbb{A} \rrbracket ) \cdot    \text{sw}  \cdot \text{sp}_{\Gamma;\Delta}  \cdot \text{sh}_{\Delta; \Gamma} \\
+    = & \llbracket\Delta, x: \mathbb{A} \triangleright w: \mathbb{D}\rrbracket \cdot \text{jn}_{\Delta;\mathbb{A}} \cdot( \text{id} \otimes \llbracket\Gamma \triangleright v: \mathbb{A} \rrbracket ) \cdot \text{sp}_{\Delta;\Gamma}\\
+    = & \llbracket w[v/x] : \mathbb{D} \rrbracket
   \end{split}
 \end{equation*}
 
@@ -991,31 +992,31 @@ Taking into account that $[\text{id} \otimes \textsc{Il},\text{id} \otimes \text
 Consequentlty, $ \text{dist}  \cdot (\text{id} \otimes \textsc{Ir}) = \textsc{Ir}$. Thus,
 \begin{equation*}
   \begin{split}
-    &\llbracket \Delta,\Gamma \triangleright \text{ case } \text{inr}_{\mathbb{A}}(v) \hspace{2pt} \{\text{inl}_{\mathbb{B}} (x) \Rightarrow w ; \hspace{1pt} \text{inr}_{\mathbb{A}} (y) \Rightarrow u\}: \mathbb{C}\rrbracket \\
-    = & [\llbracket\Delta, x: \mathbb{A} \triangleright w: \mathbb{C}\rrbracket \cdot \text{jn}_{\Delta;\mathbb{A}} ,\llbracket\Delta, y: \mathbb{B} \triangleright u: \mathbb{C}\rrbracket \cdot \text{jn}_{\Delta;\mathbb{B}}] \cdot \text{dist}  \cdot (\text{id} \otimes \textsc{Ir}) \cdot   \text{sw} \cdot(\llbracket\Gamma \triangleright v: \mathbb{B} \rrbracket\\\ 
+    &\llbracket \Delta,\Gamma \triangleright \text{ case } \text{inr}_{\mathbb{A}}(v) \hspace{2pt} \{\text{inl}_{\mathbb{B}} (x) \Rightarrow w ; \hspace{1pt} \text{inr}_{\mathbb{A}} (y) \Rightarrow u\}: \mathbb{D}\rrbracket \\
+    = & [\llbracket\Delta, x: \mathbb{A} \triangleright w: \mathbb{D}\rrbracket \cdot \text{jn}_{\Delta;\mathbb{A}} ,\llbracket\Delta, y: \mathbb{B} \triangleright u: \mathbb{D}\rrbracket \cdot \text{jn}_{\Delta;\mathbb{B}}] \cdot \text{dist}  \cdot (\text{id} \otimes \textsc{Ir}) \cdot   \text{sw} \cdot(\llbracket\Gamma \triangleright v: \mathbb{B} \rrbracket\\\ 
     & \otimes  \text{id})  \cdot \text{sp}_{\Gamma;\Delta} \cdot \text{sh}_{\Delta;\Gamma} \\
-    = & [\llbracket\Delta, x: \mathbb{A} \triangleright w: \mathbb{C}\rrbracket \cdot \text{jn}_{\Delta;\mathbb{A}} ,\llbracket\Delta, y: \mathbb{B} \triangleright u: \mathbb{C}\rrbracket \cdot \text{jn}_{\Delta;\mathbb{B}}]  \cdot \textsc{Ir} \cdot   \text{sw} \cdot(\llbracket\Gamma \triangleright v: \mathbb{B} \rrbracket \otimes  \text{id}) \cdot \text{sp}_{\Gamma;\Delta}  \\
+    = & [\llbracket\Delta, x: \mathbb{A} \triangleright w: \mathbb{D}\rrbracket \cdot \text{jn}_{\Delta;\mathbb{A}} ,\llbracket\Delta, y: \mathbb{B} \triangleright u: \mathbb{D}\rrbracket \cdot \text{jn}_{\Delta;\mathbb{B}}]  \cdot \textsc{Ir} \cdot   \text{sw} \cdot(\llbracket\Gamma \triangleright v: \mathbb{B} \rrbracket \otimes  \text{id}) \cdot \text{sp}_{\Gamma;\Delta}  \\
     & \cdot \text{sh}_{\Delta;\Gamma} \\
-    = & \llbracket\Delta, y: \mathbb{B} \triangleright w: \mathbb{C}\rrbracket \cdot \text{jn}_{\Delta;\mathbb{B}} \cdot( \text{id} \otimes \llbracket\Gamma \triangleright v: \mathbb{B} \rrbracket ) \cdot \text{sp}_{\Delta;\Gamma} \\
-    = & \llbracket w[v/y] : \mathbb{C} \rrbracket
+    = & \llbracket\Delta, y: \mathbb{B} \triangleright w: \mathbb{D}\rrbracket \cdot \text{jn}_{\Delta;\mathbb{B}} \cdot( \text{id} \otimes \llbracket\Gamma \triangleright v: \mathbb{B} \rrbracket ) \cdot \text{sp}_{\Delta;\Gamma} \\
+    = & \llbracket w[v/y] : \mathbb{D} \rrbracket
   \end{split}
 \end{equation*}
 
 With respect to the third equation,
 \begin{equation*}
   \begin{split}
-  & \llbracket \Delta,\Gamma \triangleright \text{ case }(v) \hspace{2pt} \{\text{inl}_{\mathbb{B}} (y) \Rightarrow w [ \text{inl}_{\mathbb{B}}(y)/x] ; \hspace{1pt} \text{inr}_{\mathbb{A}} (z) \Rightarrow w [ \text{inr}_{\mathbb{A}}(z)/x]\}: \mathbb{C}\rrbracket \\
-  =& [\llbracket\Delta, y: \mathbb{B} \triangleright w [ \text{inl}_{\mathbb{B}}(y)/x]: \mathbb{C}\rrbracket \cdot \text{jn}_{\Delta;\mathbb{A}} ,\llbracket\Delta, z: \mathbb{A} \triangleright w [ \text{inr}_{\mathbb{A}}(z)/x]: \mathbb{C}\rrbracket \cdot \text{jn}_{\Delta;\mathbb{B}} ] \cdot \text{dist} \cdot \text{sw}  \\
+  & \llbracket \Delta,\Gamma \triangleright \text{ case }(v) \hspace{2pt} \{\text{inl}_{\mathbb{B}} (y) \Rightarrow w [ \text{inl}_{\mathbb{B}}(y)/x] ; \hspace{1pt} \text{inr}_{\mathbb{A}} (z) \Rightarrow w [ \text{inr}_{\mathbb{A}}(z)/x]\}: \mathbb{D}\rrbracket \\
+  =& [\llbracket\Delta, y: \mathbb{B} \triangleright w [ \text{inl}_{\mathbb{B}}(y)/x]: \mathbb{D}\rrbracket \cdot \text{jn}_{\Delta;\mathbb{A}} ,\llbracket\Delta, z: \mathbb{A} \triangleright w [ \text{inr}_{\mathbb{A}}(z)/x]: \mathbb{D}\rrbracket \cdot \text{jn}_{\Delta;\mathbb{B}} ] \cdot \text{dist} \cdot \text{sw}  \\
   & \cdot (\llbracket\Gamma \triangleright v: \mathbb{A} \oplus \mathbb{B}\rrbracket \otimes \text{id}) \cdot  \text{sp}_{\Gamma;\Delta} \cdot \text{sh}_{\Delta;\Gamma} \\
-  = & [\llbracket\Delta, x: \mathbb{A} \oplus \mathbb{B} \triangleright w: \mathbb{C}\rrbracket \cdot \text{jn}_{\Delta;\mathbb{A} \oplus \mathbb{B}} \cdot (\text{id} \otimes \llbracket y : \mathbb{A} \triangleright \text{inl}_{\mathbb{B}}(y) :\mathbb{A} \oplus \mathbb{B}  \rrbracket) \cdot \text{sp}_{\Delta;\mathbb{A}} \cdot \text{jn}_{\Delta;\mathbb{A}} , \\
-  & \llbracket \Delta,x: \mathbb{A} \oplus \mathbb{B} \triangleright w: \mathbb{C}\rrbracket \cdot \text{jn}_{\Delta;\mathbb{A} \oplus \mathbb{B}} \cdot (\text{id} \otimes \llbracket z:\mathbb{B}  \triangleright \text{inr}_{\mathbb{A}}(z) :\mathbb{A} \oplus \mathbb{B}  \rrbracket) \cdot \text{sp}_{\Delta;\mathbb{B}} \cdot \text{jn}_{\Delta;\mathbb{B}} ]       \\
+  = & [\llbracket\Delta, x: \mathbb{A} \oplus \mathbb{B} \triangleright w: \mathbb{D}\rrbracket \cdot \text{jn}_{\Delta;\mathbb{A} \oplus \mathbb{B}} \cdot (\text{id} \otimes \llbracket y : \mathbb{A} \triangleright \text{inl}_{\mathbb{B}}(y) :\mathbb{A} \oplus \mathbb{B}  \rrbracket) \cdot \text{sp}_{\Delta;\mathbb{A}} \cdot \text{jn}_{\Delta;\mathbb{A}} , \\
+  & \llbracket \Delta,x: \mathbb{A} \oplus \mathbb{B} \triangleright w: \mathbb{D}\rrbracket \cdot \text{jn}_{\Delta;\mathbb{A} \oplus \mathbb{B}} \cdot (\text{id} \otimes \llbracket z:\mathbb{B}  \triangleright \text{inr}_{\mathbb{A}}(z) :\mathbb{A} \oplus \mathbb{B}  \rrbracket) \cdot \text{sp}_{\Delta;\mathbb{B}} \cdot \text{jn}_{\Delta;\mathbb{B}} ]       \\
   & \cdot \text{dist} \cdot \text{sw} \cdot (\llbracket\Gamma \triangleright v: \mathbb{A} \oplus \mathbb{B}\rrbracket \otimes \text{id}) \cdot  \text{sp}_{\Gamma;\Delta} \cdot \text{sh}_{\Delta;\Gamma} \\
-  = & [\llbracket\Delta, x: \mathbb{A} \oplus \mathbb{B} \triangleright w: \mathbb{C}\rrbracket \cdot \text{jn}_{\Delta;\mathbb{A} \oplus \mathbb{B}} \cdot (\text{id} \otimes \textsc{Il} \cdot \llbracket y : \mathbb{A}  \triangleright y :\mathbb{A}   \rrbracket), \llbracket \Delta,x: \mathbb{A} \oplus \mathbb{B} \triangleright w: \mathbb{C}\rrbracket \\
-  & \llbracket \Delta,x: \mathbb{A} \oplus \mathbb{B} \triangleright w: \mathbb{C}\rrbracket \cdot \text{jn}_{\Delta;\mathbb{A} \oplus \mathbb{B}} \cdot (\text{id} \otimes \textsc{Ir} \cdot \llbracket z:\mathbb{B}  \triangleright z : \mathbb{B}  \rrbracket)] \cdot \text{dist} \cdot \text{sw}   \cdot (\llbracket\Gamma \triangleright v: \mathbb{A} \oplus \mathbb{B}\rrbracket )   \\
+  = & [\llbracket\Delta, x: \mathbb{A} \oplus \mathbb{B} \triangleright w: \mathbb{D}\rrbracket \cdot \text{jn}_{\Delta;\mathbb{A} \oplus \mathbb{B}} \cdot (\text{id} \otimes \textsc{Il} \cdot \llbracket y : \mathbb{A}  \triangleright y :\mathbb{A}   \rrbracket), \llbracket \Delta,x: \mathbb{A} \oplus \mathbb{B} \triangleright w: \mathbb{D}\rrbracket \\
+  & \llbracket \Delta,x: \mathbb{A} \oplus \mathbb{B} \triangleright w: \mathbb{D}\rrbracket \cdot \text{jn}_{\Delta;\mathbb{A} \oplus \mathbb{B}} \cdot (\text{id} \otimes \textsc{Ir} \cdot \llbracket z:\mathbb{B}  \triangleright z : \mathbb{B}  \rrbracket)] \cdot \text{dist} \cdot \text{sw}   \cdot (\llbracket\Gamma \triangleright v: \mathbb{A} \oplus \mathbb{B}\rrbracket )   \\
   &  \otimes \text{id} \cdot  \text{sp}_{\Gamma;\Delta} \cdot \text{sh}_{\Delta;\Gamma} \\
-  = & [\llbracket\Delta, x: \mathbb{A} \oplus \mathbb{B} \triangleright w: \mathbb{C}\rrbracket \cdot \text{jn}_{\Delta;\mathbb{A} \oplus \mathbb{B}} \cdot (\text{id} \otimes \textsc{Il} \cdot \text{id}_{\llbracket\mathbb{A}\rrbracket}) , \llbracket \Delta,x: \mathbb{A} \oplus \mathbb{B} \triangleright w: \mathbb{C}\rrbracket  \cdot \text{jn}_{\Delta;\mathbb{A} \oplus \mathbb{B}}  \\
+  = & [\llbracket\Delta, x: \mathbb{A} \oplus \mathbb{B} \triangleright w: \mathbb{D}\rrbracket \cdot \text{jn}_{\Delta;\mathbb{A} \oplus \mathbb{B}} \cdot (\text{id} \otimes \textsc{Il} \cdot \text{id}_{\llbracket\mathbb{A}\rrbracket}) , \llbracket \Delta,x: \mathbb{A} \oplus \mathbb{B} \triangleright w: \mathbb{D}\rrbracket  \cdot \text{jn}_{\Delta;\mathbb{A} \oplus \mathbb{B}}  \\
   & \cdot (\text{id} \otimes \textsc{Ir} \cdot \text{id}_{\llbracket\mathbb{B}\rrbracket}) ] \cdot \text{dist} \cdot \text{sw}  \cdot (\llbracket\Gamma \triangleright v: \mathbb{A} \oplus \mathbb{B}\rrbracket \otimes \text{id})  \cdot  \text{sp}_{\Gamma;\Delta} \cdot \text{sh}_{\Delta;\Gamma}     \\
-  = & \llbracket\Delta, x: \mathbb{A} \oplus \mathbb{B} \triangleright w: \mathbb{C}\rrbracket \cdot \text{jn}_{\Delta;\mathbb{A} \oplus \mathbb{B}} \cdot (\text{id} \otimes [\textsc{Il} \cdot \text{id}_{\llbracket\mathbb{A}\rrbracket},\textsc{Ir} \cdot \text{id}_{\llbracket\mathbb{B}\rrbracket}]) \cdot \text{dist} \cdot \text{sw}  \cdot (\llbracket\Gamma \triangleright v: \mathbb{A} \oplus \mathbb{B}\rrbracket  \\
+  = & \llbracket\Delta, x: \mathbb{A} \oplus \mathbb{B} \triangleright w: \mathbb{D}\rrbracket \cdot \text{jn}_{\Delta;\mathbb{A} \oplus \mathbb{B}} \cdot (\text{id} \otimes [\textsc{Il} \cdot \text{id}_{\llbracket\mathbb{A}\rrbracket},\textsc{Ir} \cdot \text{id}_{\llbracket\mathbb{B}\rrbracket}]) \cdot \text{dist} \cdot \text{sw}  \cdot (\llbracket\Gamma \triangleright v: \mathbb{A} \oplus \mathbb{B}\rrbracket  \\
   & \otimes \text{id})  \cdot  \text{sp}_{\Gamma;\Delta} \cdot \text{sh}_{\Delta;\Gamma} \\
 \end{split}
 \end{equation*}
@@ -1041,12 +1042,12 @@ Considering that $[  \textsc{Il} \cdot \text{id},\textsc{Ir} \cdot \text{id}] = 
 And as a result, one has that $\text{id} \otimes [\textsc{Il} \cdot \text{id}_{\llbracket\mathbb{A}\rrbracket}, \textsc{Ir} \cdot \text{id}_{\llbracket\mathbb{B}\rrbracket}] \cdot \text{dist} = \text{id} \otimes \text{id}$. Therefore,
 \begin{equation*}
   \begin{split}
-    & \llbracket\Delta, x: \mathbb{A} \oplus \mathbb{B} \triangleright w: \mathbb{C}\rrbracket \cdot \text{jn}_{\Delta;\mathbb{A} \oplus \mathbb{B}} \cdot (\text{id} \otimes [\textsc{Il} \cdot \text{id}_{\llbracket\mathbb{A}\rrbracket},\textsc{Ir} \cdot \text{id}_{\llbracket\mathbb{B}\rrbracket}]) \cdot \text{dist} \cdot \text{sw}  \cdot (\llbracket\Gamma \triangleright v: \mathbb{A} \oplus \mathbb{B}\rrbracket  \\
+    & \llbracket\Delta, x: \mathbb{A} \oplus \mathbb{B} \triangleright w: \mathbb{D}\rrbracket \cdot \text{jn}_{\Delta;\mathbb{A} \oplus \mathbb{B}} \cdot (\text{id} \otimes [\textsc{Il} \cdot \text{id}_{\llbracket\mathbb{A}\rrbracket},\textsc{Ir} \cdot \text{id}_{\llbracket\mathbb{B}\rrbracket}]) \cdot \text{dist} \cdot \text{sw}  \cdot (\llbracket\Gamma \triangleright v: \mathbb{A} \oplus \mathbb{B}\rrbracket  \\
     & \otimes \text{id})  \cdot  \text{sp}_{\Gamma;\Delta} \cdot \text{sh}_{\Delta;\Gamma} \\
-  = & \llbracket\Delta, x: \mathbb{A} \oplus \mathbb{B} \triangleright w: \mathbb{C}\rrbracket \cdot \text{jn}_{\Delta;\mathbb{A} \oplus \mathbb{B}} \cdot (\text{id} \otimes \text{id})  \cdot \text{sw} \cdot (\llbracket\Gamma \triangleright v: \mathbb{A} \oplus \mathbb{B}\rrbracket \otimes \text{id}) \cdot \text{sp}_{\Gamma;\Delta} \cdot \text{sh}_{\Delta;\Gamma}\\
-  = & \llbracket\Delta, x: \mathbb{A} \oplus \mathbb{B} \triangleright w: \mathbb{C}\rrbracket \cdot \text{jn}_{\Delta;\mathbb{A} \oplus \mathbb{B}}  \cdot  \text{sw} \cdot (\llbracket\Gamma \triangleright v: \mathbb{A} \oplus \mathbb{B}\rrbracket \otimes \text{id}) \cdot \text{sp}_{\Gamma;\Delta} \cdot \text{sh}_{\Delta;\Gamma}\\
-  = & \llbracket\Delta, x: \mathbb{A} \oplus \mathbb{B} \triangleright w: \mathbb{C}\rrbracket \cdot \text{jn}_{\Delta;\mathbb{A} \oplus \mathbb{B}}  \cdot   (\llbracket\Gamma \triangleright v: \mathbb{A} \oplus \mathbb{B}\rrbracket \otimes \text{id}) \cdot \text{sp}_{\Delta;\Gamma} \\
-  = & \llbracket w[v/x] : \mathbb{C} \rrbracket
+  = & \llbracket\Delta, x: \mathbb{A} \oplus \mathbb{B} \triangleright w: \mathbb{D}\rrbracket \cdot \text{jn}_{\Delta;\mathbb{A} \oplus \mathbb{B}} \cdot (\text{id} \otimes \text{id})  \cdot \text{sw} \cdot (\llbracket\Gamma \triangleright v: \mathbb{A} \oplus \mathbb{B}\rrbracket \otimes \text{id}) \cdot \text{sp}_{\Gamma;\Delta} \cdot \text{sh}_{\Delta;\Gamma}\\
+  = & \llbracket\Delta, x: \mathbb{A} \oplus \mathbb{B} \triangleright w: \mathbb{D}\rrbracket \cdot \text{jn}_{\Delta;\mathbb{A} \oplus \mathbb{B}}  \cdot  \text{sw} \cdot (\llbracket\Gamma \triangleright v: \mathbb{A} \oplus \mathbb{B}\rrbracket \otimes \text{id}) \cdot \text{sp}_{\Gamma;\Delta} \cdot \text{sh}_{\Delta;\Gamma}\\
+  = & \llbracket\Delta, x: \mathbb{A} \oplus \mathbb{B} \triangleright w: \mathbb{D}\rrbracket \cdot \text{jn}_{\Delta;\mathbb{A} \oplus \mathbb{B}}  \cdot   (\llbracket\Gamma \triangleright v: \mathbb{A} \oplus \mathbb{B}\rrbracket \otimes \text{id}) \cdot \text{sp}_{\Delta;\Gamma} \\
+  = & \llbracket w[v/x] : \mathbb{D} \rrbracket
 \end{split}
 \end{equation*}
 \qed

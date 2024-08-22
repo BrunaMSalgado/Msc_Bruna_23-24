@@ -350,6 +350,8 @@ INPUT C:\Users\mona_\AppData\Local\Programs\MiKTeX\tex\latex\leading\leading.sty
 INPUT C:\Users\mona_\AppData\Local\Programs\MiKTeX\tex\latex\leading\leading.sty
 INPUT C:\Users\mona_\AppData\Local\Programs\MiKTeX\tex\latex\cleveref\cleveref.sty
 INPUT C:\Users\mona_\AppData\Local\Programs\MiKTeX\tex\latex\cleveref\cleveref.sty
+INPUT C:\Users\mona_\AppData\Local\Programs\MiKTeX\tex\latex\glossaries-extra\glossaries-extra.sty
+INPUT C:\Users\mona_\AppData\Local\Programs\MiKTeX\tex\latex\glossaries-extra\glossaries-extra.sty
 INPUT C:\Users\mona_\AppData\Local\Programs\MiKTeX\tex\latex\glossaries\base\glossaries.sty
 INPUT C:\Users\mona_\AppData\Local\Programs\MiKTeX\tex\latex\glossaries\base\glossaries.sty
 INPUT C:\Users\mona_\AppData\Local\Programs\MiKTeX\tex\latex\mfirstuc\mfirstuc.sty
@@ -395,9 +397,6 @@ INPUT C:\Users\mona_\AppData\Local\Programs\MiKTeX\tex\generic\tracklang\trackla
 INPUT C:\Users\mona_\AppData\Local\Programs\MiKTeX\tex\generic\tracklang\tracklang.tex
 INPUT C:\Users\mona_\AppData\Local\Programs\MiKTeX\tex\generic\tracklang\tracklang.tex
 INPUT C:\Users\mona_\AppData\Local\Programs\MiKTeX\tex\generic\tracklang\tracklang.tex
-INPUT C:\Users\mona_\AppData\Local\Programs\MiKTeX\tex\latex\translator\translator.sty
-INPUT C:\Users\mona_\AppData\Local\Programs\MiKTeX\tex\latex\translator\translator.sty
-INPUT C:\Users\mona_\AppData\Local\Programs\MiKTeX\tex\latex\translator\translator.sty
 INPUT C:\Users\mona_\AppData\Local\Programs\MiKTeX\tex\latex\glossaries-english\glossaries-english.ldf
 INPUT C:\Users\mona_\AppData\Local\Programs\MiKTeX\tex\latex\glossaries-english\glossaries-english.ldf
 INPUT C:\Users\mona_\AppData\Local\Programs\MiKTeX\tex\latex\glossaries-english\glossaries-english.ldf
@@ -420,6 +419,9 @@ INPUT C:\Users\mona_\AppData\Local\Programs\MiKTeX\tex\latex\glossaries\styles\g
 INPUT C:\Users\mona_\AppData\Local\Programs\MiKTeX\tex\latex\supertabular\supertabular.sty
 INPUT C:\Users\mona_\AppData\Local\Programs\MiKTeX\tex\latex\glossaries\styles\glossary-tree.sty
 INPUT C:\Users\mona_\AppData\Local\Programs\MiKTeX\tex\latex\glossaries\styles\glossary-tree.sty
+INPUT C:\Users\mona_\AppData\Local\Programs\MiKTeX\tex\latex\glossaries-extra\glossaries-extra-abbrstyles.def
+INPUT C:\Users\mona_\AppData\Local\Programs\MiKTeX\tex\latex\glossaries-extra\glossaries-extra-abbrstyles.def
+INPUT C:\Users\mona_\AppData\Local\Programs\MiKTeX\tex\latex\glossaries-extra\glossaries-extra-abbrstyles.def
 INPUT C:\Users\mona_\AppData\Local\Programs\MiKTeX\tex\latex\float\float.sty
 INPUT C:\Users\mona_\AppData\Local\Programs\MiKTeX\tex\latex\float\float.sty
 INPUT C:\Users\mona_\AppData\Local\Programs\MiKTeX\tex\latex\wrapfig\wrapfig.sty
@@ -557,8 +559,6 @@ INPUT C:\Users\mona_\AppData\Local\Programs\MiKTeX\tex\latex\graphics\dvipsnam.d
 INPUT C:\Users\mona_\AppData\Local\Programs\MiKTeX\tex\latex\graphics\dvipsnam.def
 INPUT C:\Users\mona_\AppData\Local\Programs\MiKTeX\tex\latex\todonotes\todonotes.sty
 INPUT C:\Users\mona_\AppData\Local\Programs\MiKTeX\tex\latex\todonotes\todonotes.sty
-OUTPUT dissertation.glo
-OUTPUT dissertation.acn
 OUTPUT dissertation.idx
 INPUT .\dissertation.aux
 INPUT .\dissertation.aux
@@ -576,9 +576,6 @@ INPUT dissertation.out
 INPUT .\dissertation.out
 INPUT .\dissertation.out
 OUTPUT dissertation.out
-INPUT .\dissertation.glsdefs
-INPUT .\dissertation.glsdefs
-INPUT dissertation.glsdefs
 INPUT .\covers\Covers.tex
 INPUT .\covers\Covers.tex
 INPUT .\covers\Covers.tex
@@ -591,7 +588,6 @@ INPUT .\images\logos\EE.jpg
 INPUT .\images\logos\EE.jpg
 INPUT .\images\logos\EE.jpg
 OUTPUT dissertation.xdv
-OUTPUT dissertation.ist
 INPUT .\images\logosB\UM.jpg
 INPUT .\images\logosB\UM.jpg
 INPUT .\images\logosB\UM.jpg
@@ -653,12 +649,6 @@ INPUT .\dissertation.lof
 INPUT .\dissertation.lof
 INPUT dissertation.lof
 OUTPUT dissertation.lof
-INPUT .\dissertation.acr
-INPUT .\dissertation.acr
-INPUT dissertation.acr
-INPUT .\dissertation.gls
-INPUT .\dissertation.gls
-INPUT dissertation.gls
 INPUT .\chapters\Introduction.tex
 INPUT .\chapters\Introduction.tex
 INPUT .\chapters\Introduction.tex
