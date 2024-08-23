@@ -575,18 +575,19 @@ Nonetheless, the controlled duplication of both classical and quantum data will 
 
 \todo[inline,size=\normalsize]{Escrever intro ao capítulo: o que é que se vai abordar e tal e é baseada nos livros x e y} 
 
+The first two sections of this chapter present the mathematical and quantum computing preliminaries necessary for understanding theory of quantum information. The introduction to quantum computing is primarily based on \cite{nielsen2010quantum,watrous2018theory}, while the mathematical foundations are also based on \cite{rudin91functional}.
 
 \section{Mathematical Preliminaries} \label{sec:Math}
 
 
 It is impossible to present the theory of quantum information without introducing some concepts of linear algebra within finite-dimensional spaces. This section provides a brief overview of the aspects of linear algebra that are most pertinent to the study of quantum information. 
 
-\subsubsection{Complex vector spaces}
+\subsection{Complex vector spaces}
 
 The basic objects of linear algebra are vector spaces. The vector spaces of interest in this work are the complex vector spaces, \gls{n-complex-space} and \gls{matrix-complex-space}, therefore, the following definition is given in the context of complex vector spaces. 
 
 \begin{definition}
-A vector space (over $\mathbb{C}$)  consists of a set $V$ whose elements are called vectors, together with two operations:
+A \emph{vector space} (over $\mathbb{C}$)  consists of a set $V$ whose elements are called vectors, together with two operations:
 \begin{itemize}
   \item An operation called vector addition that takes two vectors $v, w \in V$ , and results in a third vector, written $v + w \in V$;
   \item An operation called scalar multiplication that takes a scalar $r \in \mathbb{C}$ and a vector $v \in V$ , and results in a new vector, written $r \cdot v \in V$
@@ -595,7 +596,7 @@ which satisfy the following conditions (called axioms), for all $u, v, w \in V$ 
 
 \begin{enumerate}
   \item Vector addition is commutative: $u + v = v + u$;
-  \item Vector addition is associative: $(u + v) + w = u + (v + w) f$;
+  \item Vector addition is associative: $(u + v) + w = u + (v + w) $;
   \item There is a zero vector $0 \in V$ such that $v +0 = v$ for all $v \in V$;
   \item Each $v \in V$ has an additive inverse $w \in V$ such that $w + v = 0$;
   \item Scalar multiplication distributes over scalar addition, $(r+s) \cdot v = r \cdot v +s \cdot v$;
@@ -615,17 +616,155 @@ In the case of the vector space $\mathbb{C}^{n}$, the space of all n-tuples of c
 \end{itemize}
 The zero vector in $\mathbb{C}^{n}$ is the vector with all entries equal to zero.
 
-$\mathbb{C}^{n \times n}$ is a vector space when addition is defined as matrix addition and scalar multiplication is defined as multiplication of each component by the scalar. The zero vector is the zero matrix, \textit{i.e.}, the matrix with all entries equal to zero.
+Some times the column matrix notation is used to represent vectors in $\mathbb{C}^{n}$, that is, a vector $v \in \mathbb{C}^{n}$ is written as a column matrix $$v = \begin{pmatrix} \alpha_1 \\ \vdots \\ \alpha_n \end{pmatrix}.$$
 
-% produto tensorial e soma direta
-%operadores lineares e relação com matrizes, operadores hermitianos e normais e isometrias, op positivo e matriz positiva
-% traço e traço parcial
+$\mathbb{C}^{n \times m}$ is a vector space when addition is defined as matrix addition and scalar multiplication is defined as multiplication of each component by the scalar. The zero vector is the zero matrix, \textit{i.e.}, the matrix with all entries equal to zero.
+
+\begin{definition}
+A \emph{vector subspace} of a vector space $V$ is a subset $W$ of $V$ such that $W$ is also a vector space, that is, $W$ must be closed under scalar multiplication and addition.
+\end{definition}
+
+\begin{definition}
+  A \emph{spanning set} of a vector space is a set of vectors $v_{1}, \ldots, v_{n}$ such that any vector $v$ in the vector space can be written as a linear combination $v = \sum_{i} a_{i} v_{i}$ of vectors in that set, where $a_{i}$ are scalars.
+\end{definition}
+
+\begin{definition}
+A set of non-zero vectors $v_1, \ldots, v_n$ are \emph{linearly dependent} if there exists a set of complex numbers $a_1, \ldots , a_n$ with $a_i \neq 0$ for at least one value of $i$, such that
+\begin{equation*}
+  a_1 v_1 + a_2 v_2 +\ldots a_n v_n = 0.
+\end{equation*}
+\end{definition}
+
+\begin{definition}
+A set of vectors $v_1, \ldots, v_n$ are \emph{linearly independent} if they are not linearly dependent.
+\end{definition}
+
+\begin{definition}
+A \emph{basis} for a vector space is a sequence of vectors that is linearly
+independent and that spans the space.
+\end{definition}
+
+\begin{definition}
+The number of elements in the basis is defined to be the \emph{dimension}  of
+$V$.
+\end{definition}
+
+\subsection{Linear operators}
+A \emph{linear operator} between vector spaces $V$ and $W$ is defined to be any function $A : V \rightarrow W$ which is linear in its inputs, \textit{i.e.}
+\begin{equation*}
+  A \left( \sum_{i} a_{i} v_{i} \right) = \sum_{i} a_i A (v_{i})
+\end{equation*}
+Usually $A(v)$ is just denoted $A v$.
+
+Suppose $V, W,$ and $X$ are vector spaces, and $A : V \rightarrow W$ and $B : W \rightarrow X$ are linear operators. Then the notation $BA$ is used  to denote the \emph{composition} of $B$ with $A$,
+defined by $(BA)(v) \equiv B(A(v))$. Once again, $(BA)(v)$. is abbreviated as  $BAv$.
+
+For any choice of complex spaces $V \in \mathbb{C}^m $ and $W \in \mathbb{C}^m$ or $V \in \mathbb{C}^{n\times p} $ and $W \in \mathbb{C}^{m\times p}$, there is a bijective linear correspondence between the set of operators from $V$ to $W$ and the set of $n \times m$ matrices. %To see the connection, it helps to first understand that an $m$ by $n$ complex matrix $A$ with entries $A_{ij}$ is in fact a linear operator sending vectors in the vector space $\mathbb{C}^n$ to the vector space $\mathbb{C}^m$, under matrix multiplication of the matrix $A$ by a vector in $\mathbb{C}^n$. Nevertheless, this matrix can also be seen as an a linear operator sending vectors in the vector space $\mathbb{C}^{n \times p}$ to the vector space $\mathbb{C}^{m \times p}$, under matrix multiplication of the matrix $A$ by a matrix in $\mathbb{C}^{n \times p}$. 
+The claim that the matrix $A \in \mathbb{C}^{m\times n}$ is a linear operator just means that
+\begin{equation*}
+  A \left( \sum_{i} a_{i} v_{i} \right) = \sum_{i} a_i A (v_{i})
+\end{equation*}
+is true as an equation where the operation is matrix multiplication of $A$ by a collumn vector in $\mathbb{C}^n$ or by a matrix in $\mathbb{C}^{n \times p}$. Clearly, this is true! On the other hand, suppose $A : V \rightarrow W$ is a linear operator between vector spaces $V$ and $W$, such that $V \in \mathbb{C}^m $ and $W \in \mathbb{C}^m$ or $V \in \mathbb{C}^{n\times p} $ and $W \in \mathbb{C}^{m\times p}$. Suppose $v_1,\ldots, v_n$ is a basis for $V$ and $w_1,\ldots,w_n $ is a
+basis for $W$. Then for each $j$ in the range $1, \ldots ,m$, there exist complex numbers $A_{1j}$ through $A_{nj}$ such that
+\begin{equation*}
+  A \hspace{1pt} v_j = \sum_{i} A_{ij} w_i.
+\end{equation*}
+The matrix whose entries are the values $A_{ij}$ is said to form a \emph{matrix representation} of the operator $A$. This matrix representation of $A$ is completely equivalent to the operator $A$. As a result, when considering operators on vector spaces of the form $\mathbb{C}^n$ or $\mathbb{C}^{n\times n}$, it is common to refer to the operator $A$ and its matrix representation interchangeably.
+
+
+
+
+\subsection{Inner product}
+%When refering to the vector product in an arbitrary vector space, the notation \gls{inner-product} will be used.
+
+\begin{definition}
+The \emph{inner product}  \gls{inner-product} is a function from a vector space $V$ to the complex numbers, $\langle \cdot, \cdot \rangle : V \times V \rightarrow \mathbb{C}$,  that satisfies the following properties for all $v, w \in V$ and $r \in \mathbb{C}$:
+
+\begin{enumerate}
+  \item Linearity in the second argument,$$ \left\langle v, \sum_{i} a_i w_i\right\rangle = \sum_i a_i \langle v, w_i\rangle. $$
+  \item $\langle v,w \rangle = \langle w,v \rangle^{\dag} $,  where \gls{dag} is the adjoint operation.
+  \item  $\langle v,w \rangle \geq 0 $ with equality if and only if $v = 0$.
+\end{enumerate}
+\end{definition}
+
+
+
+The inner product $ \langle v, w \rangle$ of two vectors $ v = (\alpha_1, \ldots, \alpha_n ),w = (\beta_1, \ldots, \beta_n) \in \mathbb{C}^{n}$ is defined as
+\begin{equation*}
+  \langle v, w \rangle = \sum_{i} \alpha_i^{\ast} \beta_i = \begin{pmatrix} \alpha_1, \ldots, \alpha_n \end{pmatrix}  \begin{pmatrix} \beta_1 \\ \vdots \\ \beta_n \end{pmatrix} ,\text{  where \gls{conj} is the complex conjugate operation.} 
+\end{equation*}
+
+\subsubsection{Trace}
+
+In order to define inner product of a matrix, it is necessary to first define the trace of a matrix. The trace of a square matrix $A\in \mathbb{C}^{n\times n}$ defined to be the sum of its diagonal elements,
+\begin{equation*}
+  \text{tr}(A)= \sum_{i} A_{ii}.
+\end{equation*}
+
+The trace is \emph{cyclic}, that is, $\text{tr}(AB) = \text{tr}(BA)$ , and \emph{linear}, $\text{tr}(A + B) = \text{tr}(A)+\text{tr}(B), \text{tr}(s \cdot A) = s\cdot \hspace{1pt} \text{tr}(A)$, where matrices $A, B \in \mathbb{C}^{n\times n}$, and $s$ is a complex number.
+
+By means of the trace, one defines the inner product of two operators $A,B\in \mathbb{C}^{m \times n}$ as follows
+\begin{equation*}
+  \langle A, B \rangle = \text{tr}(A^{\dagger}B).
+\end{equation*}
+
+In the \emph{finite} dimensional complex vector spaces that come up in quantum computation and quantum information, a \emph{Hilbert space} is exactly the same thing as an inner product space.  As a result, both $\mathbb{C}^{n}$ and $\mathbb{C}^{n \times m}$ are Hilbert spaces.
+
+\subsection{Norm and normed spaces}
+
+\begin{definition}
+  A \emph{norm} $\|\cdot\|$ is a function that associates an element of a vector space $V$ with a non-negative real number, such that the following properties hold:
+  \begin{enumerate}
+    \item Positive definiteness: $\|v\| \geq 0$ for all $v \in V$, with $\|v\| = 0$ if and only if $v = 0$;
+    \item Positive scalability: $\|rv\| = |r|\|v\|$ for all $v \in V$ and $r$ is a scalar;
+    \item The triangle inequality: $\|v + w\| \leq \|v\| + \|w\|$ for all $v, w \in V$.
+  \end{enumerate}
+\end{definition}
+
+%normed space
+% Every normed space may be regarded as a metric space, in which the distance d(x, y) between x and y is II x - y 11 . The relevant properties of d are ...
+  
+  Every inner product space is a normed space, where the norm of a vector $v$ is defined as $\|v\| = \sqrt{\langle v, v \rangle}$.
+
+% more broadly, a normed space is a vector space with a norm, which is a function that assigns a strictly positive length or size to each vector in the space. The norm of a vector is denoted $\|v\|$.
+
+% produto interno disto
+
+% cada produto interno induz uma norma |||| -> espaços normados thesis
+
+% normas 
+
+%classes de operadores
+
+\subsection{Important classes of operators/matrices}
+
+Linear operators mapping an complex space $\mathbb{C}^{n}$ or $\mathbb{C}^{n\times n}$  to itself will be called \emph{square operators}, due to the fact that their matrix representations are square matrices. Therefore, those definitions given in the context of square operators are also valid for square matrices.
+
+The following classes of operators are of particular interest in quantum information theory.
+
+\begin{definition}
+A square operator $A$ is \emph{normal} if $AA^{\dagger} = A^{\dagger}A$.
+\end{definition}z
+
+\subsection{Useful norms}
+
+
+% depois de falar do produto inter de uma metriz, fazer nota sobre matrizes/operadores quadrados
+
+%qd falar de ops unitarios falar do seu traço
+
+
+
+%operadores lineares e relação com matrizes, operadores hermitianos e normais , op positivo e matriz positiva
+% traço 
 % produto interno
 % espaços de hilbert 
-% dizer que o produto interno induz uma norma -> falar de norma euclideana e trace norm e de espaços normados
+% dizer que o produto interno induz uma norma -> falar de norma euclideana e trace norm e de espaços normados 
+% falar de isometria depois de definir norma
 %base ortonormal
+% tensor, soma direta e traço parcial
 %teorema espectral
-
+% produto tensorial e soma direta
 
 
 % vector spaces and operators and their inner produts (the trace of operators involver inner products)
@@ -642,7 +781,15 @@ $\mathbb{C}^{n \times n}$ is a vector space when addition is defined as matrix a
 
 %\gls{bra}
 
+%NOTASSSSSS
+
 % In this context vectors in $\mathbb{C}^{2 \cdot n}$ are designated kets and denotes |Psi>. Nevetheless there is an expection: the zero vector which will still be represented as 0, given  |0> represents another vector.
+
+% Nota sobre notação de kets e bras sobre produto interno e externo
+
+% Qd glar em estados na esfera de block falar que a distancia entre 2 estados é a distancia euclideana
+
+% Falar que a trace norm induz uma metrica no espaço dos operadores de densidade que é definida como d(...)
 
 \begin{figure} [H]
   \centering

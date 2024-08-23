@@ -25,6 +25,8 @@
 \newtheorem{theorem}{Theorem}[section]
 \newtheorem{corollary}{Corollary}[theorem]
 \newtheorem{lemma}{Lemma}[section]
+
+\theoremstyle{definition}
 \newtheorem{definition}{Definition}[section]
 \newtheorem{convention}{Convention}[section]
 \providecommand*{\lemmaautorefname}{Lemma}
@@ -95,7 +97,21 @@
     name={ $\mathbb{C}^{n \times m}$},
     description={Space of complex matrices of dimension $n \times m$.}
 }
-
+\newglossaryentry{inner-product}
+{
+    name={ $\langle \cdot, \cdot \rangle$},
+    description={Inner product.}
+}
+\newglossaryentry{dag}
+{
+    name={ $(-)^{\dag}$},
+    description={Adjoint operation.}
+}
+\newglossaryentry{conj}
+{
+    name={ $(-)^{*}$},
+    description={Complex conjugate operation.}
+}
 %comando para ir da source para o pdf: ctrl + Alt + J 
 
 %\logo{EAAD}{School of Architecture, Art and Design}{}
