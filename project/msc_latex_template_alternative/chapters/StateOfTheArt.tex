@@ -575,7 +575,7 @@ Nonetheless, the controlled duplication of both classical and quantum data will 
 
 \todo[inline,size=\normalsize]{Escrever intro ao capítulo: o que é que se vai abordar e tal e é baseada nos livros x e y} 
 
-The first two sections of this chapter present the mathematical and quantum computing preliminaries necessary for understanding theory of quantum information. The introduction to quantum computing is primarily based on \cite{nielsen2010quantum,watrous2018theory}, while the mathematical foundations are also based on \cite{rudin91functional}.
+The first two sections of this chapter present the mathematical and quantum computing preliminaries necessary for understanding theory of quantum information. The introduction to quantum computing is primarily based on \cite{nielsen2010quantum,watrous2018theory}, while the mathematical foundations are also based on \cite{rudin91functional} and  \cite{guide2006infinite} .
 
 \section{Mathematical Preliminaries} \label{sec:Math}
 
@@ -590,33 +590,33 @@ The basic objects of linear algebra are vector spaces. The vector spaces of inte
 A \emph{vector space} (over $\mathbb{C}$)  consists of a set $V$ whose elements are called vectors, together with two operations:
 \begin{itemize}
   \item An operation called vector addition that takes two vectors $v, w \in V$ , and results in a third vector, written $v + w \in V$;
-  \item An operation called scalar multiplication that takes a scalar $r \in \mathbb{C}$ and a vector $v \in V$ , and results in a new vector, written $r \cdot v \in V$
+  \item An operation called scalar multiplication that takes a scalar $a \in \mathbb{C}$ and a vector $v \in V$ , and results in a new vector, written $r \cdot v \in V$
 \end{itemize}
-which satisfy the following conditions (called axioms), for all $u, v, w \in V$ and $r, s \in \mathbb{C}$:
+which satisfy the following conditions (called axioms), for all $u, v, w \in V$ and $a_1, a_2 \in \mathbb{C}$:
 
 \begin{enumerate}
   \item Vector addition is commutative: $u + v = v + u$;
   \item Vector addition is associative: $(u + v) + w = u + (v + w) $;
   \item There is a zero vector $0 \in V$ such that $v +0 = v$ for all $v \in V$;
   \item Each $v \in V$ has an additive inverse $w \in V$ such that $w + v = 0$;
-  \item Scalar multiplication distributes over scalar addition, $(r+s) \cdot v = r \cdot v +s \cdot v$;
-  \item Scalar multiplication distributes over vector addition, $r \cdot (v + w) = r \cdot v + r \cdot w$;
-  \item Ordinary multiplication of scalars associates with scalar multiplication, $(rs) \cdot v = r \cdot (s \cdot v)$;
+  \item Scalar multiplication distributes over scalar addition, $(a_1+a_2) \cdot v = a_1 \cdot v + a_2 \cdot v$;
+  \item Scalar multiplication distributes over vector addition, $a_1 \cdot (v + w) = a_1 \cdot v + a_1 \cdot w$;
+  \item Ordinary multiplication of scalars associates with scalar multiplication, $(a_1 a_2) \cdot v = a_1 \cdot (a_2 \cdot v)$;
   \item Multiplication by the scalar 1 is the identity operation, $1 \cdot v = v$.
 \end{enumerate}
 
 \end{definition}
 
-All vector spaces are assumed to be finite dimensional, unless otherwise noted.  
+The letters \gls{vectorspaces} will often be used to refer to vector spaces. All vector spaces are assumed to be finite dimensional, unless otherwise noted.  
 
 In the case of the vector space $\mathbb{C}^{n}$, the space of all n-tuples of complex numbers, $(\alpha_1, \ldots , \alpha_n)$, addition and scalar multiplication are defined in the following standard way:
 \begin{itemize}
-  \item Addition: for vectors $u = (\alpha_1, \ldots , \alpha_n), v = (\beta_1, \ldots , \beta_n)  \in \mathbb{C}^{n}$, the vector $u + v \in \mathbb{C}^{n}$ is defined by the equation $(u + v) = (\alpha_1 + \beta_1, \ldots, \alpha_n+\beta_n)$.
-  \item Scalar multiplication: for a scalar $r \in \mathbb{C}$ and a vector $v = (\alpha_1, \ldots , \alpha_n) \in \mathbb{C}^{n}$, the vector $r \cdot v \in \mathbb{C}^{n}$ is defined by the equation $r \cdot v = (r \cdot \alpha_1, \ldots, r \cdot \alpha_n)$.
+  \item Addition: for vectors $u = (a_1, \ldots , a_n), v = (b_1, \ldots , b_n)  \in \mathbb{C}^{n}$, the vector $u + v \in \mathbb{C}^{n}$ is defined by the equation $(u + v) = (a_1 + b_1, \ldots, a_n+b_n)$.
+  \item Scalar multiplication: for a scalar $a \in \mathbb{C}$ and a vector $v = (b_1, \ldots , b_n) \in \mathbb{C}^{n}$, the vector $a \cdot v \in \mathbb{C}^{n}$ is defined by the equation $a \cdot v = (a \cdot b_1, \ldots, a \cdot b_n)$.
 \end{itemize}
 The zero vector in $\mathbb{C}^{n}$ is the vector with all entries equal to zero.
 
-Some times the column matrix notation is used to represent vectors in $\mathbb{C}^{n}$, that is, a vector $v \in \mathbb{C}^{n}$ is written as a column matrix $$v = \begin{pmatrix} \alpha_1 \\ \vdots \\ \alpha_n \end{pmatrix}.$$
+Some times the column matrix notation is used to represent vectors in $\mathbb{C}^{n}$, that is, a vector $v \in \mathbb{C}^{n}$ is written as a column matrix $$v = \begin{pmatrix} a_1 \\ \vdots \\ a_n \end{pmatrix}.$$
 
 $\mathbb{C}^{n \times m}$ is a vector space when addition is defined as matrix addition and scalar multiplication is defined as multiplication of each component by the scalar. The zero vector is the zero matrix, \textit{i.e.}, the matrix with all entries equal to zero.
 
@@ -656,20 +656,31 @@ A \emph{linear operator} between vector spaces $V$ and $W$ is defined to be any 
 \end{equation*}
 Usually $A(v)$ is just denoted $A v$.
 
-Suppose $V, W,$ and $X$ are vector spaces, and $A : V \rightarrow W$ and $B : W \rightarrow X$ are linear operators. Then the notation $BA$ is used  to denote the \emph{composition} of $B$ with $A$,
-defined by $(BA)(v) \equiv B(A(v))$. Once again, $(BA)(v)$. is abbreviated as  $BAv$.
+Suppose $V, W,$ and $R$ are vector spaces, and $A : V \rightarrow R$ and $B : W \rightarrow R$ are linear operators. Then the notation $BA$ is used  to denote the \emph{composition} of $B$ with $A$,
+defined by $(BA)(v) \equiv B(A(v))$. Once again, $(BA)(v)$. is abbreviated as  $BA \hspace{1pt}v$.
 
-For any choice of complex spaces $V \in \mathbb{C}^m $ and $W \in \mathbb{C}^m$ or $V \in \mathbb{C}^{n\times p} $ and $W \in \mathbb{C}^{m\times p}$, there is a bijective linear correspondence between the set of operators from $V$ to $W$ and the set of $n \times m$ matrices. %To see the connection, it helps to first understand that an $m$ by $n$ complex matrix $A$ with entries $A_{ij}$ is in fact a linear operator sending vectors in the vector space $\mathbb{C}^n$ to the vector space $\mathbb{C}^m$, under matrix multiplication of the matrix $A$ by a vector in $\mathbb{C}^n$. Nevertheless, this matrix can also be seen as an a linear operator sending vectors in the vector space $\mathbb{C}^{n \times p}$ to the vector space $\mathbb{C}^{m \times p}$, under matrix multiplication of the matrix $A$ by a matrix in $\mathbb{C}^{n \times p}$. 
+For any choice of complex spaces $V \in \mathbb{C}^n $ and $W \in \mathbb{C}^m$, there is a bijective linear correspondence between the set of operators from $V$ to $W$ and the set of $n \times m$ matrices. %To see the connection, it helps to first understand that an $m$ by $n$ complex matrix $A$ with entries $A_{ij}$ is in fact a linear operator sending vectors in the vector space $\mathbb{C}^n$ to the vector space $\mathbb{C}^m$, under matrix multiplication of the matrix $A$ by a vector in $\mathbb{C}^n$. Nevertheless, this matrix can also be seen as an a linear operator sending vectors in the vector space $\mathbb{C}^{n \times p}$ to the vector space $\mathbb{C}^{m \times p}$, under matrix multiplication of the matrix $A$ by a matrix in $\mathbb{C}^{n \times p}$. 
 The claim that the matrix $A \in \mathbb{C}^{m\times n}$ is a linear operator just means that
 \begin{equation*}
   A \left( \sum_{i} a_{i} v_{i} \right) = \sum_{i} a_i A (v_{i})
 \end{equation*}
-is true as an equation where the operation is matrix multiplication of $A$ by a collumn vector in $\mathbb{C}^n$ or by a matrix in $\mathbb{C}^{n \times p}$. Clearly, this is true! On the other hand, suppose $A : V \rightarrow W$ is a linear operator between vector spaces $V$ and $W$, such that $V \in \mathbb{C}^m $ and $W \in \mathbb{C}^m$ or $V \in \mathbb{C}^{n\times p} $ and $W \in \mathbb{C}^{m\times p}$. Suppose $v_1,\ldots, v_n$ is a basis for $V$ and $w_1,\ldots,w_n $ is a
+is true as an equation where the operation is matrix multiplication of $A$ by a collumn vector in $\mathbb{C}^n$. Clearly, this is true! On the other hand, suppose $A : V \rightarrow W$ is a linear operator between vector spaces $V$ and $W$, such that $V \in \mathbb{C}^n $ and $W \in \mathbb{C}^m$. Suppose $v_1,\ldots, v_n$ is a basis for $V$ and $w_1,\ldots,w_n $ is a
 basis for $W$. Then for each $j$ in the range $1, \ldots ,m$, there exist complex numbers $A_{1j}$ through $A_{nj}$ such that
 \begin{equation*}
   A \hspace{1pt} v_j = \sum_{i} A_{ij} w_i.
 \end{equation*}
-The matrix whose entries are the values $A_{ij}$ is said to form a \emph{matrix representation} of the operator $A$. This matrix representation of $A$ is completely equivalent to the operator $A$. As a result, when considering operators on vector spaces of the form $\mathbb{C}^n$ or $\mathbb{C}^{n\times n}$, it is common to refer to the operator $A$ and its matrix representation interchangeably.
+The matrix whose entries are the values $A_{ij}$ is said to form a \emph{matrix representation} of the operator $A$. This matrix representation of $A$ is completely equivalent to the operator $A$. As a result, when considering operators on vector spaces of the form $\mathbb{C}^n$ it is common to refer to the operator $A$ and its matrix representation interchangeably.
+
+%The claim that the matrix $A \in \mathbb{C}^{m\times n}$ is a linear operator just means that
+%\begin{equation*}
+ % A \left( \sum_{i} a_{i} v_{i} \right) = \sum_{i} a_i A (v_{i})
+%\%end{equation*}
+%is true as an equation where the operation is matrix multiplication of $A$ by a collumn vector in $\mathbb{C}^n$ or by a matrix in $\mathbb{C}^{n \times p}$. Clearly, this is true! On the other hand, suppose $A : V \rightarrow W$ is a linear operator between vector spaces $V$ and $W$, such that $V \in \mathbb{C}^m $ and $W \in \mathbb{C}^m$ or $V \in \mathbb{C}^{n\times p} $ and $W \in \mathbb{C}^{m\times p}$. Suppose $v_1,\ldots, v_n$ is a basis for $V$ and $w_1,\ldots,w_n $ is a
+%basis for $W$. Then for each $j$ in the range $1, \ldots ,m$, there exist complex numbers $A_{1j}$ through $A_{nj}$ such that
+%\begin{equation*}
+  %A \hspace{1pt} v_j = \sum_{i} A_{ij} w_i.
+%\end{equation*}
+%The matrix whose entries are the values $A_{ij}$ is said to form a \emph{matrix representation} of the operator $A$. This matrix representation of $A$ is completely equivalent to the operator $A$. As a result, when considering operators on vector spaces of the form $\mathbb{C}^n$ or $\mathbb{C}^{n\times n}$, it is common to refer to the operator $A$ and its matrix representation interchangeably.
 
 
 
@@ -682,17 +693,20 @@ The \emph{inner product}  \gls{inner-product} is a function from a vector space 
 
 \begin{enumerate}
   \item Linearity in the second argument,$$ \left\langle v, \sum_{i} a_i w_i\right\rangle = \sum_i a_i \langle v, w_i\rangle. $$
-  \item $\langle v,w \rangle = \langle w,v \rangle^{\dag} $,  where \gls{dag} is the adjoint operation.
+  \item $\langle v,w \rangle = \langle w,v \rangle^{\dag} $, \text{  where \gls{conj} is the complex conjugate operation.}
   \item  $\langle v,w \rangle \geq 0 $ with equality if and only if $v = 0$.
 \end{enumerate}
 \end{definition}
 
 
 
-The inner product $ \langle v, w \rangle$ of two vectors $ v = (\alpha_1, \ldots, \alpha_n ),w = (\beta_1, \ldots, \beta_n) \in \mathbb{C}^{n}$ is defined as
+The inner product $ \langle v, w \rangle$ of two vectors $ v = (a_1, \ldots, a_n ),w = (b_1, \ldots, b_n) \in \mathbb{C}^{n}$ is defined as
 \begin{equation*}
-  \langle v, w \rangle = \sum_{i} \alpha_i^{\ast} \beta_i = \begin{pmatrix} \alpha_1, \ldots, \alpha_n \end{pmatrix}  \begin{pmatrix} \beta_1 \\ \vdots \\ \beta_n \end{pmatrix} ,\text{  where \gls{conj} is the complex conjugate operation.} 
+  \langle v, w \rangle = \sum_{i} a_i^{\ast} b_i. 
 \end{equation*}
+
+% = \begin{pmatrix} a_1, \ldots, a_n \end{pmatrix}  \begin{pmatrix} b_1 \\ \vdots \\ b_n \end{pmatrix}
+%Note that in this case a vector $v \in \mathbb{C}^{n} $ is written as a column matrix. Consequently conjugate transpose of $v$,  $v^{\dag}$, is written in as a row matrix. Here  \gls{dag} is the adjoint operation.
 
 \subsubsection{Trace}
 
@@ -701,7 +715,7 @@ In order to define inner product of a matrix, it is necessary to first define th
   \text{tr}(A)= \sum_{i} A_{ii}.
 \end{equation*}
 
-The trace is \emph{cyclic}, that is, $\text{tr}(AB) = \text{tr}(BA)$ , and \emph{linear}, $\text{tr}(A + B) = \text{tr}(A)+\text{tr}(B), \text{tr}(s \cdot A) = s\cdot \hspace{1pt} \text{tr}(A)$, where matrices $A, B \in \mathbb{C}^{n\times n}$, and $s$ is a complex number.
+The trace is \emph{cyclic}, that is, $\text{tr}(AB) = \text{tr}(BA)$ , and \emph{linear}, $\text{tr}(A + B) = \text{tr}(A)+\text{tr}(B), \text{tr}(a \cdot A) = a\cdot \hspace{1pt} \text{tr}(A)$, where matrices $A, B \in \mathbb{C}^{n\times n}$, and $a$ is a complex number.
 
 By means of the trace, one defines the inner product of two operators $A,B\in \mathbb{C}^{m \times n}$ as follows
 \begin{equation*}
@@ -713,45 +727,157 @@ In the \emph{finite} dimensional complex vector spaces that come up in quantum c
 \subsection{Norm and normed spaces}
 
 \begin{definition}
-  A \emph{norm} $\|\cdot\|$ is a function that associates an element of a vector space $V$ with a non-negative real number, such that the following properties hold:
+  A \emph{norm} \gls{norm} is a function that associates an element of a vector space $V$ with a non-negative real number, such that the following properties hold:
   \begin{enumerate}
     \item Positive definiteness: $\|v\| \geq 0$ for all $v \in V$, with $\|v\| = 0$ if and only if $v = 0$;
-    \item Positive scalability: $\|rv\| = |r|\|v\|$ for all $v \in V$ and $r$ is a scalar;
+    \item Positive scalability: $\|av\| = |a|\|v\|$ for all $v \in V$ and $a$ is a scalar;
     \item The triangle inequality: $\|v + w\| \leq \|v\| + \|w\|$ for all $v, w \in V$.
   \end{enumerate}
 \end{definition}
 
-%normed space
-% Every normed space may be regarded as a metric space, in which the distance d(x, y) between x and y is II x - y 11 . The relevant properties of d are ...
-  
-  Every inner product space is a normed space, where the norm of a vector $v$ is defined as $\|v\| = \sqrt{\langle v, v \rangle}$.
+\begin{definition}
+A vector space together with a norm is called a \emph{normed vector space}.
+\end{definition}
 
-% more broadly, a normed space is a vector space with a norm, which is a function that assigns a strictly positive length or size to each vector in the space. The norm of a vector is denoted $\|v\|$.
+Every normed space may be regarded as a metric space, in which the
+distance $d(x, y)$ between vectors $x$ and $y$ is $\|x-y\|$ . The relevant properties of $d$ are
 
-% produto interno disto
+\begin{enumerate}
+  \item $0 < d(x, y) < \infty $ for all $x$ and $y$,
+  \item $d(x, y) = 0$ if and only if $x = y$,
+  \item $d(x, y) = d(y, x)$ for all $x$ and $y$,
+  \item $d(x, z) < d(x, y) + d(y, z)$ for all $x, y, z$.
+\end{enumerate}
 
-% cada produto interno induz uma norma |||| -> espaços normados thesis
 
-% normas 
+Every inner product space is a normed space, where the norm of a vector $v$ is defined as $\|v\| = \sqrt{\langle v, v \rangle}$.
+
+\begin{definition}
+Two vector $u, v$ are said to be \emph{orthogona}l if $\langle v,u\rangle$. An \emph{orthogonal set} is a set of orthogonal vectors of the same vector space.
+\end{definition}
+
+\begin{definition}
+  A \emph{unit vector} is a vector $v$ such that $\|v\|  = 1$.
+\end{definition}
+
+\begin{definition}
+  An orthogonal set of unit vectors is called an \emph{orthonormal set}, and when such a set forms a basis it is called an \emph{orthonormal basis}.
+\end{definition}
 
 %classes de operadores
 
 \subsection{Important classes of operators/matrices}
 
-Linear operators mapping an complex space $\mathbb{C}^{n}$ or $\mathbb{C}^{n\times n}$  to itself will be called \emph{square operators}, due to the fact that their matrix representations are square matrices. Therefore, those definitions given in the context of square operators are also valid for square matrices.
+Linear operators mapping a complex space $\mathbb{C}^{n}$ or $\mathbb{C}^{n\times n}$  to itself will be called \emph{square operators} due to the fact that their matrix representations are square matrices. Therefore, those definitions given in the context of square operators are also valid for square matrices.
 
 The following classes of operators are of particular interest in quantum information theory.
 
 \begin{definition}
-A square operator $A$ is \emph{normal} if $AA^{\dagger} = A^{\dagger}A$.
-\end{definition}z
+  \emph{Normal operators.} A square operator $A$ is \emph{normal} if $AA^{\dagger} = A^{\dagger}A$, where \gls{dag} is the adjoint operation.
+\end{definition}
+
+\begin{definition}
+  \emph{Hermitian operators.} A square operator $A$ is \emph{hermitian} if $A = A^{\dagger}$. Every Hermitian operator is a normal operator.
+\end {definition}
+
+\begin{definition}
+  \emph{Positive (semidefinite) operators}. A square operator $A$ is \emph{positive}, denoted $A \geq 0$, if $\langle v, Av \rangle \geq 0$ for all $v \in \mathbb{C}^{n}$. 
+\end{definition}
+
+\begin{definition}
+  \emph{Unitary operators.} A square operator $U$ is \emph{unitary} if $U^{\dagger}U = UU^{\dagger} = I$, where $I$ is the identity operator. The letter \gls{unitary} will often be used to refer to unitary
+  operators.
+\end{definition}
+Geometrically, unitary operators are important because they preserve inner products between vectors, $\langle U v, U w \rangle = \langle v, w \rangle$  for any two vectors $v$ and $w$. Let $S_1=\{v_i\}$ be any orthonormal basis set. Define $ s_2= \{w_i\} = \{U v_i | v_i \in S \}$, so $S_2$ is also an orthonormal basis set, since unitary operators preserve inner products. Note that $U = \sum_{i} w_i v_i^{\dag}$. Conversely, if $\{v_i\}$ are any two orthonormal bases, then it is easily checked that
+the operator $U$ defined by $U = \sum_{i} w_i^{\dag} v_i$ is unitary.
+
+\begin{definition}
+  \emph{Density operator}. Positive semidefinite operators that have trace equal to 1 are called \emph{density operators}. Lowercase Greek letters, such as \gls{density-matrix} are conventionally used to denote density operators.
+\end{definition}
+
+\begin{definition}
+  \emph{Isometries}. An operator $A: \mathbb{C}^{n} \rightarrow \mathbb{C}^{m}$ is as isometry if $\|Av\| = \|v\|$ for all elements all elements $v \in \mathbb{C}^{n} $.
+\end{definition}
+
+\begin{definition}
+  \emph{Diagonal operators}. A square operator $A$ is \emph{diagonal} if $A_{ij} = 0$ for all $i \neq j$.
+\end{definition}
+
 
 \subsection{Useful norms}
 
+\begin{definition} \label{eq:euclidean_distance}
+  The \emph{euclidean norm}, \gls{euclidean-norm}, of a vector $v \in \mathbb{C}^{n} $ is defined as:
+  \begin{equation*}
+    \lVert v \rVert_{2} = \sqrt{\langle v, v\rangle}. 
+    \end{equation*}
+\end{definition}
 
-% depois de falar do produto inter de uma metriz, fazer nota sobre matrizes/operadores quadrados
+\begin{definition}\label{eq:trace-norm-op}
+  The \emph{trace norm}, \gls{trace-norm}, is defined as:
+  \begin{equation*}
+    \lVert A \rVert_{1} = \text{tr} \sqrt{A^{\dagger}A}
+  \end{equation*}
+  This norm is also  known as the Schatten 1-norm. The trace norm induces a metric on the set of density matrices which is defined by $d(\rho, \sigma) = \lVert \rho -\sigma\rVert_{1}$.
+\end{definition}
 
-%qd falar de ops unitarios falar do seu traço
+\begin{definition} \label{eq:op_norm}
+  Given vector spaces $V$ and $W$, the operator, \gls{op-norm}, norm for an operator $E: V \rightarrow W$ is defined as
+  \begin{equation*}
+  \lVert E \rVert_{\sigma} = \text{sup} \{ \lVert E(v) \rVert \hspace{2pt} | \hspace{2pt} \lVert v \rVert = 1. \}
+\end{equation*}
+\end{definition}
+
+\subsection{Eigenvectors, eigenvalues and the spectral theorem}
+
+\begin{definition}
+  An \emph{n-permutation} is a function on the first $n$ positive integers  $\pi = \{1,\ldots,n\} \rightarrow  \{1,\ldots,n\} $ that is one-to-one and onto. In a permutation each number $1,\dots, n$ appears as output for one and only one input.
+\end{definition}
+
+\begin{definition}
+  The \emph{sign} of a permutation $\text{sgn}(\pi)$ is $-1$ if the number of
+inversions in $\pi$ is odd and is $+1$ if the number of inversions is even.
+\end{definition}
+
+
+\begin{definition}
+  The \emph{determinant} of a square matrix $A \in \mathbb{C}^{n\times n}$ is defined as
+  \begin{equation*}
+    \text{det}(A) = \sum_{\pi \in S_n} \text{sgn}(\pi) \prod_{i=1}^{n} A_{i\sigma(i)},
+  \end{equation*}
+  Here $S_n$ is the set of all $n$-permutations $\pi = \{1,\ldots,n\} \rightarrow  \{1,\ldots,n\} $, and $\text{sgn}(\pi) $  denotes the sign of the permutation $\pi$.
+\end{definition}
+
+\begin{definition}
+An \emph{eigenvector} of a linear operator $A$ on a vector space is a non-zero vector $v$ such that $A v  = \lambda v $, where $\lambda$ is a complex number known as the \emph{eigenvalue} of $A$ corresponding to $v$.
+\end{definition}
+
+The \emph{characteristic polynomial} of a square operator $A$ is the polynomial $p(\lambda) = \text{det}(A - \lambda I)$, where $I$ is the identity operator. It can be shown that the characteristic
+function depends only upon the operator A, and not on the specific matrix representation used for $A$. By the fundamental theorem of algebra, every polynomial has at least one complex root, so every operator $A$ has at least one eigenvalue, and a corresponding
+eigenvector. The solutions of the \emph{characteristic equation} $c(\lambda) = 0$ are the eigenvalues of the operator $A$. %The \emph{eigenspace} corresponding to an eigenvalue $\lambda$ is the set of vectors which have eigenvalue $\lambda$.
+
+\begin{theorem}  \cite{nielsen2010quantum}
+  Every normal operator $A \in \mathbb{C}^{n \times n} $ can be expressed as a linear combination $\sum_{i} \lambda_{i}b_{i}b_{i}^{\dag}$ where the set $\{b_{i}, \ldots , b{n}\}$ is an orthonormal basis on $\mathbb{C}^{n}$.
+\end{theorem}
+
+Using this last result any function $f:\mathbb{C} \xrightarrow{} \mathbb{C}$, can be extended to normal matrices via,
+  \begin{equation} \label{eq:apply_f_diag} 
+    f(A) = \sum_{i} f(\lambda_{i})b_{i}b_{i}^{\dag}
+\end {equation}
+where $A = \sum_{i} \lambda_{i}b_{i}b_{i}^{\dag}$ is the spectral decomposition of $A$.
+
+\subsection {Tensor Products and Direct Sums of Complex spaces}
+
+\begin{definition}
+Consider two finite complex spaces spaces $V$ and $W$ with respective bases $(e_1, \ldots , e_n)$ and $(f_1, \ldots , f_k)$. The tensor product of $V$ and $W$, denoted $V \otimes W$, is defined as the space generated by the basis of syntactic symbols:
+\begin{equation*}
+  (e_1 \otimes f_1, \ldots , e_1 \otimes f_k, \ldots , e_n \otimes f_1, \ldots , e_n \otimes f_k).
+\end{equation*}
+The tensor product of two elements $v = \sum_i \lambda_i \cdot e_i$ and w = $\sum_j \mu_j \cdot f_j$ is:
+\begin{equation*}
+  v \otimes w = \sum_{i,j} \lambda_i \mu_j \cdot e_i \otimes f_j.
+\end{equation*}
+\end{definition}
 
 
 
@@ -764,7 +890,7 @@ A square operator $A$ is \emph{normal} if $AA^{\dagger} = A^{\dagger}A$.
 %base ortonormal
 % tensor, soma direta e traço parcial
 %teorema espectral
-% produto tensorial e soma direta
+% produto tensorial e soma direta e traço parcial
 
 
 % vector spaces and operators and their inner produts (the trace of operators involver inner products)
@@ -785,15 +911,21 @@ A square operator $A$ is \emph{normal} if $AA^{\dagger} = A^{\dagger}A$.
 
 % In this context vectors in $\mathbb{C}^{2 \cdot n}$ are designated kets and denotes |Psi>. Nevetheless there is an expection: the zero vector which will still be represented as 0, given  |0> represents another vector.
 
-% Nota sobre notação de kets e bras sobre produto interno e externo
+% Nota sobre notação de kets e bras sobre produto interno e externo. No produto interno denotado <v|w> fazer ver que denotando  os kets e bras temos a multiplicadção das matrizes que vai dar há definição de cima de prod interno
 
 % Qd glar em estados na esfera de block falar que a distancia entre 2 estados é a distancia euclideana
 
 % Falar que a trace norm induz uma metrica no espaço dos operadores de densidade que é definida como d(...)
 
+% Fazer secção chamada quantum chanels e falar de super operadores e cptp maps, normas, kraus operators
+
+% fazer secção hilbert space 2D
+
+% Reduced density operators and partial trace
+
 \begin{figure} [H]
   \centering
-  \includegraphics[width=0.5\textwidth]{images/bloch_sphere.jpg}
+  \includegraphics[width=0.4\textwidth]{images/bloch_sphere.jpg}
   \caption{Bloch sphere representation of a qubit}
   \label{fig:bloch_sphere}
 \end{figure}
@@ -877,21 +1009,16 @@ The Bloch vector is given by
 \todo[inline,size=\normalsize]{add trace, partial trace, reduced density matrix, and respective Bloch Vector, put the last paragragh in the right place and rewrite it} %\label{eq:Bloch\_vector})}
 
 
-In the quantum paradigm, a potential notion of approximate equivalence arises from the so-called diamond norm \cite{watrous2018theory}, which induces a metric (roughly, a distance function) on the space of quantum programs (seen semantically as completely positive trace-preserving super-operators). This norm relies on another norm known as the trace norm. The $\lVert  \rVert_{1}$ latter is defined by  $\lVert A \rVert_{1} = \text{Tr}\sqrt{A^{\dag}A}$  for matrices $A \in \mathbb{C}^{n\times n}$. The trace norm induces a metric on the set of density matrices which is defined by $d(\rho, \sigma) = \lVert \rho -\sigma\rVert_{1}$. On the other hand, it is well known that the distance $d(vv^{\dag}, uu^{\dag})$ between two quantum states $v$ and $u$ is their Euclidean distance in the Bloch
-sphere \cite{wallman2016noise,nielsen2010quantum}. The Euclidean norm of a vector $u \in \mathbb{C}^{n} $ is defined as:
-\begin{equation} \label{eq:euclidean_distance}
-\begin{centering}
-\hspace{80pt}
-\lVert u \rVert_{2} = \sqrt{\langle u, u\rangle} 
- \end{centering}
-\end{equation}
-The trace distance between two super-operators $E, E': \mathbb{C}^{n\times n} \xrightarrow{} \mathbb{C}^{m\times m }$,  denoted as $T(E,E')$, is defined as follows:
+In the quantum paradigm, a potential notion of approximate equivalence arises from the so-called diamond norm \cite{watrous2018theory}, which induces a metric (roughly, a distance function) on the space of quantum programs (seen semantically as completely positive trace-preserving super-operators). This norm relies on another norm known as the trace norm. The $\lVert  \rVert_{1}$ latter is defined by  $\lVert A \rVert_{1} = \text{Tr}\sqrt{A^{\dag}A}$  for matrices $A \in \mathbb{C}^{n\times n}$. The trace norm induces a metric on the set of density matrices which is defined by $d(\rho, \sigma) = \lVert \rho -\sigma\rVert_{1}$. The trace distance between two super-operators $E, E': \mathbb{C}^{n\times n} \xrightarrow{} \mathbb{C}^{m\times m }$,  denoted as $T(E,E')$, is defined as follows:
 \begin{equation} \label{eq:trace_distance}
-\begin{centering}
-\hspace{80pt}
- T(E,E')= \max\{\lVert (E-E') A \rVert_{1} \hspace{2pt}  \vert \hspace{2pt}  \lVert A \rVert_{1}=1\} 
- \end{centering}
-\end{equation}
+  \begin{centering}
+  \hspace{80pt}
+   T(E,E')= \max\{\lVert (E-E') A \rVert_{1} \hspace{2pt}  \vert \hspace{2pt}  \lVert A \rVert_{1}=1\} 
+   \end{centering}
+  \end{equation}
+On the other hand, it is well known that the distance $d(vv^{\dag}, uu^{\dag})$ between two quantum states $v$ and $u$ is their Euclidean distance in the Bloch
+sphere \cite{wallman2016noise,nielsen2010quantum}. 
+
 Unfortunately, this norm is not stable under tensoring \cite{watrous2018theory}, and consequently, the diamond norm, which is based on the trace norm, is used instead. The diamond norm between two super-operators $E, E': \mathbb{C}^{n\times n} \xrightarrow{} \mathbb{C}^{m\times m }$ is defined as:
 \begin{equation}  \label{eq:diamond_distance}
 \begin{centering}
@@ -900,6 +1027,7 @@ Unfortunately, this norm is not stable under tensoring \cite{watrous2018theory},
  \end{centering}
 \end{equation}
 where $I_{n} $ is the identity super-operator over the space $\mathbb{C}^{n\times n}$.
+
 
 
 Consider an operator  $ \text{r} : (\mathbb{C}^{n} \xrightarrow[]{} \mathbb{C}^{m}) \xrightarrow[]{} (\mathbb{C}^{n\times n}\xrightarrow[]{} \mathbb{C}^{m\times m})$ that sends an operator $T$ to the mapping $A \mapsto TAT^{\dag}$. The exact calculation of distances induced by $\lVert \rVert_{\diamondsuit}$ tends to be quite complicated, but a useful property for calculating the distance between quantum channels in the image of $r$ is provided \cite{watrous2018theory}:
