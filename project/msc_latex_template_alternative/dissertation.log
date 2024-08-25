@@ -1,4 +1,4 @@
-This is XeTeX, Version 3.141592653-2.6-0.999995 (MiKTeX 24.1) (preloaded format=xelatex 2024.7.31)  25 AUG 2024 00:56
+This is XeTeX, Version 3.141592653-2.6-0.999995 (MiKTeX 24.1) (preloaded format=xelatex 2024.7.31)  25 AUG 2024 23:49
 entering extended mode
  restricted \write18 enabled.
  file:line:error style messages enabled.
@@ -1354,7 +1354,7 @@ Package csquotes Info: ... found 'babel' package.
 Package csquotes Info: Adjusting default style.
 Package csquotes Info: Redefining alias 'default' -> 'english'.
 LaTeX Font Info:    Font shape `TU/SourceSansPro(0)/m/n' will be
-(Font)              scaled to size 12.0pt on input line 197.
+(Font)              scaled to size 12.0pt on input line 207.
 (dissertation.aux
 
 LaTeX Warning: Label `eq:apply_f_diag' multiply defined.
@@ -1365,30 +1365,30 @@ LaTeX Warning: Label `eq:apply_f_diag@cref' multiply defined.
 )
 \openout1 = `dissertation.aux'.
 
-LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 197.
-LaTeX Font Info:    ... okay on input line 197.
-LaTeX Font Info:    Checking defaults for OMS/cmsy/m/n on input line 197.
-LaTeX Font Info:    ... okay on input line 197.
-LaTeX Font Info:    Checking defaults for OT1/cmr/m/n on input line 197.
-LaTeX Font Info:    ... okay on input line 197.
-LaTeX Font Info:    Checking defaults for T1/cmr/m/n on input line 197.
-LaTeX Font Info:    ... okay on input line 197.
-LaTeX Font Info:    Checking defaults for TS1/cmr/m/n on input line 197.
-LaTeX Font Info:    Trying to load font information for TS1+cmr on input line 197.
+LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 207.
+LaTeX Font Info:    ... okay on input line 207.
+LaTeX Font Info:    Checking defaults for OMS/cmsy/m/n on input line 207.
+LaTeX Font Info:    ... okay on input line 207.
+LaTeX Font Info:    Checking defaults for OT1/cmr/m/n on input line 207.
+LaTeX Font Info:    ... okay on input line 207.
+LaTeX Font Info:    Checking defaults for T1/cmr/m/n on input line 207.
+LaTeX Font Info:    ... okay on input line 207.
+LaTeX Font Info:    Checking defaults for TS1/cmr/m/n on input line 207.
+LaTeX Font Info:    Trying to load font information for TS1+cmr on input line 207.
  (C:\Users\mona_\AppData\Local\Programs\MiKTeX\tex/latex/base\ts1cmr.fd
 File: ts1cmr.fd 2023/04/13 v2.5m Standard LaTeX font definitions
 )
-LaTeX Font Info:    ... okay on input line 197.
-LaTeX Font Info:    Checking defaults for TU/lmr/m/n on input line 197.
-LaTeX Font Info:    ... okay on input line 197.
-LaTeX Font Info:    Checking defaults for OMX/cmex/m/n on input line 197.
-LaTeX Font Info:    ... okay on input line 197.
-LaTeX Font Info:    Checking defaults for U/cmr/m/n on input line 197.
-LaTeX Font Info:    ... okay on input line 197.
-LaTeX Font Info:    Checking defaults for PD1/pdf/m/n on input line 197.
-LaTeX Font Info:    ... okay on input line 197.
-LaTeX Font Info:    Checking defaults for PU/pdf/m/n on input line 197.
-LaTeX Font Info:    ... okay on input line 197.
+LaTeX Font Info:    ... okay on input line 207.
+LaTeX Font Info:    Checking defaults for TU/lmr/m/n on input line 207.
+LaTeX Font Info:    ... okay on input line 207.
+LaTeX Font Info:    Checking defaults for OMX/cmex/m/n on input line 207.
+LaTeX Font Info:    ... okay on input line 207.
+LaTeX Font Info:    Checking defaults for U/cmr/m/n on input line 207.
+LaTeX Font Info:    ... okay on input line 207.
+LaTeX Font Info:    Checking defaults for PD1/pdf/m/n on input line 207.
+LaTeX Font Info:    ... okay on input line 207.
+LaTeX Font Info:    Checking defaults for PU/pdf/m/n on input line 207.
+LaTeX Font Info:    ... okay on input line 207.
 
 *geometry* driver: auto-detecting
 *geometry* detected driver: xetex
@@ -1435,7 +1435,7 @@ Package: ltcaption 2021/01/08 v1.4c longtable captions (AR)
 Package caption Info: supertabular package is loaded.
 Package caption Info: wrapfig package is loaded.
 Package caption Info: End \AtBeginDocument code.
-Package hyperref Info: Link coloring ON on input line 197.
+Package hyperref Info: Link coloring ON on input line 207.
  (dissertation.out) (dissertation.out)
 \@outlinefile=\write5
 \openout5 = `dissertation.out'.
@@ -1447,56 +1447,56 @@ Package fontspec Info: Adjusting the maths setup (use [no-math] to avoid
 
 \symlegacymaths=\mathgroup7
 LaTeX Font Info:    Overwriting symbol font `legacymaths' in version `bold'
-(Font)                  OT1/cmr/m/n --> OT1/cmr/bx/n on input line 197.
-LaTeX Font Info:    Redeclaring math accent \acute on input line 197.
-LaTeX Font Info:    Redeclaring math accent \grave on input line 197.
-LaTeX Font Info:    Redeclaring math accent \ddot on input line 197.
-LaTeX Font Info:    Redeclaring math accent \tilde on input line 197.
-LaTeX Font Info:    Redeclaring math accent \bar on input line 197.
-LaTeX Font Info:    Redeclaring math accent \breve on input line 197.
-LaTeX Font Info:    Redeclaring math accent \check on input line 197.
-LaTeX Font Info:    Redeclaring math accent \hat on input line 197.
-LaTeX Font Info:    Redeclaring math accent \dot on input line 197.
-LaTeX Font Info:    Redeclaring math accent \mathring on input line 197.
-LaTeX Font Info:    Redeclaring math symbol \Gamma on input line 197.
-LaTeX Font Info:    Redeclaring math symbol \Delta on input line 197.
-LaTeX Font Info:    Redeclaring math symbol \Theta on input line 197.
-LaTeX Font Info:    Redeclaring math symbol \Lambda on input line 197.
-LaTeX Font Info:    Redeclaring math symbol \Xi on input line 197.
-LaTeX Font Info:    Redeclaring math symbol \Pi on input line 197.
-LaTeX Font Info:    Redeclaring math symbol \Sigma on input line 197.
-LaTeX Font Info:    Redeclaring math symbol \Upsilon on input line 197.
-LaTeX Font Info:    Redeclaring math symbol \Phi on input line 197.
-LaTeX Font Info:    Redeclaring math symbol \Psi on input line 197.
-LaTeX Font Info:    Redeclaring math symbol \Omega on input line 197.
-LaTeX Font Info:    Redeclaring math symbol \mathdollar on input line 197.
-LaTeX Font Info:    Redeclaring symbol font `operators' on input line 197.
+(Font)                  OT1/cmr/m/n --> OT1/cmr/bx/n on input line 207.
+LaTeX Font Info:    Redeclaring math accent \acute on input line 207.
+LaTeX Font Info:    Redeclaring math accent \grave on input line 207.
+LaTeX Font Info:    Redeclaring math accent \ddot on input line 207.
+LaTeX Font Info:    Redeclaring math accent \tilde on input line 207.
+LaTeX Font Info:    Redeclaring math accent \bar on input line 207.
+LaTeX Font Info:    Redeclaring math accent \breve on input line 207.
+LaTeX Font Info:    Redeclaring math accent \check on input line 207.
+LaTeX Font Info:    Redeclaring math accent \hat on input line 207.
+LaTeX Font Info:    Redeclaring math accent \dot on input line 207.
+LaTeX Font Info:    Redeclaring math accent \mathring on input line 207.
+LaTeX Font Info:    Redeclaring math symbol \Gamma on input line 207.
+LaTeX Font Info:    Redeclaring math symbol \Delta on input line 207.
+LaTeX Font Info:    Redeclaring math symbol \Theta on input line 207.
+LaTeX Font Info:    Redeclaring math symbol \Lambda on input line 207.
+LaTeX Font Info:    Redeclaring math symbol \Xi on input line 207.
+LaTeX Font Info:    Redeclaring math symbol \Pi on input line 207.
+LaTeX Font Info:    Redeclaring math symbol \Sigma on input line 207.
+LaTeX Font Info:    Redeclaring math symbol \Upsilon on input line 207.
+LaTeX Font Info:    Redeclaring math symbol \Phi on input line 207.
+LaTeX Font Info:    Redeclaring math symbol \Psi on input line 207.
+LaTeX Font Info:    Redeclaring math symbol \Omega on input line 207.
+LaTeX Font Info:    Redeclaring math symbol \mathdollar on input line 207.
+LaTeX Font Info:    Redeclaring symbol font `operators' on input line 207.
 LaTeX Font Info:    Encoding `OT1' has changed to `TU' for symbol font
-(Font)              `operators' in the math version `normal' on input line 197.
+(Font)              `operators' in the math version `normal' on input line 207.
 LaTeX Font Info:    Overwriting symbol font `operators' in version `normal'
-(Font)                  OT1/cmr/m/n --> TU/lmr/m/n on input line 197.
+(Font)                  OT1/cmr/m/n --> TU/lmr/m/n on input line 207.
 LaTeX Font Info:    Encoding `OT1' has changed to `TU' for symbol font
-(Font)              `operators' in the math version `bold' on input line 197.
+(Font)              `operators' in the math version `bold' on input line 207.
 LaTeX Font Info:    Overwriting symbol font `operators' in version `bold'
-(Font)                  OT1/cmr/bx/n --> TU/lmr/m/n on input line 197.
+(Font)                  OT1/cmr/bx/n --> TU/lmr/m/n on input line 207.
 LaTeX Font Info:    Overwriting symbol font `operators' in version `normal'
-(Font)                  TU/lmr/m/n --> TU/lmr/m/n on input line 197.
+(Font)                  TU/lmr/m/n --> TU/lmr/m/n on input line 207.
 LaTeX Font Info:    Overwriting math alphabet `\mathit' in version `normal'
-(Font)                  OT1/cmr/m/it --> TU/lmr/m/it on input line 197.
+(Font)                  OT1/cmr/m/it --> TU/lmr/m/it on input line 207.
 LaTeX Font Info:    Overwriting math alphabet `\mathbf' in version `normal'
-(Font)                  OT1/cmr/bx/n --> TU/lmr/b/n on input line 197.
+(Font)                  OT1/cmr/bx/n --> TU/lmr/b/n on input line 207.
 LaTeX Font Info:    Overwriting math alphabet `\mathsf' in version `normal'
-(Font)                  OT1/cmss/m/n --> TU/SourceSansPro(0)/m/n on input line 197.
+(Font)                  OT1/cmss/m/n --> TU/SourceSansPro(0)/m/n on input line 207.
 LaTeX Font Info:    Overwriting math alphabet `\mathtt' in version `normal'
-(Font)                  OT1/cmtt/m/n --> TU/lmtt/m/n on input line 197.
+(Font)                  OT1/cmtt/m/n --> TU/lmtt/m/n on input line 207.
 LaTeX Font Info:    Overwriting symbol font `operators' in version `bold'
-(Font)                  TU/lmr/m/n --> TU/lmr/b/n on input line 197.
+(Font)                  TU/lmr/m/n --> TU/lmr/b/n on input line 207.
 LaTeX Font Info:    Overwriting math alphabet `\mathit' in version `bold'
-(Font)                  OT1/cmr/bx/it --> TU/lmr/b/it on input line 197.
+(Font)                  OT1/cmr/bx/it --> TU/lmr/b/it on input line 207.
 LaTeX Font Info:    Overwriting math alphabet `\mathsf' in version `bold'
-(Font)                  OT1/cmss/bx/n --> TU/SourceSansPro(0)/b/n on input line 197.
+(Font)                  OT1/cmss/bx/n --> TU/SourceSansPro(0)/b/n on input line 207.
 LaTeX Font Info:    Overwriting math alphabet `\mathtt' in version `bold'
-(Font)                  OT1/cmtt/m/n --> TU/lmtt/b/n on input line 197.
+(Font)                  OT1/cmtt/m/n --> TU/lmtt/b/n on input line 207.
  (covers/Covers.tex
 File: images/logos/UM.jpg Graphic file (type bmp)
 <images/logos/UM.jpg>
@@ -1644,7 +1644,7 @@ File: images/CCBYNCND.png Graphic file (type bmp)
 ]
 
 LaTeX Font Warning: Font shape `U/stmry/b/n' undefined
-(Font)              using `U/stmry/m/n' instead on input line 46.
+(Font)              using `U/stmry/m/n' instead on input line 47.
 
 )
 \tf@toc=\write6
@@ -1670,9 +1670,7 @@ Overfull \hbox (6.42403pt too wide) in paragraph at lines 19--19
 
 ] [17
 
-] [18
-
-] (chapters/Introduction.tex
+] [18] (chapters/Introduction.tex
 Chapter 1.
 
 Package glossaries-extra Warning: Base acronym command \acrfull should not be used with new abbreviation definitions. Use \glsxtrfull instead on input line 19.
@@ -1690,6 +1688,7 @@ Package glossaries-extra Warning: Base acronym command \acrshort should not be u
 Underfull \vbox (badness 10000) has occurred while \output is active []
 
  [1
+
 
 ]
 
@@ -1824,75 +1823,76 @@ Overfull \hbox (1.32188pt too wide) in paragraph at lines 872--873
 []\TU/SourceSansPro(0)/b/n/12 Definition 3.1.28. []\TU/SourceSansPro(0)/m/n/12 Consider two finite complex spaces spaces $\OML/cmm/m/it/12 V$ \TU/SourceSansPro(0)/m/n/12 and $\OML/cmm/m/it/12 W$ \TU/SourceSansPro(0)/m/n/12 with respective bases
  []
 
-[24]
+[24] [25]
 File: images/bloch_sphere.jpg Graphic file (type bmp)
 <images/bloch_sphere.jpg>
-
-Overfull \hbox (7.99599pt too wide) in paragraph at lines 978--979
-\TU/SourceSansPro(0)/m/n/12 This section presents background on quantum information and quantum computation [][]Nielsen
- []
-
-[25]
-Overfull \hbox (16.2395pt too wide) in paragraph at lines 991--992
+ [26]
+Overfull \hbox (16.2395pt too wide) in paragraph at lines 1010--1011
 \TU/SourceSansPro(0)/m/n/12 each $\OML/cmm/m/it/12 m$\TU/SourceSansPro(0)/m/n/12 . Moreover, after a measurement yielding outcome $\OML/cmm/m/it/12 m$\TU/SourceSansPro(0)/m/n/12 , the state collapses to $\OML/cmm/m/it/12 M[]^^ZM[]\OT1/cmr/m/n/12 /\OML/cmm/m/it/12 p[]$\TU/SourceSansPro(0)/m/n/12 . 
  []
 
-[26] [27]
+
+Underfull \vbox (badness 10000) has occurred while \output is active []
+
+ [27] [28]
 LaTeX Font Info:    Font shape `TU/SourceSansPro(0)/m/sc' will be
-(Font)              scaled to size 12.0pt on input line 1062.
- [28]
-Overfull \hbox (189.77567pt too wide) in paragraph at lines 1156--1156
+(Font)              scaled to size 12.0pt on input line 1081.
+
+Overfull \hbox (189.77567pt too wide) in paragraph at lines 1175--1175
 []$[]$ 
  []
 
 
-Overfull \hbox (219.83922pt too wide) in paragraph at lines 1156--1156
+Overfull \hbox (219.83922pt too wide) in paragraph at lines 1175--1175
 []$[]$ 
  []
 
 
-Overfull \hbox (120.86447pt too wide) in paragraph at lines 1156--1156
+Overfull \hbox (120.86447pt too wide) in paragraph at lines 1175--1175
 []$[]$ 
  []
 
 
-Overfull \hbox (120.04332pt too wide) in paragraph at lines 1156--1156
+Overfull \hbox (120.04332pt too wide) in paragraph at lines 1175--1175
 []$[]$ 
  []
 
 
-Overfull \hbox (49.35582pt too wide) in paragraph at lines 1156--1156
+Overfull \hbox (49.35582pt too wide) in paragraph at lines 1175--1175
 []$[]$ 
  []
 
 
-Overfull \hbox (151.61688pt too wide) in paragraph at lines 1156--1156
+Overfull \hbox (151.61688pt too wide) in paragraph at lines 1175--1175
 []$[]$ 
  []
 
 
-Overfull \hbox (21.90512pt too wide) detected at line 1157
+Overfull \hbox (21.90512pt too wide) detected at line 1176
  $[][]$ 
  []
 
 [29]
-Overfull \hbox (99.33127pt too wide) detected at line 1224
+Overfull \hbox (99.33127pt too wide) detected at line 1243
  $[][]$ 
  []
 
-) (chapters/Contribution.tex [30]
+
+Underfull \vbox (badness 10000) has occurred while \output is active []
+
+ [30]) (chapters/Contribution.tex [31] [32
+
+]
 Chapter 4.
 
 Underfull \vbox (badness 10000) has occurred while \output is active []
 
- [31
-
-]
+ [33]
 Overfull \hbox (17.12372pt too wide) detected at line 55
  $[][]$  
  []
 
-[32] [33]
+[34] [35]
 Overfull \hbox (7.05316pt too wide) in paragraph at lines 176--177
 \TU/SourceSansPro(0)/m/n/12 constant function, $[] \OT1/cmr/m/n/12 = [][][]$\TU/SourceSansPro(0)/m/n/12 ; otherwise, $[] \OT1/cmr/m/n/12 =[] [][]$\TU/SourceSansPro(0)/m/n/12 . 
  []
@@ -1900,12 +1900,12 @@ Overfull \hbox (7.05316pt too wide) in paragraph at lines 176--177
 
 Underfull \vbox (badness 3668) has occurred while \output is active []
 
- [34]
+ [36]
 Overfull \hbox (195.36078pt too wide) in paragraph at lines 223--223
 []$[]$ 
  []
 
-[35]
+[37]
 Overfull \hbox (212.19412pt too wide) in paragraph at lines 292--292
 []$[]$ 
  []
@@ -1920,12 +1920,12 @@ Overfull \hbox (20.79633pt too wide) detected at line 355
 []
  []
 
-[36]
+[38]
 Overfull \hbox (214.99968pt too wide) in paragraph at lines 406--406
 []$[]$ 
  []
 
-[37]
+[39]
 Overfull \hbox (42.96848pt too wide) in paragraph at lines 447--447
 []$[]$ 
  []
@@ -1935,7 +1935,7 @@ Overfull \hbox (304.5355pt too wide) in paragraph at lines 481--481
 []$[]$ 
  []
 
-[38]
+[40]
 Overfull \hbox (313.6605pt too wide) in paragraph at lines 507--507
 []$[]$ 
  []
@@ -1953,7 +1953,7 @@ Overfull \hbox (9.76729pt too wide) in paragraph at lines 557--557
 
 Underfull \vbox (badness 10000) has occurred while \output is active []
 
- [39]
+ [41]
 Overfull \hbox (322.55103pt too wide) in paragraph at lines 593--593
 []$[]$ 
  []
@@ -1963,7 +1963,7 @@ Overfull \hbox (288.69908pt too wide) in paragraph at lines 631--631
 []$[]$ 
  []
 
-[40]
+[42]
 Overfull \hbox (28.74187pt too wide) in paragraph at lines 662--662
 []$[]$ 
  []
@@ -1985,10 +1985,10 @@ Overfull \hbox (317.28587pt too wide) in paragraph at lines 700--700
 []$[]$ 
  []
 
-[41]
+[43]
 Underfull \vbox (badness 10000) has occurred while \output is active []
 
- [42]
+ [44]
 Overfull \hbox (8.8486pt too wide) detected at line 794
  $[][]$ 
  []
@@ -1996,12 +1996,12 @@ Overfull \hbox (8.8486pt too wide) detected at line 794
 
 Underfull \vbox (badness 10000) has occurred while \output is active []
 
- [43]
+ [45]
 Overfull \hbox (1.96867pt too wide) in paragraph at lines 798--799
 \TU/SourceSansPro(0)/m/n/12 that preserves the relative order of the variables in both contexts, and, as a result, $\OT1/cmr/m/n/12 ^^@\OML/cmm/m/it/12 ; \U/msb/m/n/12 B\OML/cmm/m/it/12 ; \U/msb/m/n/12 A\OML/cmm/m/it/12 ; \OT1/cmr/m/n/12 ^^A \OMS/cmsy/m/n/12 2
  []
 
-[44] [45]
+[46] [47]
 
 Package hyperref Warning: Token not allowed in a PDF string (Unicode):
 (hyperref)                removing `math shift' on input line 893.
@@ -2029,7 +2029,7 @@ Package hyperref Warning: Token not allowed in a PDF string (Unicode):
 
 Underfull \vbox (badness 10000) has occurred while \output is active []
 
- [46]
+ [48]
 Overfull \hbox (11.50923pt too wide) detected at line 917
  $[][]$ 
  []
@@ -2037,15 +2037,15 @@ Overfull \hbox (11.50923pt too wide) detected at line 917
 
 Underfull \vbox (badness 10000) has occurred while \output is active []
 
- [47]
+ [49]
 Underfull \vbox (badness 10000) has occurred while \output is active []
 
- [48]
+ [50]
 Overfull \hbox (266.99095pt too wide) in paragraph at lines 1088--1088
 []$[]$ 
  []
 
-[49]
+[51]
 
 LaTeX Font Warning: Font shape `TU/SourceSansPro(0)/m/scit' undefined
 (Font)              using `TU/SourceSansPro(0)/m/sc' instead on input line 1118.
@@ -2054,7 +2054,7 @@ LaTeX Font Warning: Font shape `TU/SourceSansPro(0)/m/scit' undefined
 LaTeX Font Warning: Font shape `TU/SourceSansPro(0)/m/scit' undefined
 (Font)              using `TU/SourceSansPro(0)/m/sc' instead on input line 1122.
 
-[50]
+[52]
 Overfull \hbox (12.45999pt too wide) in paragraph at lines 1143--1144
 []\TU/SourceSansPro(0)/m/n/12 Futhermore, given the submultiplicative property of the operator norm, for any super-operators
  []
@@ -2075,7 +2075,7 @@ LaTeX Font Warning: Font shape `TU/SourceSansPro(0)/m/scit' undefined
 LaTeX Font Warning: Font shape `TU/SourceSansPro(0)/m/scit' undefined
 (Font)              using `TU/SourceSansPro(0)/m/sc' instead on input line 1154.
 
-[51]
+[53]
 Overfull \hbox (38.49901pt too wide) detected at line 1194
  $[][]$  
  []
@@ -2085,7 +2085,7 @@ Overfull \hbox (7.01337pt too wide) detected at line 1201
  $[][]$  
  []
 
-[52]
+[54]
 
 LaTeX Font Warning: Font shape `TU/SourceSansPro(0)/m/scit' undefined
 (Font)              using `TU/SourceSansPro(0)/m/sc' instead on input line 1245.
@@ -2099,7 +2099,7 @@ Overfull \hbox (1.69952pt too wide) in paragraph at lines 1260--1261
 []\TU/SourceSansPro(0)/m/n/12 Which is equivalent to showing that for any vector spaces $\OML/cmm/m/it/12 V$\TU/SourceSansPro(0)/m/n/12 , $\OML/cmm/m/it/12 W$\TU/SourceSansPro(0)/m/n/12 , $\OML/cmm/m/it/12 U$\TU/SourceSansPro(0)/m/n/12 , and $\OML/cmm/m/it/12 Z$ \TU/SourceSansPro(0)/m/n/12 and super-operators
  []
 
-[53] [54] [55]
+[55] [56] [57]
 Overfull \hbox (36.55734pt too wide) detected at line 1447
  $[][]$  
  []
@@ -2112,15 +2112,15 @@ Overfull \hbox (0.82385pt too wide) in paragraph at lines 1457--1459
 
 Underfull \vbox (badness 10000) has occurred while \output is active []
 
- [56]
+ [58]
 Overfull \hbox (16.80786pt too wide) in paragraph at lines 1488--1489
 []\TU/SourceSansPro(0)/m/n/12 Therefore, by [][]Lemma 4.2.8[][][], it can be deduced that $[]\OT1/cmr/m/n/12 ([\OML/cmm/m/it/12 P; Q\OT1/cmr/m/n/12 ]\OML/cmm/m/it/12 ; \OT1/cmr/m/n/12 [\OML/cmm/m/it/12 P[]; Q[]\OT1/cmr/m/n/12 ]) \OMS/cmsy/m/n/12 ^^T []f[]\OT1/cmr/m/n/12 (\OML/cmm/m/it/12 P; P[]\OT1/cmr/m/n/12 )\OML/cmm/m/it/12 ; []\OT1/cmr/m/n/12 (\OML/cmm/m/it/12 Q; Q[]\OT1/cmr/m/n/12 )\OMS/cmsy/m/n/12 g$\TU/SourceSansPro(0)/m/n/12 ,
  []
 
-[57]
+[59]
 Underfull \vbox (badness 1852) has occurred while \output is active []
 
- [58]
+ [60]
 Overfull \hbox (14.26767pt too wide) detected at line 1596
 []
  []
@@ -2128,7 +2128,7 @@ Overfull \hbox (14.26767pt too wide) detected at line 1596
 
 Underfull \vbox (badness 10000) has occurred while \output is active []
 
- [59]
+ [61]
 Overfull \hbox (1.97134pt too wide) detected at line 1634
  $[][]$  
  []
@@ -2136,15 +2136,15 @@ Overfull \hbox (1.97134pt too wide) detected at line 1634
 
 Underfull \vbox (badness 5431) has occurred while \output is active []
 
- [60] [61]
+ [62] [63]
 Underfull \vbox (badness 1852) has occurred while \output is active []
 
- [62]
+ [64]
 Overfull \hbox (3.09906pt too wide) in paragraph at lines 1757--1758
 []\TU/SourceSansPro(0)/m/n/12 Applying these Kraus operators to the density operator $\OML/cmm/m/it/12 ^^Z \OT1/cmr/m/n/12 = \OMS/cmsy/m/n/12 j\OML/cmm/m/it/12 ^^K\OMS/cmsy/m/n/12 j[]j\OT1/cmr/m/n/12 0\OMS/cmsy/m/n/12 ih\OT1/cmr/m/n/12 0\OMS/cmsy/m/n/12 j \OT1/cmr/m/n/12 + \OML/cmm/m/it/12 ^^K^^L[]\OMS/cmsy/m/n/12 j\OT1/cmr/m/n/12 0\OMS/cmsy/m/n/12 ih\OT1/cmr/m/n/12 1\OMS/cmsy/m/n/12 j \OT1/cmr/m/n/12 + \OML/cmm/m/it/12 ^^K[]^^L\OMS/cmsy/m/n/12 j\OT1/cmr/m/n/12 1\OMS/cmsy/m/n/12 ih\OT1/cmr/m/n/12 0\OMS/cmsy/m/n/12 j \OT1/cmr/m/n/12 +
  []
 
-[63] [64] [65]
+[65] [66] [67]
 Overfull \hbox (49.79678pt too wide) detected at line 1877
  $[][]$  
  []
@@ -2152,7 +2152,7 @@ Overfull \hbox (49.79678pt too wide) detected at line 1877
 
 Underfull \vbox (badness 10000) has occurred while \output is active []
 
- [66]
+ [68]
 Overfull \hbox (44.18358pt too wide) detected at line 1920
  $[][]$  
  []
@@ -2175,7 +2175,7 @@ Overfull \hbox (7.50989pt too wide) detected at line 1944
 
 Underfull \vbox (badness 3769) has occurred while \output is active []
 
- [67]
+ [69]
 Overfull \hbox (6.05948pt too wide) detected at line 1967
  $[][]$  
  []
@@ -2185,7 +2185,7 @@ Overfull \hbox (42.06494pt too wide) detected at line 1981
  $[][]$  
  []
 
-[68]
+[70]
 Overfull \hbox (47.5141pt too wide) detected at line 1992
  $[][]$  
  []
@@ -2193,23 +2193,23 @@ Overfull \hbox (47.5141pt too wide) detected at line 1992
 
 Underfull \vbox (badness 10000) has occurred while \output is active []
 
- [69]
+ [71]
 Underfull \vbox (badness 10000) has occurred while \output is active []
 
- [70]
+ [72]
 Underfull \vbox (badness 5802) has occurred while \output is active []
 
- [71]
+ [73]
 Overfull \hbox (19.71158pt too wide) detected at line 2177
  $[][]$  
  []
 
-[72]
+[74]
 Overfull \hbox (29.69255pt too wide) in paragraph at lines 2181--2182
 []\TU/SourceSansPro(0)/m/n/12 Given this result it is possible to conclude that $[] \OT1/cmr/m/n/12 =[] [][]$\TU/SourceSansPro(0)/m/n/12 .
  []
 
-[73]
+[75]
 Overfull \hbox (3.27301pt too wide) detected at line 2277
  $[][]$  
  []
@@ -2222,7 +2222,7 @@ Overfull \hbox (19.74863pt too wide) in paragraph at lines 2304--2305
 
 Underfull \vbox (badness 10000) has occurred while \output is active []
 
- [74]
+ [76]
 Overfull \hbox (11.51599pt too wide) in paragraph at lines 2308--2309
 []\TU/SourceSansPro(0)/m/n/12 In this case, the quantum teleportation protocol is divided into three parts: \TU/SourceSansPro(0)/b/n/12 EPR\TU/SourceSansPro(0)/m/n/12 , \TU/SourceSansPro(0)/b/n/12 TeleportIntra-
  []
@@ -2232,12 +2232,12 @@ Overfull \hbox (21.9406pt too wide) detected at line 2326
 []
  []
 
-[75]
+[77]
 Overfull \hbox (5.22041pt too wide) detected at line 2381
  $[][]$  
  []
 
-[76]
+[78]
 Overfull \hbox (162.75449pt too wide) in paragraph at lines 2381--2383
 \TU/SourceSansPro(0)/m/n/12 Next, regarding the condicional statements, applying correction to $[][][]\OMS/cmsy/m/n/12 j\OML/cmm/m/it/12  \OMS/cmsy/m/n/12 ih\OML/cmm/m/it/12  \OMS/cmsy/m/n/12 j\OML/cmm/m/it/12 ; []X\OMS/cmsy/m/n/12 j\OML/cmm/m/it/12  \OMS/cmsy/m/n/12 ih\OML/cmm/m/it/12  \OMS/cmsy/m/n/12 j\OML/cmm/m/it/12 X[]; [][]Z\OMS/cmsy/m/n/12 j\OML/cmm/m/it/12  \OMS/cmsy/m/n/12 ih\OML/cmm/m/it/12  \OMS/cmsy/m/n/12 j\OML/cmm/m/it/12 Z; []XZ\OMS/cmsy/m/n/12 j\OML/cmm/m/it/12  \OMS/cmsy/m/n/12 ih\OML/cmm/m/it/12  \OMS/cmsy/m/n/12 j\OML/cmm/m/it/12 ZX[][]$
  []
@@ -2255,7 +2255,7 @@ Overfull \hbox (14.38568pt too wide) in paragraph at lines 2388--2390
 
 Underfull \vbox (badness 1867) has occurred while \output is active []
 
- [77]
+ [79]
 Overfull \hbox (36.7797pt too wide) detected at line 2473
  $[][]$  
  []
@@ -2263,7 +2263,7 @@ Overfull \hbox (36.7797pt too wide) detected at line 2473
 
 Underfull \vbox (badness 10000) has occurred while \output is active []
 
- [78]) (chapters/Applications.tex [79] [80
+ [80]) (chapters/Applications.tex [81] [82
 
 ]
 Chapter 5.
@@ -2290,28 +2290,28 @@ Overfull \hbox (25.5592pt too wide) detected at line 66
 ) (chapters/ConclusionsAndFutureWork.tex
 Underfull \vbox (badness 10000) has occurred while \output is active []
 
- [81] [82]
+ [83] [84]
 Chapter 6.
-) (dissertation.bbl [83
+) (dissertation.bbl [85
 
-] [84
+] [86
 
 ]
 Underfull \hbox (badness 1721) in paragraph at lines 24--30
 []\TU/SourceSansPro(0)/m/n/12 Charles H Bennett, Gilles Brassard, Claude Crépeau, Richard Jozsa, Asher Peres, and
  []
 
-[85] [86]
+[87] [88]
 Underfull \hbox (badness 1394) in paragraph at lines 189--196
 []\TU/SourceSansPro(0)/m/n/12 Prakash Murali, Jonathan M Baker, Ali Javadi-Abhari, Frederic T Chong, and Margaret
  []
 
-[87] [88]) [89] [90
+[89] [90]) [91] [92
 
 ]
 runsystem(makeindex dissertation.idx)...executed safely (allowed).
 
- (dissertation.ind) (covers/BackCover.tex [91
+ (dissertation.ind) (covers/BackCover.tex [93
 
 ] [1]) (dissertation.aux)
  ***********
@@ -2326,15 +2326,15 @@ LaTeX Font Warning: Some font shapes were not available, defaults substituted.
 LaTeX Warning: There were multiply-defined labels.
 
 Package rerunfilecheck Info: File `dissertation.out' has not changed.
-(rerunfilecheck)             Checksum: 0DE3A84F6AEE0568026B08E4D34A996E;8423.
+(rerunfilecheck)             Checksum: FF3E5024174C34CEE417D64C281A827A;8649.
  ) 
 Here is how much of TeX's memory you used:
- 57132 strings out of 409673
- 1217744 string characters out of 5774704
- 2048630 words of memory out of 5000000
- 78279 multiletter control sequences out of 15000+600000
+ 57213 strings out of 409673
+ 1219575 string characters out of 5774704
+ 2047630 words of memory out of 5000000
+ 78360 multiletter control sequences out of 15000+600000
  578467 words of font info for 157 fonts, out of 8000000 for 9000
  1348 hyphenation exceptions out of 8191
  121i,36n,121p,2535b,1395s stack positions out of 10000i,1000n,20000p,200000b,200000s
 
-Output written on dissertation.xdv (113 pages, 1783084 bytes).
+Output written on dissertation.xdv (115 pages, 1802108 bytes).
