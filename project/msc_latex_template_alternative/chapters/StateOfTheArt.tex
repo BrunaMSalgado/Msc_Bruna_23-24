@@ -941,7 +941,7 @@ where $\theta$, $\phi$ and $\gamma$ are real numbers. $e^{i \gamma}$ is known as
 which corresponds to a point in the unit sphere where $\theta$ marks the latitude (\textit{i.e.} the polar angle) and $\phi$ marks the longitude (\textit{i.e.} the azimuthal angle). This representation is traditionally called the Bloch sphere representation. A point in the latter representation
 corresponds to the vector in $\mathbb{R}^{3}$ defined by $(\cos \phi \sin \theta, \sin \phi \sin \theta, \cos \theta)$ and often called Bloch vector.
  
-\begin{figure} [H]
+\begin{figure} [H] 
   \centering
   \includegraphics[width=0.4\textwidth]{images/bloch_sphere.jpg}
   \caption{Bloch sphere representation of a qubit}
@@ -956,9 +956,9 @@ There are infinite points in the Bloch sphere, which might suggest the possibili
 % Nota sobre parte final do chuang: informação codificada num qubit e o que perdemos qd medimos um qubit
 % Computação quantica é a arte de manipular a informação escondida nos estados quanticos (fenomenos como interferencia e superposição) para realizar tarefas que seriam impossiveis ou ineficientes com computadores clássicos.
 
-\subsection{Multi-qubit States}
+\subsection{Multi-qubit States} \label{subsec:entanglement}
 
- The state space of a composite physical system is the tensor product of the state spaces of the component physical systems. As a result, an $n$-qubit state can be represented by a unit vector in $2^n$-dimensional Hilbert space $\mathbb{C}^{2^{n}}$. The notations \gls{states-otimes}, \gls{states-no-otimes}, and \gls{states-2gether} are  used to denote the tensor product of two states $\ket{\psi}$ and $\ket{\phi}$. The computational basis states of an $n$-qubit system are of the form $\ket{x_{1}\ldots x_{n}}$ and so a quantum state of such a system is specified by $2^{n}$ amplitudes. For instance, a two-qubit state can be written as
+ The state space of a composite physical system is the tensor product of the state spaces of the component physical systems. As a result, an $n$-qubit state can be represented by a unit vector in $2^n$-dimensional Hilbert space $\mathbb{C}^{2^{n}}$. The notations \gls{states-otimes}, \gls{states-no-otimes}, and \gls{states-2gether} are  used to denote the tensor product of two states $\ket{\psi}$ and $\ket{\phi}$. As for any complex vector, $\ket{\psi}^{\otimes n}$ denotes the n-fold tensor product of state $\ket{\psi}$ with itself. The computational basis states of an $n$-qubit system are of the form $\ket{x_{1}\ldots x_{n}}$ and so a quantum state of such a system is specified by $2^{n}$ amplitudes. For instance, a two-qubit state can be written as
 \begin{equation*}
   \ket{\psi} = \alpha_{00}\ket{00} + \alpha_{01}\ket{01} + \alpha_{10}\ket{10} + \alpha_{11}\ket{11}.
 \end{equation*}
@@ -969,16 +969,51 @@ It should be noted that unfortunately, no simple generalization of the Bloch sph
 %ir ao tensor e acrecentar os operadores que mapeiam operadores
 
 \subsubsection{Entanglement}
+An interesting aspect of multi-qubit states is the phenomenon of \emph{entanglement}. This term means strong intrinsic correlations between two (or more) particles when the quantum state of each of them cannot be described independently of the state of the other, \text{i.e.} cannot be written as a product of states of the individual qubits. Measuring one qubit of the entangled pair affects the state of the other qubit. This must happen even if the particles are far apart.
 
-% n esfera de bloch aqui
-% Entanglement and non-localitu
+In order to better understand this concept, consider the follow \emph{Bell state} or \emph{EPR pair}:
+\begin{equation*}
+  \ket{\Phi^{+}} = \frac{1}{\sqrt{2}}(\ket{00} + \ket{11}).
+\end{equation*}
+
+Upon measuring the first qubit, there are two possible outcomes: $0$ with probability $1/2$ and $1$ with probability $1/2$. If the first qubit is measured to be $0$, the second qubit will also be $0$ with probability 1. If the first qubit is measured to be $1$, the second qubit will also be $1$ with probability 1. Therefore, the measurement outcomes are correlated.
+
+These correlations prompted Einstein, Podolsky, and Rosen to publish a paper \cite{einstein1935can} questioning the completeness of quantum mechanics in 1935. The EPR paradox presented a dilemma: the existence of entanglement (\text{i.e.}, correlations that persist regardless of distance) versus local realism and hidden variables. Einstein argued that if two objects, which have interacted in the past but are now separated, exhibit perfect correlation, they must possess a set of properties determined before their separation. These properties would persist in each object, dictating the outcomes of measurements on both sides. Einstein believed that the strong correlations predicted by quantum mechanics necessitate the existence of additional properties not accounted for by the quantum formalism that determine the measurement results. Therefore, he argued that quantum mechanics might require supplementation, as it may not represent a complete or ultimate description of reality.
 
 
-%\subsection{Unitary Operators and Measurements}
+In 1964, John Bell made a remarkable discovery: the measurement correlations in the Bell state are stronger than those that could ever occur between  classical systems \cite{bell1964einstein}. He explored the idea that each entangled particle might possess hidden properties — unaccounted for by quantum mechanics—that determine the measurement outcomes. Then, through mathematical reasoning, Bell demonstrated that the correlations predicted by any local hidden variable theory cannot exceed a specific level.  There is an upper limit of correlations fixed by what today is called the ``Bell inequalities". He found that quantum theory sometimes predicts correlations that exceed this limit. Consequently, an experiment could  settle the debate by testing whether or not correlations surpass the bounds he had found following Einstein's position.
 
-%ver p.15 sobre rotções
 
-%\subsection{Mixed States}
+In 1982, Alain Aspect conducted an experiment that confirmed the violation of the Bell inequalities \cite{aspect1982experimental}. In this experiment, polarizers were placed more than twelve meters apart. This meant that the correlation obtained could not be explained by the fact that the particles carry within them unmeasured properties. Moreover, it proved that the outcome of the measurement is not determined until the moment of measurement. There seemed to be an instantaneous exchange between two particles at the time of measurement when they were twelve meters apart.
+
+
+
+Sixteen years later, Nicolas Gisin \cite{tittel1998experimental} in Geneva and Anton Zeilinger \cite{pan1998experimental} in Innsbruck conducted similar experiments, demonstrating that entanglement persists over distances of several kilometers. More recently, Jian-Wei Pan \cite{yin2017satellite} extended these tests using entangled photon pairs sent from a satellite to verify Bell's inequalities over a distance of one thousand kilometers, further confirming that, regardless of the distance, entangled particles behave as an indivisible, inseparable whole. The connection between them is so profound that it appears to challenge the principles of relativity. This phenomenon is known as \emph{quantum nonlocality}.
+
+\subsection{Unitary Operators and Measurements}
+
+\subsubsection{Pauli Matrices}
+The Pauli matrices are a set of three $2 \times 2$ hermitian matrices that are widely used in quantum computation. They are defined as follows:
+\begin{equation*}
+  \sigma_{x} = \begin{pmatrix} 0 & 1\\ 1 & 0 \end{pmatrix}, \hspace{1cm} \sigma_{y} = \begin{pmatrix} 0 & -i\\ i & 0 \end{pmatrix}, \hspace{1cm} \sigma_{z} = \begin{pmatrix} 1 & 0\\ 0 & -1 \end{pmatrix}.
+\end{equation*}
+
+The eigenvectors and eigenvalues of the Pauli matrices are as follows:
+\begin{align*}
+ & \sigma_{x} \begin{pmatrix} 1 \\ 1 \end{pmatrix} = \begin{pmatrix} 1 \\ 1 \end{pmatrix}, \hspace{1.4cm} \sigma_{y} \begin{pmatrix} 1 \\ i \end{pmatrix} =  \begin{pmatrix} 1 \\ i \end{pmatrix}, \hspace{1.4cm} \sigma_{z} \begin{pmatrix} 1 \\ 0 \end{pmatrix} = \begin{pmatrix} 1 \\ 0 \end{pmatrix} \\
+  & \sigma_{x} \begin{pmatrix} 1 \\ -1 \end{pmatrix} = -\begin{pmatrix} 1 \\ -1 \end{pmatrix}, \hspace{0.7cm} \sigma_{y} \begin{pmatrix} 1 \\ -i \end{pmatrix} = -\begin{pmatrix} 1 \\ -i \end{pmatrix}, \hspace{0.7cm} \sigma_{z} \begin{pmatrix} 0 \\ 1 \end{pmatrix} = -\begin{pmatrix} 0 \\ 1 \end{pmatrix}.
+\end{align*}
+
+The normalized eigenvectors of $\sigma_x$  are $\ket{+} = \frac{1}{\sqrt{2}}(\ket{0} + \ket{1})$ and $\ket{-} = \frac{1}{\sqrt{2}}(\ket{0} - \ket{1})$, and normalized eigenvectors of $\sigma_y$ are $\ket{+i} = \frac{1}{\sqrt{2}}(\ket{0} + i\ket{1})$ and $\ket{-i} = \frac{1}{\sqrt{2}}(\ket{0} - i\ket{1})$. The eigenvectors of $\sigma_z$ are $\ket{0}$ and $\ket{1}$. These eigenvectors correspond to the $\hat{x}, \hat{y}$ and $\hat{z}$ axes of the Bloch sphere in \autoref{fig:bloch_sphere}, respectively.
+
+When  matrices $\sigma_x, \sigma_y$ or  $\sigma_z$  are applied to a state on the Bloch sphere, they rotate the state by $\pi$ radians around the $\hat{x} , \hat{y}$ or \hat{z} axis, respectively. For example, the action of $\sigma_x$ on the state $\ket{0}$ is to rotate it to $\ket{1}$, and vice versa. The action of $\sigma_y$ on the state $\ket{0}$ is to rotate it to $i\ket{1}$, and vice versa.
+
+
+%Nota: nós referimonos a matriz sigma_x tb como X e há sigma Z como Z
+
+%ver p.175 sobre rotções
+
+\subsection{Mixed States}
 
 %\subsection{Quantum Channels}
 

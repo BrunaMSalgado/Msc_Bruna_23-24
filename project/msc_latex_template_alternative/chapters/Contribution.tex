@@ -1530,8 +1530,10 @@ Now, it is finally possible to adress the proof of the metric equation for the c
 from secure quantum communication to distributed quantum computing \cite{briegel1998quantum,gottesman1999demonstrating,kimble2008quantum}. %Quantum teleportation enables the development of quantum repeaters, a pivotal technology for the establishment of quantum communication networks, and in general the framework of quantum Internet [\cite{briegel1998quantum,ghalaii2020capacity}].  
 %The protocol is based on the entanglement of two qubits and the transmission of two classical bits. Indeed, quantum teleportation can be seen as the rotocol in quantum information that most clearly demonstrates the character of quantum entanglement as a resource: without its presence, such a quantum state transfer would not be possible within the laws of quantum mechanics.
 
-
-The circuit corresponding to the implementation of the quantum teleportation protocol is depicted in \autoref{fig:teleport}.
+Conceptually the protocol can be described as follows: Alice and Bob share an entangled pair of qubits, which are in a Bell state. Alice keeps the first qubit and Bob the second. Moreover, Alice has a qubit in an unknown state $\ket{\psi}$ that she wants to send to Bob.  
+ Alice entangles her qubit and the firt qubit of the Bell state, and then measures them. The result of this measurement is two classical bits that Alice sends to Bob though a classical channel. Based on the measurement results, Bob applies a correction to his qubit so it matches the initial state $\ket{\psi}$. 
+The circuit corresponding to the implementation of the quantum teleportation protocol is depicted in \autoref{fig:teleport}. 
+% Falar de quais qubits são da Alice e quais são do Bob (pode ser concebido como) 
 
 \begin{figure} [H]
   \centering
@@ -1570,15 +1572,15 @@ wire=c]{1} \\
     %\label{fig:teleport}
 %\end{figure}
 
-When formalizing the quantum teleportation protocol within the lambda calculus framework, each part of the protocol is instantiated as a distinct function. This entails the definition of three specific functions:
+When formalizing the quantum teleportation protocol within the lambda calculus framework, each part of the protocol is instantiated as a distinct function. This entails the definition of three specific programs:
 \begin{align*}
    \hspace{100pt} & \textbf{EPR}: \hspace{5pt} \mathbb{I} \multimap (\textit{qbit} \otimes \textit{qbit}) \\ 
     &\textbf{BellMeasure}: \hspace{5pt} \textit{qbit} \otimes \textit{qbit}  \multimap \textit{bit} \otimes \textit{bit} \\
     &\textbf{Correction}: \hspace{5pt} \textit{qbit} \otimes \textit{bit} \otimes \textit{bit}  \multimap \textit{qbit} \\
 \end{align*}
 
-
-The only part that is not self- explanatory is EPR, an acronym derived from a famous article written in 1935 by Albert Einstein, Boris Podolsky, and Nathan Rosen , where these authors questioned the completeness of Quantum Mechanics \cite{einstein1935can}.
+%With the EPR program the EPR pair is created. Then the BellMeasure entangles the two first qubits and measures them. Finally, the Correction program corrects the state of the qubit so it matches the initial state to be teleported based on the measurement results.
+%The only part that is not self- explanatory is EPR, an acronym derived from a famous article written in 1935 by Albert Einstein, Boris Podolsky, and Nathan Rosen , where these authors questioned the completeness of Quantum Mechanics \cite{einstein1935can}.
 
 Considering the unitary operations $H: \textit{qbit} \xrightarrow{}  \textit{qbit}$, $X: \textit{qbit} \xrightarrow{}  \textit{qbit}$, $Z: \textit{qbit} \xrightarrow{}  \textit{qbit}$, $I: \textit{qbit} \xrightarrow{}  \textit{qbit}$, and $\textit{CNOT}: \textit{qbit}, \textit{qbit} \xrightarrow{}  \textit{qbit} \otimes \textit{qbit}$ , these functions are defined as follows:
 

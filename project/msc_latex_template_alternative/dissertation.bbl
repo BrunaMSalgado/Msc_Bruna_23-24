@@ -1,9 +1,17 @@
-\begin{thebibliography}{53}
+\begin{thebibliography}{58}
 \providecommand{\natexlab}[1]{#1}
 \providecommand{\url}[1]{\texttt{#1}}
 \expandafter\ifx\csname urlstyle\endcsname\relax
   \providecommand{\doi}[1]{doi: #1}\else
   \providecommand{\doi}{doi: \begingroup \urlstyle{rm}\Url}\fi
+
+\bibitem[Aspect et~al.(1982)Aspect, Dalibard, and
+  Roger]{aspect1982experimental}
+Alain Aspect, Jean Dalibard, and G{\'e}rard Roger.
+\newblock Experimental test of bell's inequalities using time-varying
+  analyzers.
+\newblock \emph{Physical review letters}, 49\penalty0 (25):\penalty0 1804,
+  1982.
 
 \bibitem[Backus et~al.(1960)Backus, Bauer, Green, Katz, McCarthy, Perlis,
   Rutishauser, Samelson, Vauquois, Wegstein, et~al.]{backus1960report}
@@ -18,6 +26,11 @@ John~W Backus, Friedrich~L Bauer, Julien Green, Charles Katz, John McCarthy,
 Hendrik~P Barendregt et~al.
 \newblock \emph{The lambda calculus}, volume~3.
 \newblock North-Holland Amsterdam, 1984.
+
+\bibitem[Bell(1964)]{bell1964einstein}
+John~S Bell.
+\newblock On the einstein podolsky rosen paradox.
+\newblock \emph{Physics Physique Fizika}, 1\penalty0 (3):\penalty0 195, 1964.
 
 \bibitem[Bennett et~al.(1993)Bennett, Brassard, Cr{\'e}peau, Jozsa, Peres, and
   Wootters]{bennett1993teleporting}
@@ -199,6 +212,14 @@ Michael~A Nielsen and Isaac~L Chuang.
 \newblock \emph{Quantum computation and quantum information}.
 \newblock Cambridge university press, 2010.
 
+\bibitem[Pan et~al.(1998)Pan, Bouwmeester, Weinfurter, and
+  Zeilinger]{pan1998experimental}
+Jian-Wei Pan, Dik Bouwmeester, Harald Weinfurter, and Anton Zeilinger.
+\newblock Experimental entanglement swapping: entangling photons that never
+  interacted.
+\newblock \emph{Physical review letters}, 80\penalty0 (18):\penalty0 3891,
+  1998.
+
 \bibitem[Perdrix(2008)]{perdrix2008quantum}
 Simon Perdrix.
 \newblock Quantum entanglement analysis based on abstract interpretation.
@@ -300,6 +321,14 @@ Runzhou Tao, Yunong Shi, Jianan Yao, John Hui, Frederic~T Chong, and Ronghui
 \newblock In \emph{Proceedings of the 42nd ACM SIGPLAN International Conference
   on Programming Language Design and Implementation}, pages 48--64, 2021.
 
+\bibitem[Tittel et~al.(1998)Tittel, Brendel, Gisin, Herzog, Zbinden, and
+  Gisin]{tittel1998experimental}
+Wolfgang Tittel, J{\"u}rgen Brendel, Bernard Gisin, Thomas Herzog, Hugo
+  Zbinden, and Nicolas Gisin.
+\newblock Experimental demonstration of quantum correlations over more than 10
+  km.
+\newblock \emph{Physical Review A}, 57\penalty0 (5):\penalty0 3229, 1998.
+
 \bibitem[Wallman and Emerson(2016)]{wallman2016noise}
 Joel~J Wallman and Joseph Emerson.
 \newblock Noise tailoring for scalable quantum computation via randomized
@@ -328,6 +357,13 @@ Glynn Winskel.
 William~K Wootters and Wojciech~H Zurek.
 \newblock A single quantum cannot be cloned.
 \newblock \emph{Nature}, 299\penalty0 (5886):\penalty0 802--803, 1982.
+
+\bibitem[Yin et~al.(2017)Yin, Cao, Li, Liao, Zhang, Ren, Cai, Liu, Li, Dai,
+  et~al.]{yin2017satellite}
+Juan Yin, Yuan Cao, Yu-Huai Li, Sheng-Kai Liao, Liang Zhang, Ji-Gang Ren,
+  Wen-Qi Cai, Wei-Yue Liu, Bo~Li, Hui Dai, et~al.
+\newblock Satellite-based entanglement distribution over 1200 kilometers.
+\newblock \emph{Science}, 356\penalty0 (6343):\penalty0 1140--1144, 2017.
 
 \bibitem[Zhao(2020)]{zhao2020quantum}
 Jianjun Zhao.

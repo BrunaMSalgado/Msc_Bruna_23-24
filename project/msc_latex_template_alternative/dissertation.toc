@@ -34,34 +34,37 @@
 \contentsline {subsection}{\numberline {3.2.1}The 2-Dimensional Hilbert Space}{26}{subsection.3.2.1}%
 \contentsline {subsection}{\numberline {3.2.2}Multi-qubit States}{27}{subsection.3.2.2}%
 \contentsline {subsubsection}{Entanglement}{28}{subsection.3.2.2}%
-\contentsline {section}{\numberline {3.3}Quantum Lambda Calculus:Interpretation}{30}{section.3.3}%
-\contentsline {chapter}{\numberline {4}Conditionals}{33}{chapter.4}%
-\contentsline {section}{\numberline {4.1}Measurements}{33}{section.4.1}%
-\contentsline {subsection}{\numberline {4.1.1}Example: Deutsch's Algorithm}{33}{subsection.4.1.1}%
-\contentsline {section}{\numberline {4.2}Conditionals}{37}{section.4.2}%
-\contentsline {subsection}{\numberline {4.2.1}Syntax}{37}{subsection.4.2.1}%
-\contentsline {subsubsection}{Properties}{37}{figure.caption.27}%
-\contentsline {paragraph}{Proof}{37}{Item.26}%
-\contentsline {paragraph}{Proof}{40}{lemma.4.2.1}%
-\contentsline {subsection}{\numberline {4.2.2}Interpretation}{43}{subsection.4.2.2}%
-\contentsline {paragraph}{Proof}{43}{figure.caption.42}%
-\contentsline {paragraph}{Proof}{44}{lemma.4.2.2}%
-\contentsline {subsection}{\numberline {4.2.3} \boldmath $\beta $ and $\eta $ Equations}{48}{subsection.4.2.3}%
-\contentsline {paragraph}{Proof}{49}{subsection.4.2.3}%
-\contentsline {subsection}{\numberline {4.2.4}Metric equations}{52}{subsection.4.2.4}%
-\contentsline {paragraph}{Proof}{52}{figure.caption.44}%
-\contentsline {subsection}{\numberline {4.2.5}Quantum Teleportation}{60}{subsection.4.2.5}%
-\contentsline {subsection}{\numberline {4.2.6}Ilustration: Noisy Quantum Teleportation}{63}{subsection.4.2.6}%
-\contentsline {subsubsection}{Noisy Quantum Teleportation: Decoherence}{63}{subsection.4.2.6}%
-\contentsline {subsubsection}{Noisy Quantum Teleportation: Amplitude Damping}{65}{equation.4.2.49}%
-\contentsline {subsubsection}{Noisy Quantum Teleportation: An imperfect implementation of the Hadamard gate}{68}{equation.4.2.56}%
-\contentsline {section}{\numberline {4.3}Discard Operation}{75}{section.4.3}%
-\contentsline {subsection}{\numberline {4.3.1}Example: Proving an equivalence using the discard equation-in-context}{75}{subsection.4.3.1}%
-\contentsline {subsection}{\numberline {4.3.2}Ilustration: A malicious attack on the quantum teleportation protocol}{75}{subsection.4.3.2}%
-\contentsline {chapter}{\numberline {5}Graded modalities}{83}{chapter.5}%
-\contentsline {section}{\numberline {5.1}Syntax}{83}{section.5.1}%
-\contentsline {section}{\numberline {5.2}Interpretation}{84}{section.5.2}%
-\contentsline {section}{\numberline {5.3}Quantum State Discrimination}{84}{section.5.3}%
-\contentsline {chapter}{\numberline {6}Conclusions and future work}{85}{chapter.6}%
-\contentsline {section}{\numberline {6.1}Conclusions}{85}{section.6.1}%
-\contentsline {section}{\numberline {6.2}Prospect for future work}{85}{section.6.2}%
+\contentsline {subsection}{\numberline {3.2.3}Unitary Operators and Measurements}{29}{subsection.3.2.3}%
+\contentsline {subsubsection}{Pauli Matrices}{29}{subsection.3.2.3}%
+\contentsline {subsection}{\numberline {3.2.4}Mixed States}{30}{subsection.3.2.4}%
+\contentsline {section}{\numberline {3.3}Quantum Lambda Calculus:Interpretation}{32}{section.3.3}%
+\contentsline {chapter}{\numberline {4}Conditionals}{35}{chapter.4}%
+\contentsline {section}{\numberline {4.1}Measurements}{35}{section.4.1}%
+\contentsline {subsection}{\numberline {4.1.1}Example: Deutsch's Algorithm}{35}{subsection.4.1.1}%
+\contentsline {section}{\numberline {4.2}Conditionals}{39}{section.4.2}%
+\contentsline {subsection}{\numberline {4.2.1}Syntax}{39}{subsection.4.2.1}%
+\contentsline {subsubsection}{Properties}{39}{figure.caption.27}%
+\contentsline {paragraph}{Proof}{39}{Item.26}%
+\contentsline {paragraph}{Proof}{42}{lemma.4.2.1}%
+\contentsline {subsection}{\numberline {4.2.2}Interpretation}{45}{subsection.4.2.2}%
+\contentsline {paragraph}{Proof}{45}{figure.caption.42}%
+\contentsline {paragraph}{Proof}{46}{lemma.4.2.2}%
+\contentsline {subsection}{\numberline {4.2.3} \boldmath $\beta $ and $\eta $ Equations}{50}{subsection.4.2.3}%
+\contentsline {paragraph}{Proof}{51}{subsection.4.2.3}%
+\contentsline {subsection}{\numberline {4.2.4}Metric equations}{54}{subsection.4.2.4}%
+\contentsline {paragraph}{Proof}{54}{figure.caption.44}%
+\contentsline {subsection}{\numberline {4.2.5}Quantum Teleportation}{62}{subsection.4.2.5}%
+\contentsline {subsection}{\numberline {4.2.6}Ilustration: Noisy Quantum Teleportation}{65}{subsection.4.2.6}%
+\contentsline {subsubsection}{Noisy Quantum Teleportation: Decoherence}{65}{subsection.4.2.6}%
+\contentsline {subsubsection}{Noisy Quantum Teleportation: Amplitude Damping}{67}{equation.4.2.49}%
+\contentsline {subsubsection}{Noisy Quantum Teleportation: An imperfect implementation of the Hadamard gate}{70}{equation.4.2.56}%
+\contentsline {section}{\numberline {4.3}Discard Operation}{77}{section.4.3}%
+\contentsline {subsection}{\numberline {4.3.1}Example: Proving an equivalence using the discard equation-in-context}{77}{subsection.4.3.1}%
+\contentsline {subsection}{\numberline {4.3.2}Ilustration: A malicious attack on the quantum teleportation protocol}{77}{subsection.4.3.2}%
+\contentsline {chapter}{\numberline {5}Graded modalities}{85}{chapter.5}%
+\contentsline {section}{\numberline {5.1}Syntax}{85}{section.5.1}%
+\contentsline {section}{\numberline {5.2}Interpretation}{86}{section.5.2}%
+\contentsline {section}{\numberline {5.3}Quantum State Discrimination}{86}{section.5.3}%
+\contentsline {chapter}{\numberline {6}Conclusions and future work}{87}{chapter.6}%
+\contentsline {section}{\numberline {6.1}Conclusions}{87}{section.6.1}%
+\contentsline {section}{\numberline {6.2}Prospect for future work}{87}{section.6.2}%
