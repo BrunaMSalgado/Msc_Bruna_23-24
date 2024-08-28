@@ -570,7 +570,7 @@ Knowing that $f(a)^{\epsilon} =_{\epsilon} f(a)$, it is possible to show that $P
 Quantum lambda calculus integrates quantum computation with higher-order functions, thereby emerging as a powerful tool for formal reasoning about quantum programs within a functional programming framework. This functional paradigm, with a static type system, offers the significant advantage of ensuring the absence of run-time errors, \textit{i.e.}, potential errors can be detected at compile-time, when the program is written, rather than during execution.
 
 The principal distinction between the quantum lambda calculus introduced in this section and the formulation proposed by Selinger \cite{selinger2006lambda,selinger2009quantum} lies in the handling of data duplication. In this aproach, as dictated by the type system in \autoref{fig:typing_rules_linear}, duplication of any data is strictly prohibited. In contrast, Selinger's approach permits the duplication of classical data while strictly forbidding the duplication of quantum data.
-Nonetheless, the controlled duplication of both classical and quantum data will be adressesd in \autoref{chap:graded}.
+Nonetheless, the controlled duplication of both classical and quantum data will be addressed in \autoref{chap:graded}.
 
 
 \todo[inline,size=\normalsize]{Escrever intro ao capítulo: o que é que se vai abordar e tal e é baseada nos livros x e y} 
@@ -990,10 +990,13 @@ In 1982, Alain Aspect conducted an experiment that confirmed the violation of th
 
 Sixteen years later, Nicolas Gisin \cite{tittel1998experimental} in Geneva and Anton Zeilinger \cite{pan1998experimental} in Innsbruck conducted similar experiments, demonstrating that entanglement persists over distances of several kilometers. More recently, Jian-Wei Pan \cite{yin2017satellite} extended these tests using entangled photon pairs sent from a satellite to verify Bell's inequalities over a distance of one thousand kilometers, further confirming that, regardless of the distance, entangled particles behave as an indivisible, inseparable whole. The connection between them is so profound that it appears to challenge the principles of relativity. This phenomenon is known as \emph{quantum nonlocality}.
 
-\subsection{Unitary Operators and Measurements}
+\subsection{Measurements and unitary operators}
+
+
+
 
 \subsubsection{Pauli Matrices}
-The Pauli matrices are a set of three $2 \times 2$ hermitian matrices that are widely used in quantum computation. They are defined as follows:
+The Pauli matrices are a set of three $2 \times 2$ hermitian matrices that are defined as follows:
 \begin{equation*}
   \sigma_{x} = \begin{pmatrix} 0 & 1\\ 1 & 0 \end{pmatrix}, \hspace{1cm} \sigma_{y} = \begin{pmatrix} 0 & -i\\ i & 0 \end{pmatrix}, \hspace{1cm} \sigma_{z} = \begin{pmatrix} 1 & 0\\ 0 & -1 \end{pmatrix}.
 \end{equation*}
@@ -1004,16 +1007,56 @@ The eigenvectors and eigenvalues of the Pauli matrices are as follows:
   & \sigma_{x} \begin{pmatrix} 1 \\ -1 \end{pmatrix} = -\begin{pmatrix} 1 \\ -1 \end{pmatrix}, \hspace{0.7cm} \sigma_{y} \begin{pmatrix} 1 \\ -i \end{pmatrix} = -\begin{pmatrix} 1 \\ -i \end{pmatrix}, \hspace{0.7cm} \sigma_{z} \begin{pmatrix} 0 \\ 1 \end{pmatrix} = -\begin{pmatrix} 0 \\ 1 \end{pmatrix}.
 \end{align*}
 
-The normalized eigenvectors of $\sigma_x$  are $\ket{+} = \frac{1}{\sqrt{2}}(\ket{0} + \ket{1})$ and $\ket{-} = \frac{1}{\sqrt{2}}(\ket{0} - \ket{1})$, and normalized eigenvectors of $\sigma_y$ are $\ket{+i} = \frac{1}{\sqrt{2}}(\ket{0} + i\ket{1})$ and $\ket{-i} = \frac{1}{\sqrt{2}}(\ket{0} - i\ket{1})$. The eigenvectors of $\sigma_z$ are $\ket{0}$ and $\ket{1}$. These eigenvectors correspond to the $\hat{x}, \hat{y}$ and $\hat{z}$ axes of the Bloch sphere in \autoref{fig:bloch_sphere}, respectively.
+The normalized eigenvectors of $\sigma_x$ are $\ket{+} = \frac{1}{\sqrt{2}}(\ket{0} + \ket{1})$ and $\ket{-} = \frac{1}{\sqrt{2}}(\ket{0} - \ket{1})$, and normalized eigenvectors of $\sigma_y$ are $\ket{+i} = \frac{1}{\sqrt{2}}(\ket{0} + i\ket{1})$ and $\ket{-i} = \frac{1}{\sqrt{2}}(\ket{0} - i\ket{1})$. The eigenvectors of $\sigma_z$ are $\ket{0}$ and $\ket{1}$. These eigenvectors correspond to the $\hat{x}, \hat{y}$ and $\hat{z}$ axes of the Bloch sphere in \autoref{fig:bloch_sphere}, respectively.
 
-When  matrices $\sigma_x, \sigma_y$ or  $\sigma_z$  are applied to a state on the Bloch sphere, they rotate the state by $\pi$ radians around the $\hat{x} , \hat{y}$ or \hat{z} axis, respectively. For example, the action of $\sigma_x$ on the state $\ket{0}$ is to rotate it to $\ket{1}$, and vice versa. The action of $\sigma_y$ on the state $\ket{0}$ is to rotate it to $i\ket{1}$, and vice versa.
+When matrices $\sigma_x, \sigma_y$ or  $\sigma_z$ are applied to a state on the Bloch sphere, they rotate the state by $\pi$ radians around the $\hat{x}, \hat{y}$ or $\hat{z}$ axis, respectively. For example, the action of $\sigma_x$ on the state $\ket{0}$ is to rotate it to $\ket{1}$, and vice versa. Note that for the eigenstates of these matrices with eigenvalue $-1$, this still applies if considering a global phase of $-1 = e^{i\pi}$, given that two quantum states $\ket{\psi}$ and $e^{i\phi}\ket{\psi}$ are indistinguishable by any quantum measurement.
+
+Matrices $\sigma_x$ and $\sigma_z$ will also be referred to as \gls{x} and \gls{z}, respectively.
+
+\subsubsection{Unitary operators}
+Closed systems, \text{i.e.}, systems that do not interact with other systems evolve according to unitary operators. In quantum computation, these unitary operators are also known as \emph{gates}. For a  state $\ket{\psi}$, a unitary operator $U$ describes an evolution from $\ket{\psi}$ to $ U\ket{\psi}$.
+
+Pauli matrices are examples of unitary operators. The $X$ and $Z$ gates are often referred to as the \emph{not} and \emph{phase flip} gates, respectively. Other important unitary operators include the \emph{Hadamard gate}, denoted \gls{h}, which maps $\ket{0}$ to $\ket{+}$ and $\ket{1}$ to  $\ket{-}$ and the \emph{phase-shift gate}, denoted \gls{p}, which leaves $\ket{0}$ unaltered applies a phase shift of $\theta$ to the state $\ket{1}$:
+\begin{equation*}
+   H = \frac{1}{\sqrt{2}}\begin{pmatrix} 1 & 1\\ 1 & -1 \end{pmatrix}, \hspace{1cm} P = \begin{pmatrix} 1 & 0\\ 0 & e^{i \theta} \end{pmatrix}.
+\end{equation*}
+ 
+When the Pauli matrices are exponentiated, they result in three valuable classes of unitary matrices, corresponding to the rotation operators around the $\hat{x}$, $\hat{y}$, and $\hat{z}$ axes, which are defined as follows:
+\begin{equation*}
+  R_{x}(\theta) = e^{-i\theta \sigma_{x}/2} = \text{cos} \left(\frac{\theta}{2} \right) I -i \text{sin} \left(\frac{\theta}{2} \right) \sigma_{x} = \begin{pmatrix} \cos(\frac{\theta}{2}) & -i\sin(\frac{\theta}{2})\\ -i\sin(\frac{\theta}{2}) & \cos(\frac{\theta}{2}) \end{pmatrix},
+\end{equation*}
+\begin{equation*}
+  R_{y}(\theta) = e^{-i\theta \sigma_{y}/2} = \text{cos} \left(\frac{\theta}{2} \right) I -i \text{sin} \left(\frac{\theta}{2} \right) \sigma_{y} = \begin{pmatrix} \cos(\frac{\theta}{2}) & -\sin(\frac{\theta}{2})\\ \sin(\frac{\theta}{2}) & \cos(\frac{\theta}{2}) \end{pmatrix},
+\end{equation*}
+\begin{equation*}
+  R_{z}(\theta) = e^{-i\theta \sigma_{z}/2} = \text{cos} \left(\frac{\theta}{2} \right) I -i \text{sin} \left(\frac{\theta}{2} \right) \sigma_{z} = \begin{pmatrix} e^{-i\theta/2} & 0\\ 0 & e^{i\theta/2} \end{pmatrix}.
+\end{equation*}
+
+\begin{theorem} \label{unitary} \cite{nielsen2010quantum}
+  Suppose $U$ is a unitary operation on a single qubit. Then there exist real numbers $\alpha$, $\beta$, $\gamma$ and $\delta$ such that
+  \begin{equation*}
+    U = e^{i\alpha} R_{z}(\beta) R_{y}(\gamma) R_{z}(\delta).
+  \end{equation*}
+\end{theorem}
+
+There are also multi-qubit gates, such as the \emph{controlled-not} gate, denoted \gls{cnot}, which leaves the states $\ket{00}$ and  $\ket{01}$ unchanged, and maps $\ket{10}$ and $\ket{11}$ to each other:
+\begin{equation*}
+  \textit{CNOT} = \begin{pmatrix} 1 & 0 & 0 & 0\\ 0 & 1 & 0 & 0\\ 0 & 0 & 0 & 1\\ 0 & 0 & 1 & 0 \end{pmatrix}.
+\end{equation*}
+
+It should be noted that no completely closed systems exist in the universe. Nevertheless, for many systems, the approximation of a closed system is valid.
+% No fim nota sobre não haver sistemas completamente fechados no universo, mas que a aproximação de um sistema fechado é válida para muitos sistemas, p.82
 
 
-%Nota: nós referimonos a matriz sigma_x tb como X e há sigma Z como Z
 
-%ver p.175 sobre rotções
+\subsubsection{Measurements}
+There are times when it necessary to observe the system to extract information. This interection leaves the system no longer closed and, consequently, the evolution of the system is no longer unitary. The act of measuring a qubit is represented by a set of operators called \emph{measurement operators}.
+
+%If a measurement ${M_m}$ is performed on a state $\rho$, the outcome $m$ is observed with probability $p_m = \text{Tr}(M_{m} \rho M^{\dag}_{m})$ for each $m$. Moreover, after a measurement yielding outcome $m$, the state collapses to $M_{m}\rho M^{\dag}_{m}/p_{m}$. 
+% ver p.93
 
 \subsection{Mixed States}
+% tudo sobre matrizes de densidade incuindo a definição de matriz de densidade reduzida e traço parcial
 
 %\subsection{Quantum Channels}
 
@@ -1086,16 +1129,7 @@ When  matrices $\sigma_x, \sigma_y$ or  $\sigma_z$  are applied to a state on th
 
  An $n$-qubit mixed state can be represented by a density operator $ \mathbb{C}^{2^{n}} \xrightarrow{} \mathbb{C}^{2^{n}}$, whose matrix representation is $\rho = \Sigma_{i} \hspace{2pt} p_{i} \vert \phi_{i} \rangle \langle \phi_{i} \vert$. A density operator encodes uncertainty about the current state of the quantum system at hand. For example, a mixed state with half probability of $\vert 0 \rangle$ and $\vert 1 \rangle$ can be represented by $\frac{\vert 0 \rangle \langle 0 \vert + \vert 1 \rangle \langle 1 \vert}{2}=I/2$, where $I$ is the identity matrix.  One usually denotes density matrices by the greek letters $\rho$, $\sigma$, and so forth. The set of density operators is denoted by $\mathcal{D}_{n} \subseteq \mathbb{C}^{ 2^{n \times n}}$.
 
-Measurements extract classical information from quantum states.  If a measurement ${M_m}$ is performed on a state $\rho$, the outcome $m$ is observed with probability $p_m = \text{Tr}(M_{m} \rho M^{\dag}_{m})$ for each $m$. Moreover, after a measurement yielding outcome $m$, the state collapses to $M_{m}\rho M^{\dag}_{m}/p_{m}$. 
 
-
-Operations on quantum systems can be described using unitary operators. An operator, $U$, is unitary if its Hermitian conjugate is its own inverse, \textit{i.e.}, $U^{\dag} U= UU^{\dag} = I$. For a pure state $|\psi \rangle$, a unitary operator $U$ describes an evolution from $|\psi \rangle$ to $ U|\psi \rangle$. Similarly, for a density operator $\rho $, the corresponding evolution is $\rho \mapsto U\rho U^{\dag}$. For example, the bit flip gate $X=\big(\begin{smallmatrix}
-  0 & 1\\
-  1 & 0
-\end{smallmatrix}\big)$ maps  $\vert 0 \rangle$  to  $\vert 1 \rangle$ and  $\vert 1 \rangle$  to  $\vert 0 \rangle$. On the other hand, the Hadamard gate $H= \frac{1}{\sqrt{2}}\big(\begin{smallmatrix}
-  1 & 1\\
-  1 & -1
-\end{smallmatrix}\big)$ maps $\vert 0 \rangle$ to  $ \frac{\vert 0 \rangle + \vert 1 \rangle }{\sqrt{2}} $ (denoted as $\vert + \rangle $) and $\vert 1 \rangle$ to $ \frac{\vert 0 \rangle - \vert 1 \rangle }{\sqrt{2}} $ (denoted as $\vert - \rangle $). There are also multi-qubit gates, such as $C\hspace{-2pt}N\hspace{-1pt}O\hspace{-1pt}T$, which leaves the states $\vert 0 0 \rangle$ and  $\vert 0 1 \rangle$ unchanged, and maps $\vert 1 0 \rangle$ and $\vert 1 1 \rangle$ to each other.
 
 More broadly, the evolution of a quantum system can be defined by a super-operator $E$, which is a completely-positive and trace-preserving linear map from $\mathcal{D} (n)$ to $\mathcal{D} (m)$. A super-operator $E$ is called positive if it sends positive matrices to positive matrices, \textit{i.e.} $A \geq 0 \Rightarrow{} E A \geq 0$. A super-operator is said to be completely positive if, for any positive integer $k$ and any $k$-dimensional Hilbert space $\mathbb{C}^{2^{k}}$, the super-operator $E \otimes I_{\mathbb{C}^{2^{k}}}$ is a positive map on $\mathcal{D}(n \times k)$. Finally, a super-operator
 $E$ is called trace-preserving if $\text{Tr} \hspace{ 2pt} E A = \text{Tr} A$ \cite{watrous2018theory}. Completely-positive, trace-preserving super-operators are traditionally called quantum channels.
