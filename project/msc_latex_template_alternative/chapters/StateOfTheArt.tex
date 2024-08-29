@@ -36,7 +36,7 @@ The grammar and term formation rules of the affine lambda calculus, discussed in
 
 \subsection{Type system}
 
-As previously mentioned, this work focuses on the simply-typed lambda calculus, this work focuses on the simply-typed lambda calculus, where each lambda term is assigned a \emph{type}. Unlike sets, types are \emph{syntactic} objects, meaning they can be discussed independently of their elements. One can conceptualize types as names or labels for set. The definition of the grammar of types for affine lambda calculus is as follows, where $G$ represents a set of ground types, is given by the following \acrlong{bnf} (\cite{backus1960report}).
+As previously mentioned, this work focuses on the simply-typed lambda calculus, this work focuses on the simply-typed lambda calculus, where each lambda term is assigned a \emph{type}. Unlike sets, types are \emph{syntactic} objects, meaning they can be discussed independently of their elements. One can conceptualize types as names or labels for set. The definition of the grammar of types for affine lambda calculus is as follows, where $G$ represents a set of ground types, is given by the following \acrfull{bnf} \cite{backus1960report}.
 \begin{equation} \label{eq:grammartypes}
 \centering
 \hspace{95pt} \mathbb{A} ::= X \in G \hspace{3 pt} \vert \hspace{3 pt} \mathbb{I}  \hspace{3 pt}  \vert \hspace{3 pt} \mathbb{A}  \otimes  \mathbb{A} \hspace{3 pt} \vert  \hspace{3 pt}  \mathbb{A} \multimap  \mathbb{A}
@@ -764,6 +764,34 @@ Two vector $u, v$ are said to be \emph{orthogona}l if $\langle v,u\rangle$. An \
   An orthogonal set of unit vectors is called an \emph{orthonormal set}, and when such a set forms a basis it is called an \emph{orthonormal basis}.
 \end{definition}
 
+\subsection{Eigenvectors and  eigenvalues}
+
+\begin{definition}
+  An \emph{n-permutation} is a function on the first $n$ positive integers  $\pi = \{1,\ldots,n\} \rightarrow  \{1,\ldots,n\} $ that is one-to-one and onto. In a permutation each number $1,\dots, n$ appears as output for one and only one input.
+\end{definition}
+
+\begin{definition}
+  The \emph{sign} of a permutation $\text{sgn}(\pi)$ is $-1$ if the number of
+inversions in $\pi$ is odd and is $+1$ if the number of inversions is even.
+\end{definition}
+
+
+\begin{definition}
+  The \emph{determinant} of a square matrix $A \in \mathbb{C}^{n\times n}$ is defined as
+  \begin{equation*}
+    \text{det}(A) = \sum_{\pi \in S_n} \text{sgn}(\pi) \prod_{i=1}^{n} A_{i\sigma(i)},
+  \end{equation*}
+  Here $S_n$ is the set of all $n$-permutations $\pi = \{1,\ldots,n\} \rightarrow  \{1,\ldots,n\} $, and $\text{sgn}(\pi) $  denotes the sign of the permutation $\pi$.
+\end{definition}
+
+\begin{definition}
+An \emph{eigenvector} of a linear operator $A$ on a vector space is a non-zero vector $v$ such that $A v  = \lambda v $, where $\lambda$ is a complex number known as the \emph{eigenvalue} of $A$ corresponding to $v$.
+\end{definition}
+
+The \emph{characteristic polynomial} of a square operator $A$ is the polynomial $p(\lambda) = \text{det}(A - \lambda I)$, where \gls{id} is the identity operator. It can be shown that the characteristic
+function depends only upon the operator A, and not on the specific matrix representation used for $A$. By the fundamental theorem of algebra, every polynomial has at least one complex root, so every operator $A$ has at least one eigenvalue, and a corresponding
+eigenvector. The solutions of the \emph{characteristic equation} $c(\lambda) = 0$ are the eigenvalues of the operator $A$. %The \emph{eigenspace} corresponding to an eigenvalue $\lambda$ is the set of vectors which have eigenvalue $\lambda$.
+
 %classes de operadores
 
 \subsection{Important classes of operators/matrices}
@@ -785,7 +813,7 @@ The following classes of operators are of particular interest in quantum informa
 \end{definition}
 
 \begin{definition}
-  \emph{Unitary operators.} A square operator $U$ is \emph{unitary} if $U^{\dagger}U = UU^{\dagger} = I$, where $I$ is the identity operator. The letter \gls{unitary} will often be used to refer to unitary
+  \emph{Unitary operators.} A square operator $U$ is \emph{unitary} if $U^{\dagger}U = UU^{\dagger} = I$. The letter \gls{unitary} will often be used to refer to unitary
   operators.
 \end{definition}
 Geometrically, unitary operators are important because they preserve inner products between vectors, $\langle U v, U w \rangle = \langle v, w \rangle$  for any two vectors $v$ and $w$. Let $S_1=\{v_i\}$ be any orthonormal basis set. Define $ s_2= \{w_i\} = \{U v_i | v_i \in S \}$, so $S_2$ is also an orthonormal basis set, since unitary operators preserve inner products. Note that $U = \sum_{i} w_i v_i^{\dag}$. Conversely, if $\{v_i\}$ are any two orthonormal bases, then it is easily checked that
@@ -797,6 +825,10 @@ the operator $U$ defined by $U = \sum_{i} w_i^{\dag} v_i$ is unitary.
 
 \begin{definition}
   \emph{Isometries}. An operator $A: \mathbb{C}^{n} \rightarrow \mathbb{C}^{m}$ is as isometry if $\|Av\| = \|v\|$ for all elements all elements $v \in \mathbb{C}^{n} $.
+\end{definition}
+
+\begin{definition}
+  \emph{Projectors}. A positive semidefinite operator $P$ is a projector if $P^2 = P$. Equivalently, a projection operator is a Hermitian operator whose only eigenvalues are 0 and 1. The \emph{orthogonal complement} of P is the operator $Q = I − P$.
 \end{definition}
 
 \begin{definition}
@@ -821,6 +853,7 @@ the operator $U$ defined by $U = \sum_{i} w_i^{\dag} v_i$ is unitary.
   This norm is also  known as the Schatten 1-norm. The trace norm induces a metric on the set of density matrices which is defined by $d(\rho, \sigma) = \lVert \rho -\sigma\rVert_{1}$.
 \end{definition}
 
+
 \begin{definition} \label{eq:op_norm}
   Given vector spaces $V$ and $W$, the operator, \gls{op-norm}, norm for an operator $E: V \rightarrow W$ is defined as
   \begin{equation*}
@@ -828,33 +861,8 @@ the operator $U$ defined by $U = \sum_{i} w_i^{\dag} v_i$ is unitary.
 \end{equation*}
 \end{definition}
 
-\subsection{Eigenvectors, eigenvalues and the spectral theorem}
 
-\begin{definition}
-  An \emph{n-permutation} is a function on the first $n$ positive integers  $\pi = \{1,\ldots,n\} \rightarrow  \{1,\ldots,n\} $ that is one-to-one and onto. In a permutation each number $1,\dots, n$ appears as output for one and only one input.
-\end{definition}
-
-\begin{definition}
-  The \emph{sign} of a permutation $\text{sgn}(\pi)$ is $-1$ if the number of
-inversions in $\pi$ is odd and is $+1$ if the number of inversions is even.
-\end{definition}
-
-
-\begin{definition}
-  The \emph{determinant} of a square matrix $A \in \mathbb{C}^{n\times n}$ is defined as
-  \begin{equation*}
-    \text{det}(A) = \sum_{\pi \in S_n} \text{sgn}(\pi) \prod_{i=1}^{n} A_{i\sigma(i)},
-  \end{equation*}
-  Here $S_n$ is the set of all $n$-permutations $\pi = \{1,\ldots,n\} \rightarrow  \{1,\ldots,n\} $, and $\text{sgn}(\pi) $  denotes the sign of the permutation $\pi$.
-\end{definition}
-
-\begin{definition}
-An \emph{eigenvector} of a linear operator $A$ on a vector space is a non-zero vector $v$ such that $A v  = \lambda v $, where $\lambda$ is a complex number known as the \emph{eigenvalue} of $A$ corresponding to $v$.
-\end{definition}
-
-The \emph{characteristic polynomial} of a square operator $A$ is the polynomial $p(\lambda) = \text{det}(A - \lambda I)$, where $I$ is the identity operator. It can be shown that the characteristic
-function depends only upon the operator A, and not on the specific matrix representation used for $A$. By the fundamental theorem of algebra, every polynomial has at least one complex root, so every operator $A$ has at least one eigenvalue, and a corresponding
-eigenvector. The solutions of the \emph{characteristic equation} $c(\lambda) = 0$ are the eigenvalues of the operator $A$. %The \emph{eigenspace} corresponding to an eigenvalue $\lambda$ is the set of vectors which have eigenvalue $\lambda$.
+\subsection{Spectral theorem}
 
 \begin{theorem}  \cite{nielsen2010quantum}
   Every normal operator $A \in \mathbb{C}^{n \times n} $ can be expressed as a linear combination $\sum_{i} \lambda_{i}b_{i}b_{i}^{\dag}$ where the set $\{b_{i}, \ldots , b{n}\}$ is an orthonormal basis on $\mathbb{C}^{n}$.
@@ -925,7 +933,7 @@ The inner product in $V \oplus W$ is defined as follows
 
 The basic unit of information in quantum computation is a quantum bit or qubit \cite{perdrix2008quantum}. Just as classical bit, which can be in one of two states, 0 or 1, a qubit also has a state. Qubits are represented using \emph{Dirac notation},  where the ket symbol \gls{ket} is used to denote a quantum state $\psi$. The corresponding bra symbol \gls{bra} is used to denote the conjugate transpose of the state $\psi$. In this setting, the inner product of two states $\ket{\psi}$ and $\ket{\phi}$ is denoted \gls{innerproduct}. %The outer product of two states $\ket{\psi}$ and $\ket{\phi}$ is denoted $\ket{\psi}\bra{\phi}$.
 
-\subsection{The 2-Dimensional Hilbert Space}
+\subsection{The 2-Dimensional Hilbert Space} \label{subsec:hilb2D}
  The state of a single qubit is described by a normalized vector of the 2-dimensional Hilbert space $\mathbb{C}^{2}$. States $\ket{0} = \begin{pmatrix} 1\\0 \end{pmatrix} $ and  $\ket{1} =   \begin{pmatrix} 0\\1 \end{pmatrix} $ are equivalent to the classical states 0 and 1, respectively.  These states, known as the \emph{computational basis} states, form an orthonormal basis for this vector space. Unlike classical bits, a qubit is not restricted to the states $\ket{0}$ and $\ket{1}$; it can exist in a linear combination of these states, commonly referred to as a \emph{superposition}. Consequently, a general qubit state can be written as
 \begin{equation} \label{eq:qubit}
   \ket{\psi} = \alpha \ket{0} + \beta \ket{1},
@@ -958,7 +966,7 @@ There are infinite points in the Bloch sphere, which might suggest the possibili
 
 \subsection{Multi-qubit States} \label{subsec:entanglement}
 
- The state space of a composite physical system is the tensor product of the state spaces of the component physical systems. As a result, an $n$-qubit state can be represented by a unit vector in $2^n$-dimensional Hilbert space $\mathbb{C}^{2^{n}}$. The notations \gls{states-otimes}, \gls{states-no-otimes}, and \gls{states-2gether} are  used to denote the tensor product of two states $\ket{\psi}$ and $\ket{\phi}$. As for any complex vector, $\ket{\psi}^{\otimes n}$ denotes the n-fold tensor product of state $\ket{\psi}$ with itself. The computational basis states of an $n$-qubit system are of the form $\ket{x_{1}\ldots x_{n}}$ and so a quantum state of such a system is specified by $2^{n}$ amplitudes. For instance, a two-qubit state can be written as
+ The state space of a composite physical system is the tensor product of the state spaces of the component physical systems. As a result, an $n$-qubit state can be represented by a unit vector in $2^n$-dimensional Hilbert space, $\mathbb{C}^{2^{n}}$. The notations \gls{states-otimes}, \gls{states-no-otimes}, and \gls{states-2gether} are  used to denote the tensor product of two states $\ket{\psi}$ and $\ket{\phi}$. As for any complex vector, $\ket{\psi}^{\otimes n}$ denotes the n-fold tensor product of state $\ket{\psi}$ with itself. The computational basis states of an $n$-qubit system are of the form $\ket{x_{1}\ldots x_{n}}$ and so a quantum state of such a system is specified by $2^{n}$ amplitudes. For instance, a two-qubit state can be written as
 \begin{equation*}
   \ket{\psi} = \alpha_{00}\ket{00} + \alpha_{01}\ket{01} + \alpha_{10}\ket{10} + \alpha_{11}\ket{11}.
 \end{equation*}
@@ -1016,7 +1024,7 @@ Matrices $\sigma_x$ and $\sigma_z$ will also be referred to as \gls{x} and \gls{
 \subsubsection{Unitary operators}
 Closed systems, \text{i.e.}, systems that do not interact with other systems evolve according to unitary operators. In quantum computation, these unitary operators are also known as \emph{gates}. For a  state $\ket{\psi}$, a unitary operator $U$ describes an evolution from $\ket{\psi}$ to $ U\ket{\psi}$.
 
-Pauli matrices are examples of unitary operators. The $X$ and $Z$ gates are often referred to as the \emph{not} and \emph{phase flip} gates, respectively. Other important unitary operators include the \emph{identity} operator, denoted \gls{id}, that maps a state to itself,  \emph{Hadamard gate}, denoted \gls{h}, which maps $\ket{0}$ to $\ket{+}$ and $\ket{1}$ to  $\ket{-}$, and the \emph{phase-shift gate}, denoted \gls{p}, which leaves $\ket{0}$ unaltered applies a phase shift of $\theta$ to the state $\ket{1}$:
+Pauli matrices are examples of unitary operators. The $X$ and $Z$ gates are often referred to as the \emph{not} and \emph{phase flip} gates, respectively. Other important unitary operators include the \emph{identity} operator, that maps a state to itself,  \emph{Hadamard gate}, denoted \gls{h}, which maps $\ket{0}$ to $\ket{+}$ and $\ket{1}$ to  $\ket{-}$, and the \emph{phase-shift gate}, denoted \gls{p}, which leaves $\ket{0}$ unaltered applies a phase shift of $\theta$ to the state $\ket{1}$:
 \begin{equation*}
   I = \begin{pmatrix} 1 & 0\\ 0 & 1 \end{pmatrix}, \hspace{1cm} H = \frac{1}{\sqrt{2}}\begin{pmatrix} 1 & 1\\ 1 & -1 \end{pmatrix}, \hspace{1cm} P = \begin{pmatrix} 1 & 0\\ 0 & e^{i \theta} \end{pmatrix}.
 \end{equation*}
@@ -1050,114 +1058,106 @@ It should be noted that no completely closed systems exist in the universe. Neve
 
 
 \subsubsection{Measurements}
+
+% decidir se e como por M0 e M1
+
 There are times when it necessary to observe the system to extract information. This interection leaves the system no longer closed and, consequently, the evolution of the system is no longer unitary. 
 
-The act of measuring a qubit is represented by a set of operators called \emph{measurement operators}. These operators act on the state space  of the system being measured. The index $m$ refers possible measurement outcomes. These measurement operators must satisfy the completeness equation $\sum_{m} M_{m}^{\dagger}M_{m} = I$, which ensures that the probabilities of all possible outcomes sum to 1. If a measurement ${M_m}$ is performed on a state $\ket{\psi}$ the outcome $m$ is observed with probability $p_m = \bra{\psi}M_{m}^{\dagger}M_{m}\ket{\psi}$ for each $m$. Moreover, after a measurement yielding outcome $m$, the state collapses to $\frac{M_{m}\ket{\psi}}{\sqrt{p_{m}}}$. 
+The act of measuring a qubit is represented by a set of operators called \emph{measurement operators}, denoted $\{M_{m}\}$. These operators act on the state space  of the system being measured. The index $m$ refers possible measurement outcomes. These measurement operators must satisfy the completeness equation $\sum_{m} M_{m}^{\dagger}M_{m} = I$, which ensures that the probabilities of all possible outcomes sum to 1. If a measurement ${M_m}$ is performed on a state $\ket{\psi}$ the outcome $m$ is observed with probability $p_m = \bra{\psi}M_{m}^{\dagger}M_{m}\ket{\psi}$ for each $m$. Moreover, after a measurement yielding outcome $m$, the state collapses to $\frac{M_{m}\ket{\psi}}{\sqrt{p_{m}}}$. 
 
-In the case of the computational basis, the measurement operators are the projectors onto the basis states $\ket{0}$ and $\ket{1}$ denoted by $M_{0} = \ket{0}\bra{0}$ and $M_{1} = \ket{1}\bra{1}$, respectively. Considering an arbitrary state $\ket{\psi} = \alpha \ket{0} + \beta \ket{1}$, the probabilities of measuring 0 and 1 are $p_0 = \bra{\psi} M_{0} M_{0}^{\dag}\ket{\psi}=\bra{\psi} M_{0} \ket{\psi} = |\alpha|^{2}$, and $p_1 = \bra{\psi} M_{1} M_{1}^{\dag}\ket{\psi} = \bra{\psi} M_{1} \ket{\psi} =  |\beta|^{2} $. 
+In the case of the computational basis, the measurement operators are the projectors onto the basis states $\ket{0}$ and $\ket{1}$ denoted by $M_{0} = \ket{0}\bra{0}$ and $M_{1} = \ket{1}\bra{1}$, respectively. Considering an arbitrary state $\ket{\psi} = \alpha \ket{0} + \beta \ket{1}$, the probabilities of measuring 0 and 1 are $p_0 = \bra{\psi} M_{0} M_{0}^{\dag}\ket{\psi}=\bra{\psi} M_{0} \ket{\psi} = |\alpha|^{2}$, and $p_1 = \bra{\psi} M_{1} M_{1}^{\dag}\ket{\psi} = \bra{\psi} M_{1} \ket{\psi} =  |\beta|^{2} $. Consequently the states after measurement are $\frac{M_{0}\ket{\psi}} {|\alpha|} = \frac{\alpha}{|\alpha|} \ket{0} = \ket{0}$ (with $p=p_0$) and $\frac{M_{1}\ket{\psi}} {|\beta|} = \frac{\beta}{|\beta|} \ket{1} = \ket{1}$ (with $p=p_1$).
 
-% falta estados, nota sobre daqui para a frente sempre que dissermos medição queremos dizer na base computacional e nota sobre phase global.
+From now on, unless stated otherwise, any reference to measurement should be understood as pertaining to the computational basis.
+
+As previously mentioned, any states $\ket{\psi}$ and $e^{i\phi}\ket{\psi}$ are indistinguishable by any quantum measurement. Consider a measurement operator $M_m$, the probabilities of obtaining outcome $m$ are $\bra{\psi} M_{m}^{\dagger}M_{m}\ket{\psi}$ and $\bra{\psi} e^{-i \theta} M_{m}^{\dagger}M_{m}e^{i\theta}\ket{\psi}=\bra{\psi} M_{m}^{\dagger}M_{m}\ket{\psi}$. For this reason, it is said that these states are equal from an observational point of view.
+
 
 
 %If a measurement ${M_m}$ is performed on a state $\rho$, the outcome $m$ is observed with probability $p_m = \text{Tr}(M_{m} \rho M^{\dag}_{m})$ for each $m$. Moreover, after a measurement yielding outcome $m$, the state collapses to $M_{m}\rho M^{\dag}_{m}/p_{m}$. 
 % ver p.93
 
-\subsection{Mixed States}
-% tudo sobre matrizes de densidade incuindo a definição de matriz de densidade reduzida e traço parcial
+\subsection{Density operators}
+Until now the state vector formalism was used. However there is an alternative formulation using density operators. The density operator is often known as the \emph{density matrix}, the two terms will be used interchangeably.
 
-%\subsection{Quantum Channels}
-
-% n esquecer das normas
-
-%\subsection{Quantum Circuits}
-
-%\subsection{No cloning theorem}
-%p.532
-
-%entanglement 
-
-%\gls{ket}
-
-%\gls{bra}
-
-%NOTASSSSSS
-
-% In this context vectors in $\mathbb{C}^{2 \cdot n}$ are designated kets and denotes |Psi>. Nevetheless there is an expection: the zero vector which will still be represented as 0, given  |0> represents another vector.
-
-% Nota sobre notação de kets e bras sobre produto interno e externo. No produto interno denotado <v|w> fazer ver que denotando  os kets e bras temos a multiplicadção das matrizes que vai dar há definição de cima de prod interno
-
-% Qd glar em estados na esfera de block falar que a distancia entre 2 estados é a distancia euclideana
-
-% Falar que a trace norm induz uma metrica no espaço dos operadores de densidade que é definida como d(...)
-
-% Fazer secção chamada quantum chanels e falar de super operadores e cptp maps, normas, kraus operators
-
-% fazer secção hilbert space 2D
-
-% Reduced density operators and partial trace
-
-% Qd falar de multistate apresentar as varias notacçoes: tensor e sem tensor
+%\subsubsection{General properties}
 
 
-%-----------------------------------------------
+A quantum state $\ket{\psi}$ is said to be a \emph{pure state} if it is completely known, \text{i.e.} if it can be written as a ket. In this case, the state can be written in the density operator formalism as $\rho = \ket{\psi}\bra{\psi}$. On the other hand, a state that is a probabilistic mixture of pure states is designated a \emph{mixed state}. A mixed state $\sum_i \alpha_i \ket{\psi_i}$ can be represented by a density operator $\rho=|\alpha_i|^{2}\ket{\psi_i}\bra{\psi_i}$. Note that $|\alpha_i|^{2}$ is the probability of the system being in state $\ket{\psi_i}$. 
 
-% o que falar e em que ordem
+With respect to density operators, when applying a unitary operator $U$ to a state $\rho$, the resulting state is $U\rho U^{\dag}$. Regarding measurements, given a collection of measurement operators, $\{M_{m}\}$, the probability of obtaining outcome $m$ is $p(m)=\text{Tr}(M_{m}\rho M_{m}^{\dag})$, and after a measurement yielding outcome $m$, the state collapes to  $\frac{M_{m}^{\dag}\rho M_{m}}{\text{Tr}(M_{m}\rho M_{m}^{\dag})}$.
 
-% Topicos
+In \autoref{subsec:hilb2D} it was shown how to determine the cartesian coordenates of a pure state in the Bloch Sphere from the state vector. For an arbitrary $2 \times 2$ density matrix, the following holds
+\begin{equation} \label{eq:bloch_vector_0}
+  \rho = \frac{1}{2}(I + r_{x}\sigma_{x} + r_{y}\sigma_{y} + r_{z}\sigma_{z}),
+\end{equation} 
 
-% bases algebra: vetores (espaço vetorial e subspaço), produto interno, produto tensorial, tensor, operadores lineares, soma direta, operadores hermiticos e normais, base ortonormal, hilbert space
-% eigenvectors, eigenvalues and spectral theorem
-
-%normas
-
-%esfera de bloch e bloch vector
-
-% Hilbert spaces, quantum states, and density operators and reducted density operators
-
-% trace and partial trace
-
-% Quantum operations (evolution) and measurements
-
-% Super-operators and cptp maps 
-
-% Kraus operators
-
-% pauli matrices and the stuff i am gonna use in qsd
-
-% superposition and interference
-
-
-
-
-
-
-
-
-
- An $n$-qubit mixed state can be represented by a density operator $ \mathbb{C}^{2^{n}} \xrightarrow{} \mathbb{C}^{2^{n}}$, whose matrix representation is $\rho = \Sigma_{i} \hspace{2pt} p_{i} \vert \phi_{i} \rangle \langle \phi_{i} \vert$. A density operator encodes uncertainty about the current state of the quantum system at hand. For example, a mixed state with half probability of $\vert 0 \rangle$ and $\vert 1 \rangle$ can be represented by $\frac{\vert 0 \rangle \langle 0 \vert + \vert 1 \rangle \langle 1 \vert}{2}=I/2$, where $I$ is the identity matrix.  One usually denotes density matrices by the greek letters $\rho$, $\sigma$, and so forth. The set of density operators is denoted by $\mathcal{D}_{n} \subseteq \mathbb{C}^{ 2^{n \times n}}$.
-
-
-
-More broadly, the evolution of a quantum system can be defined by a super-operator $E$, which is a completely-positive and trace-preserving linear map from $\mathcal{D} (n)$ to $\mathcal{D} (m)$. A super-operator $E$ is called positive if it sends positive matrices to positive matrices, \textit{i.e.} $A \geq 0 \Rightarrow{} E A \geq 0$. A super-operator is said to be completely positive if, for any positive integer $k$ and any $k$-dimensional Hilbert space $\mathbb{C}^{2^{k}}$, the super-operator $E \otimes I_{\mathbb{C}^{2^{k}}}$ is a positive map on $\mathcal{D}(n \times k)$. Finally, a super-operator
-$E$ is called trace-preserving if $\text{Tr} \hspace{ 2pt} E A = \text{Tr} A$ \cite{watrous2018theory}. Completely-positive, trace-preserving super-operators are traditionally called quantum channels.
-
-For every super-operator $ E: \mathcal{D}(n) \xrightarrow{} \mathcal{D}(m)$, there exists a set of Kraus operators $\{\epsilon_{k}\}_{k}$ such that $ E(\rho)= \Sigma_{k} \hspace{2pt} \epsilon_{k}\hspace{2pt} \rho \hspace{2pt} \epsilon_{k}^{\dag}$  for any input $\rho \in  \mathcal{D}(n) $. Note that the set of Kraus operators is finite if the Hilbert space is finite-dimensional. The Kraus form of $E$ is written as $E = \Sigma_{k} \hspace{2pt} \epsilon_{k} \circ  \epsilon_{k}^{\dag}$.
-
-A matrix $A \in  \mathbb{C}^{n\times n}$ is Hermitian if $A = A^{\dag}$.
-A matrix $A \in \mathbb{C}^{n\times n}$ is said to be normal if $AA^{\dag} =  A^{\dag}A$. Clearly every Hermitian matrix is normal. Note also that for every matrix $A \in C^{n\times n}$ the matrix $A^{\dag}A$ is Hermitian. Next, it is well-known that by appealing to the spectral theorem [NC16], every normal matrix $A \in  \mathbb{C}^{n\times n}$ can be expressed as a linear combination $\sum_{i} \lambda_{i}b_{i}b_{i}^{\dag}$ where the set $\{b_{i}, \ldots , b{n}\}$ is an orthonormal basis of $\mathbb{C}^{n}$. Using this last result we can extend any function $f:\mathbb{C} \xrightarrow{} \mathbb{C}$, to normal matrices via,
-\begin{equation} \label{eq:apply_f_diag}
-  f(A) = \sum_{i} f(\lambda_{i})b_{i}b_{i}^{\dag}
-\end{equation}
-
-% mudar 3.2 para ser a def para matrizes
-$\ldots$
-The Bloch vector is given by 
+where $\vec{r} = (r_x, r_y, r_z)$ is a real three-dimensional vector such that $\| \vec{r} \|_2 \leq 1$. This vector is known as the Bloch vector for the state $\rho$. Since $\rho$ is Hermitian. $r_x, r_y$ and $r_z$ are always real.  The inverse map of \autoref{eq:bloch_vector_0} is
 \begin{equation}
   \label{eq:Bloch_vector}
   r_{\mu} = \text{Tr}(\rho \sigma_{\mu})
   \end{equation}
 
-\todo[inline,size=\normalsize]{add trace, partial trace, reduced density matrix, and respective Bloch Vector, put the last paragragh in the right place and rewrite it} %\label{eq:Bloch\_vector})}
+
+\subsubsection{Reduced density operator}
+
+Density operators are particularly well-suited for describing individual subsystems of a composite quantum system. This type of description is provided by the \emph{reduced density operator}
+
+Given physical systems $A$ and $B$ whose composite system is given by the density operator $\rho_{AB}$, the reduced density operator for subsystem $A$ is $$\rho_{A} = \text{Tr}_{B}(\rho_{AB}),$$ where $ \text{Tr}_{B}$ is the partial trace over the Hilbert space of subsystem $B$, defined as 
+\begin{equation*}
+  \text{Tr}_{B}(\ket{a_1}\bra{a_2} \otimes \ket{b_1}\bra{b_2}) =\ket{a_1}\bra{a_2} \text{Tr}(\ket{b_1}\bra{b_2}) = \ket{a_1}\bra{a_2}\langle b_2|b_1 \rangle,
+\end{equation*}
+ where $\ket{a_1}$ and $\ket{a_2}$ are any two vectors in the state space of $A$, and $\ket{b_1}$ and $\ket{b_2}$ are any two vectors in the state space of $B$.
+
+%\begin{equation*}
+  %\text{Tr}_{B}(\rho_{AB}) = \sum_{i} \bra{i} \rho_{AB} \ket{i} \otimes I_{B},
+%\end{equation*}
+%where $\{\ket{i}\}$ is an orthonormal basis for the Hilbert space of subsystem $B$.
+Similarly, the reduced density operator for subsystem $B$ is $\rho_{B} = \text{Tr}_{A}(\rho_{AB})$.
+
+
+%An $n$-qubit mixed state can be represented by a density operator $ \mathbb{C}^{2^{n}} \xrightarrow{} \mathbb{C}^{2^{n}}$, whose matrix representation is $\rho = \Sigma_{i} \hspace{2pt} p_{i} \vert \phi_{i} \rangle \langle \phi_{i} \vert$. A density operator encodes uncertainty about the current state of the quantum system at hand. For example, a mixed state with half probability of $\vert 0 \rangle$ and $\vert 1 \rangle$ can be represented by $\frac{\vert 0 \rangle \langle 0 \vert + \vert 1 \rangle \langle 1 \vert}{2}=I/2$, where $I$ is the identity matrix.  One usually denotes density matrices by the greek letters $\rho$, $\sigma$, and so forth. The set of density operators is denoted by $\mathcal{D}_{n} \subseteq \mathbb{C}^{ 2^{n \times n}}$.
+
+% tudo sobre matrizes de densidade incuindo a definição de matriz de densidade reduzida e traço parcial
+
+% bloch vector for mixed states
+
+\subsection{Quantum Channels}
+
+% Fazer secção chamada quantum chanels e falar de super operadores e cptp maps, normas, kraus operators
+
+Thus far, only two types of quantum operations have been discussed: unitary operators, which describe the evolution of a closed quantum system, and measurements, which describe the act of observing a quantum system. Now, a new type of quantum operation that accounts for the more realistic notion of interaction between a quantum system and an environment will be introduced. Nonetheless, it is necessary to first introduce a few key concepts.
+
+
+
+%the evolution of a quantum system has been described by unitary operators. However, in practice, quantum systems are not isolated, and they interact with their environment. This interaction is described by a \emph{quantum channel}, which is a completely positive trace-preserving (CPTP) linear map. A quantum channel is a generalization of a unitary operator that allows for the description of the evolution of a quantum system under the influence of an environment.
+
+\begin{definition}
+  A \emph{super-operator} $E$ is a linear map between the space of operators on a Hilbert space $E: \mathbb{C}^{n\times n} \rightarrow  \mathbb{C}^{m\times m}$. 
+\end{definition}
+
+\begin{definition}
+  A super-operator $E$ is called \emph{positive} if it sends positive matrices to positive matrices, \textit{i.e.} $A \geq 0 \Rightarrow{} E A \geq 0$.
+\end{definition}
+
+\begin{definition}
+  A super-operator is said to be \emph{completely positive} if for all $k$, $E \otimes I_{\mathbb{C}^{k \times k}}: \mathbb{C}^{n \times n} \otimes \mathbb{C}^{k \times k} \rightarrow \mathbb{C}^{m \times m} \otimes \mathbb{C}^{k \times k}  $ is positive.
+\end{definition}
+
+\begin{definition}
+  A super-operator $E$ is called \emph{trace-preserving} if $\text{Tr} \hspace{2pt} (E A)= \text{Tr} (A)$.
+\end{definition}
+
+Since density matrices are positive, any physically allowed transformation must be represented by a positive operator. Moreover, this is not sufficient on its own: since one can always extend the space $\mathbb{C}^{n \times n}$ to  $\mathbb{C}^{n \times n} \otimes \mathbb{C}^{k \times k} $ by adjoining a new quantum system, any physically allowed transformation must be completely positive. Finally, since the trace of a density matrix is always $1$, any physically allowed transformation must be trace-preserving. A \acrfull{cptp} operator is traditionally called a \emph{quantum channel}.
+
+\subsubsection{Kraus operator sum representation}
+
+
+
+
+
+%For every super-operator $ E: \mathcal{D}(n) \xrightarrow{} \mathcal{D}(m)$, there exists a set of Kraus operators $\{\epsilon_{k}\}_{k}$ such that $ E(\rho)= \Sigma_{k} \hspace{2pt} \epsilon_{k}\hspace{2pt} \rho \hspace{2pt} \epsilon_{k}^{\dag}$  for any input $\rho \in  \mathcal{D}(n) $. Note that the set of Kraus operators is finite if the Hilbert space is finite-dimensional. The Kraus form of $E$ is written as $E = \Sigma_{k} \hspace{2pt} \epsilon_{k} \circ  \epsilon_{k}^{\dag}$.
+
+
 
 
 In the quantum paradigm, a potential notion of approximate equivalence arises from the so-called diamond norm \cite{watrous2018theory}, which induces a metric (roughly, a distance function) on the space of quantum programs (seen semantically as completely positive trace-preserving super-operators). This norm relies on another norm known as the trace norm. The $\lVert  \rVert_{1}$ latter is defined by  $\lVert A \rVert_{1} = \text{Tr}\sqrt{A^{\dag}A}$  for matrices $A \in \mathbb{C}^{n\times n}$. The trace norm induces a metric on the set of density matrices which is defined by $d(\rho, \sigma) = \lVert \rho -\sigma\rVert_{1}$. The trace distance between two super-operators $E, E': \mathbb{C}^{n\times n} \xrightarrow{} \mathbb{C}^{m\times m }$,  denoted as $T(E,E')$, is defined as follows:
@@ -1191,7 +1191,8 @@ Consider two operators $T, S : n \xrightarrow{} m$. There exists a unit vector $
 
 The no-cloning theorem states that it is impossible to duplicate a quantum bit \cite{wootters1982single}. This principle is upheld by the type system outlined in \autoref{fig:typing_rules_linear}, which does not allow the repeated use of a variable (seen as a quantum resource).
 
-
+%subsection{Quantum circuits}
+%subsection{No-cloning theorem}
 
 \section{Quantum Lambda Calculus:Interpretation} \label{sec:Quantum Lambda Calculus:Interpretation}
 

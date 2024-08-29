@@ -37,6 +37,7 @@
 
 \newacronym{nisq}{NISQ}{Noisy Intermediate-Scale Quantum}
 \newacronym{bnf}{BNF}{Backus-Naur Form}
+\newacronym{cptp}{CPTP}{Completely Positive Trace-Preserving}
 \newglossaryentry{ket}
 {
     name=$\ket{\psi}$,
@@ -190,7 +191,7 @@
 }
 \newglossaryentry{cnot}
 {
-    name={\emph{CNOT}},
+    name={\textit{CNOT}},
     description={Controlled Not gate}
 }
 \newglossaryentry{id}
@@ -198,6 +199,17 @@
     name={$I$},
     description={Identity operator}
 }
+\newglossaryentry{m0}
+{
+    name={$M_0$},
+    description={Measurement operator for outcome 0}
+}
+\newglossaryentry{m1}
+{
+    name={$M_1$},
+    description={Measurement operator for outcome 1}
+}
+%\glsaddall
 %comando para ir da source para o pdf: ctrl + Alt + J 
 
 %\logo{EAAD}{School of Architecture, Art and Design}{}
@@ -247,7 +259,7 @@
 \supervisor{Renato Jorge Araújo Neves}
 
 
-\bibpunct[,]{[}{]}{;}{a}{,}{,}
+%\bibpunct[,]{[}{]}{;}{a}{,}{,}
 
 \begin{document}
 \setlength{\parindent}{0em}
@@ -303,7 +315,7 @@
 %\input{chapters/PlannedSchedule}
 
 \renewcommand{\baselinestretch}{1}
-\bibliographystyle{plainnat}
+\bibliographystyle{unsrt}
 \bibliography{dissertation}
 \printindex
 

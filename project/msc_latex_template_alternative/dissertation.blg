@@ -1,48 +1,48 @@
 This is BibTeX, Version 0.99d
 Capacity: max_strings=200000, hash_size=200000, hash_prime=170003
 The top-level auxiliary file: dissertation.aux
-Reallocating 'name_of_file' (item size: 1) to 9 items.
-The style file: plainnat.bst
+Reallocating 'name_of_file' (item size: 1) to 6 items.
+The style file: unsrt.bst
 Reallocating 'name_of_file' (item size: 1) to 13 items.
 Database file #1: dissertation.bib
 You've used 58 entries,
-            2773 wiz_defined-function locations,
-            938 strings with 14828 characters,
-and the built_in function-call counts, 27859 in all, are:
-= -- 2426
-> -- 1627
-< -- 48
-+ -- 560
-- -- 501
-* -- 2227
-:= -- 4258
-add.period$ -- 178
+            1791 wiz_defined-function locations,
+            789 strings with 13414 characters,
+and the built_in function-call counts, 13929 in all, are:
+= -- 1231
+> -- 594
+< -- 14
++ -- 225
+- -- 167
+* -- 926
+:= -- 2149
+add.period$ -- 176
 call.type$ -- 58
-change.case$ -- 327
-chr.to.int$ -- 57
-cite$ -- 116
-duplicate$ -- 1303
-empty$ -- 2306
-format.name$ -- 580
-if$ -- 5870
-int.to.chr$ -- 2
-int.to.str$ -- 1
+change.case$ -- 48
+chr.to.int$ -- 0
+cite$ -- 58
+duplicate$ -- 653
+empty$ -- 1399
+format.name$ -- 167
+if$ -- 3149
+int.to.chr$ -- 0
+int.to.str$ -- 58
 missing$ -- 66
-newline$ -- 298
-num.names$ -- 232
-pop$ -- 699
+newline$ -- 291
+num.names$ -- 58
+pop$ -- 187
 preamble$ -- 1
-purify$ -- 279
+purify$ -- 0
 quote$ -- 0
-skip$ -- 1013
+skip$ -- 316
 stack$ -- 0
-substring$ -- 1041
-swap$ -- 174
+substring$ -- 925
+swap$ -- 171
 text.length$ -- 14
 text.prefix$ -- 0
 top$ -- 0
-type$ -- 588
+type$ -- 0
 warning$ -- 0
-while$ -- 255
-width$ -- 0
-write$ -- 754
+while$ -- 139
+width$ -- 60
+write$ -- 629

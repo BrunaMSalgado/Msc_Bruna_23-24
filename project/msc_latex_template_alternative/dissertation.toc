@@ -1,19 +1,19 @@
 \babel@toc {english}{}\relax 
 \contentsline {paragraph}{Keywords}{vii}{chapter*.4}%
 \contentsline {paragraph}{Palavras-chave}{ix}{chapter*.5}%
-\contentsline {chapter}{Acronyms}{xv}{section*.9}%
-\contentsline {chapter}{Notation}{xvii}{section*.11}%
+\contentsline {chapter}{Acronyms}{xvii}{section*.9}%
+\contentsline {chapter}{Notation}{xix}{section*.11}%
 \contentsline {chapter}{\numberline {1}Introduction}{1}{chapter.1}%
 \contentsline {section}{\numberline {1.1}Motivation and Context}{1}{section.1.1}%
-\contentsline {section}{\numberline {1.2}Goals}{4}{section.1.2}%
-\contentsline {section}{\numberline {1.3}Document Structure}{4}{section.1.3}%
+\contentsline {section}{\numberline {1.2}Goals}{3}{section.1.2}%
+\contentsline {section}{\numberline {1.3}Document Structure}{3}{section.1.3}%
 \contentsline {chapter}{\numberline {2}Metric Lambda Calculus}{5}{chapter.2}%
 \contentsline {section}{\numberline {2.1}The Lambda Calculus}{5}{section.2.1}%
 \contentsline {section}{\numberline {2.2}Syntax}{7}{section.2.2}%
 \contentsline {subsection}{\numberline {2.2.1}Type system}{7}{subsection.2.2.1}%
-\contentsline {subsection}{\numberline {2.2.2}(Raw)Terms}{8}{subsection.2.2.2}%
+\contentsline {subsection}{\numberline {2.2.2}(Raw)Terms}{7}{subsection.2.2.2}%
 \contentsline {subsection}{\numberline {2.2.3}Free and Bound Variables}{8}{subsection.2.2.3}%
-\contentsline {subsection}{\numberline {2.2.4}Term formation rules}{9}{subsection.2.2.4}%
+\contentsline {subsection}{\numberline {2.2.4}Term formation rules}{8}{subsection.2.2.4}%
 \contentsline {subsection}{\numberline {2.2.5}$\alpha $-equivalence}{11}{subsection.2.2.5}%
 \contentsline {subsection}{\numberline {2.2.6}Substitution}{12}{subsection.2.2.6}%
 \contentsline {subsection}{\numberline {2.2.7}Properties}{13}{subsection.2.2.7}%
@@ -26,10 +26,11 @@
 \contentsline {subsection}{\numberline {3.1.3}Inner product}{20}{subsection.3.1.3}%
 \contentsline {subsubsection}{Trace}{21}{Item.16}%
 \contentsline {subsection}{\numberline {3.1.4}Norm and normed spaces}{21}{subsection.3.1.4}%
-\contentsline {subsection}{\numberline {3.1.5}Important classes of operators/matrices}{22}{subsection.3.1.5}%
-\contentsline {subsection}{\numberline {3.1.6}Useful norms}{23}{subsection.3.1.6}%
-\contentsline {subsection}{\numberline {3.1.7}Eigenvectors, eigenvalues and the spectral theorem}{24}{subsection.3.1.7}%
-\contentsline {subsection}{\numberline {3.1.8}Tensor Products and Direct Sums of Complex spaces}{25}{subsection.3.1.8}%
+\contentsline {subsection}{\numberline {3.1.5}Eigenvectors and eigenvalues}{22}{subsection.3.1.5}%
+\contentsline {subsection}{\numberline {3.1.6}Important classes of operators/matrices}{23}{subsection.3.1.6}%
+\contentsline {subsection}{\numberline {3.1.7}Useful norms}{24}{subsection.3.1.7}%
+\contentsline {subsection}{\numberline {3.1.8}Spectral theorem}{24}{subsection.3.1.8}%
+\contentsline {subsection}{\numberline {3.1.9}Tensor Products and Direct Sums of Complex spaces}{25}{subsection.3.1.9}%
 \contentsline {section}{\numberline {3.2}Quantum Computing Preliminaries}{25}{section.3.2}%
 \contentsline {subsection}{\numberline {3.2.1}The 2-Dimensional Hilbert Space}{26}{subsection.3.2.1}%
 \contentsline {subsection}{\numberline {3.2.2}Multi-qubit States}{27}{subsection.3.2.2}%
@@ -38,23 +39,26 @@
 \contentsline {subsubsection}{Pauli Matrices}{29}{subsection.3.2.3}%
 \contentsline {subsubsection}{Unitary operators}{30}{subsection.3.2.3}%
 \contentsline {subsubsection}{Measurements}{31}{theorem.3.2.1}%
-\contentsline {subsection}{\numberline {3.2.4}Mixed States}{31}{subsection.3.2.4}%
-\contentsline {section}{\numberline {3.3}Quantum Lambda Calculus:Interpretation}{33}{section.3.3}%
+\contentsline {subsection}{\numberline {3.2.4}Density operators}{32}{subsection.3.2.4}%
+\contentsline {subsubsection}{Reduced density operator}{32}{equation.3.2.6}%
+\contentsline {subsection}{\numberline {3.2.5}Quantum Channels}{33}{subsection.3.2.5}%
+\contentsline {subsubsection}{Kraus operator sum representation}{34}{definition.3.2.4}%
+\contentsline {section}{\numberline {3.3}Quantum Lambda Calculus:Interpretation}{34}{section.3.3}%
 \contentsline {chapter}{\numberline {4}Conditionals}{37}{chapter.4}%
 \contentsline {section}{\numberline {4.1}Measurements}{37}{section.4.1}%
 \contentsline {subsection}{\numberline {4.1.1}Example: Deutsch's Algorithm}{37}{subsection.4.1.1}%
 \contentsline {section}{\numberline {4.2}Conditionals}{41}{section.4.2}%
 \contentsline {subsection}{\numberline {4.2.1}Syntax}{41}{subsection.4.2.1}%
-\contentsline {subsubsection}{Properties}{41}{figure.caption.27}%
+\contentsline {subsubsection}{Properties}{41}{figure.caption.26}%
 \contentsline {paragraph}{Proof}{41}{Item.26}%
 \contentsline {paragraph}{Proof}{44}{lemma.4.2.1}%
 \contentsline {subsection}{\numberline {4.2.2}Interpretation}{47}{subsection.4.2.2}%
-\contentsline {paragraph}{Proof}{47}{figure.caption.42}%
+\contentsline {paragraph}{Proof}{47}{figure.caption.41}%
 \contentsline {paragraph}{Proof}{48}{lemma.4.2.2}%
 \contentsline {subsection}{\numberline {4.2.3} \boldmath $\beta $ and $\eta $ Equations}{52}{subsection.4.2.3}%
 \contentsline {paragraph}{Proof}{53}{subsection.4.2.3}%
 \contentsline {subsection}{\numberline {4.2.4}Metric equations}{56}{subsection.4.2.4}%
-\contentsline {paragraph}{Proof}{56}{figure.caption.44}%
+\contentsline {paragraph}{Proof}{56}{figure.caption.43}%
 \contentsline {subsection}{\numberline {4.2.5}Quantum Teleportation}{64}{subsection.4.2.5}%
 \contentsline {subsection}{\numberline {4.2.6}Ilustration: Noisy Quantum Teleportation}{67}{subsection.4.2.6}%
 \contentsline {subsubsection}{Noisy Quantum Teleportation: Decoherence}{67}{subsection.4.2.6}%

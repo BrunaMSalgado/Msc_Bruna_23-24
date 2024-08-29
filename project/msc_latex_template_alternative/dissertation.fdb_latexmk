@@ -1,24 +1,24 @@
 # Fdb version 4
-["bibtex dissertation"] 1724888319.04528 "dissertation.aux" "dissertation.bbl" "dissertation" 1724888798.96813 0
+["bibtex dissertation"] 1724961315.04461 "dissertation.aux" "dissertation.bbl" "dissertation" 1724964113.7342 0
   "./dissertation.bib" 1724785481 21153 cb21b1d664c1083d0ac5d304cd0c4002 ""
-  "C:/Users/mona_/AppData/Local/Programs/MiKTeX/bibtex/bst/natbib/plainnat.bst" 1284455456 26816 ffe5423d2019860bad9f54bc402fac15 ""
-  "dissertation.aux" 1724888796 36807 1a67cd9f993a5d2b2c8027e85c11a71a "xelatex"
+  "C:/Users/mona_/AppData/Local/Programs/MiKTeX/bibtex/bst/bibtex/unsrt.bst" 1291864736 18030 1376b4b231b50c66211e47e42eda2875 ""
+  "dissertation.aux" 1724964110 35487 3b65028b3c6922bb786ae6541852ebce "xelatex"
   (generated)
   "dissertation.bbl"
   "dissertation.blg"
   (rewritten before read)
-["makeindex dissertation.idx"] 1724871815.58037 "dissertation.idx" "dissertation.ind" "dissertation" 1724888798.96779 0
-  "dissertation.idx" 1724888790 0 d41d8cd98f00b204e9800998ecf8427e "xelatex"
+["makeindex dissertation.idx"] 0 "dissertation.idx" "dissertation.ind" "dissertation" 1724964113.73353 -1
+  "dissertation.idx" 1724964105 0 d41d8cd98f00b204e9800998ecf8427e "xelatex"
   (generated)
   "dissertation.ilg"
   "dissertation.ind"
   (rewritten before read)
-["xdvipdfmx"] 1724888798.07056 "dissertation.xdv" "dissertation.pdf" "dissertation" 1724888798.98847 0
-  "dissertation.xdv" 1724888796 1914372 fb42c3ded23749ce7e04f1a9babc6096 "xelatex"
+["xdvipdfmx"] 1724964112.51703 "dissertation.xdv" "dissertation.pdf" "dissertation" 1724964113.78377 0
+  "dissertation.xdv" 1724964110 1918960 8fd16a96e2b639d170a0e9ca03f100b2 "xelatex"
   (generated)
   "dissertation.pdf"
   (rewritten before read)
-["xelatex"] 1724888788.21559 "c:/Users/mona_/OneDrive/Ambiente de Trabalho/Universidade/Tese/Msc-Bruna/project/msc_latex_template_alternative/dissertation.tex" "dissertation.xdv" "dissertation" 1724888798.96849 0
+["xelatex"] 1724964102.72687 "c:/Users/mona_/OneDrive/Ambiente de Trabalho/Universidade/Tese/Msc-Bruna/project/msc_latex_template_alternative/dissertation.tex" "dissertation.xdv" "dissertation" 1724964113.73528 0
   "C:/Users/mona_/AppData/Local/MiKTeX/fonts/tfm/public/stmaryrd/stmary10.tfm" 1707388460 848 f478e0761563bbc369eca609a1741348 ""
   "C:/Users/mona_/AppData/Local/MiKTeX/fonts/tfm/public/stmaryrd/stmary5.tfm" 1707388463 848 e1bc58a31b9ed9c3729ffea165acfaac ""
   "C:/Users/mona_/AppData/Local/MiKTeX/fonts/tfm/public/stmaryrd/stmary6.tfm" 1707388461 848 068dd119e13b75777e62821af7d4f2a6 ""
@@ -331,22 +331,22 @@
   "C:/Users/mona_/AppData/Local/Programs/MiKTeX/tex/latex/xfor/xfor.sty" 1233849756 2689 44855b72da58344b1c1d9b3087bce6ca ""
   "C:/Users/mona_/AppData/Local/Programs/MiKTeX/tex/latex/xkeyval/xkeyval.sty" 1656236919 4937 4ce600ce9bd4ec84d0250eb6892fcf4f ""
   "C:/Users/mona_/AppData/Local/Programs/MiKTeX/tex/latex/xstring/xstring.sty" 1693735632 123 a302f2c651a95033260db60e51527ae8 ""
-  "c:/Users/mona_/OneDrive/Ambiente de Trabalho/Universidade/Tese/Msc-Bruna/project/msc_latex_template_alternative/dissertation.tex" 1724879244 28344 ddb621c53b982e6702ded6100cca8cee ""
+  "c:/Users/mona_/OneDrive/Ambiente de Trabalho/Universidade/Tese/Msc-Bruna/project/msc_latex_template_alternative/dissertation.tex" 1724960234 28612 ae1f79d3aa4bfb963b4e4f4760e1ff3e ""
   "chapters/Applications.tex" 1724176152 3104 89153b12fdfaa54c8d27aca6ce28cf68 ""
   "chapters/ConclusionsAndFutureWork.tex" 1707388022 128 ee4bd95d20b09ad30c6f7388879266c6 ""
   "chapters/Contribution.tex" 1724766822 176701 3a906a584480d5ab60680c9f759ef2e3 ""
   "chapters/Introduction.tex" 1724180950 10747 06f5e8feff6469addcb97ecde95a45bf ""
-  "chapters/StateOfTheArt.tex" 1724888786 99191 d88499a05e5a89ffb7b1df3508e596f1 ""
+  "chapters/StateOfTheArt.tex" 1724964099 102354 6319469851fb9a636413fb47ea790784 ""
   "covers/BackCover.tex" 1707388022 320 a987714a8b9261f76bca17abafd1ab8d ""
-  "covers/Covers.tex" 1723730337 805 4a06ebffa2d5d3fba4b4e49281362e43 ""
-  "dissertation.aux" 1724888796 36807 1a67cd9f993a5d2b2c8027e85c11a71a "xelatex"
-  "dissertation.bbl" 1724888319 16521 af77f8374be3eda2fef634d7cd84ec4b "bibtex dissertation"
-  "dissertation.ind" 1724888796 0 d41d8cd98f00b204e9800998ecf8427e "makeindex dissertation.idx"
-  "dissertation.lof" 1724888796 2461 2bc343e15c88eecc02fca2d56b3f1d88 "xelatex"
-  "dissertation.out" 1724888796 9170 70d5d44eb0d37d6353930b4514d0b636 "xelatex"
-  "dissertation.sty" 1724337272 4099 794f05c0d85420788941ef59c64109b6 ""
-  "dissertation.tex" 1724879244 28344 ddb621c53b982e6702ded6100cca8cee ""
-  "dissertation.toc" 1724888796 5890 cb065cb91bf076d74ebc2f0a5aba7008 "xelatex"
+  "covers/Covers.tex" 1724924034 800 779cd207d3ea79312a48243187c9a6b2 ""
+  "dissertation.aux" 1724964110 35487 3b65028b3c6922bb786ae6541852ebce "xelatex"
+  "dissertation.bbl" 1724961315 13180 9bc416efcd2e9feaa157a458774684ec "bibtex dissertation"
+  "dissertation.ind" 1724964110 0 d41d8cd98f00b204e9800998ecf8427e "makeindex dissertation.idx"
+  "dissertation.lof" 1724964110 2461 c8f5df09ac029c880e5e8b77bf4fe762 "xelatex"
+  "dissertation.out" 1724964110 9366 94b9247e0fc26db38bc2f0aa06464aaa "xelatex"
+  "dissertation.sty" 1724923007 4114 5aaa0e332cd26211c563b11faf43c598 ""
+  "dissertation.tex" 1724960234 28612 ae1f79d3aa4bfb963b4e4f4760e1ff3e ""
+  "dissertation.toc" 1724964110 6213 35b1252f78114bd37c1e95968c2471e3 "xelatex"
   "images/CCBY.png" 1707388022 5980 a81089c221076f7922e56e2bb2a7629e ""
   "images/CCBYNC.png" 1707388022 6991 4fdab0eb79d15eeaab8d6e7136a2fe7e ""
   "images/CCBYNCND.png" 1707388022 7261 493a469b1d4089c60e862c74929a7288 ""
