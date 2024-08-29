@@ -1103,11 +1103,16 @@ where $\vec{r} = (r_x, r_y, r_z)$ is a real three-dimensional vector such that $
 Density operators are particularly well-suited for describing individual subsystems of a composite quantum system. This type of description is provided by the \emph{reduced density operator}
 
 Given physical systems $A$ and $B$ whose composite system is given by the density operator $\rho_{AB}$, the reduced density operator for subsystem $A$ is $$\rho_{A} = \text{Tr}_{B}(\rho_{AB}),$$ where $ \text{Tr}_{B}$ is the partial trace over the Hilbert space of subsystem $B$, defined as 
-\begin{equation*}
-  \text{Tr}_{B}(\ket{a_1}\bra{a_2} \otimes \ket{b_1}\bra{b_2}) =\ket{a_1}\bra{a_2} \text{Tr}(\ket{b_1}\bra{b_2}) = \ket{a_1}\bra{a_2}\langle b_2|b_1 \rangle,
-\end{equation*}
- where $\ket{a_1}$ and $\ket{a_2}$ are any two vectors in the state space of $A$, and $\ket{b_1}$ and $\ket{b_2}$ are any two vectors in the state space of $B$.
+\begin{align*}
+  \text{Tr}_{B}(\ket{a_1}\bra{a_2} \otimes \ket{b_1}\bra{b_2}) & =\ket{a_1}\bra{a_2} \text{Tr}(\ket{b_1}\bra{b_2}) \\
+  &= \ket{a_1}\bra{a_2} \sum_{\mu} \bra{\mu} \ket{b_1}\bra{b_2}  \ket{\mu} \\
+  & = \sum_{\mu} \bra{\mu} \ket{a_1} \bra{a_2} \otimes \ket{b_1} \bra{b_2} \ket{\mu} \\
+\end{align*}
+ where $\ket{a_1}$ and $\ket{a_2}$ are any two vectors in the state space of $A$,  $\ket{b_1}$ and $\ket{b_2}$ are any two vectors in the state space of $B$, and $\{\ket{\mu}\}$, span the state space of $B$, act only in the state space of $B$. 
 
+ %p20 (in other words...)
+
+ 
 %\begin{equation*}
   %\text{Tr}_{B}(\rho_{AB}) = \sum_{i} \bra{i} \rho_{AB} \ket{i} \otimes I_{B},
 %\end{equation*}
