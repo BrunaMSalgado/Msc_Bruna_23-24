@@ -809,7 +809,7 @@ The following classes of operators are of particular interest in quantum informa
 \end {definition}
 
 \begin{definition}
-  \emph{Positive (semidefinite) operators}. A square operator $A$ is \emph{positive}, denoted $A \geq 0$, if $\langle v, Av \rangle \geq 0$ for all $v \in \mathbb{C}^{n}$. 
+  \emph{Positive (semidefinite) operators}. A square operator $A:\mathbb{C}^{n} \rightarrow \mathbb{C^{n}}$ is \emph{positive}, denoted $A \geq 0$, if $\langle v, Av \rangle \geq 0$ for all $v \in \mathbb{C}^{n}$. 
 \end{definition}
 
 \begin{definition}
@@ -931,7 +931,7 @@ The inner product in $V \oplus W$ is defined as follows
 
 \section{Quantum Computing Preliminaries} \label{sec:Quantum Computing Preliminaries}
 
-The basic unit of information in quantum computation is a quantum bit or qubit \cite{perdrix2008quantum}. Just as classical bit, which can be in one of two states, 0 or 1, a qubit also has a state. Qubits are represented using \emph{Dirac notation},  where the ket symbol \gls{ket} is used to denote a quantum state $\psi$. The corresponding bra symbol \gls{bra} is used to denote the conjugate transpose of the state $\psi$. In this setting, the inner product of two states $\ket{\psi}$ and $\ket{\phi}$ is denoted \gls{innerproduct}. %The outer product of two states $\ket{\psi}$ and $\ket{\phi}$ is denoted $\ket{\psi}\bra{\phi}$.
+The basic unit of information in quantum computation is a quantum bit or qubit \cite{perdrix2008quantum}. Just as classical bit, which can be in one of two states, 0 or 1, a qubit also has a state. Qubits are represented using \emph{Dirac notation},  where the ket symbol \gls{ket} is used to denote a quantum state $\psi$. The corresponding bra symbol \gls{bra} is used to denote the conjugate transpose of the state $\psi$. In this setting, the inner product of two states $\ket{\psi}$ and $\ket{\phi}$ is denoted \gls{innerproduct} and is the same as $\bra{\psi} \ket{\psi}$. %The outer product of two states $\ket{\psi}$ and $\ket{\phi}$ is denoted $\ket{\psi}\bra{\phi}$.
 
 \subsection{The 2-Dimensional Hilbert Space} \label{subsec:hilb2D}
  The state of a single qubit is described by a normalized vector of the 2-dimensional Hilbert space $\mathbb{C}^{2}$. States $\ket{0} = \begin{pmatrix} 1\\0 \end{pmatrix} $ and  $\ket{1} =   \begin{pmatrix} 0\\1 \end{pmatrix} $ are equivalent to the classical states 0 and 1, respectively.  These states, known as the \emph{computational basis} states, form an orthonormal basis for this vector space. Unlike classical bits, a qubit is not restricted to the states $\ket{0}$ and $\ket{1}$; it can exist in a linear combination of these states, commonly referred to as a \emph{superposition}. Consequently, a general qubit state can be written as
@@ -1104,20 +1104,57 @@ Density operators are particularly well-suited for describing individual subsyst
 
 Given physical systems $A$ and $B$ whose composite system is given by the density operator $\rho_{AB}$, the reduced density operator for subsystem $A$ is $$\rho_{A} = \text{Tr}_{B}(\rho_{AB}),$$ where $ \text{Tr}_{B}$ is the partial trace over the Hilbert space of subsystem $B$, defined as 
 \begin{align*}
-  \text{Tr}_{B}(\ket{a_1}\bra{a_2} \otimes \ket{b_1}\bra{b_2}) & =\ket{a_1}\bra{a_2} \text{Tr}(\ket{b_1}\bra{b_2}) \\
-  &= \ket{a_1}\bra{a_2} \sum_{\mu} \bra{\mu} \ket{b_1}\bra{b_2}  \ket{\mu} \\
-  & = \sum_{\mu} \bra{\mu} \ket{a_1} \bra{a_2} \otimes \ket{b_1} \bra{b_2} \ket{\mu} \\
+  \text{Tr}_{B}(\ket{a_1}\bra{a_2} \otimes \ket{b_1}\bra{b_2}) & =\ket{a_1}\bra{a_2}\text{Tr}(\ket{b_1}\bra{b_2}) \\
+  & = \ket{a_1}\bra{a_2}  \sum_{\mu} \bra{\mu} \ket{b_1}\bra{b_2} \ket{\mu} \\
+  & =  \ket{a_1} \bra{a_2} \sum_{\mu} \braket{\mu} {b_1}\braket{b_2} {\mu} \\
+  & = \ket{a_1} \bra{a_2} \sum_{\mu} \braket{b_2}{\mu} \braket{\mu}{b_1} \\
+  &= \ket{a_1}\bra{a_2}  \braket{b_2}{b_1}
 \end{align*}
- where $\ket{a_1}$ and $\ket{a_2}$ are any two vectors in the state space of $A$,  $\ket{b_1}$ and $\ket{b_2}$ are any two vectors in the state space of $B$, and $\{\ket{\mu}\}$, span the state space of $B$, act only in the state space of $B$. 
+ where $\ket{a_1}$ and $\ket{a_2}$ are any two vectors in the state space of $A$,  $\ket{b_1}$ and $\ket{b_2}$ are any two vectors in the state space of $B$, and $\{\ket{\mu}\}$, span the state space of $B$.  Therefore, by linearly, the partial trace of $\rho_{AB} = \sum_{ijkl} p_{ijkl} \ket{a_i} \bra{a_j}  \otimes \ket{b_k} \bra{b_l}$ is
+\begin{align*}
+  \text{Tr}_{B}(\rho_{AB}) &= \sum_{ijkl} p_{ijkl} \text{Tr}_{B}\left(\ket{a_i}\bra{a_j} \otimes \ket{b_k} \bra{b_l}\right) \\
+  & = \sum_{ijkl} p_{ijkl} \ket{a_i}\bra{a_j}  \sum_{\mu} \braket{b_l}{\mu} \braket{\mu}{b_k}= \sum_{ijkl} p_{ijkl} \ket{a_i}\bra{a_j}   \braket{b_l}{b_k} 
+  %& = \sum_{ijkk} p_{ijkk} \ket{a_i}\bra{a_j} = \sum_{ij} \overline{p_{ij}} \ket{a_i}\bra{a_j}
+\end{align*} 
+%Where, in the third line, it is assumed that $\{b_k\}$ forms an orthonormal basis, and $\overline{p_{ij}}= \sum_{k}p_{ijkk}$. The expression obtained.
+To demonstrate that this operator is a density operator, it must be shown that it possesses unit trace and is positive semidefinite. Given that the trace of $\rho_{AB}$ corresponds to the sum of the diagonal elements of the density matrix, $\sum_i{ik} p_{iikk}$, and that that is also the case for the reduced density operator $\rho_{A}$, the sum of the diagonal elements is preserved by the partial trace. Thus, $\rho_{a}$ has trace equal to 1.  Moreover, considering that %$\rho_{AB}$ is a density operator, one has that
+\begin{align*}
+  &\langle \ket{\psi}, \rho_{AB} \ket{\psi} \rangle = \bra{\psi} \rho_{AB} \ket{\psi} = \bra{\psi} \sum_{ijkl} p_{ijkl} \ket{a_i} \bra{a_j}  \otimes \ket{b_k} \bra{b_l} \ket{\psi} \\ 
+  = &\sum_{ijkl} p_{ijkl} \bra{\psi} \ket{a_i} \bra{a_j}  \otimes \ket{b_k} \bra{b_l} \ket{\psi} \\
+  = & \sum_{ijkl} p_{ijkl} \sum_m (\alpha_{m}^{*} \bra{a_m} \otimes \bra{b_m}) \ket{a_i} \bra{a_j} \otimes \ket{b_k} \bra{b_l}  \sum_m (\alpha_{m}  \ket{a_m} \otimes \ket{b_m} )\\
+  = & \sum_{ijklm} p_{ijkl} |\alpha_m|^{2} \braket{a_m}{a_i} \braket{a_j}{a_m} \braket{b_m}{b_k} \braket{b_l}{b_m} \\
+  = & \sum_{ijkl}  p_{ijkl}  \braket{a_j}{a_i} \braket{b_l}{b_k} \\
+\end{align*}
+and that,
+\begin{align*}
+  &\langle \ket{\psi}, \rho_{A} \ket{\psi} \rangle = \bra{\psi} \rho_{A} \ket{\psi}
+  = \bra{\psi} \sum_{ijkl} p_{ijkl} \ket{a_i}\bra{a_j} \braket{b_l}{b_k} \ket{\psi} \\
+  = & \sum_{ijkl} p_{ijkl}  \braket{b_l}{b_k}  \bra{\psi} \ket{a_i}\bra{a_j}\ket{\psi} = \\
+  = & \sum_{ijklm} p_{ijkl} \braket{b_l}{b_k} \sum_m (\alpha_{m}^{*} \bra{a_m}) \ket{a_i}\bra{a_j} \sum_m (\alpha_{m}  \ket{a_m} ) \\
+  = & \sum_{ijklm} p_{ijkl} \braket{b_l}{b_k} |\alpha_m|^{2} \braket{a_m}{a_i} \braket{a_j}{a_m} = \sum_{ijkl} p_{ijkl} \braket{b_l}{b_k} \braket{a_j}{a_i} \\
+  = & \sum_{ijkl} p_{ijkl}  \braket{a_j}{a_i} \braket{b_l}{b_k}
+\end{align*}
+where, $\{\ket{a_m}\}$ span the space of $A$ and $\{\ket{b_m}\}$ span the space of $B$, it is possible to conclude that $\langle \ket{\psi}, \rho_{AB} \ket{\psi} \rangle = \langle \ket{\psi}, \rho_{A} \ket{\psi} \rangle$. Thus, since $\langle \ket{\psi}, \rho_{AB} \ket{\psi} \rangle \geq 0$, the same applies to $\langle \ket{\psi}, \rho_{A} \ket{\psi} \rangle$. Therefore, $\rho_{A}$ is a positive semidefinite, and, consequently, a density operator.
 
- %p20 (in other words...)
+% Note that TrB can also de expressec as I_A \otimes Tr (\rho_AB), where I_A is the identity operator in the Hilbert space of A.
 
- 
-%\begin{equation*}
-  %\text{Tr}_{B}(\rho_{AB}) = \sum_{i} \bra{i} \rho_{AB} \ket{i} \otimes I_{B},
-%\end{equation*}
-%where $\{\ket{i}\}$ is an orthonormal basis for the Hilbert space of subsystem $B$.
+In certain situations it is more advantageous to consider the reduced density operator for subsystem $A$ defined as:
+\begin{equation*}
+  \rho_{A} = \text{Tr}_{B}(\rho_{AB}) = \sum_{\mu} \bra{\mu} \rho_{AB} \ket{\mu},
+\end{equation*}
+where $\{\ket{\mu}\}$, span the state space of $B$ and act only in the state space of $B$. 
+
 Similarly, the reduced density operator for subsystem $B$ is $\rho_{B} = \text{Tr}_{A}(\rho_{AB})$.
+
+
+ %\begin{align*}
+ %\text{Tr}_{B}(\ket{a}\bra{b} \otimes \ket{c}\bra{d}) & =\ket{i}\bra{j} \text{Tr}(\ket{k}\bra{l}) \\
+ %&= \ket{a}\bra{b} \sum_{\mu} \bra{\mu} \ket{c}\bra{d}  \ket{\mu} \\
+ %& = \sum_{\mu} \bra{\mu} \ket{a} \bra{b} \otimes \ket{c} \bra{d} \ket{\mu} 
+%\end{align*}
+%where $\ket{a}$ and $\ket{b}$ are any two vectors in the state space of $A$,  $\ket{c}$ and $\ket{d}$ are any two vectors in the state space of $B$, and $\{\ket{\mu}\}$, span the state space of $B$, act only in the state space of $B$. Therefore, by linearly, the partial trace of $\rho_{AB} = \sum_{ij} p_{ij} \ket{a_i} \bra{b_i}  \otimes \ket{c_j} \bra{d_j}  $ is
+
+
 
 
 %An $n$-qubit mixed state can be represented by a density operator $ \mathbb{C}^{2^{n}} \xrightarrow{} \mathbb{C}^{2^{n}}$, whose matrix representation is $\rho = \Sigma_{i} \hspace{2pt} p_{i} \vert \phi_{i} \rangle \langle \phi_{i} \vert$. A density operator encodes uncertainty about the current state of the quantum system at hand. For example, a mixed state with half probability of $\vert 0 \rangle$ and $\vert 1 \rangle$ can be represented by $\frac{\vert 0 \rangle \langle 0 \vert + \vert 1 \rangle \langle 1 \vert}{2}=I/2$, where $I$ is the identity matrix.  One usually denotes density matrices by the greek letters $\rho$, $\sigma$, and so forth. The set of density operators is denoted by $\mathcal{D}_{n} \subseteq \mathbb{C}^{ 2^{n \times n}}$.
