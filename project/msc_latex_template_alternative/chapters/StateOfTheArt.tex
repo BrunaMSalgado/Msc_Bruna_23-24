@@ -792,7 +792,21 @@ The \emph{characteristic polynomial} of a square operator $A$ is the polynomial 
 function depends only upon the operator A, and not on the specific matrix representation used for $A$. By the fundamental theorem of algebra, every polynomial has at least one complex root, so every operator $A$ has at least one eigenvalue, and a corresponding
 eigenvector. The solutions of the \emph{characteristic equation} $c(\lambda) = 0$ are the eigenvalues of the operator $A$. %The \emph{eigenspace} corresponding to an eigenvalue $\lambda$ is the set of vectors which have eigenvalue $\lambda$.
 
+A \emph{diagonal representation} of an operator $A$ on a vector space $V$ is an expression of the form $A = \sum_i \lambda_i v_i v_i^{\dag}$, where the vectors $v_i$ form an orthonormal set of eigenvectors for $A$, with corresponding eigenvalues $\lambda_i$, and \gls{dag} is the adjoint operation. 
+
 %classes de operadores
+
+\subsection{Spectral theorem}
+
+\begin{theorem}  \cite{nielsen2010quantum}
+  Every normal operator $A \in \mathbb{C}^{n \times n} $ can be expressed as a linear combination $\sum_{i} \lambda_{i}b_{i}b_{i}^{\dag}$ where the set $\{b_{i}, \ldots , b{n}\}$ is an orthonormal basis on $\mathbb{C}^{n}$.
+\end{theorem}
+
+Using this last result any function $f:\mathbb{C} \xrightarrow{} \mathbb{C}$, can be extended to normal matrices via,
+  \begin{equation} \label{eq:apply_f_diag} 
+    f(A) = \sum_{i} f(\lambda_{i})b_{i}b_{i}^{\dag}
+\end {equation}
+where $A = \sum_{i} \lambda_{i}b_{i}b_{i}^{\dag}$ is the spectral decomposition of $A$.
 
 \subsection{Important classes of operators/matrices}
 
@@ -801,15 +815,15 @@ Linear operators mapping a complex space $\mathbb{C}^{n}$ or $\mathbb{C}^{n\time
 The following classes of operators are of particular interest in quantum information theory.
 
 \begin{definition}
-  \emph{Normal operators.} A square operator $A$ is \emph{normal} if $AA^{\dagger} = A^{\dagger}A$, where \gls{dag} is the adjoint operation.
+  \emph{Normal operators.} A square operator $A$ is \emph{normal} if $AA^{\dagger} = A^{\dagger}A$.
 \end{definition}
 
-\begin{definition}
+\begin{definition} \label{def:hermitian}
   \emph{Hermitian operators.} A square operator $A$ is \emph{hermitian} if $A = A^{\dagger}$. Every Hermitian operator is a normal operator.
 \end {definition}
 
-\begin{definition}
-  \emph{Positive (semidefinite) operators}. A square operator $A:\mathbb{C}^{n} \rightarrow \mathbb{C^{n}}$ is \emph{positive}, denoted $A \geq 0$, if $\langle v, Av \rangle \geq 0$ for all $v \in \mathbb{C}^{n}$. 
+\begin{definition} \label{def:positive}
+  \emph{Positive (semidefinite) operators}. A square operator $A:\mathbb{C}^{n} \rightarrow \mathbb{C^{n}}$ is \emph{positive}, denoted $A \geq 0$, if $\langle v, Av \rangle \geq 0$ for all $v \in \mathbb{C}^{n}$. Positive matrices are hermitian, and consequently, by the spectral decomposition, have diagonal representation $A =  \sum_i \lambda_i v_i v_i^{\dag}$, with non-negative eigenvalues $\lambda_i$. \cite{nielsen2010quantum}.
 \end{definition}
 
 \begin{definition}
@@ -862,17 +876,7 @@ the operator $U$ defined by $U = \sum_{i} w_i^{\dag} v_i$ is unitary.
 \end{definition}
 
 
-\subsection{Spectral theorem}
 
-\begin{theorem}  \cite{nielsen2010quantum}
-  Every normal operator $A \in \mathbb{C}^{n \times n} $ can be expressed as a linear combination $\sum_{i} \lambda_{i}b_{i}b_{i}^{\dag}$ where the set $\{b_{i}, \ldots , b{n}\}$ is an orthonormal basis on $\mathbb{C}^{n}$.
-\end{theorem}
-
-Using this last result any function $f:\mathbb{C} \xrightarrow{} \mathbb{C}$, can be extended to normal matrices via,
-  \begin{equation} \label{eq:apply_f_diag} 
-    f(A) = \sum_{i} f(\lambda_{i})b_{i}b_{i}^{\dag}
-\end {equation}
-where $A = \sum_{i} \lambda_{i}b_{i}b_{i}^{\dag}$ is the spectral decomposition of $A$.
 
 \subsection {Tensor Products and Direct Sums of Complex spaces}
 
@@ -1082,7 +1086,7 @@ Until now the state vector formalism was used. However there is an alternative f
 %\subsubsection{General properties}
 
 
-A quantum state $\ket{\psi}$ is said to be a \emph{pure state} if it is completely known, \text{i.e.} if it can be written as a ket. In this case, the state can be written in the density operator formalism as $\rho = \ket{\psi}\bra{\psi}$. On the other hand, a state that is a probabilistic mixture of pure states is designated a \emph{mixed state}. A mixed state $\sum_i \alpha_i \ket{\psi_i}$ can be represented by a density operator $\rho=|\alpha_i|^{2}\ket{\psi_i}\bra{\psi_i}$. Note that $|\alpha_i|^{2}$ is the probability of the system being in state $\ket{\psi_i}$. 
+A quantum state $\ket{\psi}$ is said to be a \emph{pure state} if it is completely known, \text{i.e.} if it can be written as a ket. In this case, the state can be written in the density operator formalism as $\rho = \ket{\psi}\bra{\psi}$. On the other hand, a state that is a probabilistic mixture of pure states is designated a \emph{mixed state}. A mixed state $\sum_i \alpha_i \ket{\psi_i}$ can be represented by a density operator $\rho= \sum_i |\alpha_i|^{2}\ket{\psi_i}\bra{\psi_i}$. Note that $|\alpha_i|^{2}$ is the probability of the system being in state $\ket{\psi_i}$. 
 
 With respect to density operators, when applying a unitary operator $U$ to a state $\rho$, the resulting state is $U\rho U^{\dag}$. Regarding measurements, given a collection of measurement operators, $\{M_{m}\}$, the probability of obtaining outcome $m$ is $p(m)=\text{Tr}(M_{m}\rho M_{m}^{\dag})$, and after a measurement yielding outcome $m$, the state collapes to  $\frac{M_{m}^{\dag}\rho M_{m}}{\text{Tr}(M_{m}\rho M_{m}^{\dag})}$.
 
@@ -1174,34 +1178,36 @@ Thus far, only two types of quantum operations have been discussed: unitary oper
 %the evolution of a quantum system has been described by unitary operators. However, in practice, quantum systems are not isolated, and they interact with their environment. This interaction is described by a \emph{quantum channel}, which is a completely positive trace-preserving (CPTP) linear map. A quantum channel is a generalization of a unitary operator that allows for the description of the evolution of a quantum system under the influence of an environment.
 
 \begin{definition}
-  A \emph{super-operator} $E$ is a linear map between the space of operators on a Hilbert space $E: \mathbb{C}^{n\times n} \rightarrow  \mathbb{C}^{m\times m}$. 
+  A \emph{super-operator} $Q$ is a linear map between the space of operators on a Hilbert space $E: \mathbb{C}^{n\times n} \rightarrow  \mathbb{C}^{m\times m}$. 
 \end{definition}
 
 \begin{definition}
-  A super-operator $E$ is called \emph{positive} if it sends positive matrices to positive matrices, \textit{i.e.} $A \geq 0 \Rightarrow{} E A \geq 0$.
+  A super-operator $Q$ is called \emph{positive} if it sends positive matrices to positive matrices, \textit{i.e.} $A \geq 0 \Rightarrow{} Q A \geq 0$.
 \end{definition}
 
 \begin{definition}
-  A super-operator is said to be \emph{completely positive} if for all $k$, $E \otimes I_{\mathbb{C}^{k \times k}}: \mathbb{C}^{n \times n} \otimes \mathbb{C}^{k \times k} \rightarrow \mathbb{C}^{m \times m} \otimes \mathbb{C}^{k \times k}  $ is positive.
+  A super-operator is said to be \emph{completely positive} if for all $k$, $Q \otimes I_{\mathbb{C}^{k \times k}}: \mathbb{C}^{n \times n} \otimes \mathbb{C}^{k \times k} \rightarrow \mathbb{C}^{m \times m} \otimes \mathbb{C}^{k \times k}  $ is positive.
 \end{definition}
 
 \begin{definition}
-  A super-operator $E$ is called \emph{trace-preserving} if $\text{Tr} \hspace{2pt} (E A)= \text{Tr} (A)$.
+  A super-operator $Q$ is called \emph{trace-preserving} if $\text{Tr} \hspace{2pt} (Q A)= \text{Tr} (A)$.
 \end{definition}
 
 Since density matrices are positive, any physically allowed transformation must be represented by a positive operator. Moreover, this is not sufficient on its own: since one can always extend the space $\mathbb{C}^{n \times n}$ to  $\mathbb{C}^{n \times n} \otimes \mathbb{C}^{k \times k} $ by adjoining a new quantum system, any physically allowed transformation must be completely positive. Finally, since the trace of a density matrix is always $1$, any physically allowed transformation must be trace-preserving. A \acrfull{cptp} operator is traditionally called a \emph{quantum channel}.
 
 \subsubsection{Kraus operator sum representation}
+Assume that there is a quantum system $S$ of interest which is a subsystem of a larger system which also includes an environment $E$. These systems have a joint unitary evolution described by a unitary operator $U$ acting on the composite system, $U = \rho_{SE} \mapsto U \rho_{SE} U^{\dag}$. 
 
-
-
-
-
+Given that density matrices are positve operators, by (\autoref{def:positive}), the density operator of the environment $\rho_E$ initially can be written as 
+\begin{equation*}
+  \rho_E = \sum_{i} p_{i} \ket{i} \bra{i}
+\end{equation*}
+where $\ket{i}$ form an orthonormal basis for the state space of $E$ and $p_{i}$ are positive. 
 %For every super-operator $ E: \mathcal{D}(n) \xrightarrow{} \mathcal{D}(m)$, there exists a set of Kraus operators $\{\epsilon_{k}\}_{k}$ such that $ E(\rho)= \Sigma_{k} \hspace{2pt} \epsilon_{k}\hspace{2pt} \rho \hspace{2pt} \epsilon_{k}^{\dag}$  for any input $\rho \in  \mathcal{D}(n) $. Note that the set of Kraus operators is finite if the Hilbert space is finite-dimensional. The Kraus form of $E$ is written as $E = \Sigma_{k} \hspace{2pt} \epsilon_{k} \circ  \epsilon_{k}^{\dag}$.
 
 
 
-
+\subsubsection{Norms on quantum channels}
 In the quantum paradigm, a potential notion of approximate equivalence arises from the so-called diamond norm \cite{watrous2018theory}, which induces a metric (roughly, a distance function) on the space of quantum programs (seen semantically as completely positive trace-preserving super-operators). This norm relies on another norm known as the trace norm. The $\lVert  \rVert_{1}$ latter is defined by  $\lVert A \rVert_{1} = \text{Tr}\sqrt{A^{\dag}A}$  for matrices $A \in \mathbb{C}^{n\times n}$. The trace norm induces a metric on the set of density matrices which is defined by $d(\rho, \sigma) = \lVert \rho -\sigma\rVert_{1}$. The trace distance between two super-operators $E, E': \mathbb{C}^{n\times n} \xrightarrow{} \mathbb{C}^{m\times m }$,  denoted as $T(E,E')$, is defined as follows:
 \begin{equation} \label{eq:trace_distance}
   \begin{centering}
@@ -1344,7 +1350,7 @@ $
 
 
 
-\todo[inline,size=\normalsize]{Adicionar os operadores CPTP que vou usar} %\label{eq:Bloch\_vector})}
+\todo[inline,size=\normalsize]{Adicionar os operadores CPTP que vou usar, falta definit state space algures} %\label{eq:Bloch\_vector})}
 
 In the case of quantum lambda calculus, which combines classical and quantum features, it is natural to consider two distinct basic data types: a type $\textit{bit}$ of classical bits and a type $\textit{qbit}$ of quantum bits.  The interpretation of these types is defined as  $[\![\textit{bit}]\!]=\mathbb{C}\oplus\mathbb{C}$ and $[\![\textit{qbit}]\!]=\mathbb{C}^{2\cdot 2}$. The type $\mathbb{I}$ is interpreted as $[\![\mathbb{I}]\!]=\mathbb{C}$.
 
