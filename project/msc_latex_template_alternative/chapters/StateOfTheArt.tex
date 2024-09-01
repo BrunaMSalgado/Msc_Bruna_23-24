@@ -860,7 +860,7 @@ the operator $U$ defined by $U = \sum_{i} w_i^{\dag} v_i$ is unitary.
 \end{definition}
 
 \begin{definition}\label{eq:trace-norm-op}
-  The \emph{trace norm}, \gls{trace-norm}, is defined as:
+  The \emph{trace norm}, \gls{trace-norm}, of a matrix $A$ is defined as:
   \begin{equation*}
     \lVert A \rVert_{1} = \text{tr} \sqrt{A^{\dagger}A}
   \end{equation*}
@@ -937,6 +937,10 @@ The inner product in $V \oplus W$ is defined as follows
 
 The basic unit of information in quantum computation is a quantum bit or qubit \cite{perdrix2008quantum}. Just as classical bit, which can be in one of two states, 0 or 1, a qubit also has a state. Qubits are represented using \emph{Dirac notation},  where the ket symbol \gls{ket} is used to denote a quantum state $\psi$. The corresponding bra symbol \gls{bra} is used to denote the conjugate transpose of the state $\psi$. In this setting, the inner product of two states $\ket{\psi}$ and $\ket{\phi}$ is denoted \gls{innerproduct} and is the same as $\bra{\psi} \ket{\psi}$. %The outer product of two states $\ket{\psi}$ and $\ket{\phi}$ is denoted $\ket{\psi}\bra{\phi}$.
 
+\begin{definition} \cite{nielsen2010quantum}
+  Each isolated physical system is associated with a Hilbert space, known as the system's \emph{state space}. The system's state is fully characterized by a \emph{state vector}, which is a unit vector within this state space.
+\end{definition}
+
 \subsection{The 2-Dimensional Hilbert Space} \label{subsec:hilb2D}
  The state of a single qubit is described by a normalized vector of the 2-dimensional Hilbert space $\mathbb{C}^{2}$. States $\ket{0} = \begin{pmatrix} 1\\0 \end{pmatrix} $ and  $\ket{1} =   \begin{pmatrix} 0\\1 \end{pmatrix} $ are equivalent to the classical states 0 and 1, respectively.  These states, known as the \emph{computational basis} states, form an orthonormal basis for this vector space. Unlike classical bits, a qubit is not restricted to the states $\ket{0}$ and $\ket{1}$; it can exist in a linear combination of these states, commonly referred to as a \emph{superposition}. Consequently, a general qubit state can be written as
 \begin{equation} \label{eq:qubit}
@@ -1000,7 +1004,7 @@ In 1982, Alain Aspect conducted an experiment that confirmed the violation of th
 
 
 
-Sixteen years later, Nicolas Gisin \cite{tittel1998experimental} in Geneva and Anton Zeilinger \cite{pan1998experimental} in Innsbruck conducted similar experiments, demonstrating that entanglement persists over distances of several kilometers. More recently, Jian-Wei Pan \cite{yin2017satellite} extended these tests using entangled photon pairs sent from a satellite to verify Bell's inequalities over a distance of one thousand kilometers, further confirming that, regardless of the distance, entangled particles behave as an indivisible, inseparable whole. The connection between them is so profound that it appears to challenge the principles of relativity. This phenomenon is known as \emph{quantum nonlocality}.
+Sixteen years later, Nicolas Gisin \cite{tittel1998experimental} and Anton Zeilinger \cite{pan1998experimental} conducted similar experiments, demonstrating that entanglement persists over distances of several kilometers. More recently,  \cite{yin2017satellite} extended these tests using entangled photon pairs sent from a satellite to verify Bell's inequalities over a distance of one thousand kilometers, further confirming that, regardless of the distance, entangled particles behave as an indivisible, inseparable whole. The connection between them is so profound that it appears to challenge the principles of relativity. This phenomenon is known as \emph{quantum nonlocality}.
 
 \subsection{Measurements and unitary operators}
 
@@ -1203,30 +1207,50 @@ Given that density matrices are positve operators, by (\autoref{def:positive}), 
   \rho_E = \sum_{i} p_{i} \ket{i} \bra{i}
 \end{equation*}
 where $\ket{i}$ form an orthonormal basis for the state space of $E$ and $p_{i}$ are positive. 
+
+The state of the subsystem $S$ after the unitary evolution corresponds to the partial trace of the joint state over the environment,
+\begin{align*}
+  \rho_{S} = & \text{Tr}_{E}(U \rho_{SE} U^{\dag}) \\
+ = & \sum_{\mu} \bra{\mu} U \rho_{SE} U^{\dag} \ket{\mu}
+\end{align*}
+where $\{\ket{\mu}\}$ span the state space of $E$.
+
+ 
+Considering that initially both systems are completely decoupled, the initial state of the system can be written as $ \rho_{SE} = \rho_{S} \otimes \rho_{E}$. Thus,
+\begin{align*} 
+  \rho_{S} = & \sum_{\mu} \bra{\mu} U \rho_{S} \otimes \sum_{i} p_{i} \ket{i} \bra{i} U^{\dag} \ket{\mu} \\
+  = & \sum_{\mu i}  \sqrt{p_{i}} \bra{\mu} U \ket{i} \rho_{S} \sqrt{p_{i}} \bra{i} U^{\dag} \ket{\mu}  \\ 
+  = & \sum_{\mu i} \text{K}_{\mu i} \rho_{S} \text{K}_{\mu i}^{\dag}
+\end{align*}
+where the set of operators $\{\text{K}_{\mu i}\}$ is designated \emph{Kraus operators} and $\text{K}_{\mu i} = \sqrt{p_{i}} \bra{\mu} U \ket{i}$. Note that $\{\ket{\mu}\}$ and $\{\ket{i}\}$, act only in the state space of $E$. The equation $ \rho_{S} = \sum_{\mu i} \text{K}_{\mu i} \rho_{S} \text{K}_{\mu i}^{\dag} $ is called an \emph{\acrfull{osr}}.
+
+\acrshort{osr} can be thought of as a quantum channel that maps $\rho_{S}$ to $\sum_{\mu i} \text{K}_{\mu i} \rho_{S} \text{K}_{\mu i}^{\dag}$, given this map is \acrshort{cptp} \cite{lidar2019lecture}. The Kraus operators provide a way to represent the action of a quantum channel on a density operator.
+
 %For every super-operator $ E: \mathcal{D}(n) \xrightarrow{} \mathcal{D}(m)$, there exists a set of Kraus operators $\{\epsilon_{k}\}_{k}$ such that $ E(\rho)= \Sigma_{k} \hspace{2pt} \epsilon_{k}\hspace{2pt} \rho \hspace{2pt} \epsilon_{k}^{\dag}$  for any input $\rho \in  \mathcal{D}(n) $. Note that the set of Kraus operators is finite if the Hilbert space is finite-dimensional. The Kraus form of $E$ is written as $E = \Sigma_{k} \hspace{2pt} \epsilon_{k} \circ  \epsilon_{k}^{\dag}$.
 
 
 
 \subsubsection{Norms on quantum channels}
-In the quantum paradigm, a potential notion of approximate equivalence arises from the so-called diamond norm \cite{watrous2018theory}, which induces a metric (roughly, a distance function) on the space of quantum programs (seen semantically as completely positive trace-preserving super-operators). This norm relies on another norm known as the trace norm. The $\lVert  \rVert_{1}$ latter is defined by  $\lVert A \rVert_{1} = \text{Tr}\sqrt{A^{\dag}A}$  for matrices $A \in \mathbb{C}^{n\times n}$. The trace norm induces a metric on the set of density matrices which is defined by $d(\rho, \sigma) = \lVert \rho -\sigma\rVert_{1}$. The trace distance between two super-operators $E, E': \mathbb{C}^{n\times n} \xrightarrow{} \mathbb{C}^{m\times m }$,  denoted as $T(E,E')$, is defined as follows:
-\begin{equation} \label{eq:trace_distance}
-  \begin{centering}
-  \hspace{80pt}
-   T(E,E')= \max\{\lVert (E-E') A \rVert_{1} \hspace{2pt}  \vert \hspace{2pt}  \lVert A \rVert_{1}=1\} 
-   \end{centering}
+\begin{definition}
+  The norm of a super-operator $Q: \mathbb{C}^{n\times n} \xrightarrow{} \mathbb{C}^{m\times m }$ is defined:
+  \begin{equation} 
+    \lVert Q \rVert_{1} =  \max\{\lVert (Q) A \rVert_{1} \hspace{2pt}  \vert \hspace{2pt}  \lVert A \rVert_{1}=1\} 
   \end{equation}
-Unfortunately, this norm is not stable under tensoring \cite{watrous2018theory}, and consequently, the diamond norm, which is based on the trace norm, is used instead. The diamond norm between two super-operators $E, E': \mathbb{C}^{n\times n} \xrightarrow{} \mathbb{C}^{m\times m }$ is defined as:
-\begin{equation}  \label{eq:diamond_distance}
-\begin{centering}
-\hspace{110pt}
- \lVert E-E'\rVert_{\diamondsuit} =  T(E \otimes I_{n},E' \otimes I_{n}) 
- \end{centering}
-\end{equation}
+\end{definition}
+
+Unfortunately, this norm is not stable under tensoring , given that the inequation $ \lVert Q \otimes \text{I} \rVert_{1} \leq \lVert Q \rVert_{1}$ does not hold \cite{watrous2018theory}. As a result, the diamond norm, which is based on the trace norm, is used instead. 
+
+\begin{definition}
+  Given a super-operator $Q: \mathbb{C}^{n\times n} \xrightarrow{} \mathbb{C}^{m\times m }$, the diamond norm, \gls{diamond-norm} , is defined as:
+  \begin{equation}  \label{eq:diamond_distance}
+    \lVert Q \rVert_{\diamondsuit} =  \lVert Q \otimes I_{n} \rVert_{1}
+  \end{equation}
+\end{definition}
 where $I_{n} $ is the identity super-operator over the space $\mathbb{C}^{n\times n}$.
 
 
 
-Consider an operator  $ \text{r} : (\mathbb{C}^{n} \xrightarrow[]{} \mathbb{C}^{m}) \xrightarrow[]{} (\mathbb{C}^{n\times n}\xrightarrow[]{} \mathbb{C}^{m\times m})$ that sends an operator $T$ to the mapping $A \mapsto TAT^{\dag}$. The exact calculation of distances induced by $\lVert \rVert_{\diamondsuit}$ tends to be quite complicated, but a useful property for calculating the distance between quantum channels in the image of $r$ is provided \cite{watrous2018theory}:
+Consider an operator  $ \text{r} : (\mathbb{C}^{n} \xrightarrow[]{} \mathbb{C}^{m}) \xrightarrow[]{} (\mathbb{C}^{n\times n}\xrightarrow[]{} \mathbb{C}^{m\times m})$ that sends an operator $T$ to the mapping $A \mapsto TAT^{\dag}$. The exact calculation of distances induced by $\lVert \rVert_{\diamondsuit}$ tends to be quite complicated, but a useful property for calculating the distance between quantum channels in the image of $r$ is provided in \cite{watrous2018theory}.
 Consider two operators $T, S : n \xrightarrow{} m$. There exists a unit vector $v \in \mathbb{C}^{n}$ such that, 
 \begin{equation} \label{eq:norm_iso_r}
 \begin{centering}
@@ -1234,13 +1258,14 @@ Consider two operators $T, S : n \xrightarrow{} m$. There exists a unit vector $
  \end{centering}
 \end{equation}
 
+\subsection{Quantum circuits}
 
 
-
+\subsection{No-cloning theorem}
 The no-cloning theorem states that it is impossible to duplicate a quantum bit \cite{wootters1982single}. This principle is upheld by the type system outlined in \autoref{fig:typing_rules_linear}, which does not allow the repeated use of a variable (seen as a quantum resource).
 
-%subsection{Quantum circuits}
-%subsection{No-cloning theorem}
+
+
 
 \section{Quantum Lambda Calculus:Interpretation} \label{sec:Quantum Lambda Calculus:Interpretation}
 
