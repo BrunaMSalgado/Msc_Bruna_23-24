@@ -1,4 +1,4 @@
-This is XeTeX, Version 3.141592653-2.6-0.999995 (MiKTeX 24.1) (preloaded format=xelatex 2024.7.31)  1 SEP 2024 20:12
+This is XeTeX, Version 3.141592653-2.6-0.999995 (MiKTeX 24.1) (preloaded format=xelatex 2024.7.31)  2 SEP 2024 21:02
 entering extended mode
  restricted \write18 enabled.
  file:line:error style messages enabled.
@@ -2072,7 +2072,7 @@ File: images/CCBYNCND.png Graphic file (type bmp)
 ]
 
 LaTeX Font Warning: Font shape `U/stmry/b/n' undefined
-(Font)              using `U/stmry/m/n' instead on input line 61.
+(Font)              using `U/stmry/m/n' instead on input line 62.
 
 [12])
 \tf@toc=\write6
@@ -2345,52 +2345,51 @@ used with new abbreviation definitions. Use \glsxtrshort instead on input line
 
 [36]
 LaTeX Font Info:    Font shape `TU/SourceSansPro(0)/m/sc' will be
-(Font)              scaled to size 12.0pt on input line 1272.
-
-Overfull \hbox (189.77567pt too wide) in paragraph at lines 1366--1366
+(Font)              scaled to size 12.0pt on input line 1288.
+ [37]
+Overfull \hbox (189.77567pt too wide) in paragraph at lines 1382--1382
 []$[]$ 
  []
 
 
-Overfull \hbox (219.83922pt too wide) in paragraph at lines 1366--1366
+Overfull \hbox (219.83922pt too wide) in paragraph at lines 1382--1382
 []$[]$ 
  []
 
 
-Overfull \hbox (120.86447pt too wide) in paragraph at lines 1366--1366
+Overfull \hbox (120.86447pt too wide) in paragraph at lines 1382--1382
 []$[]$ 
  []
 
 
-Overfull \hbox (120.04332pt too wide) in paragraph at lines 1366--1366
+Overfull \hbox (120.04332pt too wide) in paragraph at lines 1382--1382
 []$[]$ 
  []
 
 
-Overfull \hbox (49.35582pt too wide) in paragraph at lines 1366--1366
+Overfull \hbox (49.35582pt too wide) in paragraph at lines 1382--1382
 []$[]$ 
  []
 
 
-Overfull \hbox (151.61688pt too wide) in paragraph at lines 1366--1366
+Overfull \hbox (151.61688pt too wide) in paragraph at lines 1382--1382
 []$[]$ 
  []
 
 
-Overfull \hbox (21.90512pt too wide) detected at line 1367
- $[][]$ 
- []
-
-[37]
-Overfull \hbox (99.33127pt too wide) detected at line 1434
+Overfull \hbox (21.90512pt too wide) detected at line 1383
  $[][]$ 
  []
 
 
 Underfull \vbox (badness 10000) has occurred while \output is active []
 
- [38])
-(chapters/Contribution.tex [39] [40
+ [38]
+Overfull \hbox (99.33127pt too wide) detected at line 1450
+ $[][]$ 
+ []
+
+) (chapters/Contribution.tex [39] [40
 
 ]
 Chapter 4.
@@ -2910,4 +2909,4 @@ Here is how much of TeX's memory you used:
  1348 hyphenation exceptions out of 8191
  121i,36n,121p,2535b,1395s stack positions out of 10000i,1000n,20000p,200000b,200000s
 
-Output written on dissertation.xdv (126 pages, 1956868 bytes).
+Output written on dissertation.xdv (126 pages, 1967464 bytes).

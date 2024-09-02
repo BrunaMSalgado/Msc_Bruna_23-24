@@ -1224,7 +1224,18 @@ Considering that initially both systems are completely decoupled, the initial st
 \end{align*}
 where the set of operators $\{\text{K}_{\mu i}\}$ is designated \emph{Kraus operators} and $\text{K}_{\mu i} = \sqrt{p_{i}} \bra{\mu} U \ket{i}$. Note that $\{\ket{\mu}\}$ and $\{\ket{i}\}$, act only in the state space of $E$. The equation $ \rho_{S} = \sum_{\mu i} \text{K}_{\mu i} \rho_{S} \text{K}_{\mu i}^{\dag} $ is called an \emph{\acrfull{osr}}.
 
-\acrshort{osr} can be thought of as a quantum channel that maps $\rho_{S}$ to $\sum_{\mu i} \text{K}_{\mu i} \rho_{S} \text{K}_{\mu i}^{\dag}$, given this map is \acrshort{cptp} \cite{lidar2019lecture}. The Kraus operators provide a way to represent the action of a quantum channel on a density operator.
+\acrshort{osr} can be thought of as a quantum channel that maps $\rho_{S}$ to $\sum_{\mu i} \text{K}_{\mu i} \rho_{S} \text{K}_{\mu i}^{\dag}$, given this map is \acrshort{cptp} \cite{lidar2019lecture}. 
+
+\subsubsection{Non-selective measurements}
+
+In the previously presented formalism to represent all the possible outcomes of a measurement, described by a set of operators $\{M_{m}\}$, on a state $\rho$, it would be necessary to write that state $\rho$ collapse to state $\rho_m=\frac{M_{m}^{\dag}\rho M_{m}}{\text{Tr}(M_{m}\rho M_{m}^{\dag})}$ with probability $p(m)=\text{Tr}(M_{m}\rho M_{m}^{\dag})$, for each possible outcome $m$. However, this is not appropriate for calculations. Consequently, to better represent the effect of a measurement on a quantum system \emph{non-selective measurements} are used. In this case, the possible outcomes are not explicitly stated, and the state after the measurement is as follows:
+\begin{equation*}
+  \rho = p_m \rho_m = M_m \rho M^{\dag}_m
+\end{equation*}
+This last equality corresponds to an Kraus operator sum representation, where the set of Kraus operators is $\{M_{m}\}$.
+
+% in the previouly presented formalism to express the resukt of a mesurment in a state we would have to say it is state x with probability px and y with probability py. However, this is not appropriate to perform calculations with. 
+
 
 %For every super-operator $ E: \mathcal{D}(n) \xrightarrow{} \mathcal{D}(m)$, there exists a set of Kraus operators $\{\epsilon_{k}\}_{k}$ such that $ E(\rho)= \Sigma_{k} \hspace{2pt} \epsilon_{k}\hspace{2pt} \rho \hspace{2pt} \epsilon_{k}^{\dag}$  for any input $\rho \in  \mathcal{D}(n) $. Note that the set of Kraus operators is finite if the Hilbert space is finite-dimensional. The Kraus form of $E$ is written as $E = \Sigma_{k} \hspace{2pt} \epsilon_{k} \circ  \epsilon_{k}^{\dag}$.
 
@@ -1259,7 +1270,14 @@ Consider two operators $T, S : n \xrightarrow{} m$. There exists a unit vector $
 \end{equation}
 
 \subsection{Quantum circuits}
+As quantum computation remains in its early stages of development, programming is primarily based on the use of \emph{quantum circuits}. A quantum circuit consists of wires and \emph{quantum gates}, which serve to transmit and manipulate quantum information. Each wire corresponds to a qubit, while the gates represent operations that can be applied to these qubits. 
 
+In this subsection the notation for the quantum gates used in this work will be introduced.
+
+%wires in parallel represent the tensor product of the qubits they represent.
+
+
+%falar das double lines dos condicionais
 
 \subsection{No-cloning theorem}
 The no-cloning theorem states that it is impossible to duplicate a quantum bit \cite{wootters1982single}. This principle is upheld by the type system outlined in \autoref{fig:typing_rules_linear}, which does not allow the repeated use of a variable (seen as a quantum resource).
