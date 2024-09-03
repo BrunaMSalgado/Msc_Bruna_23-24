@@ -1006,7 +1006,7 @@ In 1982, Alain Aspect conducted an experiment that confirmed the violation of th
 
 Sixteen years later, Nicolas Gisin \cite{tittel1998experimental} and Anton Zeilinger \cite{pan1998experimental} conducted similar experiments, demonstrating that entanglement persists over distances of several kilometers. More recently,  \cite{yin2017satellite} extended these tests using entangled photon pairs sent from a satellite to verify Bell's inequalities over a distance of one thousand kilometers, further confirming that, regardless of the distance, entangled particles behave as an indivisible, inseparable whole. The connection between them is so profound that it appears to challenge the principles of relativity. This phenomenon is known as \emph{quantum nonlocality}.
 
-\subsection{Measurements and unitary operators}
+\subsection{Unitary operators and Measurements}\label{subsec:unitary-operators&measurements}
 
 
 
@@ -1059,6 +1059,13 @@ There are also multi-qubit gates, such as the \emph{controlled-not} gate, denote
 \begin{equation*}
   \textit{CNOT} = \begin{pmatrix} 1 & 0 & 0 & 0\\ 0 & 1 & 0 & 0\\ 0 & 0 & 0 & 1\\ 0 & 0 & 1 & 0 \end{pmatrix}.
 \end{equation*}
+In this case, as the state of the first qubit determines if the $X$ gate is applied to the second qubit, the first qubit is called the \emph{control qubit} and the second qubit the \emph{target qubit}. 
+
+There is an ``extension" of the controlled-not gate, the controlled-$U$ gate, where $U$ is a unitary gate acting on a single qubit. This gate applies the gate $U$ to the target qubit if the control qubit is in state $\ket{1}$ and does nothing otherwise. It is defined as:
+\begin{align*}
+  &\textit{CU} (\ket{0} \otimes \ket{\psi}) = \ket{0} \otimes \ket{\psi}\\ 
+  &\textit{CU} (\ket{1} \otimes \ket{\psi}) = \ket{1} \otimes U\ket{\psi}.
+\end{align*}
 
 It should be noted that no completely closed systems exist in the universe. Nevertheless, for many systems, the approximation of a closed system is valid.
 % No fim nota sobre não haver sistemas completamente fechados no universo, mas que a aproximação de um sistema fechado é válida para muitos sistemas, p.82
@@ -1245,7 +1252,7 @@ This last equality corresponds to an Kraus operator sum representation, where th
 \begin{definition}
   The norm of a super-operator $Q: \mathbb{C}^{n\times n} \xrightarrow{} \mathbb{C}^{m\times m }$ is defined:
   \begin{equation} 
-    \lVert Q \rVert_{1} =  \max\{\lVert (Q) A \rVert_{1} \hspace{2pt}  \vert \hspace{2pt}  \lVert A \rVert_{1}=1\} 
+    \lVert Q \rVert_{1} =  \max\{\lVert Q \hspace{1pt} A \rVert_{1} \hspace{2pt}  \vert \hspace{2pt}  \lVert A \rVert_{1}=1\} 
   \end{equation}
 \end{definition}
 
@@ -1274,13 +1281,84 @@ As quantum computation remains in its early stages of development, programming i
 
 In this subsection the notation for the quantum gates used in this work will be introduced.
 
-%wires in parallel represent the tensor product of the qubits they represent.
+Wires in parallel represent the tensor product of the respective qubits. For instance, $\psi_0 \otimes \psi_1$ corresponds to
+\begin{figure} [H]
+  \centering
+  \begin{quantikz} [column sep=0.5cm, row sep=0.8cm] 
+      \lstick{$\ket{\psi_0}$} & \qw & \qw & \qw \\
+      \lstick{$\ket{\psi_1}$} & \qw & \qw & \qw 
+ \end{quantikz}
+\end{figure}
+
+The single bit gates presented in \autoref{subsec:unitary-operators&measurements} are represented as a box with the symbom of the gate inside. For example, the Hadamard gate is represented as
+\begin{figure} [H]
+  \centering
+  \begin{quantikz} [column sep=0.5cm, row sep=0.8cm] 
+       & \gate{H} & \qw
+ \end{quantikz}
+\end{figure}
+
+The controlled-not gate, which is a two-qubit gate, is represented as
+\begin{figure} [H]
+  \centering
+  \begin{quantikz} [column sep=0.5cm, row sep=0.8cm] 
+      & \ctrl{1} & \qw \\
+       & \targ{} & \qw 
+ \end{quantikz}
+\end{figure}
+
+Similarly, the controlled-$U$ gate, where $U$ is an unitary single-qubit gate, is represented as
+\begin{figure} [H]
+  \centering
+  \begin{quantikz} [column sep=0.5cm, row sep=0.8cm] 
+      & \ctrl{1} & \qw \\
+       & \gate{U} & \qw 
+ \end{quantikz}
+\end{figure}
+
+An arbitrary unitary operator acting on $n$ qubits is represented as a box acting on $n$ wires. For instance, the operator $U$ acting on two qubits is represented as
+\begin{figure} [H]
+  \centering
+  \begin{quantikz} [column sep=0.5cm, row sep=0.8cm] 
+      & \gate[wires=2]{U} & \qw \\
+      & &\qw
+ \end{quantikz}
+\end{figure}
+
+\acrshort{cptp} maps are depicted as boxes containing the corresponding map symbols. The relevant \acrshort{cptp} operators will be introduced in \autoref{subsec:noisy_teleportation}.
+
+The measurement operation is representes by a ``meter'' symbol. Given that output of a measurement is a classical bit, the wire representing the output of a measurement is a classical wire, representes by a double line. 
+
+\begin{figure} [H]
+  \centering
+  \begin{quantikz} [column sep=0.5cm, row sep=0.8cm] 
+      & \meter{} & \setwiretype{c}  
+ \end{quantikz}
+\end{figure}
 
 
-%falar das double lines dos condicionais
 
 \subsection{No-cloning theorem}
-The no-cloning theorem states that it is impossible to duplicate a quantum bit \cite{wootters1982single}. This principle is upheld by the type system outlined in \autoref{fig:typing_rules_linear}, which does not allow the repeated use of a variable (seen as a quantum resource).
+The no-cloning theorem states that it is impossible to duplicate an unknown quantum bit \cite{wootters1982single}. In this subsection, an elementary proof of this theorem will be presented.
+
+Suppose that there exists a unitary operator $U$ that recieves a qubit $\ket{\psi}$ and some standard pure state $\ket{s}$ as input and oututs the state $\ket{\psi} \otimes \ket{\psi}$. The action of $U$ can be written as
+\begin{equation*}
+  U \left(\ket{\psi} \otimes \ket{s} \right) = \ket{\psi} \otimes \ket{\psi}
+\end{equation*}
+Consider the aplication of $U$ to two pure states $\ket{\psi_0}$ and $\ket{\psi_1}$,
+\begin{align*}
+  U \left(\ket{\psi_0} \otimes \ket{s} \right) = \ket{\psi_0} \otimes \ket{\psi_0} \\
+  U \left(\ket{\psi_1} \otimes \ket{s} \right) = \ket{\psi_1} \otimes \ket{\psi_1}.
+\end{align*}
+
+Given that unitary operators preserve inner products, the following equality should hold:
+\begin{equation*}
+  \braket{\psi_0}{\psi_1} = ( \braket{\psi_0}{\psi_1})^{2}
+\end{equation*}
+
+This equation is only satisfied if $\braket{\psi_0}{\psi_1} = 0$ or $\braket{\psi_0}{\psi_1} = 1$. The first case implies that $\ket{\psi_0}$ and $\ket{\psi_1}$ are orthogonal, and the second case implies that they are in the same state. Therefore, it is only possible to clone orthogonal states. These are the states perfectly distinguishable by measurement and thus are equivalent to copying classical information. For instance, it is impossible to the clone qubits $\psi_0 = \ket{0}$ and $\psi_1 = \ket{-}$, since they are not orthogonal.
+
+It should be noted that this principle is upheld by the type system outlined in \autoref{fig:typing_rules_linear}, which does not allow the repeated use of a variable (seen as a quantum resource).
 
 
 
