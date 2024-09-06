@@ -1,4 +1,4 @@
-\chapter{Metric Lambda Calculus}
+\chapter{Metric Lambda Calculus} \label{ch:metriclambda}
 
 The Lambda Calculus, developed by Church and Curry in the 1930s, serves as a formal language capturing the key attribute of higher-order functional languages, treating functions as first-class citizens, allowing them to be passed as arguments \cite{barendregt1984lambda}.  Moreover, lambda calculus has been proven to be universal in the sense that any computable function can be represented as an expression within the language \cite{bernays1936alonzo} . Beyond its foundational aspects, this calculus incorporates extensions for modeling side effects, including probabilistic or non-deterministic behaviors and shared memory.  Higher-order functions form a pivotal abstraction in practical programming languages such as LISP, Scheme, ML, and Haskell.
 
@@ -1183,7 +1183,7 @@ Similarly, the reduced density operator for subsystem $B$ is $\rho_{B} = \text{T
 
 % bloch vector for mixed states
 
-\subsection{Quantum Channels}
+\subsection{Quantum Channels} \label{subsec:quantum_channels}
 
 % Fazer secção chamada quantum chanels e falar de super operadores e cptp maps, normas, kraus operators
 
@@ -1197,7 +1197,7 @@ Thus far, only two types of quantum operations have been discussed: unitary oper
   A \emph{super-operator} $Q$ is a linear map between the space of operators on a Hilbert space $E: \mathbb{C}^{n\times n} \rightarrow  \mathbb{C}^{m\times m}$. 
 \end{definition}
 
-\begin{definition}
+\begin{definition} \label{def:positive_superoperator}
   A super-operator $Q$ is called \emph{positive} if it sends positive matrices to positive matrices, \textit{i.e.} $A \geq 0 \Rightarrow{} Q A \geq 0$.
 \end{definition}
 
@@ -1242,7 +1242,7 @@ where the set of operators $\{\text{K}_{\mu i}\}$ is designated \emph{Kraus oper
 
 In the previously presented formalism to represent all the possible outcomes of a measurement, described by a set of operators $\{M_{m}\}$, on a state $\rho$, it would be necessary to write that state $\rho$ collapse to state $\rho_m=\frac{M_{m}^{\dag}\rho M_{m}}{\text{Tr}(M_{m}\rho M_{m}^{\dag})}$ with probability $p(m)=\text{Tr}(M_{m}\rho M_{m}^{\dag})$, for each possible outcome $m$. However, this is not appropriate for calculations. Consequently, to better represent the effect of a measurement on a quantum system \emph{non-selective measurements} are used. In this case, the possible outcomes are not explicitly stated, and the state after the measurement is as follows:
 \begin{equation*}
-  \rho = p_m \rho_m = M_m \rho M^{\dag}_m
+  \rho = \sum_{m} p_m \rho_m = \sum_{m} M_m \rho M^{\dag}_m
 \end{equation*}
 This last equality corresponds to an Kraus operator sum representation, where the set of Kraus operators is $\{M_{m}\}$.
 
@@ -1266,10 +1266,10 @@ Unfortunately, this norm is not stable under tensoring , given that the inequati
 \begin{definition}
   Given a super-operator $Q: \mathbb{C}^{n\times n} \xrightarrow{} \mathbb{C}^{m\times m }$, the diamond norm, \gls{diamond-norm} , is defined as:
   \begin{equation}  \label{eq:diamond_distance}
-    \lVert Q \rVert_{\diamondsuit} =  \lVert Q \otimes I_{n} \rVert_{1}
+    \lVert Q \rVert_{\diamondsuit} =  \lVert Q \otimes I_{n \times n} \rVert_{1}
   \end{equation}
 \end{definition}
-where $I_{n} $ is the identity super-operator over the space $\mathbb{C}^{n\times n}$.
+%where $I_{\mathbb{C}^{n \times n}} $ is the identity super-operator over the space $\mathbb{C}^{n\times n}$.
 
 For this norm it holds that for all super-operators $Q: \mathbb{C}^{n \times n}\rightarrow \mathbb{C}^{m \times m} $ and $S:\mathbb{C}^{m \times m} \rightarrow \mathbb{C}^{o \times o} $, if $Q$ is a quantum channel then $\lVert S  Q \rVert_{\diamondsuit} \leq \lVert S \rVert_{\diamondsuit}$ \cite{watrous2018theory}, and if $S$ is a quantum channel, then $\lVert S  Q \rVert_{\diamondsuit} \leq \lVert Q \rVert_{\diamondsuit}$. Moreover, the following inequalties hold for a super-operator $Q$: $ \lVert Q \rVert_{\diamondsuit} \geq \lVert Q \otimes I \rVert_{\diamondsuit} $ and $\lVert Q \rVert_{\diamondsuit} \geq \lVert I \otimes Q  \rVert_{\diamondsuit} $.
 
@@ -1370,6 +1370,7 @@ It should be noted that this principle is upheld by the type system outlined in 
 
 
 \section{Interpretation} \label{sec:Quantum Lambda Calculus:Interpretation}
+The syntax of the metric lambda calculus was presented in \Cref{ch:metriclambda}. Now, it is necessary to define the \emph{model} of the ``reality'' of interest, \textit{i.e.}, what the terms of the calculus mean within the ``reality'' considered. In the case of quantum lambda calculus, the model is based on vector spaces and quantum channels. 
 
 In order to define the interpretation of judgments $\Gamma \triangleright v: \mathbb{A}$, it is necessary to establish some notation first. Considering $v \in V$, $w \in W$, and $r \in R$  where $V, W, R$ represent vector spaces,  $\textsc{sw}_{V,W} : V\otimes W \xrightarrow{} W \otimes V$, denotes the swap operator, defined as $\textsc{sw}_{V,W}= v\otimes w \mapsto w \otimes v$;    $\rho_{V} : \mathbb{C} \otimes V \xrightarrow{} V $ is the left unitor defined as $\rho_{V}= 1 \otimes v \mapsto v $; $\lambda_{V} : V  \otimes \mathbb{C} \xrightarrow{} V $ is the right unitor defined as $\lambda_{V}= v \otimes 1 \mapsto v$; $\alpha_{V,W,R} : V  \otimes (W \otimes R) \xrightarrow{} (V  \otimes W) \otimes R$ is the left associator, defined as $\alpha_{V,W,R}= v \otimes (w \otimes r) \mapsto (v \otimes w) \otimes r $; and $!_{V}: V \xrightarrow{} \mathbb{C}$ is the trace operation applied to a vector, defined as  $!_{V}= v \xrightarrow{} \text{Tr} \hspace{1pt}v$. Moreover, for all operators $f: V \otimes W \xrightarrow{} R$, the operator $\overline{f} : V \xrightarrow{} (W \multimap R)$ denotes the corresponding curried version, defined as $\overline{f}(v) = w \mapsto  f(v,w)$. On the other hand, the application operator denoted $\text{app}: (V \multimap W) \otimes V \rightarrow W$, is defined as $f\hspace{1pt} v = w $, where $f: V \multimap W $.   The subscripts in these operators will be omitted unless ambiguity arises. 
 
@@ -1413,7 +1414,7 @@ $
 $\begin{array}{c}
       \\
     \hline
-  [\![ x:\mathbb{A} \triangleright x:\mathbb{A}]\!] = \text{id}_{[\![\mathbb{A} ]\!]}
+  [\![ x:\mathbb{A} \triangleright x:\mathbb{A}]\!] = \text{I}_{[\![\mathbb{A} ]\!]}
 \end{array}
 $ \end{minipage} \\
 &
@@ -1485,16 +1486,9 @@ $
 
 
 
+In the case of quantum lambda calculus, it is natural to consider a type $\textit{qbit}$ of quantum bits.  The interpretation of this type is defined as $[\![\textit{qbit}]\!]=\mathbb{C}^{2\times 2}$. The type $\mathbb{I}$ is interpreted as $[\![\mathbb{I}]\!]=\mathbb{C}$.
 
-
-
-
-\todo[inline,size=\normalsize]{Adicionar os operadores CPTP que vou usar, falta definit state space algures} %\label{eq:Bloch\_vector})}
-
-In the case of quantum lambda calculus, which combines classical and quantum features, it is natural to consider two distinct basic data types: a type $\textit{bit}$ of classical bits and a type $\textit{qbit}$ of quantum bits.  The interpretation of these types is defined as  $[\![\textit{bit}]\!]=\mathbb{C}\oplus\mathbb{C}$ and $[\![\textit{qbit}]\!]=\mathbb{C}^{2\cdot 2}$. The type $\mathbb{I}$ is interpreted as $[\![\mathbb{I}]\!]=\mathbb{C}$.
-
-The following operations are considered: $\textit{new} \hspace{2pt} 0  :\mathbb{I}  \multimap \textit{bit} $, $\textit{new} \hspace{2pt} 1  :\mathbb{I}  \multimap \textit{bit} $, $q : \textit{bit}  \multimap \textit{qbit}$, $\textit{meas}:\textit{qbit} \xrightarrow{} \textit{bit}$, and $\textit{U}:\textit{qbit},\ldots,\textit{qbit} \xrightarrow{} \textit{qbit}^{\otimes n}$. Their correspondent judgment interpretation is shown in \autoref{fig:interpret_ops}. 
-
+The following operations are considered: $\textit{new} \hspace{2pt} 0  :\mathbb{I}  \multimap \textit{qbit} $, $\textit{new} \hspace{2pt} 1  :\mathbb{I}  \multimap \textit{qbit} $, and $\textit{U}:\textit{qbit},\ldots,\textit{qbit} \xrightarrow{} \textit{qbit}^{\otimes n}$. Their correspondent judgment interpretation is shown in \autoref{fig:interpret_ops_0}. 
 
 
 \begin{figure}[H]
@@ -1506,35 +1500,32 @@ The following operations are considered: $\textit{new} \hspace{2pt} 0  :\mathbb{
   \begin{minipage}[t]{0.45\textwidth}
   $\begin{aligned}
     [\![\textit{new} \, 0 ]\!] : \hspace{2pt}& \mathbb{C} \multimap \llbracket \textit{bit} \rrbracket  \\
-  & 1 \mapsto (1,0)
+  & 1 \mapsto \big(\begin{smallmatrix}
+    1 & 0\\
+    0 & 0
+  \end{smallmatrix}\big) 
   \end{aligned}$
   \end{minipage}
-  \hspace{-30pt}
+  \hspace{100pt}
   \begin{minipage}[t]{0.45\textwidth}
   $\begin{aligned}
     [\![\textit{new} \, 1 ]\!] :\hspace{2pt}& \mathbb{C} \multimap \llbracket \textit{bit} \rrbracket  \\
-    & 1 \mapsto (0,1)
+    & 1 \mapsto \big(\begin{smallmatrix}
+      0 & 0\\
+      0 & 1
+    \end{smallmatrix}\big)
   \end{aligned}$
   \end{minipage} 
-  \hspace{-30pt}
-  \begin{minipage}[t]{0.45\textwidth}
-  $\begin{aligned}
-    [\![q ]\!] : \hspace{2pt}&\llbracket \textit{bit} \rrbracket \multimap \llbracket \textit{qbit} \rrbracket\\
-     &(a,b) \mapsto \big(\begin{smallmatrix}
-    a & 0\\
-    0 & b
-  \end{smallmatrix}\big) 
-  \end{aligned}$
-  \end{minipage} \\
+  \hspace{-30pt} \\
   &
   \hspace{0pt}
   \begin{minipage}[t]{0.45\textwidth}
   $\begin{aligned}
     [\![\textit{meas}]\!]:\hspace{2pt} & \llbracket \textit{qbit} \rrbracket \xrightarrow{} \llbracket \textit{bit} \rrbracket  \\
-    &\rho \mapsto ( \text{Tr} (M_{0} \rho M_{0}^{\dag}), \text{Tr} (M_{1} \rho M_{1}^{\dag})) 
+    &\rho \mapsto M_{0} \rho M_{0}^{\dag} +  M_{1} \rho M_{1}^{\dag} 
   \end{aligned}$
   \end{minipage} 
-  \hspace{118pt}
+  \hspace{100pt}
   \begin{minipage}[t]{0.45\textwidth}
   $\begin{aligned}
     [\![\textit{U} ]\!] : \hspace{2pt} & \llbracket \textit{qbit} \rrbracket^{\otimes n} \xrightarrow{} \llbracket 
@@ -1547,6 +1538,196 @@ The following operations are considered: $\textit{new} \hspace{2pt} 0  :\mathbb{
   \end{split}
   \end{equation*}
   \caption{Judgment interpretation of the operations in quantum lambda calculus.}
-  \label{fig:interpret_ops}
+  \label{fig:interpret_ops_0}
   \end{figure}
 
+% Flar sobre o que é cptp e o que não é
+
+The chosen model requires that all operations considered are \acrshort{cptp} maps. The identity $I$, the swap operator $\text{sw}$, the left and right unitors $\rho$ and $\lambda$, the left associator $\alpha$,the trace operation $!$, the split operator $\text{sp}$, the join operator $\text{jn}$, the exhange $\text{exch}$ and shuffle $\text{sh}$ are all  \acrshort{cptp} maps \cite{dahlqvist2022syntactic}. However, the operators curry $\overline{f}$ and application $\text{app}$ are not \acrshort{cptp} maps, which means that they are not allowed in this model. On the other hand the measurement operator $[\![\textit{meas}]\!]$ and the unitary operator $[\![\textit{U}]\!]$ are \acrshort{cptp} maps (\Cref{subsec:quantum_channels}, \cite[page 73]{watrous2018theory}). Finally, regarding the operators  $[\![\textit{new} \, 0 ]\!]$ and $[\![\textit{new} \, 1 ] \!]$ attending to \autoref{def:positive_superoperator} and \autoref{def:positive} given that both matrices $\big(\begin{smallmatrix} 1 & 0\\ 0 & 0 \end{smallmatrix}\big)$ and $\big(\begin{smallmatrix} 0 & 0\\ 0 & 1 \end{smallmatrix}\big)$ are hermitian and have eigenvalues $0$ and $1$, they are positive super-operators. 
+
+
+  \subsection{Example: Deutsch's Algorithm}
+
+  In 1985, David Deutsch presented an algorithm that determines whether a function $f$ is constant for a single-bit input (\textit{i.e.}, either equal to 1 for all $x$ or equal to 0 for all $x$) or balanced (\textit{i.e.}, equal to 1 for half of the values of $x$ and equal to 0 for the other half) \cite{deutsch1985quantum}. Classically, to determine which case holds requires running $f$ twice. Quantumly, it suffices to run f once. The Deutsch-Jozsa Algorithm is a simple example of a quantum algorithm that outperforms its classical counterpart. The algorithm is based on the concept of a quantum oracle, which is a black box that implements a unitary transformation $U_f$ such that $U_f \ket{x}\ket{y} = \ket{x}\ket{y \oplus f(x)}$, where $\oplus$ denotes addition modulo 2. The quantum circuit implementing Deutsch’s algorithm is presented in  \autoref{fig:Deutsch-Jozsa}.
+  
+  \begin{figure} [H]
+    \centering
+    \begin{quantikz} [column sep=0.2cm, row sep=0.5cm] 
+      \lstick{$\ket{0}$} &  \qw & \gate{H} & \gate[wires=2]{U_f} & \gate{H} & \meter{} \\
+      \lstick{$\ket{1}$} &  \qw & \gate{H} & \qw & \qw & \qw\\ 
+    \end{quantikz}
+    \caption{Quantum circuit implementing Deutsch’s algorithm}
+    \label{fig:Deutsch-Jozsa}
+  \end{figure}
+  
+  Using lambda calculus, the Deutsch-Jozsa Algorithm can be expressed as:
+  \begin{align*}
+  \text{Deutsch} :    \hspace{5pt} (\textit{qbit} \otimes \textit{qbit} \multimap \textit{qbit} \otimes \textit{qbit}) \multimap \textit{bit} \otimes \textit{qbit}
+  \end{align*}
+  \begin{align*}
+  \text{Deutsch} = & \hspace{3pt} U_{f}: \textit{qbit} \otimes \textit{qbit} \multimap \textit{qbit} \otimes \textit{qbit} \hspace{3pt} \triangleright \hspace{3pt}  \\ 
+  & \text{pm} \hspace{4pt}  U_{f}(H(q  \hspace{2pt}   ( \textit{new}   \hspace{2pt}  0 \hspace{1pt}(*))),(H(q  \hspace{2pt}   ( \textit{new}   \hspace{2pt}  1 \hspace{1pt}(*)))) \hspace{2pt}  \textit{to} \hspace{2pt} q_{1} \otimes q_{2} \hspace{1pt}. \hspace{3pt} \textit{meas} (H( q_{1})) \otimes q_{2}
+   \end{align*}
+  
+  Regarding the interpretation of the Deutsch Algorithm, one has that:
+  \begin{equation}
+  \begin{split}
+   & \ket{0} \otimes \ket{1} \\
+   \xmapsto{ H \otimes H} \quad & \frac{1}{\sqrt{2}}(\ket{0} + \ket{1}) \otimes \ket{-} \\
+  \end{split}
+  \end{equation}
+  
+  With respecto to  quantum oracle $U_f$, it is possible to show that:
+  \begin{equation}
+  \begin{split}
+    &\ket{x} \otimes \ket{-} =   \ket{x} \otimes \frac{1}{\sqrt{2}}(\ket{0} - \ket{1}) = \frac{1}{\sqrt{2}}(\ket{x} \otimes \ket{0} - \ket{x} \otimes \ket{1})) \\
+    \xmapsto{ \hspace{2pt} U_{f} \hspace{2pt}} \hspace{4pt} &  \frac{1}{\sqrt{2}}(\ket{x} \otimes \ket{0 \oplus f(x)} - \ket{x} \otimes \ket{1 \oplus f(x)}) &\hspace{50pt} \{\text{Defn. of } U_f\} \\
+    = \hspace{4pt}  & \frac{1}{\sqrt{2}}(\ket{x} \ket{f(x)} - \ket{x} \ket{\neg f(x)}) & \{0\oplus x=x, 1\oplus x = \neg x\} \\
+    = \hspace{4pt}  & \frac{1}{\sqrt{2}}(\ket{x} \otimes (\ket{f(x)}-\ket{\neg f(x)}))
+   \end{split}
+  \end{equation}
+  
+  Proceding by case distinction:
+  \begin{equation}
+    \frac{1}{\sqrt{2}}(\ket{x} \otimes (\ket{f(x)}-\ket{\neg f(x)}) = 
+    \begin{cases}
+      \ket{x} \otimes \frac{1}{\sqrt{2}}(\ket{0}-\ket{1}) &\text{ if } f(x)=0    \\
+      \ket{x} \otimes \frac{1}{\sqrt{2}}(\ket{1}-\ket{0}) &\text{ if }   f(x)= 1 
+    \end{cases}
+  \end{equation}
+  
+  And conclude that
+  \begin{equation}
+   \ket{x} \otimes  \frac{1}{\sqrt{2}}(\ket{f(x)}-\ket{\neg f(x)}) = (-1)^{f(x)} \ket{x} \otimes \frac{1}{\sqrt{2}}(\ket{0}-\ket{1}) = (-1)^{f(x)} \ket{x} \otimes \ket{-}
+  \end{equation}
+  
+  Returning to the interpretation of the Deutsch Algorithm, one has that:
+  \begin{equation}
+  \begin{split}
+    \quad & \frac{1}{\sqrt{2}}(\ket{0} + \ket{1}) \otimes \ket{-}\\
+    \xmapsto{ \hspace{5 pt} U_{f} \hspace{5pt}} \quad & \frac{1}{\sqrt{2}}( U_{f} \ket{0} \otimes \ket{-} + U_{f} \ket{1} \otimes \ket{-})) \\
+    = \quad & \frac{1}{\sqrt{2}}( (-1)^{f(0)} \ket{0} \otimes \ket{-} + (-1)^{f(1)} \ket{1} \otimes \ket{-}) \\
+    = \quad &
+    \begin{cases}
+      (\pm 1) \ket{+} \otimes \ket{-} &\text{ if }   f(0)= f(1) \\
+      (\pm 1) \ket{-} \otimes \ket{-} &\text{ if }   f(0) \neq f(1)
+    \end{cases} \\
+    \xmapsto{ \hspace{2pt} H \otimes I \hspace{2pt}} \quad & 
+    \begin{cases}
+      (\pm 1) \ket{0} \otimes \ket{-} &\text{ if }   f(0)= f(1) \\
+      (\pm 1) \ket{1} \otimes \ket{-} &\text{ if }   f(0) \neq f(1)\\
+    \end{cases} 
+  \end{split}
+  \end{equation}
+  
+  Attending to the interpretation of quantum states, concerning the measurement of the first qubit, one has that:
+  \begin{equation}
+  \begin{split}
+    \quad &
+    \begin{cases}
+      \ket{0} \bra{0} \otimes \ket{-} \bra{-}  &\text{ if }   f(0)= f(1) \\
+      \ket{1} \bra{1} \otimes \ket{-} \bra{-} &\text{ if }   f(0) \neq f(1)
+    \end{cases} \\
+    \xmapsto{ \hspace{2pt} \textit{meas} \otimes I \hspace{2pt}} \quad &
+    \begin{cases}
+     (\ket{-} \bra{-},0)  &\text{ if }   f(0)= f(1) \\
+     (0,\ket{-} \bra{-}) &\text{ if }   f(0) \neq f(1) 
+    \end{cases} \\
+  \end {split}
+  \end{equation} 
+  
+  
+  A measurement error is characterized by reading a "1" as a "0" or vice versa. Furthermore, it's important to note that measurement errors do not impact all states uniformly \cite{tannu2019mitigating}. Consequently, there is a discrepancy in how frequently the state "1" is incorrectly read as "0" compared to how often the state "0" is measured as "1" or vice versa.
+  
+  For example, considering there is a 10\% chance of measuring a "0" as a "1" and a 30\% chance of measuring a "1" as a "0", the resulting state after measurement is:
+  \begin{equation}
+  \begin{split}
+    \quad &
+    \begin{cases}
+     (0.9\ket{-} \bra{-},0.1\ket{-} \bra{-})  &\text{ if }   f(0)= f(1) \\
+     (0.3\ket{-} \bra{-}, 0.7\ket{-} \bra{-}) &\text{ if }   f(0) \neq f(1) 
+    \end{cases} \\
+  \end {split}
+  \end{equation}
+  
+  The norm of a tuple is defined as the sum of the norms of its components, \textit{i.e.}, for any operators $v$ and $w$:
+  \begin{equation} \label{eq:norm_tuple}
+    \lVert (v,w) \rVert = \lVert v \rVert + \lVert w \rVert
+  \end{equation}
+  
+  As a result, the discrepancy between the ideal and actual measurement results corresponds to:
+  \begin{equation}
+    \begin{split}
+      \quad &
+      \begin{cases}
+        \lVert(\ket{-} \bra{-},0) - (0.9\ket{-} \bra{-},0.1\ket{-} \bra{-})   \rVert_{\diamondsuit} &\text{ if }   f(0)= f(1) \\
+        \lVert (0,\ket{-} \bra{-}) - (0.3\ket{-} \bra{-}, 0.7\ket{-} \bra{-}) \rVert_{\diamondsuit} &\text{ if }   f(0) \neq f(1) 
+      \end{cases} \\
+      = \quad &
+      \begin{cases}
+        \lVert(0.1\ket{-} \bra{-},-0.1\ket{-} \bra{-})   \rVert_{\diamondsuit} &\text{ if }   f(0)= f(1) \\
+        \lVert (-0.3\ket{-} \bra{-}, 0.3\ket{-} \bra{-}) \rVert_{\diamondsuit} &\text{ if }   f(0) \neq f(1)
+      \end{cases} \\
+      = \quad &
+      \begin{cases}
+        \lVert 0.1\ket{-} \bra{-}\rVert_{\diamondsuit} + \lVert - 0.1 \ket{-} \bra{-}\rVert_{\diamondsuit} &\text{ if }   f(0)= f(1) \\
+        \lVert -0.3\ket{-} \bra{-}\rVert_{\diamondsuit} + \lVert - 0.3 \ket{-} \bra{-}\rVert_{\diamondsuit} &\text{ if }   f(0) \neq f(1)
+      \end{cases} \\
+    \end {split}
+    \end{equation}
+  
+    Employing \autoref{eq:Bloch_vector}, it is easily concluded that the Bloch vector of the state $\ket{-} \bra{-}$ is $(-1,0,0)$. Consequently,  the discrepancy between the ideal and actual measurement results is:
+    \begin{equation}
+      \begin{split}
+        & 
+        \begin{cases}
+          \lVert (-0.1,0,0) \rVert_{2} + \lVert (0.1,0,0) \ket{-} \bra{-}\rVert_{2} &\text{ if }   f(0)= f(1) \\
+          \lVert(0.3,0,0)\ket{-} \bra{-}\rVert_{2} + \lVert (-0.3,0,0) \ket{-} \bra{-}\rVert_{2} &\text{ if }   f(0) \neq f(1)
+        \end{cases} \\
+        = \quad &
+        \begin{cases}
+          \sqrt{(-0.1)^{2} + 0^{2} + 0^{2}} + \sqrt{(0.1)^{2} + 0^{2} + 0^{2}} &\text{ if }   f(0)= f(1) \\
+          \sqrt{(0.3)^{2} + 0^{2} + 0^{2}} + \sqrt{(-0.3)^{2} + 0^{2} + 0^{2}} &\text{ if }   f(0) \neq f(1)
+        \end{cases} \\
+        = \quad &
+        \begin{cases}
+          2 \sqrt{0.01} &\text{ if }   f(0)= f(1) \\
+          2 \sqrt{0.09}  &\text{ if }   f(0) \neq f(1)
+        \end{cases} \\
+      \end{split}
+  \end{equation}
+  
+  Via the metric deductive system in \autoref{fig:metric deductive system}, it is easily verified that for an arbitrary error $\epsilon$:
+  \begin{align*}
+     & \hspace{3pt} U_{f}: \textit{qbit} \otimes \textit{qbit} \multimap \textit{qbit} \otimes \textit{qbit} \hspace{3pt} \triangleright \hspace{3pt}  \\ 
+    & \text{pm} \hspace{4pt}  U_{f}(H(q  \hspace{2pt}   ( \textit{new}   \hspace{2pt}  0 \hspace{1pt}(*))),(H(q  \hspace{2pt}   ( \textit{new}   \hspace{2pt}  1 \hspace{1pt}(*)))) \hspace{2pt}  \textit{to} \hspace{2pt} q_{1} \otimes q_{2} \hspace{1pt}. \hspace{3pt} \textit{meas} (H( q_{1})) \otimes q_{2} \\
+    =_{\epsilon}& \\
+     & \hspace{3pt} U_{f}: \textit{qbit} \otimes \textit{qbit} \multimap \textit{qbit} \otimes \textit{qbit} \hspace{3pt} \triangleright \hspace{3pt}  \\ 
+    & \text{pm} \hspace{4pt}  U_{f}(H(q  \hspace{2pt}   ( \textit{new}   \hspace{2pt}  0 \hspace{1pt}(*))),(H(q  \hspace{2pt}   ( \textit{new}   \hspace{2pt}  1 \hspace{1pt}(*)))) \hspace{2pt}  \textit{to} \hspace{2pt} q_{1} \otimes q_{2} \hspace{1pt}. \hspace{3pt} \textit{meas}^{\epsilon} (H( q_{1})) \otimes q_{2}
+     \end{align*}
+  
+  Therefore, $\text{Deutsch}=_{\epsilon} \text{Deutsch}^{\epsilon}$, and consequently, for scenario under consideration, if $f$ is a constant function, $\text{Deutsch} ={2 \sqrt{0.01}} \text{Deutsch}^{0.1,0.3}$; otherwise, $\text{Deutsch} =_{2 \sqrt{0.09}} \text{Deutsch}^{0.1,0.3}$.
+
+  \subsection{Example: Proving an equivalence using the discard equation-in-context}
+
+This subsection aims to ilustrate how to prove that
+\begin{equation}
+  - \triangleright \text{disc} \hspace{1pt} (q \hspace{1pt} (\textit{new}\hspace{1pt}0 \hspace{1pt}(*))) \hspace{1pt} \text{to} *. \hspace{1pt} q \hspace{1pt} (\textit{new}\hspace{1pt}0 \hspace{1pt}(*)): \textit{qbit} = - \triangleright q \hspace{1pt} (\textit{new}\hspace{1pt}0 \hspace{1pt}(*)): \textit{qbit} 
+\end{equation}
+using the discard equation-in-context.
+
+The discard equation in  the bottom line  in \autoref{fig:equations-linear-lambda} states that all judgements $\Gamma \triangleright v : \mathbb{I}$ (with $\Gamma = x_{1} : \mathbb{A}_1, . . . , x_{n} : \mathbb{A}_n)$ carry no different information than that of just discarding all variables available in context $\Gamma$. Therefore considering an empty context $\Gamma = - $, the discard equation states that:
+\begin{equation}
+  - \triangleright v: \mathbb{I} = - \triangleright *: \mathbb{I}
+\end{equation}
+Given that as established in \autoref{fig:typing_rules_linear}, $ \text{dis}(v):  \mathbb{I}$, it follows that:
+\begin{equation}
+ - \triangleright \text{disc} \hspace{1pt} (q \hspace{1pt} (\textit{new}\hspace{1pt}0 \hspace{1pt}(*))) \hspace{1pt} \text{to} *. \hspace{1pt} q \hspace{1pt} (\textit{new}\hspace{1pt}0 \hspace{1pt}(*)): \textit{qbit} = - \triangleright * \hspace{1pt} \text{to} *. \hspace{1pt} q \hspace{1pt} (\textit{new}\hspace{1pt}0 \hspace{1pt}(*)): \textit{qbit}
+\end{equation}
+Subsequently applying the rule  $ \hspace{2pt} * \hspace{2pt} \text{to} \hspace{2pt}* . \hspace{2pt}v = v$ in \autoref{fig:equations-linear-lambda}, it holds that
+\begin{equation}
+  \begin{split}
+  - \triangleright \text{disc} \hspace{1pt} (q \hspace{1pt} (\textit{new}\hspace{1pt}0 \hspace{1pt}(*))) \hspace{1pt} \text{to} *. \hspace{1pt} q \hspace{1pt} (\textit{new}\hspace{1pt}0 \hspace{1pt}(*)): \textit{qbit} =& - \triangleright * \hspace{1pt} \text{to} *. \hspace{1pt} q \hspace{1pt} (\textit{new}\hspace{1pt}0 \hspace{1pt}(*)): \textit{qbit}\\
+  & = - \triangleright q \hspace{1pt} (\textit{new}\hspace{1pt}0 \hspace{1pt}(*)): \textit{qbit} 
+\end{split}
+\end{equation}
