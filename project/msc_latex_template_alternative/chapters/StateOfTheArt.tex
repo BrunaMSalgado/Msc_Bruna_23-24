@@ -1489,8 +1489,8 @@ $
 In the case of quantum lambda calculus, it is natural to consider a type $\textit{qbit}$ of quantum bits.  The interpretation of this type is defined as $[\![\textit{qbit}]\!]=\mathbb{C}^{2\times 2}$. The type $\mathbb{I}$ is interpreted as $[\![\mathbb{I}]\!]=\mathbb{C}$.
 
 The following operations are considered: $\textit{new} \hspace{2pt} 0  :\mathbb{I}  \multimap \textit{qbit} $, $\textit{new} \hspace{2pt} 1  :\mathbb{I}  \multimap \textit{qbit} $, and $\textit{U}:\textit{qbit},\ldots,\textit{qbit} \xrightarrow{} \textit{qbit}^{\otimes n}$. Their correspondent judgment interpretation is shown in \autoref{fig:interpret_ops_0}. 
-
-
+\todo[inline,size=\normalsize]{A interpretação de U não devia ser definida com virgulas no argumento? Also seta -> ou lolipop?} 
+\todo[inline,size=\normalsize]{Qd isto for respondido mudar tudo nos eexemplos de acordo com a resposta} 
 \begin{figure}[H]
   \begin{equation*}
   \begin{split}
@@ -1568,10 +1568,11 @@ Given that the squared absolute value of a real number is always non-negative, t
   
   Using lambda calculus, the Deutsch-Jozsa Algorithm can be expressed as:
   \begin{align*}
-  \text{Deutsch} = & \hspace{3pt} U_{f}: \textit{qbit} \otimes \textit{qbit} \multimap \textit{qbit} \otimes \textit{qbit} \hspace{3pt} \triangleright \hspace{3pt}  \\ 
-  & \text{pm} \hspace{4pt}  U_{f}(H(q  \hspace{2pt}   ( \textit{new}   \hspace{2pt}  0 \hspace{1pt}(*))),(H(q  \hspace{2pt}   ( \textit{new}   \hspace{2pt}  1 \hspace{1pt}(*)))) \hspace{2pt}  \textit{to} \hspace{2pt} q_{1} \otimes q_{2} \hspace{1pt}. \hspace{3pt} \textit{meas} (H( q_{1})) \otimes q_{2}
+  \text{Deutsch} = & - \triangleright \hspace{3pt} \text{pm} \hspace{4pt}  U_{f}(H  \hspace{2pt}   ( \textit{new}   \hspace{2pt}  0 \hspace{1pt}(*)),(H  \hspace{2pt}   ( \textit{new}   \hspace{2pt}  1 \hspace{1pt}(*))) \hspace{2pt}  \textit{to} \hspace{2pt} q_{1} \otimes q_{2} \hspace{1pt}. \hspace{3pt} \textit{meas} (H( q_{1})) \otimes q_{2} \\ 
    \end{align*}
 
+   
+\todo[inline,size=\normalsize]{Explicar interpretação mesmo com as regras de interpretação. Por tipo "The interpretation of this will be explored later but before it is easy to see that the following calculations are the core of it "} 
   
   Regarding the interpretation of the Deutsch Algorithm, one has that:
   \begin{equation}
@@ -1712,26 +1713,26 @@ Given that the squared absolute value of a real number is always non-negative, t
   
   Therefore, $\text{Deutsch}=_{\epsilon} \text{Deutsch}^{\epsilon}$, and consequently, for scenario under consideration, if $f$ is a constant function, $\text{Deutsch} ={2 \sqrt{0.01}} \text{Deutsch}^{0.1,0.3}$; otherwise, $\text{Deutsch} =_{2 \sqrt{0.09}} \text{Deutsch}^{0.1,0.3}$.
 
-  \subsection{Example: Proving an equivalence using the discard equation-in-context}
+  \subsection{Example: Proving an equivalence using equations-in-context}
 
-This subsection aims to ilustrate how to prove that
-\begin{equation}
-  - \triangleright \text{disc} \hspace{1pt} (q \hspace{1pt} (\textit{new}\hspace{1pt}0 \hspace{1pt}(*))) \hspace{1pt} \text{to} *. \hspace{1pt} q \hspace{1pt} (\textit{new}\hspace{1pt}0 \hspace{1pt}(*)): \textit{qbit} = - \triangleright q \hspace{1pt} (\textit{new}\hspace{1pt}0 \hspace{1pt}(*)): \textit{qbit} 
-\end{equation}
-using the discard equation-in-context.
+  This subsection aims to illustrate how to prove that creating a new qubit, discarding it, and then creating a new qubit is equivalent to just creating a new qubit, \textit{i.e.},
+  \begin{equation}
+    - \triangleright \text{disc} \hspace{3pt} \textit{new}\hspace{1pt}0 \hspace{1pt}(*) \hspace{1pt} \text{to} *. \hspace{3pt} \textit{new}\hspace{1pt}0 \hspace{1pt}(*): \textit{qbit} = - \triangleright \textit{new}\hspace{1pt}0 \hspace{1pt}(*): \textit{qbit} 
+  \end{equation}
+  syntactically, using equations-in-context.
 
-The discard equation in  the bottom line  in \autoref{fig:equations-linear-lambda} states that all judgements $\Gamma \triangleright v : \mathbb{I}$ (with $\Gamma = x_{1} : \mathbb{A}_1, . . . , x_{n} : \mathbb{A}_n)$ carry no different information than that of just discarding all variables available in context $\Gamma$. Therefore considering an empty context $\Gamma = - $, the discard equation states that:
+The discard equation in  the bottom line  in \autoref{fig:equations-linear-lambda} states that all judgements $\Gamma \triangleright v : \mathbb{I}$ (with $\Gamma = x_{1} : \mathbb{A}_1, . . . , x_{n} : \mathbb{A}_n)$ carry no different information than that of just discarding all variables available in context $\Gamma$. Therefore, 
 \begin{equation}
-  - \triangleright v: \mathbb{I} = - \triangleright *: \mathbb{I}
+  -  \triangleright * =  \text{disc} \hspace{3pt} \textit{new}\hspace{1pt}0 \hspace{1pt}(*) \hspace{1pt} \text{to} * : \mathbb{I}
 \end{equation}
-Given that as established in \autoref{fig:typing_rules_linear}, $ \text{dis}(v):  \mathbb{I}$, it follows that:
+Consequently,
 \begin{equation}
- - \triangleright \text{disc} \hspace{1pt} (q \hspace{1pt} (\textit{new}\hspace{1pt}0 \hspace{1pt}(*))) \hspace{1pt} \text{to} *. \hspace{1pt} q \hspace{1pt} (\textit{new}\hspace{1pt}0 \hspace{1pt}(*)): \textit{qbit} = - \triangleright * \hspace{1pt} \text{to} *. \hspace{1pt} q \hspace{1pt} (\textit{new}\hspace{1pt}0 \hspace{1pt}(*)): \textit{qbit}
+ - \triangleright \text{disc} \hspace{3pt} \textit{new}\hspace{1pt}0 \hspace{1pt}(*) \hspace{1pt} \text{to} *. \hspace{3pt} \textit{new}\hspace{1pt}0 \hspace{1pt}(*): \textit{qbit} = - \triangleright * \hspace{1pt} \text{to} *. \hspace{1pt} \textit{new}\hspace{1pt}0 \hspace{1pt}(*): \textit{qbit}
 \end{equation}
-Subsequently applying the rule  $ \hspace{2pt} * \hspace{2pt} \text{to} \hspace{2pt}* . \hspace{2pt}v = v$ in \autoref{fig:equations-linear-lambda}, it holds that
+Subsequently applying the rule  $\beta_{\mathbb{I}_{e}}$ in \autoref{fig:equations-linear-lambda}, it holds that
 \begin{equation}
   \begin{split}
-  - \triangleright \text{disc} \hspace{1pt} (q \hspace{1pt} (\textit{new}\hspace{1pt}0 \hspace{1pt}(*))) \hspace{1pt} \text{to} *. \hspace{1pt} q \hspace{1pt} (\textit{new}\hspace{1pt}0 \hspace{1pt}(*)): \textit{qbit} =& - \triangleright * \hspace{1pt} \text{to} *. \hspace{1pt} q \hspace{1pt} (\textit{new}\hspace{1pt}0 \hspace{1pt}(*)): \textit{qbit}\\
-  & = - \triangleright q \hspace{1pt} (\textit{new}\hspace{1pt}0 \hspace{1pt}(*)): \textit{qbit} 
+    - \triangleright \text{disc} \hspace{3pt} \textit{new}\hspace{1pt}0 \hspace{1pt}(*) \hspace{1pt} \text{to} *. \hspace{3pt} \textit{new}\hspace{1pt}0 \hspace{1pt}(*): \textit{qbit}  =& - \triangleright * \hspace{1pt} \text{to} *. \hspace{1pt}\textit{new}\hspace{1pt}0 \hspace{1pt}(*): \textit{qbit}\\
+  = &  - \triangleright \hspace{3pt} \textit{new}\hspace{1pt}0 \hspace{1pt}(*): \textit{qbit}
 \end{split}
 \end{equation}
