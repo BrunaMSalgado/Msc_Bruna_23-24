@@ -1201,7 +1201,7 @@ Thus far, only two types of quantum operations have been discussed: unitary oper
   A super-operator $Q$ is called \emph{positive} if it sends positive matrices to positive matrices, \textit{i.e.} $A \geq 0 \Rightarrow{} Q A \geq 0$.
 \end{definition}
 
-\begin{definition}
+\begin{definition} \label{def:completely_positive_superoperator}
   A super-operator is said to be \emph{completely positive} if for all $k$, $Q \otimes I_{\mathbb{C}^{k \times k}}: \mathbb{C}^{n \times n} \otimes \mathbb{C}^{k \times k} \rightarrow \mathbb{C}^{m \times m} \otimes \mathbb{C}^{k \times k}  $ is positive.
 \end{definition}
 
@@ -1403,7 +1403,7 @@ The interpretation of judgments is defined by induction over derivations accordi
 &
 \begin{minipage}[t]{0.3\textwidth}
 $\begin{array}{c}
-      [\![\Gamma_{i} \triangleright v_{i}: \mathbb{A}_{i} ]\!]=m_{i}  \quad f: \mathbb{A}_{1}, \ldots, \mathbb{A}_{n} \in \Sigma \quad E \in \text{Sf}(\Gamma_{1}; \ldots; \Gamma_{n})\\
+      [\![\Gamma_{i} \triangleright v_{i}: \mathbb{A}_{i} ]\!]=m_{i}  \quad f: \mathbb{A}_{1}, \ldots, \mathbb{A}_{n} \xrightarrow{} \mathbb{A} \in \Sigma \quad E \in \text{Sf}(\Gamma_{1}; \ldots; \Gamma_{n})\\
     \hline
   [\![E \triangleright f( v_{1},\ldots,v_{n}): \mathbb{A} ]\!] = [\![ f]\!] \cdot (m_{1}\otimes \ldots \otimes m_{n}) \cdot \text{sp}_{\Gamma_1;\ldots;\Gamma_n}\cdot \text{sh}_{E}
 \end{array}
@@ -1484,7 +1484,7 @@ $
 \label{fig:denotational_sem}
 \end{figure}
 
-
+\todo[inline,size=\normalsize]{Especie de esquemas para se perceber melhor a interpretação de p.e. a regra dos pm e a seguir meter a interpretação do exchange e sub} 
 
 In the case of quantum lambda calculus, it is natural to consider a type $\textit{qbit}$ of quantum bits.  The interpretation of this type is defined as $[\![\textit{qbit}]\!]=\mathbb{C}^{2\times 2}$. The type $\mathbb{I}$ is interpreted as $[\![\mathbb{I}]\!]=\mathbb{C}$.
 
@@ -1543,8 +1543,14 @@ The following operations are considered: $\textit{new} \hspace{2pt} 0  :\mathbb{
 
 % Flar sobre o que é cptp e o que não é
 
-The chosen model requires that all operations considered are \acrshort{cptp} maps. The identity $I$, the swap operator $\text{sw}$, the left and right unitors $\rho$ and $\lambda$, the left associator $\alpha$,the trace operation $!$, the split operator $\text{sp}$, the join operator $\text{jn}$, the exhange $\text{exch}$ and shuffle $\text{sh}$ are all  \acrshort{cptp} maps \cite{dahlqvist2022syntactic}. However, the operators curry $\overline{f}$ and application $\text{app}$ are not \acrshort{cptp} maps, which means that they are not allowed in this model. On the other hand the measurement operator $[\![\textit{meas}]\!]$ and the unitary operator $[\![\textit{U}]\!]$ are \acrshort{cptp} maps (\Cref{subsec:quantum_channels}, \cite[page 73]{watrous2018theory}). Finally, regarding the operators  $[\![\textit{new} \, 0 ]\!]$ and $[\![\textit{new} \, 1 ] \!]$ attending to \autoref{def:positive_superoperator} and \autoref{def:positive} given that both matrices $\big(\begin{smallmatrix} 1 & 0\\ 0 & 0 \end{smallmatrix}\big)$ and $\big(\begin{smallmatrix} 0 & 0\\ 0 & 1 \end{smallmatrix}\big)$ are hermitian and have eigenvalues $0$ and $1$, they are positive super-operators. 
-
+The chosen model requires that all operations considered are \acrshort{cptp} maps. The identity $I$, the swap operator $\text{sw}$, the left and right unitors $\rho$ and $\lambda$, the left associator $\alpha$,the trace operation $!$, the split operator $\text{sp}$, the join operator $\text{jn}$, the exhange $\text{exch}$ and shuffle $\text{sh}$ are all  \acrshort{cptp} maps \cite{dahlqvist2022syntactic}. However, the operators curry $\overline{f}$ and application $\text{app}$ are not \acrshort{cptp} maps, which means that they are not allowed in this model. On the other hand the measurement operator $[\![\textit{meas}]\!]$ and the unitary operator $[\![\textit{U}]\!]$ are \acrshort{cptp} maps (\Cref{subsec:quantum_channels}, \cite[page 73]{watrous2018theory}). Finally, regarding the operators  $[\![\textit{new} \,0 ]\!]$ and $[\![\textit{new} \, 1 ] \!]$, it is straightforward to verify that the operators $[![\textit{new} ,0]!]$ and $[![\textit{new} ,1]!]$ are trace-preserving. Given that matrices $\big(\begin{smallmatrix} 1 & 0\\ 0 & 0 \end{smallmatrix}\big)$ and $\big(\begin{smallmatrix} 0 & 0\\ 0 & 1 \end{smallmatrix}\big)$ correspond to the projectors $\ket{0}\bra{0}$ and $\ket{1}\bra{1}$, one has that 
+\begin{align*}
+  \hspace{-20pt} &  \bra{\psi} \ket{0}\bra{0} \otimes I^{\otimes n} \ket{\psi}  = \bra{\psi} \ket{0}\bra{0} \otimes \left(\frac{\ket{0}\bra{0} + \ket{1}\bra{1}}{2}\right)^{\otimes n} \ket{\psi} \\
+  \hspace{-20pt} =  &  \sum_{i} |\alpha_i|^{2} \braket{\psi_{0i}}{0}\braket{0}{\psi_{0i}} \bra{\psi_{1i}} \left(\frac{\ket{0}\bra{0} + \ket{1}\bra{1}}{2}\right)\ket{\psi_{1i}} \ldots \bra{\psi_{ni}} \left(\frac{\ket{0}\bra{0} + \ket{1}\bra{1}}{2}\right)\ket{\psi_{ni}}   \\
+  \hspace{-20pt} = & \sum_{i}  |\alpha_i|^{2} |\braket{0}{\psi_{0i}}|^{2} \left( \frac{ \left( |\braket{0}{\psi_{1i}}|^{2} +  |\braket{1}{\psi_{1i}}|^{2} \right) \ldots \left( |\braket{0}{\psi_{ni}}|^{2} +  |\braket{1}{\psi_{ni}}|^{2} \right) }{2}  \right)    \\
+\end{align*}
+Given that the squared absolute value of a real number is always non-negative, the expression above is always non-negative. Therefore, the operator $[\![\textit{new} \,0 ]\!]$ is positive. The same reasoning can be applied to the operator $[\![\textit{new} \,1 ]\!]$, which implies that it is also positive. Therefore, attending to \autoref{def:completely_positive_superoperator} and \autoref{def:positive_superoperator}, it is possible to conclude that both operators $[\![\textit{new} \,0 ]\!]$ and $[\![\textit{new} \, 1 ] \!]$ are completely positive super-operators. As a result, both operators are \acrshort{cptp} maps.
+%attending to \autoref{def:positive_superoperator} and \autoref{def:positive} given that both matrices $\big(\begin{smallmatrix} 1 & 0\\ 0 & 0 \end{smallmatrix}\big)$ and $\big(\begin{smallmatrix} 0 & 0\\ 0 & 1 \end{smallmatrix}\big)$ are hermitian and have eigenvalues $0$ and $1$, they are positive super-operators. 
 
   \subsection{Example: Deutsch's Algorithm}
 
@@ -1562,12 +1568,10 @@ The chosen model requires that all operations considered are \acrshort{cptp} map
   
   Using lambda calculus, the Deutsch-Jozsa Algorithm can be expressed as:
   \begin{align*}
-  \text{Deutsch} :    \hspace{5pt} (\textit{qbit} \otimes \textit{qbit} \multimap \textit{qbit} \otimes \textit{qbit}) \multimap \textit{bit} \otimes \textit{qbit}
-  \end{align*}
-  \begin{align*}
   \text{Deutsch} = & \hspace{3pt} U_{f}: \textit{qbit} \otimes \textit{qbit} \multimap \textit{qbit} \otimes \textit{qbit} \hspace{3pt} \triangleright \hspace{3pt}  \\ 
   & \text{pm} \hspace{4pt}  U_{f}(H(q  \hspace{2pt}   ( \textit{new}   \hspace{2pt}  0 \hspace{1pt}(*))),(H(q  \hspace{2pt}   ( \textit{new}   \hspace{2pt}  1 \hspace{1pt}(*)))) \hspace{2pt}  \textit{to} \hspace{2pt} q_{1} \otimes q_{2} \hspace{1pt}. \hspace{3pt} \textit{meas} (H( q_{1})) \otimes q_{2}
    \end{align*}
+
   
   Regarding the interpretation of the Deutsch Algorithm, one has that:
   \begin{equation}
