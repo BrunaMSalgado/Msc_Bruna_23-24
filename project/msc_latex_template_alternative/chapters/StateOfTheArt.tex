@@ -81,7 +81,7 @@ A \emph{typed} term is a pair consisting of a term and its corresponding type. T
  The empty context is denoted by $-$. Note that in the affine lambda calculus, different contexts do not share variables. For example, if $\Gamma = x:\mathbb{A},y:\mathbb{B}$ none of these variables can appear in any other context. 
 
 
-The concept of \emph{shuffling} is employed to construct a linear typing system that ensures the admissibility of the exchange rule and enables unambiguous reference to judgment's denotation $[\![ \Gamma \triangleright v: \mathbb{A} ]\!]$. An admissible rule is not explicitly included in the formal definition of type theory, but its validity can be proven by demonstrating that whenever the premises can be derived, it is possible to construct a derivation of its conclusion. Shuffling is defined as a permutation of typed variables in a sequence of contexts, $\Gamma_1, \ldots, \Gamma_n$, preserving the relative order of variables within each $\Gamma_i$ \cite{shulman2019practical}. For instance, if $\Gamma_1=x:\mathbb{A}, y:\mathbb{B}$ and $\Gamma_2=z:\mathbb{C}$, then $z:\mathbb{C}, x:\mathbb{A}, y:\mathbb{B}$ is a valid shuffle of $\Gamma_1, \Gamma_2$. On the other hand, $y:\mathbb{B}, x:\mathbb{A}, z:\mathbb{C}$ is not a shuffle because it alters the occurrence order of $x$ and $y$ in $\Gamma_1$. The set of shuffles in $\Gamma_1, \ldots, \Gamma_n$ is denoted as $\text{Sf} (\Gamma_1, \ldots, \Gamma_n)$. A valid typing derivation is constructed using the inductive rules shown in \autoref{fig:typing_rules_linear}.
+The concept of \emph{shuffling} is employed to construct a linear typing system that ensures the admissibility of the exchange rule and enables unambiguous reference to judgment's denotation $[\![ \Gamma \triangleright v: \mathbb{A} ]\!]$. An admissible rule is not explicitly included in the formal definition of type theory, but its validity can be proven by demonstrating that whenever the premises can be derived, it is possible to construct a derivation of its conclusion. Shuffling is defined as a permutation of typed variables in a sequence of contexts, $\Gamma_1, \ldots, \Gamma_n$, preserving the relative order of variables within each $\Gamma_i$ \cite{shulman2019practical}. For instance, if $\Gamma_1=x:\mathbb{A}, y:\mathbb{B}$ and $\Gamma_2=z:\mathbb{D}$, then $z:\mathbb{D}, x:\mathbb{A}, y:\mathbb{B}$ is a valid shuffle of $\Gamma_1, \Gamma_2$. On the other hand, $y:\mathbb{B}, x:\mathbb{A}, z:\mathbb{D}$ is not a shuffle because it alters the occurrence order of $x$ and $y$ in $\Gamma_1$. The set of shuffles in $\Gamma_1, \ldots, \Gamma_n$ is denoted as $\text{Sf} (\Gamma_1, \ldots, \Gamma_n)$. A valid typing derivation is constructed using the inductive rules shown in \autoref{fig:typing_rules_linear}.
 %An admissible rule is not explicitly included in the formal definition of the type theory, but it can be proven valid using the fact that whenever one has derivations of its premises it is possible to construct a derivation of its conclusion.
 %an admissible rule is one that is not asserted as part of the specification of the type theory, but for which we can prove after the fact that whenever we have derivations of its premises we can construct a derivation of its conclusion — usually by inductively traversing and modifying the given derivations of its premises. 
 \begin{figure} [H]
@@ -123,7 +123,7 @@ $
  \hspace{7pt}
 \begin{minipage}[t]{0.3\textwidth}
 $\begin{array}{c}
-     \Gamma \triangleright v: \mathbb{A} \otimes \mathbb{B} \quad  \Delta,x: \mathbb{A}, y: \mathbb{B}  \triangleright w: \mathbb{C}  \quad E \in \text{Sf}(\Gamma;\Delta)\\
+     \Gamma \triangleright v: \mathbb{A} \otimes \mathbb{B} \quad  \Delta,x: \mathbb{A}, y: \mathbb{B}  \triangleright w: \mathbb{D}  \quad E \in \text{Sf}(\Gamma;\Delta)\\
     \hline
    E\triangleright \text{pm } v \text{ to } x \otimes y. w :\mathbb{D}
 \end{array}
@@ -1372,7 +1372,9 @@ It should be noted that this principle is upheld by the type system outlined in 
 \section{Interpretation} \label{sec:Quantum Lambda Calculus:Interpretation}
 The syntax of the metric lambda calculus was presented in \Cref{ch:metriclambda}. Now, it is necessary to define the \emph{model} of the ``reality'' of interest, \textit{i.e.}, what the terms of the calculus mean within the ``reality'' considered. In the case of quantum lambda calculus, the model is based on vector spaces and quantum channels. 
 
-In order to define the interpretation of judgments $\Gamma \triangleright v: \mathbb{A}$, it is necessary to establish some notation first. Considering $v \in V$, $w \in W$, and $r \in R$  where $V, W, R$ represent vector spaces,  $\textsc{sw}_{V,W} : V\otimes W \xrightarrow{} W \otimes V$, denotes the swap operator, defined as $\textsc{sw}_{V,W}= v\otimes w \mapsto w \otimes v$;    $\rho_{V} : \mathbb{C} \otimes V \xrightarrow{} V $ is the left unitor defined as $\rho_{V}= 1 \otimes v \mapsto v $; $\lambda_{V} : V  \otimes \mathbb{C} \xrightarrow{} V $ is the right unitor defined as $\lambda_{V}= v \otimes 1 \mapsto v$; $\alpha_{V,W,R} : V  \otimes (W \otimes R) \xrightarrow{} (V  \otimes W) \otimes R$ is the left associator, defined as $\alpha_{V,W,R}= v \otimes (w \otimes r) \mapsto (v \otimes w) \otimes r $; and $!_{V}: V \xrightarrow{} \mathbb{C}$ is the trace operation applied to a vector, defined as  $!_{V}= v \xrightarrow{} \text{Tr} \hspace{1pt}v$. Moreover, for all operators $f: V \otimes W \xrightarrow{} R$, the operator $\overline{f} : V \xrightarrow{} (W \multimap R)$ denotes the corresponding curried version, defined as $\overline{f}(v) = w \mapsto  f(v,w)$. On the other hand, the application operator denoted $\text{app}: (V \multimap W) \otimes V \rightarrow W$, is defined as $f\hspace{1pt} v = w $, where $f: V \multimap W $.   The subscripts in these operators will be omitted unless ambiguity arises. 
+%and $!_{V}: V \xrightarrow{} \mathbb{C}$ is the trace operation applied to a vector, defined as  $!_{V}= v \xrightarrow{} \text{Tr} \hspace{1pt}v$.
+
+In order to define the interpretation of judgments $\Gamma \triangleright v: \mathbb{A}$, it is necessary to establish some notation first. Considering $v \in V$, $w \in W$, and $r \in R$  where $V, W, R$ represent vector spaces,  $\textsc{sw}_{V,W} : V\otimes W \xrightarrow{} W \otimes V$, denotes the swap operator, defined as $\textsc{sw}_{V,W}= v\otimes w \mapsto w \otimes v$;    $\lambda_{V} : \mathbb{C} \otimes V \xrightarrow{} V $ is the left unitor defined as $\lambda_{V}= 1 \otimes v \mapsto v $; $\rho_{V} : V  \otimes \mathbb{C} \xrightarrow{} V $ is the right unitor defined as $\rho_{V}= v \otimes 1 \mapsto v$; and $\alpha_{V,W,R} : V  \otimes (W \otimes R) \xrightarrow{} (V  \otimes W) \otimes R$ is the left associator, defined as $\alpha_{V,W,R}= v \otimes (w \otimes r) \mapsto (v \otimes w) \otimes r $. Moreover, for all operators $f: V \otimes W \xrightarrow{} R$, the operator $\overline{f} : V \xrightarrow{} (W \multimap R)$ denotes the corresponding curried version, defined as $\overline{f}(v) = w \mapsto  f(v,w)$. On the other hand, the application operator denoted $\text{app}: (V \multimap W) \otimes V \rightarrow W$, is defined as $f\hspace{1pt} v = w $, where $f: V \multimap W $.   The subscripts in these operators will be omitted unless ambiguity arises. 
 
 For all ground types $X \in G$  the interpretation of $[\![X]\!]$  is postulated as a vector space $V$. Types are interpreted inductively using the unit $\mathbb{I}$, the tensor $\otimes$, and the linear map $\multimap$. Given a non-empty context $\Gamma=\Gamma',x: \mathbb{A}$, its interpretation is defined by $[\![\Gamma',x: \mathbb{A}]\!] = [\![\Gamma']\!] \otimes [\![\mathbb{A}]\!]$ if $\Gamma'$ is non-empty and $[\![\Gamma',x: \mathbb{A}]\!] = [\![\mathbb{A}]\!]$ otherwise. The empty context $-$ is interpreted as $[\![-]\!] = \mathbb{I}$. Given $X_{1}, . . . ,X_{n} \in V$, the $n$-tensor $(\ldots (X_1 \otimes X_2) \otimes \ldots ) \otimes X_{n}$ is denoted as $X_1 \otimes \ldots \otimes X_{n}$, and similarly for operators. 
 
@@ -1393,6 +1395,8 @@ On the other hand, $\text{jn}_{\Gamma_1;\ldots;\Gamma_n}$ denotes the inverse of
 
 The shuffling operator $\text{sh}_{E}: [\![E]\!] \xrightarrow{} [\![\Gamma_1, \ldots, \Gamma_n ]\!]$ is defined as a suitable composition of exchange operators.
 
+The type $\mathbb{I}$ is interpreted as $[\![\mathbb{I}]\!]=\mathbb{C}$.
+
 For every operation symbol $f: \mathbb{A}_{1}, \ldots, \mathbb{A}_{n} \xrightarrow{} \mathbb{A}$ it is assumed the existence of an operator $[\![f]\!]: [\![\mathbb{A}_{1}]\!] \otimes \ldots \otimes [\![\mathbb{A}_{n}]\!] \xrightarrow{}  [\![\mathbb{A}]\!] $.
 The interpretation of judgments is defined by induction over derivations according to the rules in \autoref{fig:denotational_sem} \cite{dahlqvist2022syntactic}.
 \vspace{-7pt}
@@ -1409,7 +1413,7 @@ $\begin{array}{c}
 \end{array}
 $
 \end{minipage}
-\hspace{204pt}
+\hspace{208pt}
 \begin{minipage}[t]{0.3\textwidth}
 $\begin{array}{c}
       \\
@@ -1422,16 +1426,16 @@ $ \end{minipage} \\
 $\begin{array}{c}
      \\  
     \hline
-   [\![ - \triangleright *: \mathbb{I}]\!] = \text{id}_{[\![\mathbb{I} ]\!]}
+   [\![ - \triangleright *: \mathbb{I}]\!] = \text{I}_{[\![\mathbb{I} ]\!]}
 \end{array}
 $
 \end{minipage}
-\hspace{-31pt}
+\hspace{-34pt}
 \begin{minipage}[t]{0.3\textwidth}
 $\begin{array}{c}
-      [\![\Gamma \triangleright v: \mathbb{A} \otimes \mathbb{B} ]\!]=m  \quad [\![\Delta,x: \mathbb{A}, y: \mathbb{B}  \triangleright w: \mathbb{C} ]\!] =n  \quad E \in \text{Sf}(\Gamma;\Delta)\\
+      [\![\Gamma \triangleright v: \mathbb{A} \otimes \mathbb{B} ]\!]=m  \quad [\![\Delta,x: \mathbb{A}, y: \mathbb{B}  \triangleright w: \mathbb{D} ]\!] =n  \quad E \in \text{Sf}(\Gamma;\Delta)\\
     \hline
-  [\![ E\triangleright \text{pm } v \text{ to } x \otimes y. w :\mathbb{C}]\!] = n \cdot \text{jn}_{\Delta;\mathbb{A};\mathbb{B}} \cdot \alpha \cdot \text{sw}\cdot (m \otimes \text{id}) \cdot \text{sp}_{\Gamma;\Delta} \cdot \text{sh}_{E}
+  [\![ E\triangleright \text{pm } v \text{ to } x \otimes y. w :\mathbb{D}]\!] = n \cdot \text{jn}_{\Delta;\mathbb{A};\mathbb{B}} \cdot \alpha \cdot \text{sw}\cdot (m \otimes \text{id}) \cdot \text{sp}_{\Gamma;\Delta} \cdot \text{sh}_{E}
 \end{array}
 $ \end{minipage} \\
 &
@@ -1465,7 +1469,7 @@ $
 $\begin{array}{c} 
      [\![\Gamma \triangleright v: \mathbb{A} \multimap \mathbb{B} ]\!] = m \quad [\![  \Delta \triangleright w: \mathbb{A} ]\!] =n \quad E \in S\hspace{-3pt}f(\Gamma;\Delta)  \\
     \hline
-  [\![ E \triangleright v w: \mathbb{A} ]\!] = \text{app} \cdot (m \otimes n) \cdot \text{sp}_{\Gamma;\Delta} \cdot \text{sh}_{E}
+  [\![ E \triangleright v w: \mathbb{B} ]\!] = \text{app} \cdot (m \otimes n) \cdot \text{sp}_{\Gamma;\Delta} \cdot \text{sh}_{E}
 \end{array}
 $ \end{minipage}
 \hspace{190 pt} %[\![ ]\!]
@@ -1473,7 +1477,7 @@ $ \end{minipage}
 $\begin{array}{c}
      [\![\Gamma \triangleright v: \mathbb{A}]\!]  = f \\
     \hline
-   [\![ \Gamma \triangleright \text{dis}(v):  \mathbb{I} ]\!] = !_{[\![ \mathbb{A} ]\!]} \cdot f
+   [\![ \Gamma \triangleright \text{dis}(v):  \mathbb{I} ]\!] = \text{Tr} \cdot f
 \end{array}
 $
 \end{minipage}
@@ -1481,15 +1485,40 @@ $
 \end{split}
 \end{equation*}
 \caption{Judgment interpretation}
-\label{fig:denotational_sem}
+\label{fig:denotational_sem} 
 \end{figure}
 
-\todo[inline,size=\normalsize]{Especie de esquemas para se perceber melhor a interpretação de p.e. a regra dos pm e a seguir meter a interpretação do exchange e sub} 
+The following diagrams are useful to better understand the interpretation of judgements given in \autoref{fig:denotational_sem}.
+\begin{align*}
+  & \llbracket \text{ax} \rrbracket : & [\![E]\!] & \xrightarrow{\hspace{2pt}\text{sh}_{E}\hspace{2pt}}   [\![\Gamma_1,\ldots,\Gamma_n ]\!]   \xrightarrow{\hspace{1pt}\text{sp}_{\Gamma;\Delta}\hspace{1pt}}  \llbracket \Gamma_1 \rrbracket \otimes \ldots \otimes \llbracket \Gamma_n \rrbracket  \\
+  & & & \xrightarrow{\hspace{2pt}m_1 \otimes \ldots \otimes m_n \hspace{2pt}} \llbracket \mathbb{A}_1 \rrbracket \otimes \ldots \otimes \llbracket \mathbb{A}_n \rrbracket \xrightarrow{\hspace{2pt}\llbracket f \rrbracket \hspace{2pt}} \llbracket \mathbb{A} \rrbracket \\
+  & \llbracket \text{hyp} \rrbracket : & \llbracket \mathbb{A} \rrbracket & \xrightarrow{\hspace{2pt}I_{\llbracket \mathbb{A}\rrbracket}\hspace{2pt}} \llbracket \mathbb{A}\rrbracket \\
+  & \llbracket \mathbb{I}_i \rrbracket :&  \llbracket \mathbb{I} \rrbracket & \xrightarrow{\hspace{2pt}I_{\llbracket \mathbb{I}\rrbracket}\hspace{2pt}}  \llbracket \mathbb{I} \rrbracket\\
+  &\llbracket \otimes_e \rrbracket : & [\![E]\!] & \xrightarrow{\hspace{2pt}\text{sh}_{E}\hspace{2pt}}   [\![\Gamma,\Delta ]\!]   \xrightarrow{\hspace{1pt}\text{sp}_{\Gamma;\Delta}\hspace{1pt}}  [\![\Gamma ]\!] \otimes [\![\Delta ]\!] \xrightarrow{ m \hspace{1pt} \otimes \hspace{1pt} \text{id}} ([\![\mathbb{A} ]\!] \otimes [\![\mathbb{B} ]\!]) \otimes [\![\Delta ]\!]   \\
+     & &  &\xrightarrow{\hspace{2pt}\text{sw}\hspace{2pt}}  [\![\Delta ]\!] \otimes ([\![\mathbb{A} ]\!] \otimes [\![\mathbb{B} ]\!]) \xrightarrow{\hspace{3pt}\alpha\hspace{3pt}}  ([\![\Delta ]\!] \otimes [\![\mathbb{A} ]\!]) \otimes [\![\mathbb{B} ]\!] \xrightarrow{\hspace{2pt}\text{jn}_{\Delta; \mathbb{A}; \mathbb{B} }\hspace{2pt}}  \llbracket \Delta, \mathbb{A},\mathbb{B}  \rrbracket  \\
+     &&& \xrightarrow{\hspace{3pt}n\hspace{3pt}} \llbracket \mathbb{D} \rrbracket \\
+     &\llbracket \otimes_i \rrbracket : & [\![E]\!] & \xrightarrow{\hspace{2pt}\text{sh}_{E}\hspace{2pt}}   [\![\Gamma,\Delta ]\!]   \xrightarrow{\hspace{1pt}\text{sp}_{\Gamma;\Delta}\hspace{1pt}}  [\![\Gamma ]\!] \otimes [\![\Delta ]\!]  \xrightarrow{\hspace{2pt} m \hspace{1pt} \otimes \hspace{1pt} n \hspace{2pt}} [\![\mathbb{A} ]\!] \otimes [\![\mathbb{B} ]\!] \\
+     &\llbracket \mathbb{I}_e \rrbracket :  & [\![E]\!] & \xrightarrow{\hspace{2pt}\text{sh}_{E}\hspace{2pt}}   [\![\Gamma,\Delta ]\!]   \xrightarrow{\hspace{1pt}\text{sp}_{\Gamma;\Delta}\hspace{1pt}}  [\![\Gamma ]\!] \otimes [\![\Delta ]\!] \xrightarrow{ m \hspace{1pt} \otimes \hspace{1pt} \text{id}} [\![\mathbb{I} ]\!]\otimes [\![\Delta ]\!] \xrightarrow{\hspace{2pt} \lambda \hspace{3pt}} [\![\Delta ]\!]  \xrightarrow{\hspace{2pt} n \hspace{3pt}}  \llbracket \mathbb{A} \rrbracket    \\
+      &\llbracket \multimap_i \rrbracket : & \llbracket \Gamma \rrbracket \otimes \llbracket \mathbb{A} \rrbracket & \xrightarrow{\hspace{2pt} \overline{m \cdot \text{jn}_{\Gamma;\mathbb{A}}}  \hspace{2pt}}  \llbracket \mathbb{A} \rrbracket \multimap \llbracket \mathbb{B} \rrbracket  \hspace{60pt} (\llbracket \Gamma \rrbracket \otimes \llbracket \mathbb{A} \rrbracket  \xrightarrow{\hspace{2pt} \text{jn}_{\Gamma; \mathbb{A}} \hspace{2pt}} \llbracket \Gamma, \mathbb{A} \rrbracket  \xrightarrow{\hspace{2pt} m \hspace{2pt}}  \llbracket \mathbb{B} \rrbracket )\\
+      &\llbracket \multimap_e \rrbracket : & [\![E]\!] & \xrightarrow{\hspace{2pt}\text{sh}_{E}\hspace{2pt}}   [\![\Gamma,\Delta ]\!]   \xrightarrow{\hspace{1pt}\text{sp}_{\Gamma;\Delta}\hspace{1pt}}  [\![\Gamma ]\!] \otimes [\![\Delta ]\!]  \xrightarrow{\hspace{2pt} m \hspace{1pt} \otimes \hspace{1pt} n \hspace{2pt}} \llbracket \mathbb{A} \rrbracket \multimap \llbracket \mathbb{B} \rrbracket \otimes \llbracket \mathbb{A} \rrbracket  \xrightarrow{\hspace{2pt} \text{app} \hspace{2pt}} \llbracket \mathbb{B} \rrbracket \\
+      &\llbracket \text{dis} \rrbracket : & [\![\Gamma]\!] & \xrightarrow{\hspace{2pt} f \hspace{2pt}} \llbracket \mathbb{A} \rrbracket \xrightarrow{\hspace{2pt} \text{Tr} \hspace{2pt}} \llbracket \mathbb{I} \rrbracket
+      %& \llbracket \Gamma \rrbracket \otimes \llbracket \mathbb{A} \rrbracket  \xrightarrow{\hspace{2pt} \text{jn}_{\Gamma; \mathbb{A}} \hspace{2pt}} \llbracket \Gamma, \mathbb{A} \rrbracket  \xrightarrow{\hspace{2pt} m \hspace{2pt}}  \llbracket \mathbb{B} \rrbracket 
+\end{align*} 
 
-In the case of quantum lambda calculus, it is natural to consider a type $\textit{qbit}$ of quantum bits.  The interpretation of this type is defined as $[\![\textit{qbit}]\!]=\mathbb{C}^{2\times 2}$. The type $\mathbb{I}$ is interpreted as $[\![\mathbb{I}]\!]=\mathbb{C}$.
+
+Regarding the interpretation of the exhange and substitution properties, for any judgements $\Gamma, x: \mathbb{A}, y: \mathbb{B}, \Delta \triangleright v : \mathbb{D}$, $\Gamma, x: \mathbb{A} \triangleright v: \mathbb{B}$, and $\Delta \triangleright w: \mathbb{A}$, the following equations hold:
+\begin{equation}
+\begin{split}
+  \llbracket \Gamma, x: \mathbb{A}, y: \mathbb{B}, \Delta \triangleright v : \mathbb{D} \rrbracket & = \llbracket \Gamma,  y: \mathbb{B}, x: \mathbb{A}, \Delta \triangleright v : \mathbb{D} \rrbracket \cdot \text{exch}_{\Gamma, \underline{x: \mathbb{A}, y: \mathbb{B}}, \Delta}\\
+  \llbracket \Gamma,\Delta \triangleright v[w/x]: \mathbb{B} \rrbracket & = \llbracket \Gamma, x: \mathbb{A} \triangleright v: \mathbb{B} \rrbracket \cdot \text{jn}_{\Gamma;\mathbb{A}} \cdot (\text{I} \otimes \llbracket \Delta \triangleright w: \mathbb{A} \rrbracket ) \cdot \text{sp}_{\Gamma; \Delta} 
+\end{split}
+\end{equation}
+
+
+In the case of quantum lambda calculus, it is natural to consider a type $\textit{qbit}$ of quantum bits.  The interpretation of this type is defined as $[\![\textit{qbit}]\!]=\mathbb{C}^{2\times 2}$. 
 
 The following operations are considered: $\textit{new} \hspace{2pt} 0  :\mathbb{I}  \multimap \textit{qbit} $, $\textit{new} \hspace{2pt} 1  :\mathbb{I}  \multimap \textit{qbit} $, and $\textit{U}:\textit{qbit},\ldots,\textit{qbit} \xrightarrow{} \textit{qbit}^{\otimes n}$. Their correspondent judgment interpretation is shown in \autoref{fig:interpret_ops_0}. 
-\todo[inline,size=\normalsize]{A interpretação de U não devia ser definida com virgulas no argumento? Also seta -> ou lolipop?} 
+\todo[inline,size=\normalsize]{A interpretação de U não devia ser definida com virgulas no argumento? Also seta -> ou lolipop? Also tirar op ! e por simplesmente Tr?} 
 \todo[inline,size=\normalsize]{Qd isto for respondido mudar tudo nos eexemplos de acordo com a resposta} 
 \begin{figure}[H]
   \begin{equation*}
@@ -1543,7 +1572,7 @@ The following operations are considered: $\textit{new} \hspace{2pt} 0  :\mathbb{
 
 % Flar sobre o que é cptp e o que não é
 
-The chosen model requires that all operations considered are \acrshort{cptp} maps. The identity $I$, the swap operator $\text{sw}$, the left and right unitors $\rho$ and $\lambda$, the left associator $\alpha$,the trace operation $!$, the split operator $\text{sp}$, the join operator $\text{jn}$, the exhange $\text{exch}$ and shuffle $\text{sh}$ are all  \acrshort{cptp} maps \cite{dahlqvist2022syntactic}. However, the operators curry $\overline{f}$ and application $\text{app}$ are not \acrshort{cptp} maps, which means that they are not allowed in this model. On the other hand the measurement operator $[\![\textit{meas}]\!]$ and the unitary operator $[\![\textit{U}]\!]$ are \acrshort{cptp} maps (\Cref{subsec:quantum_channels}, \cite[page 73]{watrous2018theory}). Finally, regarding the operators  $[\![\textit{new} \,0 ]\!]$ and $[\![\textit{new} \, 1 ] \!]$, it is straightforward to verify that the operators $[![\textit{new} ,0]!]$ and $[![\textit{new} ,1]!]$ are trace-preserving. Given that matrices $\big(\begin{smallmatrix} 1 & 0\\ 0 & 0 \end{smallmatrix}\big)$ and $\big(\begin{smallmatrix} 0 & 0\\ 0 & 1 \end{smallmatrix}\big)$ correspond to the projectors $\ket{0}\bra{0}$ and $\ket{1}\bra{1}$, one has that 
+The chosen model requires that all operations considered are \acrshort{cptp} maps. The identity $I$, the swap operator $\text{sw}$, the left and right unitors $\rho$ and $\lambda$, the left associator $\alpha$,the trace operation $!$, the split operator $\text{sp}$, the join operator $\text{jn}$, the exhange $\text{exch}$ and shuffle $\text{sh}$ are all  \acrshort{cptp} maps \cite{dahlqvist2022syntactic}. However, the operators curry $\overline{f}$ and application $\text{app}$ are not \acrshort{cptp} maps, which means that they are not allowed in this model. On the other hand the measurement operator $[\![\textit{meas}]\!]$ and the unitary operator $[\![\textit{U}]\!]$ are \acrshort{cptp} maps (\Cref{subsec:quantum_channels}, \cite[page 73]{watrous2018theory}). Finally, regarding the operators  $[\![\textit{new} \,0 ]\!]$ and $[\![\textit{new} \, 1 ] \!]$, it is straightforward to verify that the operators $ \llbracket \textit{new} \, 0 \rrbracket $ and $\llbracket\textit{new} \, 1 \rrbracket$ are trace-preserving. Given that matrices $\big(\begin{smallmatrix} 1 & 0\\ 0 & 0 \end{smallmatrix}\big)$ and $\big(\begin{smallmatrix} 0 & 0\\ 0 & 1 \end{smallmatrix}\big)$ correspond to the projectors $\ket{0}\bra{0}$ and $\ket{1}\bra{1}$, one has that 
 \begin{align*}
   \hspace{-20pt} &  \bra{\psi} \ket{0}\bra{0} \otimes I^{\otimes n} \ket{\psi}  = \bra{\psi} \ket{0}\bra{0} \otimes \left(\frac{\ket{0}\bra{0} + \ket{1}\bra{1}}{2}\right)^{\otimes n} \ket{\psi} \\
   \hspace{-20pt} =  &  \sum_{i} |\alpha_i|^{2} \braket{\psi_{0i}}{0}\braket{0}{\psi_{0i}} \bra{\psi_{1i}} \left(\frac{\ket{0}\bra{0} + \ket{1}\bra{1}}{2}\right)\ket{\psi_{1i}} \ldots \bra{\psi_{ni}} \left(\frac{\ket{0}\bra{0} + \ket{1}\bra{1}}{2}\right)\ket{\psi_{ni}}   \\
