@@ -1370,7 +1370,8 @@ It should be noted that this principle is upheld by the type system outlined in 
 
 
 \section{Interpretation} \label{sec:Quantum Lambda Calculus:Interpretation}
-The syntax of the metric lambda calculus was presented in \Cref{ch:metriclambda}. Now, it is necessary to define the \emph{model} of the ``reality'' of interest, \textit{i.e.}, what the terms of the calculus mean within the ``reality'' considered. In the case of quantum lambda calculus, the model is based on vector spaces and quantum channels. 
+The syntax of the metric lambda calculus was presented in \Cref{ch:metriclambda}. Now, it is necessary to define the \emph{model} of the ``reality'' of interest, \textit{i.e.}, what the terms of the calculus mean within the ``reality'' considered. In the case of quantum lambda calculus, the model is based on quantum channels. 
+% o outro modelo vai ser baseado em somas diretas de espaços vetoriais e quantum channels
 
 %and $!_{V}: V \xrightarrow{} \mathbb{C}$ is the trace operation applied to a vector, defined as  $!_{V}= v \xrightarrow{} \text{Tr} \hspace{1pt}v$.
 
@@ -1435,7 +1436,7 @@ $
 $\begin{array}{c}
       [\![\Gamma \triangleright v: \mathbb{A} \otimes \mathbb{B} ]\!]=m  \quad [\![\Delta,x: \mathbb{A}, y: \mathbb{B}  \triangleright w: \mathbb{D} ]\!] =n  \quad E \in \text{Sf}(\Gamma;\Delta)\\
     \hline
-  [\![ E\triangleright \text{pm } v \text{ to } x \otimes y. w :\mathbb{D}]\!] = n \cdot \text{jn}_{\Delta;\mathbb{A};\mathbb{B}} \cdot \alpha \cdot \text{sw}\cdot (m \otimes \text{id}) \cdot \text{sp}_{\Gamma;\Delta} \cdot \text{sh}_{E}
+  [\![ E\triangleright \text{pm } v \text{ to } x \otimes y. w :\mathbb{D}]\!] = n \cdot \text{jn}_{\Delta;\mathbb{A};\mathbb{B}} \cdot \alpha \cdot \text{sw}\cdot (m \otimes \text{I}) \cdot \text{sp}_{\Gamma;\Delta} \cdot \text{sh}_{E}
 \end{array}
 $ \end{minipage} \\
 &
@@ -1452,7 +1453,7 @@ $
 $\begin{array}{c} 
     [\![\Gamma \triangleright v: \mathbb{I} ]\!]=m  \quad [\![\Delta \triangleright w: \mathbb{A}]\!]=n \quad E \in \text{Sf}(\Gamma;\Delta)  \\
     \hline
-  [\![E \triangleright v \text { to } *.w: \mathbb{A} ]\!]=n \cdot \lambda \cdot (m \otimes \text{id}) \cdot \text{sp}_{\Gamma;\Delta} \cdot \text{sh}_{E}
+  [\![E \triangleright v \text { to } *.w: \mathbb{A} ]\!]=n \cdot \lambda \cdot (m \otimes \text{I}) \cdot \text{sp}_{\Gamma;\Delta} \cdot \text{sh}_{E}
 \end{array}
 $ \end{minipage} 
 \hspace{130 pt}
@@ -1494,11 +1495,11 @@ The following diagrams are useful to better understand the interpretation of jud
   & & & \xrightarrow{\hspace{2pt}m_1 \otimes \ldots \otimes m_n \hspace{2pt}} \llbracket \mathbb{A}_1 \rrbracket \otimes \ldots \otimes \llbracket \mathbb{A}_n \rrbracket \xrightarrow{\hspace{2pt}\llbracket f \rrbracket \hspace{2pt}} \llbracket \mathbb{A} \rrbracket \\
   & \llbracket \text{hyp} \rrbracket : & \llbracket \mathbb{A} \rrbracket & \xrightarrow{\hspace{2pt}I_{\llbracket \mathbb{A}\rrbracket}\hspace{2pt}} \llbracket \mathbb{A}\rrbracket \\
   & \llbracket \mathbb{I}_i \rrbracket :&  \llbracket \mathbb{I} \rrbracket & \xrightarrow{\hspace{2pt}I_{\llbracket \mathbb{I}\rrbracket}\hspace{2pt}}  \llbracket \mathbb{I} \rrbracket\\
-  &\llbracket \otimes_e \rrbracket : & [\![E]\!] & \xrightarrow{\hspace{2pt}\text{sh}_{E}\hspace{2pt}}   [\![\Gamma,\Delta ]\!]   \xrightarrow{\hspace{1pt}\text{sp}_{\Gamma;\Delta}\hspace{1pt}}  [\![\Gamma ]\!] \otimes [\![\Delta ]\!] \xrightarrow{ m \hspace{1pt} \otimes \hspace{1pt} \text{id}} ([\![\mathbb{A} ]\!] \otimes [\![\mathbb{B} ]\!]) \otimes [\![\Delta ]\!]   \\
+  &\llbracket \otimes_e \rrbracket : & [\![E]\!] & \xrightarrow{\hspace{2pt}\text{sh}_{E}\hspace{2pt}}   [\![\Gamma,\Delta ]\!]   \xrightarrow{\hspace{1pt}\text{sp}_{\Gamma;\Delta}\hspace{1pt}}  [\![\Gamma ]\!] \otimes [\![\Delta ]\!] \xrightarrow{ m \hspace{1pt} \otimes \hspace{1pt} \text{I}} ([\![\mathbb{A} ]\!] \otimes [\![\mathbb{B} ]\!]) \otimes [\![\Delta ]\!]   \\
      & &  &\xrightarrow{\hspace{2pt}\text{sw}\hspace{2pt}}  [\![\Delta ]\!] \otimes ([\![\mathbb{A} ]\!] \otimes [\![\mathbb{B} ]\!]) \xrightarrow{\hspace{3pt}\alpha\hspace{3pt}}  ([\![\Delta ]\!] \otimes [\![\mathbb{A} ]\!]) \otimes [\![\mathbb{B} ]\!] \xrightarrow{\hspace{2pt}\text{jn}_{\Delta; \mathbb{A}; \mathbb{B} }\hspace{2pt}}  \llbracket \Delta, \mathbb{A},\mathbb{B}  \rrbracket  \\
      &&& \xrightarrow{\hspace{3pt}n\hspace{3pt}} \llbracket \mathbb{D} \rrbracket \\
      &\llbracket \otimes_i \rrbracket : & [\![E]\!] & \xrightarrow{\hspace{2pt}\text{sh}_{E}\hspace{2pt}}   [\![\Gamma,\Delta ]\!]   \xrightarrow{\hspace{1pt}\text{sp}_{\Gamma;\Delta}\hspace{1pt}}  [\![\Gamma ]\!] \otimes [\![\Delta ]\!]  \xrightarrow{\hspace{2pt} m \hspace{1pt} \otimes \hspace{1pt} n \hspace{2pt}} [\![\mathbb{A} ]\!] \otimes [\![\mathbb{B} ]\!] \\
-     &\llbracket \mathbb{I}_e \rrbracket :  & [\![E]\!] & \xrightarrow{\hspace{2pt}\text{sh}_{E}\hspace{2pt}}   [\![\Gamma,\Delta ]\!]   \xrightarrow{\hspace{1pt}\text{sp}_{\Gamma;\Delta}\hspace{1pt}}  [\![\Gamma ]\!] \otimes [\![\Delta ]\!] \xrightarrow{ m \hspace{1pt} \otimes \hspace{1pt} \text{id}} [\![\mathbb{I} ]\!]\otimes [\![\Delta ]\!] \xrightarrow{\hspace{2pt} \lambda \hspace{3pt}} [\![\Delta ]\!]  \xrightarrow{\hspace{2pt} n \hspace{3pt}}  \llbracket \mathbb{A} \rrbracket    \\
+     &\llbracket \mathbb{I}_e \rrbracket :  & [\![E]\!] & \xrightarrow{\hspace{2pt}\text{sh}_{E}\hspace{2pt}}   [\![\Gamma,\Delta ]\!]   \xrightarrow{\hspace{1pt}\text{sp}_{\Gamma;\Delta}\hspace{1pt}}  [\![\Gamma ]\!] \otimes [\![\Delta ]\!] \xrightarrow{ m \hspace{1pt} \otimes \hspace{1pt} \text{I}} [\![\mathbb{I} ]\!]\otimes [\![\Delta ]\!] \xrightarrow{\hspace{2pt} \lambda \hspace{3pt}} [\![\Delta ]\!]  \xrightarrow{\hspace{2pt} n \hspace{3pt}}  \llbracket \mathbb{A} \rrbracket    \\
       &\llbracket \multimap_i \rrbracket : & \llbracket \Gamma \rrbracket \otimes \llbracket \mathbb{A} \rrbracket & \xrightarrow{\hspace{2pt} \overline{m \cdot \text{jn}_{\Gamma;\mathbb{A}}}  \hspace{2pt}}  \llbracket \mathbb{A} \rrbracket \multimap \llbracket \mathbb{B} \rrbracket  \hspace{60pt} (\llbracket \Gamma \rrbracket \otimes \llbracket \mathbb{A} \rrbracket  \xrightarrow{\hspace{2pt} \text{jn}_{\Gamma; \mathbb{A}} \hspace{2pt}} \llbracket \Gamma, \mathbb{A} \rrbracket  \xrightarrow{\hspace{2pt} m \hspace{2pt}}  \llbracket \mathbb{B} \rrbracket )\\
       &\llbracket \multimap_e \rrbracket : & [\![E]\!] & \xrightarrow{\hspace{2pt}\text{sh}_{E}\hspace{2pt}}   [\![\Gamma,\Delta ]\!]   \xrightarrow{\hspace{1pt}\text{sp}_{\Gamma;\Delta}\hspace{1pt}}  [\![\Gamma ]\!] \otimes [\![\Delta ]\!]  \xrightarrow{\hspace{2pt} m \hspace{1pt} \otimes \hspace{1pt} n \hspace{2pt}} \llbracket \mathbb{A} \rrbracket \multimap \llbracket \mathbb{B} \rrbracket \otimes \llbracket \mathbb{A} \rrbracket  \xrightarrow{\hspace{2pt} \text{app} \hspace{2pt}} \llbracket \mathbb{B} \rrbracket \\
       &\llbracket \text{dis} \rrbracket : & [\![\Gamma]\!] & \xrightarrow{\hspace{2pt} f \hspace{2pt}} \llbracket \mathbb{A} \rrbracket \xrightarrow{\hspace{2pt} \text{Tr} \hspace{2pt}} \llbracket \mathbb{I} \rrbracket
@@ -1517,9 +1518,7 @@ Regarding the interpretation of the exhange and substitution properties, for any
 
 In the case of quantum lambda calculus, it is natural to consider a type $\textit{qbit}$ of quantum bits.  The interpretation of this type is defined as $[\![\textit{qbit}]\!]=\mathbb{C}^{2\times 2}$. 
 
-The following operations are considered: $\textit{new} \hspace{2pt} 0  :\mathbb{I}  \multimap \textit{qbit} $, $\textit{new} \hspace{2pt} 1  :\mathbb{I}  \multimap \textit{qbit} $, and $\textit{U}:\textit{qbit},\ldots,\textit{qbit} \xrightarrow{} \textit{qbit}^{\otimes n}$. Their correspondent judgment interpretation is shown in \autoref{fig:interpret_ops_0}. 
-\todo[inline,size=\normalsize]{A interpretação de U não devia ser definida com virgulas no argumento? Also seta -> ou lolipop? Also tirar op ! e por simplesmente Tr?} 
-\todo[inline,size=\normalsize]{Qd isto for respondido mudar tudo nos eexemplos de acordo com a resposta} 
+The following operations are considered: $\textit{new} \hspace{2pt} 0  :\mathbb{I}  \multimap \textit{qbit} $, $\textit{new} \hspace{2pt} 1  :\mathbb{I}  \multimap \textit{qbit} $, and $\textit{U}:  \textit{qbit}^{\otimes n} \multimap \textit{qbit}^{\otimes n}$. Their correspondent judgment interpretation is shown in \autoref{fig:interpret_ops_0}. 
 \begin{figure}[H]
   \begin{equation*}
   \begin{split}
@@ -1550,14 +1549,14 @@ The following operations are considered: $\textit{new} \hspace{2pt} 0  :\mathbb{
   \hspace{0pt}
   \begin{minipage}[t]{0.45\textwidth}
   $\begin{aligned}
-    [\![\textit{meas}]\!]:\hspace{2pt} & \llbracket \textit{qbit} \rrbracket \xrightarrow{} \llbracket \textit{bit} \rrbracket  \\
+    [\![\textit{meas}]\!]:\hspace{2pt} & \llbracket \textit{qbit} \rrbracket \multimap \llbracket \textit{bit} \rrbracket  \\
     &\rho \mapsto M_{0} \rho M_{0}^{\dag} +  M_{1} \rho M_{1}^{\dag} 
   \end{aligned}$
   \end{minipage} 
   \hspace{100pt}
   \begin{minipage}[t]{0.45\textwidth}
   $\begin{aligned}
-    [\![\textit{U} ]\!] : \hspace{2pt} & \llbracket \textit{qbit} \rrbracket^{\otimes n} \xrightarrow{} \llbracket 
+    [\![\textit{U} ]\!] : \hspace{2pt} & \llbracket \textit{qbit} \rrbracket^{\otimes n} \multimap \llbracket 
     \textit{qbit} \rrbracket^{\otimes n} \\
     & \rho \mapsto U \rho \hspace{2pt}  U^{\dag}
   % & \rho,...,\rho_{n} \mapsto U \hspace{-2pt}\left(\bigotimes_{i=1}^{n}\rho_{i}\right ) U^{\dag}
@@ -1597,14 +1596,13 @@ Given that the squared absolute value of a real number is always non-negative, t
   
   Using lambda calculus, the Deutsch-Jozsa Algorithm can be expressed as:
   \begin{align*}
-  \text{Deutsch} =  - \triangleright & \hspace{3pt} \text{pm} \hspace{4pt}  U_{f}(H  \hspace{2pt}   ( \textit{new}   \hspace{2pt}  0 \hspace{1pt}(*)),(H  \hspace{2pt}   ( \textit{new}   \hspace{2pt}  1 \hspace{1pt}(*))) \hspace{2pt}  \textit{to} \hspace{2pt} q_{1} \otimes q_{2} \hspace{1pt}. \\
+  \text{Deutsch} =  - \triangleright & \hspace{3pt} \text{pm} \hspace{4pt}  U_{f}(H  \hspace{2pt}   ( \textit{new}   \hspace{2pt}  0 \hspace{1pt}(*)) \otimes H  \hspace{2pt}   ( \textit{new}   \hspace{2pt}  1 \hspace{1pt}(*))) \hspace{2pt}  \textit{to} \hspace{2pt} q_{1} \otimes q_{2} \hspace{1pt}. \\
   &\hspace{3pt} \textit{meas} (H( q_{1})) \otimes q_{2} : \text{qubit} \otimes \text{qubit}  \\ 
    \end{align*}
 
-   
-\todo[inline,size=\normalsize]{Explicar interpretação mesmo com as regras de interpretação. Por tipo "The interpretation of this will be explored later but before it is easy to see that the following calculations are the core of it "} 
-  
-  Regarding the interpretation of the Deutsch Algorithm, one has that:
+The proper interpretation of this term will be provided, but before that, an interpretation based on the quantum circuit in \autoref{fig:Deutsch-Jozsa} will be presented. Here, the quantum state vector and density operator representations will be used interchangeably, according to what makes the calculations more simple.
+
+Attending to the circuit in  \autoref{fig:Deutsch-Jozsa}, one has that
   \begin{equation}
   \begin{split}
    & \ket{0} \otimes \ket{1} \\
@@ -1631,7 +1629,7 @@ Given that the squared absolute value of a real number is always non-negative, t
     \end{cases}
   \end{equation}
   
-  And conclude that
+ It follows that:
   \begin{equation}
    \ket{x} \otimes  \frac{1}{\sqrt{2}}(\ket{f(x)}-\ket{\neg f(x)}) = (-1)^{f(x)} \ket{x} \otimes \frac{1}{\sqrt{2}}(\ket{0}-\ket{1}) = (-1)^{f(x)} \ket{x} \otimes \ket{-}
   \end{equation}
@@ -1651,26 +1649,40 @@ Given that the squared absolute value of a real number is always non-negative, t
     \begin{cases}
       (\pm 1) \ket{0} \otimes \ket{-} &\text{ if }   f(0)= f(1) \\
       (\pm 1) \ket{1} \otimes \ket{-} &\text{ if }   f(0) \neq f(1)\\
-    \end{cases} 
-  \end{split}
-  \end{equation}
-  
-  Attending to the interpretation of quantum states, concerning the measurement of the first qubit, one has that:
-  \begin{equation}
-  \begin{split}
-    \quad &
-    \begin{cases}
-      \ket{0} \bra{0} \otimes \ket{-} \bra{-}  &\text{ if }   f(0)= f(1) \\
-      \ket{1} \bra{1} \otimes \ket{-} \bra{-} &\text{ if }   f(0) \neq f(1)
-    \end{cases} \\
-    \xmapsto{ \hspace{2pt} \textit{meas} \otimes I \hspace{2pt}} \quad &
-    \begin{cases}
-     (\ket{-} \bra{-},0)  &\text{ if }   f(0)= f(1) \\
-     (0,\ket{-} \bra{-}) &\text{ if }   f(0) \neq f(1) 
     \end{cases} \\
   \end {split}
   \end{equation} 
-  
+
+ Switching to the density operator formalism,
+  \begin{equation}
+    \begin{split}
+      &\begin{cases}
+        \ket{0} \bra{0} \otimes \ket{-}  &\text{ if }   f(0)= f(1) \\
+       \ket{1}  \bra{1} \otimes \ket{-} &\text{ if }   f(0) \neq f(1) 
+     \end{cases} \\
+  \xmapsto{ \hspace{2pt} \textit{meas} \otimes I \hspace{2pt}} \quad &
+  \begin{cases}
+     \ket{0} \bra{0} \otimes \ket{-}  &\text{ if }   f(0)= f(1) \\
+    \ket{1}  \bra{1} \otimes \ket{-} &\text{ if }   f(0) \neq f(1) 
+  \end{cases} \\
+  \end {split}
+\end{equation} 
+
+Now, regarding the interpretation of the lambda term \text{Deutch}, 
+\begin{equation}
+  \begin{split}
+  \llbracket  \text{Deutch}\rrbracket = \hspace{2pt} & \llbracket - \triangleright  \hspace{3pt} \text{pm} \hspace{4pt}  U_{f}(H  \hspace{2pt}   ( \textit{new}   \hspace{2pt}  0 \hspace{1pt}(*)) \otimes H  \hspace{2pt}   ( \textit{new}   \hspace{2pt}  1 \hspace{1pt}(*))) \hspace{2pt}  \textit{to} \hspace{2pt} q_{1} \otimes q_{2} \hspace{1pt}.   \\
+  & \hspace{1pt}\textit{meas} (H( q_{1})) \otimes q_{2} : \text{qubit} \otimes \text{qubit}   \rrbracket \\
+  =  \hspace{2pt}  & \llbracket q_1:\text{qubit} \otimes q_2:\text{qubit}  \triangleright \textit{meas} (H( q_{1})) \otimes q_{2} : \text{qubit} \otimes \text{qubit} \rrbracket \cdot \text{jn}_{\text{qubit}; \text{qubit}}     \\
+  & \cdot \alpha  \cdot \text{sw}   \cdot ( \llbracket - \triangleright U_{f}(H  \hspace{2pt}  ( \textit{new}   \hspace{2pt}  0 \hspace{1pt}(*)) \otimes H  \hspace{2pt}   ( \textit{new}   \hspace{2pt}  1 \hspace{1pt}(*))): \text{qubit} \otimes \text{qubit}  \rrbracket &  \{\llbracket  \otimes_ e \rrbracket\}\\
+  & \otimes I)  \cdot \text{sp}_{-} \cdot  \text{sh}_{-} \\ 
+  =  \hspace{2pt}  &  \\
+  =  \hspace{2pt}  & \llbracket q_1:\textit{qbit}\triangleright \text{meas}(q_1) \rrbracket \otimes \llbracket q_2:\textit{qbit} \triangleright q_2 \rrbracket  \cdot \text{jn}_{ \llbracket \textit{qbit}\rrbracket;  \llbracket\textit{qbit}\rrbracket} \cdot \alpha \cdot \text{sw}  \\
+   &\cdot ( \ket{0}\bra{0} \otimes \ket{1}\bra{1} \otimes I) \cdot \text{sp}_{-} \cdot  \text{sh}_{-}
+  \end{split}
+\end{equation}
+
+
   
   A measurement error is characterized by reading a "1" as a "0" or vice versa. Furthermore, it's important to note that measurement errors do not impact all states uniformly \cite{tannu2019mitigating}. Consequently, there is a discrepancy in how frequently the state "1" is incorrectly read as "0" compared to how often the state "0" is measured as "1" or vice versa.
   
