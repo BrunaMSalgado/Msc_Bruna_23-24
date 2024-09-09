@@ -1266,7 +1266,7 @@ Unfortunately, this norm is not stable under tensoring , given that the inequati
 \begin{definition}
   Given a super-operator $Q: \mathbb{C}^{n\times n} \xrightarrow{} \mathbb{C}^{m\times m }$, the diamond norm, \gls{diamond-norm} , is defined as:
   \begin{equation}  \label{eq:diamond_distance}
-    \lVert Q \rVert_{\diamondsuit} =  \lVert Q \otimes I_{n \times n} \rVert_{1}
+    \lVert Q \rVert_{\diamondsuit} =  \lVert Q \otimes I_{\mathbb{C}^{n \times n}} \rVert_{1}
   \end{equation}
 \end{definition}
 %where $I_{\mathbb{C}^{n \times n}} $ is the identity super-operator over the space $\mathbb{C}^{n\times n}$.
@@ -1377,26 +1377,25 @@ The syntax of the metric lambda calculus was presented in \Cref{ch:metriclambda}
 
 In order to define the interpretation of judgments $\Gamma \triangleright v: \mathbb{A}$, it is necessary to establish some notation first. Considering $v \in V$, $w \in W$, and $r \in R$  where $V, W, R$ represent vector spaces,  $\textsc{sw}_{V,W} : V\otimes W \xrightarrow{} W \otimes V$, denotes the swap operator, defined as $\textsc{sw}_{V,W}= v\otimes w \mapsto w \otimes v$;    $\lambda_{V} : \mathbb{C} \otimes V \xrightarrow{} V $ is the left unitor defined as $\lambda_{V}= 1 \otimes v \mapsto v $; $\rho_{V} : V  \otimes \mathbb{C} \xrightarrow{} V $ is the right unitor defined as $\rho_{V}= v \otimes 1 \mapsto v$; and $\alpha_{V,W,R} : V  \otimes (W \otimes R) \xrightarrow{} (V  \otimes W) \otimes R$ is the left associator, defined as $\alpha_{V,W,R}= v \otimes (w \otimes r) \mapsto (v \otimes w) \otimes r $. Moreover, for all operators $f: V \otimes W \xrightarrow{} R$, the operator $\overline{f} : V \xrightarrow{} (W \multimap R)$ denotes the corresponding curried version, defined as $\overline{f}(v) = w \mapsto  f(v,w)$. On the other hand, the application operator denoted $\text{app}: (V \multimap W) \otimes V \rightarrow W$, is defined as $f\hspace{1pt} v = w $, where $f: V \multimap W $.   The subscripts in these operators will be omitted unless ambiguity arises. 
 
-For all ground types $X \in G$  the interpretation of $[\![X]\!]$  is postulated as a vector space $V$. Types are interpreted inductively using the unit $\mathbb{I}$, the tensor $\otimes$, and the linear map $\multimap$. Given a non-empty context $\Gamma=\Gamma',x: \mathbb{A}$, its interpretation is defined by $[\![\Gamma',x: \mathbb{A}]\!] = [\![\Gamma']\!] \otimes [\![\mathbb{A}]\!]$ if $\Gamma'$ is non-empty and $[\![\Gamma',x: \mathbb{A}]\!] = [\![\mathbb{A}]\!]$ otherwise. The empty context $-$ is interpreted as $[\![-]\!] = \mathbb{I}$. Given $X_{1}, . . . ,X_{n} \in V$, the $n$-tensor $(\ldots (X_1 \otimes X_2) \otimes \ldots ) \otimes X_{n}$ is denoted as $X_1 \otimes \ldots \otimes X_{n}$, and similarly for operators. 
+For all ground types $X \in G$  the interpretation of $[\![X]\!]$  is postulated as a vector space $V$. Types are interpreted inductively using the unit $\mathbb{I}$, the tensor $\otimes$, and the linear map $\multimap$. Given a non-empty context $\Gamma=\Gamma',x: \mathbb{A}$, its interpretation is defined by $[\![\Gamma',x: \mathbb{A}]\!] = [\![\Gamma']\!] \otimes [\![\mathbb{A}]\!]$ if $\Gamma'$ is non-empty and $[\![\Gamma',x: \mathbb{A}]\!] = [\![\mathbb{A}]\!]$ otherwise. The empty context $-$ is interpreted as $[\![-]\!] = [\![ \mathbb{I}]\!] = \mathbb{C}$. Given $X_{1}, . . . ,X_{n} \in V$, the $n$-tensor $(\ldots (X_1 \otimes X_2) \otimes \ldots ) \otimes X_{n}$ is denoted as $X_1 \otimes \ldots \otimes X_{n}$, and similarly for operators. 
 
 
 ``Housekeeping" operators are employed to handle interactions between context interpretation and the vectorial model. Given $\Gamma_{1}, \ldots, \Gamma_{n}$, the operator that splits $[\![\Gamma_{1}, \ldots, \Gamma_{n}]\!]$ into $[\![\Gamma_{1}]\!] \otimes \ldots \otimes [\![\Gamma_{n}]\!]  $ is denoted by $\text{sp}_{\Gamma_1;\ldots;\Gamma_n}: [\![\Gamma_{1}, \ldots, \Gamma_{n}]\!] \xrightarrow{} [\![\Gamma_{1}]\!] \otimes \ldots \otimes [\![\Gamma_{n}]\!] $. Let $\Gamma_1$ and $\Gamma_2$ be two contexts, $\text{sp}_{\Gamma_1, \Gamma_2} \rightarrow \Gamma_1\otimes \Gamma_2$ is defined as:
 \begin{equation*}
-  \text{sp}_{-; \Gamma_2} = \lambda^{-1} \hspace{1cm} \text{sp}_{\Gamma_1; -} = \rho^{-1} \hspace{1cm} \text{sp}_{\Gamma_1;x:\mathbb{A}} = \text{id} \hspace{1cm} \text{sp}_{\Gamma_1; \Delta, x: \mathbb{A}} = \alpha \cdot (\text{sp}_{\Gamma_1; \Delta} \otimes \text{id})
+  \text{sp}_{-; \Gamma_2} = \lambda^{-1} \hspace{1cm} \text{sp}_{\Gamma_1; -} = \rho^{-1} \hspace{1cm} \text{sp}_{\Gamma_1;x:\mathbb{A}} = I \hspace{1cm} \text{sp}_{\Gamma_1; \Delta, x: \mathbb{A}} = \alpha \cdot (\text{sp}_{\Gamma_1; \Delta} \otimes I)
 \end{equation*}
 For $n>2$, $\text{sp}_{\Gamma_1;\ldots;\Gamma_n}$ is is defined recursively based on the previous definition, using induction on $n$:
 \begin{equation*}
-  \text{sp}_{\Gamma_1;\ldots;\Gamma_n} = (\text{sp}_{\Gamma_1;\ldots;\Gamma_{n-1}} \otimes \text{id} )\cdot \text{sp}_{\Gamma_1, \ldots, \Gamma_{n-1} ;\Gamma_n}
+  \text{sp}_{\Gamma_1;\ldots;\Gamma_n} = (\text{sp}_{\Gamma_1;\ldots;\Gamma_{n-1}} \otimes I )\cdot \text{sp}_{\Gamma_1, \ldots, \Gamma_{n-1} ;\Gamma_n}
 \end{equation*}
 On the other hand, $\text{jn}_{\Gamma_1;\ldots;\Gamma_n}$ denotes the inverse of $\text{sp}_{\Gamma_1;\ldots;\Gamma_n}$. Next, given $\Gamma, x : \mathbb{A}, y : \mathbb{B},\Delta$, the operator permuting $x$ and $y$ is denoted by $\text{exch}_{\Gamma, x : \mathbb{A}, y : \mathbb{B},\Delta}: [\![\Gamma,\underline{ x : \mathbb{A}, y : \mathbb{B}},\Delta]\!] \xrightarrow{} [\![\Gamma, y : \mathbb{B}, x : \mathbb{A}, \Delta]\!] $ and defined as:
 \begin{equation*}
-  \text{exch}_{\Gamma, \underline{ x : \mathbb{A}, y : \mathbb{B}},\Delta} = \text{jn}_{\Gamma; y:\mathbb{B}, x:\mathbb{A};\Delta} \cdot (\text{id}\otimes \text{sw} \otimes \text{id} ) \cdot \text{sp}_{\Gamma; x:\mathbb{A}, y:\mathbb{B};\Delta}
+  \text{exch}_{\Gamma, \underline{ x : \mathbb{A}, y : \mathbb{B}},\Delta} = \text{jn}_{\Gamma; y:\mathbb{B}, x:\mathbb{A};\Delta} \cdot (I \otimes \text{sw} \otimes I ) \cdot \text{sp}_{\Gamma; x:\mathbb{A}, y:\mathbb{B};\Delta}
 \end{equation*} 
 
 
 The shuffling operator $\text{sh}_{E}: [\![E]\!] \xrightarrow{} [\![\Gamma_1, \ldots, \Gamma_n ]\!]$ is defined as a suitable composition of exchange operators.
 
-The type $\mathbb{I}$ is interpreted as $[\![\mathbb{I}]\!]=\mathbb{C}$.
 
 For every operation symbol $f: \mathbb{A}_{1}, \ldots, \mathbb{A}_{n} \xrightarrow{} \mathbb{A}$ it is assumed the existence of an operator $[\![f]\!]: [\![\mathbb{A}_{1}]\!] \otimes \ldots \otimes [\![\mathbb{A}_{n}]\!] \xrightarrow{}  [\![\mathbb{A}]\!] $.
 The interpretation of judgments is defined by induction over derivations according to the rules in \autoref{fig:denotational_sem} \cite{dahlqvist2022syntactic}.
@@ -1597,7 +1596,7 @@ Given that the squared absolute value of a real number is always non-negative, t
   Using lambda calculus, the Deutsch-Jozsa Algorithm can be expressed as:
   \begin{align*}
   \text{Deutsch} =  - \triangleright & \hspace{3pt} \text{pm} \hspace{4pt}  U_{f}(H  \hspace{2pt}   ( \textit{new}   \hspace{2pt}  0 \hspace{1pt}(*)) \otimes H  \hspace{2pt}   ( \textit{new}   \hspace{2pt}  1 \hspace{1pt}(*))) \hspace{2pt}  \textit{to} \hspace{2pt} q_{1} \otimes q_{2} \hspace{1pt}. \\
-  &\hspace{3pt} \textit{meas} (H( q_{1})) \otimes q_{2} : \text{qubit} \otimes \text{qubit}  \\ 
+  &\hspace{3pt} \textit{meas} (H( q_{1})) \otimes q_{2} : \textit{qbit} \otimes \textit{qbit}  \\ 
    \end{align*}
 
 The proper interpretation of this term will be provided, but before that, an interpretation based on the quantum circuit in \autoref{fig:Deutsch-Jozsa} will be presented. Here, the quantum state vector and density operator representations will be used interchangeably, according to what makes the calculations more simple.
@@ -1669,20 +1668,21 @@ Attending to the circuit in  \autoref{fig:Deutsch-Jozsa}, one has that
 \end{equation} 
 
 Now, regarding the interpretation of the lambda term \text{Deutch}, 
-\begin{equation}
-  \begin{split}
-  \llbracket  \text{Deutch}\rrbracket = \hspace{2pt} & \llbracket - \triangleright  \hspace{3pt} \text{pm} \hspace{4pt}  U_{f}(H  \hspace{2pt}   ( \textit{new}   \hspace{2pt}  0 \hspace{1pt}(*)) \otimes H  \hspace{2pt}   ( \textit{new}   \hspace{2pt}  1 \hspace{1pt}(*))) \hspace{2pt}  \textit{to} \hspace{2pt} q_{1} \otimes q_{2} \hspace{1pt}.   \\
-  & \hspace{1pt}\textit{meas} (H( q_{1})) \otimes q_{2} : \text{qubit} \otimes \text{qubit}   \rrbracket \\
-  =  \hspace{2pt}  & \llbracket q_1:\text{qubit} \otimes q_2:\text{qubit}  \triangleright \textit{meas} (H( q_{1})) \otimes q_{2} : \text{qubit} \otimes \text{qubit} \rrbracket \cdot \text{jn}_{\text{qubit}; \text{qubit}}     \\
-  & \cdot \alpha  \cdot \text{sw}   \cdot ( \llbracket - \triangleright U_{f}(H  \hspace{2pt}  ( \textit{new}   \hspace{2pt}  0 \hspace{1pt}(*)) \otimes H  \hspace{2pt}   ( \textit{new}   \hspace{2pt}  1 \hspace{1pt}(*))): \text{qubit} \otimes \text{qubit}  \rrbracket &  \{\llbracket  \otimes_ e \rrbracket\}\\
-  & \otimes I)  \cdot \text{sp}_{-} \cdot  \text{sh}_{-} \\ 
-  =  \hspace{2pt}  &  \\
-  =  \hspace{2pt}  & \llbracket q_1:\textit{qbit}\triangleright \text{meas}(q_1) \rrbracket \otimes \llbracket q_2:\textit{qbit} \triangleright q_2 \rrbracket  \cdot \text{jn}_{ \llbracket \textit{qbit}\rrbracket;  \llbracket\textit{qbit}\rrbracket} \cdot \alpha \cdot \text{sw}  \\
-   &\cdot ( \ket{0}\bra{0} \otimes \ket{1}\bra{1} \otimes I) \cdot \text{sp}_{-} \cdot  \text{sh}_{-}
-  \end{split}
-\end{equation}
+\begin{align*}
+ \hspace{-30pt} \llbracket  \text{Deutch}\rrbracket = \hspace{2pt} & \llbracket - \triangleright  \hspace{3pt} \text{pm} \hspace{4pt}  U_{f}(H  \hspace{2pt}   ( \textit{new}   \hspace{2pt}  0 \hspace{1pt}(*)) \otimes H  \hspace{2pt}   ( \textit{new}   \hspace{2pt}  1 \hspace{1pt}(*))) \hspace{2pt}  \textit{to} \hspace{2pt} q_{1} \otimes q_{2} \hspace{1pt}.   \\
+  & \hspace{1pt}\textit{meas} (H( q_{1})) \otimes q_{2} : \textit{qbit} \otimes \textit{qbit}   \rrbracket \\
+  =  \hspace{2pt}  & \llbracket q_1:\textit{qbit} \otimes q_2:\textit{qbit}  \triangleright \textit{meas} (H( q_{1})) \otimes q_{2} : \textit{qbit} \otimes \textit{qbit} \rrbracket \cdot \text{jn}_{\textit{qbit}; \textit{qbit}}  &  \{\llbracket  \otimes_ e \rrbracket\}   \\
+  & \cdot \alpha  \cdot \text{sw}   \cdot ( \llbracket - \triangleright U_{f}(H  \hspace{2pt}  ( \textit{new}   \hspace{2pt}  0 \hspace{1pt}(*)) \otimes H  \hspace{2pt}   ( \textit{new}   \hspace{2pt}  1 \hspace{1pt}(*))): \textit{qbit} \otimes \textit{qbit}  \rrbracket \\
+  & \otimes I)  \cdot \text{sp}_{-;-} \cdot  \text{sh}_{-;-} \\ 
+  =  \hspace{2pt}  & (\llbracket q_1:\textit{qbit}\triangleright \text{meas}(H(q_1)): \textit{qbit} \rrbracket \otimes \llbracket q_2:\textit{qbit} \triangleright q_2:\textit{qbit} \rrbracket) \cdot \text{sp}_{\textit{qbit};\textit{qbit}} &  \{\llbracket  \otimes_i \rrbracket\}  \\
+  & \cdot \text{sh}_{\textit{qbit};\textit{qbit}} \cdot \text{jn}_{\textit{qbit}; \textit{qbit}} \cdot \alpha  \cdot \text{sw}  \cdot ( \llbracket - \triangleright U_{f}(H  \hspace{2pt}  ( \textit{new}   \hspace{2pt}  0 \hspace{1pt}(*)) \otimes H  \hspace{2pt}   ( \textit{new}   \hspace{2pt}  1 \hspace{1pt}(*))) \\
+  & : \textit{qbit} \otimes \textit{qbit}  \rrbracket  \otimes I)  \cdot  I_{\mathbb{C}} \otimes I_{\mathbb{C}} \cdot I_{\mathbb{C}} \otimes I_{\mathbb{C}}  \\
+  =  \hspace{2pt} &  (\llbracket \text{meas} \rrbracket \cdot \llbracket H \rrbracket  \cdot \llbracket q_1:\textit{qbit} \triangleright q_1:\textit{qbit} \rrbracket \cdot \text{sp}_{\textit{qbit}} \cdot \text{sh}_{\textit{qbit}} \hspace{2pt}  \otimes I) \cdot \alpha \cdot \text{sw}  \\
+  %=  \hspace{2pt}  & \llbracket q_1:\textit{qbit}\triangleright \text{meas}(H(q_1)):\textit{qbit} \rrbracket \otimes \llbracket q_2:\textit{qbit} \triangleright q_2 :\textit{qbit}\rrbracket  \cdot \text{jn}_{ \llbracket \textit{qbit}\rrbracket;  \llbracket\textit{qbit}\rrbracket} \cdot \alpha \cdot \text{sw}  \\
+   %&\cdot ( \ket{0}\bra{0} \otimes \ket{1}\bra{1} \otimes I) \cdot \text{sp}_{-} \cdot  \text{sh}_{-}
+\end{align*}
 
-
+\todo[inline,size=\normalsize]{Sh e sp -;- e caso para caso funcções com 1 arg} 
   
   A measurement error is characterized by reading a "1" as a "0" or vice versa. Furthermore, it's important to note that measurement errors do not impact all states uniformly \cite{tannu2019mitigating}. Consequently, there is a discrepancy in how frequently the state "1" is incorrectly read as "0" compared to how often the state "0" is measured as "1" or vice versa.
   
