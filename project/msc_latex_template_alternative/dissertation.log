@@ -1,4 +1,4 @@
-This is XeTeX, Version 3.141592653-2.6-0.999995 (MiKTeX 24.1) (preloaded format=xelatex 2024.7.31)  10 SEP 2024 18:48
+This is XeTeX, Version 3.141592653-2.6-0.999995 (MiKTeX 24.1) (preloaded format=xelatex 2024.7.31)  11 SEP 2024 00:14
 entering extended mode
  restricted \write18 enabled.
  file:line:error style messages enabled.
@@ -1928,27 +1928,31 @@ Overfull \hbox (0.83672pt too wide) detected at line 1578
 
 Package glossaries-extra Warning: Base acronym command \acrshort should not be used with new abbreviation definitions. Use \glsxtrshort instead on input line 1579.
 
-[42] [43]
-Overfull \hbox (17.12372pt too wide) detected at line 1620
+[42]
+Overfull \hbox (17.12372pt too wide) detected at line 1621
  $[][]$  
  []
 
-[44]
-Overfull \hbox (14.63326pt too wide) detected at line 1688
+[43]
+Overfull \hbox (0.38875pt too wide) detected at line 1732
 []
  []
 
-[45]
-Underfull \vbox (badness 4582) has occurred while \output is active []
+[44]
+Underfull \vbox (badness 10000) has occurred while \output is active []
+
+ [45]
+Underfull \vbox (badness 10000) has occurred while \output is active []
 
  [46]
-Overfull \hbox (7.05316pt too wide) in paragraph at lines 1761--1762
+Overfull \hbox (7.05316pt too wide) in paragraph at lines 1806--1807
 \TU/SourceSansPro(0)/m/n/12 constant function, $[] \OT1/cmr/m/n/12 = [][][]$\TU/SourceSansPro(0)/m/n/12 ; otherwise, $[] \OT1/cmr/m/n/12 =[] [][]$\TU/SourceSansPro(0)/m/n/12 . 
  []
 
-) (chapters/Contribution.tex [47] [48
 
-]
+Underfull \vbox (badness 3668) has occurred while \output is active []
+
+ [47]) (chapters/Contribution.tex [48]
 Chapter 4.
 
 Overfull \hbox (99.33127pt too wide) detected at line 70
@@ -1958,7 +1962,9 @@ Overfull \hbox (99.33127pt too wide) detected at line 70
 
 Underfull \vbox (badness 10000) has occurred while \output is active []
 
- [49]
+ [49
+
+]
 Overfull \hbox (195.36078pt too wide) in paragraph at lines 121--121
 []$[]$ 
  []
@@ -2379,12 +2385,12 @@ Package rerunfilecheck Info: File `dissertation.out' has not changed.
 (rerunfilecheck)             Checksum: 2E9C039D830B3C81508ADA60A2C071FD;9336.
  ) 
 Here is how much of TeX's memory you used:
- 58318 strings out of 409673
- 1246051 string characters out of 5774704
+ 58328 strings out of 409673
+ 1246244 string characters out of 5774704
  2046630 words of memory out of 5000000
- 79464 multiletter control sequences out of 15000+600000
+ 79474 multiletter control sequences out of 15000+600000
  578475 words of font info for 158 fonts, out of 8000000 for 9000
  1348 hyphenation exceptions out of 8191
  121i,36n,121p,2535b,1395s stack positions out of 10000i,1000n,20000p,200000b,200000s
 
-Output written on dissertation.xdv (130 pages, 2079740 bytes).
+Output written on dissertation.xdv (130 pages, 2086768 bytes).
