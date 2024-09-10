@@ -722,7 +722,7 @@ By means of the trace, one defines the inner product of two operators $A,B\in \m
   \langle A, B \rangle = \text{tr}(A^{\dagger}B).
 \end{equation*}
 
-In the \emph{finite} dimensional complex vector spaces that come up in quantum computation and quantum information, a \emph{Hilbert space} is exactly the same thing as an inner product space.  As a result, both $\mathbb{C}^{n}$ and $\mathbb{C}^{n \times m}$ are Hilbert spaces.
+In the \emph{finite} dimensional complex vector spaces relevant to quantum computation and quantum information, a \emph{Hilbert space} is is equivalent to an inner product space.  As a result, both $\mathbb{C}^{n}$ and $\mathbb{C}^{n \times m}$ are Hilbert spaces.
 
 \subsection{Norm and normed spaces}
 
@@ -1669,15 +1669,20 @@ Attending to the circuit in  \autoref{fig:Deutsch-Jozsa}, one has that
 
 Now, regarding the interpretation of the lambda term \text{Deutch}, 
 \begin{align*}
- \hspace{-30pt} \llbracket  \text{Deutch}\rrbracket = \hspace{2pt} & \llbracket - \triangleright  \hspace{3pt} \text{pm} \hspace{4pt}  U_{f}(H  \hspace{2pt}   ( \textit{new}   \hspace{2pt}  0 \hspace{1pt}(*)) \otimes H  \hspace{2pt}   ( \textit{new}   \hspace{2pt}  1 \hspace{1pt}(*))) \hspace{2pt}  \textit{to} \hspace{2pt} q_{1} \otimes q_{2} \hspace{1pt}.   \\
-  & \hspace{1pt}\textit{meas} (H( q_{1})) \otimes q_{2} : \textit{qbit} \otimes \textit{qbit}   \rrbracket \\
-  =  \hspace{2pt}  & \llbracket q_1:\textit{qbit} \otimes q_2:\textit{qbit}  \triangleright \textit{meas} (H( q_{1})) \otimes q_{2} : \textit{qbit} \otimes \textit{qbit} \rrbracket \cdot \text{jn}_{\textit{qbit}; \textit{qbit}}  &  \{\llbracket  \otimes_ e \rrbracket\}   \\
-  & \cdot \alpha  \cdot \text{sw}   \cdot ( \llbracket - \triangleright U_{f}(H  \hspace{2pt}  ( \textit{new}   \hspace{2pt}  0 \hspace{1pt}(*)) \otimes H  \hspace{2pt}   ( \textit{new}   \hspace{2pt}  1 \hspace{1pt}(*))): \textit{qbit} \otimes \textit{qbit}  \rrbracket \\
-  & \otimes I)  \cdot \text{sp}_{-;-} \cdot  \text{sh}_{-;-} \\ 
-  =  \hspace{2pt}  & (\llbracket q_1:\textit{qbit}\triangleright \text{meas}(H(q_1)): \textit{qbit} \rrbracket \otimes \llbracket q_2:\textit{qbit} \triangleright q_2:\textit{qbit} \rrbracket) \cdot \text{sp}_{\textit{qbit};\textit{qbit}} &  \{\llbracket  \otimes_i \rrbracket\}  \\
-  & \cdot \text{sh}_{\textit{qbit};\textit{qbit}} \cdot \text{jn}_{\textit{qbit}; \textit{qbit}} \cdot \alpha  \cdot \text{sw}  \cdot ( \llbracket - \triangleright U_{f}(H  \hspace{2pt}  ( \textit{new}   \hspace{2pt}  0 \hspace{1pt}(*)) \otimes H  \hspace{2pt}   ( \textit{new}   \hspace{2pt}  1 \hspace{1pt}(*))) \\
-  & : \textit{qbit} \otimes \textit{qbit}  \rrbracket  \otimes I)  \cdot  I_{\mathbb{C}} \otimes I_{\mathbb{C}} \cdot I_{\mathbb{C}} \otimes I_{\mathbb{C}}  \\
-  =  \hspace{2pt} &  (\llbracket \text{meas} \rrbracket \cdot \llbracket H \rrbracket  \cdot \llbracket q_1:\textit{qbit} \triangleright q_1:\textit{qbit} \rrbracket \cdot \text{sp}_{\textit{qbit}} \cdot \text{sh}_{\textit{qbit}} \hspace{2pt}  \otimes I) \cdot \alpha \cdot \text{sw}  \\
+  \hspace{-25pt} &  \llbracket  \text{Deutch}\rrbracket \\
+  \hspace{-25pt} = \hspace{2pt} & \llbracket - \triangleright  \hspace{3pt} \text{pm} \hspace{4pt}  U_{f}(H  \hspace{2pt}   ( \textit{new}   \hspace{2pt}  0 \hspace{1pt}(*)) \otimes H  \hspace{2pt}   ( \textit{new}   \hspace{2pt}  1 \hspace{1pt}(*))) \hspace{2pt}  \textit{to} \hspace{2pt} q_{1} \otimes q_{2} \hspace{1pt}.   \\
+  \hspace{-25pt}& \hspace{1pt}\textit{meas} (H( q_{1})) \otimes q_{2} : \textit{qbit} \otimes \textit{qbit}   \rrbracket \\
+  \hspace{-25pt} =  \hspace{2pt}  & \llbracket q_1:\textit{qbit} \otimes q_2:\textit{qbit}  \triangleright \textit{meas} (H( q_{1})) \otimes q_{2} : \textit{qbit} \otimes \textit{qbit} \rrbracket \cdot \text{jn}_{-;\textit{qbit}; \textit{qbit}} \cdot \alpha \cdot \text{sw}  &  \{\llbracket  \otimes_ e \rrbracket\}     \\
+  \hspace{-25pt}&    \cdot ( \llbracket - \triangleright U_{f}(H  \hspace{2pt}  ( \textit{new}   \hspace{2pt}  0 \hspace{1pt}(*)) \otimes H  \hspace{2pt}   ( \textit{new}   \hspace{2pt}  1 \hspace{1pt}(*))): \textit{qbit} \otimes \textit{qbit}  \rrbracket \otimes I_{\mathbb{C}}) \cdot \text{sp}_{-;-} \\
+  \hspace{-25pt}&    \cdot  \text{sh}_{-;-} \\ 
+  \hspace{-25pt} =  \hspace{2pt}  & (\llbracket q_1:\textit{qbit}\triangleright \text{meas}(H(q_1)): \textit{qbit} \rrbracket \otimes \llbracket q_2:\textit{qbit} \triangleright q_2:\textit{qbit} \rrbracket) \cdot \text{sp}_{\textit{qbit};\textit{qbit}} &  \{\llbracket  \otimes_i \rrbracket\}  \\
+  \hspace{-25pt}& \cdot \text{sh}_{\textit{qbit};\textit{qbit}} \cdot \text{jn}_{-;\textit{qbit}; \textit{qbit}} \cdot \alpha  \cdot \text{sw}  \cdot ( \llbracket - \triangleright U_{f}(H  \hspace{2pt}  ( \textit{new}   \hspace{2pt}  0 \hspace{1pt}(*)) \otimes H  \hspace{2pt}   ( \textit{new}   \hspace{2pt}  1 \hspace{1pt}(*))) \\
+  \hspace{-25pt}&   : \textit{qbit} \otimes \textit{qbit}  \rrbracket  \otimes I_{\mathbb{C}})  \cdot  I_{ \mathbb{C}} \otimes I_{\mathbb{C}} \cdot I_{\mathbb{C}} \otimes I_{\mathbb{C}}  \\
+  \hspace{-25pt} =  \hspace{2pt} &  (\llbracket \text{meas} \rrbracket \cdot \llbracket H \rrbracket  \cdot \llbracket q_1:\textit{qbit} \triangleright q_1:\textit{qbit} \rrbracket \cdot \text{sp}_{\textit{qbit}} \cdot \text{sh}_{\textit{qbit}} \hspace{2pt}  \otimes I_{\llbracket \textit{qbit} \rrbracket})  \cdot \text{sp}_{\textit{qbit};\textit{qbit}}  &  \{\llbracket  \text{ax} \rrbracket, \llbracket  \text{hyp} \rrbracket \}  \\ 
+  \hspace{-25pt} &  \cdot \text{sh}_{\textit{qbit};\textit{qbit}} \cdot \text{jn}_{-;\textit{qbit}; \textit{qbit}} \cdot \alpha \cdot \text{sw}\cdot (\llbracket U_f \rrbracket \cdot (\llbracket H \rrbracket \cdot \llbracket  \textit{new}   \hspace{2pt}  0  \rrbracket \cdot  \llbracket - \triangleright *: \mathbb{I} \rrbracket   \otimes \llbracket H \rrbracket  \\
+  \hspace{-25pt} &\cdot \llbracket  \textit{new}   \hspace{2pt}  1  \rrbracket \cdot  \llbracket - \triangleright *: \mathbb{I} \rrbracket) \cdot \text{sp}_{-;-} \cdot  \text{sh}_{-} \otimes I_{\mathbb{C}})  \\
+  \hspace{-25pt} =  \hspace{2pt} &   (\llbracket \text{meas} \rrbracket \cdot \llbracket H \rrbracket \cdot I_{\llbracket \textit{qbit} \rrbracket}  \otimes I_{\llbracket \textit{qbit} \rrbracket} ) \cdot \text{sp}_{\textit{qbit};\textit{qbit}} \cdot \text{sh}_{\textit{qbit};\textit{qbit}} \cdot \text{jn}_{-;\textit{qbit}; \textit{qbit}} \cdot \alpha \cdot \text{sw}   &  \{\llbracket  \text{hyp} \rrbracket, \llbracket \mathbb{I}_i \rrbracket \} \\
+  \hspace{-25pt} & \cdot ((\llbracket U_f \rrbracket \cdot (\llbracket H \rrbracket \cdot \llbracket  \textit{new}   \hspace{2pt}  0  \rrbracket \cdot I_{\mathbb{C}}  \otimes \llbracket H \rrbracket \cdot \llbracket  \textit{new}   \hspace{2pt}  1  \rrbracket   \cdot I_{\mathbb{C}}) \cdot  I_{\mathbb{C}} \otimes I_{\mathbb{C}} \cdot I_{\mathbb{C}}) \otimes I_{\mathbb{C}})\\
   %=  \hspace{2pt}  & \llbracket q_1:\textit{qbit}\triangleright \text{meas}(H(q_1)):\textit{qbit} \rrbracket \otimes \llbracket q_2:\textit{qbit} \triangleright q_2 :\textit{qbit}\rrbracket  \cdot \text{jn}_{ \llbracket \textit{qbit}\rrbracket;  \llbracket\textit{qbit}\rrbracket} \cdot \alpha \cdot \text{sw}  \\
    %&\cdot ( \ket{0}\bra{0} \otimes \ket{1}\bra{1} \otimes I) \cdot \text{sp}_{-} \cdot  \text{sh}_{-}
 \end{align*}
