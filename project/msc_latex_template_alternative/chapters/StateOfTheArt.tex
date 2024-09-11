@@ -1271,7 +1271,8 @@ Unfortunately, this norm is not stable under tensoring , given that the inequati
 \end{definition}
 %where $I_{\mathbb{C}^{n \times n}} $ is the identity super-operator over the space $\mathbb{C}^{n\times n}$.
 
-For this norm it holds that for all super-operators $Q: \mathbb{C}^{n \times n}\rightarrow \mathbb{C}^{m \times m} $ and $S:\mathbb{C}^{m \times m} \rightarrow \mathbb{C}^{o \times o} $, if $Q$ is a quantum channel then $\lVert S  Q \rVert_{\diamondsuit} \leq \lVert S \rVert_{\diamondsuit}$ \cite{watrous2018theory}, and if $S$ is a quantum channel, then $\lVert S  Q \rVert_{\diamondsuit} \leq \lVert Q \rVert_{\diamondsuit}$. Moreover, the following inequalties hold for a super-operator $Q$: $ \lVert Q \rVert_{\diamondsuit} \geq \lVert Q \otimes I \rVert_{\diamondsuit} $ and $\lVert Q \rVert_{\diamondsuit} \geq \lVert I \otimes Q  \rVert_{\diamondsuit} $.
+For this norm it holds that for all super-operators $Q: \mathbb{C}^{n \times n}\rightarrow \mathbb{C}^{m \times m} $ and $S:\mathbb{C}^{m \times m} \rightarrow \mathbb{C}^{o \times o} $, if $Q$ is a quantum channel then $\lVert S  Q \rVert_{\diamondsuit} \leq \lVert S \rVert_{\diamondsuit}$ \cite{watrous2018theory}, and if $S$ is a quantum channel, then $\lVert S  Q \rVert_{\diamondsuit} \leq \lVert Q \rVert_{\diamondsuit}$. Moreover, the following inequalties hold for a super-operator $Q$: $ \lVert Q \rVert_{\diamondsuit} \geq \lVert Q \otimes I \rVert_{\diamondsuit} $ and $\lVert Q \rVert_{\diamondsuit} \geq \lVert I \otimes Q  \rVert_{\diamondsuit} $. This is a desireble property, as is guarantees that quantum operations do not increase the distance between states, and as a
+consequence, composition of programs is valid.
 
 
 Consider an operator  $ \text{r} : (\mathbb{C}^{n} \xrightarrow[]{} \mathbb{C}^{m}) \xrightarrow[]{} (\mathbb{C}^{n\times n}\xrightarrow[]{} \mathbb{C}^{m\times m})$ that sends an operator $T$ to the mapping $A \mapsto TAT^{\dag}$. The exact calculation of distances induced by $\lVert \rVert_{\diamondsuit}$ tends to be quite complicated, but a useful property for calculating the distance between quantum channels in the image of $r$ is provided in \cite{watrous2018theory}.
@@ -1514,16 +1515,18 @@ Regarding the interpretation of the exhange and substitution properties, for any
 \end{split}
 \end{equation}
 
+\subsubsection{Types and operations in quantum lambda calculus}
 
 In the case of quantum lambda calculus, it is natural to consider a type $\textit{qbit}$ of quantum bits.  The interpretation of this type is defined as $[\![\textit{qbit}]\!]=\mathbb{C}^{2\times 2}$. 
 
-The following operations are considered: $\textit{new} \hspace{2pt} 0  :\mathbb{I}  \multimap \textit{qbit} $, $\textit{new} \hspace{2pt} 1  :\mathbb{I}  \multimap \textit{qbit} $, and $\textit{U}:  \textit{qbit}^{\otimes n} \multimap \textit{qbit}^{\otimes n}$. Their correspondent judgment interpretation is shown in \autoref{fig:interpret_ops_0}. 
+The following operations are considered: the creation of a new qubit in the state $\ket{0}$ ($\textit{new} \hspace{2pt} 0 :\mathbb{I} \multimap \textit{qbit}$), the creation of a new qubit in the state $\ket{1}$ ($\textit{new} \hspace{2pt} 1 :\mathbb{I} \multimap \textit{qbit}$), measuring a qubit ($\textit{meas}: \textit{qbit} \multimap \textit{qbit}$), applying a unitary operation to a qubit ($\textit{U}: \textit{qbit}^{\otimes n} \multimap \textit{qbit}^{\otimes n}$), and performing a \acrshort{cptp} operation on a qubit ($\textit{CPTP}: \textit{qbit}^{\otimes n} \multimap \textit{qbit}^{\otimes n}$). These operations are defined in \autoref{fig:interpret_ops_0}.
+
 \begin{figure}[H]
   \begin{equation*}
   \begin{split}
   \begin{aligned}
   &
-  \hspace{0pt}
+  \hspace{10pt}
   \begin{minipage}[t]{0.45\textwidth}
   $\begin{aligned}
     [\![\textit{new} \, 0 ]\!] : \hspace{2pt}& \mathbb{C} \multimap \llbracket \textit{bit} \rrbracket  \\
@@ -1533,7 +1536,7 @@ The following operations are considered: $\textit{new} \hspace{2pt} 0  :\mathbb{
   \end{smallmatrix}\big) 
   \end{aligned}$
   \end{minipage}
-  \hspace{100pt}
+  \hspace{-70pt}
   \begin{minipage}[t]{0.45\textwidth}
   $\begin{aligned}
     [\![\textit{new} \, 1 ]\!] :\hspace{2pt}& \mathbb{C} \multimap \llbracket \textit{bit} \rrbracket  \\
@@ -1543,24 +1546,31 @@ The following operations are considered: $\textit{new} \hspace{2pt} 0  :\mathbb{
     \end{smallmatrix}\big)
   \end{aligned}$
   \end{minipage} 
-  \hspace{-30pt} \\
-  &
-  \hspace{0pt}
+  \hspace{-70pt}
   \begin{minipage}[t]{0.45\textwidth}
   $\begin{aligned}
     [\![\textit{meas}]\!]:\hspace{2pt} & \llbracket \textit{qbit} \rrbracket \multimap \llbracket \textit{bit} \rrbracket  \\
     &\rho \mapsto M_{0} \rho M_{0}^{\dag} +  M_{1} \rho M_{1}^{\dag} 
   \end{aligned}$
   \end{minipage} 
-  \hspace{100pt}
+  \\
+  &
+  \hspace{10pt}
   \begin{minipage}[t]{0.45\textwidth}
-  $\begin{aligned}
-    [\![\textit{U} ]\!] : \hspace{2pt} & \llbracket \textit{qbit} \rrbracket^{\otimes n} \multimap \llbracket 
-    \textit{qbit} \rrbracket^{\otimes n} \\
-    & \rho \mapsto U \rho \hspace{2pt}  U^{\dag}
-  % & \rho,...,\rho_{n} \mapsto U \hspace{-2pt}\left(\bigotimes_{i=1}^{n}\rho_{i}\right ) U^{\dag}
-  \end{aligned}$
-  \end{minipage} \\
+    $\begin{aligned}
+      [\![\textit{U} ]\!] : \hspace{2pt} & \llbracket \textit{qbit} \rrbracket^{\otimes n} \multimap \llbracket 
+      \textit{qbit} \rrbracket^{\otimes n} \\
+      & \rho \mapsto U \rho \hspace{2pt}  U^{\dag}
+    \end{aligned}$
+    \end{minipage} 
+  \hspace{70pt}
+  \begin{minipage}[t]{0.45\textwidth}
+    $\begin{aligned}
+      [\![\textit{CPTP} ]\!] : \hspace{2pt} & \llbracket \textit{qbit} \rrbracket^{\otimes n} \multimap \llbracket 
+      \textit{qbit} \rrbracket^{\otimes n} \\
+      & \rho \mapsto \textit{CPTP} (\rho)
+    \end{aligned}$
+    \end{minipage} \\
   \end{aligned}
   \end{split}
   \end{equation*}
@@ -1568,9 +1578,10 @@ The following operations are considered: $\textit{new} \hspace{2pt} 0  :\mathbb{
   \label{fig:interpret_ops_0}
   \end{figure}
 
+
 % Flar sobre o que é cptp e o que não é
 
-The chosen model requires that all operations considered are \acrshort{cptp} maps. The identity $I$, the swap operator $\text{sw}$, the left and right unitors $\rho$ and $\lambda$, the left associator $\alpha$,the trace operation $!$, the split operator $\text{sp}$, the join operator $\text{jn}$, the exhange $\text{exch}$ and shuffle $\text{sh}$ are all  \acrshort{cptp} maps \cite{dahlqvist2022syntactic}. However, the operators curry $\overline{f}$ and application $\text{app}$ are not \acrshort{cptp} maps, which means that they are not allowed in this model. On the other hand the measurement operator $[\![\textit{meas}]\!]$ and the unitary operator $[\![\textit{U}]\!]$ are \acrshort{cptp} maps (\Cref{subsec:quantum_channels}, \cite[page 73]{watrous2018theory}). Finally, regarding the operators  $[\![\textit{new} \,0 ]\!]$ and $[\![\textit{new} \, 1 ] \!]$, it is straightforward to verify that the operators $ \llbracket \textit{new} \, 0 \rrbracket $ and $\llbracket\textit{new} \, 1 \rrbracket$ are trace-preserving. Given that matrices $\big(\begin{smallmatrix} 1 & 0\\ 0 & 0 \end{smallmatrix}\big)$ and $\big(\begin{smallmatrix} 0 & 0\\ 0 & 1 \end{smallmatrix}\big)$ correspond to the projectors $\ket{0}\bra{0}$ and $\ket{1}\bra{1}$, one has that 
+The chosen model requires that all operators considered are \acrshort{cptp} maps. The identity $I$, the swap operator $\text{sw}$, the left and right unitors $\rho$ and $\lambda$, the left associator $\alpha$,the trace operation $!$, the split operator $\text{sp}$, the join operator $\text{jn}$, the exhange $\text{exch}$ and shuffle $\text{sh}$ are all  \acrshort{cptp} maps \cite{dahlqvist2022syntactic}. However, the operators curry $\overline{f}$ and application $\text{app}$ are not \acrshort{cptp} maps, which means that they are not allowed in this model. On the other hand the measurement operator $[\![\textit{meas}]\!]$ and the unitary operator $[\![\textit{U}]\!]$ are \acrshort{cptp} maps (\Cref{subsec:quantum_channels}, \cite[page 73]{watrous2018theory}). Finally, regarding the operators  $[\![\textit{new} \,0 ]\!]$ and $[\![\textit{new} \, 1 ] \!]$, it is straightforward to verify that the operators $ \llbracket \textit{new} \, 0 \rrbracket $ and $\llbracket\textit{new} \, 1 \rrbracket$ are trace-preserving. Given that matrices $\big(\begin{smallmatrix} 1 & 0\\ 0 & 0 \end{smallmatrix}\big)$ and $\big(\begin{smallmatrix} 0 & 0\\ 0 & 1 \end{smallmatrix}\big)$ correspond to the projectors $\ket{0}\bra{0}$ and $\ket{1}\bra{1}$, one has that 
 \begin{align*}
   \hspace{-20pt} &  \bra{\psi} \ket{0}\bra{0} \otimes I^{\otimes n} \ket{\psi}  = \bra{\psi} \ket{0}\bra{0} \otimes \left(\frac{\ket{0}\bra{0} + \ket{1}\bra{1}}{2}\right)^{\otimes n} \ket{\psi} \\
   \hspace{-20pt} =  &  \sum_{i} |\alpha_i|^{2} \braket{\psi_{0i}}{0}\braket{0}{\psi_{0i}} \bra{\psi_{1i}} \left(\frac{\ket{0}\bra{0} + \ket{1}\bra{1}}{2}\right)\ket{\psi_{1i}} \ldots \bra{\psi_{ni}} \left(\frac{\ket{0}\bra{0} + \ket{1}\bra{1}}{2}\right)\ket{\psi_{ni}}   \\
