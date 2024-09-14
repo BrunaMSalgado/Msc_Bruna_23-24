@@ -584,7 +584,7 @@ It is impossible to present the theory of quantum computation without introducin
 
 \subsection{Complex vector spaces}
 
-The basic objects of linear algebra are vector spaces. The vector spaces of interest in this work are the complex vector spaces, \gls{n-complex-space} and \gls{matrix-complex-space}, therefore, the following definition is given in the context of complex vector spaces. 
+The basic objects of linear algebra are vector spaces. The vector spaces of interest in this work are the complex vector spaces, such as \gls{n-complex-space} and \gls{matrix-complex-space} therefore, the following definition is given in the context of complex vector spaces. 
 
 \begin{definition}
 A \emph{vector space} (over $\mathbb{C}$)  consists of a set $V$ whose elements are called vectors, together with two operations:
@@ -619,6 +619,14 @@ The zero vector in $\mathbb{C}^{n}$ is the vector with all entries equal to zero
 Sometimes, the column matrix notation is used to represent vectors in $\mathbb{C}^{n}$, that is, a vector $v \in \mathbb{C}^{n}$ is written as a column matrix $$v = \begin{pmatrix} a_1 \\ \vdots \\ a_n \end{pmatrix}.$$ Other times for readability the format $(a_1, \ldots , a_n)$ is used. The latter should be interpreted as a shorthand for a column vector.
 
 $\mathbb{C}^{n \times m}$ is a vector space when addition is defined as matrix addition and scalar multiplication is defined as multiplication of each component by the scalar. The zero vector is the zero matrix, \textit{i.e.}, the matrix with all entries equal to zero.
+
+%p.240 linear algebra 
+%\begin{theorem} \label{theorem:dist_matrix} \cite{hefferon2006linear}
+  %If $A, B, C$ are matrices, and the matrix products are defined,
+%then the product is associative $(AB)C = A(BC)$ and distributes over matrix
+%addition $A(B + C) = AB + AC$ and $(B + C)A = BA + CA$.
+%\end{theorem}
+
 
 \begin{definition}
 A \emph{vector subspace} of a vector space $V$ is a subset $W$ of $V$ such that $W$ is also a vector space, that is, $W$ must be closed under scalar multiplication and addition.
@@ -726,11 +734,11 @@ In the \emph{finite} dimensional complex vector spaces relevant to quantum compu
 
 \subsection{Norm and normed spaces}
 
-\begin{definition}
+\begin{definition} \label{def:norm}
   A \emph{norm} \gls{norm} is a function that associates an element of a vector space $V$ with a non-negative real number, such that the following properties hold:
   \begin{enumerate}
     \item Positive definiteness: $\|v\| \geq 0$ for all $v \in V$, with $\|v\| = 0$ if and only if $v = 0$;
-    \item Positive scalability: $\|av\| = |a|\|v\|$ for all $v \in V$ and $a$ is a scalar;
+    \item Positive scalability: $\|av\| = |a|\|v\|$ for all $v \in V$ scalar $a$;
     \item The triangle inequality: $\|v + w\| \leq \|v\| + \|w\|$ for all $v, w \in V$.
   \end{enumerate}
 \end{definition}
@@ -828,7 +836,9 @@ The following classes of operators are of particular interest in quantum informa
 \end {definition}
 
 \begin{definition} \label{def:positive}
-  \emph{Positive (semidefinite) operators}. A square operator $A:\mathbb{C}^{n} \rightarrow \mathbb{C^{n}}$ is \emph{positive}, denoted $A \geq 0$, if $\langle v, Av \rangle \geq 0$ for all $v \in \mathbb{C}^{n}$. Positive matrices are hermitian, and consequently, by the spectral decomposition, have diagonal representation $A =  \sum_i \lambda_i v_i v_i^{\dag}$, with non-negative eigenvalues $\lambda_i$. \cite{nielsen2010quantum}.
+  \emph{Positive (semidefinite) operators}. A square operator $A:\mathbb{C}^{n} \rightarrow \mathbb{C^{n}}$ is \emph{positive}, denoted $A \geq 0$, if $\langle v, Av \rangle \geq 0$ for all $v \in \mathbb{C}^{n}$.  The sum of two positive semidefinite operators is positive semidefinite. Positive matrices are hermitian, and consequently, by the spectral decomposition, have diagonal representation $A =  \sum_i \lambda_i v_i v_i^{\dag}$, with non-negative eigenvalues $\lambda_i$ \cite{nielsen2010quantum}.
+
+  %sum ->p.163 theory of quantum information
 \end{definition}
 
 \begin{definition}
@@ -874,9 +884,9 @@ the operator $U$ defined by $U = \sum_{i} w_i^{\dag} v_i$ is unitary.
 
 
 \begin{definition} \label{eq:op_norm}
-  Given vector spaces $V$ and $W$, the operator, \gls{op-norm}, norm for an operator $E: V \rightarrow W$ is defined as
+  Given  normed vector spaces $V$ and $W$, the operator,\gls{op-norm}, norm for an operator $E: V \rightarrow W$ is defined as
   \begin{equation*}
-  \lVert E \rVert_{\sigma} = \text{sup} \{ \lVert E(v) \rVert \hspace{2pt} | \hspace{2pt} \lVert v \rVert = 1. \}
+  \lVert E \rVert_{\sigma} = \text{sup} \{ \lVert E(v) \rVert \hspace{2pt} | \hspace{2pt} \lVert v \rVert = 1 \}.
 \end{equation*}
 \end{definition}
 
@@ -905,9 +915,21 @@ The tensor product of two operators $A \in \mathbb{C}^{n \times m}$ and $B \in \
 \begin{equation*}
   (A \otimes B)(v \otimes w) = Av \otimes Bw.
 \end{equation*}
-
+The tensor product of two operators $P: \mathbb{C}^{n \times n} \rightarrow \mathbb{C}^{m \times m} $ and $Q \in \mathbb{C}^{o \times o} \rightarrow \mathbb{C}^{p \times p}$ is defined as the operator $ P \otimes Q \in  \mathbb{C}^{n \times n} \otimes \mathbb{C}^{o \times o} \rightarrow \mathbb{C}^{m \times m} \otimes \mathbb{C}^{p \times p}   $ such that
+\begin{equation*}
+  (P \otimes Q)(A \otimes B) = P (A) \otimes Q(B).
+\end{equation*}
 
 The notation \gls{n-fold-tensor}  will be used to  denote the tensor product of a space, vector, or operator with itself $n$ times.
+
+%p.19 
+Considering vector spaces $V, W, R$, the following equalities hold:
+\begin{align*}
+  & v \otimes (w + r) = v \otimes w + v \otimes r, \text{ for all } v,w,r \in V,W,R; \\
+  & (v + w) \otimes r = v \otimes r + w \otimes u, \text{ for all } v,w,r \in V,W,R; \\
+  & (a v) \otimes (b w) = ab (v \otimes w), \text{ for all } v,w \in V,W \text{ and scalars } a, b.   \\
+\end{align*}
+
 
 
 \begin{definition}
@@ -1117,6 +1139,7 @@ where $\vec{r} = (r_x, r_y, r_z)$ is a real three-dimensional vector such that $
   r_{\mu} = \text{Tr}(\rho \sigma_{\mu})
   \end{equation}
 
+  Note that given that the trace is linear and matrix multiplication distributes over matrix addition, the cartesian coordinates of an operator consisting of the sum or subtraction of density operators can also be determined by \autoref{eq:Bloch_vector}.
 
 \subsubsection{Reduced density operator}
 
@@ -1257,9 +1280,10 @@ This last equality corresponds to an Kraus operator sum representation, where th
 \begin{definition}
   The norm of a super-operator $Q: \mathbb{C}^{n\times n} \xrightarrow{} \mathbb{C}^{m\times m }$ is defined:
   \begin{equation} 
-    \lVert Q \rVert_{1} =  \max\{\lVert Q \hspace{1pt} A \rVert_{1} \hspace{2pt}  \vert \hspace{2pt}  \lVert A \rVert_{1}=1\} 
+    \lVert Q \rVert_{1} =  \max\{\lVert Q \hspace{1pt} A \rVert_{1} \hspace{2pt}  \vert \hspace{2pt}  \lVert A \rVert_{1}=1\}, 
   \end{equation}
 \end{definition}
+where $A \in \mathbb{C}^{n \times n }$
 
 Unfortunately, this norm is not stable under tensoring , given that the inequation $ \lVert Q \otimes \text{I} \rVert_{1} \leq \lVert Q \rVert_{1}$ does not hold \cite{watrous2018theory}. As a result, the diamond norm, which is based on the trace norm, is used instead. 
 
@@ -1582,12 +1606,12 @@ The following operations are considered: the creation of a new qubit in the stat
 % Flar sobre o que é cptp e o que não é
 
 The chosen model requires that all operators considered are \acrshort{cptp} maps. The identity $I$, the swap operator $\text{sw}$, the left and right unitors $\rho$ and $\lambda$, the left associator $\alpha$,the trace operation $!$, the split operator $\text{sp}$, the join operator $\text{jn}$, the exhange $\text{exch}$ and shuffle $\text{sh}$ are all  \acrshort{cptp} maps \cite{dahlqvist2022syntactic}. However, the operators curry $\overline{f}$ and application $\text{app}$ are not \acrshort{cptp} maps, which means that they are not allowed in this model. On the other hand the measurement operator $[\![\textit{meas}]\!]$ and the unitary operator $[\![\textit{U}]\!]$ are \acrshort{cptp} maps (\Cref{subsec:quantum_channels}, \cite[page 73]{watrous2018theory}). Finally, regarding the operators  $[\![\textit{new} \,0 ]\!]$ and $[\![\textit{new} \, 1 ] \!]$, it is straightforward to verify that the operators $ \llbracket \textit{new} \, 0 \rrbracket $ and $\llbracket\textit{new} \, 1 \rrbracket$ are trace-preserving. Given that matrices $\big(\begin{smallmatrix} 1 & 0\\ 0 & 0 \end{smallmatrix}\big)$ and $\big(\begin{smallmatrix} 0 & 0\\ 0 & 1 \end{smallmatrix}\big)$ correspond to the projectors $\ket{0}\bra{0}$ and $\ket{1}\bra{1}$, one has that 
-\begin{align*}
+\begin{align} \label{eq:prove_new_0}
   \hspace{-20pt} &  \bra{\psi} \ket{0}\bra{0} \otimes I^{\otimes n} \ket{\psi}  = \bra{\psi} \ket{0}\bra{0} \otimes \left(\frac{\ket{0}\bra{0} + \ket{1}\bra{1}}{2}\right)^{\otimes n} \ket{\psi} \\
   \hspace{-20pt} =  &  \sum_{i} |\alpha_i|^{2} \braket{\psi_{0i}}{0}\braket{0}{\psi_{0i}} \bra{\psi_{1i}} \left(\frac{\ket{0}\bra{0} + \ket{1}\bra{1}}{2}\right)\ket{\psi_{1i}} \ldots \bra{\psi_{ni}} \left(\frac{\ket{0}\bra{0} + \ket{1}\bra{1}}{2}\right)\ket{\psi_{ni}}   \\
   \hspace{-20pt} = & \sum_{i}  |\alpha_i|^{2} |\braket{0}{\psi_{0i}}|^{2} \left( \frac{ \left( |\braket{0}{\psi_{1i}}|^{2} +  |\braket{1}{\psi_{1i}}|^{2} \right) \ldots \left( |\braket{0}{\psi_{ni}}|^{2} +  |\braket{1}{\psi_{ni}}|^{2} \right) }{2}  \right)    \\
-\end{align*}
-Given that the squared absolute value of a real number is always non-negative, the expression above is always non-negative. Therefore, the operator $[\![\textit{new} \,0 ]\!]$ is positive. The same reasoning can be applied to the operator $[\![\textit{new} \,1 ]\!]$, which implies that it is also positive. Therefore, attending to \autoref{def:completely_positive_superoperator} and \autoref{def:positive_superoperator}, it is possible to conclude that both operators $[\![\textit{new} \,0 ]\!]$ and $[\![\textit{new} \, 1 ] \!]$ are completely positive super-operators. As a result, both operators are \acrshort{cptp} maps.
+\end{align}
+Given that the squared absolute value of a real number is always non-negative, the expression above is always non-negative. Therefore, the operator $[\![\textit{new} \,0 ]\!]$ is positive. The same reasoning can be applied to the operator $[\![\textit{new} \,1 ]\!]$. Therefore, attending to \autoref{def:completely_positive_superoperator} and \autoref{def:positive_superoperator}, it is possible to conclude that both operators $[\![\textit{new} \,0 ]\!]$ and $[\![\textit{new} \, 1 ] \!]$ are completely positive super-operators. As a result, both operators are \acrshort{cptp} maps.
 %attending to \autoref{def:positive_superoperator} and \autoref{def:positive} given that both matrices $\big(\begin{smallmatrix} 1 & 0\\ 0 & 0 \end{smallmatrix}\big)$ and $\big(\begin{smallmatrix} 0 & 0\\ 0 & 1 \end{smallmatrix}\big)$ are hermitian and have eigenvalues $0$ and $1$, they are positive super-operators. 
 
   \subsection{Example: Deutsch's Algorithm}
@@ -1742,65 +1766,149 @@ Now, regarding the interpretation of the lambda term \text{Deutch},
 \end{aligned} \\
 \end{align*}
 
+\todo[inline,size=\normalsize]{Sh e sp -;- e caso para caso funcções com 1 arg. Ir á diamond norm e trace norm e por as props que elas têm} 
 
-\todo[inline,size=\normalsize]{Sh e sp -;- e caso para caso funcções com 1 arg} 
+\subsubsection{Deutsch's Algorithm with Measurement Errors}
   
-  A measurement error is characterized by reading a "1" as a "0" or vice versa. Furthermore, it's important to note that measurement errors do not impact all states uniformly \cite{tannu2019mitigating}. Consequently, there is a discrepancy in how frequently the state "1" is incorrectly read as "0" compared to how often the state "0" is measured as "1" or vice versa.
+  A measurement error is characterized by reading a "1" as a "0" or vice versa.  Measurement errors do not impact all states uniformly \cite{tannu2019mitigating}. Consequently, there is a discrepancy in how frequently the state "1" is incorrectly read as "0" compared to how often the state "0" is measured as "1" or vice versa.
+
+  Given probabilities $p_1$ and $p_2$ of measuring a "0" as a "1" and a "1" as a "0", respectively, a measurement featuring this type of error, denoted $M^{\epsilon}$, is defined as follows:
+  \begin{equation}
+    \begin{split}
+    M^{\epsilon}: &\llbracket \textit{qbit} \rrbracket \rightarrow \llbracket \textit{qbit} \rrbracket \\
+    & \rho \mapsto (1-p_1)M_0 \rho M_0^{\dag} + (1-p_2) M_1 \rho M_1^{\dag} + p_1  M_1X\rho  X^{\dag}  M_1^{\dag} + p_2 M_0 X\rho X^{\dag} M_0^{\dag}
+    \end{split}
+  \end{equation}
+
+Considering an arbitrary state $ \rho=|\alpha|^{2} |0\rangle \langle 0 | + \alpha \beta^{*} |0\rangle \langle 1 | + \alpha^{*} \beta |1\rangle \langle 0 | + |\beta|^{2} |1\rangle \langle 1 |$, the resulting state after measurement is:
+\begin{equation}
+  \begin{split}
+  M^{\epsilon} (\rho) & =  (1-p_1) |\alpha|^{2} |0\rangle \langle 0 | + (1-p_2)  |\beta|^{2} |1\rangle \langle 1 | + p_1 |\alpha|^{2} |1\rangle \langle 1 | + p_2 |\beta|^{2}  |0\rangle \langle 0 | \\
+  & = ((1-p_1)|\alpha|^{2} + p_2 |\beta|^{2}) |0\rangle \langle 0 | + ((1-p_2) |\beta|^{2} + p_1 |\alpha|^{2}) |1\rangle \langle 1 | 
+\end{split}
+\end{equation}
+
+Given that 
+\begin{equation}
+  \begin{split}
+  &\text{Tr}(((1-p_1)|\alpha|^{2} + p_2 |\beta|^{2}) |0\rangle \langle 0 | + ((1-p_2) |\beta|^{2} + p_1 |\alpha|^{2}) |1\rangle \langle 1 |) \\
+  =& (1-p_1)|\alpha|^{2} + p_2 |\beta|^{2} + (1-p_2) |\beta|^{2} + p_1 |\alpha|^{2} =  |\alpha|^{2} + |\beta|^{2} = \text{Tr}(\rho)
+\end{split}
+\end{equation}
+this operator is trace-preserving. Attending to \autoref{eq:prove_new_0} and to the fact that the sum of positive semidefinite matrices is semidefinite (\autoref{def:positive}), it is straightforward to prove that the operator $M^{\epsilon}$ is completely positive. As a result, $M^{\epsilon}$ is a quantum channel and, consequently, a valid operation in the model considered.
   
-  For example, considering there is a 10\% chance of measuring a "0" as a "1" and a 30\% chance of measuring a "1" as a "0", the resulting state after measurement is:
+  
+
+%For example, considering $p_1=0.1$ and $p_2=0.3$ the resulting state after measurement is:
+  %\begin{equation}
+  %\begin{split}
+    %\quad &
+    %\begin{cases}
+     %(0.9\ket{-} \bra{-},0.1\ket{-} \bra{-})  &\text{ if }   f(0)= f(1) \\
+     %(0.3\ket{-} \bra{-}, 0.7\ket{-} \bra{-}) &\text{ if }   f(0) \neq f(1) 
+    %\end{cases} \\
+  %\end {split}
+  %\end{equation}
+  
+  %As a result, the discrepancy between the ideal and actual measurement results corresponds to:
+  %\begin{equation}
+    %\begin{split}
+      %\quad &
+      %\begin{cases}
+        %\lVert(\ket{-} \bra{-},0) - (0.9\ket{-} \bra{-},0.1\ket{-} \bra{-})   \rVert_{\diamondsuit} &\text{ if }   f(0)= f(1) \\
+        %\lVert (0,\ket{-} \bra{-}) - (0.3\ket{-} \bra{-}, 0.7\ket{-} \bra{-}) \rVert_{\diamondsuit} &\text{ if }   f(0) \neq f(1) 
+      %\end{cases} \\
+      %= \quad &
+      %\begin{cases}
+        %\lVert(0.1\ket{-} \bra{-},-0.1\ket{-} \bra{-})   \rVert_{\diamondsuit} &\text{ if }   f(0)= f(1) \\
+        %\lVert (-0.3\ket{-} \bra{-}, 0.3\ket{-} \bra{-}) \rVert_{\diamondsuit} &\text{ if }   f(0) \neq f(1)
+      %\end{cases} \\
+      %= \quad &
+      %\begin{cases}
+        %\lVert 0.1\ket{-} \bra{-}\rVert_{\diamondsuit} + \lVert - 0.1 \ket{-} \bra{-}\rVert_{\diamondsuit} &\text{ if }   f(0)= f(1) \\
+        %\lVert -0.3\ket{-} \bra{-}\rVert_{\diamondsuit} + \lVert - 0.3 \ket{-} \bra{-}\rVert_{\diamondsuit} &\text{ if }   f(0) \neq f(1)
+      %\end{cases} \\
+    %\end {split}
+    %\end{equation}
+  
+    %Employing \autoref{eq:Bloch_vector}, it is easily concluded that the Bloch vector of the state $\ket{-} \bra{-}$ is $(-1,0,0)$. Consequently,  the discrepancy between the ideal and actual measurement results is:
+    %\begin{equation}
+      %\begin{split}
+        %& 
+        %\begin{cases}
+          %\lVert (-0.1,0,0) \rVert_{2} + \lVert (0.1,0,0) \ket{-} \bra{-}\rVert_{2} &\text{ if }   f(0)= f(1) \\
+         % \lVert(0.3,0,0)\ket{-} \bra{-}\rVert_{2} + \lVert (-0.3,0,0) \ket{-} \bra{-}\rVert_{2} &\text{ if }   f(0) \neq f(1)
+        %\end{cases} \\
+        %= \quad &
+        %\begin{cases}
+          %\sqrt{(-0.1)^{2} + 0^{2} + 0^{2}} + \sqrt{(0.1)^{2} + 0^{2} + 0^{2}} &\text{ if }   f(0)= f(1) \\
+          %\sqrt{(0.3)^{2} + 0^{2} + 0^{2}} + \sqrt{(-0.3)^{2} + 0^{2} + 0^{2}} &\text{ if }   f(0) \neq f(1)
+        %\end{cases} \\
+       % = \quad &
+        %\begin{cases}
+          %2 \sqrt{0.01} &\text{ if }   f(0)= f(1) \\
+          %2 \sqrt{0.09}  &\text{ if }   f(0) \neq f(1)
+        %\end{cases} \\
+      %\end{split}
+  %\end{equation}
+
+  For example, considering $p_1=0.1$ and $p_2=0.3$ the resulting state after measurement is:
   \begin{equation}
   \begin{split}
-    \quad &
+    \rho'=\quad &
     \begin{cases}
-     (0.9\ket{-} \bra{-},0.1\ket{-} \bra{-})  &\text{ if }   f(0)= f(1) \\
-     (0.3\ket{-} \bra{-}, 0.7\ket{-} \bra{-}) &\text{ if }   f(0) \neq f(1) 
+     0.9 \ket{0} \bra{0}\ket{-} \bra{-} + 0.1 \ket{1} \bra{1} \ket{-} \bra{-}  &\text{ if }   f(0)= f(1) \\
+     0.3 \ket{0} \bra{0} \ket{-} \bra{-} + 0.7 \ket{1} \bra{1} \ket{-} \bra{-} &\text{ if }   f(0) \neq f(1) 
     \end{cases} \\
   \end {split}
   \end{equation}
   
-  The norm of a tuple is defined as the sum of the norms of its components, \textit{i.e.}, for any operators $v$ and $w$:
-  \begin{equation} \label{eq:norm_tuple}
-    \lVert (v,w) \rVert = \lVert v \rVert + \lVert w \rVert
-  \end{equation}
-  
-  As a result, the discrepancy between the ideal and actual measurement results corresponds to:
-  \begin{equation}
-    \begin{split}
-      \quad &
+  As a result, the discrepancy between the ideal and actual measurement results,$\llbracket \rho - \rho' \rrbracket_{\diamondsuit} $, corresponds to:
+  \begin{align}
+    \quad & \llbracket \rho - \rho' \rrbracket_{\diamondsuit}  \\
+      =\quad &
       \begin{cases}
-        \lVert(\ket{-} \bra{-},0) - (0.9\ket{-} \bra{-},0.1\ket{-} \bra{-})   \rVert_{\diamondsuit} &\text{ if }   f(0)= f(1) \\
-        \lVert (0,\ket{-} \bra{-}) - (0.3\ket{-} \bra{-}, 0.7\ket{-} \bra{-}) \rVert_{\diamondsuit} &\text{ if }   f(0) \neq f(1) 
+        \lVert  (\ket{0} \bra{0}\ket{-} \bra{-} )- (0.9 \ket{0} \bra{0}\ket{-} \bra{-} + 0.1 \ket{1} \bra{1} \ket{-} \bra{-})  \rVert_{\diamondsuit} &\text{ if }   f(0)= f(1) \notag\\
+        \lVert (\ket{1} \bra{1}  \ket{-} \bra{-}) - ( 0.3 \ket{0} \bra{0} \ket{-} \bra{-} + 0.7 \ket{1} \bra{1} \ket{-} \bra{-}) \rVert_{\diamondsuit} &\text{ if }   f(0) \neq f(1) 
+      \end{cases} \notag\\
+      = \quad &
+      \begin{cases}
+        \lVert 0.1 \ket{0} \bra{0}\ket{-} \bra{-} - 0.1\ket{1} \bra{1} \ket{-} \bra{-}   \rVert_{\diamondsuit} &\text{ if }   f(0)= f(1) \notag \\
+        \lVert -0.3 \ket{0} \bra{0}\ket{-} \bra{-} + 0.3 \ket{1} \bra{1}\ket{-} \bra{-}   \rVert_{\diamondsuit} &\text{ if }   f(0) \neq f(1)
       \end{cases} \\
       = \quad &
       \begin{cases}
-        \lVert(0.1\ket{-} \bra{-},-0.1\ket{-} \bra{-})   \rVert_{\diamondsuit} &\text{ if }   f(0)= f(1) \\
-        \lVert (-0.3\ket{-} \bra{-}, 0.3\ket{-} \bra{-}) \rVert_{\diamondsuit} &\text{ if }   f(0) \neq f(1)
-      \end{cases} \\
-      = \quad &
-      \begin{cases}
-        \lVert 0.1\ket{-} \bra{-}\rVert_{\diamondsuit} + \lVert - 0.1 \ket{-} \bra{-}\rVert_{\diamondsuit} &\text{ if }   f(0)= f(1) \\
-        \lVert -0.3\ket{-} \bra{-}\rVert_{\diamondsuit} + \lVert - 0.3 \ket{-} \bra{-}\rVert_{\diamondsuit} &\text{ if }   f(0) \neq f(1)
-      \end{cases} \\
-    \end {split}
-    \end{equation}
-  
-    Employing \autoref{eq:Bloch_vector}, it is easily concluded that the Bloch vector of the state $\ket{-} \bra{-}$ is $(-1,0,0)$. Consequently,  the discrepancy between the ideal and actual measurement results is:
+        \lVert 0.1 \hspace{1pt} (\ket{0} \bra{0} - \ket{1} \bra{1}) \ket{-} \bra{-}  \rVert_{\diamondsuit} &\text{ if }   f(0)= f(1) \notag \\
+        \lVert  0.3  \hspace{1pt} (\ket{1} \bra{1} - \ket{0} \bra{0}) \ket{-} \bra{-}\rVert_{\diamondsuit} &\text{ if }   f(0) \neq f(1)
+      \end{cases} \notag 
+\end{align}
+Attending to \autoref{def:norm} and the multiplicativity of the diamond norm with
+respect to tensor products, it follows that:
+\begin{align}
+  \llbracket \rho - \rho' \rrbracket_{\diamondsuit} & = \hspace{2pt}
+  \begin{cases}
+    0.1  \lVert  \ket{0} \bra{0} - \ket{1} \bra{1}  \rVert_{\diamondsuit} \hspace{1pt}  \lVert  \ket{-} \bra{-}  \rVert_{\diamondsuit} &\text{ if }   f(0)= f(1) \notag \\
+    0.3 \lVert  (\ket{1} \bra{1} - \ket{0} \bra{0}) \rVert_{\diamondsuit} \hspace{1pt}  \lVert \ket{-} \bra{-}\rVert_{\diamondsuit} &\text{ if }   f(0) \neq f(1)
+  \end{cases} \notag  \\
+\end{align}
+
+      Employing \autoref{eq:Bloch_vector}, it is easily concluded that the Bloch vectors of the states $\ket{0} \bra{0}$, $\ket{1} \bra{1}$, and $\ket{-} \bra{-}$ are $(-1,0,0)$, $(0,0,1)$, and $(0,0,-1)$, respectively. Consequently, and considering \autoref{def:norm}  the discrepancy between the ideal and actual measurement results is:
     \begin{equation}
       \begin{split}
-        & 
+        \llbracket \rho - \rho' \rrbracket_{\diamondsuit} & = \hspace{2pt}
         \begin{cases}
-          \lVert (-0.1,0,0) \rVert_{2} + \lVert (0.1,0,0) \ket{-} \bra{-}\rVert_{2} &\text{ if }   f(0)= f(1) \\
-          \lVert(0.3,0,0)\ket{-} \bra{-}\rVert_{2} + \lVert (-0.3,0,0) \ket{-} \bra{-}\rVert_{2} &\text{ if }   f(0) \neq f(1)
+          0.1 \lVert (0,0,1) \rVert_{2}  \hspace{1pt} \lVert (1,0,0)\rVert_{2}  &\text{ if }   f(0)= f(1) \\
+          0.3\lVert(0,0,-2)\rVert_{2} \hspace{1pt}  \lVert (1,0,0)\rVert_{2} &\text{ if }   f(0) \neq f(1)
         \end{cases} \\
-        = \quad &
+        = \hspace{2pt} &
         \begin{cases}
-          \sqrt{(-0.1)^{2} + 0^{2} + 0^{2}} + \sqrt{(0.1)^{2} + 0^{2} + 0^{2}} &\text{ if }   f(0)= f(1) \\
-          \sqrt{(0.3)^{2} + 0^{2} + 0^{2}} + \sqrt{(-0.3)^{2} + 0^{2} + 0^{2}} &\text{ if }   f(0) \neq f(1)
+          0.2 \sqrt{1^{2} + 0^{2} + 0^{2}} \cdot \sqrt{1^{2} + 0^{2} + 0^{2}} &\text{ if }   f(0)= f(1) \\
+          0.6\sqrt{(-1)^{2} + 0^{2} + 0^{2}} + \sqrt{1^{2} + 0^{2} + 0^{2}} &\text{ if }   f(0) \neq f(1)
         \end{cases} \\
-        = \quad &
+        = \hspace{2pt} &
         \begin{cases}
-          2 \sqrt{0.01} &\text{ if }   f(0)= f(1) \\
-          2 \sqrt{0.09}  &\text{ if }   f(0) \neq f(1)
+         0.2 &\text{ if }   f(0)= f(1) \\
+          0.6  &\text{ if }   f(0) \neq f(1)
         \end{cases} \\
       \end{split}
   \end{equation}
@@ -1814,13 +1922,13 @@ Now, regarding the interpretation of the lambda term \text{Deutch},
     & \text{pm} \hspace{4pt}  U_{f}(H(q  \hspace{2pt}   ( \textit{new}   \hspace{2pt}  0 \hspace{1pt}(*))),(H(q  \hspace{2pt}   ( \textit{new}   \hspace{2pt}  1 \hspace{1pt}(*)))) \hspace{2pt}  \textit{to} \hspace{2pt} q_{1} \otimes q_{2} \hspace{1pt}. \hspace{3pt} \textit{meas}^{\epsilon} (H( q_{1})) \otimes q_{2}
      \end{align*}
   
-  Therefore, $\text{Deutsch}=_{\epsilon} \text{Deutsch}^{\epsilon}$, and consequently, for scenario under consideration, if $f$ is a constant function, $\text{Deutsch} ={2 \sqrt{0.01}} \text{Deutsch}^{0.1,0.3}$; otherwise, $\text{Deutsch} =_{2 \sqrt{0.09}} \text{Deutsch}^{0.1,0.3}$.
+  Therefore, $\text{Deutsch}=_{\epsilon} \text{Deutsch}^{\epsilon}$, and consequently, for scenario under consideration, if $f$ is a constant function, $\text{Deutsch} =_{0.2} \text{Deutsch}^{p_1=0.1,p_2=0.3}$; otherwise, $\text{Deutsch} =_{0.6} \text{Deutsch}^{p_1=0.1,p_2=0.3}$.
 
   \subsection{Example: Proving an equivalence using equations-in-context}
 
   This subsection aims to illustrate how to prove that creating a new qubit, discarding it, and then creating a new qubit is equivalent to just creating a new qubit, \textit{i.e.},
   \begin{equation}
-    - \triangleright \text{disc} \hspace{3pt} \textit{new}\hspace{1pt}0 \hspace{1pt}(*) \hspace{1pt} \text{to} *. \hspace{3pt} \textit{new}\hspace{1pt}0 \hspace{1pt}(*): \textit{qbit} = - \triangleright \textit{new}\hspace{1pt}0 \hspace{1pt}(*): \textit{qbit} 
+    - \triangleright \hspace{1 pt} \text{disc} \hspace{3pt} \textit{new}\hspace{1pt}0 \hspace{1pt}(*) \hspace{1pt} \text{to} *. \hspace{3pt} \textit{new}\hspace{1pt}0 \hspace{1pt}(*): \textit{qbit} = - \triangleright \textit{new}\hspace{1pt}0 \hspace{1pt}(*): \textit{qbit} 
   \end{equation}
   syntactically, using equations-in-context.
 
