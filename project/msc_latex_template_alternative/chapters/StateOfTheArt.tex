@@ -573,9 +573,7 @@ The principal distinction between the quantum lambda calculus introduced in this
 Nonetheless, the controlled duplication of both classical and quantum data will be addressed in \Cref{chap:graded}.
 
 
-\todo[inline,size=\normalsize]{Escrever intro ao capítulo: o que é que se vai abordar e tal e é baseada nos livros x e y} 
-
-The first two sections of this chapter present the mathematical and quantum computing preliminaries necessary for understanding theory of quantum computation. The introduction to quantum computing is primarily based on \cite{nielsen2010quantum,watrous2018theory}, while the mathematical foundations are also based on \cite{rudin91functional} and  \cite{guide2006infinite} .
+The first two sections of this chapter present the mathematical and quantum computing preliminaries necessary for understanding the theory of quantum computation. It should be noted that the concept of a norm, as well as the properties of some norms, are relevant here,  as the existence of a metric system implies that operators have a well-defined norm. The introduction to quantum computing is primarily based on \cite{nielsen2010quantum,watrous2018theory}, while the mathematical foundations are also based on \cite{rudin91functional} and  \cite{guide2006infinite}. The subsequent section delves into how the terms of quantum lambda calculus, which are constructed using \autoref{fig:typing_rules_linear}, are interpreted in the ``quantum world''. 
 
 \section{Mathematical Preliminaries} \label{sec:Math}
 
@@ -654,7 +652,7 @@ independent and that spans the space.
 
 \begin{definition}
 The number of elements in the basis is defined to be the \emph{dimension}  of
-$V$.
+$V$, denoted \gls{dim}.
 \end{definition}
 
 \subsection{Linear operators}
@@ -875,13 +873,18 @@ the operator $U$ defined by $U = \sum_{i} w_i^{\dag} v_i$ is unitary.
 \end{definition}
 
 \begin{definition}\label{eq:trace-norm-op}
-  The \emph{trace norm}, \gls{trace-norm}, of a matrix $A$ is defined as:
+  The \emph{trace norm}, \gls{trace-norm}, of a square matrix $A$ is defined as:
   \begin{equation*}
     \lVert A \rVert_{1} = \text{tr} \sqrt{A^{\dagger}A}
   \end{equation*}
   This norm is also  known as the Schatten 1-norm. The trace norm induces a metric on the set of density matrices which is defined by $d(\rho, \sigma) = \lVert \rho -\sigma\rVert_{1}$.
 \end{definition}
 
+For all square matrices $A$ and $B$, this norm enjoys the following properties:
+\begin{itemize}
+  \item Submultiplicativity with respect to compositions: $\lVert AB \rVert_{1} \leq \lVert A \rVert_{1} \lVert B \rVert_{1}$;
+  \item Multiplicativity with respect to the tensor products: $\lVert A \otimes B \rVert_{1} = \lVert A \rVert_{1} \lVert B \rVert_{1}$.
+\end{itemize}
 
 \begin{definition} \label{eq:op_norm}
   Given  normed vector spaces $V$ and $W$, the operator,\gls{op-norm}, norm for an operator $E: V \rightarrow W$ is defined as
@@ -1285,7 +1288,24 @@ This last equality corresponds to an Kraus operator sum representation, where th
 \end{definition}
 where $A \in \mathbb{C}^{n \times n }$
 
-Unfortunately, this norm is not stable under tensoring , given that the inequation $ \lVert Q \otimes \text{I} \rVert_{1} \leq \lVert Q \rVert_{1}$ does not hold \cite{watrous2018theory}. As a result, the diamond norm, which is based on the trace norm, is used instead. 
+The following facts hold for the trace norm:
+\begin{enumerate}
+  \item Let $Q: \mathbb{C}^{n \times n} \rightarrow \mathbb{C}^{m \times m}$ be a positive super-operator. It holds that 
+  \begin{equation}
+    \lVert Q \rVert_{1} = \text{max} \{ \text{Tr}\left(Q(uu^{*}) \right) \vert \hspace{2pt}  \lVert u \rVert_{1}=1 \}.
+  \end{equation}
+  \item The trace norm is submultiplicative with respect to composition of super-operators , \textit{i.e.}, for all super-operators  $Q: \mathbb{C}^{n \times n} \rightarrow \mathbb{C}^{m \times m}$ and $S: \mathbb{C}^{m \times m} \rightarrow \mathbb{C}^{o \times o}$
+  \begin{equation}
+    \lVert S  Q \rVert_{1} \leq \lVert S \rVert_{1} \lVert Q \rVert_{1}.
+  \end{equation}
+  \item Let $U_0,$ $V_0 \in \mathbb{C}^{n\times n}$ and $U_1,$ $V_1 \in \mathbb{C}^{m\times m}$ be unitary operators, let $Q,$ $S: \mathbb{C}^{n \times n} \rightarrow \mathbb{C}^{m \times m}$ be super-operators, where $S$ is defined as:
+  \begin{equation}
+    S(X) = U_1 Q(U_0^{\dag} A V_0) V_1^{\dag}
+  \end{equation}
+  for all $A \in \mathbb{C}^{n\times n}$. It holds that $\lVert Q \rVert_{1} = \lVert S \rVert_{1} $.
+\end{enumerate}
+
+Unfortunately, this norm is not stable under tensoring , given that the inequation $ \lVert Q \otimes \text{I} \rVert_{1} \leq \lVert Q \rVert_{1}$ does not hold \cite{watrous2018theory}. As a result, the diamond norm, which is based on the trace norm, is used instead in the context of quantum channels. 
 
 \begin{definition}
   Given a super-operator $Q: \mathbb{C}^{n\times n} \xrightarrow{} \mathbb{C}^{m\times m }$, the diamond norm, \gls{diamond-norm} , is defined as:
@@ -1295,8 +1315,37 @@ Unfortunately, this norm is not stable under tensoring , given that the inequati
 \end{definition}
 %where $I_{\mathbb{C}^{n \times n}} $ is the identity super-operator over the space $\mathbb{C}^{n\times n}$.
 
-For this norm it holds that for all super-operators $Q: \mathbb{C}^{n \times n}\rightarrow \mathbb{C}^{m \times m} $ and $S:\mathbb{C}^{m \times m} \rightarrow \mathbb{C}^{o \times o} $, if $Q$ is a quantum channel then $\lVert S  Q \rVert_{\diamondsuit} \leq \lVert S \rVert_{\diamondsuit}$ \cite{watrous2018theory}, and if $S$ is a quantum channel, then $\lVert S  Q \rVert_{\diamondsuit} \leq \lVert Q \rVert_{\diamondsuit}$. Moreover, the following inequalties hold for a super-operator $Q$: $ \lVert Q \rVert_{\diamondsuit} \geq \lVert Q \otimes I \rVert_{\diamondsuit} $ and $\lVert Q \rVert_{\diamondsuit} \geq \lVert I \otimes Q  \rVert_{\diamondsuit} $. This is a desireble property, as is guarantees that quantum operations do not increase the distance between states, and as a
+%3.46
+%For all super-operators $Q: \mathbb{C}^{n \times n}\rightarrow \mathbb{C}^{m \times m} $, it holds that 
+%\begin{equation}
+  %\lVert Q \rVert_{\diamondsuit} \geq \lVert Q \otimes I_{\mathbb{C}^{o\times o}} \rVert_{1},
+%\end{equation}
+%if $\text{dim}(\mathbb{C}^{o\times o}) \geq \text{dim}(\mathbb{C}^{n\times n})$.
+
+For this norm it holds that for all super-operators $Q: \mathbb{C}^{n \times n}\rightarrow \mathbb{C}^{m \times m} $ and $S:\mathbb{C}^{m \times m} \rightarrow \mathbb{C}^{o \times o} $, if $Q$ is a quantum channel then $\lVert S  Q \rVert_{\diamondsuit} \leq \lVert S \rVert_{\diamondsuit}$ \cite{watrous2018theory}, and if $S$ is a quantum channel, then $\lVert S  Q \rVert_{\diamondsuit} \leq \lVert Q \rVert_{\diamondsuit}$. This is a desireble property, as is guarantees that quantum operations do not increase the distance between states, and as a
 consequence, composition of programs is valid.
+%Moreover, the following inequalties hold for a super-operator $Q$: $ \lVert Q \rVert_{\diamondsuit} \geq \lVert Q \otimes I \rVert_{\diamondsuit} $ and $\lVert Q \rVert_{\diamondsuit} \geq \lVert I \otimes Q  \rVert_{\diamondsuit} $
+%3.44
+Moreover the following properties hold for the diamond norm:
+\begin{enumerate}
+  \item For all quantum channels $Q:\mathbb{C}^{n \times n}\rightarrow \mathbb{C}^{m \times m}$, it holds that $\lVert Q \rVert_{\diamondsuit} = 1$.
+  \item For all super-operators $Q:\mathbb{C}^{n \times n}\rightarrow \mathbb{C}^{m \times m}$, it holds that:
+  \begin{equation}
+    \lVert Q \rVert_{\diamondsuit} = \lVert Q \otimes I_{\mathbb{C}^{o\times o}} \rVert_{\diamondsuit} .
+  \end{equation}
+  \item The diamond norm is submultiplicative with respect to composition of , \textit{i.e.}, for all super-operators $Q: \mathbb{C}^{n \times n} \rightarrow \mathbb{C}^{m \times m}$ and $S: \mathbb{C}^{m \times m} \rightarrow \mathbb{C}^{o \times o}$, it holds that:
+  \begin{equation}
+    \lVert S  Q \rVert_{\diamondsuit} \leq \lVert S \rVert_{\diamondsuit} \lVert Q \rVert_{\diamondsuit}.
+  \end{equation}
+  \item For all super-operators $Q_0, S_0: \mathbb{C}^{n \times n} \rightarrow \mathbb{C}^{m \times m}$ and $Q_1, S_1: \mathbb{C}^{m \times m} \rightarrow \mathbb{C}^{o \times o}$, it holds that:
+  \begin{equation}
+  \lVert S_1 S_0 - Q_1 Q_0  \rVert_{\diamondsuit} \leq \lVert S_0 - Q_0 \rVert_{\diamondsuit} + \lVert S_1 - Q_1 \rVert_{\diamondsuit}.
+  \end{equation}
+  \item The diamond norm is multiplicative with respect to tensor products, \textit{i.e.}, for all super-operators $Q: \mathbb{C}^{n \times n} \rightarrow \mathbb{C}^{m \times m}$ and $S: \mathbb{C}^{o \times o} \rightarrow \mathbb{C}^{p \times p}$, it holds that:
+  \begin{equation}
+    \lVert Q \otimes S \rVert_{\diamondsuit} = \lVert Q \rVert_{\diamondsuit} \lVert S \rVert_{\diamondsuit}.
+  \end{equation}
+\end{enumerate}
 
 
 Consider an operator  $ \text{r} : (\mathbb{C}^{n} \xrightarrow[]{} \mathbb{C}^{m}) \xrightarrow[]{} (\mathbb{C}^{n\times n}\xrightarrow[]{} \mathbb{C}^{m\times m})$ that sends an operator $T$ to the mapping $A \mapsto TAT^{\dag}$. The exact calculation of distances induced by $\lVert \rVert_{\diamondsuit}$ tends to be quite complicated, but a useful property for calculating the distance between quantum channels in the image of $r$ is provided in \cite{watrous2018theory}.
