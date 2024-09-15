@@ -1772,10 +1772,10 @@ Now, regarding the interpretation of the lambda term \text{Deutch},
   
   A measurement error is characterized by reading a "1" as a "0" or vice versa.  Measurement errors do not impact all states uniformly \cite{tannu2019mitigating}. Consequently, there is a discrepancy in how frequently the state "1" is incorrectly read as "0" compared to how often the state "0" is measured as "1" or vice versa.
 
-  Given probabilities $p_1$ and $p_2$ of measuring a "0" as a "1" and a "1" as a "0", respectively, a measurement featuring this type of error, denoted $M^{\epsilon}$, is defined as follows:
+  Given probabilities $p_1$ and $p_2$ of measuring a "0" as a "1" and a "1" as a "0", respectively, a measurement featuring this type of error, denoted $\text{meas}^{\epsilon}$, is defined as follows:
   \begin{equation}
     \begin{split}
-    M^{\epsilon}: &\llbracket \textit{qbit} \rrbracket \rightarrow \llbracket \textit{qbit} \rrbracket \\
+      \text{meas}^{\epsilon}: &\llbracket \textit{qbit} \rrbracket \rightarrow \llbracket \textit{qbit} \rrbracket \\
     & \rho \mapsto (1-p_1)M_0 \rho M_0^{\dag} + (1-p_2) M_1 \rho M_1^{\dag} + p_1  M_1X\rho  X^{\dag}  M_1^{\dag} + p_2 M_0 X\rho X^{\dag} M_0^{\dag}
     \end{split}
   \end{equation}
@@ -1783,7 +1783,7 @@ Now, regarding the interpretation of the lambda term \text{Deutch},
 Considering an arbitrary state $ \rho=|\alpha|^{2} |0\rangle \langle 0 | + \alpha \beta^{*} |0\rangle \langle 1 | + \alpha^{*} \beta |1\rangle \langle 0 | + |\beta|^{2} |1\rangle \langle 1 |$, the resulting state after measurement is:
 \begin{equation}
   \begin{split}
-  M^{\epsilon} (\rho) & =  (1-p_1) |\alpha|^{2} |0\rangle \langle 0 | + (1-p_2)  |\beta|^{2} |1\rangle \langle 1 | + p_1 |\alpha|^{2} |1\rangle \langle 1 | + p_2 |\beta|^{2}  |0\rangle \langle 0 | \\
+    \text{meas}^{\epsilon} (\rho) & =  (1-p_1) |\alpha|^{2} |0\rangle \langle 0 | + (1-p_2)  |\beta|^{2} |1\rangle \langle 1 | + p_1 |\alpha|^{2} |1\rangle \langle 1 | + p_2 |\beta|^{2}  |0\rangle \langle 0 | \\
   & = ((1-p_1)|\alpha|^{2} + p_2 |\beta|^{2}) |0\rangle \langle 0 | + ((1-p_2) |\beta|^{2} + p_1 |\alpha|^{2}) |1\rangle \langle 1 | 
 \end{split}
 \end{equation}
@@ -1791,11 +1791,11 @@ Considering an arbitrary state $ \rho=|\alpha|^{2} |0\rangle \langle 0 | + \alph
 Given that 
 \begin{equation}
   \begin{split}
-  &\text{Tr}(((1-p_1)|\alpha|^{2} + p_2 |\beta|^{2}) |0\rangle \langle 0 | + ((1-p_2) |\beta|^{2} + p_1 |\alpha|^{2}) |1\rangle \langle 1 |) \\
+    \text{Tr} (\text{meas}^{\epsilon} (\rho))= &\text{Tr}(((1-p_1)|\alpha|^{2} + p_2 |\beta|^{2}) |0\rangle \langle 0 | + ((1-p_2) |\beta|^{2} + p_1 |\alpha|^{2}) |1\rangle \langle 1 |) \\
   =& (1-p_1)|\alpha|^{2} + p_2 |\beta|^{2} + (1-p_2) |\beta|^{2} + p_1 |\alpha|^{2} =  |\alpha|^{2} + |\beta|^{2} = \text{Tr}(\rho)
 \end{split}
 \end{equation}
-this operator is trace-preserving. Attending to \autoref{eq:prove_new_0} and to the fact that the sum of positive semidefinite matrices is semidefinite (\autoref{def:positive}), it is straightforward to prove that the operator $M^{\epsilon}$ is completely positive. As a result, $M^{\epsilon}$ is a quantum channel and, consequently, a valid operation in the model considered.
+this operator is trace-preserving. Attending to \autoref{eq:prove_new_0} and to the fact that the sum of positive semidefinite matrices is semidefinite (\autoref{def:positive}), it is straightforward to prove that the operator $\text{meas}^{\epsilon}$ is completely positive. As a result, $\text{meas}^{\epsilon}$ is a quantum channel and, consequently, a valid operation in the model considered.
   
   
 
@@ -1913,16 +1913,18 @@ respect to tensor products, it follows that:
       \end{split}
   \end{equation}
   
-  Via the metric deductive system in \autoref{fig:metric deductive system}, it is easily verified that for an arbitrary error $\epsilon$:
+ % Via the metric deductive system in \autoref{fig:metric deductive system}, it is easily verified that if the distance between \textit{meas} and $\textit{meas}^{\epsilon}$ is $\epsilon$:s
+
+For an arbitray distance $\epsilon$, between the ideal post-measurement state $\rho$ he erroneous post-measurement stat $\rho'$,  using the metric deductive system in \autoref{fig:metric deductive system} one can write:
   \begin{align*}
-     & \hspace{3pt} U_{f}: \textit{qbit} \otimes \textit{qbit} \multimap \textit{qbit} \otimes \textit{qbit} \hspace{3pt} \triangleright \hspace{3pt}  \\ 
-    & \text{pm} \hspace{4pt}  U_{f}(H(q  \hspace{2pt}   ( \textit{new}   \hspace{2pt}  0 \hspace{1pt}(*))),(H(q  \hspace{2pt}   ( \textit{new}   \hspace{2pt}  1 \hspace{1pt}(*)))) \hspace{2pt}  \textit{to} \hspace{2pt} q_{1} \otimes q_{2} \hspace{1pt}. \hspace{3pt} \textit{meas} (H( q_{1})) \otimes q_{2} \\
-    =_{\epsilon}& \\
-     & \hspace{3pt} U_{f}: \textit{qbit} \otimes \textit{qbit} \multimap \textit{qbit} \otimes \textit{qbit} \hspace{3pt} \triangleright \hspace{3pt}  \\ 
-    & \text{pm} \hspace{4pt}  U_{f}(H(q  \hspace{2pt}   ( \textit{new}   \hspace{2pt}  0 \hspace{1pt}(*))),(H(q  \hspace{2pt}   ( \textit{new}   \hspace{2pt}  1 \hspace{1pt}(*)))) \hspace{2pt}  \textit{to} \hspace{2pt} q_{1} \otimes q_{2} \hspace{1pt}. \hspace{3pt} \textit{meas}^{\epsilon} (H( q_{1})) \otimes q_{2}
+     \hspace{3pt} - \triangleright & \hspace{3pt} \text{pm} \hspace{4pt}  U_{f}(H  \hspace{2pt}   ( \textit{new}   \hspace{2pt}  0 \hspace{1pt}(*)) \otimes H  \hspace{2pt}   ( \textit{new}   \hspace{2pt}  1 \hspace{1pt}(*))) \hspace{2pt}  \textit{to} \hspace{2pt} q_{1} \otimes q_{2} \hspace{1pt}. \\
+     &\hspace{3pt} \textit{meas} (H( q_{1})) \otimes q_{2} : \textit{qbit} \otimes \textit{qbit}& \\
+     =_{\epsilon} & \\
+     \hspace{3pt} - \triangleright & \hspace{3pt} \text{pm} \hspace{4pt}  U_{f}(H  \hspace{2pt}   ( \textit{new}   \hspace{2pt}  0 \hspace{1pt}(*)) \otimes H  \hspace{2pt}   ( \textit{new}   \hspace{2pt}  1 \hspace{1pt}(*))) \hspace{2pt}  \textit{to} \hspace{2pt} q_{1} \otimes q_{2} \hspace{1pt}. \\
+     &\hspace{3pt} \textit{meas}^{\epsilon} (H( q_{1})) \otimes q_{2} : \textit{qbit} \otimes \textit{qbit}& \\
      \end{align*}
   
-  Therefore, $\text{Deutsch}=_{\epsilon} \text{Deutsch}^{\epsilon}$, and consequently, for scenario under consideration, if $f$ is a constant function, $\text{Deutsch} =_{0.2} \text{Deutsch}^{p_1=0.1,p_2=0.3}$; otherwise, $\text{Deutsch} =_{0.6} \text{Deutsch}^{p_1=0.1,p_2=0.3}$.
+  Therefore, $\text{Deutsch}=_{\epsilon} \text{Deutsch}^{\textit{meas}^{\epsilon}}$, and consequently, for scenario under consideration, if $f$ is a constant function, $\text{Deutsch} =_{0.2} \text{Deutsch}^{\textit{meas}^{\epsilon}}$; otherwise, $\text{Deutsch} =_{0.6} \text{Deutsch}^{\textit{meas}^{\epsilon}}$.
 
   \subsection{Example: Proving an equivalence using equations-in-context}
 

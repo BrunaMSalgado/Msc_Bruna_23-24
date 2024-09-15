@@ -1,4 +1,4 @@
-This is XeTeX, Version 3.141592653-2.6-0.999995 (MiKTeX 24.1) (preloaded format=xelatex 2024.7.31)  15 SEP 2024 00:18
+This is XeTeX, Version 3.141592653-2.6-0.999995 (MiKTeX 24.1) (preloaded format=xelatex 2024.7.31)  15 SEP 2024 14:23
 entering extended mode
  restricted \write18 enabled.
  file:line:error style messages enabled.
@@ -1949,11 +1949,9 @@ Overfull \hbox (0.38875pt too wide) detected at line 1767
  []
 
 [45] [46] [47]
-Overfull \hbox (26.29355pt too wide) in paragraph at lines 1925--1926
-\TU/SourceSansPro(0)/m/n/12 constant function, $[] \OT1/cmr/m/n/12 =[] [][]$\TU/SourceSansPro(0)/m/n/12 ; otherwise, $[] \OT1/cmr/m/n/12 =[] [][]$\TU/SourceSansPro(0)/m/n/12 . 
- []
+Underfull \vbox (badness 2027) has occurred while \output is active []
 
-[48]) (chapters/Contribution.tex [49] [50
+ [48]) (chapters/Contribution.tex [49] [50
 
 ]
 Chapter 4.
@@ -2380,10 +2378,10 @@ Package rerunfilecheck Info: File `dissertation.out' has not changed.
 Here is how much of TeX's memory you used:
  58332 strings out of 409673
  1246306 string characters out of 5774704
- 2047630 words of memory out of 5000000
+ 2046630 words of memory out of 5000000
  79478 multiletter control sequences out of 15000+600000
  578475 words of font info for 158 fonts, out of 8000000 for 9000
  1348 hyphenation exceptions out of 8191
  121i,36n,121p,2535b,1395s stack positions out of 10000i,1000n,20000p,200000b,200000s
 
-Output written on dissertation.xdv (132 pages, 2110200 bytes).
+Output written on dissertation.xdv (132 pages, 2111104 bytes).
