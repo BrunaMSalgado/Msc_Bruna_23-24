@@ -1,6 +1,9 @@
 \chapter{Conditionals}
 
-The notion of approximate equivalence for quantum programming explored in \cite{dahlqvist2022syntactic} does not encompass classical control flow, \textit{i.e.}, the execution of operations conditioned on measurement outcomes.
+The notion of approximate equivalence for quantum programming explored in \cite{dahlqvist2022syntactic} does not encompass classical control flow, \textit{i.e.}, the execution of operations conditioned on measurement outcomes. 
+
+This chapter presents the syntax, interpretation, and metric equations for the conditionals in quantum lambda calculus, along with several properties of the calculus. The syntax and interpretation are based on  \cite{crole1993categories,selinger2013lecture,selinger2009quantum}. Since the notion of conditionals that arises from the definition of measurement in \autoref{fig:interpret_ops_0} presents some limitations regarding the norm of such operators, a slightly different model for operations is introduced based on \cite{selinger2004towards}. Additionally, this model offers a clearer distinction between classical bits and quantum bits semantically. This model is based on direct sums of vector spaces. As a result, the concept of a \acrshort{cptp} operator is extended is extended within this framework, and a new norm in the associated vector space is introduced, referred to as the \emph{gen-norm}. The metric equations arise naturally from the definition of the gen-norm and are proven to be sound. At last, the utility of this framework is demonstrated throught a series of examples of erroneous implementations of the quantum teleportation protocol.
+
 %As a result, preliminary work based on \cite{crole1993categories,selinger2013lecture}   has been undertaken to address the integration of conditionals. 
 
 %Within the model of quantum lambda calculus, introduced in \autoref{sec:Quantum Lambda Calculus:Interpretation}, particularly regarding the measurement operation whose definition is based on \cite{watrous2018theory}, the notion of classical control flow 
@@ -9,11 +12,11 @@ The notion of approximate equivalence for quantum programming explored in \cite{
 %As a result, preliminary work based on \cite{crole1993categories,selinger2013lecture}   has been undertaken to address the integration of conditionals. 
 
 
-\todo[inline,size=\normalsize]{intro ao que é feito em cada subsecção} 
+\todo[inline,size=\normalsize]{intro ao que é feito em cada subsecção e o qual é o novo modelo, generalizão de ops neste contexto tipo swap e assim} 
 
 
 
-\subsubsection{A slightly different model for operations}
+\section{A slightly different model for operations}
 
 %In order to established that the theory introduced is valid in quantum programming, it is necessary to build a model. The model can be seen as a category where the morphisms are the CPTP super-operators (quantum channels). The algebric structure of this model is given by the vector spaces. 
 %Any completely-positive and trace-preserving map has a diamond norm equal to one \cite{watrous2018theory}. Since the measurement operation is completely positive and trace-preserving, its  diamond norm is equal to one. This is a desirable property, as it ensures that the measurement operation does not increase the distance between states, and as a consequence, composition of programs remains valid.
@@ -77,7 +80,8 @@ The following operations are considered: the creation of a new bit $(1,0)$, $\te
   \label{fig:interpret_ops}
   \end{figure}
 
-
+% definições de cptp neste contexto -> baseadas no towards
+% e depois provar que as ops são cptp
 
 \section{Syntax}
 
@@ -1429,7 +1433,7 @@ Now, it is finally possible to adress the proof of the metric equation for the c
 %hefferon2006linear
 
 
-\section{Quantum Teleportation} \label{sec:teleport}
+\section{Ilustration: Quantum Teleportation} \label{sec:teleport}
 
 \cite{bennett1993teleporting} introduced the concept of quantum teleportation, which is a protocol that allows the transfer of   unknown quantum states between distant parties.  The quantum teleportation protocol is a fundamental building block for quantum communication, quantum computation, and quantum networks, its applications ranging
 from secure quantum communication to distributed quantum computing \cite{briegel1998quantum,gottesman1999demonstrating,kimble2008quantum}. %Quantum teleportation enables the development of quantum repeaters, a pivotal technology for the establishment of quantum communication networks, and in general the framework of quantum Internet [\cite{briegel1998quantum,ghalaii2020capacity}].  
