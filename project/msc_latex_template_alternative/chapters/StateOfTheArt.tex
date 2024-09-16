@@ -939,7 +939,7 @@ Considering vector spaces $V, W, R$, the following equalities hold:
   The \emph{direct sum} of two vector spaces $V$ and $W$, denoted $V \oplus W$, is the space of all pairs $(v, w)$ where $v \in V$ and $w \in W$.
 \end{definition}
 
-The inner product in $V \oplus W$ is defined as follows
+The inner product in $V \oplus W$ is defined as follows:
 \begin{equation*}
   \langle (v_1, w_1), (v_2, w_2) \rangle = \langle v_1, v_2 \rangle + \langle w_1, w_2 \rangle.
 \end{equation*}
@@ -1444,7 +1444,7 @@ It should be noted that this principle is upheld by the type system outlined in 
 
 
 \section{Interpretation} \label{sec:Quantum Lambda Calculus:Interpretation}
-The syntax of the metric lambda calculus was presented in \Cref{ch:metriclambda}. Now, it is necessary to define the \emph{model} of the ``reality'' of interest, \textit{i.e.}, what the terms of the calculus mean within the ``reality'' considered. In the case of quantum lambda calculus, the model is based on quantum channels. 
+The syntax of the metric lambda calculus was presented in \Cref{ch:metriclambda}. Now, it is necessary to define the \emph{model} of the ``reality'' of interest, \textit{i.e.}, what the terms of the calculus mean within the ``reality'' considered. In the case of quantum lambda calculus, the model is based on quantum channels. The interpretation introduced in this subsection is based on the work of \cite{dahlqvist2022syntactic} with the addition of the measurement operation.
 % o outro modelo vai ser baseado em somas diretas de espaços vetoriais e quantum channels
 
 %and $!_{V}: V \xrightarrow{} \mathbb{C}$ is the trace operation applied to a vector, defined as  $!_{V}= v \xrightarrow{} \text{Tr} \hspace{1pt}v$.
@@ -1592,7 +1592,7 @@ Regarding the interpretation of the exhange and substitution properties, for any
 
 In the case of quantum lambda calculus, it is natural to consider a type $\textit{qbit}$ of quantum bits.  The interpretation of this type is defined as $[\![\textit{qbit}]\!]=\mathbb{C}^{2\times 2}$. 
 
-The following operations are considered: the creation of a new qubit in the state $\ket{0}$ ($\textit{new} \hspace{2pt} 0 :\mathbb{I} \multimap \textit{qbit}$), the creation of a new qubit in the state $\ket{1}$ ($\textit{new} \hspace{2pt} 1 :\mathbb{I} \multimap \textit{qbit}$), measuring a qubit ($\textit{meas}: \textit{qbit} \multimap \textit{qbit}$), applying a unitary operation to a qubit ($\textit{U}: \textit{qbit}^{\otimes n} \multimap \textit{qbit}^{\otimes n}$), and performing a \acrshort{cptp} operation on a qubit ($\textit{CPTP}: \textit{qbit}^{\otimes n} \multimap \textit{qbit}^{\otimes n}$). These operations are defined in \autoref{fig:interpret_ops_0}.
+The following operations are considered: the creation of a new qubit in the state $\ket{0}$, $\textit{new} \hspace{2pt} 0 :\mathbb{I} \multimap \textit{qbit}$, the creation of a new qubit in the state $\ket{1}$ ($\textit{new} \hspace{2pt} 1 :\mathbb{I} \multimap \textit{qbit}$), measuring a qubit, $\textit{meas}: \textit{qbit} \multimap \textit{qbit}$, applying a unitary operation to a qubit, $\textit{U}: \textit{qbit}^{\otimes n} \multimap \textit{qbit}^{\otimes n}$, and performing a \acrshort{cptp} operation on a qubit, $\textit{CPTP}: \textit{qbit}^{\otimes n} \multimap \textit{qbit}^{\otimes n}$. These operations are defined in \autoref{fig:interpret_ops_0}.
 
 \begin{figure}[H]
   \begin{equation*}

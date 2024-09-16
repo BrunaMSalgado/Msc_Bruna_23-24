@@ -1,23 +1,28 @@
 \chapter{Conditionals}
 
+The notion of approximate equivalence for quantum programming explored in \cite{dahlqvist2022syntactic} does not encompass classical control flow, \textit{i.e.}, the execution of operations conditioned on measurement outcomes.
+%As a result, preliminary work based on \cite{crole1993categories,selinger2013lecture}   has been undertaken to address the integration of conditionals. 
+
+%Within the model of quantum lambda calculus, introduced in \autoref{sec:Quantum Lambda Calculus:Interpretation}, particularly regarding the measurement operation whose definition is based on \cite{watrous2018theory}, the notion of classical control flow 
+% que é tb o usado no waltrous a distinção entre estados classicos e quanticos é feita através dos elementos dos espaços e não dos espaços em si, no sentido em que o resultado de uma medição de um etsado quantico...
+
+%As a result, preliminary work based on \cite{crole1993categories,selinger2013lecture}   has been undertaken to address the integration of conditionals. 
+
+
+\todo[inline,size=\normalsize]{intro ao que é feito em cada subsecção} 
 
 
 
+\subsubsection{A slightly different model for operations}
 
+%In order to established that the theory introduced is valid in quantum programming, it is necessary to build a model. The model can be seen as a category where the morphisms are the CPTP super-operators (quantum channels). The algebric structure of this model is given by the vector spaces. 
+%Any completely-positive and trace-preserving map has a diamond norm equal to one \cite{watrous2018theory}. Since the measurement operation is completely positive and trace-preserving, its  diamond norm is equal to one. This is a desirable property, as it ensures that the measurement operation does not increase the distance between states, and as a consequence, composition of programs remains valid.
 
+Within the model of quantum lambda calculus, introduced in \autoref{sec:Quantum Lambda Calculus:Interpretation}, the measurement operation is defined in accordance with the standard approach in physics \cite{watrous2018theory}. However, within this definiton the distinction between classical and quantum states is made through the elements of the spaces and not the spaces themselves, in the sense that both the result of measuring a quantum state, which is a classical bit, and the quantum state itself are elements of the same space, $\mathbb{C}^{2 \times 2}$. 
 
+As a result two distinct basic data types are considered: a type $\textit{bit}$ of classical bits and a type $\textit{qbit}$ of quantum bits.  The interpretation of these types is defined as  $[\![\textit{bit}]\!]=\mathbb{C}\oplus\mathbb{C}$ and $[\![\textit{qbit}]\!]=\mathbb{C}^{2\cdot 2}$. The type $\mathbb{I}$ is interpreted as $[\![\mathbb{I}]\!]=\mathbb{C}$.
 
-\section{Measurements}
-
-In order to established that the theory introduced is valid in quantum programming, it is necessary to build a model. The model can be seen as a category where the morphisms are the CPTP super-operators (quantum channels). The algebric structure of this model is given by the vector spaces. 
-Any completely-positive and trace-preserving map has a diamond norm equal to one \cite{watrous2018theory}. Since the measurement operation is completely positive and trace-preserving, its  diamond norm is equal to one. This is a desirable property, as it ensures that the measurement operation does not increase the distance between states, and as a consequence, composition of programs remains valid.
-
-
-In the case of quantum lambda calculus, which combines classical and quantum features, it is natural to consider two distinct basic data types: a type $\textit{bit}$ of classical bits and a type $\textit{qbit}$ of quantum bits.  The interpretation of these types is defined as  $[\![\textit{bit}]\!]=\mathbb{C}\oplus\mathbb{C}$ and $[\![\textit{qbit}]\!]=\mathbb{C}^{2\cdot 2}$. The type $\mathbb{I}$ is interpreted as $[\![\mathbb{I}]\!]=\mathbb{C}$.
-
-The following operations are considered: $\textit{new} \hspace{2pt} 0  :\mathbb{I}  \multimap \textit{bit} $, $\textit{new} \hspace{2pt} 1  :\mathbb{I}  \multimap \textit{bit} $, $q : \textit{bit}  \multimap \textit{qbit}$, $\textit{meas}:\textit{qbit} \xrightarrow{} \textit{bit}$, and $\textit{U}:\textit{qbit},\ldots,\textit{qbit} \xrightarrow{} \textit{qbit}^{\otimes n}$. Their correspondent judgment interpretation is shown in \autoref{fig:interpret_ops}. 
-
-
+The following operations are considered: the creation of a new bit $(1,0)$, $\textit{new} \hspace{2pt} 0  :\mathbb{I}  \multimap \textit{bit} $, the creation of a new bit $(0,1)$, $\textit{new} \hspace{2pt} 1  :\mathbb{I}  \multimap \textit{bit} $, the conversion of a bit into a qubit, $q : \textit{bit}  \multimap \textit{qbit}$, measuring a qubit, $\textit{meas}:\textit{qbit} \xrightarrow{} \textit{bit}$, applying a unitary operation to a qubit $\textit{U}:\textit{qbit},\ldots,\textit{qbit} \xrightarrow{} \textit{qbit}^{\otimes n}$, and performing a \acrshort{cptp} operation on a qubit, $\textit{CPTP}: \textit{qbit}^{\otimes n} \multimap \textit{qbit}^{\otimes n}$. These operations are defined in \autoref{fig:interpret_ops}. 
 
 \begin{figure}[H]
   \begin{equation*}
@@ -73,11 +78,8 @@ The following operations are considered: $\textit{new} \hspace{2pt} 0  :\mathbb{
   \end{figure}
 
 
-\section{Conditionals}
 
-The notion of approximate equivalence for quantum programming explored in \cite{dahlqvist2022syntactic} does not encompass classical control flow. As a result, preliminary work based on \cite{crole1993categories,selinger2013lecture}   has been undertaken to address the integration of conditionals. 
-
-\subsection{Syntax}
+\section{Syntax}
 
 The term formation rules for conditionals are depicted in
 \autoref{fig:typing_rules_cond}. 
@@ -533,7 +535,7 @@ The second case is similar to the first one,  applying the exchange property, th
   \qed
 %NOTA: Ver situação do E e 4a derivação
 
-\subsection{Interpretation}
+\section{Interpretation}
 Considering  $v \in V$, $w \in W$, and $u \in U$ where $V, W, U$ represent vector spaces, $\textsc{Il}_{V}: V \xrightarrow{} V\oplus W$, denotes the left injection operator, defined as $\textsc{Il}_{V}= v \mapsto (v,0) $; $\textsc{Ir}_{V}: V \xrightarrow{} W \oplus V$, denotes the right injection operator, defined as $\textsc{Ir}_{V}= v \mapsto (0,v) $; and $\text{dist}_{V, W,U}: V \otimes  \left(W \oplus U\right) \xrightarrow{} \left(V \otimes W\right) \oplus \left(V \otimes U\right)$, denotes the distributive property of the tensor product over the direct sum, defined as $\text{dist}_{V, W,U} =  v \otimes  \left(w, u\right) \mapsto \left(v \otimes w, v \otimes u\right)$. The subscripts in these operators will be omitted unless ambiguity arises. Moreover, the operation \text{either} corresponds to:
 \begin{figure} [H]
 \begin{equation}
@@ -788,7 +790,7 @@ With respect to the case statement, in this case, it is necessary to consider tw
 
       \qed
 
-\subsection{ \boldmath $\beta$ and $\eta$ Equations}
+\section{ \boldmath $\beta$ and $\eta$ Equations}
 
 
 In this subsection it will be shown that the following equations hold for the model considered.
@@ -950,7 +952,7 @@ And as a result, one has that $\text{id} \otimes [\textsc{Il} \cdot \text{id}_{\
 \end{equation*}
 \qed
 
-\subsection{Metric equations}
+\section{Metric equations}
 The metric equations for conditionals are presented in \autoref{fig:metric conditionals}. Note that the first two equations are redundant.
 \begin{figure} [H]
 \begin{equation*}
@@ -1427,7 +1429,7 @@ Now, it is finally possible to adress the proof of the metric equation for the c
 %hefferon2006linear
 
 
-\subsection{Quantum Teleportation} \label{sec:teleport}
+\section{Quantum Teleportation} \label{sec:teleport}
 
 \cite{bennett1993teleporting} introduced the concept of quantum teleportation, which is a protocol that allows the transfer of   unknown quantum states between distant parties.  The quantum teleportation protocol is a fundamental building block for quantum communication, quantum computation, and quantum networks, its applications ranging
 from secure quantum communication to distributed quantum computing \cite{briegel1998quantum,gottesman1999demonstrating,kimble2008quantum}. %Quantum teleportation enables the development of quantum repeaters, a pivotal technology for the establishment of quantum communication networks, and in general the framework of quantum Internet [\cite{briegel1998quantum,ghalaii2020capacity}].  
@@ -1546,11 +1548,11 @@ With respect to the final step of the protocol, attending to the interpretation 
   \end{split}
 \end{equation}
 
-\subsection{Ilustration: Noisy Quantum Teleportation} \label{subsec:noisy_teleportation}
+\section{Ilustration: Noisy Quantum Teleportation} \label{subsec:noisy_teleportation}
 
 %To study decoherence in a quantum channel within the presented metric deductive system, one can consider the application of a dephasing channel in the quantum teleportation protocol with a certain probability $p$. This is exemplified for probabilities $p=0.5$ and $p=0.25$. It is worth noting that similar exercises can be done for scenarios such as a malicious attack involving a bit flip during measurement or the presence of a noisy channel.
 
-\subsubsection{Noisy Quantum Teleportation: Decoherence}
+\subsection{Noisy Quantum Teleportation: Decoherence}
 
 %\cite{zurek1991decoherence}
 
@@ -1650,7 +1652,7 @@ Next, via the metric deductive system in \autoref{fig:metric deductive system}, 
 \end{equation}
 Therefore $\textbf{Identity} =_{p} \textbf{Identity}^{p}$ and finally, considering the entirety of the quantum teleportation protocol denoted as $\textbf{QTP}$, it follows that $\textbf{QTP} =_{p} \hspace{3pt}\textbf{QTP}^{p}$. This final metric equation indicates that by bounding the error associated with the application of decoherence with a specified probability $p$ to the initial qubit before measurement, it becomes feasible to limit the overall error of the entire quantum teleportation protocol. Moreover, it is interesting to observe that the error associated with the application of decoherence with a certain probability $p$ in one of the qubits corresponds exactly to that probability $p$.
 
-\subsubsection{Noisy Quantum Teleportation: Amplitude Damping}
+\subsection{Noisy Quantum Teleportation: Amplitude Damping}
 Next, the amplitude-damping channel is considered as a source of noise in the quantum teleportation protocol. Similarly to the dephasing channel, the amplitude damping channel serves as a model illustrating the dissipation of energy between a qubit and its environment. An example of this type of noise is found in the spontaneous emission of a photon by a two-level atom into an electromagnetic field environment with either a finite or infinite number of modes at zero temperature \cite{salles2008experimental, Wang_2011}.
 
 
@@ -1785,7 +1787,7 @@ Note that, as expected when $\gamma \xrightarrow{}0$ or $\beta \xrightarrow{}0$ 
 From this result, it follows that $\textbf{Identity} =_{ 2 \cdot \sqrt{  (1-\sqrt{1-\gamma})^{2} |\alpha|^{2}|\beta|^{2}+ \gamma^{2} |\beta|^{4}}} \textbf{Identity}^{A(\gamma)}$. Thus, $ \\ \textbf{QTP} =_{2 \cdot \sqrt{  (1-\sqrt{1-\gamma})^{2} |\alpha|^{2}|\beta|^{2} + \gamma^{2} |\beta|^{4}}} \hspace{3pt}\textbf{QTP}^{A(\gamma)}$.
 %Problema: Definir operações cptp não unitarias no quantum lambda calculus-> cena operadores de kraus
 
-\subsubsection{Noisy Quantum Teleportation: An imperfect implementation of the Hadamard gate}
+\subsection{Noisy Quantum Teleportation: An imperfect implementation of the Hadamard gate}
 
 Now, it will be considered an imperfect implementation of a Hadamard gate, denoted as $H^{\epsilon}$. Therefore, a new operation is added $H^{\epsilon}: \textit{qbit} \xrightarrow{} \textit{qbit}$ and it is postulated as an axiom that $q:\textit{qbit} \hspace{2pt} \triangleright H =_{\epsilon} H^{\epsilon}:\textit{qbit}$.
  In this example, considering the Hadamard gate as the composition $R_y(\frac{\pi}{2}) \cdot P(\pi)$, $H^{\epsilon}$ is regarded as the composition $R_y(\frac{\pi}{2}) \cdot P(\pi+\delta)$. This imperfect implementation deviates from a precise rotation of $\pi$ radians along the $z$-axis,  rotating by $\pi+\delta$ radians instead.  This type of imperfection is inevitable during the implementation of quantum gates. The circuit representing the introduction of an erroneous Hadamard gate is presented in \autoref{fig:teleport_h}.
