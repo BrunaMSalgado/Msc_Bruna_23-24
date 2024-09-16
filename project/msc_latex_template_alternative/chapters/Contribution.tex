@@ -12,7 +12,7 @@ This chapter presents the syntax, interpretation, and metric equations for the c
 %As a result, preliminary work based on \cite{crole1993categories,selinger2013lecture}   has been undertaken to address the integration of conditionals. 
 
 
-\todo[inline,size=\normalsize]{intro ao que é feito em cada subsecção e o qual é o novo modelo, generalizão de ops neste contexto tipo swap e assim} 
+
 
 
 
@@ -24,6 +24,9 @@ This chapter presents the syntax, interpretation, and metric equations for the c
 Within the model of quantum lambda calculus, introduced in \autoref{sec:Quantum Lambda Calculus:Interpretation}, the measurement operation is defined in accordance with the standard approach in physics \cite{watrous2018theory}. However, within this definiton the distinction between classical and quantum states is made through the elements of the spaces and not the spaces themselves, in the sense that both the result of measuring a quantum state, which is a classical bit, and the quantum state itself are elements of the same space, $\mathbb{C}^{2 \times 2}$. 
 
 As a result two distinct basic data types are considered: a type $\textit{bit}$ of classical bits and a type $\textit{qbit}$ of quantum bits.  The interpretation of these types is defined as  $[\![\textit{bit}]\!]=\mathbb{C}\oplus\mathbb{C}$ and $[\![\textit{qbit}]\!]=\mathbb{C}^{2\cdot 2}$. The type $\mathbb{I}$ is interpreted as $[\![\mathbb{I}]\!]=\mathbb{C}$.
+
+\todo[inline,size=\normalsize]{Novo modelo} 
+\todo[inline,size=\normalsize]{ops swap e tal} 
 
 The following operations are considered: the creation of a new bit $(1,0)$, $\textit{new} \hspace{2pt} 0  :\mathbb{I}  \multimap \textit{bit} $, the creation of a new bit $(0,1)$, $\textit{new} \hspace{2pt} 1  :\mathbb{I}  \multimap \textit{bit} $, the conversion of a bit into a qubit, $q : \textit{bit}  \multimap \textit{qbit}$, measuring a qubit, $\textit{meas}:\textit{qbit} \xrightarrow{} \textit{bit}$, applying a unitary operation to a qubit $\textit{U}:\textit{qbit},\ldots,\textit{qbit} \xrightarrow{} \textit{qbit}^{\otimes n}$, and performing a \acrshort{cptp} operation on a qubit, $\textit{CPTP}: \textit{qbit}^{\otimes n} \multimap \textit{qbit}^{\otimes n}$. These operations are defined in \autoref{fig:interpret_ops}. 
 
@@ -79,6 +82,10 @@ The following operations are considered: the creation of a new bit $(1,0)$, $\te
   \caption{Judgment interpretation of the operations in quantum lambda calculus.}
   \label{fig:interpret_ops}
   \end{figure}
+
+  \todo[inline,size=\normalsize]{def cptp} 
+  \todo[inline,size=\normalsize]{provas} 
+
 
 % definições de cptp neste contexto -> baseadas no towards
 % e depois provar que as ops são cptp
