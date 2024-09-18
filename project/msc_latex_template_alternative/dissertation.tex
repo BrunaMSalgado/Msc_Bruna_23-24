@@ -23,14 +23,16 @@
 \newcommandx{\thiswillnotshow}[2][1=]{\todo[disable,#1]{#2}}
 
 \newtheorem{theorem}{Theorem}[section]
-\newtheorem{corollary}{Corollary}[theorem]
-\newtheorem{lemma}{Lemma}[section]
+\newtheorem{lemma}[theorem]{Lemma}
+\newtheorem{proposition}[theorem]{Proposition}
+\newtheorem{corollary}[theorem]{Corollary}
 
 \theoremstyle{definition}
-\newtheorem{definition}{Definition}[section]
-\newtheorem{convention}{Convention}[section]
+\newtheorem{definition}[theorem]{Definition}
+\newtheorem{convention}[theorem]{Convention}
 \providecommand*{\lemmaautorefname}{Lemma}
 \providecommand*{\definitionautorefname}{Definition}
+\providecommand*{\propositionautorefname}{Proposition}
 \makenoidxglossaries 
 \makeindex
 \allowdisplaybreaks[1]
@@ -316,12 +318,13 @@
 
 \input{chapters/Introduction}
 \input{chapters/StateOfTheArt}
-%\input{chapters/ProblemAndChallenges}
+
 
 %\part{Core of the Dissertation}
 
 \input{chapters/Contribution}
 \input{chapters/Applications}
+%\input{chapters/ProblemAndChallenges}
 \input{chapters/ConclusionsAndFutureWork}
 %\input{chapters/PlannedSchedule}
 

@@ -914,6 +914,11 @@ The inner product in $V \otimes W$ is defined as follows
   \langle e_i \otimes f_j, e_k \otimes f_l \rangle = \langle e_i, e_k \rangle \langle f_j, f_l \rangle.
 \end{equation*}
 
+The tensor product of two vectors $v = (v_1, \ldots, v_n)\in \mathbb{C}^{n}$ and $w = (w_1, \ldots, w_m) \in \mathbb{C}^{m}$ is defined as the vector $v \otimes w \in \mathbb{C}^{nm}$ such that
+\begin{equation*}
+  v \otimes w = \begin{pmatrix} v_1 w_1 \\ \vdots \\ v_1 w_m \\ \vdots \\ v_n w_1 \\ \vdots \\ v_n w_m \end{pmatrix}.
+\end{equation*}
+
 The tensor product of two operators $A \in \mathbb{C}^{n \times m}$ and $B \in \mathbb{C}^{p \times q}$ is defined as the operator $A \otimes B \in \mathbb{C}^{np \times mq}$ such that
 \begin{equation*}
   (A \otimes B)(v \otimes w) = Av \otimes Bw.
@@ -930,7 +935,7 @@ Considering vector spaces $V, W, R$, the following equalities hold:
 \begin{align*}
   & v \otimes (w + r) = v \otimes w + v \otimes r, \text{ for all } v,w,r \in V,W,R; \\
   & (v + w) \otimes r = v \otimes r + w \otimes u, \text{ for all } v,w,r \in V,W,R; \\
-  & (a v) \otimes (b w) = ab (v \otimes w), \text{ for all } v,w \in V,W \text{ and scalars } a, b.   \\
+  & (a v) \otimes (b w) = ab \hspace{1pt} (v \otimes w), \text{ for all } v,w \in V,W \text{ and scalars } a, b.   \\
 \end{align*}
 
 
@@ -965,7 +970,7 @@ The inner product in $V \oplus W$ is defined as follows:
 
 \section{Quantum Computing Preliminaries} \label{sec:Quantum Computing Preliminaries}
 
-The basic unit of information in quantum computation is a quantum bit or qubit \cite{perdrix2008quantum}. Just as classical bit, which can be in one of two states, 0 or 1, a qubit also has a state. Qubits are represented using \emph{Dirac notation},  where the ket symbol \gls{ket} is used to denote a quantum state $\psi$. The corresponding bra symbol \gls{bra} is used to denote the conjugate transpose of the state $\psi$. In this setting, the inner product of two states $\ket{\psi}$ and $\ket{\phi}$ is denoted \gls{innerproduct} and is the same as $\bra{\psi} \ket{\psi}$. %The outer product of two states $\ket{\psi}$ and $\ket{\phi}$ is denoted $\ket{\psi}\bra{\phi}$.
+The basic unit of information in quantum computation is a quantum bit or qubit \cite{perdrix2008quantum}. Just as classical bit, which can be in one of two states, 0 or 1, a qubit also has a state. Qubits are represented using \emph{Dirac notation},  where the ket symbol \gls{ket} is used to denote a quantum state $\psi$. The corresponding bra symbol \gls{bra} is used to denote the conjugate transpose of the state $\psi$. In this setting, the inner product of two states $\ket{\psi}$ and $\ket{\phi}$ is denoted \gls{innerproduct} and is the same as $\bra{\psi} \ket{\phi}$. %The outer product of two states $\ket{\psi}$ and $\ket{\phi}$ is denoted $\ket{\psi}\bra{\phi}$.
 
 \begin{definition} \cite{nielsen2010quantum}
   Each isolated physical system is associated with a Hilbert space, known as the system's \emph{state space}. The system's state is fully characterized by a \emph{state vector}, which is a unit vector within this state space.
@@ -1288,22 +1293,28 @@ This last equality corresponds to an Kraus operator sum representation, where th
 \end{definition}
 where $A \in \mathbb{C}^{n \times n }$
 
-The following facts hold for the trace norm:
-\begin{enumerate}
-  \item Let $Q: \mathbb{C}^{n \times n} \rightarrow \mathbb{C}^{m \times m}$ be a positive super-operator. It holds that 
+\begin{theorem} \label{thm:Russo–Dye} \cite[Theorem 3.39]{watrous2018theory}
+  Let $Q: \mathbb{C}^{n \times n} \rightarrow \mathbb{C}^{m \times m}$ be a positive super-operator. It holds that 
   \begin{equation}
     \lVert Q \rVert_{1} = \text{max} \{ \text{Tr}\left(Q(uu^{*}) \right) \vert \hspace{2pt}  \lVert u \rVert_{1}=1 \}.
   \end{equation}
+\end{theorem}
+
+
+\begin{proposition} \cite[Proposition 3.41]{watrous2018theory}
+The following facts hold for the trace norm:
+\begin{enumerate}
   \item The trace norm is submultiplicative with respect to composition of super-operators , \textit{i.e.}, for all super-operators  $Q: \mathbb{C}^{n \times n} \rightarrow \mathbb{C}^{m \times m}$ and $S: \mathbb{C}^{m \times m} \rightarrow \mathbb{C}^{o \times o}$
   \begin{equation}
     \lVert S  Q \rVert_{1} \leq \lVert S \rVert_{1} \lVert Q \rVert_{1}.
   \end{equation}
   \item Let $U_0,$ $V_0 \in \mathbb{C}^{n\times n}$ and $U_1,$ $V_1 \in \mathbb{C}^{m\times m}$ be unitary operators, let $Q,$ $S: \mathbb{C}^{n \times n} \rightarrow \mathbb{C}^{m \times m}$ be super-operators, where $S$ is defined as:
   \begin{equation}
-    S(X) = U_1 Q(U_0^{\dag} A V_0) V_1^{\dag}
+    S(X) = U_1 Q(U_0 A V_0) V_1
   \end{equation}
   for all $A \in \mathbb{C}^{n\times n}$. It holds that $\lVert Q \rVert_{1} = \lVert S \rVert_{1} $.
 \end{enumerate}
+\end{proposition}
 
 Unfortunately, this norm is not stable under tensoring , given that the inequation $ \lVert Q \otimes \text{I} \rVert_{1} \leq \lVert Q \rVert_{1}$ does not hold \cite{watrous2018theory}. As a result, the diamond norm, which is based on the trace norm, is used instead in the context of quantum channels. 
 
@@ -1322,18 +1333,25 @@ Unfortunately, this norm is not stable under tensoring , given that the inequati
 %\end{equation}
 %if $\text{dim}(\mathbb{C}^{o\times o}) \geq \text{dim}(\mathbb{C}^{n\times n})$.
 
-For this norm it holds that for all super-operators $Q: \mathbb{C}^{n \times n}\rightarrow \mathbb{C}^{m \times m} $ and $S:\mathbb{C}^{m \times m} \rightarrow \mathbb{C}^{o \times o} $, if $Q$ is a quantum channel then $\lVert S  Q \rVert_{\diamondsuit} \leq \lVert S \rVert_{\diamondsuit}$ \cite{watrous2018theory}, and if $S$ is a quantum channel, then $\lVert S  Q \rVert_{\diamondsuit} \leq \lVert Q \rVert_{\diamondsuit}$. This is a desireble property, as is guarantees that quantum operations do not increase the distance between states, and as a
+For this norm it holds that for all super-operators $Q: \mathbb{C}^{n \times n}\rightarrow \mathbb{C}^{m \times m} $ and $S:\mathbb{C}^{m \times m} \rightarrow \mathbb{C}^{o \times o} $, if $Q$ is a quantum channel then $\lVert S  Q \rVert_{\diamondsuit} \leq \lVert S \rVert_{\diamondsuit}$ \cite[Proposition 3.44 and Proposition 3.48]{watrous2018theory}, and if $S$ is a quantum channel, then $\lVert S  Q \rVert_{\diamondsuit} \leq \lVert Q \rVert_{\diamondsuit}$. This is a desireble property, as is guarantees that quantum operations do not increase the distance between states, and as a
 consequence, composition of programs is valid.
 %Moreover, the following inequalties hold for a super-operator $Q$: $ \lVert Q \rVert_{\diamondsuit} \geq \lVert Q \otimes I \rVert_{\diamondsuit} $ and $\lVert Q \rVert_{\diamondsuit} \geq \lVert I \otimes Q  \rVert_{\diamondsuit} $
 %3.44
-Moreover the following properties hold for the diamond norm:
-\begin{enumerate}
-  \item For all quantum channels $Q:\mathbb{C}^{n \times n}\rightarrow \mathbb{C}^{m \times m}$, it holds that $\lVert Q \rVert_{\diamondsuit} = 1$.
-  \item For all super-operators $Q:\mathbb{C}^{n \times n}\rightarrow \mathbb{C}^{m \times m}$, it holds that:
+\begin{proposition} \cite[Proposition 3.44]{watrous2018theory}
+   For all quantum channels $Q:\mathbb{C}^{n \times n}\rightarrow \mathbb{C}^{m \times m}$, it holds that $\lVert Q \rVert_{\diamondsuit} = 1$.
+\end{proposition}
+
+\begin{corollary} \label{cor:diamond_otimes_I} \cite[Corollary 3.47]{watrous2018theory}
+   For all super-operators $Q:\mathbb{C}^{n \times n}\rightarrow \mathbb{C}^{m \times m}$ and complex spaces $\mathbb{C}^{o\times o}$  it holds that:
   \begin{equation}
     \lVert Q \rVert_{\diamondsuit} = \lVert Q \otimes I_{\mathbb{C}^{o\times o}} \rVert_{\diamondsuit} .
   \end{equation}
-  \item The diamond norm is submultiplicative with respect to composition of , \textit{i.e.}, for all super-operators $Q: \mathbb{C}^{n \times n} \rightarrow \mathbb{C}^{m \times m}$ and $S: \mathbb{C}^{m \times m} \rightarrow \mathbb{C}^{o \times o}$, it holds that:
+\end{corollary}
+
+\begin{proposition} \cite[Proposition 3.48]{watrous2018theory}
+  Moreover the following properties hold for the diamond norm:
+  \begin{enumerate}
+    \item The diamond norm is submultiplicative with respect to composition of , \textit{i.e.}, for all super-operators $Q: \mathbb{C}^{n \times n} \rightarrow \mathbb{C}^{m \times m}$ and $S: \mathbb{C}^{m \times m} \rightarrow \mathbb{C}^{o \times o}$, it holds that:
   \begin{equation}
     \lVert S  Q \rVert_{\diamondsuit} \leq \lVert S \rVert_{\diamondsuit} \lVert Q \rVert_{\diamondsuit}.
   \end{equation}
@@ -1341,11 +1359,15 @@ Moreover the following properties hold for the diamond norm:
   \begin{equation}
   \lVert S_1 S_0 - Q_1 Q_0  \rVert_{\diamondsuit} \leq \lVert S_0 - Q_0 \rVert_{\diamondsuit} + \lVert S_1 - Q_1 \rVert_{\diamondsuit}.
   \end{equation}
+\end{enumerate}
+\end{proposition}
+
+\begin{theorem} \cite[Theorem 3.49]{watrous2018theory}
   \item The diamond norm is multiplicative with respect to tensor products, \textit{i.e.}, for all super-operators $Q: \mathbb{C}^{n \times n} \rightarrow \mathbb{C}^{m \times m}$ and $S: \mathbb{C}^{o \times o} \rightarrow \mathbb{C}^{p \times p}$, it holds that:
   \begin{equation}
     \lVert Q \otimes S \rVert_{\diamondsuit} = \lVert Q \rVert_{\diamondsuit} \lVert S \rVert_{\diamondsuit}.
   \end{equation}
-\end{enumerate}
+\end{theorem}
 
 
 Consider an operator  $ \text{r} : (\mathbb{C}^{n} \xrightarrow[]{} \mathbb{C}^{m}) \xrightarrow[]{} (\mathbb{C}^{n\times n}\xrightarrow[]{} \mathbb{C}^{m\times m})$ that sends an operator $T$ to the mapping $A \mapsto TAT^{\dag}$. The exact calculation of distances induced by $\lVert \rVert_{\diamondsuit}$ tends to be quite complicated, but a useful property for calculating the distance between quantum channels in the image of $r$ is provided in \cite{watrous2018theory}.
@@ -1454,7 +1476,8 @@ In order to define the interpretation of judgments $\Gamma \triangleright v: \ma
 For all ground types $X \in G$  the interpretation of $[\![X]\!]$  is postulated as a vector space $V$. Types are interpreted inductively using the unit $\mathbb{I}$, the tensor $\otimes$, and the linear map $\multimap$. Given a non-empty context $\Gamma=\Gamma',x: \mathbb{A}$, its interpretation is defined by $[\![\Gamma',x: \mathbb{A}]\!] = [\![\Gamma']\!] \otimes [\![\mathbb{A}]\!]$ if $\Gamma'$ is non-empty and $[\![\Gamma',x: \mathbb{A}]\!] = [\![\mathbb{A}]\!]$ otherwise. The empty context $-$ is interpreted as $[\![-]\!] = [\![ \mathbb{I}]\!] = \mathbb{C}$. Given $X_{1}, . . . ,X_{n} \in V$, the $n$-tensor $(\ldots (X_1 \otimes X_2) \otimes \ldots ) \otimes X_{n}$ is denoted as $X_1 \otimes \ldots \otimes X_{n}$, and similarly for operators. 
 
 
-``Housekeeping" operators are employed to handle interactions between context interpretation and the vectorial model. Given $\Gamma_{1}, \ldots, \Gamma_{n}$, the operator that splits $[\![\Gamma_{1}, \ldots, \Gamma_{n}]\!]$ into $[\![\Gamma_{1}]\!] \otimes \ldots \otimes [\![\Gamma_{n}]\!]  $ is denoted by $\text{sp}_{\Gamma_1;\ldots;\Gamma_n}: [\![\Gamma_{1}, \ldots, \Gamma_{n}]\!] \xrightarrow{} [\![\Gamma_{1}]\!] \otimes \ldots \otimes [\![\Gamma_{n}]\!] $. Let $\Gamma_1$ and $\Gamma_2$ be two contexts, $\text{sp}_{\Gamma_1, \Gamma_2} \rightarrow \Gamma_1\otimes \Gamma_2$ is defined as:
+``Housekeeping" operators are employed to handle interactions between context interpretation and the vectorial model. Given $\Gamma_{1}, \ldots, \Gamma_{n}$, the operator that splits $[\![\Gamma_{1}, \ldots, \Gamma_{n}]\!]$ into $[\![\Gamma_{1}]\!] \otimes \ldots \otimes [\![\Gamma_{n}]\!]  $ is denoted by $\text{sp}_{\Gamma_1;\ldots;\Gamma_n}: [\![\Gamma_{1}, \ldots, \Gamma_{n}]\!] \xrightarrow{} [\![\Gamma_{1}]\!] \otimes \ldots \otimes [\![\Gamma_{n}]\!] $. For $n=1$, $\text{sp}_{\Gamma_1} = \text{id}$.
+Let $\Gamma_1$ and $\Gamma_2$ be two contexts, $\text{sp}_{\Gamma_1, \Gamma_2} \rightarrow \Gamma_1\otimes \Gamma_2$ is defined as:
 \begin{equation*}
   \text{sp}_{-; \Gamma_2} = \lambda^{-1} \hspace{1cm} \text{sp}_{\Gamma_1; -} = \rho^{-1} \hspace{1cm} \text{sp}_{\Gamma_1;x:\mathbb{A}} = I \hspace{1cm} \text{sp}_{\Gamma_1; \Delta, x: \mathbb{A}} = \alpha \cdot (\text{sp}_{\Gamma_1; \Delta} \otimes I)
 \end{equation*}
@@ -1768,15 +1791,15 @@ Now, regarding the interpretation of the lambda term \text{Deutch},
   \hspace{-25pt} =  \hspace{2pt}  & \llbracket q_1:\textit{qbit} \otimes q_2:\textit{qbit}  \triangleright \textit{meas} (H( q_{1})) \otimes q_{2} : \textit{qbit} \otimes \textit{qbit} \rrbracket \cdot \text{jn}_{-;\textit{qbit}; \textit{qbit}}   &  \{\llbracket  \otimes_ e \rrbracket\}     \\
   \hspace{-25pt}&   \cdot \alpha \cdot \text{sw}  \cdot ( \llbracket - \triangleright U_{f}(H  \hspace{2pt}  ( \textit{new}   \hspace{2pt}  0 \hspace{1pt}(*)) \otimes H  \hspace{2pt}   ( \textit{new}   \hspace{2pt}  1 \hspace{1pt}(*))): \textit{qbit} \otimes \textit{qbit}  \rrbracket \\
   \hspace{-25pt}& \otimes I_{\mathbb{C}})   \cdot \text{sp}_{-;-}  \cdot  \text{sh}_{-;-} \\ 
-  \hspace{-25pt} =  \hspace{2pt}  & (\llbracket q_1:\textit{qbit}\triangleright \text{meas}(H(q_1)): \textit{qbit} \rrbracket \otimes \llbracket q_2:\textit{qbit} \triangleright q_2:\textit{qbit} \rrbracket)  &  \{\llbracket  \otimes_i \rrbracket\}  \\
-  \hspace{-25pt}& \cdot \text{sp}_{\textit{qbit};\textit{qbit}} \cdot \text{sh}_{\textit{qbit};\textit{qbit}} \cdot \text{jn}_{-;\textit{qbit}; \textit{qbit}} \cdot \alpha  \cdot \text{sw}  \cdot ( \llbracket - \triangleright U_{f}(H  \hspace{2pt}  ( \textit{new}   \hspace{2pt}  0 \hspace{1pt}(*))  \\
+  \hspace{-25pt} =  \hspace{2pt}  & (\llbracket q_1:\textit{qbit}\triangleright \text{meas}(H(q_1)): \textit{qbit} \rrbracket \otimes \llbracket q_2:\textit{qbit} \triangleright q_2:\textit{qbit} \rrbracket)  &  \{\llbracket  \otimes_i \rrbracket,  \\
+  \hspace{-25pt}& \cdot \text{sp}_{\textit{qbit};\textit{qbit}} \cdot \text{sh}_{\textit{qbit};\textit{qbit}} \cdot \text{jn}_{-;\textit{qbit}; \textit{qbit}} \cdot \alpha  \cdot \text{sw}  \cdot ( \llbracket - \triangleright U_{f}(H  \hspace{2pt}  ( \textit{new}   \hspace{2pt}  0 \hspace{1pt}(*)) & \text{Def. sp and sh} \}  \\
   \hspace{-25pt}&  \otimes H  \hspace{2pt}   ( \textit{new}   \hspace{2pt}  1 \hspace{1pt}(*))) : \textit{qbit} \otimes \textit{qbit}  \rrbracket  \otimes I_{\mathbb{C}})  \cdot  I_{ \mathbb{C}} \otimes I_{\mathbb{C}} \cdot I_{\mathbb{C}} \otimes I_{\mathbb{C}}  \\
   \hspace{-25pt} =  \hspace{2pt} &  (\llbracket \text{meas} \rrbracket \cdot \llbracket H \rrbracket  \cdot \llbracket q_1:\textit{qbit} \triangleright q_1:\textit{qbit} \rrbracket \cdot \text{sp}_{\textit{qbit}} \cdot \text{sh}_{\textit{qbit}} \hspace{2pt}  \otimes I_{\llbracket \textit{qbit} \rrbracket})    &  \{\llbracket  \text{ax} \rrbracket, \llbracket  \text{hyp} \rrbracket \}  \\ 
   \hspace{-25pt} & \cdot \text{sp}_{\textit{qbit};\textit{qbit}} \cdot \text{sh}_{\textit{qbit};\textit{qbit}} \cdot \text{jn}_{-;\textit{qbit}; \textit{qbit}} \cdot \alpha \cdot \text{sw}\cdot (\llbracket U_f \rrbracket \cdot (\llbracket H \rrbracket   \otimes \llbracket H \rrbracket  \\
   \hspace{-25pt} &\cdot \llbracket  \textit{new}   \hspace{2pt}  0  \rrbracket \cdot  \llbracket - \triangleright *: \mathbb{I} \rrbracket \cdot \llbracket  \textit{new}   \hspace{2pt}  1  \rrbracket \cdot  \llbracket - \triangleright *: \mathbb{I} \rrbracket) \cdot \text{sp}_{-;-} \cdot  \text{sh}_{-} \otimes I_{\mathbb{C}})  \\
-  \hspace{-25pt} =  \hspace{2pt} &   (\llbracket \text{meas} \rrbracket \cdot \llbracket H \rrbracket \cdot I_{\llbracket \textit{qbit} \rrbracket}  \otimes I_{\llbracket \textit{qbit} \rrbracket} ) \cdot \text{sp}_{\textit{qbit};\textit{qbit}} \cdot \text{sh}_{\textit{qbit};\textit{qbit}} \cdot \text{jn}_{-;\textit{qbit}; \textit{qbit}} \cdot \alpha    &  \{\llbracket  \text{hyp} \rrbracket, \llbracket \mathbb{I}_i \rrbracket \} \\
-  \hspace{-25pt} & \cdot \text{sw}\cdot ((\llbracket U_f \rrbracket \cdot (\llbracket H \rrbracket \cdot \llbracket  \textit{new}   \hspace{2pt}  0  \rrbracket \cdot I_{\mathbb{C}}  \otimes \llbracket H \rrbracket \cdot \llbracket  \textit{new}   \hspace{2pt}  1  \rrbracket   \cdot I_{\mathbb{C}}) \cdot  I_{\mathbb{C}} \otimes I_{\mathbb{C}}  \\
-  &\cdot  I_{\mathbb{C}} \otimes I_{\mathbb{C}}) \otimes I_{\mathbb{C}})\\
+  \hspace{-25pt} =  \hspace{2pt} &   (\llbracket \text{meas} \rrbracket \cdot \llbracket H \rrbracket \cdot I_{\llbracket \textit{qbit} \rrbracket} \cdot I_{\llbracket \textit{qbit} \rrbracket}  \otimes I_{\llbracket \textit{qbit} \rrbracket} ) \cdot \text{sp}_{\textit{qbit};\textit{qbit}} \cdot \text{sh}_{\textit{qbit};\textit{qbit}}    &  \{\llbracket  \text{hyp} \rrbracket, \llbracket \mathbb{I}_i \rrbracket, \\
+  \hspace{-25pt} & \cdot \text{jn}_{-;\textit{qbit}; \textit{qbit}} \cdot \alpha  \cdot \text{sw}\cdot ((\llbracket U_f \rrbracket \cdot (\llbracket H \rrbracket \cdot \llbracket  \textit{new}   \hspace{2pt}  0  \rrbracket \cdot I_{\mathbb{C}}  \otimes \llbracket H \rrbracket \cdot \llbracket  \textit{new}   \hspace{2pt}  1  \rrbracket & \text{Def. sp and sh} \}     \\
+  &\cdot I_{\mathbb{C}}) \cdot  I_{\mathbb{C}} \otimes I_{\mathbb{C}} \cdot  I_{\mathbb{C}} \otimes I_{\mathbb{C}}) \otimes I_{\mathbb{C}})\\
   %\hspace{-25pt} =  \hspace{2pt} &   (\llbracket \text{meas} \rrbracket \cdot \llbracket H \rrbracket   \otimes I_{\llbracket \textit{qbit} \rrbracket} ) \cdot \text{sp}_{\textit{qbit};\textit{qbit}} \cdot \text{sh}_{\textit{qbit};\textit{qbit}} \cdot \text{jn}_{-;\textit{qbit}; \textit{qbit}} \cdot \alpha \cdot \text{sw}   &  \{\text{\autoref{fig:interpret_ops_0}} \} \\
   %& \cdot (\llbracket U_f \rrbracket \cdot (\llbracket H \rrbracket \cdot \ket{0}\bra{0} \otimes \llbracket H \rrbracket \cdot \ket{1}\bra{1} ) \otimes I_{\mathbb{C}})  \\
    \hspace{-25pt} =  \hspace{2pt} &  (\llbracket \text{meas} \rrbracket \cdot \llbracket H \rrbracket   \otimes I_{\llbracket \textit{qbit} \rrbracket} ) \cdot \text{sp}_{\textit{qbit};\textit{qbit}} \cdot \text{sh}_{\textit{qbit};\textit{qbit}} \cdot \text{jn}_{-;\textit{qbit}; \textit{qbit}} \cdot \alpha \cdot \text{sw}  &  \{\text{\autoref{fig:interpret_ops_0}} \}\\
@@ -1784,10 +1807,10 @@ Now, regarding the interpretation of the lambda term \text{Deutch},
    \hspace{-25pt} =  \hspace{2pt} &  (\llbracket \text{meas} \rrbracket \cdot \llbracket H \rrbracket   \otimes I_{\llbracket \textit{qbit} \rrbracket} ) \cdot \text{sp}_{\textit{qbit};\textit{qbit}} \cdot \text{sh}_{\textit{qbit};\textit{qbit}} \cdot \text{jn}_{-;\textit{qbit}; \textit{qbit}} \cdot \alpha \cdot \text{sw} &   \{\text{\autoref{eq:Deutsch-1H}}, \\
    \hspace{-25pt}& \cdot  \bigg( \left(\frac{1}{\sqrt{2}}( (-1)^{f(0)} \ket{0} \bra{0} \otimes \ket{-} \bra{-} + (-1)^{f(1)} \ket{1} \bra{1} \otimes \ket{-}\bra{-}) \right) & \text{\autoref{eq:Deutsch-Uf}}\}  \\
    & \otimes  I_{\mathbb{C}} \bigg) \\
-   =  \hspace{2pt} &  (\llbracket \text{meas} \rrbracket \cdot \llbracket H \rrbracket   \otimes I_{\llbracket \textit{qbit} \rrbracket} ) \cdot \text{sp}_{\textit{qbit};\textit{qbit}} \cdot \text{sh}_{\textit{qbit};\textit{qbit}} \cdot \lambda \cdot \alpha  \\
+   =  \hspace{2pt} &  (\llbracket \text{meas} \rrbracket \cdot \llbracket H \rrbracket   \otimes I_{\llbracket \textit{qbit} \rrbracket} ) \cdot \text{sp}_{\textit{qbit};\textit{qbit}} \cdot \text{sh}_{\textit{qbit};\textit{qbit}} \cdot \lambda \otimes I_{\mathbb{C}} \cdot \alpha  & \{ \text{Def. jn} \}\\
    & \cdot \bigg( I_{\mathbb{C}} \otimes  \bigg(\frac{1}{\sqrt{2}}( (-1)^{f(0)} \ket{0} \bra{0} \otimes \ket{-} \bra{-} + (-1)^{f(1)} \ket{1} \bra{1}  \\
    & \otimes \ket{-}\bra{-}) \bigg) \bigg) \\  
-   =  \hspace{2pt} &  (\llbracket \text{meas} \rrbracket \cdot \llbracket H \rrbracket   \otimes I_{\llbracket \textit{qbit} \rrbracket} ) \cdot \bigg(\frac{1}{\sqrt{2}}( (-1)^{f(0)} \ket{0} \bra{0} \otimes \ket{-} \bra{-}\\
+   =  \hspace{2pt} &  (\llbracket \text{meas} \rrbracket \cdot \llbracket H \rrbracket   \otimes I_{\llbracket \textit{qbit} \rrbracket} ) \cdot \bigg(\frac{1}{\sqrt{2}}( (-1)^{f(0)} \ket{0} \bra{0} \otimes \ket{-} \bra{-} &  \{\text{Def. sp and sh} \} \\
    & + (-1)^{f(1)} \ket{1} \bra{1} \otimes \ket{-}\bra{-}) \bigg) \bigg) \\
    %=  \hspace{2pt} & (M_0 \otimes I_{\llbracket \textit{qbit} \rrbracket})  \bigg(\frac{1}{\sqrt{2}}( (-1)^{f(0)} H\ket{0} H^{\dag}  \bra{0} \otimes  \ket{-} \bra{-} \\
    %& + (-1)^{f(1)} H \ket{1} \bra{1}  H^{\dag}\otimes \ket{-}\bra{-}) \bigg) (M_0^{\dag} \otimes I_{\llbracket \textit{qbit} \rrbracket})  \\
@@ -1815,7 +1838,6 @@ Now, regarding the interpretation of the lambda term \text{Deutch},
 \end{aligned} \\
 \end{align*}
 
-\todo[inline,size=\normalsize]{Sh e sp -;- e caso para caso funcções com 1 arg. Ir á diamond norm e trace norm e por as props que elas têm} 
 
 \subsubsection{Deutsch's Algorithm with Measurement Errors}
   

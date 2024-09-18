@@ -2,7 +2,8 @@
 
 The notion of approximate equivalence for quantum programming explored in \cite{dahlqvist2022syntactic} does not encompass classical control flow, \textit{i.e.}, the execution of operations conditioned on measurement outcomes. 
 
-This chapter presents the syntax, interpretation, and metric equations for the conditionals in quantum lambda calculus, along with several properties of the calculus. The syntax and interpretation are based on  \cite{crole1993categories,selinger2013lecture,selinger2009quantum}. Since the notion of conditionals that arises from the definition of measurement in \autoref{fig:interpret_ops_0} presents some limitations regarding the norm of such operators, a slightly different model for operations is introduced based on \cite{selinger2004towards}. Additionally, this model offers a clearer distinction between classical bits and quantum bits semantically. This model is based on direct sums of vector spaces. As a result, the concept of a \acrshort{cptp} operator is extended is extended within this framework, and a new norm in the associated vector space is introduced, referred to as the \emph{gen-norm}. The metric equations arise naturally from the definition of the gen-norm and are proven to be sound. At last, the utility of this framework is demonstrated throught a series of examples of erroneous implementations of the quantum teleportation protocol.
+This chapter presents the syntax, interpretation, and metric equations for the conditionals in quantum lambda calculus, along with several properties of the calculus. The syntax and interpretation are based on  \cite{crole1993categories,selinger2013lecture,selinger2009quantum}. Although there is a notion of conditionals arising from the definition of measurement in \autoref{fig:interpret_ops_0} based on the direct sum of super-operators \cite[page 540]{watrous2018theory}, its emphasis is on the direct sum and not on the notion of conditionals. Since the goal of this work is to use a programming language to reason about quantum programs, it makes more sense to have an operator that is more focused on the notion of conditionals. As a result, a slightly different model for operations is introduced that draws inspiration from \cite{selinger2004towards}. This model is based on direct sums of vector spaces and \acrshort{cptp} operators. Consequently, the concept of a \acrshort{cptp} operator is extended within this framework, and a new norm in the associated vector space is introduced, referred to as the \emph{gen-norm}. The metric equations arise naturally from the definition of the gen-norm and are proven to be sound. At last, the utility of this framework is demonstrated through a series of examples of erroneous implementations of the quantum teleportation protocol.
+%Since the notion of conditionals that arises from the definition of measurement in \autoref{fig:interpret_ops_0} presents some limitations regarding the norm of such operators, a slightly different model for operations is introduced based on \cite{selinger2004towards}. Additionally, this model offers a clearer distinction between classical bits and quantum bits semantically. 
 
 %As a result, preliminary work based on \cite{crole1993categories,selinger2013lecture}   has been undertaken to address the integration of conditionals. 
 
@@ -1002,438 +1003,80 @@ $ \end{minipage}
 \label{fig:metric conditionals}
 \end{figure}
 
-\paragraph{Proof} In order to validate the metric equational system for conditionals, it is necessary to demonstrate its correctness.
-
-The diamond norm is a particular instance of the operator norm. 
-\vspace{15pt}
-
-  The norm of a tuple is defined as the sum of the norms of its components, \textit{i.e.}, for any operators $v$ and $w$:
-\begin{equation} \label{eq:norm_tuple}
-  \lVert (v,w) \rVert = \lVert v \rVert + \lVert w \rVert
-\end{equation}
-
-For the \textbf{injections}:
-
-Firstly, it is necessary to prove that the identity operator $I$ has a norm equal to 1.
-\begin{lemma} \label{lemid}
-  $ \lVert I \rVert_{\sigma} = 1   $
-\end{lemma}
-
-\textit{Proof.} \quad Using the definition of operator norm in \autoref{eq:op_norm}, it follows that:
-\begin{equation} 
-\begin{split}
-  \lVert I \rVert_{\sigma} = \text{sup} \{\lVert I (v) \rVert \hspace{2pt} \vert \hspace{2pt}  \lVert v\rVert =1 \} = \text{sup} \{\lVert v \rVert \hspace{2pt} \vert \hspace{2pt}  \lVert v\rVert =1 \} = 1
-\end{split}
-\end{equation}
-
-\vspace{10pt}
-
-Thereafter, it is imperative to show that the injection operators $\textsc{Il}$ and $\textsc{Ir}$ are have a norm equal to 1.
-
-\begin{lemma} \label{lemil}
-  $ \lVert \textsc{Il} \rVert_{\sigma} = 1   $
-\end{lemma}
-
-\begin{lemma} \label{lemir}
-  $ \lVert \textsc{Ir} \rVert_{\sigma} = 1   $
-\end{lemma} 
-
-\textit{Proof.} \quad Employing the definition of operator norm as defined in \autoref{eq:op_norm}, it ensues that:
-\begin{equation} 
-\begin{split}
-  \lVert \textsc{Il} \rVert_{\sigma} &= \text{sup} \{\lVert \textsc{Il} (v) \rVert \hspace{2pt} \vert \hspace{2pt}  \lVert v\rVert =1 \} = \text{sup} \{\lVert (v,0) \rVert \hspace{2pt} \vert \hspace{2pt}  \lVert v\rVert =1 \} = \text{sup} \{\lVert v \rVert + \lVert 0 \rVert  \hspace{2pt} \vert \hspace{2pt}  \lVert v\rVert =1 \} \\
-  & = \text{sup} \{\lVert v \rVert \hspace{2pt} + 0    \hspace{2pt}  \vert \lVert v\rVert =1 \} \hspace{160 pt} \text{ \{Positive definiteness\}} \\
-  & = \text{sup} \{\lVert v \rVert \hspace{2pt} \vert \hspace{2pt}  \lVert v\rVert =1 \} = 1
-\end{split}
-\end{equation}
-
-The proof for \autoref{lemir} is analogous to the proof for \autoref{lemil}.
-\begin{equation} 
-  \begin{split}
-    \lVert \textsc{Ir} \rVert_{\sigma} &= \text{sup} \{\lVert \textsc{Ir} (v) \rVert \hspace{2pt} \vert \hspace{2pt}  \lVert v\rVert =1 \} = \text{sup} \{\lVert (0,v) \rVert \hspace{2pt} \vert \hspace{2pt}  \lVert v\rVert =1 \} = \text{sup} \{ \lVert 0 \rVert +\lVert v \rVert   \hspace{2pt} \vert \hspace{2pt}  \lVert v\rVert =1 \} \\
-    & = \text{sup} \{0+\lVert v \rVert \hspace{2pt}     \hspace{2pt}  \vert \lVert v\rVert =1 \} \hspace{160 pt} \text{ \{Positive definiteness\}} \\
-    & = \text{sup} \{\lVert v \rVert \hspace{2pt} \vert \hspace{2pt}  \lVert v\rVert =1 \} = 1
-  \end{split}
-  \end{equation}
-
-Futhermore, given the submultiplicative property of the operator norm, for any super-operators $P$ and $Q$,where $\lVert P \rVert_{\sigma} =1  $ the following holds:
-\begin{lemma}\label{lemleq}
-  $\lVert PQ \rVert_{\sigma} \leq  \lVert Q \rVert_{\sigma}, \quad \lVert P \rVert_{\sigma}  =1 $ 
-\end{lemma}
-
-Using these properties it is possible to prove the validity of the metric equations for the injections. Demonstrating the correctness of the metric equations for the injections is equivalent to proving that for any  non‑negative rational $q$ and super-operators $v$ and $w$ such that $d(v,w) \leq q$, where  $d(v,w)$ represents the distance between $v$ and $w$ the following holds:
-
-\begin{theorem} \label{theoremil}
-  $d(\textsc{Il}(v),\textsc{Il} (w)) \leq q$
-\end{theorem}
-\begin{theorem} \label{theoremir}
-  $d(\textsc{Ir}(v),\textsc{Ir} (w)) \leq q$
-\end{theorem}
-\vspace{10pt}
-\textit{Proof.} \quad In the quantum paradigm, the distance between two super-operators $E$ and $E'$ corresponds to the diamond norm between $E$ and $E'$. Therefore,
-\begin{equation}
-\begin{split}
-  d(v,w) \leq q \Leftrightarrow \lVert v \otimes I - w \otimes I \rVert_{\sigma} \leq q
-\end{split}
-\end{equation}
-
-As a result, to prove that $d(\textsc{Il}(v),\textsc{Il} (w)) \leq q$, it suffices to show that:
-\begin{align}
-  \lVert \textsc{Il}\otimes I (v \otimes I)-\textsc{Il} \otimes I (w \otimes I)\rVert_{\sigma} \leq \lVert v \otimes I - w \otimes I \rVert_{\sigma} \\
-  \lVert \textsc{Ir}\otimes I (v \otimes I)-\textsc{Ir} \otimes I (w \otimes I)\rVert_{\sigma} \leq \lVert v \otimes I - w \otimes I \rVert_{\sigma} 
-\end{align}
-Given that $\textsc{Il}$ and $\textsc{Ir}$ possess a norm equal to 1, as established by Lemmas \ref{lemil} and \ref{lemir} respectively, and considering the multiplicative property of the operator norm with respect to tensor products alongside the fact that the identity operator also exhibits a norm equal to 1, as demonstrated in  \autoref{lemid}, it follows that both $\lVert \textsc{Il} \otimes I \rVert_{\sigma}$ and $\lVert \textsc{Ir} \otimes I \rVert_{\sigma}$ are equal to one 1. Hence, by \autoref{lemleq},
-\begin{align}
-   \lVert \textsc{Il}\otimes I (v \otimes I)-\textsc{Il} \otimes I (w \otimes I)\rVert_{\sigma}=\lVert \textsc{Il}\otimes I (v \otimes I-w \otimes I)\rVert_{\sigma} \leq \lVert v \otimes I - w \otimes I \rVert_{\sigma} \\
-   \lVert \textsc{Ir}\otimes I (v \otimes I)-\textsc{Ir} \otimes I (w \otimes I)\rVert_{\sigma}=\lVert \textsc{Ir}\otimes I (v \otimes I-w \otimes I)\rVert_{\sigma} \leq \lVert v \otimes I - w \otimes I \rVert_{\sigma}
-\end{align}
-
-\vspace{10pt}
-
-Now, regarding the metric equation for the \textbf{conditional statement}, before validating its correctness, it is necessary to prove a few intermediate results. 
-
-The first step is to demonstrate that for any super-operators $P$ and $Q$ the following holds:
-\begin{lemma}\label{lem1}
-  $\lVert [P,Q] \rVert_{\sigma} \leq \max \{ \lVert P \rVert_{\sigma}, \lVert Q \rVert_{\sigma} \}$
-\end{lemma}
-
-
-
-$\textit{Proof.}$ \quad Employing the definition of the operator norm in \autoref{eq:op_norm}, it follows that:
-\begin{equation} \label{eq:cond_opnorm2}
-  \begin{split}
-  &\text{sup}{\{ \lVert [P,Q] (v) \rVert  \hspace{2pt} |  \hspace{2pt}  \lVert v \rVert=1  \}}  \leq \text{max} \{  \text{sup} \{ \lVert P (w) \rVert  \hspace{2pt} |  \hspace{2pt}  \lVert w \rVert =1 \}, \text{sup} \{\lVert Q (u) \rVert  \hspace{2pt} |  \hspace{2pt}  \lVert u \rVert=1  \} \} \\
-  & = \text{sup}{\{ \lVert [P,Q] (w,u) \rVert  \hspace{2pt} |  \hspace{2pt}  \lVert w \rVert+ \lVert u \rVert=1  \}} \leq \text{max} \{  \text{sup} \{ \lVert P (w) \rVert  \hspace{2pt} |  \hspace{2pt}  \lVert w \rVert = 1, \lVert Q (u) \rVert  \hspace{2pt} |  \hspace{2pt}  \lVert u \rVert=1  \} \} \\
-  & =  \text{sup}{\{ \lVert P (w) + Q (u) \rVert  \hspace{2pt} |  \hspace{2pt}  \lVert w \rVert+ \lVert u \rVert=1 \rVert=1  \}} \leq \text{max} \{  \text{sup} \{ \lVert P (w) \rVert  \hspace{2pt} |  \hspace{2pt}  \lVert w \rVert =1, \lVert Q (u) \rVert  \hspace{2pt} |  \hspace{2pt}  \lVert u \rVert=1  \} \} \\
-  &  =  \text{sup}{\{ \lVert P (w) + Q (u) \rVert  \hspace{2pt} |  \hspace{2pt}  \lVert w \rVert+ \lVert u \rVert=1 \}} \leq \text{sup} \{  \text{max} \{ \lVert P (w) \rVert  \hspace{2pt} |  \hspace{2pt}  \lVert w \rVert =1, \lVert Q (u) \rVert  \hspace{2pt} |  \hspace{2pt}  \lVert u \rVert=1  \} \} \\
-\end{split}
-\end{equation}
-
-Therefore, by the triangle inequality, proving the inequality in \autoref{eq:cond_opnorm3} suffices to establish  \autoref{lem1}.
-\begin{equation} \label{eq:cond_opnorm3}
-  \begin{split}
-  \text{sup}{\{ \lVert P (w)  \rVert + \lVert Q (u)  \rVert  \hspace{2pt} |  \hspace{2pt}  \lVert w \rVert+ \lVert u \rVert=1  \}} \leq \text{sup} \{  \text{max} \{ \lVert P (w) \rVert  \hspace{2pt} |  \hspace{2pt}  \lVert w  \rVert =1, \lVert Q (u) \rVert  \hspace{2pt} |  \hspace{2pt}  \lVert u \rVert=1  \} \} \\
-  \end{split}
-\end{equation}
-
-
-This can be rewritten as:
-
-\begin{equation} 
-  \begin{split}
-    \lVert w \rVert+ \lVert u \rVert=1 \wedge \text{sup} \{ \lVert P (w)  \rVert + \lVert Q (u)  \rVert  \hspace{2pt}   \}  \leq \text{max}   \left\{ \dfrac{1}{\lVert w \rVert} \lVert P (w) \rVert  \hspace{2pt},  \dfrac{1}{\lVert u \rVert} \lVert Q (u) \rVert   \right\}
-\end{split}
-\end{equation}
-
-As a result,
-\begin{equation} 
-  \begin{split}
-    \lVert w \rVert+ \lVert u \rVert=1 \wedge \text{sup}{\{ \lVert P (w)  \rVert + \lVert Q (u)  \rVert    \}}  \leq \text{max}   \left\{  \left\lVert P \left( \dfrac{1}{\lVert w \rVert} w \right) \right\rVert  \hspace{2pt},  \left\lVert Q \left( \dfrac{1}{\lVert u \rVert} u \right) \right\rVert   \right\}
-\end{split}
-\end{equation}
-
-This is equivalent to demonstrating that for $a+b=1$,
-\begin{equation} 
-\begin{split}
-\hspace{110 pt}
-    x + y  \leq  \max \left\{   \dfrac{1}{a}x  ,   \dfrac{1}{b} y   \right\} \\
-\end{split}
-\end{equation}
-
-This is done by arguing by \textit{reductio ad absurdum}, \textit{i.e.}, supposing otherwise leads to a contradiction:
-\begin{equation} 
-\begin{split} 
-    \hspace{90pt}&
-     x + y  >  \max \left\{   \dfrac{1}{a}x  ,   \dfrac{1}{b} y   \right\} \\
-    & \Rightarrow  x + y > \dfrac{1}{a}x  \wedge x + y > \dfrac{1}{b}y \\
-    & \Rightarrow  a (x + y) > x  \wedge b (x + y)> y \\
-    & \Rightarrow  a x + a y > x  \wedge b x + by > y \\
-    & \Rightarrow  a x + a y > x  \wedge (1-a) x + (1-a)y > y\\
-    & \Rightarrow  a x + a y > x  \wedge x-ax + y -ay > y\\
-    & \Rightarrow  x < a x + a y   \wedge x > a x + a y  \\
-\end{split}
-\end{equation}
-
-\vspace{10pt}
-
-Subsequently, it is imperative to prove that:
-\begin{lemma}\label{lemiso}
-  $ i= [\textsc{Il} \otimes I, \textsc{Ir} \otimes I ]$ \text{is an isomorphism}.
-\end{lemma}
-
-\textit{Proof.} \quad The proof is as follows:
-
-For any vector spaces $V$, $W$, and $U$, $i: (V \otimes U) \oplus (W \otimes U) \xrightarrow{} (V  \oplus W) \otimes U $. If $V$ has dimension $m$, $W$ has dimension $n$, and $U$ has dimension $o$, then the space $(V \otimes U) \oplus (W \otimes U) $ has dimension $mo+no=(m+n)\cdot o$. Similarly, the space $(V\oplus W) \otimes U$ has dimension $(m+n)\cdot o$. Hence, the spaces have the same dimension. Given that spaces with the same dimension are isomorphic \cite{hefferon2006linear}, it follows that $i$ is an isomorphism.
-
-\vspace{10pt}
-
-Next, it is necessary to demonstrate that for any operators $P$ and $Q$, the identity operator $I$, and an isomorphism $i=[\textsc{Il} \otimes I, \textsc{Ir} \otimes I ]$ the following holds:
-
-\begin{lemma}\label{lem2}
-  $( [P,Q] \otimes I) \cdot  i  = [P \otimes I, Q \otimes I]$
-\end{lemma}
-
-Which is equivalent to showing that for any vector spaces $V$, $W$, $U$, and $Z$  and super-operators $P: V \xrightarrow{} Z$, $Q: W \xrightarrow{} Z$, and $I: U \xrightarrow{} U$, the following diagram holds:
-
-\vspace{10pt}
-
-
-\begin{tikzpicture}
-  \matrix (m) [matrix of math nodes,row sep=4em,column sep=7em,minimum width=2em]
-  {
-    V \otimes U \oplus W \otimes U & (V  \oplus W) \otimes U \\
-     Z \otimes U \\
-  };
-  \path[-stealth]
-    (m-1-1) edge node [left] {$[P \otimes I, Q \otimes I]$} (m-2-1)
-    (m-1-1) edge node [above] {$i$} (m-1-2)
-    (m-1-2) edge node [right=0.2cm] {$[P,Q] \otimes I$} (m-2-1);
-\end{tikzpicture}
-
-
-\vspace{10pt}
-
-\textit{Proof.} \quad The proof is straightforward:
-\begin{equation}
-\begin{split}
-    & ( [P,Q] \otimes I) \cdot  [\textsc{Il} \otimes I, \textsc{Ir} \otimes I ]  \\
-    &=  [([P,Q] \otimes I) \cdot (\textsc{Il} \otimes I),([P,Q] \otimes I) \cdot (\textsc{Ir} \otimes I) ]\\
-    &=  [P \otimes I, Q \otimes I]
-\end{split}
-\end{equation}
-
-\vspace{15pt}
-
-Furhtermore, it is imperative to show that the following relation holds:
-
-\begin{lemma}\label{lemi-1}
-  $ [P \otimes I, Q \otimes I] \cdot  i^{-1}  = [P,Q] \otimes I$
-\end{lemma}
-
-Demonstrating this is equivalent to establishing that for any vector spaces $V$, $W$, $U$, and $Z$, and super-operators $P: V \xrightarrow{} Z$, $Q: W \xrightarrow{} Z$, and $I: U \xrightarrow{} U$, the following diagram commutes:
-
-\vspace{10pt}
-
-\begin{tikzpicture}
-  \matrix (m) [matrix of math nodes,row sep=4em,column sep=7em,minimum width=2em]
-  {
-    V \otimes U \oplus W \otimes U & (V  \oplus W) \otimes U \\
-     Z \otimes U \\
-  };
-  \path[-stealth]
-    (m-1-1) edge node [left] {$[P \otimes I, Q \otimes I]$} (m-2-1)
-    (m-1-2) edge node [above] {$i^{-1}$} (m-1-1)
-    (m-1-2) edge node [right=0.2cm] {$[P,Q] \otimes I$} (m-2-1);
-\end{tikzpicture}
-
-
-\textit{Proof.} \quad The proof is as follows:
-\begin{equation}
-\begin{split}
-    & ( [P,Q] \otimes I) \cdot  i  = [P \otimes I, Q \otimes I]  \hspace{100pt} & \text{\{\autoref{lem2}\}} \\
-    \Leftrightarrow &  \hspace{2pt} ( [P,Q] \otimes I) \cdot  i \cdot i^{-1} = [P \otimes I, Q \otimes I] \cdot  i^{-1}\\
-    \Leftrightarrow &  \hspace{2pt} ( [P,Q] \otimes I)  = [P \otimes I, Q \otimes I] \cdot  i^{-1}  &\text{\{\autoref{lemiso}\}} \\
-\end{split}
-\end{equation}
-
-\vspace{10pt}
-With \autoref{lem2} and \autoref{lemi-1}, it has been proved that the diagram below is valid:
-\vspace{5pt}
-
-\begin{tikzpicture}
-  \matrix (m) [matrix of math nodes,row sep=4em,column sep=7em,minimum width=2em]
-  {
-    V \otimes U \oplus W \otimes U & (V  \oplus W) \otimes U \\
-     Z \otimes U \\
-  };
-  \path[-stealth]
-    (m-1-1) edge node [left] {$[P \otimes I, Q \otimes I]$} (m-2-1)
-    edge[bend left=5] node [above] {$i$}  (m-1-2) % Adjusted minimum width
-    (m-1-2) edge node [right=0.5cm] {$[P,Q] \otimes I$} (m-2-1)
-    (m-1-2) edge[bend right=-5] node [below] {$i^{-1}$} (m-1-1); % Added the label to the arrow
-\end{tikzpicture}
-
-\vspace{10pt}
-
-
-
-
-%Next, it is necessary to demonstrate that the coproduct of two super-operators $P$ and $Q$ has a norm equal to 1.
-%\begin{lemma} \label{lemeither}
-  %$  \lVert [P, Q]  \rVert_{\sigma} = 1   $
-%\end{lemma}
-
-%\textit{Proof.} \quad Utilizing the definition of the operator norm as defined in Equation \ref{eq:op_norm}, it follows that:
-%\begin{equation} 
-  %\begin{split}
-    %\lVert [P, Q]  \rVert_{\sigma}  \\
-  %\end{split}
-  %\end{equation}
-%\vspace{10pt}
-
-Now, it is possivel to prove that $i$ has a norm equal to 1.
-
-\begin{lemma} \label{lem3}
-  $  \lVert i\rVert_{\sigma} \geq 1 $
-\end{lemma}
-
-\vspace{10pt}
-
-\textit{Proof.} \quad Considering the vector $(v \otimes u, 0)$ with $\lVert(v \otimes u, 0)\rVert = 1$, and  attending the multiplicative property of the operator norm with respect to tensor products, along with the definition of the norm of a tuple as in \autoref{eq:norm_tuple}, it holds that $\lVert v \rVert = 1$ and $\lVert u \rVert =1$. Therefore, using this same property and definition, it is possible to demonstrate that the following holds:
+\section{Generalized norm}
+Since the new model considered is based on direct sums of vector spaces, it is necessary to define a norm in these spaces. 
+\begin{definition}  \label{def:gen_norm}
+  Given $(v_1, \ldots, v_n) \in V_1 \oplus \ldots \oplus V_n$, the generalized norm is defined as:
   \begin{equation}
-    \begin{split}
-      \lVert [\textsc{Il} \otimes I, \textsc{Ir} \otimes I ] (v \otimes u, 0) \rVert = \lVert(v, 0) \otimes u \rVert = (\lVert v \rVert + \lVert 0 \rVert ) \lVert u \rVert = \lVert v \rVert \lVert u \rVert =1
-    \end{split}
+    \|(v_1, \ldots, v_n)\|_{\{V_1,\ldots, V_n\} \text{ gen}} = \sum_{i=1}^{n} \|v_i\|_{V_i} 
   \end{equation}
+\end{definition}
+where $\| \cdot \|_{V_i}$ is a norm associated with vector space $V_i$. When this norm is identical for all vector spaces $V_i$, the notation $\| \cdot \|_{\{V_1, \ldots, V_n\} \text{ gen}}$ is simplified to $\| \cdot \|_{V_i \text{ gen}}$.
+
+Now it is neccesary to prove that the generalized norm is a norm.
+\begin{proof}
+Attending to \autoref{def:gen_norm}, demonstrating that the generalized norm is a norm is equivalent to proving that it satisfies the following properties:
+\begin{enumerate}
+  \item Positive definiteness:$\|(v_1, \ldots, v_n)\|_{\{V_1,\ldots,V_n\} \text{ gen}} \geq 0$ and $\|(v_1, \ldots, v_n)\|_{\{V_1,\ldots,V_n\} \text{ gen}} = 0$ if and only if $(v_1, \ldots, v_n) = 0$.
+  \item Positive scalability: $\|a(v_1, \ldots, v_n)\|_{\{V_1,\ldots,V_n\} \text{ gen}} = |a| \|(v_1, \ldots, v_n)\|_{\{V_1,\ldots,V_n\} \text{ gen}}$.
+  \item The triangle inequality: $\|(v_1, \ldots, v_n) + (w_1, \ldots, w_n)\|_{\{V_1,\ldots,V_n\} \text{ gen}} \leq \|(v_1, \ldots, v_n)\|_{\{V_1,\ldots,V_n\} \text{ gen}} + \|(w_1, \ldots, w_n)\|_{\{V_1,\ldots,V_n\} \text{ gen}}$.
+\end{enumerate}
+
+Regarding the positive definiteness, for $ 1 \leq i \leq n$,  given that  $\|\cdot\|_{V_i}$ is a norm, it follows that $\|v_i\|_{V_i} \geq 0$ and $\|v_i\|_{V_i} = 0$ if and only if $v_i = 0$. Thus, $\|(v_1, \ldots, v_n)\|_{\{V_1,\ldots,V_n\} \text{ gen}} = \sum_i \|v_i\|_{V_i}  \geq 0$ and $\|(v_1, \ldots, v_n)\|_{\{V_1,\ldots,V_n\} \text{ gen}} =  \sum_i \|v_i\|_{V_i} = 0$ if and only if $(v_1, \ldots, v_n) = (0, \ldots,0) = 0$.
+
+With respect to the positive scalability, for $ 1 \leq i \leq n$,  given that  $\|\cdot\|_{V_i}$ is a norm, it follows that $\| v_i\|_{V_i}$ = $|a| \|v_i\|_{V_i}$. Therefore, 
+\begin{align*}
+  \|a\hspace{1pt} (v_1, \ldots, v_n)\|_{\{V_1,\ldots,V_n\} \text{ gen}} &  = \|(a \hspace{1pt} v_1, \ldots, a \hspace{1pt} v_n)\|_{\{V_1,\ldots,V_n\}} = \sum_i \|a \hspace{1pt} v_i\|_{V_i} \\
+  & = |a| \sum_i \|v_i\|_{V_i} = |a| \|(v_1, \ldots, v_n)\|_{\{V_1,\ldots,V_n\} \text{ gen}}
+\end{align*}
+
+Finally, concerning the triangle inequality, for $ 1 \leq i \leq n$,  given that  $\|\cdot\|_{V_i}$ is a norm, it follows that $\|v_i + w_i\|_{V_i} \leq \|v_i\|_{V_i} + \|w_i\|_{V_i}$. Hence, given that both terms of the inequation are non-negative, it follows that
+\begin{align*}
+   \hspace {-30pt}\|(v_1, \ldots, v_n) + (w_1, \ldots, w_n)\|_{\{V_1,\ldots,V_n\} \text{ gen}} & = \|(v_1 + w_1, \ldots, v_n + w_n)\|_{\{V_1,\ldots,V_n\} \text{ gen}} \\
+  & = \sum_i \|v_i + w_i\|_{V_i} \\
+  &\leq \sum_i \|v_i\|_{V_i} + \sum_i \|w_i\|_{V_i} \\
+  &=\|(v_1, \ldots, v_n)\|_{\{V_1,\ldots,V_n\} \text{ gen}} + \|(w_1, \ldots, w_n)\|_{\{V_1,\ldots,V_n\} \text{ gen}}  \\
+\end{align*}
+\end{proof}
  
-Given the definition of the operator norm as presented in \autoref{eq:op_norm}, it follows that:
+Within this model, the operators take the form $Q: V_1 \oplus \ldots \oplus V_n  \rightarrow W$, where each $V_i$ is a vector space without direct sums, and $W = W_1 \oplus \ldots \oplus W_n$ is a vector space that may correspond to the direct sum of other vector spaces.  
+
+\begin{definition}
+For $Q: V_1 \oplus \ldots \oplus V_n  \rightarrow W, \exists \hspace{1pt} Q_1: V_1 \rightarrow W$, $\ldots$, $Q_n: V_n \rightarrow W$ \text{such that} $Q=[Q_1, \ldots, Q_n]$, where $Q_1= \ldots $.
+
+The norm of the operator $Q$ is defined as follows:
 \begin{equation}
-  \begin{split}
-      & \hspace{3pt} \lVert [\textsc{Il} \otimes I, \textsc{Ir} \otimes I ]  \rVert_{\sigma}  = \text{sup} \{ \lVert [\textsc{Il} \otimes I , \textsc{Ir} \otimes I ] (a) \rVert \hspace{2pt} | \hspace{2pt} \lVert a \rVert = 1 \} \\
-  \end{split}
-  \end{equation}
-  From this, it can be deduced that $\lVert i \rVert_{\sigma} \geq 1$.
-
-Subsequently, it is possible to demontrate that $i^{-1}$ has a norm greater than or equal to 1,
-
-\begin{lemma} \label{lem4}
-  $  \lVert i^{-1}  \rVert_{\sigma} \leq 1 $
-\end{lemma}
-
-\textit{Proof.} \quad Given that $i$ is an isomophism, it follows that 
-\begin{equation} 
-  \begin{split}
-    &\lVert i \cdot i^{-1}  \rVert_{\sigma} = 1  \\
-    \leq \hspace{2pt}& \lVert i  \rVert_{\sigma} \cdot \lVert i^{-1}  \rVert_{\sigma} = 1 \hspace{50pt} & \text{\{Norm submultiplicative with respect to compositions\}} \\
-    \leq & 1 \cdot \lVert i^{-1}  \rVert_{\sigma} = 1 & \text{\{\autoref{lem4}\}}  \\
-    \Leftrightarrow &  \lVert i^{-1}  \rVert_{\sigma} = 1  \\
-  \end{split}   
-  \end{equation}
-
-
-
-
-Next, one has to prove that for any super-operators $P$ and $Q$ and their respective erroneous versions $P'$ and $Q'$, the following holds:
-  \begin{lemma} \label {lemmasum}
-    $  \lVert P\cdot Q \otimes I - P'\cdot Q'  \otimes I \rVert_{\sigma} \leq  \lVert (P - P') \otimes I  \rVert_{\sigma} + \lVert (Q - Q') \otimes I \rVert_{\sigma}   $
-  \end{lemma} 
-  
-  \textit{Proof.} \quad Applying the triangle inequality, he submultiplicative property of the operator norm with respect to compositions, and given that a positive and trace-preserving operator map, $E$, has norm $\lVert E \otimes I  \rVert_{\sigma} =1$ (\cite{watrous2018theory}), it follows that:
-  
-  \begin{equation}
-    \begin{split}
-      & \lVert P\cdot Q \otimes I - P'\cdot Q' \otimes I  \rVert_{\sigma}  \\
-      &= \lVert  P\cdot Q \otimes I- P\cdot Q' \otimes I + P\cdot Q' \otimes I - P'\cdot Q' \otimes I  \rVert_{\sigma}  \\
-      &\leq \lVert P\cdot Q \otimes I - P\cdot Q' \otimes I  \rVert_{\sigma} + \lVert P\cdot Q' \otimes I - P'\cdot Q' \otimes I  \rVert_{\sigma}  \\
-      &\leq \lVert P \rVert_{\sigma} \lVert Q \otimes I - Q' \otimes I  \rVert_{\sigma} + \lVert P \otimes I - P' \otimes I  \rVert_{\sigma} \lVert Q'  \rVert_{\sigma}  \\
-      &= \lVert P \rVert_{\sigma} \lVert (Q  - Q') \otimes I  \rVert_{\sigma} + \lVert (P  - P') \otimes I  \rVert_{\sigma} \lVert Q'  \rVert_{\sigma}  \\
-      &= \lVert (P - P') \otimes I  \rVert_{\sigma} + \lVert (Q - Q') \otimes I  \rVert_{\sigma}  \\
-    \end{split}
-    \end{equation}
-
-\vspace{5pt}
-
-Finally, considering the the semantics  the conditional statement  in \autoref{fig:denotational_sem cond}, demonstrating the conditional statement rule in \autoref{fig:metric conditionals} includes proving that for any super-operators $P$, $Q$, $P'$ and $Q'$,  denoting the distance between super-operators $A$ and $B$ as $d(A,B)$,  the following holds:
-\begin{lemma} \label {lemma_max_otimes}
-  $\text{d} ([P,Q],[P',Q']) \leq \text{max} \{\text{d} (P,P'),\text{d} (Q,Q')\}$
-\end{lemma}
-\vspace{10pt}
-\textit {Proof.} 
-In the quantum paradigm, the distance between two super-operators  corresponds to the diamond norm between the two super-operators. Hence, denoting $ [\textsc{Il} \otimes I, \textsc{Ir} \otimes I ]$ by $i$ it follows that:
-
-%\begin{equation}
-%\begin{split}
-  %& \text{d} ([P,Q],[P',Q'])  \\
-  %&=   \lVert  [P,Q] \otimes I - [P',Q'] \otimes I   \rVert_{1}  \\
-  %&=   \lVert [P \otimes I, Q \otimes I]  - [P' \otimes I, Q' \otimes I]  \rVert_{1}  \\
-  %&=  \lVert [P - P' \otimes I, Q-Q' \otimes I]  \rVert_{1}   \\
-  %&= \lVert [P -P', Q-Q' ] \otimes I \cdot i \rVert_{1}  \\
-%\end{split}
-%\end{equation}
-
-\begin{equation} \label{eq:proof_theorem1.1_esq}
-  \begin{split}
-    & \text{d} ([P,Q],[P',Q'])  \\
-    &=  \lVert  [P,Q] \otimes I - [P',Q'] \otimes I   \rVert_{\sigma}  \\
-    &=   \lVert [P \otimes I, Q \otimes I] \cdot i^{-1}  - [P' \otimes I, Q' \otimes I]  \cdot i^{-1}  \rVert_{\sigma}   \hspace{165pt}  \text{\{\autoref{lemi-1}\}} \\
-    &=  \lVert [P - P' \otimes I, Q-Q' \otimes I] \cdot i^{-1}  \rVert_{\sigma}   \\
-    & \leq \lVert [P - P' \otimes I, Q-Q' \otimes I]  \rVert \lVert i^{-1}  \rVert \rVert_{\sigma} \hspace{20pt} \text{\{Norm submultiplicative with respect to compositions\}}  \\  
-    & \leq \lVert [(P - P') \otimes I, (Q-Q') \otimes I]  \rVert_{\sigma} \hspace{235pt} \text{ \{\autoref{lem4}\}} \\
-  \end{split}
-  \end{equation}
-and
-\begin{equation} \label {eq:proof_theorem1.1_dir}
-\begin{split}
-   &  \text{max} \{\text{d} (P,P'),\text{d} (Q,Q')\} \\
-   = &  \text{max}\{ \lVert P \otimes I - P' \otimes I \rVert_{\sigma}, \lVert Q \otimes I - Q'\otimes I \rVert_{\sigma} \}\\
-   = &  \text{max}\{ \lVert (P - P') \otimes I \rVert_{\sigma}, \lVert (Q - Q') \otimes I \rVert_{\sigma} \}\\
-\end{split}
+\|Q\|_{\{V_1, \ldots, V_n\} \text{ gen}} = \text{max} \{\|Q_1\|_{V_1 \rightarrow W}, \ldots, \|Q_n\|_{V_1 \rightarrow W}  \}
 \end{equation}
+where, for $1 \leq i \leq n $, $\|\cdot \|_{V_i \rightarrow W}$ is a norm for an operator in the vector space $V_i \rightarrow W$.
+\end{definition}
 
-Finally, by  \autoref{lem1}, it can be deduced that $\text{d} ([P,Q],[P',Q']) \leq \text{max} \{\text{d} (P,P'),\text{d} (Q,Q')\}$, which concludes the proof of theorem \autoref{lemma_max_otimes}.
-\vspace{10pt}
+As a result, now it is necessary to prove that the  generalized norm for operators is a norm.
+\begin{proof}
+  Regading the positive definiteness,  given that $\|\cdot \|_{V_i \rightarrow W}$ is a norm, it follows that $\|Q_i\|_{V_i \rightarrow W} \geq 0$ and $\|Q_i\|_{V_i \rightarrow W} = 0$ if and only if $Q_i = 0$, for $1 \leq i \leq n $. Thus, $\|Q\|_{\{V_1, \ldots, V_n\} \text{ gen}} = \text{max} \{\|Q_1\|_{V_1 \rightarrow W}, \ldots, \|Q_n\|_{V_1 \rightarrow W}  \} \geq 0$ and $\|Q\|_{\{V_1, \ldots, V_n\} \text{ gen}} = 0$ if and only if $Q = [Q_1, \ldots, Q_n] = [0, \ldots, 0] = 0$.
 
+  With respect to the positive scalability, given that $\|\cdot \|_{V_i \rightarrow W}$ is a norm, it follows that $\|a \hspace{1pt} Q_i\|_{V_i \rightarrow W} = |a| \|Q_i\|_{V_i \rightarrow W}$, for $1 \leq i \leq n$. Therefore,
+  \begin{align*}
+    \|a \hspace{1pt} Q\|_{\{V_1, \ldots, V_n\} \text{ gen}} & = \|a \hspace{1pt} [Q_1, \ldots, Q_n]\|_{\{V_1, \ldots, V_n\} \text{ gen}}\\
+     &=\text{max} \{\|a \hspace{1pt} Q_1\|_{V_1 \rightarrow W}, \ldots, \|a \hspace{1pt} Q_n\|_{V_1 \rightarrow W}  \} \\
+    & = \text{max} \{|a| \|Q_1\|_{V_1 \rightarrow W}, \ldots, |a| \|Q_n\|_{V_1 \rightarrow W}  \} \\
+    & = |a| \hspace{1pt} \text{max} \{\|Q_1\|_{V_1 \rightarrow W}, \ldots, \|Q_n\|_{V_1 \rightarrow W}  \} \\
+    & = |a| \|Q\|_{\{V_1, \ldots, V_n\} \text{ gen}}
+  \end{align*}
 
-An alternative method to establish \autoref{theorem:1.1} is now presented.
-\vspace{5pt}
+  Finally, concerning the triangle inequality, given that $\|\cdot \|_{V_i \rightarrow W}$ is a norm, it follows that $\|Q_i + S_i\|_{V_i \rightarrow W} \leq \|Q_i\|_{V_i \rightarrow W} + \|S_i\|_{V_i \rightarrow W}$, for $1 \leq i \leq n$. Hence, given that both terms of the inequation are non-negative, it follows that
+  \begin{align*}
+    \|Q + S\|_{\{V_1, \ldots, V_n\} \text{ gen}} & = \|[Q_1 + S_1, \ldots, Q_n + S_n]\|_{\{V_1, \ldots, V_n\} \text{ gen}} \\
+    & = \text{max} \{\|Q_1 + S_1\|_{V_1 \rightarrow W}, \ldots, \|Q_n + S_n\|_{V_1 \rightarrow W}  \} \\
+    & \leq \text{max} \{\|Q_1\|_{V_1 \rightarrow W} + \|S_1\|_{V_1 \rightarrow W}, \ldots, \|Q_n\|_{V_1 \rightarrow W} + \|R_n\|_{V_1 \rightarrow W}  \} \\
+    & = \text{max} \{\|Q_1\|_{V_1 \rightarrow W}, \ldots, \|Q_n\|_{V_1 \rightarrow W}  \} + \text{max} \{\|S_1\|_{V_1 \rightarrow W}, \ldots, \|S_n\|_{V_1 \rightarrow W}  \} \\
+    & = \|Q\|_{\{V_1, \ldots, V_n\} \text{ gen}} + \|S\|_{\{V_1, \ldots, V_n\} \text{ gen}}
+  \end{align*}
+\end {proof}
 
+For $Q: V \rightarrow W_1 \oplus W_2$, where $V$, $W_1$ and $W_2$ do not have direct sums, $\exists$ $Q_1: V \rightarrow W_1$ and $Q_2: V \rightarrow W_2$ such that $Q = Q_1 + Q_2$, where $Q_1 (v) = \textsc{Pr}(Q(v))$ and $Q_2 (v) = \textsc{Pl}(Q(v))$.
 
-\textit {Proof.} The proof is as follows:
-\begin{equation}
-  \begin{split}
-    & \text{d} ([P,Q],[P',Q'])  \\
-    &=   \lVert  [P,Q] \otimes I - [P',Q'] \otimes I    \rVert_{\sigma} \hspace{2pt} \\
-    &=   \lVert  ([P,Q]  - [P',Q']) \otimes I    \rVert_{\sigma} \hspace{2pt} \\
-    &=   \lVert  [P-P',Q-Q'] \otimes I  \rVert_{\sigma}   \\
-    &=    \lVert  [P-P',Q-Q'] \rVert_{\sigma} \lVert I \rVert_{\sigma}\hspace{2pt} & \hspace {20pt} \text{\{Norm multiplicative with respect to tensor products\}} \\ 
-    &=    \lVert  [P-P',Q-Q'] \rVert_{\sigma} & \text{\{\autoref{lemid}\}}  \\
-  \end{split}
-  \end{equation}
-Moreover,
-\begin{equation}
-  \begin{split}
-     &  \text{max} \{\text{d} (P,P'),\text{d} (Q,Q')\} \\
-     = &  \text{max}\{ \lVert P \otimes I - P' \otimes I \rVert_{\sigma}, \lVert Q \otimes I - Q'\otimes I \rVert_{\sigma} \}\\
-     = &  \text{max}\{ \lVert (P - P') \otimes I \rVert_{\sigma}, \lVert (Q - Q') \otimes I \rVert_{\sigma} \}\\
-     = &\text{max}\{ \lVert (P - P') \rVert_{\sigma} \lVert  I \rVert_{\sigma}, \lVert (Q - Q') \rVert_{\sigma} \lVert I \rVert_{\sigma} \} & \hspace{60pt} \text{\{Norm multiplicative with}\\
-     && \text{respect to tensor products\}} \\
-     = & \text{max}\{ \lVert (P - P') \rVert_{\sigma}, \lVert (Q - Q') \rVert_{\sigma}  \}  & \text{\{\autoref{lemid}\}}  \\
-    \end{split}
-  \end{equation}
-
-Therefore, by \autoref{lem1}, it can be deduced that $\text{d} ([P,Q],[P',Q']) \leq \text{max} \{\text{d} (P,P'),\text{d} (Q,Q')\}$, which concludes the proof of theorem \autoref{lemma_max_otimes}.
-
-\vspace{10pt}
-  
-
-
-Now, it is finally possible to adress the proof of the metric equation for the conditional statement as a whole. Considering the the semantics of the conditional statement in \autoref{fig:denotational_sem cond}, the rule for the conditional statement in \autoref{fig:metric conditionals} is valid is equivalent to demonstrating that the distance between the evalution of a boolen $B$ followed by the execution of a program $P$ or a program $Q$ and the evalution of a boolean $B'$ followed by the execution of a program $P'$ or a program $Q'$ is less or equal to the  distance between the evaluation of the boolean $B$ and the evaluation of the boolean $B'$ plus the maximum distance between the execution of the programs $P$ and $P'$ and the execution of the programs $Q$ and $Q'$, \textit{ergo}, that for any booleand $B$ and $B'$ super-operators $P$, $Q$, $P'$ and $Q'$, the following holds:
-
-\begin{theorem} \label {theorem:1.1}
-  $ \text{d} (B \cdot [P,Q], B' \cdot [P',Q']) \leq \text{d} (B,B') + \text{max} \{\text{d} (P,P'),\text{d} (Q,Q')\}$
-\end{theorem}
-\vspace{10pt}
-
-\textit {Proof.} Considering that in the quantum paradigm, the distance between two super-operators  corresponds to the diamond norm between the two super-operators, it follows that:
-\begin{equation}
-\begin{split}
-  & \text{d} (B \cdot [P,Q], B' \cdot [P',Q'])  \\
-  &=   \lVert  B \cdot [P,Q] \otimes I - B' \cdot [P',Q'] \otimes I   \rVert_{\sigma}  \\
-  & \leq \lVert  (B - B')  \otimes I   \rVert_{\sigma} + \lVert  ([P,Q] - [P',Q']) \otimes I   \rVert_{\sigma} & \hspace{100 pt}  \text{\{\autoref{lemmasum}\}} \\
-  &= d(B,B') + \lVert  [P,Q]\otimes I - [P',Q'] \otimes I   \rVert_{\sigma} & \hspace{100 pt} \\
-  &=  \text{d} (B,B') + \text{d} ([P,Q],[P',Q'])    \\
-  &=d(B,B') + \text{max} \{\text{d} (P,P'),\text{d} (Q,Q')\} & \text{\{\autoref{lemma_max_otimes}\}} \\ 
-\end{split}
-\end{equation}
-
-
-
-
-  % The spectral norm is submultiplicative with respect to compositions and multiplicative with respect to tensor products,
-
-  % Flar sobre definições de normas
-
-
+ When $V_1, \ldots, V_n$ and $W_1, \ldots, W_n$ are complex spaces of squared matrices, the norm of the operator $T$ is defined as follows:
 %m
 
 
