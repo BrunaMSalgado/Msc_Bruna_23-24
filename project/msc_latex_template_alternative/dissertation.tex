@@ -22,17 +22,37 @@
 \newcommandx{\improvement}[2][1=]{\todo[linecolor=Plum,backgroundcolor=Plum!25,bordercolor=Plum,#1]{#2}}
 \newcommandx{\thiswillnotshow}[2][1=]{\todo[disable,#1]{#2}}
 
+% Theorem-like environments
 \newtheorem{theorem}{Theorem}[section]
-\newtheorem{lemma}[theorem]{Lemma}
-\newtheorem{proposition}[theorem]{Proposition}
-\newtheorem{corollary}[theorem]{Corollary}
+% Use aliascnt to create new counters that share numbering but have their own names
+\newaliascnt{lemma}{theorem}
+\newtheorem{lemma}[lemma]{Lemma}
+\aliascntresetthe{lemma}
+\providecommand*{\lemmaautorefname}{Lemma}
+
+\newaliascnt{proposition}{theorem}
+\newtheorem{proposition}[proposition]{Proposition}
+\aliascntresetthe{proposition}
+\providecommand*{\propositionautorefname}{Proposition}
+
+\newaliascnt{corollary}{theorem}
+\newtheorem{corollary}[corollary]{Corollary}
+\aliascntresetthe{corollary}
+\providecommand*{\corollaryautorefname}{Corollary}
 
 \theoremstyle{definition}
-\newtheorem{definition}[theorem]{Definition}
-\newtheorem{convention}[theorem]{Convention}
-\providecommand*{\lemmaautorefname}{Lemma}
+\newaliascnt{definition}{theorem}
+\newtheorem{definition}[definition]{Definition}
+\aliascntresetthe{definition}
 \providecommand*{\definitionautorefname}{Definition}
-\providecommand*{\propositionautorefname}{Proposition}
+
+\newaliascnt{convention}{theorem}
+\newtheorem{convention}[convention]{Convention}
+\aliascntresetthe{convention}
+\providecommand*{\conventionautorefname}{Convention}
+
+
+
 \makenoidxglossaries 
 \makeindex
 \allowdisplaybreaks[1]

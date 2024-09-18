@@ -26,7 +26,7 @@ Within the model of quantum lambda calculus, introduced in \autoref{sec:Quantum 
 
 As a result two distinct basic data types are considered: a type $\textit{bit}$ of classical bits and a type $\textit{qbit}$ of quantum bits.  The interpretation of these types is defined as  $[\![\textit{bit}]\!]=\mathbb{C}\oplus\mathbb{C}$ and $[\![\textit{qbit}]\!]=\mathbb{C}^{2\cdot 2}$. The type $\mathbb{I}$ is interpreted as $[\![\mathbb{I}]\!]=\mathbb{C}$.
 
-\todo[inline,size=\normalsize]{Novo modelo} 
+\todo[inline,size=\normalsize]{Novo modelo -> somas diretas de espaços complexos de matrizes quadradas} 
 \todo[inline,size=\normalsize]{ops swap e tal} 
 
 The following operations are considered: the creation of a new bit $(1,0)$, $\textit{new} \hspace{2pt} 0  :\mathbb{I}  \multimap \textit{bit} $, the creation of a new bit $(0,1)$, $\textit{new} \hspace{2pt} 1  :\mathbb{I}  \multimap \textit{bit} $, the conversion of a bit into a qubit, $q : \textit{bit}  \multimap \textit{qbit}$, measuring a qubit, $\textit{meas}:\textit{qbit} \xrightarrow{} \textit{bit}$, applying a unitary operation to a qubit $\textit{U}:\textit{qbit},\ldots,\textit{qbit} \xrightarrow{} \textit{qbit}^{\otimes n}$, and performing a \acrshort{cptp} operation on a qubit, $\textit{CPTP}: \textit{qbit}^{\otimes n} \multimap \textit{qbit}^{\otimes n}$. These operations are defined in \autoref{fig:interpret_ops}. 
@@ -993,7 +993,7 @@ $ \end{minipage} \\
 $\begin{array}{c}
    v =_{q} v' \quad w=_{r} w' \quad u=_{s}u'   \\
     \hline
-  \text{ case } v \hspace{2pt}  \{\text{inl} (x) \Rightarrow w ; \hspace{1pt} \text{inr} (y) \Rightarrow u\} =_{q+\text{max}(r, s )} \text{ case } v' \hspace{2pt}  \{\text{inl} (x) \Rightarrow w' ; \hspace{1pt} \text{inr} (y) \Rightarrow u'\} 
+  \text{ case } v \hspace{2pt}  \{\text{inl} (x) \Rightarrow w ; \hspace{1pt} \text{inr} (y) \Rightarrow u\} =_{q+\max(r, s )} \text{ case } v' \hspace{2pt}  \{\text{inl} (x) \Rightarrow w' ; \hspace{1pt} \text{inr} (y) \Rightarrow u'\} 
 \end{array}
 $ \end{minipage}
 \end{aligned}
@@ -1015,7 +1015,7 @@ where $\| \cdot \|_{V_i}$ is a norm associated with vector space $V_i$. When thi
 
 Now it is neccesary to prove that the generalized norm is a norm.
 \begin{proof}
-Attending to \autoref{def:gen_norm}, demonstrating that the generalized norm is a norm is equivalent to proving that it satisfies the following properties:
+Attending to \autoref{def:norm}, demonstrating that the generalized norm is a norm is equivalent to proving that it satisfies the following properties:
 \begin{enumerate}
   \item Positive definiteness:$\|(v_1, \ldots, v_n)\|_{\{V_1,\ldots,V_n\} \text{ gen}} \geq 0$ and $\|(v_1, \ldots, v_n)\|_{\{V_1,\ldots,V_n\} \text{ gen}} = 0$ if and only if $(v_1, \ldots, v_n) = 0$.
   \item Positive scalability: $\|a(v_1, \ldots, v_n)\|_{\{V_1,\ldots,V_n\} \text{ gen}} = |a| \|(v_1, \ldots, v_n)\|_{\{V_1,\ldots,V_n\} \text{ gen}}$.
@@ -1046,42 +1046,65 @@ For $Q: V_1 \oplus \ldots \oplus V_n  \rightarrow W, \exists \hspace{1pt} Q_1: 
 
 The norm of the operator $Q$ is defined as follows:
 \begin{equation}
-\|Q\|_{\{V_1, \ldots, V_n\} \text{ gen}} = \text{max} \{\|Q_1\|_{V_1 \rightarrow W}, \ldots, \|Q_n\|_{V_1 \rightarrow W}  \}
+\|Q\|_{\{V_1\rightarrow W, \ldots, V_n\rightarrow W\} \text{ gen}} = \max \{\|Q_1\|_{V_1 \rightarrow W}, \ldots, \|Q_n\|_{V_1 \rightarrow W}  \}
 \end{equation}
 where, for $1 \leq i \leq n $, $\|\cdot \|_{V_i \rightarrow W}$ is a norm for an operator in the vector space $V_i \rightarrow W$.
 \end{definition}
 
 As a result, now it is necessary to prove that the  generalized norm for operators is a norm.
 \begin{proof}
-  Regading the positive definiteness,  given that $\|\cdot \|_{V_i \rightarrow W}$ is a norm, it follows that $\|Q_i\|_{V_i \rightarrow W} \geq 0$ and $\|Q_i\|_{V_i \rightarrow W} = 0$ if and only if $Q_i = 0$, for $1 \leq i \leq n $. Thus, $\|Q\|_{\{V_1, \ldots, V_n\} \text{ gen}} = \text{max} \{\|Q_1\|_{V_1 \rightarrow W}, \ldots, \|Q_n\|_{V_1 \rightarrow W}  \} \geq 0$ and $\|Q\|_{\{V_1, \ldots, V_n\} \text{ gen}} = 0$ if and only if $Q = [Q_1, \ldots, Q_n] = [0, \ldots, 0] = 0$.
+  Regarding the positive definiteness,  given that $\|\cdot \|_{V_i \rightarrow W}$ is a norm, it follows that $\|Q_i\|_{V_i \rightarrow W} \geq 0$ and $\|Q_i\|_{V_i \rightarrow W} = 0$ if and only if $Q_i = 0$, for $1 \leq i \leq n $. Thus, $\|Q\|_{\{V_1\rightarrow W, \ldots, V_n\rightarrow W\} \text{ gen}} = \max \{\|Q_1\|_{V_1 \rightarrow W}, \ldots, \|Q_n\|_{V_1 \rightarrow W}  \} \geq 0$ and $\|Q\|_{\{V_1\rightarrow W, \ldots, V_n\rightarrow W\} \text{ gen}} = 0$ if and only if $Q = [Q_1, \ldots, Q_n] = [0, \ldots, 0] = 0$.
 
   With respect to the positive scalability, given that $\|\cdot \|_{V_i \rightarrow W}$ is a norm, it follows that $\|a \hspace{1pt} Q_i\|_{V_i \rightarrow W} = |a| \|Q_i\|_{V_i \rightarrow W}$, for $1 \leq i \leq n$. Therefore,
   \begin{align*}
-    \|a \hspace{1pt} Q\|_{\{V_1, \ldots, V_n\} \text{ gen}} & = \|a \hspace{1pt} [Q_1, \ldots, Q_n]\|_{\{V_1, \ldots, V_n\} \text{ gen}}\\
-     &=\text{max} \{\|a \hspace{1pt} Q_1\|_{V_1 \rightarrow W}, \ldots, \|a \hspace{1pt} Q_n\|_{V_1 \rightarrow W}  \} \\
-    & = \text{max} \{|a| \|Q_1\|_{V_1 \rightarrow W}, \ldots, |a| \|Q_n\|_{V_1 \rightarrow W}  \} \\
-    & = |a| \hspace{1pt} \text{max} \{\|Q_1\|_{V_1 \rightarrow W}, \ldots, \|Q_n\|_{V_1 \rightarrow W}  \} \\
-    & = |a| \|Q\|_{\{V_1, \ldots, V_n\} \text{ gen}}
+    \|a \hspace{1pt} Q\|_{\{V_1\rightarrow W, \ldots, V_n\rightarrow W\} \text{ gen}} & = \|a \hspace{1pt} [Q_1, \ldots, Q_n]\|_{\{V_1\rightarrow W, \ldots, V_n\rightarrow W\} \text{ gen}}\\
+     &=\max \{\|a \hspace{1pt} Q_1\|_{V_1 \rightarrow W}, \ldots, \|a \hspace{1pt} Q_n\|_{V_1 \rightarrow W}  \} \\
+    & = \max \{|a| \|Q_1\|_{V_1 \rightarrow W}, \ldots, |a| \|Q_n\|_{V_1 \rightarrow W}  \} \\
+    & = |a| \hspace{1pt} \max \{\|Q_1\|_{V_1 \rightarrow W}, \ldots, \|Q_n\|_{V_1 \rightarrow W}  \} \\
+    & = |a| \|Q\|_{\{V_1\rightarrow W, \ldots, V_n\rightarrow W\} \text{ gen}}
   \end{align*}
 
   Finally, concerning the triangle inequality, given that $\|\cdot \|_{V_i \rightarrow W}$ is a norm, it follows that $\|Q_i + S_i\|_{V_i \rightarrow W} \leq \|Q_i\|_{V_i \rightarrow W} + \|S_i\|_{V_i \rightarrow W}$, for $1 \leq i \leq n$. Hence, given that both terms of the inequation are non-negative, it follows that
   \begin{align*}
-    \|Q + S\|_{\{V_1, \ldots, V_n\} \text{ gen}} & = \|[Q_1 + S_1, \ldots, Q_n + S_n]\|_{\{V_1, \ldots, V_n\} \text{ gen}} \\
-    & = \text{max} \{\|Q_1 + S_1\|_{V_1 \rightarrow W}, \ldots, \|Q_n + S_n\|_{V_1 \rightarrow W}  \} \\
-    & \leq \text{max} \{\|Q_1\|_{V_1 \rightarrow W} + \|S_1\|_{V_1 \rightarrow W}, \ldots, \|Q_n\|_{V_1 \rightarrow W} + \|R_n\|_{V_1 \rightarrow W}  \} \\
-    & = \text{max} \{\|Q_1\|_{V_1 \rightarrow W}, \ldots, \|Q_n\|_{V_1 \rightarrow W}  \} + \text{max} \{\|S_1\|_{V_1 \rightarrow W}, \ldots, \|S_n\|_{V_1 \rightarrow W}  \} \\
-    & = \|Q\|_{\{V_1, \ldots, V_n\} \text{ gen}} + \|S\|_{\{V_1, \ldots, V_n\} \text{ gen}}
+   \hspace{-30pt} \|Q + S\|_{\{V_1\rightarrow W, \ldots, V_n\rightarrow W\} \text{ gen}} & = \|[Q_1 + S_1, \ldots, Q_n + S_n]\|_{\{V_1, \ldots, V_n\} \text{ gen}} \\
+    & = \max \{\|Q_1 + S_1\|_{V_1 \rightarrow W}, \ldots, \|Q_n + S_n\|_{V_1 \rightarrow W}  \} \\
+    & \leq \max \{\|Q_1\|_{V_1 \rightarrow W} + \|S_1\|_{V_1 \rightarrow W}, \ldots, \|Q_n\|_{V_1 \rightarrow W} + \|R_n\|_{V_1 \rightarrow W}  \} \\
+    & = \max \{\|Q_1\|_{V_1 \rightarrow W}, \ldots, \|Q_n\|_{V_1 \rightarrow W}  \} + \max \{\|S_1\|_{V_1 \rightarrow W}, \ldots, \|S_n\|_{V_1 \rightarrow W}  \} \\
+    & = \|Q\|_{\{V_1\rightarrow W, \ldots, V_n\rightarrow W\} \text{ gen}} + \|S\|_{\{V_1\rightarrow W, \ldots, V_n\rightarrow W\} \text{ gen}}
   \end{align*}
 \end {proof}
 
-For $Q: V \rightarrow W_1 \oplus W_2$, where $V$, $W_1$ and $W_2$ do not have direct sums, $\exists$ $Q_1: V \rightarrow W_1$ and $Q_2: V \rightarrow W_2$ such that $Q = Q_1 + Q_2$, where $Q_1 (v) = \textsc{Pr}(Q(v))$ and $Q_2 (v) = \textsc{Pl}(Q(v))$.
 
- When $V_1, \ldots, V_n$ and $W_1, \ldots, W_n$ are complex spaces of squared matrices, the norm of the operator $Q: V_1 \otimes V_n \rightarrow W $ is defined as follows:
+Using \autoref{def:gen_norm}, it follows that the norms of the left and right injections, $\textsc{Ir}: V \rightarrow V \oplus W$ and $\textsc{Il}:V \rightarrow W \oplus V$, applied to a vector $v \in V$, are defined as follows:
+  \begin{equation}
+    \begin{split}
+    &\|\textsc{Ir}(v)\|_{\{V, W\} \text{ gen}} =  \| (v,0) \|_{\{ V, W\} \text{ gen}} = \|v\|_{V} \\
+    &\|\textsc{Il}(v)\|_{\{ W,  V\} \text{ gen}} =  \| (0,v) \|_{\{ W,  V\} \text{ gen}} = \|v\|_{V}
+    \end{split}
+  \end{equation}
+where $\|\cdot\|_{V}$ is a norm in vector space $V$ and $\|\cdot\|_{W}$ is a norm in vector space $W$.
+
+\vspace{5pt}
+
+
+\begin{definition}
+  For $Q: V \rightarrow W_1 \oplus W_2$, where $V$, $W_1$ and $W_2$ are not direct sum of vector spaces, $\exists$ $Q_1: V \rightarrow W_1$ and $Q_2: V \rightarrow W_2$ such that $Q = \textsc{Il}(Q_1) + \textsc{Ir}(Q_2)$, where $Q_1 (v) = \textsc{Pl}(Q(v))$ and $Q_2 (v) = \textsc{Pr}(Q(v))$. The norm of the operator $Q$ is defined as follows:
+  \begin{equation}
+    \|Q\|_{\{V \rightarrow W_1, V \rightarrow W_2\} \text{ gen}} =  \|\textsc{Ir}(Q_1) + \textsc{Il}(Q_2)\|_{\{V \rightarrow W_1, V \rightarrow W_2\}} = \| Q_1\|_{V \rightarrow W_1} + \|Q_2\|_{V \rightarrow W_2}
+  \end{equation}
+\end{definition}
+
+\begin{definition}
+ Particularly, when  $V_1$ and $V_2$ are complex spaces of squares matrices $W$ is a vector space within the model considered in this work and, the norm of the operator $Q: V_1 \otimes V_2 \rightarrow W$, where $V_1$ and $V_2$, is defined as follows:
 \begin{equation}
   \begin{cases}
-    \|Q\|_{1 gen} = \text{max} \{\|Q_1\|_{1},  \|Q_2\|_{1}  \} & \text{if} \\
+    \|Q\|_{1 gen} = \max \{\|Q_1\|_{1},  \|Q_2\|_{1}  \} & \text{if $W$ is not a direct sum of vector spaces} \\ \\
+    \|Q\|_{1 gen}  = \max \{\|Q_1\|_{1 gen},  \|Q_2\|_{1 gen}  \} & \text{if $W$ is a direct sum of vector spaces $W_1$} \\ 
+     = \max \{ \| Q_{11}\|_{1} + \|Q_{12}\|_{1},\| Q_{21}\|_{1} + \|Q_{22}\|_{1} \}  &  \text{and $W_2$, which do not have direct sums}
     \end {cases}
 \end{equation}
+where $Q_1: V_1 \rightarrow W$ is defined as $Q_1(v_1)= \textsc{Il}(Q(v_1))$, $Q_2: V_2 \rightarrow W$ is defined as $Q_1(v_1)= \textsc{Ir}(Q(v_2))$, $Q_{11}: V_1 \rightarrow W_1$, is defined as $Q_{11}(v_1) = \textsc{Pl}(Q_1(v_1))$, $Q_{12}: V_1 \rightarrow W_2$, is defined as $Q_{12}(v_1) = \textsc{Pr}(Q_1(v_1))$, $Q_{21}: V_2 \rightarrow W_1$, is defined as $Q_{21}(v_2) = \textsc{Pl}(Q_2(v_2))$, and $Q_{22}: V_2 \rightarrow W_2$, is defined as $Q_{22}(v_2) = \textsc{Pr}(Q_2(v_2))$.
+\end{definition}
 %m
 
 
