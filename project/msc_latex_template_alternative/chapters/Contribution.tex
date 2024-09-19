@@ -1051,7 +1051,7 @@ where $\|\cdot\|_{V}$ is a norm in vector space $V$ and $\|\cdot\|_{W}$ is a nor
 Within this model, the operators take the form $Q: V_1 \oplus \ldots \oplus V_n  \rightarrow W = W_1 \oplus \ldots \oplus W_m$, where each $V \in \{V_1, \ldots, V_n, W_1, \ldots, W_n\}$ is a vector space without direct sums.
 
 \begin{definition} \label{def:gen_norm_either}
-For $Q: V_1 \oplus \ldots \oplus V_n  \rightarrow W, \exists \hspace{1pt} Q_1: V_1 \rightarrow W$, $\ldots$, $Q_n: V_n \rightarrow W$ \text{such that} $Q=[Q_1, \ldots, Q_n]$, where $Q_1 (v_1) = \underbrace{\textsc{Il} \cdot \ldots \cdot \textsc{Il}}_{n-1 \times } (Q (v_1)), Q_2 = \underbrace{\textsc{Il} \cdot \ldots \cdot \textsc{Il}}_{n-2 \times } \cdot \textsc{Ir} (Q(v_2)), \ldots, Q_n =  \underbrace{\textsc{Ir} \cdot \ldots \cdot \textsc{Ir}}_{n-1 \times } (Q(v_n))$.
+For $Q: V_1 \oplus \ldots \oplus V_n  \rightarrow W, \exists \hspace{1pt} Q_1: V_1 \rightarrow W$, $\ldots$, $Q_n: V_n \rightarrow W$ \text{such that} $$Q=[Q_1, \ldots, Q_n],$$ where $Q_1 (v_1) = \underbrace{\textsc{Il} \cdot \ldots \cdot \textsc{Il}}_{n-1 \times } (Q (v_1)), Q_2 = \underbrace{\textsc{Il} \cdot \ldots \cdot \textsc{Il}}_{n-2 \times } \cdot \textsc{Ir} (Q(v_2)), \ldots, Q_n =  \underbrace{\textsc{Ir} \cdot \ldots \cdot \textsc{Ir}}_{n-1 \times } (Q(v_n))$.
 
 The norm of the operator $Q$ is defined as follows:
 \begin{equation}
@@ -1091,7 +1091,7 @@ As a result, now it is necessary to prove that the  generalized norm for operato
 
 
 \begin{definition} \label{def:gen_norm_gen_inj}
-  For $Q: V \rightarrow W_1 \oplus \ldots \oplus W_m$, (where  $W_1, \ldots, W_m$  are not direct sum of vector spaces,) $\exists$ $Q_1: V \rightarrow W_1, \ldots,Q_2: V \rightarrow W_m$ such that $Q = \underbrace{\textsc{Il} \cdot \ldots \cdot \textsc{Il}}_{m-1 \times }(Q_1) + \ldots +  \underbrace{\textsc{Ir} \cdot \ldots \cdot \textsc{Ir}}_{m-1 \times } (Q_2)$, where $Q_1 (v) = \underbrace{\textsc{Pl} \cdot \ldots \cdot \textsc{Pl}}_{m-1 \times } (Q (v)), \ldots, Q_M =  \underbrace{\textsc{Pr} \cdot \ldots \cdot \textsc{Pr}}_{m-1 \times } (Q(v))$. The norm of the operator $Q$ is defined as follows:
+  For $Q: V \rightarrow W_1 \oplus \ldots \oplus W_m$, (where  $W_1, \ldots, W_m$  are not direct sum of vector spaces,) $\exists$ $Q_1: V \rightarrow W_1, \ldots,Q_2: V \rightarrow W_m$ such that $$Q = \underbrace{\textsc{Il} \cdot \ldots \cdot \textsc{Il}}_{m-1 \times }(Q_1) + \ldots +  \underbrace{\textsc{Ir} \cdot \ldots \cdot \textsc{Ir}}_{m-1 \times } (Q_2),$$ where $Q_1 (v) = \underbrace{\textsc{Pl} \cdot \ldots \cdot \textsc{Pl}}_{m-1 \times } (Q (v)), \ldots, Q_M =  \underbrace{\textsc{Pr} \cdot \ldots \cdot \textsc{Pr}}_{m-1 \times } (Q(v))$. The norm of the operator $Q$ is defined as follows:
   \begin{equation}
     \|Q\|_{\{V \rightarrow W_1, V \rightarrow W_2\} \text{ gen}} =  \| Q_1\|_{V \rightarrow W_1} + \ldots + \|Q_2\|_{V \rightarrow W_m}
   \end{equation}
@@ -1099,7 +1099,9 @@ As a result, now it is necessary to prove that the  generalized norm for operato
 
 Leveraging \autoref{def:gen_norm_either} and \autoref{def:gen_norm_gen_inj}, it is possible to define the norm of an operator $Q: V_1 \oplus \ldots \oplus V_n  \rightarrow W = W_1 \oplus \ldots \oplus W_m$, where each $V \in \{V_1, \ldots, V_n, W_1, \ldots, W_n\}$ is a vector space without direct sums, as outlined below.
 \begin{definition}
-  For $Q: V_1 \oplus \ldots \oplus V_n  \rightarrow W = W_1 \oplus \ldots \oplus W_m$, .  The norm of the operator $Q$ is defined in the following manner:
+  For $Q: V_1 \oplus \ldots \oplus V_n  \rightarrow W = W_1 \oplus \ldots \oplus W_m \exists \hspace{1pt} Q_{11}:V_1 \rightarrow W_1, \ldots Q_{1m}: V_1 \rightarrow W_n, \ldots,  Q_{n1}:V_n \rightarrow W_1, \ldots,  Q_{nm}:V_n \rightarrow W_m $ such that $$Q= [ \underbrace{\textsc{Il} \cdot \ldots \cdot \textsc{Il}}_{m-1 \times }(Q_{11}) + \ldots +  \underbrace{\textsc{Ir} \cdot \ldots \cdot \textsc{Ir}}_{m-1 \times } (Q_{1m}), \ldots,\underbrace{\textsc{Il} \cdot \ldots \cdot \textsc{Il}}_{m-1 \times }(Q_{n1}) + \ldots +  \underbrace{\textsc{Ir} \cdot \ldots \cdot \textsc{Ir}}_{m-1 \times }  (Q_{nm})]$$,  where .  
+  
+  The norm of the operator $Q$ is defined in the following manner:
   \begin{equation}
     \begin{split}
     \|Q\|_{\{V_1\rightarrow W_1, \ldots, V_n\rightarrow W_m\} \text{ gen}} = & \max \{\|Q_{11}\|_{V_1 \rightarrow W_1} + \ldots + \|Q_{1m}\|_{V_1 \rightarrow W_m}, \ldots, \\ 
@@ -1108,6 +1110,7 @@ Leveraging \autoref{def:gen_norm_either} and \autoref{def:gen_norm_gen_inj}, it 
   \end{equation}
 \end{definition}
 
+%Não esquecer de ir a cima por a decomposição e por uma nota sobre a composição de eithers
 
 %\begin{definition}
  %Particularly, when  $V_1$ and $V_2$ are complex spaces of squares matrices $W$ is a vector space within the model considered in this work and, the norm of the operator $Q: V_1 \otimes V_2 \rightarrow W$, where $V_1$ and $V_2$, is defined as follows:
