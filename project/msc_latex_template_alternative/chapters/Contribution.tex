@@ -1127,17 +1127,48 @@ Attending to the fact that the norms defined in \autoref{def:gen_norm} and \auto
   From this point forward, unless stated otherwise, whenever the equality $Q = [Q_{11} + \ldots + Q_{1m}, \ldots, Q_{n1} + \ldots + Q_{nm}]$ is used for an operator $ [Q_{11} + \ldots +  Q_{1m},  \hspace{2pt} \ldots  \hspace{2pt}, Q_{n1} + \ldots +  Q_{nm}]$, it is understood that $Q_{11}, \ldots, Q_{1m}, \ldots, Q_{n1}, \ldots, Q_{nm}$ are defined as in \autoref{def:gen_norm_ops}.
 \end{convention}
 
-It should be noted that the composition of two operators $Q: V_1 \oplus \ldots \oplus V_n \rightarrow W$ and $S: R_1 \oplus \ldots \oplus R_n \rightarrow W$ defined as, respectively, $Q = [Q_1, \ldots, Q_n]$ and $S = [S_1, \ldots, S_n]$, corresponds to $[Q,S] = [Q_1, \ldots, Q_n, S_1, \ldots, S_n]$.
+It should be noted that the coproduct of two operators $Q: V_1 \oplus \ldots \oplus V_n \rightarrow W$ and $S: R_1 \oplus \ldots \oplus R_n \rightarrow W$ defined as, respectively, $Q = [Q_1, \ldots, Q_n]$ and $S = [S_1, \ldots, S_n]$, corresponds to $[Q,S] = [Q_1, \ldots, Q_n, S_1, \ldots, S_n]$.
+
+The tensor product of two operators $Q: V_1 \oplus \ldots \oplus V_n \rightarrow W_1  \oplus \ldots W_m $ and $S: R_1 \oplus \ldots \oplus R_t \rightarrow Y_1 \oplus \ldots \oplus Y_s$, corresponds to 
+\begin{equation}
+  \begin{split}
+    &Q \otimes S:  (V_1 \oplus \ldots \oplus V_m) \otimes  (R_1 \oplus \ldots \oplus R_n)  \rightarrow  (W_1  \oplus \ldots W_m) \otimes  (Y_1 \oplus \ldots \oplus Y_s)\\
+    & Q \otimes S = [Q_{11} + \ldots + Q_{1m}, \ldots, Q_{n1} + \ldots + Q_{nm}] \otimes [S_{11} + \ldots + S_{1s}, \ldots, S_{t1} + \ldots + S_{ts}]. \\
+  \end{split}
+\end{equation}
+
+Attending to the definition of the tensor product of a direct sum of vector spaces, it follows that the tensor product of two operators is defined as follows:
+\begin{equation}
+  \begin{split}
+    Q \otimes S : & V_1 \otimes R_1 \oplus \ldots \oplus V_1 \otimes R_t \oplus \ldots \oplus V_n \otimes R_1 \oplus \ldots \oplus V_n \otimes R_t \rightarrow W_1 \otimes Y_1 \oplus \ldots \oplus   \\
+     &W_1 \otimes Y_s \oplus \ldots \oplus W_m \otimes Y_1 \oplus \ldots \oplus W_m \otimes Y_s \\
+       Q \otimes S = & [Q_{11} \otimes S_{11} + \ldots + Q_{11} \otimes S_{1s}  + \ldots + Q_{1m} \otimes S_{11}+ \ldots + Q_{1m} \otimes S_{1s}, \hspace{2pt} \ldots \hspace{2pt},\\
+       &Q_{11} \otimes S_{r1} + \ldots + Q_{11} \otimes S_{rs}  + \ldots + Q_{1m} \otimes S_{r1}+ \ldots + Q_{1m} \otimes S_{rs}, \hspace{2pt} \ldots \hspace{2pt},\\
+       &Q_{n1} \otimes S_{11} + \ldots + Q_{n1} \otimes S_{1s}  + \ldots + Q_{nm} \otimes S_{11}+ \ldots + Q_{nm} \otimes S_{1s}, \hspace{2pt} \ldots \hspace{2pt}, \\
+       & Q_{n1} \otimes S_{r1} + \ldots + Q_{n1} \otimes S_{rs}  +  \ldots + Q_{nm} \otimes S_{r1}+ \ldots + Q_{nm} \otimes S_{rs}].
+  \end{split}
+\end{equation}
+
+Consider the identity operator, $I: V_1 \oplus \ldots \oplus V_n \rightarrow  V_1 \oplus \ldots \oplus V_n$. Given that in the decomposition $I= [I_{11} + \ldots +  I_{1n},  \hspace{2pt} \ldots  \hspace{2pt}, I_{n1} + \ldots +  I_{nm}]$ $I_{ij}$ corresponds to the null operator if $i \neq j$ and the identity operator if $i = j$, if follows that $I = [I_{11}, \ldots, I_{nn}] = [I_{V_1}, \ldots, I_{V_n}]$. As a result, given a superoperator $Q: V_1 \oplus \ldots \oplus V_n \rightarrow W_1 \oplus \ldots \oplus W_m$, the superoperator $Q \otimes I$ is defined as follows:
+\begin{equation} \label{eq:gen_tensor_identity}
+  \begin{split}
+  Q \otimes I_{R_1 \oplus \ldots \oplus R_t} = & [Q_{11} \otimes I_{R_1} + \ldots + Q_{1m} \otimes I_{R_1}, \hspace{2pt} \ldots \hspace{2pt}, Q_{11} \otimes I_{R_t} + \ldots + Q_{1m} \otimes I_{R_t}, \hspace{2pt} \ldots \hspace{2pt},\\
+  & Q_{n1} \otimes I_{R_1} + \ldots + Q_{nm} \otimes I_{R_1}, \hspace{2pt} \ldots \hspace{2pt}, Q_{n1} \otimes I_{R_t} + \ldots + Q_{nm} \otimes I_{R_t}].
+  \end{split}
+\end{equation}
+
+
+
 
 %Particularly, in the case of direct sums of complex spaces of square matrices, 
-\begin{definition}
+\begin{definition} \label{def:gen_1norm}
   The norm generalized trace norm of a superoperator $Q: \mathbb{C}^{o_1 \times o_1} \oplus \ldots \oplus \mathbb{C}^{o_n \times o_n}  \rightarrow \mathbb{C}^{p_1 \times p_1} \oplus \ldots \oplus  \mathbb{C}^{p_m \times p_m} $, denoted $\|Q\|_{1 \text{ gen}}$, is defined as follows:
 \begin{equation}
     \|Q\|_{1 \text{ gen}} = \max \{\|Q_{11}\|_{1} + \ldots + \|Q_{1m}\|_{1}, \hspace{2pt} \ldots \hspace{2pt}, \|Q_{n1}\|_{1} + \ldots + \|Q_{nm}\|_{1} \}
 \end{equation}
 \end{definition}
 
-\begin{definition}
+\begin{definition} \label{def:gen_diamond_norm}
 Given a superoperator $Q: \mathbb{C}^{o_1 \times o_1} \oplus \ldots \oplus \mathbb{C}^{o_n \times o_n}  \rightarrow \mathbb{C}^{p_1 \times p_1} \oplus \ldots \oplus  \mathbb{C}^{p_m \times p_m} $, denoted $\|Q\|_{\diamond \text{ gen}}$, its generalized diamond norm, denoted $\|Q\|_{\diamondsuit \text{ gen}}$, of is defined as follows:
 \begin{equation}
     \|Q\|_{\diamondsuit \text{ gen}} = \max \{\|Q_{11}\|_{\diamondsuit} + \ldots + \|Q_{1m}\|_{\diamondsuit}, \hspace{2pt} \ldots \hspace{2pt}, \|Q_{n1}\|_{\diamondsuit} + \ldots + \|Q_{nm}\|_{\diamondsuit} \}
@@ -1150,8 +1181,44 @@ In order for the generalized diamond norm to be a suitable norm when reasoning a
   \item If $Q$ is a quantum channel then $\lVert S  Q \rVert_{\diamondsuit \text{ gen}} \leq \lVert S \rVert_{\diamondsuit \text{ gen}}$, and if $S$ is a quantum channel, then $\lVert S  Q \rVert_{\diamondsuit \text{ gen}} \leq \lVert Q \rVert_{\diamondsuit \text{ gen}}$.
 \end{enumerate}
 
-%or this norm it holds that for all super-operators $Q: \mathbb{C}^{n \times n}\rightarrow \mathbb{C}^{m \times m} $ and $S:\mathbb{C}^{m \times m} \rightarrow \mathbb{C}^{o \times o} $, if $Q$ is a quantum channel then $\lVert S  Q \rVert_{\diamondsuit} \leq \lVert S \rVert_{\diamondsuit}$ \cite[Proposition 3.44 and Proposition 3.48]{watrous2018theory}, and if $S$ is a quantum channel, then $\lVert S  Q \rVert_{\diamondsuit} \leq \lVert Q \rVert_{\diamondsuit}$. This is a desireble property, as is guarantees that quantum operations do not increase the distance between states, and as aconsequence, composition of programs is valid.
 
+  \begin{theorem} \cite[Theorem 3.46 ]{watrous2018theory}
+For all super-operators $Q: \mathbb{C}^{o_1 \times o_1} \oplus \ldots \oplus \mathbb{C}^{o_n \times o_n}  \rightarrow \mathbb{C}^{p_1 \times p_1} \oplus \ldots \oplus  \mathbb{C}^{p_m \times p_m}$ and complex spaces $\mathbb{C}^{q_1 \times q_1} \oplus \ldots \oplus \mathbb{C}^{q_t \times q_t}$  it holds that:
+    \begin{equation}
+      \lVert Q \otimes I_{\mathbb{C}^{q_1 \times q_1} \oplus \ldots \oplus \mathbb{C}^{q_t \times q_t}} \rVert_{1 \text{ gen}} \leq  \lVert Q \rVert_{\diamondsuit \text{ gen}}. 
+    \end{equation}
+    with equality holding under the assumption that $\text{dim}(\mathbb{C}^{q_1 \times q_1} \oplus \ldots \oplus \mathbb{C}^{q_t \times q_t}) \geq  \text{dim}(\mathbb{C}^{o_1 \times o_1} \oplus \ldots \oplus \mathbb{C}^{o_n \times o_n})$.
+    \end{theorem}
+
+\begin{proof}
+  \begin{align*}
+    & \hspace{-30pt} \lVert Q \otimes I_{\mathbb{C}^{q_1 \times q_1} \oplus \ldots \oplus \mathbb{C}^{q_t \times q_t}} \rVert_{1 \text{ gen}} \\
+    & \hspace{-30pt}  = \max \{ \lVert Q_{11}  \otimes I_{\mathbb{C}^{q_1 \times q_1}}  \rVert_{1}  + \ldots +  \lVert Q_{1m}  \otimes I_{\mathbb{C}^{q_1 \times q_1}} \rVert_{1},  \ldots ,  \lVert Q_{11} \otimes I_{\mathbb{C}^{q_t \times q_t}} \rVert_{1}   \quad \{\text{\autoref{eq:gen_tensor_identity}, } \\
+    & \hspace{-18pt}  + \ldots + \lVert Q_{1m} \otimes I_{\mathbb{C}^{q_t \times q_t}} \rVert_{1}, \ldots,  \lVert Q_{n1}  \otimes I_{\mathbb{C}^{q_1 \times q_1}}  \rVert_{1} + \ldots +  \hspace{80 pt} \text{\autoref{def:gen_1norm}} \} \\
+    & \hspace{-16pt}\lVert Q_{nm}  \otimes I_{\mathbb{C}^{q_1 \times q_1}} \rVert_{1}, \ldots,  \lVert Q_{n1} \otimes I_{\mathbb{C}^{q_t \times q_t}} \rVert_{1} + \ldots + \lVert Q_{nm} \otimes I_{\mathbb{C}^{q_t \times q_t}} \rVert_{1} \} \\
+    &  \hspace{-30pt}  \leq   \max \{ \|Q_{11}\|_{\diamondsuit} + \ldots + \|Q_{1m}\|_{\diamondsuit}, \hspace{2pt} \ldots \hspace{2pt},  \|Q_{11}\|_{\diamondsuit} + \ldots + \|Q_{1m}\|_{\diamondsuit}, , \hspace{2pt} \ldots \hspace{2pt},   \hspace{12 pt}  \{ \text{\autoref{thm:tensor_stability}}\}\\
+    & \|Q_{n1}\|_{\diamondsuit} + \ldots + \|Q_{nm}\|_{\diamondsuit}, \hspace{2pt} \ldots \hspace{2pt}, \|Q_{n1}\|_{\diamondsuit} + \ldots + \|Q_{nm}\|_{\diamondsuit} \} \\
+    &  \hspace{-30pt} = \max \{\|Q_{11}\|_{\diamondsuit} + \ldots + \|Q_{1m}\|_{\diamondsuit}, \hspace{2pt} \ldots \hspace{2pt}, \|Q_{n1}\|_{\diamondsuit} + \ldots + \|Q_{nm}\|_{\diamondsuit} \} \\
+    & \hspace{-30pt}  = \lVert Q \rVert_{\diamondsuit \text{ gen}}  \hspace{308 pt}  \{ \text{\autoref{def:gen_diamond_norm}}\}
+  \end{align*} 
+
+Note that if  $\text{dim}(\mathbb{C}^{q_1 \times q_1} \oplus \ldots \oplus \mathbb{C}^{q_t \times q_t}) \geq  \text{dim}(\mathbb{C}^{o_1 \times o_1} \oplus \ldots \oplus \mathbb{C}^{o_n \times o_n})$, at least one of the vector spaces ${\mathbb{C}^{q_k \times q_k}}$, in the direct sum $\mathbb{C}^{q_1 \times q_1} \oplus \ldots \oplus \mathbb{C}^{q_t \times q_t}$ has higher dimension that any of the vector spaces ${\mathbb{C}^{q_l \times q_l}}$, in the direct sum $\mathbb{C}^{o_1 \times o_1} \oplus \ldots \oplus \mathbb{C}^{o_n \times o_n}$. Consequentlty, in such a case, there is a vector space $\mathbb{C}^{q_k \times q_k}$ such that, by \autoref{thm:tensor_stability},  $ \lVert Q_{ij} \otimes I_{\mathbb{C}^{q_k \times q_k}} \rVert_1 = {\|Q_{ij}\|_{\diamondsuit}}$ for all $1\leq i \leq n$, $1 \leq j \leq m$. As a result, when $\text{dim}(\mathbb{C}^{q_1 \times q_1} \oplus \ldots \oplus \mathbb{C}^{q_t \times q_t}) \geq  \text{dim}(\mathbb{C}^{o_1 \times o_1} \oplus \ldots \oplus \mathbb{C}^{o_n \times o_n})$,
+
+  \begin{align*}
+    & \hspace{-30pt} \lVert Q \otimes I_{\mathbb{C}^{q_1 \times q_1} \oplus \ldots \oplus \mathbb{C}^{q_t \times q_t}} \rVert_{1 \text{ gen}} \\
+    & \hspace{-30pt}  = \max \{ \lVert Q_{11}  \otimes I_{\mathbb{C}^{q_1 \times q_1}}  \rVert_{1}  + \ldots +  \lVert Q_{1m}  \otimes I_{\mathbb{C}^{q_1 \times q_1}} \rVert_{1},  \ldots ,  \lVert Q_{11} \otimes I_{\mathbb{C}^{q_t \times q_t}} \rVert_{1}   \quad \{\text{\autoref{eq:gen_tensor_identity}, } \\
+    & \hspace{-18pt}  + \ldots + \lVert Q_{1m} \otimes I_{\mathbb{C}^{q_t \times q_t}} \rVert_{1}, \ldots,  \lVert Q_{n1}  \otimes I_{\mathbb{C}^{q_1 \times q_1}}  \rVert_{1} + \ldots +  \hspace{80 pt} \text{\autoref{def:gen_1norm}} \} \\
+    & \hspace{-16pt}\lVert Q_{nm}  \otimes I_{\mathbb{C}^{q_1 \times q_1}} \rVert_{1}, \ldots,  \lVert Q_{n1} \otimes I_{\mathbb{C}^{q_t \times q_t}} \rVert_{1} + \ldots + \lVert Q_{nm} \otimes I_{\mathbb{C}^{q_t \times q_t}} \rVert_{1} \} \\
+    &  \hspace{-30pt}  = \max \{ \|Q_{11} \otimes \mathbb{C}^{q_k \times q_k}\|_{1} + \ldots + \|Q_{1m} \otimes \mathbb{C}^{q_k \times q_k}\|_{1}, \hspace{2pt} \ldots \hspace{2pt} , \hspace {80 pt}  \{ \text{\autoref{thm:tensor_stability}}\}\\
+    & \hspace{-16pt} \|Q_{n1} \otimes \mathbb{C}^{q_k \times q_k}\|_{1} + \ldots + \|Q_{nm} \otimes \mathbb{C}^{q_k \times q_k}\|_{1} \} \\
+    &  \hspace{-30pt} = \max \{\|Q_{11}\|_{\diamondsuit} + \ldots + \|Q_{1m}\|_{\diamondsuit}, \hspace{2pt} \ldots \hspace{2pt}, \|Q_{n1}\|_{\diamondsuit} + \ldots + \|Q_{nm}\|_{\diamondsuit} \} \hspace{40pt}\{ \text{\autoref{thm:tensor_stability}}\} \\
+    & \hspace{-30pt}  = \lVert Q \rVert_{\diamondsuit \text{ gen}}  \hspace{308 pt}  \{ \text{\autoref{def:gen_diamond_norm}}\}
+  \end{align*} 
+\end{proof}
+
+\begin{corollary}
+  a
+\end{corollary}
 
 
 \section{Ilustration: Quantum Teleportation} \label{sec:teleport}

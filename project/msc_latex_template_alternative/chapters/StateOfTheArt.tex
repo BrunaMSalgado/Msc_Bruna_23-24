@@ -938,8 +938,10 @@ The tensor product of two operators $P: \mathbb{C}^{n \times n} \rightarrow \mat
   (P \otimes Q)(A \otimes B) = P (A) \otimes Q(B).
 \end{equation*}
 
-
-\todo[inline,size=\normalsize]{definir tensor de espaços de somas diretas} 
+The tensor product of two vector spaces corresponding to the direct sums of other vector spaces $ V = V_1 \oplus \ldots \oplus V_n$ and  $ W = W_1 \oplus \ldots \oplus W_n$  is defined as 
+\begin{equation*}
+  V \otimes W = V_1 \otimes W_1 \oplus \ldots \oplus V_1 \otimes W_n  \oplus \ldots \oplus V_n \otimes W_1 \oplus \ldots   \oplus \ldots \oplus W_n \otimes V_n.
+\end{equation*}
 
 The notation \gls{n-fold-tensor}  will be used to  denote the tensor product of a vector space, vector, or operator with itself $n$ times.
 
@@ -1301,7 +1303,7 @@ where $A \in \mathbb{C}^{n \times n }$
 \begin{theorem} \label{thm:Russo–Dye} \cite[Theorem 3.39]{watrous2018theory}
   Let $Q: \mathbb{C}^{n \times n} \rightarrow \mathbb{C}^{m \times m}$ be a positive super-operator. It holds that 
   \begin{equation}
-    \lVert Q \rVert_{1} = \max \{ \text{Tr}\left(Q(uu^{*}) \right) \vert \hspace{2pt}  \lVert u \rVert_{1}=1 \}.
+    \lVert Q \rVert_{1} = \max \{\text{Tr}\left(Q(uu^{*}) \right) \vert \hspace{2pt}  \lVert u \rVert_{1}=1 \}.
   \end{equation}
 \end{theorem}
 
@@ -1346,7 +1348,7 @@ consequence, composition of programs is valid.
    For all quantum channels $Q:\mathbb{C}^{n \times n}\rightarrow \mathbb{C}^{m \times m}$, it holds that $\lVert Q \rVert_{\diamondsuit} = 1$.
 \end{proposition}
 
-\begin{theorem} \cite[Theorem 3.46 ]{watrous2018theory}
+\begin{theorem} \label{thm:tensor_stability} \cite[Theorem 3.46 ]{watrous2018theory}
 For all super-operators $Q:\mathbb{C}^{n \times n}\rightarrow \mathbb{C}^{m \times m}$ and complex spaces $\mathbb{C}^{o\times o}$  it holds that:
 \begin{equation}
   \lVert Q \otimes I_{\mathbb{C}^{o\times o}} \rVert_{1} \leq  \lVert Q \rVert_{\diamondsuit}. 
