@@ -1,4 +1,4 @@
-This is XeTeX, Version 3.141592653-2.6-0.999995 (MiKTeX 24.1) (preloaded format=xelatex 2024.7.31)  21 SEP 2024 22:56
+This is XeTeX, Version 3.141592653-2.6-0.999995 (MiKTeX 24.1) (preloaded format=xelatex 2024.7.31)  22 SEP 2024 19:34
 entering extended mode
  restricted \write18 enabled.
  file:line:error style messages enabled.
@@ -2115,142 +2115,156 @@ Overfull \hbox (17.12137pt too wide) in paragraph at lines 1067--1068
 []\TU/SourceSansPro(0)/m/n/12 With respect to the positive scalability, given that $\OMS/cmsy/m/n/12 k ^^A k[]$ \TU/SourceSansPro(0)/m/n/12 is a norm, it follows that $\OMS/cmsy/m/n/12 k\OML/cmm/m/it/12 a Q[]\OMS/cmsy/m/n/12 k[] \OT1/cmr/m/n/12 =
  []
 
-[71] [72] [73] [74] [75]
-Overfull \hbox (14.26767pt too wide) detected at line 1295
+[71]
+Overfull \hbox (19.66385pt too wide) in paragraph at lines 1128--1130
+\TU/SourceSansPro(0)/m/n/12 is used for a superoperator $\OML/cmm/m/it/12 Q$\TU/SourceSansPro(0)/m/n/12 , it is understood that the operators $\OML/cmm/m/it/12 Q[]; [] ; Q[]; [] ; Q[]; [] ; Q[]$
+ []
+
+[72] [73] [74] [75] [76] [77]
+Overfull \hbox (14.26767pt too wide) detected at line 1344
 []
  []
 
-[76]
-Overfull \hbox (1.97134pt too wide) detected at line 1333
+
+Underfull \vbox (badness 10000) has occurred while \output is active []
+
+ [78]
+Overfull \hbox (1.97134pt too wide) detected at line 1382
  $[][]$  
  []
 
-[77] [78] [79]
-Overfull \hbox (3.09906pt too wide) in paragraph at lines 1456--1457
+
+Underfull \vbox (badness 5431) has occurred while \output is active []
+
+ [79] [80]
+Underfull \vbox (badness 1852) has occurred while \output is active []
+
+ [81]
+Overfull \hbox (3.09906pt too wide) in paragraph at lines 1505--1506
 []\TU/SourceSansPro(0)/m/n/12 Applying these Kraus operators to the density operator $\OML/cmm/m/it/12 ^^Z \OT1/cmr/m/n/12 = \OMS/cmsy/m/n/12 j\OML/cmm/m/it/12 ^^K\OMS/cmsy/m/n/12 j[]j\OT1/cmr/m/n/12 0\OMS/cmsy/m/n/12 ih\OT1/cmr/m/n/12 0\OMS/cmsy/m/n/12 j \OT1/cmr/m/n/12 + \OML/cmm/m/it/12 ^^K^^L[]\OMS/cmsy/m/n/12 j\OT1/cmr/m/n/12 0\OMS/cmsy/m/n/12 ih\OT1/cmr/m/n/12 1\OMS/cmsy/m/n/12 j \OT1/cmr/m/n/12 + \OML/cmm/m/it/12 ^^K[]^^L\OMS/cmsy/m/n/12 j\OT1/cmr/m/n/12 1\OMS/cmsy/m/n/12 ih\OT1/cmr/m/n/12 0\OMS/cmsy/m/n/12 j \OT1/cmr/m/n/12 +
  []
 
-[80] [81] [82]
-Overfull \hbox (49.79678pt too wide) detected at line 1576
+[82] [83] [84]
+Overfull \hbox (49.79678pt too wide) detected at line 1625
  $[][]$  
  []
 
 
 Underfull \vbox (badness 10000) has occurred while \output is active []
 
- [83]
-Overfull \hbox (44.18358pt too wide) detected at line 1619
+ [85]
+Overfull \hbox (44.18358pt too wide) detected at line 1668
  $[][]$  
  []
 
 
-Overfull \hbox (3.38263pt too wide) in paragraph at lines 1619--1621
+Overfull \hbox (3.38263pt too wide) in paragraph at lines 1668--1670
 \TU/SourceSansPro(0)/m/n/12 Therefore, the state of the EPR pair with an imperfect Hadamard gate is $[] [] \OT1/cmr/m/n/12 = [](\OMS/cmsy/m/n/12 j\OT1/cmr/m/n/12 00\OMS/cmsy/m/n/12 i [] \OT1/cmr/m/n/12 +
  []
 
 
-Overfull \hbox (35.5162pt too wide) in paragraph at lines 1622--1623
+Overfull \hbox (35.5162pt too wide) in paragraph at lines 1671--1672
 \OML/cmm/m/it/12 ^^Z \OT1/cmr/m/n/12 = [][][]\OMS/cmsy/m/n/12 j\OML/cmm/m/it/12  \OMS/cmsy/m/n/12 ih\OML/cmm/m/it/12  \OMS/cmsy/m/n/12 j\OML/cmm/m/it/12 ; []X\OMS/cmsy/m/n/12 j\OML/cmm/m/it/12  \OMS/cmsy/m/n/12 ih\OML/cmm/m/it/12  \OMS/cmsy/m/n/12 j\OML/cmm/m/it/12 X[]; \OT1/cmr/m/n/12 ([]\OML/cmm/m/it/12 Z\OMS/cmsy/m/n/12 j\OML/cmm/m/it/12  \OMS/cmsy/m/n/12 ih\OML/cmm/m/it/12  \OMS/cmsy/m/n/12 j\OML/cmm/m/it/12 Z; []XZ\OMS/cmsy/m/n/12 j\OML/cmm/m/it/12  \OMS/cmsy/m/n/12 ih\OML/cmm/m/it/12  \OMS/cmsy/m/n/12 j\OML/cmm/m/it/12 ZX[][]$\TU/SourceSansPro(0)/m/n/12 . Regarding the imperfect Hadamard
  []
 
 
-Overfull \hbox (7.50989pt too wide) detected at line 1643
+Overfull \hbox (7.50989pt too wide) detected at line 1692
  $[][]$  
  []
 
 
 Underfull \vbox (badness 3769) has occurred while \output is active []
 
- [84]
-Overfull \hbox (6.05948pt too wide) detected at line 1666
- $[][]$  
- []
-
-
-Overfull \hbox (42.06494pt too wide) detected at line 1680
- $[][]$  
- []
-
-[85]
-Overfull \hbox (47.5141pt too wide) detected at line 1691
- $[][]$  
- []
-
-
-Underfull \vbox (badness 10000) has occurred while \output is active []
-
  [86]
+Overfull \hbox (6.05948pt too wide) detected at line 1715
+ $[][]$  
+ []
+
+
+Overfull \hbox (42.06494pt too wide) detected at line 1729
+ $[][]$  
+ []
+
+[87]
+Overfull \hbox (47.5141pt too wide) detected at line 1740
+ $[][]$  
+ []
+
+
 Underfull \vbox (badness 10000) has occurred while \output is active []
 
- [87]
+ [88]
+Underfull \vbox (badness 10000) has occurred while \output is active []
 
-LaTeX Warning: Reference `eq:norm_tuple' on page 88 undefined on input line 1857.
+ [89]
+
+LaTeX Warning: Reference `eq:norm_tuple' on page 90 undefined on input line 1906.
 
 
 Underfull \vbox (badness 5802) has occurred while \output is active []
 
- [88]
-Overfull \hbox (19.71158pt too wide) detected at line 1876
+ [90]
+Overfull \hbox (19.71158pt too wide) detected at line 1925
  $[][]$  
  []
 
 
-Overfull \hbox (29.69255pt too wide) in paragraph at lines 1880--1881
+Overfull \hbox (29.69255pt too wide) in paragraph at lines 1929--1930
 []\TU/SourceSansPro(0)/m/n/12 Given this result it is possible to conclude that $[] \OT1/cmr/m/n/12 =[] [][]$\TU/SourceSansPro(0)/m/n/12 .
  []
 
-[89]
-Overfull \hbox (3.27301pt too wide) detected at line 1953
+[91]
+Overfull \hbox (3.27301pt too wide) detected at line 2002
  $[][]$  
  []
 
 
-Overfull \hbox (19.74863pt too wide) in paragraph at lines 1980--1981
+Overfull \hbox (19.74863pt too wide) in paragraph at lines 2029--2030
  [][] 
  []
 
-[90]
-Overfull \hbox (11.51599pt too wide) in paragraph at lines 1984--1985
+[92]
+Overfull \hbox (11.51599pt too wide) in paragraph at lines 2033--2034
 []\TU/SourceSansPro(0)/m/n/12 In this case, the quantum teleportation protocol is divided into three parts: \TU/SourceSansPro(0)/b/n/12 EPR\TU/SourceSansPro(0)/m/n/12 , \TU/SourceSansPro(0)/b/n/12 TeleportIntra-
  []
 
 
-Overfull \hbox (21.9406pt too wide) detected at line 2002
+Overfull \hbox (21.9406pt too wide) detected at line 2051
 []
  []
 
-[91]
-Overfull \hbox (5.22041pt too wide) detected at line 2057
+[93]
+Overfull \hbox (5.22041pt too wide) detected at line 2106
  $[][]$  
  []
 
-[92]
-Overfull \hbox (162.75449pt too wide) in paragraph at lines 2057--2059
+[94]
+Overfull \hbox (162.75449pt too wide) in paragraph at lines 2106--2108
 \TU/SourceSansPro(0)/m/n/12 Next, regarding the condicional statements, applying correction to $[][][]\OMS/cmsy/m/n/12 j\OML/cmm/m/it/12  \OMS/cmsy/m/n/12 ih\OML/cmm/m/it/12  \OMS/cmsy/m/n/12 j\OML/cmm/m/it/12 ; []X\OMS/cmsy/m/n/12 j\OML/cmm/m/it/12  \OMS/cmsy/m/n/12 ih\OML/cmm/m/it/12  \OMS/cmsy/m/n/12 j\OML/cmm/m/it/12 X[]; [][]Z\OMS/cmsy/m/n/12 j\OML/cmm/m/it/12  \OMS/cmsy/m/n/12 ih\OML/cmm/m/it/12  \OMS/cmsy/m/n/12 j\OML/cmm/m/it/12 Z; []XZ\OMS/cmsy/m/n/12 j\OML/cmm/m/it/12  \OMS/cmsy/m/n/12 ih\OML/cmm/m/it/12  \OMS/cmsy/m/n/12 j\OML/cmm/m/it/12 ZX[][]$
  []
 
 
-Overfull \hbox (151.53317pt too wide) in paragraph at lines 2057--2059
-\TU/SourceSansPro(0)/m/n/12 results in the state $[]$ ([][]Equation 4.18[][][]). Moreover, with respect to $[][][]\OMS/cmsy/m/n/12 j\OML/cmm/m/it/12  \OMS/cmsy/m/n/12 ih\OML/cmm/m/it/12  \OMS/cmsy/m/n/12 j\OML/cmm/m/it/12 ; []X\OMS/cmsy/m/n/12 j\OML/cmm/m/it/12  \OMS/cmsy/m/n/12 ih\OML/cmm/m/it/12  \OMS/cmsy/m/n/12 j\OML/cmm/m/it/12 X[]; [][]Z\OMS/cmsy/m/n/12 j\OML/cmm/m/it/12  \OMS/cmsy/m/n/12 ih\OML/cmm/m/it/12  \OMS/cmsy/m/n/12 j\OML/cmm/m/it/12 Z; []XZ\OMS/cmsy/m/n/12 j\OML/cmm/m/it/12  \OMS/cmsy/m/n/12 ih\OML/cmm/m/it/12  \OMS/cmsy/m/n/12 j\OML/cmm/m/it/12 ZX[][]$
+Overfull \hbox (151.53317pt too wide) in paragraph at lines 2106--2108
+\TU/SourceSansPro(0)/m/n/12 results in the state $[]$ ([][]Equation 4.21[][][]). Moreover, with respect to $[][][]\OMS/cmsy/m/n/12 j\OML/cmm/m/it/12  \OMS/cmsy/m/n/12 ih\OML/cmm/m/it/12  \OMS/cmsy/m/n/12 j\OML/cmm/m/it/12 ; []X\OMS/cmsy/m/n/12 j\OML/cmm/m/it/12  \OMS/cmsy/m/n/12 ih\OML/cmm/m/it/12  \OMS/cmsy/m/n/12 j\OML/cmm/m/it/12 X[]; [][]Z\OMS/cmsy/m/n/12 j\OML/cmm/m/it/12  \OMS/cmsy/m/n/12 ih\OML/cmm/m/it/12  \OMS/cmsy/m/n/12 j\OML/cmm/m/it/12 Z; []XZ\OMS/cmsy/m/n/12 j\OML/cmm/m/it/12  \OMS/cmsy/m/n/12 ih\OML/cmm/m/it/12  \OMS/cmsy/m/n/12 j\OML/cmm/m/it/12 ZX[][]$
  []
 
 
-Overfull \hbox (14.38568pt too wide) in paragraph at lines 2064--2066
+Overfull \hbox (14.38568pt too wide) in paragraph at lines 2113--2115
 \TU/SourceSansPro(0)/m/n/12 Furthermore, applying correction to $[][][]\OML/cmm/m/it/12 X\OMS/cmsy/m/n/12 j\OML/cmm/m/it/12  \OMS/cmsy/m/n/12 ih\OML/cmm/m/it/12  \OMS/cmsy/m/n/12 j\OML/cmm/m/it/12 X; []\OMS/cmsy/m/n/12 j\OML/cmm/m/it/12  \OMS/cmsy/m/n/12 ih\OML/cmm/m/it/12  \OMS/cmsy/m/n/12 j[]\OML/cmm/m/it/12 ; [][]XZ\OMS/cmsy/m/n/12 j\OML/cmm/m/it/12  \OMS/cmsy/m/n/12 ih\OML/cmm/m/it/12  \OMS/cmsy/m/n/12 j\OML/cmm/m/it/12 ZX; []Z\OMS/cmsy/m/n/12 j\OML/cmm/m/it/12  \OMS/cmsy/m/n/12 ih\OML/cmm/m/it/12  \OMS/cmsy/m/n/12 j\OML/cmm/m/it/12 Z[][]$
  []
 
 
 Underfull \vbox (badness 1867) has occurred while \output is active []
 
- [93]
-Overfull \hbox (36.7797pt too wide) detected at line 2149
+ [95]
+Overfull \hbox (36.7797pt too wide) detected at line 2198
  $[][]$  
  []
 
 
 Underfull \vbox (badness 10000) has occurred while \output is active []
 
- [94]) (chapters/Applications.tex [95] [96
+ [96]) (chapters/Applications.tex [97] [98
 
 ]
 Chapter 5.
@@ -2277,13 +2291,13 @@ Overfull \hbox (25.5592pt too wide) detected at line 66
 ) (chapters/ConclusionsAndFutureWork.tex
 Underfull \vbox (badness 10000) has occurred while \output is active []
 
- [97] [98]
+ [99] [100]
 Chapter 6.
-) (dissertation.bbl [99
+) (dissertation.bbl [101
 
-] [100
+] [102
 
-] [101] [102] [103] [104]
+] [103] [104] [105] [106]
 Underfull \hbox (badness 1383) in paragraph at lines 315--319
 []\TU/SourceSansPro(0)/m/n/12 Daniel Gottesman and Isaac L Chuang.  Demonstrating the viability of universal
  []
@@ -2293,10 +2307,10 @@ Underfull \hbox (badness 2165) in paragraph at lines 315--319
 \TU/SourceSansPro(0)/m/n/12 quantum computation using teleportation and single-qubit operations.  \TU/SourceSansPro(0)/m/it/12 Nature\TU/SourceSansPro(0)/m/n/12 ,
  []
 
-[105]) [106]
+[107]) [108]
 runsystem(makeindex dissertation.idx)...executed safely (allowed).
 
- (dissertation.ind) (covers/BackCover.tex [107
+ (dissertation.ind) (covers/BackCover.tex [109
 
 
 ] [1]) (dissertation.aux)
@@ -2315,12 +2329,12 @@ Package rerunfilecheck Info: File `dissertation.out' has not changed.
 (rerunfilecheck)             Checksum: C76532A53CC4F83F19130A99DB713761;10594.
  ) 
 Here is how much of TeX's memory you used:
- 58324 strings out of 409673
- 1246152 string characters out of 5774704
- 2047630 words of memory out of 5000000
- 79476 multiletter control sequences out of 15000+600000
+ 58326 strings out of 409673
+ 1246205 string characters out of 5774704
+ 2046630 words of memory out of 5000000
+ 79478 multiletter control sequences out of 15000+600000
  579305 words of font info for 162 fonts, out of 8000000 for 9000
  1348 hyphenation exceptions out of 8191
  121i,36n,121p,2535b,1395s stack positions out of 10000i,1000n,20000p,200000b,200000s
 
-Output written on dissertation.xdv (132 pages, 2104776 bytes).
+Output written on dissertation.xdv (134 pages, 2125716 bytes).

@@ -1040,7 +1040,7 @@ Finally, concerning the triangle inequality, for $ 1 \leq i \leq n$,  given that
 \end{proof}
 
 Using \autoref{def:gen_norm}, it follows that the norms of the left and right injections, $\textsc{Il}: V \rightarrow V \oplus W$ and $\textsc{Ir}:V \rightarrow W \oplus V$, applied to a vector $v \in V$, are defined as follows:
-  \begin{equation}
+  \begin{equation} \label{eq:gen_norm_injections}
     \begin{split}
     &\|\textsc{Ir}(v)\|_{\{V, W\} \text{ gen}} =  \| (v,0) \|_{\{ V, W\} \text{ gen}} = \|v\|_{V} \\
     &\|\textsc{Il}(v)\|_{\{ W,  V\} \text{ gen}} =  \| (0,v) \|_{\{ W,  V\} \text{ gen}} = \|v\|_{V}
@@ -1091,7 +1091,7 @@ As a result, now it is necessary to prove that the  generalized norm for operato
 
 
 \begin{definition} \label{def:gen_norm_gen_inj}
-  For $Q: V \rightarrow W_1 \oplus \ldots \oplus W_m$, (where  $W_1, \ldots, W_m$  are not direct sum of vector spaces,) $\exists$ $Q_1: V \rightarrow W_1, \ldots,Q_2: V \rightarrow W_m$ such that $$Q = Q_1 + \ldots +  Q_m,$$ where $Q_1 (v) = \underbrace{\textsc{Il} \cdot \ldots \cdot \textsc{Il}}_{m-1 \times } \cdot \underbrace{\textsc{Pl} \cdot \ldots \cdot \textsc{Pl}}_{m-1 \times } (Q (v)), \ldots, Q_M (v) = \underbrace{\textsc{Ir} \cdot \ldots \cdot \textsc{Ir}}_{m-1 \times } \cdot  \underbrace{\textsc{Pr} \cdot \ldots \cdot \textsc{Pr}}_{m-1 \times } (Q(v))$. The norm of the operator $Q$ is defined as follows:
+  For $Q: V \rightarrow W_1 \oplus \ldots \oplus W_m$, (where  $W_1, \ldots, W_m$  are not direct sum of vector spaces,) $\exists$ $Q_1: V \rightarrow W_1, \ldots,Q_2: V \rightarrow W_m$ such that $$Q = \underbrace{\textsc{Il} \cdot \ldots \cdot \textsc{Il}}_{m-1 \times } \cdot \hspace{2pt} Q_1 + \ldots + \underbrace{\textsc{Ir} \cdot \ldots \cdot \textsc{Ir}}_{m-1 \times } \cdot  \hspace{2pt} Q_m,$$ where $Q_1 (v) =  \underbrace{\textsc{Pl} \cdot \ldots \cdot \textsc{Pl}}_{m-1 \times } (Q (v)), \ldots, Q_M (v) =   \underbrace{\textsc{Pr} \cdot \ldots \cdot \textsc{Pr}}_{m-1 \times } (Q(v))$. As a result, considering \autoref{eq:gen_norm_injections}, the norm of the operator $Q$ correponds to:
   \begin{equation}
     \|Q\|_{\{V \rightarrow W_1, V \rightarrow W_2\} \text{ gen}} =  \| Q_1\|_{V \rightarrow W_1} + \ldots + \|Q_2\|_{V \rightarrow W_m}
   \end{equation}
@@ -1103,14 +1103,14 @@ Leveraging \autoref{def:gen_norm_either} and \autoref{def:gen_norm_gen_inj}, it 
 
 \begin{definition} \label{def:gen_norm_ops}
   For $Q: V_1 \oplus \ldots \oplus V_n  \rightarrow W = W_1 \oplus \ldots \oplus W_m \exists \hspace{1pt} Q_{11}:V_1 \rightarrow W_1, \ldots Q_{1m}: V_1 \rightarrow W_n, \ldots,  Q_{n1}:V_n \rightarrow W_1, \ldots,  Q_{nm}:V_n \rightarrow W_m $ such that 
-  $$Q= [Q_{11} + \ldots +  Q_{1m},  \hspace{2pt} \ldots  \hspace{2pt}, Q_{n1} + \ldots +  Q_{nm}],$$  
+  $$Q= [ \underbrace{\textsc{Il} \cdot \ldots \cdot \textsc{Il}}_{m-1 \times} \cdot \hspace{1pt} Q_{11} + \ldots +   \underbrace{\textsc{Ir} \cdot \ldots \cdot \textsc{Ir}}_{m-1 \times}\cdot \hspace{1pt} Q_{1m},  \hspace{2pt} \ldots  \hspace{2pt},  \underbrace{\textsc{Il} \cdot \ldots \cdot \textsc{Il}}_{m-1 \times} \cdot\hspace{1pt} Q_{n1} + \ldots + \underbrace{\textsc{Ir} \cdot \ldots \cdot \textsc{Ir}}_{m-1 \times}\cdot \hspace{1pt} Q_{nm}],$$  
   where
   \begin{equation*}
     \begin{split}
-      &Q_{11} (v_1) = \underbrace{\textsc{Il} \cdot \ldots \cdot \textsc{Il}}_{m-1 \times} \cdot \underbrace{\textsc{Pl} \cdot \ldots \cdot \textsc{Pl}}_{m-1 \times }  \cdot \hspace{1pt} Q  (\underbrace{\textsc{Il} \cdot \ldots \cdot \textsc{Il}}_{n-1 \times} (v_1)),  \hspace{1pt} \ldots \hspace{1pt} , \\
-      &Q_{1m} (v_1) = \underbrace{\textsc{Ir} \cdot \ldots \cdot \textsc{Ir}}_{m-1 \times}\cdot \underbrace{\textsc{Pr} \cdot \ldots \cdot \textsc{Pr}}_{m-1 \times } \cdot \hspace{1pt} Q ( \underbrace{\textsc{Il} \cdot \ldots \cdot \textsc{Il}}_{n-1 \times} (v_1)), \hspace{1pt} \ldots \hspace{1pt},\\ 
-      & Q_{n1} (v_n) = \underbrace{\textsc{Il} \cdot \ldots \cdot \textsc{Il}}_{m-1 \times} \cdot \underbrace{\textsc{Pl} \cdot \ldots \cdot \textsc{Pl}}_{m-1 \times } \cdot \hspace{1pt} Q (\underbrace{\textsc{Ir} \cdot \ldots \cdot \textsc{Ir}}_{n-1 \times}(v_n)), \hspace{1pt} \ldots \hspace{1pt},\\
-      & Q_{nm} (v_n) = \underbrace{\textsc{Ir} \cdot \ldots \cdot \textsc{Ir}}_{m-1 \times}\cdot \underbrace{\textsc{Pr} \cdot \ldots \cdot \textsc{Pr}}_{m-1 \times } \cdot \hspace{1pt} Q (\underbrace{\textsc{Ir} \cdot \ldots \cdot \textsc{Ir}}_{n-1 \times}(v_n))
+      &Q_{11} (v_1) =\underbrace{\textsc{Pl} \cdot \ldots \cdot \textsc{Pl}}_{m-1 \times }  \cdot \hspace{1pt} Q  (\underbrace{\textsc{Il} \cdot \ldots \cdot \textsc{Il}}_{n-1 \times} (v_1)),  \hspace{1pt} \ldots \hspace{1pt} , \\
+      &Q_{1m} (v_1) =\underbrace{\textsc{Pr} \cdot \ldots \cdot \textsc{Pr}}_{m-1 \times } \cdot \hspace{1pt} Q ( \underbrace{\textsc{Il} \cdot \ldots \cdot \textsc{Il}}_{n-1 \times} (v_1)), \hspace{1pt} \ldots \hspace{1pt},\\ 
+      & Q_{n1} (v_n) = \ \underbrace{\textsc{Pl} \cdot \ldots \cdot \textsc{Pl}}_{m-1 \times } \cdot \hspace{1pt} Q (\underbrace{\textsc{Ir} \cdot \ldots \cdot \textsc{Ir}}_{n-1 \times}(v_n)), \hspace{1pt} \ldots \hspace{1pt},\\
+      & Q_{nm} (v_n) =  \underbrace{\textsc{Pr} \cdot \ldots \cdot \textsc{Pr}}_{m-1 \times } \cdot \hspace{1pt} Q (\underbrace{\textsc{Ir} \cdot \ldots \cdot \textsc{Ir}}_{n-1 \times}(v_n))
     \end{split}
   \end{equation*}
   The norm of the operator $Q$ is defined in the following manner:
@@ -1124,39 +1124,57 @@ Leveraging \autoref{def:gen_norm_either} and \autoref{def:gen_norm_gen_inj}, it 
 Attending to the fact that the norms defined in \autoref{def:gen_norm} and \autoref{def:gen_norm_either} are valid, it follows that so is the norm defined above.
 
 \begin{convention}
-  From this point forward, unless stated otherwise, whenever the equality $Q = [Q_{11} + \ldots + Q_{1m}, \ldots, Q_{n1} + \ldots + Q_{nm}]$ is used for an operator $ [Q_{11} + \ldots +  Q_{1m},  \hspace{2pt} \ldots  \hspace{2pt}, Q_{n1} + \ldots +  Q_{nm}]$, it is understood that $Q_{11}, \ldots, Q_{1m}, \ldots, Q_{n1}, \ldots, Q_{nm}$ are defined as in \autoref{def:gen_norm_ops}.
+  From this point forward, unless stated otherwise, whenever the equality 
+  $$Q= [ \underbrace{\textsc{Il} \cdot \ldots \cdot \textsc{Il}}_{m-1 \times} \cdot \hspace{1pt} Q_{11} + \ldots +   \underbrace{\textsc{Ir} \cdot \ldots \cdot \textsc{Ir}}_{m-1 \times}\cdot \hspace{1pt} Q_{1m},  \hspace{2pt} \ldots  \hspace{2pt},  \underbrace{\textsc{Il} \cdot \ldots \cdot \textsc{Il}}_{m-1 \times} \cdot\hspace{1pt} Q_{n1} + \ldots + \underbrace{\textsc{Ir} \cdot \ldots \cdot \textsc{Ir}}_{m-1 \times}\cdot \hspace{1pt} Q_{nm}]$$
+   is used for a superoperator $Q$, it is understood that the operators $Q_{11}, \ldots, Q_{1m}, \ldots, Q_{n1}, \ldots, Q_{nm}$ are defined as in \autoref{def:gen_norm_ops}.
 \end{convention}
 
 It should be noted that the coproduct of two operators $Q: V_1 \oplus \ldots \oplus V_n \rightarrow W$ and $S: R_1 \oplus \ldots \oplus R_n \rightarrow W$ defined as, respectively, $Q = [Q_1, \ldots, Q_n]$ and $S = [S_1, \ldots, S_n]$, corresponds to $[Q,S] = [Q_1, \ldots, Q_n, S_1, \ldots, S_n]$.
 
+ 
 The tensor product of two operators $Q: V_1 \oplus \ldots \oplus V_n \rightarrow W_1  \oplus \ldots W_m $ and $S: R_1 \oplus \ldots \oplus R_t \rightarrow Y_1 \oplus \ldots \oplus Y_s$, corresponds to 
 \begin{equation}
   \begin{split}
     &Q \otimes S:  (V_1 \oplus \ldots \oplus V_m) \otimes  (R_1 \oplus \ldots \oplus R_n)  \rightarrow  (W_1  \oplus \ldots W_m) \otimes  (Y_1 \oplus \ldots \oplus Y_s)\\
-    & Q \otimes S = [Q_{11} + \ldots + Q_{1m}, \ldots, Q_{n1} + \ldots + Q_{nm}] \otimes [S_{11} + \ldots + S_{1s}, \ldots, S_{t1} + \ldots + S_{ts}]. \\
+    & Q \otimes S = [ \underbrace{\textsc{Il} \cdot \ldots \cdot \textsc{Il}}_{m-1 \times} \cdot \hspace{1pt} Q_{11} + \ldots +   \underbrace{\textsc{Ir} \cdot \ldots \cdot \textsc{Ir}}_{m-1 \times}\cdot \hspace{1pt} Q_{1m},  \hspace{2pt} \ldots  \hspace{2pt},  \underbrace{\textsc{Il} \cdot \ldots \cdot \textsc{Il}}_{m-1 \times} \cdot\hspace{1pt} Q_{n1} + \ldots + \underbrace{\textsc{Ir} \cdot \ldots \cdot \textsc{Ir}}_{m-1 \times}  \\ 
+    & \hspace{-4pt} \cdot \hspace{1pt} Q_{nm}] \otimes [ \underbrace{\textsc{Il} \cdot \ldots \cdot \textsc{Il}}_{s-1 \times} \cdot \hspace{1pt} S_{11} + \ldots +  \underbrace{\textsc{Ir} \cdot \ldots \cdot \textsc{Ir}}_{s-1 \times} \cdot \hspace{1pt} S_{1s}, \ldots,  \underbrace{\textsc{Il} \cdot \ldots \cdot \textsc{Il}}_{m-1 \times} \cdot \hspace{1pt} S_{t1} + \ldots +  \underbrace{\textsc{Ir} \cdot \ldots \cdot \textsc{Ir}}_{s-1 \times} \cdot \hspace{1pt} S_{ts}]. \\
   \end{split}
 \end{equation}
 
 Attending to the definition of the tensor product of a direct sum of vector spaces, it follows that the tensor product of two operators is defined as follows:
-\begin{equation}
-  \begin{split}
-    Q \otimes S : & V_1 \otimes R_1 \oplus \ldots \oplus V_1 \otimes R_t \oplus \ldots \oplus V_n \otimes R_1 \oplus \ldots \oplus V_n \otimes R_t \rightarrow W_1 \otimes Y_1 \oplus \ldots \oplus   \\
-     &W_1 \otimes Y_s \oplus \ldots \oplus W_m \otimes Y_1 \oplus \ldots \oplus W_m \otimes Y_s \\
-       Q \otimes S = & [Q_{11} \otimes S_{11} + \ldots + Q_{11} \otimes S_{1s}  + \ldots + Q_{1m} \otimes S_{11}+ \ldots + Q_{1m} \otimes S_{1s}, \hspace{2pt} \ldots \hspace{2pt},\\
-       &Q_{11} \otimes S_{r1} + \ldots + Q_{11} \otimes S_{rs}  + \ldots + Q_{1m} \otimes S_{r1}+ \ldots + Q_{1m} \otimes S_{rs}, \hspace{2pt} \ldots \hspace{2pt},\\
-       &Q_{n1} \otimes S_{11} + \ldots + Q_{n1} \otimes S_{1s}  + \ldots + Q_{nm} \otimes S_{11}+ \ldots + Q_{nm} \otimes S_{1s}, \hspace{2pt} \ldots \hspace{2pt}, \\
-       & Q_{n1} \otimes S_{r1} + \ldots + Q_{n1} \otimes S_{rs}  +  \ldots + Q_{nm} \otimes S_{r1}+ \ldots + Q_{nm} \otimes S_{rs}].
-  \end{split}
-\end{equation}
+\begin{align*}
+    \hspace{-20pt} Q \otimes S &:   V_1 \otimes R_1 \oplus \ldots \oplus V_1 \otimes R_t \oplus \ldots \oplus V_n \otimes R_1 \oplus \ldots \oplus V_n \otimes R_t \rightarrow W_1 \otimes Y_1 \oplus \ldots \oplus   \\
+    \hspace{-20pt} & W_1 \otimes Y_s \oplus \ldots \oplus W_m \otimes Y_1 \oplus \ldots \oplus W_m \otimes Y_s \\
+    \hspace{-20pt} Q \otimes S & =  [ \hspace{-5pt} \underbrace{\textsc{Il} \cdot \ldots \cdot \textsc{Il}}_{(m-1) \times ( s-1) \times} (Q_{11} \otimes S_{11}) + \ldots + \underbrace{\textsc{Il} \cdot \ldots \cdot \textsc{Il}}_{m-1 \times}\cdot \underbrace{\textsc{Ir} \cdot \ldots \cdot \textsc{Ir}}_{s-1  \times}  (Q_{11} \otimes S_{1s})  + \ldots +  \\
+     & \hspace{15pt} \underbrace{\textsc{Ir} \cdot \ldots \cdot \textsc{Ir}}_{m-1  \times}  \cdot  \underbrace{\textsc{Il} \cdot \ldots \cdot \textsc{Il}}_{s-1 \times} (Q_{1m} \otimes S_{11})+ \ldots + \underbrace{\textsc{Ir} \cdot \ldots \cdot \textsc{Ir}}_{(m-1) \times (s-1) \times}(Q_{1m} \otimes S_{1s}), \hspace{2pt} \ldots \hspace{2pt},  \\
+     & \hspace{10pt}\underbrace{\textsc{Il} \cdot \ldots \cdot \textsc{Il}}_{(m-1) \times ( s-1) \times} (Q_{11} \otimes S_{r1}) + \ldots + \underbrace{\textsc{Il} \cdot \ldots \cdot \textsc{Il}}_{m-1 \times}\cdot \underbrace{\textsc{Ir} \cdot \ldots \cdot \textsc{Ir}}_{s-1  \times}  (Q_{11} \otimes S_{rs})  + \ldots + \\
+     & \hspace{15pt} \underbrace{\textsc{Ir} \cdot \ldots \cdot \textsc{Ir}}_{m-1  \times}  \cdot  \underbrace{\textsc{Il} \cdot \ldots \cdot \textsc{Il}}_{s-1 \times} (Q_{1m} \otimes S_{r1})+ \ldots + \underbrace{\textsc{Ir} \cdot \ldots \cdot \textsc{Ir}}_{(m-1) \times (s-1) \times}(Q_{1m} \otimes S_{rs}), \hspace{2pt} \ldots \hspace{2pt},  \\
+      & \hspace{10pt}\underbrace{\textsc{Il} \cdot \ldots \cdot \textsc{Il}}_{(m-1) \times ( s-1) \times} (Q_{n1} \otimes S_{11}) + \ldots + \underbrace{\textsc{Il} \cdot \ldots \cdot \textsc{Il}}_{m-1 \times}\cdot \underbrace{\textsc{Ir} \cdot \ldots \cdot \textsc{Ir}}_{s-1  \times}  (Q_{n1} \otimes S_{1s})  + \ldots + \\
+     & \hspace{15pt} \underbrace{\textsc{Ir} \cdot \ldots \cdot \textsc{Ir}}_{m-1  \times}  \cdot  \underbrace{\textsc{Il} \cdot \ldots \cdot \textsc{Il}}_{s-1 \times} (Q_{nm} \otimes S_{11})+ \ldots + \underbrace{\textsc{Ir} \cdot \ldots \cdot \textsc{Ir}}_{(m-1) \times (s-1) \times}(Q_{nm} \otimes S_{1s}), \hspace{2pt} \ldots \hspace{2pt},  \\
+      & \hspace{10pt}\underbrace{\textsc{Il} \cdot \ldots \cdot \textsc{Il}}_{(m-1) \times ( s-1) \times} (Q_{n1} \otimes S_{r1}) + \ldots + \underbrace{\textsc{Il} \cdot \ldots \cdot \textsc{Il}}_{m-1 \times}\cdot \underbrace{\textsc{Ir} \cdot \ldots \cdot \textsc{Ir}}_{s-1  \times}  (Q_{n1} \otimes S_{rs})  + \ldots + \\
+      & \hspace{15pt} \underbrace{\textsc{Ir} \cdot \ldots \cdot \textsc{Ir}}_{m-1  \times}  \cdot  \underbrace{\textsc{Il} \cdot \ldots \cdot \textsc{Il}}_{s-1 \times} (Q_{nm} \otimes S_{r1})+ \ldots + \underbrace{\textsc{Ir} \cdot \ldots \cdot \textsc{Ir}}_{(m-1) \times (s-1) \times}(Q_{nm} \otimes S_{rs})].
+\end{align*}
 
-Consider the identity operator, $I: V_1 \oplus \ldots \oplus V_n \rightarrow  V_1 \oplus \ldots \oplus V_n$. Given that in the decomposition $I= [I_{11} + \ldots +  I_{1n},  \hspace{2pt} \ldots  \hspace{2pt}, I_{n1} + \ldots +  I_{nm}]$ $I_{ij}$ corresponds to the null operator if $i \neq j$ and the identity operator if $i = j$, if follows that $I = [I_{11}, \ldots, I_{nn}] = [I_{V_1}, \ldots, I_{V_n}]$. As a result, given a superoperator $Q: V_1 \oplus \ldots \oplus V_n \rightarrow W_1 \oplus \ldots \oplus W_m$, the superoperator $Q \otimes I$ is defined as follows:
+Consider the identity operator, $I_{V_1 \oplus \ldots \oplus V_n}: V_1 \oplus \ldots \oplus V_n \rightarrow  V_1 \oplus \ldots \oplus V_n$. Note that in the decomposition 
+$$I= [ \underbrace{\textsc{Il} \cdot \ldots \cdot \textsc{Il}}_{m-1 \times} \cdot \hspace{1pt} I_{11} + \ldots +   \underbrace{\textsc{Ir} \cdot \ldots \cdot \textsc{Ir}}_{m-1 \times}\cdot \hspace{1pt} I_{1m},  \hspace{2pt} \ldots  \hspace{2pt},  \underbrace{\textsc{Il} \cdot \ldots \cdot \textsc{Il}}_{m-1 \times} \cdot\hspace{1pt} I_{n1} + \ldots + \underbrace{\textsc{Ir} \cdot \ldots \cdot \textsc{Ir}}_{m-1 \times}\cdot \hspace{1pt} I_{nm}],$$
+one has that:
+\begin{equation*}
+  \begin{cases}
+    I_{ij} = 0 & \text{if } i \neq j \\
+    I_{ij} = I_{V_i} & \text{if } i = j.
+  \end{cases}
+\end{equation*}
+Therefore,
+ $$I = [\underbrace{\textsc{Il} \cdot \ldots \cdot \textsc{Il}}_{n-1 \times} \cdot \hspace{1pt}I_{V_1}, \ldots,  \underbrace{\textsc{Ir} \cdot \ldots \cdot \textsc{Ir}}_{n-1 \times} \cdot I_{V_n}].$$ 
+ As a result, given a superoperator $Q: V_1 \oplus \ldots \oplus V_n \rightarrow W_1 \oplus \ldots \oplus W_m$, the superoperator $Q \otimes I_{R_1 \oplus \ldots \oplus R_t}$ is defined as follows:
 \begin{equation} \label{eq:gen_tensor_identity}
   \begin{split}
-  Q \otimes I_{R_1 \oplus \ldots \oplus R_t} = & [Q_{11} \otimes I_{R_1} + \ldots + Q_{1m} \otimes I_{R_1}, \hspace{2pt} \ldots \hspace{2pt}, Q_{11} \otimes I_{R_t} + \ldots + Q_{1m} \otimes I_{R_t}, \hspace{2pt} \ldots \hspace{2pt},\\
-  & Q_{n1} \otimes I_{R_1} + \ldots + Q_{nm} \otimes I_{R_1}, \hspace{2pt} \ldots \hspace{2pt}, Q_{n1} \otimes I_{R_t} + \ldots + Q_{nm} \otimes I_{R_t}].
+   Q \otimes I & =  [ \hspace{-5pt} \underbrace{\textsc{Il} \cdot \ldots \cdot \textsc{Il}}_{(m-1) \times ( t-1) \times} (Q_{11} \otimes I_{R_1} ) + \ldots +  \underbrace{\textsc{Ir} \cdot \ldots \cdot \textsc{Ir}}_{m-1  \times}  \cdot  \underbrace{\textsc{Il} \cdot \ldots \cdot \textsc{Il}}_{t-1 \times} (Q_{1m} \otimes I_{R_1}), \hspace{2pt} \ldots \hspace{2pt},  \\
+   & \hspace{15pt} \underbrace{\textsc{Il} \cdot \ldots \cdot \textsc{Il}}_{m-1 \times}\cdot \underbrace{\textsc{Ir} \cdot \ldots \cdot \textsc{Ir}}_{t-1  \times}  (Q_{11} \otimes I_{R_t})  + \ldots +  \underbrace{\textsc{Ir} \cdot \ldots \cdot \textsc{Ir}}_{(m-1) \times (t-1) \times}(Q_{1m} \otimes I_{R_t}), \hspace{2pt} \ldots \hspace{2pt},  \\
+    & \hspace{10pt}\underbrace{\textsc{Il} \cdot \ldots \cdot \textsc{Il}}_{(m-1) \times ( t-1) \times} (Q_{n1} \otimes I_{R_1}) + \ldots +  \underbrace{\textsc{Ir} \cdot \ldots \cdot \textsc{Ir}}_{m-1  \times}  \cdot  \underbrace{\textsc{Il} \cdot \ldots \cdot \textsc{Il}}_{t-1 \times} (Q_{nm} \otimes I_{R_1}), \hspace{2pt} \ldots \hspace{2pt},  \\
+    & \hspace{15pt} \underbrace{\textsc{Il} \cdot \ldots \cdot \textsc{Il}}_{m-1  \times} \cdot \underbrace{\textsc{Ir} \cdot \ldots \cdot \textsc{Ir}}_{t-1  \times}  (Q_{n1} \otimes I_{R_t})  + \ldots + \underbrace{\textsc{Ir} \cdot \ldots \cdot \textsc{Ir}}_{(m-1) \times (t-1) \times}(Q_{nm} \otimes I_{R_t})].
   \end{split}
 \end{equation}
-
 
 
 
@@ -1185,7 +1203,7 @@ In order for the generalized diamond norm to be a suitable norm when reasoning a
   \begin{theorem} \cite[Theorem 3.46 ]{watrous2018theory}
 For all super-operators $Q: \mathbb{C}^{o_1 \times o_1} \oplus \ldots \oplus \mathbb{C}^{o_n \times o_n}  \rightarrow \mathbb{C}^{p_1 \times p_1} \oplus \ldots \oplus  \mathbb{C}^{p_m \times p_m}$ and complex spaces $\mathbb{C}^{q_1 \times q_1} \oplus \ldots \oplus \mathbb{C}^{q_t \times q_t}$  it holds that:
     \begin{equation}
-      \lVert Q \otimes I_{\mathbb{C}^{q_1 \times q_1} \oplus \ldots \oplus \mathbb{C}^{q_t \times q_t}} \rVert_{1 \text{ gen}} \leq  \lVert Q \rVert_{\diamondsuit \text{ gen}}. 
+      \lVert Q \otimes I_{\mathbb{C}^{q_1 \times q_1} \oplus \ldots \oplus \mathbb{C}^{q_t \times q_t}} \rVert_{1 \text{ gen}} \leq  \lVert Q \rVert_{\diamondsuit \text{ gen}}
     \end{equation}
     with equality holding under the assumption that $\text{dim}(\mathbb{C}^{q_1 \times q_1} \oplus \ldots \oplus \mathbb{C}^{q_t \times q_t}) \geq  \text{dim}(\mathbb{C}^{o_1 \times o_1} \oplus \ldots \oplus \mathbb{C}^{o_n \times o_n})$.
     \end{theorem}
@@ -1217,8 +1235,39 @@ Note that if  $\text{dim}(\mathbb{C}^{q_1 \times q_1} \oplus \ldots \oplus \math
 \end{proof}
 
 \begin{corollary}
-  a
+  For all super-operators  $Q: \mathbb{C}^{o_1 \times o_1} \oplus \ldots \oplus \mathbb{C}^{o_n \times o_n}  \rightarrow \mathbb{C}^{p_1 \times p_1} \oplus \ldots \oplus  \mathbb{C}^{p_m \times p_m}$ and complex spaces $\mathbb{C}^{q_1 \times q_1} \oplus \ldots \oplus \mathbb{C}^{q_t \times q_t}$   it holds that:
+\begin{equation}
+  \lVert Q \rVert_{\diamondsuit \text{ gen}} = \lVert Q \otimes I_{\mathbb{C}^{q_1 \times q_1} \oplus \ldots \oplus \mathbb{C}^{q_t \times q_t}} \rVert_{\diamondsuit \text{ gen}}
+\end{equation}
 \end{corollary}
+
+\begin{lemma}
+  The generalized trace norm is submultiplicative with respect to composition of super‑operators, \textit{i.e.}, for all super-operators $Q: \mathbb{C}^{o_1 \times o_1} \oplus \ldots \oplus \mathbb{C}^{o_n \times o_n}  \rightarrow \mathbb{C}^{p_1 \times p_1} \oplus \ldots \oplus  \mathbb{C}^{p_m \times p_m}$ and $S: \mathbb{C}^{p_1 \times p_1} \oplus \ldots \oplus \mathbb{C}^{p_m \times p_m}  \rightarrow \mathbb{C}^{q_1 \times q_1} \oplus \ldots \oplus \mathbb{C}^{q_t \times q_t}$, it holds that:
+  \begin{equation}
+    \lVert S  Q \rVert_{1 \text{ gen}} \leq \lVert S \rVert_{1 \text{ gen}} \lVert Q \rVert_{1 \text{ gen}}
+  \end{equation}
+\end{lemma}
+
+\begin{proof}
+The composition of two superoperators $Q: \mathbb{C}^{o_1 \times o_1} \oplus \ldots \oplus \mathbb{C}^{o_n \times o_n}  \rightarrow \mathbb{C}^{p_1 \times p_1} \oplus \ldots \oplus  \mathbb{C}^{p_m \times p_m}$ and $S: \mathbb{C}^{p_1 \times p_1} \oplus \ldots \oplus \mathbb{C}^{p_m \times p_m}  \rightarrow \mathbb{C}^{q_1 \times q_1} \oplus \ldots \oplus \mathbb{C}^{q_t \times q_t}$ corresponds to 
+\begin{equation}
+  \begin{split}
+    & S \cdot  Q =[\underbrace{\textsc{Il} \cdot \ldots \cdot \textsc{Il}}_{m-1 \times} \cdot \hspace{1pt} S_{11} + \ldots +   \underbrace{\textsc{Ir} \cdot \ldots \cdot \textsc{Ir}}_{m-1 \times}\cdot \hspace{1pt} S_{1t},  \hspace{2pt} \ldots  \hspace{2pt},  \underbrace{\textsc{Il} \cdot \ldots \cdot \textsc{Il}}_{m-1 \times} \cdot\hspace{1pt} S_{m1} + \ldots + \underbrace{\textsc{Ir} \cdot \ldots \cdot \textsc{Ir}}_{m-1 \times}\cdot \hspace{1pt} S_{mt}] \\
+     & \hspace{21pt}\cdot  [\underbrace{\textsc{Il} \cdot \ldots \cdot \textsc{Il}}_{m-1 \times} \cdot \hspace{1pt} Q_{11} + \ldots +   \underbrace{\textsc{Ir} \cdot \ldots \cdot \textsc{Ir}}_{m-1 \times}\cdot \hspace{1pt} Q_{1m},  \hspace{2pt} \ldots  \hspace{2pt},  \underbrace{\textsc{Il} \cdot \ldots \cdot \textsc{Il}}_{m-1 \times} \cdot\hspace{1pt} Q_{n1} + \ldots + \underbrace{\textsc{Ir} \cdot \ldots \cdot \textsc{Ir}}_{m-1 \times}\cdot \hspace{1pt} Q_{nm}]  \\
+     & \hspace{21pt} = [ \underbrace{\textsc{Il} \cdot \ldots \cdot \textsc{Il}}_{m-1 \times} \cdot \hspace{1pt} S_{11} \cdot Q_{11} + \ldots +   \underbrace{\textsc{Ir} \cdot \ldots \cdot \textsc{Ir}}_{m-1 \times}\cdot \hspace{1pt} S_{1t} \cdot Q_{11} + \ldots +  \underbrace{\textsc{Il} \cdot \ldots \cdot \textsc{Il}}_{m-1 \times} \cdot\hspace{1pt} S_{m1} \cdot Q_{1m} +  \ldots \\
+     & \hspace{22pt}  + \underbrace{\textsc{Ir} \cdot \ldots \cdot \textsc{Ir}}_{m-1 \times}\cdot \hspace{1pt} S_{mt} \cdot Q_{1m}, \hspace{2pt} \ldots  \hspace{2pt},  \underbrace{\textsc{Il} \cdot \ldots \cdot \textsc{Il}}_{m-1 \times} \cdot \hspace{1pt} S_{11} \cdot Q_{n1} + \ldots +   \underbrace{\textsc{Ir} \cdot \ldots \cdot \textsc{Ir}}_{m-1 \times}\cdot \hspace{1pt} S_{1t} \cdot Q_{n1} + \ldots   \\
+     & \hspace{22pt} +  \underbrace{\textsc{Il} \cdot \ldots \cdot \textsc{Il}}_{m-1 \times} \cdot\hspace{1pt} S_{m1} \cdot Q_{nm} + \ldots + \underbrace{\textsc{Ir} \cdot \ldots \cdot \textsc{Ir}}_{m-1 \times}\cdot \hspace{1pt} S_{mt} \cdot Q_{nm}]
+  \end{split}
+\end{equation}
+
+  Attending to the definition of the generalized trace norm (\autoref{def:gen_1norm}), it follows that:
+\begin{equation}
+  \begin{split}
+  \lVert S  Q \rVert_{1 \text{ gen}} & =  \max \{ S_{11} \cdot Q_{11} + \ldots + S_{1t} \cdot Q_{11} + \ldots +  S_{m1} \cdot Q_{1m} +  \ldots +  S_{mt} \cdot Q_{1m}, \hspace{2pt} \ldots \hspace{2pt}, \\
+  & \hspace{15pt}  S_{11} \cdot Q_{n1}  + \ldots + S_{1t} \cdot Q_{n1} + \ldots +  S_{m1} \cdot Q_{nm} + S_{mt} \cdot Q_{nm}\}
+  \end{split}
+\end{equation}
+\end{proof}
 
 
 \section{Ilustration: Quantum Teleportation} \label{sec:teleport}
