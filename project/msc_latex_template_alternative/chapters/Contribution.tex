@@ -1202,7 +1202,10 @@ Therefore,
 \begin{definition} \label{def:gen_1norm}
   The norm generalized trace norm of a superoperator $Q: \mathbb{C}^{o_1 \times o_1} \oplus \ldots \oplus \mathbb{C}^{o_n \times o_n}  \rightarrow \mathbb{C}^{p_1 \times p_1} \oplus \ldots \oplus  \mathbb{C}^{p_m \times p_m} $, denoted $\|Q\|_{1 \text{ gen}}$, is defined as follows:
 \begin{equation}
-  \|Q\|_{1 \text{ gen}} = \max  \left\{ \max \left\{ \sum_{i=1}^{m} \|Q_{1i} (v)\|_{1}   \vert \hspace{1pt} \|v\|_{1} = 1 \right\}, \hspace{2pt} \ldots \hspace{2pt}, \left\{ \sum_{i=1}^{m} \|Q_{ni} (v)\|_{1}   \vert \hspace{1pt} \|v\|_{1} = 1 \right\} \right\} 
+  \begin{split}
+  \|Q\|_{1 \text{ gen}} & = \max  \Bigg\{ \max \left\{ \sum_{i=1}^{m} \|Q_{1i} (v_1)\|_{1}   \vert \hspace{1pt} \|v_1\|_{1} = 1 \right\} \\
+  & \hspace{15pt} ,\hspace{2pt}  \ldots \hspace{2pt}  , \max \left\{ \sum_{i=1}^{m} \|Q_{ni} (v_n)\|_{1}   \vert \hspace{1pt} \|v_n\|_{1} = 1 \right\} \Bigg\} 
+  \end{split}
 \end{equation}
 \end{definition}
 
@@ -1210,9 +1213,12 @@ Therefore,
 \begin{definition} \label{def:gen_diamond_norm}
 Given a superoperator $Q: \mathbb{C}^{o_1 \times o_1} \oplus \ldots \oplus \mathbb{C}^{o_n \times o_n}  \rightarrow \mathbb{C}^{p_1 \times p_1} \oplus \ldots \oplus  \mathbb{C}^{p_m \times p_m} $, denoted $\|Q\|_{\diamond \text{ gen}}$, its generalized diamond norm, denoted $\|Q\|_{\diamondsuit \text{ gen}}$, of is defined as follows:
 \begin{equation}
-    \|Q\|_{\diamondsuit \text{ gen}} = \max \{\|Q_{11}\|_{\diamondsuit} + \ldots + \|Q_{1m}\|_{\diamondsuit}, \hspace{2pt} \ldots \hspace{2pt}, \|Q_{n1}\|_{\diamondsuit} + \ldots + \|Q_{nm}\|_{\diamondsuit} \}
+  \begin{split}
+    \|Q\|_{\diamondsuit \text{ gen}} & =  \max  \Bigg\{ \max \left\{ \sum_{i=1}^{m} \|Q_{1i} \otimes I_{\mathbb{C}^{o_1 \times o_1}} (v_1)\|_{1}    \vert \hspace{1pt} \|v_1\|_{1} = 1 \right\} \\
+    & \hspace{15pt}, \hspace{2pt} \ldots \hspace{2pt}, \left\{ \sum_{i=1}^{m} \|Q_{ni} \otimes I_{\mathbb{C}^{o_n \times o_n}} (v_n)\|_{1}    \vert \hspace{1pt} \|v_n\|_{1} = 1 \right\} \Bigg\} 
+  \end{split}
 \end{equation}
-\end{definition}
+\end{definition} 
 
 In order for the generalized diamond norm to be a suitable norm when reasoning about quantum programs, similarly to the diamond norm, it should satisfy the following properties:
 \begin{enumerate}

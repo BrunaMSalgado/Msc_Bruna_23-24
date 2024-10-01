@@ -1300,30 +1300,30 @@ This last equality corresponds to an Kraus operator sum representation, where th
 \end{definition}
 where $A \in \mathbb{C}^{n \times n }$
 
-\begin{theorem} \label{thm:Russo–Dye} \cite[Theorem 3.39]{watrous2018theory}
-  Let $Q: \mathbb{C}^{n \times n} \rightarrow \mathbb{C}^{m \times m}$ be a positive super-operator and $u \in \mathbb{C}^{n}$. It holds that 
-  \begin{equation}
-    \lVert Q \rVert_{1} = \max \{\text{Tr}\left(Q(uu^{*}) \right) \vert \hspace{2pt}  \lVert u \rVert_{1}=1 \}.
-  \end{equation}
-\end{theorem}
+%\begin{theorem} \label{thm:Russo–Dye} \cite[Theorem 3.39]{watrous2018theory}
+  %Let $Q: \mathbb{C}^{n \times n} \rightarrow \mathbb{C}^{m \times m}$ be a positive super-operator and $u \in \mathbb{C}^{n}$. It holds that 
+  %\begin{equation}
+    %\lVert Q \rVert_{1} = \max \{\text{Tr}\left(Q(uu^{*}) \right) \vert \hspace{2pt}  \lVert u \rVert_{1}=1 \}.
+  %\end{equation}
+%\end{theorem}
+
+%\begin{proposition} \cite[Proposition 3.41]{watrous2018theory}
+%The following facts hold for the trace norm:
+%\begin{enumerate}
+  %\item The trace norm is submultiplicative with respect to composition of super-operators , \textit{i.e.}, for all super-operators  $Q: \mathbb{C}^{n \times n} \rightarrow \mathbb{C}^{m \times m}$ and $S: \mathbb{C}^{m \times m} \rightarrow \mathbb{C}^{o \times o}$
+  %\begin{equation}
+    %\lVert S  Q \rVert_{1} \leq \lVert S \rVert_{1} \lVert Q \rVert_{1}.
+  %\end{equation}
+  %\item Let $U_0,$ $V_0 \in \mathbb{C}^{n\times n}$ and $U_1,$ $V_1 \in \mathbb{C}^{m\times m}$ be unitary operators, let $Q,$ $S: \mathbb{C}^{n \times n} \rightarrow \mathbb{C}^{m \times m}$ be super-operators, where $S$ is defined as:
+  %\begin{equation}
+    %S(X) = U_1 Q(U_0 A V_0) V_1
+ % \end{equation}
+  %for all $A \in \mathbb{C}^{n\times n}$. It holds that $\lVert Q \rVert_{1} = \lVert S \rVert_{1} $.
+%\end{enumerate}
+%\end{proposition}
 
 
-\begin{proposition} \cite[Proposition 3.41]{watrous2018theory}
-The following facts hold for the trace norm:
-\begin{enumerate}
-  \item The trace norm is submultiplicative with respect to composition of super-operators , \textit{i.e.}, for all super-operators  $Q: \mathbb{C}^{n \times n} \rightarrow \mathbb{C}^{m \times m}$ and $S: \mathbb{C}^{m \times m} \rightarrow \mathbb{C}^{o \times o}$
-  \begin{equation}
-    \lVert S  Q \rVert_{1} \leq \lVert S \rVert_{1} \lVert Q \rVert_{1}.
-  \end{equation}
-  \item Let $U_0,$ $V_0 \in \mathbb{C}^{n\times n}$ and $U_1,$ $V_1 \in \mathbb{C}^{m\times m}$ be unitary operators, let $Q,$ $S: \mathbb{C}^{n \times n} \rightarrow \mathbb{C}^{m \times m}$ be super-operators, where $S$ is defined as:
-  \begin{equation}
-    S(X) = U_1 Q(U_0 A V_0) V_1
-  \end{equation}
-  for all $A \in \mathbb{C}^{n\times n}$. It holds that $\lVert Q \rVert_{1} = \lVert S \rVert_{1} $.
-\end{enumerate}
-\end{proposition}
-
-Unfortunately, this norm is not stable under tensoring , given that the inequation $ \lVert Q \otimes \text{I} \rVert_{1} \leq \lVert Q \rVert_{1}$ does not hold \cite{watrous2018theory}. As a result, the diamond norm, which is based on the trace norm, is used instead in the context of quantum channels. 
+Unfortunately, this norm is not stable under tensoring , given that the inequation $ \lVert Q \otimes I_{\mathbb{C}^{n\times n}} \rVert_{1} \leq \lVert Q \rVert_{1}$ does not hold \cite{watrous2018theory}. As a result, the diamond norm, which is based on the trace norm, is used instead in the context of quantum channels. 
 
 \begin{definition}
   Given a super-operator $Q: \mathbb{C}^{n\times n} \xrightarrow{} \mathbb{C}^{m\times m }$, the diamond norm, \gls{diamond-norm} , is defined as:
@@ -1344,46 +1344,52 @@ For this norm it holds that for all super-operators $Q: \mathbb{C}^{n \times n}\
 consequence, composition of programs is valid.
 %Moreover, the following inequalties hold for a super-operator $Q$: $ \lVert Q \rVert_{\diamondsuit} \geq \lVert Q \otimes I \rVert_{\diamondsuit} $ and $\lVert Q \rVert_{\diamondsuit} \geq \lVert I \otimes Q  \rVert_{\diamondsuit} $
 %3.44
-\begin{proposition} \cite[Proposition 3.44]{watrous2018theory}
-   For all quantum channels $Q:\mathbb{C}^{n \times n}\rightarrow \mathbb{C}^{m \times m}$, it holds that $\lVert Q \rVert_{\diamondsuit} = 1$.
-\end{proposition}
+%\begin{proposition} \cite[Proposition 3.44]{watrous2018theory}
+   %For all quantum channels $Q:\mathbb{C}^{n \times n}\rightarrow \mathbb{C}^{m \times m}$, it holds that $\lVert Q \rVert_{\diamondsuit} = 1$.
+%\end{proposition}
 
-\begin{theorem} \label{thm:tensor_stability} \cite[Theorem 3.46 ]{watrous2018theory}
-For all super-operators $Q:\mathbb{C}^{n \times n}\rightarrow \mathbb{C}^{m \times m}$ and complex spaces $\mathbb{C}^{o\times o}$  it holds that:
-\begin{equation}
-  \lVert Q \otimes I_{\mathbb{C}^{o\times o}} \rVert_{1} \leq  \lVert Q \rVert_{\diamondsuit}. 
-\end{equation}
-with equality holding under the assumption that $\text{dim}(\mathbb{C}^{o\times o}) \geq  \text{dim}(\mathbb{C}^{n \times n})$.
-\end{theorem}
+%\begin{theorem} \label{thm:tensor_stability} \cite[Theorem 3.46 ]{watrous2018theory}
+%For all super-operators $Q:\mathbb{C}^{n \times n}\rightarrow \mathbb{C}^{m \times m}$ and complex spaces $\mathbb{C}^{o\times o}$  it holds that:
+%\begin{equation}
+  %\lVert Q \otimes I_{\mathbb{C}^{o\times o}} \rVert_{1} \leq  \lVert Q \rVert_{\diamondsuit}. 
+%\end{equation}
+%with equality holding under the assumption that $\text{dim}(\mathbb{C}^{o\times o}) \geq  \text{dim}(\mathbb{C}^{n \times n})$.
+%\end{theorem}
 
-\begin{corollary} \label{cor:diamond_otimes_I} \cite[Corollary 3.47]{watrous2018theory}
-   For all super-operators $Q:\mathbb{C}^{n \times n}\rightarrow \mathbb{C}^{m \times m}$ and complex spaces $\mathbb{C}^{o\times o}$  it holds that:
+%\begin{corollary} \label{cor:diamond_otimes_I} \cite[Corollary 3.47]{watrous2018theory}
+   %For all super-operators $Q:\mathbb{C}^{n \times n}\rightarrow \mathbb{C}^{m \times m}$ and complex spaces $\mathbb{C}^{o\times o}$  it holds that:
+  %\begin{equation}
+    %\lVert Q \rVert_{\diamondsuit} = \lVert Q \otimes I_{\mathbb{C}^{o\times o}} \rVert_{\diamondsuit} .
+  %\end{equation}
+%\end{corollary}
+
+%\begin{proposition} \cite[Proposition 3.48]{watrous2018theory}
+  %Moreover the following properties hold for the diamond norm:
+  %\begin{enumerate}
+    %\item The diamond norm is submultiplicative with respect to composition of , \textit{i.e.}, for all super-operators $Q: \mathbb{C}^{n \times n} \rightarrow \mathbb{C}^{m \times m}$ and $S: \mathbb{C}^{m \times m} \rightarrow \mathbb{C}^{o \times o}$, it holds that:
+  %\begin{equation}
+    %\lVert S  Q \rVert_{\diamondsuit} \leq \lVert S \rVert_{\diamondsuit} \lVert Q \rVert_{\diamondsuit}.
+  %\end{equation}
+  %\item For all super-operators $Q_0, S_0: \mathbb{C}^{n \times n} \rightarrow \mathbb{C}^{m \times m}$ and $Q_1, S_1: \mathbb{C}^{m \times m} \rightarrow \mathbb{C}^{o \times o}$, it holds that:
+  %\begin{equation}
+  %\lVert S_1 S_0 - Q_1 Q_0  \rVert_{\diamondsuit} \leq \lVert S_0 - Q_0 \rVert_{\diamondsuit} + \lVert S_1 - Q_1 \rVert_{\diamondsuit}.
+  %\end{equation}
+%\end{enumerate}
+%\end{proposition}
+
+%\begin{theorem} \cite[Theorem 3.49]{watrous2018theory}
+  %\item The diamond norm is multiplicative with respect to tensor products, \textit{i.e.}, for all super-operators $Q: \mathbb{C}^{n \times n} \rightarrow \mathbb{C}^{m \times m}$ and $S: \mathbb{C}^{o \times o} \rightarrow \mathbb{C}^{p \times p}$, it holds that:
+  %\begin{equation}
+    %\lVert Q \otimes S \rVert_{\diamondsuit} = \lVert Q \rVert_{\diamondsuit} \lVert S \rVert_{\diamondsuit}.
+  %\end{equation}
+%\end{theorem}
+
+\begin{lemma} \cite[Lemma 3.45]{watrous2018theory}
+  Let $Q: \mathbb{C}^{n \times n} \rightarrow \mathbb{C}^{m \times m}$ be a superoperator. For every choice of a complex Euclidean space $\mathbb{C}^{o}$ and unit vectors $v_1, v_2 \in \mathbb{C}^{n} \otimes \mathbb{C}^{o}$, there exist unit vectors $w_1, w_2 \in \mathbb{C}^{n} \otimes \mathbb{C}^{n}$ such that the following equalities hold:
   \begin{equation}
-    \lVert Q \rVert_{\diamondsuit} = \lVert Q \otimes I_{\mathbb{C}^{o\times o}} \rVert_{\diamondsuit} .
+  \lVert Q \otimes I_{\mathbb{C}^{o \times o}} (v_1 v_2^\dag)\rVert_{1} = \lVert Q \otimes I_{\mathbb{C}^{n \times n}} (w_1 w_2^\dag)\rVert_{1}
   \end{equation}
-\end{corollary}
-
-\begin{proposition} \cite[Proposition 3.48]{watrous2018theory}
-  Moreover the following properties hold for the diamond norm:
-  \begin{enumerate}
-    \item The diamond norm is submultiplicative with respect to composition of , \textit{i.e.}, for all super-operators $Q: \mathbb{C}^{n \times n} \rightarrow \mathbb{C}^{m \times m}$ and $S: \mathbb{C}^{m \times m} \rightarrow \mathbb{C}^{o \times o}$, it holds that:
-  \begin{equation}
-    \lVert S  Q \rVert_{\diamondsuit} \leq \lVert S \rVert_{\diamondsuit} \lVert Q \rVert_{\diamondsuit}.
-  \end{equation}
-  \item For all super-operators $Q_0, S_0: \mathbb{C}^{n \times n} \rightarrow \mathbb{C}^{m \times m}$ and $Q_1, S_1: \mathbb{C}^{m \times m} \rightarrow \mathbb{C}^{o \times o}$, it holds that:
-  \begin{equation}
-  \lVert S_1 S_0 - Q_1 Q_0  \rVert_{\diamondsuit} \leq \lVert S_0 - Q_0 \rVert_{\diamondsuit} + \lVert S_1 - Q_1 \rVert_{\diamondsuit}.
-  \end{equation}
-\end{enumerate}
-\end{proposition}
-
-\begin{theorem} \cite[Theorem 3.49]{watrous2018theory}
-  \item The diamond norm is multiplicative with respect to tensor products, \textit{i.e.}, for all super-operators $Q: \mathbb{C}^{n \times n} \rightarrow \mathbb{C}^{m \times m}$ and $S: \mathbb{C}^{o \times o} \rightarrow \mathbb{C}^{p \times p}$, it holds that:
-  \begin{equation}
-    \lVert Q \otimes S \rVert_{\diamondsuit} = \lVert Q \rVert_{\diamondsuit} \lVert S \rVert_{\diamondsuit}.
-  \end{equation}
-\end{theorem}
-
+\end{lemma} 
 
 Consider an operator  $ \text{r} : (\mathbb{C}^{n} \xrightarrow[]{} \mathbb{C}^{m}) \xrightarrow[]{} (\mathbb{C}^{n\times n}\xrightarrow[]{} \mathbb{C}^{m\times m})$ that sends an operator $T$ to the mapping $A \mapsto TAT^{\dag}$. The exact calculation of distances induced by $\lVert \rVert_{\diamondsuit}$ tends to be quite complicated, but a useful property for calculating the distance between quantum channels in the image of $r$ is provided in \cite{watrous2018theory}.
 Consider two operators $T, S : n \xrightarrow{} m$. There exists a unit vector $v \in \mathbb{C}^{n}$ such that, 
