@@ -1099,13 +1099,13 @@ As a result, now it is necessary to prove that the  generalized norm for operato
   $$Q = \sum_{i=1}^{m} \underbrace{\textsc{Il} \cdot \ldots \cdot \textsc{Il}}_{m-i \times } \cdot  \underbrace{\textsc{Ir} \cdot \ldots \cdot \textsc{Ir}}_{i-1 \times } \cdot  \hspace{2pt} Q_i,$$
    where $Q_i =  \underbrace{\textsc{Pl} \cdot \ldots \cdot \textsc{Pl}}_{m-i \times} \cdot \underbrace{\textsc{Pr} \cdot \ldots \cdot \textsc{Pr}}_{i-1 \times} \cdot \hspace{1pt} Q$, for $1 \leq i \leq n $. As a result, considering \autoref{def:gen_norm}, the norm of the operator $Q$ correponds to:
   \begin{equation}
-    \|Q\|_{\{V \rightarrow W_1,\ldots ,V \rightarrow W_n\} \text{ gen}} = \max \left\{ \sum_{i=1}^{m}  \| Q_{i} (v)\|_{W_i}  \vert \hspace{1pt} \|v\|_{V} = 1 \right\}
+    \|Q\|_{\{V \rightarrow W_1,\ldots ,V \rightarrow W_n\} \text{ gen}} = \max \left\{ \sum_{i=1}^{m}  \| Q_{i} (v)\|_{W_i}  \mid  \|v\|_{V} = 1 \right\}
   \end{equation}
 \end{definition}
 
 Note that this is equivalent to defining the norm of the operator $Q$ as follows:
 \begin{equation}
-  \|Q\|_{\{ V \rightarrow W_1,\ldots ,V \rightarrow W_n\} \text{ gen}} = \max \{ \|Q (v)\|_{\{ W_1,\ldots , W_n\} \text{ gen}}  \vert \hspace{1pt} \|v\|_{V} = 1 \}
+  \|Q\|_{\{ V \rightarrow W_1,\ldots ,V \rightarrow W_n\} \text{ gen}} = \max \{ \|Q (v)\|_{\{ W_1,\ldots , W_n\} \text{ gen}}  \mid  \|v\|_{V} = 1 \}
 \end{equation}
 Consequentlty, given that the norm defined in \autoref{def:gen_norm} is valid, this norm corresponds to the operator norm as defined in \autoref{def:op_norm}, and and is therefore a valid norm.
 
@@ -1203,8 +1203,8 @@ Therefore,
   The norm generalized trace norm of a superoperator $Q: \mathbb{C}^{o_1 \times o_1} \oplus \ldots \oplus \mathbb{C}^{o_n \times o_n}  \rightarrow \mathbb{C}^{p_1 \times p_1} \oplus \ldots \oplus  \mathbb{C}^{p_m \times p_m} $, denoted $\|Q\|_{1 \text{ gen}}$, is defined as follows:
 \begin{equation}
   \begin{split}
-  \|Q\|_{1 \text{ gen}} & = \max  \Bigg\{ \max \left\{ \sum_{i=1}^{m} \|Q_{1i} (v_1)\|_{1}   \vert \hspace{1pt} \|v_1\|_{1} = 1 \right\} \\
-  & \hspace{15pt} ,\hspace{2pt}  \ldots \hspace{2pt}  , \max \left\{ \sum_{i=1}^{m} \|Q_{ni} (v_n)\|_{1}   \vert \hspace{1pt} \|v_n\|_{1} = 1 \right\} \Bigg\} 
+  \|Q\|_{1 \text{ gen}} & = \max  \Bigg\{ \max \left\{ \sum_{i=1}^{m} \|Q_{1i} (v_1)\|_{1}   \mid \hspace{1pt} \|v_1\|_{1} = 1 \right\} \\
+  & \hspace{15pt} ,\hspace{2pt}  \ldots \hspace{2pt}  , \max \left\{ \sum_{i=1}^{m} \|Q_{ni} (v_n)\|_{1}   \mid \|v_n\|_{1} = 1 \right\} \Bigg\} 
   \end{split}
 \end{equation}
 \end{definition}
@@ -1214,8 +1214,8 @@ Therefore,
 Given a superoperator $Q: \mathbb{C}^{o_1 \times o_1} \oplus \ldots \oplus \mathbb{C}^{o_n \times o_n}  \rightarrow \mathbb{C}^{p_1 \times p_1} \oplus \ldots \oplus  \mathbb{C}^{p_m \times p_m} $, denoted $\|Q\|_{\diamond \text{ gen}}$, its generalized diamond norm, denoted $\|Q\|_{\diamondsuit \text{ gen}}$, of is defined as follows:
 \begin{equation}
   \begin{split}
-    \|Q\|_{\diamondsuit \text{ gen}} & =  \max  \Bigg\{ \max \left\{ \sum_{i=1}^{m} \|Q_{1i} \otimes I_{\mathbb{C}^{o_1 \times o_1}} (v_1)\|_{1}    \vert \hspace{1pt} \|v_1\|_{1} = 1 \right\} \\
-    & \hspace{15pt}, \hspace{2pt} \ldots \hspace{2pt}, \left\{ \sum_{i=1}^{m} \|Q_{ni} \otimes I_{\mathbb{C}^{o_n \times o_n}} (v_n)\|_{1}    \vert \hspace{1pt} \|v_n\|_{1} = 1 \right\} \Bigg\} 
+    \|Q\|_{\diamondsuit \text{ gen}} & =  \max  \Bigg\{ \max \left\{ \sum_{i=1}^{m} \|Q_{1i} \otimes I_{\mathbb{C}^{o_1 \times o_1}} (v_1)\|_{1}    \mid  \|v_1\|_{1} = 1 \right\} \\
+    & \hspace{15pt}, \hspace{2pt} \ldots \hspace{2pt}, \left\{ \sum_{i=1}^{m} \|Q_{ni} \otimes I_{\mathbb{C}^{o_n \times o_n}} (v_n)\|_{1}    \mid  \|v_n\|_{1} = 1 \right\} \Bigg\} 
   \end{split}
 \end{equation}
 \end{definition} 
@@ -1226,6 +1226,24 @@ In order for the generalized diamond norm to be a suitable norm when reasoning a
   \item If $Q$ is a quantum channel then $\lVert S  Q \rVert_{\diamondsuit \text{ gen}} \leq \lVert S \rVert_{\diamondsuit \text{ gen}}$, and if $S$ is a quantum channel, then $\lVert S  Q \rVert_{\diamondsuit \text{ gen}} \leq \lVert Q \rVert_{\diamondsuit \text{ gen}}$.
 \end{enumerate}
 
+In the proofs of the theorems, propositions, and lemmas that follow, certain sections or the entirety of the proof align precisely with the proofs of the corresponding results for the trace or diamond norm presented in \cite{watrous2018theory}. In these instances, those sections are omitted, and the reader is referred to the relevant proof in \cite{watrous2018theory}.
+
+\begin{proposition}
+  For all super-operators $Q: \mathbb{C}^{o_1 \times o_1} \oplus \ldots \oplus \mathbb{C}^{o_n \times o_n}  \rightarrow \mathbb{C}^{p_1 \times p_1} \oplus \ldots \oplus  \mathbb{C}^{p_m \times p_m}$, it holds that:
+  \begin{equation}
+    \begin{split}
+    \lVert Q \rVert_{1 \text{ gen}} & =  \max  \Bigg\{ \max \left\{ \sum_{i=1}^{m} \|Q_{1i} (v_1 w_1^\dag)\|_{1}  \mid  \|v_1\|_{2} = 1,   \|w_1\|_{2} =1 \right\} \\
+    & \hspace{15pt} ,\hspace{2pt}  \ldots \hspace{2pt}  , \max \left\{ \sum_{i=1}^{m} \|Q_{ni} (v_n w_n^\dag)\|_{1}   \mid \|v_n\|_{1} = 1,  \|w_n\|_{1} = 1\right\} \Bigg\}
+    \end{split}
+  \end{equation}
+
+  \todo[inline,size=\normalsize]{definir função convexa nos preliminares matemáticos} 
+
+  \begin{proof}
+    Attending to triangle inequality and positive scalability properties of a norm, all norms are convex functions. Considering \autoref{def:gen_1norm}, the argument for this equality is similar to the one presented in \cite[Proof of Proposition 3.38]{watrous2018theory}, now taking into account that the generalized trace norm is a convex function
+  \end{proof}
+  
+\end{proposition}
 
   \begin{theorem} \label{theorem:tensor_stability} 
 For all super-operators $Q: \mathbb{C}^{o_1 \times o_1} \oplus \ldots \oplus \mathbb{C}^{o_n \times o_n}  \rightarrow \mathbb{C}^{p_1 \times p_1} \oplus \ldots \oplus  \mathbb{C}^{p_m \times p_m}$ and complex spaces $\mathbb{C}^{q_1 \times q_1} \oplus \ldots \oplus \mathbb{C}^{q_t \times q_t}$  it holds that:
@@ -1236,29 +1254,7 @@ For all super-operators $Q: \mathbb{C}^{o_1 \times o_1} \oplus \ldots \oplus \ma
     \end{theorem}
 
 \begin{proof}
-  \begin{align*}
-    & \hspace{-30pt} \lVert Q \otimes I_{\mathbb{C}^{q_1 \times q_1} \oplus \ldots \oplus \mathbb{C}^{q_t \times q_t}} \rVert_{1 \text{ gen}} \\
-    & \hspace{-30pt}  = \max \{ \lVert Q_{11}  \otimes I_{\mathbb{C}^{q_1 \times q_1}}  \rVert_{1}  + \ldots +  \lVert Q_{1m}  \otimes I_{\mathbb{C}^{q_1 \times q_1}} \rVert_{1},  \ldots ,  \lVert Q_{11} \otimes I_{\mathbb{C}^{q_t \times q_t}} \rVert_{1}   \quad \{\text{\autoref{eq:gen_tensor_identity}, } \\
-    & \hspace{-18pt}  + \ldots + \lVert Q_{1m} \otimes I_{\mathbb{C}^{q_t \times q_t}} \rVert_{1}, \ldots,  \lVert Q_{n1}  \otimes I_{\mathbb{C}^{q_1 \times q_1}}  \rVert_{1} + \ldots +  \hspace{80 pt} \text{\autoref{def:gen_1norm}} \} \\
-    & \hspace{-16pt}\lVert Q_{nm}  \otimes I_{\mathbb{C}^{q_1 \times q_1}} \rVert_{1}, \ldots,  \lVert Q_{n1} \otimes I_{\mathbb{C}^{q_t \times q_t}} \rVert_{1} + \ldots + \lVert Q_{nm} \otimes I_{\mathbb{C}^{q_t \times q_t}} \rVert_{1} \} \\
-    &  \hspace{-30pt}  \leq   \max \{ \|Q_{11}\|_{\diamondsuit} + \ldots + \|Q_{1m}\|_{\diamondsuit}, \hspace{2pt} \ldots \hspace{2pt},  \|Q_{11}\|_{\diamondsuit} + \ldots + \|Q_{1m}\|_{\diamondsuit}, , \hspace{2pt} \ldots \hspace{2pt},   \hspace{12 pt}  \{ \text{\autoref{thm:tensor_stability}}\}\\
-    & \|Q_{n1}\|_{\diamondsuit} + \ldots + \|Q_{nm}\|_{\diamondsuit}, \hspace{2pt} \ldots \hspace{2pt}, \|Q_{n1}\|_{\diamondsuit} + \ldots + \|Q_{nm}\|_{\diamondsuit} \} \\
-    &  \hspace{-30pt} = \max \{\|Q_{11}\|_{\diamondsuit} + \ldots + \|Q_{1m}\|_{\diamondsuit}, \hspace{2pt} \ldots \hspace{2pt}, \|Q_{n1}\|_{\diamondsuit} + \ldots + \|Q_{nm}\|_{\diamondsuit} \} \\
-    & \hspace{-30pt}  = \lVert Q \rVert_{\diamondsuit \text{ gen}}  \hspace{308 pt}  \{ \text{\autoref{def:gen_diamond_norm}}\}
-  \end{align*} 
-
-Note that if  $\text{dim}(\mathbb{C}^{q_1 \times q_1} \oplus \ldots \oplus \mathbb{C}^{q_t \times q_t}) \geq  \text{dim}(\mathbb{C}^{o_1 \times o_1} \oplus \ldots \oplus \mathbb{C}^{o_n \times o_n})$, at least one of the vector spaces ${\mathbb{C}^{q_k \times q_k}}$, in the direct sum $\mathbb{C}^{q_1 \times q_1} \oplus \ldots \oplus \mathbb{C}^{q_t \times q_t}$ has higher dimension that any of the vector spaces ${\mathbb{C}^{q_l \times q_l}}$, in the direct sum $\mathbb{C}^{o_1 \times o_1} \oplus \ldots \oplus \mathbb{C}^{o_n \times o_n}$. Consequentlty, in such a case, there is a vector space $\mathbb{C}^{q_k \times q_k}$ such that, by \autoref{thm:tensor_stability},  $ \lVert Q_{ij} \otimes I_{\mathbb{C}^{q_k \times q_k}} \rVert_1 = {\|Q_{ij}\|_{\diamondsuit}}$ for all $1\leq i \leq n$, $1 \leq j \leq m$. As a result, when $\text{dim}(\mathbb{C}^{q_1 \times q_1} \oplus \ldots \oplus \mathbb{C}^{q_t \times q_t}) \geq  \text{dim}(\mathbb{C}^{o_1 \times o_1} \oplus \ldots \oplus \mathbb{C}^{o_n \times o_n})$,
-
-  \begin{align*}
-    & \hspace{-30pt} \lVert Q \otimes I_{\mathbb{C}^{q_1 \times q_1} \oplus \ldots \oplus \mathbb{C}^{q_t \times q_t}} \rVert_{1 \text{ gen}} \\
-    & \hspace{-30pt}  = \max \{ \lVert Q_{11}  \otimes I_{\mathbb{C}^{q_1 \times q_1}}  \rVert_{1}  + \ldots +  \lVert Q_{1m}  \otimes I_{\mathbb{C}^{q_1 \times q_1}} \rVert_{1},  \ldots ,  \lVert Q_{11} \otimes I_{\mathbb{C}^{q_t \times q_t}} \rVert_{1}   \quad \{\text{\autoref{eq:gen_tensor_identity}, } \\
-    & \hspace{-18pt}  + \ldots + \lVert Q_{1m} \otimes I_{\mathbb{C}^{q_t \times q_t}} \rVert_{1}, \ldots,  \lVert Q_{n1}  \otimes I_{\mathbb{C}^{q_1 \times q_1}}  \rVert_{1} + \ldots +  \hspace{80 pt} \text{\autoref{def:gen_1norm}} \} \\
-    & \hspace{-16pt}\lVert Q_{nm}  \otimes I_{\mathbb{C}^{q_1 \times q_1}} \rVert_{1}, \ldots,  \lVert Q_{n1} \otimes I_{\mathbb{C}^{q_t \times q_t}} \rVert_{1} + \ldots + \lVert Q_{nm} \otimes I_{\mathbb{C}^{q_t \times q_t}} \rVert_{1} \} \\
-    &  \hspace{-30pt}  = \max \{ \|Q_{11} \otimes \mathbb{C}^{q_k \times q_k}\|_{1} + \ldots + \|Q_{1m} \otimes \mathbb{C}^{q_k \times q_k}\|_{1}, \hspace{2pt} \ldots \hspace{2pt} , \hspace {80 pt}  \{ \text{\autoref{thm:tensor_stability}}\}\\
-    & \hspace{-16pt} \|Q_{n1} \otimes \mathbb{C}^{q_k \times q_k}\|_{1} + \ldots + \|Q_{nm} \otimes \mathbb{C}^{q_k \times q_k}\|_{1} \} \\
-    &  \hspace{-30pt} = \max \{\|Q_{11}\|_{\diamondsuit} + \ldots + \|Q_{1m}\|_{\diamondsuit}, \hspace{2pt} \ldots \hspace{2pt}, \|Q_{n1}\|_{\diamondsuit} + \ldots + \|Q_{nm}\|_{\diamondsuit} \} \hspace{40pt}\{ \text{\autoref{thm:tensor_stability}}\} \\
-    & \hspace{-30pt}  = \lVert Q \rVert_{\diamondsuit \text{ gen}}  \hspace{308 pt}  \{ \text{\autoref{def:gen_diamond_norm}}\}
-  \end{align*} 
+  
 \end{proof}
 
 \begin{corollary} \label{cor:tensor_stability}
@@ -1300,11 +1296,11 @@ The generalized trace norm of $Q$ is given by:
 \begin{equation}
   \begin{split} \label{eq:q}
   &\lVert Q  \rVert_{1 \text{ gen}} = \max \{ \lVert Q_{11} \rVert_{1} + \ldots + \lVert Q_{1m} \rVert_{1}, \hspace{2pt} \ldots \hspace{2pt}, \lVert Q_{n1} \rVert_{1} + \ldots + \lVert Q_{nm} \rVert_{1} \} \\
- & = \max \{ \max \{ \lVert Q_{11} (A_{1}) \rVert_{1} \hspace{1pt}  \vert \hspace{1pt}  \lVert A_{1} \rVert_{1} = 1 \} + \ldots + &  \{\text{\autoref{def:trace_norm_superoperator}}\} \\
- & \hspace{15pt}  \max \{  \lVert Q_{1m} (A_{1}) \rVert_{1} \hspace{1pt}  \vert   \lVert A_{1} \rVert_{1} = 1 \} , \hspace{1pt} \ldots \hspace{1pt}, \max \{ \lVert Q_{n1} (A_{n}) \rVert_{1} \hspace{1pt}  \vert \hspace{1pt}  \lVert A_{n} \rVert_{1} = 1 \}   \\
- &\hspace{15pt} + \ldots +  \max \{ \lVert Q_{nn} (A_{n}) \rVert_{1} \hspace{1pt}  \vert \lVert A_{n} \rVert_{1} = 1 \}\}\\
+ & = \max \{ \max \{ \lVert Q_{11} (A_{1}) \rVert_{1} \hspace{1pt}  \mid   \lVert A_{1} \rVert_{1} = 1 \} + \ldots + &  \{\text{\autoref{def:trace_norm_superoperator}}\} \\
+ & \hspace{15pt}  \max \{  \lVert Q_{1m} (A_{1}) \rVert_{1} \hspace{1pt}  \mid   \lVert A_{1} \rVert_{1} = 1 \} , \hspace{1pt} \ldots \hspace{1pt}, \max \{ \lVert Q_{n1} (A_{n}) \rVert_{1} \hspace{1pt}  \mid   \lVert A_{n} \rVert_{1} = 1 \}   \\
+ &\hspace{15pt} + \ldots +  \max \{ \lVert Q_{nn} (A_{n}) \rVert_{1}   \mid \lVert A_{n} \rVert_{1} = 1 \}\}\\
  & = \max \{ \lVert Q_{11} (A_{1}) \rVert_{1} \hspace{1pt}  + \ldots +  \lVert Q_{1m} (A_{1}) \rVert_{1} \hspace{1pt} , \hspace{2pt} \ldots \hspace{2pt}, \lVert Q_{n1} (A_{n}) \rVert_{1}  + \ldots +  \\
- & \hspace{15pt} \lVert Q_{nm} (A_{n}) \rVert_{1} \hspace{1pt}  \vert \hspace{1pt}   \lVert A_{1} \rVert_{1} = 1, \ldots, \lVert A_{n} \rVert_{1} = 1 \}
+ & \hspace{15pt} \lVert Q_{nm} (A_{n}) \rVert_{1} \hspace{1pt}  \mid \hspace{1pt}   \lVert A_{1} \rVert_{1} = 1, \ldots, \lVert A_{n} \rVert_{1} = 1 \}
   \end{split}
 \end{equation}
 
@@ -1315,7 +1311,7 @@ Thus, if  $\lVert O \rVert_{1 \text{ gen}} = 1$,
   \hspace{-30pt} \Leftrightarrow  & \lVert O_1  \rVert_1  + \ldots + \lVert O_n  \rVert_1 = 1  \wedge  \lVert Q_{11} (O_{1}) \rVert_{1} + \ldots +  \lVert Q_{1m} (O_{1}) \rVert_{1} + \ldots +  \hspace{10pt}&   \{\text{\autoref{eq:qo}}, \\
   \hspace{-30pt} & \lVert Q_{n1} (O_{m}) \rVert_{1} +  \ldots  + \lVert Q_{nm} (O_{n}) \rVert_{1}   & \text{\autoref{eq:q}} \} \\
   \hspace{-30pt}& \leq \max \{ \lVert Q_{11} (A_{1}) \rVert_{1} \hspace{1pt} + \ldots +  \lVert Q_{1m} (A_{1}) \rVert_{1}, \hspace{2pt} \ldots \hspace{2pt},  \lVert Q_{n1} (A_{n}) \rVert_{1} + \ldots +   \\
-  \hspace{-30pt}&\lVert Q_{nm} (A_{n}) \rVert_{1} \hspace{1pt}  \vert  \lVert A_{1} \rVert_{1} = 1, \ldots, \lVert A_{n} \rVert_{1} = 1 \} \\
+  \hspace{-30pt}&\lVert Q_{nm} (A_{n}) \rVert_{1}  \mid  \lVert A_{1} \rVert_{1} = 1, \ldots, \lVert A_{n} \rVert_{1} = 1 \} \\
   %\hspace{-30pt} \Leftrightarrow  & \lVert O_1  \rVert_1  + \ldots + \lVert O_n  \rVert_1 = 1  \wedge  \lVert Q_{11} \cdot O_{1} \rVert_{1} + \ldots +  \lVert Q_{1m} \cdot O_{1} \rVert_{1} + \ldots +  \hspace{10pt}  \\
   %\hspace{-30pt}& \leq \max \Bigg\{ \left\lVert Q_{11} \left(\frac{O_{1}} {\lVert O_{1} \rVert_1}\right) \right\rVert_{1} \hspace{1pt} + \ldots +  \left\lVert Q_{1m} \left(\frac{O_{1}} {\lVert O_{1} \rVert_1}\right)  \right\rVert_{1} \hspace{1pt}, \hspace{2pt} \ldots \hspace{2pt},   \\
   %\hspace{-30pt}& \left\lVert Q_{n1}  \left(\frac{O_{n}} {\lVert O_{1} \rVert_1}\right) \right\rVert_{1} + \ldots + \left\lVert Q_{nm}  \left(\frac{O_{n}} {\lVert O_{1} \rVert_1}\right) \right\rVert_{1} \hspace{1pt}  \Bigg\}  \\
@@ -1554,9 +1550,9 @@ Note that for all $1 \leq i \leq m$, if $Q$ is positive trace-preserving, then $
 Considering the definition of $Q_{ij}$ in \autoref{def:gen_norm_ops} for a fixed $1 \leq i \leq n$, $Q_{i1}, \ldots, Q_{im}$ are always given the same argument.
 Consequentlty, attending to \autoref{thm:Russo–Dye}, \autoref{eq:qi_norm} can be rewritten as:
 \begin{align} 
-  \hspace{-30pt} \lVert Q_i \rVert_{1} & = \max \{\text{Tr}\left(Q_{i1}(uu^{*}) \right) \vert \hspace{2pt}  \lVert u \rVert_{1}=1 \} + \ldots +  \max \{\text{Tr}\left(Q_{in}(u u^{*}) \right) \vert \hspace{2pt}  \lVert u \rVert_{1}=1 \}\\ \label{eq:qi_ptp_norm_1}
-  \hspace{-30pt} & =  \max \{ \text{Tr}\left(Q_{i1}(uu^{*}) \right) + \ldots + \text{Tr}\left(Q_{in}(u u^{*}) \right) \vert \hspace{2pt}  \lVert u \rVert_{1}=1 \} \\
-  \hspace{-30pt} & =  \max \{ \text{Tr}\left(Q_{i1}(uu^{*}) + \ldots + Q_{in}(u u^{*}) \right) \vert \hspace{2pt}  \lVert u \rVert_{1}=1 \}  \label{eq:qi_ptp_norm_3}
+  \hspace{-30pt} \lVert Q_i \rVert_{1} & = \max \{\text{Tr}\left(Q_{i1}(uu^{*}) \right) \mid \lVert u \rVert_{1}=1 \} + \ldots +  \max \{\text{Tr}\left(Q_{in}(u u^{*}) \right) \mid  \lVert u \rVert_{1}=1 \}\\ \label{eq:qi_ptp_norm_1}
+  \hspace{-30pt} & =  \max \{ \text{Tr}\left(Q_{i1}(uu^{*}) \right) + \ldots + \text{Tr}\left(Q_{in}(u u^{*}) \right) \mid   \lVert u \rVert_{1}=1 \} \\
+  \hspace{-30pt} & =  \max \{ \text{Tr}\left(Q_{i1}(uu^{*}) + \ldots + Q_{in}(u u^{*}) \right) \mid   \lVert u \rVert_{1}=1 \}  \label{eq:qi_ptp_norm_3}
 \end{align}
 %\begin{align} 
   %\hspace{-30pt} \lVert Q_i \rVert_{1} & = \max \{\text{Tr}\left(Q_{i1}(u_1u_1^{*}) \right) \vert \hspace{2pt}  \lVert u_1 \rVert_{1}=1 \} + \ldots +  \max \{\text{Tr}\left(Q_{in}(u_m u_m^{*}) \right) \vert \hspace{2pt}  \lVert u_m \rVert_{1}=1 \}\\ \label{eq:qi_ptp_norm_1}
