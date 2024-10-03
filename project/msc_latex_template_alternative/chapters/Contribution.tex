@@ -1203,8 +1203,8 @@ Therefore,
   The norm generalized trace norm of a superoperator $Q: \mathbb{C}^{o_1 \times o_1} \oplus \ldots \oplus \mathbb{C}^{o_n \times o_n}  \rightarrow \mathbb{C}^{p_1 \times p_1} \oplus \ldots \oplus  \mathbb{C}^{p_m \times p_m} $, denoted $\|Q\|_{1 \text{ gen}}$, is defined as follows:
 \begin{equation}
   \begin{split}
-  \|Q\|_{1 \text{ gen}} & = \max  \Bigg\{ \max \left\{ \sum_{i=1}^{m} \|Q_{1i} (v_1)\|_{1}   \mid \hspace{1pt} \|v_1\|_{1} = 1 \right\} \\
-  & \hspace{15pt} ,\hspace{2pt}  \ldots \hspace{2pt}  , \max \left\{ \sum_{i=1}^{m} \|Q_{ni} (v_n)\|_{1}   \mid \|v_n\|_{1} = 1 \right\} \Bigg\} 
+  \|Q\|_{1 \text{ gen}} & = \max  \Bigg\{ \max \left\{ \sum_{i=1}^{m} \|Q_{1i} (A_1)\|_{1}   \mid \hspace{1pt} \|A_1\|_{1} = 1 \right\} \\
+  & \hspace{15pt} ,\hspace{2pt}  \ldots \hspace{2pt}  , \max \left\{ \sum_{i=1}^{m} \|Q_{ni} (A_n)\|_{1}   \mid \|A_n\|_{1} = 1 \right\} \Bigg\} 
   \end{split}
 \end{equation}
 \end{definition}
@@ -1212,12 +1212,15 @@ Therefore,
 
 \begin{definition} \label{def:gen_diamond_norm}
 Given a superoperator $Q: \mathbb{C}^{o_1 \times o_1} \oplus \ldots \oplus \mathbb{C}^{o_n \times o_n}  \rightarrow \mathbb{C}^{p_1 \times p_1} \oplus \ldots \oplus  \mathbb{C}^{p_m \times p_m} $, denoted $\|Q\|_{\diamond \text{ gen}}$, its generalized diamond norm, denoted $\|Q\|_{\diamondsuit \text{ gen}}$, of is defined as follows:
-\begin{equation}
+\begin{equation*}
   \begin{split}
-    \|Q\|_{\diamondsuit \text{ gen}} & =  \max  \Bigg\{ \max \left\{ \sum_{i=1}^{m} \|Q_{1i} \otimes I_{\mathbb{C}^{o_1 \times o_1}} (v_1)\|_{1}    \mid  \|v_1\|_{1} = 1 \right\} \\
-    & \hspace{15pt}, \hspace{2pt} \ldots \hspace{2pt}, \left\{ \sum_{i=1}^{m} \|Q_{ni} \otimes I_{\mathbb{C}^{o_n \times o_n}} (v_n)\|_{1}    \mid  \|v_n\|_{1} = 1 \right\} \Bigg\} 
+    \lVert Q  \rVert_{\diamondsuit \text{ gen}} & =  \lVert Q \otimes I_{ \mathbb{C}^{o_1 \times o_1} \oplus \ldots \oplus \mathbb{C}^{o_n \times o_n}}  \rVert_{1 \text{ gen}}
+    %\\& =\max  \Bigg\{ \max \left\{ \sum_{i=1}^{m} \|Q_{1i} \otimes I_{\mathbb{C}^{o_1 \times o_1}} (v_{11})\|_{1}    \mid  \|v_{11}\|_{1} = 1 \right\} \\
+    %& \hspace{15pt}, \hspace{2pt} \ldots \hspace{2pt}, \max \left\{ \sum_{i=1}^{m} \|Q_{1i} \otimes I_{\mathbb{C}^{q_n \times q_n}} (v_{1n})\|_{1}    \mid  \|v_{1t}\|_{1} = 1 \right\} \\ 
+    %& \hspace{15pt}, \hspace{2pt} \ldots \hspace{2pt}, \max \left\{ \sum_{i=1}^{m} \|Q_{ni} \otimes I_{\mathbb{C}^{q_1 \times q_1}} (v_{n1})\|_{1}    \mid  \|v_{n1}\|_{1} = 1 \right\} \\
+  %& \hspace{15pt}, \hspace{2pt} \ldots \hspace{2pt}, \max \left\{ \sum_{i=1}^{m} \|Q_{ni} \otimes I_{\mathbb{C}^{q_n \times q_n}} (v_{nn})\|_{1}   \mid  \|v_{nt}\|_{1} = 1 \right\} \Bigg\} 
   \end{split}
-\end{equation}
+\end{equation*}
 \end{definition} 
 
 In order for the generalized diamond norm to be a suitable norm when reasoning about quantum programs, similarly to the diamond norm, it should satisfy the following properties:
@@ -1228,7 +1231,7 @@ In order for the generalized diamond norm to be a suitable norm when reasoning a
 
 In the proofs of the theorems, propositions, and lemmas that follow, certain sections or the entirety of the proof align precisely with the proofs of the corresponding results for the trace or diamond norm presented in \cite{watrous2018theory}. In these instances, those sections are omitted, and the reader is referred to the relevant proof in \cite{watrous2018theory}.
 
-\begin{proposition}
+\begin{proposition} \label{prop:uv*}
   For all super-operators $Q: \mathbb{C}^{o_1 \times o_1} \oplus \ldots \oplus \mathbb{C}^{o_n \times o_n}  \rightarrow \mathbb{C}^{p_1 \times p_1} \oplus \ldots \oplus  \mathbb{C}^{p_m \times p_m}$, it holds that:
   \begin{equation}
     \begin{split}
@@ -1242,20 +1245,79 @@ In the proofs of the theorems, propositions, and lemmas that follow, certain sec
   \begin{proof}
     Attending to triangle inequality and positive scalability properties of a norm, all norms are convex functions. Considering \autoref{def:gen_1norm}, the argument for this equality is similar to the one presented in \cite[Proof of Proposition 3.38]{watrous2018theory}, now taking into account that the generalized trace norm is a convex function
   \end{proof}
-  
+    
 \end{proposition}
+
+\begin{lemma} \label{lemma:uv*_tensorI_gen}
+  Let $Q_i: \mathbb{C}^{o \times o}  \rightarrow \mathbb{C}^{p_1 \times p_1} \oplus \ldots \oplus  \mathbb{C}^{p_m \times p_m}$ be a super-operator.  For every choice of a complex vector space $\mathbb{C}^{q}$ and unit vectors $v_1, v_2 \in \mathbb{C}^{o} \otimes \mathbb{C}^{q}$, there exist unit vectors $w_1, w_2 \in \mathbb{C}^{o} \otimes \mathbb{C}^{o}$ such that the following equalities hold:
+  \begin{equation} \label{eq:lemma_uv*_tensorI_gen}
+      \left\lVert \sum_{j=1}^{m} Q_{ij} \otimes I_{\mathbb{C}^{q \times q}} (v_1 v_2^\dag)\right\rVert_{1} = \left\lVert \sum_{j=1}^{m} Q_{ij} \otimes I_{\mathbb{C}^{o \times o}} (w_1 w_2^\dag) \right\rVert_{1}
+  \end{equation}
+ \begin{proof}
+  The proof of this Lemma follows form the one presented in \cite[Proof of Lemma 3.45]{watrous2018theory}. Considering that for $q \leq o$, if for any choice of an isometry $T \in \mathbb{C}^{q} \rightarrow \mathbb{C}^{o} $, the vectors $w_1 = (I_{\mathbb{C}^{o}} \otimes T)v_1$ and $w_2 = (I_{\mathbb{C}^{o}} \otimes T)v_2$  satisfy 
+  \begin{equation} \label{eq:v*_tensorI}
+    \lVert Q_{ij} \otimes I_{\mathbb{C}^{q \times q}} (v_1 v_2^\dag)\rVert_{1} = \lVert Q_{ij} \otimes I_{\mathbb{C}^{o \times o}} (w_1 w_2^\dag)\rVert_{1},
+  \end{equation}
+consequentlty, for any choice of an isometry $T \in \mathbb{C}^{q} \rightarrow \mathbb{C}^{o}$ the vectors $w_1 = (I_{\mathbb{C}^{o}} \otimes T)v_1$ and $w_2 = (I_{\mathbb{C}^{o}} \otimes T)v_2$  satisfy \autoref{eq:lemma_uv*_tensorI_gen}.
+
+Furthermore, for $q > o$, given that the vectors $w_1, w_2$ which  satisfy \autoref{eq:v*_tensorI} are defined solely based on the Schmidt decomposition of $w_1, w_2$, it follows that these same vectors satisfy \autoref{eq:lemma_uv*_tensorI_gen}.
+ \end{proof}
+
+\end{lemma}
+
 
   \begin{theorem} \label{theorem:tensor_stability} 
 For all super-operators $Q: \mathbb{C}^{o_1 \times o_1} \oplus \ldots \oplus \mathbb{C}^{o_n \times o_n}  \rightarrow \mathbb{C}^{p_1 \times p_1} \oplus \ldots \oplus  \mathbb{C}^{p_m \times p_m}$ and complex spaces $\mathbb{C}^{q_1 \times q_1} \oplus \ldots \oplus \mathbb{C}^{q_t \times q_t}$  it holds that:
     \begin{equation}
-      \lVert Q \otimes I_{\mathbb{C}^{q_1 \times q_1} \oplus \ldots \oplus \mathbb{C}^{q_t \times q_t}} \rVert_{1 \text{ gen}} \leq  \lVert Q \rVert_{\diamondsuit \text{ gen}}
+      \begin{split}
+        \lVert Q \otimes I_{\mathbb{C}^{q_1 \times q_1} \oplus \ldots \oplus \mathbb{C}^{q_t \times q_t}} \rVert_{1 \text{ gen}} \leq  \lVert Q \rVert_{\diamondsuit \text{ gen}}
+      \end{split}
     \end{equation}
-    with equality holding under the assumption that $\text{dim}(\mathbb{C}^{q_1 \times q_1} \oplus \ldots \oplus \mathbb{C}^{q_t \times q_t}) \geq  \text{dim}(\mathbb{C}^{o_1 \times o_1} \oplus \ldots \oplus \mathbb{C}^{o_n \times o_n})$.
+    %with equality holding under the assumption that $\text{dim}(\mathbb{C}^{q_1 \times q_1} \oplus \ldots \oplus \mathbb{C}^{q_t \times q_t}) \geq  \text{dim}(\mathbb{C}^{o_1 \times o_1} \oplus \ldots \oplus \mathbb{C}^{o_n \times o_n})$.
     \end{theorem}
 
 \begin{proof}
-  
+  Attending to \autoref{eq:gen_tensor_identity}, \autoref{def:gen_1norm} and \autoref{def:gen_diamond_norm} , one has that
+  \begin{equation} \label{eq:q_diamondgen_extendido}
+    \begin{split}
+      \lVert Q \rVert_{\diamondsuit \text{ gen}}  & = \lVert Q \otimes I_{\mathbb{C}^{o_1 \times o_1} \oplus \ldots \oplus \mathbb{C}^{o_n \times o_n}} \rVert_{1 \text{ gen}} \\
+      & =  \max  \Bigg\{ \max \left\{ \sum_{i=1}^{m} \|Q_{1i} \otimes I_{\mathbb{C}^{o_1 \times o_1}} (A_{11})\|_{1}    \mid  \|A_{11}\|_{1} = 1 \right\} \\
+      & \hspace{15pt}, \hspace{2pt} \ldots \hspace{2pt}, \max \left\{ \sum_{i=1}^{m} \|A_{1i} \otimes I_{\mathbb{C}^{o_n \times o_n}} (A_{1n})\|_{1}    \mid  \|A_{1n}\|_{1} = 1 \right\} \\ 
+      & \hspace{15pt}, \hspace{2pt} \ldots \hspace{2pt}, \max \left\{ \sum_{i=1}^{m} \|Q_{ni} \otimes I_{\mathbb{C}^{o_1 \times o_1}} (A_{n1})\|_{1}    \mid  \|A_{n1}\|_{1} = 1 \right\} \\
+    & \hspace{15pt}, \hspace{2pt} \ldots \hspace{2pt}, \max \left\{ \sum_{i=1}^{m} \|Q_{ni} \otimes I_{\mathbb{C}^{q_t \times q_t}} (A_{nn})\|_{1}   \mid  \|A_{nn}\|_{1} = 1 \right\} \Bigg\} 
+    \end{split}
+  \end{equation}
+
+  \todo[inline,size=\normalsize]{Pergunta:incluir nota?} 
+
+  Applying the same principle as in \cite[Proof of Theorem 3.36]{watrous2018theory}, considering \autoref{prop:uv*}, \autoref{lemma:uv*_tensorI_gen}, and \autoref{eq:q_diamondgen_extendido}, it follows that:
+
+
+ For $ 1 \leq i \leq n$ and $ 1 \leq k \leq n$, attending to \autoref{def:trace-norm-matriz} and the fact that $v_{ik}$ and  $w_{ik}^\dag$ are unit vectors, it follows that:
+  \begin{equation}
+    \sum_{j=1}^{m} \left\lVert Q_{ij} \otimes I_{\mathbb{C}^{o_k \times o_k}} (v_{ik} w_{ik}^\dag)\right\rVert_{1} \leq \max \left\{ \sum_{j=1}^{m} \left\lVert Q_{ij} \otimes I_{\mathbb{C}^{o_k \times o_k}} (A_{ik}) \mid \lVert A_{ik}=1  \rVert_1 \right\rVert_{1}\right\},
+  \end{equation}
+   As a result, considering \autoref{eq:q_diamondgen_extendido} it holds that:
+  \begin{equation}
+    \lVert Q \otimes I_{\mathbb{C}^{q_1 \times q_1} \oplus \ldots \oplus \mathbb{C}^{q_t \times q_t}} \rVert_{1 \text{ gen}} \leq  \lVert Q \rVert_{\diamondsuit \text{ gen}}
+  \end{equation}
+
+  Note that if the number of direct sums in the complex space $\mathbb{C}^{q_1 \times q_1} \oplus \ldots \oplus \mathbb{C}^{q_t \times q_t}$ is greater than the number of direct sums in the complex space $\mathbb{C}^{o_1 \times o_1} \oplus \ldots \oplus \mathbb{C}^{o_n \times o_n}$, considering \autoref{lemma:uv*_tensorI_gen} it holds:
+
+  \begin{equation} 
+    \begin{split}
+      \lVert Q \otimes I_{\mathbb{C}^{q_1 \times q_1} \oplus \ldots \oplus \mathbb{C}^{q_t \times q_t}} \rVert_{1 \text{ gen}} \\
+      & =  \max  \Bigg\{ \max \left\{ \sum_{i=1}^{m} \|Q_{1i} \otimes I_{\mathbb{C}^{o_1 \times o_1}} (v_{11}^{'})\|_{1}    \mid  \|v_{11}\|_{1} = 1 \right\} \\
+      & \hspace{15pt}, \hspace{2pt} \ldots \hspace{2pt}, \max \left\{ \sum_{i=1}^{m} \|Q_{1i} \otimes I_{\mathbb{C}^{o_n \times o_n}} (v_{1n})\|_{1}    \mid  \|v_{1n}\|_{1} = 1 \right\} \\ 
+      & \hspace{15pt}, \hspace{2pt} \ldots \hspace{2pt}, \max \left\{ \sum_{i=1}^{m} \|Q_{ni} \otimes I_{\mathbb{C}^{o_1 \times o_1}} (v_{n1})\|_{1}    \mid  \|v_{n1}\|_{1} = 1 \right\} \\
+    & \hspace{15pt}, \hspace{2pt} \ldots \hspace{2pt}, \max \left\{ \sum_{i=1}^{m} \|Q_{ni} \otimes I_{\mathbb{C}^{q_t \times q_t}} (v_{nn})\|_{1}   \mid  \|v_{nn}\|_{1} = 1 \right\} \Bigg\} 
+    \end{split}
+  \end{equation}
+
 \end{proof}
+
+ 
+ 
 
 \begin{corollary} \label{cor:tensor_stability}
   For all super-operators  $Q: \mathbb{C}^{o_1 \times o_1} \oplus \ldots \oplus \mathbb{C}^{o_n \times o_n}  \rightarrow \mathbb{C}^{p_1 \times p_1} \oplus \ldots \oplus  \mathbb{C}^{p_m \times p_m}$ and complex spaces $\mathbb{C}^{q_1 \times q_1} \oplus \ldots \oplus \mathbb{C}^{q_t \times q_t}$   it holds that:

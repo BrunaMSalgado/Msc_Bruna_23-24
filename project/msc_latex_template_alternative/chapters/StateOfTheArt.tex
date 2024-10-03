@@ -1384,12 +1384,12 @@ consequence, composition of programs is valid.
   %\end{equation}
 %\end{theorem}
 
-\begin{lemma} \cite[Lemma 3.45]{watrous2018theory}
-  Let $Q: \mathbb{C}^{n \times n} \rightarrow \mathbb{C}^{m \times m}$ be a superoperator. For every choice of a complex Euclidean space $\mathbb{C}^{o}$ and unit vectors $v_1, v_2 \in \mathbb{C}^{n} \otimes \mathbb{C}^{o}$, there exist unit vectors $w_1, w_2 \in \mathbb{C}^{n} \otimes \mathbb{C}^{n}$ such that the following equalities hold:
-  \begin{equation}
-  \lVert Q \otimes I_{\mathbb{C}^{o \times o}} (v_1 v_2^\dag)\rVert_{1} = \lVert Q \otimes I_{\mathbb{C}^{n \times n}} (w_1 w_2^\dag)\rVert_{1}
-  \end{equation}
-\end{lemma} 
+%\begin{lemma} \cite[Lemma 3.45]{watrous2018theory} \label{lem:otimes_unit_uv}
+  %Let $Q: \mathbb{C}^{n \times n} \rightarrow \mathbb{C}^{m \times m}$ be a superoperator. For every choice of a complex Euclidean space $\mathbb{C}^{o}$ and unit vectors $v_1, v_2 \in \mathbb{C}^{n} \otimes \mathbb{C}^{o}$, there exist unit vectors $w_1, w_2 \in \mathbb{C}^{n} \otimes \mathbb{C}^{n}$ such that the following equalities hold:
+  %\begin{equation}
+  %\lVert Q \otimes I_{\mathbb{C}^{o \times o}} (v_1 v_2^\dag)\rVert_{1} = \lVert Q \otimes I_{\mathbb{C}^{n \times n}} (w_1 w_2^\dag)\rVert_{1}
+  %\end{equation}
+%\end{lemma} 
 
 Consider an operator  $ \text{r} : (\mathbb{C}^{n} \xrightarrow[]{} \mathbb{C}^{m}) \xrightarrow[]{} (\mathbb{C}^{n\times n}\xrightarrow[]{} \mathbb{C}^{m\times m})$ that sends an operator $T$ to the mapping $A \mapsto TAT^{\dag}$. The exact calculation of distances induced by $\lVert \rVert_{\diamondsuit}$ tends to be quite complicated, but a useful property for calculating the distance between quantum channels in the image of $r$ is provided in \cite{watrous2018theory}.
 Consider two operators $T, S : n \xrightarrow{} m$. There exists a unit vector $v \in \mathbb{C}^{n}$ such that, 
