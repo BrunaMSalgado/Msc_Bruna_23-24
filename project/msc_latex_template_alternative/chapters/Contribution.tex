@@ -1251,7 +1251,7 @@ In the proofs of the theorems, propositions, and lemmas that follow, certain sec
 \begin{lemma} \label{lemma:uv*_tensorI_gen}
   Let $Q_i: \mathbb{C}^{o \times o}  \rightarrow \mathbb{C}^{p_1 \times p_1} \oplus \ldots \oplus  \mathbb{C}^{p_m \times p_m}$ be a super-operator.  For every choice of a complex vector space $\mathbb{C}^{q}$ and unit vectors $v_1, v_2 \in \mathbb{C}^{o} \otimes \mathbb{C}^{q}$, there exist unit vectors $w_1, w_2 \in \mathbb{C}^{o} \otimes \mathbb{C}^{o}$ such that the following equalities hold:
   \begin{equation} \label{eq:lemma_uv*_tensorI_gen}
-      \left\lVert \sum_{j=1}^{m} Q_{ij} \otimes I_{\mathbb{C}^{q \times q}} (v_1 v_2^\dag)\right\rVert_{1} = \left\lVert \sum_{j=1}^{m} Q_{ij} \otimes I_{\mathbb{C}^{o \times o}} (w_1 w_2^\dag) \right\rVert_{1}
+       \sum_{j=1}^{m} Q_{ij} \left\lVert\otimes I_{\mathbb{C}^{q \times q}} (v_1 v_2^\dag)\right\rVert_{1} = \sum_{j=1}^{m} Q_{ij} \left\lVert \otimes I_{\mathbb{C}^{o \times o}} (w_1 w_2^\dag) \right\rVert_{1}
   \end{equation}
  \begin{proof}
   The proof of this Lemma follows form the one presented in \cite[Proof of Lemma 3.45]{watrous2018theory}. Considering that for $q \leq o$, if for any choice of an isometry $T \in \mathbb{C}^{q} \rightarrow \mathbb{C}^{o} $, the vectors $w_1 = (I_{\mathbb{C}^{o}} \otimes T)v_1$ and $w_2 = (I_{\mathbb{C}^{o}} \otimes T)v_2$  satisfy 
@@ -1266,65 +1266,13 @@ Furthermore, for $q > o$, given that the vectors $w_1, w_2$ which  satisfy \auto
 \end{lemma}
 
 
-  \begin{theorem} \label{theorem:tensor_stability} 
-For all super-operators $Q: \mathbb{C}^{o_1 \times o_1} \oplus \ldots \oplus \mathbb{C}^{o_n \times o_n}  \rightarrow \mathbb{C}^{p_1 \times p_1} \oplus \ldots \oplus  \mathbb{C}^{p_m \times p_m}$ and complex spaces $\mathbb{C}^{q_1 \times q_1} \oplus \ldots \oplus \mathbb{C}^{q_t \times q_t}$  it holds that:
-    \begin{equation}
-      \begin{split}
-        \lVert Q \otimes I_{\mathbb{C}^{q_1 \times q_1} \oplus \ldots \oplus \mathbb{C}^{q_t \times q_t}} \rVert_{1 \text{ gen}} \leq  \lVert Q \rVert_{\diamondsuit \text{ gen}}
-      \end{split}
-    \end{equation}
-    %with equality holding under the assumption that $\text{dim}(\mathbb{C}^{q_1 \times q_1} \oplus \ldots \oplus \mathbb{C}^{q_t \times q_t}) \geq  \text{dim}(\mathbb{C}^{o_1 \times o_1} \oplus \ldots \oplus \mathbb{C}^{o_n \times o_n})$.
-    \end{theorem}
-
+\begin{lemma} \label{lemma:max_sup_set}
+  Given two sets $A = {a_1, \ldots, a_n}$ and $B = {b_1, \ldots, b_m}$, if $a_i \leq b_j$ for all $1 \leq j \leq m$, then $\max A \geq \max B$.
+\end{lemma}
 \begin{proof}
-  Attending to \autoref{eq:gen_tensor_identity}, \autoref{def:gen_1norm} and \autoref{def:gen_diamond_norm} , one has that
-  \begin{equation} \label{eq:q_diamondgen_extendido}
-    \begin{split}
-      \lVert Q \rVert_{\diamondsuit \text{ gen}}  & = \lVert Q \otimes I_{\mathbb{C}^{o_1 \times o_1} \oplus \ldots \oplus \mathbb{C}^{o_n \times o_n}} \rVert_{1 \text{ gen}} \\
-      & =  \max  \Bigg\{ \max \left\{ \sum_{i=1}^{m} \|Q_{1i} \otimes I_{\mathbb{C}^{o_1 \times o_1}} (A_{11})\|_{1}    \mid  \|A_{11}\|_{1} = 1 \right\} \\
-      & \hspace{15pt}, \hspace{2pt} \ldots \hspace{2pt}, \max \left\{ \sum_{i=1}^{m} \|A_{1i} \otimes I_{\mathbb{C}^{o_n \times o_n}} (A_{1n})\|_{1}    \mid  \|A_{1n}\|_{1} = 1 \right\} \\ 
-      & \hspace{15pt}, \hspace{2pt} \ldots \hspace{2pt}, \max \left\{ \sum_{i=1}^{m} \|Q_{ni} \otimes I_{\mathbb{C}^{o_1 \times o_1}} (A_{n1})\|_{1}    \mid  \|A_{n1}\|_{1} = 1 \right\} \\
-    & \hspace{15pt}, \hspace{2pt} \ldots \hspace{2pt}, \max \left\{ \sum_{i=1}^{m} \|Q_{ni} \otimes I_{\mathbb{C}^{q_t \times q_t}} (A_{nn})\|_{1}   \mid  \|A_{nn}\|_{1} = 1 \right\} \Bigg\} 
-    \end{split}
-  \end{equation}
-
-  \todo[inline,size=\normalsize]{Pergunta:incluir nota?} 
-
-  Applying the same principle as in \cite[Proof of Theorem 3.36]{watrous2018theory}, considering \autoref{prop:uv*}, \autoref{lemma:uv*_tensorI_gen}, and \autoref{eq:q_diamondgen_extendido}, it follows that:
-
-
- For $ 1 \leq i \leq n$ and $ 1 \leq k \leq n$, attending to \autoref{def:trace-norm-matriz} and the fact that $v_{ik}$ and  $w_{ik}^\dag$ are unit vectors, it follows that:
-  \begin{equation}
-    \sum_{j=1}^{m} \left\lVert Q_{ij} \otimes I_{\mathbb{C}^{o_k \times o_k}} (v_{ik} w_{ik}^\dag)\right\rVert_{1} \leq \max \left\{ \sum_{j=1}^{m} \left\lVert Q_{ij} \otimes I_{\mathbb{C}^{o_k \times o_k}} (A_{ik}) \mid \lVert A_{ik}=1  \rVert_1 \right\rVert_{1}\right\},
-  \end{equation}
-   As a result, considering \autoref{eq:q_diamondgen_extendido} it holds that:
-  \begin{equation}
-    \lVert Q \otimes I_{\mathbb{C}^{q_1 \times q_1} \oplus \ldots \oplus \mathbb{C}^{q_t \times q_t}} \rVert_{1 \text{ gen}} \leq  \lVert Q \rVert_{\diamondsuit \text{ gen}}
-  \end{equation}
-
-  Note that if the number of direct sums in the complex space $\mathbb{C}^{q_1 \times q_1} \oplus \ldots \oplus \mathbb{C}^{q_t \times q_t}$ is greater than the number of direct sums in the complex space $\mathbb{C}^{o_1 \times o_1} \oplus \ldots \oplus \mathbb{C}^{o_n \times o_n}$, considering \autoref{lemma:uv*_tensorI_gen} it holds:
-
-  \begin{equation} 
-    \begin{split}
-      \lVert Q \otimes I_{\mathbb{C}^{q_1 \times q_1} \oplus \ldots \oplus \mathbb{C}^{q_t \times q_t}} \rVert_{1 \text{ gen}} \\
-      & =  \max  \Bigg\{ \max \left\{ \sum_{i=1}^{m} \|Q_{1i} \otimes I_{\mathbb{C}^{o_1 \times o_1}} (v_{11}^{'})\|_{1}    \mid  \|v_{11}\|_{1} = 1 \right\} \\
-      & \hspace{15pt}, \hspace{2pt} \ldots \hspace{2pt}, \max \left\{ \sum_{i=1}^{m} \|Q_{1i} \otimes I_{\mathbb{C}^{o_n \times o_n}} (v_{1n})\|_{1}    \mid  \|v_{1n}\|_{1} = 1 \right\} \\ 
-      & \hspace{15pt}, \hspace{2pt} \ldots \hspace{2pt}, \max \left\{ \sum_{i=1}^{m} \|Q_{ni} \otimes I_{\mathbb{C}^{o_1 \times o_1}} (v_{n1})\|_{1}    \mid  \|v_{n1}\|_{1} = 1 \right\} \\
-    & \hspace{15pt}, \hspace{2pt} \ldots \hspace{2pt}, \max \left\{ \sum_{i=1}^{m} \|Q_{ni} \otimes I_{\mathbb{C}^{q_t \times q_t}} (v_{nn})\|_{1}   \mid  \|v_{nn}\|_{1} = 1 \right\} \Bigg\} 
-    \end{split}
-  \end{equation}
-
+  Since $a_i \leq b_j$ for all $1 \leq j \leq m$, given that the maximum element of a set belongs to the set, it follows that $\max a_i \geq \max B$. From the definition of the maximum of a set, it follows that $\max A \geq a_i$. Therefore, $\max A \geq \max B$.
 \end{proof}
 
- 
- 
-
-\begin{corollary} \label{cor:tensor_stability}
-  For all super-operators  $Q: \mathbb{C}^{o_1 \times o_1} \oplus \ldots \oplus \mathbb{C}^{o_n \times o_n}  \rightarrow \mathbb{C}^{p_1 \times p_1} \oplus \ldots \oplus  \mathbb{C}^{p_m \times p_m}$ and complex spaces $\mathbb{C}^{q_1 \times q_1} \oplus \ldots \oplus \mathbb{C}^{q_t \times q_t}$   it holds that:
-\begin{equation}
-   \lVert Q \otimes I_{\mathbb{C}^{q_1 \times q_1} \oplus \ldots \oplus \mathbb{C}^{q_t \times q_t}} \rVert_{\diamondsuit \text{ gen}} = \lVert Q \rVert_{\diamondsuit \text{ gen}} 
-\end{equation}
-\end{corollary}
 
 \begin{lemma}\label{lem:q(o)}
   Let  $Q: \mathbb{C}^{o_1 \times o_1} \oplus \ldots \oplus \mathbb{C}^{o_n \times o_n}  \rightarrow \mathbb{C}^{p_1 \times p_1} \oplus \ldots \oplus  \mathbb{C}^{p_m \times p_m}$ be a superoperator, then for $O \in \mathbb{C}^{o_1 \times o_1} \oplus \ldots \oplus  \mathbb{C}^{o_m \times o_m}$ it holds that:
@@ -1404,6 +1352,89 @@ Thus, if  $\lVert O \rVert_{1 \text{ gen}} = 1$,
   \lVert Q(O) \rVert_{1 \text{ gen}} \leq \lVert Q  \rVert_{1 \text{ gen}} \cdot \lVert O  \rVert_{1 \text{ gen}}.
 \end{equation}
 \end{proof}
+
+
+
+  \begin{theorem} \label{theorem:tensor_stability} 
+For all super-operators $Q: \mathbb{C}^{o_1 \times o_1} \oplus \ldots \oplus \mathbb{C}^{o_n \times o_n}  \rightarrow \mathbb{C}^{p_1 \times p_1} \oplus \ldots \oplus  \mathbb{C}^{p_m \times p_m}$ and complex spaces $\mathbb{C}^{q_1 \times q_1} \oplus \ldots \oplus \mathbb{C}^{q_t \times q_t}$  it holds that:
+    \begin{equation}
+      \begin{split}
+        \lVert Q \otimes I_{\mathbb{C}^{q_1 \times q_1} \oplus \ldots \oplus \mathbb{C}^{q_t \times q_t}} \rVert_{1 \text{ gen}} \leq  \lVert Q \rVert_{\diamondsuit \text{ gen}}
+      \end{split}
+    \end{equation}
+  with equality holding under the assumption that within the direct sum of vector spaces $\mathbb{C}^{q_1 \times q_1} \oplus \ldots \oplus \mathbb{C}^{q_t \times q_t}$, there  exists a vector space $\mathbb{C}^{q_i \times q_i}$, where $1 \leq i \leq t$, such that for all $1 \leq j \leq n$, $\text{dim }\mathbb{C}^{q_i} \geq  \text{dim }\mathbb{C}^{o_j}$.
+  
+  %$\text{dim}(\mathbb{C}^{q_1 \times q_1} \oplus \ldots \oplus \mathbb{C}^{q_t \times q_t}) \geq  \text{dim}(\mathbb{C}^{o_1 \times o_1} \oplus \ldots \oplus \mathbb{C}^{o_n \times o_n})$.
+    \end{theorem}
+
+\begin{proof}
+  Attending to \autoref{eq:gen_tensor_identity}, \autoref{def:gen_1norm} and \autoref{def:gen_diamond_norm} , one has that
+  \begin{equation} \label{eq:q_diamondgen_extendido}
+    \begin{split}
+      \lVert Q \rVert_{\diamondsuit \text{ gen}}  & = \lVert Q \otimes I_{\mathbb{C}^{o_1 \times o_1} \oplus \ldots \oplus \mathbb{C}^{o_n \times o_n}} \rVert_{1 \text{ gen}} \\
+      & =  \max  \Bigg\{ \max \left\{ \sum_{i=1}^{m} \|Q_{1i} \otimes I_{\mathbb{C}^{o_1 \times o_1}} (A_{11})\|_{1}    \mid  \|A_{11}\|_{1} = 1 \right\} \\
+      & \hspace{15pt}, \hspace{2pt} \ldots \hspace{2pt}, \max \left\{ \sum_{i=1}^{m} \|Q_{1i} \otimes I_{\mathbb{C}^{o_n \times o_n}} (A_{1n})\|_{1}    \mid  \|A_{1n}\|_{1} = 1 \right\} \\ 
+      & \hspace{15pt}, \hspace{2pt} \ldots \hspace{2pt}, \max \left\{ \sum_{i=1}^{m} \|Q_{ni} \otimes I_{\mathbb{C}^{o_1 \times o_1}} (A_{n1})\|_{1}    \mid  \|A_{n1}\|_{1} = 1 \right\} \\
+    & \hspace{15pt}, \hspace{2pt} \ldots \hspace{2pt}, \max \left\{ \sum_{i=1}^{m} \|Q_{ni} \otimes I_{\mathbb{C}^{q_t \times q_t}} (A_{nn})\|_{1}   \mid  \|A_{nn}\|_{1} = 1 \right\} \Bigg\} 
+    \end{split}
+  \end{equation}
+
+ 
+
+  Applying the same principle as in \cite[Proof of Theorem 3.36]{watrous2018theory}, considering \autoref{prop:uv*}, \autoref{lemma:uv*_tensorI_gen}, and \autoref{eq:gen_tensor_identity},  it follows that for unit vectors $v_{ij}, w_{ij} \in \mathbb{C}^{o_i} \otimes \mathbb{C}^{o_j }$, where $1 \leq i \leq n$ and $1 \leq j \leq n$, the following inequality holds:
+\begin{equation}
+  \begin{split}
+    \lVert Q \otimes I_{\mathbb{C}^{q_1 \times q_1} \oplus \ldots \oplus \mathbb{C}^{q_t \times q_t}} \rVert_{1 \text{ gen}}  & = \max \Bigg\{ \sum_{i=1}^{m} \left\lVert Q_{1i} \otimes I_{\mathbb{C}^{o_1 \times o_1}} (v_{11} w_{11}^\dag)\right\rVert_{1}\\
+    & \hspace{15pt}, \hspace{2pt} \ldots \hspace{2pt},\sum_{i=1}^{m} \left\lVert Q_{1i} \otimes I_{\mathbb{C}^{o_n \times o_n}} (v_{1n} w_{1n}^\dag)\right\rVert_{1}  \\
+    &  \hspace{15pt}, \hspace{2pt} \ldots \hspace{2pt}, \sum_{i=1}^{m} \left\lVert Q_{ni} \otimes I_{\mathbb{C}^{o_1 \times o_1}} (v_{n1} w_{n1}^\dag)\right\rVert_{1} \\
+    & \hspace{15pt}, \hspace{2pt} \ldots \hspace{2pt},\sum_{i=1}^{m} \left\lVert Q_{1i} \otimes I_{\mathbb{C}^{o_n \times o_n}} (v_{nn} w_{nn}^\dag)\right\rVert_{1} \Bigg\}
+  \end{split}
+\end{equation}
+
+\todo[inline,size=\normalsize]{Provar que o máximo de um conjunto com elementos repetidos é igual ao máximo desse conjunto sem repetições - Lemma antes disto}
+
+ Note that if the number of direct sums in the complex space $\mathbb{C}^{q_1 \times q_1} \oplus \ldots \oplus \mathbb{C}^{q_t \times q_t}$ is less than the number of direct sums in the complex space $\mathbb{C}^{o_1 \times o_1} \oplus \ldots \oplus \mathbb{C}^{o_n \times o_n}$, it is always possible to choose the vector space in  $\mathbb{C}^{o_1 \times o_1} \oplus \ldots \oplus \mathbb{C}^{o_n \times o_n}$, $\mathbb{C}^{o_k \times o_k}$, such that  $\sum_{j=1}^{m} \|  Q_{ij} \otimes I_{\mathbb{C}^{o_k \times o_k}} (v_{ik} w_{ik}^\dag) \|$ is maximized, where $1 \leq i \leq n$ and $1 \leq k \leq n$. As a result, the equality above holds in this case. On the other hand if the number of direct sums in the complex space $\mathbb{C}^{q_1 \times q_1} \oplus \ldots \oplus \mathbb{C}^{q_t \times q_t}$ is greater than the number of direct sums in the complex space $\mathbb{C}^{o_1 \times o_1} \oplus \ldots \oplus \mathbb{C}^{o_n \times o_n}$,  in the remaining arguments of the maximum function, it is possible to choose  $\mathbb{C}^{o_1 \times o_1}$ as the vector space  in which the identity operator acts. Consequently, the arguments $\sum_{j=1}^{m} | Q_{ij} \otimes I_{\mathbb{C}^{o_1 \times o_1}} (v_{i1} w_{i1}^\dag) |$, where $1 \leq i \leq n$, are repeated multiple times within the maximum function.  Since the maximum of a set with repeated elements is equal to the maximum of that set without repetitions, the equality above holds.
+
+ Attending to \autoref{def:trace-norm-matriz}, for unit vectors $v_{ik}$ and  $w_{ik}$, where  $ 1 \leq i \leq n$ and $ 1 \leq k \leq n$, it follows that:
+  \begin{equation}
+    \sum_{j=1}^{m} \left\lVert Q_{ij} \otimes I_{\mathbb{C}^{o_k \times o_k}} (v_{ik} w_{ik}^\dag)\right\rVert_{1} \leq \max \left\{ \sum_{j=1}^{m} \left\lVert Q_{ij} \otimes I_{\mathbb{C}^{o_k \times o_k}} (A_{ik}) \mid \lVert A_{ik}=1  \rVert_1 \right\rVert_{1}\right\},
+  \end{equation}
+   As a result, considering \autoref{eq:q_diamondgen_extendido} it holds that:
+  \begin{equation}
+    \lVert Q \otimes I_{\mathbb{C}^{q_1 \times q_1} \oplus \ldots \oplus \mathbb{C}^{q_t \times q_t}} \rVert_{1 \text{ gen}} \leq  \lVert Q \rVert_{\diamondsuit \text{ gen}}
+  \end{equation}
+
+  
+  If $\text{dim } \mathbb{C}^{q_k} \geq \text{dim } \mathbb{C}^{o_i}$, there exists an isometry $T: \mathbb{C}^{o_i} \rightarrow \mathbb{C}^{q_k}$. Moreover, for $A \in \mathbb{C}^{o_i \otimes o_i}$, such that $\|A\|_1=1$, and $Q_{ij}: \mathbb{C}^{o_i \otimes o_i} \rightarrow \mathbb{C}^{p_j \otimes p_j}$, where $1 \leq j \leq m$, considering \cite[Proof of Theorem 3.36]{watrous2018theory}, it holds that:
+  \begin{equation}
+    \sum_{j=1}^{m} \lVert Q_{ij} \otimes I_{\mathbb{C}^{o_i \times o_i}} (A) \rVert_{1} = \sum_j \lVert (Q_{ij} \otimes I_{\mathbb{C}^{q_k \times q_k}}) ((I_{\mathbb{C}^{o_i \times o_i}} \otimes T) A (I_{\mathbb{C}^{o_i \times o_i}} \otimes T )^\dag) \rVert_{1}. 
+  \end{equation}
+This can be rewritten as:
+\begin{equation}
+  \sum_{j=1}^{m} \lVert Q_{ij} \otimes I_{\mathbb{C}^{o_i \times o_i}} (A) \rVert_{1} =  \lVert (Q_{i} \otimes I_{\mathbb{C}^{q_k \times q_k}}) ((I_{\mathbb{C}^{o_i \times o_i}} \otimes T) A (I_{\mathbb{C}^{o_i \times o_i}} \otimes T )^\dag) \rVert_{1 \text{ gen}}. 
+\end{equation}
+Consequentlty, by \autoref{lem:q(o)}, it follows that:
+\begin{equation}
+  \sum_{j=1}^{m} \lVert Q_{ij} \otimes I_{\mathbb{C}^{o_i \times o_i}} (A) \rVert_{1} \leq \lVert Q_{i} \otimes I_{\mathbb{C}^{q_k \times q_k}} \rVert_{1 \text{ gen}} = \max \left\{\sum_{j=1}^{m} \lVert Q_{ij} \otimes I_{\mathbb{C}^{q_k \times q_k}} (B) \rVert_{1} \mid \|B\| = 1\right\}.
+\end{equation}
+And, as a result, considering \autoref{lemma:max_sup_set}, it holds that: 
+
+\begin{equation}
+    \lVert Q \rVert_{\diamondsuit \text{ gen}} \leq  \lVert Q \otimes I_{\mathbb{C}^{q_1 \times q_1} \oplus \ldots \oplus \mathbb{C}^{q_t \times q_t}} \rVert_{1 \text{ gen}}
+\end{equation}
+which completes the proof.
+\end{proof}
+
+ 
+ 
+
+\begin{corollary} \label{cor:tensor_stability}
+  For all super-operators  $Q: \mathbb{C}^{o_1 \times o_1} \oplus \ldots \oplus \mathbb{C}^{o_n \times o_n}  \rightarrow \mathbb{C}^{p_1 \times p_1} \oplus \ldots \oplus  \mathbb{C}^{p_m \times p_m}$ and complex spaces $\mathbb{C}^{q_1 \times q_1} \oplus \ldots \oplus \mathbb{C}^{q_t \times q_t}$   it holds that:
+\begin{equation}
+   \lVert Q \otimes I_{\mathbb{C}^{q_1 \times q_1} \oplus \ldots \oplus \mathbb{C}^{q_t \times q_t}} \rVert_{\diamondsuit \text{ gen}} = \lVert Q \rVert_{\diamondsuit \text{ gen}} 
+\end{equation}
+\end{corollary}
+
 
 
 \begin{lemma}\label{lem:gen_trace_submultiplicative}
