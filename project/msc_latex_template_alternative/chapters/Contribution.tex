@@ -1274,6 +1274,7 @@ Furthermore, for $q > o$, given that the vectors $w_1, w_2$ which  satisfy \auto
 \end{proof}
 
 
+
 \begin{lemma}\label{lem:q(o)}
   Let  $Q: \mathbb{C}^{o_1 \times o_1} \oplus \ldots \oplus \mathbb{C}^{o_n \times o_n}  \rightarrow \mathbb{C}^{p_1 \times p_1} \oplus \ldots \oplus  \mathbb{C}^{p_m \times p_m}$ be a superoperator, then for $O \in \mathbb{C}^{o_1 \times o_1} \oplus \ldots \oplus  \mathbb{C}^{o_m \times o_m}$ it holds that:
   \begin{equation} \label{eq:qo<q}
@@ -1282,8 +1283,8 @@ Furthermore, for $q > o$, given that the vectors $w_1, w_2$ which  satisfy \auto
 \end{lemma}
 
 \begin{proof}
-  $O$ can be written as  $O = \underbrace{\textsc{Il} \cdot \ldots \cdot \textsc{Il}}_{n-1 \times} \cdot \hspace{2pt} O_{1} + \ldots +  \underbrace{\textsc{Ir} \cdot \ldots \cdot \textsc{Ir}}_{n-1 \times} \cdot \hspace{2pt} O_{n} 
-$, where for each $1 \leq i \leq n$, $O_{i} \in \mathbb{C}^{p_i \times p_i}$ and $O_i =  \underbrace{\textsc{Pl} \cdot \ldots \cdot \textsc{Pl}}_{n-i \times} \cdot \underbrace{\textsc{Pr} \cdot \ldots \cdot \textsc{Pr}}_{i-1 \times} \cdot O $. Considering \autoref{def:gen_norm}, it follows that: 
+  $O$ can be written as  $O = \sum_{i=1}^{m} \underbrace{\textsc{Il} \cdot \ldots \cdot \textsc{Il}}_{n-i \times} \cdot   \underbrace{\textsc{Ir} \cdot \ldots \cdot \textsc{Ir}}_{i-1 \times} \cdot \hspace{2pt} O_{i} 
+$, where  $O_{i} \in \mathbb{C}^{p_i \times p_i}$ and $O_i =  \underbrace{\textsc{Pl} \cdot \ldots \cdot \textsc{Pl}}_{n-i \times} \cdot \underbrace{\textsc{Pr} \cdot \ldots \cdot \textsc{Pr}}_{i-1 \times} \cdot O $. Considering \autoref{def:gen_norm}, it follows that: 
 \begin{equation}
   \lVert O  \rVert_{1 \text{ gen}} = \lVert O_1 \rVert_{1} + \ldots + \lVert O_n \rVert_{1}.
 \end{equation}
@@ -1391,9 +1392,9 @@ For all super-operators $Q: \mathbb{C}^{o_1 \times o_1} \oplus \ldots \oplus \ma
   \end{split}
 \end{equation}
 
-\todo[inline,size=\normalsize]{Provar que o máximo de um conjunto com elementos repetidos é igual ao máximo desse conjunto sem repetições - Lemma antes disto}
 
- Note that if the number of direct sums in the complex space $\mathbb{C}^{q_1 \times q_1} \oplus \ldots \oplus \mathbb{C}^{q_t \times q_t}$ is less than the number of direct sums in the complex space $\mathbb{C}^{o_1 \times o_1} \oplus \ldots \oplus \mathbb{C}^{o_n \times o_n}$, it is always possible to choose the vector space in  $\mathbb{C}^{o_1 \times o_1} \oplus \ldots \oplus \mathbb{C}^{o_n \times o_n}$, $\mathbb{C}^{o_k \times o_k}$, such that  $\sum_{j=1}^{m} \|  Q_{ij} \otimes I_{\mathbb{C}^{o_k \times o_k}} (v_{ik} w_{ik}^\dag) \|$ is maximized, where $1 \leq i \leq n$ and $1 \leq k \leq n$. As a result, the equality above holds in this case. On the other hand if the number of direct sums in the complex space $\mathbb{C}^{q_1 \times q_1} \oplus \ldots \oplus \mathbb{C}^{q_t \times q_t}$ is greater than the number of direct sums in the complex space $\mathbb{C}^{o_1 \times o_1} \oplus \ldots \oplus \mathbb{C}^{o_n \times o_n}$,  in the remaining arguments of the maximum function, it is possible to choose  $\mathbb{C}^{o_1 \times o_1}$ as the vector space  in which the identity operator acts. Consequently, the arguments $\sum_{j=1}^{m} | Q_{ij} \otimes I_{\mathbb{C}^{o_1 \times o_1}} (v_{i1} w_{i1}^\dag) |$, where $1 \leq i \leq n$, are repeated multiple times within the maximum function.  Since the maximum of a set with repeated elements is equal to the maximum of that set without repetitions, the equality above holds.
+
+ Note that if the number of direct sums in the complex space $\mathbb{C}^{q_1 \times q_1} \oplus \ldots \oplus \mathbb{C}^{q_t \times q_t}$ is less than the number of direct sums in the complex space $\mathbb{C}^{o_1 \times o_1} \oplus \ldots \oplus \mathbb{C}^{o_n \times o_n}$, when considering \autoref{lemma:uv*_tensorI_gen} it is always possible to choose the vector space in  $\mathbb{C}^{o_1 \times o_1} \oplus \ldots \oplus \mathbb{C}^{o_n \times o_n}$, $\mathbb{C}^{o_k \times o_k}$, such that  $\sum_{j=1}^{m} \|  Q_{ij} \otimes I_{\mathbb{C}^{o_k \times o_k}} (v_{ik} w_{ik}^\dag) \|$ is maximized, where $1 \leq i \leq n$ and $1 \leq k \leq n$. As a result, the equality above holds in this case. On the other hand if the number of direct sums in the complex space $\mathbb{C}^{q_1 \times q_1} \oplus \ldots \oplus \mathbb{C}^{q_t \times q_t}$ is greater than the number of direct sums in the complex space $\mathbb{C}^{o_1 \times o_1} \oplus \ldots \oplus \mathbb{C}^{o_n \times o_n}$,  regarding the vector spaces $\mathbb{C}^{q_n \times q_n} , \ldots, \mathbb{C}^{q_t \times q_t} $, when considering \autoref{lemma:uv*_tensorI_gen} it is possible to choose  $\mathbb{C}^{o_1 \times o_1}$ as the vector space where the identity operator acts. This corresponds to the elements $\sum_{j=1}^{m} | Q_{ij} \otimes I_{\mathbb{C}^{o_1 \times o_1}} (v_{i1} w_{i1}^\dag) |$, where $1 \leq i \leq n$, which were already in the set. Since a set cannot contain duplicate elements, the set remains unchanged, and therefore, the equality above holds in this case as well.
 
  Attending to \autoref{def:trace-norm-matriz}, for unit vectors $v_{ik}$ and  $w_{ik}$, where  $ 1 \leq i \leq n$ and $ 1 \leq k \leq n$, it follows that:
   \begin{equation}
@@ -1417,8 +1418,7 @@ Consequentlty, by \autoref{lem:q(o)}, it follows that:
 \begin{equation}
   \sum_{j=1}^{m} \lVert Q_{ij} \otimes I_{\mathbb{C}^{o_i \times o_i}} (A) \rVert_{1} \leq \lVert Q_{i} \otimes I_{\mathbb{C}^{q_k \times q_k}} \rVert_{1 \text{ gen}} = \max \left\{\sum_{j=1}^{m} \lVert Q_{ij} \otimes I_{\mathbb{C}^{q_k \times q_k}} (B) \rVert_{1} \mid \|B\| = 1\right\}.
 \end{equation}
-And, as a result, considering \autoref{lemma:max_sup_set}, it holds that: 
-
+And, as a result, considering \autoref{lemma:max_sup_set},  under the assumption that within the direct sum of vector spaces $\mathbb{C}^{q_1 \times q_1} \oplus \ldots \oplus \mathbb{C}^{q_t \times q_t}$, there  exists a vector space $\mathbb{C}^{q_i \times q_i}$, where $1 \leq i \leq t$, such that for all $1 \leq j \leq n$, $\text{dim }\mathbb{C}^{q_i} \geq  \text{dim }\mathbb{C}^{o_j}$, it holds that: 
 \begin{equation}
     \lVert Q \rVert_{\diamondsuit \text{ gen}} \leq  \lVert Q \otimes I_{\mathbb{C}^{q_1 \times q_1} \oplus \ldots \oplus \mathbb{C}^{q_t \times q_t}} \rVert_{1 \text{ gen}}
 \end{equation}
