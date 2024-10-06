@@ -873,23 +873,50 @@ the operator $U$ defined by $U = \sum_{i} w_i^{\dag} v_i$ is unitary.
 \end{definition}
 
 \begin{definition}\label{def:trace-norm-matriz}
-  The \emph{trace norm}, \gls{trace-norm}, of a square matrix $A$ is defined as:
-  \begin{equation*}
+  The \emph{trace norm}, \gls{trace-norm}, of a matrix $A$ is defined as:
+  \begin{equation} \label{eq:trace_norm_matrix_tr}
     \lVert A \rVert_{1} = \text{tr} \sqrt{A^{\dagger}A}
-  \end{equation*}
+  \end{equation}
   This norm is also  known as the Schatten 1-norm. The trace norm induces a metric on the set of density matrices which is defined by $d(\rho, \sigma) = \lVert \rho -\sigma\rVert_{1}$.
 \end{definition}
+Alternatively, for an arbitrary complex space $\mathbb{C}^{m}$ the trace norm  of a square matrix $A \in \mathbb{C}^{n \times n} $ can be defined in the following way:
+\begin{equation} \label{eq:trace_norm_matrix_U}
+  \lVert A \rVert_{1} = \text{max} \{ |\langle U, A \rangle| \mid  U \in \mathbb{C}^{n} \rightarrow \mathbb{C}^{m}  \text{ is a unitary operator}  \}.
+\end{equation}
 
-For all square matrices $A$ and $B$, this norm enjoys the following properties:
+
+\begin{proposition} \label{prop:trace_norm_matrix}
+
+  For all square matrices $A$ and $B$, this norm enjoys the following properties:
 \begin{itemize}
   \item Submultiplicativity with respect to compositions: $\lVert AB \rVert_{1} \leq \lVert A \rVert_{1} \lVert B \rVert_{1}$;
   \item Multiplicativity with respect to the tensor products: $\lVert A \otimes B \rVert_{1} = \lVert A \rVert_{1} \lVert B \rVert_{1}$.
 \end{itemize}
 
+\end{proposition}
+
+\begin{definition} \label{def:spectral-norm}
+
+  The \emph{spectral norm}, \gls{spectral-norm}, of an operator $A: \mathbb{C}^{n} \rightarrow \mathbb{C}^{m} $ is defined as:
+  \begin{equation*}
+    \lVert A \rVert_{\infty} = \text{max} \{ \lVert Av \rVert_{2} \mid \lVert v \rVert_{2} = 1 \}.
+  \end{equation*}
+\end{definition}
+
+\begin{definition}
+  Two norms on operators, $\|-\|_p$ and $\|-\|_{p*}$ , are said to be \emph{dual}, when for every operator $A: \mathbb{C}^{n} \rightarrow \mathbb{C}^{m}$, it holds that
+  \begin{equation*}
+    \|A\|_{p} = \text{max} \{ |\langle B, A \rangle| \mid B:  \mathbb{C}^{n} \rightarrow \mathbb{C}^{m},\|B\|_{p*} = 1 \}.
+  \end{equation*}
+\end{definition}
+
+The trace norm and the spectral norm are dual.
+
+
 \begin{definition} \label{def:op_norm}
   Given  normed vector spaces $V$ and $W$, the operator,\gls{op-norm}, norm for an operator $E: V \rightarrow W$ is defined as
   \begin{equation*}
-  \lVert E \rVert_{\sigma} = \text{sup} \{ \lVert E(v) \rVert \hspace{2pt} | \hspace{2pt} \lVert v \rVert = 1 \}.
+  \lVert E \rVert_{\sigma} = \text{sup} \{ \lVert E(A) \rVert \hspace{2pt} | \hspace{2pt} \lVert A \rVert = 1 \}.
 \end{equation*}
 \end{definition}
 

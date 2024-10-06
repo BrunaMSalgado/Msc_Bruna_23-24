@@ -812,3 +812,144 @@ Now, it is finally possible to adress the proof of the metric equation for the c
     This result is an immediate consequence of \autoref{lem:gen_diamond_submultiplicative} and \autoref{lem:gen_diamond_cptp_norm}. 
   \end{proof}
   
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  %
+  %
+  %
+  %
+  %
+  %
+  %
+  %
+  %
+  %
+  %
+%
+%
+%
+%
+%
+%
+%
+%
+%
+%
+%
+%
+%
+% ||Q(O)||<= ||Q|| ||O||
+
+
+ %
+  %
+  %
+  %
+  %
+  %
+  %
+  %
+  %
+  %
+  %
+%
+%
+%
+%
+%
+%
+%
+%
+%
+%
+%
+%
+%
+
+
+
+
+$O$ can be written as  $O = \sum_{i=1}^{m} \underbrace{\textsc{Il} \cdot \ldots \cdot \textsc{Il}}_{n-i \times} \cdot   \underbrace{\textsc{Ir} \cdot \ldots \cdot \textsc{Ir}}_{i-1 \times} \cdot \hspace{2pt} O_{i} 
+$, where  $O_{i} \in \mathbb{C}^{p_i \times p_i}$ and $O_i =  \underbrace{\textsc{Pl} \cdot \ldots \cdot \textsc{Pl}}_{n-i \times} \cdot \underbrace{\textsc{Pr} \cdot \ldots \cdot \textsc{Pr}}_{i-1 \times} \cdot O $. Considering \autoref{def:gen_norm}, it follows that: 
+\begin{equation}
+  \lVert O  \rVert_{1 \text{ gen}} =   \lVert O_1 \rVert_{1} + \ldots + \lVert O_n \rVert_{1}.
+\end{equation}
+
+Applying $O$ to $Q$ results in:
+\begin{equation}
+\begin{split}
+Q(O) & = \sum_{i=1}^{n} \sum_{j=1}^{m} \underbrace{\textsc{Il} \cdot \ldots \cdot \textsc{Il}}_{m-j \times} \cdot   \underbrace{\textsc{Ir} \cdot \ldots \cdot \textsc{Ir}}_{j-1 \times} \cdot \hspace{2pt} Q_{ij} (O_{i}) \\
+%\underbrace{\textsc{Il} \cdot \ldots \cdot \textsc{Il}}_{m-1 \times} \cdot \hspace{1pt} Q_{11}  (O_{1}) + \ldots +   \underbrace{\textsc{Ir} \cdot \ldots \cdot \textsc{Ir}}_{m-1 \times}\cdot \hspace{1pt} Q_{1m} (O_{1}) + \ldots +  \underbrace{\textsc{Il} \cdot \ldots \cdot \textsc{Il}}_{m-1 \times} \cdot\hspace{1pt} Q_{n1} (O_{n}) +  \ldots \\
+%& \hspace{10pt}  + \underbrace{\textsc{Ir} \cdot \ldots \cdot \textsc{Ir}}_{m-1 \times}\cdot \hspace{1pt} Q_{nm}  (O_{n})
+\end{split}
+\end{equation}
+
+As a result, considering \autoref{def:gen_1norm_matrix}, the generalized trace norm of $Q(O)$ corresponds to:
+\begin{equation} \label{eq:qo}
+  \begin{split}
+  \lVert Q(O)  \rVert_{1 \text{ gen}} & = Q_1(O_1) + \ldots + Q_n(O_n)=  \sum_{i=1}^{n} \sum_{j=1}^{m} \lVert Q_{ij} (O_{i}) \rVert_{1}.
+  %\lVert Q_{11} (O_{1}) \rVert_{1} + \ldots + \lVert Q_{1m} (O_{1}) \rVert_{1} + \ldots +  \lVert Q_{n1} (O_{n})  \rVert_{1} +  \ldots +  \lVert Q_{nm} (O_{n}) \rVert_{1}. 
+  \end{split}
+\end {equation}
+The generalized trace norm of $Q$ is given by:
+\begin{equation}
+  \begin{split} \label{eq:q}
+  \lVert Q  \rVert_{1 \text{ gen}} & =   \max  \Bigg\{ \max \left\{ \sum_{i=1}^{m} \|Q_{1i} (A_1)\|_{1}   \mid \hspace{1pt} \|A_1\|_{1} = 1 \right\} & \{\text{\autoref{def:gen_1norm}}\} \\
+  & \hspace{15pt} ,\hspace{2pt}  \ldots \hspace{2pt}  , \max \left\{ \sum_{i=1}^{m} \|Q_{ni} (A_n)\|_{1}   \mid \|A_n\|_{1} = 1 \right\} \Bigg\} \\
+ & = \max \Bigg\{  \sum_{i=1}^{m}  \lVert Q_{1i} (A_{1}) \rVert_{1} \hspace{1pt} , \hspace{2pt} \ldots \hspace{2pt}, \sum_{i=1}^{m} \lVert Q_{ni} (A_{n}) \rVert_{1} \mid \hspace{1pt}   \lVert A_{1} \rVert_{1} = 1  & \{\text{\autoref{lemma:max_max}} \} \\
+ & \hspace{15pt} , \ldots,\lVert A_{n} \rVert_{1} = 1 \Bigg\}.
+  \end{split}
+\end{equation}
+
+
+To prove that  if  $\lVert O \rVert_{1 \text{ gen}} = 1$
+\begin{equation}
+  \lVert Q(O) \rVert_{1 \text{ gen}} \leq \lVert Q \rVert_{1 \text{ gen}},
+\end{equation}
+is equivalent to demonstrating that,
+\begin{equation}
+ \max \left\{ \lVert Q(O) \rVert_{1 \text{ gen}} \hspace{2pt}  \Biggm| \hspace{2pt}  \sum_{i=1}^{n} \lVert O_i  \rVert_1 = 1 \right\} \leq \lVert Q \rVert_{1 \text{ gen}},
+\end{equation}
+
+Thus, 
+\begin{align*}
+  \hspace{-30pt}&   \max \left\{ \lVert Q(O) \rVert_{1 \text{ gen}} \hspace{2pt}  \Biggm| \hspace{2pt}  \sum_{i=1}^{n} \lVert O_i  \rVert_1 = 1 \right\} \leq \lVert Q \rVert_{1 \text{ gen}} \\
+  \hspace{-30pt} \Leftrightarrow  & 
+  \max \left\{   \sum_{i=1}^{n} \sum_{j=1}^{m} \lVert Q_{ij} (O_{i}) \rVert_{1} \hspace{2pt}  \Biggm| \hspace{2pt}  \sum_{i=1}^{n} \lVert O_i  \rVert_1 = 1 \right\} \leq \max \Bigg\{  \sum_{i=1}^{m}  \lVert Q_{1i} (A_{1}) \rVert_{1} &   \{\text{\autoref{eq:qo}}, \\
+  \hspace{-30pt}& , \hspace{2pt} \ldots \hspace{2pt}, \sum_{i=1}^{m} \lVert Q_{ni} (A_{n}) \rVert_{1} \mid \hspace{1pt}   \lVert A_{1} \rVert_{1} = 1 , \ldots,\lVert A_{n} \rVert_{1} = 1 \Bigg\}   & \text{\autoref{eq:q}} \}  \\
+  %\hspace{-30pt} \Leftrightarrow  & \lVert O_1  \rVert_1  + \ldots + \lVert O_n  \rVert_1 = 1  \wedge  \lVert Q_{11} \cdot O_{1} \rVert_{1} + \ldots +  \lVert Q_{1m} \cdot O_{1} \rVert_{1} + \ldots +  \hspace{10pt}  \\
+  %\hspace{-30pt}& \leq \max \Bigg\{ \left\lVert Q_{11} \left(\frac{O_{1}} {\lVert O_{1} \rVert_1}\right) \right\rVert_{1} \hspace{1pt} + \ldots +  \left\lVert Q_{1m} \left(\frac{O_{1}} {\lVert O_{1} \rVert_1}\right)  \right\rVert_{1} \hspace{1pt}, \hspace{2pt} \ldots \hspace{2pt},   \\
+  %\hspace{-30pt}& \left\lVert Q_{n1}  \left(\frac{O_{n}} {\lVert O_{1} \rVert_1}\right) \right\rVert_{1} + \ldots + \left\lVert Q_{nm}  \left(\frac{O_{n}} {\lVert O_{1} \rVert_1}\right) \right\rVert_{1} \hspace{1pt}  \Bigg\}  \\
+  \hspace{-30pt} \Leftrightarrow  &  \sum_{i=1}^{n} \lVert O_i  \rVert_1 = 1   \wedge \max \left\{ \sum_{i=1}^{n} \sum_{j=1}^{m} \lVert Q_{ij} (O_{i}) \rVert_{1} \right\} \leq  \\
+  \hspace{-30pt}& \max \Bigg\{  \sum_{i=1}^{m}  \lVert Q_{1i}  \left(O_{1} / \lVert O_{1} \rVert_1\right) \rVert_{1} , \hspace{2pt} \ldots \hspace{2pt}, \sum_{i=1}^{m} \lVert Q_{ni}  \left(O_{n} / \lVert O_{n} \rVert_1\right) \rVert_{1} \Bigg\}  \\
+  \hspace{-30pt} \Leftrightarrow  &  \sum_{i=1}^{n} \lVert O_i  \rVert_1 = 1   \wedge \max \left\{ \sum_{i=1}^{n} \sum_{j=1}^{m} \lVert Q_{ij} (O_{i}) \rVert_{1} \right\} \leq   \\
+  \hspace{-30pt}& \max \Bigg\{ (1 / \lVert O_{1} \rVert_1) \sum_{i=1}^{m}  \lVert Q_{1i}  \left(O_{1} \right) \rVert_{1}, \hspace{2pt} \ldots \hspace{2pt}, (1 / \lVert O_{n} \rVert_1) \sum_{i=1}^{m} \lVert Q_{ni}  \left(O_{n}\right) \rVert_{1} \Bigg\}    
+  \end{align*}
+
+  This is equivalent to demonstrating that for all $a_1, \ldots, a_n, x_1, \ldots, x_n \in \mathbb{R}^{+}_{0}$ with $a_1+ \ldots + a_n=1$,
+  \begin{equation} 
+  \begin{split}
+      x_1 + \ldots + x_n  \leq  \max \left\{   \dfrac{1}{a_1} x_1  , \ldots , \dfrac{1}{a_n} x_n   \right\} \\
+  \end{split}
+  \end{equation}
+
+  Designating $M = \max \left\{   \dfrac{1}{a_1} x_1  , \ldots , \dfrac{1}{a_n} x_n   \right\}$, from the definition of maximum it follows that, for all $1 \leq i \leq n$, $x_i \leq M \cdot a_i$, and consequently, $x_1 + \ldots + x_n \leq M \cdot (a_1 + \ldots + a_n) = M$. Therefore, it holds that:
+  \begin{equation}
+    \lVert Q(O) \rVert_{1 \text{ gen}} \leq  \lVert Q \rVert_{1 \text{ gen}}.
+  \end{equation} 
+
+  As a result, it follows that for an operator $O \in \mathbb{C}^{o_1 \times o_1} \oplus \ldots \oplus  \mathbb{C}^{o_m \times o_m}$,  $ \left\lVert Q\left(\frac{O}{\lVert O \rVert_{1 \text{ gen}}}\right)  \right\rVert_{1 \text{ gen}}$ is upper bounded by $\lVert Q  \rVert_{1 \text{ gen}}$. Thus, \autoref{eq:qo<q} holds.

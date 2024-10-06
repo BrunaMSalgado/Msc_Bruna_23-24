@@ -1048,7 +1048,14 @@ Using \autoref{def:gen_norm}, it follows that the norms of the left and right in
   \end{equation}
 where $\|\cdot\|_{V}$ is a norm in vector space $V$ and $\|\cdot\|_{W}$ is a norm in vector space $W$.
 
-
+\begin{definition} \label{def:gen_1norm_matrix}
+  An operator $A \in \mathbb{C}^{o_1 \times o_1} \oplus \ldots \oplus \mathbb{C}^{o_ n\times o_n}$ can be decomposed as $A = (A_1, \ldots, A_n)$, where $A_i \in \mathbb{C}^{o_i \times o_i}$, for $1 \leq i \leq n$. The generalized trace norm of the operator $A$ is defined as follows:
+\begin{equation}
+  \begin{split}
+  \|Q\|_{1 \text{ gen}} & = \sum_{i=1}^{n} \|A_i\|_{1} \\
+  \end{split}
+\end{equation}
+\end{definition}
  
 Within this model, the superoperators take the form $Q: V_1 \oplus \ldots \oplus V_n  \rightarrow  W_1 \oplus \ldots \oplus W_m$, where each $V \in \{V_1, \ldots, V_n, W_1, \ldots, W_n\}$ is a vector space without direct sums.
 
@@ -1207,6 +1214,10 @@ Therefore,
   & \hspace{15pt} ,\hspace{2pt}  \ldots \hspace{2pt}  , \max \left\{ \sum_{i=1}^{m} \|Q_{ni} (A_n)\|_{1}   \mid \|A_n\|_{1} = 1 \right\} \Bigg\} 
   \end{split}
 \end{equation}
+Note that this definition is equivalent to the following:
+\begin{equation}
+  \|Q\|_{1 \text{ gen}} = \max \{ \|Q_1 (A_1)\|_{1 \text{ gen}}  \mid  \|A_1\|_{1} = 1, \hspace{2pt}\ldots \hspace{2pt}, \|Q_n (A_n)\|_{1 \text{ gen}}  \mid  \|A_n\|_{1} = 1  \}
+\end{equation}
 \end{definition}
 
 
@@ -1273,6 +1284,21 @@ Furthermore, for $q > o$, given that the vectors $w_1, w_2$ which  satisfy \auto
   Since $a_i \leq b_j$ for all $1 \leq j \leq m$, given that the maximum element of a set belongs to the set, it follows that $\max a_i \geq \max B$. From the definition of the maximum of a set, it follows that $\max A \geq a_i$. Therefore, $\max A \geq \max B$.
 \end{proof}
 
+\begin{lemma} \label{lemma:max_max}
+  Given sets $A_1, \ldots, A_n$, it holds that $\max \left\{\max A_1, \ldots, \max A_n\right\} = \max \cup_{i=1}^{n} A_i. $
+\end{lemma}
+\begin{proof}
+  Since $\max A_1 \in A_1, \ldots, \max A_n \in A_n$, it follows that $\{\max A_1, \ldots, \max A_n\} \in \cup_{i=1}^{n} A_i $. Consequentlty $\max \{\max A_1, \ldots, \max A_n\} \leq \max \cup_{i=1}^{n} A_i$. Considering that $ \forall a_{1i} \in A_1, \ldots, a_{ni} \in A_n, \max A_i \geq a_{1i}, \ldots, \max A_n \geq a_{ni}$,  it follows that 
+  $$\forall a_{1i} \in A_1, \ldots, a_{ni} \in A_n,\max \{\max A_1, \ldots, \max A_n\} \geq a_{1i}, \ldots, \max \{\max A_1, \ldots, \max A_n\} \geq a_{ni}.$$
+   As a result, $\max \{\max A_1, \ldots, \max A_n\} \geq \max \cup_{i=1}^{n} A_i$. Therefore, $\max \{\max A_1, \ldots, \max A_n\} = \max \cup_{i=1}^{n} A_i$.
+\end{proof}
+
+%\begin{lemma} \label{lemma:max_sum}
+%Given sets $A_1, \ldots, A_n$, with $\sum_{i=1}^{n} A_i = \{\sum_{i=1}^{n} a_{i} \mid a_i \in A_i\}$  it holds that $\sum_{i=1}^{n} \max A_i = \max \left\{\sum_{i=1}^{n} A_i\right\}$
+%\end{lemma}
+%\begin{proof}
+ % Since  $\max A_1 \in A_1, \ldots, \max A_n \in A_n$ , it follows  that $\sum_{i=1}^{n} \max A_i \in \left\{\sum_{i=1}^{n} A_i\right\}$. Consequentlty, $\sum_{i=1}^{n} \max A_i \leq \max \left\{\sum_{i=1}^{n} A_i\right\}$. Considering that $ \forall a_{1i} \in A_1, \ldots, a_{ni} \in A_n, \max A_1 \geq a_{1i}, \ldots,  \max A_n \geq a_{ni} $, it follows that $ \sum_{i=1}^{n} \max A_i \geq \max \left\{\sum_{i=1}^{n} A_i\right\} $. Therefore, $\sum_{i=1}^{n} \max A_i = \max \left\{\sum_{i=1}^{n} A_i\right\}$.
+%\end{proof}
 
 
 \begin{lemma}\label{lem:q(o)}
@@ -1283,60 +1309,87 @@ Furthermore, for $q > o$, given that the vectors $w_1, w_2$ which  satisfy \auto
 \end{lemma}
 
 \begin{proof}
-  $O$ can be written as  $O = \sum_{i=1}^{m} \underbrace{\textsc{Il} \cdot \ldots \cdot \textsc{Il}}_{n-i \times} \cdot   \underbrace{\textsc{Ir} \cdot \ldots \cdot \textsc{Ir}}_{i-1 \times} \cdot \hspace{2pt} O_{i} 
-$, where  $O_{i} \in \mathbb{C}^{p_i \times p_i}$ and $O_i =  \underbrace{\textsc{Pl} \cdot \ldots \cdot \textsc{Pl}}_{n-i \times} \cdot \underbrace{\textsc{Pr} \cdot \ldots \cdot \textsc{Pr}}_{i-1 \times} \cdot O $. Considering \autoref{def:gen_norm}, it follows that: 
+  %$O = \sum_{i=1}^{m} \underbrace{\textsc{Il} \cdot \ldots \cdot \textsc{Il}}_{n-i \times} \cdot   \underbrace{\textsc{Ir} \cdot \ldots \cdot \textsc{Ir}}_{i-1 \times} \cdot \hspace{2pt} O_{i} $
+  $O$ can be written as  $O = (O_1, \ldots, O_n)$, where  $O_{i} \in \mathbb{C}^{p_i \times p_i}$ and $O_i =  \underbrace{\textsc{Pl} \cdot \ldots \cdot \textsc{Pl}}_{n-i \times} \cdot \underbrace{\textsc{Pr} \cdot \ldots \cdot \textsc{Pr}}_{i-1 \times} \cdot O $ for $1 \leq i \leq n $. Considering \autoref{def:gen_norm}, it follows that: 
 \begin{equation}
-  \lVert O  \rVert_{1 \text{ gen}} = \lVert O_1 \rVert_{1} + \ldots + \lVert O_n \rVert_{1}.
+  \lVert O  \rVert_{1 \text{ gen}} =   \lVert O_1 \rVert_{1} + \ldots + \lVert O_n \rVert_{1}.
 \end{equation}
 
-Applying $O$ to $Q$ results in:
+Considering the decomposition of $Q$ as in \autoref{def:gen_norm_either}, applying $O$ to $Q$ results in:
 \begin{equation}
 \begin{split}
-Q(O) & = \underbrace{\textsc{Il} \cdot \ldots \cdot \textsc{Il}}_{m-1 \times} \cdot \hspace{1pt} Q_{11}  (O_{1}) + \ldots +   \underbrace{\textsc{Ir} \cdot \ldots \cdot \textsc{Ir}}_{m-1 \times}\cdot \hspace{1pt} Q_{1m} (O_{1}) + \ldots +  \underbrace{\textsc{Il} \cdot \ldots \cdot \textsc{Il}}_{m-1 \times} \cdot\hspace{1pt} Q_{n1} (O_{n}) +  \ldots \\
-& \hspace{10pt}  + \underbrace{\textsc{Ir} \cdot \ldots \cdot \textsc{Ir}}_{m-1 \times}\cdot \hspace{1pt} Q_{nm}  (O_{n})
+Q(O) & = [Q_1, \ldots, Q_n] (O_1, \ldots, O_n) =  \sum_{i=1}^{n} Q_i(O_i) \\
+%\underbrace{\textsc{Il} \cdot \ldots \cdot \textsc{Il}}_{m-1 \times} \cdot \hspace{1pt} Q_{11}  (O_{1}) + \ldots +   \underbrace{\textsc{Ir} \cdot \ldots \cdot \textsc{Ir}}_{m-1 \times}\cdot \hspace{1pt} Q_{1m} (O_{1}) + \ldots +  \underbrace{\textsc{Il} \cdot \ldots \cdot \textsc{Il}}_{m-1 \times} \cdot\hspace{1pt} Q_{n1} (O_{n}) +  \ldots \\
+%& \hspace{10pt}  + \underbrace{\textsc{Ir} \cdot \ldots \cdot \textsc{Ir}}_{m-1 \times}\cdot \hspace{1pt} Q_{nm}  (O_{n})
 \end{split}
 \end{equation}
 
-As a result, the generalized trace norm of $Q(O)$ corresponds to:
+As a result, considering the triangle inequality, it follows that:
 \begin{equation} \label{eq:qo}
   \begin{split}
-  \lVert Q(O)  \rVert_{1 \text{ gen}} & = \lVert Q_{11} (O_{1}) \rVert_{1} + \ldots + \lVert Q_{1m} (O_{1}) \rVert_{1} + \ldots +  \lVert Q_{n1} (O_{m})  \rVert_{1} +  \ldots +  \lVert Q_{nm} (O_{n}) \rVert_{1}. 
+  \lVert Q(O)  \rVert_{1 \text{ gen}} & \leq   \sum_{i=1}^{n} \lVert Q_{i} (O_{i}) \rVert_{1 \text{ gen}}.
+  %\sum_{i=1}^{n} \sum_{j=1}^{m} \lVert Q_{ij} (O_{i}) \rVert_{1}.
+  %\lVert Q_{11} (O_{1}) \rVert_{1} + \ldots + \lVert Q_{1m} (O_{1}) \rVert_{1} + \ldots +  \lVert Q_{n1} (O_{n})  \rVert_{1} +  \ldots +  \lVert Q_{nm} (O_{n}) \rVert_{1}. 
   \end{split}
 \end {equation}
 The generalized trace norm of $Q$ is given by:
 \begin{equation}
   \begin{split} \label{eq:q}
-  &\lVert Q  \rVert_{1 \text{ gen}} = \max \{ \lVert Q_{11} \rVert_{1} + \ldots + \lVert Q_{1m} \rVert_{1}, \hspace{2pt} \ldots \hspace{2pt}, \lVert Q_{n1} \rVert_{1} + \ldots + \lVert Q_{nm} \rVert_{1} \} \\
- & = \max \{ \max \{ \lVert Q_{11} (A_{1}) \rVert_{1} \hspace{1pt}  \mid   \lVert A_{1} \rVert_{1} = 1 \} + \ldots + &  \{\text{\autoref{def:trace_norm_superoperator}}\} \\
- & \hspace{15pt}  \max \{  \lVert Q_{1m} (A_{1}) \rVert_{1} \hspace{1pt}  \mid   \lVert A_{1} \rVert_{1} = 1 \} , \hspace{1pt} \ldots \hspace{1pt}, \max \{ \lVert Q_{n1} (A_{n}) \rVert_{1} \hspace{1pt}  \mid   \lVert A_{n} \rVert_{1} = 1 \}   \\
- &\hspace{15pt} + \ldots +  \max \{ \lVert Q_{nn} (A_{n}) \rVert_{1}   \mid \lVert A_{n} \rVert_{1} = 1 \}\}\\
- & = \max \{ \lVert Q_{11} (A_{1}) \rVert_{1} \hspace{1pt}  + \ldots +  \lVert Q_{1m} (A_{1}) \rVert_{1} \hspace{1pt} , \hspace{2pt} \ldots \hspace{2pt}, \lVert Q_{n1} (A_{n}) \rVert_{1}  + \ldots +  \\
- & \hspace{15pt} \lVert Q_{nm} (A_{n}) \rVert_{1} \hspace{1pt}  \mid \hspace{1pt}   \lVert A_{1} \rVert_{1} = 1, \ldots, \lVert A_{n} \rVert_{1} = 1 \}
+  \lVert Q  \rVert_{1 \text{ gen}} & =   \max  \{ \max \left\{\|Q_{1} (A_1)\|_{1 \text{ gen}}   \mid \hspace{1pt} \|A_1\|_{1} = 1 \right\} & \{\text{\autoref{def:gen_1norm}}\} \\
+  & \hspace{15pt} ,\hspace{2pt}  \ldots \hspace{2pt}  , \max \left\{  \|Q_{n} (A_n)\|_{1 \text{ gen}}   \mid \|A_n\|_{1} = 1 \right\} \Bigg\} \\
+ & = \max \Bigg\{   \lVert Q_{1} (A_{1}) \rVert_{1 \text{ gen}} \hspace{1pt} , \hspace{2pt} \ldots \hspace{2pt}, \lVert Q_{n} (A_{n}) \rVert_{1 \text{ gen}} \mid \hspace{1pt}   \lVert A_{1} \rVert_{1} = 1  & \{\text{\autoref{lemma:max_max}} \} \\
+ & \hspace{15pt} , \ldots,\lVert A_{n} \rVert_{1} = 1\}
+ %& \hspace{15pt} , \ldots,\lVert A_{n} \rVert_{1} = 1 \Bigg\}.
+ %\lVert Q  \rVert_{1 \text{ gen}} & =   \max  \Bigg\{ \max \left\{ \sum_{i=1}^{m} \|Q_{1i} (A_1)\|_{1}   \mid \hspace{1pt} \|A_1\|_{1} = 1 \right\} & \{\text{\autoref{def:gen_1norm}}\} \\
+ %& \hspace{15pt} ,\hspace{2pt}  \ldots \hspace{2pt}  , \max \left\{ \sum_{i=1}^{m} \|Q_{ni} (A_n)\|_{1}   \mid \|A_n\|_{1} = 1 \right\} \Bigg\} \\
+%& = \max \Bigg\{  \sum_{i=1}^{m}  \lVert Q_{1i} (A_{1}) \rVert_{1} \hspace{1pt} , \hspace{2pt} \ldots \hspace{2pt}, \sum_{i=1}^{m} \lVert Q_{ni} (A_{n}) \rVert_{1} \mid \hspace{1pt}   \lVert A_{1} \rVert_{1} = 1  & \{\text{\autoref{lemma:max_max}} \} \\
+%& \hspace{15pt} , \ldots,\lVert A_{n} \rVert_{1} = 1 \Bigg\}
   \end{split}
 \end{equation}
 
 
-Thus, if  $\lVert O \rVert_{1 \text{ gen}} = 1$,
-\begin{align*}
-  \hspace{-30pt}&  \lVert O_1  \rVert_1  + \ldots + \lVert O_n  \rVert_1 = 1  \wedge \lVert Q(O) \rVert_{1 \text{ gen}} \leq  \lVert Q \rVert_{1 \text{ gen}} \\
-  \hspace{-30pt} \Leftrightarrow  & \lVert O_1  \rVert_1  + \ldots + \lVert O_n  \rVert_1 = 1  \wedge  \lVert Q_{11} (O_{1}) \rVert_{1} + \ldots +  \lVert Q_{1m} (O_{1}) \rVert_{1} + \ldots +  \hspace{10pt}&   \{\text{\autoref{eq:qo}}, \\
-  \hspace{-30pt} & \lVert Q_{n1} (O_{m}) \rVert_{1} +  \ldots  + \lVert Q_{nm} (O_{n}) \rVert_{1}   & \text{\autoref{eq:q}} \} \\
-  \hspace{-30pt}& \leq \max \{ \lVert Q_{11} (A_{1}) \rVert_{1} \hspace{1pt} + \ldots +  \lVert Q_{1m} (A_{1}) \rVert_{1}, \hspace{2pt} \ldots \hspace{2pt},  \lVert Q_{n1} (A_{n}) \rVert_{1} + \ldots +   \\
-  \hspace{-30pt}&\lVert Q_{nm} (A_{n}) \rVert_{1}  \mid  \lVert A_{1} \rVert_{1} = 1, \ldots, \lVert A_{n} \rVert_{1} = 1 \} \\
-  %\hspace{-30pt} \Leftrightarrow  & \lVert O_1  \rVert_1  + \ldots + \lVert O_n  \rVert_1 = 1  \wedge  \lVert Q_{11} \cdot O_{1} \rVert_{1} + \ldots +  \lVert Q_{1m} \cdot O_{1} \rVert_{1} + \ldots +  \hspace{10pt}  \\
-  %\hspace{-30pt}& \leq \max \Bigg\{ \left\lVert Q_{11} \left(\frac{O_{1}} {\lVert O_{1} \rVert_1}\right) \right\rVert_{1} \hspace{1pt} + \ldots +  \left\lVert Q_{1m} \left(\frac{O_{1}} {\lVert O_{1} \rVert_1}\right)  \right\rVert_{1} \hspace{1pt}, \hspace{2pt} \ldots \hspace{2pt},   \\
-  %\hspace{-30pt}& \left\lVert Q_{n1}  \left(\frac{O_{n}} {\lVert O_{1} \rVert_1}\right) \right\rVert_{1} + \ldots + \left\lVert Q_{nm}  \left(\frac{O_{n}} {\lVert O_{1} \rVert_1}\right) \right\rVert_{1} \hspace{1pt}  \Bigg\}  \\
-  \hspace{-30pt} \Leftrightarrow  & \lVert O_1  \rVert_1  + \ldots + \lVert O_n  \rVert_1 = 1  \wedge  \lVert Q_{11} (O_{1}) \rVert_{1} + \ldots +  \lVert Q_{1m} (O_{1}) \rVert_{1} + \ldots +  \hspace{10pt}\\
-  \hspace{-30pt} & \lVert Q_{n1} (O_{m}) \rVert_{1} +  \ldots  + \lVert Q_{nm} (O_{n}) \rVert_{1}   \\
-  \hspace{-30pt}& \leq \max \{ \left\lVert Q_{11} \left(O_{1} / \lVert O_{1} \rVert_1\right) \right\rVert_{1} \hspace{1pt} + \ldots +  \left\lVert Q_{1m}  \left(O_{1} / \lVert O_{1} \rVert_1\right) \right\rVert_{1}, \hspace{2pt} \ldots \hspace{2pt},   \\
-  \hspace{-30pt}& \left\lVert Q_{n1}  \left(O_{n} / \lVert O_{n} \rVert_1\right) \right\rVert_{1} + \ldots + \left\lVert Q_{nm}   \left(O_{n} / \lVert O_{n} \rVert_1\right) \right\rVert_{1} \hspace{1pt} \}  \\
-  \hspace{-30pt} \Leftrightarrow  & \lVert O_1  \rVert_1  + \ldots + \lVert O_n  \rVert_1 = 1  \wedge  \lVert Q_{11} (O_{1}) \rVert_{1} + \ldots +  \lVert Q_{1m} (O_{1}) \rVert_{1} + \ldots +  \hspace{10pt}\\
-  \hspace{-30pt} & \lVert Q_{n1} (O_{m}) \rVert_{1} +  \ldots  + \lVert Q_{nm} (O_{n}) \rVert_{1}   \\
-  \hspace{-30pt}& \leq \max \{ (1 / \lVert O_{1} \rVert_1)   \left(\lVert Q_{11} (O_{1}) \rVert_{1} \hspace{1pt} + \ldots +  \lVert Q_{1m} (O_{1})\rVert_{1} \right), \hspace{2pt} \ldots \hspace{2pt},   \\
-  \hspace{-30pt}& (1 / \lVert O_{n} \rVert_1)   \left(\lVert Q_{n1} (O_{n}) \rVert_{1} \hspace{1pt} + \ldots +  \lVert Q_{nm} (O_{n})\rVert_{1} \right) \}  
-  \end{align*}
+To prove that  if  $\lVert O \rVert_{1 \text{ gen}} = 1$
+\begin{equation} \label{eq:qo<q}
+  \lVert Q(O) \rVert_{1 \text{ gen}} \leq \lVert Q \rVert_{1 \text{ gen}},
+\end{equation}
+is equivalent to demonstrating that,
+\begin{equation}
+ \max \left\{ \lVert Q(O) \rVert_{1 \text{ gen}} \hspace{2pt}  \Biggm| \hspace{2pt}  \sum_{i=1}^{n} \lVert O_i  \rVert_1 = 1 \right\} \leq \lVert Q \rVert_{1 \text{ gen}},
+\end{equation}
 
-  This is equivalent to demonstrating that for $a_1, \ldots, a_n, x_1, \ldots, x_n \in \mathbb{R}^{+}_{0}$ with $a_1+ \ldots + a_n=1$,
+Given \autoref{eq:qo} and \autoref{eq:q}, if the following inequality holds, then \autoref{eq:qo<q} also holds.
+\begin{equation}
+  \begin{split}
+    &\max \left\{   \sum_{i=1}^{n} \lVert Q_{i} (O_{i}) \rVert_{1 \text{ gen}} \hspace{2pt}  \Biggm| \hspace{2pt}  \sum_{i=1}^{n} \lVert O_i  \rVert_1 = 1 \right\}  \\
+    & \leq \max \{   \lVert Q_{1} (A_{1}) \rVert_{1  \text{ gen}}, \hspace{2pt} \ldots \hspace{2pt},  \lVert Q_{n} (A_{n}) \rVert_{1  \text{ gen}} \mid   \lVert A_{1} \rVert_{1} = 1 , \ldots,\lVert A_{n} \rVert_{1} = 1\}   \\
+  \end{split}
+\end{equation}
+
+Considering $O_1, \ldots, O_n$ as the matrices that maximize the left-hand side of the inequality, it follows that:
+\begin{equation}
+  \begin{split}
+    & \max \{   \lVert Q_{1} (A_{1}) \rVert_{1  \text{ gen}}, \hspace{2pt} \ldots \hspace{2pt},  \lVert Q_{n} (A_{n}) \rVert_{1  \text{ gen}} \mid   \lVert A_{1} \rVert_{1} = 1 , \ldots,\lVert A_{n} \rVert_{1} = 1\} \\
+    &\geq  \max \left\{    \lVert Q_{1} (O_{1} / \lVert O_{1} \rVert_1) \rVert_{1  \text{ gen}}, \hspace{2pt} \ldots \hspace{2pt},   \lVert Q_{n} (O_{n}/ \lVert O_{n} \rVert_1) \rVert_{1  \text{ gen}} \right\} .
+  \end{split}
+  \end{equation}
+
+  Consequentlty, proving the following inequality is equivalent to demonstrating that \autoref{eq:qo<q} holds.
+  \begin{equation}
+    \begin{split}
+     &\max \left\{   \sum_{i=1}^{n} \lVert Q_{i} (O_{i}) \rVert_{1 \text{ gen}} \hspace{2pt} \right\} \leq \max \{    \lVert Q_{1} (O_{1} / \lVert O_{1} \rVert_1) \rVert_{1  \text{ gen}}, \hspace{2pt} \ldots \hspace{2pt},   \lVert Q_{n} (O_{n}/ \lVert O_{n} \rVert_1) \rVert_{1  \text{ gen}} \} \\
+     &  \wedge \sum_{i=1}^{n} \lVert O_i  \rVert_1 = 1
+    \end{split}
+  \end{equation}
+
+This inequality can be rewritten as:
+\begin{equation}
+  \begin{split}
+  &\max \left\{   \sum_{i=1}^{n} \lVert Q_{i} (O_{i}) \rVert_{1 \text{ gen}} \hspace{2pt} \right\} \leq \max \left\{  (1 / \lVert O_{1} \rVert_1)   \lVert Q_{1} (O_{1}) \rVert_{1  \text{ gen}}, \hspace{2pt} \ldots \hspace{2pt},  (1 / \lVert O_{n} \rVert_1)  \lVert Q_{n} (O_{n}) \rVert_{1  \text{ gen}} \right\}   \\
+  & \wedge \sum_{i=1}^{n} \lVert O_i  \rVert_1 = 1. 
+\end{split}  
+\end{equation}
+
+  This is equivalent to demonstrating that for all $a_1, \ldots, a_n, x_1, \ldots, x_n \in \mathbb{R}^{+}_{0}$ with $a_1+ \ldots + a_n=1$,
   \begin{equation} 
   \begin{split}
       x_1 + \ldots + x_n  \leq  \max \left\{   \dfrac{1}{a_1} x_1  , \ldots , \dfrac{1}{a_n} x_n   \right\} \\
@@ -1348,10 +1401,7 @@ Thus, if  $\lVert O \rVert_{1 \text{ gen}} = 1$,
     \lVert Q(O) \rVert_{1 \text{ gen}} \leq  \lVert Q \rVert_{1 \text{ gen}}.
   \end{equation} 
 
-  As a result, it follows that for an operator $O \in \mathbb{C}^{o_1 \times o_1} \oplus \ldots \oplus  \mathbb{C}^{o_m \times o_m}$,  $ \left\lVert Q\left(\frac{O}{\lVert O \rVert_{1 \text{ gen}}}\right)  \right\rVert_{1 \text{ gen}}$ is upper bounded by $\lVert Q  \rVert_{1 \text{ gen}}$. Thus, 
-\begin{equation}
-  \lVert Q(O) \rVert_{1 \text{ gen}} \leq \lVert Q  \rVert_{1 \text{ gen}} \cdot \lVert O  \rVert_{1 \text{ gen}}.
-\end{equation}
+  As a result, it follows that for an operator $O \in \mathbb{C}^{o_1 \times o_1} \oplus \ldots \oplus  \mathbb{C}^{o_m \times o_m}$,  $ \left\lVert Q\left(\frac{O}{\lVert O \rVert_{1 \text{ gen}}}\right)  \right\rVert_{1 \text{ gen}}$ is upper bounded by $\lVert Q  \rVert_{1 \text{ gen}}$. Thus, \autoref{eq:qo<q} holds.
 \end{proof}
 
 
@@ -1437,24 +1487,25 @@ which completes the proof.
 
 
 
-\begin{lemma}\label{lem:gen_trace_submultiplicative}
+\begin{proposition}\label{lem:gen_trace_submultiplicative}
   The generalized trace norm is submultiplicative with respect to composition of super‑operators, \textit{i.e.}, for all super-operators $Q: \mathbb{C}^{o_1 \times o_1} \oplus \ldots \oplus \mathbb{C}^{o_n \times o_n}  \rightarrow \mathbb{C}^{p_1 \times p_1} \oplus \ldots \oplus  \mathbb{C}^{p_m \times p_m}$ and $S: \mathbb{C}^{p_1 \times p_1} \oplus \ldots \oplus \mathbb{C}^{p_m \times p_m}  \rightarrow \mathbb{C}^{q_1 \times q_1} \oplus \ldots \oplus \mathbb{C}^{q_t \times q_t}$, it holds that:
   \begin{equation} \label{eq:gen_trace_submultiplicative}
     \lVert S  Q \rVert_{1 \text{ gen}} \leq \lVert S \rVert_{1 \text{ gen}} \lVert Q \rVert_{1 \text{ gen}}
   \end{equation}
-\end{lemma}
+\end{proposition}
 
 \begin{proof}
-The composition of two superoperators $Q: \mathbb{C}^{o_1 \times o_1} \oplus \ldots \oplus \mathbb{C}^{o_n \times o_n}  \rightarrow \mathbb{C}^{p_1 \times p_1} \oplus \ldots \oplus  \mathbb{C}^{p_m \times p_m}$ and $S: \mathbb{C}^{p_1 \times p_1} \oplus \ldots \oplus \mathbb{C}^{p_m \times p_m}  \rightarrow \mathbb{C}^{q_1 \times q_1} \oplus \ldots \oplus \mathbb{C}^{q_t \times q_t}$ corresponds to 
-\begin{equation}
-  \begin{split}
-    & S \cdot  Q =[\underbrace{\textsc{Il} \cdot \ldots \cdot \textsc{Il}}_{t-1 \times} \cdot \hspace{1pt} S_{11} + \ldots +   \underbrace{\textsc{Ir} \cdot \ldots \cdot \textsc{Ir}}_{t-1 \times}\cdot \hspace{1pt} S_{1t},  \hspace{2pt} \ldots  \hspace{2pt},  \underbrace{\textsc{Il} \cdot \ldots \cdot \textsc{Il}}_{t-1 \times} \cdot\hspace{1pt} S_{m1} + \ldots + \underbrace{\textsc{Ir} \cdot \ldots \cdot \textsc{Ir}}_{t-1 \times}\cdot \hspace{1pt} S_{mt}] \\
-     & \hspace{21pt}\cdot  [\underbrace{\textsc{Il} \cdot \ldots \cdot \textsc{Il}}_{m-1 \times} \cdot \hspace{1pt} Q_{11} + \ldots +   \underbrace{\textsc{Ir} \cdot \ldots \cdot \textsc{Ir}}_{m-1 \times}\cdot \hspace{1pt} Q_{1m},  \hspace{2pt} \ldots  \hspace{2pt},  \underbrace{\textsc{Il} \cdot \ldots \cdot \textsc{Il}}_{m-1 \times} \cdot\hspace{1pt} Q_{n1} + \ldots + \underbrace{\textsc{Ir} \cdot \ldots \cdot \textsc{Ir}}_{m-1 \times}\cdot \hspace{1pt} Q_{nm}]  \\
-     & \hspace{21pt} = [ \underbrace{\textsc{Il} \cdot \ldots \cdot \textsc{Il}}_{t-1 \times} \cdot \hspace{1pt} S_{11} \cdot Q_{11} + \ldots +   \underbrace{\textsc{Ir} \cdot \ldots \cdot \textsc{Ir}}_{t-1 \times}\cdot \hspace{1pt} S_{1t} \cdot Q_{11} + \ldots +  \underbrace{\textsc{Il} \cdot \ldots \cdot \textsc{Il}}_{t-1 \times} \cdot\hspace{1pt} S_{m1} \cdot Q_{1m} +  \ldots \\
-     & \hspace{22pt}  + \underbrace{\textsc{Ir} \cdot \ldots \cdot \textsc{Ir}}_{t-1 \times}\cdot \hspace{1pt} S_{mt} \cdot Q_{1m}, \hspace{2pt} \ldots  \hspace{2pt},  \underbrace{\textsc{Il} \cdot \ldots \cdot \textsc{Il}}_{t-1 \times} \cdot \hspace{1pt} S_{11} \cdot Q_{n1} + \ldots +   \underbrace{\textsc{Ir} \cdot \ldots \cdot \textsc{Ir}}_{t-1 \times}\cdot \hspace{1pt} S_{1t} \cdot Q_{n1} + \ldots   \\
-     & \hspace{22pt} +  \underbrace{\textsc{Il} \cdot \ldots \cdot \textsc{Il}}_{t-1 \times} \cdot\hspace{1pt} S_{m1} \cdot Q_{nm} + \ldots + \underbrace{\textsc{Ir} \cdot \ldots \cdot \textsc{Ir}}_{t-1 \times}\cdot \hspace{1pt} S_{mt} \cdot Q_{nm}]
-  \end{split}
-\end{equation}
+%The composition of two superoperators $Q: \mathbb{C}^{o_1 \times o_1} \oplus \ldots \oplus \mathbb{C}^{o_n \times o_n}  \rightarrow \mathbb{C}^{p_1 \times p_1} \oplus \ldots \oplus  \mathbb{C}^{p_m \times p_m}$ and $S: \mathbb{C}^{p_1 \times p_1} \oplus \ldots \oplus \mathbb{C}^{p_m \times p_m}  \rightarrow \mathbb{C}^{q_1 \times q_1} \oplus \ldots \oplus \mathbb{C}^{q_t \times q_t}$ corresponds to 
+%\begin{equation}
+  %\begin{split}
+    %S \cdot  Q = [S_1, \ldots, S_m] \cdot [Q_1, \ldots, Q_n] = [].
+    %& S \cdot  Q =[\underbrace{\textsc{Il} \cdot \ldots \cdot \textsc{Il}}_{t-1 \times} \cdot \hspace{1pt} S_{11} + \ldots +   \underbrace{\textsc{Ir} \cdot \ldots \cdot \textsc{Ir}}_{t-1 \times}\cdot \hspace{1pt} S_{1t},  \hspace{2pt} \ldots  \hspace{2pt},  \underbrace{\textsc{Il} \cdot \ldots \cdot \textsc{Il}}_{t-1 \times} \cdot\hspace{1pt} S_{m1} + \ldots + \underbrace{\textsc{Ir} \cdot \ldots \cdot \textsc{Ir}}_{t-1 \times}\cdot \hspace{1pt} S_{mt}] \\
+     %& \hspace{21pt}\cdot  [\underbrace{\textsc{Il} \cdot \ldots \cdot \textsc{Il}}_{m-1 \times} \cdot \hspace{1pt} Q_{11} + \ldots +   \underbrace{\textsc{Ir} \cdot \ldots \cdot \textsc{Ir}}_{m-1 \times}\cdot \hspace{1pt} Q_{1m},  \hspace{2pt} \ldots  \hspace{2pt},  \underbrace{\textsc{Il} \cdot \ldots \cdot \textsc{Il}}_{m-1 \times} \cdot\hspace{1pt} Q_{n1} + \ldots + \underbrace{\textsc{Ir} \cdot \ldots \cdot \textsc{Ir}}_{m-1 \times}\cdot \hspace{1pt} Q_{nm}]  \\
+     %& \hspace{21pt} = [ \underbrace{\textsc{Il} \cdot \ldots \cdot \textsc{Il}}_{t-1 \times} \cdot \hspace{1pt} S_{11} \cdot Q_{11} + \ldots +   \underbrace{\textsc{Ir} \cdot \ldots \cdot \textsc{Ir}}_{t-1 \times}\cdot \hspace{1pt} S_{1t} \cdot Q_{11} + \ldots +  \underbrace{\textsc{Il} \cdot \ldots \cdot \textsc{Il}}_{t-1 \times} \cdot\hspace{1pt} S_{m1} \cdot Q_{1m} +  \ldots \\
+     %& \hspace{22pt}  + \underbrace{\textsc{Ir} \cdot \ldots \cdot \textsc{Ir}}_{t-1 \times}\cdot \hspace{1pt} S_{mt} \cdot Q_{1m}, \hspace{2pt} \ldots  \hspace{2pt},  \underbrace{\textsc{Il} \cdot \ldots \cdot \textsc{Il}}_{t-1 \times} \cdot \hspace{1pt} S_{11} \cdot Q_{n1} + \ldots +   \underbrace{\textsc{Ir} \cdot \ldots \cdot \textsc{Ir}}_{t-1 \times}\cdot \hspace{1pt} S_{1t} \cdot Q_{n1} + \ldots   \\
+     %& \hspace{22pt} +  \underbrace{\textsc{Il} \cdot \ldots \cdot \textsc{Il}}_{t-1 \times} \cdot\hspace{1pt} S_{m1} \cdot Q_{nm} + \ldots + \underbrace{\textsc{Ir} \cdot \ldots \cdot \textsc{Ir}}_{t-1 \times}\cdot \hspace{1pt} S_{mt} \cdot Q_{nm}]
+  %\end{split}
+%\end{equation}
 
 
 
@@ -1468,27 +1519,28 @@ The composition of two superoperators $Q: \mathbb{C}^{o_1 \times o_1} \oplus \ld
 %\end{equation}
 
 
-Note that if $Q$ is decomposed as  $Q=[Q_1, \ldots, Q_n]$, where $Q_1, \ldots, Q_n$ are defined as in \autoref{def:gen_norm_either}, then for $ 1 \leq i \leq n$  $Q_i = \underbrace{\textsc{Il} \cdot \ldots \cdot \textsc{Il}}_{m-1 \times} \cdot \hspace{2pt} Q_{i1} + \ldots +  \underbrace{\textsc{Ir} \cdot \ldots \cdot \textsc{Ir}}_{m-1 \times} \cdot \hspace{2pt} Q_{im}$.
-Consequently, $S \cdot Q$ can also be defined as follows:
+Considering the decomposition  $Q=[Q_1, \ldots, Q_n]$, where $Q_1, \ldots, Q_n$ are defined as in \autoref{def:gen_norm_either}, and for $ 1 \leq i \leq n$  $Q_i = \sum_{j=1}^{m} \underbrace{\textsc{Il} \cdot \ldots \cdot \textsc{Il}}_{m-i \times} \cdot  \underbrace{\textsc{Ir} \cdot \ldots \cdot \textsc{Ir}}_{i-1 \times} \cdot \hspace{2pt} Q_{ij}$, the composition $S \cdot Q$ can also be defined as follows:
 \begin{equation}
   S \cdot Q = [S \cdot Q_1, \ldots, S \cdot Q_n].
 \end {equation}
-where 
+where, 
 \begin{equation}
   \begin{split}
-  S \cdot Q_i & = \underbrace{\textsc{Il} \cdot \ldots \cdot \textsc{Il}}_{t-1 \times} \cdot \hspace{1pt} S_{11} \cdot Q_{i1} + \ldots +   \underbrace{\textsc{Ir} \cdot \ldots \cdot \textsc{Ir}}_{t-1 \times}\cdot \hspace{1pt} S_{1t} \cdot Q_{i1} + \ldots +  \underbrace{\textsc{Il} \cdot \ldots \cdot \textsc{Il}}_{t-1 \times} \cdot\hspace{1pt} S_{m1} \cdot Q_{im} +  \ldots \\
-  & \hspace{10pt}  + \underbrace{\textsc{Ir} \cdot \ldots \cdot \textsc{Ir}}_{t-1 \times}\cdot \hspace{1pt} S_{mt} \cdot Q_{im},
+  S \cdot Q_i & \leq  \sum_{j=1}^{m} \sum_{k=1}^{t} \underbrace{\textsc{Il} \cdot \ldots \cdot \textsc{Il}}_{t-k \times} \cdot  \underbrace{\textsc{Ir} \cdot \ldots \cdot \textsc{Ir}}_{k-1 \times} \cdot \hspace{2pt} S_{jk} \cdot Q_{ij}
   \end{split}
 \end{equation}
 
 
 Attending to \autoref{def:gen_norm_either}, it follows that:
 \begin{equation} \label{eq:sq_decomposed_norm}
-\lVert S \cdot  Q \rVert_{1 \text{ gen}} = \max \{ \lVert S \cdot Q_1 \rVert_{1 \text{ gen}}, \ldots, \lVert S \cdot Q_n \rVert_{1 \text{ gen}} \},
+  \begin{split}
+ \lVert S \cdot  Q \rVert_{1 \text{ gen}} & = \max \{ \max \{\lVert S \cdot Q_1 (A_1) \rVert_{1 \text{ gen}} \mid \|A_1\|_{1} = 1\} \\
+& \hspace{15pt} , \ldots, \max \{\lVert S \cdot Q_n (A_n) \rVert_{1 \text{ gen}} \mid \|A_n\|_{1} = 1 \} \},
+\end{split}
 \end{equation}
-where 
+where,
 \begin{equation} \label{eq:sqi_norm}
-\lVert S \cdot Q_i \rVert_{1 \text{ gen}} =  \lVert S_{11} \cdot Q_{i1} \rVert_{1} + \ldots + \lVert S_{1t} \cdot Q_{i1} \rVert_{1} + \ldots +  \lVert S_{m1} \cdot Q_{im} \rVert_{1} +  \ldots +  \lVert S_{mt} \cdot Q_{im} \rVert_{1}
+\lVert S \cdot Q_i (A_i) \rVert_{1 \text{ gen}} = \sum_{k=1}^{t} \left\| \sum_{j=1}^{m} S_{jk} \cdot Q_{ij} (A_i) \right\|_{1}.
 \end{equation} 
 for all $1 \leq i \leq n$.
 
@@ -1526,58 +1578,45 @@ Let $P \in \mathbb{C}^{p_1 \times p_1} \oplus \ldots \oplus  \mathbb{C}^{p_m \t
 \end{equation}
 As a result, 
 \begin{equation} \label{ineq:gen_trace_submultiplicative_O}
-  \lVert S (Q_i (O_i)) \rVert_{1 \text{ gen}} \leq \lVert S  \rVert_{1 \text{ gen}} \cdot \lVert Q_i (O_i)  \rVert_{1 \text{ gen}},
+  \lVert S (Q_i (A_i)) \rVert_{1 \text{ gen}} \leq \lVert S  \rVert_{1 \text{ gen}} \cdot \lVert Q_i (A_i)  \rVert_{1 \text{ gen}},
 \end{equation}
 for all $O_i \in \mathbb{C}^{o_i \times o_i}$ and $1 \leq i \leq n$. 
 
 Given that
 \begin{equation}
 \begin{split} 
-  S (Q_i (O_i)) & = \underbrace{\textsc{Il} \cdot \ldots \cdot \textsc{Il}}_{t-1 \times} \cdot \hspace{1pt} S_{11} \cdot Q_{i1} \cdot O_{i} + \ldots + \underbrace{\textsc{Ir} \cdot \ldots \cdot \textsc{Ir}}_{t-1 \times} \cdot \hspace{1pt} S_{1t} \cdot Q_{i1} \cdot O_{i} + \ldots +      \\
-  & \hspace{15pt}  \underbrace{\textsc{Il} \cdot \ldots \cdot \textsc{Il}}_{t-1 \times}\cdot \hspace{1pt} S_{m1} \cdot Q_{im} \cdot O_{i} + \ldots + \underbrace{\textsc{Ir} \cdot \ldots \cdot \textsc{Ir}}_{t-1 \times} \cdot \hspace{1pt} S_{mt} \cdot Q_{im} \cdot O_{i},
+  S \cdot Q_i (A_i) & =  \sum_{j=1}^{m} \sum_{k=1}^{t} \underbrace{\textsc{Il} \cdot \ldots \cdot \textsc{Il}}_{t-k \times} \cdot  \underbrace{\textsc{Ir} \cdot \ldots \cdot \textsc{Ir}}_{k-1 \times} \cdot \hspace{2pt} S_{jk} \cdot Q_{ij}(A_i)
+  %S (Q_i (O_i)) & = \underbrace{\textsc{Il} \cdot \ldots \cdot \textsc{Il}}_{t-1 \times} \cdot \hspace{1pt} S_{11} \cdot Q_{i1} \cdot O_{i} + \ldots + \underbrace{\textsc{Ir} \cdot \ldots \cdot \textsc{Ir}}_{t-1 \times} \cdot \hspace{1pt} S_{1t} \cdot Q_{i1} \cdot O_{i} + \ldots +      \\
+  %& \hspace{15pt}  \underbrace{\textsc{Il} \cdot \ldots \cdot \textsc{Il}}_{t-1 \times}\cdot \hspace{1pt} S_{m1} \cdot Q_{im} \cdot O_{i} + \ldots + \underbrace{\textsc{Ir} \cdot \ldots \cdot \textsc{Ir}}_{t-1 \times} \cdot \hspace{1pt} S_{mt} \cdot Q_{im} \cdot O_{i},
 \end{split}
 \end{equation}
 and that
 \begin{equation}
   \begin{split}
-     Q_i (O_i) = \underbrace{\textsc{Il} \cdot \ldots \cdot \textsc{Il}}_{m-1 \times} \cdot \hspace{2pt} Q_{i1} \cdot O_{i} + \ldots +  \underbrace{\textsc{Ir } \cdot \ldots \cdot \textsc{Ir}}_{m-1 \times} \cdot \hspace{2pt} Q_{im} \cdot O_{i},
+     Q_i (A_i) =  \sum_{j=1}^{m} \underbrace{\textsc{Il} \cdot \ldots \cdot \textsc{Il}}_{m-j \times} \cdot  \underbrace{\textsc{Ir} \cdot \ldots \cdot \textsc{Ir}}_{j-1 \times} \cdot \hspace{2pt} Q_{ij}(A_i),
   \end{split}
 \end{equation}
-considering \autoref{def:gen_norm}, \autoref{ineq:gen_trace_submultiplicative_O} can be rewritten as:
+considering \autoref{def:gen_1norm_matrix},    \autoref{ineq:gen_trace_submultiplicative_O} can be rewritten as:
 \begin{equation}
-  \begin{split}
-  &\lVert S_{11} \cdot Q_{i1} \cdot O_{i} \rVert_{1} + \ldots + \lVert S_{1t} \cdot Q_{i1} \cdot O_{i} \rVert_{1} + \ldots + \lVert S_{m1} \cdot Q_{im} \cdot O_{i} \rVert_{1} + \ldots +  \\
-  &  \lVert S_{mt} \cdot Q_{im} \cdot O_{i} \rVert_{1} \leq  \lVert S  \rVert_{1 \text{ gen}} \cdot \lVert Q_{i1} \cdot O_{i} \rVert_{1} + \ldots + \lVert Q_{im} \cdot O_{i} \rVert_{1}
-  \end{split}
+    \sum_{k=1}^{t} \left\| \sum_{j=1}^{m} S_{jk} \cdot Q_{ij} (A_i) \right\|_{1}  \leq \lVert S  \rVert_{1 \text{ gen}} \cdot \sum_{j=1}^{m} \left\|  Q_{ij} (A_i) \right\|_{1}.
 \end{equation}
 
-Taking the maximum over all $O \in \mathbb{C}^{o_1 \times o_1} \oplus \ldots \oplus \mathbb{C}^{o_n \times o_n}$ such that $\lVert O_i \rVert_{1} = 1$ yields the following inequality 
+Taking the maximum over all $A \in \mathbb{C}^{o_1 \times o_1} \oplus \ldots \oplus \mathbb{C}^{o_n \times o_n}$ such that $\lVert A_i \rVert_{1} = 1$ yields the following inequality 
+
+
 \begin{equation}
   \begin{split}
-  & \max \{ \lVert S_{11} \cdot Q_{i1} \cdot O_{i} \rVert_{1} + \ldots + \lVert S_{1t} \cdot Q_{i1} \cdot O_{i} \rVert_{1} + \ldots + \lVert S_{m1} \cdot Q_{im} \cdot O_{i} \rVert_{1} + \ldots +  \\
-  &  \lVert S_{mt} \cdot Q_{im}  \cdot O_{i} \rVert_{1} \hspace{1pt} |\lVert O_i \rVert_{1} = 1 \} \leq  \lVert S  \rVert_{1 \text{ gen}} \cdot \max \{ \lVert Q_{i1} \cdot O_{i} \rVert_{1} + \ldots + \lVert Q_{im} \cdot O_{i} \rVert_{1} \hspace{1pt} |\lVert O_i \rVert_{1} = 1 \}.
+  & \max \left\{ \sum_{k=1}^{t} \left\| \sum_{j=1}^{m} S_{jk} \cdot Q_{ij} (A_i) \right\|_{1}  \Biggm| \|A_i\|_{1} = 1 \right\}  \\
+  & \leq  \lVert S  \rVert_{1 \text{ gen}} \cdot \max \left\{ \sum_{j=1}^{m} \left\|  Q_{ij} (A_i) \right\|_{1} \Biggm| \lVert O_i \rVert_{1} = 1 \right\}.
   \end{split}
 \end{equation}
-This is equivalent to
+Attending to \autoref{eq:sqi_norm} and  \autoref{def:gen_norm_gen_inj}, this is equivalent to
 \begin{equation}
   \begin{split}
-  & \max \{ \lVert S_{11} \cdot Q_{i1} \cdot O_{i} \rVert_{1} \hspace{1pt}|\lVert O_i \rVert_{1} = 1 \} + \ldots + \max \{\lVert S_{1t} \cdot Q_{i1} \cdot O_{i} \rVert_{1}  \hspace{1pt}|\lVert O_i \rVert_{1} = 1 \}  + \ldots +   \\
-  & \max \{\lVert S_{m1} \cdot Q_{im} \cdot O_{i} \rVert_{1} \hspace{1pt}|\lVert O_i \rVert_{1} = 1 \} + \ldots + \max \{ \lVert S_{mt} \cdot Q_{im}  \cdot O_{i} \rVert_{1} \hspace{1pt} |\lVert O_i \rVert_{1} = 1 \}  \\
-  & \leq  \lVert S  \rVert_{1 \text{ gen}} \cdot \max \{ \lVert Q_{i1} \cdot O_{i} \rVert_{1}  \hspace{1pt} |\lVert O_i \rVert_{1} = 1 \}  + \ldots + \max \{\lVert Q_{im} \cdot O_{i} \rVert_{1} \hspace{1pt} |\lVert O_i \rVert_{1} = 1 \} 
+    \max \{\lVert S \cdot Q_i (A_1) \rVert_{1 \text{ gen}} \mid \|A_1\|_{1} = 1\} = \lVert  S  Q_i  \rVert_{1 \text{ gen}} \leq \lVert S  \rVert_{1 \text{ gen}} \cdot  \lVert Q_i  \rVert_{1 \text{ gen}} 
   \end{split}
 \end{equation}
-As a result, attending to \autoref{def:trace_norm_superoperator}, it follows that:
-\begin{equation}
-  \begin{split}
-  & \lVert S_{11} \cdot Q_{i1} \rVert_{1} + \ldots + \lVert S_{1t} \cdot Q_{i1} \rVert_{1} + \ldots + \lVert S_{m1} \cdot Q_{im} \rVert_{1} + \ldots +  \lVert S_{mt} \cdot Q_{im} \rVert_{1} \\
-  &  \leq  \lVert S  \rVert_{1 \text{ gen}} \cdot (\lVert Q_{i1} \rVert_{1} + \ldots + \lVert Q_{im} \rVert_{1})
-  \end{split}
-\end{equation}
-Considering \autoref{eq:sqi_norm}, and \autoref{def:gen_norm_gen_inj}, the inequality above can be rewritten as: 
-\begin{equation}
-   \lVert S \cdot  Q_i \rVert_{1 \text{ gen}} \leq \lVert S  \rVert_{1 \text{ gen}} \cdot \lVert Q_i  \rVert_{1 \text{ gen}}
-\end{equation}
-for all $1 \leq i \leq n$. Given \autoref{def:gen_norm_either}, and considering the fact that for $a,b,c \in \mathbb{R}$ if $a \leq b$ and $b \leq c$, then $a \leq c$, it follows that:
+for all $1 \leq i \leq n$. Considering \autoref{def:gen_norm_either}, given the fact that for $a,b,c \in \mathbb{R}$ if $a \leq b$ and $b \leq c$, then $a \leq c$, it follows that:
 \begin{equation}
   \lVert S  Q_i \rVert_{1 \text{ gen}} \leq \lVert S \rVert_{1 \text{ gen}} \lVert Q \rVert_{1 \text{ gen}}
 \end{equation}
@@ -1595,12 +1634,12 @@ Therefore, the inequality in \autoref{eq:gen_trace_submultiplicative} holds.
 \end{proof}
 
 
-\begin{lemma}\label{lem:gen_diamond_submultiplicative}
+\begin{proposition}\label{lem:gen_diamond_submultiplicative}
   The generalized diamond norm is submultiplicative with respect to composition of super‑operators, \textit{i.e.}, for all super-operators $Q: \mathbb{C}^{o_1 \times o_1} \oplus \ldots \oplus \mathbb{C}^{o_n \times o_n}  \rightarrow \mathbb{C}^{p_1 \times p_1} \oplus \ldots \oplus  \mathbb{C}^{p_m \times p_m}$ and $S: \mathbb{C}^{p_1 \times p_1} \oplus \ldots \oplus \mathbb{C}^{p_m \times p_m}  \rightarrow \mathbb{C}^{q_1 \times q_1} \oplus \ldots \oplus \mathbb{C}^{q_t \times q_t}$, it holds that:
   \begin{equation} \label{eq:gen_trace_submultiplicative}
     \lVert S  Q \rVert_{\diamondsuit \text{ gen}} \leq \lVert S \rVert_{\diamondsuit  \text{ gen}} \lVert Q \rVert_{\diamondsuit  \text{ gen}}
   \end{equation}
-\end{lemma}
+\end{proposition}
 
 \begin{proof}
  
@@ -1620,10 +1659,21 @@ Given \autoref{theorem:tensor_stability}, it holds that
 \end{equation}
 As a result, the inequality in \autoref{eq:gen_trace_submultiplicative} holds.
 \end{proof}
- 
-\begin{lemma} \label{lem:gen_trace_ptp_norm1}
-  Let  $Q: \mathbb{C}^{o_1 \times o_1} \oplus \ldots \oplus \mathbb{C}^{o_n \times o_n}  \rightarrow \mathbb{C}^{p_1 \times p_1} \oplus \ldots \oplus  \mathbb{C}^{p_m \times p_m}$ be a positive trace-preserving super-operator. Then, it holds that $\lVert Q \rVert_{1 \text{ gen}} = 1$.
+
+\begin{lemma}\label{thm:Russo–Dye}
+  For all super-operators $Q_i: \mathbb{C}^{o_i \times o_i} \rightarrow \mathbb{C}^{p_1 \times p_1} \oplus \ldots \oplus \mathbb{C}^{p_m \times p_m}$, it holds that: 
+  \begin{equation}
+    \lVert Q_i \rVert_{1 \text{ gen}} = \max \{ \text{Tr}\left(Q_i(uu^{*}) \right) \mid \lVert u \rVert_{1}=1 \}
+  \end{equation}
 \end{lemma}
+
+\begin{proof}
+  a
+\end{proof}
+ 
+\begin{proposition} \label{lem:gen_trace_ptp_norm1}
+  Let  $Q: \mathbb{C}^{o_1 \times o_1} \oplus \ldots \oplus \mathbb{C}^{o_n \times o_n}  \rightarrow \mathbb{C}^{p_1 \times p_1} \oplus \ldots \oplus  \mathbb{C}^{p_m \times p_m}$ be a positive trace-preserving super-operator. Then, it holds that $\lVert Q \rVert_{1 \text{ gen}} = 1$.
+\end{proposition}
 
 \begin{proof}
   Consider the decomposition $Q = [Q_1, \ldots, Q_n]$, where $Q_1, \ldots, Q_n$ are defined as in \autoref{def:gen_norm_either}. Then for $ 1 \leq i \leq n$, one has that $Q_i: \mathbb{C}^{o_i \otimes o_i} \rightarrow  \mathbb{C}^{p_1 \times p_1} \oplus \ldots \oplus  \mathbb{C}^{p_m \times p_m}$ is defined as  $Q_i = \underbrace{\textsc{Il} \cdot \ldots \cdot \textsc{Il}}_{m-1 \times} \cdot \hspace{2pt} Q_{i1} + \ldots +  \underbrace{\textsc{Ir} \cdot \ldots \cdot \textsc{Ir}}_{m-1 \times} \cdot \hspace{2pt} Q_{im}$.
@@ -1640,8 +1690,7 @@ for $ 1 \leq i \leq n$.
 
 Note that for all $1 \leq i \leq m$, if $Q$ is positive trace-preserving, then $Q_i$ is also positive trace-preserving given that the composition of positive trace-preserving super-operators is also positive trace-preserving.
 
-Considering the definition of $Q_{ij}$ in \autoref{def:gen_norm_ops} for a fixed $1 \leq i \leq n$, $Q_{i1}, \ldots, Q_{im}$ are always given the same argument.
-Consequentlty, attending to \autoref{thm:Russo–Dye}, \autoref{eq:qi_norm} can be rewritten as:
+Attending to \autoref{thm:Russo–Dye}, \autoref{eq:qi_norm} can be rewritten as:
 \begin{align} 
   \hspace{-30pt} \lVert Q_i \rVert_{1} & = \max \{\text{Tr}\left(Q_{i1}(uu^{*}) \right) \mid \lVert u \rVert_{1}=1 \} + \ldots +  \max \{\text{Tr}\left(Q_{in}(u u^{*}) \right) \mid  \lVert u \rVert_{1}=1 \}\\ \label{eq:qi_ptp_norm_1}
   \hspace{-30pt} & =  \max \{ \text{Tr}\left(Q_{i1}(uu^{*}) \right) + \ldots + \text{Tr}\left(Q_{in}(u u^{*}) \right) \mid   \lVert u \rVert_{1}=1 \} \\
