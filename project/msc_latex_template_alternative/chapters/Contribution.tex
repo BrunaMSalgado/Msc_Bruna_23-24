@@ -1663,7 +1663,7 @@ As a result, the inequality in \autoref{eq:gen_trace_submultiplicative} holds.
 \begin{lemma}\label{thm:Russo–Dye}
   For all super-operators $Q_i: \mathbb{C}^{n \times n} \rightarrow \mathbb{C}^{p_1 \times p_1} \oplus \ldots \oplus \mathbb{C}^{p_m \times p_m}$, it holds that: 
   \begin{equation}
-    \lVert Q_i \rVert_{1 \text{ gen}}  = \max \{ \text{Tr}\left(Q_i(vv^{*}) \right) \mid \lVert v \rVert_{1}=1 \} 
+    \lVert Q_i \rVert_{1 \text{ gen}}  = \max \{ \text{Tr}\left(Q_i(vv^{\dag}) \right) \mid \lVert v \rVert_{2}=1 \} 
   \end{equation}
 \end{lemma}
 
@@ -1678,14 +1678,33 @@ For $A \in \mathbb{C}^{n \times n}$, it holds that:
   & \hspace{-30pt} = \max \left\{ \left|  \text{Tr} \left(A^{\dag} \left( \sum_{j=1}^{m} Q_{ij}^{\dag}U_j \right) \right)  \right|  \Biggm| \lVert A \rVert_{1} =1,  U_j \in \mathbb{C}^{n \times n} \right\} \notag\\
   & \hspace{-30pt} = \max \left\{  \left| \left\langle A, \sum_{j=1}^{m} Q_{ij}^{\dag}U_j \right\rangle \right|  \Biggm| \lVert A \rVert_{1} =1,  U_j \in \mathbb{C}^{n \times n} \right\} & \{\text{\autoref{eq:inner_product_matrix}}\} 
   \end{align}
-\end{proof}
-On the other hand, one has that:
+
+Consequently, one has that:
 \begin{align}
 &\hspace{-30pt} \max \left\{ \left\lVert \sum_{j=1}^{m} Q_{ij}^{\dag} U_j  \right\rVert_{\infty} \Biggm| U_j \in \mathbb{C}^{n \times n} \right\} \notag \\
 & \hspace{-30pt} = \max \Bigg\{ \max \left\{ \left| \left\langle A, \sum_{j=1}^{m} Q_{ij}^{\dag}U_j \right\rangle \right| \Biggm| A  \in \mathbb{C}^{n \times n},  \lVert A \rVert_{1} =1  \right\}  & \{\text{\autoref{def:dual-norm}} \}  \notag\\
 & \hspace{-15pt}\Biggm|  U \in \mathbb{C}^{n \times n}\Bigg\} \notag\\
-&  \hspace{-30pt} =  \max \left\{  \left| \left\langle A, \sum_{j=1}^{m} Q_{ij}^{\dag}U_j \right\rangle \right|  \Biggm| \lVert A \rVert_{1} =1,  U_j \in \mathbb{C}^{n \times n} \right\}
-\end{align} 
+&  \hspace{-30pt} =  \max \left\{  \left| \left\langle A, \sum_{j=1}^{m} Q_{ij}^{\dag}U_j \right\rangle \right|  \Biggm|A  \in \mathbb{C}^{n \times n}, \lVert A \rVert_{1} =1,  U_j \in \mathbb{C}^{n \times n} \right\} & \{\text{\autoref{lemma:max_max}}\} \notag \\
+& \hspace{-30pt} = \lVert Q_i \rVert_{1 \text{ gen}} & \{\text{\autoref{eq:qi_tracenorm_U}} \} 
+\end{align}
+
+%\todo[inline,size=\normalsize]{Pôr a prova the se Q é pos Q* tb é pos. Se Q_i = (Q_i1,..., Q_nj) é pos, por uma definiçao que ainda tenho de escrever Q_i1,..., Q_nj tb são pos. Uma vez que se Q_ij é pos, Q_ij* tb é pos, Q_i* = (Q_i1*,..., Q_nj*) tb é pos.} 
+
+The rest of the proof follows the same reasoning as in \cite[Proof of Theorem 3.39 ]{watrous2018theory}. Attending to \cite[ Equation 3.236, Equation 3.237 and Lemma 3.3]{watrous2018theory}, along with the observation
+that the eigenvalues of $U_1, \ldots, U_m$ all lie on the unit circle, it follows that:
+\begin{equation}
+  \left\lVert \sum_{j=1}^{m} Q_{ij}^{\dag} U_j  \right\rVert_{\infty} \leq \left\lVert \sum_{j=1}^{m} Q_{ij}^{\dag} I_{\mathbb{C}^{p_j \otimes p_j}}  \right\rVert_{\infty} 
+\end{equation}
+Given that the identity matrix is unitary, one has:
+\begin{equation}
+  \lVert Q_i \rVert_{1 \text{ gen}} = \left\lVert \sum_{j=1}^{m} Q_{ij}^{\dag} I_{\mathbb{C}^{P_j \otimes p_j}}  \right\rVert_{\infty}
+\end{equation}
+Attending to the fact that $\left\lVert \sum_{j=1}^{m} Q_{ij}^{\dag} I_{\mathbb{C}^{P_j \otimes p_j}}  \right\rVert_{\infty}$ is positive-semidefinite, it holds that:
+\begin{equation}
+  \lVert Q_i \rVert_{1 \text{ gen}} =\max \left\{ \left\langle vv^{\dag}, \sum_{j=1}^{m} Q_{ij}^{\dag} I_{\mathbb{C}^{P_j \otimes p_j}} \right\rangle \Biggm| \lVert v \rVert_2 = 1 \right\} = \max \{ \text{Tr}\left(Q_i(vv^{\dag}) \right) \mid \lVert v \rVert_{2}=1 \}
+\end{equation}
+
+\end{proof}
  
 \begin{proposition} \label{lem:gen_trace_ptp_norm1}
   Let  $Q: \mathbb{C}^{o_1 \times o_1} \oplus \ldots \oplus \mathbb{C}^{o_n \times o_n}  \rightarrow \mathbb{C}^{p_1 \times p_1} \oplus \ldots \oplus  \mathbb{C}^{p_m \times p_m}$ be a positive trace-preserving super-operator. Then, it holds that $\lVert Q \rVert_{1 \text{ gen}} = 1$.
