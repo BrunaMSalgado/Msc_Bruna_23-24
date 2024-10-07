@@ -724,9 +724,9 @@ In order to define inner product of a matrix, it is necessary to first define th
 The trace is \emph{cyclic}, that is, $\text{tr}(AB) = \text{tr}(BA)$ , and \emph{linear}, $\text{tr}(A + B) = \text{tr}(A)+\text{tr}(B), \text{tr}(a \cdot A) = a\cdot \hspace{1pt} \text{tr}(A)$, where matrices $A, B \in \mathbb{C}^{n\times n}$, and $a$ is a complex number.
 
 By means of the trace, one defines the inner product of two operators $A,B\in \mathbb{C}^{m \times n}$ as follows
-\begin{equation*}
+\begin{equation} \label{eq:inner_product_matrix}
   \langle A, B \rangle = \text{tr}(A^{\dagger}B).
-\end{equation*}
+\end{equation}
 
 In the \emph{finite} dimensional complex vector spaces relevant to quantum computation and quantum information, a \emph{Hilbert space} is is equivalent to an inner product space.  As a result, both $\mathbb{C}^{n}$ and $\mathbb{C}^{n \times m}$ are Hilbert spaces.
 
@@ -879,9 +879,9 @@ the operator $U$ defined by $U = \sum_{i} w_i^{\dag} v_i$ is unitary.
   \end{equation}
   This norm is also  known as the Schatten 1-norm. The trace norm induces a metric on the set of density matrices which is defined by $d(\rho, \sigma) = \lVert \rho -\sigma\rVert_{1}$.
 \end{definition}
-Alternatively, for an arbitrary complex space $\mathbb{C}^{m}$ the trace norm  of a square matrix $A \in \mathbb{C}^{n \times n} $ can be defined in the following way:
+Alternatively, the trace norm  of a square matrix $A \in \mathbb{C}^{n \times n} $ can be defined in the following way:
 \begin{equation} \label{eq:trace_norm_matrix_U}
-  \lVert A \rVert_{1} = \text{max} \{ |\langle U, A \rangle| \mid  U \in \mathbb{C}^{n} \rightarrow \mathbb{C}^{m}  \text{ is a unitary operator}  \}.
+  \lVert A \rVert_{1} = \text{max} \{ |\langle U, A \rangle| \mid  U \in \mathbb{C}^{n \times n}   \text{ is a unitary operator}  \}.
 \end{equation}
 
 
@@ -903,7 +903,7 @@ Alternatively, for an arbitrary complex space $\mathbb{C}^{m}$ the trace norm  o
   \end{equation*}
 \end{definition}
 
-\begin{definition}
+\begin{definition} \label{def:dual-norm}
   Two norms on operators, $\|-\|_p$ and $\|-\|_{p*}$ , are said to be \emph{dual}, when for every operator $A: \mathbb{C}^{n} \rightarrow \mathbb{C}^{m}$, it holds that
   \begin{equation*}
     \|A\|_{p} = \text{max} \{ |\langle B, A \rangle| \mid B:  \mathbb{C}^{n} \rightarrow \mathbb{C}^{m},\|B\|_{p*} = 1 \}.

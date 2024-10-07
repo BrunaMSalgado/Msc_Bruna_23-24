@@ -1661,15 +1661,31 @@ As a result, the inequality in \autoref{eq:gen_trace_submultiplicative} holds.
 \end{proof}
 
 \begin{lemma}\label{thm:Russo–Dye}
-  For all super-operators $Q_i: \mathbb{C}^{o_i \times o_i} \rightarrow \mathbb{C}^{p_1 \times p_1} \oplus \ldots \oplus \mathbb{C}^{p_m \times p_m}$, it holds that: 
+  For all super-operators $Q_i: \mathbb{C}^{n \times n} \rightarrow \mathbb{C}^{p_1 \times p_1} \oplus \ldots \oplus \mathbb{C}^{p_m \times p_m}$, it holds that: 
   \begin{equation}
-    \lVert Q_i \rVert_{1 \text{ gen}} = \max \{ \text{Tr}\left(Q_i(uu^{*}) \right) \mid \lVert u \rVert_{1}=1 \}
+    \lVert Q_i \rVert_{1 \text{ gen}}  = \max \{ \text{Tr}\left(Q_i(vv^{*}) \right) \mid \lVert v \rVert_{1}=1 \} 
   \end{equation}
 \end{lemma}
 
 \begin{proof}
-  a
+For $A \in \mathbb{C}^{n \times n}$, it holds that:
+  \begin{align} \label{eq:qi_tracenorm_U}
+  &\hspace{-30pt} \lVert Q_i \rVert_{1 \text{ gen}}  = \max \left\{ \sum_{j=1}^{m}\max \{ \lVert Q_{ij}(A) \rVert_{1} \Biggm|  \lVert A \rVert_{1} =1  \} \right\}   & \{\text{\autoref{def:gen_norm_gen_inj}} \} \notag\\
+  & \hspace{-30pt}= \max \left\{ \sum_{j=1}^{m} \lVert Q_{ij}(A) \rVert_{1}   \Biggm| \lVert A \rVert_{1} =1 \right\} & \{\text{\autoref{lemma:max_max}}\} \notag \\
+  &\hspace{-30pt} = \max \left\{ \sum_{j=1}^{m} | \langle U_j, Q_{ij}(A) \rangle  |  \Biggm| \lVert A \rVert_{1} =1, U_j \in \mathbb{C}^{n \times n} \right\} & \{\text{\autoref{eq:trace_norm_matrix_U}}\} \notag \\
+  & \hspace{-30pt}= \max \left\{ \sum_{j=1}^{m} | \text{Tr} (U_j^{\dag} Q_{ij}(A)) |  \Biggm| \lVert A \rVert_{1} =1,  U_j \in \mathbb{C}^{n \times n}\right\} & \{\text{\autoref{eq:inner_product_matrix}}\} \notag \\
+  & \hspace{-30pt} =  \max \left\{ \sum_{j=1}^{m}| \text{Tr} (A^{\dag} Q_{ij}^{\dag}U_j )|  \Biggm| \lVert A \rVert_{1} =1,  U_j \in \mathbb{C}^{n \times n} \right\} \notag \\
+  & \hspace{-30pt} = \max \left\{ \left|  \text{Tr} \left(A^{\dag} \left( \sum_{j=1}^{m} Q_{ij}^{\dag}U_j \right) \right)  \right|  \Biggm| \lVert A \rVert_{1} =1,  U_j \in \mathbb{C}^{n \times n} \right\} \notag\\
+  & \hspace{-30pt} = \max \left\{  \left| \left\langle A, \sum_{j=1}^{m} Q_{ij}^{\dag}U_j \right\rangle \right|  \Biggm| \lVert A \rVert_{1} =1,  U_j \in \mathbb{C}^{n \times n} \right\} & \{\text{\autoref{eq:inner_product_matrix}}\} 
+  \end{align}
 \end{proof}
+On the other hand, one has that:
+\begin{align}
+&\hspace{-30pt} \max \left\{ \left\lVert \sum_{j=1}^{m} Q_{ij}^{\dag} U_j  \right\rVert_{\infty} \Biggm| U_j \in \mathbb{C}^{n \times n} \right\} \notag \\
+& \hspace{-30pt} = \max \Bigg\{ \max \left\{ \left| \left\langle A, \sum_{j=1}^{m} Q_{ij}^{\dag}U_j \right\rangle \right| \Biggm| A  \in \mathbb{C}^{n \times n},  \lVert A \rVert_{1} =1  \right\}  & \{\text{\autoref{def:dual-norm}} \}  \notag\\
+& \hspace{-15pt}\Biggm|  U \in \mathbb{C}^{n \times n}\Bigg\} \notag\\
+&  \hspace{-30pt} =  \max \left\{  \left| \left\langle A, \sum_{j=1}^{m} Q_{ij}^{\dag}U_j \right\rangle \right|  \Biggm| \lVert A \rVert_{1} =1,  U_j \in \mathbb{C}^{n \times n} \right\}
+\end{align} 
  
 \begin{proposition} \label{lem:gen_trace_ptp_norm1}
   Let  $Q: \mathbb{C}^{o_1 \times o_1} \oplus \ldots \oplus \mathbb{C}^{o_n \times o_n}  \rightarrow \mathbb{C}^{p_1 \times p_1} \oplus \ldots \oplus  \mathbb{C}^{p_m \times p_m}$ be a positive trace-preserving super-operator. Then, it holds that $\lVert Q \rVert_{1 \text{ gen}} = 1$.
