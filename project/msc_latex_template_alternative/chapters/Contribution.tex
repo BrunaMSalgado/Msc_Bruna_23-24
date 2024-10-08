@@ -1057,7 +1057,7 @@ where $\|\cdot\|_{V}$ is a norm in vector space $V$ and $\|\cdot\|_{W}$ is a nor
 \end{equation}
 \end{definition}
  
-Within this model, the superoperators take the form $Q: V_1 \oplus \ldots \oplus V_n  \rightarrow  W_1 \oplus \ldots \oplus W_m$, where each $V \in \{V_1, \ldots, V_n, W_1, \ldots, W_n\}$ is a vector space without direct sums.
+Within this model, the super-operators take the form $Q: V_1 \oplus \ldots \oplus V_n  \rightarrow  W_1 \oplus \ldots \oplus W_m$, where each $V \in \{V_1, \ldots, V_n, W_1, \ldots, W_n\}$ is a vector space without direct sums.
 
 \begin{definition} \label{def:gen_norm_either}
 For $Q: V_1 \oplus \ldots \oplus V_n  \rightarrow W, \exists \hspace{1pt} Q_1: V_1 \rightarrow W$, $\ldots$, $Q_n: V_n \rightarrow W$ \text{such that} 
@@ -1149,7 +1149,7 @@ Attending to the fact that the norms defined in  \autoref{def:gen_norm_either} a
 \begin{convention}
   From this point forward, unless stated otherwise, whenever the equality 
   $$Q= \left[ \sum_{i=1}^{m} \underbrace{\textsc{Il} \cdot \ldots \cdot \textsc{Il}}_{m-i \times } \cdot  \underbrace{\textsc{Ir} \cdot \ldots \cdot \textsc{Ir}}_{i-1 \times } \cdot  \hspace{2pt} Q_{1i},  \hspace{2pt} \ldots  \hspace{2pt}, \sum_{i=1}^{m} \underbrace{\textsc{Il} \cdot \ldots \cdot \textsc{Il}}_{m-i \times } \cdot  \underbrace{\textsc{Ir} \cdot \ldots \cdot \textsc{Ir}}_{i-1 \times } \cdot  \hspace{2pt} Q_{ni}  \right]$$
-   is used for a superoperator $Q$, it is understood that the operators $Q_{11}, \ldots, Q_{1m}, \ldots, Q_{n1}, \ldots, Q_{nm}$ are defined as in \autoref{def:gen_norm_ops}.
+   is used for a super-operator $Q$, it is understood that the operators $Q_{11}, \ldots, Q_{1m}, \ldots, Q_{n1}, \ldots, Q_{nm}$ are defined as in \autoref{def:gen_norm_ops}.
 \end{convention}
 
 It should be noted that the coproduct of two operators $Q: V_1 \oplus \ldots \oplus V_n \rightarrow W$ and $S: R_1 \oplus \ldots \oplus R_n \rightarrow W$ defined as, respectively, $Q = [Q_1, \ldots, Q_n]$ and $S = [S_1, \ldots, S_n]$, corresponds to $[Q,S] = [Q_1, \ldots, Q_n, S_1, \ldots, S_n]$.
@@ -1193,7 +1193,7 @@ one has that:
 \end{equation*}
 Therefore,
  $$I = \left[\underbrace{\textsc{Il} \cdot \ldots \cdot \textsc{Il}}_{n-1 \times} \cdot \hspace{1pt}I_{V_1}, \ldots,  \underbrace{\textsc{Ir} \cdot \ldots \cdot \textsc{Ir}}_{n-1 \times} \cdot I_{V_n}\right].$$ 
- As a result, given a superoperator $Q: V_1 \oplus \ldots \oplus V_n \rightarrow W_1 \oplus \ldots \oplus W_m$, the superoperator $Q \otimes I_{R_1 \oplus \ldots \oplus R_t}$ is defined as follows:
+ As a result, given a super-operator $Q: V_1 \oplus \ldots \oplus V_n \rightarrow W_1 \oplus \ldots \oplus W_m$, the super-operator $Q \otimes I_{R_1 \oplus \ldots \oplus R_t}$ is defined as follows:
 \begin{equation} \label{eq:gen_tensor_identity}
   \begin{split}
    Q \otimes I & =  \Bigg[ \sum_{i=1}^{m}  \underbrace{\textsc{Il} \cdot \ldots \cdot \textsc{Il}}_{m-i\times} \cdot \underbrace{\textsc{Ir} \cdot \ldots \cdot \textsc{Ir}}_{i-1  \times}  \cdot  \underbrace{\textsc{Il} \cdot \ldots \cdot \textsc{Il}}_{t-1 \times} \cdot \hspace{2pt} Q_{1i} \otimes I_{R_1}, \hspace{2pt} \ldots \hspace{2pt},  \\
@@ -1207,7 +1207,7 @@ Therefore,
 
 %Particularly, in the case of direct sums of complex spaces of square matrices, 
 \begin{definition} \label{def:gen_1norm}
-  The norm generalized trace norm of a superoperator $Q: \mathbb{C}^{o_1 \times o_1} \oplus \ldots \oplus \mathbb{C}^{o_n \times o_n}  \rightarrow \mathbb{C}^{p_1 \times p_1} \oplus \ldots \oplus  \mathbb{C}^{p_m \times p_m} $, denoted $\|Q\|_{1 \text{ gen}}$, is defined as follows:
+  The norm generalized trace norm of a super-operator $Q: \mathbb{C}^{o_1 \times o_1} \oplus \ldots \oplus \mathbb{C}^{o_n \times o_n}  \rightarrow \mathbb{C}^{p_1 \times p_1} \oplus \ldots \oplus  \mathbb{C}^{p_m \times p_m} $, denoted $\|Q\|_{1 \text{ gen}}$, is defined as follows:
 \begin{equation}
   \begin{split}
   \|Q\|_{1 \text{ gen}} & = \max  \Bigg\{ \max \left\{ \sum_{i=1}^{m} \|Q_{1i} (A_1)\|_{1}   \mid \hspace{1pt} \|A_1\|_{1} = 1 \right\} \\
@@ -1216,13 +1216,19 @@ Therefore,
 \end{equation}
 Note that this definition is equivalent to the following:
 \begin{equation}
-  \|Q\|_{1 \text{ gen}} = \max \{ \|Q_1 (A_1)\|_{1 \text{ gen}}  \mid  \|A_1\|_{1} = 1, \hspace{2pt}\ldots \hspace{2pt}, \|Q_n (A_n)\|_{1 \text{ gen}}  \mid  \|A_n\|_{1} = 1  \}
+  \|Q\|_{1 \text{ gen}} = \max \{ \max\{ \|Q_1 (A_1)\|_{1 \text{ gen}}  \mid  \|A_1\|_{1} = 1 \}, \hspace{2pt}\ldots \hspace{2pt}, \max \{ \|Q_n (A_n)\|_{1 \text{ gen}}  \mid  \|A_n\|_{1} = 1 \}  \},
 \end{equation}
+   where
+    \begin{equation} \label{eq:qi_norm}
+        \lVert Q_i (A_i) \rVert_{1  \text{ gen}} = \sum_{j} \lVert Q_{ij} (A_i) \rVert_{1}
+    \end{equation}
+for $ 1 \leq i \leq n$.
+
 \end{definition}
 
 
 \begin{definition} \label{def:gen_diamond_norm}
-Given a superoperator $Q: \mathbb{C}^{o_1 \times o_1} \oplus \ldots \oplus \mathbb{C}^{o_n \times o_n}  \rightarrow \mathbb{C}^{p_1 \times p_1} \oplus \ldots \oplus  \mathbb{C}^{p_m \times p_m} $, denoted $\|Q\|_{\diamond \text{ gen}}$, its generalized diamond norm, denoted $\|Q\|_{\diamondsuit \text{ gen}}$, of is defined as follows:
+Given a super-operator $Q: \mathbb{C}^{o_1 \times o_1} \oplus \ldots \oplus \mathbb{C}^{o_n \times o_n}  \rightarrow \mathbb{C}^{p_1 \times p_1} \oplus \ldots \oplus  \mathbb{C}^{p_m \times p_m} $, denoted $\|Q\|_{\diamond \text{ gen}}$, its generalized diamond norm, denoted $\|Q\|_{\diamondsuit \text{ gen}}$, of is defined as follows:
 \begin{equation*}
   \begin{split}
     \lVert Q  \rVert_{\diamondsuit \text{ gen}} & =  \lVert Q \otimes I_{ \mathbb{C}^{o_1 \times o_1} \oplus \ldots \oplus \mathbb{C}^{o_n \times o_n}}  \rVert_{1 \text{ gen}}
@@ -1293,16 +1299,16 @@ Furthermore, for $q > o$, given that the vectors $w_1, w_2$ which  satisfy \auto
    As a result, $\max \{\max A_1, \ldots, \max A_n\} \geq \max \cup_{i=1}^{n} A_i$. Therefore, $\max \{\max A_1, \ldots, \max A_n\} = \max \cup_{i=1}^{n} A_i$.
 \end{proof}
 
-%\begin{lemma} \label{lemma:max_sum}
-%Given sets $A_1, \ldots, A_n$, with $\sum_{i=1}^{n} A_i = \{\sum_{i=1}^{n} a_{i} \mid a_i \in A_i\}$  it holds that $\sum_{i=1}^{n} \max A_i = \max \left\{\sum_{i=1}^{n} A_i\right\}$
-%\end{lemma}
-%\begin{proof}
- % Since  $\max A_1 \in A_1, \ldots, \max A_n \in A_n$ , it follows  that $\sum_{i=1}^{n} \max A_i \in \left\{\sum_{i=1}^{n} A_i\right\}$. Consequentlty, $\sum_{i=1}^{n} \max A_i \leq \max \left\{\sum_{i=1}^{n} A_i\right\}$. Considering that $ \forall a_{1i} \in A_1, \ldots, a_{ni} \in A_n, \max A_1 \geq a_{1i}, \ldots,  \max A_n \geq a_{ni} $, it follows that $ \sum_{i=1}^{n} \max A_i \geq \max \left\{\sum_{i=1}^{n} A_i\right\} $. Therefore, $\sum_{i=1}^{n} \max A_i = \max \left\{\sum_{i=1}^{n} A_i\right\}$.
-%\end{proof}
+\begin{lemma} \label{lemma:max_sum}
+Given sets $A_1, \ldots, A_n$, with $\sum_{i=1}^{n} A_i = \{\sum_{i=1}^{n} a_{i} \mid a_i \in A_i\}$  it holds that $\sum_{i=1}^{n} \max A_i = \max \left\{\sum_{i=1}^{n} A_i\right\}$
+\end{lemma}
+\begin{proof}
+  Since  $\max A_1 \in A_1, \ldots, \max A_n \in A_n$ , it follows  that $\sum_{i=1}^{n} \max A_i \in \left\{\sum_{i=1}^{n} A_i\right\}$. Consequentlty, $\sum_{i=1}^{n} \max A_i \leq \max \left\{\sum_{i=1}^{n} A_i\right\}$. Considering that $ \forall a_{1i} \in A_1, \ldots, a_{ni} \in A_n, \max A_1 \geq a_{1i}, \ldots,  \max A_n \geq a_{ni} $, it follows that $ \sum_{i=1}^{n} \max A_i \geq \max \left\{\sum_{i=1}^{n} A_i\right\} $. Therefore, $\sum_{i=1}^{n} \max A_i = \max \left\{\sum_{i=1}^{n} A_i\right\}$.
+\end{proof}
 
 
 \begin{lemma}\label{lem:q(o)}
-  Let  $Q: \mathbb{C}^{o_1 \times o_1} \oplus \ldots \oplus \mathbb{C}^{o_n \times o_n}  \rightarrow \mathbb{C}^{p_1 \times p_1} \oplus \ldots \oplus  \mathbb{C}^{p_m \times p_m}$ be a superoperator, then for $O \in \mathbb{C}^{o_1 \times o_1} \oplus \ldots \oplus  \mathbb{C}^{o_m \times o_m}$ it holds that:
+  Let  $Q: \mathbb{C}^{o_1 \times o_1} \oplus \ldots \oplus \mathbb{C}^{o_n \times o_n}  \rightarrow \mathbb{C}^{p_1 \times p_1} \oplus \ldots \oplus  \mathbb{C}^{p_m \times p_m}$ be a super-operator, then for $O \in \mathbb{C}^{o_1 \times o_1} \oplus \ldots \oplus  \mathbb{C}^{o_m \times o_m}$ it holds that:
   \begin{equation} \label{eq:qo<q}
     \lVert Q(O) \rVert_{1 \text{ gen}} \leq \lVert Q  \rVert_{1 \text{ gen}} \cdot \lVert O  \rVert_{1 \text{ gen}}.
   \end{equation}
@@ -1670,8 +1676,8 @@ As a result, the inequality in \autoref{eq:gen_trace_submultiplicative} holds.
 \begin{proof}
 For $A \in \mathbb{C}^{n \times n}$, it holds that:
   \begin{align} \label{eq:qi_tracenorm_U}
-  &\hspace{-30pt} \lVert Q_i \rVert_{1 \text{ gen}}  = \max \left\{ \sum_{j=1}^{m}\max \{ \lVert Q_{ij}(A) \rVert_{1} \Biggm|  \lVert A \rVert_{1} =1  \} \right\}   & \{\text{\autoref{def:gen_norm_gen_inj}} \} \notag\\
-  & \hspace{-30pt}= \max \left\{ \sum_{j=1}^{m} \lVert Q_{ij}(A) \rVert_{1}   \Biggm| \lVert A \rVert_{1} =1 \right\} & \{\text{\autoref{lemma:max_max}}\} \notag \\
+  &\hspace{-30pt} \lVert Q_i \rVert_{1 \text{ gen}}  = \sum_{j=1}^{m}\max \{ \lVert Q_{ij}(A) \rVert_{1} \mid  \lVert A \rVert_{1} =1  \}    & \{\text{\autoref{def:gen_norm_gen_inj}} \} \notag\\
+  & \hspace{-30pt}= \max \left\{ \sum_{j=1}^{m} \lVert Q_{ij}(A) \rVert_{1}   \Biggm| \lVert A \rVert_{1} =1 \right\} & \{\text{\autoref{lemma:max_sum}}\} \notag \\
   &\hspace{-30pt} = \max \left\{ \sum_{j=1}^{m} | \langle U_j, Q_{ij}(A) \rangle  |  \Biggm| \lVert A \rVert_{1} =1, U_j \in \mathbb{C}^{n \times n} \right\} & \{\text{\autoref{eq:trace_norm_matrix_U}}\} \notag \\
   & \hspace{-30pt}= \max \left\{ \sum_{j=1}^{m} | \text{Tr} (U_j^{\dag} Q_{ij}(A)) |  \Biggm| \lVert A \rVert_{1} =1,  U_j \in \mathbb{C}^{n \times n}\right\} & \{\text{\autoref{eq:inner_product_matrix}}\} \notag \\
   & \hspace{-30pt} =  \max \left\{ \sum_{j=1}^{m}| \text{Tr} (A^{\dag} Q_{ij}^{\dag}U_j )|  \Biggm| \lVert A \rVert_{1} =1,  U_j \in \mathbb{C}^{n \times n} \right\} \notag \\
@@ -1711,60 +1717,117 @@ Attending to the fact that $\left\lVert \sum_{j=1}^{m} Q_{ij}^{\dag} I_{\mathbb{
 \end{proposition}
 
 \begin{proof}
-  Consider the decomposition $Q = [Q_1, \ldots, Q_n]$, where $Q_1, \ldots, Q_n$ are defined as in \autoref{def:gen_norm_either}. Then for $ 1 \leq i \leq n$, one has that $Q_i: \mathbb{C}^{o_i \otimes o_i} \rightarrow  \mathbb{C}^{p_1 \times p_1} \oplus \ldots \oplus  \mathbb{C}^{p_m \times p_m}$ is defined as  $Q_i = \underbrace{\textsc{Il} \cdot \ldots \cdot \textsc{Il}}_{m-1 \times} \cdot \hspace{2pt} Q_{i1} + \ldots +  \underbrace{\textsc{Ir} \cdot \ldots \cdot \textsc{Ir}}_{m-1 \times} \cdot \hspace{2pt} Q_{im}$.
-
-  In this case attending to \autoref{def:gen_norm_either} and \autoref{def:gen_norm_either}, 
+  Consider the decomposition $Q = [Q_1, \ldots, Q_n]$, where $Q_1, \ldots, Q_n$ are defined as in \autoref{def:gen_norm_gen_inj}. %Then for $ 1 \leq i \leq n$, one has that $Q_i: \mathbb{C}^{o_i \otimes o_i} \rightarrow  \mathbb{C}^{p_1 \times p_1} \oplus \ldots \oplus  \mathbb{C}^{p_m \times p_m}$ is defined as  $Q_i = \underbrace{\textsc{Il} \cdot \ldots \cdot \textsc{Il}}_{m-1 \times} \cdot \hspace{2pt} Q_{i1} + \ldots +  \underbrace{\textsc{Ir} \cdot \ldots \cdot \textsc{Ir}}_{m-1 \times} \cdot \hspace{2pt} Q_{im}$.
+  In this case attending to \autoref{def:gen_1norm}, one has:
   \begin{equation}
-      \lVert Q \rVert_{1 \text{ gen}} = \max \{ \lVert Q_1 \rVert_{1  \text{ gen}} + \ldots + \lVert Q_n \rVert_{1  \text{ gen}} \},
+      \lVert Q \rVert_{1 \text{ gen}} = \max \{ \max \{ \lVert Q_1 (A_1) \rVert_{1  \text{ gen}} \mid \lVert A_1 \rVert_1 = 1\}, \ldots , \{ \max \{ \lVert Q_n (A_n) \rVert_{1  \text{ gen}} \mid \lVert A_n \rVert_1 = 1\} \}
   \end{equation}
-    where
-    \begin{equation} \label{eq:qi_norm}
-        \lVert Q_i \rVert_{1  \text{ gen}} = \lVert Q_{i1} \rVert_{1} + \ldots + \lVert Q_{im} \rVert_{1}
-    \end{equation}
-for $ 1 \leq i \leq n$.
+    %where
+    %\begin{equation} \label{eq:qi_norm}
+        %\lVert Q_i \rVert_{1  \text{ gen}} = \lVert Q_{i1} \rVert_{1} + \ldots + \lVert Q_{im} \rVert_{1}
+    %\end{equation}
+%for $ 1 \leq i \leq n$.
 
-Note that for all $1 \leq i \leq m$, if $Q$ is positive trace-preserving, then $Q_i$ is also positive trace-preserving given that the composition of positive trace-preserving super-operators is also positive trace-preserving.
+Note that for all $1 \leq i \leq m$, if $Q$ is positive trace-preserving, then $Q_i$ is also positive trace-preserving, considering its definition in \autoref{def:gen_norm_ops},  and given that the composition of positive trace-preserving super-operators is also positive trace-preserving.
+\todo[inline,size=\normalsize]{É necessário provar esta afirmação?} 
 
-Attending to \autoref{thm:Russo–Dye}, \autoref{eq:qi_norm} can be rewritten as:
-\begin{align} 
-  \hspace{-30pt} \lVert Q_i \rVert_{1} & = \max \{\text{Tr}\left(Q_{i1}(uu^{*}) \right) \mid \lVert u \rVert_{1}=1 \} + \ldots +  \max \{\text{Tr}\left(Q_{in}(u u^{*}) \right) \mid  \lVert u \rVert_{1}=1 \}\\ \label{eq:qi_ptp_norm_1}
-  \hspace{-30pt} & =  \max \{ \text{Tr}\left(Q_{i1}(uu^{*}) \right) + \ldots + \text{Tr}\left(Q_{in}(u u^{*}) \right) \mid   \lVert u \rVert_{1}=1 \} \\
-  \hspace{-30pt} & =  \max \{ \text{Tr}\left(Q_{i1}(uu^{*}) + \ldots + Q_{in}(u u^{*}) \right) \mid   \lVert u \rVert_{1}=1 \}  \label{eq:qi_ptp_norm_3}
-\end{align}
+Attending to \autoref{thm:Russo–Dye}, it holds that:
+\begin{equation}
+  \lVert Q_i \rVert_{1 \text{ gen}} = \max \{ \text{Tr}\left(Q_i(vv^{\dag}) \right) \mid \lVert v \rVert_{2}=1 \},
+\end{equation}
+where $v \in \mathbb{C}^{o_i}$ and $1 \leq i \leq n$.
 %\begin{align} 
   %\hspace{-30pt} \lVert Q_i \rVert_{1} & = \max \{\text{Tr}\left(Q_{i1}(u_1u_1^{*}) \right) \vert \hspace{2pt}  \lVert u_1 \rVert_{1}=1 \} + \ldots +  \max \{\text{Tr}\left(Q_{in}(u_m u_m^{*}) \right) \vert \hspace{2pt}  \lVert u_m \rVert_{1}=1 \}\\ \label{eq:qi_ptp_norm_1}
   %\hspace{-30pt} & =  \max \{ \text{Tr}\left(Q_{i1}(u_1u_1^{*}) \right) + \ldots + \text{Tr}\left(Q_{in}(u_m u_m^{*}) \right) \vert \hspace{2pt}  \lVert u_1 \rVert_{1}=1, \ldots, \lVert u_m \rVert_{1}=1 \} \\
   %\hspace{-30pt} & =  \max \{ \text{Tr}\left(Q_{i1}(u_1u_1^{*}) + \ldots + Q_{in}(u_m u_m^{*}) \right) \vert \hspace{2pt}  \lVert u_1 \rVert_{1}=1, \ldots, \lVert u_m \rVert_{1}=1 \}  \label{eq:qi_ptp_norm_3}
 %\end{align}
-\todo[inline,size=\normalsize]{ no "and ..." fazer referencia à definição de trace preserving para espaços com somas diretas qd eu a definir} 
-where $u \in \mathbb{C}^{o_i}$.
-If $Q_i$ is trace-preserving, then considering \autoref{def:gen_norm_gen_inj} and ...
+%where $u \in \mathbb{C}^{o_i}$.
+\todo[inline,size=\normalsize]{ fazer referencia à definição de trace preserving para espaços com somas diretas qd eu a definir} 
+
+If $Q_i$ is trace-preserving, then considering the definition of trace-preserving super-operators for spaces with direct sums, one has:
 \begin{equation}
-  \begin{split}
-  &\text{Tr} (Q_i(u u^{*})) =  \text{Tr} \left( \underbrace{\textsc{Il} \cdot \ldots \cdot \textsc{Il}}_{m-1 \times } \cdot \hspace{2pt} Q_{i1} (u u^{*}) + \ldots + \underbrace{\textsc{Ir} \cdot \ldots \cdot \textsc{Ir}}_{m-1 \times } \cdot  \hspace{2pt} Q_{im}(u u^{*}) \right) \\
-  =&   \text{Tr} \left( Q_{i1} (u u^{*}) + \ldots + Q_{im}(u u^{*}) \right) = \text{Tr} (u u^{*}) = \text{Tr} (u u^{*})
-\end{split}
+\text{Tr} (Q_i(v v^{\dag})) =  \text{Tr} (v v^{\dag})
 \end{equation}
-As a result, considering the definition of trace-norm for square matrices, \autoref{def:trace-norm-matriz},  it follows that $\lVert Q_i \rVert_{1} = \text{Tr} (u u^{*}) = 1$ for all $1 \leq i \leq n$. Given that if all elements of a set verify a certain property, then the maximum of the set also verifies the property it follows that $\lVert Q \rVert_{1 \text{ gen}} = 1$.
+As a result, considering the definition of trace-norm for square matrices, \autoref{def:trace-norm-matriz}, for $\|v\|_2 = 1$  it follows that $\lVert Q_i \rVert_{1 \text{ gen}} = \text{Tr} (v v^{\dag}) = 1$ for all $1 \leq i \leq n$. Given that if all elements of a set verify a certain property, then the maximum of the set also verifies the property it follows that $\lVert Q \rVert_{1 \text{ gen}} = 1$.
 
 \end{proof}
 
-\begin{lemma} \label{lem:gen_diamond_cptp_norm}
-  Let  $Q: \mathbb{C}^{o_1 \times o_1} \oplus \ldots \oplus \mathbb{C}^{o_n \times o_n}  \rightarrow \mathbb{C}^{p_1 \times p_1} \oplus \ldots \oplus  \mathbb{C}^{p_m \times p_m}$ be a \acrshort{cptp} superoperator. Then, it holds that $\lVert Q \rVert_{\diamondsuit \text{ gen}} = 1$.
-\end{lemma}
+\begin{corollary} \label{cor:gen_diamond_cptp_norm}
+  Let  $Q: \mathbb{C}^{o_1 \times o_1} \oplus \ldots \oplus \mathbb{C}^{o_n \times o_n}  \rightarrow \mathbb{C}^{p_1 \times p_1} \oplus \ldots \oplus  \mathbb{C}^{p_m \times p_m}$ be a \acrshort{cptp} super-operator. Then, it holds that $\lVert Q \rVert_{\diamondsuit \text{ gen}} = 1$.
+\end{corollary}
 
 \begin{proof}
-  Given that $Q$ is a \acrshort{cptp} superoperator, if follows that $ Q \otimes I_{\mathbb{C}^{o_1 \times o_1} \oplus \ldots \oplus \mathbb{C}^{o_n \times o_n}}$ is a positive trace-preserving superoperator. As a result, attending to \autoref{lem:gen_trace_ptp_norm1}, it holds that $\lVert Q \otimes I_{\mathbb{C}^{o_1 \times o_1} \oplus \ldots \oplus \mathbb{C}^{o_n \times o_n}} \rVert_{1 \text{ gen}} = 1$. As a result, considering  \autoref{def:gen_diamond_norm}, it follows that $\lVert Q \rVert_{\diamondsuit \text{ gen}} = 1$.
+  Given that $Q$ is a \acrshort{cptp} super-operator, if follows that $ Q \otimes I_{\mathbb{C}^{o_1 \times o_1} \oplus \ldots \oplus \mathbb{C}^{o_n \times o_n}}$ is a positive trace-preserving super-operator. As a result, attending to \autoref{lem:gen_trace_ptp_norm1}, it holds that $\lVert Q \otimes I_{\mathbb{C}^{o_1 \times o_1} \oplus \ldots \oplus \mathbb{C}^{o_n \times o_n}} \rVert_{1 \text{ gen}} = 1$. As a result, considering  \autoref{def:gen_diamond_norm}, it follows that $\lVert Q \rVert_{\diamondsuit \text{ gen}} = 1$.
 \end{proof}
 
-\begin{theorem}
-  Let  $Q: \mathbb{C}^{o_1 \times o_1} \oplus \ldots \oplus \mathbb{C}^{o_n \times o_n}  \rightarrow \mathbb{C}^{p_1 \times p_1} \oplus \ldots \oplus  \mathbb{C}^{p_m \times p_m}$ and $S: \mathbb{C}^{p_1 \times p_1} \oplus \ldots \oplus \mathbb{C}^{p_m \times p_m}  \rightarrow \mathbb{C}^{q_1 \times q_1} \oplus \ldots \oplus \mathbb{C}^{q_t \times q_t}$ be super-operators. If $Q$ is a \acrshort{cptp} superoperator, then $\lVert S  Q \rVert_{\diamondsuit \text{ gen}} \leq \lVert S \rVert_{\diamondsuit \text{ gen}}$, and if $S$ is a quantum channel, then $\lVert S  Q \rVert_{\diamondsuit \text{ gen}} \leq \lVert Q \rVert_{\diamondsuit \text{ gen}}$
+\begin{corollary}
+  Let  $Q: \mathbb{C}^{o_1 \times o_1} \oplus \ldots \oplus \mathbb{C}^{o_n \times o_n}  \rightarrow \mathbb{C}^{p_1 \times p_1} \oplus \ldots \oplus  \mathbb{C}^{p_m \times p_m}$ and $S: \mathbb{C}^{p_1 \times p_1} \oplus \ldots \oplus \mathbb{C}^{p_m \times p_m}  \rightarrow \mathbb{C}^{q_1 \times q_1} \oplus \ldots \oplus \mathbb{C}^{q_t \times q_t}$ be super-operators. If $Q$ is a \acrshort{cptp} super-operator, then $\lVert S  Q \rVert_{\diamondsuit \text{ gen}} \leq \lVert S \rVert_{\diamondsuit \text{ gen}}$, and if $S$ is a quantum channel, then $\lVert S  Q \rVert_{\diamondsuit \text{ gen}} \leq \lVert Q \rVert_{\diamondsuit \text{ gen}}$
+\end{corollary}
+
+\begin{proof}
+  This result is an immediate consequence of \autoref{lem:gen_diamond_submultiplicative} and \autoref{cor:gen_diamond_cptp_norm}. 
+\end{proof}
+
+\begin{proposition} \label{prop:gen_diamond_subtraction}
+  For all super-operators $Q_0, Q_1:\mathbb{C}^{o_1 \times o_1} \oplus \ldots \oplus \mathbb{C}^{o_n \times o_n}  \rightarrow \mathbb{C}^{p_1 \times p_1} \oplus \ldots \oplus  \mathbb{C}^{p_m \times p_m}$ and $P_0, P_1:\mathbb{C}^{p_1 \times p_1} \oplus \ldots \oplus  \mathbb{C}^{p_m \times p_m} \rightarrow \mathbb{C}^{q_1 \times q_1} \oplus \ldots \oplus  \mathbb{C}^{q_l \times q_l}$, it holds that:
+  \begin{equation}
+    \lVert P_0 Q_0 - P_1Q_1 \rVert_{\diamondsuit \text{ gen}}  \leq  \lVert Q_0- Q_1 \rVert_{1 \text{gen}} + \lVert P_0 - P_1 \rVert_{\diamondsuit \text{ gen}}
+  \end{equation}
+\end{proposition}
+\begin{proof}
+  The proof follows the same reasoning as in \cite[Proof of Theorem 3.41]{watrous2018theory}, following from the triangle inequality, \autoref{lem:gen_diamond_submultiplicative} and \autoref{cor:gen_diamond_cptp_norm}. 
+\end{proof}
+
+
+Now, with respect to the metric equations in \autoref{fig:metric conditionals}, considering the interpretation of the booleans defined in \autoref{fig:denotational_sem cond}, demonstrating the soundness of the metric equations for the booleans is equivalent to proving the theorem below. It should be noted that in the quantum paradigm, the distance between two super-operators $Q$ and $Q'$ corresponds to the generalized diamond norm between $Q$ and $Q'$.
+
+\begin{theorem} \label{theorem_il_ir_metric}
+  For any  non‑negative rational $q$ and super-operators $Q$ and $Q'$ such that $d(Q,Q') \leq q$ the following holds:
+  \begin{align}
+    & d(\textsc{Il}(Q),\textsc{Il} (Q')) \leq q \label {eq:d_metric_il}\\
+    &d(\textsc{Ir}(Q),\textsc{Ir} (Q')) \leq q  \label {eq:d_metric_ir}
+  \end{align}
+\end{theorem}
+ 
+\begin{proof}
+  Considering \autoref{def:gen_norm}, it holds that:
+  \begin{equation}
+    \begin{split}
+       \lVert \textsc{Il}(Q) - \textsc{Il}(Q') \rVert_{\diamondsuit \text{ gen}}= \lVert (Q - Q', 0) \rVert_{\diamondsuit \text{ gen}} = \lVert Q - Q' \rVert_{\diamondsuit \text{ gen}} = d(Q,Q') \leq q   \\
+    \end{split}
+  \end{equation}
+  Applying the same reasoning to $\lVert \textsc{Ir}(Q) - \textsc{Ir}(Q') \rVert_{\diamondsuit \text{ gen}}$, it follows that \autoref{eq:d_metric_ir} holds.
+\end{proof}
+
+Regarding the metric equation for the case statement, considering its interpretation in \autoref{fig:denotational_sem cond} its soundness follows from the following theorem.
+
+\begin{theorem} \label{theorem_case_metric}
+  For any non‑negative rationals $q$, $r$ e $s$ and super-operators $Q, Q', S_0, S_0', S_1, S_1'$ such that $d(Q,Q') \leq q$, $d(S_0,S_0') \leq r$, and  $d(S_1,S_1') \leq r$, it holds that:
+  \begin{equation}
+    d( [S_0,S_1] \cdot Q, [S_0',S_1'] \cdot Q') \leq q + \max\{r,s\}
+  \end{equation}
 \end{theorem}
 
 \begin{proof}
-  This result is an immediate consequence of \autoref{lem:gen_diamond_submultiplicative} and \autoref{lem:gen_diamond_cptp_norm}. 
+  Considering \autoref{def:gen_norm_either}, it holds that:
+  \begin{equation}
+    \begin{split}
+      &d( [S_0,S_1], [S_0',S_1']) = \lVert [S_0,S_1] - [S_0',S_1']   \rVert_{\diamondsuit  \text{ gen}} =  \lVert [S_0-S_0',S_1-S_1']   \rVert_{\diamondsuit \text{ gen}} \\
+      = &  \max\{ \lVert S_0-S_0'  \rVert_{\diamondsuit \text{ gen}},\lVert S_1-S_1'  \rVert_{\diamondsuit \text{ gen}}\} = \max \{d(S_0,S_0'),d(S_1,S_1') \} = \max \{ r,s \}\\
+    \end{split}
+  \end{equation}
+
+  Given \autoref{prop:gen_diamond_subtraction}, it follows that:
+  \begin{equation}
+    \begin{split}
+    & d( [S_0,S_1] \cdot Q, [S_0',S_1'] \cdot Q) = \lVert [S_0,S_1] \cdot Q - [S_0',S_1'] \cdot Q' \rVert_{\diamondsuit \text{ gen}} \\
+    \leq & \hspace{2pt} \lVert Q - Q' \rVert_{\diamondsuit \text{ gen}} + \lVert [S_0,S_1] - [S_0',S_1'] \rVert_{\diamondsuit \text{ gen}}  \leq d(Q,Q') +  d( [S_0,S_1], [S_0',S_1'])\leq q + \max\{r,s\}
+    \end{split}
+  \end{equation}
+
 \end{proof}
 
+%eq:gen_norm_injections
 
 \section{Ilustration: Quantum Teleportation} \label{sec:teleport}
 
