@@ -84,7 +84,17 @@ The following operations are considered: the creation of a new bit $(1,0)$, $\te
   \label{fig:interpret_ops}
   \end{figure}
 
-  \todo[inline,size=\normalsize]{def cptp} 
+  \todo[inline,size=\normalsize]{def cptp}
+ \begin{definition} \label{def:trace_direct_sum}
+  The trace of a vector $v = (v_1, \ldots, v_n) \in V_1 \oplus \ldots \oplus V_n$, is defined as 
+\begin{equation}
+  \text{Tr}(v)=\sum_{i=1}^{n} \text{Tr}(v_i)
+\end{equation}
+ \end{definition}
+ \begin{definition}\label{def:trace_preserving_direct_sum}
+  A super-operator is called \emph{trace-preserving} if $\text{Tr} \hspace{2pt} (Q A)= \text{Tr} (A)$.
+ \end{definition}
+  
   \todo[inline,size=\normalsize]{provas} 
 
 
@@ -1215,7 +1225,7 @@ Therefore,
   \end{split}
 \end{equation}
 Note that this definition is equivalent to the following:
-\begin{equation}
+\begin{equation} \label{eq:gen_1norm_reduzida}
   \|Q\|_{1 \text{ gen}} = \max \{ \max\{ \|Q_1 (A_1)\|_{1 \text{ gen}}  \mid  \|A_1\|_{1} = 1 \}, \hspace{2pt}\ldots \hspace{2pt}, \max \{ \|Q_n (A_n)\|_{1 \text{ gen}}  \mid  \|A_n\|_{1} = 1 \}  \},
 \end{equation}
    where
@@ -1532,7 +1542,7 @@ Considering the decomposition  $Q=[Q_1, \ldots, Q_n]$, where $Q_1, \ldots, Q_n$
 where, 
 \begin{equation}
   \begin{split}
-  S \cdot Q_i & \leq  \sum_{j=1}^{m} \sum_{k=1}^{t} \underbrace{\textsc{Il} \cdot \ldots \cdot \textsc{Il}}_{t-k \times} \cdot  \underbrace{\textsc{Ir} \cdot \ldots \cdot \textsc{Ir}}_{k-1 \times} \cdot \hspace{2pt} S_{jk} \cdot Q_{ij}
+  S \cdot Q_i & =  \sum_{j=1}^{m} \sum_{k=1}^{t} \underbrace{\textsc{Il} \cdot \ldots \cdot \textsc{Il}}_{t-k \times} \cdot  \underbrace{\textsc{Ir} \cdot \ldots \cdot \textsc{Ir}}_{k-1 \times} \cdot \hspace{2pt} S_{jk} \cdot Q_{ij}
   \end{split}
 \end{equation}
 
@@ -1742,9 +1752,9 @@ where $v \in \mathbb{C}^{o_i}$ and $1 \leq i \leq n$.
   %\hspace{-30pt} & =  \max \{ \text{Tr}\left(Q_{i1}(u_1u_1^{*}) + \ldots + Q_{in}(u_m u_m^{*}) \right) \vert \hspace{2pt}  \lVert u_1 \rVert_{1}=1, \ldots, \lVert u_m \rVert_{1}=1 \}  \label{eq:qi_ptp_norm_3}
 %\end{align}
 %where $u \in \mathbb{C}^{o_i}$.
-\todo[inline,size=\normalsize]{ fazer referencia à definição de trace preserving para espaços com somas diretas qd eu a definir} 
 
-If $Q_i$ is trace-preserving, then considering the definition of trace-preserving super-operators for spaces with direct sums, one has:
+
+If $Q_i$ is trace-preserving, then considering \autoref{def:trace_preserving_direct_sum}, one has:
 \begin{equation}
 \text{Tr} (Q_i(v v^{\dag})) =  \text{Tr} (v v^{\dag})
 \end{equation}
@@ -1776,6 +1786,45 @@ As a result, considering the definition of trace-norm for square matrices, \auto
 \end{proposition}
 \begin{proof}
   The proof follows the same reasoning as in \cite[Proof of Theorem 3.41]{watrous2018theory}, following from the triangle inequality, \autoref{lem:gen_diamond_submultiplicative} and \autoref{cor:gen_diamond_cptp_norm}. 
+\end{proof}
+
+\begin{proposition}
+  Let $Q:\mathbb{C}^{o_1 \times o_1} \oplus \ldots \oplus \mathbb{C}^{o_n \times o_n}  \rightarrow \mathbb{C}^{p_1 \times p_1} \oplus \ldots \oplus  \mathbb{C}^{p_m \times p_m}$ be a super-operator, let $U_{0},U_1 \in \mathbb{C}^{o_1 \times o_1} \oplus \ldots \oplus \mathbb{C}^{o_n \times o_n}$  and $U_{2}, U_{3} \in \mathbb{C}^{p_1 \times p_1} \oplus \ldots \oplus  \mathbb{C}^{p_m \times p_m} $ be unitary operators, and let $S: Q:\mathbb{C}^{o_1 \times o_1} \oplus \ldots \oplus \mathbb{C}^{o_n \times o_n}  \rightarrow \mathbb{C}^{p_1 \times p_1} \oplus \ldots \oplus  \mathbb{C}^{p_m \times p_m}$ be defined as:
+  \begin{equation}
+    S(A) = U_2  Q (U_0 A U_1)  U_3
+  \end{equation}
+  for all $A \in \mathbb{C}^{o_1 \times o_1} \oplus \ldots \oplus \mathbb{C}^{o_n \times o_n}$. Then, it holds that $\lVert S \rVert_{1 \text{ gen}} = \lVert Q \rVert_{1 \text{ gen}} $
+\end{proposition}
+
+\begin{proof}
+  Considering the decompositions $Q = [Q_1, \ldots, Q_n]$, $S = [S_1, \ldots, S_n]$, with $Q_i = (Q_{i1}, \ldots, Q_{im})$  and $S_i = (S_{i1}, \ldots, S_{im})$ , $U_0 = (U_{01}, \ldots,U_{0n})$, $U_1 = (U_{11}, \ldots,U_{1n})$, $U_2 = (U_{21}, \ldots,U_{2m})$,$ U_3 = (U_{31}, \ldots,U_{3m})$, and $A = (A_1, \ldots, A_n)$ one has that:
+  \begin{equation}
+    \begin{split}
+    S (A) & =  U_2 \cdot \left(Q_1(U_{01}A_1 U_{11}), \hspace{2pt} \ldots \hspace{2pt}, Q_n(U_{0n} A_n U_{1n}) \right) \cdot U_3 \\
+    & = \sum_{i=1}^{n} \left( U_{21} Q_{i1} (U_{0i} A_i U_{1i} ) U_{31}, \hspace{2pt} \ldots \hspace{2pt}, U_{2m} Q_{im}(U_{0i}A_i U_{1i}) U_{3m} \right) \\
+    & = \sum_{i=1}^{n} \left( S_{i1}(A), \hspace{2pt} \ldots \hspace{2pt}, S_{im}(A) \right) =  \sum_{i=1}^{n} S_i (A)
+  \end{split}
+  \end{equation}
+
+Given that $U_0, U_1, U_2, U_3$ are unitary operators, it follows that, $Q{ij} = U_{2j}^\dag S_{ij}(U_{0i}^\dag A U_{1i}^\dag) U_{3j}^\dag$, and consequently:
+\begin{equation} \label{eq:qi_unitary_invariance}
+   Q(A) = \sum_{i=1}^{n} \left( U_{21}^\dag S_{i1} (U_{0i}^\dag A_i U_{1i}^\dag ) U_{31}^\dag, \hspace{2pt} \ldots \hspace{2pt}, U_{2m}^\dag S_{im}(U_{0i}^\dag A_i U_{1i}^\dag) U_{3m}^\dag \right) = \sum_{i=1}^{n} Q_i (A)
+\end{equation}
+
+Applying the same reasoning as in \cite[Proof of Proposition 3.41]{watrous2018theory}, considering \autoref{def:gen_norm} , by the unitary invariance of the trace norm, \autoref{lem:q(o)} and  \autoref{def:gen_1norm}, it follows that for $1 \leq i \leq n$: 
+\begin{equation}
+  \begin{split}
+    \lVert S_i (A_i) \rVert_{1 \text{ gen}} & =   \sum_{j=1}^m  \lVert U_{2j} Q_{i1} (U_{0i} A_i U_{1i} ) U_{3j} \rVert_{1} = \sum_{j=1}^m  \lVert Q_{ij} (U_{0i} A_i U_{1i}) \rVert_{1} = \lVert Q_i (U_{0i} A_i U_{1i}) \rVert_{1 \text{ gen}} \\
+    & \leq  \lVert Q_i  \rVert_{1 \text{ gen}} \lVert A_i  \rVert_{1} \leq  \lVert Q  \rVert_{1 \text{ gen}} \lVert A_i  \rVert_{1}  
+  \end{split}
+\end{equation}
+As a result, given \autoref{def:gen_norm_gen_inj} it follows that $\lVert S_i \rVert_{1 \text{ gen}} \leq \lVert Q \rVert_{1 \text{ gen}}$ for all $1 \leq i \leq n$. Thus, attending to \autoref{def:gen_1norm}, it holds that,
+\begin{equation}
+ \lVert Q  \rVert_{1 \text{ gen}}  \geq \max \{\lVert S_1 \rVert_{1 \text{ gen}}, \ldots, \lVert S_n \rVert_{1 \text{ gen}} \} = \lVert S \rVert_{1 \text{ gen}}
+\end{equation}
+
+Considering \autoref{eq:qi_unitary_invariance} the same approach can be taken to find that $ \lVert S  \rVert_{1 \text{ gen}} \leq \lVert Q  \rVert_{1 \text{ gen}} $, which concludes the proof.
+
 \end{proof}
 
 

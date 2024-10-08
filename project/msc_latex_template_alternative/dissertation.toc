@@ -30,51 +30,51 @@
 \contentsline {subsection}{\numberline {3.1.6}Spectral theorem}{23}{subsection.3.1.6}%
 \contentsline {subsection}{\numberline {3.1.7}Important classes of operators/matrices}{23}{subsection.3.1.7}%
 \contentsline {subsection}{\numberline {3.1.8}Useful norms}{24}{subsection.3.1.8}%
-\contentsline {subsection}{\numberline {3.1.9}Tensor Products and Direct Sums of Complex spaces}{25}{subsection.3.1.9}%
+\contentsline {subsection}{\numberline {3.1.9}Tensor Products and Direct Sums of Complex spaces}{26}{subsection.3.1.9}%
 \contentsline {section}{\numberline {3.2}Quantum Computing Preliminaries}{27}{section.3.2}%
 \contentsline {subsection}{\numberline {3.2.1}The 2-Dimensional Hilbert Space}{27}{subsection.3.2.1}%
 \contentsline {subsection}{\numberline {3.2.2}Multi-qubit States}{29}{subsection.3.2.2}%
 \contentsline {subsubsection}{Entanglement}{29}{subsection.3.2.2}%
 \contentsline {subsection}{\numberline {3.2.3}Unitary operators and Measurements}{31}{subsection.3.2.3}%
 \contentsline {subsubsection}{Pauli Matrices}{31}{subsection.3.2.3}%
-\contentsline {subsubsection}{Unitary operators}{31}{subsection.3.2.3}%
+\contentsline {subsubsection}{Unitary operators}{32}{subsection.3.2.3}%
 \contentsline {subsubsection}{Measurements}{33}{theorem.3.2.2}%
-\contentsline {subsection}{\numberline {3.2.4}Density operators}{33}{subsection.3.2.4}%
+\contentsline {subsection}{\numberline {3.2.4}Density operators}{34}{subsection.3.2.4}%
 \contentsline {subsubsection}{Reduced density operator}{34}{equation.3.2.9}%
 \contentsline {subsection}{\numberline {3.2.5}Quantum Channels}{36}{subsection.3.2.5}%
 \contentsline {subsubsection}{Kraus operator sum representation}{37}{definition.3.2.6}%
-\contentsline {subsubsection}{Non-selective measurements}{37}{definition.3.2.6}%
+\contentsline {subsubsection}{Non-selective measurements}{38}{definition.3.2.6}%
 \contentsline {subsubsection}{Norms on quantum channels}{38}{definition.3.2.6}%
 \contentsline {subsection}{\numberline {3.2.6}Quantum circuits}{39}{subsection.3.2.6}%
 \contentsline {subsection}{\numberline {3.2.7}No-cloning theorem}{40}{subsection.3.2.7}%
-\contentsline {section}{\numberline {3.3}Interpretation}{40}{section.3.3}%
-\contentsline {subsubsection}{Types and operations in quantum lambda calculus}{43}{equation.3.3.13}%
-\contentsline {subsection}{\numberline {3.3.1}Example: Deutsch's Algorithm}{44}{subsection.3.3.1}%
-\contentsline {subsubsection}{Deutsch's Algorithm with Measurement Errors}{47}{equation.3.3.27}%
-\contentsline {subsection}{\numberline {3.3.2}Example: Proving an equivalence using equations-in-context}{49}{subsection.3.3.2}%
-\contentsline {chapter}{\numberline {4}Conditionals}{51}{chapter.4}%
-\contentsline {section}{\numberline {4.1}A slightly different model for operations}{51}{section.4.1}%
-\contentsline {section}{\numberline {4.2}Syntax}{52}{section.4.2}%
-\contentsline {subsubsection}{Properties}{53}{figure.caption.35}%
-\contentsline {paragraph}{Proof}{53}{Item.26}%
-\contentsline {paragraph}{Proof}{55}{lemma.4.2.2}%
-\contentsline {section}{\numberline {4.3}Interpretation}{58}{section.4.3}%
-\contentsline {paragraph}{Proof}{59}{figure.caption.50}%
-\contentsline {paragraph}{Proof}{59}{lemma.4.3.1}%
-\contentsline {section}{\numberline {4.4} \boldmath $\beta $ and $\eta $ Equations}{63}{section.4.4}%
-\contentsline {paragraph}{Proof}{64}{section.4.4}%
-\contentsline {section}{\numberline {4.5}Metric equations}{67}{section.4.5}%
-\contentsline {section}{\numberline {4.6}Generalized norm}{67}{section.4.6}%
-\contentsline {section}{\numberline {4.7}Ilustration: Quantum Teleportation}{85}{section.4.7}%
-\contentsline {section}{\numberline {4.8}Ilustration: Noisy Quantum Teleportation}{88}{section.4.8}%
-\contentsline {subsection}{\numberline {4.8.1}Noisy Quantum Teleportation: Decoherence}{88}{subsection.4.8.1}%
-\contentsline {subsection}{\numberline {4.8.2}Noisy Quantum Teleportation: Amplitude Damping}{90}{subsection.4.8.2}%
-\contentsline {subsection}{\numberline {4.8.3}Noisy Quantum Teleportation: An imperfect implementation of the Hadamard gate}{93}{subsection.4.8.3}%
-\contentsline {subsection}{\numberline {4.8.4}Ilustration: A malicious attack on the quantum teleportation protocol}{100}{subsection.4.8.4}%
-\contentsline {chapter}{\numberline {5}Graded modalities}{107}{chapter.5}%
-\contentsline {section}{\numberline {5.1}Syntax}{107}{section.5.1}%
-\contentsline {section}{\numberline {5.2}Interpretation}{108}{section.5.2}%
-\contentsline {section}{\numberline {5.3}Quantum State Discrimination}{108}{section.5.3}%
-\contentsline {chapter}{\numberline {6}Conclusions and future work}{109}{chapter.6}%
-\contentsline {section}{\numberline {6.1}Conclusions}{109}{section.6.1}%
-\contentsline {section}{\numberline {6.2}Prospect for future work}{109}{section.6.2}%
+\contentsline {section}{\numberline {3.3}Interpretation}{41}{section.3.3}%
+\contentsline {subsubsection}{Types and operations in quantum lambda calculus}{44}{equation.3.3.13}%
+\contentsline {subsection}{\numberline {3.3.1}Example: Deutsch's Algorithm}{45}{subsection.3.3.1}%
+\contentsline {subsubsection}{Deutsch's Algorithm with Measurement Errors}{48}{equation.3.3.27}%
+\contentsline {subsection}{\numberline {3.3.2}Example: Proving an equivalence using equations-in-context}{50}{subsection.3.3.2}%
+\contentsline {chapter}{\numberline {4}Conditionals}{53}{chapter.4}%
+\contentsline {section}{\numberline {4.1}A slightly different model for operations}{53}{section.4.1}%
+\contentsline {section}{\numberline {4.2}Syntax}{54}{section.4.2}%
+\contentsline {subsubsection}{Properties}{55}{figure.caption.35}%
+\contentsline {paragraph}{Proof}{55}{Item.26}%
+\contentsline {paragraph}{Proof}{57}{lemma.4.2.2}%
+\contentsline {section}{\numberline {4.3}Interpretation}{60}{section.4.3}%
+\contentsline {paragraph}{Proof}{61}{figure.caption.50}%
+\contentsline {paragraph}{Proof}{61}{lemma.4.3.1}%
+\contentsline {section}{\numberline {4.4} \boldmath $\beta $ and $\eta $ Equations}{65}{section.4.4}%
+\contentsline {paragraph}{Proof}{66}{section.4.4}%
+\contentsline {section}{\numberline {4.5}Metric equations}{69}{section.4.5}%
+\contentsline {section}{\numberline {4.6}Generalized norm}{69}{section.4.6}%
+\contentsline {section}{\numberline {4.7}Ilustration: Quantum Teleportation}{88}{section.4.7}%
+\contentsline {section}{\numberline {4.8}Ilustration: Noisy Quantum Teleportation}{90}{section.4.8}%
+\contentsline {subsection}{\numberline {4.8.1}Noisy Quantum Teleportation: Decoherence}{90}{subsection.4.8.1}%
+\contentsline {subsection}{\numberline {4.8.2}Noisy Quantum Teleportation: Amplitude Damping}{93}{subsection.4.8.2}%
+\contentsline {subsection}{\numberline {4.8.3}Noisy Quantum Teleportation: An imperfect implementation of the Hadamard gate}{96}{subsection.4.8.3}%
+\contentsline {subsection}{\numberline {4.8.4}Ilustration: A malicious attack on the quantum teleportation protocol}{102}{subsection.4.8.4}%
+\contentsline {chapter}{\numberline {5}Graded modalities}{109}{chapter.5}%
+\contentsline {section}{\numberline {5.1}Syntax}{109}{section.5.1}%
+\contentsline {section}{\numberline {5.2}Interpretation}{110}{section.5.2}%
+\contentsline {section}{\numberline {5.3}Quantum State Discrimination}{110}{section.5.3}%
+\contentsline {chapter}{\numberline {6}Conclusions and future work}{111}{chapter.6}%
+\contentsline {section}{\numberline {6.1}Conclusions}{111}{section.6.1}%
+\contentsline {section}{\numberline {6.2}Prospect for future work}{111}{section.6.2}%
