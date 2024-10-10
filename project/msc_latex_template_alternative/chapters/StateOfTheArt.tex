@@ -1726,13 +1726,24 @@ The following operations are considered: the creation of a new qubit in the stat
 
 % Flar sobre o que é cptp e o que não é
 
-The chosen model requires that all operators considered are \acrshort{cptp} maps. The identity $I$, the swap operator $\text{sw}$, the left and right unitors $\rho$ and $\lambda$, the left associator $\alpha$,the trace operation $!$, the split operator $\text{sp}$, the join operator $\text{jn}$, the exhange $\text{exch}$ and shuffle $\text{sh}$ are all  \acrshort{cptp} maps \cite{dahlqvist2022syntactic}. However, the operators curry $\overline{f}$ and application $\text{app}$ are not \acrshort{cptp} maps, which means that they are not allowed in this model. On the other hand the measurement operator $[\![\textit{meas}]\!]$ and the unitary operator $[\![\textit{U}]\!]$ are \acrshort{cptp} maps (\Cref{subsec:quantum_channels}, \cite[page 73]{watrous2018theory}). Finally, regarding the operators  $[\![\textit{new} \,0 ]\!]$ and $[\![\textit{new} \, 1 ] \!]$, it is straightforward to verify that the operators $ \llbracket \textit{new} \, 0 \rrbracket $ and $\llbracket\textit{new} \, 1 \rrbracket$ are trace-preserving. Given that matrices $\big(\begin{smallmatrix} 1 & 0\\ 0 & 0 \end{smallmatrix}\big)$ and $\big(\begin{smallmatrix} 0 & 0\\ 0 & 1 \end{smallmatrix}\big)$ correspond to the projectors $\ket{0}\bra{0}$ and $\ket{1}\bra{1}$, one has that 
+The chosen model requires that all operators considered are \acrshort{cptp} maps. The identity $I$, the swap operator $\text{sw}$, the left and right unitors $\rho$ and $\lambda$, the left associator $\alpha$,the trace operation $!$, the split operator $\text{sp}$, the join operator $\text{jn}$, the exhange $\text{exch}$ and shuffle $\text{sh}$ are all  \acrshort{cptp} maps \cite{dahlqvist2022syntactic}. However, the operators curry $\overline{f}$ and application $\text{app}$ are not \acrshort{cptp} maps, which means that they are not allowed in this model. On the other hand the measurement operator $[\![\textit{meas}]\!]$ and the unitary operator $[\![\textit{U}]\!]$ are \acrshort{cptp} maps (\Cref{subsec:quantum_channels}, \cite[page 73]{watrous2018theory}).
+
+\begin{proposition}
+  The operators $[\![\textit{new} \, 0 ]\!]$ and $[\![\textit{new} \, 1 ]\!]$ are trace-preserving completely positive super-operators.
+\end{proposition}
+
+%Proposition 2.17
+\begin{proof}
+  It is straightforward to verify that the operators $ \llbracket \textit{new} \, 0 \rrbracket $ and $\llbracket\textit{new} \, 1 \rrbracket$ are trace-preserving.
+Given that matrices $\big(\begin{smallmatrix} 1 & 0\\ 0 & 0 \end{smallmatrix}\big)$ and $\big(\begin{smallmatrix} 0 & 0\\ 0 & 1 \end{smallmatrix}\big)$ correspond to the projectors $\ket{0}\bra{0}$ and $\ket{1}\bra{1}$, one has that 
 \begin{align} \label{eq:prove_new_0}
   \hspace{-20pt} &  \bra{\psi} \ket{0}\bra{0} \otimes I^{\otimes n} \ket{\psi}  = \bra{\psi} \ket{0}\bra{0} \otimes \left(\frac{\ket{0}\bra{0} + \ket{1}\bra{1}}{2}\right)^{\otimes n} \ket{\psi} \\
   \hspace{-20pt} =  &  \sum_{i} |\alpha_i|^{2} \braket{\psi_{0i}}{0}\braket{0}{\psi_{0i}} \bra{\psi_{1i}} \left(\frac{\ket{0}\bra{0} + \ket{1}\bra{1}}{2}\right)\ket{\psi_{1i}} \ldots \bra{\psi_{ni}} \left(\frac{\ket{0}\bra{0} + \ket{1}\bra{1}}{2}\right)\ket{\psi_{ni}}   \\
   \hspace{-20pt} = & \sum_{i}  |\alpha_i|^{2} |\braket{0}{\psi_{0i}}|^{2} \left( \frac{ \left( |\braket{0}{\psi_{1i}}|^{2} +  |\braket{1}{\psi_{1i}}|^{2} \right) \ldots \left( |\braket{0}{\psi_{ni}}|^{2} +  |\braket{1}{\psi_{ni}}|^{2} \right) }{2}  \right)    \\
 \end{align}
-Given that the squared absolute value of a real number is always non-negative, the expression above is always non-negative. Therefore, the operator $[\![\textit{new} \,0 ]\!]$ is positive. The same reasoning can be applied to the operator $[\![\textit{new} \,1 ]\!]$. Therefore, attending to \autoref{def:completely_positive_superoperator} and \autoref{def:positive_superoperator}, it is possible to conclude that both operators $[\![\textit{new} \,0 ]\!]$ and $[\![\textit{new} \, 1 ] \!]$ are completely positive super-operators. As a result, both operators are \acrshort{cptp} maps.
+Considering that the squared absolute value of a real number is always non-negative, the expression above is always non-negative. Therefore, the operator $[\![\textit{new} \,0 ]\!]$ is positive. The same reasoning can be applied to the operator $[\![\textit{new} \,1 ]\!]$. Therefore, attending to \autoref{def:completely_positive_superoperator} and \autoref{def:positive_superoperator}, it is possible to conclude that both operators $[\![\textit{new} \,0 ]\!]$ and $[\![\textit{new} \, 1 ] \!]$ are completely positive super-operators. As a result, both operators are \acrshort{cptp} maps.
+
+\end{proof}
 %attending to \autoref{def:positive_superoperator} and \autoref{def:positive} given that both matrices $\big(\begin{smallmatrix} 1 & 0\\ 0 & 0 \end{smallmatrix}\big)$ and $\big(\begin{smallmatrix} 0 & 0\\ 0 & 1 \end{smallmatrix}\big)$ are hermitian and have eigenvalues $0$ and $1$, they are positive super-operators. 
 
   \subsection{Example: Deutsch's Algorithm}

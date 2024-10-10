@@ -22,14 +22,46 @@ This chapter presents the syntax, interpretation, and metric equations for the c
 %In order to established that the theory introduced is valid in quantum programming, it is necessary to build a model. The model can be seen as a category where the morphisms are the CPTP super-operators (quantum channels). The algebric structure of this model is given by the vector spaces. 
 %Any completely-positive and trace-preserving map has a diamond norm equal to one \cite{watrous2018theory}. Since the measurement operation is completely positive and trace-preserving, its  diamond norm is equal to one. This is a desirable property, as it ensures that the measurement operation does not increase the distance between states, and as a consequence, composition of programs remains valid.
 
-Within the model of quantum lambda calculus, introduced in \autoref{sec:Quantum Lambda Calculus:Interpretation}, the measurement operation is defined in accordance with the standard approach in physics \cite{watrous2018theory}. However, within this definiton the distinction between classical and quantum states is made through the elements of the spaces and not the spaces themselves, in the sense that both the result of measuring a quantum state, which is a classical bit, and the quantum state itself are elements of the same space, $\mathbb{C}^{2 \times 2}$. 
+Within the model of quantum lambda calculus, introduced in \autoref{sec:Quantum Lambda Calculus:Interpretation}, the measurement operation is defined in accordance with the standard approach in physics \cite{watrous2018theory}. However, within this definiton the distinction between classical and quantum states is made through the elements of the spaces and not the spaces themselves, in the sense that both the result of measuring a quantum state, which is a classical bit, and the quantum state itself are elements of the same space, $\mathbb{C}^{2 \times 2}$. Thus, now a new model based on the direct sums of vector spaces of square matrices is introduced.
 
-As a result two distinct basic data types are considered: a type $\textit{bit}$ of classical bits and a type $\textit{qbit}$ of quantum bits.  The interpretation of these types is defined as  $[\![\textit{bit}]\!]=\mathbb{C}\oplus\mathbb{C}$ and $[\![\textit{qbit}]\!]=\mathbb{C}^{2\cdot 2}$. The type $\mathbb{I}$ is interpreted as $[\![\mathbb{I}]\!]=\mathbb{C}$.
+As a result, it is necessary to define the operators considered in \autoref{fig:denotational_sem} for direct sums of vector spaces. Consider vector spaces hat are not the direct sum of other vector spaces  $V_1, \ldots, V_n$, $W_1, \ldots, W_n$, and $R_1, \ldots, R_n$ and vectors $v_1 \in V_1, \ldots, v_n \in V_n, w_1 \in W_1, \ldots, w_n \in W_n, r_1 \in R_1, \ldots, r_n \in R_n$. These operators are defined as follows:
 
-\todo[inline,size=\normalsize]{Novo modelo -> somas diretas de espaços complexos de matrizes quadradas} 
-\todo[inline,size=\normalsize]{ops swap e tal} 
+\begin{equation}
+  \begin{split}
+  \ \textsc{sw}_{V_1 \oplus \ldots \oplus V_n, W_1 \oplus \ldots \oplus W_n} :  &V_{1}\otimes W_{1} \oplus \ldots \oplus  V_{n}\otimes W_{n} \xrightarrow{} W_1 \otimes V_1 \oplus \ldots \oplus W_n \otimes V_n  \\
+  &(v_{1}\otimes w_{1},\ldots,v_{n}\otimes w_{n}) \mapsto (\textsc{sw}_{V_1,W_1} (v_{1}\otimes w_{1}), \ldots, \textsc{sw}_{V_n,W_n}(v_n\otimes w_{n}) ) 
+\end{split}
+\end{equation}
 
-The following operations are considered: the creation of a new bit $(1,0)$, $\textit{new} \hspace{2pt} 0  :\mathbb{I}  \multimap \textit{bit} $, the creation of a new bit $(0,1)$, $\textit{new} \hspace{2pt} 1  :\mathbb{I}  \multimap \textit{bit} $, the conversion of a bit into a qubit, $q : \textit{bit}  \multimap \textit{qbit}$, measuring a qubit, $\textit{meas}:\textit{qbit} \xrightarrow{} \textit{bit}$, applying a unitary operation to a qubit $\textit{U}:\textit{qbit},\ldots,\textit{qbit} \xrightarrow{} \textit{qbit}^{\otimes n}$, and performing a \acrshort{cptp} operation on a qubit, $\textit{CPTP}: \textit{qbit}^{\otimes n} \multimap \textit{qbit}^{\otimes n}$. These operations are defined in \autoref{fig:interpret_ops}. 
+\begin{equation}
+  \begin{split}
+ \lambda_{ V_{1} \oplus \ldots \oplus V_{n}} :  \mathbb{C}\otimes V_{1} \oplus \ldots \oplus  \mathbb{C} \otimes V_{n} &\xrightarrow{} V_1 \oplus \ldots \oplus V_n  \\
+  (1\otimes v_{1},\ldots,1\otimes v_{n}) &\mapsto (\lambda_{V_1} (1 \otimes v_{1}), \ldots, \lambda_{V_n}(1 \otimes v_{n}) ) 
+\end{split}
+\end{equation}
+
+\begin{equation}
+  \begin{split}
+   \rho_{ V_{1} \oplus \ldots \oplus V_{n}} :  V_{1} \otimes \mathbb{C} \oplus \ldots \oplus V_{n} \otimes \mathbb{C} &\xrightarrow{} V_1 \oplus \ldots \oplus V_n  \\
+  ( v_{1} \otimes 1,\ldots, v_{n} \otimes 1) &\mapsto (\rho_{V_1} ( v_{1} \otimes 1), \ldots, \rho_{V_n}( v_{n} \otimes 1) ) 
+\end{split}
+\end{equation}
+
+\begin{equation}
+  \begin{split}
+  \alpha_{V_1 \oplus \ldots \oplus V_n, W_1 \oplus \ldots \oplus W_n, R_1 \oplus \ldots \oplus R_n } :  &V_{1} \otimes (W_1 \otimes R_1) \oplus \ldots \oplus V_{n} \otimes (W_n \otimes R_n) \xrightarrow{} \\
+   &(V_{1} \otimes W_1) \otimes R_1 \oplus \ldots \oplus  (V_{n} \otimes W_n) \otimes R_n  \\
+  &( v_{1} \otimes (w_1 \otimes r_1),\ldots, v_{n} \otimes (w_n \otimes r_n)) \mapsto \\
+  &(\alpha_{V_1, W_1, R_1} ( v_{1} \otimes (w_1 \otimes r_1)), \ldots, \alpha_{V_{n}, W_n, R_n}( v_{n} \otimes (w_{n} \otimes r_n)) ) 
+\end{split}
+\end{equation}
+
+
+
+Within this model two distinct basic data types are considered: a type $\textit{bit}$ of classical bits and a type $\textit{qbit}$ of quantum bits.  The interpretation of these types is defined as  $[\![\textit{bit}]\!]=\mathbb{C}\oplus\mathbb{C}$ and $[\![\textit{qbit}]\!]=\mathbb{C}^{2\cdot 2}$. The type $\mathbb{I}$ is interpreted as $[\![\mathbb{I}]\!]=\mathbb{C}$.
+
+
+The following operations are considered: the creation of a new bit $(1,0)$, $\textit{new} \hspace{2pt} 0  :\mathbb{I}  \multimap \textit{bit} $, the creation of a new bit $(0,1)$, $\textit{new} \hspace{2pt} 1  :\mathbb{I}  \multimap \textit{bit} $, the conversion of a bit into a qubit, $q : \textit{bit}  \multimap \textit{qbit}$, measuring a qubit, $\textit{meas}:\textit{qbit} \xrightarrow{} \textit{bit}$, applying a unitary  operation to a qubit $\textit{U}:\textit{qbit},\ldots,\textit{qbit} \xrightarrow{} \textit{qbit}^{\otimes n}$, and performing a \acrshort{cptp} operation on a qubit, $\textit{CPTP}: \textit{qbit}^{\otimes n} \multimap \textit{qbit}^{\otimes n}$. These operations are defined in \autoref{fig:interpret_ops}. 
 
 \begin{figure}[H]
   \begin{equation*}
@@ -84,6 +116,7 @@ The following operations are considered: the creation of a new bit $(1,0)$, $\te
   \label{fig:interpret_ops}
   \end{figure}
 
+ 
   \todo[inline,size=\normalsize]{def cptp}
  \begin{definition} \label{def:trace_direct_sum}
   The trace of a vector $v = (v_1, \ldots, v_n) \in V_1 \oplus \ldots \oplus V_n$, is defined as 
@@ -94,6 +127,8 @@ The following operations are considered: the creation of a new bit $(1,0)$, $\te
  \begin{definition}\label{def:trace_preserving_direct_sum}
   A super-operator is called \emph{trace-preserving} if $\text{Tr} \hspace{2pt} (Q A)= \text{Tr} (A)$.
  \end{definition}
+
+ This new model further requires that all operators be \acrshort{cptp} maps, in accordance with the definition...
   
   \todo[inline,size=\normalsize]{provas} 
 
