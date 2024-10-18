@@ -1260,7 +1260,7 @@ Thus far, only two types of quantum operations have been discussed: unitary oper
 %the evolution of a quantum system has been described by unitary operators. However, in practice, quantum systems are not isolated, and they interact with their environment. This interaction is described by a \emph{quantum channel}, which is a completely positive trace-preserving (CPTP) linear map. A quantum channel is a generalization of a unitary operator that allows for the description of the evolution of a quantum system under the influence of an environment.
 
 \begin{definition}
-  A \emph{super-operator} $Q$ is a linear map between the space of operators on a Hilbert space $E: \mathbb{C}^{n\times n} \rightarrow  \mathbb{C}^{m\times m}$. 
+  A \emph{super-operator} $Q$ is a linear map between the space of operators on a Hilbert space. 
 \end{definition}
 
 \begin{definition} \label{def:positive_superoperator}
@@ -1268,10 +1268,14 @@ Thus far, only two types of quantum operations have been discussed: unitary oper
 \end{definition}
 
 \begin{definition} \label{def:completely_positive_superoperator}
-  A super-operator is said to be \emph{completely positive} if for all $k$, $Q \otimes I_{\mathbb{C}^{k \times k}}: \mathbb{C}^{n \times n} \otimes \mathbb{C}^{k \times k} \rightarrow \mathbb{C}^{m \times m} \otimes \mathbb{C}^{k \times k}  $ is positive.
+  A super-operator $Q$ is said to be \emph{completely positive} if for all $k$, 
+  $$Q \otimes I_{\mathbb{C}^{k \times k}}: \mathbb{C}^{n \times n} \otimes \mathbb{C}^{k \times k} \rightarrow \mathbb{C}^{m \times m} \otimes \mathbb{C}^{k \times k}  $$
+   is positive.
+  %A super-operator $Q : V \rightarrow W$ is said to be \emph{completely positive} if for all $R$, $Q \otimes I_{R}: V \otimes R \rightarrow W \otimes R$
+   %is positive.
 \end{definition}
 
-\begin{definition}
+\begin{definition} \label{def:trace_preserving_superoperator}
   A super-operator $Q$ is called \emph{trace-preserving} if $\text{Tr} \hspace{2pt} (Q A)= \text{Tr} (A)$.
 \end{definition}
 
@@ -1719,16 +1723,18 @@ The following operations are considered: the creation of a new qubit in the stat
   \end{aligned}
   \end{split}
   \end{equation*}
-  \caption{Judgment interpretation of the operations in quantum lambda calculus.}
+  \caption{Interpretation of the operations in quantum lambda calculus.}
   \label{fig:interpret_ops_0}
   \end{figure}
+
+
 
 
 % Flar sobre o que é cptp e o que não é
 
 The chosen model requires that all operators considered are \acrshort{cptp} maps. The identity $I$, the swap operator $\text{sw}$, the left and right unitors $\rho$ and $\lambda$, the left associator $\alpha$,the trace operation $!$, the split operator $\text{sp}$, the join operator $\text{jn}$, the exhange $\text{exch}$ and shuffle $\text{sh}$ are all  \acrshort{cptp} maps \cite{dahlqvist2022syntactic}. However, the operators curry $\overline{f}$ and application $\text{app}$ are not \acrshort{cptp} maps, which means that they are not allowed in this model. On the other hand the measurement operator $[\![\textit{meas}]\!]$ and the unitary operator $[\![\textit{U}]\!]$ are \acrshort{cptp} maps (\Cref{subsec:quantum_channels}, \cite[page 73]{watrous2018theory}).
 
-\begin{proposition}
+\begin{proposition} \label{prop:new_0_1_cptp}
   The operators $[\![\textit{new} \, 0 ]\!]$ and $[\![\textit{new} \, 1 ]\!]$ are trace-preserving completely positive super-operators.
 \end{proposition}
 
