@@ -175,13 +175,22 @@ Concerning the case statement, considering  Figure \ref{fig:typing_rules_cond} a
           \hypo{\Delta', x: \mathbb{A} \triangleright w: \mathbb{D}}
           \hypo{\Delta', y: \mathbb{B} \triangleright u: \mathbb{D}}
           \hypo{E' \in \text{Sf}(\Gamma'; \Delta')}
-          \infer4[(case)]{E' \triangleright \text{case } v \{\text{inl}_{\mathbb{B}}(x) \Rightarrow w ; \text{inr}_{\mathbb{A}}(y) \Rightarrow u\}: \mathbb{D}}
+          \infer4[]{E' \triangleright \text{case } v \{\text{inl}_{\mathbb{B}}(x) \Rightarrow w ; \text{inr}_{\mathbb{A}}(y) \Rightarrow u\}: \mathbb{D}}
           \end{prooftree}
     \end{aligned}
     \end{equation*}
     \end{figure}
 
-we want to prove that te($E$) $\simeq_{\pi}$  te($E'$). By induction hypothesis, te($\Gamma$) $\simeq_{\pi}$  te($\Gamma$), te($\Delta,x$) $\simeq_{\pi}$  te($\Delta',x$) and te($\Delta,y$) $\simeq_{\pi}$  te($\Delta',y$). This implies that  te($\Delta$) $\simeq_{\pi}$ te($\Delta'$). Since, $E \in \text{Sf}(\Gamma;\Delta)$ and  $E' \in \text{Sf}(\Gamma';\Delta')$, one has that te($E$) $\simeq_{\pi}$  te($\Gamma, \Delta$) and te($E'$) $\simeq_{\pi}$  te($\Gamma', \Delta'$). Consequently, te($E$) $\simeq_{\pi}$  te($E'$).
+we want to prove that te($E$) $\simeq_{\pi}$  te($E'$). Considering the definition of shuffle, it follows that  te($E$) $\simeq_{\pi}$  te($\Gamma, \Delta$) and te($E'$) $\simeq_{\pi}$  te($\Gamma', \Delta'$). By induction hypothesis, te($\Gamma$) $\simeq_{\pi}$  te($\Gamma$), te($\Delta,x$) $\simeq_{\pi}$  te($\Delta',x$) and te($\Delta,y$) $\simeq_{\pi}$  te($\Delta',y$). Given that 
+%\text{te}(\Gamma) \simeq_{\pi}  \text{te}(\Gamma),
+\begin{align*}
+     \text{te}(\Delta,x) \simeq_{\pi}  \text{te}(\Delta',x) \land \text{te}(\Delta,y) \simeq_{\pi}  \text{te}(\Delta',y) 
+    \implies \text{te}(\Delta) \simeq_{\pi}  \text{te}(\Delta'), 
+  \end{align*}
+ it can be concluded that te($E$) $\simeq_{\pi}$  te($E'$).
+
+
+%This implies that  te($\Delta$) $\simeq_{\pi}$ te($\Delta'$). Since, $E \in \text{Sf}(\Gamma;\Delta)$ and  $E' \in \text{Sf}(\Gamma';\Delta')$, one has that te($E$) $\simeq_{\pi}$  te($\Gamma, \Delta$) and te($E'$) $\simeq_{\pi}$  te($\Gamma', \Delta'$). Consequently, te($E$) $\simeq_{\pi}$  te($E'$).
 
 
 \vspace{10pt}
@@ -282,7 +291,7 @@ Now, it is necessary to demonstrate that the case statement in Figure \ref{fig:t
         \hypo{\Delta', x: \mathbb{A} \triangleright w: \mathbb{D}}
         \hypo{\Delta', y: \mathbb{B} \triangleright u: \mathbb{D}}
         \hypo{E \in \text{Sf}(\Gamma'; \Delta')}
-        \infer4[(case)]{E \triangleright \text{case } v \{\text{inl}_{\mathbb{B}}(x) \Rightarrow w ; \text{inr}_{\mathbb{A}}(y) \Rightarrow u\}: \mathbb{D}}
+        \infer4[]{E \triangleright \text{case } v \{\text{inl}_{\mathbb{B}}(x) \Rightarrow w ; \text{inr}_{\mathbb{A}}(y) \Rightarrow u\}: \mathbb{D}}
         \end{prooftree}
   \end{aligned}
   \end{equation*}
