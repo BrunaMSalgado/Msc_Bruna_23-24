@@ -1,0 +1,92 @@
+\documentclass[10pt,a4paper]{amsart}
+\usepackage[utf8]{inputenc}
+\usepackage[english]{babel}
+\usepackage[mathcal]{euscript}
+\usepackage{mathrsfs}  
+\usepackage{amsmath}
+\usepackage{amsfonts}
+\usepackage{amssymb}
+\usepackage{stmaryrd}
+\usepackage{graphicx}
+\usepackage{mathtools}
+\usepackage{pgfplots}
+\usepackage{xfrac}
+\usepackage{listings}
+\usepackage{xcolor}
+\usepackage{lstlinebgrd}
+\usepackage[shortlabels]{enumitem}
+\usepackage[textsize=tiny,textwidth=45]{todonotes}
+\input{macros}
+\usepackage[left=2cm,right=2cm,top=2cm,bottom=2cm]{geometry}
+\linespread{1.10}
+\author{\dots}
+\title{Notes}
+
+\lstset{
+language=C,
+showstringspaces=false,
+keywordstyle=\color{blue},
+basicstyle=\fontsize{10}{13}\ttfamily,
+emph={exit,blue,unif,then,wait},emphstyle=\color{blue},
+breaklines=true,
+escapeinside={*@}{*@}
+}
+
+
+\usepackage{proof}
+\usepackage{amsthm}
+\usepackage[all]{xy}
+%for definition
+\theoremstyle{definition}
+\newtheorem{definition}{Definition}[section]
+
+%for examples
+\theoremstyle{definition}
+\newtheorem{example}[definition]{Example}
+
+%lemmas
+\theoremstyle{definition}
+\newtheorem{lemma}[definition]{Lemma}
+
+%proposition
+\theoremstyle{definition}
+\newtheorem{proposition}[definition]{Proposition}
+%corollary
+\theoremstyle{definition}
+\newtheorem{corollary}[definition]{Corollary}
+
+%theorem
+\theoremstyle{definition}
+\newtheorem{theorem}[definition]{Theorem}
+
+% Renato's macros
+\newcommand{\until}{\> \textcolor{blue}{\prog{for}} \>}
+\newcommand{\then}{\textcolor{blue}{then}}
+\newcommand{\progife}[3]{{ \blue{\prog{if}} \> #1 \> \blue{\prog{then}} \> 
+{\prog #2} \> \blue{\prog{else}} \> {\prog #3}}}
+\newcommand{\progwhile}[2]{{\blue{\prog{while}} \>  #1 \> \blue{\prog{do}} \> \{ \> {#2}  \> \}}}
+\newcommand{\scomp}{\, \blue{;} \,}
+\newcommand{\prem}[1]{(\text{if\/ }#1)}
+\newcommand{\nline}{\vspace{-5mm}}
+\newcommand{\ssto}[1][]{~\to^{#1}~}
+\newcommand{\bsto}{~\Downarrow~}
+\newcommand{\stp}{\mathit{stop}}
+\newcommand{\skp}{\mathit{skip}}
+\newcommand{\err}{\mathit{err}}
+\providecommand{\comma}{,\operatorname{}\linebreak[1]}		% possibly line-beaking comma
+\newcommand{\sep}{\kern1pt\comma\kern-1pt}
+\newcommand{\lrule}[3]{\textbf{#1}\quad\frac{#2}{#3}}
+\newcommand{\ptt}{{\prog tt}}
+\newcommand{\pff}{{\prog ff}}
+\newcommand{\unif}{{\prog \blue{unif}}}
+\newcommand{\meas}[1]{\mathcal{M}(#1)}
+\newcommand{\pmap}{ \xrightharpoonup{\hspace{0.1cm}} }
+
+\begin{document}
+\title{Quantum stuff}
+\maketitle
+%\tableofcontents
+
+\bibliographystyle{alpha} 
+\bibliography{biblio}
+\end{document}
