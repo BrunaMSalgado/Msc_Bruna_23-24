@@ -21,6 +21,9 @@
 \usepackage[textsize=tiny,textwidth=45]{todonotes}
 \input{macros}
 \usepackage[left=2cm,right=2cm,top=2cm,bottom=2cm]{geometry}
+\usepackage{tcolorbox}
+\usepackage{braket}
+\usepackage{quantikz}
 \linespread{1.10}
 \author{\dots}
 \title{Notes}
@@ -198,61 +201,52 @@ we want to prove that te($E$) $\simeq_{\pi}$  te($E'$). Considering the definiti
 
 For the injections, taking into account the inl and inr derivations in \autoref{fig:typing_rules_cond} and
 
-\begin{figure} [H]
-  \begin{equation*}
-  \begin{split}
-  \begin{aligned}
-  & \hspace{15pt}
-  \begin{minipage}[t]{0.3\textwidth}
-  $\begin{array}{c}
-     \Gamma' \triangleright v: \mathbb{A'} \\
-    \hline
-   \Gamma' \triangleright \text{inl}_{\mathbb{B}}(v):  \mathbb{A'} \oplus \mathbb{B}
-\end{array}
-$
-  \end{minipage} 
- \hspace{20pt}
-\begin{minipage}[t]{0.3\textwidth}
-$\begin{array}{c}
-      \Gamma' \triangleright v:  \mathbb{B'} \\
-    \hline
-   \Gamma' \triangleright \text{inr}_{\mathbb{A}}(v): \mathbb{A} \oplus \mathbb{B'}
-\end{array}
-$ \end{minipage}
-  \end{aligned}
-  \end{split}
-  \end{equation*}
-  \end{figure}
 
-concerning the left injection it is neccessary to prove that if $\Gamma \triangleright \text{inl}_{\mathbb{B}}(v):  \mathbb{A} \oplus \mathbb{B}$, $\Gamma' \triangleright \text{inl}_{\mathbb{B}}(v):  \mathbb{A'} \oplus \mathbb{B}$, and $\Gamma \simeq_{\pi} \Gamma' $, then $\mathbb{A} \oplus \mathbb{B} $ must be equal to $\mathbb{A}'\oplus \mathbb{B}$. By induction hypothesis over the premises it follows that $\mathbb{A} $ must be equal to $\mathbb{A}'$. Consequentlty, $\mathbb{A}\oplus \mathbb{B}$ must be equal $\mathbb{A'}\oplus \mathbb{B}$  The same reasoning can be applied to the right injection.
+  \begin{figure} [H]
+    \begin{equation*}
+    \begin{aligned}
+      &
+      \begin{prooftree}
+      \hypo{\Gamma' \triangleright v: \mathbb{A}'}
+      \infer1[]{\Gamma' \triangleright \text{inl}_{\mathbb{B}}(v): \mathbb{A}' \oplus \mathbb{B}}
+      \end{prooftree}
+      \hspace{60pt}
+      \begin{prooftree}
+      \hypo{\Gamma' \triangleright v: \mathbb{B}'}
+      \infer1[]{\Gamma' \triangleright \text{inr}_{\mathbb{A}}(v): \mathbb{A} \oplus \mathbb{B}'},
+      \end{prooftree} \\
+    \end{aligned}
+    \end{equation*}
+    \end{figure}
 
-Regarding the case statement in considering \autoref{fig:typing_rules_cond} and  
+   
 
-\begin{figure} [H]
-  \begin{equation*}
-  \begin{split}
-  \begin{aligned}
-  & \hspace{15pt}
-  \begin{minipage}[t]{0.3\textwidth}
-  $\begin{array}{c}
-       \Gamma\triangleright v: \mathbb{A} \oplus \mathbb{B} \quad \Delta', x: \mathbb{A} \triangleright w: \mathbb{C'} \quad \Delta', y: \mathbb{B}  \triangleright u : \mathbb{C'}   \quad E' \in \text{Sf}(\Gamma';\Delta')  \\
-      \hline
-     E' \triangleright \text{ case } v \hspace{2pt} \{\text{inl}_{\mathbb{B}}  (x) \Rightarrow w ; \hspace{1pt} \text{inr}_{\mathbb{A}}  (y) \Rightarrow u\}: \mathbb{C'} 
-  \end{array}
-  $
-  \end{minipage} 
-  \end{aligned}
-  \end{split}
-  \end{equation*}
-  \end{figure}
+concerning the left injection it is neccessary to prove that if $\Gamma \triangleright \text{inl}_{\mathbb{B}}(v):  \mathbb{A} \oplus \mathbb{B}$, $\Gamma' \triangleright \text{inl}_{\mathbb{B}}(v):  \mathbb{A'} \oplus \mathbb{B}$, and $\Gamma \simeq_{\pi} \Gamma' $, then $\mathbb{A} \oplus \mathbb{B} $ must be equal to $\mathbb{A}'\oplus \mathbb{B}$. By induction hypothesis over the premises, it follows that $\mathbb{A} $ must be equal to $\mathbb{A}'$. Consequentlty, in such case, $\mathbb{A}\oplus \mathbb{B}$ must be equal $\mathbb{A'}\oplus \mathbb{B}$.  The same reasoning can be applied to the right injection.
 
-we want to prove that if $E \triangleright \text{ case } v \hspace{2pt} \{\text{inl} (x) \Rightarrow w ; \hspace{1pt} \text{inr} (y) \Rightarrow u\}: \mathbb{D}$; $\Gamma'\triangleright \text{ case } v \hspace{2pt} \{\text{inl} (x) \Rightarrow w ; \hspace{1pt} \text{inr} (y) \Rightarrow u\}: \mathbb{D}'$, and $E \simeq_{\pi} E' $, then $\mathbb{D}$ must be equal to $\mathbb{D}'$. Assuming, that  $E \simeq_{\pi} E' $ and knowing that $E \in \text{Sf}(\Gamma;\Delta)$ and  $E' \in \text{Sf}(\Gamma';\Delta')$, one has that
+Regarding the case statement, considering \autoref{fig:typing_rules_cond} and  
+
+
+  \begin{figure} [H]
+    \begin{equation*}
+    \begin{aligned}
+      \begin{prooftree}
+          \hypo{\Gamma' \triangleright v: \mathbb{A} \oplus \mathbb{B}}
+          \hypo{\Delta', x: \mathbb{A} \triangleright w: \mathbb{D}'}
+          \hypo{\Delta', y: \mathbb{B} \triangleright u: \mathbb{D}'}
+          \hypo{E' \in \text{Sf}(\Gamma'; \Delta')}
+          \infer4[]{E' \triangleright \text{case } v \{\text{inl}_{\mathbb{B}}(x) \Rightarrow w ; \text{inr}_{\mathbb{A}}(y) \Rightarrow u\}: \mathbb{D}'}
+          \end{prooftree}
+    \end{aligned}
+    \end{equation*}
+    \end{figure}
+
+we want to prove that if $E \triangleright \text{ case } v \hspace{2pt} \{\text{inl} (x) \Rightarrow w ; \hspace{1pt} \text{inr} (y) \Rightarrow u\}: \mathbb{D}$; $\Gamma'\triangleright \text{ case } v \hspace{2pt} \{\text{inl} (x) \Rightarrow w ; \hspace{1pt} \text{inr} (y) \Rightarrow u\}: \mathbb{D}'$, and $E \simeq_{\pi} E' $, then $\mathbb{D}$ must be equal to $\mathbb{D}'$. Assuming that  $E \simeq_{\pi} E' $ and considering that $E \in \text{Sf}(\Gamma;\Delta)$ and  $E' \in \text{Sf}(\Gamma';\Delta')$, one has that
 
 \begin{align*}
-  & x: \mathbb{A}  \in \Delta & \\
-  \implies & x: \mathbb{A}  \in E \hspace{50pt} \{E \in \text{Sf}(\Gamma;\Delta)\} \\
-  \implies & x: \mathbb{A} \in E' \hspace{50pt} \{ E \simeq_{\pi} E' \}  \\
-  \implies & x: \mathbb{A}  \in \Delta' \hspace{50pt} \{\text{All terms are well typed and contexts do not share variables}\}
+  & z: \mathbb{E}  \in \Delta & \\
+  \implies & z: \mathbb{E}  \in E \hspace{50pt} \{E \in \text{Sf}(\Gamma;\Delta)\} \\
+  \implies & z: \mathbb{E} \in E' \hspace{50pt} \{ E \simeq_{\pi} E' \}  \\
+  \implies & z: \mathbb{E}  \in \Delta' \hspace{50pt} \{\text{All terms are well typed and contexts do not share variables}\}
 \end{align*}
 
 This proves that $\Delta \simeq_{\pi} \Delta'$. Therefore, by induction hypothesis on the premises of the conditional statement, one has that $\mathbb{D}$ must be equal to $\mathbb{D}'$.
@@ -309,6 +303,286 @@ This last implication is related with the fact that in $E$, there can only exist
 
 
   \end{proof}
+
+  \begin{lemma} \label {exh_and_sub} (\text{Exchange and Substitution}) For every judgement $\Gamma,x:\mathbb{A}, y:\mathbb{B}, \Delta \triangleright v: \mathbb{D}$ it is possible to derive $\Gamma, y:\mathbb{B}, x:\mathbb{A}, \Delta \triangleright v: \mathbb{D}$. For all judgements  $\Gamma,x:\mathbb{A} \triangleright v: \mathbb{B}$ and $\Delta \triangleright w: \mathbb{A}$ it is possible to derive $ \Gamma, \Delta \triangleright v[w/x]: \mathbb{B}$.
+  \end{lemma}
+
+
+  \begin{proof}
+
+    \textbf{Exchange}
+
+    Regarding the exchange property, for the left injection, it is necessary to demonstrate that for every judgement $\Gamma , x:\mathbb{A}, y:\mathbb{B},\Delta\triangleright \text{inl}_{\mathbb{E}}(v):  \mathbb{D} \oplus \mathbb{E}$, it is possible to derive $\Gamma ,y:\mathbb{B}, x:\mathbb{A}, \Delta \triangleright \text{inl}_{\mathbb{E}}(v):  \mathbb{D} \oplus \mathbb{E}$. By induction hypothesis on the premises of $\Gamma , x:\mathbb{A}, y:\mathbb{B},\Delta\triangleright \text{inl}_{\mathbb{D}}(v):  \mathbb{D} \oplus \mathbb{D}$ and applying the inl rule, one has that:
+
+    \begin{figure}[H]
+      \centering
+      \begin{prooftree}
+      \hypo{\Gamma, x:\mathbb{A}, y:\mathbb{B}, \Delta \triangleright v: \mathbb{D}}
+      \infer1{\Gamma, y:\mathbb{B}, x:\mathbb{A}, \Delta \triangleright v: \mathbb{D}}
+      \infer1{\Gamma, y:\mathbb{B}, x:\mathbb{A}, \Delta \triangleright \text{inl}_{\mathbb{E}}(v): \mathbb{D} \oplus \mathbb{E}}
+      \end{prooftree}
+      \end{figure}
+
+  For the right injection the proof is analogous.
+
+With respect to the case statement, it is necessary to prove that for every judgment $\Gamma, x:\mathbb{A}, y:\mathbb{B}, \Delta \triangleright \text{ case } v \hspace{2pt} \{\text{inl}_{\mathbb{F}}  (a) \Rightarrow w ; \hspace{1pt} \text{inr}_{\mathbb{E}}  (b) \Rightarrow u\}: \mathbb{D}$, it is possible to derive $\Gamma, y:\mathbb{B}, x:\mathbb{A}, \Delta \triangleright \text{ case } v \hspace{2pt} \{\text{inl}_{\mathbb{F}} (a) \Rightarrow w ; \hspace{1pt} \text{inr}_{\mathbb{E}} (b) \Rightarrow u\}: \mathbb{D}$. In this case, three scenarios must be considered:
+\begin{enumerate}
+  \item $x:\mathbb{A}, y:\mathbb{B}$ are variables in the context of $v$;
+  \item $x:\mathbb{A}, y:\mathbb{B}$ are variables in the context of $w$ and $u$;
+  \item  $x:\mathbb{A}$ is a variable in the context of $v$ and $y:\mathbb{B}$ is a variable in the context of $w$ and $u$.
+\end{enumerate}
+
+With respect to the first case, by induction hypothesis and applying the case rule, one has that:
+
+\begin{figure}[H]
+  \centering
+  \begin{prooftree}
+  \hypo{\begin{matrix} \\\Gamma_{1}, x:\mathbb{A}, y:\mathbb{B}, \Gamma_{2} \triangleright v: \mathbb{E} \oplus \mathbb{F} \end{matrix}}
+  \infer1{ \begin{matrix} \\ \Gamma_{1}, y:\mathbb{B}, x:\mathbb{A},  \Gamma_{2} \triangleright v: \mathbb{E} \oplus \mathbb{F} \end{matrix}}
+  \hypo{\begin{matrix}  E, a:\mathbb{E} \triangleright w: \mathbb{D}\\
+    E, b:\mathbb{F} \triangleright u : \mathbb{D}
+    \end{matrix}}
+  \infer1{\begin{matrix} E, a:\mathbb{E} \triangleright w: \mathbb{D} \\
+    E, b:\mathbb{F} \triangleright u : \mathbb{D}
+    \end{matrix}}
+  \hypo{\begin{matrix} \\ \Gamma,  x:\mathbb{A}, y:\mathbb{B};\Delta \in \text{Sf}(\Gamma_{1}, x:\mathbb{A}, y:\mathbb{B}, \Gamma_{2}; E) \end{matrix}}
+  \infer1{\begin{matrix} \\ \Gamma, y:\mathbb{B}, x:\mathbb{A};\Delta \in \text{Sf}(\Gamma_{1}, y:\mathbb{B}, x:\mathbb{A}, \Gamma_{2}; E) \end{matrix}}
+  \infer3{\Gamma, y:\mathbb{B}, x:\mathbb{A}, \Delta \triangleright \text{case } v \hspace{2pt} \{\text{inl}_{\mathbb{F}} (a) \Rightarrow w ; \hspace{1pt} \text{inr}_{\mathbb{E}} (b) \Rightarrow u\}: \mathbb{D}}
+  \end{prooftree}
+  \end{figure}
+
+
+Similarly, for the second case, by induction hypothesis and applying the case rule, one has that:
+
+
+\begin{figure}[H]
+  \centering
+  \begin{prooftree}
+  \hypo{ \begin{matrix} \\ E \triangleright v: \mathbb{E} \oplus \mathbb{F} \end{matrix}}  
+  \infer1{  \begin{matrix} \\ E \triangleright v: \mathbb{E} \oplus \mathbb{F} \end{matrix}}
+  \hypo{\begin{matrix}
+    \Delta_{1}, x:\mathbb{A}, y:\mathbb{B},\Delta_{2}  , a:\mathbb{E} \triangleright w: \mathbb{D} \\
+    \Delta_{1}, y:\mathbb{B}, x:\mathbb{A}, \Delta_{2}  , b:\mathbb{F} \triangleright w: \mathbb{D}
+  \end{matrix}}
+  \infer1{\begin{matrix}
+    \Delta_{1}, y:\mathbb{B}, x:\mathbb{A}, \Delta_{2}  , a:\mathbb{E} \triangleright w: \mathbb{D} \\
+    \Delta_{1}, x:\mathbb{A}, y:\mathbb{B},\Delta_{2}  , b:\mathbb{F} \triangleright w: \mathbb{D}
+  \end{matrix}}
+  \hypo{\begin{matrix} \\ \Gamma, x:\mathbb{A},y:\mathbb{B};  \Delta \in \text{Sf}(E; \Delta_{1}, x:\mathbb{A}, y:\mathbb{B},\Delta_{2} ) \end{matrix}}
+  \infer1{ \begin{matrix} \\\Gamma, y:\mathbb{B}, x:\mathbb{A};  \Delta \in \text{Sf}(E; \Delta_{1}, y:\mathbb{B}, x:\mathbb{A},\Delta_{2} ) \end{matrix}}
+  \infer3{\Gamma, y:\mathbb{B}, x:\mathbb{A}, \Delta \triangleright \text{case } v \hspace{2pt} \{\text{inl}_{\mathbb{F}} (a) \Rightarrow w ; \hspace{1pt} \text{inr}_{\mathbb{E}} (b) \Rightarrow u\}: \mathbb{D}}
+  \end{prooftree}
+  \end{figure}
+
+
+
+
+  Finally, for the third case, considering the premises
+
+
+\begin{figure}[H]
+  \centering
+  \begin{prooftree}
+  \hypo{\begin{matrix}  \Gamma_{1},x:\mathbb{A},\Gamma_{2} \triangleright v: \mathbb{E} \oplus \mathbb{F}\\ \Delta_{1},y:\mathbb{B}, \Delta_{2},   a:\mathbb{E} \triangleright w: \mathbb{D} \quad \\
+    \Delta_{1}, y:\mathbb{B},\Delta_{2} , b:\mathbb{F} \triangleright u : \mathbb{D} \\ \Gamma, x:\mathbb{A}, y:\mathbb{B},  \Delta \in  \hspace{2pt} \text{Sf}(\Gamma_{1}, x:\mathbb{A},\Gamma_{2}; \Delta_{2},y:\mathbb{B},\Delta_{1} )  \end{matrix}}
+  \end{prooftree}
+  \end{figure}
+
+it is possible to derive $\Gamma, y:\mathbb{B}, x:\mathbb{A}, \Delta \triangleright \text{ case } v \hspace{2pt} \{\text{inl}_{\mathbb{F}} (a) \Rightarrow w ; \hspace{1pt} \text{inr}_{\mathbb{E}} (b) \Rightarrow u\}: \mathbb{D}$, attending to the definition of shuffle. Note that in exchanging  variables $x:\mathbb{A}$ and $y:\mathbb{B}$ in the last premise the relative order of the variables in $\Gamma_{1}, x:\mathbb{A},\Gamma_{2}; \Delta_{2},y:\mathbb{B},\Delta_{1}$ is preserved.
+
+
+
+%a possibility for $\Gamma, y:\mathbb{B}, x:\mathbb{A}, \Delta \in \text{Sf}(\Gamma_{1}, x:\mathbb{A},\Gamma_{2}; \Delta_{2},y:\mathbb{B},\Delta_{1})$, given that in exchanging these variables the relative order of the variables in $\Gamma_{1}, x:\mathbb{A},\Gamma_{2}$ and $\Delta_{2},y:\mathbb{B},\Delta_{1}$ is preserved. As a result, it is possible to derive $\Gamma, y:\mathbb{B}, x:\mathbb{A}, \Delta \triangleright \text{ case } v \hspace{2pt} \{\text{inl}_{\mathbb{E}} (a) \Rightarrow w ; \hspace{1pt} \text{inr}_{\mathbb{D}} (b) \Rightarrow u\}: \mathbb{D}$.
+
+%shuffle is a permutation of typed variables in a context sequence $\Gamma_1, . . . ,  \Gamma_n$ such that for all $i \leq n$ the
+%relative order of the variables in $\Gamma_i$ is preserved, 
+
+
+\vspace{10pt}
+
+\textbf{Substitution}
+
+With respect to the substitution property, for the left injection is necessary to demonstrate that for all judgements $\Gamma, x:\mathbb{E} \triangleright \text{inl}_{\mathbb{B}}(v):  \mathbb{A} \oplus \mathbb{B}$ and $\Delta \triangleright w: \mathbb{D}$ it is possible to derive $\Gamma, \Delta \triangleright \text{inl}_{\mathbb{B}}(v[w/x]):  \mathbb{A} \oplus \mathbb{B}$. By induction hypothesis,  and applying the inl rule, one has that:
+
+\begin{figure}[H]
+  \centering
+  \begin{prooftree}
+  \hypo{\Gamma, x:\mathbb{E} \triangleright v: \mathbb{A} \quad \Delta \triangleright w: \mathbb{D}}
+  \infer1{\Gamma, \Delta \triangleright v[w/x]: \mathbb{A}}
+  \infer1{\Gamma, \Delta \triangleright \text{inl}_{\mathbb{B}}(v[w/x]): \mathbb{A} \oplus \mathbb{B}}
+  \infer1{\Gamma, \Delta \triangleright \text{inl}_{\mathbb{B}}(v)[w/x]: \mathbb{A} \oplus \mathbb{B}}
+  \end{prooftree}
+  \end{figure}
+
+
+  For the right injection the proof is analogous.
+  
+  Regarding the case statement it is necessary to prove that for all judgements $E, z:\mathbb{D} \triangleright  \text{ case } v \hspace{2pt} \{\text{inl}_{\mathbb{A}}  (x) \Rightarrow w ; \hspace{1pt} \text{inr}_{\mathbb{B}}  (y) \Rightarrow u\}: \mathbb{D}$ and $\Sigma\triangleright a: \mathbb{E}$ it is possible to derive $ E, \Sigma  \triangleright \text{ case } v \hspace{2pt} \{\text{inl}_{\mathbb{A}}  (x) \Rightarrow w ; \hspace{1pt} \text{inr}_{\mathbb{B}}  (y) \Rightarrow u\}[a/z]: \mathbb{D}$. In this case, it is necessary to consider two scenarios:
+  \begin{enumerate}
+    \item $z:\mathbb{D}$ is a variable in the context of $v$;
+    \item $z:\mathbb{D}$ is a variable in the context of $w$ and $u$.
+  \end{enumerate}
+  
+  Regarding the first case, by induction and applying the case rule, one has that:
+
+
+  \begin{figure}[H]
+    \centering
+    \begin{prooftree}
+    \hypo{\begin{matrix} \\ \Gamma_1,z:\mathbb{E} \triangleright v: \mathbb{A} \oplus \mathbb{B} \end{matrix}}
+    \hypo {\begin{matrix} \\ \Delta\triangleright a: \mathbb{E} \end{matrix}}
+    \infer2{ \begin{matrix} \\ \Gamma_1, \Delta \triangleright v[a/z]: \mathbb{A} \oplus \mathbb{B} \end{matrix}}
+    \hypo{\begin{matrix} \Gamma_2, x: \mathbb{A} \triangleright w: \mathbb{D}\\
+      \Gamma_2, y: \mathbb{B}  \triangleright u : \mathbb{D} 
+      \end{matrix}}
+    \infer1{\begin{matrix}  \Gamma_2, x: \mathbb{A} \triangleright w: \mathbb{D}\\
+      \Gamma_2, y: \mathbb{B}  \triangleright u : \mathbb{D}
+      \end{matrix}}
+    \hypo{\begin{matrix} \\ E,z:\mathbb{E}  \in \text{Sf}(\Gamma_1,z:\mathbb{E};\Gamma_2) \end{matrix}}
+    \infer1{\begin{matrix} \\  E,\Delta \in \text{Sf}(\Gamma_1, \Delta;\Gamma_2) \end{matrix}}
+    \infer3{ E,\Delta \triangleright \text{ case } v \hspace{2pt} \{\text{inl}_{\mathbb{B}} (x) \Rightarrow w[a/z] ; \hspace{1pt} \text{inr}_{\mathbb{A}} (y) \Rightarrow u[a/z]\}: \mathbb{D}}
+    \infer1{ E,\Delta \triangleright \text{ case } v \hspace{2pt} \{\text{inl}_{\mathbb{B}}  (x) \Rightarrow w ; \hspace{1pt} \text{inr}_{\mathbb{A}}  (y) \Rightarrow u\}[a/z]: \mathbb{D}}
+    \end{prooftree}
+    \end{figure}
+
+
+  
+
+% NOTA: Ver situação do E
+
+The second case is similar to the first one,  applying the exchange property, then the induction, followed by the exchange property once more,  and finally the case rule, one has that
+
+\begin{figure}[H]
+  \centering
+  \begin{prooftree}
+  \hypo{\begin{matrix} \\ \Gamma_1 \triangleright v: \mathbb{A} \oplus \mathbb{B} \end{matrix}}
+  \infer1{ \begin{matrix} \\ \Gamma_1 \triangleright v: \mathbb{A} \oplus \mathbb{B} \end{matrix}}
+  \infer1{ \begin{matrix} \\ \Gamma_1 \triangleright v: \mathbb{A} \oplus \mathbb{B} \end{matrix}}
+  \infer1{ \begin{matrix} \\ \Gamma_1 \triangleright v: \mathbb{A} \oplus \mathbb{B} \end{matrix}}
+  \hypo{\begin{matrix}  \Gamma_2 ,z:\mathbb{E},   x: \mathbb{A} \triangleright u : \mathbb{D}\\
+    \Gamma_2, z:\mathbb{E}, y: \mathbb{B}  \triangleright w: \mathbb{D} 
+    \end{matrix}}
+    \infer1{\begin{matrix}  \Gamma_2,   x: \mathbb{A},z:\mathbb{E}   \triangleright u : \mathbb{D}  \\ 
+      \Gamma_2,   y: \mathbb{B} ,z:\mathbb{E}  \triangleright w: \mathbb{D} 
+    \end{matrix}}
+    \hypo {\begin{matrix} \\ \Delta\triangleright a: \mathbb{E} \end{matrix}}
+  \infer1{\begin{matrix}  \\ \Delta \triangleright a: \mathbb{E} \end{matrix}}
+  \infer2{ \begin{matrix}  \Gamma_2, x: \mathbb{A}, \Delta   \triangleright u[a/z] : \mathbb{D}  \\ 
+    \Gamma_2,    y: \mathbb{B} , \Delta \triangleright w[a/z]: \mathbb{D}
+  \end{matrix}}
+  \infer1{ \begin{matrix}  \Gamma_2, \Delta, x: \mathbb{A}   \triangleright u[a/z] : \mathbb{D}  \\ 
+    \Gamma_2, \Delta,  y: \mathbb{B}  \triangleright w[a/z]: \mathbb{D}
+  \end{matrix}}
+  \hypo{\begin{matrix} \\ E,z:\mathbb{E}  \in \text{Sf}(\Gamma_1;z:\mathbb{E},\Gamma_2) \end{matrix}}
+  \infer1{\begin{matrix} \\  E,z:\mathbb{E}  \in \text{Sf}(\Gamma_1;z:\mathbb{E},\Gamma_2) \end{matrix} }
+  \infer1{\begin{matrix} \\  E,\Delta \in \text{Sf}(\Gamma_1; \Delta,\Gamma_2) \end{matrix}}
+  \infer1{\begin{matrix} \\  E,\Delta \in \text{Sf}(\Gamma_1; \Delta,\Gamma_2) \end{matrix}}
+  %\infer3{ E,\Delta \triangleright \text{ case } v \hspace{2pt} \{\text{inl}_{\mathbb{B}} (x) \Rightarrow w[a/z] ; \hspace{1pt} \text{inr}_{\mathbb{A}} (y) \Rightarrow u[a/z]\}: \mathbb{D}}
+  \infer3{  E, \Delta \triangleright \text{ case } v \hspace{2pt} \{\text{inl}_{\mathbb{B}} (x) \Rightarrow w[a/z] ; \hspace{1pt} \text{inr}_{\mathbb{A}} (y) \Rightarrow u[a/z]\}: \mathbb{D}}
+  \infer1{  E,\Delta  \triangleright \text{ case } v \hspace{2pt} \{\text{inl}_{\mathbb{B}}  (x) \Rightarrow w ; \hspace{1pt} \text{inr}_{\mathbb{A}}  (y) \Rightarrow u\}[a/z]: \mathbb{D}}
+  \end{prooftree}
+  \end{figure}
+
+  \end{proof}
+
+
+  The equations-in-context of the conditionals are shown in Figure \ref{fig:equations-in-context-cond}.
+
+
+  \begin{figure}[h!]
+    \centering
+    \begin{tcolorbox}[colframe=black, colback=white, boxrule=0.6pt, arc=1pt,boxsep=1pt,top=1pt,bottom=1pt, width=0.85 \textwidth]
+    \begin{equation*}
+        \begin{split}
+          &(\beta_{case}^{inl}): \hspace{3pt} \Delta,\Gamma \triangleright \text{ case } \text{inl}_{\mathbb{B}}(v) \hspace{2pt} \{\text{inl}_{\mathbb{B}} (x) \Rightarrow w ; \hspace{1pt} \text{inr}_{\mathbb{A}} (y) \Rightarrow u\}= w[v/x] : \mathbb{D} \\
+          &(\beta_{case}^{inr}): \hspace{3pt} \Delta,\Gamma  \triangleright  \text{ case } \text{inr}_{\mathbb{A}}(v) \hspace{2pt} \{\text{inl}_{\mathbb{B}} (x) \Rightarrow w ; \hspace{1pt} \text{inr}_{\mathbb{A}} (y) \Rightarrow u\} = w[v/y] : \mathbb{D} \\
+          & (\eta_{case}): \hspace{3pt} \Delta,\Gamma  \triangleright  \text{ case }(v)\ \hspace{2pt} \{\text{inl}_{\mathbb{B}} (y) \Rightarrow w [ \text{inl}_{\mathbb{B}}(y)/x] ; \hspace{1pt} \text{inr}_{\mathbb{A}} (z) \Rightarrow w [ \text{inr}_{\mathbb{A}}(z)/x]\} = w[v/x] : \mathbb{D}
+        \end{split}
+    \end{equation*}
+    \end{tcolorbox}
+    \caption{Equations in the context of the conditionals.}
+    \label{fig:equations-in-context-cond}
+    \end{figure}
+
+    \subsubsection{Examples of Programs}
+
+    \par\vspace{10pt}  
+    \textbf{ Quantum Teleportation}
+
+
+    \cite{bennett1993teleporting} introduced the concept of quantum teleportation, which is a protocol that allows the transfer of   unknown quantum states between distant parties.  The quantum teleportation protocol is a fundamental building block for quantum communication, quantum computation, and quantum networks, its applications ranging
+from secure quantum communication to distributed quantum computing \cite{briegel1998quantum,gottesman1999demonstrating,kimble2008quantum}.
+
+Conceptually the protocol can be described as follows: Alice and Bob share an entangled pair of qubits, which are in a Bell state. Alice keeps the first qubit and Bob the second. Moreover, Alice has a qubit in an unknown state $\ket{\psi}$ that she wants to send to Bob.  
+ Alice entangles her qubit and the firt qubit of the Bell state, and then measures them. The result of this measurement is two classical bits that Alice sends to Bob though a classical channel. Based on the measurement results, Bob applies a correction to his qubit so it matches the initial state $\ket{\psi}$. 
+The circuit corresponding to the implementation of the quantum teleportation protocol is depicted in \autoref{fig:teleport}.
+
+
+\begin{figure} [H]
+  \centering
+  \begin{quantikz} [column sep=0.2cm, row sep=0.5cm] 
+      \lstick{$\ket{\psi}$}  & \qw &\qw & \qw & \qw & \qw& \ctrl{1}\gategroup[2,steps=4,style={dashed,rounded
+      corners,fill=blue!20, inner
+      xsep=2pt},background,label style={label
+      position=below,anchor=north,yshift=-0.2cm}]{{\sc
+      BellMeasure}} & \gate{H} & \qw & \meter{} & \setwiretype{c}  &  & \gategroup[3,steps=4,style={dashed,rounded
+      corners,fill=blue!20, inner
+      xsep=2pt},background,label style={label
+      position=below,anchor=north,yshift=-0.2cm}]{{\sc
+      Correction}}  &  & & \ctrl[vertical
+wire=c]{2}  \\
+      \lstick {$\ket{0}$}  &\gate{H}\gategroup[2,steps=3,style={dashed,rounded
+      corners,fill=blue!20, inner
+      xsep=2pt},background,label style={label
+      position=below,anchor=north,yshift=-0.2cm}]{{\sc
+      EPR}} & \qw  & \ctrl{1}& \qw & \qw & \targ{} & \qw & \qw & \meter{} & \setwiretype{c} & & & \ctrl[vertical
+wire=c]{1} \\
+      \lstick{$\ket{0}$}  &  \qw & \qw &  \targ{} & \qw &\qw&\qw & \qw & \qw& \qw & \qw & \qw &  \qw & \gate{X} & \qw & \gate{Z} 
+ \end{quantikz}
+  \caption{Quantum Teleportation Protocol}
+  \label{fig:teleport}
+\end{figure}
+
+When formalizing the quantum teleportation protocol within the lambda calculus framework, each part of the protocol is instantiated as a distinct function. 
+Considering the unitary operations $H: \textit{qbit} \multimap  \textit{qbit}$, $X: \textit{qbit} \multimap  \textit{qbit}$, $Z: \textit{qbit} \multimap  \textit{qbit}$, $I: \textit{qbit} \multimap  \textit{qbit}$, and $\textit{CNOT}: \textit{qbit}, \textit{qbit} \multimap  \textit{qbit} \otimes \textit{qbit}$ , these functions are defined as follows:
+
+\begin{align*}
+   &\textbf{EPR} =  - \triangleright  \textit{CNOT} \hspace{2pt} (\textit{H}\hspace{2pt} (q  \hspace{2pt}    ( \textit{new}   \hspace{2pt}  0 \hspace{1pt}(*))),(q  \hspace{2pt}   ( \textit{new}   \hspace{2pt}  0 \hspace{1pt}(*)))) : \textit{qbit} \otimes \textit{qbit}  \\ 
+      &\textbf{BellMeasure} =  q_{1}: \textit{qbit}, q_{2}: \textit{qbit}  \triangleright  \text{pm}  \hspace{2pt} \textit{CNOT} (q_{1},q_{2})  \hspace{2pt}  \text{to} \hspace{2pt} x \otimes y.  \hspace{2pt}  \textit{meas} (\textit{H} (x)) \otimes \textit{meas} (y) :  \textit{bit} \otimes \textit{bit} \\
+      &\textbf{Correction}= q: \textit{qbit}, x: \text{bit},  y: \text{bit} \triangleright  \text{case } x  \hspace{2pt}  \{\text{inl} (x_{0}) \Rightarrow  \text{case}\hspace{2pt} y  \hspace{2pt}  \{\text{inl} (y_{0})  \Rightarrow{}  \textit{I}(q); \\
+      & \hspace{275pt} \text{inr} (y_{1}) \Rightarrow  \hspace{2pt}   \textit{X} (q)\} ; \\
+      & \hspace{200pt}\text{inr} (x_{1})  \Rightarrow  \text{case}\hspace{2pt} y  \hspace{2pt}  \{\text{inl} (y_{0})  \Rightarrow   \textit{Z}(q);  \\
+      &\hspace{275pt} \text{inr} (y_{1}) \Rightarrow{} \textit{Z} (\textit{X}(q)) \}\} : \textit{qbit}
+ \end{align*}
+
+
+ Designating the qubit to be teleported as $qb_0$, one can conceptualize the teleportation procedure as follows:
+ \begin{align*}
+  \textbf{QTP} = qb_{0}: \textit{qbit}\hspace{3 pt} \triangleright \hspace{3 pt} & \text{pm} \hspace{5pt} \textbf{EPR} \hspace{5pt} \text{to} \hspace{5pt}  qb_{1} \otimes qb_{2}.  \notag \\
+     & \text{pm}\hspace{5pt} \textbf{BellMeasure} \hspace{1pt} [qb_0/q_1,qb_{1}/q_2] \hspace{5pt}  \text{to} \hspace{5pt} c_{0}\otimes c_{1} . \notag \\
+     & \text{pm} \hspace{5pt}  \textbf{Correction} \hspace{1pt} [qb_{2}/q,c_{0}/x, c_{1}/y]  \hspace{5pt} \text{to} \hspace{5pt}  qb. \hspace{2pt}  qb : \textit{qbit} 
+ \end{align*}
+
+
+    \vspace{10pt}
+
+\textbf{Quantum State Discrimination}
+
+
+Quantum state discrimination is a pivotal challenge in quantum information, fundamental to the extraction of classical information from quantum systems. While orthogonal states can be perfectly distinguished, the same does not apply to nonorthogonal states. 
+Even when the set of possible nonorthogonal states is known, determining the optimal discrimination strategy is considered a nontrivial problem.
+
+For example, when distinguishing between two nonorthogonal quantum states, the Helstrom measurement represents the optimal strategy \cite{helstromQuantumDetectionEstimation1976}. In the case where both states are pure, the Helstrom measurement corresponds to a projective measurement \cite{barnett2009quantum}.
+
+When operating within the computational basis, a projective measurement can be understood as the application of a unitary operator, followed by a subsequent measurement in the computational basis. In this context, the Helstrom measurement can be interpreted as a unitary transformation applied to the quantum state, followed by a measurement in the computational basis. 
+
+Consider the task of discriminating between two pure states $\ket{\psi_0}$ and $\ket{\psi_1}$, prepared with a priori probabilities $p_0$ and $p_1$, respectively. Let the unitary operator $U$  be the transformation that rotates the computational basis to the basis associated with the Helstrom measurement  in this context. This discrimination task can then be formalized as follows:
+
+\begin{align*}
+  &\textbf{StatePreparation} =  b:\textit{bit}  \triangleright  \text{case } b \{\text{inl}_{\mathbb{B}}(x) \Rightarrow \ket{\psi_0} ; \text{inr}_{\mathbb{A}}(y) \Rightarrow \ket{\psi_1}\}: \textit{qbit} \\
+  &\textbf{HMeasure} =  q: \textit{qbit} \triangleright \textit{meas} (\textit{U}(q))  : \textit{qbit} \\
+  &\textbf{Discrimination} =  \textbf{HMeasure} [ \textbf{StatePreparation} [b/(p_0,p_1)] / q] : \textit{bit}
+\end{align*}
 
 \bibliographystyle{alpha} 
 \bibliography{biblio}
