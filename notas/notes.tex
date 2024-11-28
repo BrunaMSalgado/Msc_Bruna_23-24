@@ -103,206 +103,86 @@ The term formation rules for conditionals are depicted in \autoref{fig:typing_ru
     \begin{equation*}
     \begin{aligned}
     &\hspace{10pt}
+    %
     \begin{prooftree}
-    \hypo{\Gamma \triangleright v: \mathbb{A}}
-    \infer1[(inl)]{\Gamma \triangleright \text{inl}_{\mathbb{B}}(v): \mathbb{A} \oplus \mathbb{B}}
+        \hypo{\Gamma \vljud v: \typeA}
+        \infer1[(inl)]{\Gamma \vljud \inl_{\typeB}(v): \typeA \oplus \typeB}
     \end{prooftree}
+    %
     \hspace{30pt}
+    %
     \begin{prooftree}
-    \hypo{\Gamma \triangleright v: \mathbb{B}}
-    \infer1[(inr)]{\Gamma \triangleright \text{inr}_{\mathbb{A}}(v): \mathbb{A} \oplus \mathbb{B}}
-    \end{prooftree} \\[20pt]
+        \hypo{\Gamma \vljud v: \typeB}
+        \infer1[(inr)]{\Gamma \vljud \inr_{\typeA}(v): \typeA \oplus \typeB}
+    \end{prooftree} 
+    %
+    \\[20pt]
     &\hspace{-20pt}
+    %
     \begin{prooftree}
-    \hypo{\Gamma \triangleright v: \mathbb{A} \oplus \mathbb{B}}
-    \hypo{\Delta, x: \mathbb{A} \triangleright w: \mathbb{D}}
-    \hypo{\Delta, y: \mathbb{B} \triangleright u: \mathbb{D}}
-    \hypo{E \in \text{Sf}(\Gamma; \Delta)}
-    \infer4[(case)]{E \triangleright \text{case } v \{\text{inl}_{\mathbb{B}}(x) \Rightarrow w ; \text{inr}_{\mathbb{A}}(y) \Rightarrow u\}: \mathbb{D}}
+        \hypo{\Gamma \vljud v: \typeA \oplus \typeB}
+        \hypo{\Delta, x: \typeA \vljud w: \typeD}
+        \hypo{\Delta, y: \typeB \vljud u: \typeD}
+        \hypo{E \in \Shuff(\Gamma; \Delta)}
+        \infer4[(case)]{E \vljud \text{case } v\,
+        \{\inl_{\typeB}(x) 
+            \Rightarrow w ; \,
+          \inr_{\typeA}(y) \Rightarrow u
+        \}: \typeD}
     \end{prooftree}
+    %
+    \\[10pt]
     \end{aligned}
     \end{equation*}
     \caption{Term formation rules for conditionals}
     \label{fig:typing_rules_cond}
-    \end{figure}
-
-
-The rules presented in Figure \ref{fig:typing_rules_cond} are subject 
-the properties established in Theorem \autoref{theorem:unique_der}.
-
-\todo[inline,size=\normalsize]{Coloquei as outras 2 regras pq precisamos de pelo menos a primeira para provar a derivação única e como as provas já estavam feitas, achei melhor colocar todas.} 
-
-\todo[inline,size=\normalsize]{Temos D's em  vez de C's por causa do C tb ser usado para os números complexos.} 
+\end{figure}
+The rules presented in Figure \ref{fig:typing_rules_cond} enjoy the following
+properties.
 
 \begin{theorem} \label {theorem:unique_der}
-    Lambda calculus with conditionals has the following properties:
+   Lambda calculus with conditionals has the following properties:
    \begin{enumerate}
-     \item for all judgements $\Gamma \triangleright v$ and $\Gamma' \triangleright v$, te($\Gamma$) $\simeq_{\pi}$  te($\Gamma'$); 
-     \item additionally if $\Gamma \triangleright v: \mathbb{A}, \Gamma'\triangleright v: \mathbb{A}'$, and $\Gamma \simeq_{\pi} \Gamma' $, then $\mathbb{A}$ must be equal to $\mathbb{A}'$;
-     \item all judgements $\Gamma \triangleright v:\mathbb{A}$ have a unique derivation.
-   \end{enumerate}
-   \end{theorem}
+     \item\label{perm} for all judgements $\Gamma \vljud v$ and $\Gamma'
+             \vljud v$, te($\Gamma$) $\simeq_{\pi}$  te($\Gamma'$); 
+     %
+     \item\label{type} additionally if $\Gamma \vljud v: \typeA,
+       \Gamma' \vljud v: \typeA'$, and $\Gamma \simeq_{\pi}
+       \Gamma'$, then $\typeA$ must be equal to $\typeA'$;
+     %
+     \item\label{der} all judgements $\Gamma \vljud v:\typeA$ have a unique derivation.
+\end{enumerate}
+\end{theorem}
+%
+\begin{proof}
+It follows in all three cases from induction over the length of derivation
+trees. 
 
-  \begin{proof}
-
-    \textbf{Property 1}
-
-    For the injections, taking into account the inl and inr derivations in Figure \ref{fig:typing_rules_cond} and
-
-  \begin{figure} [H]
-    \begin{equation*}
-    \begin{aligned}
-      &
-      \begin{prooftree}
-      \hypo{\Gamma' \triangleright v: \mathbb{A}}
-      \infer1[]{\Gamma' \triangleright \text{inl}_{\mathbb{B}}(v): \mathbb{A} \oplus \mathbb{B}}
-      \end{prooftree}
-      \hspace{60pt}
-      \begin{prooftree}
-      \hypo{\Gamma' \triangleright v: \mathbb{B}}
-      \infer1[]{\Gamma' \triangleright \text{inr}_{\mathbb{A}}(v): \mathbb{A} \oplus \mathbb{B}},
-      \end{prooftree} \\
-    \end{aligned}
-    \end{equation*}
-    \end{figure}
-it is necessary to prove that te($\Gamma$) $\simeq_{\pi}$  te($\Gamma'$). By induction hypothesis, te($\Gamma$) $\simeq_{\pi}$  te($\Gamma'$). Therefore, property 1 is holds for the injections.
-
-
-Concerning the case statement, considering  Figure \ref{fig:typing_rules_cond} and 
-  
-\begin{figure} [H]
-    \begin{equation*}
-    \begin{aligned}
-      \begin{prooftree}
-          \hypo{\Gamma' \triangleright v: \mathbb{A} \oplus \mathbb{B}}
-          \hypo{\Delta', x: \mathbb{A} \triangleright w: \mathbb{D}}
-          \hypo{\Delta', y: \mathbb{B} \triangleright u: \mathbb{D}}
-          \hypo{E' \in \text{Sf}(\Gamma'; \Delta')}
-          \infer4[]{E' \triangleright \text{case } v \{\text{inl}_{\mathbb{B}}(x) \Rightarrow w ; \text{inr}_{\mathbb{A}}(y) \Rightarrow u\}: \mathbb{D}}
-          \end{prooftree}
-    \end{aligned}
-    \end{equation*}
-    \end{figure}
-
-we want to prove that te($E$) $\simeq_{\pi}$  te($E'$). Considering the definition of shuffle, it follows that  te($E$) $\simeq_{\pi}$  te($\Gamma, \Delta$) and te($E'$) $\simeq_{\pi}$  te($\Gamma', \Delta'$). By induction hypothesis, te($\Gamma$) $\simeq_{\pi}$  te($\Gamma$), te($\Delta,x$) $\simeq_{\pi}$  te($\Delta',x$) and te($\Delta,y$) $\simeq_{\pi}$  te($\Delta',y$). Given that 
-%\text{te}(\Gamma) \simeq_{\pi}  \text{te}(\Gamma),
+Let us focus first on Property~\eqref{perm}. The case of the rules concerning
+injections is direct. As for rule~$\rulename{cond}$ take two contexts $E$ and
+$E'$ for the same conditional. According to this rule we obtain contexts
+$\Gamma$, $\Gamma'$, $\Delta$, $\Delta'$ such that $E \in
+\Shuff(\Gamma;\Delta)$ and $E' \in \Shuff(\Gamma';\Delta')$. It follows from
+induction that  $\Gamma \simeq_\pi \Gamma'$ and $\Delta \simeq_\pi \Delta'$,
+and the proof is then obtained from the sequence of equivalences,
 \begin{align*}
-     \text{te}(\Delta,x) \simeq_{\pi}  \text{te}(\Delta',x) \land \text{te}(\Delta,y) \simeq_{\pi}  \text{te}(\Delta',y) 
-    \implies \text{te}(\Delta) \simeq_{\pi}  \text{te}(\Delta'), 
-  \end{align*}
- it can be concluded that te($E$) $\simeq_{\pi}$  te($E'$).
-
-
-%This implies that  te($\Delta$) $\simeq_{\pi}$ te($\Delta'$). Since, $E \in \text{Sf}(\Gamma;\Delta)$ and  $E' \in \text{Sf}(\Gamma';\Delta')$, one has that te($E$) $\simeq_{\pi}$  te($\Gamma, \Delta$) and te($E'$) $\simeq_{\pi}$  te($\Gamma', \Delta'$). Consequently, te($E$) $\simeq_{\pi}$  te($E'$).
-
-
-\vspace{10pt}
-\textbf{Property 2}
-
-For the injections, taking into account the inl and inr derivations in \autoref{fig:typing_rules_cond} and
-
-
-  \begin{figure} [H]
-    \begin{equation*}
-    \begin{aligned}
-      &
-      \begin{prooftree}
-      \hypo{\Gamma' \triangleright v: \mathbb{A}'}
-      \infer1[]{\Gamma' \triangleright \text{inl}_{\mathbb{B}}(v): \mathbb{A}' \oplus \mathbb{B}}
-      \end{prooftree}
-      \hspace{60pt}
-      \begin{prooftree}
-      \hypo{\Gamma' \triangleright v: \mathbb{B}'}
-      \infer1[]{\Gamma' \triangleright \text{inr}_{\mathbb{A}}(v): \mathbb{A} \oplus \mathbb{B}'},
-      \end{prooftree} \\
-    \end{aligned}
-    \end{equation*}
-    \end{figure}
-
-   
-
-concerning the left injection it is neccessary to prove that if $\Gamma \triangleright \text{inl}_{\mathbb{B}}(v):  \mathbb{A} \oplus \mathbb{B}$, $\Gamma' \triangleright \text{inl}_{\mathbb{B}}(v):  \mathbb{A'} \oplus \mathbb{B}$, and $\Gamma \simeq_{\pi} \Gamma' $, then $\mathbb{A} \oplus \mathbb{B} $ must be equal to $\mathbb{A}'\oplus \mathbb{B}$. By induction hypothesis over the premises, it follows that $\mathbb{A} $ must be equal to $\mathbb{A}'$. Consequentlty, in such case, $\mathbb{A}\oplus \mathbb{B}$ must be equal $\mathbb{A'}\oplus \mathbb{B}$.  The same reasoning can be applied to the right injection.
-
-Regarding the case statement, considering \autoref{fig:typing_rules_cond} and  
-
-
-  \begin{figure} [H]
-    \begin{equation*}
-    \begin{aligned}
-      \begin{prooftree}
-          \hypo{\Gamma' \triangleright v: \mathbb{A} \oplus \mathbb{B}}
-          \hypo{\Delta', x: \mathbb{A} \triangleright w: \mathbb{D}'}
-          \hypo{\Delta', y: \mathbb{B} \triangleright u: \mathbb{D}'}
-          \hypo{E' \in \text{Sf}(\Gamma'; \Delta')}
-          \infer4[]{E' \triangleright \text{case } v \{\text{inl}_{\mathbb{B}}(x) \Rightarrow w ; \text{inr}_{\mathbb{A}}(y) \Rightarrow u\}: \mathbb{D}'}
-          \end{prooftree}
-    \end{aligned}
-    \end{equation*}
-    \end{figure}
-
-we want to prove that if $E \triangleright \text{ case } v \hspace{2pt} \{\text{inl} (x) \Rightarrow w ; \hspace{1pt} \text{inr} (y) \Rightarrow u\}: \mathbb{D}$; $\Gamma'\triangleright \text{ case } v \hspace{2pt} \{\text{inl} (x) \Rightarrow w ; \hspace{1pt} \text{inr} (y) \Rightarrow u\}: \mathbb{D}'$, and $E \simeq_{\pi} E' $, then $\mathbb{D}$ must be equal to $\mathbb{D}'$. Assuming that  $E \simeq_{\pi} E' $ and considering that $E \in \text{Sf}(\Gamma;\Delta)$ and  $E' \in \text{Sf}(\Gamma';\Delta')$, one has that
-
-\begin{align*}
-  & z: \mathbb{E}  \in \Delta & \\
-  \implies & z: \mathbb{E}  \in E \hspace{50pt} \{E \in \text{Sf}(\Gamma;\Delta)\} \\
-  \implies & z: \mathbb{E} \in E' \hspace{50pt} \{ E \simeq_{\pi} E' \}  \\
-  \implies & z: \mathbb{E}  \in \Delta' \hspace{50pt} \{\text{All terms are well typed and contexts do not share variables}\}
+        \text{te}(E) & \simeq_\pi \text{te}(\Gamma, \Delta) 
+        \\
+        & \simeq_\pi \text{te}(\Gamma', \Delta')
+        \\
+        & \simeq_\pi \text{te}(E')
 \end{align*}
-
-This proves that $\Delta \simeq_{\pi} \Delta'$. Therefore, by induction hypothesis on the premises of the conditional statement, one has that $\mathbb{D}$ must be equal to $\mathbb{D}'$.
-  
-
-\vspace{10pt}
-    \textbf{Property 3}
-
-    Firstly it is necessary to demonstrate that the injections have unique derivations. This means proving that the premises of the inl and inr rules in Figure \ref{fig:typing_rules_cond} and in
-\begin{figure} [H]
-  \begin{equation*}
-  \begin{aligned}
-    &
-    \begin{prooftree}
-    \hypo{\Gamma' \triangleright v: \mathbb{A}}
-    \infer1[]{\Gamma \triangleright \text{inl}_{\mathbb{B}}(v): \mathbb{A} \oplus \mathbb{B}}
-    \end{prooftree}
-    \hspace{60pt}
-    \begin{prooftree}
-    \hypo{\Gamma' \triangleright v: \mathbb{B}}
-    \infer1[]{\Gamma \triangleright \text{inr}_{\mathbb{A}}(v): \mathbb{A} \oplus \mathbb{B}}
-    \end{prooftree} \\
-  \end{aligned}
-  \end{equation*}
-  \end{figure}
-
-are equal, which means proving that $\Gamma = \Gamma'$. In both cases, the derivation in Figure \ref{fig:typing_rules_cond} enforces that $\Gamma = \Gamma'$.
-
-Now, it is necessary to demonstrate that the case statement in Figure \ref{fig:typing_rules_cond} has a unique derivation. This means proving that the premises in Figure \ref{fig:typing_rules_cond} and in
-
-\begin{figure} [H]
-  \begin{equation*}
-  \begin{aligned}
-    \begin{prooftree}
-        \hypo{\Gamma' \triangleright v: \mathbb{A} \oplus \mathbb{B}}
-        \hypo{\Delta', x: \mathbb{A} \triangleright w: \mathbb{D}}
-        \hypo{\Delta', y: \mathbb{B} \triangleright u: \mathbb{D}}
-        \hypo{E \in \text{Sf}(\Gamma'; \Delta')}
-        \infer4[]{E \triangleright \text{case } v \{\text{inl}_{\mathbb{B}}(x) \Rightarrow w ; \text{inr}_{\mathbb{A}}(y) \Rightarrow u\}: \mathbb{D}}
-        \end{prooftree}
-  \end{aligned}
-  \end{equation*}
-  \end{figure}
-
-are equal, more concretely that $\Gamma = \Gamma'$ and $\Delta = \Delta'$. 
-
-\begin{align*}
-  & x: \mathbb{A}  \in \Gamma & \\
-  \implies & x: \mathbb{A}  \in E \land   te(x:\mathbb{A}) \in \Gamma'  & \{E \in \text{Sf}(\Gamma;\Delta), te(\Gamma) \simeq_{\pi}  te(\Gamma') \} \\
-  \implies & x: \mathbb{A}  \in E \land  x:\mathbb{A} \in \Gamma'  & \{ E \in \text{Sf}(\Gamma;\Delta),E \in \text{Sf}(\Gamma';\Delta') \} \\
-\end{align*}
-
-This last implication is related with the fact that in $E$, there can only exist one  variable designated by $x$. Given that a shuffle preserves the relative order of the variables in each context, it follows that $\Gamma = \Gamma'$. The same reasoning can be applied to $\Delta$ and $\Delta'$, which concludes the proof. 
-
-
-  \end{proof}
+Concerning Property~\eqref{type}, the case of the rules concerning injections
+is direct and the case of rule~$\rulename{cond}$ is a corollary of
+Property~\eqref{perm}. Finally let us consider Property~\eqref{der}. Again the
+case concerning injections is direct and we thus focus only on
+rule~$\rulename{cond}$. According to this rule we obtain contexts $\Gamma$,
+$\Gamma'$, $\Delta$, $\Delta'$ such that $E \in \Shuff(\Gamma;\Delta)$ and $E
+\in \Shuff(\Gamma';\Delta')$. By an appeal to Property~\eqref{perm} we also
+obtain $\Gamma \simeq_\pi \Gamma'$ and $\Delta \simeq_\pi \Delta'$, and thus
+since shuffling preserves relative orders we obtain $\Gamma = \Gamma'$ and
+$\Delta = \Delta'$. The proof then follows by induction.
+\end{proof}
 
   \begin{lemma} \label {exh_and_sub} (\text{Exchange and Substitution}) For every judgement $\Gamma,x:\mathbb{A}, y:\mathbb{B}, \Delta \triangleright v: \mathbb{D}$ it is possible to derive $\Gamma, y:\mathbb{B}, x:\mathbb{A}, \Delta \triangleright v: \mathbb{D}$. For all judgements  $\Gamma,x:\mathbb{A} \triangleright v: \mathbb{B}$ and $\Delta \triangleright w: \mathbb{A}$ it is possible to derive $ \Gamma, \Delta \triangleright v[w/x]: \mathbb{B}$.
   \end{lemma}
