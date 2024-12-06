@@ -184,189 +184,49 @@ since shuffling preserves relative orders we obtain $\Gamma = \Gamma'$ and
 $\Delta = \Delta'$. The proof then follows by induction.
 \end{proof}
 
-  \begin{lemma} \label {exh_and_sub} (\text{Exchange and Substitution}) For every judgement $\Gamma,x:\mathbb{A}, y:\mathbb{B}, \Delta \triangleright v: \mathbb{D}$ it is possible to derive $\Gamma, y:\mathbb{B}, x:\mathbb{A}, \Delta \triangleright v: \mathbb{D}$. For all judgements  $\Gamma,x:\mathbb{A} \triangleright v: \mathbb{B}$ and $\Delta \triangleright w: \mathbb{A}$ it is possible to derive $ \Gamma, \Delta \triangleright v[w/x]: \mathbb{B}$.
-  \end{lemma}
+\begin{lemma}[Exchange and Subsitution]
+\label{exh_and_sub} 
+For every judgement $\Gamma,x: \typeA, y: \typeB, \Delta \vljud v: \typeD$ the
+judgement $\Gamma, y:\mathbb{B}, x:\mathbb{A}, \Delta \vljud v:
+\typeD$ is derivable. Not only this, given judgements  $\Gamma,x:\typeA \vljud
+v: \typeB$ and $\Delta \vljud w: \typeA$ the judgement $\Gamma, \Delta \vljud
+v[w/x]: \typeB$ is also derivable.
+\end{lemma}
 
+\begin{proof}
+We start with the exchange property which follows by induction over the length
+of derivation trees. The rules that involve injections are direct.  The rule
+$\rulename{case}$ calls for case distinction, more specifically we  distinguish
+between the cases in which both variables ($x : \typeA$ and $y : \typeB$) are
+in $\Gamma$, both are in $\Delta$, and otherwise. The first two cases follow
+straightforwardly by induction and the definition of a shuffle. For the third
+case consider a judgement $E_1,x : \typeA, y : \typeB, E_2 \vljud \text{case }
+v\, \{\inl_{\typeF}(a) \Rightarrow w ; \, \inr_{\typeE}(b) \Rightarrow u \}:
+\typeD$, and assume with no loss of generality that $\Gamma$ is of the form
+$\Gamma_1, x : \typeA, \Gamma_2$ and $\Delta$ of the form $\Delta_1, y :
+\typeB, \Delta_2$. The proof now follows directly from the implication,
+\[
+        E_1, x : \typeA, y : \typeB, E_2 \in \Shuff(\Gamma_1, x : \typeA, \Gamma_2 ; \,
+        \Delta_1, y : \typeB, \Delta_2)
+        \Longrightarrow
+        E_1, y : \typeB, x : \typeA, E_2 \in \Shuff(\Gamma_1, x : \typeA, \Gamma_2 ; \,
+        \Delta_1, y : \typeB, \Delta_2)
+\]
+(which holds by the definition of a shuffle).
 
-  \begin{proof}
-
-    \textbf{Exchange}
-
-    Regarding the exchange property, for the left injection, it is necessary to demonstrate that for every judgement $\Gamma , x:\mathbb{A}, y:\mathbb{B},\Delta\triangleright \text{inl}_{\mathbb{E}}(v):  \mathbb{D} \oplus \mathbb{E}$, it is possible to derive $\Gamma ,y:\mathbb{B}, x:\mathbb{A}, \Delta \triangleright \text{inl}_{\mathbb{E}}(v):  \mathbb{D} \oplus \mathbb{E}$. By induction hypothesis on the premises of $\Gamma , x:\mathbb{A}, y:\mathbb{B},\Delta\triangleright \text{inl}_{\mathbb{D}}(v):  \mathbb{D} \oplus \mathbb{D}$ and applying the inl rule, one has that:
-
-    \begin{figure}[H]
-      \centering
-      \begin{prooftree}
-      \hypo{\Gamma, x:\mathbb{A}, y:\mathbb{B}, \Delta \triangleright v: \mathbb{D}}
-      \infer1{\Gamma, y:\mathbb{B}, x:\mathbb{A}, \Delta \triangleright v: \mathbb{D}}
-      \infer1{\Gamma, y:\mathbb{B}, x:\mathbb{A}, \Delta \triangleright \text{inl}_{\mathbb{E}}(v): \mathbb{D} \oplus \mathbb{E}}
-      \end{prooftree}
-      \end{figure}
-
-  For the right injection the proof is analogous.
-
-With respect to the case statement, it is necessary to prove that for every judgment $\Gamma, x:\mathbb{A}, y:\mathbb{B}, \Delta \triangleright \text{ case } v \hspace{2pt} \{\text{inl}_{\mathbb{F}}  (a) \Rightarrow w ; \hspace{1pt} \text{inr}_{\mathbb{E}}  (b) \Rightarrow u\}: \mathbb{D}$, it is possible to derive $\Gamma, y:\mathbb{B}, x:\mathbb{A}, \Delta \triangleright \text{ case } v \hspace{2pt} \{\text{inl}_{\mathbb{F}} (a) \Rightarrow w ; \hspace{1pt} \text{inr}_{\mathbb{E}} (b) \Rightarrow u\}: \mathbb{D}$. In this case, three scenarios must be considered:
-\begin{enumerate}
-  \item $x:\mathbb{A}, y:\mathbb{B}$ are variables in the context of $v$;
-  \item $x:\mathbb{A}, y:\mathbb{B}$ are variables in the context of $w$ and $u$;
-  \item  $x:\mathbb{A}$ is a variable in the context of $v$ and $y:\mathbb{B}$ is a variable in the context of $w$ and $u$.
-\end{enumerate}
-
-With respect to the first case, by induction hypothesis and applying the case rule, one has that:
-
-\begin{figure}[H]
-  \centering
-  \begin{prooftree}
-  \hypo{\begin{matrix} \\\Gamma_{1}, x:\mathbb{A}, y:\mathbb{B}, \Gamma_{2} \triangleright v: \mathbb{E} \oplus \mathbb{F} \end{matrix}}
-  \infer1{ \begin{matrix} \\ \Gamma_{1}, y:\mathbb{B}, x:\mathbb{A},  \Gamma_{2} \triangleright v: \mathbb{E} \oplus \mathbb{F} \end{matrix}}
-  \hypo{\begin{matrix}  E, a:\mathbb{E} \triangleright w: \mathbb{D}\\
-    E, b:\mathbb{F} \triangleright u : \mathbb{D}
-    \end{matrix}}
-  \infer1{\begin{matrix} E, a:\mathbb{E} \triangleright w: \mathbb{D} \\
-    E, b:\mathbb{F} \triangleright u : \mathbb{D}
-    \end{matrix}}
-  \hypo{\begin{matrix} \\ \Gamma,  x:\mathbb{A}, y:\mathbb{B};\Delta \in \text{Sf}(\Gamma_{1}, x:\mathbb{A}, y:\mathbb{B}, \Gamma_{2}; E) \end{matrix}}
-  \infer1{\begin{matrix} \\ \Gamma, y:\mathbb{B}, x:\mathbb{A};\Delta \in \text{Sf}(\Gamma_{1}, y:\mathbb{B}, x:\mathbb{A}, \Gamma_{2}; E) \end{matrix}}
-  \infer3{\Gamma, y:\mathbb{B}, x:\mathbb{A}, \Delta \triangleright \text{case } v \hspace{2pt} \{\text{inl}_{\mathbb{F}} (a) \Rightarrow w ; \hspace{1pt} \text{inr}_{\mathbb{E}} (b) \Rightarrow u\}: \mathbb{D}}
-  \end{prooftree}
-  \end{figure}
-
-
-Similarly, for the second case, by induction hypothesis and applying the case rule, one has that:
-
-
-\begin{figure}[H]
-  \centering
-  \begin{prooftree}
-  \hypo{ \begin{matrix} \\ E \triangleright v: \mathbb{E} \oplus \mathbb{F} \end{matrix}}  
-  \infer1{  \begin{matrix} \\ E \triangleright v: \mathbb{E} \oplus \mathbb{F} \end{matrix}}
-  \hypo{\begin{matrix}
-    \Delta_{1}, x:\mathbb{A}, y:\mathbb{B},\Delta_{2}  , a:\mathbb{E} \triangleright w: \mathbb{D} \\
-    \Delta_{1}, y:\mathbb{B}, x:\mathbb{A}, \Delta_{2}  , b:\mathbb{F} \triangleright w: \mathbb{D}
-  \end{matrix}}
-  \infer1{\begin{matrix}
-    \Delta_{1}, y:\mathbb{B}, x:\mathbb{A}, \Delta_{2}  , a:\mathbb{E} \triangleright w: \mathbb{D} \\
-    \Delta_{1}, x:\mathbb{A}, y:\mathbb{B},\Delta_{2}  , b:\mathbb{F} \triangleright w: \mathbb{D}
-  \end{matrix}}
-  \hypo{\begin{matrix} \\ \Gamma, x:\mathbb{A},y:\mathbb{B};  \Delta \in \text{Sf}(E; \Delta_{1}, x:\mathbb{A}, y:\mathbb{B},\Delta_{2} ) \end{matrix}}
-  \infer1{ \begin{matrix} \\\Gamma, y:\mathbb{B}, x:\mathbb{A};  \Delta \in \text{Sf}(E; \Delta_{1}, y:\mathbb{B}, x:\mathbb{A},\Delta_{2} ) \end{matrix}}
-  \infer3{\Gamma, y:\mathbb{B}, x:\mathbb{A}, \Delta \triangleright \text{case } v \hspace{2pt} \{\text{inl}_{\mathbb{F}} (a) \Rightarrow w ; \hspace{1pt} \text{inr}_{\mathbb{E}} (b) \Rightarrow u\}: \mathbb{D}}
-  \end{prooftree}
-  \end{figure}
-
-
-
-
-  Finally, for the third case, considering the premises
-
-
-\begin{figure}[H]
-  \centering
-  \begin{prooftree}
-  \hypo{\begin{matrix}  \Gamma_{1},x:\mathbb{A},\Gamma_{2} \triangleright v: \mathbb{E} \oplus \mathbb{F}\\ \Delta_{1},y:\mathbb{B}, \Delta_{2},   a:\mathbb{E} \triangleright w: \mathbb{D} \quad \\
-    \Delta_{1}, y:\mathbb{B},\Delta_{2} , b:\mathbb{F} \triangleright u : \mathbb{D} \\ \Gamma, x:\mathbb{A}, y:\mathbb{B},  \Delta \in  \hspace{2pt} \text{Sf}(\Gamma_{1}, x:\mathbb{A},\Gamma_{2}; \Delta_{2},y:\mathbb{B},\Delta_{1} )  \end{matrix}}
-  \end{prooftree}
-  \end{figure}
-
-it is possible to derive $\Gamma, y:\mathbb{B}, x:\mathbb{A}, \Delta \triangleright \text{ case } v \hspace{2pt} \{\text{inl}_{\mathbb{F}} (a) \Rightarrow w ; \hspace{1pt} \text{inr}_{\mathbb{E}} (b) \Rightarrow u\}: \mathbb{D}$, attending to the definition of shuffle. Note that in exchanging  variables $x:\mathbb{A}$ and $y:\mathbb{B}$ in the last premise the relative order of the variables in $\Gamma_{1}, x:\mathbb{A},\Gamma_{2}; \Delta_{2},y:\mathbb{B},\Delta_{1}$ is preserved.
-
-
-
-%a possibility for $\Gamma, y:\mathbb{B}, x:\mathbb{A}, \Delta \in \text{Sf}(\Gamma_{1}, x:\mathbb{A},\Gamma_{2}; \Delta_{2},y:\mathbb{B},\Delta_{1})$, given that in exchanging these variables the relative order of the variables in $\Gamma_{1}, x:\mathbb{A},\Gamma_{2}$ and $\Delta_{2},y:\mathbb{B},\Delta_{1}$ is preserved. As a result, it is possible to derive $\Gamma, y:\mathbb{B}, x:\mathbb{A}, \Delta \triangleright \text{ case } v \hspace{2pt} \{\text{inl}_{\mathbb{E}} (a) \Rightarrow w ; \hspace{1pt} \text{inr}_{\mathbb{D}} (b) \Rightarrow u\}: \mathbb{D}$.
-
-%shuffle is a permutation of typed variables in a context sequence $\Gamma_1, . . . ,  \Gamma_n$ such that for all $i \leq n$ the
-%relative order of the variables in $\Gamma_i$ is preserved, 
-
-
-\vspace{10pt}
-
-\textbf{Substitution}
-
-With respect to the substitution property, for the left injection is necessary to demonstrate that for all judgements $\Gamma, x:\mathbb{E} \triangleright \text{inl}_{\mathbb{B}}(v):  \mathbb{A} \oplus \mathbb{B}$ and $\Delta \triangleright w: \mathbb{D}$ it is possible to derive $\Gamma, \Delta \triangleright \text{inl}_{\mathbb{B}}(v[w/x]):  \mathbb{A} \oplus \mathbb{B}$. By induction hypothesis,  and applying the inl rule, one has that:
-
-\begin{figure}[H]
-  \centering
-  \begin{prooftree}
-  \hypo{\Gamma, x:\mathbb{E} \triangleright v: \mathbb{A} \quad \Delta \triangleright w: \mathbb{D}}
-  \infer1{\Gamma, \Delta \triangleright v[w/x]: \mathbb{A}}
-  \infer1{\Gamma, \Delta \triangleright \text{inl}_{\mathbb{B}}(v[w/x]): \mathbb{A} \oplus \mathbb{B}}
-  \infer1{\Gamma, \Delta \triangleright \text{inl}_{\mathbb{B}}(v)[w/x]: \mathbb{A} \oplus \mathbb{B}}
-  \end{prooftree}
-  \end{figure}
-
-
-  For the right injection the proof is analogous.
-  
-  Regarding the case statement it is necessary to prove that for all judgements $E, z:\mathbb{D} \triangleright  \text{ case } v \hspace{2pt} \{\text{inl}_{\mathbb{A}}  (x) \Rightarrow w ; \hspace{1pt} \text{inr}_{\mathbb{B}}  (y) \Rightarrow u\}: \mathbb{D}$ and $\Sigma\triangleright a: \mathbb{E}$ it is possible to derive $ E, \Sigma  \triangleright \text{ case } v \hspace{2pt} \{\text{inl}_{\mathbb{A}}  (x) \Rightarrow w ; \hspace{1pt} \text{inr}_{\mathbb{B}}  (y) \Rightarrow u\}[a/z]: \mathbb{D}$. In this case, it is necessary to consider two scenarios:
-  \begin{enumerate}
-    \item $z:\mathbb{D}$ is a variable in the context of $v$;
-    \item $z:\mathbb{D}$ is a variable in the context of $w$ and $u$.
-  \end{enumerate}
-  
-  Regarding the first case, by induction and applying the case rule, one has that:
-
-
-  \begin{figure}[H]
-    \centering
-    \begin{prooftree}
-    \hypo{\begin{matrix} \\ \Gamma_1,z:\mathbb{E} \triangleright v: \mathbb{A} \oplus \mathbb{B} \end{matrix}}
-    \hypo {\begin{matrix} \\ \Delta\triangleright a: \mathbb{E} \end{matrix}}
-    \infer2{ \begin{matrix} \\ \Gamma_1, \Delta \triangleright v[a/z]: \mathbb{A} \oplus \mathbb{B} \end{matrix}}
-    \hypo{\begin{matrix} \Gamma_2, x: \mathbb{A} \triangleright w: \mathbb{D}\\
-      \Gamma_2, y: \mathbb{B}  \triangleright u : \mathbb{D} 
-      \end{matrix}}
-    \infer1{\begin{matrix}  \Gamma_2, x: \mathbb{A} \triangleright w: \mathbb{D}\\
-      \Gamma_2, y: \mathbb{B}  \triangleright u : \mathbb{D}
-      \end{matrix}}
-    \hypo{\begin{matrix} \\ E,z:\mathbb{E}  \in \text{Sf}(\Gamma_1,z:\mathbb{E};\Gamma_2) \end{matrix}}
-    \infer1{\begin{matrix} \\  E,\Delta \in \text{Sf}(\Gamma_1, \Delta;\Gamma_2) \end{matrix}}
-    \infer3{ E,\Delta \triangleright \text{ case } v \hspace{2pt} \{\text{inl}_{\mathbb{B}} (x) \Rightarrow w[a/z] ; \hspace{1pt} \text{inr}_{\mathbb{A}} (y) \Rightarrow u[a/z]\}: \mathbb{D}}
-    \infer1{ E,\Delta \triangleright \text{ case } v \hspace{2pt} \{\text{inl}_{\mathbb{B}}  (x) \Rightarrow w ; \hspace{1pt} \text{inr}_{\mathbb{A}}  (y) \Rightarrow u\}[a/z]: \mathbb{D}}
-    \end{prooftree}
-    \end{figure}
-
-
-  
-
-% NOTA: Ver situação do E
-
-The second case is similar to the first one,  applying the exchange property, then the induction, followed by the exchange property once more,  and finally the case rule, one has that
-
-\begin{figure}[H]
-  \centering
-  \begin{prooftree}
-  \hypo{\begin{matrix} \\ \Gamma_1 \triangleright v: \mathbb{A} \oplus \mathbb{B} \end{matrix}}
-  \infer1{ \begin{matrix} \\ \Gamma_1 \triangleright v: \mathbb{A} \oplus \mathbb{B} \end{matrix}}
-  \infer1{ \begin{matrix} \\ \Gamma_1 \triangleright v: \mathbb{A} \oplus \mathbb{B} \end{matrix}}
-  \infer1{ \begin{matrix} \\ \Gamma_1 \triangleright v: \mathbb{A} \oplus \mathbb{B} \end{matrix}}
-  \hypo{\begin{matrix}  \Gamma_2 ,z:\mathbb{E},   x: \mathbb{A} \triangleright u : \mathbb{D}\\
-    \Gamma_2, z:\mathbb{E}, y: \mathbb{B}  \triangleright w: \mathbb{D} 
-    \end{matrix}}
-    \infer1{\begin{matrix}  \Gamma_2,   x: \mathbb{A},z:\mathbb{E}   \triangleright u : \mathbb{D}  \\ 
-      \Gamma_2,   y: \mathbb{B} ,z:\mathbb{E}  \triangleright w: \mathbb{D} 
-    \end{matrix}}
-    \hypo {\begin{matrix} \\ \Delta\triangleright a: \mathbb{E} \end{matrix}}
-  \infer1{\begin{matrix}  \\ \Delta \triangleright a: \mathbb{E} \end{matrix}}
-  \infer2{ \begin{matrix}  \Gamma_2, x: \mathbb{A}, \Delta   \triangleright u[a/z] : \mathbb{D}  \\ 
-    \Gamma_2,    y: \mathbb{B} , \Delta \triangleright w[a/z]: \mathbb{D}
-  \end{matrix}}
-  \infer1{ \begin{matrix}  \Gamma_2, \Delta, x: \mathbb{A}   \triangleright u[a/z] : \mathbb{D}  \\ 
-    \Gamma_2, \Delta,  y: \mathbb{B}  \triangleright w[a/z]: \mathbb{D}
-  \end{matrix}}
-  \hypo{\begin{matrix} \\ E,z:\mathbb{E}  \in \text{Sf}(\Gamma_1;z:\mathbb{E},\Gamma_2) \end{matrix}}
-  \infer1{\begin{matrix} \\  E,z:\mathbb{E}  \in \text{Sf}(\Gamma_1;z:\mathbb{E},\Gamma_2) \end{matrix} }
-  \infer1{\begin{matrix} \\  E,\Delta \in \text{Sf}(\Gamma_1; \Delta,\Gamma_2) \end{matrix}}
-  \infer1{\begin{matrix} \\  E,\Delta \in \text{Sf}(\Gamma_1; \Delta,\Gamma_2) \end{matrix}}
-  %\infer3{ E,\Delta \triangleright \text{ case } v \hspace{2pt} \{\text{inl}_{\mathbb{B}} (x) \Rightarrow w[a/z] ; \hspace{1pt} \text{inr}_{\mathbb{A}} (y) \Rightarrow u[a/z]\}: \mathbb{D}}
-  \infer3{  E, \Delta \triangleright \text{ case } v \hspace{2pt} \{\text{inl}_{\mathbb{B}} (x) \Rightarrow w[a/z] ; \hspace{1pt} \text{inr}_{\mathbb{A}} (y) \Rightarrow u[a/z]\}: \mathbb{D}}
-  \infer1{  E,\Delta  \triangleright \text{ case } v \hspace{2pt} \{\text{inl}_{\mathbb{B}}  (x) \Rightarrow w ; \hspace{1pt} \text{inr}_{\mathbb{A}}  (y) \Rightarrow u\}[a/z]: \mathbb{D}}
-  \end{prooftree}
-  \end{figure}
-
-  \end{proof}
-
-
-  The equations-in-context of the conditionals are shown in Figure \ref{fig:equations-in-context-cond}.
+Finally we now focus on the substitution rule which also follows by induction over the
+length of derivation trees. Again the cases involving the injections are direct,
+and we thus only detail the proof of rule $\rulename{case}$. Consider then
+judgements $E,x : \typeA \vljud \text{case } v\, \{\inl_{\typeD}(a) \Rightarrow
+w ; \, \inr_{\typeE}(b) \Rightarrow u \}: \typeB$ and
+$Z \vljud t : \typeA$ with $E \in \Shuff(\Gamma; \Delta)$. According to the definition
+of a shuffle either $\Gamma$ is of the form $\Gamma_1, x: \typeA$ or $\Delta$ is
+of the form $\Delta_1, x : \typeA$. The first case follows directly and the second case
+is a corollary of the exchange rule.
+\end{proof}
+ 
+The equational system for the conditionals is shown in Figure
+\ref{fig:equations-in-context-cond}.
 
 
   \begin{figure}[h!]
@@ -374,13 +234,26 @@ The second case is similar to the first one,  applying the exchange property, th
     \begin{tcolorbox}[colframe=black, colback=white, boxrule=0.6pt, arc=1pt,boxsep=1pt,top=1pt,bottom=1pt, width=0.85 \textwidth]
     \begin{equation*}
         \begin{split}
-          &(\beta_{case}^{inl}): \hspace{3pt} \Delta,\Gamma \triangleright \text{ case } \text{inl}_{\mathbb{B}}(v) \hspace{2pt} \{\text{inl}_{\mathbb{B}} (x) \Rightarrow w ; \hspace{1pt} \text{inr}_{\mathbb{A}} (y) \Rightarrow u\}= w[v/x] : \mathbb{D} \\
-          &(\beta_{case}^{inr}): \hspace{3pt} \Delta,\Gamma  \triangleright  \text{ case } \text{inr}_{\mathbb{A}}(v) \hspace{2pt} \{\text{inl}_{\mathbb{B}} (x) \Rightarrow w ; \hspace{1pt} \text{inr}_{\mathbb{A}} (y) \Rightarrow u\} = w[v/y] : \mathbb{D} \\
-          & (\eta_{case}): \hspace{3pt} \Delta,\Gamma  \triangleright  \text{ case }(v)\ \hspace{2pt} \{\text{inl}_{\mathbb{B}} (y) \Rightarrow w [ \text{inl}_{\mathbb{B}}(y)/x] ; \hspace{1pt} \text{inr}_{\mathbb{A}} (z) \Rightarrow w [ \text{inr}_{\mathbb{A}}(z)/x]\} = w[v/x] : \mathbb{D}
+          &(\beta_{case}^{inl}) \hspace{3pt} \text{ case } 
+          \inl_{\typeB}(v) \hspace{2pt} \{ \inl_{\typeB} (x) \Rightarrow w 
+          ; \hspace{1pt} \inr_{\typeA} (y) 
+          \Rightarrow u\}= w[v/x]
+          %
+          \\
+          %
+          &(\beta_{case}^{inr}) \hspace{3pt} \text{ case } 
+          \inr_{\typeA}(v) \hspace{2pt} \{ \inl_{\typeB} (x) \Rightarrow w 
+          ; \hspace{1pt} \inr_{\typeA} (y) 
+          \Rightarrow u\}= u[v/y]
+          %
+          \\
+          %
+          %
+          & (\eta_{case}) \hspace{3pt} \text{ case }(v)\ \hspace{2pt} \{\text{inl}_{\mathbb{B}} (y) \Rightarrow w [ \text{inl}_{\mathbb{B}}(y)/x] ; \hspace{1pt} \text{inr}_{\mathbb{A}} (z) \Rightarrow w [ \text{inr}_{\mathbb{A}}(z)/x]\} = w[v/x] : \mathbb{D}
         \end{split}
     \end{equation*}
     \end{tcolorbox}
-    \caption{Equations in the context of the conditionals.}
+    \caption{Equational system for the conditionals}
     \label{fig:equations-in-context-cond}
     \end{figure}
 
