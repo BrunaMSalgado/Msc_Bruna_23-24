@@ -334,7 +334,7 @@ wire=c]{1} \\
 \end{figure}
 
 When formalizing the quantum teleportation protocol within the lambda calculus framework, each part of the protocol is instantiated as a distinct function. 
-Considering the unitary operations $H: \textit{qbit} \multimap  \textit{qbit}$, $X: \textit{qbit} \multimap  \textit{qbit}$, $Z: \textit{qbit} \multimap  \textit{qbit}$, $I: \textit{qbit} \multimap  \textit{qbit}$, and $\textit{CNOT}: \textit{qbit}, \textit{qbit} \multimap  \textit{qbit} \otimes \textit{qbit}$ , these functions are defined as follows:
+Considering the CPTP operations $H: \textit{qbit} \multimap  \textit{qbit}$, $X: \textit{qbit} \multimap  \textit{qbit}$, $Z: \textit{qbit} \multimap  \textit{qbit}$, $I: \textit{qbit} \multimap  \textit{qbit}$, and $\textit{CNOT}: \textit{qbit}, \textit{qbit} \multimap  \textit{qbit} \otimes \textit{qbit}$ , these functions are defined as follows:
 
 \begin{align*}
    &\textbf{EPR} =  - \triangleright  \textit{CNOT} \hspace{2pt} (\textit{H}\hspace{2pt} (q  \hspace{2pt}    ( \textit{new}   \hspace{2pt}  0 \hspace{1pt}(*))),(q  \hspace{2pt}   ( \textit{new}   \hspace{2pt}  0 \hspace{1pt}(*)))) : \textit{qbit} \otimes \textit{qbit}  \\ 
@@ -382,7 +382,8 @@ A few examples of monoidal closed categories with coproducts include the categor
 
 
 
-To interpret the conditionals, it is first necessary to establish some notation. Let $\mathcal{C}$ be a monoidal closed category and let $X,$ $Y,$ and $Z$ be objects in $\mathcal{C}$. The morphism $\text{dist}_{X, Y,Z}: X \otimes  \left(Y \oplus Z\right) \xrightarrow{} \left(X \otimes Y\right) \oplus \left(X \otimes Y\right)$, denotes the distributive property of the tensor product over the coproduct.  This distributive property holds in monoidal closed categories with coproducts because the tensor functor is a left adjoint (to the internal hom), and left adjoints preserve colimits.
+ Let $\mathcal{C}$ be a monoidal closed category and let $X,$ $Y,$ and $Z$ be objects in $\mathcal{C}$. The morphism $\text{dist}_{X, Y,Z}: X \otimes  \left(Y \oplus Z\right) \xrightarrow{} \left(X \otimes Y\right) \oplus \left(X \otimes Y\right)$, denotes the distributive property of the tensor product over the coproduct.  This distributive property holds in monoidal closed categories with coproducts because the tensor functor is a left adjoint (to the internal hom), and left adjoints preserve colimits.
+
 The type $A \oplus B$ is interpreted as $[\![A \oplus B ]\!] = [\![A ]\!] \oplus [\![ B ]\!]$. The interpretation of conditionals is illustrated in \autoref{fig:denotational_sem cond}.
 
 \begin{figure}[H]
