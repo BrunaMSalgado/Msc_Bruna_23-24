@@ -358,7 +358,9 @@ Considering the unitary operations $H: \textit{qbit} \multimap  \textit{qbit}$, 
 
 With the syntax of conditionals in lambda calculus established, it is now essential to define the meaning of the calculus's terms within the ``reality'' of interest—that is, to provide an interpretation for the calculus's conditionals, also known as the model of this ``reality''. In this work, the model is based on monoidal closed categories with coproducts. 
 
-A monoidal category is a category equipped with a bifunctor $\otimes: \mathcal{C} \times \mathcal{C} \xrightarrow{} \mathcal{C}$, an object $I$, and natural isomorphisms $\alpha: (A \otimes B) \otimes C \xrightarrow{} A \otimes (B \otimes C)$, $\lambda: I \otimes A \xrightarrow{} A$, and $\rho: A \otimes I \xrightarrow{} A$ that satisfy the pentagon and triangle identities. A monoidal category is monoidal closed if it has an internal hom bifunctor $\multimap: \mathcal{C}^{op} \times \mathcal{C} \xrightarrow{} \mathcal{C}$, and natural isomorphism $\text{ev}_{A,B}:  (A \multimap B) \otimes A\xrightarrow{} B$ such that for each object $B$ the functor $- \otimes B$ has a right adjoint $(-)^B$.  Considering a cetegory $\mathcal{C}$  with objects $A$ and $B$, a coproduct of $A$ and $B$ is an object $A \oplus B$ with injection morphisms $i_A$ and $i_B$. Additionally, these satisfy the following universal property: for every object $C$ and any two maps $f $ and $g$, there exists a unique map $[f,g] : A \oplus B \rightarrow C$ which makes both triangles commute.
+A monoidal category is a category equipped with a bifunctor $\otimes: \mathcal{C} \times \mathcal{C} \xrightarrow{} \mathcal{C}$, an object $I$, and natural isomorphisms $\alpha: (A \otimes B) \otimes C \xrightarrow{} A \otimes (B \otimes C)$, $\lambda: I \otimes A \xrightarrow{} A$, and $\rho: A \otimes I \xrightarrow{} A$ that satisfy the pentagon and triangle identities. A monoidal category $\mathcal{C}$ is monoidal closed if, for each object $A$ in $\mathcal{C}$, the functor $A \otimes - : \mathcal{C} \to \mathcal{C}$ has a right adjoint, denoted by $A \multimap -$. %This is equivalent to the existence of an internal hom bifunctor $\multimap : \mathcal{C}^{op} \times \mathcal{C} \to \mathcal{C}$, together with a natural isomorphism $\text{ev}_{A,B} : (A \multimap B) \otimes A \to B$.  
+\todo[inline,size=\normalsize]{Pelo que eu percebi normalmente quando se fala de category monoidal fechada usa-se o funtor $- \otimes A$ ao invés de $A \otimes -$, mas eu defini assim dado como a distribuição do tensor sobre o coproduto tem de ser definida abaixo.} 
+Considering a category $\mathcal{C}$  with objects $A$ and $B$, a coproduct of $A$ and $B$ is an object $A \oplus B$ with injection morphisms $i_A$ and $i_B$. Additionally, these satisfy the following universal property: for every object $C$ and any two maps $f $ and $g$, there exists a unique map $[f,g] : A \oplus B \rightarrow C$ which makes both triangles commute.
 
 \begin{tikzpicture}
   \matrix (m) [matrix of math nodes,row sep=4em,column sep=7em,minimum width=2em]
@@ -378,12 +380,10 @@ A monoidal category is a category equipped with a bifunctor $\otimes: \mathcal{C
 A few examples of monoidal closed categories with coproducts include the category of sets, the category of vector spaces, and the category of partial orders.
 \todo[inline,size=\normalsize]{Explicar melhor em que consiste cada categoria? (o que são os objetos e morfismos)} 
 
-Regarding the interpretation of the coproduct, the type $A \oplus B$ is interpreted as $[\![A \oplus B ]\!] = [\![A ]\!] \oplus [\![ B ]\!] $. Considering...
-\todo[inline,size=\normalsize]{Explicar o que é dits} 
-
-The interpretation of conditionals is illustrated in \autoref{fig:denotational_sem cond}.
 
 
+To interpret the conditionals, it is first necessary to establish some notation. Let $\mathcal{C}$ be a monoidal closed category and let $X,$ $Y,$ and $Z$ be objects in $\mathcal{C}$. The morphism $\text{dist}_{X, Y,Z}: X \otimes  \left(Y \oplus Z\right) \xrightarrow{} \left(X \otimes Y\right) \oplus \left(X \otimes Y\right)$, denotes the distributive property of the tensor product over the coproduct.  This distributive property holds in monoidal closed categories with coproducts because the tensor functor is a left adjoint (to the internal hom), and left adjoints preserve colimits.
+The type $A \oplus B$ is interpreted as $[\![A \oplus B ]\!] = [\![A ]\!] \oplus [\![ B ]\!]$. The interpretation of conditionals is illustrated in \autoref{fig:denotational_sem cond}.
 
 \begin{figure}[H]
   \begin{equation*}
