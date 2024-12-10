@@ -24,6 +24,7 @@
 \usepackage{tcolorbox}
 \usepackage{braket}
 \usepackage{quantikz}
+\usepackage{tikz-cd}
 \linespread{1.10}
 \author{\dots}
 \title{Notes}
@@ -96,8 +97,14 @@ escapeinside={*@}{*@}
 
 \subsection{Syntax}
 
-The term formation rules for conditionals are depicted in \autoref{fig:typing_rules_cond}. 
+Considering a class $G$ of ground types, the grammar of types for linear lambda calculus with conditionals corresponds to:
 
+\begin{equation*} \label{eq:grammartypes}
+  \centering
+   \mathbb{A} ::= X \in G \hspace{3 pt} \vert \hspace{3 pt} \mathbb{I}  \hspace{3 pt}  \vert \hspace{3 pt} \mathbb{A}  \otimes  \mathbb{A} \hspace{3 pt} \vert  \hspace{3 pt} \mathbb{A}  \oplus \mathbb{A} \hspace{3 pt}  \vert  \hspace{3 pt} \mathbb{A} \multimap  \mathbb{A}
+  \end{equation*}
+
+The term formation rules for conditionals are depicted in \autoref{fig:typing_rules_cond}. 
 
 \begin{figure}[H]
     \begin{equation*}
@@ -257,9 +264,39 @@ The equational system for the conditionals is shown in Figure
     \label{fig:equations-in-context-cond}
     \end{figure}
 
-    \subsubsection{Examples of Programs}
 
-    \par\vspace{10pt}  
+    \subsubsection{Examples of Programs (Quantum Setting)}
+
+    \par\vspace{10pt} 
+    
+    
+    In the case of quantum lambda calculus, it is natural to consider a  type $\textit{qbit}$ of quantum bits and a type $\textit{bit}$ of classical bits.  The following operations are considered: the creation of a new bit $(1,0)$, $\textit{new} \hspace{2pt} 0  :\mathbb{I}  \multimap \textit{bit} $, the creation of a new bit $(0,1)$, $\textit{new} \hspace{2pt} 1  :\mathbb{I}  \multimap \textit{bit} $, the conversion of a bit into a qubit, $q : \textit{bit}  \multimap \textit{qbit}$, measuring a qubit, $\textit{meas}:\textit{qbit} \xrightarrow{} \textit{bit}$, applying a unitary  operation to a qubit $\textit{U}:\textit{qbit},\ldots,\textit{qbit} \xrightarrow{} \textit{qbit}^{\otimes n}$, and performing a CPTP operation on a qubit, $\textit{CPTP}: \textit{qbit}^{\otimes n} \multimap \textit{qbit}^{\otimes n}$. 
+
+
+    \textbf{Quantum State Discrimination}
+
+
+Quantum state discrimination is a pivotal challenge in quantum information, fundamental to the extraction of classical information from quantum systems. While orthogonal states can be perfectly distinguished, the same does not apply to nonorthogonal states. 
+Even when the set of possible nonorthogonal states is known, determining the optimal discrimination strategy is considered a nontrivial problem.
+
+For example, when distinguishing between two nonorthogonal quantum states, the Helstrom measurement represents the optimal strategy \cite{helstromQuantumDetectionEstimation1976}. In the case where both states are pure, the Helstrom measurement corresponds to a projective measurement \cite{barnett2009quantum}.
+
+When operating within the computational basis, a projective measurement can be understood as the application of a unitary operator, followed by a subsequent measurement in the computational basis. In this context, the Helstrom measurement can be interpreted as a unitary transformation applied to the quantum state, followed by a measurement in the computational basis. 
+
+Consider the task of discriminating between two pure states $\ket{\psi_0}$ and $\ket{\psi_1}$, prepared with a priori probabilities $p_0$ and $p_1$, respectively. Let the unitary operator $U$  be the transformation that rotates the computational basis to the basis associated with the Helstrom measurement  in this context. This discrimination task can then be formalized as follows:
+
+\begin{align*}
+  &\textbf{StatePreparation} =  b:\textit{bit}  \triangleright  \text{case } b \{\text{inl}_{\mathbb{B}}(x) \Rightarrow \ket{\psi_0} ; \text{inr}_{\mathbb{A}}(y) \Rightarrow \ket{\psi_1}\}: \textit{qbit} \\
+  &\textbf{HMeasure} =  q_0: \textit{qbit} \triangleright \textit{meas} (\textit{U}(q_0))  : \textit{qbit} \\
+  &\textbf{Discrimination} = (p_0,p_1): \textit{bit}  \triangleright \textbf{HMeasure} [ \textbf{StatePreparation} [(p_0,p_1)/ b] / q_0] : \textit{bit}
+\end{align*}
+
+
+
+\vspace{10pt}
+
+
+
     \textbf{ Quantum Teleportation}
 
 
@@ -316,26 +353,76 @@ Considering the unitary operations $H: \textit{qbit} \multimap  \textit{qbit}$, 
      & \text{pm} \hspace{5pt}  \textbf{Correction} \hspace{1pt} [qb_{2}/q,c_{0}/x, c_{1}/y]  \hspace{5pt} \text{to} \hspace{5pt}  qb. \hspace{2pt}  qb : \textit{qbit} 
  \end{align*}
 
+ 
+ \subsection{Interpretation}
 
-    \vspace{10pt}
+With the syntax of conditionals in lambda calculus established, it is now essential to define the meaning of the calculus's terms within the ``reality'' of interest—that is, to provide an interpretation for the calculus's conditionals, also known as the model of this ``reality''. In this work, the model is based on monoidal closed categories with coproducts. 
 
-\textbf{Quantum State Discrimination}
+A monoidal category is a category equipped with a bifunctor $\otimes: \mathcal{C} \times \mathcal{C} \xrightarrow{} \mathcal{C}$, an object $I$, and natural isomorphisms $\alpha: (A \otimes B) \otimes C \xrightarrow{} A \otimes (B \otimes C)$, $\lambda: I \otimes A \xrightarrow{} A$, and $\rho: A \otimes I \xrightarrow{} A$ that satisfy the pentagon and triangle identities. A monoidal category is monoidal closed if it has an internal hom bifunctor $\multimap: \mathcal{C}^{op} \times \mathcal{C} \xrightarrow{} \mathcal{C}$, and natural isomorphism $\text{ev}_{A,B}:  (A \multimap B) \otimes A\xrightarrow{} B$ such that for each object $B$ the functor $- \otimes B$ has a right adjoint $(-)^B$.  Considering a cetegory $\mathcal{C}$  with objects $A$ and $B$, a coproduct of $A$ and $B$ is an object $A \oplus B$ with injection morphisms $i_A$ and $i_B$. Additionally, these satisfy the following universal property: for every object $C$ and any two maps $f $ and $g$, there exists a unique map $[f,g] : A \oplus B \rightarrow C$ which makes both triangles commute.
+
+\begin{tikzpicture}
+  \matrix (m) [matrix of math nodes,row sep=4em,column sep=7em,minimum width=2em]
+  {
+   & C &  \\
+    A  & A \oplus B & B\\
+  };
+  \path[-stealth]
+    (m-2-1) edge  node [above] {$f$} (m-1-2)
+    (m-2-3) edge  node [above] {$g$} (m-1-2)
+    (m-2-1) edge  node [below] {$i_A$} (m-2-2)
+    (m-2-3) edge  node [below] {$i_B$} (m-2-2)
+    (m-2-2) edge [dotted]  node [right] {$[f,g]$} (m-1-2);
+    ;
+\end{tikzpicture}
+
+A few examples of monoidal closed categories with coproducts include the category of sets, the category of vector spaces, and the category of partial orders.
+\todo[inline,size=\normalsize]{Explicar melhor em que consiste cada categoria? (o que são os objetos e morfismos)} 
+
+Regarding the interpretation of the coproduct, the type $A \oplus B$ is interpreted as $[\![A \oplus B ]\!] = [\![A ]\!] \oplus [\![ B ]\!] $. Considering...
+\todo[inline,size=\normalsize]{Explicar o que é dits} 
+
+The interpretation of conditionals is illustrated in \autoref{fig:denotational_sem cond}.
 
 
-Quantum state discrimination is a pivotal challenge in quantum information, fundamental to the extraction of classical information from quantum systems. While orthogonal states can be perfectly distinguished, the same does not apply to nonorthogonal states. 
-Even when the set of possible nonorthogonal states is known, determining the optimal discrimination strategy is considered a nontrivial problem.
 
-For example, when distinguishing between two nonorthogonal quantum states, the Helstrom measurement represents the optimal strategy \cite{helstromQuantumDetectionEstimation1976}. In the case where both states are pure, the Helstrom measurement corresponds to a projective measurement \cite{barnett2009quantum}.
+\begin{figure}[H]
+  \begin{equation*}
+  \begin{aligned}
+  &\hspace{10pt}
+  %
+  \begin{prooftree}
+      \hypo{ [\![\Gamma \triangleright v: \mathbb{A}]\!] = m }
+      \infer1[]{ [\![ \Gamma \triangleright \text{inl} (v):  \mathbb{A} \oplus \mathbb{B}  ]\!] = i_{\mathbb{A}}  \cdot m}
+  \end{prooftree}
+  %
+  \hspace{30pt}
+  %
+  \begin{prooftree}
+    \hypo{ [\![\Gamma \triangleright v: \mathbb{B}]\!] = m }
+    \infer1[]{ [\![ \Gamma \triangleright \text{inl} (v):  \mathbb{B} \oplus \mathbb{B}  ]\!] = i_{\mathbb{B}}  \cdot m}
+\end{prooftree}
+  %
+  \\[20pt]
+  &\hspace{-20pt}
+  %
+  \begin{prooftree}
+      \hypo{[\![\Gamma\triangleright v: \mathbb{A} \oplus \mathbb{B} ]\!] = b}
+      \hypo{[\![\Delta, x:\mathbb{A} \triangleright w: \mathbb{D} ]\!] = p}
+      \hypo{ [\![\Delta,y:\mathbb{B} \triangleright u: \mathbb{D} ]\!] = q }
+      \hypo{E \in \Shuff(\Gamma; \Delta)}
+      \infer4[]{ [\![E \triangleright \text{ case } v \hspace{2pt}  \{\text{inl} (x) \Rightarrow w ; \hspace{1pt} \text{inr} (y) \Rightarrow u\}: \mathbb{D} ]\!] =   [p \cdot \text{jn}_{\Delta;\mathbb{A}},q \cdot \text{jn}_{\Delta;\mathbb{B}}] \cdot \text{dist} \cdot \text{sw} \cdot (b \otimes \text{id}) \cdot \text{sp}_{\Gamma;\Delta} \cdot \text{sh}_{E}}
+  \end{prooftree}
+  %
+  \\[10pt]
+  \end{aligned}
+  \end{equation*}
+  \caption{Judgment interpretation for conditionals}
+\label{fig:denotational_sem cond}
+\end{figure}
 
-When operating within the computational basis, a projective measurement can be understood as the application of a unitary operator, followed by a subsequent measurement in the computational basis. In this context, the Helstrom measurement can be interpreted as a unitary transformation applied to the quantum state, followed by a measurement in the computational basis. 
 
-Consider the task of discriminating between two pure states $\ket{\psi_0}$ and $\ket{\psi_1}$, prepared with a priori probabilities $p_0$ and $p_1$, respectively. Let the unitary operator $U$  be the transformation that rotates the computational basis to the basis associated with the Helstrom measurement  in this context. This discrimination task can then be formalized as follows:
 
-\begin{align*}
-  &\textbf{StatePreparation} =  b:\textit{bit}  \triangleright  \text{case } b \{\text{inl}_{\mathbb{B}}(x) \Rightarrow \ket{\psi_0} ; \text{inr}_{\mathbb{A}}(y) \Rightarrow \ket{\psi_1}\}: \textit{qbit} \\
-  &\textbf{HMeasure} =  q: \textit{qbit} \triangleright \textit{meas} (\textit{U}(q))  : \textit{qbit} \\
-  &\textbf{Discrimination} =  \textbf{HMeasure} [ \textbf{StatePreparation} [b/(p_0,p_1)] / q] : \textit{bit}
-\end{align*}
+
 
 
 %\todo[inline,size=\normalsize]{Elitzur‑Vaidman Bomb Testing Problem -> Improve usando o efeito Zeno? -> Acho que não tem ifs} 
