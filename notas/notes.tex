@@ -270,7 +270,9 @@ The equational system for the conditionals is shown in Figure
     \par\vspace{10pt} 
     
     
-    In the case of quantum lambda calculus, it is natural to consider a  type $\textit{qbit}$ of quantum bits and a type $\textit{bit}$ of classical bits.  The following operations are considered: the creation of a new bit $(1,0)$, $\textit{new} \hspace{2pt} 0  :\mathbb{I}  \multimap \textit{bit} $, the creation of a new bit $(0,1)$, $\textit{new} \hspace{2pt} 1  :\mathbb{I}  \multimap \textit{bit} $, the conversion of a bit into a qubit, $q : \textit{bit}  \multimap \textit{qbit}$, measuring a qubit, $\textit{meas}:\textit{qbit} \xrightarrow{} \textit{bit}$, applying a unitary  operation to a qubit $\textit{U}:\textit{qbit},\ldots,\textit{qbit} \xrightarrow{} \textit{qbit}^{\otimes n}$, and performing a CPTP operation on a qubit, $\textit{CPTP}: \textit{qbit}^{\otimes n} \multimap \textit{qbit}^{\otimes n}$. 
+    In the case of quantum lambda calculus, it is natural to consider a  type $\textit{qbit}$ of quantum bits. Within this framework, the Boolean type — corresponding to a classical bit — is represented as $\mathbb{I} \oplus \mathbb{I}$.
+    
+    The following operations are considered: the creation of a new bit $(1,0)$, $\textit{new} \hspace{2pt} 0  :\mathbb{I}  \multimap \mathbb{I} \oplus \mathbb{I} $, the creation of a new bit $(0,1)$, $\textit{new} \hspace{2pt} 1  :\mathbb{I}  \multimap \mathbb{I} \oplus \mathbb{I}$, the conversion of a bit into a qubit, $q : \mathbb{I} \oplus \mathbb{I}  \multimap \textit{qbit}$, measuring a qubit, $\textit{meas}:\textit{qbit} \xrightarrow{} \mathbb{I} \oplus \mathbb{I}$, applying a unitary  operation to a qubit $\textit{U}:\textit{qbit},\ldots,\textit{qbit} \xrightarrow{} \textit{qbit}^{\otimes n}$, and performing a CPTP operation on a qubit, $\textit{CPTP}: \textit{qbit}^{\otimes n} \multimap \textit{qbit}^{\otimes n}$. 
 
 
     \textbf{Quantum State Discrimination}
@@ -286,9 +288,9 @@ When operating within the computational basis, a projective measurement can be u
 Consider the task of discriminating between two pure states $\ket{\psi_0}$ and $\ket{\psi_1}$, prepared with a priori probabilities $p_0$ and $p_1$, respectively. Let the unitary operator $U$  be the transformation that rotates the computational basis to the basis associated with the Helstrom measurement  in this context. This discrimination task can then be formalized as follows:
 
 \begin{align*}
-  &\textbf{StatePreparation} =  b:\textit{bit}  \triangleright  \text{case } b \{\text{inl}_{\mathbb{B}}(x) \Rightarrow \ket{\psi_0} ; \text{inr}_{\mathbb{A}}(y) \Rightarrow \ket{\psi_1}\}: \textit{qbit} \\
+  &\textbf{StatePreparation} =  b:\mathbb{I} \oplus \mathbb{I}  \triangleright  \text{case } b \{\text{inl}_{\mathbb{B}}(x) \Rightarrow \ket{\psi_0} ; \text{inr}_{\mathbb{A}}(y) \Rightarrow \ket{\psi_1}\}: \textit{qbit} \\
   &\textbf{HMeasure} =  q_0: \textit{qbit} \triangleright \textit{meas} (\textit{U}(q_0))  : \textit{qbit} \\
-  &\textbf{Discrimination} = (p_0,p_1): \textit{bit}  \triangleright \textbf{HMeasure} [ \textbf{StatePreparation} [(p_0,p_1)/ b] / q_0] : \textit{bit}
+  &\textbf{Discrimination} = (p_0,p_1): \mathbb{I} \oplus \mathbb{I}  \triangleright \textbf{HMeasure} [ \textbf{StatePreparation} [(p_0,p_1)/ b] / q_0] : \mathbb{I} \oplus \mathbb{I}
 \end{align*}
 
 
@@ -338,11 +340,11 @@ Considering the CPTP operations $H: \textit{qbit} \multimap  \textit{qbit}$, $X:
 
 \begin{align*}
    &\textbf{EPR} =  - \triangleright  \textit{CNOT} \hspace{2pt} (\textit{H}\hspace{2pt} (q  \hspace{2pt}    ( \textit{new}   \hspace{2pt}  0 \hspace{1pt}(*))),(q  \hspace{2pt}   ( \textit{new}   \hspace{2pt}  0 \hspace{1pt}(*)))) : \textit{qbit} \otimes \textit{qbit}  \\ 
-      &\textbf{BellMeasure} =  q_{1}: \textit{qbit}, q_{2}: \textit{qbit}  \triangleright  \text{pm}  \hspace{2pt} \textit{CNOT} (q_{1},q_{2})  \hspace{2pt}  \text{to} \hspace{2pt} x \otimes y.  \hspace{2pt}  \textit{meas} (\textit{H} (x)) \otimes \textit{meas} (y) :  \textit{bit} \otimes \textit{bit} \\
-      &\textbf{Correction}= q: \textit{qbit}, x: \text{bit},  y: \text{bit} \triangleright  \text{case } x  \hspace{2pt}  \{\text{inl} (x_{0}) \Rightarrow  \text{case}\hspace{2pt} y  \hspace{2pt}  \{\text{inl} (y_{0})  \Rightarrow{}  \textit{I}(q); \\
-      & \hspace{275pt} \text{inr} (y_{1}) \Rightarrow  \hspace{2pt}   \textit{X} (q)\} ; \\
-      & \hspace{200pt}\text{inr} (x_{1})  \Rightarrow  \text{case}\hspace{2pt} y  \hspace{2pt}  \{\text{inl} (y_{0})  \Rightarrow   \textit{Z}(q);  \\
-      &\hspace{275pt} \text{inr} (y_{1}) \Rightarrow{} \textit{Z} (\textit{X}(q)) \}\} : \textit{qbit}
+      &\textbf{BellMeasure} =  q_{1}: \textit{qbit}, q_{2}: \textit{qbit}  \triangleright  \text{pm}  \hspace{2pt} \textit{CNOT} (q_{1},q_{2})  \hspace{2pt}  \text{to} \hspace{2pt} x \otimes y.  \hspace{2pt}  \textit{meas} (\textit{H} (x)) \otimes \textit{meas} (y) : \left(\mathbb{I} \oplus \mathbb{I}\right) \otimes \left(\mathbb{I} \oplus \mathbb{I}\right) \\
+      &\textbf{Correction}= q: \textit{qbit}, x: \mathbb{I} \oplus \mathbb{I},  y: \mathbb{I} \oplus \mathbb{I} \triangleright  \text{case } x  \hspace{2pt}  \{\text{inl} (x_{0}) \Rightarrow  \text{case}\hspace{2pt} y  \hspace{2pt}  \{\text{inl} (y_{0})  \Rightarrow{}  \textit{I}(q); \\
+      & \hspace{292pt} \text{inr} (y_{1}) \Rightarrow  \hspace{2pt}   \textit{X} (q)\} ; \\
+      & \hspace{215pt}\text{inr} (x_{1})  \Rightarrow  \text{case}\hspace{2pt} y  \hspace{2pt}  \{\text{inl} (y_{0})  \Rightarrow   \textit{Z}(q);  \\
+      &\hspace{292pt} \text{inr} (y_{1}) \Rightarrow{} \textit{Z} (\textit{X}(q)) \}\} : \textit{qbit}
  \end{align*}
 
 
@@ -377,9 +379,7 @@ Considering a category $\mathcal{C}$  with objects $A$ and $B$, a coproduct of $
     ;
 \end{tikzpicture}
 
-A few examples of monoidal closed categories with coproducts include the category of sets, the category of vector spaces, and the category of partial orders.
-\todo[inline,size=\normalsize]{Explicar melhor em que consiste cada categoria? (o que são os objetos e morfismos)} 
-
+Examples of monoidal closed categories with coproducts include the category of sets, the category of vector spaces, and the category of partial orders. In the category of sets, the tensor product is the cartesian product, the coproduct is the disjoint union, and the internal hom consists of all functions between sets. For the category of vector spaces, the tensor product is the standard tensor product of vector spaces, the coproduct is the direct sum, and the internal hom is the space of linear maps. In the category of partial orders, the tensor product corresponds to the meet ($\wedge$), the coproduct to the join ($\vee$), and the internal hom is the poset of monotone functions ordered pointwise.
 
 
  Let $\mathcal{C}$ be a monoidal closed category and let $X,$ $Y,$ and $Z$ be objects in $\mathcal{C}$. The morphism $\text{dist}_{X, Y,Z}: X \otimes  \left(Y \oplus Z\right) \xrightarrow{} \left(X \otimes Y\right) \oplus \left(X \otimes Y\right)$, denotes the distributive property of the tensor product over the coproduct.  This distributive property holds in monoidal closed categories with coproducts because the tensor functor is a left adjoint (to the internal hom), and left adjoints preserve colimits.
