@@ -393,14 +393,14 @@ The type $A \oplus B$ is interpreted as $[\![A \oplus B ]\!] = [\![A ]\!] \oplus
   %
   \begin{prooftree}
       \hypo{ [\![\Gamma \triangleright v: \mathbb{A}]\!] = m }
-      \infer1[]{ [\![ \Gamma \triangleright \text{inl}_{\mathbb{A}} (v):  \mathbb{A} \oplus \mathbb{B}  ]\!] = i_{1}  \cdot m}
+      \infer1[]{ [\![ \Gamma \triangleright \text{inl}_{\mathbb{B}} (v):  \mathbb{A} \oplus \mathbb{B}  ]\!] = i_{1}  \cdot m}
   \end{prooftree}
   %
   \hspace{30pt}
   %
   \begin{prooftree}
     \hypo{ [\![\Gamma \triangleright v: \mathbb{B}]\!] = m }
-    \infer1[]{ [\![ \Gamma \triangleright \text{inr}_{\mathbb{B}} (v):  \mathbb{A} \oplus \mathbb{B}  ]\!] = i_2  \cdot m}
+    \infer1[]{ [\![ \Gamma \triangleright \text{inr}_{\mathbb{A}} (v):  \mathbb{A} \oplus \mathbb{B}  ]\!] = i_2  \cdot m}
 \end{prooftree}
   %
   \\[20pt]
@@ -411,7 +411,7 @@ The type $A \oplus B$ is interpreted as $[\![A \oplus B ]\!] = [\![A ]\!] \oplus
       \hypo{[\![\Delta, x:\mathbb{A} \triangleright w: \mathbb{D} ]\!] = p}
       \hypo{ [\![\Delta,y:\mathbb{B} \triangleright u: \mathbb{D} ]\!] = q }
       \hypo{E \in \Shuff(\Gamma; \Delta)}
-      \infer4[]{ [\![E \triangleright \text{ case } v \hspace{2pt}  \{\text{inl}_{\mathbb{A}} (x) \Rightarrow w ; \hspace{1pt} \text{inr}_{\mathbb{B}} (y) \Rightarrow u\}: \mathbb{D} ]\!] =   [p \cdot \text{jn}_{\Delta;\mathbb{A}},q \cdot \text{jn}_{\Delta;\mathbb{B}}] \cdot \text{dist} \cdot \text{sw} \cdot (b \otimes \text{id}) \cdot \text{sp}_{\Gamma;\Delta} \cdot \text{sh}_{E}}
+      \infer4[]{ [\![E \triangleright \text{ case } v \hspace{2pt}  \{\text{inl}_{\mathbb{B}} (x) \Rightarrow w ; \hspace{1pt} \text{inr}_{\mathbb{A}} (y) \Rightarrow u\}: \mathbb{D} ]\!] =   [p \cdot \text{jn}_{\Delta;\mathbb{A}},q \cdot \text{jn}_{\Delta;\mathbb{B}}] \cdot \text{dist} \cdot \text{sw} \cdot (b \otimes \text{id}) \cdot \text{sp}_{\Gamma;\Delta} \cdot \text{sh}_{E}}
   \end{prooftree}
   %
   \\[10pt]
