@@ -5,6 +5,7 @@
 \usepackage{mathrsfs}  
 \usepackage{amsmath}
 \usepackage{amsfonts}
+\usepackage{mathrsfs}  
 \usepackage{amssymb}
 \usepackage{stmaryrd}
 \usepackage{graphicx}
@@ -414,12 +415,35 @@ teleportation procedure in $\lambda$-calculus as follows:
  
  \subsection{Interpretation}
 
-With the syntax of conditionals in lambda calculus established, it is now essential to define the meaning of the calculus's terms within the ``reality'' of interest—that is, to provide an interpretation for the calculus's conditionals, also known as the model of this ``reality''. In this work, the model is based on monoidal closed categories with coproducts. 
+Now that we have a basic syntactic theory of conditionals, it is useful to
+define the meaning of the extended calculus' terms within the ``reality'' of
+interest -- that is, to provide a semantics for the calculus' conditionals in a
+given ``reality", more technically a mathematical model with suitable
+structure. In our work such a model will correspond to a distributive symmetric
+monoidal (closed) category~\cite{maclane13}. In more detail, 
+\begin{definition}
+        A category $\catC$ is called monoidal when it comes equipped with a
+        bifunctor $\otimes: \catC \times \catC \to \catC$ -- which intuitively
+        acts as a monoid operation -- and an object $I$ -- which intuitively
+        acts as the corresponding unit -- such that a number of diagrams
+        commute (see the full details in~\cite{maclane13}). We call this
+        category symmetric monoidal if it additionally comes equipped with a
+        natural isomorphism $\sw : A \otimes B \cong B \otimes A$ for all
+        objects $A,B$ in $\catC$.
 
-A monoidal category is a category equipped with a bifunctor $\otimes: \mathcal{C} \times \mathcal{C} \xrightarrow{} \mathcal{C}$, an object $I$, and natural isomorphisms $\alpha: (A \otimes B) \otimes C \xrightarrow{} A \otimes (B \otimes C)$, $\lambda: I \otimes A \xrightarrow{} A$, and $\rho: A \otimes I \xrightarrow{} A$ that satisfy the pentagon and triangle identities. A monoidal category $\mathcal{C}$ is monoidal closed if, for each object $A$ in $\mathcal{C}$, the functor $A \otimes - : \mathcal{C} \to \mathcal{C}$ has a right adjoint, denoted by $A \multimap -$. %This is equivalent to the existence of an internal hom bifunctor $\multimap : \mathcal{C}^{op} \times \mathcal{C} \to \mathcal{C}$, together with a natural isomorphism $\text{ev}_{A,B} : (A \multimap B) \otimes A \to B$.  
-\todo[inline,size=\normalsize]{Pelo que eu percebi normalmente quando se fala de category monoidal fechada usa-se o funtor $- \otimes A$ ao invés de $A \otimes -$, mas eu defini assim dado como a distribuição do tensor sobre o coproduto tem de ser definida abaixo.} 
-Considering a category $\mathcal{C}$  with objects $A$ and $B$, a coproduct of $A$ and $B$ is an object $A \oplus B$ with injection morphisms $i_1$ and $i_2$. Additionally, these satisfy the following universal property: for every object $C$ and any two maps $f $ and $g$, there exists a unique map $[f,g] : A \oplus B \rightarrow C$ which makes both triangles commute.
+        We say that a monoidal category $\catC$ is closed if for each object
+        $A$ in $\catC$ the functor $- \otimes A$ has a right adjoint,
+        denoted by $A \multimap -$. 
+\end{definition}
 
+\begin{definition}
+Consider a category $\catC$.  We say that it has (binary) coproducts if for any
+objects $A$ and $B$ in $\catC$ there also exists an object $A \oplus B$ in
+$\catC$ with morphisms $\inl : A \to A \oplus B$ and $\inr : B \to A \oplus B$
+that satisfy a certain universal property: specifically for every two morphisms
+$f  : A \to C$ and $g : B \to C$ there exists a \emph{unique} morphism $[f,g] :
+A \oplus B \to C$ that makes the diagram below commute.
+\[
 \begin{tikzpicture}
   \matrix (m) [matrix of math nodes,row sep=4em,column sep=7em,minimum width=2em]
   {
@@ -429,18 +453,41 @@ Considering a category $\mathcal{C}$  with objects $A$ and $B$, a coproduct of $
   \path[-stealth]
     (m-2-1) edge  node [above] {$f$} (m-1-2)
     (m-2-3) edge  node [above] {$g$} (m-1-2)
-    (m-2-1) edge  node [below] {$i_1$} (m-2-2)
-    (m-2-3) edge  node [below] {$i_2$} (m-2-2)
+    (m-2-1) edge  node [below] {$\inl$} (m-2-2)
+    (m-2-3) edge  node [below] {$\inr$} (m-2-2)
     (m-2-2) edge [dotted]  node [right] {$[f,g]$} (m-1-2);
     ;
 \end{tikzpicture}
+\]
+\end{definition}
 
+\begin{definition}
+        A monoidal category $\catC$ with coproducts is called
+        distributive if for every object $A$ in $\catC$ the
+        functor $- \otimes A$ preserves coproducts. Explicitly
+        this means that the morphism,
+        \[
+                [\inl \otimes \id, \inr \otimes \id] : B \otimes A \oplus C \otimes                     A \to (B \oplus C) \otimes A
+        \]
+        is actually as isomorphism. We will denote the respective inverse
+        by $\dist$. Note that if $\catC$ is monoidal closed then it is automatically
+        distributive as left adjoints preserve all colimits.
+\end{definition}
+
+% Let $\mathcal{C}$ be a monoidal closed category and let $X,$ $Y,$ and $Z$ be objects in $\mathcal{C}$. The morphism $\text{dist}_{X, Y,Z}: X \otimes  \left(Y \oplus Z\right) \xrightarrow{} \left(X \otimes Y\right) \oplus \left(X \otimes Y\right)$, denotes the distributive property of the tensor product over the coproduct.  This distributive property holds in monoidal closed categories with coproducts because the tensor functor is a left adjoint (to the internal hom), and left adjoints preserve colimits.
+
+Before presenting the interpretation of $\lambda$-calculus with conditionals in
+distributive symmetric monoidal (closed) categories let us give some examples
+of the latter in order to illustrate our work's broad range of applicability.
+
+\begin{example}
 Examples of monoidal closed categories with coproducts include the category of sets, the category of vector spaces, and the category of partial orders. In the category of sets, the tensor product is the cartesian product, the monoidal unit is the singleton set, the coproduct is the disjoint union, and the internal hom consists of all functions between sets. For the category of vector spaces, the tensor product is the standard tensor product of vector spaces, the monoidal unit is the field of scalars, the coproduct is the direct sum, and the internal hom is the space of linear maps. In the category of partial orders, the tensor product corresponds to the meet ($\wedge$), the monoidal unit to the the singleton poset, the coproduct to the join ($\vee$), and the internal hom is the poset of monotone functions ordered pointwise.
+\end{example}
 
-
- Let $\mathcal{C}$ be a monoidal closed category and let $X,$ $Y,$ and $Z$ be objects in $\mathcal{C}$. The morphism $\text{dist}_{X, Y,Z}: X \otimes  \left(Y \oplus Z\right) \xrightarrow{} \left(X \otimes Y\right) \oplus \left(X \otimes Y\right)$, denotes the distributive property of the tensor product over the coproduct.  This distributive property holds in monoidal closed categories with coproducts because the tensor functor is a left adjoint (to the internal hom), and left adjoints preserve colimits.
-
-The type $A \oplus B$ is interpreted as $[\![A \oplus B ]\!] = [\![A ]\!] \oplus [\![ B ]\!]$. The interpretation of conditionals is illustrated in \autoref{fig:denotational_sem cond}.
+We now present the interpretation of $\lambda$-calculus with conditionals.
+First the new type $A \oplus B$ is interpreted as $\sem{A \oplus B} = [\![A
+]\!] \oplus [\![ B ]\!]$. As for the new terms, the corresponding
+interpretation is defined inductively in \autoref{fig:denotational_sem cond}.
 
 \begin{figure}[H]
   \begin{equation*}
@@ -449,14 +496,14 @@ The type $A \oplus B$ is interpreted as $[\![A \oplus B ]\!] = [\![A ]\!] \oplus
   %
   \begin{prooftree}
       \hypo{ [\![\Gamma \triangleright v: \mathbb{A}]\!] = m }
-      \infer1[]{ [\![ \Gamma \triangleright \text{inl}_{\mathbb{B}} (v):  \mathbb{A} \oplus \mathbb{B}  ]\!] = i_{1}  \cdot m}
+      \infer1[]{ [\![ \Gamma \triangleright \text{inl}_{\mathbb{B}} (v):  \mathbb{A} \oplus \mathbb{B}  ]\!] = \inl  \comp m}
   \end{prooftree}
   %
-  \hspace{30pt}
+  \hspace{120pt}
   %
   \begin{prooftree}
     \hypo{ [\![\Gamma \triangleright v: \mathbb{B}]\!] = m }
-    \infer1[]{ [\![ \Gamma \triangleright \text{inr}_{\mathbb{A}} (v):  \mathbb{A} \oplus \mathbb{B}  ]\!] = i_2  \cdot m}
+    \infer1[]{ [\![ \Gamma \triangleright \text{inr}_{\mathbb{A}} (v):  \mathbb{A} \oplus \mathbb{B}  ]\!] = \inr  \comp m}
 \end{prooftree}
   %
   \\[20pt]
@@ -467,7 +514,7 @@ The type $A \oplus B$ is interpreted as $[\![A \oplus B ]\!] = [\![A ]\!] \oplus
       \hypo{[\![\Delta, x:\mathbb{A} \triangleright w: \mathbb{D} ]\!] = p}
       \hypo{ [\![\Delta,y:\mathbb{B} \triangleright u: \mathbb{D} ]\!] = q }
       \hypo{E \in \Shuff(\Gamma; \Delta)}
-      \infer4[]{ [\![E \triangleright \text{ case } v \hspace{2pt}  \{\text{inl}_{\mathbb{B}} (x) \Rightarrow w ; \hspace{1pt} \text{inr}_{\mathbb{A}} (y) \Rightarrow u\}: \mathbb{D} ]\!] =   [p \cdot \text{jn}_{\Delta;\mathbb{A}},q \cdot \text{jn}_{\Delta;\mathbb{B}}] \cdot \text{dist} \cdot \text{sw} \cdot (b \otimes \text{id}) \cdot \text{sp}_{\Gamma;\Delta} \cdot \text{sh}_{E}}
+      \infer4[]{ [\![E \vljud \text{case } v \hspace{2pt}  \{\text{inl}_{\mathbb{B}} (x) \Rightarrow w ; \hspace{1pt} \text{inr}_{\mathbb{A}} (y) \Rightarrow u\}: \mathbb{D} ]\!] =   [p,q] \comp (\text{jn}_{\Delta;\typeA}\comp \sw \oplus \text{jn}_{\Delta;\mathbb{B}}\comp \sw) \comp \dist \comp (b \otimes \text{id}) \cdot \text{sp}_{\Gamma;\Delta} \cdot \text{sh}_{E}}
   \end{prooftree}
   %
   \\[10pt]
