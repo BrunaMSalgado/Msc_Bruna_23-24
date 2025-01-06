@@ -5,6 +5,7 @@
 \usepackage{mathrsfs}  
 \usepackage{amsmath}
 \usepackage{amsfonts}
+\usepackage{mathrsfs}  
 \usepackage{amssymb}
 \usepackage{stmaryrd}
 \usepackage{graphicx}
@@ -231,7 +232,7 @@ of a shuffle either $\Gamma$ is of the form $\Gamma_1, x: \typeA$ or $\Delta$ is
 of the form $\Delta_1, x : \typeA$. The first case follows directly and the second case
 is a corollary of the exchange rule.
 \end{proof}
- 
+
 The equational system for the conditionals is shown in Figure
 \ref{fig:equations-in-context-cond}.
 
@@ -256,7 +257,7 @@ The equational system for the conditionals is shown in Figure
           \\
           %
           %
-          & (\eta_{case}) \hspace{3pt} \text{ case }(v)\ \hspace{2pt} \{\text{inl}_{\mathbb{B}} (y) \Rightarrow w [ \text{inl}_{\mathbb{B}}(y)/x] ; \hspace{1pt} \text{inr}_{\mathbb{A}} (z) \Rightarrow w [ \text{inr}_{\mathbb{A}}(z)/x]\} = w[v/x] : \mathbb{D}
+          & (\eta_{case}) \hspace{3pt} \text{ case } v\ \hspace{2pt} \{\text{inl}_{\mathbb{B}} (y) \Rightarrow w [ \text{inl}_{\mathbb{B}}(y)/x] ; \hspace{1pt} \text{inr}_{\mathbb{A}} (z) \Rightarrow w [ \text{inr}_{\mathbb{A}}(z)/x]\} = w[v/x] 
         \end{split}
     \end{equation*}
     \end{tcolorbox}
@@ -265,49 +266,85 @@ The equational system for the conditionals is shown in Figure
     \end{figure}
 
 
-    \subsubsection{Examples of Programs (Quantum Setting)}
+\subsubsection{Linear $\lambda$-calculus and quantum computation}
 
-    \par\vspace{10pt} 
-    
-    
-    In the case of quantum lambda calculus, it is natural to consider a  type $\textit{qbit}$ of quantum bits. Within this framework, the Boolean type — corresponding to a classical bit — is represented as $\mathbb{I} \oplus \mathbb{I}$.
-    
-    The following operations are considered: the creation of a new bit $(1,0)$, $\textit{new} \hspace{2pt} 0  :\mathbb{I}  \multimap \mathbb{I} \oplus \mathbb{I} $, the creation of a new bit $(0,1)$, $\textit{new} \hspace{2pt} 1  :\mathbb{I}  \multimap \mathbb{I} \oplus \mathbb{I}$, the conversion of a bit into a qubit, $q : \mathbb{I} \oplus \mathbb{I}  \multimap \textit{qbit}$, measuring a qubit, $\textit{meas}:\textit{qbit} \xrightarrow{} \mathbb{I} \oplus \mathbb{I}$, applying a unitary  operation to a qubit $\textit{U}:\textit{qbit},\ldots,\textit{qbit} \xrightarrow{} \textit{qbit}^{\otimes n}$, and performing a CPTP operation on a qubit, $\textit{CPTP}: \textit{qbit}^{\otimes n} \multimap \textit{qbit}^{\otimes n}$. 
+We now illustrate the use of the previous language for describing quantum
+programs. To this effect, we first consider a type \emph{qbit} of qubits, the
+basic unit of information in quantum computation. We then regard $\typeI \oplus
+\typeI$ to be the type of bits, a common approach not only in quantum
+computation~\cite{selinger04} but also in the categorical interpretation of a
+`truth-values' object~\cite{johnstone02,cho15}. Next we propound the following
+basic quantum operations:  the conversion of a bit into a qubit, $q : \typeI
+\oplus \typeI  \to \emph{qbit}$, the measurement of a qubit,
+$\emph{meas}:\emph{qbit} \to \typeI \oplus \typeI$, and a pre-determined set of
+operations on $n$-qubits, $\emph{U}:\emph{qbit},\ldots,\emph{qbit} \to
+\emph{qbit}^{\otimes n}$. The latter set can include for example the Hadamard
+gate $H : \emph{qbit} \to \emph{qbit}$, the not-gate $X : \emph{qbit} \to
+\emph{qbit}$, or the cnot-gate $CNOT : \emph{qbit},\emph{qbit} \to
+\emph{qbit}^{\otimes 2}$. We consider as well a pre-determined set of quantum
+states $\ket{\psi} : \typeI \to \emph{qbit}$.  Finally note that the values
+\emph{true} and \emph{false} (in the type $\typeI \oplus \typeI$) are regarded to be 
+the terms $\inl(\ast)$ and $\inr(\ast)$ respectively.
 
+Let us now apply this machinery to two well-known problems in quantum computation
+and quantum information.
 
-    \textbf{Quantum State Discrimination}
+\begin{example}[Coin toss]
+~\todo[inline]{Descrever aqui como obter valores $p_0$ e $p_1$ para depois
+poderem ser usados no próximo exemplo.}
+\end{example}
 
+\begin{example}[Quantum state discrimination]
 
-Quantum state discrimination is a pivotal challenge in quantum information, fundamental to the extraction of classical information from quantum systems. While orthogonal states can be perfectly distinguished, the same does not apply to nonorthogonal states. 
-Even when the set of possible nonorthogonal states is known, determining the optimal discrimination strategy is considered a nontrivial problem.
+Quantum state discrimination is a pivotal challenge in quantum information,
+fundamental to the extraction of classical information from quantum systems.
+While orthogonal states can be perfectly distinguished, the same does not apply
+to nonorthogonal states. In fact even when the set of possible nonorthogonal
+states is known, determining the optimal discrimination strategy is considered
+a nontrivial problem.
 
-For example, when distinguishing between two nonorthogonal quantum states, the Helstrom measurement represents the optimal strategy \cite{helstromQuantumDetectionEstimation1976}. In the case where both states are pure, the Helstrom measurement corresponds to a projective measurement \cite{barnett2009quantum}.
+When distinguishing between two nonorthogonal quantum states, the Helstrom
+measurement represents the optimal strategy
+\cite{helstromQuantumDetectionEstimation1976}. In the case where both states
+are pure, the Helstrom measurement corresponds to a projective measurement
+\cite{barnett2009quantum}.  When operating within the computational basis, a
+projective measurement can be understood as the application of a unitary
+operator followed by a subsequent measurement in the computational basis. Thus
+the Helstrom measurement can be interpreted as a unitary transformation applied
+to the quantum state, followed by a measurement in the computational basis. 
 
-When operating within the computational basis, a projective measurement can be understood as the application of a unitary operator, followed by a subsequent measurement in the computational basis. In this context, the Helstrom measurement can be interpreted as a unitary transformation applied to the quantum state, followed by a measurement in the computational basis. 
-
-Consider the task of discriminating between two pure states $\ket{\psi_0}$ and $\ket{\psi_1}$, prepared with a priori probabilities $p_0$ and $p_1$, respectively. Let the unitary operator $U$  be the transformation that rotates the computational basis to the basis associated with the Helstrom measurement  in this context. This discrimination task can then be formalized as follows:
-
+We will now show how to describe this discrimination task in
+$\lambda$-calculus.  Consider two pure states $\ket{\psi_0}$ and
+$\ket{\psi_1}$, prepared \emph{a priori} with probabilities $p_0$ and $p_1$,
+respectively. Consider as well an operation $U : \emph{qbit} \to \emph{qbit}$ which
+corresponds to the basis-change associated with the Helstrom measurement.
+The relevant $\lambda$-terms are then:
 \begin{align*}
-  &\textbf{StatePreparation} =  b:\mathbb{I} \oplus \mathbb{I}  \triangleright  \text{case } b \{\text{inl}_{\mathbb{B}}(x) \Rightarrow \ket{\psi_0} ; \text{inr}_{\mathbb{A}}(y) \Rightarrow \ket{\psi_1}\}: \textit{qbit} \\
-  &\textbf{HMeasure} =  q_0: \textit{qbit} \triangleright \textit{meas} (\textit{U}(q_0))  : \textit{qbit} \\
-  &\textbf{Discrimination} = (p_0,p_1): \mathbb{I} \oplus \mathbb{I}  \triangleright \textbf{HMeasure} [ \textbf{StatePreparation} [(p_0,p_1)/ b] / q_0] : \mathbb{I} \oplus \mathbb{I}
+  &\textbf{StatePreparation} =  b: \typeI \oplus \typeI  \vljud  \text{case } b\,
+  \{\inl_{\typeB}(x) \Rightarrow \ket{\psi_0} ; \inr_{\typeA}(y) \Rightarrow \ket{\psi_1}\}: \textit{qbit} \\
+  &\textbf{HMeasure} =  x : \emph{qbit} \vljud \emph{meas} (\emph{U}(x)): \typeI \oplus \typeI \\
+  &\textbf{Discrimination} = (p_0,p_1): \mathbb{I} \oplus \mathbb{I}  \triangleright \textbf{HMeasure} [ \textbf{StatePreparation} [(p_0,p_1)/ b] / x] : \mathbb{I} \oplus \mathbb{I}
 \end{align*}
+\end{example}
 
 
-
-\vspace{10pt}
-
-
-
-    \textbf{ Quantum Teleportation}
-
-
-    \cite{bennett1993teleporting} introduced the concept of quantum teleportation, which is a protocol that allows the transfer of   unknown quantum states between distant parties.  The quantum teleportation protocol is a fundamental building block for quantum communication, quantum computation, and quantum networks, its applications ranging
-from secure quantum communication to distributed quantum computing \cite{briegel1998quantum,gottesman1999demonstrating,kimble2008quantum}.
-
-Conceptually the protocol can be described as follows: Alice and Bob share an entangled pair of qubits, which are in a Bell state. Alice keeps the first qubit and Bob the second. Moreover, Alice has a qubit in an unknown state $\ket{\psi}$ that she wants to send to Bob.  
- Alice entangles her qubit and the firt qubit of the Bell state, and then measures them. The result of this measurement is two classical bits that Alice sends to Bob though a classical channel. Based on the measurement results, Bob applies a correction to his qubit so it matches the initial state $\ket{\psi}$. 
-The circuit corresponding to the implementation of the quantum teleportation protocol is depicted in \autoref{fig:teleport}.
+\begin{example}[Quantum teleportation]
+\cite{bennett1993teleporting} introduced the concept of quantum teleportation,
+a protocol that allows the transfer of  unknown quantum states between distant
+parties.  The quantum teleportation protocol is a fundamental building block of
+quantum communication, quantum computation, and quantum networks, its
+applications ranging from secure quantum communication to distributed quantum
+computing
+\cite{briegel1998quantum,gottesman1999demonstrating,kimble2008quantum}.
+Conceptually it can be described as follows: Alice and Bob share an entangled
+pair of qubits, specifically in a Bell state. Alice keeps the first qubit and
+Bob the second. Moreover, Alice has a qubit in an unknown state $\ket{\psi}$
+that she wants to send to Bob.  Alice entangles her qubit and the first qubit
+in the Bell state, and then measures both. The result of this measurement is
+two classical bits that Alice then sends to Bob though a classical channel.
+Based on the measurement results, Bob applies a correction to his qubit so it
+matches the initial state $\ket{\psi}$.  The circuit corresponding to the
+implementation of quantum teleportation is depicted in \autoref{fig:teleport}.
 
 
 \begin{figure} [H]
@@ -334,36 +371,79 @@ wire=c]{1} \\
   \caption{Quantum Teleportation Protocol}
   \label{fig:teleport}
 \end{figure}
-
-When formalizing the quantum teleportation protocol within the lambda calculus framework, each part of the protocol is instantiated as a distinct function. 
-Considering the CPTP operations $H: \textit{qbit} \multimap  \textit{qbit}$, $X: \textit{qbit} \multimap  \textit{qbit}$, $Z: \textit{qbit} \multimap  \textit{qbit}$, $I: \textit{qbit} \multimap  \textit{qbit}$, and $\textit{CNOT}: \textit{qbit}, \textit{qbit} \multimap  \textit{qbit} \otimes \textit{qbit}$ , these functions are defined as follows:
-
+We first describe each of the rectangles filled in blue separately, and using
+standard quantum gate operations, namely $H: \emph{qbit} \to \emph{qbit}$, $X:
+\emph{qbit} \to  \emph{qbit}$, $Z: \emph{qbit} \to \emph{qbit}$, and
+$\emph{CNOT}: \emph{qbit}, \emph{qbit} \to \emph{qbit} \otimes \emph{qbit}$:
 \begin{align*}
-   &\textbf{EPR} =  - \triangleright  \textit{CNOT} \hspace{2pt} (\textit{H}\hspace{2pt} (q  \hspace{2pt}    ( \textit{new}   \hspace{2pt}  0 \hspace{1pt}(*))),(q  \hspace{2pt}   ( \textit{new}   \hspace{2pt}  0 \hspace{1pt}(*)))) : \textit{qbit} \otimes \textit{qbit}  \\ 
-      &\textbf{BellMeasure} =  q_{1}: \textit{qbit}, q_{2}: \textit{qbit}  \triangleright  \text{pm}  \hspace{2pt} \textit{CNOT} (q_{1},q_{2})  \hspace{2pt}  \text{to} \hspace{2pt} x \otimes y.  \hspace{2pt}  \textit{meas} (\textit{H} (x)) \otimes \textit{meas} (y) : \left(\mathbb{I} \oplus \mathbb{I}\right) \otimes \left(\mathbb{I} \oplus \mathbb{I}\right) \\
-      &\textbf{Correction}= q: \textit{qbit}, x: \mathbb{I} \oplus \mathbb{I},  y: \mathbb{I} \oplus \mathbb{I} \triangleright  \text{case } x  \hspace{2pt}  \{\text{inl} (x_{0}) \Rightarrow  \text{case}\hspace{2pt} y  \hspace{2pt}  \{\text{inl} (y_{0})  \Rightarrow{}  \textit{I}(q); \\
-      & \hspace{292pt} \text{inr} (y_{1}) \Rightarrow  \hspace{2pt}   \textit{X} (q)\} ; \\
-      & \hspace{215pt}\text{inr} (x_{1})  \Rightarrow  \text{case}\hspace{2pt} y  \hspace{2pt}  \{\text{inl} (y_{0})  \Rightarrow   \textit{Z}(q);  \\
-      &\hspace{292pt} \text{inr} (y_{1}) \Rightarrow{} \textit{Z} (\textit{X}(q)) \}\} : \textit{qbit}
- \end{align*}
-
-
- Designating the qubit to be teleported as $qb_0$, one can conceptualize the teleportation procedure as follows:
+   &\textbf{EPR} =  \emph{CNOT} (\emph{H}\ket{0},\ket{0}) : \emph{qbit} \otimes
+   \emph{qbit}  \\ 
+   %
+   &\textbf{BellMeasure} =  q_{1}: \textit{qbit}, q_{2}: \textit{qbit}
+   \triangleright  \text{pm}  \hspace{2pt} \textit{CNOT} (q_{1},q_{2})
+   \hspace{2pt}  \text{to} \hspace{2pt} x \otimes y.  \hspace{2pt}
+   \textit{meas} (\textit{H} (x)) \otimes \textit{meas} (y) :
+   \left(\mathbb{I} \oplus \mathbb{I}\right) \otimes \left(\mathbb{I} \oplus
+   \mathbb{I}\right) \\
+   %
+   &\textbf{Correction}= q: \textit{qbit}, x: \typeI \oplus \typeI,  y:
+        \typeI \oplus \typeI \vljud  \text{case } x
+        \hspace{2pt}  \{\inl (x_{0}) \Rightarrow 
+                x_0 \text{ to } \ast. \, \text{case }
+                y  \hspace{2pt}  \{\inl (y_{0})  \Rightarrow  y_0 \text{ to } \ast.
+                        \, q; 
+                \\
+   &   \hspace{333pt} \inr (y_{1}) \Rightarrow y_1 \text{ to } \ast. \, \emph{X}
+(q)\} ; \\ 
+   & \hspace{215pt}\inr (x_{1})  \Rightarrow x_1 \text{ to } \ast. \,
+        \text{case}\hspace{2pt} y \hspace{2pt}  \{\inl (y_{0})  \Rightarrow
+        y_0 \text{ to } \ast. \, \emph{Z}(q);  
+\\ 
+   &\hspace{333pt} \inr (y_{1}) \Rightarrow{} y_1 \text{ to } \ast. \, \emph{Z}
+(\emph{X}(q)) \}\} : \emph{qbit}
+\end{align*}
+Designating the qubit to be teleported as $qb_0$, one then describes the
+teleportation procedure in $\lambda$-calculus as follows:
  \begin{align*}
   \textbf{QTP} = qb_{0}: \textit{qbit}\hspace{3 pt} \triangleright \hspace{3 pt} & \text{pm} \hspace{5pt} \textbf{EPR} \hspace{5pt} \text{to} \hspace{5pt}  qb_{1} \otimes qb_{2}.  \notag \\
      & \text{pm}\hspace{5pt} \textbf{BellMeasure} \hspace{1pt} [qb_0/q_1,qb_{1}/q_2] \hspace{5pt}  \text{to} \hspace{5pt} c_{0}\otimes c_{1} . \notag \\
-     & \text{pm} \hspace{5pt}  \textbf{Correction} \hspace{1pt} [qb_{2}/q,c_{0}/x, c_{1}/y]  \hspace{5pt} \text{to} \hspace{5pt}  qb. \hspace{2pt}  qb : \textit{qbit} 
+     & \textbf{Correction} \hspace{1pt} [qb_{2}/q,c_{0}/x, c_{1}/y] 
+     : \emph{qbit} 
  \end{align*}
 
+\end{example}
  
  \subsection{Interpretation}
 
-With the syntax of conditionals in lambda calculus established, it is now essential to define the meaning of the calculus's terms within the ``reality'' of interest—that is, to provide an interpretation for the calculus's conditionals, also known as the model of this ``reality''. In this work, the model is based on monoidal closed categories with coproducts. 
+Now that we have a basic syntactic theory of conditionals, it is useful to
+define the meaning of the extended calculus' terms within the ``reality'' of
+interest -- that is, to provide a semantics for the calculus' conditionals in a
+given ``reality", more technically a mathematical model with suitable
+structure. In our work such a model will correspond to a distributive symmetric
+monoidal (closed) category~\cite{maclane13}. In more detail, 
+\begin{definition}
+        A category $\catC$ is called monoidal when it comes equipped with a
+        bifunctor $\otimes: \catC \times \catC \to \catC$ -- which intuitively
+        acts as a monoid operation -- and an object $I$ -- which intuitively
+        acts as the corresponding unit -- such that a number of diagrams
+        commute (see the full details in~\cite{maclane13}). We call this
+        category symmetric monoidal if it additionally comes equipped with a
+        natural isomorphism $\sw : A \otimes B \cong B \otimes A$ for all
+        objects $A,B$ in $\catC$.
 
-A monoidal category is a category equipped with a bifunctor $\otimes: \mathcal{C} \times \mathcal{C} \xrightarrow{} \mathcal{C}$, an object $I$, and natural isomorphisms $\alpha: (A \otimes B) \otimes C \xrightarrow{} A \otimes (B \otimes C)$, $\lambda: I \otimes A \xrightarrow{} A$, and $\rho: A \otimes I \xrightarrow{} A$ that satisfy the pentagon and triangle identities. A monoidal category $\mathcal{C}$ is monoidal closed if, for each object $A$ in $\mathcal{C}$, the functor $A \otimes - : \mathcal{C} \to \mathcal{C}$ has a right adjoint, denoted by $A \multimap -$. %This is equivalent to the existence of an internal hom bifunctor $\multimap : \mathcal{C}^{op} \times \mathcal{C} \to \mathcal{C}$, together with a natural isomorphism $\text{ev}_{A,B} : (A \multimap B) \otimes A \to B$.  
-\todo[inline,size=\normalsize]{Pelo que eu percebi normalmente quando se fala de category monoidal fechada usa-se o funtor $- \otimes A$ ao invés de $A \otimes -$, mas eu defini assim dado como a distribuição do tensor sobre o coproduto tem de ser definida abaixo.} 
-Considering a category $\mathcal{C}$  with objects $A$ and $B$, a coproduct of $A$ and $B$ is an object $A \oplus B$ with injection morphisms $i_1$ and $i_2$. Additionally, these satisfy the following universal property: for every object $C$ and any two maps $f $ and $g$, there exists a unique map $[f,g] : A \oplus B \rightarrow C$ which makes both triangles commute.
+        We say that a monoidal category $\catC$ is closed if for each object
+        $A$ in $\catC$ the functor $- \otimes A$ has a right adjoint,
+        denoted by $A \multimap -$. 
+\end{definition}
 
+\begin{definition}
+Consider a category $\catC$.  We say that it has (binary) coproducts if for any
+objects $A$ and $B$ in $\catC$ there also exists an object $A \oplus B$ in
+$\catC$ with morphisms $\inl : A \to A \oplus B$ and $\inr : B \to A \oplus B$
+that satisfy a certain universal property: specifically for every two morphisms
+$f  : A \to C$ and $g : B \to C$ there exists a \emph{unique} morphism $[f,g] :
+A \oplus B \to C$ that makes the diagram below commute.
+\[
 \begin{tikzpicture}
   \matrix (m) [matrix of math nodes,row sep=4em,column sep=7em,minimum width=2em]
   {
@@ -373,18 +453,41 @@ Considering a category $\mathcal{C}$  with objects $A$ and $B$, a coproduct of $
   \path[-stealth]
     (m-2-1) edge  node [above] {$f$} (m-1-2)
     (m-2-3) edge  node [above] {$g$} (m-1-2)
-    (m-2-1) edge  node [below] {$i_1$} (m-2-2)
-    (m-2-3) edge  node [below] {$i_2$} (m-2-2)
+    (m-2-1) edge  node [below] {$\inl$} (m-2-2)
+    (m-2-3) edge  node [below] {$\inr$} (m-2-2)
     (m-2-2) edge [dotted]  node [right] {$[f,g]$} (m-1-2);
     ;
 \end{tikzpicture}
+\]
+\end{definition}
 
+\begin{definition}
+        A monoidal category $\catC$ with coproducts is called
+        distributive if for every object $A$ in $\catC$ the
+        functor $- \otimes A$ preserves coproducts. Explicitly
+        this means that the morphism,
+        \[
+                [\inl \otimes \id, \inr \otimes \id] : B \otimes A \oplus C \otimes                     A \to (B \oplus C) \otimes A
+        \]
+        is actually as isomorphism. We will denote the respective inverse
+        by $\dist$. Note that if $\catC$ is monoidal closed then it is automatically
+        distributive as left adjoints preserve all colimits.
+\end{definition}
+
+% Let $\mathcal{C}$ be a monoidal closed category and let $X,$ $Y,$ and $Z$ be objects in $\mathcal{C}$. The morphism $\text{dist}_{X, Y,Z}: X \otimes  \left(Y \oplus Z\right) \xrightarrow{} \left(X \otimes Y\right) \oplus \left(X \otimes Y\right)$, denotes the distributive property of the tensor product over the coproduct.  This distributive property holds in monoidal closed categories with coproducts because the tensor functor is a left adjoint (to the internal hom), and left adjoints preserve colimits.
+
+Before presenting the interpretation of $\lambda$-calculus with conditionals in
+distributive symmetric monoidal (closed) categories let us give some examples
+of the latter in order to illustrate our work's broad range of applicability.
+
+\begin{example}
 Examples of monoidal closed categories with coproducts include the category of sets, the category of vector spaces, and the category of partial orders. In the category of sets, the tensor product is the cartesian product, the monoidal unit is the singleton set, the coproduct is the disjoint union, and the internal hom consists of all functions between sets. For the category of vector spaces, the tensor product is the standard tensor product of vector spaces, the monoidal unit is the field of scalars, the coproduct is the direct sum, and the internal hom is the space of linear maps. In the category of partial orders, the tensor product corresponds to the meet ($\wedge$), the monoidal unit to the the singleton poset, the coproduct to the join ($\vee$), and the internal hom is the poset of monotone functions ordered pointwise.
+\end{example}
 
-
- Let $\mathcal{C}$ be a monoidal closed category and let $X,$ $Y,$ and $Z$ be objects in $\mathcal{C}$. The morphism $\text{dist}_{X, Y,Z}: X \otimes  \left(Y \oplus Z\right) \xrightarrow{} \left(X \otimes Y\right) \oplus \left(X \otimes Y\right)$, denotes the distributive property of the tensor product over the coproduct.  This distributive property holds in monoidal closed categories with coproducts because the tensor functor is a left adjoint (to the internal hom), and left adjoints preserve colimits.
-
-The type $A \oplus B$ is interpreted as $[\![A \oplus B ]\!] = [\![A ]\!] \oplus [\![ B ]\!]$. The interpretation of conditionals is illustrated in \autoref{fig:denotational_sem cond}.
+We now present the interpretation of $\lambda$-calculus with conditionals.
+First the new type $A \oplus B$ is interpreted as $\sem{A \oplus B} = [\![A
+]\!] \oplus [\![ B ]\!]$. As for the new terms, the corresponding
+interpretation is defined inductively in \autoref{fig:denotational_sem cond}.
 
 \begin{figure}[H]
   \begin{equation*}
@@ -393,14 +496,14 @@ The type $A \oplus B$ is interpreted as $[\![A \oplus B ]\!] = [\![A ]\!] \oplus
   %
   \begin{prooftree}
       \hypo{ [\![\Gamma \triangleright v: \mathbb{A}]\!] = m }
-      \infer1[]{ [\![ \Gamma \triangleright \text{inl}_{\mathbb{B}} (v):  \mathbb{A} \oplus \mathbb{B}  ]\!] = i_{1}  \cdot m}
+      \infer1[]{ [\![ \Gamma \triangleright \text{inl}_{\mathbb{B}} (v):  \mathbb{A} \oplus \mathbb{B}  ]\!] = \inl  \comp m}
   \end{prooftree}
   %
-  \hspace{30pt}
+  \hspace{120pt}
   %
   \begin{prooftree}
     \hypo{ [\![\Gamma \triangleright v: \mathbb{B}]\!] = m }
-    \infer1[]{ [\![ \Gamma \triangleright \text{inr}_{\mathbb{A}} (v):  \mathbb{A} \oplus \mathbb{B}  ]\!] = i_2  \cdot m}
+    \infer1[]{ [\![ \Gamma \triangleright \text{inr}_{\mathbb{A}} (v):  \mathbb{A} \oplus \mathbb{B}  ]\!] = \inr  \comp m}
 \end{prooftree}
   %
   \\[20pt]
@@ -411,7 +514,7 @@ The type $A \oplus B$ is interpreted as $[\![A \oplus B ]\!] = [\![A ]\!] \oplus
       \hypo{[\![\Delta, x:\mathbb{A} \triangleright w: \mathbb{D} ]\!] = p}
       \hypo{ [\![\Delta,y:\mathbb{B} \triangleright u: \mathbb{D} ]\!] = q }
       \hypo{E \in \Shuff(\Gamma; \Delta)}
-      \infer4[]{ [\![E \triangleright \text{ case } v \hspace{2pt}  \{\text{inl}_{\mathbb{B}} (x) \Rightarrow w ; \hspace{1pt} \text{inr}_{\mathbb{A}} (y) \Rightarrow u\}: \mathbb{D} ]\!] =   [p \cdot \text{jn}_{\Delta;\mathbb{A}},q \cdot \text{jn}_{\Delta;\mathbb{B}}] \cdot \text{dist} \cdot \text{sw} \cdot (b \otimes \text{id}) \cdot \text{sp}_{\Gamma;\Delta} \cdot \text{sh}_{E}}
+      \infer4[]{ [\![E \vljud \text{case } v \hspace{2pt}  \{\text{inl}_{\mathbb{B}} (x) \Rightarrow w ; \hspace{1pt} \text{inr}_{\mathbb{A}} (y) \Rightarrow u\}: \mathbb{D} ]\!] =   [p,q] \comp (\text{jn}_{\Delta;\typeA}\comp \sw \oplus \text{jn}_{\Delta;\mathbb{B}}\comp \sw) \comp \dist \comp (b \otimes \text{id}) \cdot \text{sp}_{\Gamma;\Delta} \cdot \text{sh}_{E}}
   \end{prooftree}
   %
   \\[10pt]
