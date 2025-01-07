@@ -193,13 +193,14 @@ $\Delta = \Delta'$. The proof then follows by induction.
 \end{proof}
 
 \begin{lemma}[Exchange and Subsitution]
-\label{exh_and_sub} 
+\label{lem:exh_and_sub} 
 For every judgement $\Gamma,x: \typeA, y: \typeB, \Delta \vljud v: \typeD$ the
 judgement $\Gamma, y:\mathbb{B}, x:\mathbb{A}, \Delta \vljud v:
 \typeD$ is derivable. Not only this, given judgements  $\Gamma,x:\typeA \vljud
 v: \typeB$ and $\Delta \vljud w: \typeA$ the judgement $\Gamma, \Delta \vljud
 v[w/x]: \typeB$ is also derivable.
 \end{lemma}
+
 
 \begin{proof}
 We start with the exchange property which follows by induction over the length
@@ -536,7 +537,7 @@ interpretation is defined inductively in \autoref{fig:denotational_sem cond}.
 \end{lemma}
 
 \begin{proof}
-  We begin once again with the exchange property, which follows by induction over the length of derivation trees. The rules that involve injections are direct. The rules involving injections are straightforward. more specifically, we distinguish between the scenarios where both variables ($x : \typeA$ and $y : \typeB$) are in $\Gamma$, both are in $\Delta$, or they are distributed across $\Gamma$ and $\Delta$.
+  We begin once again with the exchange property, which follows by induction over the length of derivation trees. The rules involving injections are straightforward. With respect to the rule (case), we distinguish between the scenarios where both variables ($x : \typeA$ and $y : \typeB$) are in $\Gamma$, both are in $\Delta$, or they are distributed across $\Gamma$ and $\Delta$.
   The fist case follows by induction, the bifunctoriality of the tensor product, and the coherence theorem for symmetric monoidal categories.
 
   %\begin{align*}
@@ -613,9 +614,39 @@ As a result it holds that
   & \triangleq [\![\Gamma,y:\mathbb{B}, x:\mathbb{A}, \Delta \triangleright \text{ case }  \hspace{2pt}  \{\text{inl}_{\mathbb{D}} (a) \Rightarrow w ; \hspace{1pt} \text{inr}_{\mathbb{E}} (b) \Rightarrow u\}: \mathbb{F}]\!] \cdot \text{exch}_{\Gamma,\underline{\mathbb{A},  \mathbb{B}}, \Delta}
 \end{align*}
 
+For the third case, the proof now follows directly from the implication established in the analogous case of the proof of Lemma \ref{lem:exh_and_sub}, together with the coherence theorem for symmetric monoidal categories.
 
+Regarding the substitution rule, once again the cases involving the injections follow directly by induction on the derivation tree. For the rule (case), we distinguish between the scenarios where the variable $x$ is in $\Gamma$ or in $\Delta$. The first case follows from induction, the bifunctoriality of the tensor product, and the naturality of $\alpha$, $\lambda$, $\rho$, $\text{sw}$, their inverses, and their respective compositions.
 
+\begin{align*}
+  &[\![E, Z \triangleright \text{ case } v  \hspace{2pt}  \{\text{inl}_{\mathbb{D}} (a) \Rightarrow w ; \hspace{1pt} \text{inr}_{\mathbb{E}} (b) \Rightarrow u\} [t/x]: \mathbb{B}]\!] \\
+  & \triangleq  \left[[\![ w]\!] \cdot \text{jn}_{ \Delta;\mathbb{D}},[\![ u ]\!] \cdot \text{jn}_{ \Delta;\mathbb{E}}\right] \cdot \text{dist} \cdot \text{sw} \cdot ([\![ v [t/x] ]\!]   \otimes \text{id})  \cdot \text{sp}_{\Gamma, Z;\Delta} \cdot \text{sh}_{E,Z} \\
+  & = \left[[\![w]\!] \cdot \text{jn}_{ \Delta;\mathbb{D}},[\![u ]\!] \cdot \text{jn}_{ \Delta;\mathbb{E}}\right] \cdot \text{dist} \cdot \text{sw} \cdot (([\![ v]\!]  \cdot \text{jn}_{\Gamma; \mathbb{A}} \cdot (\text{id} \otimes [\![  t ]\!] ) \cdot \text{sp}_{\Gamma;Z} )\otimes \text{id}) \cdot \text{sp}_{\Gamma, Z;\Delta} \\
+  & \hspace{10pt} \cdot \text{sh}_{E,Z} \\
+  & =  \left[[\![w]\!] \cdot \text{jn}_{ \Delta;\mathbb{D}},[\![u ]\!] \cdot \text{jn}_{ \Delta;\mathbb{E}}\right] \cdot \text{dist} \cdot \text{sw} \cdot ([\![ v]\!] \otimes \text{id}) \cdot (\text{jn}_{\Gamma; \mathbb{A}} \cdot (\text{id} \otimes [\![  t ]\!] ) \cdot \text{sp}_{\Gamma;Z} \otimes \text{id}) \cdot \text{sp}_{\Gamma, Z;\Delta}  & {\text{(bifunctoriality of $\otimes$)}} \\
+  & \hspace{10pt} \cdot \text{sh}_{E,Z}\\
+  & = \left[[\![w]\!] \cdot \text{jn}_{ \Delta;\mathbb{D}},[\![u ]\!] \cdot \text{jn}_{ \Delta;\mathbb{E}}\right] \cdot \text{dist} \cdot \text{sw} \cdot ([\![ v]\!] \otimes \text{id}) \cdot \text{sp}_{\Gamma, \typeA;\Delta}  \cdot \text{sh}_{E,\typeA}  \cdot  \text{jn}_{E; \typeA} \cdot (\text{id} \otimes [\![ t ]\!] ) \cdot \text{sp}_{E;Z}  & {(\text{naturality})}   \\
+  & \triangleq  \hspace{2pt} [\![E,  x:\mathbb{A} \triangleright \text{ case } v \hspace{2pt}  \{\text{inl}_{\mathbb{B}} (x) \Rightarrow w ; \hspace{1pt} \text{inr}_{\mathbb{D}} (y) \Rightarrow u\}: \mathbb{E}]\!]  \cdot  \text{jn}_{E; \typeA} \cdot (\text{id} \otimes [\![ t ]\!] ) \cdot \text{sp}_{E;Z}
+\end{align*}
 \end{proof}
+
+The second case follows from induction, the exchange rule, the universal property of the coproduct, and the naturality of $\alpha$, $\lambda$, $\rho$, and $\text{sw}$, along with their inverses and respective compositions.
+
+\begin{align*}
+  &[\![E, Z \triangleright \text{ case } v  \hspace{2pt}  \{\text{inl}_{\mathbb{D}} (a) \Rightarrow w ; \hspace{1pt} \text{inr}_{\mathbb{E}} (b) \Rightarrow u\} [t/x]: \mathbb{B}]\!] \\
+  & \triangleq  \left[[\![ \Delta  , Z ,  a:\mathbb{D} \triangleright w[t/x] ]\!] \cdot \text{jn}_{ \Delta;\mathbb{D}},[\![ \Delta, Z, b:\mathbb{E} \triangleright u[t/x]  ]\!] \cdot \text{jn}_{ \Delta;\mathbb{E}}\right] \cdot \text{dist} \cdot \text{sw} \cdot ([\![ v ]\!]   \otimes \text{id})  \cdot \text{sp}_{\Gamma, Z;\Delta} \\
+  &  \hspace{10pt} \cdot \text{sh}_{E,Z} \hspace{10pt} \\
+  & =   [[\![ \Delta ,  a:\mathbb{D} , Z \triangleright  w [t/x]  ]\!] \cdot \text{exch}_{\Delta,Z,\mathbb{D}} \cdot \text{jn}_{\Delta, Z; \mathbb{D}},[\![  \Delta ,  b:\mathbb{E} , Z \triangleright u [a/z]   ]\!] \cdot \text{exch}_{\Delta, Z,\mathbb{E}}  \cdot \text{jn}_{\Delta, Z; \mathbb{E}} ]\cdot \text{dist} \cdot \text{sw} & {(\text{exch})} \\
+  & \hspace{10pt}  \cdot ([\![v]\!] \otimes \text{id})  \cdot \text{sp}_{\Gamma; \Delta, Z} \cdot \text{sh}_{E,Z}    \\
+  & =  [[\![ w ]\!]  \cdot \text{jn}_{\Delta,\mathbb{D}; \mathbb{A}} \cdot (\text{id} \otimes [\![t]\!] ) \cdot \text{sp}_{\Delta,\mathbb{D}; \mathbb{A}} \cdot  \text{exch}_{\Delta, Z,\mathbb{D}} \cdot \text{jn}_{\Delta, Z; \mathbb{D}} , [\![ u ]\!]\cdot \text{jn}_{\Delta,\mathbb{E}; \mathbb{A}} \cdot (\text{id} \otimes [\![ t]\!] ) \cdot \text{sp}_{\Delta,\mathbb{E}; \mathbb{A}}     \\
+  & \hspace{10pt} \cdot \text{exch}_{\Delta, Z,\mathbb{E}} \cdot\text{jn}_{\Delta Z, \mathbb{E}} ]\cdot \text{dist} \cdot \text{sw} \cdot ([\![v]\!] \otimes \text{id})  \cdot \text{sp}_{\Gamma; \Delta, Z} \cdot \text{sh}_{E,Z} \\
+  & = [[\![ w ]\!] \cdot \text{exch}_{\Delta, \mathbb{A},\mathbb{D}} \cdot \text{jn}_{\Delta, \mathbb{A}; \mathbb{D}} \cdot (\text{jn}_{\Delta; \mathbb{A}} \otimes \text{id}) \cdot (\text{id} \otimes [\![t]\!]  \otimes \text{id}) \cdot  (\text{sp}_{\Delta; Z} \otimes \text{id}),  [\![ u ]\!] \cdot \text{exch}_{\Delta, \mathbb{A},\mathbb{E}} \cdot \text{jn}_{\Delta, \mathbb{A}; \mathbb{E}} & {(\text{naturality})} \\
+  & \hspace{10pt}\cdot (\text{jn}_{\Delta; \mathbb{A}} \otimes \text{id}) \cdot (\text{id} \otimes [\![t]\!]  \otimes \text{id}) \cdot  (\text{sp}_{\Delta; Z} \otimes \text{id}) ] \cdot \text{dist} \cdot \text{sw} \cdot ([\![v]\!] \otimes \text{id})  \cdot \text{sp}_{\Gamma; \Delta, Z} \cdot \text{sh}_{E,Z} \\
+  & = [[\![ \Delta  , x:\mathbb{A} ,  a:\mathbb{D} \triangleright w]\!] \cdot \text{jn}_{\Delta, \mathbb{A}; \mathbb{D}} \cdot  (\text{jn}_{\Delta; \mathbb{A}} \otimes \text{id}) \cdot (\text{id} \otimes [\![t]\!]  \otimes \text{id}) , [\![ \Delta  , x:\mathbb{A} ,  b:\mathbb{E} \triangleright u]\!] \cdot \text{jn}_{\Delta, \mathbb{A}; \mathbb{E}}     & {(\text{exch and }} \\
+  & \hspace{10pt} \cdot (\text{jn}_{\Delta; \mathbb{A}} \otimes \text{id})   \cdot (\text{id} \otimes [\![t]\!]  \otimes \text{id})]\cdot [i_1  \cdot  (\text{sp}_{\Delta; Z} \otimes \text{id}), i_2 \cdot  (\text{sp}_{\Delta; Z} \otimes \text{id})] \cdot \text{dist} \cdot \text{sw} \cdot ([\![v]\!] \otimes \text{id})  \cdot \text{sp}_{\Gamma; \Delta, Z} & { \text{coprodut})}\\
+  & \hspace{10pt} \cdot \text{sh}_{E,Z} \\
+  &= [[\![w]\!] \cdot \text{jn}_{\Delta, \mathbb{A}; \mathbb{D}}, [\![u]\!] \cdot \text{jn}_{\Delta, \mathbb{A}; \mathbb{E}}] \cdot [i_1  \cdot (\text{id} \otimes [\![t]\!]  \otimes \text{id})  \cdot  (\text{jn}_{\Delta; \mathbb{A}} \otimes \text{id}) , i_2  \cdot (\text{id} \otimes [\![t]\!]  \otimes \text{id}) \cdot   (\text{jn}_{\Delta; \mathbb{A}} \otimes \text{id})] 
+\end{align*}
 
 %\todo[inline,size=\normalsize]{Elitzur‑Vaidman Bomb Testing Problem -> Improve usando o efeito Zeno? -> Acho que não tem ifs} 
 
