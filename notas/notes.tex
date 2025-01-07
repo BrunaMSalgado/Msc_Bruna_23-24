@@ -525,9 +525,9 @@ interpretation is defined inductively in \autoref{fig:denotational_sem cond}.
 \label{fig:denotational_sem cond}
 \end{figure}
 
+The next step is to demonstrate that the equations in Figure \ref{fig:equations-in-context-cond} are valid under the given interpretation. To achieve this, we first establish the following lemma.
 
-
-\begin{lemma} \label{interpret_exch} (\text{Exchange and Subsitution}) For all judgements $\Gamma,x:\mathbb{A}, y:\mathbb{B}, \Delta \triangleright v: \mathbb{D}$, $\Gamma,x:\mathbb{A} \triangleright v: \mathbb{B}$ and $\Delta \triangleright w: \mathbb{A}$  the following equations hold: 
+\begin{lemma} \label{lem_interpret_exch:sub} (\text{Exchange and Subsitution}) For all judgements $\Gamma,x:\mathbb{A}, y:\mathbb{B}, \Delta \triangleright v: \mathbb{D}$, $\Gamma,x:\mathbb{A} \triangleright v: \mathbb{B}$ and $\Delta \triangleright w: \mathbb{A}$  the following equations hold: 
   \begin{equation*}
 \begin{split}
   [\![\Gamma,x:\mathbb{A}, y:\mathbb{B}, \Delta \triangleright v: \mathbb{D}]\!] = [\![\Gamma,y:\mathbb{B},x:\mathbb{A},  \Delta \triangleright v: \mathbb{D}]\! ] \cdot \text{exch}_{\Gamma, \underline{ \mathbb{A}, \mathbb{B}} ,\Delta} \\
@@ -628,28 +628,75 @@ Regarding the substitution rule, once again the cases involving the injections f
   & = \left[[\![w]\!] \cdot \text{jn}_{ \Delta;\mathbb{D}},[\![u ]\!] \cdot \text{jn}_{ \Delta;\mathbb{E}}\right] \cdot \text{dist} \cdot \text{sw} \cdot ([\![ v]\!] \otimes \text{id}) \cdot \text{sp}_{\Gamma, \typeA;\Delta}  \cdot \text{sh}_{E,\typeA}  \cdot  \text{jn}_{E; \typeA} \cdot (\text{id} \otimes [\![ t ]\!] ) \cdot \text{sp}_{E;Z}  & {(\text{naturality})}   \\
   & \triangleq  \hspace{2pt} [\![E,  x:\mathbb{A} \triangleright \text{ case } v \hspace{2pt}  \{\text{inl}_{\mathbb{B}} (x) \Rightarrow w ; \hspace{1pt} \text{inr}_{\mathbb{D}} (y) \Rightarrow u\}: \mathbb{E}]\!]  \cdot  \text{jn}_{E; \typeA} \cdot (\text{id} \otimes [\![ t ]\!] ) \cdot \text{sp}_{E;Z}
 \end{align*}
-\end{proof}
 
-The second case follows from induction, the exchange rule, the universal property of the coproduct, and the naturality of $\alpha$, $\lambda$, $\rho$, and $\text{sw}$, along with their inverses and respective compositions.
+
+The second case follows from induction, the exchange rule, the universal property of the coproduct,  the bifunctoriality of the tensor product, and the naturality of $\alpha$, $\lambda$, $\rho$, and $\text{sw}$, along with their inverses and respective compositions.
 
 \begin{align*}
   &[\![E, Z \triangleright \text{ case } v  \hspace{2pt}  \{\text{inl}_{\mathbb{D}} (a) \Rightarrow w ; \hspace{1pt} \text{inr}_{\mathbb{E}} (b) \Rightarrow u\} [t/x]: \mathbb{B}]\!] \\
-  & \triangleq  \left[[\![ \Delta  , Z ,  a:\mathbb{D} \triangleright w[t/x] ]\!] \cdot \text{jn}_{ \Delta;\mathbb{D}},[\![ \Delta, Z, b:\mathbb{E} \triangleright u[t/x]  ]\!] \cdot \text{jn}_{ \Delta;\mathbb{E}}\right] \cdot \text{dist} \cdot \text{sw} \cdot ([\![ v ]\!]   \otimes \text{id})  \cdot \text{sp}_{\Gamma, Z;\Delta} \\
-  &  \hspace{10pt} \cdot \text{sh}_{E,Z} \hspace{10pt} \\
-  & =   [[\![ \Delta ,  a:\mathbb{D} , Z \triangleright  w [t/x]  ]\!] \cdot \text{exch}_{\Delta,Z,\mathbb{D}} \cdot \text{jn}_{\Delta, Z; \mathbb{D}},[\![  \Delta ,  b:\mathbb{E} , Z \triangleright u [a/z]   ]\!] \cdot \text{exch}_{\Delta, Z,\mathbb{E}}  \cdot \text{jn}_{\Delta, Z; \mathbb{E}} ]\cdot \text{dist} \cdot \text{sw} & {(\text{exch})} \\
-  & \hspace{10pt}  \cdot ([\![v]\!] \otimes \text{id})  \cdot \text{sp}_{\Gamma; \Delta, Z} \cdot \text{sh}_{E,Z}    \\
-  & =  [[\![ w ]\!]  \cdot \text{jn}_{\Delta,\mathbb{D}; \mathbb{A}} \cdot (\text{id} \otimes [\![t]\!] ) \cdot \text{sp}_{\Delta,\mathbb{D}; \mathbb{A}} \cdot  \text{exch}_{\Delta, Z,\mathbb{D}} \cdot \text{jn}_{\Delta, Z; \mathbb{D}} , [\![ u ]\!]\cdot \text{jn}_{\Delta,\mathbb{E}; \mathbb{A}} \cdot (\text{id} \otimes [\![ t]\!] ) \cdot \text{sp}_{\Delta,\mathbb{E}; \mathbb{A}}     \\
-  & \hspace{10pt} \cdot \text{exch}_{\Delta, Z,\mathbb{E}} \cdot\text{jn}_{\Delta Z, \mathbb{E}} ]\cdot \text{dist} \cdot \text{sw} \cdot ([\![v]\!] \otimes \text{id})  \cdot \text{sp}_{\Gamma; \Delta, Z} \cdot \text{sh}_{E,Z} \\
-  & = [[\![ w ]\!] \cdot \text{exch}_{\Delta, \mathbb{A},\mathbb{D}} \cdot \text{jn}_{\Delta, \mathbb{A}; \mathbb{D}} \cdot (\text{jn}_{\Delta; \mathbb{A}} \otimes \text{id}) \cdot (\text{id} \otimes [\![t]\!]  \otimes \text{id}) \cdot  (\text{sp}_{\Delta; Z} \otimes \text{id}),  [\![ u ]\!] \cdot \text{exch}_{\Delta, \mathbb{A},\mathbb{E}} \cdot \text{jn}_{\Delta, \mathbb{A}; \mathbb{E}} & {(\text{naturality})} \\
-  & \hspace{10pt}\cdot (\text{jn}_{\Delta; \mathbb{A}} \otimes \text{id}) \cdot (\text{id} \otimes [\![t]\!]  \otimes \text{id}) \cdot  (\text{sp}_{\Delta; Z} \otimes \text{id}) ] \cdot \text{dist} \cdot \text{sw} \cdot ([\![v]\!] \otimes \text{id})  \cdot \text{sp}_{\Gamma; \Delta, Z} \cdot \text{sh}_{E,Z} \\
-  & = [[\![ \Delta  , x:\mathbb{A} ,  a:\mathbb{D} \triangleright w]\!] \cdot \text{jn}_{\Delta, \mathbb{A}; \mathbb{D}} \cdot  (\text{jn}_{\Delta; \mathbb{A}} \otimes \text{id}) \cdot (\text{id} \otimes [\![t]\!]  \otimes \text{id}) , [\![ \Delta  , x:\mathbb{A} ,  b:\mathbb{E} \triangleright u]\!] \cdot \text{jn}_{\Delta, \mathbb{A}; \mathbb{E}}     & {(\text{exch and }} \\
-  & \hspace{10pt} \cdot (\text{jn}_{\Delta; \mathbb{A}} \otimes \text{id})   \cdot (\text{id} \otimes [\![t]\!]  \otimes \text{id})]\cdot [i_1  \cdot  (\text{sp}_{\Delta; Z} \otimes \text{id}), i_2 \cdot  (\text{sp}_{\Delta; Z} \otimes \text{id})] \cdot \text{dist} \cdot \text{sw} \cdot ([\![v]\!] \otimes \text{id})  \cdot \text{sp}_{\Gamma; \Delta, Z} & { \text{coprodut})}\\
-  & \hspace{10pt} \cdot \text{sh}_{E,Z} \\
-  &= [[\![w]\!] \cdot \text{jn}_{\Delta, \mathbb{A}; \mathbb{D}}, [\![u]\!] \cdot \text{jn}_{\Delta, \mathbb{A}; \mathbb{E}}] \cdot [i_1  \cdot (\text{id} \otimes [\![t]\!]  \otimes \text{id})  \cdot  (\text{jn}_{\Delta; \mathbb{A}} \otimes \text{id}) , i_2  \cdot (\text{id} \otimes [\![t]\!]  \otimes \text{id}) \cdot   (\text{jn}_{\Delta; \mathbb{A}} \otimes \text{id})] 
+  & \triangleq  \left[[\![ \Delta  , Z ,  a:\mathbb{D} \triangleright w[t/x] ]\!] \cdot \text{jn}_{ \Delta;\mathbb{D}},[\![ \Delta, Z, b:\mathbb{E} \triangleright u[t/x]  ]\!] \cdot \text{jn}_{ \Delta;\mathbb{E}}\right] \cdot \text{dist} \cdot \text{sw} \cdot ([\![ v ]\!]   \otimes \text{id})  \\
+  &  \hspace{10pt}  \cdot \text{sp}_{\Gamma, Z;\Delta} \cdot \text{sh}_{E,Z} \hspace{10pt} \\
+  & =   [[\![ \Delta ,  a:\mathbb{D} , Z \triangleright  w [t/x]  ]\!] \cdot \text{exch}_{\Delta,Z,\mathbb{D}} \cdot \text{jn}_{\Delta, Z; \mathbb{D}},[\![  \Delta ,  b:\mathbb{E} , Z \triangleright u [a/z]   ]\!] \cdot \text{exch}_{\Delta, Z,\mathbb{E}}   & {(\text{exchange})} \\
+  & \hspace{10pt} \cdot \text{jn}_{\Delta, Z; \mathbb{E}} ] \cdot \text{dist} \cdot \text{sw} \cdot ([\![v]\!] \otimes \text{id})  \cdot \text{sp}_{\Gamma; \Delta, Z} \cdot \text{sh}_{E,Z}    \\
+  & =  [[\![ w ]\!]  \cdot \text{jn}_{\Delta,\mathbb{D}; \mathbb{A}} \cdot (\text{id} \otimes [\![t]\!] ) \cdot \text{sp}_{\Delta,\mathbb{D}; \mathbb{A}} \cdot  \text{exch}_{\Delta, Z,\mathbb{D}} \cdot \text{jn}_{\Delta, Z; \mathbb{D}} , [\![ u ]\!]\cdot \text{jn}_{\Delta,\mathbb{E}; \mathbb{A}} \cdot (\text{id} \otimes [\![ t]\!] )     \\
+  & \hspace{10pt} \cdot \text{sp}_{\Delta,\mathbb{E}; \mathbb{A}}  \cdot \text{exch}_{\Delta, Z,\mathbb{E}} \cdot\text{jn}_{\Delta Z, \mathbb{E}} ]\cdot \text{dist} \cdot \text{sw} \cdot ([\![v]\!] \otimes \text{id})  \cdot \text{sp}_{\Gamma; \Delta, Z} \cdot \text{sh}_{E,Z} \\
+  & = [[\![ w ]\!] \cdot \text{exch}_{\Delta, \mathbb{A},\mathbb{D}} \cdot \text{jn}_{\Delta, \mathbb{A}; \mathbb{D}} \cdot (\text{jn}_{\Delta; \mathbb{A}} \otimes \text{id}) \cdot (\text{id} \otimes [\![t]\!]  \otimes \text{id}) \cdot  (\text{sp}_{\Delta; Z} \otimes \text{id}),  [\![ u ]\!]  & {(\text{naturality})} \\
+  & \hspace{10pt} \cdot \text{exch}_{\Delta, \mathbb{A},\mathbb{E}} \cdot \text{jn}_{\Delta, \mathbb{A}; \mathbb{E}} \cdot (\text{jn}_{\Delta; \mathbb{A}} \otimes \text{id}) \cdot (\text{id} \otimes [\![t]\!]  \otimes \text{id}) \cdot  (\text{sp}_{\Delta; Z} \otimes \text{id}) ] \cdot \text{dist} \cdot \text{sw}  \\
+  &  \hspace{10pt} \cdot ([\![v]\!] \otimes \text{id})  \cdot \text{sp}_{\Gamma; \Delta, Z} \cdot \text{sh}_{E,Z} \\
+  & = [[\![ \Delta  , x:\mathbb{A} ,  a:\mathbb{D} \triangleright w]\!] \cdot \text{jn}_{\Delta, \mathbb{A}; \mathbb{D}}, [\![ \Delta  , x:\mathbb{A} ,  b:\mathbb{E} \triangleright u]\!] \cdot \text{jn}_{\Delta, \mathbb{A}; \mathbb{E}}]  \cdot [i_1  \cdot  (\text{jn}_{\Delta; \mathbb{A}} \otimes \text{id})     & {(\text{exchange and }}  \\
+  & \hspace{10pt} \cdot (\text{id} \otimes [\![t]\!]  \otimes \text{id})  \cdot (\text{sp}_{\Delta; Z} \otimes \text{id}), i_2 \cdot (\text{jn}_{\Delta; \mathbb{A}} \otimes \text{id})   \cdot (\text{id} \otimes [\![t]\!]  \otimes \text{id}) \cdot  (\text{sp}_{\Delta; Z} \otimes \text{id})] \cdot \text{dist}  & { \text{coprodut})}\\
+  & \hspace{10pt} \cdot \text{sw} \cdot ([\![v]\!] \otimes \text{id})  \cdot \text{sp}_{\Gamma; \Delta, Z} \cdot \text{sh}_{E,Z} \\
+  &= [[\![w]\!] \cdot \text{jn}_{\Delta, \mathbb{A}; \mathbb{D}}, [\![u]\!] \cdot \text{jn}_{\Delta, \mathbb{A}; \mathbb{E}}]  \cdot \text{dist} \cdot (\text{jn}_{\Delta; \mathbb{A}} \otimes \text{id})   \cdot (\text{id} \otimes [\![t]\!]  \otimes \text{id}) \cdot  (\text{sp}_{\Delta; Z} \otimes \text{id}) \cdot \text{sw}  & {(\text{coproduct, naturality, }}  \\
+  & \hspace{10pt} \cdot ([\![v]\!] \otimes \text{id}) \cdot \text{sp}_{\Gamma; \Delta, Z} \cdot \text{sh}_{E,Z}  & {\text{and bifunctoriality of } \otimes})  \\
+  & =  [[\![w]\!] \cdot \text{jn}_{\Delta, \mathbb{A}; \mathbb{D}}, [\![u]\!] \cdot \text{jn}_{\Delta, \mathbb{A}; \mathbb{E}}]  \cdot \text{dist} \cdot \text{sw}  \cdot ([\![v  ]\!] \otimes \text{id}) \cdot \text{sp}_{\Gamma; \Delta, \mathbb{A}} \cdot \text{sh}_{E,\mathbb{A}} \cdot \text{jn}_{E; \mathbb{A}} \cdot (\text{id} \otimes [\![ t  ]\!] ) & {(\text{naturality and  }} \\
+  & \hspace{10pt} \cdot \text{sp}_{E;Z} &{\text{and bifunctoriality of } \otimes})  \\ 
+  & \triangleq  [\![E,  x:\mathbb{A} \triangleright \text{ case } v \hspace{2pt}  \{\text{inl}_{\mathbb{D}} (a) \Rightarrow w ; \hspace{1pt} \text{inr}_{\mathbb{E}} (b) \Rightarrow u\}: \mathbb{B}]\!] \cdot \text{jn}_{E; \mathbb{A}} \cdot (\text{id} \otimes [\![ t ]\!] ) \cdot \text{sp}_{E;Z}
+\end{align*}
+\end{proof}
+
+\begin{theorem} \label {theorem:eq_in_context}
+  The equations presented in Figure \ref{fig:equations-in-context-cond} are sound w.r.t. judgement interpretation. More specifically if $ \Gamma \triangleright v = w: \typeA$ is one of the equations in Fig. 3 then $[\![ \Gamma \triangleright v: \typeA ]\!] = [\![ \Gamma \triangleright w: \typeA ]\!]$.
+\end{theorem}
+
+\begin{proof}
+  Follows from Lemma \autoref{lem_interpret_exch:sub}, the coherence theorem for symmetric monoidal categories, naturality,  the bifunctoriality of the tensor product, and the universal property of the coproduct.   
+  We will provide a complete proof for the first and third equations, noting that the proof for the second equation follows analogously from the first.
+  \begin{align*}
+    &\llbracket \Delta,\Gamma \triangleright  \text{ case } v \hspace{2pt} \text{inl}_{\mathbb{B}}(v) \hspace{2pt} \{\text{inl}_{\mathbb{B}} (x) \Rightarrow w ; \hspace{1pt} \text{inr}_{\mathbb{A}} (y) \Rightarrow u\}: \mathbb{D}\rrbracket \\
+    & \triangleq  [\llbracket w\rrbracket \cdot \text{jn}_{\Delta;\mathbb{A}},\llbracket u \rrbracket\cdot \text{jn}_{\Delta;\mathbb{B}}] \cdot \text{dist} \cdot \text{sw} \cdot ( i_1 \cdot \llbracket  v \rrbracket \otimes \text{id}) \cdot \text{sp}_{\Gamma;\Delta} \cdot \text{sh}_{\Delta;\Gamma} \\
+    & = [\llbracket w\rrbracket \cdot \text{jn}_{\Delta;\mathbb{A}},\llbracket u \rrbracket\cdot \text{jn}_{\Delta;\mathbb{B}}] \cdot \text{dist} \cdot (i_1 \otimes \text{id}) \cdot \text{sw} \cdot ( \llbracket  v \rrbracket \otimes \text{id}) \cdot \text{sp}_{\Gamma;\Delta} \cdot \text{sh}_{\Delta;\Gamma} &{(\text{naturality and bifunctoriality  of } \otimes}) 
+  \end{align*}
+\end{proof}
+
+Considering the universal property of coproducts, it follows that the following diagram commutes.
+
+\begin{tikzpicture}
+  \matrix (m) [matrix of math nodes,row sep=4em,column sep=7em,minimum width=2em]
+  {
+    X \otimes Y  &  X \otimes (Y  \oplus Y) \\
+     X  \otimes Y \oplus X \otimes Z \\
+  };
+  \path[-stealth]
+    (m-1-1) edge node [left] {$\textsc{Il}$} (m-2-1)
+    (m-1-1) edge node [above] {$\text{id} \otimes \textsc{Il}$} (m-1-2)
+    (m-2-1) edge[bend right=5] node [pos=0.5, shift={(0.75, -0.5)}] {$[\text{id} \otimes \textsc{Il},\text{id} \otimes \textsc{Ir}]$} (m-1-2)
+    (m-1-2) edge[bend left=-5] node [above==0.2cm] {$\text{dist}$} (m-2-1)
+    ;
+\end{tikzpicture}
+
+As a result, it holds that
+
+\begin{align*}
+  & [\llbracket w\rrbracket \cdot \text{jn}_{\Delta;\mathbb{A}},\llbracket u \rrbracket\cdot \text{jn}_{\Delta;\mathbb{B}}] \cdot \text{dist} \cdot (i_1 \otimes \text{id}) \cdot \text{sw} \cdot ( \llbracket  v \rrbracket \otimes \text{id}) \cdot \text{sp}_{\Gamma;\Delta} \cdot \text{sh}_{\Delta;\Gamma} \\
+  & = \llbracket  w \rrbracket\cdot \text{jn}_{\Delta;\mathbb{A}} \cdot   \text{sw} \cdot(\llbracket v \rrbracket \otimes  \text{id}) \cdot \text{sp}_{\Gamma;\Delta} \cdot \text{sh}_{\Delta; \Gamma}  & {\text{(law of coproducts)}} \\
+  &=  \llbracket  w \rrbracket\cdot \text{jn}_{\Delta;\mathbb{A}}  \cdot(  \text{id}\otimes \llbracket v \rrbracket ) \cdot   \text{sw} \cdot \text{sp}_{\Gamma;\Delta} \cdot \text{sh}_{\Delta; \Gamma} & {\text{(naturality)}} \\
+  &= \llbracket w \rrbracket \cdot \text{jn}_{\Delta;\mathbb{A}} \cdot( \text{id} \otimes \llbracket v \rrbracket) \cdot \text{sp}_{\Delta;\Gamma}& {\text{(coherence)}}\\
+  & = \llbracket w[v/x] : \mathbb{D} \rrbracket  & {\text{(lemma \ref{lem_interpret_exch:sub})}}
 \end{align*}
 
 %\todo[inline,size=\normalsize]{Elitzur‑Vaidman Bomb Testing Problem -> Improve usando o efeito Zeno? -> Acho que não tem ifs} 
 
+\newpage
 \bibliographystyle{alpha} 
 \bibliography{biblio}
 \end{document}
