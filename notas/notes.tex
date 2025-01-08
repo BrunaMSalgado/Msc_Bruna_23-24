@@ -537,7 +537,7 @@ The next step is to demonstrate that the equations in Figure \ref{fig:equations-
 \end{lemma}
 
 \begin{proof}
-  We begin once again with the exchange property, which follows by induction over the length of derivation trees. The rules involving injections are straightforward. With respect to the rule (case), we distinguish between the scenarios where both variables ($x : \typeA$ and $y : \typeB$) are in $\Gamma$, both are in $\Delta$, or they are distributed across $\Gamma$ and $\Delta$.
+  We begin once again with the exchange property. The rules involving injections are straightforward. With respect to the rule (case), we distinguish between the scenarios where both variables ($x : \typeA$ and $y : \typeB$) are in $\Gamma$, both are in $\Delta$, or they are distributed across $\Gamma$ and $\Delta$.
   The fist case follows by induction, the bifunctoriality of the tensor product, and the coherence theorem for symmetric monoidal categories.
 
   %\begin{align*}
@@ -706,7 +706,7 @@ Regarding the third equation, we have that
   & = [\llbracket w \rrbracket \cdot \text{jn}_{\Delta;\mathbb{A} \oplus \mathbb{B}} \cdot (\text{id} \otimes i_1) , \llbracket  w \rrbracket  \cdot \text{jn}_{\Delta;\mathbb{A} \oplus \mathbb{B}}   \cdot (\text{id} \otimes i_2) ] \cdot \text{dist} \cdot \text{sw}  \cdot (\llbracket v \oplus \mathbb{B}\rrbracket \otimes \text{id})  \cdot  \text{sp}_{\Gamma;\Delta}  & {\text{(coherence)}}   \\
   & \hspace{10pt}  \cdot \text{sh}_{\Delta;\Gamma} \\
   & = \llbracket w \rrbracket \cdot \text{jn}_{\Delta;\mathbb{A} \oplus \mathbb{B}} \cdot [\text{id} \otimes i_1, \text{id} \otimes i_2] \cdot \text{dist} \cdot \text{sw}  \cdot (\llbracket v \oplus \mathbb{B}\rrbracket \otimes \text{id})  \cdot  \text{sp}_{\Gamma;\Delta} \cdot \text{sh}_{\Delta;\Gamma}  & {\text{(law of coproducts)}}  \\
-  & = \llbracket w \rrbracket \cdot \text{jn}_{\Delta;\mathbb{A} \oplus \mathbb{B}} \cdot  \text{id} \cdot \text{sw}  \cdot (\llbracket v \oplus \mathbb{B}\rrbracket \otimes \text{id})  \cdot  \text{sp}_{\Gamma;\Delta} \cdot \text{sh}_{\Delta;\Gamma}  & {\text{(law of coproducts)}}\\
+  & = \llbracket w \rrbracket \cdot \text{jn}_{\Delta;\mathbb{A} \oplus \mathbb{B}} \cdot  \text{id} \cdot \text{sw}  \cdot (\llbracket v \oplus \mathbb{B}\rrbracket \otimes \text{id})  \cdot  \text{sp}_{\Gamma;\Delta} \cdot \text{sh}_{\Delta;\Gamma}  \\
   & = \llbracket w \rrbracket \cdot \text{jn}_{\Delta;\mathbb{A} \oplus \mathbb{B}} \cdot ( \text{id} \otimes \llbracket v \oplus \mathbb{B}\rrbracket )  \cdot  \text{sw}  \cdot  \text{sp}_{\Gamma;\Delta} \cdot \text{sh}_{\Delta;\Gamma}  & {\text{(naturality)}}\\
   &  = \llbracket w \rrbracket \cdot \text{jn}_{\Delta;\mathbb{A} \oplus \mathbb{B}} \cdot ( \text{id} \otimes \llbracket v \oplus \mathbb{B}\rrbracket )  \cdot  \text{sp}_{\Delta; \Gamma} & {\text{(coherence)}}\\
   & \triangleq \llbracket w[v/x] : \mathbb{D} \rrbracket & {\text{(lemma \ref{lem_interpret_exch:sub})}}
