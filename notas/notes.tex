@@ -295,6 +295,13 @@ and quantum information.
 poderem ser usados no próximo exemplo.}
 \end{example}
 
+In the quantum setting, tossing a `fair' coin can be described preparing a qubit in a superposition of two states, $\ket{0}$ and $\ket{1}$, reprensenting `heads' and `tails', each with an equal probability of $0.5$ and then measuring it. This is achieved by simply applying a Hadamard gate to the initial state $\ket{0}$, followed by a measurement.
+More generally, tossing a coin (whether `fair' or `unfair') can be described as preparing a qubit in a superposition of  $\ket{0}$ and $\ket{1}$, with probabilities $p$ and $1-p$, respectively,  and then measuring it.  Considering $p= \cos(\theta/2)^2$ and the standard quantum gate operation $R_{y,\theta} : \emph{qbit} \to \emph{qbit}$,  this process is described by the following $\lambda$-term:
+
+\begin{align*}
+  &\textbf{CoinToss} = - \vljud \text{meas} (R_{y,\theta} (\ket{0})): \typeI \oplus \typeI
+\end{align*}
+
 \begin{example}[Quantum state discrimination]
 
 Quantum state discrimination is a pivotal challenge in quantum information,
@@ -316,7 +323,7 @@ to the quantum state, followed by a measurement in the computational basis.
 
 We will now show how to describe this discrimination task in
 $\lambda$-calculus.  Consider two pure states $\ket{\psi_0}$ and
-$\ket{\psi_1}$, prepared \emph{a priori} with probabilities $p_0$ and $p_1$,
+$\ket{\psi_1}$, prepared \emph{a priori} with probabilities $p_0$ and $p_1 = 1-p_0$,
 respectively. Consider as well an operation $U : \emph{qbit} \to \emph{qbit}$ which
 corresponds to the basis-change associated with the Helstrom measurement.
 The relevant $\lambda$-terms are then:
@@ -653,7 +660,7 @@ The second case follows from induction, the exchange rule, the universal propert
   & = [[\![ w ]\!] \cdot \text{exch}_{\Delta, \typeA,\typeD} \cdot \text{jn}_{\Delta, \typeA; \typeD} \cdot (\text{jn}_{\Delta; \typeA} \otimes \text{id}) \cdot (\text{id} \otimes [\![t]\!]  \otimes \text{id}) \cdot  (\text{sp}_{\Delta; Z} \otimes \text{id}),  [\![ u ]\!]  & {(\text{naturality})} \\
   & \hspace{10pt} \cdot \text{exch}_{\Delta, \typeA,\typeE} \cdot \text{jn}_{\Delta, \typeA; \typeE} \cdot (\text{jn}_{\Delta; \typeA} \otimes \text{id}) \cdot (\text{id} \otimes [\![t]\!]  \otimes \text{id}) \cdot  (\text{sp}_{\Delta; Z} \otimes \text{id}) ] \cdot \text{dist} \cdot \text{sw}  \\
   &  \hspace{10pt} \cdot ([\![v]\!] \otimes \text{id})  \cdot \text{sp}_{\Gamma; \Delta, Z} \cdot \text{sh}_{E,Z} \\
-  & = [[\![ \Delta  , x:\typeA ,  a:\typeD \vljud w]\!] \cdot \text{jn}_{\Delta, \typeA; \typeD}, [\![ \Delta  , x:\typeA ,  b:\typeE \vljud u]\!] \cdot \text{jn}_{\Delta, \typeA; \typeE}]  \cdot \inl  \cdot  (\text{jn}_{\Delta; \typeA} \otimes \text{id})     & {(\text{exchange and }}  \\
+  & = [[\![ \Delta  , x:\typeA ,  a:\typeD \vljud w]\!] \cdot \text{jn}_{\Delta, \typeA; \typeD}, [\![ \Delta  , x:\typeA ,  b:\typeE \vljud u]\!] \cdot \text{jn}_{\Delta, \typeA; \typeE}]  \cdot [\inl  \cdot  (\text{jn}_{\Delta; \typeA} \otimes \text{id})     & {(\text{exchange and }}  \\
   & \hspace{10pt} \cdot (\text{id} \otimes [\![t]\!]  \otimes \text{id})  \cdot (\text{sp}_{\Delta; Z} \otimes \text{id}),\inr \cdot (\text{jn}_{\Delta; \typeA} \otimes \text{id})   \cdot (\text{id} \otimes [\![t]\!]  \otimes \text{id}) \cdot  (\text{sp}_{\Delta; Z} \otimes \text{id})] \cdot \text{dist}  & { \text{coprodut})}\\
   & \hspace{10pt} \cdot \text{sw} \cdot ([\![v]\!] \otimes \text{id})  \cdot \text{sp}_{\Gamma; \Delta, Z} \cdot \text{sh}_{E,Z} \\
   &= [[\![w]\!] \cdot \text{jn}_{\Delta, \typeA; \typeD}, [\![u]\!] \cdot \text{jn}_{\Delta, \typeA; \typeE}]  \cdot \text{dist} \cdot (\text{jn}_{\Delta; \typeA} \otimes \text{id})   \cdot (\text{id} \otimes [\![t]\!]  \otimes \text{id}) \cdot  (\text{sp}_{\Delta; Z} \otimes \text{id}) \cdot \text{sw}  & {(\text{coproduct, naturality, }}  \\
