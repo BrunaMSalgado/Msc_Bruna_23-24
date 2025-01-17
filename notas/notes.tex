@@ -544,23 +544,13 @@ The next step is to demonstrate that the equations in Figure \ref{fig:equations-
 \end{lemma}
 
 \begin{proof}
-  We begin once again with the exchange property. The rules involving injections are straightforward. With respect to the rule (case), we distinguish between the scenarios where both variables ($x : \typeA$ and $y : \typeB$) are in $\Gamma$, both are in $\Delta$, or they are distributed across $\Gamma$ and $\Delta$.
-  The fist case follows by induction, the bifunctoriality of the tensor product, and the coherence theorem for symmetric monoidal categories.
-
-  %\begin{align*}
-    %& [\![\Gamma,x:\typeA, y:\typeB, \Delta \vljud \text{ case }  v \hspace{2pt}  \{\text{inl}_{\typeE} (a) \Rightarrow w ; \hspace{1pt} \text{inr}_{\typeE} (b) \Rightarrow u\}: \typeD]\!] \\ 
-    %&\triangleq    \left[ [\![ E, a:\typeD \vljud w:\typeD ]\!] \cdot \text{jn}_{E;\typeD},[\![ E, b:\typeE \vljud u:\typeD]\!]\cdot \text{jn}_{E;\typeE }\right] \cdot \text{dist} \cdot \text{sw}  \\
-    %& \hspace{10pt} \cdot ([\![\Gamma_{1},x:\typeA, y:\typeB,\Gamma_{2} \vljud v : \typeD \oplus \typeE  ]\!] \otimes \text{id})  \cdot \text{sp}_{\Gamma_{1},\typeA, \typeB,\Gamma_{2};E} \cdot \text{sh}_{\Gamma,\typeA, \typeB,\Delta} \\
-    %& =  \left[ [\![ E, a:\typeD \vljud w:\typeD ]\!] \cdot \text{jn}_{E;\typeD},[\![ E, b:\typeE \vljud u:\typeD]\!]\cdot \text{jn}_{E;\typeE }\right] \cdot \text{dist} \cdot \text{sw}  \\
-    %&  \hspace{10pt} \cdot ([\![\Gamma_{1}, y:\typeB,x:\typeA,\Gamma_{2} \vljud v: \typeD]\! ]\cdot \hspace{1pt} \text{exch}_{\Gamma_{1}, \underline{\typeA,\typeB},\Gamma_{2}} \otimes \text{id}) \cdot \text{sp}_{\Gamma_{1},\typeA, \typeB,\Gamma_{2};E} \cdot \text{sh}_{\Gamma,\typeA, \typeB,\Delta} \\
-    %&  = \left[ [\![ E, a:\typeD \vljud w:\typeD ]\!] \cdot \text{jn}_{E;\typeD},[\![ E, b:\typeE \vljud u:\typeD]\!]\cdot \text{jn}_{E;\typeE }\right]  \cdot \text{dist} \cdot \text{sw}    \\
-    %& \hspace{10pt} \cdot ([\![\Gamma_{1}, y:\typeB,x:\typeA,\Gamma_{2} \vljud v : \typeD \oplus \typeE  ]\!]\otimes \text{id}) \cdot (\text{exch}_{\Gamma,  \underline{\typeA,  \typeB}, \Delta} \otimes \text{id}) \cdot \text{sp}_{\Gamma_{1},\typeA,\typeB, \Gamma_{2};E}  \cdot \text{sh}_{\Gamma,\typeA, \typeB,\Delta} & {\text{(bifunctoriality of $\otimes$)}} \\
-    %& =   \left[ [\![ E, a:\typeD \vljud w:\typeD ]\!] \cdot \text{jn}_{E;\typeD},[\![ E, b:\typeE \vljud u:\typeD]\!]\cdot \text{jn}_{E;\typeE }\right]  \cdot \text{dist} \cdot \text{sw}  \\
-    %& \hspace{10pt} \cdot ([\![\Gamma_{1}, y:\typeB,x:\typeA,\Gamma_{2}  \vljud v : \typeD \oplus \typeE  ]\!]\otimes \text{id}) \cdot \text{sp}_{\Gamma_{1},\typeB,\typeA, \Gamma_{2};E}  \cdot \text{sh}_{\Gamma,\typeB, \typeA,\Delta}  \cdot \text{exch}_{\Gamma,  \underline{\typeA,\typeB}, \Delta} & {\text{(coherence theorem)}} \\
-    %& \triangleq   [\![\Gamma,y:\typeB, x:\typeA, \Delta \vljud \text{ case } v \hspace{2pt}  \{\text{inl}_{\typeE} (a) \Rightarrow w ; \hspace{1pt} \text{inr}_{\typeE} (b) \Rightarrow u\}: \typeD]\!] \cdot \text{exch}_{\Gamma,  \underline{\typeA, \typeB}, \Delta}
-  %\end{align*}
-
-
+  We begin with the exchange property. The rules involving injections are
+  straightforward. As for the rule  (case), we distinguish between the
+  scenarios where both variables ($x : \typeA$ and $y : \typeB$) are in
+  $\Gamma$, both are in $\Delta$, or they are distributed across $\Gamma$ and
+  $\Delta$.  The fist case follows by induction, the bifunctoriality of the
+  tensor product, and the coherence theorem for symmetric monoidal categories.
+  In detail,
   \begin{align*}
     & [\![\Gamma,x:\typeA, y:\typeB, \Delta \vljud \text{ case }  v \hspace{2pt}  \{\text{inl}_{\typeE} (a) \Rightarrow w ; \hspace{1pt} \text{inr}_{\typeD} (b) \Rightarrow u\}: \typeF]\!] \\ 
     &\triangleq    \left[ [\![  w]\!] \cdot \text{jn}_{E;\typeD},[\![u]\!]\cdot \text{jn}_{E;\typeE }\right] \cdot \text{dist} \cdot \text{sw}   \cdot ([\![ v  ]\!] \otimes \text{id})  \cdot \text{sp}_{\Gamma_{1},\typeA, \typeB,\Gamma_{2};E} \cdot \text{sh}_{\Gamma,\typeA, \typeB,\Delta} \\
@@ -685,7 +675,9 @@ The second case follows from induction, the exchange rule, the universal propert
   \end{align*}
 \end{proof}
 
-Considering the universal property of coproducts, it follows that the following diagram commutes.
+Considering the universal property of coproducts, it follows that the following
+diagram commutes.~\todo[inline]{Tlvz por o seguinte na justificação para não cortar o texto $\dist \comp (\inl \otimes \id)
+= \dist \comp [\inl \otimes \id, \inr \otimes \id] \comp \inl = \inl$}
 
 \begin{tikzpicture}
   \matrix (m) [matrix of math nodes,row sep=4em,column sep=7em,minimum width=2em]
