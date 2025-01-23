@@ -545,13 +545,13 @@ The next step is to demonstrate that the equations in Figure \ref{fig:equations-
 \end{lemma}
 
 \begin{proof}
-  We begin once again with the exchange property. The rules involving injections are straightforward. With respect to the rule (case), we distinguish between the scenarios where both variables ($x : \typeA$ and $y : \typeB$) are in $\Gamma$, both are in $\Delta$, or they are distributed across $\Gamma$ and $\Delta$.
-  The fist case follows by induction, the bifunctoriality of the tensor product, and the coherence theorem for symmetric monoidal categories.
-
-  %\left[ [\![  w]\!] \comp \text{jn}_{E;\typeD},[\![u]\!]\comp \text{jn}_{E;\typeD}\right] \comp \dist \comp \sw 
-
- % \left[[\![ w ]\!] ,[\![ u ]\!]\right] \comp (\text{jn}_{E;\typeD}\comp \sw \oplus \text{jn}_{E;\typeE } \comp \sw) 
-
+  We begin with the exchange property. The rules involving injections are
+  straightforward. As for the rule  (case), we distinguish between the
+  scenarios where both variables ($x : \typeA$ and $y : \typeB$) are in
+  $\Gamma$, both are in $\Delta$, or they are distributed across $\Gamma$ and
+  $\Delta$.  The fist case follows by induction, the bifunctoriality of the
+  tensor product, and the coherence theorem for symmetric monoidal categories.
+  In detail,
   \begin{align*}
     & [\![\Gamma,x:\typeA, y:\typeB, \Delta \vljud \text{case }  v\,  \{\text{inl}_{\typeE} (a) \Rightarrow w ;\, \text{inr}_{\typeD} (b) \Rightarrow u\}: \typeF]\!] \\ 
     &\triangleq     \left[[\![ w ]\!] ,[\![ u ]\!]\right] \comp (\text{jn}_{E;\typeD}\comp \sw \oplus \text{jn}_{E;\typeE } \comp \sw) \comp ([\![ v  ]\!] \otimes \text{id})  \comp \text{sp}_{\Gamma_{1},\typeA, \typeB,\Gamma_{2};E} \comp \text{sh}_{\Gamma,\typeA, \typeB,\Delta} \\
@@ -690,7 +690,9 @@ The second case follows from induction, the exchange rule, the universal propert
   \end{align*}
 
 
-Considering the universal property of coproducts, it follows that the following diagram commutes.
+Considering the universal property of coproducts, it follows that the following
+diagram commutes.~\todo[inline]{Tlvz por o seguinte na justificação para não cortar o texto $\dist \comp (\inl \otimes \id)
+= \dist \comp [\inl \otimes \id, \inr \otimes \id] \comp \inl = \inl$}
 
 \begin{tikzpicture}
   \matrix (m) [matrix of math nodes,row sep=4em,column sep=7em,minimum width=2em]
