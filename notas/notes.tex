@@ -686,36 +686,14 @@ The second case follows from induction, the exchange rule, the universal propert
   \begin{align*}
     &\llbracket \Delta,\Gamma \vljud  \text{case }  \text{inl}_{\typeB}(v)\, \{\text{inl}_{\typeB} (x) \Rightarrow w ;\, \text{inr}_{\typeA} (y) \Rightarrow u\}: \typeD\rrbracket \\
     & \triangleq  [\llbracket w\rrbracket,\llbracket u \rrbracket] \comp (\text{jn}_{\Delta;\typeA} \comp \sw \oplus \text{jn}_{\Delta;\typeB} \comp \sw  ) \comp \dist \comp \sw \comp (\inl \comp \llbracket  v \rrbracket \otimes \text{id}) \comp \text{sp}_{\Gamma;\Delta} \comp \text{sh}_{\Delta;\Gamma} \\
-    & =  [\llbracket w\rrbracket,\llbracket u \rrbracket] \comp (\text{jn}_{\Delta;\typeA} \comp \sw \oplus \text{jn}_{\Delta;\typeB} \comp \sw ) \comp \dist \comp (\inl \otimes \text{id}  ) \comp ( \llbracket  v \rrbracket \otimes \text{id}) \comp \text{sp}_{\Gamma;\Delta} \comp \text{sh}_{\Delta;\Gamma} &{(\text{bifunctoriality  of } \otimes}) 
-  \end{align*}
-
-
-Considering the universal property of coproducts, it follows that the following
-diagram commutes.~\todo[inline]{Tlvz por o seguinte na justificação para não cortar o texto $\dist \comp (\inl \otimes \id)
-= \dist \comp [\inl \otimes \id, \inr \otimes \id] \comp \inl = \inl$}
-
-\begin{tikzpicture}
-  \matrix (m) [matrix of math nodes,row sep=4em,column sep=7em,minimum width=2em]
-  {
-    X \otimes Y  &  X \otimes (Y  \oplus Y) \\
-     X  \otimes Y \oplus X \otimes Z \\
-  };
-  \path[-stealth]
-    (m-1-1) edge node [left] {$\inl$} (m-2-1)
-    (m-1-1) edge node [above] {$\inl  \otimes \text{id} $} (m-1-2)
-    (m-2-1) edge[bend right=5] node [pos=0.5, shift={(0.75, -0.5)}] {$[\inl \otimes \text{id}  ,\inr \otimes\text{id}]$} (m-1-2)
-    (m-1-2) edge[bend left=-5] node [above==0.2cm] {$\dist$} (m-2-1)
-    ;
-\end{tikzpicture}
-
-As a result, it holds that
-
-\begin{align*}
-  &  [\llbracket w\rrbracket,\llbracket u \rrbracket] \comp (\text{jn}_{\Delta;\typeA} \comp \sw \oplus \text{jn}_{\Delta;\typeB} \comp \sw  ) \comp \dist \comp (\text{id} \otimes \inl) \comp ( \llbracket  v \rrbracket \otimes \text{id}) \comp \text{sp}_{\Gamma;\Delta} \comp \text{sh}_{\Delta;\Gamma} \\
-  & = \llbracket  w \rrbracket\comp \text{jn}_{\Delta;\typeA} \comp   \sw \comp(\llbracket v \rrbracket \otimes  \text{id}) \comp \text{sp}_{\Gamma;\Delta} \comp \text{sh}_{\Delta; \Gamma}  & {\text{(law of coproducts)}} \\
-  &=  \llbracket  w \rrbracket\comp \text{jn}_{\Delta;\typeA}  \comp(  \text{id}\otimes \llbracket v \rrbracket ) \comp   \sw \comp \text{sp}_{\Gamma;\Delta} \comp \text{sh}_{\Delta; \Gamma} & {\text{(naturality)}} \\
-  &= \llbracket w \rrbracket \comp \text{jn}_{\Delta;\typeA} \comp( \text{id} \otimes \llbracket v \rrbracket) \comp \text{sp}_{\Delta;\Gamma}& {\text{(coherence)}}\\
-  & = \llbracket w[v/x] : \typeD \rrbracket  & {\text{(lemma \ref{lem_interpret_exch:sub})}}
+    & =  [\llbracket w\rrbracket,\llbracket u \rrbracket] \comp (\text{jn}_{\Delta;\typeA} \comp \sw \oplus \text{jn}_{\Delta;\typeB} \comp \sw ) \comp \dist \comp (\inl \otimes \text{id}  ) \comp ( \llbracket  v \rrbracket \otimes \text{id}) \comp \text{sp}_{\Gamma;\Delta} \comp \text{sh}_{\Delta;\Gamma} &{(\text{bifunctoriality  of } \otimes}) \\
+    & =  [\llbracket w\rrbracket,\llbracket u \rrbracket] \comp (\text{jn}_{\Delta;\typeA} \comp \sw \oplus \text{jn}_{\Delta;\typeB} \comp \sw ) \comp \dist \comp [\inl \otimes \id, \inr \otimes \id] \comp \inl  \comp ( \llbracket  v \rrbracket \otimes \text{id}) \comp \text{sp}_{\Gamma;\Delta}  &(\text{law of coproducts})\\
+    & \hspace{10pt} \comp \text{sh}_{\Delta;\Gamma}  \\
+    & =  [\llbracket w\rrbracket,\llbracket u \rrbracket] \comp (\text{jn}_{\Delta;\typeA} \comp \sw \oplus \text{jn}_{\Delta;\typeB} \comp \sw )  \comp \inl  \comp ( \llbracket  v \rrbracket \otimes \text{id}) \comp \text{sp}_{\Gamma;\Delta} \comp \text{sh}_{\Delta;\Gamma}  \\
+    & = \llbracket  w \rrbracket\comp \text{jn}_{\Delta;\typeA} \comp   \sw \comp(\llbracket v \rrbracket \otimes  \text{id}) \comp \text{sp}_{\Gamma;\Delta} \comp \text{sh}_{\Delta; \Gamma}  & {\text{(law of coproducts)}} \\
+    &=  \llbracket  w \rrbracket\comp \text{jn}_{\Delta;\typeA}  \comp(  \text{id}\otimes \llbracket v \rrbracket ) \comp   \sw \comp \text{sp}_{\Gamma;\Delta} \comp \text{sh}_{\Delta; \Gamma} & {\text{(naturality)}} \\
+    &= \llbracket w \rrbracket \comp \text{jn}_{\Delta;\typeA} \comp( \text{id} \otimes \llbracket v \rrbracket) \comp \text{sp}_{\Delta;\Gamma}& {\text{(coherence)}}\\
+    & = \llbracket w[v/x] : \typeD \rrbracket  & {\text{(lemma \ref{lem_interpret_exch:sub})}}
 \end{align*}
 
 %\todo[inline,size=\normalsize]{Elitzur‑Vaidman Bomb Testing Problem -> Improve usando o efeito Zeno? -> Acho que não tem ifs} 
@@ -740,17 +718,32 @@ Regarding the third equation, we have that
 \end{align*}
 \end{proof}
 
-~\todo[inline]{Acrescentar a parte do que são teorias e axiomas?}
+\begin{definition}
+  Consider a tuple $(G, \Sigma)$ consisting of a class $G$ of ground types and a class $\Sigma$ of sorted operation symbols. A \emph{linear} $\lambda$-\emph{theory} $((G, \Sigma), \textit{Ax})$ is a triple such that \emph{Ax} is a class of equations-in-context over linear $\lambda$-terms built from $(G, \Sigma)$.
+\end{definition}
+
+The elements of \emph{Ax} are called the axioms of the theory. Let \emph{Th(Ax)}  be the smallest
+congruence that contains \emph{Ax}, the equations-in-context, and that is closed under exchange
+and substitution. We call the elements of  \emph{Th(Ax)} the \emph{theorems} of the theory.
+
+\begin{definition}
+  Consider a linear $\lambda$-theory $((\lambda, \Sigma), \emph{Ax})$ and
+  also an autonomous category $\catC$. Suppose that for each $X \in G$ we have an interpretation $\llbracket X \rrbracket$
+  that is a $\catC$-object and analogously for the operation symbols. This interpretation structure
+  is a \emph{model} of the theory if all axioms are satisfied by the interpretation.
+\end{definition}
+
 \begin{theorem} \label {theorem:comp_eq_in_context}
   The equations presented in Figure \ref{fig:equations-in-context-cond} are complete w.r.t. judgment interpretation. More specifically, by combining these equations with the remaining equations from the linear lambda calculus, it becomes possible to derive the properties that must necessarily hold in every model.
 \end{theorem}
+
 
 \begin{proof}
   Completeness is based on the idea of a \textit{Lindenbaum-Tarski algebra} and arises from constructing the syntactic category Syn($\mathscr{T}$) of a $\lambda$-theory $\mathscr{T}$ (also known as term model). By employing the equations in Figure \ref{fig:equations-in-context-cond}, we show that both the universal property of the coproduct and the distributive property are satisfied in Syn($\mathscr{T}$). The syntactic category of $\mathscr{T}$ has as objects the types of $\mathscr{T}$ and as morphisms $A \rightarrow B$ the equivalence classes (w.r.t. provability) of terms $v$ for which we can derive $x : \typeA \vljud v : \typeB$.
 
   In the syntactic category, the coproduct $[\llbracket p \rrbracket, \llbracket q \rrbracket]$ can be seen as the equivalence
   class 
-  $$\left[z:\typeA \oplus\typeB \vljud \text{case } v\,\{\inl_{\typeB}(x) \Rightarrow p ; \, \inr_{\typeA}(y) \Rightarrow q\}: \typeD\right],$$ 
+  $$\left[z:\typeA \oplus\typeB \vljud \text{case } z\,\{\inl_{\typeB}(x) \Rightarrow p ; \, \inr_{\typeA}(y) \Rightarrow q\}: \typeD\right],$$ 
   the distributive property, $\dist$, corresponds to the class 
   \begin{align*}
     \big[z:(\typeA \otimes \mathbb{\typeB}) \otimes \mathbb{\typeD} \vljud \text{pm } z \text{ to } a \otimes b. \text{ case } a\,\{ &\inl_{\typeB}(x) \Rightarrow \inl_{\typeB \otimes \typeD}(x \otimes b); \\
@@ -763,7 +756,7 @@ and its inverse, $[\inl \otimes \id, \inr \otimes \id]$, to the class
 \end{align*}
 
 
-  The proofs of the universal property of the coproduct follow directly from the $\beta$-equations in Figure \ref{fig:equations-in-context-cond}, $\alpha$-equivalence and Lemma \ref{lem:exh_and_sub}. Specifically, for the left triangle in the coproduct diagram, we observe that:
+The proof of the coproduct diagram comutes follow directly from the $\beta$-equations in Figure \ref{fig:equations-in-context-cond}, $\alpha$-equivalence, and Lemma \ref{lem:exh_and_sub}. Specifically, for the left triangle in the coproduct diagram, we have that:
   \begin{align*}
     & \left[z:\typeA \oplus \typeB  \vljud \text{case } v\,\{\inl_{\typeB}(x) \Rightarrow p ; \, \inr_{\typeA}(y) \Rightarrow q\}: \typeD\right] \comp \left[ x: \typeA\vljud \inl_{\typeB}(x): \typeA \oplus \typeB \right] \\
     = &   \left[z:\typeA \oplus \typeB  \vljud \text{case } v\,\{\inl_{\typeB}(x') \Rightarrow p[x'/ x] ; \, \inr_{\typeA}(y) \Rightarrow q\}: \typeD\right] \comp \left[ x: \typeA\vljud \inl_{\typeB}(x): \typeA \oplus \typeB\right] & (\alpha)\\
@@ -771,8 +764,23 @@ and its inverse, $[\inl \otimes \id, \inr \otimes \id]$, to the class
     = &  \left[x:\typeA \vljud p[x'/x][x/x']: \typeD\right] & (\beta_{\text{case}}^{\text{inl}}) \\
     = &  \left[x:\typeA \vljud p: \typeD\right]  \\
   \end{align*}
-  The proof for the right triangle in the coproduct diagram is analogous. 
-  To prove that both the distributive property is an isomorphism syntactically, we first establish that the following equality, referred to as the \emph{syntactic fusion law}, holds:
+  The proof for the right triangle in the coproduct diagram is analogous.
+ 
+  Regarding the unicity of the coproduct, the key aspect of the proof lies in proving that the following equality holds: 
+  $$\left[z:\typeA \oplus \typeB  \vljud \text{case } z \,\{\inl_{\typeB}(x) \Rightarrow m[\inl_{\typeB}(x)/ z] ; \, \inr_{\typeA}(y) \Rightarrow m[\inr_{\typeA}(x)/ z]\}: \typeD\right] = [z:\typeA \oplus \typeB \vljud m: \typeD].$$ 
+  This equality follows direct from the $\eta$-equations in Figure \ref{fig:equations-in-context-cond}. Now, considering any morphism $m'$ from $\typeA \oplus \typeB$ to $\typeD$ and the coproduct diagram, we have that 
+  %$$\left[z:\typeA \oplus \typeB  \vljud m': \typeD\right] \comp \left[ x: \typeA\vljud \inl_{\typeB}(x): \typeA \oplus \typeB \right] = \left[x: \typeA  \vljud p: \typeD\right]  $$ 
+  $$\left[ x: \typeA \vljud m'[ \inl_{\typeB}(x)/z]: \typeD\right]  = \left[x: \typeA  \vljud p: \typeD\right]  $$ 
+  and
+  $$\left[ y: \typeB  \vljud m'[\inr_{\typeA}(y)/z]: \typeD\right] = \left[y: \typeB  \vljud q: \typeD\right].$$
+  As a result, if follows from the equalities above that 
+  \begin{align*}
+    \left[z:\typeA \oplus \typeB  \vljud m': \typeD\right]& =\left[z:\typeA \oplus \typeB  \vljud \text{case } z \,\{\inl_{\typeB}(x) \Rightarrow m'[\inl_{\typeB}(x)/ z] ; \, \inr_{\typeA}(y) \Rightarrow m'[\inr_{\typeA}(x)/ z]\}: \typeD\right]\\
+    & = \left[z:\typeA \oplus \typeB  \vljud \text{case } z \,\{\inl_{\typeB}(x) \Rightarrow p ; \, \inr_{\typeA}(y) \Rightarrow q\}: \typeD\right]. 
+  \end{align*}
+ 
+ 
+  To prove that both the distributive property is an isomorphism syntactically, we first establish that the following equality, known  as the \emph{syntactic fusion law}, holds:
   \begin{equation*}
     \left[v\left[ \left(\text{case } a \,\{\inl_{\typeB}(x) \Rightarrow w ; \, \inr_{\typeA}(y) \Rightarrow u\}\right)  / z \right]\right] =   \left[\text{case } a \,\{\inl_{\typeB}(x) \Rightarrow v[w/z] ; \, \inr_{\typeA}(y) \Rightarrow v[u/z]\} \right].
   \end{equation*}
@@ -788,7 +796,7 @@ This equality follows from the $\alpha$-equivalence and the equations in Figure 
    & = \left[ \text{case } a \,\{\inl_{\typeB}(x) \Rightarrow v[w/z] ; \, \inr_{\typeA}(y) \Rightarrow v[u/z]\}\right] 
 \end{align*}
 
-The proof that the distributive property is an isomorphism follows from the syntactic fusion law, the equations in Figure \ref{fig:equations-in-context-cond} and the equations $\beta_{\otimes_{e}}$ and $\eta_{\otimes_{e}}$. 
+The proof that the distributive property is an isomorphism follows from the syntactic fusion law, the equations in Figure \ref{fig:equations-in-context-cond}, the equations $\beta_{\otimes_{e}}$ and $\eta_{\otimes_{e}}$, the $\alpha$-equivalence, and Lemma \ref{lem:exh_and_sub}. 
 
 \begin{align*}
   &\left[ \text{pm } z \text{ to } a \otimes b. \text{ case } a\, \left\{ \begin{aligned}
@@ -816,9 +824,126 @@ The proof that the distributive property is an isomorphism follows from the synt
     \end{aligned} \Bigg\} \\ 
 \end{aligned}  
 \right\}\right] & (\text{fusion law}) \\
+& = \left[ \text{case } z' \,  
+\left\{
+  \begin{aligned} 
+  &\inl_{\typeB}(x') \Rightarrow \text{pm }  \inl_{\typeB}(a') \otimes b' [x'/a' \otimes b']  \text{ to } a \otimes b . \\  
+  & \hspace{10pt}\text{ case } a\, \Bigg\{ 
+    \begin{aligned}
+    & \inl_{\typeB}(x) \Rightarrow \inl_{\typeB \otimes \typeD}(x \otimes b);\\
+    & \inr_{\typeA}(y) \Rightarrow \inr_{\typeA \otimes \typeD} (y \otimes b)
+    \end{aligned} \Bigg\} \\
+  &\inr_{\typeA}(y') \Rightarrow \text{pm }  \inl_{\typeB}(a'') \otimes b'' [y'/ a'' \otimes y'']  \text{ to } a \otimes b . \\ 
+  & \hspace{10pt}\text{ case } a\, \Bigg\{ 
+    \begin{aligned}
+    & \inl_{\typeB}(x) \Rightarrow \inl_{\typeB \otimes \typeD}(x \otimes b);\\
+    & \inr_{\typeA}(y) \Rightarrow \inr_{\typeA \otimes \typeD} (y \otimes b)
+    \end{aligned} \Bigg\}  \\ 
+\end{aligned}  
+\right\}\right]  & (\eta_{\otimes_{e}}) \\
+& =  \left[ \text{case } z' \,  
+\left\{
+  \begin{aligned} 
+  &\inl_{\typeB}(x') \Rightarrow \text{ case } \inl_{\typeB}(a')\, \Bigg\{ 
+    \begin{aligned}
+    & \inl_{\typeB}(x) \Rightarrow \inl_{\typeB \otimes \typeD}(x \otimes b');\\
+    & \inr_{\typeA}(y) \Rightarrow \inr_{\typeA \otimes \typeD} (y \otimes b')
+    \end{aligned} \Bigg\} [x'/a' \otimes b'] \\
+  &\inr_{\typeA}(y') \Rightarrow \text{ case } \inl_{\typeA}(a'')\, \Bigg\{ 
+    \begin{aligned}
+    & \inl_{\typeB}(x) \Rightarrow \inl_{\typeB \otimes \typeD}(x \otimes b');\\
+    & \inr_{\typeA}(y) \Rightarrow \inr_{\typeA \otimes \typeD} (y \otimes b')
+    \end{aligned} \Bigg\} [y'/a'' \otimes b'']  \\ 
+\end{aligned}  
+\right\}\right]  &  (\beta_{\otimes_{e}}) \\
+& = \left[ \text{case } z' \,  
+\left\{
+  \begin{aligned} 
+  &\inl_{\typeB}(x') \Rightarrow \inl_{\typeB \otimes \typeD}(x \otimes b') [x'/a' \otimes b'] [a'/x]; \\
+  &\inr_{\typeA}(y') \Rightarrow  \inl_{\typeB \otimes \typeD}(x \otimes b') [y'/a'' \otimes b''] [a''/y']  
+  \end{aligned}  
+\right\}\right]  &  (\beta_{\text{case}}^{\text{inl}} \text{ and } \beta_{\text{case}}^{\text{inr}}  )  \\
+& = \left[ \text{case } z' \,
+\left\{
+  \begin{aligned} 
+  &\inl_{\typeB}(x') \Rightarrow \inl_{\typeB \otimes \typeD}(x'); \\
+  &\inr_{\typeA}(y') \Rightarrow  \inl_{\typeB \otimes \typeD}(y') 
+  \end{aligned}
+\right\}\right]  & \\
+& = \left[ \text{case } z' \,
+\left\{
+  \begin{aligned} 
+  &\inl_{\typeB}(x') \Rightarrow c[\inl_{\typeB \otimes \typeD}(x')/c]; \\
+  &\inr_{\typeA}(y') \Rightarrow  c[\inl_{\typeB \otimes \typeD}(y')/c] 
+  \end{aligned}
+\right\}\right]  & (\alpha) \\
+& =  z' & (\eta_{\text{case}}) 
 \end{align*}
 
-
+\begin{align*}
+&   \left[ \text{case } z' \,  \left\{
+  \begin{aligned} 
+  &\inl_{\typeB}(x') \Rightarrow \text{pm } x' \text{ to } a' \otimes b'. \, \inl_{\typeB}(a') \otimes b';\\
+  &\inr_{\typeA}(y') \Rightarrow \text{pm } y' \text{ to } a'' \otimes b''. \, \inr_{\typeA}(a'') \otimes b'' 
+  \end{aligned}  \right\}\right] \\
+\comp & \left[ \text{pm } z \text{ to } a \otimes b. \text{ case } a\, \left\{ 
+  \begin{aligned}
+    &\inl_{\typeB}(x) \Rightarrow \inl_{\typeB \otimes \typeD}(x \otimes b);\\
+    &\inr_{\typeA}(y) \Rightarrow \inr_{\typeA \otimes \typeD} (y \otimes b)
+  \end{aligned} \right\} \right] \\
+& = \begin{bmatrix}  \text{case } 
+  \left( \text{pm } z \text{ to } a \otimes b. \text{ case } a\, \left\{ 
+  \begin{aligned}
+    &\inl_{\typeB}(x) \Rightarrow \inl_{\typeB \otimes \typeD}(x \otimes b);\\
+    &\inr_{\typeA}(y) \Rightarrow \inr_{\typeA \otimes \typeD} (y \otimes b)
+  \end{aligned} \right\} \right) \\[15pt]
+   \left\{
+  \begin{aligned} 
+  &\inl_{\typeB}(x') \Rightarrow \text{pm } x' \text{ to } a' \otimes b'. \, \inl_{\typeB}(a') \otimes b';\\
+  &\inr_{\typeA}(y') \Rightarrow \text{pm } y' \text{ to } a'' \otimes b''. \, \inr_{\typeA}(a'') \otimes b'' 
+  \end{aligned}  \right\} \end{bmatrix} & (\text{Lemma } \ref{lem:exh_and_sub})
+\\
+  & =  \begin{bmatrix}  \text{case } 
+    \left( \text{case } a\, \left\{ 
+    \begin{aligned}
+      &\inl_{\typeB}(x) \Rightarrow \inl_{\typeB \otimes \typeD}(x \otimes b);\\
+      &\inr_{\typeA}(y) \Rightarrow \inr_{\typeA \otimes \typeD} (y \otimes b)
+    \end{aligned} \right\} [z/ a \otimes b] \right) \\[15pt]
+     \left\{
+    \begin{aligned} 
+    &\inl_{\typeB}(x') \Rightarrow  \inl_{\typeB}(a') \otimes b' \, [x'/a' \otimes b'];\\
+    &\inr_{\typeA}(y') \Rightarrow  \inr_{\typeA}(a'') \otimes b''\, [y'/a'' \otimes b'']
+    \end{aligned}  \right\} \end{bmatrix} &  (\eta_{\otimes_{e}}) \\
+  & =  \begin{bmatrix} \text{case } a\, \left\{ 
+    \begin{aligned}
+      &\inl_{\typeB}(x) \Rightarrow \text{case } \left(\inl_{\typeB \otimes \typeD}(x \otimes b)\right) \Bigg\{ 
+        \begin{aligned} 
+        &\inl_{\typeB}(x') \Rightarrow  \inl_{\typeB}(a') \otimes b';\\
+        &\inr_{\typeA}(y') \Rightarrow  \inr_{\typeA}(a'') \otimes b'' 
+        \end{aligned} \Bigg\} \\  & [z/ a \otimes b] [x'/a'\otimes b'];\\
+      &\inr_{\typeA}(y) \Rightarrow \text{case } \left(\inr_{\typeA \otimes \typeD} (y \otimes b)\right) \Bigg\{ 
+        \begin{aligned} 
+        &\inl_{\typeB}(x') \Rightarrow \inl_{\typeB}(a') \otimes b';\\
+        &\inr_{\typeA}(y') \Rightarrow  \inr_{\typeA}(a'') \otimes b'' 
+        \end{aligned} \Bigg\} \\&[z/ a \otimes b] [y'/a''\otimes b'']
+    \end{aligned}  \right\}   \end{bmatrix} & (\text{fusion law})\\
+  & = \left[\text{ case } a\, \left\{ 
+    \begin{aligned}
+      &\inl_{\typeB}(x) \Rightarrow  \inl_{\typeB}(a') \otimes b' [z/ a \otimes b] [x'/a'\otimes b'] [x \otimes b/ x'];\\
+      &\inr_{\typeA}(y) \Rightarrow  \inr_{\typeA}(a'') \otimes b'' [z/ a \otimes b] [y'/a''\otimes b''] [x \otimes b/ y']
+    \end{aligned} \right\} \right] & (\beta_{\text{case}}^{\text{inl}} \text{ and } \beta_{\text{case}}^{\text{inr}}) \\
+  & = \left[\text{ case } a\, \left\{ 
+    \begin{aligned}
+        &\inl_{\typeB}(x) \Rightarrow  \inl_{\typeB}(a') \otimes b' [z/ a \otimes b] [x \otimes b/a'\otimes b'];\\
+        &\inr_{\typeA}(y) \Rightarrow  \inr_{\typeA}(a'') \otimes b'' [z/ a \otimes b] [x \otimes b/a''\otimes b''] 
+    \end{aligned} \right\} \right] &  \\
+  & = \left[\text{ case } a\, \left\{
+    \begin{aligned}
+      &\inl_{\typeB}(x) \Rightarrow  \inl_{\typeB}(x) \otimes b;\\
+      &\inr_{\typeA}(y) \Rightarrow  \inr_{\typeA}(x) \otimes b
+    \end{aligned} \right\}  [z/ a \otimes b]  \right] & (\beta_{\otimes_{e}}) \\
+  & = a \otimes b [z/ a \otimes b] = z & (\eta_{\text{case}})
+\end{align*} 
 
 \end{proof}
 
