@@ -477,7 +477,7 @@ A \oplus B \to C$ that makes the diagram below commute.
         \[
                 [\inl \otimes \id, \inr \otimes \id] : B \otimes A \oplus C \otimes                     A \to (B \oplus C) \otimes A
         \]
-        is actually as isomorphism. We will denote the respective inverse
+        is actually an isomorphism. We will denote the respective inverse
         by $\dist$. Note that if $\catC$ is monoidal closed then it is automatically
         distributive as left adjoints preserve all colimits.
 \end{definition}
@@ -535,7 +535,11 @@ interpretation is defined inductively in \autoref{fig:denotational_sem cond}.
 
 The next step is to demonstrate that the equations in Figure \ref{fig:equations-in-context-cond} are valid under the given interpretation. To achieve this, we first establish the following lemma.
 
-\begin{lemma} \label{lem_interpret_exch:sub} (\text{Exchange and Subsitution}) For all judgements $\Gamma,x:\typeA, y:\typeB, \Delta \vljud v: \typeD$, $\Gamma,x:\typeA \vljud v: \typeB$ and $\Delta \vljud w: \typeA$  the following equations hold: 
+\begin{lemma}[Exchange and Substitution]
+\label{lem_interpret_exch:sub} 
+For all judgements $\Gamma,x:\typeA, y:\typeB, \Delta \vljud v: \typeD, \> $
+$\Gamma,x:\typeA \vljud v: \typeB$ and $\Delta \vljud w: \typeA$  the following
+equations hold: 
   \begin{equation*}
 \begin{split}
   [\![\Gamma,x:\typeA, y:\typeB, \Delta \vljud v: \typeD]\!] = [\![\Gamma,y:\typeB,x:\typeA,  \Delta \vljud v: \typeD]\! ] \comp \text{exch}_{\Gamma, \underline{ \typeA, \typeB} ,\Delta} \\
@@ -546,84 +550,127 @@ The next step is to demonstrate that the equations in Figure \ref{fig:equations-
 
 \begin{proof}
   We begin with the exchange property. The rules involving injections are
-  straightforward. As for the rule  (case), we distinguish between the
-  scenarios where both variables ($x : \typeA$ and $y : \typeB$) are in
+  straightforward. As for the rule~$\rulename{case}$, we distinguish between
+  the scenarios where both variables ($x : \typeA$ and $y : \typeB$) are in
   $\Gamma$, both are in $\Delta$, or they are distributed across $\Gamma$ and
-  $\Delta$.  The fist case follows by induction, the bifunctoriality of the
-  tensor product, and the coherence theorem for symmetric monoidal categories.
-  In detail,
+  $\Delta$. We begin with the first case. 
   \begin{align*}
-    & [\![\Gamma,x:\typeA, y:\typeB, \Delta \vljud \text{case }  v\,  \{\text{inl}_{\typeE} (a) \Rightarrow w ;\, \text{inr}_{\typeD} (b) \Rightarrow u\}: \typeF]\!] \\ 
-    &\triangleq     \left[[\![ w ]\!] ,[\![ u ]\!]\right] \comp (\text{jn}_{E;\typeD}\comp \sw \oplus \text{jn}_{E;\typeE } \comp \sw) \comp ([\![ v  ]\!] \otimes \text{id})  \comp \text{sp}_{\Gamma_{1},\typeA, \typeB,\Gamma_{2};E} \comp \text{sh}_{\Gamma,\typeA, \typeB,\Delta} \\
-    & =  \left[[\![ w ]\!] ,[\![ u ]\!]\right] \comp (\text{jn}_{E;\typeD}\comp \sw \oplus \text{jn}_{E;\typeE } \comp \sw)  \comp ([\![v]\! ]\comp\, \text{exch}_{\Gamma_{1}, \underline{\typeA,\typeB},\Gamma_{2}} \otimes \text{id}) \comp \text{sp}_{\Gamma_{1},\typeA, \typeB,\Gamma_{2};E} \comp \text{sh}_{\Gamma,\typeA, \typeB,\Delta} \\
-    &  =  \left[[\![ w ]\!] ,[\![ u ]\!]\right] \comp (\text{jn}_{E;\typeD}\comp \sw \oplus \text{jn}_{E;\typeE } \comp \sw)  \comp ([\![ v ]\!]\otimes \text{id}) \comp (\text{exch}_{\Gamma,  \underline{\typeA,  \typeB}, \Delta} \otimes \text{id}) \comp \text{sp}_{\Gamma_{1},\typeA,\typeB, \Gamma_{2};E}  & {\text{(bifunctoriality of $\otimes$)}}\\
-    & \hspace{10pt} \comp  \text{sh}_{\Gamma,\typeA, \typeB,\Delta} \\
-    & =    \left[[\![ w ]\!] ,[\![ u ]\!]\right] \comp (\text{jn}_{E;\typeD}\comp \sw \oplus \text{jn}_{E;\typeE } \comp \sw)   \comp ([\![v]\!]\otimes \text{id}) \comp \text{sp}_{\Gamma_{1},\typeB,\typeA, \Gamma_{2};E}  \comp \text{sh}_{\Gamma,\typeB, \typeA,\Delta}  \comp \text{exch}_{\Gamma,  \underline{\typeA,\typeB}, \Delta} & {\text{(coherence)}} \\
-    & \triangleq   [\![\Gamma,y:\typeB, x:\typeA, \Delta \vljud \text{case } v\,  \{\text{inl}_{\typeE} (a) \Rightarrow w ;\, \text{inr}_{\typeD} (b) \Rightarrow u\}: \typeF]\!] \comp \text{exch}_{\Gamma,  \underline{\typeA, \typeB}, \Delta}
+    & \sem{\Gamma,x, y, \Delta \vljud \text{case }  v\,  \{\text{inl}_{\typeD} (a) \Rightarrow w ;\, \text{inr}_{\typeE} (b) \Rightarrow u\}} \\ 
+    &\triangleq   [\sem{w}  , \sem{u}] \comp (\text{join}_{E;\typeD}
+    \comp \sw \oplus \text{jn}_{E;\typeE } \comp \sw) 
+    \comp (\sem{ v} \otimes \id)  
+    \comp \text{sp}_{\Gamma_{1},\typeA, \typeB,\Gamma_{2};E} 
+    \comp \text{sh}_{\Gamma,\typeA, \typeB,\Delta}
+    & \\
+    & =  [\sem{w},\sem{u}] \comp (\text{jn}_{E;\typeD}
+    \comp \sw \oplus \text{jn}_{E;\typeE } \comp \sw) 
+    \comp (\sem{v} \comp\, \text{exch}_{\Gamma_{1}, \underline{\typeA,\typeB},\Gamma_{2}} 
+    \otimes \id) \comp \text{sp}_{\Gamma_{1},\typeA, \typeB,\Gamma_{2};E} 
+    \comp \text{sh}_{\Gamma,\typeA, \typeB,\Delta}
+    & \text{(Induction)}\\
+    &  =  \dots  \comp (\sem{v} \otimes \id) \comp (\text{exch}_{\Gamma,  \underline{\typeA,  \typeB}, \Delta} \otimes \text{id}) \comp \text{sp}_{\Gamma_{1},\typeA,\typeB, \Gamma_{2};E} \comp  \text{sh}_{\Gamma,\typeA, \typeB,\Delta} & {}\\
+    & = \dots \comp (\sem{v} \otimes \id) \comp \text{sp}_{\Gamma_{1},\typeB,\typeA, \Gamma_{2};E} 
+          \comp \text{sh}_{\Gamma,\typeB, \typeA,\Delta}  
+          \comp \text{exch}_{\Gamma,  \underline{\typeA,\typeB}, \Delta} 
+    & {\text{(Coherence)}} \\
+    & \triangleq \sem{\Gamma,y, x, \Delta \vljud \text{case } v\,  \{\text{inl}_{\typeE} (a) \Rightarrow w ;\, \text{inr}_{\typeD} (b) \Rightarrow u\}} 
+    \comp \text{exch}_{\Gamma,  \underline{\typeA, \typeB}, \Delta}
   \end{align*}
-
-
-The second case follows by induction, the coherence theorem for symmetric monoidal categories, the universal property of the coproduct, and naturality of $\alpha,$ $\lambda,$ $\rho,$ and $\sw$ and their inverses.
-
+Let us now focus on the second case, \ie\ both variables live in $\Delta$.
+%
+%The second case follows by induction, the coherence theorem for symmetric monoidal categories, the universal property of the coproduct, and naturality of $\alpha,$ $\lambda,$ $\rho,$ and $\sw$ and their inverses.
+%
 % \left[[\![ w ]\!] ,[\![ u ]\!]\right] \comp (\text{jn}_{\Delta_{1},\typeA,\typeB}\comp \sw \oplus \text{jn}_{\Delta_{1},\typeA,\typeB} \comp \sw 
-
 \begin{align*}
-  & [\![\Gamma,x:\typeA, y:\typeB, \Delta \vljud \text{case } \,  \{\text{inl}_{\typeE} (a) \Rightarrow w ;\, \text{inr}_{\typeD} (b) \Rightarrow u\}: \typeF]\!] \\
-  & \triangleq   \left[[\![ w ]\!] ,[\![ u ]\!]\right] \comp (\text{jn}_{\Delta_{1},\typeA,\typeB,  \Delta_{2};\typeD}\comp \sw \oplus \text{jn}_{\Delta_{1},\typeA,\typeB,  \Delta_{2};\typeE} \comp \sw) \comp \dist \comp ([\![v]\!] \otimes \text{id}) \comp \text{sp}_{E; \Delta_{1},\typeA,\typeB,  \Delta_{2}} \comp \text{sh}_{\Gamma;\typeA, \typeB,\Delta}  \\
-  & = [[\![ w ]\!]  \comp \text{exch}_{\Delta_{1},\underline{\typeA,\typeB},  \Delta_{2},\typeD},    [\![u ]\!] \comp \text{exch}_{\Delta_{1},\underline{\typeA,\typeB},  \Delta_{2},\typeE} ] \comp (\text{jn}_{\Delta_{1},\typeA,\typeB,  \Delta_{2};\typeD}\comp \sw \oplus \text{jn}_{\Delta_{1},\typeA,\typeB,  \Delta_{2};\typeE} \comp \sw) \comp \dist \\
-  & \hspace{10pt} \comp ([\![  v : \typeD \oplus \typeE  ]\!] \otimes \text{id}) \comp\text{sp}_{E; \Delta_{1},\typeA,\typeB,  \Delta_{2}} \comp \text{sh}_{\Gamma,\typeA, \typeB,\Delta} \\
+  & \sem{\Gamma,x, y, \Delta \vljud \text{case } \, v\, \{\text{inl} (a) \Rightarrow w ;\, \text{inr} (b) \Rightarrow u\}} \\
+  & \triangleq  [\sem{w} ,\sem{u}]\comp (\text{jn}
+  \comp \sw \oplus \text{jn} \comp \sw) 
+  \comp \dist \comp (\sem{v} \otimes \id) \comp 
+  \text{sp}_{} 
+  \comp \text{sh}_{}  \\
+  & = [\sem{ w }  \comp \text{exch}, \sem{u}\comp \text{exch}] \comp (\text{jn}\comp \sw \oplus \text{jn} \comp \sw) \comp \dist \comp (\sem{v} \otimes \id) \comp\text{sp} \comp \text{sh}
+  & \text{(Induction)}\\
+  & = [\sem{ w }, \sem{u}] 
+  \comp (\text{exch} \oplus \text{exch}) 
+  \comp (\text{jn}\comp \sw \oplus \text{jn} \comp \sw) 
+  \comp \dist \comp (\sem{v} \otimes \id) \comp\text{sp} \comp \text{sh} 
+  & \text{(Coproduct laws)}
+  \\
+  & = [\sem{ w }, \sem{u}] 
+  \comp (\text{jn}\comp \sw \oplus \text{jn} \comp \sw) 
+  \comp (\id \otimes \text{exch} \oplus \id \otimes \text{exch})
+  \comp \dist \comp (\sem{v} \otimes \id) \comp\text{sp} \comp \text{sh} 
+  & \text{(Coherence)}
+  \\
+  & = [\sem{ w }, \sem{u}] 
+  \comp (\text{jn}\comp \sw \oplus \text{jn} \comp \sw) 
+  \comp \dist 
+  \comp (\id \otimes \text{exch}) \comp (\sem{v} \otimes \id) \comp\text{sp} \comp \text{sh} 
+  & \text{(Naturality)}
+  \\
+  & = [\sem{ w }, \sem{u}] 
+  \comp (\text{jn}\comp \sw \oplus \text{jn} \comp \sw) 
+  \comp \dist 
+  \comp (\sem{v} \otimes \id) \comp\text{sp} \comp \text{sh} 
+  \comp \text{exch}
+  & \text{(Coherence)}
+  \\
+  & \triangleq \sem{\Gamma,y, x, \Delta \vljud \text{case } v\,  \{\text{inl} (a) \Rightarrow w ;\, \text{inr} (b) \Rightarrow u\}} 
+  \comp \text{exch}_{}
   %& = [[\![ w ]\!] \comp \text{jn}_{\Delta_{1} ,\typeB,\typeA,  \Delta_{2};\typeD} \comp \text{sp}_{\Delta_{1}, \typeB, \typeA, \Delta_{2};\typeD} \comp  \text{exch}_{\Delta_{1},\underline{\typeA,\typeB},  \Delta_{2},\typeD} \comp  \text{jn}_{\Delta_{1},\typeA,\typeB,  \Delta_{2};\typeD}  ,    [\![u ]\!] \comp \text{jn}_{\Delta_{1} ,\typeB,\typeA,  \Delta_{2};\typeE} & {\text{(coherence)}} \\
   %& \hspace{10pt} \comp \text{sp}_{\Delta_{1}, \typeB, \typeA, \Delta_{2};\typeE} \comp  \text{exch}_{\Delta_{1},\underline{\typeA,\typeB},  \Delta_{2},\typeE} \comp  \text{jn}_{\Delta_{1},\typeA,\typeB,  \Delta_{2};\typeE} ] \comp \dist \comp \sw \comp ([\![  v : \typeD \oplus \typeE  ]\!] \otimes \text{id}) \\
   %& \hspace{10pt} \comp\text{sp}_{E; \Delta_{1},\typeA,\typeB,  \Delta_{2}} \comp \text{sh}_{\Gamma,\typeA, \typeB,\Delta} \\
-  & = [[\![ w ]\!] ,  [\![u ]\!]] \comp  (\text{jn}_{\Delta_{1},\typeA,\typeB,  \Delta_{2};\typeD} \comp \sw \oplus \text{jn}_{\Delta_{1},\typeA,\typeB,  \Delta_{2};\typeE} \comp \sw ) \comp (\text{sp}_{\typeD;\Delta_{1}, \typeB, \typeA, \Delta_{2}} \comp  \text{exch}_{\typeD, \Delta_{1},\underline{\typeA,\typeB},  \Delta_{2}}   & {\text{(coherence and}} \\
-  & \hspace{10pt} \comp \text{jn}_{\typeD;\Delta_{1},\typeA,\typeB,  \Delta_{2}} \oplus \text{sp}_{\typeE;\Delta_{1}, \typeB, \typeA, \Delta_{2}} \comp  \text{exch}_{\typeE, \Delta_{1},\underline{\typeA,\typeB},  \Delta_{2}} \comp \text{jn}_{\typeE;\Delta_{1},\typeA,\typeB,  \Delta_{2}} )   \comp \dist \comp \sw \comp ([\![  v : \typeD \oplus \typeE  ]\!] & {\text{law of coproducts)}}  \\
-  & \hspace{10pt} \otimes \text{id})  \comp\text{sp}_{E; \Delta_{1},\typeA,\typeB,  \Delta_{2}} \comp \text{sh}_{\Gamma,\typeA, \typeB,\Delta} \\ 
+%  & = [[\![ w ]\!] ,  [\![u ]\!]] \comp  (\text{jn}_{\Delta_{1},\typeA,\typeB,  \Delta_{2};\typeD} \comp \sw \oplus \text{jn}_{\Delta_{1},\typeA,\typeB,  \Delta_{2};\typeE} \comp \sw ) \comp (\text{sp}_{\typeD;\Delta_{1}, \typeB, \typeA, \Delta_{2}} \comp  \text{exch}_{\typeD, \Delta_{1},\underline{\typeA,\typeB},  \Delta_{2}}   & {\text{(coherence and}} \\
+%  & \hspace{10pt} \comp \text{jn}_{\typeD;\Delta_{1},\typeA,\typeB,  \Delta_{2}} \oplus \text{sp}_{\typeE;\Delta_{1}, \typeB, \typeA, \Delta_{2}} \comp  \text{exch}_{\typeE, \Delta_{1},\underline{\typeA,\typeB},  \Delta_{2}} \comp \text{jn}_{\typeE;\Delta_{1},\typeA,\typeB,  \Delta_{2}} )   \comp \dist \comp \sw \comp ([\![  v : \typeD \oplus \typeE  ]\!] & {\text{law of coproducts)}}  \\
+%  & \hspace{10pt} \otimes \text{id})  \comp\text{sp}_{E; \Delta_{1},\typeA,\typeB,  \Delta_{2}} \comp \text{sh}_{\Gamma,\typeA, \typeB,\Delta} \\ 
 \end{align*}
-The commutativity of the following diagram follows from the universal property of the coproduct and the naturality of $\alpha,$ $\lambda,$ $\rho,$ and $\sw$, their inverses, and their composition. Here $\phi$ corresponds to $\text{sp}_{\typeD \oplus \typeE;\Delta_{1}, \typeB, \typeA, \Delta_{2}} \comp  \text{exch}_{\typeD \oplus \typeE, \Delta_{1},\underline{\typeA,\typeB},  \Delta_{2}} \comp \text{jn}_{\typeD \oplus \typeE;\Delta_{1},\typeA,\typeB,  \Delta_{2}}$, $\phi_1$ to $\text{sp}_{\typeD;\Delta_{1}, \typeB, \typeA, \Delta_{2}} \comp  \text{exch}_{\typeD, \Delta_{1},\underline{\typeA,\typeB},  \Delta_{2}} \comp \text{jn}_{\typeE;\Delta_{1},\typeA,\typeB,  \Delta_{2}}$, and $\phi_2$ to $\text{sp}_{\typeE;\Delta_{1}, \typeB, \typeA, \Delta_{2}} \comp  \text{exch}_{\typeE, \Delta_{1},\underline{\typeA,\typeB},  \Delta_{2}} \comp \text{jn}_{\typeE;\Delta_{1},\typeA,\typeB,  \Delta_{2}}$.
+%The commutativity of the following diagram follows from the universal property of the coproduct and the naturality of $\alpha,$ $\lambda,$ $\rho,$ and $\sw$, their inverses, and their composition. Here $\phi$ corresponds to $\text{sp}_{\typeD \oplus \typeE;\Delta_{1}, \typeB, \typeA, \Delta_{2}} \comp  \text{exch}_{\typeD \oplus \typeE, \Delta_{1},\underline{\typeA,\typeB},  \Delta_{2}} \comp \text{jn}_{\typeD \oplus \typeE;\Delta_{1},\typeA,\typeB,  \Delta_{2}}$, $\phi_1$ to $\text{sp}_{\typeD;\Delta_{1}, \typeB, \typeA, \Delta_{2}} \comp  \text{exch}_{\typeD, \Delta_{1},\underline{\typeA,\typeB},  \Delta_{2}} \comp \text{jn}_{\typeE;\Delta_{1},\typeA,\typeB,  \Delta_{2}}$, and $\phi_2$ to $\text{sp}_{\typeE;\Delta_{1}, \typeB, \typeA, \Delta_{2}} \comp  \text{exch}_{\typeE, \Delta_{1},\underline{\typeA,\typeB},  \Delta_{2}} \comp \text{jn}_{\typeE;\Delta_{1},\typeA,\typeB,  \Delta_{2}}$.
 
-\hspace{-12pt} 
-\begin{tikzpicture} 
-  \matrix (m) [matrix of math nodes,row sep=4em,column sep=6em,minimum width=1em]
-  {
-    ([\![\typeD ]\!]\oplus [\![\typeE]\!]) \otimes \left([\![ \Delta_{1},\typeA,\typeB, \Delta_{2} ]\!]\right)   & ([\![\typeD ]\!]\oplus [\![\typeE]\!]) \otimes  \left([\![ \Delta_{1},\typeB,\typeA, \Delta_{2} ]\!]\right)      \\
-    \left(  [\![\typeD ]\!] \otimes [\![ \Delta_{1},\typeA,\typeB, \Delta_{2} ]\!]  \right) \oplus \left( [\![\typeE ]\!] \otimes [\![ \Delta_{1},\typeA,\typeB, \Delta_{2} ]\!]  \right)  &  \left( [\![\typeD ]\!] \otimes [\![ \Delta_{1},\typeB,\typeA, \Delta_{2} ]\!] \right) \oplus \left([\![\typeE ]\!] \otimes [\![ \Delta_{1},\typeB,\typeA, \Delta_{2} ]\!] \right) \\
-  };
-  \path[-stealth]
-    (m-1-1) edge node [above] {$ \phi$} (m-1-2)
-    (m-2-1)  edge[bend right=-10] node [pos=0.5, shift={(-1.4, 0)}] {$[\inl \otimes \text{id}, \inr \otimes\text{id}]$} (m-1-1)
-    (m-1-1) edge [bend left=10] node [pos=0.5, shift={(0.4,0)}] {$\dist$} (m-2-1)
-    (m-2-1) edge node [above] {$ \phi_1 \oplus \phi_2 $} (m-2-2)
-    (m-1-2) edge [bend left=10] node [pos=0.5, shift={(0.4,0)}] {$\dist$} (m-2-2)
-    (m-2-2)  edge[bend right=-10] node [pos=0.5, shift={(-1.4, 0)}] {$[\inl \otimes \text{id},\inr \otimes \text{id}]$} (m-1-2)
-    ;
-\end{tikzpicture}
-
-The commutativity of the diagram is established as follows:
-\begin{align*}
-  & [\inl \otimes \text{id},\inr \otimes \text{id}] \comp (\phi_1 \oplus \phi_2)\\  
-  & = [\inl \otimes \text{id},\inr \otimes \text{id}] \comp [\inl \comp \phi_1,\inr \comp \phi_2 ] \\
-  & = [(\inl \otimes \text{id}) \comp \phi_1,(\inr \otimes \text{id}) \comp \phi_2 ] & {\text{(law of coproducts)}}  \\
-  & = [\phi \comp (\inl \otimes \text{id}), \phi \comp (\inr \otimes \text{id})] & {\text{(naturality)}} \\
-  & = \phi \comp  [\inl \otimes \text{id},\inr \otimes \text{id}]  & {\text{(law of coproducts)}}
-\end{align*}
+%\hspace{-12pt} 
+%\begin{tikzpicture} 
+%  \matrix (m) [matrix of math nodes,row sep=4em,column sep=6em,minimum width=1em]
+%  {
+%    ([\![\typeD ]\!]\oplus [\![\typeE]\!]) \otimes \left([\![ \Delta_{1},\typeA,\typeB, \Delta_{2} ]\!]\right)   & ([\![\typeD ]\!]\oplus [\![\typeE]\!]) \otimes  \left([\![ \Delta_{1},\typeB,\typeA, \Delta_{2} ]\!]\right)      \\
+%    \left(  [\![\typeD ]\!] \otimes [\![ \Delta_{1},\typeA,\typeB, \Delta_{2} ]\!]  \right) \oplus \left( [\![\typeE ]\!] \otimes [\![ \Delta_{1},\typeA,\typeB, \Delta_{2} ]\!]  \right)  &  \left( [\![\typeD ]\!] \otimes [\![ \Delta_{1},\typeB,\typeA, \Delta_{2} ]\!] \right) \oplus \left([\![\typeE ]\!] \otimes [\![ \Delta_{1},\typeB,\typeA, \Delta_{2} ]\!] \right) \\
+%  };
+%  \path[-stealth]
+%    (m-1-1) edge node [above] {$ \phi$} (m-1-2)
+%    (m-2-1)  edge[bend right=-10] node [pos=0.5, shift={(-1.4, 0)}] {$[\inl \otimes \text{id}, \inr \otimes\text{id}]$} (m-1-1)
+%    (m-1-1) edge [bend left=10] node [pos=0.5, shift={(0.4,0)}] {$\dist$} (m-2-1)
+%    (m-2-1) edge node [above] {$ \phi_1 \oplus \phi_2 $} (m-2-2)
+%    (m-1-2) edge [bend left=10] node [pos=0.5, shift={(0.4,0)}] {$\dist$} (m-2-2)
+%    (m-2-2)  edge[bend right=-10] node [pos=0.5, shift={(-1.4, 0)}] {$[\inl \otimes \text{id},\inr \otimes \text{id}]$} (m-1-2)
+%    ;
+%\end{tikzpicture}
+%
+%The commutativity of the diagram is established as follows:
+%\begin{align*}
+%  & [\inl \otimes \text{id},\inr \otimes \text{id}] \comp (\phi_1 \oplus \phi_2)\\  
+%  & = [\inl \otimes \text{id},\inr \otimes \text{id}] \comp [\inl \comp \phi_1,\inr \comp \phi_2 ] \\
+%  & = [(\inl \otimes \text{id}) \comp \phi_1,(\inr \otimes \text{id}) \comp \phi_2 ] & {\text{(law of coproducts)}}  \\
+%  & = [\phi \comp (\inl \otimes \text{id}), \phi \comp (\inr \otimes \text{id})] & {\text{(naturality)}} \\
+%  & = \phi \comp  [\inl \otimes \text{id},\inr \otimes \text{id}]  & {\text{(law of coproducts)}}
+%\end{align*}
  
-As a result it holds that 
-\begin{align*}
-  & [[\![ w ]\!] ,  [\![u ]\!]] \comp  (\text{jn}_{\Delta_{1},\typeA,\typeB,  \Delta_{2};\typeD} \comp \sw \oplus \text{jn}_{\Delta_{1},\typeA,\typeB,  \Delta_{2};\typeE} \comp \sw ) \comp (\text{sp}_{\typeD;\Delta_{1}, \typeB, \typeA, \Delta_{2}} \comp  \text{exch}_{\typeD, \Delta_{1},\underline{\typeA,\typeB},  \Delta_{2}}   \\
-  & \hspace{10pt} \comp \text{jn}_{\typeD;\Delta_{1},\typeA,\typeB,  \Delta_{2}} \oplus \text{sp}_{\typeE;\Delta_{1}, \typeB, \typeA, \Delta_{2}} \comp  \text{exch}_{\typeE, \Delta_{1},\underline{\typeA,\typeB},  \Delta_{2}} \comp \text{jn}_{\typeE;\Delta_{1},\typeA,\typeB,  \Delta_{2}} )   \comp \dist \comp \sw \comp ([\![  v : \typeD \oplus \typeE  ]\!]  \\
-  & \hspace{10pt} \otimes \text{id})  \comp\text{sp}_{E; \Delta_{1},\typeA,\typeB,  \Delta_{2}} \comp \text{sh}_{\Gamma,\typeA, \typeB,\Delta} \\
-  & = [[\![ w ]\!] ,  [\![u ]\!]] \comp  (\text{jn}_{\Delta_{1},\typeA,\typeB,  \Delta_{2};\typeD} \comp \sw \oplus \text{jn}_{\Delta_{1},\typeA,\typeB,  \Delta_{2};\typeE} \comp \sw ) \comp \dist \comp \text{sp}_{\typeD \oplus \typeE;\Delta_{1}, \typeB, \typeA, \Delta_{2}} \comp  \text{exch}_{\typeD \oplus \typeE, \Delta_{1},\underline{\typeA,\typeB},  \Delta_{2}} \\
-  & \hspace{10pt} \comp \text{jn}_{\typeD \oplus \typeE;\Delta_{1},\typeA,\typeB,  \Delta_{2}} \comp ([\![  v ]\!] \otimes \text{id})  \comp\text{sp}_{E; \Delta_{1},\typeA,\typeB,  \Delta_{2}} \comp \text{sh}_{\Gamma,\typeA, \typeB,\Delta}\\
-  & = [[\![ w ]\!] ,  [\![u ]\!]] \comp  (\text{jn}_{\Delta_{1},\typeA,\typeB,  \Delta_{2};\typeD} \comp \sw \oplus \text{jn}_{\Delta_{1},\typeA,\typeB,  \Delta_{2};\typeE} \comp \sw ) \comp \dist  \comp ([\![  v  ]\!] \otimes \text{id}) \comp \text{sp}_{E;\Delta_{1}, \typeB, \typeA, \Delta_{2}} & {\text{(naturality)}} \\
-  & \hspace{10pt}  \comp  \text{exch}_{E, \Delta_{1},\underline{\typeA,\typeB},  \Delta_{2}} \comp  \text{jn}_{E ;\Delta_{1},\typeA,\typeB,  \Delta_{2}}   \comp\text{sp}_{E; \Delta_{1},\typeA,\typeB,  \Delta_{2}} \comp \text{sh}_{\Gamma,\typeA, \typeB,\Delta} \\
-  & = [[\![ w ]\!] ,  [\![u ]\!]] \comp  (\text{jn}_{\Delta_{1},\typeA,\typeB,  \Delta_{2};\typeD} \comp \sw \oplus \text{jn}_{\Delta_{1},\typeA,\typeB,  \Delta_{2};\typeE} \comp \sw ) \comp \dist  \comp ([\![  v  ]\!] \otimes \text{id}) \comp \text{sp}_{E; \Delta_{1}, \typeB,\typeA,  \Delta_{2}} & {\text{(coherence)}} \\
-  & \hspace{10pt} \comp  \text{sh}_{\Gamma; \typeB,\typeA, \Delta} \comp  \text{exch}_{E, \Delta_{1},\underline{\typeA,\typeB},  \Delta_{2}} \\
-  & \triangleq [\![\Gamma,y:\typeB, x:\typeA, \Delta \vljud \text{case } \,  \{\text{inl}_{\typeD} (a) \Rightarrow w ;\, \text{inr}_{\typeE} (b) \Rightarrow u\}: \typeF]\!] \comp \text{exch}_{\Gamma,\underline{\typeA,  \typeB}, \Delta}
-\end{align*}
+%As a result it holds that 
+%\begin{align*}
+%  & [[\![ w ]\!] ,  [\![u ]\!]] \comp  (\text{jn}_{\Delta_{1},\typeA,\typeB,  \Delta_{2};\typeD} \comp \sw \oplus \text{jn}_{\Delta_{1},\typeA,\typeB,  \Delta_{2};\typeE} \comp \sw ) \comp (\text{sp}_{\typeD;\Delta_{1}, \typeB, \typeA, \Delta_{2}} \comp  \text{exch}_{\typeD, \Delta_{1},\underline{\typeA,\typeB},  \Delta_{2}}   \\
+%  & \hspace{10pt} \comp \text{jn}_{\typeD;\Delta_{1},\typeA,\typeB,  \Delta_{2}} \oplus \text{sp}_{\typeE;\Delta_{1}, \typeB, \typeA, \Delta_{2}} \comp  \text{exch}_{\typeE, \Delta_{1},\underline{\typeA,\typeB},  \Delta_{2}} \comp \text{jn}_{\typeE;\Delta_{1},\typeA,\typeB,  \Delta_{2}} )   \comp \dist \comp \sw \comp ([\![  v : \typeD \oplus \typeE  ]\!]  \\
+%  & \hspace{10pt} \otimes \text{id})  \comp\text{sp}_{E; \Delta_{1},\typeA,\typeB,  \Delta_{2}} \comp \text{sh}_{\Gamma,\typeA, \typeB,\Delta} \\
+%  & = [[\![ w ]\!] ,  [\![u ]\!]] \comp  (\text{jn}_{\Delta_{1},\typeA,\typeB,  \Delta_{2};\typeD} \comp \sw \oplus \text{jn}_{\Delta_{1},\typeA,\typeB,  \Delta_{2};\typeE} \comp \sw ) \comp \dist \comp \text{sp}_{\typeD \oplus \typeE;\Delta_{1}, \typeB, \typeA, \Delta_{2}} \comp  \text{exch}_{\typeD \oplus \typeE, \Delta_{1},\underline{\typeA,\typeB},  \Delta_{2}} \\
+%  & \hspace{10pt} \comp \text{jn}_{\typeD \oplus \typeE;\Delta_{1},\typeA,\typeB,  \Delta_{2}} \comp ([\![  v ]\!] \otimes \text{id})  \comp\text{sp}_{E; \Delta_{1},\typeA,\typeB,  \Delta_{2}} \comp \text{sh}_{\Gamma,\typeA, \typeB,\Delta}\\
+%  & = [[\![ w ]\!] ,  [\![u ]\!]] \comp  (\text{jn}_{\Delta_{1},\typeA,\typeB,  \Delta_{2};\typeD} \comp \sw \oplus \text{jn}_{\Delta_{1},\typeA,\typeB,  \Delta_{2};\typeE} \comp \sw ) \comp \dist  \comp ([\![  v  ]\!] \otimes \text{id}) \comp \text{sp}_{E;\Delta_{1}, \typeB, \typeA, \Delta_{2}} & {\text{(naturality)}} \\
+%  & \hspace{10pt}  \comp  \text{exch}_{E, \Delta_{1},\underline{\typeA,\typeB},  \Delta_{2}} \comp  \text{jn}_{E ;\Delta_{1},\typeA,\typeB,  \Delta_{2}}   \comp\text{sp}_{E; \Delta_{1},\typeA,\typeB,  \Delta_{2}} \comp \text{sh}_{\Gamma,\typeA, \typeB,\Delta} \\
+%  & = [[\![ w ]\!] ,  [\![u ]\!]] \comp  (\text{jn}_{\Delta_{1},\typeA,\typeB,  \Delta_{2};\typeD} \comp \sw \oplus \text{jn}_{\Delta_{1},\typeA,\typeB,  \Delta_{2};\typeE} \comp \sw ) \comp \dist  \comp ([\![  v  ]\!] \otimes \text{id}) \comp \text{sp}_{E; \Delta_{1}, \typeB,\typeA,  \Delta_{2}} & {\text{(coherence)}} \\
+%  & \hspace{10pt} \comp  \text{sh}_{\Gamma; \typeB,\typeA, \Delta} \comp  \text{exch}_{E, \Delta_{1},\underline{\typeA,\typeB},  \Delta_{2}} \\
+%  & \triangleq [\![\Gamma,y:\typeB, x:\typeA, \Delta \vljud \text{case } \,  \{\text{inl}_{\typeD} (a) \Rightarrow w ;\, \text{inr}_{\typeE} (b) \Rightarrow u\}: \typeF]\!] \comp \text{exch}_{\Gamma,\underline{\typeA,  \typeB}, \Delta}
+%\end{align*}
+%
 
 
-
-For the third case, the proof now follows directly from the implication established in the analogous case of the proof of Lemma \ref{lem:exh_and_sub}, together with the coherence theorem for symmetric monoidal categories.
+For the third case, the proof now follows directly from the implication
+established in the analogous case of the proof of Lemma \ref{lem:exh_and_sub},
+together with the coherence theorem for symmetric monoidal categories.
 
 Regarding the substitution rule, once again the cases involving the injections follow directly by induction on the derivation tree. For the rule (case), we distinguish between the scenarios where the variable $x$ is in $\Gamma$ or in $\Delta$. The first case follows from induction, the bifunctoriality of the tensor product, and the naturality of $\alpha$, $\lambda$, $\rho$, $\sw$, their inverses, and their respective compositions.
 
