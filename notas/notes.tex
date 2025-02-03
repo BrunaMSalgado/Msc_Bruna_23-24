@@ -556,7 +556,7 @@ equations hold:
   $\Delta$. We begin with the first case. 
   \begin{align*}
     & \sem{\Gamma,x, y, \Delta \vljud \text{case }  v\,  \{\text{inl}_{\typeD} (a) \Rightarrow w ;\, \text{inr}_{\typeE} (b) \Rightarrow u\}} \\ 
-    &\triangleq   [\sem{w}  , \sem{u}] \comp (\text{join}_{E;\typeD}
+    &\triangleq   [\sem{w}  , \sem{u}] \comp (\text{jn}_{E;\typeD}
     \comp \sw \oplus \text{jn}_{E;\typeE } \comp \sw) 
     \comp (\sem{ v} \otimes \id)  
     \comp \text{sp}_{\Gamma_{1},\typeA, \typeB,\Gamma_{2};E} 
@@ -568,7 +568,8 @@ equations hold:
     \otimes \id) \comp \text{sp}_{\Gamma_{1},\typeA, \typeB,\Gamma_{2};E} 
     \comp \text{sh}_{\Gamma,\typeA, \typeB,\Delta}
     & \text{(Induction)}\\
-    &  =  \dots  \comp (\sem{v} \otimes \id) \comp (\text{exch}_{\Gamma,  \underline{\typeA,  \typeB}, \Delta} \otimes \text{id}) \comp \text{sp}_{\Gamma_{1},\typeA,\typeB, \Gamma_{2};E} \comp  \text{sh}_{\Gamma,\typeA, \typeB,\Delta} & {}\\
+    &  =  \dots  \comp (\sem{v} \otimes \id) 
+          \comp (\text{exch}_{\Gamma_1, \underline{\typeA, \typeB}, \Gamma_2} \otimes \text{id}) \comp \text{sp}_{\Gamma_{1},\typeA,\typeB, \Gamma_{2};E} \comp  \text{sh}_{\Gamma,\typeA, \typeB,\Delta} & {}\\
     & = \dots \comp (\sem{v} \otimes \id) \comp \text{sp}_{\Gamma_{1},\typeB,\typeA, \Gamma_{2};E} 
           \comp \text{sh}_{\Gamma,\typeB, \typeA,\Delta}  
           \comp \text{exch}_{\Gamma,  \underline{\typeA,\typeB}, \Delta} 
@@ -667,10 +668,8 @@ Let us now focus on the second case, \ie\ both variables live in $\Delta$.
 %\end{align*}
 %
 
-
-For the third case, the proof now follows directly from the implication
-established in the analogous case of the proof of Lemma \ref{lem:exh_and_sub},
-together with the coherence theorem for symmetric monoidal categories.
+The proof the for the third case follows directly from the coherence theorem
+for symmetric monoidal categories.
 
 Regarding the substitution rule, once again the cases involving the injections follow directly by induction on the derivation tree. For the rule (case), we distinguish between the scenarios where the variable $x$ is in $\Gamma$ or in $\Delta$. The first case follows from induction, the bifunctoriality of the tensor product, and the naturality of $\alpha$, $\lambda$, $\rho$, $\sw$, their inverses, and their respective compositions.
 
