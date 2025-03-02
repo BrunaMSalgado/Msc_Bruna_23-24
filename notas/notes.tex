@@ -1045,39 +1045,39 @@ The metric equation for conditionals is presented in \autoref{fig:metric conditi
 
 
 \begin{definition}
- A category $\catC$ is enriched over metric spaces if for each pair of objects $X$ and $Y$ in $\catC$, the hom-set $\catC(X, Y)$ is a metric space and  if the composition of $\catC$-morphisms,
+ A category $\catC$ is $\catMet$-enriched if for each pair of objects $X$ and $Y$ in $\catC$, the hom-set $\catC(X, Y)$ is a metric space and  if the composition of $\catC$-morphisms,
  $$(\comp): \catC(X, Y) \otimes \catC(Y, Z) \rightarrow \catC(X, Z)$$
  is a functor in the category of metric spaces.
 \end{definition}
 
 \todo[inline]{Which designation is more fitting functor in the category of metric spaces or non-expansive function?}
 
-Note that if $\catC$ is a category enriched over metric spaces, then $\catC \otimes \catC$ is also a category enriched over metric spaces.
+Note that if $\catC$ is a  $\catMet$-enriched category, then $\catC \otimes \catC$ is also a  $\catMet$-enriched category.
 
 
 \begin{definition}
-  A given category $\catC$ with coproducts is said to be enriched over metric spaces if in addition to the properties of a category enriched over metric spaces, the following holds: for $f, f'  \in \catC(X,Z)  $ and $g,g'  \in \catC(Y,Z) $, $\catC(X,Z)  \otimes \catC(Y,Z) \rightarrow \catC(X \oplus Y,Z) $ is a functor in the category of metric spaces.
+  A given category $\catC$ with coproducts is said to be $\catMet$-enriched if in addition to the properties of a  $\catMet$-enriched category, the following holds: for $f, f'  \in \catC(X,Z)  $ and $g,g'  \in \catC(Y,Z) $, $\catC(X,Z)  \otimes \catC(Y,Z) \rightarrow \catC(X \oplus Y,Z) $ is a functor in the category of metric spaces.
  \end{definition}
 
 
-  Let $\catC$ be a category with coproducts enriched over metric spaces, it holds that for $f, f'  \in \catC(X,Z)  $ and $g,g'  \in \catC(Y,Z) $, $d_{\catC(X,Z) \otimes \catC(Y,Z)}((f,f'),(g,g')) = \sup(d(f,f'),d(g,g'))$.
+  Let $\catC$ be a category with coproducts $\catMet$-enriched, it holds that for $f, f'  \in \catC(X,Z)  $ and $g,g'  \in \catC(Y,Z) $, $d_{\catC(X,Z) \otimes \catC(Y,Z)}((f,f'),(g,g')) = \sup(d(f,f'),d(g,g'))$.
 
 
 
-\todo[inline]{Present the interpretation of the equational system via monoidal closed categories with coproducts and enriched over metric spaces -> ???}
+\todo[inline]{Present the interpretation of the equational system via monoidal closed categories with coproducts and $\catMet$-enriched -> ???}
 
 
 
-Consider a symmetric monoidal closed category with coproducts enriched over metric spaces $\catC$. A metric equation $\Gamma \vljud v =_{q} w : \typeA $ is satisfied by this interpretation if $q \leq d( \llbracket \Gamma  \vljud v : \typeA \rrbracket, \llbracket\Gamma \vljud w : \typeA \rrbracket)$ where $d : \catC(\llbracket \Gamma \rrbracket, \llbracket \typeA \rrbracket) \times \catC(\llbracket \Gamma \rrbracket, \llbracket \typeA \rrbracket) \rightarrow \mathbb{R}_0^+$ is the underlying function of the category  enriched over metric spaces $\catC(\llbracket \Gamma \rrbracket, \llbracket \typeA \rrbracket)$.
+Consider a symmetric monoidal closed category with coproducts $\catMet$-enriched $\catC$. A metric equation $\Gamma \vljud v =_{q} w : \typeA $ is satisfied by this interpretation if $q \leq d( \llbracket \Gamma  \vljud v : \typeA \rrbracket, \llbracket\Gamma \vljud w : \typeA \rrbracket)$ where $d : \catC(\llbracket \Gamma \rrbracket, \llbracket \typeA \rrbracket) \times \catC(\llbracket \Gamma \rrbracket, \llbracket \typeA \rrbracket) \rightarrow \mathbb{R}_0^+$ is the underlying function of the category  $\catMet$-enriched $\catC(\llbracket \Gamma \rrbracket, \llbracket \typeA \rrbracket)$.
 
 \begin{theorem}
-  The rules in Figures \ref{fig:equations-in-context-cond} and \ref{fig:metric conditionals} are sound for a symmetric monoidal closed category with coproducts enriched over metric spaces $\catC$ over metric spaces. Specifically, if $\Gamma \vljud v =_{q} w : \typeA $ results from the rules in Figures \ref{fig:equations-in-context-cond} and \ref{fig:metric conditionals} then $q \geq d( \llbracket \Gamma  \vljud v : \typeA \rrbracket, \llbracket\Gamma \vljud w : \typeA \rrbracket)$.
+  The rules in Figures \ref{fig:equations-in-context-cond} and \ref{fig:metric conditionals} are sound for a symmetric monoidal closed category with coproducts $\catMet$-enriched $\catC$ over metric spaces. Specifically, if $\Gamma \vljud v =_{q} w : \typeA $ results from the rules in Figures \ref{fig:equations-in-context-cond} and \ref{fig:metric conditionals} then $q \geq d( \llbracket \Gamma  \vljud v : \typeA \rrbracket, \llbracket\Gamma \vljud w : \typeA \rrbracket)$.
 \end{theorem}
 
 \begin{proof}
   Regarding the rules in Figure \ref{fig:equations-in-context-cond}, attending to the fact that an equation $\Gamma \vljud v=w: \typeA$ abbreviates the metric equation $\Gamma \vljud v =_0 w: \typeA$, and given that the rules in Figure \ref{fig:equations-in-context-cond} are sound for symmetric monoidal closed categories with coproducts, we have that $0 \leq d( \llbracket \Gamma  \vljud v : \typeA \rrbracket, \llbracket\Gamma \vljud w : \typeA \rrbracket)$.  
 
- Concerning the rule in Figure \ref{fig:equations-in-context-cond}, it follows from the fact that $\catC$ is enriched over metric spaces and has coproducts.
+ Concerning the rule in Figure \ref{fig:equations-in-context-cond}, it follows from the fact that $\catC$ is $\catMet$-enriched and has coproducts.
 
   \begin{align*}
     & d( \llbracket E  \vljud \text{ case } v \, \{\text{inl}_{\typeB}  (x) \Rightarrow w ; \, \text{inr}_{\typeA} (y) \Rightarrow u\} : \typeD \rrbracket, \llbracket E \vljud \text{ case } v' \, \{\text{inl}_{\typeB}  (x) \Rightarrow w' ; \, \text{inr}_{\typeA} (y) \Rightarrow u'\} : \typeD \rrbracket)  \\
@@ -1091,7 +1091,7 @@ Consider a symmetric monoidal closed category with coproducts enriched over metr
     & \leq q + \sup(r, s) \\
   \end{align*}
   
-  The second step follows from the fact that $\text{sp}_{\Gamma;\Delta} \comp \text{sh}_{E}$  is a morphism in $\catC$  and that $\catC$ is enriched over metric spaces.  The third and fifth step follow from an analogous reasoning. The fourth step follows from  the premises of the rule in question and from the metric equation ($\otimes_e$). The sixth step follows from the fact that $\catC$ is has coproducts and is enriched over metric spaces. Finally, the last step follows from the premise of the rule in question.
+  The second step follows from the fact that $\text{sp}_{\Gamma;\Delta} \comp \text{sh}_{E}$  is a morphism in $\catC$  and that $\catC$ is $\catMet$-enriched.  The third and fifth step follow from an analogous reasoning. The fourth step follows from  the premises of the rule in question and from the metric equation ($\otimes_e$). The sixth step follows from the fact that $\catC$ is has coproducts and is $\catMet$-enriched. Finally, the last step follows from the premise of the rule in question.
 
 \end{proof}
 
@@ -1101,7 +1101,7 @@ Consider a tuple $(G,\Sigma)$ consisting of a class $G$ of ground
 \end{definition}
 
 \begin{definition}
-  Consider a linear metric $\lambda$-theory $((G,\Sigma),\textit{Ax})$ and a symmetric monoidal closed category with coproducts enriched over metric spaces $\catC$.  Suppose that for each $X \in G$ we have an interpretation $\llbracket X \rrbracket$ as a $\catC$-object and analogously for the operation symbols. This interpretation structure is a model of the theory if all axioms in \textit{Ax} are satisfied by the interpretation.
+  Consider a linear metric $\lambda$-theory $((G,\Sigma),\textit{Ax})$ and a symmetric monoidal closed category with coproducts $\catMet$-enriched $\catC$.  Suppose that for each $X \in G$ we have an interpretation $\llbracket X \rrbracket$ as a $\catC$-object and analogously for the operation symbols. This interpretation structure is a model of the theory if all axioms in \textit{Ax} are satisfied by the interpretation.
 \end{definition}
 
 
@@ -1110,14 +1110,14 @@ For two types $\typeA$ and of a metric $\lambda$-theory $\mathscr{T}$ , consider
 $$d(v,w)=\inf{\{q \, \vert \, v=_q w \text{is a theorem } \mathscr{T} \}}$$
 
 
-It is easy to see that \textbf{Values}$((\typeA,\typeB),d)$ is a (possibly large) category enriched over metric spaces. We then quotient this category enriched over metric spaces into a separated category enriched over metric spaces which we denote by (\textbf{Values}$(\typeA,\typeB),d)$/$\sim$. We call  $\mathscr{T} $\emph{varietal} if (\textbf{Values}$(\typeA,\typeB),d)$/$\sim$ is a small category enriched over metric spaces for all types $\typeA$ and $\typeB$. For the rest of this work, we will focus exclusively on varietal theories and locally small categories.
+It is easy to see that \textbf{Values}$((\typeA,\typeB),d)$ is a (possibly large)  $\catMet$-enriched category. We then quotient this  $\catMet$-enriched category into a separated  $\catMet$-enriched category which we denote by (\textbf{Values}$(\typeA,\typeB),d)$/$\sim$. We call  $\mathscr{T} $\emph{varietal} if (\textbf{Values}$(\typeA,\typeB),d)$/$\sim$ is a small  $\catMet$-enriched category for all types $\typeA$ and $\typeB$. For the rest of this work, we will focus exclusively on varietal theories and locally small categories.
 
 \begin{theorem} (Completeness)
   Consider a varietal metric $\lambda-theory$. A metric equation
 in-context $\Gamma \vljud v =_q w : A$ is a theorem iff it holds in all models of the theory.
 \end{theorem}
 \begin{proof}
-  We use a strategy similar to the proof of Theorem \ref{theorem:comp_eq_in_context} and take advantage of the quotienting of a category enriched over metric spaces into a separated category enriched over metric spaces. Analogously to Theorem \ref{theorem:comp_eq_in_context} we have a category Syn$(\mathscr{T})$ whose objects are the types of the language and whose hom-sets are the underlying sets of the categories enriched over metric spaces (\textbf{Values}$(\typeA,\typeB),d)$/$\sim$.
+  We use a strategy similar to the proof of Theorem \ref{theorem:comp_eq_in_context} and take advantage of the quotienting of a  $\catMet$-enriched category into a separated  $\catMet$-enriched category. Analogously to Theorem \ref{theorem:comp_eq_in_context} we have a category Syn$(\mathscr{T})$ whose objects are the types of the language and whose hom-sets are the underlying sets of the  $\catMet$-enriched categories (\textbf{Values}$(\typeA,\typeB),d)$/$\sim$.
 
   We start by showing that the map $\text{Syn}(\mathscr{T})(\typeA,\typeC) \otimes \text{Syn}(\mathscr{T})(\typeB,\typeC) \rightarrow
   \text{Syn}(\mathscr{T})(\typeA \otimes \typeB ,\typeC)$ is a functor in the category of metric spaces:
@@ -1134,7 +1134,7 @@ in-context $\Gamma \vljud v =_q w : A$ is a theorem iff it holds in all models o
     & = d([[v],[v']],[[w],[w']])  
   \end{align*}
 
-  The next step is to show that if an equation $\Gamma \vljud v =_q v' : \typeA$ with $q \in B$ is satisfied by Syn(T ) then it is a theorem of the linear metric $\lambda-theory$. By assumption $d([v],[v']) = d(v,v') =  \inf{ \{r \, \vert \, v =_r v'\}} \leq q$. It follows from the definition of the way-below relation that for all
+  The next step is to show that if an equation $\Gamma \vljud v =_q v' : \typeA$ with $q \in B$ is satisfied by Syn$(\mathscr{T})$ then it is a theorem of the linear metric $\lambda-theory$. By assumption $d([v],[v']) = d(v,v') =  \inf{ \{r \, \vert \, v =_r v'\}} \leq q$. It follows from the definition of the way-below relation that for all
   $x \in B$ with $x>q$ there exists a finite set $A \subseteq \{r \, \vert \, v =_r v'\}$ such that $x \geq \inf{A}$. Then by an
  application of rule (join) we obtain $v =_{\inf{A}} v'$, and consequently, rule (weak) provides $v =_x v'$ for all $x > q$. Finally, by an application of rule (arch) we deduce that $v =_q v'$ is part of the theory.
 
