@@ -299,7 +299,7 @@ In the quantum setting, tossing a `fair' coin can be described as preparing a qu
 More generally, tossing a coin (whether `fair' or `unfair') can be described as preparing a qubit in a superposition of  $\ket{0}$ and $\ket{1}$, with probabilities $p$ and $1-p$, respectively,  and then measuring it.  Considering $p= \cos(\theta/2)^2$ and the standard quantum gate operation $R_{y,\theta} : \emph{qbit} \to \emph{qbit}$,  this process is described by the following $\lambda$-term:
 
 \begin{align*}
-  &\textbf{CoinToss} = - \vljud \text{meas} (R_{y,\theta} (\ket{0})): \typeI \oplus \typeI
+  &\textbf{CoinToss} = - \vljud \emph{meas} (R_{y,\theta} (\ket{0})): \typeI \oplus \typeI
 \end{align*}
 
 \begin{example}[Quantum state discrimination]
@@ -675,19 +675,14 @@ Regarding the substitution rule, once again the cases involving the injections f
 
 % \left[[\![ w ]\!] ,[\![ u ]\!]\right] \comp (\text{jn}_{\Delta;\typeD}\comp \sw \oplus \text{jn}_{\Delta;\typeE } \comp \sw)
 \begin{align*}
-  &[\![E, Z \vljud \text{case } v \,  \{\text{inl}_{\typeD} (a) \Rightarrow w ;\, \text{inr}_{\typeE} (b) \Rightarrow u\} [t/x]: \typeB]\!] \\
-  & \triangleq \left[[\![ w ]\!] ,[\![ u ]\!]\right] \comp (\text{jn}_{\Delta;\typeD}\comp \sw \oplus \text{jn}_{\Delta;\typeE } \comp \sw) \comp \dist \comp  ([\![ v [t/x] ]\!]   \otimes \text{id})  \comp \text{sp}_{\Gamma, Z;\Delta} \comp \text{sh}_{E,Z} \\
-  & = \left[[\![ w ]\!] ,[\![ u ]\!]\right] \comp (\text{jn}_{\Delta;\typeD}\comp \sw \oplus \text{jn}_{\Delta;\typeE } \comp \sw)  \comp \dist \comp (([\![ v]\!]  \comp \text{jn}_{\Gamma; \typeA} \comp (\text{id} \otimes [\![  t ]\!] ) \comp \text{sp}_{\Gamma;Z} )\otimes \text{id})  \\
-  & \hspace{10pt} \comp \text{sp}_{\Gamma, Z;\Delta}\comp \text{sh}_{E,Z} \\
-  & =  \left[[\![ w ]\!] ,[\![ u ]\!]\right] \comp (\text{jn}_{\Delta;\typeD}\comp \sw \oplus \text{jn}_{\Delta;\typeE } \comp \sw)  \comp \dist  \comp ([\![ v]\!] \otimes \text{id}) \comp (\text{jn}_{\Gamma; \typeA} \comp (\text{id} \otimes [\![  t ]\!] ) \comp \text{sp}_{\Gamma;Z} \otimes \text{id})   & {\text{(bifunctoriality of $\otimes$)}} \\
-  & \hspace{10pt} \comp \text{sp}_{\Gamma, Z;\Delta} \comp \text{sh}_{E,Z}\\
-  & = \left[[\![ w ]\!] ,[\![ u ]\!]\right] \comp (\text{jn}_{\Delta;\typeD}\comp \sw \oplus \text{jn}_{\Delta;\typeE } \comp \sw)  \comp \dist  \comp ([\![ v]\!] \otimes \text{id})  \comp (\text{jn}_{\Gamma; \typeA} \comp (\text{id} \otimes [\![  t ]\!] ) \comp \text{sp}_{\Gamma;Z} \otimes \text{id})   & {(\text{Coherence})} \\
-  &  \hspace{10pt} \comp \text{sp}_{\Gamma,Z;\Delta} \comp \text{sh}_{E,Z} \comp \text{jn}_{E; Z}  \comp \text{sp}_{E;Z} \\
-  & = \left[[\![ w ]\!] ,[\![ u ]\!]\right] \comp (\text{jn}_{\Delta;\typeD}\comp \sw \oplus \text{jn}_{\Delta;\typeE } \comp \sw)  \comp \dist  \comp ([\![ v]\!] \otimes \text{id}) \comp (\text{jn}_{\Gamma; \typeA} \comp \text{sp}_{\Gamma; \typeA} \otimes   \id) \comp \text{sp}_{\Gamma,\typeA;\Delta}   \comp \text{sh}_{E,\typeA}    & {(\text{Naturality})}   \\
-  &  \hspace{10pt} \comp \text{jn}_{E; \typeA} \comp (\text{id} \otimes [\![ t ]\!] ) \comp \text{sp}_{E;Z} \\
-  & = \left[[\![ w ]\!] ,[\![ u ]\!]\right] \comp (\text{jn}_{\Delta;\typeD}\comp \sw \oplus \text{jn}_{\Delta;\typeE } \comp \sw)  \comp \dist  \comp ([\![ v]\!] \otimes \text{id}) \comp \text{sp}_{\Gamma, \typeA;\Delta}  \comp \text{sh}_{E,\typeA}  \comp  \text{jn}_{E; \typeA} \comp (\text{id} \otimes [\![ t ]\!] )   & {(\text{Coherence})}   \\
-  &  \hspace{10pt} \comp \text{sp}_{E;Z}\\
-  & \triangleq \, [\![E,  x:\typeA \vljud \text{case } v\,  \{\text{inl}_{\typeB} (x) \Rightarrow w ;\, \text{inr}_{\typeD} (y) \Rightarrow u\}: \typeE]\!]  \comp  \text{jn}_{E; \typeA} \comp (\text{id} \otimes [\![ t ]\!] ) \comp \text{sp}_{E;Z}
+  &[\![E, Z \vljud \text{case } v \,  \{\text{inl} (a) \Rightarrow w ;\, \text{inr} (b) \Rightarrow u\} [t/x]]\!] \\
+  & \triangleq \left[[\![ w ]\!] ,[\![ u ]\!]\right] \comp (\text{jn}\comp \sw \oplus \text{jn} \comp \sw) \comp \dist \comp  ([\![ v [t/x] ]\!]   \otimes \text{id})  \comp \text{sp} \comp \text{sh} \\
+  & = \left[[\![ w ]\!] ,[\![ u ]\!]\right] \comp (\text{jn} \comp \sw \oplus \text{jn} \comp \sw)  \comp \dist \comp (([\![ v]\!]  \comp \text{jn} \comp (\text{id} \otimes [\![  t ]\!] ) \comp \text{sp} )\otimes \text{id})  \comp \text{sp} \comp \text{sh} & {\text{(Induction)}} \\
+  & =  \left[[\![ w ]\!] ,[\![ u ]\!]\right] \comp (\text{jn} \comp \sw \oplus \text{jn} \comp \sw)  \comp \dist  \comp ([\![ v]\!] \otimes \text{id}) \comp (\text{jn} \comp (\text{id} \otimes [\![  t ]\!] ) \comp \text{sp} \otimes \text{id})  \comp \text{sp}\comp \text{sh}\\
+  & = \left[[\![ w ]\!] ,[\![ u ]\!]\right] \comp (\text{jn} \comp \sw \oplus \text{jn} \comp \sw)  \comp \dist  \comp ([\![ v]\!] \otimes \text{id})  \comp (\text{jn} \comp (\text{id} \otimes [\![  t ]\!] ) \comp \text{sp} \otimes \text{id})  \comp \text{sp} \comp \text{sh} \comp \text{jn} \comp \text{sp} & {(\text{Coherence})} \\
+  & = \left[[\![ w ]\!] ,[\![ u ]\!]\right] \comp (\text{jn} \comp \sw \oplus \text{jn} \comp \sw)  \comp \dist  \comp ([\![ v]\!] \otimes \text{id}) \comp (\text{jn}\comp \text{sp} \otimes   \id) \comp \text{sp}   \comp \text{sh} \comp \text{jn}\comp (\text{id} \otimes [\![ t ]\!] ) \comp \text{sp}  & {(\text{Naturality})}   \\
+  & = \left[[\![ w ]\!] ,[\![ u ]\!]\right] \comp (\text{jn} \comp \sw \oplus \text{jn}\comp \sw)  \comp \dist  \comp ([\![ v]\!] \otimes \text{id}) \comp \text{sp}  \comp \text{sh}  \comp  \text{jn} \comp (\text{id} \otimes [\![ t ]\!] ) \comp \text{sp}  & {(\text{Coherence})}   \\
+  & \triangleq \, [\![E,  x \vljud \text{case } v\,  \{\text{inl} (x) \Rightarrow w ;\, \text{inr} (y) \Rightarrow u\}]\!]  \comp  \text{jn} \comp (\text{id} \otimes [\![ t ]\!] ) \comp \text{sp}
 \end{align*}
 
 
@@ -699,32 +694,25 @@ The second case follows from induction, the exchange rule, the universal propert
 %\left[[\![ \Delta  , Z ,  a:\typeD \vljud w[t/x] ]\!] ,[\![ \Delta, Z, b:\typeE \vljud u[t/x]  ]\!] \right] \comp (\text{jn}_{ \Delta;\typeD} \comp \sw \oplus \text{jn}_{ \Delta;\typeE} \comp \sw)
 
 \begin{align*}
-  &[\![E, Z \vljud \text{case } v \,  \{\text{inl}_{\typeD} (a) \Rightarrow w ;\, \text{inr}_{\typeE} (b) \Rightarrow u\} [t/x]: \typeB]\!] \\
-  & \triangleq \left[[\![ \Delta  , Z ,  a:\typeD \vljud w[t/x] ]\!] ,[\![ \Delta, Z, b:\typeE \vljud u[t/x]  ]\!] \right] \comp (\text{jn}_{ \Delta,Z;\typeD} \comp \sw \oplus \text{jn}_{ \Delta,Z;\typeE} \comp \sw) \comp \dist   \\
-  &  \hspace{10pt}  \comp ([\![ v ]\!]   \otimes \text{id}) \comp \text{sp}_{\Gamma, Z;\Delta} \comp \text{sh}_{E,Z} \hspace{10pt} \\
-  & =  \left[[\![ \Delta  ,   a:\typeD, Z \vljud w[t/x] ]\!] ,[\![ \Delta, b:\typeE, Z \vljud u[t/x]  ]\!] \right] \comp ( \text{exch}_{\Delta,Z,\typeD} \comp \text{jn}_{ \Delta,Z;\typeD} \comp \sw \oplus     & {(\text{exchange and}} \\
-  & \hspace{10pt} \text{exch}_{\Delta,Z,\typeE}  \comp \text{jn}_{ \Delta,Z;\typeE} \comp \sw)  \comp \dist \comp \sw \comp ([\![v]\!] \otimes \text{id})  \comp \text{sp}_{\Gamma; \Delta, Z} \comp \text{sh}_{E,Z} & { \text{law of coproducts})}   \\
-  & =   \left[[\![w ]\!] ,[\![ u]\!] \right] \comp ( \text{jn}_{\Delta,\typeD; \typeA} \comp (\text{id} \otimes [\![t]\!] ) \comp \text{sp}_{\Delta,\typeD; \typeA} \comp  \text{exch}_{\Delta, Z,\typeD}  \comp \text{jn}_{\Delta, Z; \typeD} \comp \sw  \oplus  \text{jn}_{\Delta,\typeE; \typeA}    \\
-  & \hspace{10pt}  \comp (\text{id} \otimes [\![ t]\!] ) \comp \text{sp}_{\Delta,\typeE; \typeA}  \comp \text{exch}_{\Delta, Z,\typeE} \comp\text{jn}_{\Delta Z, \typeE} \comp \sw ) \comp \dist  \comp ([\![v]\!] \otimes \text{id})  \comp \text{sp}_{\Gamma; \Delta, Z}   \\
-  & \hspace{10pt} \comp \text{sh}_{E,Z} \\
-  & =  \left[[\![w ]\!] ,[\![ u]\!] \right] \comp (\text{exch}_{\Delta, \typeA,\typeD} \comp \text{jn}_{\Delta, \typeA; \typeD} \comp \sw \comp (\text{id} \otimes  \text{jn}_{\Delta; \typeA} ) \comp (\text{id} \otimes [\![t]\!]) \comp  (\text{id} \otimes \text{sp}_{\Delta; Z} ) \oplus   & {(\text{naturality and }} \\
-  & \hspace{10pt} \text{exch}_{\Delta, \typeA,\typeE} \comp \text{jn}_{\Delta, \typeA; \typeE} \comp \sw \comp (\text{id} \otimes  \text{jn}_{\Delta; \typeA} ) \comp (\text{id} \otimes [\![t]\!]) \comp  (\text{id} \otimes \text{sp}_{\Delta; Z} ) )\comp \dist & {\text{law of coproducts})} \\
-  &  \hspace{10pt} \comp ([\![v]\!] \otimes \text{id})  \comp \text{sp}_{\Gamma; \Delta, Z} \comp \text{sh}_{E,Z} \\
-  & =  \left[[\![w]\!] ,[\![u]\!] \right] \comp (\text{exch}_{\Delta, \typeA,\typeD} \comp \text{jn}_{\Delta, \typeA; \typeD} \comp \sw \comp (\text{id} \otimes  (\text{jn}_{\Delta; \typeA} \comp \text{id} \otimes [\![t]\!] \comp \text{sp}_{\Delta; Z}) ) \oplus   & {(\text{bifunctorality of  } \otimes)} \\
-  & \hspace{10pt}  \text{exch}_{\Delta, \typeA,\typeE} \comp \text{jn}_{\Delta, \typeA; \typeE} \comp \sw \comp (\text{id} \otimes  (\text{jn}_{\Delta; \typeA} \comp \text{id} \otimes [\![t]\!] \comp \text{sp}_{\Delta; Z}) ))\comp \dist \comp ([\![v]\!] \otimes \text{id})  \\
-  &  \hspace{10pt}  \comp \text{sp}_{\Gamma; \Delta, Z} \comp \text{sh}_{E,Z} \\
-  & = [[\![ \Delta  , x:\typeA ,  a:\typeD \vljud w]\!] , [\![ \Delta  , x:\typeA ,  b:\typeE \vljud u]\!]]  \comp (  \text{jn}_{\Delta, \typeA; \typeD} \comp \sw \comp (\text{id} \otimes  (\text{jn}_{\Delta; \typeA}         & {(\text{exchange and }}  \\
-  & \hspace{10pt} \comp \text{id} \otimes [\![t]\!]  \comp \text{sp}_{\Delta; Z})  \oplus \text{jn}_{\Delta, \typeA; \typeE} \comp \sw \comp (\text{id} \otimes  (\text{jn}_{\Delta; \typeA} \comp \text{id} \otimes [\![t]\!] \comp \text{sp}_{\Delta; Z}) )  ) \comp \dist  & { \text{law of coproduts})}\\
-  & \hspace{10pt} \comp ([\![v]\!] \otimes \text{id})   \comp \text{sp}_{\Gamma; \Delta, Z} \comp \text{sh}_{E,Z} \\
-  &= \left[[\![w ]\!] ,[\![ u]\!] \right] \comp  (\text{jn}_{ \Delta, \typeA;\typeD} \comp \sw \oplus \text{jn}_{ \Delta,\typeA;\typeE} \comp \sw)  \comp \dist \comp ( \text{id} \otimes (\text{jn}_{\Delta; \typeA} \cdot (\text{id} \otimes [\![t]\!]) \cdot \text{sp}_{\Delta; Z} ) )   & {(\text{coproduct, naturality,}}  \\
-  & \hspace{10pt} \comp ([\![v]\!] \otimes \text{id}) \comp \text{sp}_{\Gamma; \Delta, Z} \comp \text{sh}_{E,Z}  & {\text{and bifunctoriality of } \otimes})  \\
-  & =  \left[[\![w ]\!] ,[\![ u]\!] \right] \comp  (\text{jn}_{ \Delta, \typeA;\typeD} \comp \sw \oplus \text{jn}_{ \Delta,\typeA;\typeE} \comp \sw)  \comp \dist \comp  ([\![v]\!] \otimes \text{id}) \comp \text{sp}_{\Gamma; \Delta, Z} \comp ( \text{id} \otimes     & {(\text{coherence and}} \\
-  &  \hspace{10pt} (\text{jn}_{\Delta; \typeA}  \comp  (\text{id} \otimes [\![t]\!]) \cdot \text{sp}_{\Delta; Z} ) ) \comp \text{sp}_{\Gamma;\Delta,Z} \comp \text{sh}_{E,Z} \comp \text{jn}_{E; Z}  \comp \text{sp}_{E;Z} &  {\text{bifunctoriality of } \otimes})\\
-  & = \left[[\![w ]\!] ,[\![ u]\!] \right] \comp  (\text{jn}_{ \Delta, \typeA;\typeD} \comp \sw \oplus \text{jn}_{ \Delta,\typeA;\typeE} \comp \sw)  \comp \dist \comp  ([\![v]\!] \otimes \text{id})  \comp ( \id \otimes \text{jn}_{\Delta; \typeA} \comp \text{sp}_{\Delta; \typeA})  & {(\text{naturality})}   \\
-  &  \hspace{10pt} \comp \text{sp}_{\Gamma;\Delta,\typeA}   \comp \text{sh}_{E,\typeA}    \comp \text{jn}_{E; \typeA} \comp (\text{id} \otimes [\![ t ]\!] ) \comp \text{sp}_{E;Z} \\
-  & =  [[\![w]\!], [\![u]\!]] \comp (\text{jn}_{ \Delta, \typeA;\typeD} \comp \sw \oplus \text{jn}_{ \Delta,\typeA;\typeE} \comp \sw)  \comp \dist   \comp ([\![v  ]\!] \otimes \text{id}) \comp \text{sp}_{\Gamma; \Delta, \typeA} \comp \text{sh}_{E,\typeA} \comp \text{jn}_{E; \typeA}  & {(\text{coherence})} \\
-  & \hspace{10pt} \comp (\text{id} \otimes [\![ t  ]\!] ) \comp \text{sp}_{E;Z} &  \\ 
-  & \triangleq  [\![E,  x:\typeA \vljud \text{case } v\,  \{\text{inl}_{\typeD} (a) \Rightarrow w ;\, \text{inr}_{\typeE} (b) \Rightarrow u\}: \typeB]\!] \comp \text{jn}_{E; \typeA} \comp (\text{id} \otimes [\![ t ]\!] ) \comp \text{sp}_{E;Z}
+  &[\![E, Z \vljud \text{case } v \,  \{\text{inl} (a) \Rightarrow w ;\, \text{inr} (b) \Rightarrow u\} [t/x]]\!] \\
+  & \triangleq \left[[\![ \Delta  , Z ,  a:\typeD \vljud w[t/x] ]\!] ,[\![ \Delta, Z, b:\typeE \vljud u[t/x]  ]\!] \right] \comp (\text{jn}\comp \sw \oplus \text{jn} \comp \sw) \comp \dist  \comp ([\![ v ]\!]   \otimes \text{id})    \comp \text{sp} \comp \text{sh} \hspace{10pt} \\
+  & =  \left[[\![ \Delta  ,   a:\typeD, Z \vljud w[t/x] ]\!] ,[\![ \Delta, b:\typeE, Z \vljud u[t/x]  ]\!] \right] \comp ( \text{exch}_{\Delta,Z,\typeD} \comp \text{jn}\comp \sw \oplus  \text{exch} \comp \text{jn} \comp \sw)   \comp \dist   & {(\text{Exchange and}} \\
+  &  \hspace{10pt} \comp \sw  \comp ([\![v]\!] \otimes \text{id})  \comp \text{sp} \comp \text{sh} & { \text{coproduct laws})}   \\
+  & =   \left[[\![w ]\!] ,[\![ u]\!] \right] \comp ( \text{jn} \comp (\text{id} \otimes [\![t]\!] ) \comp \text{sp} \comp  \text{exch} \comp \text{jn} \comp \sw  \oplus  \text{jn} \comp (\text{id} \otimes [\![ t]\!] ) \comp \text{sp}  \comp \text{exch} \comp\text{jn} \comp \sw ) \comp \dist & {\text{(Induction)}}  \\
+  & \hspace{10pt}     \comp ([\![v]\!] \otimes \text{id})  \comp \text{sp} \comp \text{sh} \\
+  & =  \left[[\![w ]\!] ,[\![ u]\!] \right] \comp (\text{exch} \comp \text{jn} \comp \sw \comp (\text{id} \otimes  \text{jn} ) \comp (\text{id} \otimes [\![t]\!]) \comp  (\text{id} \otimes \text{sp} ) \oplus \text{exch} \comp \text{jn} \comp \sw \comp (\text{id} \otimes  \text{jn} )   & {(\text{Naturality and }} \\
+  & \hspace{10pt} \comp (\text{id} \otimes [\![t]\!]) \comp  (\text{id} \otimes \text{sp} ) )\comp \dist \comp ([\![v]\!] \otimes \text{id})  \comp \text{sp} \comp \text{sh} & {\text{coproduct laws})} \\
+  & =  \left[[\![w]\!] ,[\![u]\!] \right] \comp (\text{exch} \comp \text{jn} \comp \sw \comp (\text{id} \otimes  (\text{jn} \comp \text{id} \otimes [\![t]\!] \comp \text{sp}) ) \oplus  \text{exch} \comp \text{jn} \comp \sw  &  \\
+  & \hspace{10pt}  \comp (\text{id} \otimes  (\text{jn}\comp \text{id} \otimes [\![t]\!] \comp \text{sp}) ))\comp \dist \comp ([\![v]\!] \otimes \text{id}) \comp \text{sp}\comp \text{sh}  \\
+  & = [[\![ \Delta  , x:\typeA ,  a:\typeD \vljud w]\!] , [\![ \Delta  , x:\typeA ,  b:\typeE \vljud u]\!]]  \comp (  \text{jn} \comp \sw \comp (\text{id} \otimes  (\text{jn} \comp \id \otimes [\![t]\!]  \comp \text{sp})  \oplus \text{jn} \comp  \sw      & {(\text{Exchange and }}  \\
+  & \hspace{10pt} \comp (\text{id} \otimes  (\text{jn} \comp \text{id} \otimes [\![t]\!] \comp \text{sp}) )  ) \comp \dist \comp ([\![v]\!] \otimes \text{id})   \comp \text{sp}\comp \text{sh}  & { \text{coproduct laws})}\\
+  &= \left[[\![w ]\!] ,[\![ u]\!] \right] \comp  (\text{jn} \comp \sw \oplus \text{jn} \comp \sw)  \comp \dist \comp ( \text{id} \otimes (\text{jn} \cdot (\text{id} \otimes [\![t]\!]) \cdot \text{sp} ) ) \comp ([\![v]\!] \otimes \text{id}) \comp \text{sp} \comp \text{sh} & {(\text{Coproduct laws}}  \\
+  & & {\text{and naturality}}) \\
+  & =  \left[[\![w ]\!] ,[\![ u]\!] \right] \comp  (\text{jn} \comp \sw \oplus \text{jn}\comp \sw)  \comp \dist \comp  ([\![v]\!] \otimes \text{id}) \comp \text{sp} \comp ( \text{id} \otimes (\text{jn} \comp  (\text{id} \otimes [\![t]\!]) \cdot \text{sp} ) ) \comp \text{sp}\comp \text{sh}     & {(\text{Coherence})} \\
+  &  \hspace{10pt}  \comp \text{jn}  \comp \text{sp} & \\
+  & = \left[[\![w ]\!] ,[\![ u]\!] \right] \comp  (\text{jn} \comp \sw \oplus \text{jn} \comp \sw)  \comp \dist \comp  ([\![v]\!] \otimes \text{id})  \comp ( \id \otimes \text{jn} \comp \text{sp}) \comp \text{sp}  \comp \text{sh}    \comp \text{jn} \comp (\text{id} \otimes [\![ t ]\!] ) \comp \text{sp} & {(\text{Naturality})}   \\
+  & =  [[\![w]\!], [\![u]\!]] \comp (\text{jn} \comp \sw \oplus \text{jn} \comp \sw)  \comp \dist   \comp ([\![v  ]\!] \otimes \text{id}) \comp \text{sp} \comp \text{sh} \comp \text{jn} \comp (\text{id} \otimes [\![ t ]\!] ) \comp \text{sp}  & {(\text{Coherence})}     \\ 
+  & \triangleq  [\![E,  x\vljud \text{case } v\,  \{\text{inl} (a) \Rightarrow w ;\, \text{inr} (b) \Rightarrow u\}]\!] \comp \text{jn} \comp (\text{id} \otimes [\![ t ]\!] ) \comp \text{sp}
 \end{align*}
 \end{proof}
 
@@ -738,16 +726,15 @@ The second case follows from induction, the exchange rule, the universal propert
   Follows from Lemma \autoref{lem_interpret_exch:sub}, the coherence theorem for symmetric monoidal categories, naturality,  the bifunctoriality of the tensor product, and the universal property of the coproduct.   
   We will provide a complete proof for the first and third equations, noting that the proof for the second equation follows analogously from the first.
   \begin{align*}
-    &\llbracket \Delta,\Gamma \vljud  \text{case }  \text{inl}_{\typeB}(v)\, \{\text{inl}_{\typeB} (x) \Rightarrow w ;\, \text{inr}_{\typeA} (y) \Rightarrow u\}: \typeD\rrbracket \\
-    & \triangleq  [\llbracket w\rrbracket,\llbracket u \rrbracket] \comp (\text{jn}_{\Delta;\typeA} \comp \sw \oplus \text{jn}_{\Delta;\typeB} \comp \sw  ) \comp \dist \comp \sw \comp (\inl \comp \llbracket  v \rrbracket \otimes \text{id}) \comp \text{sp}_{\Gamma;\Delta} \comp \text{sh}_{\Delta;\Gamma} \\
-    & =  [\llbracket w\rrbracket,\llbracket u \rrbracket] \comp (\text{jn}_{\Delta;\typeA} \comp \sw \oplus \text{jn}_{\Delta;\typeB} \comp \sw ) \comp \dist \comp (\inl \otimes \text{id}  ) \comp ( \llbracket  v \rrbracket \otimes \text{id}) \comp \text{sp}_{\Gamma;\Delta} \comp \text{sh}_{\Delta;\Gamma} &{(\text{bifunctoriality  of } \otimes}) \\
-    & =  [\llbracket w\rrbracket,\llbracket u \rrbracket] \comp (\text{jn}_{\Delta;\typeA} \comp \sw \oplus \text{jn}_{\Delta;\typeB} \comp \sw ) \comp \dist \comp [\inl \otimes \id, \inr \otimes \id] \comp \inl  \comp ( \llbracket  v \rrbracket \otimes \text{id}) \comp \text{sp}_{\Gamma;\Delta}  &(\text{law of coproducts})\\
-    & \hspace{10pt} \comp \text{sh}_{\Delta;\Gamma}  \\
-    & =  [\llbracket w\rrbracket,\llbracket u \rrbracket] \comp (\text{jn}_{\Delta;\typeA} \comp \sw \oplus \text{jn}_{\Delta;\typeB} \comp \sw )  \comp \inl  \comp ( \llbracket  v \rrbracket \otimes \text{id}) \comp \text{sp}_{\Gamma;\Delta} \comp \text{sh}_{\Delta;\Gamma}  \\
-    & = \llbracket  w \rrbracket\comp \text{jn}_{\Delta;\typeA} \comp   \sw \comp(\llbracket v \rrbracket \otimes  \text{id}) \comp \text{sp}_{\Gamma;\Delta} \comp \text{sh}_{\Delta; \Gamma}  & {\text{(law of coproducts)}} \\
-    &=  \llbracket  w \rrbracket\comp \text{jn}_{\Delta;\typeA}  \comp(  \text{id}\otimes \llbracket v \rrbracket ) \comp   \sw \comp \text{sp}_{\Gamma;\Delta} \comp \text{sh}_{\Delta; \Gamma} & {\text{(naturality)}} \\
-    &= \llbracket w \rrbracket \comp \text{jn}_{\Delta;\typeA} \comp( \text{id} \otimes \llbracket v \rrbracket) \comp \text{sp}_{\Delta;\Gamma}& {\text{(coherence)}}\\
-    & = \llbracket w[v/x] : \typeD \rrbracket  & {\text{(lemma \ref{lem_interpret_exch:sub})}}
+    &\llbracket \Delta,\Gamma \vljud  \text{case }  \text{inl}(v)\, \{\text{inl} (x) \Rightarrow w ;\, \text{inr}_{\typeA} (y) \Rightarrow u\} \rrbracket \\
+    & \triangleq  [\llbracket w\rrbracket,\llbracket u \rrbracket] \comp (\text{jn} \comp \sw \oplus \text{jn} \comp \sw  ) \comp \dist \comp \sw \comp (\inl \comp \llbracket  v \rrbracket \otimes \text{id}) \comp \text{sp} \comp \text{sh} \\
+    & =  [\llbracket w\rrbracket,\llbracket u \rrbracket] \comp (\text{jn} \comp \sw \oplus \text{jn} \comp \sw ) \comp \dist \comp (\inl \otimes \text{id}  ) \comp ( \llbracket  v \rrbracket \otimes \text{id}) \comp \text{sp} \comp \text{sh}  \\
+    & =  [\llbracket w\rrbracket,\llbracket u \rrbracket] \comp (\text{jn} \comp \sw \oplus \text{jn} \comp \sw ) \comp \dist \comp [\inl \otimes \id, \inr \otimes \id] \comp \inl  \comp ( \llbracket  v \rrbracket \otimes \text{id}) \comp \text{sp} \comp \text{sh}  &(\text{Coproduct laws})\\
+    & =  [\llbracket w\rrbracket,\llbracket u \rrbracket] \comp (\text{jn} \comp \sw \oplus \text{jn} \comp \sw )  \comp \inl  \comp ( \llbracket  v \rrbracket \otimes \text{id}) \comp \text{sp} \comp \text{sh} \\
+    & = \llbracket  w \rrbracket\comp \text{jn} \comp   \sw \comp(\llbracket v \rrbracket \otimes  \text{id}) \comp \text{sp} \comp \text{sh} & {\text{(Coproduct laws)}} \\
+    &=  \llbracket  w \rrbracket\comp \text{jn} \comp(  \text{id}\otimes \llbracket v \rrbracket ) \comp   \sw \comp \text{sp} \comp \text{sh} & {\text{(Naturality)}} \\
+    &= \llbracket w \rrbracket \comp \text{jn} \comp( \text{id} \otimes \llbracket v \rrbracket) \comp \text{sp} & {\text{(Coherence)}}\\
+    & = \llbracket w[v/x]  \rrbracket  & {\text{(Lemma \ref{lem_interpret_exch:sub})}}
 \end{align*}
 
 %\todo[inline,size=\normalsize]{Elitzur‑Vaidman Bomb Testing Problem -> Improve usando o efeito Zeno? -> Acho que não tem ifs} 
@@ -757,18 +744,18 @@ The second case follows from induction, the exchange rule, the universal propert
 Regarding the third equation, we have that
 \begin{align*}
   & \llbracket \Delta,\Gamma \vljud \text{case } v\, \{\text{inl}_{\typeB} (y) \Rightarrow w [ \text{inl}_{\typeB}(y)/x] ;\, \text{inr}_{\typeA} (z) \Rightarrow w [ \text{inr}_{\typeA}(z)/x]\}: \typeD\rrbracket \\
-  & \triangleq  [\llbracket  w [ \text{inl}_{\typeB}(y)/x] \rrbracket, \llbracket  w [ \text{inr}_{\typeA}(z)/x] \rrbracket] \comp (\text{jn}_{\Delta;\typeA} \comp \sw \oplus \text{jn}_{\Delta;\typeB} \comp \sw  ) \comp \dist \comp (\llbracket v\rrbracket \otimes \text{id}) \comp  \text{sp}_{\Gamma;\Delta} \comp \text{sh}_{\Delta;\Gamma} \\
-  & = \llbracket w \rrbracket \comp [\text{jn}_{\Delta;\typeA \oplus \typeB} \comp (\text{id} \otimes\inl \comp  \llbracket y:\typeA \vljud y:\typeA  \rrbracket) \comp \text{sp}_{\Delta;\typeA} \comp \text{jn}_{\Delta;\typeA} \comp \sw , 
-   \text{jn}_{\Delta;\typeA \oplus \typeB} \comp (\text{id} \otimes\inr  & {\text{(lemma \ref{lem_interpret_exch:sub} and}} \\
-  &  \hspace{10pt} \comp \llbracket z:\typeB \vljud z:\typeB  \rrbracket) \comp \text{sp}_{\Delta;\typeB} \comp \text{jn}_{\Delta;\typeB} \comp \sw  ] \comp \dist \comp (\llbracket v\rrbracket \otimes \text{id}) \comp  \text{sp}_{\Gamma;\Delta} \comp \text{sh}_{\Delta;\Gamma} & {\text{law of coproducts)}}  \\
-  & =  \llbracket w \rrbracket \comp \text{jn}_{\Delta;\typeA \oplus \typeB} \comp [ (\text{id} \otimes\inl)  \comp \sw  ,     \comp (\text{id} \otimes\inr) \comp \sw  ] \comp \dist  \comp (\llbracket v \oplus \typeB\rrbracket \otimes \text{id})  \comp  \text{sp}_{\Gamma;\Delta} \comp \text{sh}_{\Delta;\Gamma}  & {\text{(coherence and}}   \\
-  & \hspace{10pt} & {\text{law of coproducts)}}   \\
-  & = \llbracket w \rrbracket \comp \text{jn}_{\Delta;\typeA \oplus \typeB}  \comp   \sw \comp  [\inl \otimes \text{id} , \inr \otimes \text{id}] \comp \dist   \comp (\llbracket v \oplus \typeB\rrbracket \otimes \text{id})  \comp  \text{sp}_{\Gamma;\Delta} \comp \text{sh}_{\Delta;\Gamma}  & {\text{(naturality and}}  \\
-  & \hspace{10pt} & {\text{law of coproducts})}   \\
+  & \triangleq  [\llbracket  w [ \text{inl}_{\typeB}(y)/x] \rrbracket, \llbracket  w [ \text{inr}_{\typeA}(z)/x] \rrbracket] \comp (\text{jn}_{\Delta;\typeA} \comp \sw \oplus \text{jn} \comp \sw  ) \comp \dist \comp (\llbracket v\rrbracket \otimes \text{id}) \comp  \text{sp} \comp \text{sh} \\
+  & = \llbracket w \rrbracket \comp [\text{jn} \comp (\text{id} \otimes\inl \comp  \llbracket y:\typeA \vljud y:\typeA  \rrbracket) \comp \text{sp} \comp \text{jn} \comp \sw , 
+   \text{jn}\comp (\text{id} \otimes\inr  \comp \llbracket z:\typeB \vljud z:\typeB  \rrbracket)   & {\text{(Lemma \ref{lem_interpret_exch:sub} and}} \\
+  &  \hspace{10pt}\comp \text{sp} \comp \text{jn} \comp \sw  ] \comp \dist \comp (\llbracket v\rrbracket \otimes \text{id}) \comp  \text{sp} \comp \text{sh} & {\text{coproduct laws)}}  \\
+  & =  \llbracket w \rrbracket \comp \text{jn} \comp [ (\text{id} \otimes\inl)  \comp \sw  ,     \comp (\text{id} \otimes\inr) \comp \sw  ] \comp \dist  \comp (\llbracket v \oplus \typeB\rrbracket \otimes \text{id})  \comp  \text{sp} \comp \text{sh}  & {\text{(Coherence and}}   \\
+  & \hspace{10pt} & {\text{coproduct laws)}}   \\
+  & = \llbracket w \rrbracket \comp \text{jn} \comp   \sw \comp  [\inl \otimes \text{id} , \inr \otimes \text{id}] \comp \dist   \comp (\llbracket v \oplus \typeB\rrbracket \otimes \text{id})  \comp  \text{sp}\comp \text{sh}  & {\text{(Naturality and}}  \\
+  & \hspace{10pt} & {\text{coproduct laws})}   \\
   %& = \llbracket w \rrbracket \comp \text{jn}_{\Delta;\typeA \oplus \typeB} \comp \comp \sw \text{id}   \comp (\llbracket v \oplus \typeB\rrbracket \otimes \text{id})  \comp  \text{sp}_{\Gamma;\Delta} \comp \text{sh}_{\Delta;\Gamma}  \\
-  & = \llbracket w \rrbracket \comp \text{jn}_{\Delta;\typeA \oplus \typeB} \comp ( \text{id} \otimes \llbracket v \oplus \typeB\rrbracket )  \comp  \sw  \comp  \text{sp}_{\Gamma;\Delta} \comp \text{sh}_{\Delta;\Gamma}  & {\text{(naturality)}}\\
-  &  = \llbracket w \rrbracket \comp \text{jn}_{\Delta;\typeA \oplus \typeB} \comp ( \text{id} \otimes \llbracket v \oplus \typeB\rrbracket )  \comp  \text{sp}_{\Delta; \Gamma} & {\text{(coherence)}}\\
-  & \triangleq \llbracket w[v/x] : \typeD \rrbracket & {\text{(lemma \ref{lem_interpret_exch:sub})}}
+  & = \llbracket w \rrbracket \comp \text{jn} \comp ( \text{id} \otimes \llbracket v \oplus \typeB\rrbracket )  \comp  \sw  \comp  \text{sp} \comp \text{sh} & {\text{(Naturality)}}\\
+  &  = \llbracket w \rrbracket \comp \text{jn} \comp ( \text{id} \otimes \llbracket v \oplus \typeB\rrbracket )  \comp  \text{sp} & {\text{(Coherence)}}\\
+  & \triangleq \llbracket w[v/x] : \typeD \rrbracket & {\text{(Lemma \ref{lem_interpret_exch:sub})}}
 \end{align*}
 \end{proof}
 
@@ -811,17 +798,20 @@ and its inverse, $[\inl \otimes \id, \inr \otimes \id]$, to the class
 
 The proof of the coproduct diagram comutes follow directly from the $\beta$-equations in Figure \ref{fig:equations-in-context-cond}, $\alpha$-equivalence, and Lemma \ref{lem:exh_and_sub}. Specifically, for the left triangle in the coproduct diagram, we have that:
   \begin{align*}
-    & \left[z:\typeA \oplus \typeB  \vljud \text{case } v\,\{\inl_{\typeB}(x) \Rightarrow p ; \, \inr_{\typeA}(y) \Rightarrow q\}: \typeD\right] \comp \left[ x: \typeA\vljud \inl_{\typeB}(x): \typeA \oplus \typeB \right] \\
-    = &   \left[z:\typeA \oplus \typeB  \vljud \text{case } v\,\{\inl_{\typeB}(x') \Rightarrow p[x'/ x] ; \, \inr_{\typeA}(y) \Rightarrow q\}: \typeD\right] \comp \left[ x: \typeA\vljud \inl_{\typeB}(x): \typeA \oplus \typeB\right] & (\alpha)\\
-    = &  \left[x:\typeA \vljud \text{case } \inl(x) \,\{\inl_{\typeB}(x') \Rightarrow p[x'/ x] ; \, \inr_{\typeA}(y) \Rightarrow q\}: \typeD\right] & (\text{Lemma } \ref{lem:exh_and_sub})  \\
-    = &  \left[x:\typeA \vljud p[x'/x][x/x']: \typeD\right] & (\beta_{\text{case}}^{\text{inl}}) \\
+    & \left[z:\typeA \oplus \typeB  \vljud \text{case } v\,\{\inl_{\typeB}(x) \Rightarrow p ; \, \inr_{\typeA}(y) \Rightarrow q\}: \typeD\right] \comp \left[ x: \typeA\vljud \inl_{\typeB}(x): \typeA \oplus \typeB \right]  \\
+    =& \left(z:\typeA \oplus \typeB  \vljud \text{case } v\,\{\inl_{\typeB}(x) \Rightarrow p ; \, \inr_{\typeA}(y) \Rightarrow q\}: \typeD\right) \comp \left( x: \typeA\vljud \inl_{\typeB}(x): \typeA \oplus \typeB \right) 
+   \\
+    =& z:\typeA \oplus \typeB  \vljud \text{case } v\,\{\inl_{\typeB}(x') \Rightarrow p[x'/ x] ; \, \inr_{\typeA}(y) \Rightarrow q\}: \typeD \comp  x: \typeA\vljud \inl_{\typeB}(x): \typeA \oplus \typeB & (\alpha)\\
+    = & x:\typeA \vljud \text{case } \inl(x) \,\{\inl_{\typeB}(x') \Rightarrow p[x'/ x] ; \, \inr_{\typeA}(y) \Rightarrow q\}: \typeD & (\text{Lemma } \ref{lem:exh_and_sub})  \\
+    = &  x:\typeA \vljud p[x'/x][x/x']: \typeD & (\beta_{\text{case}}^{\text{inl}}) \\
+    = & x:\typeA \vljud p: \typeD \\
     = &  \left[x:\typeA \vljud p: \typeD\right]  \\
   \end{align*}
   The proof for the right triangle in the coproduct diagram is analogous.
  
   Regarding the unicity of the coproduct, the key aspect of the proof lies in proving that the following equality holds: 
   $$\left[z:\typeA \oplus \typeB  \vljud \text{case } z \,\{\inl_{\typeB}(x) \Rightarrow m[\inl_{\typeB}(x)/ z] ; \, \inr_{\typeA}(y) \Rightarrow m[\inr_{\typeA}(x)/ z]\}: \typeD\right] = [z:\typeA \oplus \typeB \vljud m: \typeD].$$ 
-  This equality follows direct from the $\eta$-equations in Figure \ref{fig:equations-in-context-cond}. Now, considering any morphism $m'$ from $\typeA \oplus \typeB$ to $\typeD$ and the coproduct diagram, we have that 
+  This equality follows direct from the $\eta$-equation in Figure \ref{fig:equations-in-context-cond}. Now, considering any morphism $m'$ from $\typeA \oplus \typeB$ to $\typeD$ and the coproduct diagram, we have that 
   %$$\left[z:\typeA \oplus \typeB  \vljud m': \typeD\right] \comp \left[ x: \typeA\vljud \inl_{\typeB}(x): \typeA \oplus \typeB \right] = \left[x: \typeA  \vljud p: \typeD\right]  $$ 
   $$\left[ x: \typeA \vljud m'[ \inl_{\typeB}(x)/z]: \typeD\right]  = \left[x: \typeA  \vljud p: \typeD\right]  $$ 
   and
@@ -833,7 +823,7 @@ The proof of the coproduct diagram comutes follow directly from the $\beta$-equa
   \end{align*}
  
  
-  To prove that both the distributive property is an isomorphism syntactically, we first establish that the following equality, known  as the \emph{syntactic fusion law}, holds:
+  To prove that the distributive property is an isomorphism syntactically, we first establish that the following equality, known  as the \emph{syntactic fusion law}, holds:
   \begin{equation*}
     \left[v\left[ \left(\text{case } a \,\{\inl_{\typeB}(x) \Rightarrow w ; \, \inr_{\typeA}(y) \Rightarrow u\}\right)  / z \right]\right] =   \left[\text{case } a \,\{\inl_{\typeB}(x) \Rightarrow v[w/z] ; \, \inr_{\typeA}(y) \Rightarrow v[u/z]\} \right].
   \end{equation*}
@@ -842,10 +832,12 @@ This equality follows from the $\alpha$-equivalence and the equations in Figure 
 
 \begin{align*}
   &\left[v\left[ \left(\text{case } a \,\{\inl_{\typeB}(x) \Rightarrow w ; \, \inr_{\typeA}(y) \Rightarrow u\}\right)  / z \right]\right] & \\
-  & = \left[v\left[ \left(\text{case } a \,\{\inl_{\typeB}(x') \Rightarrow w[x'/x] ; \, \inr_{\typeA}(y') \Rightarrow u[y'/y]\}\right)  / z \right]\right] [x/x]  & (\alpha) \\
+  &  = v \left[ \left(\text{case } a \,\{\inl_{\typeB}(x) \Rightarrow w ; \, \inr_{\typeA}(y) \Rightarrow u\}\right)  / z \right] & \\
+  & =v  \left[ \left(\text{case } a \,\{\inl_{\typeB}(x') \Rightarrow w[x'/x] ; \, \inr_{\typeA}(y') \Rightarrow u[y'/y]\}\right)  / z \right] & (\alpha) \\
   & = \big[ \text{case } a \,\{\inl_{\typeB}(x) \Rightarrow v[\text{case } \inl_{\typeB}(x) \,\{\inl_{\typeB}(x') \Rightarrow w[x'/x] ; \, \inr_{\typeA}(y) \Rightarrow u[y'/y]\}/z] ; \, & (\eta_{\text{case}}) \ \\
    & \hspace{50pt} \inr_{\typeA}(y) \Rightarrow  v[\text{case } \inr_{\typeA}(y) \,\{\inl_{\typeB}(x') \Rightarrow w[x'/x] ; \, \inr_{\typeA}(y) \Rightarrow u[y'/y]\}/z]\}\big]  \\
-   & = \left[\text{case } a \,\{\inl_{\typeB}(x) \Rightarrow v[w[x'/x][x/x']/z] ; \, \inr_{\typeA}(y) \Rightarrow v[u[y'/y][y/y']/z]\}\right]   & (\beta_{\text{case}}^{\text{inl}} \text{ and } \beta_{\text{case}}^{\text{inr}}  ) \\
+   & = \text{case } a \,\{\inl_{\typeB}(x) \Rightarrow v[w[x'/x][x/x']/z] ; \, \inr_{\typeA}(y) \Rightarrow v[u[y'/y][y/y']/z]\}   & (\beta_{\text{case}}^{\text{inl}} \text{ and } \beta_{\text{case}}^{\text{inr}}  ) \\
+   & =  \text{case } a \,\{\inl_{\typeB}(x) \Rightarrow v[w/z] ; \, \inr_{\typeA}(y) \Rightarrow v[u/z]\}  \\
    & = \left[ \text{case } a \,\{\inl_{\typeB}(x) \Rightarrow v[w/z] ; \, \inr_{\typeA}(y) \Rightarrow v[u/z]\}\right] 
 \end{align*}
 
@@ -860,7 +852,15 @@ The proof that the distributive property is an isomorphism follows from the synt
   &\inl_{\typeB}(x') \Rightarrow \text{pm } x' \text{ to } a' \otimes b'. \, \inl_{\typeB}(a') \otimes b';\\
   &\inr_{\typeA}(y') \Rightarrow \text{pm } y' \text{ to } a'' \otimes b''. \, \inr_{\typeA}(a'') \otimes b'' 
 \end{aligned}  \right\}\right] \\
-& =  \left[ \text{case } z' \,  
+& =  \text{pm } z \text{ to } a \otimes b. \text{ case } a\, \left\{ \begin{aligned}
+  &\inl_{\typeB}(x) \Rightarrow \inl_{\typeB \otimes \typeD}(x \otimes b);\\
+  &\inr_{\typeA}(y) \Rightarrow \inr_{\typeA \otimes \typeD} (y \otimes b)
+\end{aligned} \right\}  \\
+& \hspace{10pt} \cdot    \text{case } z' \,  \left\{\begin{aligned} 
+&\inl_{\typeB}(x') \Rightarrow \text{pm } x' \text{ to } a' \otimes b'. \, \inl_{\typeB}(a') \otimes b';\\
+&\inr_{\typeA}(y') \Rightarrow \text{pm } y' \text{ to } a'' \otimes b''. \, \inr_{\typeA}(a'') \otimes b'' 
+\end{aligned}  \right\} \\
+& =   \text{case } z' \,  
 \left\{
   \begin{aligned} 
   &\inl_{\typeB}(x') \Rightarrow \text{pm }  (\text{pm } x' \text{ to } a' \otimes b'. \, \inl_{\typeB}(a') \otimes b')  \text{ to } a \otimes b . \\  
@@ -876,8 +876,8 @@ The proof that the distributive property is an isomorphism follows from the synt
     & \inr_{\typeA}(y) \Rightarrow \inr_{\typeA \otimes \typeD} (y \otimes b)
     \end{aligned} \Bigg\} \\ 
 \end{aligned}  
-\right\}\right] & (\text{fusion law}) \\
-& = \left[ \text{case } z' \,  
+\right\} & (\text{fusion law}) \\
+& =  \text{case } z' \,  
 \left\{
   \begin{aligned} 
   &\inl_{\typeB}(x') \Rightarrow \text{pm }  \inl_{\typeB}(a') \otimes b' [x'/a' \otimes b']  \text{ to } a \otimes b . \\  
@@ -893,8 +893,8 @@ The proof that the distributive property is an isomorphism follows from the synt
     & \inr_{\typeA}(y) \Rightarrow \inr_{\typeA \otimes \typeD} (y \otimes b)
     \end{aligned} \Bigg\}  \\ 
 \end{aligned}  
-\right\}\right]  & (\eta_{\otimes_{e}}) \\
-& =  \left[ \text{case } z' \,  
+\right\}  & (\eta_{\otimes_{e}}) \\
+& =   \text{case } z' \,  
 \left\{
   \begin{aligned} 
   &\inl_{\typeB}(x') \Rightarrow \text{ case } \inl_{\typeB}(a')\, \Bigg\{ 
@@ -908,29 +908,29 @@ The proof that the distributive property is an isomorphism follows from the synt
     & \inr_{\typeA}(y) \Rightarrow \inr_{\typeA \otimes \typeD} (y \otimes b')
     \end{aligned} \Bigg\} [y'/a'' \otimes b'']  \\ 
 \end{aligned}  
-\right\}\right]  &  (\beta_{\otimes_{e}}) \\
-& = \left[ \text{case } z' \,  
+\right\}  &  (\beta_{\otimes_{e}}) \\
+& =  \text{case } z' \,  
 \left\{
   \begin{aligned} 
   &\inl_{\typeB}(x') \Rightarrow \inl_{\typeB \otimes \typeD}(x \otimes b') [x'/a' \otimes b'] [a'/x]; \\
   &\inr_{\typeA}(y') \Rightarrow  \inl_{\typeB \otimes \typeD}(x \otimes b') [y'/a'' \otimes b''] [a''/y']  
   \end{aligned}  
-\right\}\right]  &  (\beta_{\text{case}}^{\text{inl}} \text{ and } \beta_{\text{case}}^{\text{inr}}  )  \\
-& = \left[ \text{case } z' \,
+\right\}  &  (\beta_{\text{case}}^{\text{inl}} \text{ and } \beta_{\text{case}}^{\text{inr}}  )  \\
+& =  \text{case } z' \,
 \left\{
   \begin{aligned} 
   &\inl_{\typeB}(x') \Rightarrow \inl_{\typeB \otimes \typeD}(x'); \\
   &\inr_{\typeA}(y') \Rightarrow  \inl_{\typeB \otimes \typeD}(y') 
   \end{aligned}
-\right\}\right]  & \\
-& = \left[ \text{case } z' \,
+\right\}  & \\
+& =  \text{case } z' \,
 \left\{
   \begin{aligned} 
   &\inl_{\typeB}(x') \Rightarrow c[\inl_{\typeB \otimes \typeD}(x')/c]; \\
   &\inr_{\typeA}(y') \Rightarrow  c[\inl_{\typeB \otimes \typeD}(y')/c] 
   \end{aligned}
-\right\}\right]  & (\alpha) \\
-& =  z' & (\eta_{\text{case}}) 
+\right\}  & (\alpha) \\
+& =  z' = [z'] & (\eta_{\text{case}}) 
 \end{align*}
 
 \begin{align*}
@@ -944,30 +944,40 @@ The proof that the distributive property is an isomorphism follows from the synt
     &\inl_{\typeB}(x) \Rightarrow \inl_{\typeB \otimes \typeD}(x \otimes b);\\
     &\inr_{\typeA}(y) \Rightarrow \inr_{\typeA \otimes \typeD} (y \otimes b)
   \end{aligned} \right\} \right] \\
-& = \begin{bmatrix}  \text{case } 
+& =  \text{case } z' \,  \left\{
+  \begin{aligned} 
+  &\inl_{\typeB}(x') \Rightarrow \text{pm } x' \text{ to } a' \otimes b'. \, \inl_{\typeB}(a') \otimes b';\\
+  &\inr_{\typeA}(y') \Rightarrow \text{pm } y' \text{ to } a'' \otimes b''. \, \inr_{\typeA}(a'') \otimes b'' 
+  \end{aligned}  \right\} \\
+& \hspace{10pt}\comp   \text{pm } z \text{ to } a \otimes b. \text{ case } a\, \left\{ 
+  \begin{aligned}
+    &\inl_{\typeB}(x) \Rightarrow \inl_{\typeB \otimes \typeD}(x \otimes b);\\
+    &\inr_{\typeA}(y) \Rightarrow \inr_{\typeA \otimes \typeD} (y \otimes b)
+  \end{aligned} \right\} \\
+& =  \text{case } 
   \left( \text{pm } z \text{ to } a \otimes b. \text{ case } a\, \left\{ 
   \begin{aligned}
     &\inl_{\typeB}(x) \Rightarrow \inl_{\typeB \otimes \typeD}(x \otimes b);\\
     &\inr_{\typeA}(y) \Rightarrow \inr_{\typeA \otimes \typeD} (y \otimes b)
-  \end{aligned} \right\} \right) \\[15pt]
-   \left\{
+  \end{aligned} \right\} \right) \\
+   & \hspace{40pt} \left\{
   \begin{aligned} 
   &\inl_{\typeB}(x') \Rightarrow \text{pm } x' \text{ to } a' \otimes b'. \, \inl_{\typeB}(a') \otimes b';\\
   &\inr_{\typeA}(y') \Rightarrow \text{pm } y' \text{ to } a'' \otimes b''. \, \inr_{\typeA}(a'') \otimes b'' 
-  \end{aligned}  \right\} \end{bmatrix} & (\text{Lemma } \ref{lem:exh_and_sub})
+  \end{aligned}  \right\} & (\text{Lemma } \ref{lem:exh_and_sub})
 \\
-  & =  \begin{bmatrix}  \text{case } 
+  & =    \text{case } 
     \left( \text{case } a\, \left\{ 
     \begin{aligned}
       &\inl_{\typeB}(x) \Rightarrow \inl_{\typeB \otimes \typeD}(x \otimes b);\\
       &\inr_{\typeA}(y) \Rightarrow \inr_{\typeA \otimes \typeD} (y \otimes b)
-    \end{aligned} \right\} [z/ a \otimes b] \right) \\[15pt]
-     \left\{
+    \end{aligned} \right\} [z/ a \otimes b] \right) \\
+    & \hspace{40pt}  \left\{
     \begin{aligned} 
     &\inl_{\typeB}(x') \Rightarrow  \inl_{\typeB}(a') \otimes b' \, [x'/a' \otimes b'];\\
     &\inr_{\typeA}(y') \Rightarrow  \inr_{\typeA}(a'') \otimes b''\, [y'/a'' \otimes b'']
-    \end{aligned}  \right\} \end{bmatrix} &  (\eta_{\otimes_{e}}) \\
-  & =  \begin{bmatrix} \text{case } a\, \left\{ 
+    \end{aligned}  \right\} &  (\eta_{\otimes_{e}}) \\
+  & =   \text{case } a\, \left\{ 
     \begin{aligned}
       &\inl_{\typeB}(x) \Rightarrow \text{case } \left(\inl_{\typeB \otimes \typeD}(x \otimes b)\right) \Bigg\{ 
         \begin{aligned} 
@@ -979,23 +989,23 @@ The proof that the distributive property is an isomorphism follows from the synt
         &\inl_{\typeB}(x') \Rightarrow \inl_{\typeB}(a') \otimes b';\\
         &\inr_{\typeA}(y') \Rightarrow  \inr_{\typeA}(a'') \otimes b'' 
         \end{aligned} \Bigg\} \\&[z/ a \otimes b] [y'/a''\otimes b'']
-    \end{aligned}  \right\}   \end{bmatrix} & (\text{fusion law})\\
-  & = \left[\text{ case } a\, \left\{ 
+    \end{aligned}  \right\}  & (\text{fusion law})\\
+  & = \text{ case } a\, \left\{ 
     \begin{aligned}
       &\inl_{\typeB}(x) \Rightarrow  \inl_{\typeB}(a') \otimes b' [z/ a \otimes b] [x'/a'\otimes b'] [x \otimes b/ x'];\\
       &\inr_{\typeA}(y) \Rightarrow  \inr_{\typeA}(a'') \otimes b'' [z/ a \otimes b] [y'/a''\otimes b''] [x \otimes b/ y']
-    \end{aligned} \right\} \right] & (\beta_{\text{case}}^{\text{inl}} \text{ and } \beta_{\text{case}}^{\text{inr}}) \\
-  & = \left[\text{ case } a\, \left\{ 
+    \end{aligned} \right\}  & (\beta_{\text{case}}^{\text{inl}} \text{ and } \beta_{\text{case}}^{\text{inr}}) \\
+  & = \text{ case } a\, \left\{ 
     \begin{aligned}
         &\inl_{\typeB}(x) \Rightarrow  \inl_{\typeB}(a') \otimes b' [z/ a \otimes b] [x \otimes b/a'\otimes b'];\\
         &\inr_{\typeA}(y) \Rightarrow  \inr_{\typeA}(a'') \otimes b'' [z/ a \otimes b] [x \otimes b/a''\otimes b''] 
-    \end{aligned} \right\} \right] &  \\
-  & = \left[\text{ case } a\, \left\{
+    \end{aligned} \right\}  &  \\
+  & = \text{ case } a\, \left\{
     \begin{aligned}
       &\inl_{\typeB}(x) \Rightarrow  \inl_{\typeB}(x) \otimes b;\\
       &\inr_{\typeA}(y) \Rightarrow  \inr_{\typeA}(x) \otimes b
-    \end{aligned} \right\}  [z/ a \otimes b]  \right] & (\beta_{\otimes_{e}}) \\
-  & = a \otimes b [z/ a \otimes b] = z & (\eta_{\text{case}})
+    \end{aligned} \right\}  [z/ a \otimes b]  & (\beta_{\otimes_{e}}) \\
+  & = a \otimes b [z/ a \otimes b] = z = [z] & (\eta_{\text{case}})
 \end{align*} 
 
 \end{proof}
@@ -1040,7 +1050,7 @@ The metric equation for conditionals is presented in \autoref{fig:metric conditi
         \item $d(x, z) \leq d(x, y) + d(y, z)$ for all $x, y, z \in X$.
     \end{enumerate}
     
-    For two metric spaces $(X, d_X)$ and $(Y, d_Y)$, a morphism $f: (X, d_X) \to (Y, d_Y)$ is a function $f: X \to Y$ satisfying $d_Y(f(x), f(y)) \cdot d_X(x, y)$ for all $x, y \in X$.
+    For two metric spaces $(X, d_X)$ and $(Y, d_Y)$, a morphism $f: (X, d_X) \to (Y, d_Y)$ is a function $f: X \to Y$ satisfying $d_Y(f(x), f(y)) \leq d_X(x, y)$ for all $x, y \in X$.
     \end{definition}
 
 
@@ -1107,7 +1117,7 @@ Consider a tuple $(G,\Sigma)$ consisting of a class $G$ of ground
 
 For two types $\typeA$ and of a metric $\lambda$-theory $\mathscr{T}$ , consider the class \textbf{Values}$(\typeA,\typeB)$ of values $v$ such that $x : \typeA \vljud v : \typeB$. We equip $\textbf{Values}(\typeA,\typeB)$ with the function $a :\textbf{Values}(\typeA,\typeB) \times \textbf{Values}(\typeA,\typeB) \rightarrow \mathbb{R}^{+}_0$ defined by,
 
-$$d(v,w)=\inf{\{q \, \vert \, v=_q w \text{is a theorem } \mathscr{T} \}}$$
+$$d(v,w)=\inf{\{q \, \vert \, v=_q w \text{ is a theorem } \mathscr{T} \}}$$
 
 
 It is easy to see that \textbf{Values}$((\typeA,\typeB),d)$ is a (possibly large)  $\catMet$-enriched category. We then quotient this  $\catMet$-enriched category into a separated  $\catMet$-enriched category which we denote by (\textbf{Values}$(\typeA,\typeB),d)$/$\sim$. We call  $\mathscr{T} $\emph{varietal} if (\textbf{Values}$(\typeA,\typeB),d)$/$\sim$ is a small  $\catMet$-enriched category for all types $\typeA$ and $\typeB$. For the rest of this work, we will focus exclusively on varietal theories and locally small categories.
@@ -1158,6 +1168,91 @@ in-context $\Gamma \vljud v =_q w : A$ is a theorem iff it holds in all models o
 
 It is necessary to prove that when $\hat{f}$ is defined as $\hat{f}([x],[y]) = [f(x,y)]$, $\hat{f}$ is a well-defined function. This is the case because if $[x] = [x']$ and $[y] = [y']$ then $x =_0 x'$ and $y =_0 y'$, and consequently applying rule  (refl) we obtain that $f(x,y) =_0 f(x',y')$.
 \end{proof} 
+
+
+\section{Examples}
+
+\subsection{Quantum computation}
+
+The category $\catCPTP$ of completely positive trace-preserving maps is a symmetric monoidal category with coproducts enriched over metric spaces \cite{dahlqvist2023syntactic}. The objects are natural numbers $n \geq 1$ and morphisms $n \rightarrow m$ are quantum channels $C^{n \times n} \rightarrow C^{m\times m}$.  An obvious candidate for the interpretation of quantum programs with coproducts is the category obtained by the coproduct cocompletion of $\catCPTP$,  $\catCPTP^{+}$ . In this setting, the $L^{\infty}$-norm arises as the natural metric. 
+
+
+However, coproducts alone are insufficient to express the measurement operation which maps a density matrix $ \rho \in \mathbb{C}^{2 \times 2}$ to a classical bit $b \in \mathbb{C} \oplus \mathbb{C}$. To properly capture such operations, the category must be equipped with biproducts, which can be constructed via the coproduct cocompletion of $(\catCPTP^{+})^{\cop}$ The dual of such category is denoted $\catCPTP^{\oplus}$. However, coproducts alone are insufficient to express the measurement operation which maps a density matrix $ \rho \in \mathbb{C}^{2 \times 2}$ to a classical bit $b \in \mathbb{C} \oplus \mathbb{C}$. To properly capture such operations, the category must be equipped with biproducts, which can be constructed via the coproduct cocompletion of $(\catCPTP^{+})^{\cop}$ The dual of such category is denoted $\catCPTP^{\oplus}$. Here, we may consider two natural candidates metrics for products: the $L^{\infty}$-norm and the $L^{1}$-norm. These correspond, respectively, to the following metrics: $d(\langle \phi, \psi \rangle, \langle \phi', \psi' \rangle ) = \sup \{ d(\phi, \phi' ), d(\psi, \psi') \}$ and $d(\langle \phi, \psi \rangle, \langle \phi', \psi' \rangle ) = d(\phi, \phi' ) +  d(\psi, \psi') $.
+
+Let us start by verifying if the  $L^{\infty}$-norm is a suitable candidate for making $\catCPTP^{\oplus}$ a $\catMet$-enriched category. For instance, for CTPT maps $\phi_1, \phi_2,  \phi_1', \phi_2', \psi_1, \psi_2$ the following should hold:
+\begin{align*}
+  d([\psi_1, \psi_2] \cdot \langle \phi_1, \phi_2 \rangle, [\psi_1, \psi_2] \cdot \langle \phi_1', \phi_2' \rangle ) \leq d(\langle \phi_1, \phi_2 \rangle, \langle \phi_1', \phi_2' \rangle )
+\end{align*}
+Considering $\phi_1=\phi_2$, $\phi_1'=\phi_2'$, $\phi_1 \neq \phi_1'$ and $\psi_1= \psi_2 = \id$, we have
+\begin{align*}
+  & d([\psi_1, \psi_2] \cdot \langle \phi_1, \phi_2 \rangle, [\psi_1, \psi_2] \cdot \langle \phi_1', \phi_2' \rangle ) \\
+  & = d(\psi_1 \cdot \phi_1 + \psi_2 \cdot \phi_2, \psi_1 \cdot \phi_1' + \psi_2 \cdot \phi_2') \\
+  & = d(2 \phi_1, 2 \phi_1') 
+\end{align*}
+
+Futhermore, if the metric is induced by a norm, $\ie$ $d (\psi_1, \psi_2) = \lVert \psi_1 - \psi_2\lVert$ it follows that
+
+\begin{align*}
+  & d(2 \phi_1, 2 \phi_1') \\
+  & = \lVert 2 \phi_1 - 2 \phi_1' \lVert \\
+  & = 2 \cdot \lVert \phi_1 - \phi_1' \lVert \\
+  & = 2 \cdot  d(\phi_1, \phi_1') > d(\phi_1, \phi_1') = \sup \{d(\phi_1, \phi_1'), d(\phi_2, \phi_2')\} = d(\langle \phi_1, \phi_2 \rangle, \langle \phi_1', \phi_2' \rangle )
+\end{align*}
+
+Thus, the $L^{\infty}$-norm is not a suitable candidate for making $\catCPTP^{\oplus}$ a $\catMet$-enriched category. Now let us consider the $L^{1}$-norm. For CTPT maps $ \phi, \phi', \phi_1, \phi_2$ the following should hold:
+\begin{align*}
+  d( \langle \phi_1, \phi_2 \rangle \cdot \phi, \langle \phi_1, \phi_2 \rangle \cdot \phi' ) \leq d(\phi, \phi')
+\end{align*}
+
+Considering $\phi_1=\phi_2 = \id$ and $\phi \neq \phi'$, we have
+\begin{align*}
+  & d( \langle \phi_1, \phi_2 \rangle \cdot \phi, \langle \phi_1, \phi_2 \rangle \cdot \phi' )  \\
+  & = d(  \langle \phi_1 \cdot \phi, \phi_2 \cdot \phi \rangle \langle \phi_1 \cdot \phi', \phi_2 \cdot \phi' \rangle ) \\
+  & = d(  \langle  \phi, \phi \rangle, \langle  \phi',  \phi' \rangle  )  \\
+  & = d(  \phi,  \phi'  ) +  d(  \phi,  \phi'  ) \\
+  & = 2 \cdot d(  \phi,  \phi'  ) > d(  \phi,  \phi'  )
+\end{align*}
+
+Given that none of the ``natural'' metrics are suitable for making $\catCPTP^{\oplus}$ a $\catMet$-enriched category, we must now consider a metric between the $L^{\infty}$-norm and the $L^{1}$-norm, \ie, $$\sup \{ d(\phi, \phi' ), d(\psi, \psi') \} \leq d(\langle \phi, \psi \rangle, \langle \phi', \psi' \rangle ) \leq d(\phi, \phi' ) +  d(\psi, \psi').$$
+
+In order to verify if this metric is valid,  we must ensure that for CTPT maps $\phi_1, \phi_2,  \phi_1', \phi_2', \psi_1, \psi_2$ the following holds:
+\begin{align*}
+  d([\psi_1, \psi_2] \cdot \langle \phi_1, \phi_2 \rangle, [\psi_1, \psi_2] \cdot \langle \phi_1', \phi_2' \rangle ) \geq \sup \{ d(\phi, \phi' ), d(\psi, \psi') \}
+\end{align*}
+
+Considering $\phi_2=\phi_2'$, $\phi_1 \neq \phi_1'$, $\psi_1= \psi_2 = \id$, and that the metric is induced by a norm, we have
+\begin{align*}
+  & d([\psi_1, \psi_2] \cdot \langle \phi_1, \phi_2 \rangle, [\psi_1, \psi_2] \cdot \langle \phi_1', \phi_2' \rangle ) \\
+  & = d(\psi_1 \cdot \phi_1 + \psi_2 \cdot \phi_2, \psi_1 \cdot \phi_1' + \psi_2 \cdot \phi_2') \\
+  & = \lVert \psi_1 (\phi_1- \phi_1' ) \lVert 
+\end{align*}
+ 
+For instance, if the norm considered in the trace norm, let $\psi$ be the trace operator and $\phi_1 = \id $ and $\phi_1' = D_p $, where $D_p$ is the dephasing channel. Then, $\phi_1 - \psi_1'$ maps a density operator 
+$$\rho=|\alpha|^{2} |0\rangle \langle 0 | + \alpha \beta^{\dag} |0\rangle \langle 1 | + \alpha^{\dag} \beta |1\rangle \langle 0 | + |\beta|^{2} |1\rangle \langle 1 |$$ 
+to 
+$$ p \cdot (\alpha \beta^{\dag} |0\rangle \langle 1 | + \alpha^{\dag} \beta |1\rangle \langle 0 |) $$. The trace norm of this operator is 
+\begin{align*}
+  & \left\lVert I - D_p\right\rVert_{1} \\
+  & =  \max \limits_{\alpha, \beta} \left\lVert p \cdot  \left(\alpha \beta^{\dag}\ket{0}  \bra{1}+ \alpha^{\dag} \beta \ket{1} \bra{0}\right)\right\rVert_{1} \\
+& = p \cdot \max \limits_{\alpha, \beta} \tr \left( \left(|\alpha|^2 |\beta|^2 \ket{0} \bra{0} + |\alpha|^2 |\beta|^2 \ket{1} \bra{1}\right)^{1/2} \right) \\
+& =  p \cdot  \max \limits_{|\alpha|, |\beta| } 2 \cdot (|\alpha| |\beta|)  \\
+& = p
+\end{align*}
+%Nota: Qualquer input poder ser escrito como a diferenca de estados puros com coeficientes, neste caso é muito claro que a norma é maximizada quando temos um estado puro.
+On the other hand, it is evident that $\left\lVert \tr \left(  I - D_p \right) \right\rVert_{1}  =0$. Therefore, this metric is also not valid. As a result, we must consider a different approach.
+
+% Tirando inspiração do trabalho do Selinger em que agora temos hsort maps...
+
+
+
+%we must consider other metrics.
+
+\todo[inline]{Justificar uso CPS em vez de CPTP aqui? Porque no Selinger tem a ver com ciclos while que aqui não temos.}
+
+%is the category $\catCPS$ of completely positive trace-preserving short maps 
+
+%\todo{parte 2}
+In \cite{selinger04}, Selinger 
 
 \newpage
 \bibliographystyle{alpha} 
