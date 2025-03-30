@@ -1257,12 +1257,14 @@ In \cite{selinger04}, Selinger presents the category $\catQ$ as the model of the
     \item An object is a signature $\sigma= n_1, \ldots, n_s$. We denote these signatures by the Greek letters $\sigma, \tau$ and $\mu$.
     \item A morphism $\phi \in \mathcal{M}_{\sigma \otimes \tau} $ is a matrix
     $$\begin{pmatrix}
-      \phi_{11} & \ldots & \phi_{1t}, \\
+      \phi_{11} & \ldots & \phi_{s1}, \\
       \vdots & \ddots  & \vdots \\
-      \phi_{s1} & \ldots & \phi_{st} \\
+      \phi_{1t} & \ldots & \phi_{ts} \\
     \end{pmatrix}$$
     of arrows $\phi_{ij}: \mathcal{M}_{n_i} \rightarrow \mathcal{M}_{m_j}$ in $\catCPS$ which is trace-nonincreasing, \ie, meaning that for every fixed index $i$, the following condition holds:
-    $$ \sum_j \tr \left(\phi_{ij} (A_i)\right)   \leq \tr \left(A_i\right) .$$
+    $$ \sum_j \tr \left(\phi_{ij} (A_i)\right)   \leq \tr \left(A_i\right) $$
+   for all positive $A_i \in \mathcal{M}_{n_i}$.
+
     More concretely, $ij$-component of $\phi$ is given by the function $\phi_{ij} = \pi_{j} \comp \phi \comp \mathrm{in}_{i} : \mathcal{M}_{n_i} \rightarrow \mathcal{M}_{n_j} $, where $\mathrm{in}_{i}$ is the injection of  $\mathcal{M}_{n_i}$ into the input space of $\phi$ and  $\pi_{j}$ is the projection onto the $j$-th component.
   \end{itemize}
 \end{definition}
@@ -1285,7 +1287,7 @@ Moreover, a matrix tuple $A \in \mathcal{M}_{\sigma} $ is said to be \emph{hermi
 An operator between spaces of tuples of matrices $\phi :\mathcal{M}_{\sigma} \rightarrow \mathcal{M}_{\tau}$ is called a superoperator.  Let $\phi :\mathcal{M}_{\sigma} \rightarrow \mathcal{M}_{\tau}$ be a superoperator, $\phi$ is said to be \emph{positive}, if $\phi(A)$ is positive for all positive $A \in \mathcal{M}_{\sigma}$. $\phi$ is called completely positive if $ \phi \otimes id_{\mu}$ is positive for all signatures $\mu$.
 \end{definition}
 
-\begin{definition} \emph{Tensor Product }
+\begin{definition} \label{def:tensor} \emph{Tensor Product }
   For signatures $\sigma = n_1, \ldots, n_s $ and $\tau= m_1, \ldots, m_t $, the tensor product of $\sigma$ and $\tau$ is defined as $\sigma \otimes \tau = n_1 m_1, \ldots ,n_1 m_t, \ldots, n_s m_1,...,n_s m_t$. 
   The morphism part of the tensor product follows the definition in the category of vector spaces. If $\phi: \sigma \rightarrow \tau$ and $\psi: \sigma' \rightarrow  \tau'$, then their tensor product $\psi \otimes \phi: \sigma \otimes \sigma' \rightarrow  \tau \otimes \tau' $ is defined on a basis element $A \otimes B$ by  
 $$
@@ -1302,13 +1304,14 @@ The category $\catQ$ is a distributive symmetric monoidal category with (finite)
 
 \begin{definition} \label{def:gen_1norm_prod} 
   Let $\phi \in \mathcal{M}_{n} \rightarrow \mathcal{M}_{\sigma}$ be a superoperator. The norm of $\phi$ is defined as
-  $$\lVert \phi \lVert_{L^{1}} = \sup \left\{ \lVert \phi(A) \lVert_{L^1} \, \vert \, \lVert A \lVert_{1} = 1 \right\}.$$
+  $$\lVert \phi \lVert_{L^{1}} = \sup \left\{ \lVert \phi(A) \lVert_{L^1} \, \vert \, \lVert A \lVert_{1} = 1 \right\}$$
 \end{definition}
+for positive $A \in \mathcal{M}_{n}.$
 
-\begin{definition} 
-  Let $\phi \in \mathcal{M}_{\sigma} \rightarrow \mathcal{M}_{n}$ be a superoperator. The norm of $\phi$ is defined as
-  $$\lVert \phi \lVert_{L^{\infty}} = \sup \left\{ \lVert \phi_{11} \lVert_{1}, \ldots,  \lVert \phi_{1s} \lVert_{1} \right\}.$$
-\end{definition}
+%\begin{definition} 
+  %Let $\phi \in \mathcal{M}_{\sigma} \rightarrow \mathcal{M}_{n}$ be a superoperator. The norm of $\phi$ is defined as
+  %$$\lVert \phi \lVert_{L^{\infty}} = \sup \left\{ \lVert \phi_{11} \lVert_{1}, \ldots,  \lVert \phi_{1s} \lVert_{1} \right\}.$$
+%\end{definition}
 
 \begin{definition}  \label{def:gen_1norm}  \emph{(Generalized) Trace norm of superoperators}
   Let $\phi \in \mathcal{M}_{\sigma}\rightarrow \mathcal{M}_{\tau}$ be a superoperator, where $\sigma =(n_1, \ldots, n_s)$ and $\tau =(m_1, \ldots, m_t)$.  Defining  $\phi_i= (\phi_{i1}, \ldots, \phi_{it})$ for $i \in \sigma$, the norm of $\phi$ is defined as
@@ -1323,6 +1326,7 @@ The category $\catQ$ is a distributive symmetric monoidal category with (finite)
  
  We define the metric $d$ on on the hom-set $Q(\sigma,\tau)$ as follows
 $$d(\phi,\psi) = \gendiamondnorm{\phi-\psi}.$$
+
 
 \todo[inline]{Não se usa a igualdade entre as normas para nada, se calhar estar provas deveriam sair}
 
@@ -1351,18 +1355,20 @@ Attending to definitions \autoref{def:gen_1norm} and \autoref{def:gen_1norm_prod
 By the triangle inequality, proving the inequality bellow suffices to establish the inequality at hand.
 \begin{align*}
   &\text{sup}{\left\{ \sum_{i,j} \left\lVert \phi_{i} (A_{1i})  \right\rVert_{L^1} +\left\lVert  \psi_{j}(A_{1j})  \right\rVert_{L^1}   \hspace{2pt} \Biggm|  \hspace{2pt}  \sum_{i,j} \lVert A_{1i} \rVert+ \lVert A_{1j} \rVert=1 \right\}} \\
-  &  \sup_{i,j} \left\{  \lVert \phi_{i} (A) \rVert_{L^1},   \lVert \phi_{j} (B) \rVert_{L^1}  \, \vert \, \lVert A_i \rVert= 1 ,  \lVert B_j \rVert = 1 \right\} \\
+  &  \sup_{i,j} \left\{  \lVert \phi_{i} (A_i) \rVert_{L^1},   \lVert \phi_{j} (B_j) \rVert_{L^1}  \, \vert \, \lVert A_i \rVert= 1 ,  \lVert B_j \rVert = 1 \right\} \\
 \end{align*}
 
 
-Considering $A_{11}, \ldots, A_{1s}, A_{21}, \ldots, A_{2t} $ as the matrices that maximize the left-hand side of the inequality, the inequality above can be rewritten as:
+Given that the norm is continuos and compact, we can use the maximum instead of the supremum. Considering $A_{11}, \ldots, A_{1s}, A_{21}, \ldots, A_{2t} $ as the matrices that maximize the left-hand side of the inequality, if the inequality bellow is proven so it the equality above:
 
 \begin{align*}
-  & \sum_{i,j} \left\lVert \phi_{i} (A_{1i})  \right\rVert_{L^1} \leq  \sup_{i,j} \left\{  \lVert \phi_{i} (A_{1i} / \lVert A_{1i} \rVert ) \rVert_{L^1},   \lVert \phi_{i} (A_{2j} / \lVert A_{2j} \rVert ) \rVert_{L^1}  \right\}  \wedge \sum_{i,j} \lVert A_{1i} \rVert+ \lVert A_{1j} \rVert=1 
+  & \sum_{i,j} \left\lVert \phi_{i} (A_{1i})  \right\rVert_{L^1} 
+  \leq  \max_{\phi_i,\psi_j} \left\{  \lVert \phi_{i} (A_{1i} / \lVert A_{1i} \rVert ) \rVert_{L^1},   \lVert \psi_{i} (A_{2j} / \lVert A_{2j} \rVert ) \rVert_{L^1}  \right\}  
+  \wedge \sum_{i,j} \lVert A_{1i} \rVert+ \lVert A_{1j} \rVert=1 
 \end{align*}
 
 
-Given that the norm is continuos and compact, we can use the maximum instead of the supremum. As a result, proving the inequality above is equivalent to demonstrating that for all $a_1, \ldots, a_n, x_1, \ldots, x_n \in \mathbb{R}^{+}_{0}$ with $a_1+ \ldots + a_n=1$,
+ Proving the inequality above is equivalent to demonstrating that for all $a_1, \ldots, a_n, x_1, \ldots, x_n \in \mathbb{R}^{+}_{0}$ with $a_1+ \ldots + a_n=1$,
 \begin{align*}
     x_1 + \ldots + x_n  \leq  \max \left\{   \dfrac{1}{a_1} x_1  , \ldots , \dfrac{1}{a_n} x_n   \right\} \\
 \end{align*}
@@ -1372,7 +1378,7 @@ Designating $M = \max \left\{   \dfrac{1}{a_1} x_1  , \ldots , \dfrac{1}{a_n} x_
   \opnorm{[\phi, \psi]} \leq \gentracenorm{[\phi, \psi]}
 \end{align*} 
 
-It remains to prove the reverse inequality. he validity of this inequality follows from the observation that
+It remains to prove the reverse inequality. The validity of this inequality follows from the observation that
 \begin{align*}
   &\left\{  \lVert \phi_{i} (A) \rVert_{L^1},   \lVert \phi_{j} (B) \rVert_{L^1}  \, \vert \, \lVert A_i \rVert= 1 ,  \lVert B_j \rVert = 1 \right\}  \subseteq\\
 & {\left\{ \left\lVert \sum_{i,j} (\phi_{i} (A_{1i})  + \psi_{j}(A_{1j}))  \right\rVert_{L^{1}}  \hspace{2pt} \Biggm|  \hspace{2pt}  \sum_{i,j} \lVert A_{1i} \rVert+ \lVert A_{1j} \rVert=1 \right\}},
@@ -1425,7 +1431,7 @@ The inequality in Proposition \ref{prop:met_cond} follows from the linearity of 
 \begin{proposition} \label{prop:uv*}
   For all super-operators $\psi: \sigma \to \tau$, it holds that:
   \begin{align*}
-    \gentracenorm{\phi} & =  \sup  \left\{ \sup_{i} \left\{ \sum_{j=1} \|\phi_{ij} (v_i w_i^\dag)\|_{1}  \mid  \|v_i|_{2} = 1,   \|w_i\|_{2} =1 \right\} \right\}
+    \gentracenorm{\phi} & =  \sup_{i}  \left\{ \sup \left\{ \sum_{j} \|\phi_{ij} (v_i w_i^\dag)\|_{1}  \mid  \|v_i\|_{2} = 1,   \|w_i\|_{2} =1 \right\} \right\}
   \end{align*}
 \end{proposition}
 
@@ -1433,16 +1439,248 @@ The inequality in Proposition \ref{prop:met_cond} follows from the linearity of 
   The argument for this equality is similar to the one presented in \cite[Proof of Proposition 3.38]{watrous2018theory}.
   
 
-  Every square matrix $A \in \mathbb{C}^{n \times n}$ that satisfies $ \tracenorm{A} \leq 1$ can be expressed as a convex combination of operators of the form  $uv*$ where $u,v  \in \mathbb{C}^{n \times n}$ are unit vectors. Consequently by  triangle inequality, one has that,
+  Every square matrix $A \in  \mathcal{M}_n $ that satisfies $ \tracenorm{A} \leq 1$ can be expressed as a convex combination of operators of the form  $uv*$ where $u,v  \in \mathbb{C}^{n}$ are unit vectors. Consequently by  triangle inequality, one has that,
 
   \begin{align*}
-    &\gentracenorm{\phi}\\
-    & ...
+    &\gentracenorm{\phi} = \sup_{i}  \left\{ \sup \left\{ \sum_{j} \|\phi_{ij} (A_i)\|_{1}  \mid  \|A_i\|_{1} = 1 \right\} \right\} \\
+    & = \sup_{i}  \left\{ \sup \left\{ \sum_{j} \left\lVert \phi_{ij} \left( \sum_k v_i w_i^\dagger \right) \right\rVert_{1}   \Biggm| \sum_k \left\lVert v_k \right\rVert_{2} = 1,  \sum_k \left\lVert w_k \right\rVert_{2} = 1  \right\} \right\} \\
+    & \leq  \sup_{i}  \left\{ \sup \left\{ \sum_{j} \sum_k  \left\lVert \phi_{ij} \left(  v_k w_k^\dagger \right) \right\rVert_{1}   \Biggm|\sum_k \left\lVert v_k \right\rVert_{2} = 1,  \sum_k \left\lVert w_k \right\rVert_{2} = 1   \right\} \right\}
+  \end{align*}
+
+  Since, for each $\phi_{ij} \left(  v_k w_k^\dagger \right)$, there exists a $vw^\dagger$ such that  $\phi_{ij} \left(  v_k w_k^\dagger \right) \leq \phi_{ij} \left(  v w^\dagger \right)$ for all $k$, the inequality above can be rewritten as:
+  \begin{align*}
+    & \sup_{i}  \left\{ \sup \left\{ \sum_{j}  \left\lVert \phi_{ij} \left(  v_i w_i^\dagger \right) \right\rVert_{1}   \Biggm|    \|v_i\|_{2} = 1,   \|w_i\|_{2} \right\} \right\}
+  \end{align*}
+
+  The proof of the reverse inequality follows a similar argument to that of the analogous inequality in Lemma \ref{lem_op_max_trace}
+  
+  \begin{comment}
+  The validity of this inequality follows from the observation that
+\begin{align*}
+  & \left\{ \sum_{j}  \left\lVert \phi_{ij} \left(  v_i w_i^\dagger \right) \right\rVert_{1}   \Biggm|    \|v_i\|_{2} = 1,   \|w_i\|_{2} \right\}  \subseteq\\
+&  \left\{ \sum_{j} \left\lVert \phi_{ij} \left( \sum_k v_i w_i^\dagger \right) \right\rVert_{1}   \Biggm| \sum_k \left\lVert v_k \right\rVert_{2} = 1,  \sum_k \left\lVert w_k \right\rVert_{2} = 1  \right\},
+\end{align*}
+This inclusion holds because the first set corresponds to the special case where all but one element in the sum over $k$ are zero. Consequently
+\begin{align*}
+  & \sup_{i}  \left\{ \sup \left\{ \sum_{j}  \left\lVert \phi_{ij} \left(  v_i w_i^\dagger \right) \right\rVert_{1}   \Biggm|    \|v_i\|_{2} = 1,   \|w_i\|_{2} \right\} \right\} \\
+  &\leq \sup_{i}  \left\{ \sup \left\{ \sum_{j} \left\lVert \phi_{ij} \left( \sum_k v_i w_i^\dagger \right) \right\rVert_{1}   \Biggm| \sum_k \left\lVert v_k \right\rVert_{2} = 1,  \sum_k \left\lVert w_k \right\rVert_{2} = 1  \right\} \right\}
+\end{align*}
+and the equality is proven.
+  \end{comment}
+\end{proof}
+
+
+\begin{lemma} \label{lemma:uv*_tensorI_gen}
+  Let $\phi_i: \mathcal{M}_{n}  \rightarrow \sigma$ be a super-operator.  For every choice of a complex vector space $\mathbb{C}^{m}$ and unit vectors $v_1, v_2 \in \mathbb{C}^{n} \otimes \mathbb{C}^{m}$, there exist unit vectors $w_1, w_2 \in \mathbb{C}^{n} \otimes \mathbb{C}^{n}$ such that the following equalities hold:
+  \begin{align*} 
+       \sum_{j=1}^{m} \left\lVert   \phi_{ij} \otimes \id_{\mathcal{M}_{m}} (v_1 v_2^\dag)\right\rVert_{1} = \sum_{j=1}^{m} \left\lVert \phi_{ij}  \otimes \id_{\mathcal{M}_{n}} (w_1 w_2^\dag) \right\rVert_{1}
+  \end{align*}
+\end{lemma}
+
+
+ \begin{proof}
+  The proof of this Lemma follows from the one presented in \cite[Proof of Lemma 3.45]{watrous2018theory}. Since the vectors $w_1$ and $w_2$ satisfying the inequality
+  \begin{align*}
+  \lVert \phi_{ij} \otimes \id_{\mathcal{M}{m}} (v_1 v_2^\dag) \rVert{1} = \lVert \phi_{ij} \otimes \id_{\mathcal{M}{n}} (w_1 w_2^\dag) \rVert{1}
+  \end{align*}
+  depend only on $v_1$ and $v_2$ and are independent of $\phi_{ij}$ , it follows that the equality in Lemma \ref{lemma:uv*_tensorI_gen} holds.
+  In the case that $m \leq n$ for any choice of an isometry $T \in \mathbb{C}^{m} \rightarrow \mathbb{C}^{n} $, the vectors $w_1 = (\id_{\mathbb{C}^{n}} \otimes T)v_1$ and $w_2 = (\id_{\mathbb{C}^{n}} \otimes T)v_2$  satisfy the equality above. If  $m > n$, consider Schmidt decompositions
+  \begin{align*}
+      v_1 = \sum_{k=1}^n \sqrt{p_k} \, v_{1k} \otimes x_k \quad \text{and} \quad v_2 = \sum_{k=1}^n \sqrt{q_k} \, v_{2k} \otimes y_k 
+  \end{align*}
+  of $v_1$ and $v_2$, a suitable choice for the vectors $w_1$ and $w_2$ is given by
+  \begin{align*}
+      u = \sum_{k=1}^n \sqrt{p_k} \, v_{1k} \otimes v_{1k} \quad \text{and} \quad v = \sum_{k=1}^n \sqrt{q_k} \, v_{2k} \otimes v_{2k}. 
+  \end{align*}
+ \end{proof}
+
+ \todo[inline]{Escrevi tudo, para o caso do lemma da op norm sair. Mas se não sair a prova disto é só uma frase, dado que as provas são basicamente iguais}
+
+ \begin{lemma}\label{lem:phi(A)}
+  Let $\sigma: n_1, \ldots, n_s$, $\tau: m_1, \ldots, m_t$ and $\mu: o_1, \ldots, o_r$ be signatures. Let  $\phi: \sigma \rightarrow \mu$ be a super-operator, then for $A \in \sigma$ it holds that:
+  \begin{align*}
+    \gentracenorm{\phi(A)} \leq \gentracenorm{\phi} \cdot \lonenorm{A}.
+  \end{align*}
+\end{lemma}
+
+\begin{proof}
+
+The generalized trace norm of $\phi$ corresponds to :
+\begin{align*}\label{eq:q}
+  \gentracenorm{\phi}& =   \sup_i \left\{ \sup \left\{\|\phi_{i} (A_i)\|_{L^1}   \mid \hspace{1pt} \|A_i\|_{1} = 1 \right\} \right\} & \{\text{\autoref{def:gen_1norm}}\} \\
+ & = \sup_i  \left\{\|\phi_{i} (A_i)\|_{L^1}   \mid \hspace{1pt} \|A_i\|_{1} = 1 \right\} 
+\end{align*}
+
+
+To prove that  if  $ \lonenorm{A} = 1$
+\begin{align*} 
+  \lonenorm{\phi(A) } \leq \gentracenorm{\phi},
+\end{align*}
+is equivalent to demonstrating that,
+\begin{align*}
+ &\sup \left\{ \lVert \phi(A) \rVert_{L^1} \hspace{2pt}  \Biggm| \hspace{2pt}  \sum_{i=1}^{n} \lVert A_i  \rVert_1 = 1 \right\} \leq \gentracenorm{\phi} \\
+ & \Leftrightarrow \sup \left\{ \left\lVert \sum_{i=1}^{n} \phi_{i} (A_{i}) \right\rVert_{L^1} \hspace{2pt}  \Biggm| \hspace{2pt}  \sum_{i=1}^{n} \lVert A_i  \rVert_1 = 1  \right\} 
+ \leq \sup_i  \left\{\|\phi_{i} (A_i)\|_{L^1}   \mid \hspace{1pt} \|A_i\|_{1} = 1 \right\} 
+\end{align*}
+
+
+By the triangle inequality, if the inequality bellow holds, then the inequality above also holds.
+\begin{align*}
+    &\sup \left\{   \sum_{i=1}^{n} \lVert \phi_{i} (A_{i}) \rVert_{L^1} \hspace{2pt}  \Biggm| \hspace{2pt}  \sum_{i=1}^{n} \lVert A_i  \rVert_1 = 1 \right\} 
+    \leq \sup_i  \left\{\|\phi_{i} (A_i)\|_{L^1}   \mid \hspace{1pt} \|A_i\|_{1} = 1 \right\}   \\
+\end{align*}
+
+Given that the norm is continuos and compact, we can use the maximum instead of the supremum. Considering $A_1, \ldots, A_n$ as the matrices that maximize the left-hand side of the inequality, proving the following inequality is equivalent to demonstrating that inequality above holds.
+  \begin{align*}
+     &\max \left\{ \sum_{i=1}^{n} \lVert \phi_{i} (A_{i}) \rVert_{L^1} \right\} 
+     \leq \max_{\phi_i} \left\{ \lVert \phi_{i} (A_{i} / \lVert A_{i} \rVert_1) \rVert_{L^1} \right\} 
+     \wedge \sum_{i=1}^{n} \lVert A_i  \rVert_1 = 1
   \end{align*}
 
 
+  This is equivalent to demonstrating that for all $a_1, \ldots, a_n, x_1, \ldots, x_n \in \mathbb{R}^{+}_{0}$ with $a_1+ \ldots + a_n=1$,
+  \begin{align*}
+    x_1 + \ldots + x_n  \leq  \max \left\{   \dfrac{1}{a_1} x_1  , \ldots , \dfrac{1}{a_n} x_n   \right\} \\
+  \end{align*}
+      
+
+  Designating $M = \max \left\{   \dfrac{1}{a_1} x_1  , \ldots , \dfrac{1}{a_n} x_n   \right\}$, from the definition of maximum it follows that, for all $1 \leq i \leq n$, $x_i \leq M \cdot a_i$, and consequently, $x_1 + \ldots + x_n \leq M \cdot (a_1 + \ldots + a_n) = M$. 
+  
+  Therefore, it follows that for an operator $A \in \sigma $,
+  \begin{equation*}
+    \left\lVert \phi \left(\frac{A}{\lVert A \rVert_{L^1}}\right)  \right\rVert_{L^1} = \frac{1}{\lVert A \rVert_{L^1}} \left\lVert \phi (A)  \right\rVert_{L^1}
+  \end{equation*} 
+is upper bounded by $\lVert \phi  \rVert_{L^1}$. Thus, Lemma \ref{lem:phi(A)} holds.
+
 \end{proof}
 
+ \begin{theorem} \label{theorem:tensor_stability} 
+  Let $\sigma: n_1, \ldots, n_s$, $\tau: m_1, \ldots, m_t$ and $\mu: o_1, \ldots, o_r$ be signatures. For all super-operators $\phi: \sigma  \rightarrow \tau$ and signatures $\mu$,  it holds that:
+      \begin{align*}
+          \gentracenorm{\phi \otimes \id_{\mu}} \leq  \gendiamondnorm{\phi}
+      \end{align*}
+    with equality holding under the assumption that within $\mu$ there  exists a natural number $o_i$, such that for all $1 \leq j \leq n$, $\text o_i \geq n_j$.
+    
+    %$\text{dim}(\mathbb{C}^{q_1 \times q_1} \oplus \ldots \oplus \mathbb{C}^{q_t \times q_t}) \geq  \text{dim}(\mathbb{C}^{o_1 \times o_1} \oplus \ldots \oplus \mathbb{C}^{o_n \times o_n})$.
+      \end{theorem}
+  
+  \begin{proof}
+   This proof follows the same principle as \cite[Proof of Theorem 3.36]{watrous2018theory}.
+
+    Attending to definitions \ref{def:gen_diamond_norm}, \ref{def:gen_1norm}, and \ref{def:tensor} , one has that
+    \begin{align*} \label{eq:q_diamondgen_extendido}
+        \lVert \phi \rVert_{\diamondsuit \text{ gen}}  & = \gentracenorm{Q \otimes \id_{\mu}} \\
+        & = \sup_{i,k} \left\{ \sup \left\{ \sum_{j=1}^{t} \|\phi_{ij} \otimes \id_{\mathcal{M}_{o_k}} (A_{ik})\|_{1}    \mid  \|A_{ik}\|_{1} = 1 \right\} \right\}  
+    \end{align*}
+
+    When $i \neq k$, considering Proposition \autoref{prop:uv*} and Lemma \autoref{lemma:uv*_tensorI_gen}, considering unit vectors  $v_{ik}, w_{ik} \in \mathbb{C}^{n_i} \otimes \mathbb{C}^{n_j}$, and $v_{i}, w_{i} \in \mathbb{C}^{n_i} \otimes \mathbb{C}^{n_i}$, where $1 \leq i \leq s$ and $1 \leq k \leq s$, it follows that
+    \begin{align*}
+      & \sup_{i,k} \left\{ \sup \left\{ \sum_{j=1}^{t} \|\phi_{ij} \otimes \id_{\mathcal{M}_{o_k}} (A_{ik})\|_{1}    \mid  \|A_{ik}\|_{1} = 1 \right\} \right\} \\
+      & = \sup_{i,k} \left\{ \sup \left\{\sum_{j=1}^{t} \|\phi_{ij} \otimes \id_{\mathcal{M}_{o_k}} (v_{ik} w_{ik}^\dag )\|_{1} \right\}   \right\} \\
+      & \leq \sup_{i} \left\{ \sup \left\{ \sum_{j=1}^{t} \|\phi_{ij} \otimes \id_{\mathcal{M}_{o_i}} (v_{i} w_{i}^\dag )\|_{1}   \right\} \right\}.
+    \end{align*}
+  
+  Consequentlty, 
+  \begin{align*}
+    \lVert \phi \rVert_{\diamondsuit \text{ gen}} = \sup_{i} \left\{ \sup \left\{ \sum_{j=1}^{t} \|\phi_{ij} \otimes \id_{\mathcal{M}_{o_i}} (A_{i})\|_{1}    \mid  \|A_{i}\|_{1} = 1 \right\} \right\}
+  \end{align*}
+  
+   
+    Applying the same reasoning to  $\gentracenorm{\phi \otimes I_{\mu}}$,  the following inequality holds:
+  \begin{align*}
+      \gentracenorm{\phi \otimes I_{\mu}}  & \leq \sup_{i} \left\{ \sup \left\{ \sum_{j=1}^{t} \|\phi_{ij} \otimes \id_{\mathcal{M}_{o_i}} (v_{i} w_{i}^\dag )\|_{1}   \right\} \right\}.
+  \end{align*}
+  As a result,
+  $$\gentracenorm{Q \otimes \id_{\mu}} \leq  \gendiamondnorm{Q}$$
+  
+  
+   Consider $1 \leq i \leq s$ and $1 \leq k \leq r$. When $o_k \geq n_i$, there exists an isometry $T: \mathbb{C}^{n_i} \rightarrow \mathbb{C}^{o_k}$. Moreover, for $A \in \mathcal{M}_{n_i}$, such that $\|A\|_1=1$, and $\phi_{ij}: \mathcal{M}_{n_i} \rightarrow \mathcal{M}_{o_k}$, attending to the isometric invariance of the trace norm it holds that:
+    \begin{equation*}
+      \sum_{j=1}^{m} \lVert \phi_{ij} \otimes \id_{\mathcal{M}_{n_i}} (A) \rVert_{1} = \sum_j \lVert (\phi_{ij} \otimes \id_{\mathcal{M}_{o_k}}) ((\id_{\mathcal{M}_{n_i}} \otimes T) A (\id_{\mathcal{M}_{n_i}} \otimes T )^\dag) \rVert_{1}. 
+    \end{equation*}
+  This can be rewritten as:
+  \begin{align*}
+    &\sum_{j=1}^{m} \lVert \phi_{ij} \otimes \id_{\mathcal{M}_{n_i}} (A) \rVert_{1} =  \lonenorm{(\phi_{i} \otimes \id_{\mathcal{M}_{o_k}}) ((\id_{\mathcal{M}_{n_i}} \otimes T) A (\id_{\mathcal{M}_{n_i}} \otimes T )^\dag)} . 
+  \end{align*}
+  Consequentlty, by Lemma \ref{lem:phi(A)}, it follows that:
+  \begin{equation*}
+    \sum_{j=1}^{m} \lVert \phi_{ij} \otimes \id_{\mathcal{M}_{n_i}} (A) \rVert_{1} \leq \lonenorm{\phi_{i} \otimes \id_{\mathcal{M}_{o_k}}} = \sup \left\{\sum_{j=1}^{m} \lVert \phi_{ij} \otimes \id_{\mathcal{M}_{o_k}} (B) \rVert_{1} \mid \|B\| = 1\right\}.
+  \end{equation*}
+  And, as a result,  under the assumption that within $\mu$ there  exists a natural number $o_i$, such that for all $1 \leq j \leq n$, $\text o_i \geq n_j$, it holds that: 
+  \begin{equation*}
+    \gentracenorm{\phi \otimes \id_{\mu}} =  \gendiamondnorm{\phi}
+  \end{equation*}
+  which completes the proof.
+  \end{proof}
+  
+   
+   
+  \begin{corollary} \label{cor:tensor_stability}
+    For all super-operators  $\phi: \sigma  \rightarrow \tau$ and signatures $\mu$  it holds that:
+  \begin{align*}
+    \gendiamondnorm{\phi \otimes \id_{\mu}} =  \gendiamondnorm{\phi}
+\end{align*}
+  \end{corollary}
+
+
+  \begin{proposition}\label{lem:gen_trace_submultiplicative}
+    Let $\sigma: n_1, \ldots, n_s$, $\tau: m_1, \ldots, m_t$ and $\mu: o_1, \ldots, o_r$ be signatures.  For all super-operators $\phi: \sigma  \rightarrow \tau$ and $\psi: \tau  \rightarrow \mu$, it holds that:
+    \begin{align*} 
+      \gentracenorm{\psi  \phi} \leq \gentracenorm{\psi} \gentracenorm{\phi}
+    \end{align*}
+  \end{proposition}
+  
+  \begin{proof}
+    This proof follows the same reasoning as \cite[Proof of Proposition 3.41]{watrous2018theory}. 
+  
+   The composition $\psi \cdot \phi$ can be seen as:
+  \begin{align*}
+    \psi \cdot \phi = 
+    \begin{pmatrix}
+      \psi_{11} & \ldots & \psi_{t1}, \\
+      \vdots & \ddots  & \vdots \\
+      \psi_{1r} & \ldots & \psi_{tr} \\
+    \end{pmatrix}
+    \cdot
+    \begin{pmatrix}
+      \phi_{11} & \ldots & \phi_{s1}, \\
+      \vdots & \ddots  & \vdots \\
+      \phi_{1t} & \ldots & \phi_{st} \\
+    \end{pmatrix}
+    =\begin{pmatrix}
+      \psi \cdot \phi_1, \ldots, \psi \cdot \phi_n .\\
+    \end{pmatrix}
+    \end{align*}
+  
+ %Defining  $\phi_i= (\phi_{i1}, \ldots, \phi_{it})$ for $i \in \sigma$, the norm of $\phi$ is defined as 
+
+  Attending to Definition \autoref{def:gen_1norm}, it follows that:
+  \begin{align*} 
+   \gentracenorm{\psi \cdot  \phi} & = \sup_{i} \{ \sup \{\lVert \psi \cdot \phi_i (A_i) \rVert_{L^1} \mid \|A_i\|_{1} = 1\} \}  = \sup_i \{\lVert \psi \cdot \phi_i (A_i) \rVert_{L^1} \mid \|A_i\|_{1} = 1\}
+  \end{align*}
+
+  Let $B \in \tau$, by \autoref{lem:phi(A)} it follows that:
+  \begin{align*}
+    \lVert \psi(B) \rVert_{L^1} \leq \lVert \psi  \rVert_{L^\infty} \cdot \lVert B  \rVert_{L^1}.
+  \end{align*}
+  
+  As a result, 
+  \begin{align*} 
+    \lVert \psi (\phi_i (A_i)) \rVert_{L^1} \leq \lVert \psi  \rVert_{L^\infty} \cdot \lVert \phi_i (A_i)  \rVert_{L^1},
+  \end{align*}
+
+  Considering Definition \autoref{def:gen_1norm}, $\lVert \phi_i (A_i)  \rVert_{L^1}\leq \gentracenorm{\phi}$. Therefore, one has that,
+  \begin{align*} 
+    \lVert \psi (\phi_i (A_i)) \rVert_{L^1} \leq \lVert \psi  \rVert_{L^\infty} \cdot \lVert \phi  \rVert_{L^\infty},
+  \end{align*} 
+
+  Finally considering the definition of \textit{supremum}, it follows that,
+  \begin{align*} 
+    \lVert \psi \rVert_{L^\infty} \leq \lVert \psi  \rVert_{L^\infty} \cdot \lVert \phi  \rVert_{L^\infty},
+  \end{align*}
+
+  
+  \end{proof}
 
 
 \newpage
