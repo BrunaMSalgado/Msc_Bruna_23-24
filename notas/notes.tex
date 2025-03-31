@@ -1251,7 +1251,7 @@ On the other hand, it is evident that $\left\lVert \tr \left(  I - D_p \right) \
 %\todo{parte 2}
 In \cite{selinger04}, Selinger presents the category $\catQ$ as the model of the language QPL.  
 
-\begin{definition}
+\begin{definition} \label{def:catQ}
   The category $\catQ$ is defined as the the finite biproduct completion of $\catCPS$ (which extends $\catCPTP$ to include trace-nonincreasing (or short) maps),  further restricted to trace-nonincreasing morphisms. Let  $\mathcal{M}_n$ denote the set of complex $n\times n$ matrices.
   \begin{itemize}
     \item An object is a signature $\sigma= n_1, \ldots, n_s$. We denote these signatures by the Greek letters $\sigma, \tau$ and $\mu$.
@@ -1273,10 +1273,18 @@ In \cite{selinger04}, Selinger presents the category $\catQ$ as the model of the
  Trace-non increasing (or short) maps are used here instead of strictly trace-preserving maps to account for possible non-termination in programs, particularly since the language  QPL includes while loops.
 
 
-Here, the concepts of trace and adjoints are extended to tuples of matrices $A=(A_1, \ldots, A_n) \in \mathcal{M}_{\sigma}$ as follows:
+ %Every signature $\sigma$, is associated to  a complex vector space:
+%\[
+%\mathcal{M}_\sigma = \mathbb{C}^{n_1 \times n_1} \oplus \cdots \oplus \mathbb{C}^{n_s \times n_s}.
+%\]
+%This space consists of matrix tuples $A = (A_1, \dots, A_s)$, where the signature $\sigma$ specifies both the number $s$ of matrices and their respective dimensions $n_i \times n_i$. The elements of $V_\sigma$ are represented uppercase letters such as $A$, $B$, etc.
+\todo[inline]{Colocar disclaimer a dizer que em embora os $A's$ sejam vetores verticais qd daí não advir nenhuma ambiguidade vamos representar como pares por uma questão de ficar mais simples}
+
+Here, the concepts of trace, and matrix multiplication are extended to vectors of matrices $A=(A_1, \ldots, A_n) , U = (U_1, \ldots, U_n), U' = (U'_1, \ldots, U'_n)  \in \mathcal{M}_{\sigma}$ as follows:
 \begin{align*}
   &\tr(A) = \sum_{i} \tr(A_{i}) \\
-  &(A)^{\dagger} = (A_{1}^{\dagger}, \ldots, A_{n}^{\dagger}) 
+  %&(A)^{\dagger} = (A_{1}^{\dagger}, \ldots, A_{n}^{\dagger}) \\
+  & U A U' = (U_1 A_{1} U'_1, \ldots, U_n A_{n} U'_n)
 \end{align*}
 Moreover, a matrix tuple $A \in \mathcal{M}_{\sigma} $ is said to be \emph{hermitian} (respectively, \emph{positive}) if each $A_i$ is hermitian
 (respectively, positive) for all $i$. 
@@ -1302,6 +1310,8 @@ and extends to arbitrary elements by linearity.
 
 The category $\catQ$ is a distributive symmetric monoidal category with (finite) biproducts. Now, we must prove that $\catQ$ is a $\catMet$-enriched category. For tuples of matrices $A = (A_1, \ldots, A_n) \in \mathcal{M}_{\sigma}$, we consider the $L^{1}$-norm, $\lVert A \lVert_{L^1} = \sum_i \lVert A_i \lVert_{V_i}$, where $\lVert \cdot \lVert_{1}$ is the trace norm. For tuples of tuples of matrices (which serve as inputs to the co-pairing map), we extend this norm recursively.
 
+
+
 \begin{definition} \label{def:gen_1norm_prod} 
   Let $\phi \in \mathcal{M}_{n} \rightarrow \mathcal{M}_{\sigma}$ be a superoperator. The norm of $\phi$ is defined as
   $$\lVert \phi \lVert_{L^{1}} = \sup \left\{ \lVert \phi(A) \lVert_{L^1} \, \vert \, \lVert A \lVert_{1} = 1 \right\}$$
@@ -1313,8 +1323,10 @@ for positive $A \in \mathcal{M}_{n}.$
   %$$\lVert \phi \lVert_{L^{\infty}} = \sup \left\{ \lVert \phi_{11} \lVert_{1}, \ldots,  \lVert \phi_{1s} \lVert_{1} \right\}.$$
 %\end{definition}
 
+
+
 \begin{definition}  \label{def:gen_1norm}  \emph{(Generalized) Trace norm of superoperators}
-  Let $\phi \in \mathcal{M}_{\sigma}\rightarrow \mathcal{M}_{\tau}$ be a superoperator, where $\sigma =(n_1, \ldots, n_s)$ and $\tau =(m_1, \ldots, m_t)$.  Defining  $\phi_i= (\phi_{i1}, \ldots, \phi_{it})$ for $i \in \sigma$, the norm of $\phi$ is defined as
+  Let $\phi \in \mathcal{M}_{\sigma}\rightarrow \mathcal{M}_{\tau}$ be a superoperator, where $\sigma =(n_1, \ldots, n_s)$ and $\tau =(m_1, \ldots, m_t)$.  Defining  $\phi_i= (\phi_{i1}, \ldots, \phi_{it})$ for $n_i \in \sigma$, the norm of $\phi$ is defined as
   $$\lVert \phi \lVert_{L^{\infty}} = \sup \left\{ \lVert \phi_1 \lVert_{L^{1}}, \ldots,  \lVert \phi_n \lVert_{L^{1}}  \right\}.$$
 \end{definition}
 
@@ -1331,7 +1343,7 @@ $$d(\phi,\psi) = \gendiamondnorm{\phi-\psi}.$$
 \todo[inline]{Não se usa a igualdade entre as normas para nada, se calhar estar provas deveriam sair}
 
 \begin{lemma} \label{lem_op_max_trace}
-  Let $\phi \in \catQ(\sigma,\mu)  $ and $\psi \in \catQ(\tau,\mu) $ be superoperators. Then, it holds that 
+  Let $\sigma: n_1, \ldots, n_s$, $\tau: m_1, \ldots, m_t$ and $\mu: o_1, \ldots, o_r$ be signatures. Let $\phi \in \catQ(\sigma,\mu)  $ and $\psi \in \catQ(\tau,\mu) $ be superoperators. Then, it holds that 
   $$ \opnorm{[\phi, \psi]} = \gentracenorm{[\phi, \psi]}.$$
 \end{lemma}
 
@@ -1393,7 +1405,7 @@ and the equality is proven.
 \end{proof}
 
 \begin{lemma} \label{lem_op_max_diamond}
-  Let $\phi \in \catQ(\sigma,\mu)  $ and $\psi \in \catQ(\tau,\mu) $ be superoperators. Then, it holds that 
+  Let $\sigma: n_1, \ldots, n_s$, $\tau: m_1, \ldots, m_t$ and $\mu: o_1, \ldots, o_r$ be signatures. For all superoperators $\phi \in \catQ(\sigma,\mu)  $ and $\psi \in \catQ(\tau,\mu) $ it holds that 
   $$ \gendiamondnorm{[\phi, \psi]} = \gendiamondnorm{[\phi, \psi]}.$$
 \end{lemma}
 
@@ -1429,7 +1441,7 @@ The inequality in Proposition \ref{prop:met_cond} follows from the linearity of 
 
 
 \begin{proposition} \label{prop:uv*}
-  For all super-operators $\psi: \sigma \to \tau$, it holds that:
+  Let $\sigma: n_1, \ldots, n_s$, $\tau: m_1, \ldots, m_t$ and $\mu: o_1, \ldots, o_r$ be signatures. For all super-operators $\psi: \sigma \to \tau$, it holds that:
   \begin{align*}
     \gentracenorm{\phi} & =  \sup_{i}  \left\{ \sup \left\{ \sum_{j} \|\phi_{ij} (v_i w_i^\dag)\|_{1}  \mid  \|v_i\|_{2} = 1,   \|w_i\|_{2} =1 \right\} \right\}
   \end{align*}
@@ -1471,7 +1483,7 @@ and the equality is proven.
 
 
 \begin{lemma} \label{lemma:uv*_tensorI_gen}
-  Let $\phi_i: \mathcal{M}_{n}  \rightarrow \sigma$ be a super-operator.  For every choice of a complex vector space $\mathbb{C}^{m}$ and unit vectors $v_1, v_2 \in \mathbb{C}^{n} \otimes \mathbb{C}^{m}$, there exist unit vectors $w_1, w_2 \in \mathbb{C}^{n} \otimes \mathbb{C}^{n}$ such that the following equalities hold:
+  Let $\sigma: n_1, \ldots, n_s$ be a signature and $\phi_i: \mathcal{M}_{n}  \rightarrow \sigma$ be a super-operator.  For every choice of a complex vector space $\mathbb{C}^{m}$ and unit vectors $v_1, v_2 \in \mathbb{C}^{n} \otimes \mathbb{C}^{m}$, there exist unit vectors $w_1, w_2 \in \mathbb{C}^{n} \otimes \mathbb{C}^{n}$ such that the following equalities hold:
   \begin{align*} 
        \sum_{j=1}^{m} \left\lVert   \phi_{ij} \otimes \id_{\mathcal{M}_{m}} (v_1 v_2^\dag)\right\rVert_{1} = \sum_{j=1}^{m} \left\lVert \phi_{ij}  \otimes \id_{\mathcal{M}_{n}} (w_1 w_2^\dag) \right\rVert_{1}
   \end{align*}
@@ -1608,7 +1620,7 @@ is upper bounded by $\lVert \phi  \rVert_{L^1}$. Thus, Lemma \ref{lem:phi(A)} ho
   \end{equation*}
   And, as a result,  under the assumption that within $\mu$ there  exists a natural number $o_i$, such that for all $1 \leq j \leq n$, $\text o_i \geq n_j$, it holds that: 
   \begin{equation*}
-    \gentracenorm{\phi \otimes \id_{\mu}} =  \gendiamondnorm{\phi}
+    \gentracenorm{\phi \otimes \id_{\mathcal{M}_\mu}} =  \gendiamondnorm{\phi}
   \end{equation*}
   which completes the proof.
   \end{proof}
@@ -1618,13 +1630,13 @@ is upper bounded by $\lVert \phi  \rVert_{L^1}$. Thus, Lemma \ref{lem:phi(A)} ho
   \begin{corollary} \label{cor:tensor_stability}
     For all super-operators  $\phi: \sigma  \rightarrow \tau$ and signatures $\mu$  it holds that:
   \begin{align*}
-    \gendiamondnorm{\phi \otimes \id_{\mu}} =  \gendiamondnorm{\phi}
+    \gendiamondnorm{\phi \otimes \id_{\mathcal{M}_\mu}} =  \gendiamondnorm{\phi}
 \end{align*}
   \end{corollary}
 
 
-  \begin{proposition}\label{lem:gen_trace_submultiplicative}
-    Let $\sigma: n_1, \ldots, n_s$, $\tau: m_1, \ldots, m_t$ and $\mu: o_1, \ldots, o_r$ be signatures.  For all super-operators $\phi: \sigma  \rightarrow \tau$ and $\psi: \tau  \rightarrow \mu$, it holds that:
+  \begin{proposition}\label{prop:gen_trace_submultiplicative}
+    Let $\sigma: n_1, \ldots, n_s$, $\tau: m_1, \ldots, m_t$ and $\mu: o_1, \ldots, o_r$ be signatures.  The generalized trace norm is submultiplicative with respect to composition of super‑operators, \textit{i.e.}, or all super-operators $\phi: \sigma  \rightarrow \tau$ and $\psi: \tau  \rightarrow \mu$, it holds that:
     \begin{align*} 
       \gentracenorm{\psi  \phi} \leq \gentracenorm{\psi} \gentracenorm{\phi}
     \end{align*}
@@ -1681,6 +1693,204 @@ is upper bounded by $\lVert \phi  \rVert_{L^1}$. Thus, Lemma \ref{lem:phi(A)} ho
 
   
   \end{proof}
+
+
+  \begin{proposition}\label{prop:gen_diamond_submultiplicative}
+    Let $\sigma: n_1, \ldots, n_s$, $\tau: m_1, \ldots, m_t$ and $\mu: o_1, \ldots, o_r$ be signatures. The generalized diamond norm is submultiplicative with respect to composition of super‑operators, \textit{i.e.}, for all super-operators $\phi: \sigma  \rightarrow \tau$ and $\psi: \tau  \rightarrow \sigma$, it holds that:
+    \begin{equation*}
+      \gendiamondnorm{\psi  \phi} \leq  \gendiamondnorm{\psi} \gendiamondnorm{\phi}
+    \end{equation*}
+  \end{proposition}
+  
+  \begin{proof}
+   
+    By Lemma \ref{lem:gen_trace_submultiplicative}, it is possible to state that:
+  \begin{equation*}
+     \gentracenorm{\psi \phi \otimes \id_{\sigma}} \leq \gentracenorm{\psi \otimes \id_{\sigma}} \cdot \gentracenorm{\phi \otimes \id_{\sigma}}
+  \end{equation*}
+  Attending to Definition \ref{def:gen_diamond_norm}, it follows that:
+  \begin{align*}
+     \gendiamondnorm{\psi \phi} \leq  \gentracenorm{ \psi \otimes \id_{\sigma} } \cdot \gendiamondnorm{ \phi}
+  \end{align*}
+  Given Theorem \ref{theorem:tensor_stability}, it holds that
+  \begin{equation*}
+    \gentracenorm{\psi \otimes \id_{\sigma}} \leq \gendiamondnorm{\psi}
+  \end{equation*}
+  As a result, the inequality in Proposition \ref{prop:gen_diamond_submultiplicative} holds.
+  \end{proof}
+
+  \begin{theorem} \label{thm:gen_trace_cptp_norm}
+    Let $\sigma: n_1, \ldots, n_s$ and  $\tau: m_1, \ldots, m_t$  be signatures. Let  $\phi: \sigma  \rightarrow \tau$ be a  positive trace-nonincreasing super-operator. Then, it holds that $\gentracenorm{\phi} \leq 1$.
+  \end{theorem}
+
+  \begin{proof}
+    Let $\phi_i= (\phi_{i1}, \ldots, \phi_{it})$ for $n_i \in \sigma$. Considering that for a positive superoperator $\phi_{ij}:\mathcal{M}_{n} \to \mathcal{M}_{m} $ and positive operator $A_{i}: \mathcal{M}_{n}$ it holds that
+    \begin{align*}
+    \tracenorm{\phi_{ij} (A_{i})} & = \tr\left(\sqrt{\left(\phi_{ij} (A_{i})\right)^\dag (\phi_{ij} (A_{i}))}\right) \\
+    & = \tr\left(\sqrt{\left(\phi_{ij} (A_{i})\right) (\phi_{ij} (A_{i}))}\right) & (\phi_{ij} (A_{i}) \text{ is hermitian}) \\
+    & = \tr\left(\phi_{ij} (A_{i})\right)
+    \end{align*}
+    it follows that, for unitary matrices $U_j$,
+    \begin{align*}
+       \lonenorm{\phi_{i}} & = \sup \left\{ \sum_{j} \tracenorm{(\phi_{ij}(A_i))} \mid \tracenorm{A_i} = 1 \right\} & (\text{Def. } \ref{def:gen_1norm_prod} ) \\
+      & = \sup \left\{ \sum_{j} \left\lvert \langle U_j, \phi_{ij}(A_i)  \right\rvert  \rangle   \mid \tracenorm{A_i} =1,  \right\} & (\text{Def. trace norm for square matrices}) \\
+      & \leq  \sup \left\{ \sum_{j} \tracenorm{\phi_{ij}(A_i)} \spectralnorm{U_j}  \mid \tracenorm{A_i} =1,  \right\} & (\text{H\"{o}lder inequality})\\
+      & =\sup \left\{ \sum_{j} \tr\left(\phi_{ij} (A_{i})\right)  \mid \tracenorm{A_i} =1,  \right\} & (U_j \text{ is an isometry}) \\
+      & \leq 1. & (\phi \text{ is trace-nonincreasing, Def. \ref{def:catQ}})
+      \end{align*}
+ 
+      As a result,
+      \begin{align*}
+      \gentracenorm{\phi} =  \sup_{\phi_i} \{ \sup \{\lVert \phi_i (A_i) \rVert_{L^1} \mid \|A_i\|_{1} = 1\} \} \leq 1
+      \end{align*}
+
+  \end{proof}
+
+ 
+  \todo[inline]{$||\cdot||_{\infty}$ -> spectral norm}
+  \todo[inline]{Substituir "Def. trace norm for square matrices" pela eq}
+
+
+  \begin{corollary} \label{cor:gen_diamond_cptp_norm}
+    Let $\sigma: n_1, \ldots, n_s$ and  $\tau: m_1, \ldots, m_t$  be signatures. Let  $\phi: \sigma  \rightarrow \tau$ be a  completely positive trace-nonincreasing super-operator. Then, it holds that $ \gendiamondnorm{\phi}\leq 1$.
+  \end{corollary}
+
+  \begin{proof}
+    Given that $\phi$ is a  completely positive trace-nonincreasing super-operator, if follows that $ \phi \otimes \id_{\sigma}$ is a positive trace-preserving super-operator. As a result, it follows that $\gendiamondnorm{\phi}\leq 1$.
+  \end{proof}
+
+  \begin{proposition} \label{prop:gen_trace_subtraction}
+    Let $\sigma: n_1, \ldots, n_s$, $\tau: m_1, \ldots, m_t$ and $\mu: o_1, \ldots, o_r$ be signatures. For all completely positive trace-nonincreasing super-operators $\phi_0, \phi_1: \sigma   \rightarrow \tau$ and $\psi_0, \psi_1: \tau \rightarrow \tau$, it holds that:
+    \begin{equation*}
+      \gentracenorm{\psi_0 \phi_0 - \psi_1\phi_1} \leq  \gentracenorm{ \phi_0- \phi_1 }  + \gentracenorm{\psi_0- \psi_1 }
+    \end{equation*}
+  \end{proposition}
+
+  \begin{proof}
+    The proof follows the same reasoning as in \cite[Proof of Proprosition 3.41]{watrous2018theory}, following from the triangle inequality, Lemma \ref{prop:gen_trace_submultiplicative} and Theorem \ref{thm:gen_trace_cptp_norm}. 
+
+    \begin{align*}
+      \gentracenorm{\psi_0 \phi_0 - \psi_1\phi_1 } & \leq \gentracenorm{\psi_0 \phi_0 - \psi_0 \phi_1 } + \gentracenorm{ \psi_0\phi_1  - \psi_1\phi_1} \\
+      &=  \gentracenorm{\psi_0 (\phi_0 -\phi_1) } + \gentracenorm{(\psi_0- \psi_1) \phi_1} \\
+      &\leq \gentracenorm{\psi_0 } \gentracenorm{\phi_0 -\phi_1 } + \gentracenorm{ \phi_1} \gentracenorm{\psi_0- \psi_1} \\
+      &\leq \gentracenorm{ \phi_0- \phi_1 }  + \gentracenorm{\psi_0- \psi_1 }
+      \end{align*}
+  \end{proof}
+
+
+
+  \begin{proposition} \label{prop:gen_diamond_subtraction}
+    Let $\sigma: n_1, \ldots, n_s$, $\tau: m_1, \ldots, m_t$ and $\mu: o_1, \ldots, o_r$ be signatures. For all completely positive trace-nonincreasing super-operators $\phi_0, \phi_1: \sigma   \rightarrow \tau$ and $\psi_0, \psi_1: \tau \rightarrow \tau$, it holds that:
+    \begin{equation*}
+      \gendiamondnorm{\psi_0 \phi_0 - \psi_1\phi_1} \leq  \gendiamondnorm{ \phi_0- \phi_1 }  + \gendiamondnorm{\psi_0- \psi_1 }
+    \end{equation*}
+  \end{proposition}
+
+  \begin{proof}
+    The proof is analogous to the previous one, following from triangle inequality, Lemma \ref{prop:gen_diamond_submultiplicative} and Corollary \ref{cor:gen_diamond_cptp_norm}.
+  \end{proof}
+
+  \begin{proposition} \label{prop:gen_trace_matrix_multiplicative}
+    Let $\sigma: n_1, \ldots, n_s$ and $\tau: m_1, \ldots, m_t$. For all $A \in \sigma$ and $B \in \tau$ it holds that:
+    \begin{equation*}
+      \lonenorm{A \otimes B} =\lonenorm{A} \lonenorm{B}
+    \end{equation*}
+  \end{proposition}
+  
+
+  \begin{proof}
+    Consider the decompositions $A=(A_1, \ldots, A_s)$ and $B = (B_1, \ldots, B_t)$.
+    Given that the trace norm of matrices is multiplicative with respect to tensor, it follows that
+    \begin{align*}
+        \lonenorm{A \otimes B} &=  \lonenorm{(A_1, \ldots, A_s) \otimes (B_1, \ldots, B_t) }  \\
+      & = \lonenorm{(A_1 \otimes B_1, \ldots, A_1 \otimes B_t, \ldots, A_s \otimes B_1, \ldots, A_s \otimes B_t) } \\
+      & = \sum_{i=1}^{s} \sum_{j=1}^{t} \lVert A_i \otimes B_j \rVert_1 = \sum_{i=1}^{n} \sum_{j=1}^{t} \lVert A_i \rVert_1  \lVert   B_j \rVert_1 = \sum_{i=1}^{n} \lVert A_i \rVert_1 \sum_{j=1}^{t}  \lVert   B_j \rVert_1 \\
+      & = \lonenorm{A} \lonenorm{B}
+  \end{align*}
+\end{proof}
+
+\begin{proposition} \label{prop:unitary_invariance_superops}
+  Let $\sigma: n_1, \ldots, n_s$ and $\tau: m_1, \ldots, m_t$.
+  Let $\psi: \sigma  \rightarrow \tau$ be a super-operator, let $U,U' \in \sigma$  and $V, V' \in \tau $ be unitary operators, and let $\phi, \psi: \sigma  \rightarrow \tau$ be defined as:
+  \begin{equation*}
+    \psi(A) = V \phi (U A U') V'
+  \end{equation*}
+  for all $A \in \sigma$. Then, it holds that $ \gentracenorm{\psi} = \gentracenorm{\phi}.$
+\end{proposition}
+
+\begin{proof}
+  Let $\phi_i= (\phi_{i1}, \ldots, \phi_{it})$ and $\psi_i= (\phi_{i1}, \ldots, \phi_{it})$ for $n_i \in \sigma$, $m_j \in \sigma$ . Consider $U = (U_{1}, \ldots,U_{s})$, $U' = (U'_{1}, \ldots,U'_{s})$, $V = (V_{1}, \ldots,V_{t})$,$ V' = (V'_{1}, \ldots,V'_{t})$, and $A = (A_1, \ldots, A_n)$, it follows that:
+  \begin{align*}
+    \psi (A) & =    V \cdot \left(\phi(U_{1}A_1 U'_{1}, \hspace{2pt} \ldots \hspace{2pt}, U_{n} A_n U'_{n}) \right) \cdot V'\\
+   &=  V \cdot \left(\sum_i^{n} \phi_i(U_{i}A_i U'_{i})  \right) \cdot V'  \\
+    & =\sum_{i=1}^{n} \left( V_{1} \phi_{i1} (U_{i} A_i U'_{i} ) V'_{1}, \hspace{2pt} \ldots \hspace{2pt}, V_{2t} \phi_{it}(U'_{i}A_i U'_{1i}) V'_{t} \right) \\
+    & = \sum_{i=1}^{n} \left( \psi_{i1}(A_i), \hspace{2pt} \ldots \hspace{2pt}, \psi_{im}(A_i) \right) =  \sum_{i=1}^{n} \psi_i (A_i)
+  \end{align*}
+
+Applying the same reasoning as in \cite[Proof of Proposition 3.41]{watrous2018theory},  by the unitary invariance of the trace norm and Lemma \ref{lem:phi(A)}, it follows that for $1 \leq i \leq n$: 
+\begin{align*}
+    \lonenorm{\psi_i (A_i)} & 
+    =   \sum_{j=1}^m  \lVert V_{j} \phi_{i1} (U_{0} A_i U'_{i} ) V'_{j} \rVert_{1} \\
+    &= \sum_{j=1}^m  \lVert \phi_{ij} (U_{i} A_i U'_{i}) \rVert_{1} \\
+    &= \lonenorm{\phi_i (U_{i} A_i U'_{i})} \\
+    & \leq  \lonenorm{\phi_i} \lVert A_i  \rVert_{1} 
+\end{align*}
+As a result, given Definition \ref{def:gen_1norm_prod} it follows that $ \lonenorm{\psi} \leq  \lonenorm{\phi}$ for all $1 \leq i \leq s$. Thus, attending to Definition \ref{def:gen_1norm}, it holds that,
+\begin{equation*}
+ \gentracenorm{\psi} \leq \gentracenorm{\phi}.
+\end{equation*}
+
+Given that $U, U', V, V'$ are unitary operators, it follows that, $\phi{ij} = V_{j}^\dag \psi_{ij}(U_{i}^\dag A U'^\dag_{i}) V'^\dag_{j}$, and consequently the same approach can be taken to find that $ \gentracenorm{\psi} \leq \gentracenorm{\phi} $, which concludes the proof.
+\end{proof}
+
+\begin{theorem}
+  Let $\sigma: n_1, \ldots, n_s$, $\tau: m_1, \ldots, m_t$, $\mu: o_1, \ldots, o_r$ and $\nu: p_1, \ldots, p_u$ and be signatures.
+  For all $\phi: \sigma  \rightarrow \tau$ and $\psi: \mu \rightarrow \nu$, it holds that:
+  \begin{equation*}
+    \gendiamondnorm{\phi \otimes \psi} =  \gendiamondnorm{\phi} \gendiamondnorm{\psi} 
+  \end{equation*}
+\end{theorem}
+
+\begin{proof}
+  This prove follows the same reasoning as \cite[Proof of Theorem 3.49]{watrous2018theory}. By Proposition \ref{prop:gen_diamond_submultiplicative} and Corollary \ref{cor:tensor_stability}, one has:
+  \begin{align*}
+      \gendiamondnorm{\phi \otimes \psi} & =  \gendiamondnorm{(\phi \otimes \id_{\mathcal{M}_\mu}) ( \id_{\mathcal{M}_\sigma} \otimes \phi )} \\
+      & = \gendiamondnorm{\phi \otimes \id_{\mathcal{M}_\mu}} \gendiamondnorm{\id_{\mathcal{M}_\sigma} \otimes \psi}   \\
+      & = \gendiamondnorm{\phi} \gendiamondnorm{\psi}
+  \end{align*}
+
+Consider operators $A \in \mathcal{M}_{\sigma \otimes \sigma}$ and $B \in \mathcal{M}_{\mu \otimes \mu} $ such that $\lonenorm{A}=1$ and $\lonenorm{B}= 1$, and such that these equalities hold:
+\begin{align} \label{eq:equalities_Q_S}
+    \gendiamondnorm{\phi} & = \lonenorm{\phi \otimes \id_{\mathcal{M}_\sigma}  (A)}\\
+    \gendiamondnorm{\psi} & = \lonenorm{\phi \otimes \id_{\mathcal{M}_\mu}  (B)} \notag
+\end{align}
+Attending to Proposition \ref{prop:gen_trace_matrix_multiplicative}, it follows that: 
+
+\begin{align} \label{eq:norm_o_times_p_equal_1}
+    \lVert A \otimes B \rVert_{1 \text{ gen}} = \lVert A  \rVert_{1 \text{ gen}} \lVert B \rVert_{1 \text{ gen}} =1
+\end{align}
+
+Attending to Definition \ref{def:gen_diamond_norm} and Proposition \ref{prop:unitary_invariance_superops}, which implies that this norm
+is invariant under permuting the ordering of tensor factors of super-operadores, one has
+\begin{align*} \label{eq:q_otimes_s_gen_diamond_inv_u}
+    \gendiamondnorm{\phi \otimes \psi} & = \gentracenorm{\phi \otimes \psi \otimes \id_{\mathcal{M}_{\sigma \otimes \mu}}}\\
+    & = \gentracenorm{\phi \otimes \psi \otimes \id_{\mathcal{M}_\sigma} \otimes \id_{\mathcal{M}_\mu} } \\
+    &= \gentracenorm{\phi \otimes \id_{\mathcal{M}_\sigma} \otimes \psi  \otimes \id_{\mathcal{M}_\mu} } \\
+    & \geq  \lonenorm{\phi \otimes \id_{\mathcal{M}_\sigma} \otimes \psi  \otimes \id_{\mathcal{M}_\mu} (A \otimes B)} &(\text{Lemma \ref{lem:phi(A)} and  \autoref{eq:norm_o_times_p_equal_1}})
+\end{align*}
+
+
+By Proposition \autoref{prop:gen_trace_matrix_multiplicative} and \autoref{eq:equalities_Q_S}, it holds that:
+\begin{align*}
+    \gendiamondnorm{\phi \otimes \psi} 
+    \geq & \lonenorm{\phi \otimes \id_{\mathcal{M}_\sigma} \otimes \psi  \otimes \id_{\mathcal{M}_\mu} (A \otimes B)} \\
+   = & \lonenorm{\phi \otimes \id_{\mathcal{M}_\sigma} (A)} \lonenorm{\psi  \otimes \id_{\mathcal{M}_\mu} (B)}\\
+   = &  \gendiamondnorm{\phi} \gendiamondnorm{\psi}
+\end{align*}
+which completes the proof.
+\end{proof}
+
+
 
 
 \newpage
