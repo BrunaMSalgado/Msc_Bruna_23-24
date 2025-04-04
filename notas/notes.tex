@@ -1,4 +1,5 @@
 \documentclass[10pt,a4paper]{amsart}
+\usepackage{fontspec}  
 \usepackage[utf8]{inputenc}
 \usepackage[english]{babel}
 \usepackage[mathcal]{euscript}
@@ -29,6 +30,7 @@
 \linespread{1.10}
 \author{\dots}
 \title{Notes}
+\pgfplotsset{compat=1.18}
 
 \lstset{
 language=C,
@@ -267,7 +269,7 @@ The equational system for the conditionals is shown in Figure
     \end{figure}
 
 
-\subsubsection{Linear $\lambda$-calculus and quantum computation}
+\subsubsection{Linear $\lambda$-calculus and quantum computation} \label{subsec:syntax_qc}
 
 We now illustrate the use of the previous language for describing quantum
 programs. To this effect, we first consider a type \emph{qbit} of qubits, the
@@ -279,21 +281,22 @@ basic quantum operations:  the conversion of a bit into a qubit, $q : \typeI
 \oplus \typeI  \to \emph{qbit}$, the measurement of a qubit,
 $\emph{meas}:\emph{qbit} \to \typeI \oplus \typeI$, and a pre-determined set of
 operations on $n$-qubits, $\emph{U}:\emph{qbit},\ldots,\emph{qbit} \to
-\emph{qbit}^{\otimes n}$. The latter set can include for example the Hadamard
+\emph{qbit}^{\otimes n}$. The latter set can include not only unitary operations, as the Hadamard
 gate $H : \emph{qbit} \to \emph{qbit}$, the not-gate $X : \emph{qbit} \to
 \emph{qbit}$, or the cnot-gate $CNOT : \emph{qbit},\emph{qbit} \to
+\emph{qbit}^{\otimes 2}$, but also CPTP operations such as the dephasing with probability $p$, $D_p : \emph{qbit},\emph{qbit} \to
 \emph{qbit}^{\otimes 2}$. We consider as well a pre-determined set of quantum
 states $\ket{\psi} : \typeI \to \emph{qbit}$.  Finally note that the values
 \emph{true} and \emph{false} (in the type $\typeI \oplus \typeI$) are regarded to be 
 the terms $\inl(\ast)$ and $\inr(\ast)$ respectively.
 
+
 Let us now apply this machinery to two well-known problems in quantum computation
 and quantum information.
 
-\begin{example}[Coin toss]
-~\todo[inline]{Descrever aqui como obter valores $p_0$ e $p_1$ para depois
-poderem ser usados no próximo exemplo.}
-\end{example}
+\begin{example}[Coin toss] \label{ex:coin_toss_syntax}
+
+
 
 In the quantum setting, tossing a `fair' coin can be described as preparing a qubit in a superposition of two states, $\ket{0}$ and $\ket{1}$, representing `heads' and `tails', each with an equal probability of $0.5$ and then measuring it. This is achieved by simply applying a Hadamard gate to the initial state $\ket{0}$, followed by a measurement.
 More generally, tossing a coin (whether `fair' or `unfair') can be described as preparing a qubit in a superposition of  $\ket{0}$ and $\ket{1}$, with probabilities $p$ and $1-p$, respectively,  and then measuring it.  Considering $p= \cos(\theta/2)^2$ and the standard quantum gate operation $R_{y,\theta} : \emph{qbit} \to \emph{qbit}$,  this process is described by the following $\lambda$-term:
@@ -302,7 +305,10 @@ More generally, tossing a coin (whether `fair' or `unfair') can be described as 
   &\textbf{CoinToss} = - \vljud \emph{meas} (R_{y,\theta} (\ket{0})): \typeI \oplus \typeI
 \end{align*}
 
-\begin{example}[Quantum state discrimination]
+
+\end{example}
+
+\begin{example}[Quantum state discrimination] \label{ex:quantum_state_discrimination_syntax}
 
 Quantum state discrimination is a pivotal challenge in quantum information,
 fundamental to the extraction of classical information from quantum systems.
@@ -331,12 +337,13 @@ The relevant $\lambda$-terms are then:
   &\textbf{StatePreparation} =  b: \typeI \oplus \typeI  \vljud  \text{case } b\,
   \{\inl_{\typeB}(x) \Rightarrow \ket{\psi_0} ; \inr_{\typeA}(y) \Rightarrow \ket{\psi_1}\}: \textit{qbit} \\
   &\textbf{HMeasure} =  x : \emph{qbit} \vljud \emph{meas} (\emph{U}(x)): \typeI \oplus \typeI \\
-  &\textbf{Discrimination} = (p_0,p_1): \typeI\oplus \typeI \vljud \textbf{HMeasure} [ \textbf{StatePreparation} [(p_0,p_1)/ b] / x] : \typeI\oplus \typeI
+  %&\textbf{Discrimination} = (p_0,p_1): \typeI\oplus \typeI \vljud \textbf{HMeasure} [ \textbf{StatePreparation} [(p_0,p_1)/ b] / x] : \typeI\oplus \typeI
+  &\textbf{Discrimination} = - \vljud \textbf{HMeasure} [ \textbf{StatePreparation} [\textbf{CoinToss}(*)/ b] / x] : \typeI\oplus \typeI
 \end{align*}
 \end{example}
 
 
-\begin{example}[Quantum teleportation]
+\begin{example}[Quantum teleportation] \label{ex:quantum_teleportation_syntax}
 \cite{bennett1993teleporting} introduced the concept of quantum teleportation,
 a protocol that allows the transfer of  unknown quantum states between distant
 parties.  The quantum teleportation protocol is a fundamental building block of
@@ -420,6 +427,8 @@ teleportation procedure in $\lambda$-calculus as follows:
  \end{align*}
 
 \end{example}
+
+~\todo[inline]{Adicionar quantum walk}
  
  \subsection{Interpretation}
 
@@ -1174,6 +1183,10 @@ It is necessary to prove that when $\hat{f}$ is defined as $\hat{f}([x],[y]) = [
 
 \subsection{Quantum computation}
 
+\todo[inline]{Adicionar os preliminares de computação quantica: notação, esfera de Bloch , ops pos, unitarios, op densidade (e conversão ops densidade bloch vector), ops kraus, quantum channels +  cenas de algebra linear: traço e norma euclidiana}
+
+\vspace*{10pt}
+
 The category $\catCPTP$ of completely positive trace-preserving maps is a symmetric monoidal category with coproducts enriched over metric spaces \cite{dahlqvist2023syntactic}. The objects are natural numbers $n \geq 1$ and morphisms $n \rightarrow m$ are quantum channels $C^{n \times n} \rightarrow C^{m\times m}$.  An obvious candidate for the interpretation of quantum programs with coproducts is the category obtained by the coproduct cocompletion of $\catCPTP$,  $\catCPTP^{+}$ . In this setting, the $L^{\infty}$-norm arises as the natural metric. 
 
 
@@ -1227,10 +1240,11 @@ Considering $\phi_2=\phi_2'$, $\phi_1 \neq \phi_1'$, $\psi_1= \psi_2 = \id$, and
   & = \lVert \psi_1 (\phi_1- \phi_1' ) \lVert 
 \end{align*}
  
-For instance, if the norm considered in the trace norm, let $\psi$ be the trace operator and $\phi_1 = \id $ and $\phi_1' = D_p $, where $D_p$ is the dephasing channel. Then, $\phi_1 - \psi_1'$ maps a density operator 
+For instance, if the norm considered is the trace norm, let $\psi$ be the trace operator and $\phi_1 = \id $ and $\phi_1' = D_p $, where $D_p$ is the dephasing channel. Then, $\phi_1 - \psi_1'$ maps a density operator 
 $$\rho=|\alpha|^{2} |0\rangle \langle 0 | + \alpha \beta^{\dag} |0\rangle \langle 1 | + \alpha^{\dag} \beta |1\rangle \langle 0 | + |\beta|^{2} |1\rangle \langle 1 |$$ 
 to 
-$$ p \cdot (\alpha \beta^{\dag} |0\rangle \langle 1 | + \alpha^{\dag} \beta |1\rangle \langle 0 |) $$. The trace norm of this operator is 
+$$ p \cdot (\alpha \beta^{\dag} |0\rangle \langle 1 | + \alpha^{\dag} \beta |1\rangle \langle 0 |).$$ 
+The trace norm of this operator is 
 \begin{align*}
   & \left\lVert I - D_p\right\rVert_{1} \\
   & =  \max \limits_{\alpha, \beta} \left\lVert p \cdot  \left(\alpha \beta^{\dag}\ket{0}  \bra{1}+ \alpha^{\dag} \beta \ket{1} \bra{0}\right)\right\rVert_{1} \\
@@ -1245,6 +1259,10 @@ On the other hand, it is evident that $\left\lVert \tr \left(  I - D_p \right) \
 
 
 \todo[inline]{Explicar melhor o op de Dephasing}
+\todo[inline]{explicar trace norm aqui}
+
+
+
 
 %is the category $\catCPS$ of completely positive trace-preserving short maps 
 
@@ -1252,17 +1270,17 @@ On the other hand, it is evident that $\left\lVert \tr \left(  I - D_p \right) \
 In \cite{selinger04}, Selinger presents the category $\catQ$ as the model of the language QPL.  
 
 \begin{definition} \label{def:catQ}
-  The category $\catQ$ is defined as the the finite biproduct completion of $\catCPS$ (which extends $\catCPTP$ to include trace-nonincreasing (or short) maps),  further restricted to trace-nonincreasing morphisms. Let  $\mathcal{M}_n$ denote the set of complex $n\times n$ matrices.
+  The category $\catQ$ is defined as the the finite biproduct completion of $\catCP$ (which extends $\catCPTP$ to include all completely positive maps),  further restricted to trace-nonincreasing morphisms. Let  $\mathcal{M}_n$ denote the set of complex $n\times n$ matrices.
   \begin{itemize}
     \item An object is a signature $\sigma= n_1, \ldots, n_s$. We denote these signatures by the Greek letters $\sigma, \tau$ and $\mu$.
-    \item A morphism $\phi \in \mathcal{M}_{\sigma \otimes \tau} $ is a matrix
+    \item A morphism $\phi \in \sigma \to \tau $ is a matrix
     $$\begin{pmatrix}
       \phi_{11} & \ldots & \phi_{s1}, \\
       \vdots & \ddots  & \vdots \\
       \phi_{1t} & \ldots & \phi_{ts} \\
     \end{pmatrix}$$
-    of arrows $\phi_{ij}: \mathcal{M}_{n_i} \rightarrow \mathcal{M}_{m_j}$ in $\catCPS$ which is trace-nonincreasing, \ie, meaning that for every fixed index $i$, the following condition holds:
-    $$ \sum_j \tr \left(\phi_{ij} (A_i)\right)   \leq \tr \left(A_i\right) $$
+    of arrows $\phi_{ij}: \mathcal{M}_{n_i} \rightarrow \mathcal{M}_{m_j}$ in $\catCPS$ which is trace-nonincreasing, \ie, the following condition holds:
+    $$ \sum_j \sum_i \tr \left(\phi_{ij} (A_i)\right)   \leq  \sum_i \tr \left(A_i\right) $$
    for all positive $A_i \in \mathcal{M}_{n_i}$.
 
     More concretely, $ij$-component of $\phi$ is given by the function $\phi_{ij} = \pi_{j} \comp \phi \comp \mathrm{in}_{i} : \mathcal{M}_{n_i} \rightarrow \mathcal{M}_{n_j} $, where $\mathrm{in}_{i}$ is the injection of  $\mathcal{M}_{n_i}$ into the input space of $\phi$ and  $\pi_{j}$ is the projection onto the $j$-th component.
@@ -1273,27 +1291,22 @@ In \cite{selinger04}, Selinger presents the category $\catQ$ as the model of the
  Trace-non increasing (or short) maps are used here instead of strictly trace-preserving maps to account for possible non-termination in programs, particularly since the language  QPL includes while loops.
 
 
- %Every signature $\sigma$, is associated to  a complex vector space:
-%\[
-%\mathcal{M}_\sigma = \mathbb{C}^{n_1 \times n_1} \oplus \cdots \oplus \mathbb{C}^{n_s \times n_s}.
-%\]
-%This space consists of matrix tuples $A = (A_1, \dots, A_s)$, where the signature $\sigma$ specifies both the number $s$ of matrices and their respective dimensions $n_i \times n_i$. The elements of $V_\sigma$ are represented uppercase letters such as $A$, $B$, etc.
-\todo[inline]{Colocar disclaimer a dizer que em embora os $A's$ sejam vetores verticais qd daí não advir nenhuma ambiguidade vamos representar como pares por uma questão de ficar mais simples}
+ Every signature $\sigma$, is associated to  a complex vector space:
+\[
+\mathcal{M}_\sigma = \mathbb{C}^{n_1 \times n_1} \oplus \cdots \oplus \mathbb{C}^{n_s \times n_s}.
+\]
+This space consists of matrix vectors 
+$$A = \begin{pmatrix} A_1 \\ \vdots \\ A_n \end{pmatrix}$$
+where the signature $\sigma$ specifies both the number of matrices, $s$,  and their respective dimensions, $n_i \times n_i$. The elements of $\mathcal{M}_\sigma$ are represented uppercase letters such as $A$, $B$, etc.
+We also establish that
+\[
+\mathbb{C}^\sigma = \mathbb{C}^{n_1} \oplus \cdots \oplus \mathbb{C}^{n_s}.
+\]
 
-Here, the concepts of trace, and matrix multiplication are extended to vectors of matrices $A=(A_1, \ldots, A_n) , U = (U_1, \ldots, U_n), U' = (U'_1, \ldots, U'_n)  \in \mathcal{M}_{\sigma}$ as follows:
-\begin{align*}
-  &\tr(A) = \sum_{i} \tr(A_{i}) \\
-  %&(A)^{\dagger} = (A_{1}^{\dagger}, \ldots, A_{n}^{\dagger}) \\
-  & U A U' = (U_1 A_{1} U'_1, \ldots, U_n A_{n} U'_n)
-\end{align*}
-Moreover, a matrix tuple $A \in \mathcal{M}_{\sigma} $ is said to be \emph{hermitian} (respectively, \emph{positive}) if each $A_i$ is hermitian
-(respectively, positive) for all $i$. 
-
+Note that attending to the definition of trace, for $A = \begin{pmatrix} A_1 & \ldots & A_n \end{pmatrix}^T$, $\tr(A) = \sum_i \tr(A_i).$
+ 
 
 
-\begin{definition} \emph{Completely Positive Superoperator}
-An operator between spaces of tuples of matrices $\phi :\mathcal{M}_{\sigma} \rightarrow \mathcal{M}_{\tau}$ is called a superoperator.  Let $\phi :\mathcal{M}_{\sigma} \rightarrow \mathcal{M}_{\tau}$ be a superoperator, $\phi$ is said to be \emph{positive}, if $\phi(A)$ is positive for all positive $A \in \mathcal{M}_{\sigma}$. $\phi$ is called completely positive if $ \phi \otimes id_{\mu}$ is positive for all signatures $\mu$.
-\end{definition}
 
 \begin{definition} \label{def:tensor} \emph{Tensor Product }
   For signatures $\sigma = n_1, \ldots, n_s $ and $\tau= m_1, \ldots, m_t $, the tensor product of $\sigma$ and $\tau$ is defined as $\sigma \otimes \tau = n_1 m_1, \ldots ,n_1 m_t, \ldots, n_s m_1,...,n_s m_t$. 
@@ -1308,130 +1321,97 @@ and extends to arbitrary elements by linearity.
   The biproduct is given by the direct sum $\oplus$. Consequently, $\sigma \oplus \sigma'$ represents the concatenation of signatures. The co-pairing map $[\phi, \psi]: \sigma \oplus \sigma' \to \tau$ is defined as  $[\phi, \psi](A, B) = \phi(A) + \psi(B)$, and the pairing map $\langle \phi, \psi \rangle: \sigma \to \tau \oplus \tau'$ is given by  $\langle \phi, \psi \rangle(A) = (\phi(A), \psi(A))$.
 \end{definition}
 
-The category $\catQ$ is a distributive symmetric monoidal category with (finite) biproducts. Now, we must prove that $\catQ$ is a $\catMet$-enriched category. For tuples of matrices $A = (A_1, \ldots, A_n) \in \mathcal{M}_{\sigma}$, we consider the $L^{1}$-norm, $\lVert A \lVert_{L^1} = \sum_i \lVert A_i \lVert_{V_i}$, where $\lVert \cdot \lVert_{1}$ is the trace norm. For tuples of tuples of matrices (which serve as inputs to the co-pairing map), we extend this norm recursively.
+The category $\catQ$ is a distributive symmetric monoidal category with (finite) biproducts. Now, we must prove that $\catQ$ is a $\catMet$-enriched category. We consider the diamond norm on superoperators $\phi: \sigma \rightarrow \mu$ \cite{watrous2018theory}, given by:
+ $$\diamondnorm{\phi} = \tracenorm{ \phi \otimes \id_{\mathcal{M}}},$$
+where $\tracenorm{-}$ denotes the trace norm. This norm is defined on operators $A =  \begin{pmatrix} A_1 & \ldots & A_n \end{pmatrix}^T \in \mathcal{\sigma} $ and superoperators  $\phi: \sigma \rightarrow \mu$ as follows:
+ $$ \tracenorm{A} = \tr\left(\sqrt{A^\dagger A}\right) = \sum_i \tracenorm{A_i}  $$
+ $$ \sup \left\{ \tracenorm{\phi(A)} \, \vert \, \lVert A \lVert_{1} = 1 \right\}$$
 
-
-
-\begin{definition} \label{def:gen_1norm_prod} 
-  Let $\phi \in \mathcal{M}_{n} \rightarrow \mathcal{M}_{\sigma}$ be a superoperator. The norm of $\phi$ is defined as
-  $$\lVert \phi \lVert_{L^{1}} = \sup \left\{ \lVert \phi(A) \lVert_{L^1} \, \vert \, \lVert A \lVert_{1} = 1 \right\}$$
-\end{definition}
-for positive $A \in \mathcal{M}_{n}.$
-
-%\begin{definition} 
-  %Let $\phi \in \mathcal{M}_{\sigma} \rightarrow \mathcal{M}_{n}$ be a superoperator. The norm of $\phi$ is defined as
-  %$$\lVert \phi \lVert_{L^{\infty}} = \sup \left\{ \lVert \phi_{11} \lVert_{1}, \ldots,  \lVert \phi_{1s} \lVert_{1} \right\}.$$
-%\end{definition}
-
-
-
-\begin{definition}  \label{def:gen_1norm}  \emph{(Generalized) Trace norm of superoperators}
-  Let $\phi \in \mathcal{M}_{\sigma}\rightarrow \mathcal{M}_{\tau}$ be a superoperator, where $\sigma =(n_1, \ldots, n_s)$ and $\tau =(m_1, \ldots, m_t)$.  Defining  $\phi_i= (\phi_{i1}, \ldots, \phi_{it})$ for $n_i \in \sigma$, the norm of $\phi$ is defined as
-  $$\lVert \phi \lVert_{L^{\infty}} = \sup \left\{ \lVert \phi_1 \lVert_{L^{1}}, \ldots,  \lVert \phi_n \lVert_{L^{1}}  \right\}.$$
-\end{definition}
-
-\begin{definition} \label{def:gen_diamond_norm} \emph{(Generalized) Diamond norm of superoperators}
-  The diamond norm of a superoperator $\phi: \sigma \rightarrow \mu$ is defined as
-  $$\gendiamondnorm{\phi} = \lVert \phi \otimes \id_{\sigma}\lVert_{L^{\infty}}$$
-\end{definition}
-
- 
- We define the metric $d$ on on the hom-set $Q(\sigma,\tau)$ as follows
-$$d(\phi,\psi) = \gendiamondnorm{\phi-\psi}.$$
-
-
-\todo[inline]{Não se usa a igualdade entre as normas para nada, se calhar estar provas deveriam sair}
 
 \begin{lemma} \label{lem_op_max_trace}
   Let $\sigma: n_1, \ldots, n_s$, $\tau: m_1, \ldots, m_t$ and $\mu: o_1, \ldots, o_r$ be signatures. Let $\phi \in \catQ(\sigma,\mu)  $ and $\psi \in \catQ(\tau,\mu) $ be superoperators. Then, it holds that 
-  $$ \opnorm{[\phi, \psi]} = \gentracenorm{[\phi, \psi]}.$$
+  $$ \opnorm{[\phi, \psi]}= \sup \{ \opnorm{\phi},\opnorm{\psi} \}$$
 \end{lemma}
 
 \begin{proof}
 
-Considering $\sigma = n_1, \ldots, n_s$, $\tau = m_1, \ldots, m_t$, $\mu = o_1, \ldots, o_r$, we define $\phi_i= (\phi_{i1}, \ldots, \phi_{ir})$ for $i \in 1, \ldots, s$ and  $\psi_i= (\psi_{i1}, \ldots, \psi_{ir})$ for $i \in 1, \ldots, t$.
+Considering $\sigma = n_1, \ldots, n_s$, $\tau = m_1, \ldots, m_t$, $\mu = o_1, \ldots, o_r$, we define $\phi_i= \begin{pmatrix}\phi_{i1}, \ldots, \phi_{ir}\end{pmatrix}^T$ for $i \in 1, \ldots, s$ and  $\psi_i= \begin{pmatrix}\psi_{i1}, \ldots, \psi_{it}\end{pmatrix}^T$ for $i \in 1, \ldots, t$.
 
-We start by proving the inequality $\opnorm{[\phi, \psi]} \leq \gentracenorm{[\phi, \psi]}$.
+We start by proving the inequality $\opnorm{[\phi, \psi]} \leq \sup \{[\opnorm{\phi}, \opnorm{\psi}]\}$. We calculate,
 
-
-Attending to definitions \autoref{def:gen_1norm} and \autoref{def:gen_1norm_prod}, we have that,
 \begin{align*} 
-  & \opnorm{[\phi, \psi]} \leq \gentracenorm{[\phi, \psi]} \\
-  &\Leftrightarrow \text{sup}{\{ \lVert [\phi, \psi] (A) \rVert_{L_1}  \hspace{2pt} |  \hspace{2pt}  \lVert A \rVert_{L^1} = 1  \}}  \leq \sup_{i,j} \{ \lonenorm{\phi_{i}},  \lonenorm{\psi_{j}}\} \\
-  &\Leftrightarrow \text{sup}{\{ \lVert [\phi, \psi] (A_1, A_2 ) \rVert_{L_1}   \hspace{2pt} |  \hspace{2pt}  \lVert (A_1, A_2 )\rVert_{L^1} = 1  \}}   \\
-  & \leq \sup_{i,j} \left\{  \text{sup} \left\{  \lVert \phi_{i} (A) \rVert_{L^1}  \, \vert \,  \lVert A \rVert = 1 \right\}, \text{sup} \left\{ \lVert \phi_{j} (B) \rVert_{L^1}  \, \vert \,  \lVert B \rVert = 1 \right\} \right\} \\
-  & \Leftrightarrow \sup {\left\{ \left\lVert \sum_{i,j}\phi_{i} (A_{1i})  + \psi_{j}(A_{1j})  \right\rVert_{L^{1}}  \hspace{2pt} \Biggm|  \hspace{2pt}  \sum_{i,j} \lVert A_{1i} \rVert+ \lVert A_{1j} \rVert=1 \right\}}  \\ 
-  & \leq \sup_{i,j} \left\{  \sup \left\{  \lVert \phi_{i} (A_i) \rVert_{L^1},   \lVert \phi_{j} (B_j) \rVert_{L^1}  \, \vert \, \lVert A_i \rVert= 1 ,  \lVert B_j \rVert = 1 \right\} \right\} \\
+  & \opnorm{[\phi, \psi]} \leq \sup \{[\opnorm{\phi}, \opnorm{\psi}]\} \\
+  &\Leftrightarrow \sup{\{ \norm{[\phi, \psi] (A)}  \hspace{2pt} |  \hspace{2pt}  \norm{A} = 1  \}}  
+  \leq \sup \{ \sup\{ \norm{\phi (A)} \hspace{2pt} |  \hspace{2pt}  \norm{A} = 1 \}, \sup\{ \norm{\psi (B)} \hspace{2pt} |  \hspace{2pt}  \norm{B} = 1 \}\} \\
+  &\Leftrightarrow  \text{sup}{\{ \norm{[\phi, \psi] (A_1, A_2)}   \hspace{2pt} |  \hspace{2pt}  \norm{(A_1, A_2 )} = 1  \}}  
+  \leq   \sup \left\{  \norm{\phi (A)} ,   \norm{\psi (B)}  \, \vert \,   \norm{A} = 1, \norm{B} = 1 \right\}  \\
+  & \Leftrightarrow \sup \left\{  \norm{\phi (A_1) + \psi (A_2)}  \, \vert \, \norm{\phi(A_1)} + \norm{\psi(A_2)}= 1 \right\}  
+  \leq \sup \left\{  \norm{\phi (A)},   \norm{\psi (B)}  \, \vert \,   \norm{A} = 1, \norm{B} = 1 \right\}  \\
 \end{align*}
 
 By the triangle inequality, proving the inequality bellow suffices to establish the inequality at hand.
 \begin{align*}
-  &\text{sup}{\left\{ \sum_{i,j} \left\lVert \phi_{i} (A_{1i})  \right\rVert_{L^1} +\left\lVert  \psi_{j}(A_{1j})  \right\rVert_{L^1}   \hspace{2pt} \Biggm|  \hspace{2pt}  \sum_{i,j} \lVert A_{1i} \rVert+ \lVert A_{1j} \rVert=1 \right\}} \\
-  &  \sup_{i,j} \left\{  \lVert \phi_{i} (A_i) \rVert_{L^1},   \lVert \phi_{j} (B_j) \rVert_{L^1}  \, \vert \, \lVert A_i \rVert= 1 ,  \lVert B_j \rVert = 1 \right\} \\
+  &\sup \left\{  \norm{\phi (A_1)} +   \norm{\psi (A_2)}  \, \vert \, \norm{\phi(A_1)} + \norm{\psi(A_2)}= 1 \right\}  
+  \leq \sup \left\{  \norm{\phi (A)},   \norm{\psi (B)}  \, \vert \,   \norm{A} = 1, \norm{B} = 1 \right\} 
 \end{align*}
 
 
-Given that the norm is continuos and compact, we can use the maximum instead of the supremum. Considering $A_{11}, \ldots, A_{1s}, A_{21}, \ldots, A_{2t} $ as the matrices that maximize the left-hand side of the inequality, if the inequality bellow is proven so it the equality above:
-
+Taking $A_1$ and $A_2$ as the operators that maximize $\norm{\phi (A_1)} + \norm{\phi (A_2)}$, it follows that if the inequality bellow is proven so is the equality above:
 \begin{align*}
-  & \sum_{i,j} \left\lVert \phi_{i} (A_{1i})  \right\rVert_{L^1} 
-  \leq  \max_{\phi_i,\psi_j} \left\{  \lVert \phi_{i} (A_{1i} / \lVert A_{1i} \rVert ) \rVert_{L^1},   \lVert \psi_{i} (A_{2j} / \lVert A_{2j} \rVert ) \rVert_{L^1}  \right\}  
-  \wedge \sum_{i,j} \lVert A_{1i} \rVert+ \lVert A_{1j} \rVert=1 
+  & \sup \left\{  \norm{\phi (A_1)} +   \norm{\psi (A_2)}  \right\}  
+  \leq  \sup \left\{  \norm{\phi (A_{1} / \lVert A_{1} \rVert ) \rVert_{L^1},   \lVert \psi (A_{2} / \lVert A_{2} \rVert ) }  \right\}  
+  \wedge  \lVert A_{1} \rVert+ \lVert A_{2} \rVert=1 
 \end{align*}
 
 
- Proving the inequality above is equivalent to demonstrating that for all $a_1, \ldots, a_n, x_1, \ldots, x_n \in \mathbb{R}^{+}_{0}$ with $a_1+ \ldots + a_n=1$,
-\begin{align*}
-    x_1 + \ldots + x_n  \leq  \max \left\{   \dfrac{1}{a_1} x_1  , \ldots , \dfrac{1}{a_n} x_n   \right\} \\
-\end{align*}
+Given the definition of \emph{supremum}, proving the inequality above is equivalent to demonstrating that for all $a+b=1$,
+ \begin{align*} 
+     x + y  \leq  \max \left\{   \dfrac{1}{a}x  ,   \dfrac{1}{b} y   \right\} \\
+ \end{align*}
+ 
+ This is done by arguing by \textit{reductio ad absurdum}, \textit{i.e.}, supposing otherwise leads to a contradiction:
+ \begin{align*} 
+     \hspace{90pt}&
+      x + y  >  \max \left\{   \dfrac{1}{a}x  ,   \dfrac{1}{b} y   \right\} \\
+     & \Rightarrow  x + y > \dfrac{1}{a}x  \wedge x + y > \dfrac{1}{b}y \\
+     & \Rightarrow  a (x + y) > x  \wedge b (x + y)> y \\
+     & \Rightarrow  a x + a y > x  \wedge b x + by > y \\
+     & \Rightarrow  a x + a y > x  \wedge (1-a) x + (1-a)y > y\\
+     & \Rightarrow  a x + a y > x  \wedge x-ax + y -ay > y\\
+     & \Rightarrow  x < a x + a y   \wedge x > a x + a y  \\
+ \end{align*}
 
-Designating $M = \max \left\{   \dfrac{1}{a_1} x_1  , \ldots , \dfrac{1}{a_n} x_n   \right\}$, from the definition of maximum it follows that, for all $1 \leq i \leq n$, $x_i \leq M \cdot a_i$, and consequently, $x_1 + \ldots + x_n \leq M \cdot (a_1 + \ldots + a_n) = M$. Therefore, it holds that:
+It remains to prove the reverse inequality. The validity of this inequality stems from the observation that
 \begin{align*}
-  \opnorm{[\phi, \psi]} \leq \gentracenorm{[\phi, \psi]}
-\end{align*} 
-
-It remains to prove the reverse inequality. The validity of this inequality follows from the observation that
-\begin{align*}
-  &\left\{  \lVert \phi_{i} (A) \rVert_{L^1},   \lVert \phi_{j} (B) \rVert_{L^1}  \, \vert \, \lVert A_i \rVert= 1 ,  \lVert B_j \rVert = 1 \right\}  \subseteq\\
-& {\left\{ \left\lVert \sum_{i,j} (\phi_{i} (A_{1i})  + \psi_{j}(A_{1j}))  \right\rVert_{L^{1}}  \hspace{2pt} \Biggm|  \hspace{2pt}  \sum_{i,j} \lVert A_{1i} \rVert+ \lVert A_{1j} \rVert=1 \right\}},
+  & \left\{  \norm{\phi (A)},   \norm{\psi (B)}  \, \vert \,   \norm{A} = 1, \norm{B} = 1 \right\}   \subseteq
+ \left\{  \norm{\phi (A)} + \norm{\psi (B)}  \, \vert \,   \norm{A} + \norm{B} = 1 \right\}.
 \end{align*}
-This inclusion holds because the first set considers only the special case where one component of the sum has an input with norm equal to one, while the inputs of the remaining components have zero norm, which means meaning they act as null superoperators. Consequently,
+This inclusion holds because the first set considers only the special case where one component of the sum has an input with norm equal to one, while the input of the other component has zero norm, meaning it act acts as a null superoperator. Consequently,
 \begin{align*}
-  & \sup_{i,j} \left\{  \lVert \phi_{i} (A) \rVert_{L^1},   \lVert \phi_{j} (B) \rVert_{L^1}  \, \vert \, \lVert A_i \rVert= 1 ,  \lVert B_j \rVert = 1 \right\}  \leq\\
-& \sup {\left\{ \left\lVert \sum_{i,j} (\phi_{i} (A_{1i})  + \psi_{j}(A_{1j}))  \right\rVert_{L^{1}}  \hspace{2pt} \Biggm|  \hspace{2pt}  \sum_{i,j} \lVert A_{1i} \rVert+ \lVert A_{1j} \rVert=1 \right\}},
+  & \sup \left\{  \norm{\phi (A)},   \norm{\psi (B)}  \, \vert \,   \norm{A} = 1, \norm{B} = 1 \right\}   \leq
+ \sup \left\{  \norm{\phi (A)} + \norm{\psi (B)}  \, \vert \,   \norm{A} + \norm{B} = 1 \right\},
 \end{align*}
 and the equality is proven.
 
 \end{proof}
 
-\begin{lemma} \label{lem_op_max_diamond}
-  Let $\sigma: n_1, \ldots, n_s$, $\tau: m_1, \ldots, m_t$ and $\mu: o_1, \ldots, o_r$ be signatures. For all superoperators $\phi \in \catQ(\sigma,\mu)  $ and $\psi \in \catQ(\tau,\mu) $ it holds that 
-  $$ \gendiamondnorm{[\phi, \psi]} = \gendiamondnorm{[\phi, \psi]}.$$
-\end{lemma}
-
-\begin{proof}
-  This equality follows from Lemma \ref{lem_op_max_trace} and the fact that the isomorphism $\dist$ is the identity in $\catQ$.
-\end{proof}
-
 
 \begin{proposition} \label{prop:met_cond}
-  For all $\phi, \phi' \in \catQ(\sigma,\mu)  $ and $\psi, \psi' \in \catQ(\tau,\mu) $, $[\phi,\psi]:\catQ(\sigma,\mu)  \otimes \catQ(\tau,\mu) \rightarrow \catQ(\sigma \oplus \tau,\mu) $ is a functor in the category of metric spaces.
+  For all $\phi, \phi' \in \catQ(\sigma,\mu)  $ and $\psi, \psi' \in \catQ(\tau,\mu) $, $[\phi,\psi]:\catQ(\sigma,\mu) \otimes \catQ(\tau,\mu) \rightarrow \catQ(\sigma \oplus \tau,\mu) $ is a functor in the category of metric spaces.
 \end{proposition}
 
 
 
 \begin{proof}
-  We deduce by unfolding the respective definitions that we need to prove that for all short operators $\phi, \phi' \in \catQ(\sigma,\mu)  $ and $\psi, \psi' \in \catQ(\tau,\mu) $ the inequation $\gendiamondnorm{[\phi, \psi] - [\phi', \psi']} \leq  \sup \left\{ \gendiamondnorm{\phi-\phi'}, \gendiamondnorm{\psi-\psi'} \right\}$ holds.
-
+  We deduce by unfolding the respective definitions that we need to prove that for all short operators $\phi, \phi' \in \catQ(\sigma,\mu)  $ and $\psi, \psi' \in \catQ(\tau,\mu) $ the inequation $\diamondnorm{[\phi, \psi] - [\phi', \psi']} \leq  \sup \left\{ \diamondnorm{\phi-\phi'}, \diamondnorm{\psi-\psi'} \right\}$ holds.
+ 
 
     \begin{align*}
       & \gendiamondnorm{[\phi, \psi]} \\
-      &= \gentracenorm{[\phi, \psi] \otimes \id_{\sigma\oplus\tau}} \\
-      &= \gentracenorm{[\phi \otimes \id_\sigma, \psi \otimes \id_\tau]}& (\dist=\id) \\
-      & =  \sup_{i,j} \left\{ \text{sup} \left\{  \lVert \phi_{i} \otimes \id_\sigma \, (A) \rVert_{L^1}  \, \vert \,  \lVert A \rVert_1 = 1 \right\}, \text{sup} \left\{ \lVert \phi_{j} \otimes \id_\tau \, (B) \rVert_{L^1}  \, \vert \,  \lVert B \rVert_1 = 1 \right\} \right\} \\
-      & = \sup \left\{ \sup_{i} \left\{ \text{sup} \left\{  \lVert \phi_{i} \otimes \id_\sigma \, (A) \rVert_{L^1}  \, \vert \,  \lVert A \rVert_1 = 1 \right\} \right\} , \sup_{j} \left\{\text{sup} \left\{ \lVert \phi_{j} \otimes \id_\tau \, (B) \rVert_{L^1}  \, \vert \,  \lVert B \rVert_1 = 1 \right\} \right\} \right\} \\
-      & =  \sup \left\{ \gentracenorm{\phi \otimes \id_{\sigma}}, \gentracenorm{\phi \otimes \id_{\tau}}\right\} \\
-      & = \left\{ \gendiamondnorm{\phi}, \gendiamondnorm{\psi} \right\}
+      &= \tracenorm{[\phi, \psi] \otimes \id_{\sigma\oplus\tau}} \\
+      &= \tracenorm{[\phi \otimes \id_\sigma, \psi \otimes \id_\tau]}& (\dist=\id) \\
+      & =  \sup \{ \tracenorm{\phi \otimes \id_\sigma}, \tracenorm{\psi \otimes \id_\sigma} \} & (\text{Lemma \ref{lem_op_max_trace}})\\
+      & = \sup \left\{ \diamondnorm{\phi}, \diamondnorm{\psi} \right\}
     \end{align*}
 
 % The supremum of a set with two elements is always the maximum
@@ -1440,458 +1420,275 @@ The inequality in Proposition \ref{prop:met_cond} follows from the linearity of 
 \end{proof}
 
 
-\begin{proposition} \label{prop:uv*}
-  Let $\sigma: n_1, \ldots, n_s$, $\tau: m_1, \ldots, m_t$ and $\mu: o_1, \ldots, o_r$ be signatures. For all super-operators $\psi: \sigma \to \tau$, it holds that:
-  \begin{align*}
-    \gentracenorm{\phi} & =  \sup_{i}  \left\{ \sup \left\{ \sum_{j} \|\phi_{ij} (v_i w_i^\dag)\|_{1}  \mid  \|v_i\|_{2} = 1,   \|w_i\|_{2} =1 \right\} \right\}
-  \end{align*}
-\end{proposition}
 
-\begin{proof}
-  The argument for this equality is similar to the one presented in \cite[Proof of Proposition 3.38]{watrous2018theory}.
-  
-
-  Every square matrix $A \in  \mathcal{M}_n $ that satisfies $ \tracenorm{A} \leq 1$ can be expressed as a convex combination of operators of the form  $uv*$ where $u,v  \in \mathbb{C}^{n}$ are unit vectors. Consequently by  triangle inequality, one has that,
-
-  \begin{align*}
-    &\gentracenorm{\phi} = \sup_{i}  \left\{ \sup \left\{ \sum_{j} \|\phi_{ij} (A_i)\|_{1}  \mid  \|A_i\|_{1} = 1 \right\} \right\} \\
-    & = \sup_{i}  \left\{ \sup \left\{ \sum_{j} \left\lVert \phi_{ij} \left( \sum_k v_i w_i^\dagger \right) \right\rVert_{1}   \Biggm| \sum_k \left\lVert v_k \right\rVert_{2} = 1,  \sum_k \left\lVert w_k \right\rVert_{2} = 1  \right\} \right\} \\
-    & \leq  \sup_{i}  \left\{ \sup \left\{ \sum_{j} \sum_k  \left\lVert \phi_{ij} \left(  v_k w_k^\dagger \right) \right\rVert_{1}   \Biggm|\sum_k \left\lVert v_k \right\rVert_{2} = 1,  \sum_k \left\lVert w_k \right\rVert_{2} = 1   \right\} \right\}
-  \end{align*}
-
-  Since, for each $\phi_{ij} \left(  v_k w_k^\dagger \right)$, there exists a $vw^\dagger$ such that  $\phi_{ij} \left(  v_k w_k^\dagger \right) \leq \phi_{ij} \left(  v w^\dagger \right)$ for all $k$, the inequality above can be rewritten as:
-  \begin{align*}
-    & \sup_{i}  \left\{ \sup \left\{ \sum_{j}  \left\lVert \phi_{ij} \left(  v_i w_i^\dagger \right) \right\rVert_{1}   \Biggm|    \|v_i\|_{2} = 1,   \|w_i\|_{2} \right\} \right\}
-  \end{align*}
-
-  The proof of the reverse inequality follows a similar argument to that of the analogous inequality in Lemma \ref{lem_op_max_trace}
-  
-  \begin{comment}
-  The validity of this inequality follows from the observation that
-\begin{align*}
-  & \left\{ \sum_{j}  \left\lVert \phi_{ij} \left(  v_i w_i^\dagger \right) \right\rVert_{1}   \Biggm|    \|v_i\|_{2} = 1,   \|w_i\|_{2} \right\}  \subseteq\\
-&  \left\{ \sum_{j} \left\lVert \phi_{ij} \left( \sum_k v_i w_i^\dagger \right) \right\rVert_{1}   \Biggm| \sum_k \left\lVert v_k \right\rVert_{2} = 1,  \sum_k \left\lVert w_k \right\rVert_{2} = 1  \right\},
-\end{align*}
-This inclusion holds because the first set corresponds to the special case where all but one element in the sum over $k$ are zero. Consequently
-\begin{align*}
-  & \sup_{i}  \left\{ \sup \left\{ \sum_{j}  \left\lVert \phi_{ij} \left(  v_i w_i^\dagger \right) \right\rVert_{1}   \Biggm|    \|v_i\|_{2} = 1,   \|w_i\|_{2} \right\} \right\} \\
-  &\leq \sup_{i}  \left\{ \sup \left\{ \sum_{j} \left\lVert \phi_{ij} \left( \sum_k v_i w_i^\dagger \right) \right\rVert_{1}   \Biggm| \sum_k \left\lVert v_k \right\rVert_{2} = 1,  \sum_k \left\lVert w_k \right\rVert_{2} = 1  \right\} \right\}
-\end{align*}
-and the equality is proven.
-  \end{comment}
-\end{proof}
-
-
-\begin{lemma} \label{lemma:uv*_tensorI_gen}
-  Let $\sigma: n_1, \ldots, n_s$ be a signature and $\phi_i: \mathcal{M}_{n}  \rightarrow \sigma$ be a super-operator.  For every choice of a complex vector space $\mathbb{C}^{m}$ and unit vectors $v_1, v_2 \in \mathbb{C}^{n} \otimes \mathbb{C}^{m}$, there exist unit vectors $w_1, w_2 \in \mathbb{C}^{n} \otimes \mathbb{C}^{n}$ such that the following equalities hold:
-  \begin{align*} 
-       \sum_{j=1}^{m} \left\lVert   \phi_{ij} \otimes \id_{\mathcal{M}_{m}} (v_1 v_2^\dag)\right\rVert_{1} = \sum_{j=1}^{m} \left\lVert \phi_{ij}  \otimes \id_{\mathcal{M}_{n}} (w_1 w_2^\dag) \right\rVert_{1}
-  \end{align*}
-\end{lemma}
-
-
- \begin{proof}
-  The proof of this Lemma follows from the one presented in \cite[Proof of Lemma 3.45]{watrous2018theory}. Since the vectors $w_1$ and $w_2$ satisfying the inequality
-  \begin{align*}
-  \lVert \phi_{ij} \otimes \id_{\mathcal{M}{m}} (v_1 v_2^\dag) \rVert{1} = \lVert \phi_{ij} \otimes \id_{\mathcal{M}{n}} (w_1 w_2^\dag) \rVert{1}
-  \end{align*}
-  depend only on $v_1$ and $v_2$ and are independent of $\phi_{ij}$ , it follows that the equality in Lemma \ref{lemma:uv*_tensorI_gen} holds.
-  In the case that $m \leq n$ for any choice of an isometry $T \in \mathbb{C}^{m} \rightarrow \mathbb{C}^{n} $, the vectors $w_1 = (\id_{\mathbb{C}^{n}} \otimes T)v_1$ and $w_2 = (\id_{\mathbb{C}^{n}} \otimes T)v_2$  satisfy the equality above. If  $m > n$, consider Schmidt decompositions
-  \begin{align*}
-      v_1 = \sum_{k=1}^n \sqrt{p_k} \, v_{1k} \otimes x_k \quad \text{and} \quad v_2 = \sum_{k=1}^n \sqrt{q_k} \, v_{2k} \otimes y_k 
-  \end{align*}
-  of $v_1$ and $v_2$, a suitable choice for the vectors $w_1$ and $w_2$ is given by
-  \begin{align*}
-      u = \sum_{k=1}^n \sqrt{p_k} \, v_{1k} \otimes v_{1k} \quad \text{and} \quad v = \sum_{k=1}^n \sqrt{q_k} \, v_{2k} \otimes v_{2k}. 
-  \end{align*}
- \end{proof}
-
- \todo[inline]{Escrevi tudo, para o caso do lemma da op norm sair. Mas se não sair a prova disto é só uma frase, dado que as provas são basicamente iguais}
-
- \begin{lemma}\label{lem:phi(A)}
-  Let $\sigma: n_1, \ldots, n_s$, $\tau: m_1, \ldots, m_t$ and $\mu: o_1, \ldots, o_r$ be signatures. Let  $\phi: \sigma \rightarrow \mu$ be a super-operator, then for $A \in \sigma$ it holds that:
-  \begin{align*}
-    \gentracenorm{\phi(A)} \leq \gentracenorm{\phi} \cdot \lonenorm{A}.
-  \end{align*}
-\end{lemma}
-
-\begin{proof}
-
-The generalized trace norm of $\phi$ corresponds to :
-\begin{align*}\label{eq:q}
-  \gentracenorm{\phi}& =   \sup_i \left\{ \sup \left\{\|\phi_{i} (A_i)\|_{L^1}   \mid \hspace{1pt} \|A_i\|_{1} = 1 \right\} \right\} & \{\text{\autoref{def:gen_1norm}}\} \\
- & = \sup_i  \left\{\|\phi_{i} (A_i)\|_{L^1}   \mid \hspace{1pt} \|A_i\|_{1} = 1 \right\} 
-\end{align*}
-
-
-To prove that  if  $ \lonenorm{A} = 1$
-\begin{align*} 
-  \lonenorm{\phi(A) } \leq \gentracenorm{\phi},
-\end{align*}
-is equivalent to demonstrating that,
-\begin{align*}
- &\sup \left\{ \lVert \phi(A) \rVert_{L^1} \hspace{2pt}  \Biggm| \hspace{2pt}  \sum_{i=1}^{n} \lVert A_i  \rVert_1 = 1 \right\} \leq \gentracenorm{\phi} \\
- & \Leftrightarrow \sup \left\{ \left\lVert \sum_{i=1}^{n} \phi_{i} (A_{i}) \right\rVert_{L^1} \hspace{2pt}  \Biggm| \hspace{2pt}  \sum_{i=1}^{n} \lVert A_i  \rVert_1 = 1  \right\} 
- \leq \sup_i  \left\{\|\phi_{i} (A_i)\|_{L^1}   \mid \hspace{1pt} \|A_i\|_{1} = 1 \right\} 
-\end{align*}
-
-
-By the triangle inequality, if the inequality bellow holds, then the inequality above also holds.
-\begin{align*}
-    &\sup \left\{   \sum_{i=1}^{n} \lVert \phi_{i} (A_{i}) \rVert_{L^1} \hspace{2pt}  \Biggm| \hspace{2pt}  \sum_{i=1}^{n} \lVert A_i  \rVert_1 = 1 \right\} 
-    \leq \sup_i  \left\{\|\phi_{i} (A_i)\|_{L^1}   \mid \hspace{1pt} \|A_i\|_{1} = 1 \right\}   \\
-\end{align*}
-
-Given that the norm is continuos and compact, we can use the maximum instead of the supremum. Considering $A_1, \ldots, A_n$ as the matrices that maximize the left-hand side of the inequality, proving the following inequality is equivalent to demonstrating that inequality above holds.
-  \begin{align*}
-     &\max \left\{ \sum_{i=1}^{n} \lVert \phi_{i} (A_{i}) \rVert_{L^1} \right\} 
-     \leq \max_{\phi_i} \left\{ \lVert \phi_{i} (A_{i} / \lVert A_{i} \rVert_1) \rVert_{L^1} \right\} 
-     \wedge \sum_{i=1}^{n} \lVert A_i  \rVert_1 = 1
-  \end{align*}
-
-
-  This is equivalent to demonstrating that for all $a_1, \ldots, a_n, x_1, \ldots, x_n \in \mathbb{R}^{+}_{0}$ with $a_1+ \ldots + a_n=1$,
-  \begin{align*}
-    x_1 + \ldots + x_n  \leq  \max \left\{   \dfrac{1}{a_1} x_1  , \ldots , \dfrac{1}{a_n} x_n   \right\} \\
-  \end{align*}
-      
-
-  Designating $M = \max \left\{   \dfrac{1}{a_1} x_1  , \ldots , \dfrac{1}{a_n} x_n   \right\}$, from the definition of maximum it follows that, for all $1 \leq i \leq n$, $x_i \leq M \cdot a_i$, and consequently, $x_1 + \ldots + x_n \leq M \cdot (a_1 + \ldots + a_n) = M$. 
-  
-  Therefore, it follows that for an operator $A \in \sigma $,
-  \begin{equation*}
-    \left\lVert \phi \left(\frac{A}{\lVert A \rVert_{L^1}}\right)  \right\rVert_{L^1} = \frac{1}{\lVert A \rVert_{L^1}} \left\lVert \phi (A)  \right\rVert_{L^1}
-  \end{equation*} 
-is upper bounded by $\lVert \phi  \rVert_{L^1}$. Thus, Lemma \ref{lem:phi(A)} holds.
-
-\end{proof}
-
- \begin{theorem} \label{theorem:tensor_stability} 
-  Let $\sigma: n_1, \ldots, n_s$, $\tau: m_1, \ldots, m_t$ and $\mu: o_1, \ldots, o_r$ be signatures. For all super-operators $\phi: \sigma  \rightarrow \tau$ and signatures $\mu$,  it holds that:
-      \begin{align*}
-          \gentracenorm{\phi \otimes \id_{\mu}} \leq  \gendiamondnorm{\phi}
-      \end{align*}
-    with equality holding under the assumption that within $\mu$ there  exists a natural number $o_i$, such that for all $1 \leq j \leq n$, $\text o_i \geq n_j$.
-    
-    %$\text{dim}(\mathbb{C}^{q_1 \times q_1} \oplus \ldots \oplus \mathbb{C}^{q_t \times q_t}) \geq  \text{dim}(\mathbb{C}^{o_1 \times o_1} \oplus \ldots \oplus \mathbb{C}^{o_n \times o_n})$.
-      \end{theorem}
-  
-  \begin{proof}
-   This proof follows the same principle as \cite[Proof of Theorem 3.36]{watrous2018theory}.
-
-    Attending to definitions \ref{def:gen_diamond_norm}, \ref{def:gen_1norm}, and \ref{def:tensor} , one has that
-    \begin{align*} \label{eq:q_diamondgen_extendido}
-        \lVert \phi \rVert_{\diamondsuit \text{ gen}}  & = \gentracenorm{Q \otimes \id_{\mu}} \\
-        & = \sup_{i,k} \left\{ \sup \left\{ \sum_{j=1}^{t} \|\phi_{ij} \otimes \id_{\mathcal{M}_{o_k}} (A_{ik})\|_{1}    \mid  \|A_{ik}\|_{1} = 1 \right\} \right\}  
-    \end{align*}
-
-    When $i \neq k$, considering Proposition \autoref{prop:uv*} and Lemma \autoref{lemma:uv*_tensorI_gen}, considering unit vectors  $v_{ik}, w_{ik} \in \mathbb{C}^{n_i} \otimes \mathbb{C}^{n_j}$, and $v_{i}, w_{i} \in \mathbb{C}^{n_i} \otimes \mathbb{C}^{n_i}$, where $1 \leq i \leq s$ and $1 \leq k \leq s$, it follows that
-    \begin{align*}
-      & \sup_{i,k} \left\{ \sup \left\{ \sum_{j=1}^{t} \|\phi_{ij} \otimes \id_{\mathcal{M}_{o_k}} (A_{ik})\|_{1}    \mid  \|A_{ik}\|_{1} = 1 \right\} \right\} \\
-      & = \sup_{i,k} \left\{ \sup \left\{\sum_{j=1}^{t} \|\phi_{ij} \otimes \id_{\mathcal{M}_{o_k}} (v_{ik} w_{ik}^\dag )\|_{1} \right\}   \right\} \\
-      & \leq \sup_{i} \left\{ \sup \left\{ \sum_{j=1}^{t} \|\phi_{ij} \otimes \id_{\mathcal{M}_{o_i}} (v_{i} w_{i}^\dag )\|_{1}   \right\} \right\}.
-    \end{align*}
-  
-  Consequentlty, 
-  \begin{align*}
-    \lVert \phi \rVert_{\diamondsuit \text{ gen}} = \sup_{i} \left\{ \sup \left\{ \sum_{j=1}^{t} \|\phi_{ij} \otimes \id_{\mathcal{M}_{o_i}} (A_{i})\|_{1}    \mid  \|A_{i}\|_{1} = 1 \right\} \right\}
-  \end{align*}
-  
-   
-    Applying the same reasoning to  $\gentracenorm{\phi \otimes I_{\mu}}$,  the following inequality holds:
-  \begin{align*}
-      \gentracenorm{\phi \otimes I_{\mu}}  & \leq \sup_{i} \left\{ \sup \left\{ \sum_{j=1}^{t} \|\phi_{ij} \otimes \id_{\mathcal{M}_{o_i}} (v_{i} w_{i}^\dag )\|_{1}   \right\} \right\}.
-  \end{align*}
-  As a result,
-  $$\gentracenorm{Q \otimes \id_{\mu}} \leq  \gendiamondnorm{Q}$$
-  
-  
-   Consider $1 \leq i \leq s$ and $1 \leq k \leq r$. When $o_k \geq n_i$, there exists an isometry $T: \mathbb{C}^{n_i} \rightarrow \mathbb{C}^{o_k}$. Moreover, for $A \in \mathcal{M}_{n_i}$, such that $\|A\|_1=1$, and $\phi_{ij}: \mathcal{M}_{n_i} \rightarrow \mathcal{M}_{o_k}$, attending to the isometric invariance of the trace norm it holds that:
-    \begin{equation*}
-      \sum_{j=1}^{m} \lVert \phi_{ij} \otimes \id_{\mathcal{M}_{n_i}} (A) \rVert_{1} = \sum_j \lVert (\phi_{ij} \otimes \id_{\mathcal{M}_{o_k}}) ((\id_{\mathcal{M}_{n_i}} \otimes T) A (\id_{\mathcal{M}_{n_i}} \otimes T )^\dag) \rVert_{1}. 
-    \end{equation*}
-  This can be rewritten as:
-  \begin{align*}
-    &\sum_{j=1}^{m} \lVert \phi_{ij} \otimes \id_{\mathcal{M}_{n_i}} (A) \rVert_{1} =  \lonenorm{(\phi_{i} \otimes \id_{\mathcal{M}_{o_k}}) ((\id_{\mathcal{M}_{n_i}} \otimes T) A (\id_{\mathcal{M}_{n_i}} \otimes T )^\dag)} . 
-  \end{align*}
-  Consequentlty, by Lemma \ref{lem:phi(A)}, it follows that:
-  \begin{equation*}
-    \sum_{j=1}^{m} \lVert \phi_{ij} \otimes \id_{\mathcal{M}_{n_i}} (A) \rVert_{1} \leq \lonenorm{\phi_{i} \otimes \id_{\mathcal{M}_{o_k}}} = \sup \left\{\sum_{j=1}^{m} \lVert \phi_{ij} \otimes \id_{\mathcal{M}_{o_k}} (B) \rVert_{1} \mid \|B\| = 1\right\}.
-  \end{equation*}
-  And, as a result,  under the assumption that within $\mu$ there  exists a natural number $o_i$, such that for all $1 \leq j \leq n$, $\text o_i \geq n_j$, it holds that: 
-  \begin{equation*}
-    \gentracenorm{\phi \otimes \id_{\mathcal{M}_\mu}} =  \gendiamondnorm{\phi}
-  \end{equation*}
-  which completes the proof.
-  \end{proof}
-  
-   
-   
-  \begin{corollary} \label{cor:tensor_stability}
-    For all super-operators  $\phi: \sigma  \rightarrow \tau$ and signatures $\mu$  it holds that:
-  \begin{align*}
-    \gendiamondnorm{\phi \otimes \id_{\mathcal{M}_\mu}} =  \gendiamondnorm{\phi}
-\end{align*}
-  \end{corollary}
-
-
-  \begin{proposition}\label{prop:gen_trace_submultiplicative}
-    Let $\sigma: n_1, \ldots, n_s$, $\tau: m_1, \ldots, m_t$ and $\mu: o_1, \ldots, o_r$ be signatures.  The generalized trace norm is submultiplicative with respect to composition of super‑operators, \textit{i.e.}, or all super-operators $\phi: \sigma  \rightarrow \tau$ and $\psi: \tau  \rightarrow \mu$, it holds that:
-    \begin{align*} 
-      \gentracenorm{\psi  \phi} \leq \gentracenorm{\psi} \gentracenorm{\phi}
-    \end{align*}
-  \end{proposition}
-  
-  \begin{proof}
-    This proof follows the same reasoning as \cite[Proof of Proposition 3.41]{watrous2018theory}. 
-  
-   The composition $\psi \cdot \phi$ can be seen as:
-  \begin{align*}
-    \psi \cdot \phi = 
-    \begin{pmatrix}
-      \psi_{11} & \ldots & \psi_{t1}, \\
-      \vdots & \ddots  & \vdots \\
-      \psi_{1r} & \ldots & \psi_{tr} \\
-    \end{pmatrix}
-    \cdot
-    \begin{pmatrix}
-      \phi_{11} & \ldots & \phi_{s1}, \\
-      \vdots & \ddots  & \vdots \\
-      \phi_{1t} & \ldots & \phi_{st} \\
-    \end{pmatrix}
-    =\begin{pmatrix}
-      \psi \cdot \phi_1, \ldots, \psi \cdot \phi_n .\\
-    \end{pmatrix}
-    \end{align*}
-  
- %Defining  $\phi_i= (\phi_{i1}, \ldots, \phi_{it})$ for $i \in \sigma$, the norm of $\phi$ is defined as 
-
-  Attending to Definition \autoref{def:gen_1norm}, it follows that:
-  \begin{align*} 
-   \gentracenorm{\psi \cdot  \phi} & = \sup_{i} \{ \sup \{\lVert \psi \cdot \phi_i (A_i) \rVert_{L^1} \mid \|A_i\|_{1} = 1\} \}  = \sup_i \{\lVert \psi \cdot \phi_i (A_i) \rVert_{L^1} \mid \|A_i\|_{1} = 1\}
-  \end{align*}
-
-  Let $B \in \tau$, by \autoref{lem:phi(A)} it follows that:
-  \begin{align*}
-    \lVert \psi(B) \rVert_{L^1} \leq \lVert \psi  \rVert_{L^\infty} \cdot \lVert B  \rVert_{L^1}.
-  \end{align*}
-  
-  As a result, 
-  \begin{align*} 
-    \lVert \psi (\phi_i (A_i)) \rVert_{L^1} \leq \lVert \psi  \rVert_{L^\infty} \cdot \lVert \phi_i (A_i)  \rVert_{L^1},
-  \end{align*}
-
-  Considering Definition \autoref{def:gen_1norm}, $\lVert \phi_i (A_i)  \rVert_{L^1}\leq \gentracenorm{\phi}$. Therefore, one has that,
-  \begin{align*} 
-    \lVert \psi (\phi_i (A_i)) \rVert_{L^1} \leq \lVert \psi  \rVert_{L^\infty} \cdot \lVert \phi  \rVert_{L^\infty},
-  \end{align*} 
-
-  Finally considering the definition of \textit{supremum}, it follows that,
-  \begin{align*} 
-    \lVert \psi \rVert_{L^\infty} \leq \lVert \psi  \rVert_{L^\infty} \cdot \lVert \phi  \rVert_{L^\infty},
-  \end{align*}
-
-  
-  \end{proof}
-
-
-  \begin{proposition}\label{prop:gen_diamond_submultiplicative}
-    Let $\sigma: n_1, \ldots, n_s$, $\tau: m_1, \ldots, m_t$ and $\mu: o_1, \ldots, o_r$ be signatures. The generalized diamond norm is submultiplicative with respect to composition of super‑operators, \textit{i.e.}, for all super-operators $\phi: \sigma  \rightarrow \tau$ and $\psi: \tau  \rightarrow \sigma$, it holds that:
-    \begin{equation*}
-      \gendiamondnorm{\psi  \phi} \leq  \gendiamondnorm{\psi} \gendiamondnorm{\phi}
-    \end{equation*}
-  \end{proposition}
-  
-  \begin{proof}
-   
-    By Lemma \ref{lem:gen_trace_submultiplicative}, it is possible to state that:
-  \begin{equation*}
-     \gentracenorm{\psi \phi \otimes \id_{\sigma}} \leq \gentracenorm{\psi \otimes \id_{\sigma}} \cdot \gentracenorm{\phi \otimes \id_{\sigma}}
-  \end{equation*}
-  Attending to Definition \ref{def:gen_diamond_norm}, it follows that:
-  \begin{align*}
-     \gendiamondnorm{\psi \phi} \leq  \gentracenorm{ \psi \otimes \id_{\sigma} } \cdot \gendiamondnorm{ \phi}
-  \end{align*}
-  Given Theorem \ref{theorem:tensor_stability}, it holds that
-  \begin{equation*}
-    \gentracenorm{\psi \otimes \id_{\sigma}} \leq \gendiamondnorm{\psi}
-  \end{equation*}
-  As a result, the inequality in Proposition \ref{prop:gen_diamond_submultiplicative} holds.
-  \end{proof}
-
-  \begin{theorem} \label{thm:gen_trace_cptp_norm}
-    Let $\sigma: n_1, \ldots, n_s$ and  $\tau: m_1, \ldots, m_t$  be signatures. Let  $\phi: \sigma  \rightarrow \tau$ be a  positive trace-nonincreasing super-operator. Then, it holds that $\gentracenorm{\phi} \leq 1$.
-  \end{theorem}
-
-  \begin{proof}
-    Let $\phi_i= (\phi_{i1}, \ldots, \phi_{it})$ for $n_i \in \sigma$. Considering that for a positive superoperator $\phi_{ij}:\mathcal{M}_{n} \to \mathcal{M}_{m} $ and positive operator $A_{i}: \mathcal{M}_{n}$ it holds that
-    \begin{align*}
-    \tracenorm{\phi_{ij} (A_{i})} & = \tr\left(\sqrt{\left(\phi_{ij} (A_{i})\right)^\dag (\phi_{ij} (A_{i}))}\right) \\
-    & = \tr\left(\sqrt{\left(\phi_{ij} (A_{i})\right) (\phi_{ij} (A_{i}))}\right) & (\phi_{ij} (A_{i}) \text{ is hermitian}) \\
-    & = \tr\left(\phi_{ij} (A_{i})\right)
-    \end{align*}
-    it follows that, for unitary matrices $U_j$,
-    \begin{align*}
-       \lonenorm{\phi_{i}} & = \sup \left\{ \sum_{j} \tracenorm{(\phi_{ij}(A_i))} \mid \tracenorm{A_i} = 1 \right\} & (\text{Def. } \ref{def:gen_1norm_prod} ) \\
-      & = \sup \left\{ \sum_{j} \left\lvert \langle U_j, \phi_{ij}(A_i)  \right\rvert  \rangle   \mid \tracenorm{A_i} =1,  \right\} & (\text{Def. trace norm for square matrices}) \\
-      & \leq  \sup \left\{ \sum_{j} \tracenorm{\phi_{ij}(A_i)} \spectralnorm{U_j}  \mid \tracenorm{A_i} =1,  \right\} & (\text{H\"{o}lder inequality})\\
-      & =\sup \left\{ \sum_{j} \tr\left(\phi_{ij} (A_{i})\right)  \mid \tracenorm{A_i} =1,  \right\} & (U_j \text{ is an isometry}) \\
-      & \leq 1. & (\phi \text{ is trace-nonincreasing, Def. \ref{def:catQ}})
-      \end{align*}
- 
-      As a result,
-      \begin{align*}
-      \gentracenorm{\phi} =  \sup_{\phi_i} \{ \sup \{\lVert \phi_i (A_i) \rVert_{L^1} \mid \|A_i\|_{1} = 1\} \} \leq 1
-      \end{align*}
-
-  \end{proof}
-
- 
-  \todo[inline]{$||\cdot||_{\infty}$ -> spectral norm}
-  \todo[inline]{Substituir "Def. trace norm for square matrices" pela eq}
 
 
   \begin{corollary} \label{cor:gen_diamond_cptp_norm}
-    Let $\sigma: n_1, \ldots, n_s$ and  $\tau: m_1, \ldots, m_t$  be signatures. Let  $\phi: \sigma  \rightarrow \tau$ be a  completely positive trace-nonincreasing super-operator. Then, it holds that $ \gendiamondnorm{\phi}\leq 1$.
+    Let $\sigma: n_1, \ldots, n_s$ and  $\tau: m_1, \ldots, m_t$  be signatures. Let  $\phi: \sigma  \rightarrow \tau$ be a  completely positive trace-nonincreasing super-operator. 
   \end{corollary}
-
-  \begin{proof}
-    Given that $\phi$ is a  completely positive trace-nonincreasing super-operator, if follows that $ \phi \otimes \id_{\sigma}$ is a positive trace-preserving super-operator. As a result, it follows that $\gendiamondnorm{\phi}\leq 1$.
-  \end{proof}
-
-  \begin{proposition} \label{prop:gen_trace_subtraction}
-    Let $\sigma: n_1, \ldots, n_s$, $\tau: m_1, \ldots, m_t$ and $\mu: o_1, \ldots, o_r$ be signatures. For all completely positive trace-nonincreasing super-operators $\phi_0, \phi_1: \sigma   \rightarrow \tau$ and $\psi_0, \psi_1: \tau \rightarrow \tau$, it holds that:
-    \begin{equation*}
-      \gentracenorm{\psi_0 \phi_0 - \psi_1\phi_1} \leq  \gentracenorm{ \phi_0- \phi_1 }  + \gentracenorm{\psi_0- \psi_1 }
-    \end{equation*}
-  \end{proposition}
-
-  \begin{proof}
-    The proof follows the same reasoning as in \cite[Proof of Proprosition 3.41]{watrous2018theory}, following from the triangle inequality, Lemma \ref{prop:gen_trace_submultiplicative} and Theorem \ref{thm:gen_trace_cptp_norm}. 
-
-    \begin{align*}
-      \gentracenorm{\psi_0 \phi_0 - \psi_1\phi_1 } & \leq \gentracenorm{\psi_0 \phi_0 - \psi_0 \phi_1 } + \gentracenorm{ \psi_0\phi_1  - \psi_1\phi_1} \\
-      &=  \gentracenorm{\psi_0 (\phi_0 -\phi_1) } + \gentracenorm{(\psi_0- \psi_1) \phi_1} \\
-      &\leq \gentracenorm{\psi_0 } \gentracenorm{\phi_0 -\phi_1 } + \gentracenorm{ \phi_1} \gentracenorm{\psi_0- \psi_1} \\
-      &\leq \gentracenorm{ \phi_0- \phi_1 }  + \gentracenorm{\psi_0- \psi_1 }
-      \end{align*}
-  \end{proof}
-
-
-
-  \begin{proposition} \label{prop:gen_diamond_subtraction}
-    Let $\sigma: n_1, \ldots, n_s$, $\tau: m_1, \ldots, m_t$ and $\mu: o_1, \ldots, o_r$ be signatures. For all completely positive trace-nonincreasing super-operators $\phi_0, \phi_1: \sigma   \rightarrow \tau$ and $\psi_0, \psi_1: \tau \rightarrow \tau$, it holds that:
-    \begin{equation*}
-      \gendiamondnorm{\psi_0 \phi_0 - \psi_1\phi_1} \leq  \gendiamondnorm{ \phi_0- \phi_1 }  + \gendiamondnorm{\psi_0- \psi_1 }
-    \end{equation*}
-  \end{proposition}
-
-  \begin{proof}
-    The proof is analogous to the previous one, following from triangle inequality, Lemma \ref{prop:gen_diamond_submultiplicative} and Corollary \ref{cor:gen_diamond_cptp_norm}.
-  \end{proof}
-
-  \begin{proposition} \label{prop:gen_trace_matrix_multiplicative}
-    Let $\sigma: n_1, \ldots, n_s$ and $\tau: m_1, \ldots, m_t$. For all $A \in \sigma$ and $B \in \tau$ it holds that:
-    \begin{equation*}
-      \lonenorm{A \otimes B} =\lonenorm{A} \lonenorm{B}
-    \end{equation*}
-  \end{proposition}
   
 
   \begin{proof}
-    Consider the decompositions $A=(A_1, \ldots, A_s)$ and $B = (B_1, \ldots, B_t)$.
-    Given that the trace norm of matrices is multiplicative with respect to tensor, it follows that
+    Given that $\phi$ is a  completely positive trace-nonincreasing super-operator, if follows that $ \phi \otimes \id_{\sigma}$ is a positive trace-nonincreasing super-operator. Let $\psi = \phi \otimes \id$, it holds that,
     \begin{align*}
-        \lonenorm{A \otimes B} &=  \lonenorm{(A_1, \ldots, A_s) \otimes (B_1, \ldots, B_t) }  \\
-      & = \lonenorm{(A_1 \otimes B_1, \ldots, A_1 \otimes B_t, \ldots, A_s \otimes B_1, \ldots, A_s \otimes B_t) } \\
-      & = \sum_{i=1}^{s} \sum_{j=1}^{t} \lVert A_i \otimes B_j \rVert_1 = \sum_{i=1}^{n} \sum_{j=1}^{t} \lVert A_i \rVert_1  \lVert   B_j \rVert_1 = \sum_{i=1}^{n} \lVert A_i \rVert_1 \sum_{j=1}^{t}  \lVert   B_j \rVert_1 \\
-      & = \lonenorm{A} \lonenorm{B}
-  \end{align*}
-\end{proof}
+      \diamondnorm{\phi}& =\tracenorm{\psi}\\
+       &= \max \left\{\tr \left( \psi (u u^\dag)\right) \, \vert \, \euclideannorm{u}=1 \right\}  & \left(\text{\cite[Theorem 3.39]{watrous2018theory}}\right)\\
+      & = \max \left\{ \sum_i \sum_j \tr \left( \psi_{ij} (u_i u_i^\dag)\right) \Bigm|  \euclideannorm{\begin{pmatrix} u_1, \ldots, u_s^2 \end{pmatrix}^T}=1 \right\} \\
+      & \leq \max \left\{ \sum_i \tr \left( u_i u_i^\dag \right) \Biggm| \sqrt{\sum_i \euclideannorm{u_i}^2}=1 \right\}   & (\psi \text{ is trace-nonincreasing}) \\
+      & = 1
+    \end{align*}
+    
+    % isto é verdade porque tr(u_iu_i^\dag ) =  \\ u_i\\^2 . consideremos u_i= (a_1,...,a_n), tr(ui)= |a_1|^2+...+ |a_n|^2 e \\ u_i\\ = \sqrt(|a_1|^2+...+ |a_n|^2)
+    
+    
+  \end{proof}
 
-\begin{proposition} \label{prop:unitary_invariance_superops}
-  Let $\sigma: n_1, \ldots, n_s$ and $\tau: m_1, \ldots, m_t$.
-  Let $\psi: \sigma  \rightarrow \tau$ be a super-operator, let $U,U' \in \sigma$  and $V, V' \in \tau $ be unitary operators, and let $\phi, \psi: \sigma  \rightarrow \tau$ be defined as:
-  \begin{equation*}
-    \psi(A) = V \phi (U A U') V'
-  \end{equation*}
-  for all $A \in \sigma$. Then, it holds that $ \gentracenorm{\psi} = \gentracenorm{\phi}.$
+  
+
+\begin{proposition}
+  The category $\catQ$ is $\catMet$-enriched and the bifunctor $\otimes : \catQ \otimes \catQ \to \catQ$ is $\mathsf{Met}$-enriched as well.
 \end{proposition}
 
+
+
+
 \begin{proof}
-  Let $\phi_i= (\phi_{i1}, \ldots, \phi_{it})$ and $\psi_i= (\phi_{i1}, \ldots, \phi_{it})$ for $n_i \in \sigma$, $m_j \in \sigma$ . Consider $U = (U_{1}, \ldots,U_{s})$, $U' = (U'_{1}, \ldots,U'_{s})$, $V = (V_{1}, \ldots,V_{t})$,$ V' = (V'_{1}, \ldots,V'_{t})$, and $A = (A_1, \ldots, A_n)$, it follows that:
+  First, we establish that $\catQ$ is $\catMet$-enriched. By unpacking the relevant definitions, this reduces to proving the following: for all short operators $\phi, \phi' : \sigma \to \tau$ and $\psi, \psi' : \sigma \to \tau$ the inequation $\diamondnorm{\phi-\phi'} + \diamondnorm{\psi-\psi'} \geq \diamondnorm{\psi\phi-\psi'\phi'} $ holds. This follows directly from \cite[Proposition 3.38 (second statement)]{watrous2018theory}
+
+  Next, regarding $\otimes$ we can also deduce by unfolding the respective definitions that we need to prove $ \diamondnorm{\phi - \phi'} + \diamondnorm{\psi - \psi'} \geq \diamondnorm{\psi \otimes \phi - \psi' \otimes \phi'}$. 
+  For this case,  by \cite[Corollary 3.47]{watrous2018theory} and \cite[Proposition 3.44]{watrous2018theory} , we have the inequalities  
+  \[
+  \| \phi \|_\diamond \geq \| \phi \otimes \mathrm{id} \|_\diamond
+  \quad \text{and} \quad  
+  \| \phi \|_\diamond \geq \| \mathrm{id} \otimes \phi \|_\diamond
+  \]  
+  for any super-operator \( \phi \). Attending to \cite[ Proof of proposition 4.1]{dahlqvist2023syntactic} these conditions are sufficient to establish that the bifunctor $\otimes : \catQ \otimes \catQ \to \catQ$ is $\mathsf{Met}$-enriched.
+
+  \todo[inline]{Versão longa para o tensor}
+
+   Whith these conditions we calculate
   \begin{align*}
-    \psi (A) & =    V \cdot \left(\phi(U_{1}A_1 U'_{1}, \hspace{2pt} \ldots \hspace{2pt}, U_{n} A_n U'_{n}) \right) \cdot V'\\
-   &=  V \cdot \left(\sum_i^{n} \phi_i(U_{i}A_i U'_{i})  \right) \cdot V'  \\
-    & =\sum_{i=1}^{n} \left( V_{1} \phi_{i1} (U_{i} A_i U'_{i} ) V'_{1}, \hspace{2pt} \ldots \hspace{2pt}, V_{2t} \phi_{it}(U'_{i}A_i U'_{1i}) V'_{t} \right) \\
-    & = \sum_{i=1}^{n} \left( \psi_{i1}(A_i), \hspace{2pt} \ldots \hspace{2pt}, \psi_{im}(A_i) \right) =  \sum_{i=1}^{n} \psi_i (A_i)
+      \|\psi - \psi'\| + \|\phi - \phi'\| 
+      &\geq \diamondnorm{\id \otimes \left(\psi-\psi'\right)} + \diamondnorm{\id \otimes \left(\phi-\phi'\right)}  \\
+      &=  \diamondnorm{\id \otimes \psi- \id \otimes\psi'} + \diamondnorm{\id \otimes \phi- \id \otimes\phi'} \\
+      &\geq \diamondnorm{\left( \id \otimes \psi \right) \cdot \left( \phi \otimes \id \right)} -  \diamondnorm{\left( \id \otimes \psi' \right) \cdot \left( \phi' \otimes \id \right)} & (\catQ \text{ is } \mathsf{Met}\text{-enriched}) \\
+      &= \diamondnorm{\psi \otimes \phi - \psi' \otimes \phi'}
   \end{align*}
 
-Applying the same reasoning as in \cite[Proof of Proposition 3.41]{watrous2018theory},  by the unitary invariance of the trace norm and Lemma \ref{lem:phi(A)}, it follows that for $1 \leq i \leq n$: 
-\begin{align*}
-    \lonenorm{\psi_i (A_i)} & 
-    =   \sum_{j=1}^m  \lVert V_{j} \phi_{i1} (U_{0} A_i U'_{i} ) V'_{j} \rVert_{1} \\
-    &= \sum_{j=1}^m  \lVert \phi_{ij} (U_{i} A_i U'_{i}) \rVert_{1} \\
-    &= \lonenorm{\phi_i (U_{i} A_i U'_{i})} \\
-    & \leq  \lonenorm{\phi_i} \lVert A_i  \rVert_{1} 
-\end{align*}
-As a result, given Definition \ref{def:gen_1norm_prod} it follows that $ \lonenorm{\psi} \leq  \lonenorm{\phi}$ for all $1 \leq i \leq s$. Thus, attending to Definition \ref{def:gen_1norm}, it holds that,
-\begin{equation*}
- \gentracenorm{\psi} \leq \gentracenorm{\phi}.
-\end{equation*}
-
-Given that $U, U', V, V'$ are unitary operators, it follows that, $\phi{ij} = V_{j}^\dag \psi_{ij}(U_{i}^\dag A U'^\dag_{i}) V'^\dag_{j}$, and consequently the same approach can be taken to find that $ \gentracenorm{\psi} \leq \gentracenorm{\phi} $, which concludes the proof.
 \end{proof}
 
-\begin{theorem}
-  Let $\sigma: n_1, \ldots, n_s$, $\tau: m_1, \ldots, m_t$, $\mu: o_1, \ldots, o_r$ and $\nu: p_1, \ldots, p_u$ and be signatures.
-  For all $\phi: \sigma  \rightarrow \tau$ and $\psi: \mu \rightarrow \nu$, it holds that:
-  \begin{equation*}
-    \gendiamondnorm{\phi \otimes \psi} =  \gendiamondnorm{\phi} \gendiamondnorm{\psi} 
-  \end{equation*}
+$\catQ$ forms a model of the metric $\lambda$-theory for quantum computation introduced in  Subsection \ref{subsec:syntax_qc} via the following interpretation: $\sem{\typeI}= \mathbb{C} \ni  1$, 
+$\sem{\emph{qbit} \hspace{1pt}}= \mathbb{C}^2$, 
+$\sem{\emph{q} \hspace{1pt}}((a,b)) = \big(\begin{smallmatrix}
+  a & 0\\
+  0 & b
+\end{smallmatrix}\big)$, 
+for $\psi \in \{0, 1\}$ we define $\sem{\ket{\psi}} (1)= \ket{\psi}$,
+$\sem{\emph{meas} \hspace{1pt}} (\rho)= (\text{Tr} (M_{0} \rho M_{0}^{\dag}), \text{Tr} (M_{1} \rho M_{1}^{\dag}))$, 
+for unitary operations $U$ we define $\sem{U}= U \rho U^{\dag}$. 
+For completely positive trace-preserving operators $CPTP$, defined as $CPTP (\rho) = K_0 \rho K_0^{\dag} +  K_1 \rho K_1^{\dag}$, we define  $\sem{CPTP}= CPTP (\rho)$ 
+
+Since the diamond norm is generally difficult to compute, we will rely on the following properties, as given by the theorems below:
+
+\begin{theorem} \cite[Theorem 3.55]{watrous2018theory} \label{theorem:diamond_iso}
+  Let $\sigma: n_1, \ldots, n_s$ and  $\tau: m_1, \ldots, m_t$  be signatures for which is holds that $ \sum_i n_i \leq \sum_i m_i$, let $V_0,V_1: \mathbb{C}^{\sigma} \to \mathbb{C}^{\tau}$ be isometries, and define CPTP operators $\phi_0,\phi_1: \sigma \to \tau$ as
+\[
+\phi_0(X) = V_0XV_0^\dag \quad \text{and} \quad \phi_1(X) = V_1XV_1^\dag
+\]
+for all $X \in \mathcal{M}_\sigma$. There exists a unit vector $u \in \mathbb{C}^{\sigma} $ such that
+\[
+\tracenorm{\phi_0(uu^\dag) - \phi_1(uu^\dag)} = \diamondnorm{\phi_0 - \phi_1}.
+\]
 \end{theorem}
 
-\begin{proof}
-  This prove follows the same reasoning as \cite[Proof of Theorem 3.49]{watrous2018theory}. By Proposition \ref{prop:gen_diamond_submultiplicative} and Corollary \ref{cor:tensor_stability}, one has:
+\begin{theorem} \cite[Theorem 3.56]{watrous2018theory} \label{theorem:diamond_cptp_id}
+  Let $\sigma: n_1, \ldots, n_s$ be a signature. Let $\phi: \sigma \to \sigma $ be a quantum channel, let $\varepsilon \in [0,2]$, and suppose that
+    \[
+    \|\phi(\rho) - \rho\|_1 \leq \varepsilon
+    \]
+    for every density operator $\rho \in \mathcal{M}_\sigma$. It holds that
+    \[
+    \|\phi - \id_{\sigma}\|_1 \leq \sqrt{2\varepsilon}.
+    \]
+\end{theorem}
+
+\begin{example}[Coin toss]
+  When running a quantum program on a real quantum computer, the quantum circuits are mapped to the hardware's native quantum gates during compilation. For instance consider 2020 IBM's native quantum gate set $U_1,U_2,U_3,CX$ where
+
   \begin{align*}
-      \gendiamondnorm{\phi \otimes \psi} & =  \gendiamondnorm{(\phi \otimes \id_{\mathcal{M}_\mu}) ( \id_{\mathcal{M}_\sigma} \otimes \phi )} \\
-      & = \gendiamondnorm{\phi \otimes \id_{\mathcal{M}_\mu}} \gendiamondnorm{\id_{\mathcal{M}_\sigma} \otimes \psi}   \\
-      & = \gendiamondnorm{\phi} \gendiamondnorm{\psi}
+    U_1(\lambda) &= 
+    \begin{pmatrix}
+        1 & 0 \\
+        0 & e^{i\lambda}
+    \end{pmatrix} \\
+    U_2(\phi, \lambda) &= 
+    \frac{1}{\sqrt{2}}
+    \begin{pmatrix}
+        1 & -e^{i\lambda} \\
+        e^{i\phi} & e^{i(\phi+\lambda)}
+    \end{pmatrix} \\
+    U_3(\theta, \phi, \lambda) &= 
+    \begin{pmatrix}
+        \cos(\theta/2) & -e^{i\lambda}\sin(\theta/2) \\
+        e^{i\phi}\sin(\theta/2) & e^{i(\phi+\lambda)}\cos(\theta/2)
+    \end{pmatrix} \\
+\end{align*}
+
+Here, \( R_{y,\theta} \), representing a single-qubit rotation by an angle \( \theta \) around the y-axis, can be expressed as \( U_3(\theta, 0, 0) \). We now examine how the coin toss outcome is affected when the \( U_3 \) gate is faulty, particularly when its parameter \( \theta \) is perturbed by an error \( \epsilon \). In this case, the implemented gate becomes \( U_3(\theta + \epsilon, \phi, \lambda) \), \ie, $R_{y,\theta+\epsilon}$.
+First, we compute the action of the unitary operator \( U_3(\theta, \phi, \lambda) \) on an arbitrary quantum state \( \ket{\psi} \).
+\begin{align*}
+  U_3(\theta, \phi, \lambda) \ket{\psi} 
+  & = U_3(\theta, \phi, \lambda) \left(\cos(\alpha/2) \ket{0} + e^{i\beta}\sin(\alpha/2) \ket{1} \right)\\
+  & = \left(\cos(\alpha/2) \cos(\theta/2) - e^{i (\lambda + \beta)}  \sin(\alpha/2)\sin(\theta/2) \right) \ket{0} \\
+  & + \left(e^{i \phi}\cos(\alpha/2)\sin(\theta/2) + e^{i (\beta + \lambda + \phi)} \sin(\alpha/2) \cos(\theta/2 ) \right) \ket{1}
+\end{align*}
+Designating $U_3(\theta, \phi, \lambda) \ket{\psi} = a \ket{0} + b \ket{1}$, one has
+\begin{align*}
+  a a^* &= \vert \cos(\alpha/2) \cos(\theta/2) - e^{i (\lambda + \beta) }  \sin(\alpha/2)\sin(\theta/2) \vert ^2 \\
+  &= \cos^2(\alpha/2) \cos^2(\theta/2) - 2 \cos(\beta + \lambda) \cos(\alpha/2) \cos(\theta/2)  \sin(\alpha/2)\sin(\theta/2) + \sin(\alpha/2)^2 \sin^2(\theta/2) \\
+  & = \cos^2(\alpha/2) \cos^2(\theta/2) + \sin^2(\alpha/2) \sin^2(\theta/2)  - 1/2 \cos(\beta + \lambda) \sin(\alpha)\sin(\theta) \\
+  & = \cos^2((\theta+\alpha)/2)+(1-\cos(\beta + \lambda))\sin(\alpha)\sin(\theta) -1 \\
+  a^*b & = \left(\cos(\alpha/2) \cos(\theta/2) - e^{-i (\lambda + \beta)}  \sin(\alpha/2)\sin(\theta/2) \right) \left(e^{i \phi}\cos(\alpha/2)\sin(\theta/2) + e^{i (\beta + \lambda + \phi)} \sin(\alpha/2) \cos(\theta/2 ) \right) \\
+  & = (1/2) \left( e^{i \phi} \cos^2(\alpha/2) \sin(\theta) + e^{i (\beta + \lambda + \phi)} \sin(\alpha) \cos^2(\theta/2) - e^{-i (\beta + \lambda -\phi)} \sin(\alpha) \sin^2(\theta/2) - e^{i \phi} \sin^2(\alpha/2) \cos(\theta/2)  \right) \\
+  & = (1/2) \left( e^{i \phi}\cos(\alpha) \sin(\theta) +  \sin(\alpha) \left(e^{i (\beta + \lambda + \phi)} \cos^2(\theta/2) - e^{-i (\beta + \lambda - \phi)} \sin^2(\theta/2)\right)  \right)
+\end{align*}
+Then, we calculate the vector Bloch of $U_3(\theta, \phi, \lambda) \ket{\psi}$,
+\begin{align*}
+  &x = 2 \text{Im} \left( a^{*}b \right) =   \cos(\phi) \cos(\alpha) \sin(\theta) +  \sin(\alpha) \left(\cos{(\beta + \lambda + \phi)} \cos^2(\theta/2) - \cos{(\beta + \lambda - \phi)} \sin^2(\theta/2)\right)  \\
+  &y = 2 \text{Re} \left( a^{*}b \right) = \sin(\phi) \cos(\alpha) \sin(\theta) +  \sin(\alpha) \left(\sin{(\beta + \lambda + \phi)} \cos^2(\theta/2) + \sin{(\beta + \lambda - \phi)} \sin^2(\theta/2)\right) \\
+  & z = 2 aa^* -1 = 2 \cos^2((\theta+\alpha)/2)+(1-\cos(\beta + \lambda))\sin(\alpha)\sin(\theta) -1
+\end{align*}
+As a result, we have,
+\begin{align*}
+  & \tracenorm{U_3(\theta, 0, 0) \ket{\psi}\bra{\psi} U_3(\theta, 0, 0)^\dag - U_3(\theta + \epsilon, 0, 0) \ket{\psi}\bra{\psi}U_3(\theta+\epsilon, 0, 0)^\dag } \\
+  & = \lVert ( \cos(\alpha) (\sin(\theta) - \sin(\theta + \epsilon)) +  \sin(\alpha) \cos{\beta} \left(\cos(\theta) - \cos(\theta + \epsilon) \right) , 0,\\
+  & \hspace{20pt} 2 (\cos^2((\theta+\alpha)/2) - \cos^2((\theta+ \epsilon+\alpha)/2))+\cos(\beta) \sin(\alpha)(\sin(\theta) - \sin(\theta+\epsilon)) )\rVert_2 \\
+  %& \leq \lVert  (\sin(\theta) - \sin(\theta + \epsilon) + \cos(\theta) - \cos(\theta + \epsilon),0, \\
+  %&  \hspace{20pt}  2 (\cos^2((\theta+\alpha)/2) - \cos^2((\theta+ \epsilon+\alpha)/2))+(\sin(\theta) - \sin(\theta+\epsilon))) \rVert_2   \\
+  &  \leq \euclideannorm{( \cos(\alpha)\epsilon + \sin(\alpha)\cos(\beta) \epsilon, 0, 2\epsilon + \sin(\alpha)\cos(\beta) \epsilon)} \\
+  & = \sqrt{\epsilon^2(\cos^2(\alpha) + 2\sin^2(\alpha)\cos^2(\beta)+\sin(2\alpha)\cos(\beta) + 2\sin(\alpha)\cos(\beta) + 4 )} \\
+  &\leq \epsilon \sqrt{(1 + \sin^2(\alpha) +\sin(2\alpha) + 2\sin(\alpha) + 4 )} \\
+  & \leq \epsilon \sqrt{(1 + 4 + 4 )} = 3 \epsilon
+\end{align*}
+
+The first inequality arises from both functions $\cos$ and $\sin$ being Lipschitz continuous. Attending to Theorem \ref{theorem:diamond_iso}, it follows that
+  \begin{align*}
+    \diamondnorm{R_{y, \theta}- R_{y, \theta + \epsilon} } \leq 3 \epsilon
   \end{align*}
 
-Consider operators $A \in \mathcal{M}_{\sigma \otimes \sigma}$ and $B \in \mathcal{M}_{\mu \otimes \mu} $ such that $\lonenorm{A}=1$ and $\lonenorm{B}= 1$, and such that these equalities hold:
-\begin{align} \label{eq:equalities_Q_S}
-    \gendiamondnorm{\phi} & = \lonenorm{\phi \otimes \id_{\mathcal{M}_\sigma}  (A)}\\
-    \gendiamondnorm{\psi} & = \lonenorm{\phi \otimes \id_{\mathcal{M}_\mu}  (B)} \notag
-\end{align}
-Attending to Proposition \ref{prop:gen_trace_matrix_multiplicative}, it follows that: 
+Using our metric deductive system, considering Example \ref{ex:coin_toss_syntax} we can easily conclude that $\textbf{CoinToss} =_{3 \epsilon} \textbf{CoinToss}^{\epsilon}$, where $\textbf{CoinToss}^{\epsilon}$ is the the judgement that results from replacing $R_{y, \theta}$ by $U^{R_{y, \theta + \epsilon}}$.
 
-\begin{align} \label{eq:norm_o_times_p_equal_1}
-    \lVert A \otimes B \rVert_{1 \text{ gen}} = \lVert A  \rVert_{1 \text{ gen}} \lVert B \rVert_{1 \text{ gen}} =1
-\end{align}
+\end {example}
 
-Attending to Definition \ref{def:gen_diamond_norm} and Proposition \ref{prop:unitary_invariance_superops}, which implies that this norm
-is invariant under permuting the ordering of tensor factors of super-operadores, one has
-\begin{align*} \label{eq:q_otimes_s_gen_diamond_inv_u}
-    \gendiamondnorm{\phi \otimes \psi} & = \gentracenorm{\phi \otimes \psi \otimes \id_{\mathcal{M}_{\sigma \otimes \mu}}}\\
-    & = \gentracenorm{\phi \otimes \psi \otimes \id_{\mathcal{M}_\sigma} \otimes \id_{\mathcal{M}_\mu} } \\
-    &= \gentracenorm{\phi \otimes \id_{\mathcal{M}_\sigma} \otimes \psi  \otimes \id_{\mathcal{M}_\mu} } \\
-    & \geq  \lonenorm{\phi \otimes \id_{\mathcal{M}_\sigma} \otimes \psi  \otimes \id_{\mathcal{M}_\mu} (A \otimes B)} &(\text{Lemma \ref{lem:phi(A)} and  \autoref{eq:norm_o_times_p_equal_1}})
-\end{align*}
+\begin{example}[Quantum state discrimination]
+  An arbitrary single qubit unitary $U \in \mathbb{C}^{2 \times 2}$ may be written
+\[
+U = e^{i\alpha} R_{z,\beta} R_{y,\gamma} R_{z,\delta},
+\]
+for appropriate choices of angles $\alpha$, $\beta$, $\gamma$ and $\delta$.
 
 
-By Proposition \autoref{prop:gen_trace_matrix_multiplicative} and \autoref{eq:equalities_Q_S}, it holds that:
+As in the previous example, we assume the hardware's native gate set consists of $\{U_1, U_2, U_3, \text{CNOT}\}$, and the quantum circuit is compiled into these gates.  
+As previously noted, the $R_y(\theta)$ gate can be implemented as $U_3(\theta, 0, 0)$.  
+Similarly, the $R_z(\lambda)$ gate is equivalent to $U_1(\lambda)$ up to a global phase factor $e^{-i\lambda/2}$ which does not affect measurement outcomes. 
+Therefore, it can be directly implemented using the $U_1$ gate.  
+We will also consider that the gates $U_1$ and $U_3$ are affected by errors $\epsilon_1$ and $\epsilon_2$, respectively. 
+More precisely, we will consider erroneous implementations of this gates $U_1(\lambda + \epsilon_1)$ and $U_3(\theta + \epsilon_2, \phi, \lambda)$. 
+From the previous example, we know that the error in the $R_y$ gate is bounded by $3 \epsilon_2$. 
+Consider the single-qubit state
+\[
+\ket{\psi} = \cos\left(\frac{\alpha}{2}\right)\ket{0} + e^{i\beta}\sin\left(\frac{\alpha}{2}\right)\ket{1}.
+\]
+Applying the \( U_1(\lambda) \) gate yields
+\[
+U_1(\lambda)\ket{\psi} = \cos\left(\frac{\alpha}{2}\right)\ket{0} + e^{i(\beta + \lambda)}\sin\left(\frac{\alpha}{2}\right)\ket{1}.
+\]
+The corresponding Bloch vector is then
+\[
+\left(\!\cos(\beta + \lambda)\sin\alpha,\; \sin(\beta + \lambda)\sin\alpha,\; \cos\alpha\right).
+\]
+Consequently, applying the same reasoning as in the previous example, it follows that
 \begin{align*}
-    \gendiamondnorm{\phi \otimes \psi} 
-    \geq & \lonenorm{\phi \otimes \id_{\mathcal{M}_\sigma} \otimes \psi  \otimes \id_{\mathcal{M}_\mu} (A \otimes B)} \\
-   = & \lonenorm{\phi \otimes \id_{\mathcal{M}_\sigma} (A)} \lonenorm{\psi  \otimes \id_{\mathcal{M}_\mu} (B)}\\
-   = &  \gendiamondnorm{\phi} \gendiamondnorm{\psi}
-\end{align*}
-which completes the proof.
-\end{proof}
+  & \tracenorm{U_1(\lambda) \ket{\psi}\bra{\psi} U_1(\lambda)^\dag - U_1(\lambda + \epsilon) \ket{\psi}\bra{\psi}U_1(\lambda + \epsilon)^\dag } \\
+  & = \euclideannorm{\left(\sin(\alpha) \left( \cos(\beta + \lambda) -  \cos(\beta + \lambda + \epsilon) \right),\sin(\alpha) \left( \sin(\beta + \lambda) -  \sin(\beta + \lambda + \epsilon) \right),0 \right)} \\
+  & \leq \euclideannorm{\left( \cos(\beta + \lambda) -  \cos(\beta + \lambda + \epsilon) , \sin(\beta + \lambda) -  \sin(\beta + \lambda + \epsilon) ,0 \right)} \\
+  & \leq \euclideannorm{\left( \epsilon, \epsilon ,0 \right)} \\
+  & = \sqrt{2}\epsilon \\
+\end{align*} 
+
+Attending to Theorem \ref{theorem:diamond_iso}, it follows that
+  \begin{align*}
+    \diamondnorm{U_1(\lambda)- U_1(\lambda + \epsilon) } \leq \sqrt{2} \epsilon
+  \end{align*}
+
+
+As a result, in  Example \ref{ex:quantum_state_discrimination_syntax}, considering the $\lambda$-term \textbf{HMeasure} and the erroneous implementation of $U$ described above, denoted $U^{\epsilon_1, \epsilon_2}$, using our deductive metric system, we have $U =_{\sqrt{2}\epsilon_1+ 3\epsilon_2} U^{\epsilon_1, \epsilon_2}$. Therefore, we deduce $\textbf{HMeasure} =_{\sqrt{2}\epsilon_1+ 3\epsilon_2} \textbf{HMeasure}^{\epsilon_1, \epsilon_2}$, where is the the judgement that results from replacing $U$ by $U^{\epsilon_1, \epsilon_2}$. Moreover, considering the erroneous implementation of the $R_y$ gate also afecting the \textbf{CoinToss} term, as discussed in the previous example, we deduce that 
+$$\textbf{Discrimination} =_{\sqrt{2}\epsilon_1+6\epsilon_2} \textbf{Discrimination}^{\epsilon_1,\epsilon_2}, $$
+where $\textbf{Discrimination}^{\epsilon_1,\epsilon_2}$ denotes the judgement that results from replacing $\textbf{HMeasure}$ by $\textbf{HMeasure}^{\epsilon_1, \epsilon_2}$ and $\textbf{CoinToss}$ by  $\textbf{CoinToss}^{\epsilon_2}$.
+
+%\textbf{Discrimination}
+\end{example}
+
+  \begin{example}[Quantum teleportation]
+    Following the approach of previous examples, we analyze erroneous implementations of the gates $U_1$ and $U_3$ within the hardware’s native gate set. Additionally, consider the action of both dephasing and amplitude damping channels. Furthermore, we account for an adversarial agent that applies a bit-flip operation immediately prior to measurement with probability $ p = 0.5 $.  
+
+    Here, we consider imperfect implementations of the gates $U_1$ and $U_3$, given by $ U_1(\lambda) $ and $ U_3(\theta, \phi + \epsilon_2, \lambda + \epsilon_3)$, respectively. 
+    Recall from the previous example that we established the bound $\diamondnorm{U_1(\lambda)- U_1(\lambda + \epsilon) } \leq \sqrt{2} \epsilon$.
+     The Hadamard gate, $H$, is the composition $U_3(\pi/2, 0, 0)\cdot U_1(\pi)$. We calculate,
+    \begin{align*}
+      &\tracenorm{U_3(\pi/2, 0, 0) \ket{\psi}\bra{\psi}U_3(\pi/2, 0, 0)^\dag - U_3(\pi/2, \epsilon_2, \epsilon_3)  \ket{\psi}\bra{\psi}U_3(\pi/2, \epsilon_2, \epsilon_3)^\dag} \\
+      & = \lVert (\cos(\alpha)( 1-\cos{\epsilon_2}) + \sin(\alpha)( 1/2(\cos(\beta + \epsilon_2 + \epsilon_3)-\cos(\beta - \epsilon_2 + \epsilon_3))), \\
+      & \hspace{20pt} \cos(\alpha)( 1-\sin{\epsilon_2}) + (1/2)\sin(\alpha) (\sin(\beta)-\sin(\beta+\epsilon_2 + \epsilon_3) + \sin(\beta)-\sin(\beta-\epsilon_2 + \epsilon_3)),   \\
+      & \hspace{20pt} (\cos(\beta + \epsilon_3)-\cos(\beta))\sin(\alpha) ) \lVert_2 \\
+      & \leq \euclideannorm{(\cos(\alpha) \epsilon_2 + (1/2)\sin(\alpha) (\epsilon_2 + \epsilon_3) ,\cos(\alpha) \epsilon_2 + (1/2)  \sin(\alpha) (\epsilon_2 + \epsilon_3 + |\epsilon_3-\epsilon_2|), \sin(\alpha) \epsilon_3)} \\
+      &  < \euclideannorm{(\epsilon_2 + (1/2)(\epsilon_2 + \epsilon_3), \epsilon_2 + (1/2)   (\epsilon_2 + \epsilon_3 + |\epsilon_3-\epsilon_2|), \epsilon_3)}  \\
+      & \leq 3 \epsilon_2 +  2\epsilon_3 + |\epsilon_2-\epsilon_3| \\
+    \end{align*}
+
+    Attending to Theorem \ref{theorem:diamond_iso}, it follows that
+    \begin{align*}
+      \diamondnorm{U_3(\pi/2, 0, 0)- U_3(\pi/2, \epsilon_2, \epsilon_3) } \leq 3 \epsilon_2 +  2\epsilon_3 + |\epsilon_2-\epsilon_3|
+    \end{align*}
+    
+    As a result, denoting the imperfect implementation of the Hadamard gate as $H^{\epsilon_1 ,\epsilon_2, \epsilon_3}$, we have 
+    $$H =_{ \sqrt{2}\epsilon_1 + 3 \epsilon_2 + 2\epsilon_3 + |\epsilon_2-\epsilon_3|} H^{\epsilon_1 ,\epsilon_2, \epsilon_3}.$$
+
+    The gate $X$ can be implemented as $U_3(\pi, \psi, 0)$. We compute,
+    \begin{align*}
+      &\tracenorm{U_3(\pi, 0 , \pi) \ket{\psi}\bra{\psi}U_3(\pi,0,\pi)^\dag - U_3(\pi,\epsilon_2,\pi+\epsilon_3)  \ket{\psi}\bra{\psi}U_3(\pi,\epsilon_2,\pi+\epsilon_3)^\dag}  \\
+      & =\euclideannorm{( \sin(\alpha) (\cos(\beta)+\cos(\beta + \epsilon_3-\epsilon_2)), \sin(\alpha) (\sin(\beta + \epsilon_3-\epsilon_2)-\sin(\beta)),0 )} \\
+      &  \leq \euclideannorm{(|\epsilon_3-\epsilon_2|, |\epsilon_3-\epsilon_2|,0 )} \\
+      & = \sqrt{2} |\epsilon_3-\epsilon_2|
+    \end{align*}
+
+    Considering Theorem \ref{theorem:diamond_iso}, it holds that
+    \begin{align*}
+      \diamondnorm{U_3(\pi, 0 , \pi)- U_3(\pi,\epsilon_2,\pi+\epsilon_3) } \leq \sqrt{2} |\epsilon_3-\epsilon_2|
+    \end{align*}
+
+    As a result, denoting the erroneous implementation of the $X$ gate as $X^{\epsilon_2, \epsilon_3}$, we have
+    $$X =_{\sqrt{2} |\epsilon_3-\epsilon_2|} X^{\epsilon_2, \epsilon_3}.$$
+
+    Finally, the gate $Z$ corresponds to $U_1(\pi)$, therefore, denoting the erroneous implementation of the $X$ gate as $X^{\epsilon_1}$, we postulate the following axiom
+    $$Z =_{\sqrt{2} \epsilon_1} Z^{\epsilon_1}.$$
+
+     \textbf{Dephasing channel}
+     Realistic quantum systems are never isolated, but are immersed in the surrounding environment and interact continuously with it. Decoherence can be seen as the consequence of that  `openness' of quantum systems to their  environments .  To study decoherence in a quantum channel within the presented metric deductive system, one can consider the application of a dephasing channel in the quantum teleportation protocol with a certain probability $p$.
+     
+     The Kraus operators of the dephasing channel with probability $p$ are expressed as:
+     \begin{equation*}
+          D_{0}= \frac{\sqrt{2-p}}{\sqrt{2}} I,  D_{1}= \frac{\sqrt{p}}{\sqrt{2}} Z
+     \end{equation*}
+     
+     Considering a density operator $\rho=|\alpha|^{2} |0\rangle \langle 0 | + \alpha \beta^{\dag} |0\rangle \langle 1 | + \alpha^{\dag} \beta |1\rangle \langle 0 | + |\beta|^{2} |1\rangle \langle 1 |$, using these Kraus operators, it is possible to easily verify  that after applying the dephasing channel with probability $p$, the resulting operator $\rho'$ is given by: 
+     \begin{equation*} \label{eq:dephasing_result}
+          \rho' =  A_{0} \rho A_{0}^{\dag} + A_{1} \rho A_{1}^{\dag} = |\alpha|^{2} |0\rangle \langle 0 | +  (1-p) \alpha \beta^{\dag} |0\rangle \langle 1 | +  (1-p) \alpha^{\dag}  \beta |1\rangle \langle 0 | + |\beta|^{2} |1\rangle \langle 1 | 
+     \end{equation*}
+     This shows that the dephasing channel with probability $p$ preserves the diagonal elements of the density matrix while attenuating the off-diagonal elements by a factor of $(1-p)$.
 
 
 
+  \end{example}
 
 \newpage
 \bibliographystyle{alpha} 
