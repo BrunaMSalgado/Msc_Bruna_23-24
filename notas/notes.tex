@@ -1233,21 +1233,30 @@ In order to verify if this metric is valid,  we must ensure that for CTPT maps $
   d([\psi_1, \psi_2] \cdot \langle \phi_1, \phi_2 \rangle, [\psi_1, \psi_2] \cdot \langle \phi_1', \phi_2' \rangle ) \geq \sup \{ d(\phi, \phi' ), d(\psi, \psi') \}
 \end{align*}
 
-Considering $\phi_2=\phi_2'$, $\phi_1 \neq \phi_1'$, $\psi_1= \psi_2 = \id$, and that the metric is induced by a norm, we have
+Considering $\phi_2=\phi_2'$, $\phi_1 \neq \phi_1'$, $\psi_1= \psi_2$, and that the metric is induced by a norm, we have
 \begin{align*}
   & d([\psi_1, \psi_2] \cdot \langle \phi_1, \phi_2 \rangle, [\psi_1, \psi_2] \cdot \langle \phi_1', \phi_2' \rangle ) \\
   & = d(\psi_1 \cdot \phi_1 + \psi_2 \cdot \phi_2, \psi_1 \cdot \phi_1' + \psi_2 \cdot \phi_2') \\
   & = \lVert \psi_1 (\phi_1- \phi_1' ) \lVert 
 \end{align*}
  
-For instance, if the norm considered is the trace norm, let $\psi$ be the trace operator and $\phi_1 = \id $ and $\phi_1' = D_p $, where $D_p$ is the dephasing channel. Then, $\phi_1 - \psi_1'$ maps a density operator 
-$$\rho=|\alpha|^{2} |0\rangle \langle 0 | + \alpha \beta^{\dag} |0\rangle \langle 1 | + \alpha^{\dag} \beta |1\rangle \langle 0 | + |\beta|^{2} |1\rangle \langle 1 |$$ 
+For instance, consider the trace norm, denoted $\tracenorm{-}$. Let $V$ and $W$ be finite-dimentional euclidean spaces and let $\mathcal{L}(V)$ denote the space of linear operators mapping a complex Euclidean space $V$ to itself.
+This norm is defined on operators $ A:V \to V $ and superoperators  $\phi:\mathcal{L}(V) \to \mathcal{L}(W)$ as follows:
+$$ \tracenorm{A} = \tr\left(\sqrt{A^\dagger A}\right) = \sum_i \tracenorm{A_i}  $$
+$$ \sup \left\{ \tracenorm{\phi(A)} \, \vert \, \lVert A \lVert_{1} = 1 \right\}$$
+Let $\psi_1$ be the trace operator and $\phi_1 = \id $ and $\phi_1' = D_p $, where $D_p: \mathbb{C}^2 \to \mathbb{C}^2$ is defined as 
+\begin{align*} \label{eq:dephasing_result}
+  &D_p(|\alpha|^{2} \ket{0} \bra{0} + \alpha \beta^{*} \ket{0} \bra{1}+ \alpha^{*} \beta \ket{1} \bra{0} + |\beta|^{2} \ket{1} \bra{1})  \\
+  = &|\alpha|^{2} \ket{0} \bra{0} +  (1-p) \alpha \beta^{*} \ket{0} \bra{1}+  (1-p) \alpha^{*}  \beta \ket{1} \bra{0} + |\beta|^{2} \ket{1} \bra{1}. 
+\end{align*}
+ Then, $\phi_1 - \phi_1'$ maps a density operator 
+$$\rho=|\alpha|^{2} \ket{0} \bra{0} + \alpha \beta^{*} \ket{0} \bra{1}+ \alpha^{*} \beta \ket{1} \bra{0} + |\beta|^{2} \ket{1} \bra{1}$$ 
 to 
-$$ p \cdot (\alpha \beta^{\dag} |0\rangle \langle 1 | + \alpha^{\dag} \beta |1\rangle \langle 0 |).$$ 
-The trace norm of this operator is 
+$$ p \cdot (\alpha \beta^{*} \ket{0} \bra{1}+ \alpha^{*} \beta \ket{1} \bra{0}).$$ 
+The trace norm of $\phi_1 - \phi_1'$ is 
 \begin{align*}
   & \left\lVert I - D_p\right\rVert_{1} \\
-  & =  \max \limits_{\alpha, \beta} \left\lVert p \cdot  \left(\alpha \beta^{\dag}\ket{0}  \bra{1}+ \alpha^{\dag} \beta \ket{1} \bra{0}\right)\right\rVert_{1} \\
+  & =  \max \limits_{\alpha, \beta} \left\lVert p \cdot  \left(\alpha \beta^{*}\ket{0}  \bra{1}+ \alpha^{*} \beta \ket{1} \bra{0}\right)\right\rVert_{1} \\
 & = p \cdot \max \limits_{\alpha, \beta} \tr \left( \left(|\alpha|^2 |\beta|^2 \ket{0} \bra{0} + |\alpha|^2 |\beta|^2 \ket{1} \bra{1}\right)^{1/2} \right) \\
 & =  p \cdot  \max \limits_{|\alpha|, |\beta| } 2 \cdot (|\alpha| |\beta|)  \\
 & = p
@@ -1259,7 +1268,7 @@ On the other hand, it is evident that $\left\lVert \tr \left(  I - D_p \right) \
 
 
 \todo[inline]{Explicar melhor o op de Dephasing}
-\todo[inline]{explicar trace norm aqui}
+
 
 
 
@@ -1322,10 +1331,7 @@ and extends to arbitrary elements by linearity.
 \end{definition}
 
 The category $\catQ$ is a distributive symmetric monoidal category with (finite) biproducts. Now, we must prove that $\catQ$ is a $\catMet$-enriched category. We consider the diamond norm on superoperators $\phi: \sigma \rightarrow \mu$ \cite{watrous2018theory}, given by:
- $$\diamondnorm{\phi} = \tracenorm{ \phi \otimes \id_{\mathcal{M}}},$$
-where $\tracenorm{-}$ denotes the trace norm. This norm is defined on operators $A =  \begin{pmatrix} A_1 & \ldots & A_n \end{pmatrix}^T \in \mathcal{\sigma} $ and superoperators  $\phi: \sigma \rightarrow \mu$ as follows:
- $$ \tracenorm{A} = \tr\left(\sqrt{A^\dagger A}\right) = \sum_i \tracenorm{A_i}  $$
- $$ \sup \left\{ \tracenorm{\phi(A)} \, \vert \, \lVert A \lVert_{1} = 1 \right\}$$
+ $$\diamondnorm{\phi} = \tracenorm{ \phi \otimes \id_{\mathcal{M}}}.$$
 
 
 \begin{lemma} \label{lem_op_max_trace}
@@ -1371,7 +1377,7 @@ Given the definition of \emph{supremum}, proving the inequality above is equival
  
  This is done by arguing by \textit{reductio ad absurdum}, \textit{i.e.}, supposing otherwise leads to a contradiction:
  \begin{align*} 
-     \hspace{90pt}&
+     &
       x + y  >  \max \left\{   \dfrac{1}{a}x  ,   \dfrac{1}{b} y   \right\} \\
      & \Rightarrow  x + y > \dfrac{1}{a}x  \wedge x + y > \dfrac{1}{b}y \\
      & \Rightarrow  a (x + y) > x  \wedge b (x + y)> y \\
@@ -1483,7 +1489,7 @@ $\sem{\emph{q} \hspace{1pt}}((a,b)) = \big(\begin{smallmatrix}
   a & 0\\
   0 & b
 \end{smallmatrix}\big)$, 
-for $\psi \in \{0, 1\}$ we define $\sem{\ket{\psi}} (1)= \ket{\psi}$,
+for $\psi \in \{0, 1\}$ we define $\sem{\ket{\psi}} (1)= \ket{\psi} \bra{\psi}$,
 $\sem{\emph{meas} \hspace{1pt}} (\rho)= (\text{Tr} (M_{0} \rho M_{0}^{\dag}), \text{Tr} (M_{1} \rho M_{1}^{\dag}))$, 
 for unitary operations $U$ we define $\sem{U}= U \rho U^{\dag}$. 
 For completely positive trace-preserving operators $CPTP$, defined as $CPTP (\rho) = K_0 \rho K_0^{\dag} +  K_1 \rho K_1^{\dag}$, we define  $\sem{CPTP}= CPTP (\rho)$ 
@@ -1630,6 +1636,10 @@ where $\textbf{Discrimination}^{\epsilon_1,\epsilon_2}$ denotes the judgement th
 \end{example}
 
   \begin{example}[Quantum teleportation]
+    
+  \todo[inline]{DUVIDA: Se tivermos dois programas g(f(x) e g'(f'(x))) (com f,g,f', g' a ser funções predeterminadas como unitários) temos que explicitamente reescrever so programas como g(f(x)/y) e  g'(f'(x)/y) para podermos usar a regra da substituição no sistema métrico?}
+
+
     Following the approach of previous examples, we analyze erroneous implementations of the gates $U_1$ and $U_3$ within the hardware’s native gate set. Additionally, consider the action of both dephasing and amplitude damping channels. Furthermore, we account for an adversarial agent that applies a bit-flip operation immediately prior to measurement with probability $ p = 0.5 $.  
 
     Here, we consider imperfect implementations of the gates $U_1$ and $U_3$, given by $ U_1(\lambda) $ and $ U_3(\theta, \phi + \epsilon_2, \lambda + \epsilon_3)$, respectively. 
@@ -1651,7 +1661,10 @@ where $\textbf{Discrimination}^{\epsilon_1,\epsilon_2}$ denotes the judgement th
     \end{align*}
     
     As a result, denoting the imperfect implementation of the Hadamard gate as $H^{\epsilon_1 ,\epsilon_2, \epsilon_3}$, we have 
-    $$H =_{ \sqrt{2}\epsilon_1 + 3 \epsilon_2 + 2\epsilon_3 + |\epsilon_2-\epsilon_3|} H^{\epsilon_1 ,\epsilon_2, \epsilon_3}.$$
+    \begin{align} \label{eq:h_error_telepor}
+      H =_{ \sqrt{2}\epsilon_1 + 3 \epsilon_2 + 2\epsilon_3 + |\epsilon_2-\epsilon_3|} H^{\epsilon_1 ,\epsilon_2, \epsilon_3}.
+    \end{align}
+ 
 
     The gate $X$ can be implemented as $U_3(\pi, \psi, 0)$. We compute,
     \begin{align*}
@@ -1667,10 +1680,21 @@ where $\textbf{Discrimination}^{\epsilon_1,\epsilon_2}$ denotes the judgement th
     \end{align*}
 
     As a result, denoting the erroneous implementation of the $X$ gate as $X^{\epsilon_2, \epsilon_3}$, we have
-    $$X =_{\sqrt{2} |\epsilon_3-\epsilon_2|} X^{\epsilon_2, \epsilon_3}.$$
+    \begin{align} \label{eq:x_error_telepor}
+      X =_{\sqrt{2} |\epsilon_3-\epsilon_2|} X^{\epsilon_2, \epsilon_3}.
+    \end{align}
+  
 
     Finally, the gate $Z$ corresponds to $U_1(\pi)$, therefore, denoting the erroneous implementation of the $X$ gate as $X^{\epsilon_1}$, we postulate the following axiom
-    $$Z =_{\sqrt{2} \epsilon_1} Z^{\epsilon_1}.$$
+    \begin{align} \label{eq:Correction_error_telepor}
+      Z =_{\sqrt{2} \epsilon_1} Z^{\epsilon_1}.
+    \end{align}
+
+    Designating the \textbf{Correction} block with the imperfect implementations of $X$ and $Z$ by $\textbf{Correction}^{\epsilon_1, \epsilon_2, \epsilon_3}$, in light of the axioms in equations \eqref{eq:x_error_telepor} and \eqref{eq:x_error_telepor} and our metric deductive system we have that
+    \begin{align} \label{eq:z_error_telepor}
+      \textbf{Correction} =_{\sqrt{2} \left(\epsilon_1 +|\epsilon_3-\epsilon_2| \right)} \textbf{Correction}^{\epsilon_1, \epsilon_2, \epsilon_3}.
+    \end{align}
+
 
      \textbf{Dephasing channel}
      Realistic quantum systems are never isolated, but are immersed in the surrounding environment and interact continuously with it. Decoherence can be seen as the consequence of that  `openness' of quantum systems to their  environments .  To study decoherence in a quantum channel within the presented metric deductive system, one can consider the application of a dephasing channel in the quantum teleportation protocol with a certain probability $p$.
@@ -1680,15 +1704,206 @@ where $\textbf{Discrimination}^{\epsilon_1,\epsilon_2}$ denotes the judgement th
           D_{0}= \frac{\sqrt{2-p}}{\sqrt{2}} I,  D_{1}= \frac{\sqrt{p}}{\sqrt{2}} Z
      \end{equation*}
      
-     Considering a density operator $\rho=|\alpha|^{2} |0\rangle \langle 0 | + \alpha \beta^{\dag} |0\rangle \langle 1 | + \alpha^{\dag} \beta |1\rangle \langle 0 | + |\beta|^{2} |1\rangle \langle 1 |$, using these Kraus operators, it is possible to easily verify  that after applying the dephasing channel with probability $p$, the resulting operator $\rho'$ is given by: 
+     Considering a density operator $\rho=|\alpha|^{2} \ket{0} \bra{0} + \alpha \beta^{*} \ket{0} \bra{1}+ \alpha^{*} \beta \ket{1} \bra{0} + |\beta|^{2} \ket{1} \bra{1}$, using these Kraus operators, it is possible to easily verify  that after applying the dephasing channel with probability $p$, the resulting operator $\rho'$ is given by: 
      \begin{equation*} \label{eq:dephasing_result}
-          \rho' =  A_{0} \rho A_{0}^{\dag} + A_{1} \rho A_{1}^{\dag} = |\alpha|^{2} |0\rangle \langle 0 | +  (1-p) \alpha \beta^{\dag} |0\rangle \langle 1 | +  (1-p) \alpha^{\dag}  \beta |1\rangle \langle 0 | + |\beta|^{2} |1\rangle \langle 1 | 
+          \rho' = D_p(\rho)= D_{0} \rho D_{0}^{\dag} + D_{1} \rho D_{1}^{\dag} = |\alpha|^{2} \ket{0} \bra{0} +  (1-p) \alpha \beta^{*} \ket{0} \bra{1}+  (1-p) \alpha^{*}  \beta \ket{1} \bra{0} + |\beta|^{2} \ket{1} \bra{1}
      \end{equation*}
      This shows that the dephasing channel with probability $p$ preserves the diagonal elements of the density matrix while attenuating the off-diagonal elements by a factor of $(1-p)$.
 
+     In this scenario (and in subsequent ones), we will add identity gates to the ideal program to simplify the calculations. Thus, attending do the definition of trace norm for matrices, we have:
+     \begin{align*}
+      & \tracenorm{ \id(\rho) - D_{p}(\rho)} \\
+      & \tracenorm{ \alpha \beta^{*} \ket{0} \bra{1}+ \alpha^{*} \beta \ket{1} \bra{0}  -   (1-p) \alpha \beta^{*} \ket{0} \bra{1}-  (1-p) \alpha^{*}  \beta \ket{1} \bra{0} } \\
+      & = p \cdot  \tracenorm{ \alpha \beta^{*} \ket{0} \bra{1} + \alpha^{*}  \beta \ket{1} \bra{0} } \\
+      & = p \cdot \tr \left(\sqrt{\left( \alpha \beta^{*} \ket{0} \bra{1} + \alpha^{*}  \beta \ket{1} \bra{0} \right)^2} \right) \\
+      & = p \cdot  \tr \left(\sqrt{|\alpha|^{2}|\beta|^{2} (\ket{0} \bra{0}+ \ket{1} \bra{1})  } \right) \\
+      & = 2 \cdot p \cdot |\alpha||\beta| \\
+      & \leq p \\
+     \end{align*}
+     The last step arises from the fact that the expression is maximized when $|\alpha|=|\beta|=1/\sqrt{2}$.
+
+     Considering Theorem \ref{theorem:diamond_cptp_id}, it holds that
+     \begin{align*}
+        \diamondnorm{ \id - D_p} \leq \sqrt{2p}
+     \end{align*}
+
+     Consequently, we can postulate the following axiom:
+      \begin{align} \label{eq:dephasing_telepor}
+         \id =_{\sqrt{2p}}  D_p  .
+      \end{align}
+
+     If a dephasing channel acts on the first qubit of the EPR state, we are interested in reasoning about the following judgements:
+     \begin{align*}
+      &\textbf{EPR} = (\id \otimes \id)(\emph{CNOT} (\emph{H}\ket{0},\ket{0})) : \emph{qbit} \otimes
+      \emph{qbit}  \\ 
+      %
+      &\textbf{EPR}^{\epsilon_1,\epsilon_2, \epsilon_3,p} =  (D_p \otimes \id) (\emph{CNOT} ( \emph{H}^{\epsilon_1,\epsilon_2, \epsilon_3}\ket{0},\ket{0})) : \emph{qbit} \otimes
+      \emph{qbit} 
+   \end{align*}
+
+   Given axioms in equations \eqref{eq:h_error_telepor} and \eqref{eq:dephasing_telepor}, using our metric deductive system, we infer that
+   \begin{align} \label{eq:epr_error_teleport}
+    \textbf{EPR} =_{\sqrt{2}\epsilon_1 + 3 \epsilon_2 + 2\epsilon_3 + |\epsilon_2-\epsilon_3| + \sqrt{2p}} \textbf{EPR}^{\epsilon_1,\epsilon_2, \epsilon_3,p}
+   \end{align}
 
 
+     \textbf{Amplitude Dephasing channel}
+     Next, the amplitude-damping channel is considered as a source of noise in the quantum teleportation protocol. Similarly to the dephasing channel, the amplitude damping channel serves as a model illustrating the dissipation of energy between a qubit and its environment. An example of this type of noise is found in the spontaneous emission of a photon by a two-level atom into an electromagnetic field environment with either a finite or infinite number of modes at zero temperature \cite{salles2008experimental, Wang_2011}.
+
+     The amplitude damping channel with probability $\gamma$ is described by the Kraus operators:
+\begin{equation*}
+     A_{0}= \ket{0} \bra{0} + \sqrt{1-\gamma} \ket{1} \bra{1} ,  A_{1}= \sqrt{\gamma} \ket{0} \bra{1}
+\end{equation*}
+
+Applying these Kraus operators an arbitray density operator $\rho=|\alpha|^{2} \ket{0} \ket{0} + \alpha \beta^{*} \ket{0} \ket{1} + \alpha^{*} \beta \ket{1} \ket{0} + |\beta|^{2} \ket{1} \ket{1}$, we obtain the state $\rho'$ as follows:
+\begin{align*}
+     \rho' & = A_\gamma(\rho) =  A_{0} \rho A_{0}^{\dag} + A_{1} \rho A_{1}^{\dag} \\
+     & = (|\alpha|^{2} + \gamma |\beta|^{2}) \ket{0}\bra{0} + \sqrt{1-\gamma} \hspace{1pt} \alpha \beta^{*} \ket{0}\bra{1} + \sqrt{1-\gamma} \hspace{1pt} \alpha^{*} \beta \ket{1}\bra{0} + (1-\gamma) |\beta|^{2} \ket{1}\bra{1}
+\end{align*}
+
+Once again, we will add identity gates to the ideal program to simplify the calculations, as a result it is necessary to compute the trace norm of the diference between the identity applied to the density operator $\rho = \ket{\psi} \bra{\psi}$ and the amplitude damping channel applied to $\rho$.
+First, we calculate, 
+\begin{align*}
+  & \tracenorm{ \id(\rho) - A_{\gamma}(\rho)} \\
+  & =    \Big\lVert  |\alpha|^{2} \ket{0} \ket{0} + \alpha \beta^{*} \ket{0} \ket{1} + \alpha^{*} \beta \ket{1} \ket{0} + |\beta|^{2} \ket{1} \ket{1}  - \big((|\alpha|^{2} + \gamma |\beta|^{2}) \ket{0}\bra{0} \\ 
+  & \hspace{10pt}  +  \sqrt{1-\gamma} \hspace{1pt} \alpha \beta^{*} \ket{0}\bra{1} + \sqrt{1-\gamma} \hspace{1pt} \alpha^{*} \beta \ket{1}\bra{0} + (1-\gamma) |\beta|^{2} \ket{1}\bra{1}\big) \Big\rVert_1 \\
+   & = \tracenorm{\gamma |\beta|^{2} \ket{0} \ket{0} + (1-\sqrt{1-\gamma}) (\alpha \beta^{*} \ket{0} \ket{1} + \alpha^{*} \beta \ket{1} \ket{0}) - \gamma |\beta|^{2} \ket{1} \ket{1}} \\
+   & = \tr \left( \sqrt{\left( \gamma |\beta|^{2} \ket{0} \ket{0} + (1-\sqrt{1-\gamma}) (\alpha \beta^{*} \ket{0} \ket{1} + \alpha^{*} \beta \ket{1} \ket{0}) - \gamma |\beta|^{2} \ket{1} \ket{1}  \right)^2}\right) \\
+   & = \tr \left( \sqrt{\left( (1-\sqrt{1-\gamma})^{2} |\alpha|^{2}|\beta|^{2} + \gamma^{2} |\beta|^{4} \right) (\ket{0} \bra{0} + \ket{1} \bra{1} ) } \right) \\
+   & = 2 \cdot \sqrt{  (1-\sqrt{1-\gamma})^{2} |\alpha|^{2}|\beta|^{2} + \gamma^{2} |\beta|^{4}} \\
+   & \leq 2 \gamma
+\end{align*}
+This final step follows because the expression attains its maximum when 
+∣$|\alpha|=0 $ and $|\beta|=0.$
+
+Attending to Theorem \ref{theorem:diamond_cptp_id}, it holds that
+\begin{align*}
+  \diamondnorm{ \id - A_\gamma} \leq 2 \sqrt{\gamma}
+\end{align*}
+
+As a result, we can postulate the following axiom:
+
+    \begin{align} \label{eq:amp_damp_teleport}
+        \id =_{2 \sqrt{\gamma}} A_\gamma.
+    \end{align}
+
+
+When an amplitude damping channel acts on the final qubit following the Correction block, we define two new lambda terms consisting of the ideal operation \textbf{Id} and its erroneous counterpart  $\textbf{Id}^{\gamma}$.
+
+\begin{align}\label{eq:id_error_teleport}
+  &\textbf{Id} = qb:\textit{qbit} \, \vljud \id (qb) \\
+  & \textbf{Id}^{\gamma} = A_{\gamma} (q):\textit{qbit} \, \vljud  A_{\gamma} (qb)
+\end{align}
+
+
+Consequently the ideal version of teleportation protocol is now defined as follows
+
+\begin{align*} 
+  \textbf{QTP} = qb_{0}: \textit{qbit}\hspace{3 pt} \vljud \hspace{3 pt} & \text{pm} \hspace{5pt} \textbf{EPR} \hspace{5pt} \text{to} \hspace{5pt}  qb_{1} \otimes qb_{2}.  \notag \\
+     & \text{pm}\hspace{5pt} \textbf{BellMeasure}\, [qb_0/q_1,qb_{1}/q_2] \hspace{5pt}  \text{to} \hspace{5pt} c_{0}\otimes c_{1} . \notag \\
+     & \textbf{Id} \, [ \textbf{Correction}/qb] \, [qb_{2}/q,c_{0}/x, c_{1}/y] 
+     : \emph{qbit}  
+ \end{align*}
+
+ Considering the axiom in equation \eqref{eq:amp_damp_teleport} and our metric deductive system, it holds that 
+\begin{align*}
+  &\textbf{Id}=_{2 \sqrt{\gamma}} \textbf{Id}^{\gamma}
+\end{align*}
+
+\textbf{Malicious attack}
+Finally consider a malicious attack on the quantum teleportation protocol in the form of a bit-flip occurring with a 50\% probability before measurement.
+More generally,  one can define an operation $T$ that applies a unitary operation $U$ to the state given as input with 50\% probability. Operation $T$ can be defined as follows:
+\begin{equation*}
+\begin{split}
+  &T: \hspace{5pt} \textit{qbit}  \to \textit{qbit} \\
+  &T= q:\textit{qbit} \hspace{2pt} \vljud \text{pm} \hspace{2pt} CU ( R_{x,\frac{\pi}{2}}(\ket{0}) ,q) \hspace{2pt} \text{to} \hspace{2pt} newq \otimes qb. \hspace{2pt} \textit{disc} (newq) 
+\end {split}
+\end{equation*}
+Here, $CU$ denotes the controlled operation that applies $U$ to the second qubit when the first qubit is in the state $\ket{1}\bra{1}$, and leaves it unchanged when the first qubit is in the state $\ket{0}\bra{0}$. The operator $R_{x,\frac{\pi}{2}}$ represents a rotation by $\frac{\pi}{2}$ around the x-axis of the Bloch sphere.
+
+
+This operation is depicted in \autoref{fig:Operation_T}.
+
+\begin{figure} [H]
+  \centering
+  \begin{quantikz} [column sep=0.2cm, row sep=0.5cm,wire
+    types={n,n}]%
+      \lstick{$\ket{\phi}$}  &\qw \gategroup[2,steps=9,style={dashed,rounded
+      corners,fill=blue!20, inner
+      xsep=2pt},background,label style={label
+      position=below,anchor=north,yshift=-0.2cm}]{{\sc
+      T}} & \qw  & \qw   & \qw  & \qw & \qw & \gate{U} \qw &\qw & \qw & \qw \\
+      & & & \lstick {$\ket{0}$}  & \qw &\gate{R_x(\frac{\pi}{2})} \qw & \qw & \ctrl{-1} \qw & \qw & \gate{\text{Disc}} \qw 
+    \end{quantikz}
+  \caption{T operation}
+  \label{fig:Operation_T}
+\end{figure}
+
+First, let us verify the result  of applying operation  $T$ to a quantum state $\rho=\ket{\psi}\bra{\psi}$:
+\begin{equation*} \label{eq:operation_T}
+  \begin{split}
+  &\ket{\psi} \bra{\psi}\\
+ \xmapsto{ \hspace{6pt}\id  \otimes \sem{\ket{0}} \hspace{6pt}} \quad & \ket{\psi} \bra{\psi} \otimes \ket{0} \bra{0} \\
+  \xmapsto{ \id  \otimes \sem{R_{x,\frac{\pi}{2}}}} \quad  & \ket{\psi} \bra{\psi} \otimes \frac{1}{2} \left( \ket{0}\bra{0} -i \ket{0}\bra{1} + i \ket{1}\bra{0} + \ket{1}\bra{1} \right)  \\
+  & = \frac{1}{2} \left( \ket{\psi} \bra{\psi}  \ket{0}\bra{0} -i \ket{\psi} \bra{\psi}\ket{0}\bra{1} + i \ket{\psi} \bra{\psi} \ket{1}\bra{0} + \ket{\psi} \bra{\psi}  \ket{1}\bra{1} \right) \\
+  \xmapsto{\hspace{12pt} \sem{\text{CU}} \hspace{12pt}} \quad & \frac{1}{2} \left( \ket{\psi} \bra{\psi} \ket{0}\bra{0} - i\ket{\psi} \bra{\psi}\ket{0}\bra{1} U^{\dag} + i \hspace{1pt} U\ket{\psi} \bra{\psi} \ket{1}\bra{0} + U \ket{\psi} \bra{\psi}  \ket{1}\bra{1}U^{\dag} \right) \\ 
+  \xmapsto{ \hspace{10pt} \id \hspace{1pt}\otimes \hspace{1pt} \tr \hspace{10pt} } \quad & \frac{1}{2} \left(\ket{\psi} \bra{\psi} + U\ket{\psi} \bra{\psi}U^{\dag} \right) \\
+  \end{split} 
+\end{equation*}
+
+Considering $X$ as $U$, we compute
+\begin{align*}
+  &\tracenorm{ \id(\rho) - T(\rho)} \\
+  & = \tracenorm{ (1/2) \left( (|\alpha|^2 -|\beta|^2) \ket{0}\bra{0} + (\alpha \beta^*-\alpha^* \beta)\ket{0}\bra{1} + (\alpha^* \beta-\alpha \beta^*)\ket{0}\bra{1} + (|\beta|^2 -|\alpha|^2 )\ket{1}\bra{1}   \right)} \\
+  & = (1/2) \tr \left( \sqrt{\left( (|\alpha|^2 -|\beta|^2) \ket{0}\bra{0} + (\alpha \beta^*-\alpha^* \beta)\ket{0}\bra{1} + (\alpha^* \beta-\alpha \beta^*)\ket{0}\bra{1} + (|\beta|^2 -|\alpha|^2 )\ket{1}\bra{1}   \right)^2}\right) \\
+  & = (1/2) \tr \left( \sqrt{\left( ((|\alpha|^2 -|\beta|^2 )^2 + (\alpha \beta^*-\alpha^* \beta)(\alpha^* \beta-\alpha \beta^*))  (\ket{0}\bra{0} + \ket{1}\bra{1})  \right)}\right)  \\
+  & = (1/2) \tr \left( \sqrt{\left( ((|\alpha|^2 -|\beta|^2 )^2 + 2|\alpha|^2|\beta|^2 - (\alpha^{*})^{2}\beta^2 -  (\beta^{*})^{2}\alpha^2 )  (\ket{0}\bra{0} + \ket{1}\bra{1})  \right)}\right) \\
+  & = (1/2) \tr \left( \sqrt{\left( (|\alpha|^4+ |\beta|^4 - 2 \text{Re}(\alpha \beta) )  (\ket{0}\bra{0} + \ket{1}\bra{1})  \right)}\right) \\
+  & =  \sqrt{|\alpha|^4+ |\beta|^4 - 2 \text{Re}(\alpha \beta)} \\
+  & \leq 1
+\end{align*}
+This last step holds because the expression is maximized when the imaginary part of $\alpha$ or $\beta$ is $1$.
+
+Considering Theorem \ref{theorem:diamond_cptp_id}, it holds that
+\begin{align*}
+  \diamondnorm{ \id - T} \leq \sqrt{2}
+\end{align*}
+
+Consequently, we postulate the following axiom:
+
+    \begin{align} \label{eq:t_teleport}
+        \id =_{ \sqrt{2}} T.
+    \end{align}
+
+    In this case we reason about the following $\lambda$-terms:
+    \begin{align*}
+      &\textbf{BellMeasure} =  q_{1}: \textit{qbit}, q_{2}: \textit{qbit}
+      \vljud  \text{pm} \, \textit{CNOT} (q_{1},q_{2})
+     \,  \text{to}\, x \otimes y. \,
+      \textit{meas} (\id(\textit{H} (x))) \otimes \textit{meas} ( \id(y)) :
+      \left(\typeI\oplus \typeI\right) \otimes \left(\typeI\oplus
+      \typeI\right) \\
+      %
+      &\textbf{BellMeasure}^{\epsilon_1, \epsilon_2,\epsilon_3,T} =  q_{1}: \textit{qbit}, q_{2}: \textit{qbit}
+      \vljud  \text{pm} \, \textit{CNOT} (q_{1},q_{2})
+     \,  \text{to}\, x \otimes y. \,
+      \textit{meas} (T(\textit{H}^{\epsilon_1, \epsilon_2,\epsilon_3} (x))) \otimes \textit{meas} ( T(y)) \\
+      &\hspace{110pt}:\left(\typeI\oplus \typeI\right) \otimes \left(\typeI\oplus
+      \typeI\right) \\
+    \end{align*}
+  
+  Attending to the axioms in equations \eqref{eq:h_error_telepor} and \eqref{eq:t_teleport}, via our metric deductive system, we infer that
+  \begin{align} \label{eq:bell_error_teleport}
+    \textbf{BellMeasure} =_{2 \sqrt{2} + \sqrt{2}\epsilon_1 + 3\epsilon_2 + 2\epsilon_3 + |\epsilon_2-\epsilon_3|} \textbf{BellMeasure}^{\epsilon_1, \epsilon_2,\epsilon_3,T}
+  \end{align}
+
+  Lastly, designating the judgment \textbf{QTP} with the erroneous implementations of \textbf{EPR}, \textbf{BellMeasure}, \textbf{Correction}, \textbf{Id}, by $\textbf{QTP}^{\epsilon_1, \epsilon_2,\epsilon_3,T,p,\gamma}$, given equations \eqref{eq:epr_error_teleport}, \eqref{eq:bell_error_teleport}, \eqref{eq:Correction_error_telepor}, and  \eqref{eq:id_error_teleport}, using our deductive metric system, it follows that
+  \begin{align*}
+    \textbf{QTP} =_{ 3\sqrt{2}\epsilon_1 + 6\epsilon_2 + 4\epsilon_3 + 3|\epsilon_2-\epsilon_3| + 2 \sqrt{2} + \sqrt{2p}  +2\sqrt{\gamma}} \textbf{QTP}^{\epsilon_1, \epsilon_2,\epsilon_3,T,p,\gamma}
+  \end{align*}
   \end{example}
+
+  
 
 \newpage
 \bibliographystyle{alpha} 
