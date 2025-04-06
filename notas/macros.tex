@@ -36,6 +36,7 @@
 \newcommand{\catCPS}{\catfont{CPS}}
 \newcommand{\catCP}{\catfont{CP}}
 \newcommand{\catQ}{\catfont{Q}}
+\newcommand{\catBan}{\catfont{Ban}}
 \newcommand{\catI}{\catfont{I}}
 \newcommand{\Set}{\catfont{Set}}
 \newcommand{\Top}{\catfont{Top}}
@@ -185,7 +186,7 @@
 \newcommand{\ppm}[4]{(#1,#2) \leftarrow #3; #4}
 \newcommand{\pinl}[1]{\prog{inl}(#1)}
 \newcommand{\pinr}[1]{\prog{inr}(#1)}
-\newcommand{\pcase}[4]{\prog{ case } #1 \prog{ of } \pinl{#2} \Rightarrow #3 ; \pinr{#2} \Rightarrow #4}
+\newcommand{\pcase}[5]{\prog{ case } #1 \prog{ \hspace{2pt} of \hspace{2pt} } \pinl{#2} \Rightarrow #3 ; \pinr{#4} \Rightarrow #5}
 %% Sets of terms
 \newcommand{\ValuesBP}[2]{\mathsf{Values}(#1, #2)}
 \newcommand{\TermsBP}[2]{\mathsf{Terms}(#1, #2)}

@@ -429,7 +429,43 @@ teleportation procedure in $\lambda$-calculus as follows:
 \end{example}
 
 ~\todo[inline]{Adicionar quantum walk}
+
+\subsubsection{Linear $\lambda$-calculus and probabilistic computation} \label{subsec:syntax_pc}
+Next, we demonstrate the application of this language to in the probabilistic computation paradigm. To this end, we first consider a type \emph{real} of measurement, a set of predermined functions 
+$\{\emph{delta}_r: \typeI \to \emph{real} \hspace{2pt} \vert \, r \in \mathbb{Q} \} 
+\bigcup \, \{ \emph{u}_{r,s}: \typeI \to \emph{real} \hspace{2pt} \vert \, r,s \in \mathbb{Q} \}
+\bigcup \, \{ \emph{delta}_{p_1,\ldots,p_n}: \typeI \to \emph{real} \hspace{2pt} \vert \, p_1,\ldots,p_n  \in [0,1] \}  
+\bigcup \, \{\emph{CoinToss}_p: \typeI \to \typeI \oplus \typeI \hspace{2pt} \vert \, p \in [0,1] \} $,  
+and a set of predetermined sampling functions 
+$ \{\emph{JumpL}_\mu: \emph{real}  \to \emph{real} \hspace{2pt} \vert \, \mu \in \mathcal{M}\mathbb{R} \} 
+\bigcup \, \{\emph{JumpR}_\mu: \emph{real}  \to \emph{real} \hspace{2pt} \vert \, \mu \in \mathcal{M}\mathbb{R} \}$, where $\mathcal{M}\mathbb{R}$ corresponds the Banach space of finite Borel measures on $\mathbb{R}$.  Operationally, $\emph{JumpL}_\mu (\nu)$ generates a sample from the Dirac delta distribution concentrated at $\nu-\mu$, while $\emph{JumpR}\mu(\nu)$ generates a sample from the Dirac measure concentrated at $\nu + \mu$.
+
+
+\begin{example}[Random walk] \label{ex:random_walk_prob}
+
+Now, we will use the aforementioned language to describe $n$ steps of a random walk on $\mathbb{R}$.
+\begin{align*}
+  &\textbf{step} =  \lambda r: \emph{real } .\
+  \text{case } \emph{CoinToss}_p(*) \,
+  \{\inl(x) \Rightarrow x \text{ to } \ast.\, \emph{JumpL}_{\mu_1}(r) 
+  ; \inr(y) \Rightarrow x \text{ to } \ast.\, \emph{JumpR}_{\mu_2}(r);\}
+  : \textit{real} \multimap \textit{real}   \\
+  %
+  & \textbf{apply-n} = \lambda f_1, \dots, f_n, x.\; f_1(f_2(\dots(f_n\,x))): (\emph{real} \multimap \emph{real}) \multimap (\ldots ) \multimap (\emph{real} \multimap \emph{real}) \multimap \emph{real} \multimap \emph{real} \\
+  %
+  & \textbf{rwalk-n} = \textbf{apply-n } \textbf{ step} \ldots \textbf{step } (\emph{delta}_0) : \emph{real}
+\end{align*}
+
+
+Given a current position $r$, the function \textbf{step} performs a random jump: with probability $p$, the jump is drawn randomly from the distribution \( \mu_1 \); with probability $1-p$, it is drawn from $\mu_2$.
+The higher-order function \textbf{apply-n} takes $ n $  functions of type \( \emph{real} \multimap \emph{real} \) and a measure \( x \in \emph{real} \), and applies the functions in sequence from last to first.
+The term \textbf{rwalk-n} represents a $n$-step walk  walk starting from the origin.
+
+
+\end{example}
  
+
+
  \subsection{Interpretation}
 
 Now that we have a basic syntactic theory of conditionals, it is useful to
@@ -1297,7 +1333,7 @@ In \cite{selinger04}, Selinger presents the category $\catQ$ as the model of the
 \end{definition}
 
 
- Trace-non increasing (or short) maps are used here instead of strictly trace-preserving maps to account for possible non-termination in programs, particularly since the language  QPL includes while loops.
+ Trace-non increasing (or short) maps are used here instead of strictly trace-preserving maps to account for possible non-termination in programs, particularly since the language  QPL includes while loops. Note that an operator $ \phi $ is called \emph{short} if $\norm{\phi} \leq 1$.
 
 
  Every signature $\sigma$, is associated to  a complex vector space:
@@ -1333,6 +1369,11 @@ and extends to arbitrary elements by linearity.
 The category $\catQ$ is a distributive symmetric monoidal category with (finite) biproducts. Now, we must prove that $\catQ$ is a $\catMet$-enriched category. We consider the diamond norm on superoperators $\phi: \sigma \rightarrow \mu$ \cite{watrous2018theory}, given by:
  $$\diamondnorm{\phi} = \tracenorm{ \phi \otimes \id_{\mathcal{M}}}.$$
 
+ Recall that the norm on a vector space induces a metric, in particular we obtain a metric $d$ on the hom-set \(\mathbf{Q}(\sigma, \tau)\),  which is defined by,
+\[
+d(\phi, \psi) = \diamondnorm{\phi, \psi},
+\]
+for \( \phi, \psi \in \mathbf{Q}(\sigma, \tau) \).
 
 \begin{lemma} \label{lem_op_max_trace}
   Let $\sigma: n_1, \ldots, n_s$, $\tau: m_1, \ldots, m_t$ and $\mu: o_1, \ldots, o_r$ be signatures. Let $\phi \in \catQ(\sigma,\mu)  $ and $\psi \in \catQ(\tau,\mu) $ be superoperators. Then, it holds that 
@@ -1340,8 +1381,6 @@ The category $\catQ$ is a distributive symmetric monoidal category with (finite)
 \end{lemma}
 
 \begin{proof}
-
-Considering $\sigma = n_1, \ldots, n_s$, $\tau = m_1, \ldots, m_t$, $\mu = o_1, \ldots, o_r$, we define $\phi_i= \begin{pmatrix}\phi_{i1}, \ldots, \phi_{ir}\end{pmatrix}^T$ for $i \in 1, \ldots, s$ and  $\psi_i= \begin{pmatrix}\psi_{i1}, \ldots, \psi_{it}\end{pmatrix}^T$ for $i \in 1, \ldots, t$.
 
 We start by proving the inequality $\opnorm{[\phi, \psi]} \leq \sup \{[\opnorm{\phi}, \opnorm{\psi}]\}$. We calculate,
 
@@ -1403,7 +1442,7 @@ and the equality is proven.
 
 
 \begin{proposition} \label{prop:met_cond}
-  For all $\phi, \phi' \in \catQ(\sigma,\mu)  $ and $\psi, \psi' \in \catQ(\tau,\mu) $, $[\phi,\psi]:\catQ(\sigma,\mu) \otimes \catQ(\tau,\mu) \rightarrow \catQ(\sigma \oplus \tau,\mu) $ is a functor in the category of metric spaces.
+  For all $\phi, \phi' \in \catQ(\sigma,\mu)  $ and $\psi, \psi' \in \catQ(\tau,\mu) $, $[\phi-\phi',\psi-\psi']:\catQ(\sigma,\mu) \otimes \catQ(\tau,\mu) \rightarrow \catQ(\sigma \oplus \tau,\mu) $ is a functor in the category of metric spaces.
 \end{proposition}
 
 
@@ -1899,11 +1938,254 @@ Consequently, we postulate the following axiom:
 
   Lastly, designating the judgment \textbf{QTP} with the erroneous implementations of \textbf{EPR}, \textbf{BellMeasure}, \textbf{Correction}, \textbf{Id}, by $\textbf{QTP}^{\epsilon_1, \epsilon_2,\epsilon_3,T,p,\gamma}$, given equations \eqref{eq:epr_error_teleport}, \eqref{eq:bell_error_teleport}, \eqref{eq:Correction_error_telepor}, and  \eqref{eq:id_error_teleport}, using our deductive metric system, it follows that
   \begin{align*}
-    \textbf{QTP} =_{ 3\sqrt{2}\epsilon_1 + 6\epsilon_2 + 4\epsilon_3 + 3|\epsilon_2-\epsilon_3| + 2 \sqrt{2} + \sqrt{2p}  +2\sqrt{\gamma}} \textbf{QTP}^{\epsilon_1, \epsilon_2,\epsilon_3,T,p,\gamma}
+    \textbf{QTP} =_{ 3\sqrt{2}\epsilon_1 + 6\epsilon_2 + 4\epsilon_3 + (2+\sqrt{2})|\epsilon_2-\epsilon_3| + 2 \sqrt{2} + \sqrt{2p}  +2\sqrt{\gamma}} \textbf{QTP}^{\epsilon_1, \epsilon_2,\epsilon_3,T,p,\gamma}
   \end{align*}
   \end{example}
 
+
+
+  \subsection{Probabilistic computation}
+
+  The category $\catBan$ of Banach spaces and and short operators is a suitable model for the interpreation of metric $\lambda$-theories
+  concerning probabilistic computation without condicionals, as shown in \cite{dahlqvist2023syntactic}. 
   
+  
+  $\catBan$ admits coproducts. Given two Banach spaces  $V$ e $W$, their coproduct is the direct sum $V \oplus W$, equipped with the norm
+  \begin{align*}
+    \norm{(v,w)} = \norm{v}+\norm{w}
+  \end{align*}
+  for all  $v \in V$, $w \in W$.
+
+  As a result, we will now consider the category obtained by the coproduct cocompletion of $\catBan$, $\catBan^+$.
+
+  Recall that every operator \( T: V \to U \) between Banach spaces \( V \) and \( U \) has a norm \( \norm{T} \), called the \emph{operator norm}, defined by
+  \[
+  \norm{T} = \sup \{ \norm{Tv} \mid \norm{v} = 1 \}.
+  \]
+  
+  Analogously to the case in \( \catQ \), this induces a metric \( d \) on the hom-set \( \catBan^+(V, U) \), given by
+  \[
+  d(S, T) = \norm{S - T},
+  \]
+  for any \( S, T \in \catBan^+(V, U) \).
+
+  \begin{proposition} \label{prop:met_cond_pp}
+    For all $T, T' \in \catBan^+(V,U)  $ and $S, S' \in \catBan^+(W,U) $, $[T-T',S-S']:\catBan^+(V,U) \otimes \catBan^+(W,U) \rightarrow \catBan^+(V \oplus W,U) $ is a functor in the category of metric spaces.
+  \end{proposition}
+
+  \begin{proof}
+    We deduce by unfolding the respective definitions that we need to prove that for all short operators $T, T' \in \catBan^+(V,U)  $ and $S, S' \in \catBan^+(W,U) $ the inequation $\norm{[T-T', S-S']} \leq  \sup \left\{ \norm{T-T'}, \norm{S-S'} \right\}$ holds.
+
+    Although Lemma~\ref{lem_op_max_trace} is stated for Euclidean (or Hilbert) spaces, a careful examination of its proof shows that the result extends to arbitrary normed spaces, including Banach spaces. Given we are considering the operator norm,  it follows that the inequality above  holds.
+
+  \end{proof}
+  
+  Note that given this result, \cite[Theorem 4.3]{dahlqvist2023syntactic} also holds for $\catBan^+$ and as result $\catBan^+$ is $\catMet$-enriched.
+
+
+  \begin{example}[Random walk]
+
+    $\mathbf{Ban}^+$ provides a model of the metric $\lambda$-theory presented in \ref{ex:random_walk_prob}  via the following interpretation: $\sem{\emph{real}} = \mathcal{M}\mathbb{R}$, the Banach space of finite Borel measures on $\mathbb{R}$ equipped with the total  variation norm.
+
+    For a finite measure $\nu$, the total variation norm is defined as
+    \begin{align*}
+      \norm{\nu} = \sup \left\{ \sum_{i=1}^n |\nu(A_i)| \mid A_i \in \mathcal{B}(\mathbb{R}), A_i \cap A_j = \emptyset, i \neq j, n \in \mathbb{N} \right\}
+    \end{align*}
+
+
+
+    The following is useful to compute the total variation norm between measures \cite{tsybakov2008}. Let  let $P$ and $Q$ be two probability measures on $\mathcal{M}\mathbb{R}$. Define
+    \[
+      \nu = P + Q, \quad p = \frac{dP}{d\nu}, \quad q = \frac{dQ}{d\nu},
+    \]
+    where $\frac{dP}{d\nu}$ denotes the  the Radon–Nikodym derivative of the measure $P$ with respect to the measure $\nu$. It holds that:
+    
+    \begin{align*}
+      \norm{P-Q} = \int |p - q| \, d\nu
+    \end{align*}
+
+  
+    Returning to the interpretation of our $\lambda$-theory, 
+    we have $I = \mathbb{R} \ni 1$, 
+    for every $r \in \mathbb{Q}$ we define $\sem{\emph{delta}_r}:\mathbb{R} \to \mathcal{M}\mathbb{R},\ x \mapsto x\delta_r$, where $\delta_r$ is the Dirac delta over $r$. 
+    Similarly for every $r,s \in \mathbb{Q}$ we have $\sem{\emph{u}_{r,s}}:\mathbb{R} \to \mathcal{M}\mathbb{R},\ 1 \mapsto U(r,s) $, where $U_{r,s}$ denotes the continous uniform distibution, with $r$ and $s$ as the minimum and maximum values, respectively. 
+    Next,  for every $p_1,\ldots,p_n \in [0,1]$, we have $\sem{\emph{delta}_{p_1,\ldots,p_n}}:\mathbb{R} \to \mathcal{M}\mathbb{R},\ 1 \mapsto \sum_{i=1}^n p_i\cdot \delta_{x_i}$, where $x_i \in \mathbb{Q}$
+    Moreover  for every $p \in [0,1]$ we define $\sem{\emph{CoinToss}_p}:\mathbb{R} \to \mathbb{R} \oplus \mathbb{R},\ 1 \mapsto (p, 1-p)$. 
+    Finally for every $\mu \in \mathcal{M}\mathbb{R}$ and for $\nu  \in \mathcal{M}\mathbb{R}$ we define $\sem{\emph{JumpL}_\mu} (\nu) = jl_{*}(\mu,\nu) $, the pushforward of the product measure $\mu \otimes \nu$ under the Markov kernel $jl: \mathbb{R}^2 \to \mathcal{M}\mathbb{R},\ (u,v) \mapsto \delta_{v-u}$.  We define an analogous interpretation for the sampling function $\sem{\emph{JumpR}_\mu}$ considering the Markov kernel $jr: \mathbb{R}^2 \to \mathcal{M}\mathbb{R},\ (u,v) \mapsto \delta_{v+u}$.
+
+    Let us consider that in operations $\emph{CoinToss}_p$, $\emph{JumpL}_{\mu_1}$, $\emph{JumpR}_{\mu_1}$, the parameters $p, \mu_1$ and $\mu_2$ are afected by errors and in actuality we have operations $\emph{CoinToss}_{p'}$, $\emph{JumpL}_{\mu_{1'}}$, $\emph{JumpR}_{\mu_{2'}}$. 
+    If we have axioms 
+    $\emph{CoinToss}_p (*) =_{\epsilon_1}\emph{CoinToss}_{p'}(*)$, 
+    $\emph{JumpL}_{\mu_1} =_{\epsilon_2}\emph{JumpL}_{\mu_{1'}}$, and $\emph{JumpR}_{\mu_2} =_{\epsilon_3}\emph{JumpR}_{\mu_{2'}}$, using our metric deductive system it follows that 
+    $$\textbf{step} =_{\epsilon_1 + \max\{\epsilon_2, \epsilon_3\}} \textbf{step}^{\epsilon_1, \epsilon_2, \epsilon_3},$$
+    where ${step}^{\epsilon_1, \epsilon_2, \epsilon_3}$ corresponds to the $\lambda$-term resulting form the substitution of operations $\emph{CoinToss}_p$, $\emph{JumpL}_{\mu_1}$ and $\emph{JumpL}_{\mu_2}$ by their erroneous versions. 
+    Finally, designating $\textbf{rwalk-n}^{\epsilon_1, \epsilon_2, \epsilon_3}$ as the judgement that results from replacing $\textbf{step}$ by ${step}^{\epsilon_1, \epsilon_2, \epsilon_3}$, we can infer,
+    $$\textbf{rwalk-n} =_{n \cdot (\epsilon_1 + \max\{\epsilon_2, \epsilon_3\})} \textbf{rwalk-n}^{\epsilon_1, \epsilon_2, \epsilon_3},$$
+
+      
+
+
+    Let us now verify that we can in fact build the axioms previouly mentioned based on our model.
+
+
+    Given a finite set of natural numbers \(N = \{1, \ldots, n\}\), let \(\mu \in \mathcal{M}(N)\) be a probability measure. Then \(\mu\) can be expressed as
+  \[
+  \mu = \sum_{i=1}^{n} p_i \delta_i,
+  \]
+  where each \(p_i\) is the probability assigned to \(i \in N\), and \(\delta_i\) denotes the Dirac measure at \(i\).
+
+    Consequently, we have that 
+    $$ \norm{\mu} =  \norm{\sum_{i=1}^{n} p_i \delta_i} = \sum_{i=1}^{n} p_i$$
+
+    Note that there is an isomorphism $ \mathbb{R}_0^+ \times \mathbb{R}_0^ + \cong \mathcal{M}(1+1)$, given by $\phi: \mathcal{M}(1+1) \to \mathbb{R}_0^+ ,\ p_x \delta_x + p_y \delta_y  \mapsto (p_x, p_y)$.
+
+    Consequently, it follows that
+  \begin{align*}
+    \norm {\sem{\emph{CoinToss}_p(*)} - \sem{\emph{CoinToss}_q(*)}} & = \norm {(p,1-p) - (q, 1-q)} \\
+    & =\norm {(p-q,q-p)} = \norm { |p-q| \delta_1 + |p-q|   \delta_2} = 2|p-q|
+  \end{align*}
+
+  As a result we can postulate the following metrix axiom:
+  $$ \emph{CoinToss}_p(*) =_{2|p-q|} \emph{CoinToss}_q(*)$$
+
+    
+  \todo[inline]{DUVIDA:Porque é que q um isomorphismo implica uma isometria, also acho que p-q poder ser negativo é problematico}
+    
+
+
+    % considerando as props do tensor
+    
+    %RACIOCINIO: 
+    % 1ª op: \nu -> \nu \otimes 1
+    %no final de aplicarmos \id otimes f temos \nu \otimes \mu
+    % se houver um erro com f teremos \mu \otimes \mu'
+    % se sabemos a distancia entre mu e mu' estamos safos porque a seguir estamos a aplicar ops predefinidas e aí somam-se os erros dos argumentos
+
+    Since the diagram below commutes, and all the operations involved are short maps (considering $f$ as $\sem{\emph{delta}_r}$ or $\sem{\emph{u}_{r,s}}$ ), it follows that if we have an axiom \(\sem{\mu} =_{\epsilon} \sem{\mu'}\), then we may postulate \(\emph{JumpL}_\mu =_{\epsilon} \emph{JumpL}_{\mu'}\). A similar diagram can be constructed using \(jr_{*}\), allowing us to apply the same reasoning to the corresponding axioms.
+
+    \begin{tikzpicture}
+      \matrix (m) [matrix of math nodes, row sep=4em, column sep=6em, minimum width=2em]
+      {
+        \mathcal{M}\mathbb{R}  & \mathbb{R} \otimes \mathcal{M}\mathbb{R}  & \mathcal{M}\mathbb{R} \otimes \mathcal{M}\mathbb{R} &  \mathcal{M} \left( \mathbb{R} \times \mathbb{R} \right)  \\
+        \mathcal{M}\mathbb{R}  \\
+      };
+      \path[-stealth]
+        (m-1-1) edge node [left] {$\sem{\emph{JumpL}_\mu}$} (m-2-1)
+        (m-1-1) edge node [above] {$\cong$} (m-1-2)
+        (m-1-2) edge node [above] {$f \otimes \id $} (m-1-3)
+        (m-1-3) edge node [above] {$\cong$} (m-1-4)
+        (m-1-4) edge node [above] {$jl_{*}$} (m-2-1)
+        ;
+    \end{tikzpicture}
+
+    Now, we will present some examples of how to buid possible axioms \(\mu =_{\epsilon} \mu'\).
+    First, consider $\mu=\emph{delta}_x(*)$ and  $\mu'=\emph{delta}_x(*)$. We calculate
+
+    \begin{align*}
+      \norm{\delta_x - \delta_y} = \sup \left\{ \sum_{i=1}^{n} |\delta_x - \delta_y (A_i)| \mid A_i \in \mathcal{B}(\mathbb{R}), A_i \cap A_j = \emptyset i,  \neq j, n \in \mathbb{N}  \right\} = 2
+    \end{align*}
+    Note that there are only two possibilities: either \(\delta_x\) and \(\delta_y\) belong to the same partition, or they belong to different ones. In the first case, we have
+    \[
+    \sum_{i=1}^{n} \left| \delta_x(A_i) - \delta_y(A_i) \right| = |1 - 1| = 0,
+    \]
+    while in the second case, we obtain
+    \[
+    \sum_{i=1}^{n} \left| \left( \delta_x(A_i) - \delta_y(A_i) \right) \right| = |1| + |-1| = 2.
+    \]
+    
+    Next, take $\mu=\emph{delta}_{p_1, \ldots, p_n}(*)$ and  $\mu'=\emph{delta}_{q_1, \ldots, q_n}(*)$. We compute
+
+    \begin{align*}
+      \norm{\sum_i p_i \delta_{x_i} - \sum_i q_i \delta_{x_i}} &
+      = \sup \left\{ \sum_{i=1}^{n} \left\lvert \left(\sum_i p_i \delta_{x_i} - \sum_i q_i \delta_{x_i} \right) (A_i) \right\rvert \,\Bigg| \, A_i \in \mathcal{B}(\mathbb{R}), A_i \cap A_j = \emptyset i,  \neq j, n \in \mathbb{N}  \right\} \\
+      & = \sum_i |p_i-q_i|
+    \end{align*}
+    Here, we apply the same reasoning as in the previous example, while also using the inequality
+\[
+\left| \sum_{i=1}^{n} a_i \right| \leq \sum_{i=1}^{n} |a_i|, \quad \text{for all } n \in \mathbb{N}.
+\]
+
+Subsequently, let $\mu =\emph{u}_{a,b}(*)$ and  $\mu'=\emph{u}_{c,d}(*)$. Then, the Radon-Nikodym derivatives (probability density functions) with respect to \( \nu = U(a, b) + U(c, d) \) are given by:
+
+\[
+\frac{dU(a, b)}{d\nu}(x) = u(a,b)(x) = 
+\begin{cases} 
+\frac{1}{b - a} & \text{if } x \in [a, b], \\ 
+0 & \text{otherwise},
+\end{cases}
+\]
+and similarly,
+\[
+\frac{dU(c, d)}{d\nu}(x) = u(c,d)(x) = 
+\begin{cases} 
+\frac{1}{d - c} & \text{if } x \in [c, d], \\ 
+0 & \text{otherwise}.
+\end{cases}
+\]
+Here, we calculate
+\begin{align*}
+  \norm{U(a,b)-U(c,d)} = \int |u(a,b)(x)- u(c,d)(x)| \, d\nu(x) = \int |u(a,b)(x)- u(c,d)(x)| \, dx 
+\end{align*}
+In this case, we consider three scenarios: 
+\begin{enumerate}
+    \item The intervals are disjoint: \([a, b] \cap [c, d] = \emptyset\),
+    \item One interval is fully contained in the other: for example, \([c, d] \subseteq [a, b]\) (or vice versa),
+    \item The intervals intersect, but neither is fully contained in the other.
+\end{enumerate}
+
+In the first case, we have
+\begin{align*}
+  \int |u(a,b)(x)- u(c,d)(x)| \, dx  & = \int_a^b |u(a,b)(x)- u(c,d)(x)| \, dx + \int_c^d |u(a,b)(x)- u(c,d)(x)| \, dx \\
+  & = \left\lvert \frac{b-a}{b-a}\right\rvert + \left\lvert- \frac{d-c}{d-c}\right\rvert = 2
+\end{align*}
+
+Regarding the second case, we compute
+\begin{align*}
+  \int |u(a,b)(x)- u(c,d)(x)| \, dx  & = \int_a^c |u(a,b)(x)- u(c,d)(x)| \, dx + \int_c^d |u(a,b)(x)- u(c,d)(x)| \, dx  \\
+   & \hspace{10pt }+\int_d^b |u(a,b)(x)- u(c,d)(x)| \, dx \\
+  & =  =  \frac{c-a}{b-a} + - (d-c) \left(\frac{1}{b-a} - \frac{1}{d-c}  \right)+  \frac{b-d}{b-a}
+\end{align*}
+
+At last, we calculate,
+\begin{align*}
+  \int |u(a,b)(x)- u(c,d)(x)| \, dx  & = \int_a^c |u(a,b)(x)- u(c,d)(x)| \, dx + \int_c^b |u(a,b)(x)- u(c,d)(x)| \, dx  \\
+   & \hspace{10pt }+\int_b^d |u(a,b)(x)- u(c,d)(x)| \, dx \\
+  & =  \frac{c-a}{b-a} +  (b-c) \left(\frac{1}{b-a} - \frac{1}{d-c}  \right)+  \frac{d-b}{b-a}
+\end{align*}
+
+Finally, consider $\mu =\emph{delta}_{x_0}(*) $  and $\mu' =\emph{u}_{x_0 - \epsilon,x_0 + \epsilon}(*) $. Let \(\nu = \delta_{x_0} + U(x_0 - \epsilon, x_0 + \epsilon) \). The Radon-Nikodym derivatives are:
+
+\[
+\frac{d\delta_{x_0}}{d\nu}(x) = f (x)
+\begin{cases} 
+1 & \text{if } x = x_0, \\
+0 & \text{otherwise},
+\end{cases}
+\]
+
+\[
+\frac{dU(x_0 - \epsilon, x_0 + \epsilon)}{d\nu}(x) = u(x_0 - \epsilon, x_0 + \epsilon) = 
+\begin{cases} 
+\frac{1}{2\epsilon} & \text{if } x \in (x_0 - \epsilon, x_0 + \epsilon), \\
+0 & \text{otherwise}.
+\end{cases}
+\]
+
+We compute,
+\begin{align*}
+  \norm{\delta_{x_0}-U(x_0 - \epsilon, x_0 + \epsilon)} &= \int |f(x)- u(x_0 - \epsilon, x_0 + \epsilon) (x)| \, d\nu(x) \\
+  &= \int |f(x)| \, dx + \int |u(x_0 - \epsilon, x_0 + \epsilon)(x)| \, dx = 2
+\end{align*}
+    
+
+
+
+
+
+  \end{example}
+  
+
+
 
 \newpage
 \bibliographystyle{alpha} 
