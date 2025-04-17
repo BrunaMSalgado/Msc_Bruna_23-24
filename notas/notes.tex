@@ -2011,7 +2011,7 @@ Consequently, we postulate the following axiom:
     Similarly for every $r,s \in \mathbb{Q}$ we have $\sem{\emph{u}_{r,s}}:\mathbb{R} \to \mathcal{M}\mathbb{R},\ 1 \mapsto U(r,s) $, where $U_{r,s}$ denotes the continous uniform distibution, with $r$ and $s$ as the minimum and maximum values, respectively. 
     Next,  for every $p_1,\ldots,p_n \in [0,1]$, we have $\sem{\emph{delta}_{p_1,\ldots,p_n}}:\mathbb{R} \to \mathcal{M}\mathbb{R},\ 1 \mapsto \sum_{i=1}^n p_i\cdot \delta_{x_i}$, where $x_i \in \mathbb{Q}$
     Moreover  for every $p \in [0,1]$ we define $\sem{\emph{CoinToss}_p}:\mathbb{R} \to \mathbb{R} \oplus \mathbb{R},\ 1 \mapsto (p, 1-p)$. 
-    Finally for every $\mu \in \mathcal{M}\mathbb{R}$ and for $\nu  \in \mathcal{M}\mathbb{R}$ we define $\sem{\emph{JumpL}_\mu} (\nu) = jl_{*}(\mu,\nu) $, the pushforward of the product measure $\mu \otimes \nu$ under the Markov kernel $jl: \mathbb{R}^2 \to \mathcal{M}\mathbb{R},\ (u,v) \mapsto \delta_{v-u}$.  We define an analogous interpretation for the sampling function $\sem{\emph{JumpR}_\mu}$ considering the Markov kernel $jr: \mathbb{R}^2 \to \mathcal{M}\mathbb{R},\ (u,v) \mapsto \delta_{v+u}$.
+    Finally for every $\mu \in \mathcal{M}\mathbb{R}$ and for $\nu  \in \mathcal{M}\mathbb{R}$ we define $\sem{\emph{JumpL}_\mu} (\nu) = jl_{*}(\mu,\nu) $, the pushforward of the product measure $\mu \otimes \nu$ (seen as an element of $\mathcal{M}(\mathbb{R} \times \mathbb{R})$) under the Markov kernel $jl: \mathbb{R}^2 \to \mathcal{M}\mathbb{R},\ (u,v) \mapsto \delta_{v-u}$.  We define an analogous interpretation for the sampling function $\sem{\emph{JumpR}_\mu}$ considering the Markov kernel $jr: \mathbb{R}^2 \to \mathcal{M}\mathbb{R},\ (u,v) \mapsto \delta_{v+u}$.
 
     Let us consider that in operations $\emph{CoinToss}_p$, $\emph{JumpL}_{\mu_1}$, $\emph{JumpR}_{\mu_1}$, the parameters $p, \mu_1$ and $\mu_2$ are afected by errors and in actuality we have operations $\emph{CoinToss}_{p'}$, $\emph{JumpL}_{\mu_{1'}}$, $\emph{JumpR}_{\mu_{2'}}$. 
     If we have axioms 
@@ -2028,7 +2028,19 @@ Consequently, we postulate the following axiom:
     Let us now verify that we can in fact build the axioms previouly mentioned based on our model.
 
 
-    Given a finite set of natural numbers \(N = \{1, \ldots, n\}\), let \(\mu \in \mathcal{M}(N)\) be a probability measure. Then \(\mu\) can be expressed as
+    \todo[inline]{DUVIDA:Não temos de provar que a norma dos numeros reais tb satisfaz as condições}
+
+  Considering the absolute value as the norm on real numbers, it follows that
+  \begin{align*}
+    \norm {\sem{\emph{CoinToss}_p(*)} - \sem{\emph{CoinToss}_q(*)}} & = \norm {(p,1-p) - (q, 1-q)} \\
+    & =\norm {(p-q,q-p)}  = 2|p-q|
+  \end{align*}
+
+  As a result we can postulate the following metrix axiom:
+  $$ \emph{CoinToss}_p(*) =_{2|p-q|} \emph{CoinToss}_q(*)$$
+
+
+  Given a finite set of natural numbers \(N = \{1, \ldots, n\}\), let \(\mu \in \mathcal{M}(N)\) be a probability measure. Then \(\mu\) can be expressed as
   \[
   \mu = \sum_{i=1}^{n} p_i \delta_i,
   \]
@@ -2037,19 +2049,11 @@ Consequently, we postulate the following axiom:
     Consequently, we have that 
     $$ \norm{\mu} =  \norm{\sum_{i=1}^{n} p_i \delta_i} = \sum_{i=1}^{n} p_i$$
 
-    Note that there is an isomorphism $ \mathbb{R}_0^+ \times \mathbb{R}_0^ + \cong \mathcal{M}(1+1)$, given by $\phi: \mathcal{M}(1+1) \to \mathbb{R}_0^+ ,\ p_x \delta_x + p_y \delta_y  \mapsto (p_x, p_y)$.
+    Note that there is an isomorphism $ \mathbb{R} \times \mathbb{R}  \cong \mathcal{M}(1+1)$, given by $\phi: \mathcal{M}(1+1) \to \mathbb{R} \to \mathbb{R}  ,\ p_x \delta_x + p_y \delta_y  \mapsto (p_x, p_y)$. 
 
-    Consequently, it follows that
-  \begin{align*}
-    \norm {\sem{\emph{CoinToss}_p(*)} - \sem{\emph{CoinToss}_q(*)}} & = \norm {(p,1-p) - (q, 1-q)} \\
-    & =\norm {(p-q,q-p)} = \norm { |p-q| \delta_1 + |p-q|   \delta_2} = 2|p-q|
-  \end{align*}
+  
 
-  As a result we can postulate the following metrix axiom:
-  $$ \emph{CoinToss}_p(*) =_{2|p-q|} \emph{CoinToss}_q(*)$$
 
-    
-  \todo[inline]{DUVIDA:Porque é que q um isomorphismo implica uma isometria, also acho que p-q poder ser negativo é problematico}
     
 
 
@@ -2061,18 +2065,54 @@ Consequently, we postulate the following axiom:
     % se houver um erro com f teremos \mu \otimes \mu'
     % se sabemos a distancia entre mu e mu' estamos safos porque a seguir estamos a aplicar ops predefinidas e aí somam-se os erros dos argumentos
 
-    Since the diagram below commutes, and all the operations involved are short maps (considering $f$ as $\sem{\emph{delta}_r}$ or $\sem{\emph{u}_{r,s}}$ ), it follows that if we have an axiom \(\sem{\mu} =_{\epsilon} \sem{\mu'}\), then we may postulate \(\emph{JumpL}_\mu =_{\epsilon} \emph{JumpL}_{\mu'}\). A similar diagram can be constructed using \(jr_{*}\), allowing us to apply the same reasoning to the corresponding axioms.
+    Let $i_1: \mathcal{M}\mathbb{R}  \to \mathbb{R} \otimes \mathcal{M}\mathbb{R}$ be the isomophism defined as $i_1(\nu) = 1  \widehat{\otimes}_{\pi} \nu$. 
+    This isomorphism is clearly a short map given that $ 1  \widehat{\otimes}_{\pi} \nu = \nu$. 
+    Next, consider the isomorphism $i_2: \mathcal{M}\mathbb{R} \,   \widehat{\otimes}_{\pi} \,   \mathcal{M}\mathbb{R} \to  \mathcal{M} \left( \mathbb{R} \times \mathbb{R} \right),$ 
+    $\mu  \widehat{\otimes}_{\pi} \nu \to \mu \otimes \nu.$ 
+    The product measure $\mu \otimes \nu$ is defined as $\mu  \otimes \nu (A \times B)= \mu(A)\cdot\nu(B).$
+    This is the measure produced by the Carath\'{e}odory's extension theorem \cite{aliprantisBanachLattices1999}.
+    Given that $\norm{\mu \otimes \nu}= |\mu (\mathbb{R})|\cdot |\nu (\mathbb{R})| = \norm{\mu} \cdot \norm{\nu}$, and $ \norm{\mu \, \widehat{\otimes}_{\pi} \, \nu} = \norm{\mu} \cdot \norm{\nu}$ (the projective norm is a cross norm) it follows that $i_2$ is a short map.
+
+
+
+    % Isto só funcinava se nos restrigissemos a M[0,1]
+    \begin{comment}
+    Next, consider the following commutative diagram:
 
     \begin{tikzpicture}
       \matrix (m) [matrix of math nodes, row sep=4em, column sep=6em, minimum width=2em]
       {
-        \mathcal{M}\mathbb{R}  & \mathbb{R} \otimes \mathcal{M}\mathbb{R}  & \mathcal{M}\mathbb{R} \otimes \mathcal{M}\mathbb{R} &  \mathcal{M} \left( \mathbb{R} \times \mathbb{R} \right)  \\
+         \mathcal{M}\mathbb{R} \,   \widehat{\otimes}_{\pi} \,   \mathcal{M}\mathbb{R} &  \mathcal{M} \left( \mathbb{R} \times \mathbb{R} \right)  \\
+        \mathcal{M}\mathbb{R} \times \mathcal{M}\mathbb{R}   \\
+      };
+      \path[dotted, -stealth]
+      (m-2-1) edge node [left] {$\widehat{\otimes}_{\pi}$} (m-1-1);
+      \path[-stealth]
+        (m-1-1) edge node [above] {$i_2$} (m-1-2)
+        (m-2-1) edge node [above] {$f$} (m-1-2)
+        ;
+    \end{tikzpicture}
+
+    Where $i_2:  \mathcal{M}\mathbb{R} \,   \widehat{\otimes}_{\pi} \,   \mathcal{M}\mathbb{R} \to  \mathcal{M} \left( \mathbb{R} \times \mathbb{R} \right) $ is an isomorphism defined as $i_{2}( \mu  \widehat{\otimes}_{\pi} \nu ) = \mu \otimes \nu $ 
+    and the function $f: \mathcal{M}\mathbb{R} \times \mathcal{M}\mathbb{R}  \to \mathcal{M} \left( \mathbb{R} \times \mathbb{R} \right) $ is defined as $f((\mu, \nu)) = \mu \otimes \nu $. 
+    The product measure $\mu \otimes \nu$ is defined as $\mu \otimes \nu (A \times B)= \mu(A)\cdot\nu(B).$
+      This is the measure produced by the Carath\'{e}odory's extension theorem \cite{aliprantisBanachLattices1999}.
+       Given that $\norm{\mu \otimes \nu}= \norm{\mu} \cdot \norm{\nu}$,  and $\norm{(\mu, \nu)}= \max\{\norm{\mu}, \norm{\nu}\}$, for $\norm{\mu} \leq 1$ and $\norm{\nu} \leq 1$, it follows that $f$ is a short map.
+
+    \end{comment}
+
+    Since the diagram below commutes, and all the operations involved are short maps (considering $f$ as $\sem{\emph{delta}_r}$ or $\sem{\emph{u}_{r,s}}$), it follows that, if we have an axiom \(\sem{\mu} =_{\epsilon} \sem{\mu'}\), then we may postulate \(\emph{JumpL}_\mu =_{\epsilon} \emph{JumpL}_{\mu'}\). A similar diagram can be constructed using \(jr_{*}\), allowing us to apply the same reasoning to the corresponding axioms.
+
+    \begin{tikzpicture}
+      \matrix (m) [matrix of math nodes, row sep=4em, column sep=6em, minimum width=2em]
+      {
+        \mathcal{M}\mathbb{R}  & \mathbb{R} \,   \widehat{\otimes}_{\pi} \mathcal{M}\mathbb{R} \,  \, & \mathcal{M}\mathbb{R} \, \widehat{\otimes}_{\pi} \,  \mathcal{M}\mathbb{R} &  \mathcal{M} \left( \mathbb{R} \times \mathbb{R} \right)  \\
         \mathcal{M}\mathbb{R}  \\
       };
       \path[-stealth]
         (m-1-1) edge node [left] {$\sem{\emph{JumpL}_\mu}$} (m-2-1)
         (m-1-1) edge node [above] {$\cong$} (m-1-2)
-        (m-1-2) edge node [above] {$f \otimes \id $} (m-1-3)
+        (m-1-2) edge node [above] {$f\,  \widehat{\otimes}_{\pi} \,  \id $} (m-1-3)
         (m-1-3) edge node [above] {$\cong$} (m-1-4)
         (m-1-4) edge node [above] {$jl_{*}$} (m-2-1)
         ;
