@@ -27,6 +27,7 @@
 \usepackage{braket}
 \usepackage{quantikz}
 \usepackage{tikz-cd}
+\usepackage{mathabx}
 \linespread{1.10}
 \author{\dots}
 \title{Notes}
@@ -1217,7 +1218,7 @@ It is necessary to prove that when $\hat{f}$ is defined as $\hat{f}([x],[y]) = [
 
 \section{Examples}
 
-\subsection{Quantum computation}
+\subsection{Finite-Dimensional Quantum Computation}
 
 \todo[inline]{Adicionar os preliminares de computação quantica: notação, esfera de Bloch , ops pos, unitarios, op densidade (e conversão ops densidade bloch vector), ops kraus, quantum channels +  cenas de algebra linear: traço e norma euclidiana}
 
@@ -1744,7 +1745,7 @@ where $\textbf{Discrimination}^{\epsilon_1,\epsilon_2}$ denotes the judgement th
      \end{equation*}
      
      Considering a density operator $\rho=|\alpha|^{2} \ket{0} \bra{0} + \alpha \beta^{*} \ket{0} \bra{1}+ \alpha^{*} \beta \ket{1} \bra{0} + |\beta|^{2} \ket{1} \bra{1}$, using these Kraus operators, it is possible to easily verify  that after applying the dephasing channel with probability $p$, the resulting operator $\rho'$ is given by: 
-     \begin{equation*} \label{eq:dephasing_result}
+     \begin{equation*} 
           \rho' = D_p(\rho)= D_{0} \rho D_{0}^{\dag} + D_{1} \rho D_{1}^{\dag} = |\alpha|^{2} \ket{0} \bra{0} +  (1-p) \alpha \beta^{*} \ket{0} \bra{1}+  (1-p) \alpha^{*}  \beta \ket{1} \bra{0} + |\beta|^{2} \ket{1} \bra{1}
      \end{equation*}
      This shows that the dephasing channel with probability $p$ preserves the diagonal elements of the density matrix while attenuating the off-diagonal elements by a factor of $(1-p)$.
@@ -2217,6 +2218,155 @@ We compute,
   &= \int |f(x)| \, dx + \int |u(x_0 - \epsilon, x_0 + \epsilon)(x)| \, dx = 2
 \end{align*}
     
+
+
+\subsection{Infinite-Dimensional Quantum Computation}
+
+% depois
+% defs(C*-star, W*-star, dual, predual, etc.)
+% resultado Kenta sho e diagramas de passagem entre B(H) e T*(H)
+%Uma terceira opção para a nroma em T(H) (ver sec. fin d qc) seria igualar à de T(H)
+
+% Agora
+
+\todo[inline]{Prova Stuff}
+
+\begin{definition} Let $\mathcal{A}$ be a $C^*$-algebra, and let $\mathcal{V}$ be a subspace. Then we shall call $\mathcal{V}$ a \emph{(concrete) operator space}.
+  
+\end{definition}
+
+
+\begin{definition}
+Let $\mathcal{A}$ and $\mathcal{B}$ be $C^*$-algebras. Given  linear map $\phi: \mathcal{A} \to \mathcal{B}$ we define, we set
+\[
+\|\phi\|_{\text{cb}} = \sup_n \|\mathcal{M}_n(\phi)\|.
+\]
+Note that $\|\cdot\|_{\text{cb}}$ is a norm on the space of completely bounded maps.
+
+\end{definition}
+
+
+\begin{proposition} \label{prop:cp_cb} \cite[Exercise 11.5 (iii)]{pisierIntroductionOperatorSpace2003}
+  Let $\mathcal{A}$ and $\mathcal{B}$ be $C^*$-algebras, and let $\phi: \mathcal{A} \to \mathcal{B}$ be completely positive. If $\mathcal{A}$ is unital, then $\phi$ is completely bounded and 
+\[
+\|\phi(1)\| = \|\phi\| = \|\phi\|_{\text{cb}}.
+\]
+\end{proposition}
+
+
+\begin{theorem} \label{thm:tensor_cb} \cite[Proposition 12.3]{paulsenCompletelyBoundedMaps2003}
+  Let $\mathcal{A}_i$ and $\mathcal{B}_i$ be unital $C^*$-algebras, let $\mathcal{S}_i \subseteq \mathcal{A}_i$ be subspaces, 
+and let $L_i: \mathcal{S}_i \to \mathcal{B}_i$ be completely bounded, $i = 1,2$. Then the linear map $L_1 \widecheck{\otimes}_\varepsilon 
+L_2: \mathcal{S}_1 \widecheck{\otimes}_\varepsilon \mathcal{S}_2 \to \mathcal{B}_1 \widecheck{\otimes}_\varepsilon \mathcal{B}_2$, given by $(L_1 \widecheck{\otimes}_\varepsilon L_2)(a_1 \otimes a_2) = L_1(a_1) \otimes L_2(a_2)$, 
+defines a completely bounded map $L_1 \widecheck{\otimes}_\varepsilon L_2: \mathcal{S}_1 \widecheck{\otimes}_\varepsilon \mathcal{S}_2 \to \mathcal{B}_1 \widecheck{\otimes}_\varepsilon \mathcal{B}_2$, with
+\[
+\|L_1 \widecheck{\otimes}_\varepsilon L_2\|_{\text{cb}} = \|L_1\|_{\text{cb}} \|L_2\|_{\text{cb}}.
+\]
+\end{theorem}
+
+\begin{proposition} \cite[Proposition 3.2.3]{effrosOperatorSpaces2000} \label{prop:cb_dual}
+  Given $C^*$-algebras $\mathcal{A}$ and $\mathcal{B}$, and a completely bounded mapping $\phi : A \to B$, we have
+\[
+\|\phi^*\|_{\text{cb}} =  \|\phi\|_{\text{cb}}.
+\]
+\end{proposition}
+
+\begin{lemma} \cite[p.19]{pisierIntroductionOperatorSpace2003} \label{lem:cb_comp_submult}
+  Given completely bounded maps $\phi: B (\mathcal{H}) \to B (\mathcal{K}) $ and $\psi: B (\mathcal{K}) \to B (\mathcal{L})$, it holds that
+
+  $$ \cbnorm{\psi \cdot \phi} \leq \cbnorm{\psi} \cdot \cbnorm{\phi}  $$
+\end{lemma}
+
+\begin{proposition} \label{prop:dirsum_cb} \cite[Exercise 2.1.3.]{pisierIntroductionOperatorSpace2003}
+  Let $\mathcal{H}_1, \mathcal{H}_2,  \mathcal{K} $ be Hilbert spaces.   Consider $\phi_i \in CB(B(\mathcal{K}), B(\mathcal{H}_i))$ ($i = 1,2$), and let $\phi \in 
+  CB(E, B(\mathcal{H}_1 \oplus  \mathcal{H}_2))$ be defined by $\phi(x) = (\phi_1(x),  \phi2(x))$. It holds that 
+  $$\cbnorm{\phi} = \max \{ \phi_1, \phi_2 \}.$$
+
+  
+\end{proposition}
+
+\begin{proposition} \label{prop:eqs_id_cb}
+   Let $\phi: B(\mathcal{H}) \to B(\mathcal{K})$ be a normal completely positive subunital map. It holds that $\cbnorm{\phi \, \widecheck{\otimes}_\varepsilon \id}$ and $\cbnorm{\id \, \widecheck{\otimes}_\varepsilon\phi}$ are completely bounded maps, such that
+  $$ 
+  \cbnorm{\phi \, \widecheck{\otimes}_\varepsilon \id} = \cbnorm{\id \,\widecheck{\otimes}_\varepsilon  \phi} = \cbnorm{\phi}.
+  $$
+\end{proposition}
+
+\begin{proof}
+  Considering Proposition \ref{prop:cp_cb}, it follows that $\phi$ and $\id:B(\mathcal{H}_1) \to B(\mathcal{H}_1)$ are completely bounded maps, such that   
+  
+  \begin{align*}
+    & \cbnorm{\phi}=\norm{\phi}=\norm{\phi(1)} \\
+    & \cbnorm{\id} = \norm{\id}=\norm{\id(1)} = \sup \{\norm{\id (\id_{\mathcal{H}_1} (v))} \, \mid  \, \norm{v}=1 \} = \sup \{ \norm{v} \, \mid  \, \norm{v}=1 \} = 1
+  \end{align*}
+
+  Considering Theorem \ref{thm:tensor_cb} it follows that  $\cbnorm{\phi \, \widecheck{\otimes}_\varepsilon \id}$ and $\cbnorm{\id \,\widecheck{\otimes}_\varepsilon \phi}$ are completely bounded maps and 
+  \begin{align*}
+    \cbnorm{\phi \, \widecheck{\otimes}_\varepsilon \id} = \cbnorm{\phi} \, \cbnorm{\id} = \cbnorm{\phi} =  \cbnorm{\id \, \widecheck{\otimes}_\varepsilon\phi}
+  \end{align*}
+\end{proof}
+
+\todo[inline]{$\odot$ -> tensor algebrico}
+
+\begin{proposition} \label{prop:cb_tensores}
+  Given normal maps $ \phi \,\widecheck{\otimes}_\varepsilon \psi: B(\mathcal{H}_1) \,\widecheck{\otimes}_\varepsilon B(\mathcal{H}_2)  \to  B(\mathcal{K}_1) \,\widecheck{\otimes}_\varepsilon B(\mathcal{K}_2)$ and $ \phi \, \bar{\otimes} \, \psi: B(\mathcal{H}_1) \, \bar{\otimes} \, B(\mathcal{H}_2)  \to  B(\mathcal{K}_1) \, \bar{\otimes} \, B(\mathcal{K}_2)$, it holds that
+  \[
+  \cbnorm{\phi \,\bar{\otimes} \, \psi} \leq \cbnorm{\phi \,\widecheck{\otimes}_\varepsilon \psi} .
+\]
+\end{proposition}
+
+\begin{proof}
+  Let $\phi :  B(\mathcal{H}_1) \to  B(\mathcal{H}_2)$ and $\psi : B(\mathcal{K}_1) \to (\mathcal{K}_2)$ be normal maps. Since $ f $ and $g$ are normal, $\phi_* \odot_\varepsilon \phi_*$ can be  viewed  as a
+  restriction of $(\phi \odot_\varepsilon \psi)^*$ \cite{Cho2014}. Consequently, it follows that $ \cbnorm{\phi_* \odot_\varepsilon \phi^*} \leq \cbnorm{(\phi \odot_\varepsilon \psi)_*}$ and therefore, $ \cbnorm{\phi^*  \,\widecheck{\otimes}_\varepsilon \phi^*} \leq \cbnorm{(\phi  \,\widecheck{\otimes}_\varepsilon \psi)^*}$. As a result, attending to Proposition \ref{prop:cb_dual} it holds that 
+
+  \begin{align*}
+    \cbnorm{\phi \,\bar{\otimes} \, \psi} = \cbnorm{(\phi_* \,\widecheck{\otimes}_\varepsilon \psi_*)^*} = \cbnorm{\phi_* \,\widecheck{\otimes}_\varepsilon \psi_*} \leq \cbnorm{(\phi \,\widecheck{\otimes}_\varepsilon \psi)^*} = \cbnorm{\phi \,\widecheck{\otimes}_\varepsilon \psi}
+  \end{align*}
+
+\end{proof}
+
+\todo[inline]{WstarCPSU -> is the category of bounded operators in a hilbert space (B(H)) and normal completely positive subunital maps.}
+
+\begin{proposition}
+  The category $\WstarCPSUop$ is $\catMet$-enriched and the bifunctor $\bar{\otimes} :  \WstarCPSUop \otimes \WstarCPSUop\to \WstarCPSUop$ is $\mathsf{Met}$-enriched as well.
+\end{proposition}
+
+
+\begin{proof}
+  Similarly to  \cite[ Proof of proposition 4.1]{dahlqvist2023syntactic}, in order to prove that $\WstarCPSUop$ is $\catMet$-enriched, it suffices to establish that for normal completely positive subunital maps $\phi: B(\mathcal{H_1}) \rightarrow B(\mathcal{H_2})$  and $\psi: B(\mathcal{K_1}) \rightarrow B(\mathcal{K_2})$, $\cbnorm{\phi \cdot \psi} \leq \phi$ and  $\cbnorm{\phi \cdot \psi} \leq \psi$. This follows directly from Lemma \ref{lem:cb_comp_submult} and the fact that all subunital maps are contractive.
+Next, regarding $\bar{\otimes}$, the inequations $\cbnorm{\phi \, \bar{\otimes} \id}  \leq \cbnorm{\phi}$ and  $ \cbnorm{\id \, \bar{\otimes}  \phi} \leq \cbnorm{\phi}$ are  sufficient conditions to prove the second part of the proposition. There inequations follow form Propositions \ref{prop:eqs_id_cb} and \ref{prop:cb_tensores}.
+\end{proof}
+
+\todo[inline]{A norma da soma direta é o máximo -> tese kenta sho}
+
+\begin{proposition}
+  For all $\phi, \phi' \in \WstarCPSUop(B(\mathcal{H}),B(\mathcal{L}))  $ and $\psi, \psi' \in \WstarCPSUop(B(\mathcal{K}),B(\mathcal{L})) $, $[\phi-\phi',\psi-\psi']:\WstarCPSUop(B(\mathcal{H}),B(\mathcal{L})) \otimes \WstarCPSUop(B(\mathcal{K}),B(\mathcal{L})) \rightarrow \WstarCPSUop(B(\mathcal{H}) \oplus B(\mathcal{K}), B(\mathcal{L})) $ is a functor in the category of metric spaces.
+\end{proposition}
+  
+\begin{proof}
+  We deduce by unfolding the respective definitions that we need to prove that for all normal completely positive short operators $\phi, \phi' \in \WstarCPSUop(B(\mathcal{H}),B(\mathcal{L}))  $ and $\psi, \psi' \in \WstarCPSUop(B(\mathcal{K}),B(\mathcal{L}))$ the inequation $\cbnorm{[\phi, \psi] - [\phi', \psi']} \leq  \sup \left\{ \cbnorm{\phi-\phi'}, \cbnorm{\psi-\psi'} \right\}$ holds.
+  Firstly, note that the copairing in $\WstarCPSUop$ corresponds to the pairing in $\WstarCPSU$. As a result, this is equivalent to prove that for for all normal completely positive short operators $\phi, \phi' \in \WstarCPSU(B(\mathcal{H}),B(\mathcal{L}))  $ and $\psi, \psi' \in \WstarCPSU(B(\mathcal{K}),B(\mathcal{L}))$ the inequation $\cbnorm{\langle \phi, \psi \rangle - \langle \phi', \psi'\rangle} \leq  \sup \left\{ \cbnorm{\phi-\phi'}, \cbnorm{\psi-\psi'} \right\}.$. Given that by Proposition \ref{prop:cp_cb} $\phi, \phi', \psi, \psi'$ are completely bounded. Moreover note that by the triangle inequality if two maps are completely bounded so is their difference. As a result, by Proposition \ref{prop:dirsum_cb} it follows that the proposition above holds.
+  
+\end{proof}
+
+
+
+%$\odot$
+%$\widecheck{\otimes}_\varepsilon$
+
+%\bar{\otimes} 
+
+
+
+
+
+% defs (ops sytem)
+% teoremas
+%3.6
+%8.2
+%12.3
+%3.2.2 (op spaces)
+%prova
 
 
 
