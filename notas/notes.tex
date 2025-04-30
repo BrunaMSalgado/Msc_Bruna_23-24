@@ -2231,9 +2231,9 @@ We compute,
 
 \todo[inline]{Prova Stuff}
 
-\begin{definition} Let $\mathcal{A}$ be a $C^*$-algebra, and let $\mathcal{V}$ be a subspace. Then we shall call $\mathcal{V}$ a \emph{(concrete) operator space}.
+%\begin{definition} Let $\mathcal{A}$ be a $C^*$-algebra, and let $\mathcal{V}$ be a subspace. Then we shall call $\mathcal{V}$ a \emph{(concrete) operator space}.
   
-\end{definition}
+%\end{definition}
 
 
 \begin{definition}
@@ -2241,7 +2241,8 @@ Let $\mathcal{A}$ and $\mathcal{B}$ be $C^*$-algebras. Given  linear map $\phi: 
 \[
 \|\phi\|_{\text{cb}} = \sup_n \|\mathcal{M}_n(\phi)\|.
 \]
-Note that $\|\cdot\|_{\text{cb}}$ is a norm on the space of completely bounded maps.
+We call $\phi$ \emph{completely bounded} if $\|\phi\|_{\text{cb}} $ is finite.
+Note that $\|\cdot\|_{\text{cb}}$ is a norm on the space of completely bounded maps. 
 
 \end{definition}
 
@@ -2317,7 +2318,7 @@ defines a completely bounded map $L_1 \widecheck{\otimes}_\varepsilon L_2: \math
 
 \begin{proof}
   Let $\phi :  B(\mathcal{H}_1) \to  B(\mathcal{H}_2)$ and $\psi : B(\mathcal{K}_1) \to (\mathcal{K}_2)$ be normal maps. Since $ f $ and $g$ are normal, $\phi_* \odot_\varepsilon \phi_*$ can be  viewed  as a
-  restriction of $(\phi \odot_\varepsilon \psi)^*$ \cite{Cho2014}. Consequently, it follows that $ \cbnorm{\phi_* \odot_\varepsilon \phi^*} \leq \cbnorm{(\phi \odot_\varepsilon \psi)_*}$ and therefore, $ \cbnorm{\phi^*  \,\widecheck{\otimes}_\varepsilon \phi^*} \leq \cbnorm{(\phi  \,\widecheck{\otimes}_\varepsilon \psi)^*}$. As a result, attending to Proposition \ref{prop:cb_dual} it holds that 
+  restriction of $(\phi \odot_\varepsilon \psi)^*$ \cite{Cho2014}. Consequently, it follows that $ \cbnorm{\phi_* \odot_\varepsilon \phi_*} \leq \cbnorm{(\phi \odot_\varepsilon \psi)_*}$ and therefore, $ \cbnorm{\phi^*  \,\widecheck{\otimes}_\varepsilon \phi^*} \leq \cbnorm{(\phi  \,\widecheck{\otimes}_\varepsilon \psi)^*}$. As a result, attending to Proposition \ref{prop:cb_dual} it holds that 
 
   \begin{align*}
     \cbnorm{\phi \,\bar{\otimes} \, \psi} = \cbnorm{(\phi_* \,\widecheck{\otimes}_\varepsilon \psi_*)^*} = \cbnorm{\phi_* \,\widecheck{\otimes}_\varepsilon \psi_*} \leq \cbnorm{(\phi \,\widecheck{\otimes}_\varepsilon \psi)^*} = \cbnorm{\phi \,\widecheck{\otimes}_\varepsilon \psi}
