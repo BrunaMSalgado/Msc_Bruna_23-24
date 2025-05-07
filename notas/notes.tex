@@ -2265,12 +2265,16 @@ defines a completely bounded map $L_1 \widecheck{\otimes}_\varepsilon L_2: \math
 \]
 \end{theorem}
 
-\begin{proposition} \cite[Proposition 3.2.3]{effrosOperatorSpaces2000} \label{prop:cb_dual}
+\begin{comment}
+
+\begin{proposition} \cite[Proposition 3.2.2]{effrosOperatorSpaces2000} \label{prop:cb_dual}
   Given $C^*$-algebras $\mathcal{A}$ and $\mathcal{B}$, and a completely bounded mapping $\phi : A \to B$, we have
 \[
 \|\phi^*\|_{\text{cb}} =  \|\phi\|_{\text{cb}}.
 \]
 \end{proposition}
+
+\end{comment}
 
 \begin{lemma} \cite[p.19]{pisierIntroductionOperatorSpace2003} \label{lem:cb_comp_submult}
   Given completely bounded maps $\phi: B (\mathcal{H}) \to B (\mathcal{K}) $ and $\psi: B (\mathcal{K}) \to B (\mathcal{L})$, it holds that
@@ -2301,32 +2305,57 @@ defines a completely bounded map $L_1 \widecheck{\otimes}_\varepsilon L_2: \math
     & \cbnorm{\id} = \norm{\id}=\norm{\id(1)} = \sup \{\norm{\id (\id_{\mathcal{H}_1} (v))} \, \mid  \, \norm{v}=1 \} = \sup \{ \norm{v} \, \mid  \, \norm{v}=1 \} = 1
   \end{align*}
 
+
   Considering Theorem \ref{thm:tensor_cb} it follows that  $\cbnorm{\phi \, \widecheck{\otimes}_\varepsilon \id}$ and $\cbnorm{\id \,\widecheck{\otimes}_\varepsilon \phi}$ are completely bounded maps and 
   \begin{align*}
     \cbnorm{\phi \, \widecheck{\otimes}_\varepsilon \id} = \cbnorm{\phi} \, \cbnorm{\id} = \cbnorm{\phi} =  \cbnorm{\id \, \widecheck{\otimes}_\varepsilon\phi}
   \end{align*}
 \end{proof}
 
-\todo[inline]{$\odot$ -> tensor algebrico}
+\todo[inline]{Caso finito -> tendo em conta que a weak topology e a norm topology coincidem e que portanto o tensor coincide o tensor algebrico (q coincide com o spatial) acho que a prop acima dá-nos o q queremos}
+
+\todo[inline]{perceber se o que está na tese do Abraham Anton Westerbaan coincide com o que está abaixo}
 
 \begin{proposition} \label{prop:cb_tensores}
-  Given normal maps $ \phi \,\widecheck{\otimes}_\varepsilon \psi: B(\mathcal{H}_1) \,\widecheck{\otimes}_\varepsilon B(\mathcal{H}_2)  \to  B(\mathcal{K}_1) \,\widecheck{\otimes}_\varepsilon B(\mathcal{K}_2)$ and $ \phi \, \bar{\otimes} \, \psi: B(\mathcal{H}_1) \, \bar{\otimes} \, B(\mathcal{H}_2)  \to  B(\mathcal{K}_1) \, \bar{\otimes} \, B(\mathcal{K}_2)$, it holds that
+  Given normal completely positive subunital maps $ \phi \,\widecheck{\otimes}_\varepsilon \psi: B(\mathcal{H}_1) \,\widecheck{\otimes}_\varepsilon B(\mathcal{H}_2)  \to  B(\mathcal{K}_1) \,\widecheck{\otimes}_\varepsilon B(\mathcal{K}_2)$ 
+  and $ \phi \, \bar{\otimes} \, \psi: B(\mathcal{H}_1) \, \bar{\otimes} \, B(\mathcal{H}_2)  \to  B(\mathcal{K}_1) \, \bar{\otimes} \, B(\mathcal{K}_2)$, it holds that
   \[
   \cbnorm{\phi \,\bar{\otimes} \, \psi} \leq \cbnorm{\phi \,\widecheck{\otimes}_\varepsilon \psi} .
 \]
 \end{proposition}
 
 \begin{proof}
-  Let $\phi :  B(\mathcal{H}_1) \to  B(\mathcal{H}_2)$ and $\psi : B(\mathcal{K}_1) \to (\mathcal{K}_2)$ be normal maps. Since $ f $ and $g$ are normal, $\phi_* \odot_\varepsilon \phi_*$ can be  viewed  as a
-  restriction of $(\phi \odot_\varepsilon \psi)^*$ \cite{Cho2014}. Consequently, it follows that $ \cbnorm{\phi_* \odot_\varepsilon \phi_*} \leq \cbnorm{(\phi \odot_\varepsilon \psi)_*}$ and therefore, $ \cbnorm{\phi^*  \,\widecheck{\otimes}_\varepsilon \phi^*} \leq \cbnorm{(\phi  \,\widecheck{\otimes}_\varepsilon \psi)^*}$. As a result, attending to Proposition \ref{prop:cb_dual} it holds that 
-
-  \begin{align*}
-    \cbnorm{\phi \,\bar{\otimes} \, \psi} = \cbnorm{(\phi_* \,\widecheck{\otimes}_\varepsilon \psi_*)^*} = \cbnorm{\phi_* \,\widecheck{\otimes}_\varepsilon \psi_*} \leq \cbnorm{(\phi \,\widecheck{\otimes}_\varepsilon \psi)^*} = \cbnorm{\phi \,\widecheck{\otimes}_\varepsilon \psi}
-  \end{align*}
+  p.115 da tese Abraham Anton Westerbaan -> Podemos inferir que $\norm{\phi \, \bar{\otimes} \, \psi} =  \norm{f} \cdot \norm{g} $?
+  
+  Em caso positivo -> a proposição segue de \ref{prop:cp_cb} (porque o tensor de 2 mapas cp é cp).
 
 \end{proof}
 
+
+
+\todo[inline]{Em ultimo caso podemos cingir-nos aos mapas unitais (trace preserving to lado dos trace class ops)}
+
+\begin{proposition} \label{prop:cb_unital_case}
+  Given  normal completely positive unital maps $\phi:B(\mathcal{H}_1) \to B(\mathcal{K}_1)  $, and $\psi:B(\mathcal{H}_2) \to B(\mathcal{K}_2)$, considering $ \phi \, \bar{\otimes} \, \psi: B(\mathcal{H}_1) \, \bar{\otimes} \, B(\mathcal{H}_2)  \to  B(\mathcal{K}_1) \, \bar{\otimes} \, B(\mathcal{K}_2)$, it holds that
+  \[
+  \cbnorm{\phi \,\bar{\otimes} \, \psi} \leq \cbnorm{\phi} \quad \text{ and } \quad \cbnorm{\phi \,\bar{\otimes} \, \psi} \leq \cbnorm{\psi} .
+\]
+
+\end{proposition}
+
+\begin{proof}
+  Given that the map $\phi \, \bar{\otimes} \, \psi$ is unital  it follows that it is contractive (all subunital maps are contractive), $\ie$, $\norm{\phi \, \bar{\otimes} \, \psi}$.
+  As a result, by Proposition \ref{prop:cp_cb} we have that $\cbnorm{\phi \, \bar{\otimes} \, \psi} \leq 1$.
+  On the other hand attending once more to Proposition \ref{prop:cp_cb}, and the fact that $\phi$ is unital it follows that $\cbnorm{\phi}=\norm{\phi (\id)}  = \norm{\id} = 1$, and $\cbnorm{\psi}=\norm{\psi} (\id) = \norm{\id} = 1$. Consequently the inequations in Proposition \ref{prop:cb_unital_case} hold.
+\end{proof}
+
+
+
+
+
 \todo[inline]{WstarCPSU -> is the category of bounded operators in a hilbert space (B(H)) and normal completely positive subunital maps.}
+
+\begin{comment}
 
 \begin{proposition}
   The category $\WstarCPSUop$ is $\catMet$-enriched and the bifunctor $\bar{\otimes} :  \WstarCPSUop \otimes \WstarCPSUop\to \WstarCPSUop$ is $\mathsf{Met}$-enriched as well.
@@ -2337,6 +2366,8 @@ defines a completely bounded map $L_1 \widecheck{\otimes}_\varepsilon L_2: \math
   Similarly to  \cite[ Proof of proposition 4.1]{dahlqvist2023syntactic}, in order to prove that $\WstarCPSUop$ is $\catMet$-enriched, it suffices to establish that for normal completely positive subunital maps $\phi: B(\mathcal{H_1}) \rightarrow B(\mathcal{H_2})$  and $\psi: B(\mathcal{K_1}) \rightarrow B(\mathcal{K_2})$, $\cbnorm{\phi \cdot \psi} \leq \phi$ and  $\cbnorm{\phi \cdot \psi} \leq \psi$. This follows directly from Lemma \ref{lem:cb_comp_submult} and the fact that all subunital maps are contractive.
 Next, regarding $\bar{\otimes}$, the inequations $\cbnorm{\phi \, \bar{\otimes} \id}  \leq \cbnorm{\phi}$ and  $ \cbnorm{\id \, \bar{\otimes}  \phi} \leq \cbnorm{\phi}$ are  sufficient conditions to prove the second part of the proposition. There inequations follow form Propositions \ref{prop:eqs_id_cb} and \ref{prop:dirsum_cb}.
 \end{proof}
+
+\end{comment}
 
 
 
