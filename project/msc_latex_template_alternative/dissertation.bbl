@@ -155,53 +155,6 @@ P~Nick Benton.
 \newblock In {\em International Workshop on Computer Science Logic}, pages
   121--135. Springer, 1994.
 
-\bibitem{barendregt1984lambda}
-Hendrik~P Barendregt et~al.
-\newblock {\em The lambda calculus}, volume~3.
-\newblock North-Holland Amsterdam, 1984.
-
-\bibitem{bernays1936alonzo}
-Paul Bernays.
-\newblock Alonzo church. an unsolvable problem of elementary number theory.
-  american journal of mathematics, vol. 58 (1936), pp. 345--363.
-\newblock {\em The Journal of Symbolic Logic}, 1(2):73--74, 1936.
-
-\bibitem{backus1960report}
-John~W Backus, Friedrich~L Bauer, Julien Green, Charles Katz, John McCarthy,
-  Alan~J Perlis, Heinz Rutishauser, Klaus Samelson, Bernard Vauquois,
-  Joseph~Henry Wegstein, et~al.
-\newblock Report on the algorithmic language algol 60.
-\newblock {\em Communications of the ACM}, 3(5):299--311, 1960.
-
-\bibitem{shulman2019practical}
-Michael Shulman.
-\newblock A practical type theory for symmetric monoidal categories.
-\newblock {\em Theory and Applications of Categories}, 37(5):863--907, 2021.
-
-\bibitem{mardare2016quantitative}
-Radu Mardare, Prakash Panangaden, and Gordon Plotkin.
-\newblock Quantitative algebraic reasoning.
-\newblock In {\em Proceedings of the 31st Annual ACM/IEEE Symposium on Logic in
-  Computer Science}, pages 700--709, 2016.
-
-\bibitem{mardare2017axiomatizability}
-Radu Mardare, Prakash Panangaden, and Gordon Plotkin.
-\newblock On the axiomatizability of quantitative algebras.
-\newblock In {\em 2017 32nd Annual ACM/IEEE Symposium on Logic in Computer
-  Science (LICS)}, pages 1--12. IEEE, 2017.
-
-\bibitem{selinger2006lambda}
-Peter Selinger and Beno{\^\i}t Valiron.
-\newblock A lambda calculus for quantum computation with classical control.
-\newblock {\em Mathematical Structures in Computer Science}, 16(3):527--552,
-  2006.
-
-\bibitem{selinger2009quantum}
-Peter Selinger, Beno{\i}t Valiron, et~al.
-\newblock Quantum lambda calculus.
-\newblock {\em Semantic techniques in quantum computation}, pages 135--172,
-  2009.
-
 \bibitem{nielsen2010quantum}
 Michael~A Nielsen and Isaac~L Chuang.
 \newblock {\em Quantum computation and quantum information}.
@@ -269,6 +222,53 @@ William~K Wootters and Wojciech~H Zurek.
 \newblock A single quantum cannot be cloned.
 \newblock {\em Nature}, 299(5886):802--803, 1982.
 
+\bibitem{barendregt1984lambda}
+Hendrik~P Barendregt et~al.
+\newblock {\em The lambda calculus}, volume~3.
+\newblock North-Holland Amsterdam, 1984.
+
+\bibitem{bernays1936alonzo}
+Paul Bernays.
+\newblock Alonzo church. an unsolvable problem of elementary number theory.
+  american journal of mathematics, vol. 58 (1936), pp. 345--363.
+\newblock {\em The Journal of Symbolic Logic}, 1(2):73--74, 1936.
+
+\bibitem{backus1960report}
+John~W Backus, Friedrich~L Bauer, Julien Green, Charles Katz, John McCarthy,
+  Alan~J Perlis, Heinz Rutishauser, Klaus Samelson, Bernard Vauquois,
+  Joseph~Henry Wegstein, et~al.
+\newblock Report on the algorithmic language algol 60.
+\newblock {\em Communications of the ACM}, 3(5):299--311, 1960.
+
+\bibitem{shulman2019practical}
+Michael Shulman.
+\newblock A practical type theory for symmetric monoidal categories.
+\newblock {\em Theory and Applications of Categories}, 37(5):863--907, 2021.
+
+\bibitem{mardare2016quantitative}
+Radu Mardare, Prakash Panangaden, and Gordon Plotkin.
+\newblock Quantitative algebraic reasoning.
+\newblock In {\em Proceedings of the 31st Annual ACM/IEEE Symposium on Logic in
+  Computer Science}, pages 700--709, 2016.
+
+\bibitem{mardare2017axiomatizability}
+Radu Mardare, Prakash Panangaden, and Gordon Plotkin.
+\newblock On the axiomatizability of quantitative algebras.
+\newblock In {\em 2017 32nd Annual ACM/IEEE Symposium on Logic in Computer
+  Science (LICS)}, pages 1--12. IEEE, 2017.
+
+\bibitem{selinger2006lambda}
+Peter Selinger and Beno{\^\i}t Valiron.
+\newblock A lambda calculus for quantum computation with classical control.
+\newblock {\em Mathematical Structures in Computer Science}, 16(3):527--552,
+  2006.
+
+\bibitem{selinger2009quantum}
+Peter Selinger, Beno{\i}t Valiron, et~al.
+\newblock Quantum lambda calculus.
+\newblock {\em Semantic techniques in quantum computation}, pages 135--172,
+  2009.
+
 \bibitem{deutsch1985quantum}
 David Deutsch.
 \newblock Quantum theory, the church--turing principle and the universal
@@ -282,68 +282,5 @@ Swamit~S Tannu and Moinuddin~K Qureshi.
   state-dependent bias.
 \newblock In {\em Proceedings of the 52nd annual IEEE/ACM international
   symposium on microarchitecture}, pages 279--290, 2019.
-
-\bibitem{crole1993categories}
-Roy~L Crole.
-\newblock {\em Categories for types}.
-\newblock Cambridge University Press, 1993.
-
-\bibitem{selinger2013lecture}
-Peter Selinger.
-\newblock Lecture notes on the lambda calculus, 2013.
-
-\bibitem{selinger2004towards}
-Peter Selinger.
-\newblock Towards a quantum programming language.
-\newblock {\em Mathematical Structures in Computer Science}, 14(4):527--586,
-  2004.
-
-\bibitem{bennett1993teleporting}
-Charles~H Bennett, Gilles Brassard, Claude Cr{\'e}peau, Richard Jozsa, Asher
-  Peres, and William~K Wootters.
-\newblock Teleporting an unknown quantum state via dual classical and
-  einstein-podolsky-rosen channels.
-\newblock {\em Physical review letters}, 70(13):1895, 1993.
-
-\bibitem{briegel1998quantum}
-H-J Briegel, Wolfgang D{\"u}r, Juan~I Cirac, and Peter Zoller.
-\newblock Quantum repeaters: the role of imperfect local operations in quantum
-  communication.
-\newblock {\em Physical Review Letters}, 81(26):5932, 1998.
-
-\bibitem{gottesman1999demonstrating}
-Daniel Gottesman and Isaac~L Chuang.
-\newblock Demonstrating the viability of universal quantum computation using
-  teleportation and single-qubit operations.
-\newblock {\em Nature}, 402(6760):390--393, 1999.
-
-\bibitem{kimble2008quantum}
-H~Jeff Kimble.
-\newblock The quantum internet.
-\newblock {\em Nature}, 453(7198):1023--1030, 2008.
-
-\bibitem{schlosshauer2005decoherence}
-Maximilian Schlosshauer.
-\newblock Decoherence, the measurement problem, and interpretations of quantum
-  mechanics.
-\newblock {\em Reviews of Modern physics}, 76(4):1267, 2005.
-
-\bibitem{salles2008experimental}
-Alejo Salles, Fernando de~Melo, MP~Almeida, Malena Hor-Meyll, SP~Walborn,
-  PH~Souto Ribeiro, and Luiz Davidovich.
-\newblock Experimental investigation of the dynamics of entanglement: Sudden
-  death, complementarity, and continuous monitoring of the environment.
-\newblock {\em Physical Review A}, 78(2):022322, 2008.
-
-\bibitem{Wang_2011}
-Jing Wang, Li~Jiang, Han Zhang, Hanzhuang Zhang, and Liquan Zhang.
-\newblock Fidelity of structured amplitude-damping channels.
-\newblock {\em Physica Scripta}, 83(4):045008, mar 2011.
-
-\bibitem{dahlqvist2023complete}
-Fredrik Dahlqvist and Renato Neves.
-\newblock A complete v-equational system for graded lambda-calculus.
-\newblock {\em Electronic Notes in Theoretical Informatics and Computer
-  Science}, 3, 2023.
 
 \end{thebibliography}

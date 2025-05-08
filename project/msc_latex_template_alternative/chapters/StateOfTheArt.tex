@@ -1,582 +1,20 @@
-\chapter{Metric Lambda Calculus} \label{ch:metriclambda}
+\chapter{Preliminaries} \label{sec:Preliminaries}
 
-The Lambda Calculus, developed by Church and Curry in the 1930s, serves as a formal language capturing the key attribute of higher-order functional languages, treating functions as first-class citizens, allowing them to be passed as arguments \cite{barendregt1984lambda}.  Moreover, lambda calculus has been proven to be universal in the sense that any computable function can be represented as an expression within the language \cite{bernays1936alonzo} . Beyond its foundational aspects, this calculus incorporates extensions for modeling side effects, including probabilistic or non-deterministic behaviors and shared memory.  Higher-order functions form a pivotal abstraction in practical programming languages such as LISP, Scheme, ML, and Haskell.
 
+\todo[inline,size=\normalsize]{Mudar esta descrição} 
 
-This chapter introduces the metric lambda calculus as presented in \cite{dahlqvist2022syntactic}. The metric lambda calculus integrates notions of
-approximation into the equational system of affine lambda calculus, a variant of lambda calculus that restricts each variable to being used at most once. The metric lambda calculus incorporates a metric equational system, enabling reasoning about approximate program equivalence. This chapter offers a brief insight into lambda calculus and an overview of the syntax and metric equational system of the metric lambda calculus. For a more detailed study of lambda calculus theory, the reader is referred to \cite{barendregt1984lambda}.
 
-
-\section{The Lambda Calculus}
-
-The concept of a function takes a central role in the lambda calculus. But what exactly is a function?  In most mathematics, the “functions as graphs” paradigm the “functions as graphs” paradigm is the most elegant and appropriate framework for understanding functions. Within this paradigm, each function $f$ has a fixed domain $X$ and a fixed codomain $Y$. The function $f$ is then a subset of $X \times Y$ that satisfies the property that for each $x \in X$ there is a unique $y \in Y$ such that $(x,y) \in f$. Two functions $f$ and $g$ are equal if they yield the same output on each input, that is if $f(x) = g(x)$ for all $x \in X$. This perspective is known as the extensional view of functions, as it emphasizes that the only observable property of a function is how it maps inputs to outputs.
-
-On the other hand, the “functions as rules” paradigm is more appropriate within computer science. In this context, defining a function involves specifying a rule or procedure for computing the function. Such a rule is often expressed in the form of a formula, for example, \( f(x) = x^2 \). As with the mathematical paradigm, two functions are considered extensionally equal if they exhibit the same input-output behavior. However, this view also introduces the notion of intensional equality: two functions are intensionally equal if they are defined by (essentially) the same formula.
-
-
-In the lambda calculus, functions are described explicitly as formulae. The function $f:x \mapsto f(x)$ is represented as $\lambda x.f(x)$.  Applying a function to an argument is done by juxtaposing the two expressions. For instance consider the function $f:x \mapsto x+1$, to compute $f(2)$ one writes $(\lambda x.x+1)(2)$.
-
-The expression of higher‑order functions - functions whose inputs and/or outputs are themselves functions- in a simple manner is an essential feature of lambda calculus. For example, the composition operator $f,g \mapsto f \circ g$ is written as $\lambda f. \lambda g. \lambda x. f(g(x))$. Considering the functions $f:x \mapsto x^2$ and $g:x \mapsto x+1$, to compute $(f \circ g)(2)$ one writes $$(\lambda f. \lambda g. \lambda x. f(g(x)))(\lambda x.x^2)(\lambda x.x+1)(2).$$
-
-As mentioned above,  within  the “functions as rules” paradigm, is not
-always necessary to specify the domain and codomain of a function in advance. For instance, the identity function $f: x \mapsto x$, can have any set $X$ as its domain and codomain, provided that the domain and codomain are the same. In this case, one says that $f$ has type $X \rightarrow{} X$. In the case of the composition operator, $h=\lambda f. \lambda g. \lambda x. f(g(x))$, the domain and codomain of the functions $f$ and $g$ must match. Specifically, $f$ can have any set $X$ as its domain and any set  $Y$ as its codomain, provided that $Y$ is the domain of $g$. Similarly, $g$ can have any set $Z$ as its codomain.  Thus,  $h$ has type $$(X \rightarrow{} Y) \rightarrow{} (Y \rightarrow{} Z) \rightarrow{} (X \rightarrow{} Z).$$ 
-
-This flexibility regarding domains and codomains enables operations on functions that are not possible in ordinary mathematics. For instance, if $f = \lambda x.x$ is the identity function, then one has that $f(x) = x$ for any $x$. In particular, by substituting $f$ for $x$, one obtains $f(f) = (\lambda x.x)(f) = f$. Note that the equation $f(f) = f$ is not valid in conventional mathematics, as it is not permissible, due to set-theoretic constraints, for a function to belong to its own domain.
-
-Nevertheless, this remarkable aspect of lambda calculus, this work focuses on a more restricted version of the lambda calculus, known as the simply-typed lambda calculus. Here, each expression is always assigned a type, which is very similar to the situation in mathematics. A function may only be applied to an argument if the argument's type aligns with the function's expected domain. Consequently, terms such as $f(f)$ are not allowed, even if $f$ represents the identity function.
-
-
-
-
-%In order to be able to manipulate lambda-terms more easily, one can associate a type to each lambda-term
-
-
-\section{Syntax}
-
-The grammar and term formation rules of the affine lambda calculus, discussed in \cite{dahlqvist2022syntactic}, are presented in this subsection.
-
-\subsection{Type system}
-
-As previously mentioned, this work focuses on the simply-typed lambda calculus, this work focuses on the simply-typed lambda calculus, where each lambda term is assigned a \emph{type}. Unlike sets, types are \emph{syntactic} objects, meaning they can be discussed independently of their elements. One can conceptualize types as names or labels for set. The definition of the grammar of types for affine lambda calculus is as follows, where $G$ represents a set of ground types, is given by the following \acrfull{bnf} \cite{backus1960report}.
-\begin{equation} \label{eq:grammartypes}
-\centering
-\hspace{95pt} \mathbb{A} ::= X \in G \hspace{3 pt} \vert \hspace{3 pt} \mathbb{I}  \hspace{3 pt}  \vert \hspace{3 pt} \mathbb{A}  \otimes  \mathbb{A} \hspace{3 pt} \vert  \hspace{3 pt}  \mathbb{A} \multimap  \mathbb{A}
-\end{equation}
-Note that this is an inductive definition. Ground types are things such as booleans, integers, and so forth. The type $\mathbb{I}$ is the unit/empty type, which has only one element. The type $\mathbb{A} \otimes \mathbb{A}$ correponds to the tensor of two types, while the type $\mathbb{A} \multimap \mathbb{B}$ is the type of linear maps one type to another.
-
-\subsection{(Raw)Terms}
-
-
-The expressions of the lambda calculus are called lambda terms. In the simply-typed lambda calculus, each lambda term is assigned a type. The terms without the specification of a type are called \emph{raw typed lambda terms}. The grammar of \emph{raw typed lambda terms} is given by the \acrshort{bnf} below.
-\begin{equation*} \label{eq:grammarlambda}
-\begin{split}
- v,v_1, \ldots, v_n,w \hspace{10 pt} ::= \hspace{10 pt}& x \hspace{3 pt} \vert \hspace{3 pt} f(v_1, \ldots, v_n) \hspace{3 pt} \vert \hspace{3 pt} *  \hspace{3 pt} \vert \hspace{3 pt} (\lambda x: \mathbb{A}. v )\hspace{3 pt} \vert \hspace{3 pt} (v w) \hspace{3 pt}  \vert \hspace{3 pt} v \otimes w \hspace{3 pt} \vert
- \\&    \text{pm} \hspace{3 pt} v \hspace{3 pt} \text{to} \hspace{3 pt} x \otimes y. w  \hspace{3 pt}  \vert \hspace{3 pt} v \hspace{3 pt} \text{ to } *.w \hspace{3 pt} \vert \hspace{3 pt} \text{dis}(v)
-\end{split}
-\end{equation*}
-
-Here $x$ ranges over an infinite set of variables. $f \in \Sigma$, where  $\Sigma$ corresponds to a class of sorted operation symbols, and $f(v_1, \ldots, v_n)$ corresponds to the aplication of the function $f$ to the arguments $v_1, \ldots, v_n$. The symbol $*$ is the unit element of the type $\mathbb{I}$. The term $(\lambda x: \mathbb{A}. v )$ is the lambda abstraction term, which represents a function that takes an argument of type $\mathbb{A}$ and returns the value of $v$. The term $(v w)$ is the application term, which applies the function $v$ to the argument $w$.  The term $v \otimes w$ is the tensor product of $v$ and $w$. The term $\text{pm} \hspace{3 pt} v \hspace{3 pt} \text{to} \hspace{3 pt} x \otimes y. w$ is the pattern-matching construct, which is used to deconstruct a tensor product into components $x$ and $y$. The term $v \text{ to } *.w$ is used to discard a variable $v$ of the unit type. The term $\text{dis}(v)$ is the discard term, which is used to discard a term $v$. 
-
-\todo[inline,size=\normalsize]{Ver o que por antes do ::= porque v1,..., vn tb são termos } 
-
-\subsection{Free and Bound Variables}
-An occurrence of a variable $x$ within a term of the form $\lambda x.v$ is referred to as \emph{bound}.  Similarly, the variables $x$ and $y$ in the term $\text{pm} \hspace{3 pt} v \hspace{3 pt} \text{to} \hspace{3 pt} x \otimes y. w$ are also bound. A variable occurrence that is not bound is said to be \emph{free}. For example, in the term $\lambda x.xy$, the variable $y$ is free, whereas the variable $x$ is bound.  
-
-The set of free variables of a term $v$ is denoted by \gls{fv}, and is defined inductively as follows:
-\begin{equation*}
-\begin{split}
-FV(x) &= \{x\}, &  FV(*) &= \emptyset,  \\
-FV(f(v_1, \ldots, v_n)), &= FV(v_1) \cup \ldots \cup FV(v_n)& FV(\lambda x: \mathbb{A}. v) &= FV(v) \backslash \{x\}, \\
-FV(v w) &= FV(v) \cup FV(w), & FV(v \otimes w) &= FV(v) \cup FV(w), \\
-FV(\text{pm} \hspace{3 pt} v \hspace{3 pt} \text{to} \hspace{3 pt} x \otimes y. w), &= FV(v) \cup (FV(w)  \backslash \{x,y\}) & FV(\text{dis}(v)) &= FV(v),\\
-FV(v \text{ to } *.w) &= FV(v) \cup FV(w). \\
-\end{split}
-\end{equation*}
-
-
-\subsection{Term formation rules}
-
-To prevent the formation of nonsensical terms within the context of lambda calculus, such as $(v \otimes w) (u)$, the \emph{typing rules} are imposed.
-
-A \emph{typed} term is a pair consisting of a term and its corresponding type. The notation \gls{typed-term} denotes that the term $v$ has type $\mathbb{A}$. Typing rules are formulated using \emph{typing judgments}. A typing judgment is an expression of the form $x_{1}: \mathbb{A}_{1}, \ldots, x_{n}: \mathbb{A}_{n} \hspace{1pt} \triangleright \hspace{1pt} v: \mathbb{A}$ (where $n \geq 1$), which asserts that the term $v$ is a well-typed term of type $\mathbb{A}$ under the assumption that each variable variable $x_{i}$ has type $\mathbb{A}_{i}$, for $1 \leq i \leq n$. The list $x_{1}: \mathbb{A}_{1}, \ldots, x_{n}: \mathbb{A}_{n}$ of typed variables is called the \emph{typing context} of the judgment, and it might be empty.  Each variable $x_i$ (where $1 \leq i \leq n$) must occur at most once in $x_1, \ldots, x_n$. The typing contexts are denoted by Greek letters \gls{typingcontexts}, and from now on, when referring to an abstract judgment, the notation \gls{judgement} will be employed.
- The empty context is denoted by $-$. Note that in the affine lambda calculus, different contexts do not share variables. For example, if $\Gamma = x:\mathbb{A},y:\mathbb{B}$ none of these variables can appear in any other context. 
-
-
-The concept of \emph{shuffling} is employed to construct a linear typing system that ensures the admissibility of the exchange rule and enables unambiguous reference to judgment's denotation $[\![ \Gamma \triangleright v: \mathbb{A} ]\!]$. An admissible rule is not explicitly included in the formal definition of type theory, but its validity can be proven by demonstrating that whenever the premises can be derived, it is possible to construct a derivation of its conclusion. Shuffling is defined as a permutation of typed variables in a sequence of contexts, $\Gamma_1, \ldots, \Gamma_n$, preserving the relative order of variables within each $\Gamma_i$ \cite{shulman2019practical}. For instance, if $\Gamma_1=x:\mathbb{A}, y:\mathbb{B}$ and $\Gamma_2=z:\mathbb{D}$, then $z:\mathbb{D}, x:\mathbb{A}, y:\mathbb{B}$ is a valid shuffle of $\Gamma_1, \Gamma_2$. On the other hand, $y:\mathbb{B}, x:\mathbb{A}, z:\mathbb{D}$ is not a shuffle because it alters the occurrence order of $x$ and $y$ in $\Gamma_1$. The set of shuffles in $\Gamma_1, \ldots, \Gamma_n$ is denoted as $\text{Sf} (\Gamma_1, \ldots, \Gamma_n)$. A valid typing derivation is constructed using the inductive rules shown in \autoref{fig:typing_rules_linear}.
-%An admissible rule is not explicitly included in the formal definition of the type theory, but it can be proven valid using the fact that whenever one has derivations of its premises it is possible to construct a derivation of its conclusion.
-%an admissible rule is one that is not asserted as part of the specification of the type theory, but for which we can prove after the fact that whenever we have derivations of its premises we can construct a derivation of its conclusion — usually by inductively traversing and modifying the given derivations of its premises. 
-\begin{figure} [H]
-  \small{
-\begin{equation*}
-\begin{split}
-\begin{aligned}
-&
-\begin{minipage}[t]{0.3\textwidth}
-$\begin{array}{c}
-     \Gamma_{i} \triangleright v_{i}: \mathbb{A}_{i} \quad f: \mathbb{A}_{1}, \ldots, \mathbb{A}_{n} \xrightarrow{} \mathbb{A} \in \Sigma \quad E \in \text{Sf}(\Gamma_{1}; \ldots; \Gamma_{n})\\
-    \hline
-   E \triangleright f( v_{1},\ldots,v_{n}): \mathbb{A}
-\end{array}
-$
-\end{minipage}
-\hspace{148pt}
-\text{(ax)} 
- \hspace{40pt}
-\begin{minipage}[t]{0.3\textwidth}
-$\begin{array}{c}
-      \\
-    \hline
-   x:\mathbb{A} \triangleright x:\mathbb{A}
-\end{array}
-$ \end{minipage}
-\hspace{-68pt} \text{(hyp)} \\
-&
-\begin{minipage}[t]{0.3\textwidth}
-$\begin{array}{c}
-    \\
-    \hline
-   - \triangleright *: \mathbb{I}
-\end{array}
-$
-\end{minipage}
-\hspace{-87pt}
-\text{($\mathbb{I}_{i}$)} 
- \hspace{7pt}
-\begin{minipage}[t]{0.3\textwidth}
-$\begin{array}{c}
-     \Gamma \triangleright v: \mathbb{A} \otimes \mathbb{B} \quad  \Delta,x: \mathbb{A}, y: \mathbb{B}  \triangleright w: \mathbb{D}  \quad E \in \text{Sf}(\Gamma;\Delta)\\
-    \hline
-   E\triangleright \text{pm } v \text{ to } x \otimes y. w :\mathbb{D}
-\end{array}
-$ \end{minipage}
-\hspace{117pt} (\otimes_{e}) 
-\hspace{5pt}
-\begin{minipage}[t]{0.3\textwidth}
-$\begin{array}{c}
-     \Gamma \triangleright v: \mathbb{A}  \\
-    \hline
-   \Gamma \triangleright \text{dis}(v):  \mathbb{I} 
-\end{array}
-$
-\end{minipage}
-\hspace{-67pt} (\text{dis})\\
-&
-\begin{minipage}[t]{0.3\textwidth}
-$\begin{array}{c}
-     \Gamma \triangleright v: \mathbb{A} \quad  \Delta \triangleright w: \mathbb{B}  \quad E \in \text{Sf}(\Gamma;\Delta) \\
-    \hline
-   E \triangleright v \otimes w: \mathbb{A} \otimes \mathbb{B} 
-\end{array}
-$
-\end{minipage}
-\hspace{41pt} (\otimes_{i}) 
- \hspace{46pt}
- \begin{minipage}[t]{0.3\textwidth}
-$\begin{array}{c}
-     \Gamma \triangleright v: \mathbb{I} \quad  \Delta \triangleright w: \mathbb{A}  \quad E \in \text{Sf}(\Gamma;\Delta)  \\
-    \hline
-   E \triangleright v \text { to } *.w: \mathbb{A}  
-\end{array}
-$ \end{minipage}
-\hspace{38pt} (\mathbb{I}_{e}) \\
-&
-\begin{minipage}[t]{0.3\textwidth}
-$\begin{array}{c}
-     \Gamma,x:\mathbb{A} \triangleright v: \mathbb{B} \\
-    \hline
-   \Gamma \triangleright \lambda x:\mathbb{A} . v: \mathbb{A} \multimap \mathbb{B} 
-\end{array}
-$
-\end{minipage}
-\hspace{-27pt} (\multimap_{i}) 
- \hspace{76pt}
- \begin{minipage}[t]{0.3\textwidth}
-$\begin{array}{c}
-     \Gamma \triangleright v: \mathbb{A} \multimap \mathbb{B} \quad  \Delta \triangleright w: \mathbb{A}  \quad E \in \text{Sf}(\Gamma;\Delta)  \\
-    \hline
-   E \triangleright v w: \mathbb{B}  
-\end{array}
-$ \end{minipage}
-\hspace{67pt} (\multimap_{e}) 
-\end{aligned}
-\end{split}
-\end{equation*}
-  }
-\caption{Term formation rules of affine lambda calculus.}
-\label{fig:typing_rules_linear}
-\end{figure}
-The rule (ax) states that if there is a function $f \in \Sigma$ that has type $\mathbb{A}_1, \ldots, \mathbb{A}_n \rightarrow \mathbb{A}$ and a set of variables $v_1,\ldots, v_n$ whose types match the type of the arguments of $f$, then if that function is applied to $v_1,…,v_n$ the respective result is of type $\mathbb{A}$.
-The rule (hyp) is a tautology: under the assumption that $x$ has type $\mathbb{A}$, $x$ has type $\mathbb{A}$. 
-The rule ($\mathbb{I}_{i}$) asserts that the unit element $*$ always has type $\mathbb{I}$. 
-The rule ($\multimap_i$) expresses that if $v$ is a term of type $\mathbb{B}$ with a variable $x$ of type $\mathbb{A}$, then $\lambda x:\mathbb{A} . v$ is a function of type $\mathbb{A} \multimap \mathbb{B} $. 
-The rule $(\multimap_e)$ states that a function of type $\mathbb{A} \multimap \mathbb{B}$  can be applied to an argument of type $\mathbb{A}$  to produce a result of type $\mathbb{B}$. 
-The rule $(\mathbb{\otimes}_i)$  asserts that if there is a term $v$ of type $\mathbb{A}$ and a term $w$ of type $\mathbb{B}$,  then the tensor of these terms is of type $\mathbb{A} \otimes \mathbb{B}$.
-The rule $(\mathbb{\otimes}_e)$ expresses if there is a term $w$ of type $\mathbb{D}$ with variables $x$ and $y$ of types $\mathbb{A}$ and $\mathbb{B}$, respectively, and a term $v$ of type $\mathbb{A} \otimes \mathbb{B}$, then $v$ can be deconstructed into $x \otimes y$. 
-The rule $(\mathbb{I}_e)$ states that if there is a term $w$ of type $\mathbb{A}$ and a term $v$ of type $\mathbb{I}$, then $v$ can be discarded, and only the term $w$ remains. 
-Finally, the rule $(\text{dis})$ asserts that a term $v$ of type $\mathbb{A}$ can be discarded, resulting in a term of type $\mathbb{I}$.
-
-For a better understanding of the rules, a few straightforward programming examples are provided.  For instance, the program that swaps the elements of a tensor product can be written as follows:
-\begin{equation*}
-\begin{split}
-& x : \mathbb{A},  y : \mathbb{B} \triangleright \text{pm} \hspace{3 pt} x \otimes y\hspace{3 pt} \text{to} \hspace{3 pt} a \otimes b. \hspace{1pt} b \otimes a : \mathbb{B} \otimes \mathbb{A}
-\end{split}
-\end{equation*}
-Now, to prove that this program is well-typed one can write the following typing derivation:
-\begin{equation*}
-\begin{split}
-1 \hspace{10 pt} & x : \mathbb{A} \triangleright x : \mathbb{A}  \hspace{10 pt} & {(\text{hyp})} \\
-2 \hspace{10 pt} &  y : \mathbb{B} \triangleright   y : \mathbb{B} \hspace{10 pt} & {(\text{hyp})} \\
-3 \hspace{10 pt} & x : \mathbb{A},  y : \mathbb{B} \triangleright x \otimes y : \mathbb{A} \otimes \mathbb{B} \hspace{10pt} & \text{($1,2,\otimes_i$)} \\
-4 \hspace{10 pt} &  b : \mathbb{B} \triangleright   b : \mathbb{B} \hspace{10 pt}&{(\text{hyp})} \\
-5 \hspace{10 pt} &   a : \mathbb{A} \triangleright  a : \mathbb{A} \hspace{10 pt}&{(\text{hyp})} \\
-6 \hspace{10 pt} &   b : \mathbb{B},a : \mathbb{A} \triangleright b \otimes a : \mathbb{B} \otimes \mathbb{A} \hspace{10pt} &\text{($4,5,\otimes_i$)} \\
-7\hspace{10 pt}& x : \mathbb{A},  y : \mathbb{B} \triangleright \text{pm} \hspace{3 pt} x \otimes y\hspace{3 pt} \text{to} \hspace{3 pt} a \otimes b. \hspace{1pt} b \otimes a : \mathbb{B} \otimes \mathbb{A}& \hspace{10pt} \text{($3,6,\otimes_e$)}
-\end{split}
-\end{equation*}
-Observe that in the notation of the third column, the numbers correspond to the premises utilized in the application of the rule.
-
-Another example is the function that recieves a tensor product and returns first element and discards the second:
-\begin{equation*}
-\begin{split}
-& - \triangleright \lambda x: \mathbb{A \otimes B}. \text{pm} \hspace{3 pt} x \hspace{3 pt} \text{to} \hspace{3 pt} a \otimes b. \hspace{1 pt} \text{dis}(b) \hspace{3 pt} \text{ to } *.a: \mathbb{A}
-\end{split}
-\end{equation*}
-To prove that this program is well-typed one can write the following typing derivation:
-\begin{equation*}
-\begin{split}
-1  \hspace{10 pt} & b : \mathbb{B} \triangleright b : \mathbb{B}  \hspace{10 pt} & {(\text{hyp})} \\
-2 \hspace{10 pt} & b : \mathbb{B} \triangleright \text{dis}(b): \mathbb{I} \hspace{10 pt} & {(1,\text{dis})} \\
-3 \hspace{10 pt} & a : \mathbb{A} \triangleright a : \mathbb{A}  \hspace{10 pt} & {(\text{hyp})} \\
-4 \hspace{10 pt} &  a : \mathbb{A}, b : \mathbb{B}  \triangleright \text{dis}(b) \hspace{3 pt} \text{ to } *.a  & {(2,3,\mathbb{I}_{e})} \\
-5 \hspace{10 pt} & x : \mathbb{A \otimes B} \triangleright x : \mathbb{A \otimes B}  \hspace{10 pt} & {(\text{hyp})} \\
-6 \hspace{10 pt} & x : \mathbb{A \otimes B} \triangleright \text{pm} \hspace{3 pt} x \hspace{3 pt} \text{to} \hspace{3 pt} a \otimes b. \hspace{1 pt} \text{dis}(b) \hspace{3 pt} \text{ to } *.a : \mathbb{A} \hspace{10pt} & \text{($4,5,\otimes{I}_{e}$)} \\
-7 \hspace{10 pt} & - \triangleright \lambda x: \mathbb{A \otimes B}. \text{pm} \hspace{3 pt} x \hspace{3 pt} \text{to} \hspace{3 pt} a \otimes b. \hspace{1 pt} \text{dis}(b) \hspace{3 pt} \text{ to } *.a: \mathbb{A} \hspace{10pt} & \text{($6,\multimap_i$)}
-\end{split}
-\end{equation*}
-
-
-\todo[inline,size=\normalsize]{Also fala-se de Type inference algorithm? Tipo existe...}
-
-\subsection{$\alpha$-equivalence}
- 
-A natural notion of equivalence definition stems from the fact that terms that differ only in the names of their bound variables represent the same program. For instance, the functions $\lambda x:\mathbb{A}.x $ and $\lambda y:\mathbb{A}.y$ have the same input-output behavior, despite being represented by different lambda terms. This equivalence is called $\alpha$\emph{-equivalence}.
-
-\begin{definition}
-  The $\alpha$-equivalence is an equivalence relation on lambda terms that is used to rename bound variables. To rename a variable $x$ as $y$ in a term $v$, denoted by $v\{y/x\}$, is to replace all occurrences of $x$ in $v$ by $y$. Two terms $v$ and $w$ are $\alpha$-equivalent, written $=_{\alpha}$, if one can be derived from the other by a series of
-  changes of bound variables
-\end{definition}
-
-\begin{convention}
-  Terms are considered up to $\alpha$-equivalence from now on.
-\end{convention}
-
-\subsection{Substitution}
-The substitution of a variable $x$ for a term $w$ in a term $v$ is denoted by \gls{substitution}. It is only  permitted  to replace free variables. For instance, $\lambda x. \hspace{1pt} x  \hspace{2pt} [v/x]$ is $\lambda x. \hspace{1pt} x  \hspace{2pt}$ and not  $\lambda x. \hspace{1pt} v  \hspace{2pt}$. Moreover, it is necessary to avoid the unintended binding of free variables. For example, $$(\text{pm} \hspace{3 pt} x \otimes y\hspace{3 pt} \text{to} \hspace{3 pt} a \otimes b. \hspace{1pt} b \otimes a \otimes z) \hspace{2 pt}  [z/\text{pm} \hspace{3 pt} c \otimes d\hspace{3 pt} \text{to} \hspace{3 pt} e \otimes f. \hspace{1pt} f \otimes e \otimes a]$$ is not the same as $$\text{pm} \hspace{3 pt} x \otimes y\hspace{3 pt} \text{to} \hspace{3 pt} a \otimes b. \hspace{1pt} b \otimes a \otimes (\text{pm} \hspace{3 pt} c \otimes d\hspace{3 pt} \text{to} \hspace{3 pt} e \otimes f. \hspace{1pt} f \otimes e \otimes a ). $$ Instead, the bounded variable $a$ must be renamed before the substitution, and in this case, the proper substitution is $$(\text{pm} \hspace{3 pt} x \otimes y\hspace{3 pt} \text{to} \hspace{3 pt} t \otimes b. \hspace{1pt} b \otimes t \otimes z) \hspace{2 pt}  [z/\text{pm} \hspace{3 pt} c \otimes d\hspace{3 pt} \text{to} \hspace{3 pt} e \otimes f. \hspace{1pt} f \otimes e \otimes a]$$ which is equal to $$\text{pm} \hspace{3 pt} x \otimes y\hspace{3 pt} \text{to} \hspace{3 pt} t \otimes b. \hspace{1pt} b \otimes t \otimes (\text{pm} \hspace{3 pt} c \otimes d\hspace{3 pt} \text{to} \hspace{3 pt} e \otimes f. \hspace{1pt} f \otimes e \otimes a) .$$
-
-Note that a simple way of ensuring these restrictions are satisfied is not allowing the variable $x$ to occur in the context of $w$ in $v[w/x]$. Since $x$ is in the context of $v$, this is always the case in the affine lambda calculus.
-
-\begin{definition}
-Given the typings judgments $\Gamma, x: \mathbb{A} \triangleright v:\mathbb{B}$ and $\Delta \triangleright w: \mathbb{A}$, the substitution $\Gamma, \Delta \triangleright v[w/x]:\mathbb{B}$ is defined below. The types of judgments are omitted as no ambiguity arises.
-\begin{align*}
-  \hspace{-23pt}\Gamma,  \Delta \triangleright y[w/x] &=  \Gamma, \Delta \triangleright y, \\
-  \hspace{-23pt}  \Delta \triangleright *[w/x] &=   \Delta \triangleright * ,\\
-  \hspace{-23pt} \Gamma,  \Delta \triangleright (\lambda y: \mathbb{B}. v)[w/x] &= \Gamma,  \Delta \triangleright  \lambda y: \mathbb{B}. v[w/x],  \\
-  \hspace{-23pt}(\text{dis}(v))[w/x] &= \text{dis}(v[w/x]),\\
-  \hspace{-23pt}\text{In the next three cases, } \Gamma,x: \mathbb{A} \in & \text{Sf}(\Gamma_1,\ldots,\Gamma_i,\ldots,\Gamma_n) \text{ and } \Gamma_{i}  \triangleright v_{i}\\
-  \hspace{-23pt} \Gamma, \Delta  \triangleright(f(v_1, \ldots, v_n))[w/x] &= \Gamma, \Delta  \triangleright f(v_1[w/x], \ldots, v_n),& (\text{ if } x: \mathbb{A} \in \Gamma_1)  \\
-  \hspace{-23pt} \Gamma, \Delta  \triangleright(f(v_1, \ldots,v_i,\ldots, v_n))[w/x] &= \Gamma, \Delta  \triangleright f(v_1, \ldots,v_i[w/x],\ldots, v_n),& (\text{ if } x: \mathbb{A} \in T_i)  \\
-  \hspace{-23pt}\Gamma, \Delta  \triangleright(f(v_1, \ldots, v_n))[w/x] &= \Gamma, \Delta  \triangleright f(v_1, \ldots, v_n[w/x]),& (\text{ if } x: \mathbb{A} \in \Gamma_n)  \\
-  \hspace{-23pt}\text{In the next two cases, }\Gamma,x: \mathbb{A} & \in \text{Sf}(\Gamma_1,\Gamma_2), \Gamma_1 \triangleright v \text{, and } \Gamma_2 \triangleright u  \\
-  \hspace{-23pt}\Gamma, \Delta  \triangleright (v \hspace{1pt}  u)[w/x] &= \Gamma, \Delta  \triangleright (v[w/x] \hspace{1pt} u), & (\text{ if } x: \mathbb{A} \in \Gamma_1)\\
-  \hspace{-23pt}\Gamma, \Delta  \triangleright (v \hspace{1pt}  u)[w/x] &= \Gamma, \Delta  \triangleright (v \hspace{1pt} u[w/x]), & (\text{ if } x: \mathbb{A} \in \Gamma_2)\\
-  \hspace{-23pt}\text{In the next two cases, }\Gamma,x: \mathbb{A} & \in \text{Sf}(\Gamma_1,\Gamma_2), \Gamma_1 \triangleright v \text{, and } \Gamma_2 \triangleright u  \\
-  \hspace{-23pt}\Gamma, \Delta  \triangleright (v \otimes u)[w/x] &= \Gamma, \Delta  \triangleright v[w/x] \otimes u, & (\text{ if } x: \mathbb{A} \in \Gamma_1)\\ 
-  \hspace{-23pt}\Gamma, \Delta  \triangleright (v \otimes u)[w/x] &= \Gamma, \Delta  \triangleright v \otimes u[w/x], & (\text{ if } x: \mathbb{A} \in \Gamma_2)\\
-  \hspace{-23pt}\text{In the next two cases, }\Gamma,x: \mathbb{A}  \in \text{Sf}(&\Gamma_1,\Gamma_2), \Gamma_1 \triangleright v \text{, and } \Gamma_2, y: \mathbb{D}, z:\mathbb{E} \triangleright u  \\
-  \hspace{-23pt} \Gamma, \Delta  \triangleright (\text{pm} \hspace{3 pt} v \hspace{3 pt} \text{to} \hspace{3 pt} y \otimes z. u)[w/x] &= \Gamma, \Delta  \triangleright \text{pm} \hspace{3 pt} v[w/x] \hspace{3 pt} \text{to} \hspace{3 pt} y \otimes z. u,  &  (\text{ if } x: \mathbb{A} \in \Gamma_1) \\
-  \hspace{-23pt} \Gamma, \Delta  \triangleright (\text{pm} \hspace{3 pt} v \hspace{3 pt} \text{to} \hspace{3 pt} y \otimes z. u)[w/x] &= \Gamma, \Delta  \triangleright \text{pm} \hspace{3 pt} v \hspace{3 pt} \text{to} \hspace{3 pt} y \otimes z. u[w/x],  &  (\text{ if } x: \mathbb{A} \in \Gamma_2) \\
-  \hspace{-23pt}\text{In the next two cases, }\Gamma,x: \mathbb{A} &  \in \text{Sf}(\Gamma_1,\Gamma_2), \Gamma_1 \triangleright v \text{, and } \Gamma_2 \triangleright u  \\
-  \hspace{-23pt}\Gamma, \Delta  \triangleright(v \hspace{3 pt} \text{to} \hspace{3 pt} *.u)[w/x] &= \Gamma, \Delta  \triangleright v[w/x] \hspace{3 pt} \text{to} \hspace{3 pt} *.u&  (\text{ if } x: \mathbb{A} \in \Gamma_1),\\
-  \hspace{-23pt}\Gamma, \Delta  \triangleright(v \hspace{3 pt} \text{to} \hspace{3 pt} *.u)[w/x] &= \Gamma, \Delta  \triangleright v \hspace{3 pt} \text{to} \hspace{3 pt} *.u[w/x] &  (\text{ if } x: \mathbb{A} \in \Gamma_2).\\
-\end{align*}
-\end{definition}
-
-The sequential substitutions $M[M_i/x_i] \ldots [M_n/x_n]$ are writen as $M[M_i/x_i, \ldots ,M_n/x_n]$.
-
-
-\subsection{Properties}
-
-
-The calculus defined in \autoref{fig:typing_rules_linear} possesses several desirable properties, which are listed below. Before proceeding, it is necessary to introduce some auxiliary notation. Given a context $\Gamma$, $te(\Gamma)$ denotes context $\Gamma$ with all types erased. The expression $\Gamma \simeq_{\pi} \Gamma'$ denotes that the contexts $\Gamma$ is a permutation of context $\Gamma'$.This notation also applies to non-repetitive lists of untyped variables $te(\Gamma)$. Additionally, a judgment $\Gamma \triangleright v: \mathbb{A}$ will often be abbreviated into $\Gamma \triangleright v $ or even just $v$ when no ambiguities arise.
-
-The properties are as follows:
- \begin{enumerate}
-   \item for all judgements $\Gamma \triangleright v$ and $\Gamma' \triangleright v$, te($\Gamma$) $\simeq_{\pi}$  te($\Gamma'$); 
-   \item additionally if $\Gamma \triangleright v: \mathbb{A}, \Gamma'\triangleright v: \mathbb{A}'$, and $\Gamma \simeq_{\pi} \Gamma' $, then $\mathbb{A}$ must be equal to $\mathbb{A}'$;
-   \item all judgements $\Gamma \triangleright v:\mathbb{A}$ have a unique derivation.
-   \item (exchange) For every judgement $\Gamma,x:\mathbb{A}, y:\mathbb{B}, \Delta \triangleright v: \mathbb{D}$ it is possible to derive $\Gamma, y:\mathbb{B}, x:\mathbb{A}, \Delta \triangleright v: \mathbb{D}$. 
-   \item (substitution) For all judgements  $\Gamma,x:\mathbb{A} \triangleright v: \mathbb{B}$ and $\Delta \triangleright w: \mathbb{A}$ it is possible to derive $ \Gamma, \Delta \triangleright v[w/x]: \mathbb{B}$.
- \end{enumerate}
- 
-
-
-\subsection{Equations-in-context}
-The simply typed lambda calculus is a formal language that captures operations like the application of a function to an argument and the elimination of variables. To express these operations there is a set of rules known as reduction rules. These rules fall into two primary categories: the $\beta$\emph{-reductions}, which perform operations and enforce the implicit meaning of the term, and $\eta$\emph{-reductions}, which simplify terms by exploiting the extensionality of functions. 
-There is also a secondary class of reductions known as \emph{commuting conversions}, which serve to disambiguate terms that, while equivalent, have different representations.
-As a result, affine $\lambda$-calculus comes equipped with the so-called equations-in-context \gls{equation-in-context}, depicted in \autoref{fig:equations-linear-lambda}.
-\begin{figure}[H]
-  \centering
-  \begin{tabular}{ |ccccc| }
-    \hline
-$(\beta)$ &  $\Gamma, \Delta \triangleright (\lambda x : \mathbb{A}.$ $v) \hspace{1pt}  w = v[w/x]: \mathbb{B} $ & &$(\eta)$ &  $\Gamma  \triangleright \lambda x : \mathbb{A} .(v \hspace{1pt} x) = v: \mathbb{A} \multimap \mathbb{B} $ \\
-$(\beta_{\mathbb{I}_{e}})$ &   $ \Gamma \triangleright * \text { to } *.$ $v = v:\mathbb{A}$ && $(\eta_{\mathbb{I}_{e}})$ & $ \Delta, \Gamma \triangleright v$ to $*$ . $w[* / z] = w[v / z]: \mathbb{A}$  \\
-$(\beta_{\otimes_{e}})$   &\multicolumn{4}{c|}{$ \hspace{-10pt}  E, \Gamma, \Delta \hspace{1pt}\triangleright \text{pm } v \otimes w$ to $x \otimes y.$ $u = u[v/x,w/y]:\mathbb{A}$ }\\
-$(\eta_{\otimes_{e}})$   &\multicolumn{4}{c|}{$\Delta , \Gamma\hspace{1pt}\triangleright \text{pm } v$ to $x \otimes y.$ $u[x \otimes y/z] = u[v/z] :\mathbb{A} $}\\
- $(c_{\mathbb{I}_{e}})$  &\multicolumn{4}{c|}{ $\Delta,\Gamma, E \triangleright u[v \text{ to } \ast . w/z] = v \text{ to } \ast . u[w/z]:\mathbb{A}$ }\\
-$(c_{\otimes_{e}})$ & \multicolumn{4}{c|}{ $\Delta,\Gamma, E  \triangleright u[$pm $v$ to $x \otimes y.$ $w/z] =$ pm $v$ to $x \otimes y.$ $u[w/z]: \mathbb{A} $ }\\
-$(\eta_{\text{dis}})$ & \multicolumn{4}{c|}{ $x_1:\mathbb{A}_1, \ldots,x_n:\mathbb{A}_n\triangleright v = \text{dis}(x_1) \text{ to } \ast.$ $\ldots$ $\text{dis}(x_{n-1}) \text{ to } \ast \text{ dis}(x_{n}): \mathbb{ I}$ }\\
-\hline
-  \end{tabular}
-\caption{Equations-in-context for affine lambda calculus}
-\label{fig:equations-linear-lambda}
-\end{figure}
-
-It is evident that, for example, equation $(\beta)$ enforces the meaning of  $(\lambda x : \mathbb{A}.$ $v) \hspace{1pt} w $, which is interpreted as ``$v$ with $w$ in place of $x$". The equation $(\eta)$, on the other hand, is a simplification rule that states that a function that applies another function $v$ to an argument $x$ can be simplified to the function $v$ itself. The remaining $\beta$ e $\eta$ equations follow similar reasoning. The commuting conversion $(c_{\mathbb{I}_{e}})$ expresses that substituting a variable $z$ by a term that maps a term $v$ to the unit element $*$ in a term $w$ is equivalent to mapping a term $v$ to the unit element $*$ and then replacing $z$ by $w$. The other commuting conversion has a similar interpretation.
-%\begin{figure}[H]
-  %\centering
-  %\begin{tabular}{ |c|c| }
-      %\hline 
-      %Monoidal structure & Higher-order structure \\
-      %\hline
-      %pm $v \otimes w$ to $x \otimes y.$ $u = u[v/x,w/y]$& \\
-      %pm $v$ to $x \otimes y.$ $u[x \otimes y/z] = u[v/z]$ & $(\lambda x : A.$ $v) w = v[w/x]$\\
-      %$* \text { to } *.$ $v = v$ & $\lambda x : A.(v x) = v$ \\
-      %$v$ to $*$ . $w[* / z] = w[v / z]$ & \\
-      %\hline
-      %\multicolumn{2}{|c|}{Commuting conversions} \\
-      %\hline
-      %\multicolumn{2}{|c|}{$u[v \text{ to } \ast . w/z] = v \text{ to } \ast . u[w/z]$}  \\
-      %\multicolumn{2}{|c|}{$u[$pm $v$ to $x \otimes y.$ $w/z] =$ pm $v$ to $x \otimes y.$ $u[w/z]$} \\
-      %\hline
-      %\multicolumn{2}{|c|}{Discard} \\
-      %\hline
-      %\multicolumn{2}{|c|}{$v: \mathbb{I} = \text{dis}(x_1) \text{ to } \ast.$ $\ldots$ $\text{dis}(x_{n-1}) \text{ to } \ast \text{ dis}(x_{n})$} \\
-      %\hline
-  %\end{tabular}
-  %\caption{Equations-in-context for affine lambda calculus}
-  %\label{fig:equations-linear-lambda}
-%\end{figure}
-
-
-
-
-\section{Metric equational system}
-\todo[inline,size=\normalsize]{Mete-se contexto e tipo nas eqs métricas? } 
-
-\emph{Metric equations} \cite{mardare2016quantitative}, \cite{mardare2017axiomatizability} are a strong candidate for reasoning about approximate program equivalence. These equations take the form of \gls{metric-equation}, where  $\epsilon$ is a non-negative rational representing the ``maximum distance" between the two terms $t$ and $s$. The metric equational system for linear lambda calculus is depicted in \autoref{fig:metric deductive system}.
-
-\begin{figure} [H]
-\begin{equation*}
-\begin{split}
-\begin{aligned}
-&
-\begin{minipage}[t]{0.3\textwidth}
-$\begin{array}{c}
-     \\
-    \hline
-   v=_{0}v
-\end{array}
-$
-\end{minipage}
-\hspace{-90pt}
-\text{(refl)} 
- \hspace{55pt}
-\begin{minipage}[t]{0.3\textwidth}
-$\begin{array}{c}
-    v=_{q}w \quad w=_{r}u  \\
-    \hline
-   v=_{q + r} u
-\end{array}
-$ \end{minipage}
-\hspace{-40pt} \text{(trans)} 
-\hspace{55pt}
-\begin{minipage}[t]{0.3\textwidth}
-$\begin{array}{c}
-    v=_{q}w \quad r\geq q  \\
-    \hline
-   v=_{r} w
-\end{array}
-$ \end{minipage}
-\hspace{-50pt} \text{(weak)} \\
-&
-\begin{minipage}[t]{0.3\textwidth}
-$\begin{array}{c}
-    \forall r > q . \hspace{4pt} v=_{r} w \\
-    \hline
-   v=_{q}w
-\end{array}
-$
-\end{minipage}
-\hspace{-45pt}
-\text{(arch)} 
- \hspace{50pt}
-\begin{minipage}[t]{0.3\textwidth}
-$\begin{array}{c}
-    \forall i \leq n. \hspace{4pt} v=_{q_i} w\\
-    \hline
-   v=_{\wedge q_i} w
-\end{array}
-$ \end{minipage}
-\hspace{-40pt} \text{(join)} 
-\hspace{58pt}
-\begin{minipage}[t]{0.3\textwidth}
-$\begin{array}{c}
-    v=_{q} w \\
-    \hline
-   w =_{q } v
-\end{array}
-$ \end{minipage}
-\hspace{-88pt}\text{(sym)}   \\
-&
-\begin{minipage}[t]{0.3\textwidth}
-  $\begin{array}{c}
-      v=_{q} w \quad v'=_{r} w' \\
-      \hline
-     v \otimes v' =_{q + r} w \otimes w'
-  \end{array}
-  $ \end{minipage}
-  \hspace{-14pt}
-\begin{minipage}[t]{0.3\textwidth}
-$\begin{array}{c}
-   \forall i \leq n. \hspace{4pt} v_{i}=_{q_i} w_{i}\\
-    \hline
-   f(v_{1},...,v_{n})=_{\Sigma q_i} f(w_{1},...,,w_{n}) 
-\end{array}
-$
-\end{minipage}
- \hspace{47pt}
-\begin{minipage}[t]{0.3\textwidth}
-$\begin{array}{c}
-    v=_{q} w  \\
-    \hline
-  \lambda x : \mathbb{A}. \hspace{4pt} v=_{q} \lambda x:\mathbb{A}. \hspace{4pt} w
-\end{array}
-$ \end{minipage}
-\hspace{20pt}  \\
-&
-\begin{minipage}[t]{0.3\textwidth}
-$\begin{array}{c}
-    v=_{q} w \quad  v'=_{r} w'  \\
-    \hline
-   \text{pm} \hspace{4pt} v \hspace{4pt} \text{to} \hspace{4pt} x \otimes y. \hspace{4pt} v'=_{q + r}\text{pm} \hspace{4pt} w \hspace{4pt} \text{to} \hspace{4pt} x \otimes y .  \hspace{4pt} w'
-\end{array}
-$
-\end{minipage}
-\hspace{95pt}
-\begin{minipage}[t]{0.3\textwidth}
-$\begin{array}{c}
-    v =_{q} w    \\
-    \hline
-  \text{dis}(v) =_{q} \text{dis}(w)
-\end{array}
-$ \end{minipage}
-\hspace{-35pt}
-\begin{minipage}[t]{0.3\textwidth}
-  $\begin{array}{c}
-      v=_{q} w \quad v'=_{r} w' \\
-      \hline
-     v \hspace{1pt} v' =_{q + r} w \hspace{1pt}  w'
-  \end{array}
-  $ \end{minipage}
- \\
- &
-\begin{minipage}[t]{0.3\textwidth}
-$\begin{array}{c}
-  \Gamma \triangleright v =_{q} w: \mathbb{A} \quad \Delta \in \text{perm}(\Gamma)\\
-    \hline
-   \Delta \triangleright v =_{q} w: \mathbb{A}
-\end{array}
-$
-\end{minipage}
-\hspace{36pt}
-\begin{minipage}[t]{0.3\textwidth}
-  $\begin{array}{c}
-     v=_{q}w  \quad v'=_{r}w'\\
-      \hline
-      v \text { to } *.v' =_{q+r} w \text { to } *.w'
-  \end{array}
-  $ \end{minipage}
-  \hspace{14pt}
-\begin{minipage}[t]{0.3\textwidth}
-$\begin{array}{c}
-    v =_{q} w \quad v'=_{r} w'    \\
-    \hline
-  v[v'/x]=_{q + r} w[w'/x]
-\end{array}
-$ \end{minipage}
-\hspace{10pt}
-\end{aligned}
-\end{split}
-\end{equation*}
-\caption{Metric equational system}
-\label{fig:metric deductive system}
-\end{figure}
-
-Here, $\text{perm} (\Gamma)$ denotes the set of possible permutions of context $\Gamma$. The rules (refl), (trans), and (sym)  generalize the properties of reflexivity, transitivity, and symmetry of equality.  Rule (weak) asserts that if two terms are at a maximum distance $q$ from each other, then they are also separated by any $r \geq q$. Rule (arch) states that if $v =_r w$ for all approximations $r$ of $q$, then it necessarily follows that $v =_q w$. The rule  (join) expresses that if several maximum distances between two terms are known, the actual maximum distance between them is the minimum of these distances. The rule that follows conveys that if the maximum distance between two terms $v$ and $w$ is $q$, and the maximum distance between terms $v'$ and $w'$ is $r$, then the maximum distance between the tensor products $v \otimes v'$ and $w \otimes w'$ is $q + r$. The remaining rules follow similar reasoning.
-
-% dizer o que é perm
-
-To ilustrate the usefulness of these equations, consider the program $P$ that recieves a tensor product, swaps its elements and then applies a function $f$ to to the new second element of the tensor  pair:
-\begin{equation*}
-\begin{split}
-& P = x : \mathbb{A},  y : \mathbb{B} \triangleright \text{pm} \hspace{3 pt} x \otimes y\hspace{3 pt} \text{to} \hspace{3 pt} a \otimes b. \hspace{1pt} b \otimes f(a) : \mathbb{D} \otimes \mathbb{A} &
-\end{split}
-\end{equation*}
-Now, consider the case where $f$ is an idealized version of function $f^{\epsilon}$ mapping $a$ to $f(a)^{\epsilon}$. The program that applies the ``real'' function $f$ to the first element of the tensor pair is $P^{\epsilon}$:
-\begin{equation*}
-  \begin{split}
-  & P^{\epsilon} = x : \mathbb{A},  y : \mathbb{B} \triangleright \text{pm} \hspace{3 pt} x \otimes y\hspace{3 pt} \text{to} \hspace{3 pt} a \otimes b. \hspace{1pt} b \otimes f(a)^{\epsilon}  : \mathbb{D} \otimes \mathbb{A} &
-  \end{split}
-  \end{equation*}
-Knowing that $f(a)^{\epsilon} =_{\epsilon} f(a)$, it is possible to show that $P^{\epsilon} =_{\epsilon} P $ using the metric equational system. The prove is as follows. The types and contexts are omitted for brevity as no ambiguity arises.
-\begin{equation*}
-  \begin{split}
-  1 \hspace{10 pt} & f(a)^{\epsilon} =_{\epsilon} f(a) \\
-  2 \hspace{10 pt} &  b =_{0} b & {(\text{refl})} \\
-  3 \hspace{10 pt} & b \otimes f(a)^{\epsilon}  =_{\epsilon} b \otimes f(a)  & \text{($1,2,\otimes_i$)} \\
-  4 \hspace{10 pt} &   x \otimes y =_{0}  x \otimes y  &{(\text{refl})}  \\
-  5\hspace{10 pt}& \text{pm} \hspace{3 pt} x \otimes y\hspace{3 pt} \text{to} \hspace{3 pt} a \otimes b. \hspace{1pt} b \otimes f(a)^{\epsilon} =_{\epsilon} \text{pm} \hspace{3 pt} x \otimes y\hspace{3 pt} \text{to} \hspace{3 pt} a \otimes b. \hspace{1pt} b \otimes f(a) & \hspace{10pt} \text{($3,4,\otimes_e$)}
-  \end{split}
-  \end{equation*}
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-\chapter{Quantum Meets Lambda Calculus} \label{sec:Quantum Lambda Calculus}
-
-%In quantum information theory, the role of higher-order functions encompasses two fundamental aspects. The first involves the concept of entangled functions and how well-known quantum phenomena find natural descriptions through such functions. The second concerns the interplay between classical objects and quantum objects in a higher-order context. Quantum computation conventionally handles classical and quantum data, while the higher-order context introduces a third data type: functions. These functions fall into two categories - those``quantum-like" (entangled, single-use) and those ``classical-like" (duplicable, reusable). In fact, a function is classical $\lambda x . \hspace{1pt}v$ if and only if it does not contain any embedded non-duplicable data. Remarkably, this classification transcends input/output types, highlighting the coexistence of quantum-like functions operating on classical data and classical-like functions operating on quantum data \cite{selinger2009quantum}.
-%functional, in the sense that each (atomic or composite) statement operates by transforming a specific set of inputs to outputs. This is in contrast to imperative programming languages, which operate by updating global variables.
-
-Quantum lambda calculus integrates quantum computation with higher-order functions, thereby emerging as a powerful tool for formal reasoning about quantum programs within a functional programming framework. This functional paradigm, with a static type system, offers the significant advantage of ensuring the absence of run-time errors, \textit{i.e.}, potential errors can be detected at compile-time, when the program is written, rather than during execution.
-
-The principal distinction between the quantum lambda calculus introduced in this section and the formulation proposed by Selinger \cite{selinger2006lambda,selinger2009quantum} lies in the handling of data duplication. In this aproach, as dictated by the type system in \autoref{fig:typing_rules_linear}, duplication of any data is strictly prohibited. In contrast, Selinger's approach permits the duplication of classical data while strictly forbidding the duplication of quantum data.
-Nonetheless, the controlled duplication of both classical and quantum data will be addressed in \Cref{chap:graded}.
 
 
 The first two sections of this chapter present the mathematical and quantum computing preliminaries necessary for understanding the theory of quantum computation. It should be noted that the concept of a norm, as well as the properties of some norms, are relevant here,  as the existence of a metric system implies that operators have a well-defined norm. The introduction to quantum computing is primarily based on \cite{nielsen2010quantum,watrous2018theory}, while the mathematical foundations are also based on \cite{rudin91functional} and  \cite{guide2006infinite}. The subsequent section delves into how the terms of quantum lambda calculus, which are constructed using \autoref{fig:typing_rules_linear}, are interpreted in the ``quantum world''. 
 
-\section{Mathematical Preliminaries} \label{sec:Math}
+\section{Linear Algebra} \label{sec:linalg}
+
+\todo[inline,size=\normalsize]{Tirar a descrição do que são vetores e coisas desse tipo, que eu não vou andar com este tipo de promenores para o resto} 
+
+\todo[inline,size=\normalsize]{Tirar as normas que eu não precisar}
+
+\todo[inline,size=\normalsize]{Definir trace class operators e traço de maneira mais geral} 
 
 
 It is impossible to present the theory of quantum computation without introducing some concepts of linear algebra within finite-dimensional spaces. This section provides a brief overview of the aspects of linear algebra that are most pertinent to the study of quantum computation. 
@@ -1518,8 +956,621 @@ It should be noted that this principle is upheld by the type system outlined in 
 
 
 
+\section{Functional Analysis} \label{sec:funal}
+
+
+
+\todo[inline,size=\normalsize]{Espaços de Banach, duais, bounded operators, norm topology, weak topology ?} 
+
+\todo[inline,size=\normalsize]{Se calhar vou abolir isto e meter as coias relacionadas com pp em pp e as com as op algebras nas op algebras}
+
+
+\section{Probabilistic Programming/Measure theory} \label{sec:pp}
+
+\todo[inline,size=\normalsize]{Qual é o interesse?} 
+
+%  machine learning, natural language, verification
+
+\todo[inline,size=\normalsize]{O que sáo medidas?} 
+
+\todo[inline,size=\normalsize]{Medidas de Borel}
+
+\todo[inline,size=\normalsize]{Pushfowards}
+
+\todo[inline,size=\normalsize]{Normas} 
+
+
+\section{C* and W*-Algebras} \label{sec:c*_w*}
+
+
+\section{Category theory} \label{sec:catgories}
+
+\todo[inline,size=\normalsize]{Só cenas básicas: Qual é o interesse, o que é uma cat, funtores, tranformações naturais, produto, coproducto, tensor, categoria monoidal simetria, adjoint,  coherence theorem for symmetric monoidal categories} 
+
+
+
+\chapter{Metric Lambda Calculus} \label{ch:metriclambda}
+
+The Lambda Calculus, developed by Church and Curry in the 1930s, serves as a formal language capturing the key attribute of higher-order functional languages, treating functions as first-class citizens, allowing them to be passed as arguments \cite{barendregt1984lambda}.  Moreover, lambda calculus has been proven to be universal in the sense that any computable function can be represented as an expression within the language \cite{bernays1936alonzo} . Beyond its foundational aspects, this calculus incorporates extensions for modeling side effects, including probabilistic or non-deterministic behaviors and shared memory.  Higher-order functions form a pivotal abstraction in practical programming languages such as LISP, Scheme, ML, and Haskell.
+
+
+This chapter introduces the metric lambda calculus as presented in \cite{dahlqvist2022syntactic}. The metric lambda calculus integrates notions of
+approximation into the equational system of affine lambda calculus, a variant of lambda calculus that restricts each variable to being used at most once. The metric lambda calculus incorporates a metric equational system, enabling reasoning about approximate program equivalence. This chapter offers a brief insight into lambda calculus and an overview of the syntax and metric equational system of the metric lambda calculus. For a more detailed study of lambda calculus theory, the reader is referred to \cite{barendregt1984lambda}.
+
+
+\section{The Lambda Calculus}
+
+The concept of a function takes a central role in the lambda calculus. But what exactly is a function?  In most mathematics, the “functions as graphs” paradigm the “functions as graphs” paradigm is the most elegant and appropriate framework for understanding functions. Within this paradigm, each function $f$ has a fixed domain $X$ and a fixed codomain $Y$. The function $f$ is then a subset of $X \times Y$ that satisfies the property that for each $x \in X$ there is a unique $y \in Y$ such that $(x,y) \in f$. Two functions $f$ and $g$ are equal if they yield the same output on each input, that is if $f(x) = g(x)$ for all $x \in X$. This perspective is known as the extensional view of functions, as it emphasizes that the only observable property of a function is how it maps inputs to outputs.
+
+On the other hand, the “functions as rules” paradigm is more appropriate within computer science. In this context, defining a function involves specifying a rule or procedure for computing the function. Such a rule is often expressed in the form of a formula, for example, \( f(x) = x^2 \). As with the mathematical paradigm, two functions are considered extensionally equal if they exhibit the same input-output behavior. However, this view also introduces the notion of intensional equality: two functions are intensionally equal if they are defined by (essentially) the same formula.
+
+
+In the lambda calculus, functions are described explicitly as formulae. The function $f:x \mapsto f(x)$ is represented as $\lambda x.f(x)$.  Applying a function to an argument is done by juxtaposing the two expressions. For instance consider the function $f:x \mapsto x+1$, to compute $f(2)$ one writes $(\lambda x.x+1)(2)$.
+
+The expression of higher‑order functions - functions whose inputs and/or outputs are themselves functions- in a simple manner is an essential feature of lambda calculus. For example, the composition operator $f,g \mapsto f \circ g$ is written as $\lambda f. \lambda g. \lambda x. f(g(x))$. Considering the functions $f:x \mapsto x^2$ and $g:x \mapsto x+1$, to compute $(f \circ g)(2)$ one writes $$(\lambda f. \lambda g. \lambda x. f(g(x)))(\lambda x.x^2)(\lambda x.x+1)(2).$$
+
+As mentioned above,  within  the “functions as rules” paradigm, is not
+always necessary to specify the domain and codomain of a function in advance. For instance, the identity function $f: x \mapsto x$, can have any set $X$ as its domain and codomain, provided that the domain and codomain are the same. In this case, one says that $f$ has type $X \rightarrow{} X$. In the case of the composition operator, $h=\lambda f. \lambda g. \lambda x. f(g(x))$, the domain and codomain of the functions $f$ and $g$ must match. Specifically, $f$ can have any set $X$ as its domain and any set  $Y$ as its codomain, provided that $Y$ is the domain of $g$. Similarly, $g$ can have any set $Z$ as its codomain.  Thus,  $h$ has type $$(X \rightarrow{} Y) \rightarrow{} (Y \rightarrow{} Z) \rightarrow{} (X \rightarrow{} Z).$$ 
+
+This flexibility regarding domains and codomains enables operations on functions that are not possible in ordinary mathematics. For instance, if $f = \lambda x.x$ is the identity function, then one has that $f(x) = x$ for any $x$. In particular, by substituting $f$ for $x$, one obtains $f(f) = (\lambda x.x)(f) = f$. Note that the equation $f(f) = f$ is not valid in conventional mathematics, as it is not permissible, due to set-theoretic constraints, for a function to belong to its own domain.
+
+Nevertheless, this remarkable aspect of lambda calculus, this work focuses on a more restricted version of the lambda calculus, known as the simply-typed lambda calculus. Here, each expression is always assigned a type, which is very similar to the situation in mathematics. A function may only be applied to an argument if the argument's type aligns with the function's expected domain. Consequently, terms such as $f(f)$ are not allowed, even if $f$ represents the identity function.
+
+
+
+
+%In order to be able to manipulate lambda-terms more easily, one can associate a type to each lambda-term
+
+
+\section{Syntax}
+
+The grammar and term formation rules of the affine lambda calculus, discussed in \cite{dahlqvist2022syntactic}, are presented in this subsection.
+
+\subsection{Type system}
+
+As previously mentioned, this work focuses on the simply-typed lambda calculus, this work focuses on the simply-typed lambda calculus, where each lambda term is assigned a \emph{type}. Unlike sets, types are \emph{syntactic} objects, meaning they can be discussed independently of their elements. One can conceptualize types as names or labels for set. The definition of the grammar of types for affine lambda calculus is as follows, where $G$ represents a set of ground types, is given by the following \acrfull{bnf} \cite{backus1960report}.
+\begin{equation} \label{eq:grammartypes}
+\centering
+\hspace{95pt} \mathbb{A} ::= X \in G \hspace{3 pt} \vert \hspace{3 pt} \mathbb{I}  \hspace{3 pt}  \vert \hspace{3 pt} \mathbb{A}  \otimes  \mathbb{A} \hspace{3 pt} \vert  \hspace{3 pt}  \mathbb{A} \multimap  \mathbb{A}
+\end{equation}
+Note that this is an inductive definition. Ground types are things such as booleans, integers, and so forth. The type $\mathbb{I}$ is the unit/empty type, which has only one element. The type $\mathbb{A} \otimes \mathbb{A}$ correponds to the tensor of two types, while the type $\mathbb{A} \multimap \mathbb{B}$ is the type of linear maps one type to another.
+
+\subsection{(Raw)Terms}
+
+
+The expressions of the lambda calculus are called lambda terms. In the simply-typed lambda calculus, each lambda term is assigned a type. The terms without the specification of a type are called \emph{raw typed lambda terms}. The grammar of \emph{raw typed lambda terms} is given by the \acrshort{bnf} below.
+\begin{equation*} \label{eq:grammarlambda}
+\begin{split}
+ v,v_1, \ldots, v_n,w \hspace{10 pt} ::= \hspace{10 pt}& x \hspace{3 pt} \vert \hspace{3 pt} f(v_1, \ldots, v_n) \hspace{3 pt} \vert \hspace{3 pt} *  \hspace{3 pt} \vert \hspace{3 pt} (\lambda x: \mathbb{A}. v )\hspace{3 pt} \vert \hspace{3 pt} (v w) \hspace{3 pt}  \vert \hspace{3 pt} v \otimes w \hspace{3 pt} \vert
+ \\&    \text{pm} \hspace{3 pt} v \hspace{3 pt} \text{to} \hspace{3 pt} x \otimes y. w  \hspace{3 pt}  \vert \hspace{3 pt} v \hspace{3 pt} \text{ to } *.w \hspace{3 pt} \vert \hspace{3 pt} \text{dis}(v)
+\end{split}
+\end{equation*}
+
+Here $x$ ranges over an infinite set of variables. $f \in \Sigma$, where  $\Sigma$ corresponds to a class of sorted operation symbols, and $f(v_1, \ldots, v_n)$ corresponds to the aplication of the function $f$ to the arguments $v_1, \ldots, v_n$. The symbol $*$ is the unit element of the type $\mathbb{I}$. The term $(\lambda x: \mathbb{A}. v )$ is the lambda abstraction term, which represents a function that takes an argument of type $\mathbb{A}$ and returns the value of $v$. The term $(v w)$ is the application term, which applies the function $v$ to the argument $w$.  The term $v \otimes w$ is the tensor product of $v$ and $w$. The term $\text{pm} \hspace{3 pt} v \hspace{3 pt} \text{to} \hspace{3 pt} x \otimes y. w$ is the pattern-matching construct, which is used to deconstruct a tensor product into components $x$ and $y$. The term $v \text{ to } *.w$ is used to discard a variable $v$ of the unit type. The term $\text{dis}(v)$ is the discard term, which is used to discard a term $v$. 
+
+\todo[inline,size=\normalsize]{Ver o que por antes do ::= porque v1,..., vn tb são termos } 
+
+\subsection{Free and Bound Variables}
+An occurrence of a variable $x$ within a term of the form $\lambda x.v$ is referred to as \emph{bound}.  Similarly, the variables $x$ and $y$ in the term $\text{pm} \hspace{3 pt} v \hspace{3 pt} \text{to} \hspace{3 pt} x \otimes y. w$ are also bound. A variable occurrence that is not bound is said to be \emph{free}. For example, in the term $\lambda x.xy$, the variable $y$ is free, whereas the variable $x$ is bound.  
+
+The set of free variables of a term $v$ is denoted by \gls{fv}, and is defined inductively as follows:
+\begin{equation*}
+\begin{split}
+FV(x) &= \{x\}, &  FV(*) &= \emptyset,  \\
+FV(f(v_1, \ldots, v_n)), &= FV(v_1) \cup \ldots \cup FV(v_n)& FV(\lambda x: \mathbb{A}. v) &= FV(v) \backslash \{x\}, \\
+FV(v w) &= FV(v) \cup FV(w), & FV(v \otimes w) &= FV(v) \cup FV(w), \\
+FV(\text{pm} \hspace{3 pt} v \hspace{3 pt} \text{to} \hspace{3 pt} x \otimes y. w), &= FV(v) \cup (FV(w)  \backslash \{x,y\}) & FV(\text{dis}(v)) &= FV(v),\\
+FV(v \text{ to } *.w) &= FV(v) \cup FV(w). \\
+\end{split}
+\end{equation*}
+
+
+\subsection{Term formation rules}
+
+To prevent the formation of nonsensical terms within the context of lambda calculus, such as $(v \otimes w) (u)$, the \emph{typing rules} are imposed.
+
+A \emph{typed} term is a pair consisting of a term and its corresponding type. The notation \gls{typed-term} denotes that the term $v$ has type $\mathbb{A}$. Typing rules are formulated using \emph{typing judgments}. A typing judgment is an expression of the form $x_{1}: \mathbb{A}_{1}, \ldots, x_{n}: \mathbb{A}_{n} \hspace{1pt} \triangleright \hspace{1pt} v: \mathbb{A}$ (where $n \geq 1$), which asserts that the term $v$ is a well-typed term of type $\mathbb{A}$ under the assumption that each variable variable $x_{i}$ has type $\mathbb{A}_{i}$, for $1 \leq i \leq n$. The list $x_{1}: \mathbb{A}_{1}, \ldots, x_{n}: \mathbb{A}_{n}$ of typed variables is called the \emph{typing context} of the judgment, and it might be empty.  Each variable $x_i$ (where $1 \leq i \leq n$) must occur at most once in $x_1, \ldots, x_n$. The typing contexts are denoted by Greek letters \gls{typingcontexts}, and from now on, when referring to an abstract judgment, the notation \gls{judgement} will be employed.
+ The empty context is denoted by $-$. Note that in the affine lambda calculus, different contexts do not share variables. For example, if $\Gamma = x:\mathbb{A},y:\mathbb{B}$ none of these variables can appear in any other context. 
+
+
+The concept of \emph{shuffling} is employed to construct a linear typing system that ensures the admissibility of the exchange rule and enables unambiguous reference to judgment's denotation $[\![ \Gamma \triangleright v: \mathbb{A} ]\!]$. An admissible rule is not explicitly included in the formal definition of type theory, but its validity can be proven by demonstrating that whenever the premises can be derived, it is possible to construct a derivation of its conclusion. Shuffling is defined as a permutation of typed variables in a sequence of contexts, $\Gamma_1, \ldots, \Gamma_n$, preserving the relative order of variables within each $\Gamma_i$ \cite{shulman2019practical}. For instance, if $\Gamma_1=x:\mathbb{A}, y:\mathbb{B}$ and $\Gamma_2=z:\mathbb{D}$, then $z:\mathbb{D}, x:\mathbb{A}, y:\mathbb{B}$ is a valid shuffle of $\Gamma_1, \Gamma_2$. On the other hand, $y:\mathbb{B}, x:\mathbb{A}, z:\mathbb{D}$ is not a shuffle because it alters the occurrence order of $x$ and $y$ in $\Gamma_1$. The set of shuffles in $\Gamma_1, \ldots, \Gamma_n$ is denoted as $\text{Sf} (\Gamma_1, \ldots, \Gamma_n)$. A valid typing derivation is constructed using the inductive rules shown in \autoref{fig:typing_rules_linear}.
+%An admissible rule is not explicitly included in the formal definition of the type theory, but it can be proven valid using the fact that whenever one has derivations of its premises it is possible to construct a derivation of its conclusion.
+%an admissible rule is one that is not asserted as part of the specification of the type theory, but for which we can prove after the fact that whenever we have derivations of its premises we can construct a derivation of its conclusion — usually by inductively traversing and modifying the given derivations of its premises. 
+\begin{figure} [H]
+  \small{
+\begin{equation*}
+\begin{split}
+\begin{aligned}
+&
+\begin{minipage}[t]{0.3\textwidth}
+$\begin{array}{c}
+     \Gamma_{i} \triangleright v_{i}: \mathbb{A}_{i} \quad f: \mathbb{A}_{1}, \ldots, \mathbb{A}_{n} \xrightarrow{} \mathbb{A} \in \Sigma \quad E \in \text{Sf}(\Gamma_{1}; \ldots; \Gamma_{n})\\
+    \hline
+   E \triangleright f( v_{1},\ldots,v_{n}): \mathbb{A}
+\end{array}
+$
+\end{minipage}
+\hspace{148pt}
+\text{(ax)} 
+ \hspace{40pt}
+\begin{minipage}[t]{0.3\textwidth}
+$\begin{array}{c}
+      \\
+    \hline
+   x:\mathbb{A} \triangleright x:\mathbb{A}
+\end{array}
+$ \end{minipage}
+\hspace{-68pt} \text{(hyp)} \\
+&
+\begin{minipage}[t]{0.3\textwidth}
+$\begin{array}{c}
+    \\
+    \hline
+   - \triangleright *: \mathbb{I}
+\end{array}
+$
+\end{minipage}
+\hspace{-87pt}
+\text{($\mathbb{I}_{i}$)} 
+ \hspace{7pt}
+\begin{minipage}[t]{0.3\textwidth}
+$\begin{array}{c}
+     \Gamma \triangleright v: \mathbb{A} \otimes \mathbb{B} \quad  \Delta,x: \mathbb{A}, y: \mathbb{B}  \triangleright w: \mathbb{D}  \quad E \in \text{Sf}(\Gamma;\Delta)\\
+    \hline
+   E\triangleright \text{pm } v \text{ to } x \otimes y. w :\mathbb{D}
+\end{array}
+$ \end{minipage}
+\hspace{117pt} (\otimes_{e}) 
+\hspace{5pt}
+\begin{minipage}[t]{0.3\textwidth}
+$\begin{array}{c}
+     \Gamma \triangleright v: \mathbb{A}  \\
+    \hline
+   \Gamma \triangleright \text{dis}(v):  \mathbb{I} 
+\end{array}
+$
+\end{minipage}
+\hspace{-67pt} (\text{dis})\\
+&
+\begin{minipage}[t]{0.3\textwidth}
+$\begin{array}{c}
+     \Gamma \triangleright v: \mathbb{A} \quad  \Delta \triangleright w: \mathbb{B}  \quad E \in \text{Sf}(\Gamma;\Delta) \\
+    \hline
+   E \triangleright v \otimes w: \mathbb{A} \otimes \mathbb{B} 
+\end{array}
+$
+\end{minipage}
+\hspace{41pt} (\otimes_{i}) 
+ \hspace{46pt}
+ \begin{minipage}[t]{0.3\textwidth}
+$\begin{array}{c}
+     \Gamma \triangleright v: \mathbb{I} \quad  \Delta \triangleright w: \mathbb{A}  \quad E \in \text{Sf}(\Gamma;\Delta)  \\
+    \hline
+   E \triangleright v \text { to } *.w: \mathbb{A}  
+\end{array}
+$ \end{minipage}
+\hspace{38pt} (\mathbb{I}_{e}) \\
+&
+\begin{minipage}[t]{0.3\textwidth}
+$\begin{array}{c}
+     \Gamma,x:\mathbb{A} \triangleright v: \mathbb{B} \\
+    \hline
+   \Gamma \triangleright \lambda x:\mathbb{A} . v: \mathbb{A} \multimap \mathbb{B} 
+\end{array}
+$
+\end{minipage}
+\hspace{-27pt} (\multimap_{i}) 
+ \hspace{76pt}
+ \begin{minipage}[t]{0.3\textwidth}
+$\begin{array}{c}
+     \Gamma \triangleright v: \mathbb{A} \multimap \mathbb{B} \quad  \Delta \triangleright w: \mathbb{A}  \quad E \in \text{Sf}(\Gamma;\Delta)  \\
+    \hline
+   E \triangleright v w: \mathbb{B}  
+\end{array}
+$ \end{minipage}
+\hspace{67pt} (\multimap_{e}) 
+\end{aligned}
+\end{split}
+\end{equation*}
+  }
+\caption{Term formation rules of affine lambda calculus.}
+\label{fig:typing_rules_linear}
+\end{figure}
+The rule (ax) states that if there is a function $f \in \Sigma$ that has type $\mathbb{A}_1, \ldots, \mathbb{A}_n \rightarrow \mathbb{A}$ and a set of variables $v_1,\ldots, v_n$ whose types match the type of the arguments of $f$, then if that function is applied to $v_1,…,v_n$ the respective result is of type $\mathbb{A}$.
+The rule (hyp) is a tautology: under the assumption that $x$ has type $\mathbb{A}$, $x$ has type $\mathbb{A}$. 
+The rule ($\mathbb{I}_{i}$) asserts that the unit element $*$ always has type $\mathbb{I}$. 
+The rule ($\multimap_i$) expresses that if $v$ is a term of type $\mathbb{B}$ with a variable $x$ of type $\mathbb{A}$, then $\lambda x:\mathbb{A} . v$ is a function of type $\mathbb{A} \multimap \mathbb{B} $. 
+The rule $(\multimap_e)$ states that a function of type $\mathbb{A} \multimap \mathbb{B}$  can be applied to an argument of type $\mathbb{A}$  to produce a result of type $\mathbb{B}$. 
+The rule $(\mathbb{\otimes}_i)$  asserts that if there is a term $v$ of type $\mathbb{A}$ and a term $w$ of type $\mathbb{B}$,  then the tensor of these terms is of type $\mathbb{A} \otimes \mathbb{B}$.
+The rule $(\mathbb{\otimes}_e)$ expresses if there is a term $w$ of type $\mathbb{D}$ with variables $x$ and $y$ of types $\mathbb{A}$ and $\mathbb{B}$, respectively, and a term $v$ of type $\mathbb{A} \otimes \mathbb{B}$, then $v$ can be deconstructed into $x \otimes y$. 
+The rule $(\mathbb{I}_e)$ states that if there is a term $w$ of type $\mathbb{A}$ and a term $v$ of type $\mathbb{I}$, then $v$ can be discarded, and only the term $w$ remains. 
+Finally, the rule $(\text{dis})$ asserts that a term $v$ of type $\mathbb{A}$ can be discarded, resulting in a term of type $\mathbb{I}$.
+
+For a better understanding of the rules, a few straightforward programming examples are provided.  For instance, the program that swaps the elements of a tensor product can be written as follows:
+\begin{equation*}
+\begin{split}
+& x : \mathbb{A},  y : \mathbb{B} \triangleright \text{pm} \hspace{3 pt} x \otimes y\hspace{3 pt} \text{to} \hspace{3 pt} a \otimes b. \hspace{1pt} b \otimes a : \mathbb{B} \otimes \mathbb{A}
+\end{split}
+\end{equation*}
+Now, to prove that this program is well-typed one can write the following typing derivation:
+\begin{equation*}
+\begin{split}
+1 \hspace{10 pt} & x : \mathbb{A} \triangleright x : \mathbb{A}  \hspace{10 pt} & {(\text{hyp})} \\
+2 \hspace{10 pt} &  y : \mathbb{B} \triangleright   y : \mathbb{B} \hspace{10 pt} & {(\text{hyp})} \\
+3 \hspace{10 pt} & x : \mathbb{A},  y : \mathbb{B} \triangleright x \otimes y : \mathbb{A} \otimes \mathbb{B} \hspace{10pt} & \text{($1,2,\otimes_i$)} \\
+4 \hspace{10 pt} &  b : \mathbb{B} \triangleright   b : \mathbb{B} \hspace{10 pt}&{(\text{hyp})} \\
+5 \hspace{10 pt} &   a : \mathbb{A} \triangleright  a : \mathbb{A} \hspace{10 pt}&{(\text{hyp})} \\
+6 \hspace{10 pt} &   b : \mathbb{B},a : \mathbb{A} \triangleright b \otimes a : \mathbb{B} \otimes \mathbb{A} \hspace{10pt} &\text{($4,5,\otimes_i$)} \\
+7\hspace{10 pt}& x : \mathbb{A},  y : \mathbb{B} \triangleright \text{pm} \hspace{3 pt} x \otimes y\hspace{3 pt} \text{to} \hspace{3 pt} a \otimes b. \hspace{1pt} b \otimes a : \mathbb{B} \otimes \mathbb{A}& \hspace{10pt} \text{($3,6,\otimes_e$)}
+\end{split}
+\end{equation*}
+Observe that in the notation of the third column, the numbers correspond to the premises utilized in the application of the rule.
+
+Another example is the function that recieves a tensor product and returns first element and discards the second:
+\begin{equation*}
+\begin{split}
+& - \triangleright \lambda x: \mathbb{A \otimes B}. \text{pm} \hspace{3 pt} x \hspace{3 pt} \text{to} \hspace{3 pt} a \otimes b. \hspace{1 pt} \text{dis}(b) \hspace{3 pt} \text{ to } *.a: \mathbb{A}
+\end{split}
+\end{equation*}
+To prove that this program is well-typed one can write the following typing derivation:
+\begin{equation*}
+\begin{split}
+1  \hspace{10 pt} & b : \mathbb{B} \triangleright b : \mathbb{B}  \hspace{10 pt} & {(\text{hyp})} \\
+2 \hspace{10 pt} & b : \mathbb{B} \triangleright \text{dis}(b): \mathbb{I} \hspace{10 pt} & {(1,\text{dis})} \\
+3 \hspace{10 pt} & a : \mathbb{A} \triangleright a : \mathbb{A}  \hspace{10 pt} & {(\text{hyp})} \\
+4 \hspace{10 pt} &  a : \mathbb{A}, b : \mathbb{B}  \triangleright \text{dis}(b) \hspace{3 pt} \text{ to } *.a  & {(2,3,\mathbb{I}_{e})} \\
+5 \hspace{10 pt} & x : \mathbb{A \otimes B} \triangleright x : \mathbb{A \otimes B}  \hspace{10 pt} & {(\text{hyp})} \\
+6 \hspace{10 pt} & x : \mathbb{A \otimes B} \triangleright \text{pm} \hspace{3 pt} x \hspace{3 pt} \text{to} \hspace{3 pt} a \otimes b. \hspace{1 pt} \text{dis}(b) \hspace{3 pt} \text{ to } *.a : \mathbb{A} \hspace{10pt} & \text{($4,5,\otimes{I}_{e}$)} \\
+7 \hspace{10 pt} & - \triangleright \lambda x: \mathbb{A \otimes B}. \text{pm} \hspace{3 pt} x \hspace{3 pt} \text{to} \hspace{3 pt} a \otimes b. \hspace{1 pt} \text{dis}(b) \hspace{3 pt} \text{ to } *.a: \mathbb{A} \hspace{10pt} & \text{($6,\multimap_i$)}
+\end{split}
+\end{equation*}
+
+
+\todo[inline,size=\normalsize]{Also fala-se de Type inference algorithm? Tipo existe...}
+
+\subsection{$\alpha$-equivalence}
+ 
+A natural notion of equivalence definition stems from the fact that terms that differ only in the names of their bound variables represent the same program. For instance, the functions $\lambda x:\mathbb{A}.x $ and $\lambda y:\mathbb{A}.y$ have the same input-output behavior, despite being represented by different lambda terms. This equivalence is called $\alpha$\emph{-equivalence}.
+
+\begin{definition}
+  The $\alpha$-equivalence is an equivalence relation on lambda terms that is used to rename bound variables. To rename a variable $x$ as $y$ in a term $v$, denoted by $v\{y/x\}$, is to replace all occurrences of $x$ in $v$ by $y$. Two terms $v$ and $w$ are $\alpha$-equivalent, written $=_{\alpha}$, if one can be derived from the other by a series of
+  changes of bound variables
+\end{definition}
+
+\begin{convention}
+  Terms are considered up to $\alpha$-equivalence from now on.
+\end{convention}
+
+\subsection{Substitution}
+The substitution of a variable $x$ for a term $w$ in a term $v$ is denoted by \gls{substitution}. It is only  permitted  to replace free variables. For instance, $\lambda x. \hspace{1pt} x  \hspace{2pt} [v/x]$ is $\lambda x. \hspace{1pt} x  \hspace{2pt}$ and not  $\lambda x. \hspace{1pt} v  \hspace{2pt}$. Moreover, it is necessary to avoid the unintended binding of free variables. For example, $$(\text{pm} \hspace{3 pt} x \otimes y\hspace{3 pt} \text{to} \hspace{3 pt} a \otimes b. \hspace{1pt} b \otimes a \otimes z) \hspace{2 pt}  [z/\text{pm} \hspace{3 pt} c \otimes d\hspace{3 pt} \text{to} \hspace{3 pt} e \otimes f. \hspace{1pt} f \otimes e \otimes a]$$ is not the same as $$\text{pm} \hspace{3 pt} x \otimes y\hspace{3 pt} \text{to} \hspace{3 pt} a \otimes b. \hspace{1pt} b \otimes a \otimes (\text{pm} \hspace{3 pt} c \otimes d\hspace{3 pt} \text{to} \hspace{3 pt} e \otimes f. \hspace{1pt} f \otimes e \otimes a ). $$ Instead, the bounded variable $a$ must be renamed before the substitution, and in this case, the proper substitution is $$(\text{pm} \hspace{3 pt} x \otimes y\hspace{3 pt} \text{to} \hspace{3 pt} t \otimes b. \hspace{1pt} b \otimes t \otimes z) \hspace{2 pt}  [z/\text{pm} \hspace{3 pt} c \otimes d\hspace{3 pt} \text{to} \hspace{3 pt} e \otimes f. \hspace{1pt} f \otimes e \otimes a]$$ which is equal to $$\text{pm} \hspace{3 pt} x \otimes y\hspace{3 pt} \text{to} \hspace{3 pt} t \otimes b. \hspace{1pt} b \otimes t \otimes (\text{pm} \hspace{3 pt} c \otimes d\hspace{3 pt} \text{to} \hspace{3 pt} e \otimes f. \hspace{1pt} f \otimes e \otimes a) .$$
+
+Note that a simple way of ensuring these restrictions are satisfied is not allowing the variable $x$ to occur in the context of $w$ in $v[w/x]$. Since $x$ is in the context of $v$, this is always the case in the affine lambda calculus.
+
+\begin{definition}
+Given the typings judgments $\Gamma, x: \mathbb{A} \triangleright v:\mathbb{B}$ and $\Delta \triangleright w: \mathbb{A}$, the substitution $\Gamma, \Delta \triangleright v[w/x]:\mathbb{B}$ is defined below. The types of judgments are omitted as no ambiguity arises.
+\begin{align*}
+  \hspace{-23pt}\Gamma,  \Delta \triangleright y[w/x] &=  \Gamma, \Delta \triangleright y, \\
+  \hspace{-23pt}  \Delta \triangleright *[w/x] &=   \Delta \triangleright * ,\\
+  \hspace{-23pt} \Gamma,  \Delta \triangleright (\lambda y: \mathbb{B}. v)[w/x] &= \Gamma,  \Delta \triangleright  \lambda y: \mathbb{B}. v[w/x],  \\
+  \hspace{-23pt}(\text{dis}(v))[w/x] &= \text{dis}(v[w/x]),\\
+  \hspace{-23pt}\text{In the next three cases, } \Gamma,x: \mathbb{A} \in & \text{Sf}(\Gamma_1,\ldots,\Gamma_i,\ldots,\Gamma_n) \text{ and } \Gamma_{i}  \triangleright v_{i}\\
+  \hspace{-23pt} \Gamma, \Delta  \triangleright(f(v_1, \ldots, v_n))[w/x] &= \Gamma, \Delta  \triangleright f(v_1[w/x], \ldots, v_n),& (\text{ if } x: \mathbb{A} \in \Gamma_1)  \\
+  \hspace{-23pt} \Gamma, \Delta  \triangleright(f(v_1, \ldots,v_i,\ldots, v_n))[w/x] &= \Gamma, \Delta  \triangleright f(v_1, \ldots,v_i[w/x],\ldots, v_n),& (\text{ if } x: \mathbb{A} \in T_i)  \\
+  \hspace{-23pt}\Gamma, \Delta  \triangleright(f(v_1, \ldots, v_n))[w/x] &= \Gamma, \Delta  \triangleright f(v_1, \ldots, v_n[w/x]),& (\text{ if } x: \mathbb{A} \in \Gamma_n)  \\
+  \hspace{-23pt}\text{In the next two cases, }\Gamma,x: \mathbb{A} & \in \text{Sf}(\Gamma_1,\Gamma_2), \Gamma_1 \triangleright v \text{, and } \Gamma_2 \triangleright u  \\
+  \hspace{-23pt}\Gamma, \Delta  \triangleright (v \hspace{1pt}  u)[w/x] &= \Gamma, \Delta  \triangleright (v[w/x] \hspace{1pt} u), & (\text{ if } x: \mathbb{A} \in \Gamma_1)\\
+  \hspace{-23pt}\Gamma, \Delta  \triangleright (v \hspace{1pt}  u)[w/x] &= \Gamma, \Delta  \triangleright (v \hspace{1pt} u[w/x]), & (\text{ if } x: \mathbb{A} \in \Gamma_2)\\
+  \hspace{-23pt}\text{In the next two cases, }\Gamma,x: \mathbb{A} & \in \text{Sf}(\Gamma_1,\Gamma_2), \Gamma_1 \triangleright v \text{, and } \Gamma_2 \triangleright u  \\
+  \hspace{-23pt}\Gamma, \Delta  \triangleright (v \otimes u)[w/x] &= \Gamma, \Delta  \triangleright v[w/x] \otimes u, & (\text{ if } x: \mathbb{A} \in \Gamma_1)\\ 
+  \hspace{-23pt}\Gamma, \Delta  \triangleright (v \otimes u)[w/x] &= \Gamma, \Delta  \triangleright v \otimes u[w/x], & (\text{ if } x: \mathbb{A} \in \Gamma_2)\\
+  \hspace{-23pt}\text{In the next two cases, }\Gamma,x: \mathbb{A}  \in \text{Sf}(&\Gamma_1,\Gamma_2), \Gamma_1 \triangleright v \text{, and } \Gamma_2, y: \mathbb{D}, z:\mathbb{E} \triangleright u  \\
+  \hspace{-23pt} \Gamma, \Delta  \triangleright (\text{pm} \hspace{3 pt} v \hspace{3 pt} \text{to} \hspace{3 pt} y \otimes z. u)[w/x] &= \Gamma, \Delta  \triangleright \text{pm} \hspace{3 pt} v[w/x] \hspace{3 pt} \text{to} \hspace{3 pt} y \otimes z. u,  &  (\text{ if } x: \mathbb{A} \in \Gamma_1) \\
+  \hspace{-23pt} \Gamma, \Delta  \triangleright (\text{pm} \hspace{3 pt} v \hspace{3 pt} \text{to} \hspace{3 pt} y \otimes z. u)[w/x] &= \Gamma, \Delta  \triangleright \text{pm} \hspace{3 pt} v \hspace{3 pt} \text{to} \hspace{3 pt} y \otimes z. u[w/x],  &  (\text{ if } x: \mathbb{A} \in \Gamma_2) \\
+  \hspace{-23pt}\text{In the next two cases, }\Gamma,x: \mathbb{A} &  \in \text{Sf}(\Gamma_1,\Gamma_2), \Gamma_1 \triangleright v \text{, and } \Gamma_2 \triangleright u  \\
+  \hspace{-23pt}\Gamma, \Delta  \triangleright(v \hspace{3 pt} \text{to} \hspace{3 pt} *.u)[w/x] &= \Gamma, \Delta  \triangleright v[w/x] \hspace{3 pt} \text{to} \hspace{3 pt} *.u&  (\text{ if } x: \mathbb{A} \in \Gamma_1),\\
+  \hspace{-23pt}\Gamma, \Delta  \triangleright(v \hspace{3 pt} \text{to} \hspace{3 pt} *.u)[w/x] &= \Gamma, \Delta  \triangleright v \hspace{3 pt} \text{to} \hspace{3 pt} *.u[w/x] &  (\text{ if } x: \mathbb{A} \in \Gamma_2).\\
+\end{align*}
+\end{definition}
+
+The sequential substitutions $M[M_i/x_i] \ldots [M_n/x_n]$ are writen as $M[M_i/x_i, \ldots ,M_n/x_n]$.
+
+
+\subsection{Properties}
+
+
+The calculus defined in \autoref{fig:typing_rules_linear} possesses several desirable properties, which are listed below. Before proceeding, it is necessary to introduce some auxiliary notation. Given a context $\Gamma$, $te(\Gamma)$ denotes context $\Gamma$ with all types erased. The expression $\Gamma \simeq_{\pi} \Gamma'$ denotes that the contexts $\Gamma$ is a permutation of context $\Gamma'$.This notation also applies to non-repetitive lists of untyped variables $te(\Gamma)$. Additionally, a judgment $\Gamma \triangleright v: \mathbb{A}$ will often be abbreviated into $\Gamma \triangleright v $ or even just $v$ when no ambiguities arise.
+
+The properties are as follows:
+ \begin{enumerate}
+   \item for all judgements $\Gamma \triangleright v$ and $\Gamma' \triangleright v$, te($\Gamma$) $\simeq_{\pi}$  te($\Gamma'$); 
+   \item additionally if $\Gamma \triangleright v: \mathbb{A}, \Gamma'\triangleright v: \mathbb{A}'$, and $\Gamma \simeq_{\pi} \Gamma' $, then $\mathbb{A}$ must be equal to $\mathbb{A}'$;
+   \item all judgements $\Gamma \triangleright v:\mathbb{A}$ have a unique derivation.
+   \item (exchange) For every judgement $\Gamma,x:\mathbb{A}, y:\mathbb{B}, \Delta \triangleright v: \mathbb{D}$ it is possible to derive $\Gamma, y:\mathbb{B}, x:\mathbb{A}, \Delta \triangleright v: \mathbb{D}$. 
+   \item (substitution) For all judgements  $\Gamma,x:\mathbb{A} \triangleright v: \mathbb{B}$ and $\Delta \triangleright w: \mathbb{A}$ it is possible to derive $ \Gamma, \Delta \triangleright v[w/x]: \mathbb{B}$.
+ \end{enumerate}
+ 
+
+
+\subsection{Equations-in-context}
+The simply typed lambda calculus is a formal language that captures operations like the application of a function to an argument and the elimination of variables. To express these operations there is a set of rules known as reduction rules. These rules fall into two primary categories: the $\beta$\emph{-reductions}, which perform operations and enforce the implicit meaning of the term, and $\eta$\emph{-reductions}, which simplify terms by exploiting the extensionality of functions. 
+There is also a secondary class of reductions known as \emph{commuting conversions}, which serve to disambiguate terms that, while equivalent, have different representations.
+As a result, affine $\lambda$-calculus comes equipped with the so-called equations-in-context \gls{equation-in-context}, depicted in \autoref{fig:equations-linear-lambda}.
+\begin{figure}[H]
+  \centering
+  \begin{tabular}{ |ccccc| }
+    \hline
+$(\beta)$ &  $\Gamma, \Delta \triangleright (\lambda x : \mathbb{A}.$ $v) \hspace{1pt}  w = v[w/x]: \mathbb{B} $ & &$(\eta)$ &  $\Gamma  \triangleright \lambda x : \mathbb{A} .(v \hspace{1pt} x) = v: \mathbb{A} \multimap \mathbb{B} $ \\
+$(\beta_{\mathbb{I}_{e}})$ &   $ \Gamma \triangleright * \text { to } *.$ $v = v:\mathbb{A}$ && $(\eta_{\mathbb{I}_{e}})$ & $ \Delta, \Gamma \triangleright v$ to $*$ . $w[* / z] = w[v / z]: \mathbb{A}$  \\
+$(\beta_{\otimes_{e}})$   &\multicolumn{4}{c|}{$ \hspace{-10pt}  E, \Gamma, \Delta \hspace{1pt}\triangleright \text{pm } v \otimes w$ to $x \otimes y.$ $u = u[v/x,w/y]:\mathbb{A}$ }\\
+$(\eta_{\otimes_{e}})$   &\multicolumn{4}{c|}{$\Delta , \Gamma\hspace{1pt}\triangleright \text{pm } v$ to $x \otimes y.$ $u[x \otimes y/z] = u[v/z] :\mathbb{A} $}\\
+ $(c_{\mathbb{I}_{e}})$  &\multicolumn{4}{c|}{ $\Delta,\Gamma, E \triangleright u[v \text{ to } \ast . w/z] = v \text{ to } \ast . u[w/z]:\mathbb{A}$ }\\
+$(c_{\otimes_{e}})$ & \multicolumn{4}{c|}{ $\Delta,\Gamma, E  \triangleright u[$pm $v$ to $x \otimes y.$ $w/z] =$ pm $v$ to $x \otimes y.$ $u[w/z]: \mathbb{A} $ }\\
+$(\eta_{\text{dis}})$ & \multicolumn{4}{c|}{ $x_1:\mathbb{A}_1, \ldots,x_n:\mathbb{A}_n\triangleright v = \text{dis}(x_1) \text{ to } \ast.$ $\ldots$ $\text{dis}(x_{n-1}) \text{ to } \ast \text{ dis}(x_{n}): \mathbb{ I}$ }\\
+\hline
+  \end{tabular}
+\caption{Equations-in-context for affine lambda calculus}
+\label{fig:equations-linear-lambda}
+\end{figure}
+
+It is evident that, for example, equation $(\beta)$ enforces the meaning of  $(\lambda x : \mathbb{A}.$ $v) \hspace{1pt} w $, which is interpreted as ``$v$ with $w$ in place of $x$". The equation $(\eta)$, on the other hand, is a simplification rule that states that a function that applies another function $v$ to an argument $x$ can be simplified to the function $v$ itself. The remaining $\beta$ e $\eta$ equations follow similar reasoning. The commuting conversion $(c_{\mathbb{I}_{e}})$ expresses that substituting a variable $z$ by a term that maps a term $v$ to the unit element $*$ in a term $w$ is equivalent to mapping a term $v$ to the unit element $*$ and then replacing $z$ by $w$. The other commuting conversion has a similar interpretation.
+%\begin{figure}[H]
+  %\centering
+  %\begin{tabular}{ |c|c| }
+      %\hline 
+      %Monoidal structure & Higher-order structure \\
+      %\hline
+      %pm $v \otimes w$ to $x \otimes y.$ $u = u[v/x,w/y]$& \\
+      %pm $v$ to $x \otimes y.$ $u[x \otimes y/z] = u[v/z]$ & $(\lambda x : A.$ $v) w = v[w/x]$\\
+      %$* \text { to } *.$ $v = v$ & $\lambda x : A.(v x) = v$ \\
+      %$v$ to $*$ . $w[* / z] = w[v / z]$ & \\
+      %\hline
+      %\multicolumn{2}{|c|}{Commuting conversions} \\
+      %\hline
+      %\multicolumn{2}{|c|}{$u[v \text{ to } \ast . w/z] = v \text{ to } \ast . u[w/z]$}  \\
+      %\multicolumn{2}{|c|}{$u[$pm $v$ to $x \otimes y.$ $w/z] =$ pm $v$ to $x \otimes y.$ $u[w/z]$} \\
+      %\hline
+      %\multicolumn{2}{|c|}{Discard} \\
+      %\hline
+      %\multicolumn{2}{|c|}{$v: \mathbb{I} = \text{dis}(x_1) \text{ to } \ast.$ $\ldots$ $\text{dis}(x_{n-1}) \text{ to } \ast \text{ dis}(x_{n})$} \\
+      %\hline
+  %\end{tabular}
+  %\caption{Equations-in-context for affine lambda calculus}
+  %\label{fig:equations-linear-lambda}
+%\end{figure}
+
+
+
+
+\section{Metric equational system}
+\todo[inline,size=\normalsize]{Mete-se contexto e tipo nas eqs métricas? } 
+
+\emph{Metric equations} \cite{mardare2016quantitative}, \cite{mardare2017axiomatizability} are a strong candidate for reasoning about approximate program equivalence. These equations take the form of \gls{metric-equation}, where  $\epsilon$ is a non-negative rational representing the ``maximum distance" between the two terms $t$ and $s$. The metric equational system for linear lambda calculus is depicted in \autoref{fig:metric deductive system}.
+
+\begin{figure} [H]
+\begin{equation*}
+\begin{split}
+\begin{aligned}
+&
+\begin{minipage}[t]{0.3\textwidth}
+$\begin{array}{c}
+     \\
+    \hline
+   v=_{0}v
+\end{array}
+$
+\end{minipage}
+\hspace{-90pt}
+\text{(refl)} 
+ \hspace{55pt}
+\begin{minipage}[t]{0.3\textwidth}
+$\begin{array}{c}
+    v=_{q}w \quad w=_{r}u  \\
+    \hline
+   v=_{q + r} u
+\end{array}
+$ \end{minipage}
+\hspace{-40pt} \text{(trans)} 
+\hspace{55pt}
+\begin{minipage}[t]{0.3\textwidth}
+$\begin{array}{c}
+    v=_{q}w \quad r\geq q  \\
+    \hline
+   v=_{r} w
+\end{array}
+$ \end{minipage}
+\hspace{-50pt} \text{(weak)} \\
+&
+\begin{minipage}[t]{0.3\textwidth}
+$\begin{array}{c}
+    \forall r > q . \hspace{4pt} v=_{r} w \\
+    \hline
+   v=_{q}w
+\end{array}
+$
+\end{minipage}
+\hspace{-45pt}
+\text{(arch)} 
+ \hspace{50pt}
+\begin{minipage}[t]{0.3\textwidth}
+$\begin{array}{c}
+    \forall i \leq n. \hspace{4pt} v=_{q_i} w\\
+    \hline
+   v=_{\wedge q_i} w
+\end{array}
+$ \end{minipage}
+\hspace{-40pt} \text{(join)} 
+\hspace{58pt}
+\begin{minipage}[t]{0.3\textwidth}
+$\begin{array}{c}
+    v=_{q} w \\
+    \hline
+   w =_{q } v
+\end{array}
+$ \end{minipage}
+\hspace{-88pt}\text{(sym)}   \\
+&
+\begin{minipage}[t]{0.3\textwidth}
+  $\begin{array}{c}
+      v=_{q} w \quad v'=_{r} w' \\
+      \hline
+     v \otimes v' =_{q + r} w \otimes w'
+  \end{array}
+  $ \end{minipage}
+  \hspace{-14pt}
+\begin{minipage}[t]{0.3\textwidth}
+$\begin{array}{c}
+   \forall i \leq n. \hspace{4pt} v_{i}=_{q_i} w_{i}\\
+    \hline
+   f(v_{1},...,v_{n})=_{\Sigma q_i} f(w_{1},...,,w_{n}) 
+\end{array}
+$
+\end{minipage}
+ \hspace{47pt}
+\begin{minipage}[t]{0.3\textwidth}
+$\begin{array}{c}
+    v=_{q} w  \\
+    \hline
+  \lambda x : \mathbb{A}. \hspace{4pt} v=_{q} \lambda x:\mathbb{A}. \hspace{4pt} w
+\end{array}
+$ \end{minipage}
+\hspace{20pt}  \\
+&
+\begin{minipage}[t]{0.3\textwidth}
+$\begin{array}{c}
+    v=_{q} w \quad  v'=_{r} w'  \\
+    \hline
+   \text{pm} \hspace{4pt} v \hspace{4pt} \text{to} \hspace{4pt} x \otimes y. \hspace{4pt} v'=_{q + r}\text{pm} \hspace{4pt} w \hspace{4pt} \text{to} \hspace{4pt} x \otimes y .  \hspace{4pt} w'
+\end{array}
+$
+\end{minipage}
+\hspace{95pt}
+\begin{minipage}[t]{0.3\textwidth}
+$\begin{array}{c}
+    v =_{q} w    \\
+    \hline
+  \text{dis}(v) =_{q} \text{dis}(w)
+\end{array}
+$ \end{minipage}
+\hspace{-35pt}
+\begin{minipage}[t]{0.3\textwidth}
+  $\begin{array}{c}
+      v=_{q} w \quad v'=_{r} w' \\
+      \hline
+     v \hspace{1pt} v' =_{q + r} w \hspace{1pt}  w'
+  \end{array}
+  $ \end{minipage}
+ \\
+ &
+\begin{minipage}[t]{0.3\textwidth}
+$\begin{array}{c}
+  \Gamma \triangleright v =_{q} w: \mathbb{A} \quad \Delta \in \text{perm}(\Gamma)\\
+    \hline
+   \Delta \triangleright v =_{q} w: \mathbb{A}
+\end{array}
+$
+\end{minipage}
+\hspace{36pt}
+\begin{minipage}[t]{0.3\textwidth}
+  $\begin{array}{c}
+     v=_{q}w  \quad v'=_{r}w'\\
+      \hline
+      v \text { to } *.v' =_{q+r} w \text { to } *.w'
+  \end{array}
+  $ \end{minipage}
+  \hspace{14pt}
+\begin{minipage}[t]{0.3\textwidth}
+$\begin{array}{c}
+    v =_{q} w \quad v'=_{r} w'    \\
+    \hline
+  v[v'/x]=_{q + r} w[w'/x]
+\end{array}
+$ \end{minipage}
+\hspace{10pt}
+\end{aligned}
+\end{split}
+\end{equation*}
+\caption{Metric equational system}
+\label{fig:metric deductive system}
+\end{figure}
+
+Here, $\text{perm} (\Gamma)$ denotes the set of possible permutions of context $\Gamma$. The rules (refl), (trans), and (sym)  generalize the properties of reflexivity, transitivity, and symmetry of equality.  Rule (weak) asserts that if two terms are at a maximum distance $q$ from each other, then they are also separated by any $r \geq q$. Rule (arch) states that if $v =_r w$ for all approximations $r$ of $q$, then it necessarily follows that $v =_q w$. The rule  (join) expresses that if several maximum distances between two terms are known, the actual maximum distance between them is the minimum of these distances. The rule that follows conveys that if the maximum distance between two terms $v$ and $w$ is $q$, and the maximum distance between terms $v'$ and $w'$ is $r$, then the maximum distance between the tensor products $v \otimes v'$ and $w \otimes w'$ is $q + r$. The remaining rules follow similar reasoning.
+
+% dizer o que é perm
+
+To ilustrate the usefulness of these equations, consider the program $P$ that recieves a tensor product, swaps its elements and then applies a function $f$ to to the new second element of the tensor  pair:
+\begin{equation*}
+\begin{split}
+& P = x : \mathbb{A},  y : \mathbb{B} \triangleright \text{pm} \hspace{3 pt} x \otimes y\hspace{3 pt} \text{to} \hspace{3 pt} a \otimes b. \hspace{1pt} b \otimes f(a) : \mathbb{D} \otimes \mathbb{A} &
+\end{split}
+\end{equation*}
+Now, consider the case where $f$ is an idealized version of function $f^{\epsilon}$ mapping $a$ to $f(a)^{\epsilon}$. The program that applies the ``real'' function $f$ to the first element of the tensor pair is $P^{\epsilon}$:
+\begin{equation*}
+  \begin{split}
+  & P^{\epsilon} = x : \mathbb{A},  y : \mathbb{B} \triangleright \text{pm} \hspace{3 pt} x \otimes y\hspace{3 pt} \text{to} \hspace{3 pt} a \otimes b. \hspace{1pt} b \otimes f(a)^{\epsilon}  : \mathbb{D} \otimes \mathbb{A} &
+  \end{split}
+  \end{equation*}
+Knowing that $f(a)^{\epsilon} =_{\epsilon} f(a)$, it is possible to show that $P^{\epsilon} =_{\epsilon} P $ using the metric equational system. The prove is as follows. The types and contexts are omitted for brevity as no ambiguity arises.
+\begin{equation*}
+  \begin{split}
+  1 \hspace{10 pt} & f(a)^{\epsilon} =_{\epsilon} f(a) \\
+  2 \hspace{10 pt} &  b =_{0} b & {(\text{refl})} \\
+  3 \hspace{10 pt} & b \otimes f(a)^{\epsilon}  =_{\epsilon} b \otimes f(a)  & \text{($1,2,\otimes_i$)} \\
+  4 \hspace{10 pt} &   x \otimes y =_{0}  x \otimes y  &{(\text{refl})}  \\
+  5\hspace{10 pt}& \text{pm} \hspace{3 pt} x \otimes y\hspace{3 pt} \text{to} \hspace{3 pt} a \otimes b. \hspace{1pt} b \otimes f(a)^{\epsilon} =_{\epsilon} \text{pm} \hspace{3 pt} x \otimes y\hspace{3 pt} \text{to} \hspace{3 pt} a \otimes b. \hspace{1pt} b \otimes f(a) & \hspace{10pt} \text{($3,4,\otimes_e$)}
+  \end{split}
+  \end{equation*}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 \section{Interpretation} \label{sec:Quantum Lambda Calculus:Interpretation}
+
+\todo[inline,size=\normalsize]{Interpretação geral com categorias} 
+
+
+
+\subsection{Quantum Lambda Calculus}
+
+
+Quantum lambda calculus integrates quantum computation with higher-order functions, thereby emerging as a powerful tool for formal reasoning about quantum programs within a functional programming framework. This functional paradigm, with a static type system, offers the significant advantage of ensuring the absence of run-time errors, \textit{i.e.}, potential errors can be detected at compile-time, when the program is written, rather than during execution.
+
+The principal distinction between the quantum lambda calculus introduced in this section and the formulation proposed by Selinger \cite{selinger2006lambda,selinger2009quantum} lies in the handling of data duplication. In this aproach, as dictated by the type system in \autoref{fig:typing_rules_linear}, duplication of any data is strictly prohibited. In contrast, Selinger's approach permits the duplication of classical data while strictly forbidding the duplication of quantum data.
+
 The syntax of the metric lambda calculus was presented in \Cref{ch:metriclambda}. Now, it is necessary to define the \emph{model} of the ``reality'' of interest, \textit{i.e.}, what the terms of the calculus mean within the ``reality'' considered. In the case of quantum lambda calculus, the model is based on quantum channels. The interpretation introduced in this subsection is based on the work of \cite{dahlqvist2022syntactic} with the addition of the measurement operation.
 % o outro modelo vai ser baseado em somas diretas de espaços vetoriais e quantum channels
 
@@ -1739,6 +1790,8 @@ The chosen model requires that all operators considered are \acrshort{cptp} maps
   The operators $[\![\textit{new} \, 0 ]\!]$ and $[\![\textit{new} \, 1 ]\!]$ are trace-preserving completely positive super-operators.
 \end{proposition}
 
+
+
 %Proposition 2.17
 \begin{proof}
   It is straightforward to verify that the operators $ \llbracket \textit{new} \, 0 \rrbracket $ and $\llbracket\textit{new} \, 1 \rrbracket$ are trace-preserving.
@@ -1753,7 +1806,12 @@ Considering that the squared absolute value of a real number is always non-negat
 \end{proof}
 %attending to \autoref{def:positive_superoperator} and \autoref{def:positive} given that both matrices $\big(\begin{smallmatrix} 1 & 0\\ 0 & 0 \end{smallmatrix}\big)$ and $\big(\begin{smallmatrix} 0 & 0\\ 0 & 1 \end{smallmatrix}\big)$ are hermitian and have eigenvalues $0$ and $1$, they are positive super-operators. 
 
+\todo[inline,size=\normalsize]{Falar que aqui vamos usar a categoria do paper do professor Renato (que não é fechada) e q lá se prova que a cat e o functor $\otimes$ são met enriched .} 
+
+
   \subsection{Example: Deutsch's Algorithm}
+
+  \todo[inline,size=\normalsize]{Preciso de alterar o erro -> coloacr um bit flip antes da medição (As contas estão erradas (estão para a trace norm) e com a diamond norm este exemplo ficaria muito complicado em termos de contas )} 
 
   In 1985, David Deutsch presented an algorithm that determines whether a function $f$ is constant for a single-bit input (\textit{i.e.}, either equal to 1 for all $x$ or equal to 0 for all $x$) or balanced (\textit{i.e.}, equal to 1 for half of the values of $x$ and equal to 0 for the other half) \cite{deutsch1985quantum}. Classically, to determine which case holds requires running $f$ twice. Quantumly, it suffices to run f once. The Deutsch-Jozsa Algorithm is a simple example of a quantum algorithm that outperforms its classical counterpart. The algorithm is based on the concept of a quantum oracle, which is a black box that implements a unitary transformation $U_f$ such that $U_f \ket{x}\ket{y} = \ket{x}\ket{y \oplus f(x)}$, where $\oplus$ denotes addition modulo 2. The quantum circuit implementing Deutsch’s algorithm is presented in  \autoref{fig:Deutsch-Jozsa}.
   
@@ -2087,3 +2145,14 @@ Subsequently applying the rule  $\beta_{\mathbb{I}_{e}}$ in \autoref{fig:equatio
   = &  - \triangleright \hspace{3pt} \textit{new}\hspace{1pt}0 \hspace{1pt}(*): \textit{qbit}
 \end{split}
 \end{equation}
+
+
+
+\subsection{Linear $\lambda$-calculus meets probabilistic programming}
+
+
+
+\todo[inline,size=\normalsize]{Arranjar exemplo -> devo pegar no do paper e explanar síntaxe e assim} 
+
+\todo[inline,size=\normalsize]{Falar que aqui vamos usar a categoria do paper do professor Renato e q lá se prova que a cat e o functor $\otimes$ e a adjunção são met enriched.} 
+
