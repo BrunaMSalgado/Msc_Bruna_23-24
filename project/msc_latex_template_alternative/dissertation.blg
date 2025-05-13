@@ -5,44 +5,46 @@ Reallocating 'name_of_file' (item size: 1) to 6 items.
 The style file: unsrt.bst
 Reallocating 'name_of_file' (item size: 1) to 13 items.
 Database file #1: dissertation.bib
-You've used 48 entries,
+Warning--empty booktitle in aliprantisBanachLattices1999
+You've used 51 entries,
             1791 wiz_defined-function locations,
-            735 strings with 11889 characters,
-and the built_in function-call counts, 11815 in all, are:
-= -- 1060
-> -- 488
-< -- 14
-+ -- 185
-- -- 137
-* -- 767
-:= -- 1801
-add.period$ -- 147
-call.type$ -- 48
-change.case$ -- 40
+            753 strings with 12589 characters,
+and the built_in function-call counts, 12717 in all, are:
+= -- 1146
+> -- 526
+< -- 16
++ -- 198
+- -- 147
+* -- 815
+:= -- 1930
+add.period$ -- 158
+call.type$ -- 51
+change.case$ -- 42
 chr.to.int$ -- 0
-cite$ -- 48
-duplicate$ -- 565
-empty$ -- 1184
-format.name$ -- 137
-if$ -- 2690
+cite$ -- 52
+duplicate$ -- 613
+empty$ -- 1273
+format.name$ -- 147
+if$ -- 2909
 int.to.chr$ -- 0
-int.to.str$ -- 48
-missing$ -- 55
-newline$ -- 242
-num.names$ -- 48
-pop$ -- 161
+int.to.str$ -- 51
+missing$ -- 59
+newline$ -- 257
+num.names$ -- 53
+pop$ -- 180
 preamble$ -- 1
 purify$ -- 0
 quote$ -- 0
-skip$ -- 284
+skip$ -- 311
 stack$ -- 0
-substring$ -- 797
-swap$ -- 161
-text.length$ -- 14
+substring$ -- 848
+swap$ -- 178
+text.length$ -- 16
 text.prefix$ -- 0
 top$ -- 0
 type$ -- 0
-warning$ -- 0
-while$ -- 120
-width$ -- 50
-write$ -- 523
+warning$ -- 1
+while$ -- 130
+width$ -- 53
+write$ -- 556
+(There was 1 warning)

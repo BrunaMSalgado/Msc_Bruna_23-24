@@ -1,8 +1,8 @@
 \babel@toc {english}{}\relax 
 \contentsline {paragraph}{Keywords}{vii}{chapter*.4}%
 \contentsline {paragraph}{Palavras-chave}{ix}{chapter*.5}%
-\contentsline {chapter}{Acronyms}{xv}{section*.9}%
-\contentsline {chapter}{Notation}{xvii}{section*.11}%
+\contentsline {chapter}{Acronyms}{xvii}{section*.9}%
+\contentsline {chapter}{Notation}{xix}{section*.11}%
 \contentsline {chapter}{\numberline {1}Introduction}{1}{chapter.1}%
 \contentsline {section}{\numberline {1.1}Motivation and Context}{1}{section.1.1}%
 \contentsline {section}{\numberline {1.2}Goals}{3}{section.1.2}%
@@ -37,32 +37,36 @@
 \contentsline {subsection}{\numberline {2.2.7}No-cloning theorem}{28}{subsection.2.2.7}%
 \contentsline {section}{\numberline {2.3}Functional Analysis}{29}{section.2.3}%
 \contentsline {section}{\numberline {2.4}Probabilistic Programming/Measure theory}{29}{section.2.4}%
-\contentsline {section}{\numberline {2.5}C* and W*-Algebras}{30}{section.2.5}%
-\contentsline {section}{\numberline {2.6}Category theory}{30}{section.2.6}%
-\contentsline {chapter}{\numberline {3}Metric Lambda Calculus}{31}{chapter.3}%
-\contentsline {section}{\numberline {3.1}The Lambda Calculus}{31}{section.3.1}%
-\contentsline {section}{\numberline {3.2}Syntax}{33}{section.3.2}%
-\contentsline {subsection}{\numberline {3.2.1}Type system}{33}{subsection.3.2.1}%
-\contentsline {subsection}{\numberline {3.2.2}(Raw)Terms}{33}{subsection.3.2.2}%
-\contentsline {subsection}{\numberline {3.2.3}Free and Bound Variables}{34}{subsection.3.2.3}%
-\contentsline {subsection}{\numberline {3.2.4}Term formation rules}{34}{subsection.3.2.4}%
-\contentsline {subsection}{\numberline {3.2.5}$\alpha $-equivalence}{37}{subsection.3.2.5}%
-\contentsline {subsection}{\numberline {3.2.6}Substitution}{38}{subsection.3.2.6}%
-\contentsline {subsection}{\numberline {3.2.7}Properties}{39}{subsection.3.2.7}%
-\contentsline {subsection}{\numberline {3.2.8}Equations-in-context}{40}{subsection.3.2.8}%
-\contentsline {section}{\numberline {3.3}Metric equational system}{41}{section.3.3}%
-\contentsline {section}{\numberline {3.4}Interpretation}{42}{section.3.4}%
-\contentsline {subsection}{\numberline {3.4.1}Quantum Lambda Calculus}{43}{subsection.3.4.1}%
-\contentsline {subsubsection}{Types and operations in quantum lambda calculus}{45}{equation.3.4.2}%
-\contentsline {subsection}{\numberline {3.4.2}Example: Deutsch's Algorithm}{47}{subsection.3.4.2}%
-\contentsline {subsubsection}{Deutsch's Algorithm with Measurement Errors}{50}{equation.3.4.16}%
-\contentsline {subsection}{\numberline {3.4.3}Example: Proving an equivalence using equations-in-context}{52}{subsection.3.4.3}%
-\contentsline {subsection}{\numberline {3.4.4}Linear $\lambda $-calculus meets probabilistic programming}{53}{subsection.3.4.4}%
-\contentsline {chapter}{\numberline {4}Conditionals}{55}{chapter.4}%
-\contentsline {section}{\numberline {4.1}Syntax}{55}{section.4.1}%
-\contentsline {section}{\numberline {4.2}Interpretation}{55}{section.4.2}%
-\contentsline {section}{\numberline {4.3}Metric Equations}{55}{section.4.3}%
-\contentsline {section}{\numberline {4.4}Examples}{55}{section.4.4}%
-\contentsline {chapter}{\numberline {5}Conclusions and future work}{57}{chapter.5}%
-\contentsline {section}{\numberline {5.1}Conclusions}{57}{section.5.1}%
-\contentsline {section}{\numberline {5.2}Prospect for future work}{57}{section.5.2}%
+\contentsline {subsection}{\numberline {2.4.1}Probabilistic Programming and Measure Theory}{29}{subsection.2.4.1}%
+\contentsline {subsection}{\numberline {2.4.2}What is measure theory?}{30}{subsection.2.4.2}%
+\contentsline {subsection}{\numberline {2.4.3}Measurable spaces and measures}{31}{subsection.2.4.3}%
+\contentsline {subsection}{\numberline {2.4.4}Spaces of Measures}{35}{subsection.2.4.4}%
+\contentsline {section}{\numberline {2.5}C* and W*-Algebras}{35}{section.2.5}%
+\contentsline {section}{\numberline {2.6}Category theory}{35}{section.2.6}%
+\contentsline {chapter}{\numberline {3}Metric Lambda Calculus}{37}{chapter.3}%
+\contentsline {section}{\numberline {3.1}The Lambda Calculus}{37}{section.3.1}%
+\contentsline {section}{\numberline {3.2}Syntax}{39}{section.3.2}%
+\contentsline {subsection}{\numberline {3.2.1}Type system}{39}{subsection.3.2.1}%
+\contentsline {subsection}{\numberline {3.2.2}(Raw)Terms}{39}{subsection.3.2.2}%
+\contentsline {subsection}{\numberline {3.2.3}Free and Bound Variables}{40}{subsection.3.2.3}%
+\contentsline {subsection}{\numberline {3.2.4}Term formation rules}{40}{subsection.3.2.4}%
+\contentsline {subsection}{\numberline {3.2.5}$\alpha $-equivalence}{43}{subsection.3.2.5}%
+\contentsline {subsection}{\numberline {3.2.6}Substitution}{44}{subsection.3.2.6}%
+\contentsline {subsection}{\numberline {3.2.7}Properties}{45}{subsection.3.2.7}%
+\contentsline {subsection}{\numberline {3.2.8}Equations-in-context}{46}{subsection.3.2.8}%
+\contentsline {section}{\numberline {3.3}Metric equational system}{47}{section.3.3}%
+\contentsline {section}{\numberline {3.4}Interpretation}{48}{section.3.4}%
+\contentsline {subsection}{\numberline {3.4.1}Quantum Lambda Calculus}{49}{subsection.3.4.1}%
+\contentsline {subsubsection}{Types and operations in quantum lambda calculus}{51}{equation.3.4.2}%
+\contentsline {subsection}{\numberline {3.4.2}Example: Deutsch's Algorithm}{53}{subsection.3.4.2}%
+\contentsline {subsubsection}{Deutsch's Algorithm with Measurement Errors}{56}{equation.3.4.16}%
+\contentsline {subsection}{\numberline {3.4.3}Example: Proving an equivalence using equations-in-context}{58}{subsection.3.4.3}%
+\contentsline {subsection}{\numberline {3.4.4}Linear $\lambda $-calculus meets probabilistic programming}{59}{subsection.3.4.4}%
+\contentsline {chapter}{\numberline {4}Conditionals}{61}{chapter.4}%
+\contentsline {section}{\numberline {4.1}Syntax}{61}{section.4.1}%
+\contentsline {section}{\numberline {4.2}Interpretation}{61}{section.4.2}%
+\contentsline {section}{\numberline {4.3}Metric Equations}{61}{section.4.3}%
+\contentsline {section}{\numberline {4.4}Examples}{61}{section.4.4}%
+\contentsline {chapter}{\numberline {5}Conclusions and future work}{63}{chapter.5}%
+\contentsline {section}{\numberline {5.1}Conclusions}{63}{section.5.1}%
+\contentsline {section}{\numberline {5.2}Prospect for future work}{63}{section.5.2}%

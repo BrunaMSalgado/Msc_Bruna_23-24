@@ -958,26 +958,248 @@ It should be noted that this principle is upheld by the type system outlined in 
 
 \section{Functional Analysis} \label{sec:funal}
 
+% Cauchy sequences -> p.35 func analysis Rudin
 
+%A Banach space is a normed space which is complete in the metric  defined by its norm; this means that every Cauchy sequence is required to  converge. 
 
 \todo[inline,size=\normalsize]{Espaços de Banach, duais, bounded operators, norm topology, weak topology ?} 
 
+% boundeness and stuff p.247 infinite dimensional analysis 
+
 \todo[inline,size=\normalsize]{Se calhar vou abolir isto e meter as coias relacionadas com pp em pp e as com as op algebras nas op algebras}
 
+%p.243 infinite dimensional analysis 
+
+% The norm topology on a vector space X defines a topological dual X, giv ing rise to a natural dual pair X,X . Thus we may refer to the weak topologyon a normed space without specifying a dual pair. In such cases, it is understood that X is paired with its norm dual. Since a finite dimensional space has only one Hausdorff linear topology, the norm topology and the weak topology must be the same. This is not true in infinite dimensional normed spaces. On an infinite dimensional normed space, the weak topology is strictly weaker than the norm topology (Theorem 6.26). 
+%  Also, the weak topology on an infinite dimensional normed space is never metrizable (Theorem 6.26). Despite this, it is possible for the weak topology to be metrizable when restricted to bounded subsets, such as the unit ball (Theorems 6.30 and 6.31).
 
 \section{Probabilistic Programming/Measure theory} \label{sec:pp}
 
-\todo[inline,size=\normalsize]{Qual é o interesse?} 
+ This section introduces the fundamentals of measure theory, a key component in defining the semantics of probabilistic programs, drawing inspiration primarily from \cite{dahlqvistSemanticsProbabilisticProgramming2020a} and \cite{athreyaMeasureTheoryProbability2006}. For a more in-depth exploration of lambda calculus theory, see reference \cite{aliprantisBanachLattices1999}. 
 
-%  machine learning, natural language, verification
 
-\todo[inline,size=\normalsize]{O que sáo medidas?} 
+In this work, we only consider finite measures; hence, the term "measure" implicitly refers to a finite measure unless stated otherwise.
 
-\todo[inline,size=\normalsize]{Medidas de Borel}
 
-\todo[inline,size=\normalsize]{Pushfowards}
 
-\todo[inline,size=\normalsize]{Normas} 
+
+\subsection{Probabilistic Programming and Measure Theory}
+% livro probabilistic programming 
+
+% Probabilistic programs describe recipes for inferring statistical conclusions from a complex mixture of uncertain data and real-world observations. They can represent probabilistic graphical models are expected to have a major impact on machine intelligence. Probabilistic programs are ubiquitous. They steer autonomous robots and self-driving cars, are key to describe security mechanisms, naturally code up randomised algorithms for solving NP-hard or even unsolvable problems, and are rapidly encroaching on AI. Probabilistic programming aims to make probabilistic modelling and machine learning accessible to the programmer.
+
+Probabilistic programs offer a structured approach to draw statistical conclusions from uncertain data or real-world observations. They generalize probabilistic graphical models beyond the capabilities of Bayesian networks and are expected to have broader applications in machine intelligence. These programs are now fundamental across various domains, including controlling autonomous systems, verifying security protocols, and implementing randomized algorithms for solving computationally intractable problems. As a result, they are becoming increasingly central to AI development. At their core, they aim to democratize probabilistic modeling by providing programmers with expressive, high-level abstractions for machine learning and statistical reasoning.
+
+
+% INTRO Medidas e espaços mensuraveis 
+
+
+Probabilistic computation involves running programs incorporating randomness, leading to output behaviors characterized by probability distributions rather than deterministic outcomes. To effectively understand and analyze these programs, it is essential to have a solid foundation in reasoning about probability distributions. That is where measure theory comes into play.
+
+\subsection{What is measure theory?}
+
+Throughout history, mathematicians sought to extend the ideas of length, area, and volume. The most effective way to generalize these concepts is through the idea of a measure. Abstractly, a measure is a function defined on sets with additive properties mirroring length, area, and volume.
+
+We begin with a simple example inspired by \cite{athreyaMeasureTheoryProbability2006} to develop an intuition for the concepts of measure and measure space.
+Imagine an open field $S$ covered in snow after a storm. Suppose we wish to measure the amount of snow accumulated in as many field regions as possible.
+Assume we have accurate tools for measuring snow over standard geometric shapes like triangles, rectangles, and circles. 
+We can approximate irregularly shaped regions using combinations of these standard shapes and then apply a limiting process to assign a consistent measure to such regions. 
+Let $\mathcal{B}$ denote the collection of subsets of $S$ that are deemed \emph{measurable}, let $\lambda(A)$ represent the amount of snow in each $A \in \mathcal{B}$, and let $A^c$ denote the complement of a set $A$.
+
+
+For this framework to make sense, it is reasonable to require that $ \mathcal{B}$ and $\lambda (\cdot)$ satisfy the following properties:
+
+\subsubsection*{Properties of $B$:}
+\begin{enumerate}
+    \item If $A \in B$, then the complement $A^c \in \mathcal{B}$. (\ie, if we can measure the snow on a set $A$, and we know the total amount on $S$, then we can determine the snow on the remaining part $A^c$.)
+    \item If $A_1, A_2 \in \mathcal{B}$, then \(A_1 \cup A_2 \in \mathcal{B}\).  
+    (\ie, if we can measure the snow on two regions \(A_1\) and \(A_2\), we should also be able to measure it on their union.)
+    \item If $\{A_n\}_{n \geq 1} \subset \mathcal{B}$ is an increasing sequence, \ie, $A_n \subset A_{n+1}$ for all $n$, then $\bigcup_{n=1}^{\infty} A_n \in \mathcal{B}$.  
+    \\(\ie, if each set in a increasing sequence of regions is measurable, then their limit—the union—should also be measurable.)
+    \item The collection $\mathcal{B}$ contains a base class $C$ of simple, well-behaved sets (e.g., triangles, rectangles, circles) for which measurement is initially defined.
+\end{enumerate}
+
+\subsubsection*{Properties of $\lambda (\cdot)$:}
+\begin{enumerate}
+    \item  $\lambda(A) \geq 0$ for all $A \in \mathcal{B}$ (\ie, the amount of snow on any set must be nonnegative). 
+    \item If $A_1, A_2 \in \mathcal{B}$ and $A_1 \cap A_2 = \emptyset$, then  
+    $\lambda(A_1 \cup A_2) = \lambda(A_1) + \lambda(A_2)$
+ (\ie, The total amount of snow over two non-overlapping regions is just the sum of the snow in each region. This characteristic of 
+$\lambda$ is known as \emph{finite additivity}.)
+    \item If $\{A_n\}_{n \geq 1} \subset \mathcal{B}$ is an increasing sequence, \ie, $A_n \subset A_{n+1}$ then  
+    $
+    \lambda( \lim_{n \to \infty} A_n) = \lambda\left( \bigcup_{n=1}^\infty A_n \right) = \lim_{n \to \infty} \lambda(A_n).
+    $
+    (\ie, if a set can be approximated by an increasing sequence of measurable sets $\{A_n\}_{n \geq 1}$, then $\lambda(A) = \lim_{n \to \infty} \lambda(A_n)$. This is known as \emph{monotone continuity from below}.)
+\end{enumerate}
+
+\subsection{Measurable spaces and measures}
+Remarkably, these  intuitive conditions give rise to a profoundly versatile and far-reaching theoretical framework. The requirements imposed on $\mathcal{B}$ and $\lambda$ can equivalently be stated as follows:
+
+\subsubsection*{Properties of $\mathcal{B}$:}
+\begin{enumerate}
+    \item $\emptyset \in \mathcal{B}$.
+    \item $A \in \mathcal{B}  \implies A^c \in \mathcal{B}$. 
+    \item  $A_1, A_2, \dots \in \mathcal{B} \implies \bigcup_i A_i \in \mathcal{B}$ (this is known as \emph{closure
+ under countable unions}).
+\end{enumerate}
+
+\subsubsection*{Properties of $\lambda$:}
+\begin{enumerate}
+    \item $\lambda(\cdot) \geq 0$  and $\lambda(\emptyset) = 0$.
+    \item  If \(\{A_n\}_{n \geq 1} \subset \mathcal{B}\) is a sequence of pairwise disjoint sets (i.e., \(A_i \cap A_j = \emptyset\) for \(i \neq j\)), then
+    $\lambda\left( \bigcup_{n=1}^\infty A_n \right) = \sum_{n=1}^\infty \lambda(A_n)$ (this is known as \emph{countable additivity}). 
+\end{enumerate}
+
+A collection $\mathcal{B}$ of subsets of $S$ satisfying the above conditions for $B$ is designated a $\sigma$\emph{-algebra}. Similarly, a set function $\lambda$ defined on a $\sigma$-algebra $\mathcal{B}$ that fulfills the above properties for $\lambda$ qualifies as a \emph{measure}.
+
+\begin{definition} ($\sigma$\emph{-algebra} )
+  A $\sigma$\emph{-algebra} $\mathcal{B}$ on a set $S$ is a collection of subsets of $S$ that includes the empty set, is closed under complementation with respect to $S$, and is closed under countable unions. 
+\end{definition}
+
+\begin{definition} (\emph{Measurable space})
+  The pair $(S, \mathcal{B})$ where $\mathcal{B}$ is a $\sigma$-algebra constitutes a \emph{measurable space}. The elements of $\mathcal{B}$ are called  the \emph{measurable sets} of the space. 
+\end{definition}
+
+\begin{definition}  (\emph{Borel $\sigma$-algebra})
+   The Borel $\sigma$-algebra of $\mathbb{R}^n$ is the $\sigma$-algebra $\mathcal{B}(\mathbb{R}^n)$ generated by all open sets. The sets in $\mathcal{B}(\mathbb{R}^n)$ are called Borel sets. %For any set $E \subset \mathbb{R}^n$, let B(E) denote the class of all sets of the form $E \cap \mathbb{R}$,where $B \in \mathbb{B}(\mathbb{R}^n)$
+\end{definition}
+
+
+\begin{definition} (\emph{Measure})
+  A  \emph{measure} on the measurable space $(S,\mathcal{B})$ is a function $\mu: \mathcal{B} \to  [0,\infty] $ that is countably additive and satisfies $\mu(\emptyset)=0$. A measure  on $(S,\mathcal{B})$ is called a \emph{probability measure} if it assigns total measure 1 to the entire space, that is, $\mu(S) = 1$.
+\end{definition}
+
+ In the context of probability theory, such measures are often referred to as \emph{distributions}. In what follows, we will use the terms measure and distribution interchangeably.
+
+ 
+% lebesgue measure
+
+ One of the most important measures is the Lebesgue measure on the real line (\ie, the length in $\mathbb{R}$), and its generalizations to $\mathbb{R}^n$.  It is characterized as the unique measure on the Borel sets, whose value on every interval is its length. That is, for any interval $(a, b) \subset \mathbb{R}$,
+$
+\lambda((a, b)) = b - a.$
+
+The Lebesgue measure is \emph{translation-invariant}, meaning that shifting a set does not change its measure, and it is also \emph{$\sigma$-finite}.
+
+For any $ s \in S $, the \emph{Dirac measure} (also known as the \emph{Dirac delta} or \emph{point mass} at \( s \)) is the probability measure defined by
+$$
+\delta_s(B) =
+\begin{cases}
+1, & \text{if } s \in B, \\
+0, & \text{if } s \notin B.
+\end{cases}
+$$
+A measure is called \emph{discrete} if represented as a countable weighted sum of Dirac measures. In particular, a \emph{convex combination} of Dirac measures yields a discrete probability measure. These are of the form $\sum_{s \in C} a_s \delta_s$,
+where $ a_s \geq 0 $ for all $ s \in C $, and the weights satisfy $ \sum_{s \in C} a_s = 1 $.
+
+On the other hand, a measure $ \mu $ on a measurable space $ (S, \mathcal{B}) $ is called \emph{continuous} if it assigns zero measure to all singleton sets, i.e., $ \mu(\{s\}) = 0 $ for every $ s \in S $. An example of a continuous measure is the \emph{Lebesgue measure} on $ \mathbb{R}^n $ (for $ n \in \mathbb{N} $).
+
+
+
+\begin{definition} (\emph{Pushforward measure})
+  Let $(S, \mathcal{B}_S)$ and $(T, \mathcal{B}_T)$ be measurable spaces. Given a function $f: (S, \mathcal{B}_S) \to (T, \mathcal{B}_T)$ and a measure $\mu$ on $\mathcal{B}_S$, the \emph{pushforward measure} $f_*(\mu)$ on $\mathcal{B}_T$ is defined by:
+$$
+f_*(\mu)(B) = \mu(f^{-1}(B)), \quad  B \in \mathcal{B}_T.
+$$
+\end{definition}
+
+
+% lebesgue integral
+
+\begin{definition}
+  Let $(S, \mathcal{B}_S)$ and $(T, \mathcal{B}_T)$ be measurable spaces. A function $f: S \to T$ is said to be \emph{measurable} if for every  measurable subset  $B \in \mathcal{B}_T$, the preimage $f^{-1}(B) \in \mathcal{B}_S$.
+\end{definition}
+
+
+\begin{definition} (\emph{Lebesgue integral})
+  The \emph{Lebesgue integral} generalizes the familiar Riemann integral. Consider a measurable space $(S, \mathcal{B})$ and a bounded measurable function $f \colon S \to \mathbb{R}_0^+$, with upper and lower bounds $M$ and $m$, respectively. The \emph{Lebesgue integral} of $f$ with respect to a measure $\mu \colon \mathcal{B} \to \mathbb{R}_0^+$, denoted $\int f \, d\mu$, is defined as the limit of finite weighted sums of the form:
+$$
+\sum_{i=0}^n f(s_i) \mu(B_i),
+$$
+where $\{B_0, \dots, B_n\}$ forms a measurable partition of $S$, and within each $B_i$, the variation of $f$ does not exceed $(M - m)/n$. Here, $s_i \in B_i$ for each $i$, and the limit is taken over increasingly refined partitions. 
+\end{definition}
+
+
+In the case of a finite discrete space $n = \{1, 2, \dots, n\}$, the Lebesgue integral simplifies to a weighted sum:
+$$
+\int f \, d\mu = \sum_{i=1}^n f(i) \mu(\{i\}).
+$$
+
+Given two measurable spaces $(S_1, \mathcal{B}_1)$ and $(S_2, \mathcal{B}_2)$, their product is the measurable space $(S_1 \times S_2, \mathcal{B}_1 \otimes \mathcal{B}_2)$, where $S_1  \times S_2$ is the cartesian product and $\mathcal{B}_1 \otimes \mathcal{B}_2$ is the $\sigma$-algebra generated by all measurable rectangles $B_1 \times B_2$ with $B_1 \in \mathcal{B}_1$ and $B_2 \in \mathcal{B}_2$:
+$$
+\mathcal{B}_1 \otimes \mathcal{B}_2 \coloneqq \sigma\left(\{ B_1 \times B_2 \mid B_1 \in \mathcal{B}_1,\, B_2 \in \mathcal{B}_2 \}\right).
+$$
+Measures on this product space are called \emph{joint distributions}, and are uniquely determined by their values on measurable rectangles due to the inductive structure of the product $\sigma$-algebra. \emph{Product measures} are a significant class of joint distributions and are defined from measures
+
+\begin{definition} (\emph{product measures})
+   Let $(S_1, \mathcal{B}_1)$ and $(S_2, \mathcal{B}_2)$ be measurable spaces, and let $\mu_1$ and $\mu_2$ be measures on these spaces, respectively. The \emph{product measure} $\mu_1 \otimes \mu_2$ is  defined on measurable rectangles by
+$$
+(\mu_1 \otimes \mu_2)(B_1 \times B_2) = \mu_1(B_1)\mu_2(B_2).
+$$
+This definition extends uniquely to a joint distribution $\mu_1 \otimes \mu_2: \mathcal{B}_1 \otimes \mathcal{B}_2 \to \mathbb{R}_0^+$, and reflects the notion of probabilistic independence: sampling from $\mu_1 \otimes \mu_2$ is equivalent to independently sampling from $\mu_1$ and $\mu_2$.
+\end{definition}
+
+
+%MarkovKernels
+\begin{definition}(\emph{Markov Kernel})
+Let $(S, \mathcal{B}_S)$ and $(T, \mathcal{B}_T)$ be measurable spaces. A \emph{Markov kernel} is a mapping $P : S \times \mathcal{B}_T \to [0,1]$
+satisfying the following two properties:
+\begin{enumerate}
+    \item For each fixed $s \in S$, the function $P(s, \cdot) : \mathcal{B}_T \to [0,1]$ is a probability measure on $(T, \mathcal{B}_T)$.
+    \item For each fixed $A \in \mathcal{B}_T$, the function $P(\cdot, A) : S \to [0,1]$ is a measurable function on $(S, \mathcal{B}_S)$.
+\end{enumerate}
+\end{definition}
+
+
+By a slight abuse of terminology, we will also use the term \emph{Markov kernel} to refer to a mapping  $P': S \to (\mathcal{B}_T \to [0,1]) \, P'(s)=\mu$, when $P : S \times \mathcal{B}_T \to [0,1], , P(s,A)=\mu(A)$ is a Markov kernel in the definition above.
+
+By a slight abuse of terminology, we will also refer to a mapping $ P' : S \to (\mathcal{B}_T \to [0,1])\, P'(s)=\mu $, as a Markov kernel, when there exists a Markov kernel $ P : S \times \mathcal{B}_T \to [0,1] \, P(s,A)=\mu (A) $  for all $s \in S $ and $A \in \mathcal{B}_T$.
+
+\begin{definition}
+  Given a measure $\mu$ on $S$ and a Markov kernel $P: S \times \mathcal{B}_T \to [0,1]$, we can define the \emph{pushforward} of $\mu$   under the Markov kernel $P$  as:
+$$
+P_*(\mu)(B) = \int_S P(s, B) \, \mu(ds), \quad \forall B \in \mathcal{B}_T.
+$$
+\end{definition}
+
+Any measurable function \( f : (S, \mathcal{B}_S) \to (T, \mathcal{B}_T) \) induces a simple Markov kernel $ s \mapsto \delta_{f(s)} $. As a result, as introduced earlier, the usual definition of the pushforward measure via \( f \) becomes a special case of the general formulation defined above.
+
+\subsection{Spaces of Measures}
+
+The set of all finite measures on a measurable space $(S, \mathcal{B})$ will be denoted by $\mathcal{M}(S, \mathcal{B})$, 
+or simply $\mathcal{M}S$ when the $\sigma$-algebra $\mathcal{B}$ is clear from context. In particular, $\gls{mr}$ denotes  the Banach space of finite Borel measures on $\mathbb{R}$.
+
+ $\mathcal{M}S $ forms a real vector space, where addition and scalar multiplication are defined pointwise. Specifically, for  $ B \in \mathcal{B} $, $ \mu, \nu \in \mathcal{M}S $, and $ \alpha \in \mathbb{R} $, the operations are given by
+$$
+(\mu + \nu)(B) = \mu(B) + \nu(B), \quad (a\mu)(B) = \alpha \mu(B).
+$$
+
+
+\( \mathcal{M}S \) is also a normed space equipped with the total variation norm. 
+
+\begin{definition}
+  For a measure \( \mu \), the total variation norm is defined as
+$$
+\|\mu\|_{TV} := \sup \left\{ \sum_{i=1}^n |\mu(B_i)| : \{B_1, \dots, B_n\} \text{ is a finite measurable partition of } S \right\}.
+$$
+
+For continuous measures...
+
+
+
+For positive measures, this reduces to \( \mu(S) \), and for probability measures, the norm is 1. The total variation norm turns \( \mathcal{M}_S \) into a Banach space, meaning it is complete under this norm. 
+
+
+
+
+
+
+
+%\todo[inline,size=\normalsize]{Normas} 
+
+% def de valor abs p.133 (2.4) measure_theoritic_probability_by_athreya__lahiri.
+
+%Lebesgue decomposition p.360 - measure theory
 
 
 \section{C* and W*-Algebras} \label{sec:c*_w*}
