@@ -1995,16 +1995,18 @@ Consequently, we postulate the following axiom:
 
 
 
-    The following is useful to compute the total variation norm between measures \cite{tsybakov2008}. Let  let $P$ and $Q$ be two probability measures on $\mathcal{M}\mathbb{R}$. Define
-    \[
-      \nu = P + Q, \quad p = \frac{dP}{d\nu}, \quad q = \frac{dQ}{d\nu},
-    \]
-    where $\frac{dP}{d\nu}$ denotes the  the Radon–Nikodym derivative of the measure $P$ with respect to the measure $\nu$. It holds that:
-    
-    \begin{align*}
-      \norm{P-Q} = \int |p - q| \, d\nu
-    \end{align*}
+    The following alternative definition is useful to compute the total variation norm between measures.
 
+  \begin{definition} \cite{tsybakov2008}
+    Let  let $P$ and $Q$ be two probability measures on $\mathcal{M}\mathbb{R}$. Define
+    $$
+      \nu = P + Q, \quad p = \frac{dP}{d\nu}, \quad q = \frac{dQ}{d\nu},
+    $$
+    where $\frac{dP}{d\nu}$ denotes the  the Radon–Nikodym derivative of the measure $P$ with respect to the measure $\nu$. It holds that:
+    \begin{align*}
+      \norm{P-Q} = \sup \left\{ 2 \cdot \left\vert \int_{A} (p - q) \, d\nu \mid A \in  \mathcal{B}(\mathbb{R}) \right\vert \right\}
+    \end{align*}
+  \end{definition}
   
     Returning to the interpretation of our $\lambda$-theory, 
     we have $I = \mathbb{R} \ni 1$, 
@@ -2146,7 +2148,7 @@ Consequently, we postulate the following axiom:
 \left| \sum_{i=1}^{n} a_i \right| \leq \sum_{i=1}^{n} |a_i|, \quad \text{for all } n \in \mathbb{N}.
 \]
 
-Subsequently, let $\mu =\emph{u}_{a,b}(*)$ and  $\mu'=\emph{u}_{c,d}(*)$. Then, the Radon-Nikodym derivatives (probability density functions) with respect to \( \nu = U(a, b) + U(c, d) \) are given by:
+Subsequently, let $\mu =\emph{u}_{a,b}(*)$ and  $\mu'=\emph{u}_{c,d}(*)$, such that the intervals $[a,b]$ and $[c,d]$ are disjoint ($[a, b] \cap [c, d] = \emptyset$). Then, the Radon-Nikodym derivatives (probability density functions) with respect to \( \nu = U(a, b) + U(c, d) \) are given by:
 
 \[
 \frac{dU(a, b)}{d\nu}(x) = u(a,b)(x) = 
@@ -2163,10 +2165,19 @@ and similarly,
 0 & \text{otherwise}.
 \end{cases}
 \]
+
+Here, similarly to the first example, we calculate
+\begin{align*}
+  &\norm{U(a,b)-U(c,d)} = 2 \cdot \sup_{A \in \mathcal{B}(\mathbb{R})}  \left\{ \left\vert\int_A (u(a,b)(x)- u(c,d)(x)) \, d \nu(x) \right\vert \right\} \\
+  & = 2 \cdot \sup_{A \in \mathcal{B}(\mathbb{R})}  \left\{ \left\vert\int_A (u(a,b)(x)) \, d \nu(x)  - \int_A (u(c,d)(x)) \,  d\nu(x) \right\vert \right\} = 2
+\end{align*}
+
+\begin{comment}
 Here, we calculate
 \begin{align*}
-  \norm{U(a,b)-U(c,d)} = \int |u(a,b)(x)- u(c,d)(x)| \, d\nu(x) = \int |u(a,b)(x)- u(c,d)(x)| \, dx 
+  \norm{U(a,b)-U(c,d)} = 2 \cdot \sup_{A \in \mathcal{B}(\mathbb{R})}  \left\{ \left\vert\int_A (u(a,b)(x)- u(c,d)(x)) \, dx \right\vert \right\} = 2 \cdot \sup_{A \in \mathcal{B}(\mathbb{R})}  \left\{ \left\vert\int_A (u(a,b)(x)- u(c,d)(x)) \, dx \right\vert \right\}
 \end{align*}
+
 In this case, we consider three scenarios: 
 \begin{enumerate}
     \item The intervals are disjoint: \([a, b] \cap [c, d] = \emptyset\),
@@ -2194,6 +2205,8 @@ At last, we calculate,
   & =  \frac{c-a}{b-a} +  (b-c) \left(\frac{1}{b-a} - \frac{1}{d-c}  \right)+  \frac{d-b}{b-a}
 \end{align*}
 
+\end{comment}
+
 Finally, consider $\mu =\emph{delta}_{x_0}(*) $  and $\mu' =\emph{u}_{x_0 - \epsilon,x_0 + \epsilon}(*) $. Let \(\nu = \delta_{x_0} + U(x_0 - \epsilon, x_0 + \epsilon) \). The Radon-Nikodym derivatives are:
 
 \[
@@ -2214,8 +2227,8 @@ Finally, consider $\mu =\emph{delta}_{x_0}(*) $  and $\mu' =\emph{u}_{x_0 - \eps
 
 We compute,
 \begin{align*}
-  \norm{\delta_{x_0}-U(x_0 - \epsilon, x_0 + \epsilon)} &= \int |f(x)- u(x_0 - \epsilon, x_0 + \epsilon) (x)| \, d\nu(x) \\
-  &= \int |f(x)| \, dx + \int |u(x_0 - \epsilon, x_0 + \epsilon)(x)| \, dx = 2
+  \norm{\delta_{x_0}-U(x_0 - \epsilon, x_0 + \epsilon)} &= \sup_{A \in \mathcal{B}(\mathbb{R})} \left\{ \left\vert \int_A (f(x)- u(x_0 - \epsilon, x_0 + \epsilon) (x))\, d\nu(x) \right\vert \right\} \\
+  &= \sup_{A \in \mathcal{B}(\mathbb{R})} \left\{ \left\vert \int_A f(x)\, d\nu(x) -  \int_A   u(x_0 - \epsilon, x_0 + \epsilon) (x) \, d\nu(x) \right\vert \right\} = 2
 \end{align*}
     
 

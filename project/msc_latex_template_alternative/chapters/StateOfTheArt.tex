@@ -958,6 +958,14 @@ It should be noted that this principle is upheld by the type system outlined in 
 
 \section{Functional Analysis} \label{sec:funal}
 
+\begin{definition} (\emph{Cauchy sequence})
+  Suppose $ d $ is a metric on a set $ X $. A sequence $ \{x_n\} \subset X $ is called a \emph{Cauchy sequence} if, for every $ \varepsilon > 0 $, there exists an integer $N \in \mathbb{N} $ such that $ d(x_m, x_n) < \varepsilon $ for all $ m, n > N $.  The metric \( d \) is said to be \emph{complete} if every Cauchy sequence in \( X \) converges to a point in \( X \)
+\end{definition}
+
+\begin{definition}
+  A \emph{Banach space} is a normed vector space that is complete with respect to the metric induced by its norm. In other words, every Cauchy sequence in the space must converge to a limit within the space.
+\end{definition}
+
 % Cauchy sequences -> p.35 func analysis Rudin
 
 %A Banach space is a normed space which is complete in the metric  defined by its norm; this means that every Cauchy sequence is required to  converge. 
@@ -988,8 +996,7 @@ In this work, we only consider finite measures; hence, the term "measure" implic
 
 % Probabilistic programs describe recipes for inferring statistical conclusions from a complex mixture of uncertain data and real-world observations. They can represent probabilistic graphical models are expected to have a major impact on machine intelligence. Probabilistic programs are ubiquitous. They steer autonomous robots and self-driving cars, are key to describe security mechanisms, naturally code up randomised algorithms for solving NP-hard or even unsolvable problems, and are rapidly encroaching on AI. Probabilistic programming aims to make probabilistic modelling and machine learning accessible to the programmer.
 
-Probabilistic programs offer a structured approach to draw statistical conclusions from uncertain data or real-world observations. They generalize probabilistic graphical models beyond the capabilities of Bayesian networks and are expected to have broader applications in machine intelligence. These programs are now fundamental across various domains, including controlling autonomous systems, verifying security protocols, and implementing randomized algorithms for solving computationally intractable problems. As a result, they are becoming increasingly central to AI development. At their core, they aim to democratize probabilistic modeling by providing programmers with expressive, high-level abstractions for machine learning and statistical reasoning.
-
+Probabilistic programs offer a structured approach to drawing statistical conclusions from uncertain data or real-world observations. They generalize probabilistic graphical models beyond the capabilities of Bayesian networks and are expected to have broader applications in machine intelligence. These programs are are employed across various domains. They control autonomous systems, verify security protocols, and implement randomized algorithms for solving computationally intractable problems. As a result, they are becoming increasingly central to AI development. At their core, they aim to democratize probabilistic modeling by providing programmers with expressive, high-level abstractions for machine learning and statistical reasoning \cite{bartheFoundationsProbabilisticProgramming2020}. 
 
 % INTRO Medidas e espaços mensuraveis 
 
@@ -1182,12 +1189,28 @@ $$
 $$
 \|\mu\|_{TV} := \sup \left\{ \sum_{i=1}^n |\mu(B_i)| : \{B_1, \dots, B_n\} \text{ is a finite measurable partition of } S \right\}.
 $$
-
-For continuous measures...
-
-
+\end{definition}
 
 For positive measures, this reduces to \( \mu(S) \), and for probability measures, the norm is 1. The total variation norm turns \( \mathcal{M}_S \) into a Banach space, meaning it is complete under this norm. 
+
+The following alternative definition is useful to compute the total variation norm between measures.
+
+  \begin{definition} \cite{tsybakov2008}
+    Let  let $P$ and $Q$ be two probability measures on $\mathcal{M}\mathbb{R}$. Define
+    $$
+      \nu = P + Q, \quad p = \frac{dP}{d\nu}, \quad q = \frac{dQ}{d\nu},
+    $$
+    where $\frac{dP}{d\nu}$ denotes the  the Radon–Nikodym derivative of the measure $P$ with respect to the measure $\nu$. It holds that:
+    \begin{align*}
+      \norm{P-Q} = \sup_{A \in  \mathcal{B}} \left\{ \left\vert \int_{A} (p - q) \, d\nu \right\vert \right\}
+    \end{align*}
+
+  \end{definition}
+
+  
+
+
+   
 
 
 
@@ -1207,6 +1230,11 @@ For positive measures, this reduces to \( \mu(S) \), and for probability measure
 
 \section{Category theory} \label{sec:catgories}
 
+Category theory originated as an effort to connect and unify two distinct areas of mathematics.  The goal was to study and classify specific geometric structures—such as topological spaces, manifolds, and bundles—by associating them with corresponding algebraic structures like groups, rings, and abelian groups. It became clear that a language was needed to connect geometric and algebraic objects—one not explicitly tailored to geometry or algebra. Only a language of such generality could allow meaningful discussion across both fields.  This is the birth of category theory.
+Described as "a language about nothing, and therefore about everything," category theory provides a highly general way of discussing mathematical concepts.  It was invented by Samuel Eilenberg and Saunders MacLane \cite{eilenbergGeneralTheoryNatural1945}. They organized various mathematical structures into categories called geometric others algebraic. To connect these categories, they defined functors, which map objects and morphisms from one category to another, much like functions do. They further introduced natural transformations, which provide a way to compare functors, translating the results of one functor into those of another. \cite{yanofskyMonoidalCategoryTheory2024}
+
+
+ 
 \todo[inline,size=\normalsize]{Só cenas básicas: Qual é o interesse, o que é uma cat, funtores, tranformações naturais, produto, coproducto, tensor, categoria monoidal simetria, adjoint,  coherence theorem for symmetric monoidal categories} 
 
 
