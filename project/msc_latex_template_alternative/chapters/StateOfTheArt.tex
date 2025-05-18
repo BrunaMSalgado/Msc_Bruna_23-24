@@ -966,11 +966,10 @@ It should be noted that this principle is upheld by the type system outlined in 
   A \emph{Banach space} is a normed vector space that is complete with respect to the metric induced by its norm. In other words, every Cauchy sequence in the space must converge to a limit within the space.
 \end{definition}
 
-% Cauchy sequences -> p.35 func analysis Rudin
+\todo[inline,size=\normalsize]{Short map} 
 
-%A Banach space is a normed space which is complete in the metric  defined by its norm; this means that every Cauchy sequence is required to  converge. 
 
-\todo[inline,size=\normalsize]{Espaços de Banach, duais, bounded operators, norm topology, weak topology ?} 
+\todo[inline,size=\normalsize]{ duais, bounded operators, norm topology, weak topology ?} 
 
 % boundeness and stuff p.247 infinite dimensional analysis 
 
@@ -986,7 +985,7 @@ It should be noted that this principle is upheld by the type system outlined in 
  This section introduces the fundamentals of measure theory, a key component in defining the semantics of probabilistic programs, drawing inspiration primarily from \cite{dahlqvistSemanticsProbabilisticProgramming2020a} and \cite{athreyaMeasureTheoryProbability2006}. For a more in-depth exploration of lambda calculus theory, see reference \cite{aliprantisBanachLattices1999}. 
 
 
-In this work, we only consider finite measures; hence, the term "measure" implicitly refers to a finite measure unless stated otherwise.
+In this work, we only consider finite (positive) measures; hence, the term "measure" implicitly refers to a finite measure unless stated otherwise.
 
 
 
@@ -1103,7 +1102,7 @@ On the other hand, a measure $ \mu $ on a measurable space $ (S, \mathcal{B}) $ 
 
 
 
-\begin{definition} (\emph{Pushforward measure})
+\begin{definition} [\emph{Pushforward measure}] \label{def:pushforward_meas_1}
   Let $(S, \mathcal{B}_S)$ and $(T, \mathcal{B}_T)$ be measurable spaces. Given a function $f: (S, \mathcal{B}_S) \to (T, \mathcal{B}_T)$ and a measure $\mu$ on $\mathcal{B}_S$, the \emph{pushforward measure} $f_*(\mu)$ on $\mathcal{B}_T$ is defined by:
 $$
 f_*(\mu)(B) = \mu(f^{-1}(B)), \quad  B \in \mathcal{B}_T.
@@ -1138,7 +1137,7 @@ $$
 $$
 Measures on this product space are called \emph{joint distributions}, and are uniquely determined by their values on measurable rectangles due to the inductive structure of the product $\sigma$-algebra. \emph{Product measures} are a significant class of joint distributions and are defined from measures
 
-\begin{definition} (\emph{product measures})
+\begin{definition} [\emph{Product measures}]
    Let $(S_1, \mathcal{B}_1)$ and $(S_2, \mathcal{B}_2)$ be measurable spaces, and let $\mu_1$ and $\mu_2$ be measures on these spaces, respectively. The \emph{product measure} $\mu_1 \otimes \mu_2$ is  defined on measurable rectangles by
 $$
 (\mu_1 \otimes \mu_2)(B_1 \times B_2) = \mu_1(B_1)\mu_2(B_2).
@@ -1169,7 +1168,7 @@ P_*(\mu)(B) = \int_S P(s, B) \, \mu(ds), \quad \forall B \in \mathcal{B}_T.
 $$
 \end{definition}
 
-Any measurable function \( f : (S, \mathcal{B}_S) \to (T, \mathcal{B}_T) \) induces a simple Markov kernel $ s \mapsto \delta_{f(s)} $. As a result, as introduced earlier, the usual definition of the pushforward measure via \( f \) becomes a special case of the general formulation defined above.
+Any measurable function \( f : (S, \mathcal{B}_S) \to (T, \mathcal{B}_T) \) induces a simple Markov kernel $ s \mapsto \delta_{f(s)} $. As a result,  the usual definition of the pushforward measure (Definition \ref{def:pushforward_meas_1}) becomes a special case of the general formulation defined above.
 
 \subsection{Spaces of Measures}
 
@@ -1202,11 +1201,12 @@ The following alternative definition is useful to compute the total variation no
     $$
     where $\frac{dP}{d\nu}$ denotes the  the Radon–Nikodym derivative of the measure $P$ with respect to the measure $\nu$. It holds that:
     \begin{align*}
-      \norm{P-Q} = \sup_{A \in  \mathcal{B}} \left\{ \left\vert \int_{A} (p - q) \, d\nu \right\vert \right\}
+      \norm{P-Q} = \sup_{A \in  \mathcal{B}} \left\{ \left\vert \int_{A} (p - q) \, d\nu \right\vert \right\}.
     \end{align*}
 
   \end{definition}
 
+  
   
 
 
@@ -1234,12 +1234,339 @@ Category theory originated as an effort to connect and unify two distinct areas 
 Described as "a language about nothing, and therefore about everything," category theory provides a highly general way of discussing mathematical concepts.  It was invented by Samuel Eilenberg and Saunders MacLane \cite{eilenbergGeneralTheoryNatural1945}. They organized various mathematical structures into categories called geometric others algebraic. To connect these categories, they defined functors, which map objects and morphisms from one category to another, much like functions do. They further introduced natural transformations, which provide a way to compare functors, translating the results of one functor into those of another. \cite{yanofskyMonoidalCategoryTheory2024}
 
 
- 
-\todo[inline,size=\normalsize]{Só cenas básicas: Qual é o interesse, o que é uma cat, funtores, tranformações naturais, produto, coproducto, tensor, categoria monoidal simetria, adjoint,  coherence theorem for symmetric monoidal categories} 
+\subsection{Categories}
 
+\begin{definition} (\emph{Category})
+   A \emph{category} consists of
+   \begin{itemize}
+    \item a collection of objects $A, B, C, \ldots$;
+    \item a collection of morphisms $f, g, \ldots $.
+   \end{itemize}
+    The collection for morphisms has the following structure:
+    \begin{itemize}
+      \item Each morphism has a specified domain and codomain; the notation $ f : A \to B $ indicates that $ f $ is a morphism from object $ A $ to object $ B $.  
+       \item Every object $ A $ has an identity morphism $ \id_A : A \to A $.  
+      \item For any pair of morphisms $ f : A \to B $ and $ g : B \to C $, where the codomain of $ f $ matches the domain of $ g $, there exists a composite morphism $ g \circ f : X \to Z $. We will also write $g \circ f$ as $f \cdot g$.
+    \end{itemize}
+
+     The composition is required to satisfy the two following laws: if $f : A \to B, g : B \to C,$ and $h:C \to D$ are morphisms, then
+     \begin{itemize}
+      \item  $f \circ \id_a = f = \id_b \circ f$;
+      \item  $  (f \circ g) \circ h = f \circ (g \circ h) $.
+     \end{itemize}
+\end{definition}
+
+
+
+\subsubsection{Examples}
+
+%Sets
+
+\begin{example}
+ $\catSet$ is the category whose objects are sets and whose  morphisms are functions between them. Given a function \(f: A \to B\), it assigns to each element \(a \in A\) a unique image \(f(a) \in B\). 
+ For any two functions \(f: A \to B\) and \(g: B \to C\), their composition is defined by
+$$
+(g \circ f)(a) = g(f(a)) \quad \text{for all } a \in A.
+$$
+This composition is \emph{associative}. That is, for any further function \(h: C \to D\), we have
+\[
+(h \circ g) \circ f = h \circ (g \circ f),
+\]
+since for every \(a \in A\),
+\[
+((h \circ g) \circ f)(a) = h(g(f(a))) = (h \circ (g \circ f))(a).
+\]
+
+Moreover, for every set \(A\), there exists an \emph{identity function}
+\[
+\id_A : A \to A, \quad \text{defined by } \id_A(a) = a,
+\]
+which satisfies the unit laws for composition:
+\[
+f \circ \id_A = f \quad \text{and} \quad \id_B \circ f = f
+\]
+for any function \(f: A \to B\).
+
+Therefore, \(\mathbf{Set}\), with sets as objects and functions as morphisms, satisfies the axioms of a category.
+\end{example}
+
+Another common type of example consists of categories of sets equipped with additional structure, along with functions that preserve that structure.
+
+
+\begin{definition}[\emph{Partial order}]
+A \emph{partially ordered set} or \emph{partial order} is a set $A$ equipped with a binary relation $\leq_A$ satisfying the following properties for all $a, b, c \in A$:
+\begin{itemize}
+    \item Reflexivity: $a \leq_A a$;
+    \item Transitivity: If $a \leq_A b$ and $b \leq_A c$, then $a \leq_A c$;
+    \item Antisymmetry: If $a \leq_A b$ and $b \leq_A a$, then $a = b$.
+\end{itemize}
+\end{definition}
+
+\begin{example}
+The set of real numbers \(\mathbb{R}\), equipped with the usual ordering \(\leq\), forms a poset. Moreover, it is \emph{linearly ordered} (or \emph{totally ordered}), since for any \(x, y \in \mathbb{R}\), either \(x \leq y\) or \(y \leq x\) holds.
+\end{example}
+
+\begin{definition}[\emph{Monotone Map}]
+Given two partial orders \((A, \leq_A)\) and \((B,\leq_B)\), a function \(m: A \to B\) is called a \emph{monotone map} (or \emph{order-preserving map}) if for all \(a, a' \in A\),
+\[
+a \leq_A a' \quad \Rightarrow \quad m(a) \leq_B m(a').
+\]
+\end{definition}
+
+
+
+\begin{example}
+  $\catPO$ is the category of all partial orders and all monotone maps. First, for any poset \(A\), the identity function \(\mathrm{id}_A : A \to A\) is monotone. Indeed, for all \(a \in A\),
+\[
+a \leq_A a \quad \Rightarrow \quad \mathrm{id}_A(a) \leq_A \mathrm{id}_A(a).
+\]
+
+Next, given monotone maps \(f : A \to B\) and \(g : B \to C\), their composition \(g \circ f : A \to C\) is also monotone. For all \(a, a' \in A\), if \(a \leq_A a'\), then
+\[
+f(a) \leq_B f(a') \quad \text{and} \quad g(f(a)) \leq_C g(f(a')),
+\]
+so it follows that
+\[
+(g \circ f)(a) \leq_C (g \circ f)(a').
+\]
+
+\end{example}
+
+\begin{example}
+  Each partially ordered set naturally defines a category. Let \( (P, \leq) \) be a poset. We define a category \( \catfont{B(P, \leq)} \), often denoted simply by \( \catfont{B(P)} \) or even \( \catfont{P} \), where the objects are the elements of \( P \), and there is a unique morphism \( p \to q \) if and only if \( p \leq q \). The reflexivity of the order \( \leq \) ensures the existence of identity morphisms, while transitivity guarantees that morphisms compose appropriately. Moreover, since there is at most one morphism between any two objects, composition is trivially associative. 
+\end{example}
+
+\begin{example}
+ $\catVect$ is the category of vector spaces and linear mappings.
+\end{example}
+
+\begin{example}
+Given a functional programming language $L$, we can define a category $\catCompFunc$.  In this category, the objects represent the data types of the language \( L \), and the morphisms correspond to computable functions or programs. A function is considered \emph{computable} if a computer program is capable of executing that function.
+
+The composition of morphisms is defined as follows: given two morphisms \( f \colon X \to Y \) and \( g \colon Y \to Z \), the composition \( g \circ f \colon X \to Z \) is defined by applying \( g \) to the output of \( f \). This composition is often written as \( f;g \).
+
+Additionally, the identity morphism \( \id_X \colon X \to X \) represents the ``identity program," which returns its input without making any changes (i.e., it "does nothing").
+\end{example}
+
+\begin{example}
+The category $\catCPTP$ is the category whose objects are natural numbers $n \geq 1$ and whose morphisms $n \rightarrow m$ are quantum channels $C^{n \times n} \rightarrow C^{m\times m}$.
+\end{example}
+
+\begin{example}
+  The category $\catBan$ is the category of Banach spaces and short maps.
+\end{example}
+
+
+\begin{definition} [\emph{Isomorphism}]
+ A morphism $f : A \to B$  in a category $\catC$ be a category is called an \emph{isomorphism} if there exists a morphism $f^{-1} : B \to A$ such that
+\[
+f^{-1} \circ f = \id_A \quad \text{and} \quad f \circ g = \id_B.
+\]
+In this case, $f^{-1}$ is called the \emph{inverse} of $f$, and it is unique. If such an isomorphism exists, we say that $A$ and $B$ are \emph{isomorphic}, written
+$A \cong B.$
+\end{definition}
+
+\begin{definition} [\emph{Opposite category}]
+Let \(\mathcal{A}\) be a category. The \emph{opposite category}, denoted \(\mathcal{A}^{\mathrm{op}}\), is defined as follows:
+\begin{itemize}
+  \item The objects of \(\mathcal{A}^{\mathrm{op}}\) are the same as those of \(\mathcal{A}\).
+  \item For any pair of objects \(a, b\), the hom-set in \(\mathcal{A}^{\mathrm{op}}\) is defined by
+  \[
+  \textit{Hom}_{\mathcal{A}^{\mathrm{op}}}(a, b) = \textit{Hom}_{\mathcal{A}}(b, a),
+  \]
+  that is, each morphism \(f: a \to b\) in \(\mathcal{A}^{\mathrm{op}}\) corresponds to a morphism \(f: b \to a\) in \(\mathcal{A}\).
+  \item Composition in \(\mathcal{A}^{\mathrm{op}}\) is defined using the composition in \(\mathcal{A}\), but in reverse order. That is, if
+  \[
+  a \xrightarrow{ \quad f \quad } b \xrightarrow{\quad g \quad } c
+  \]
+  are morphisms in \(\mathcal{A}^{\mathrm{op}}\), corresponding to morphisms
+  \[
+  c \xrightarrow{ \quad g \quad} b \xrightarrow{ \quad f \quad} a
+  \]
+  in \(\mathcal{A}\), then the composition in \(\mathcal{A}^{\mathrm{op}}\) is defined by
+  \[
+  g \circ f := f \circ_{\mathcal{A}} g.
+  \]
+\end{itemize}
+
+Thus, \(\mathcal{A}^{\mathrm{op}}\) reverses the direction of morphisms and composition while retaining the same collection of objects.
+\end{definition}
+
+
+% Partial order
+%Vect
+%Banach spaces and short maps
+%CPTP
+%Linguagens de programação
+
+
+%We say that a diagram commutes when for every two vertices X,Y in the diagram, all the paths from X to Y (following arrows) yield equal morphisms. 
+
+%c_op
+%iso
+
+\subsection{Produts and coproducts}
+
+ A category frequently possesses more intricate structure than a mere collection of objects and their morphisms. The existence of particular relationships among certain objects and morphisms can can make some objects have important properties.
+
+It should be noted that a diagram is said to commute if, for every pair of objects $X$ and $Y$ in the diagram, all directed paths from 
+$X$ to $Y$ yield equal morphisms.
+
+\begin{definition}
+  An object \( 0 \) in a category \( \catC \) is called an \emph{initial object} if for every object \( A \in \catC  \), there exists a unique morphism  $f: 0 \to A $.
+
+\end{definition}
+
+\begin{definition}
+  An object \( T \) in a category \( \catC  \) is called a \emph{terminal object} if for every object \( A \in \catC  \), there exists a unique morphism $ f: A \to T $ .
+\end{definition}
+
+\begin{example}
+In the category \( \catSet \), the empty set \( \emptyset \) is an initial object, since for any set \( S \), there exists a unique function$f : \emptyset \to S.$
+This function is unique because there are no elements in \( \emptyset \) to map.
+
+Any singleton set, such as \( \{*\} \) or \( \{a\} \), is a terminal object in this category. For any set \( S \), there exists a unique function $f : S \to \{*\}$,
+which maps every element of \( S \) to the sole element of the singleton set
+\end{example}
+
+\begin{example}
+  Let $(P, \leq)$ be a partial order and $\catfont{P}$ be its associated
+ category.
+  Here, the initial object is the \emph{bottom element}—an element that is less than or equal to every other element in $P$. The terminal object in $\catP$ is the \emph{top element}—an element that is greater than or equal to every other element in $P$.
+\end{example}
+
+
+
+\begin{definition} [\emph{Product}]
+  Consider a category $\catC$.  We say that it has (binary) products if for any
+objects $A$ and $B$ in $\catC$ there also exists an object $A \times B$
+$\catC$ with morphisms $\pi_A : A \times B \to A$ and $\pi_B :  A \times B \to  B$
+that satisfy a certain universal property: specifically for every two morphisms
+$f  : C \to A$ and $g : C \to B$ there exists a \emph{unique} morphism $\langle f,g \rangle :
+C \to A \times B $ called \emph{pairing} that makes the diagram below commute.
+\[
+\begin{tikzpicture}
+  \matrix (m) [matrix of math nodes,row sep=4em,column sep=7em,minimum width=2em]
+  {
+   & C &  \\
+    A  & A \times B & B\\
+  };
+  \path[-stealth]
+    (m-1-2) edge  node [above] {$f$} (m-2-1)
+    (m-1-2) edge  node [above] {$g$} (m-2-3)
+    (m-2-2) edge  node [below] {$\pi_A$} (m-2-1)
+    (m-2-2) edge  node [below] {$\pi_B$} (m-2-3)
+    (m-1-2) edge [dotted]  node [right] {$\langle f,g \rangle$} (m-2-2);
+    ;
+\end{tikzpicture}
+\]
+\end{definition}
+
+  \begin{definition}
+Let \( A \times B \) be a product of objects \( A \) and \( B \), and let \( A' \times B' \) be a product of objects \( A' \) and \( A' \) in a category $\catC$. Suppose we are given morphisms \( f : A \to A' \) and \( g : B \to B' \). 
+
+Then there exists a unique morphism
+\[
+f \times g : a \times b \to a' \times b'
+\]
+such that the following diagram commutes.
+
+This induced morphism \( f \times g \) is called the \emph{product of the morphisms} \( f \) and \( g \), and it is given explicitly by
+\[
+f \times g = \langle f \circ \pi_A,\, g \circ \pi_B \rangle.
+\]
+\end{definition}
+
+
+\[
+\begin{tikzpicture}
+  \matrix (m) [matrix of math nodes,row sep=4em,column sep=7em,minimum width=2em]
+  {
+   A & A \times B & B \\
+    A'  & A' \times B' & B'\\
+  };
+  \path[-stealth]
+    (m-1-2) edge  node [below] {$\pi_A$} (m-1-1)
+    (m-1-2) edge  node [below] {$\pi_B$} (m-1-3)
+    (m-1-1) edge  node [left] {$f$} (m-2-1)
+    (m-1-3) edge  node [right] {$g$} (m-2-3)
+    (m-2-2) edge  node [below] {$\pi_A'$} (m-2-1)
+    (m-2-2) edge  node [below] {$\pi_B'$} (m-2-3)
+    (m-1-2) edge [dotted]  node [right] {$ f\times g$} (m-2-2);
+    ;
+\end{tikzpicture}
+\]
+
+\begin{theorem} 
+  Let \( A \times B \) be the product of objects \( A \) and \( B \) in a category $\catC$. For any object $C$ and morphisms \( f : C \to A \) and \( g : C \to B \) are morphisms, it holds that:
+\[
+\langle f \circ h,\, g \circ h \rangle = \langle f, g \rangle \circ h.
+\]
+\end{theorem}
+
+\begin{proof}
+
+  The universal property of the product induces a unique morphism \( \langle f, g \rangle : C \to A \times B \) such that
+$\pi_A \circ \langle f, g \rangle = f \quad \text{and} \quad \pi_B \circ \langle f, g \rangle = g.$
+
+Now, let \( h : D \to C \) be another morphism. Then the compositions \( f \circ h : D \to A \) and \( g \circ h : D \to B \) also induce a unique morphism \( \langle f \circ h,\, g \circ h \rangle : D \to A \times B \) by the universal property of the product. As a result, by the universal property of the produt the following diagram commutes.
+
+\[
+\begin{tikzpicture}
+  \matrix (m) [matrix of math nodes,row sep=4em,column sep=4em,minimum width=8em]
+  {
+    & D &  \\
+    & C &  \\
+     & A \times B &\\
+    A &  & B\\
+  };
+  \path[-stealth]
+    (m-1-2) edge  node [right] {$h$} (m-2-2)
+    (m-1-2) edge  node [left] {$f \circ h$} (m-4-1)
+    (m-1-2) edge  node [right] {$g \circ h$} (m-4-3)
+    (m-1-2) edge [bend left=-20] node [left] {$\langle f \circ h,g \circ h \rangle$} (m-3-2)
+    (m-2-2) edge  node [right] {$\langle f,g \rangle$} (m-3-2)
+    (m-2-2) edge  node [right] {$f$} (m-4-1)
+    (m-2-2) edge  node [right] {$g$} (m-4-3)
+    (m-3-2) edge  node [below=0.1cm] {$\pi_A$} (m-4-1)
+    (m-3-2) edge  node [below=0.1cm] {$\pi_B$} (m-4-3)
+    %(m-1-2) edge  node [above] {$f$} (m-2-1)
+    %(m-1-2) edge  node [above] {$g$} (m-2-3)   
+    %(m-1-2) edge [dotted]  node [right] {$\langle f,g \rangle$} (m-2-2);
+    ;
+\end{tikzpicture}
+\]
+
+\end{proof}
+
+
+% exemplos
+
+
+% Qd chegar a coprodutos dizer a cena de serem productos com as setas ao contrário e portanto numa cantegori c um produto é um coproduto em c_op
+\subsection{Fuctors, Natural Transformations and Adjoints}
+
+
+
+%functor
+%embedding
+%full embedding
+%natural tranformations
+%adjoints
+
+\subsection{Monoidal categories}
+
+ 
+\todo[inline,size=\normalsize]{Só cenas básicas: Qual é o interesse, o que é uma cat, isomorfismo, funtores, embeddings, tranformações naturais, produto, coproducto, tensor, categoria monoidal simetria, adjoint,  coherence theorem for symmetric monoidal categories, monoidal distributive} 
+
+
+
+\todo[inline,size=\normalsize]{Esclarecer questão sobre o que é um terminal map to the unit object (of the monoidal category)}
 
 
 \chapter{Metric Lambda Calculus} \label{ch:metriclambda}
+
+\todo[inline,size=\normalsize]{Mudar a descrição co capítulo} 
 
 The Lambda Calculus, developed by Church and Curry in the 1930s, serves as a formal language capturing the key attribute of higher-order functional languages, treating functions as first-class citizens, allowing them to be passed as arguments \cite{barendregt1984lambda}.  Moreover, lambda calculus has been proven to be universal in the sense that any computable function can be represented as an expression within the language \cite{bernays1936alonzo} . Beyond its foundational aspects, this calculus incorporates extensions for modeling side effects, including probabilistic or non-deterministic behaviors and shared memory.  Higher-order functions form a pivotal abstraction in practical programming languages such as LISP, Scheme, ML, and Haskell.
 
@@ -1811,6 +2138,8 @@ Knowing that $f(a)^{\epsilon} =_{\epsilon} f(a)$, it is possible to show that $P
 \section{Interpretation} \label{sec:Quantum Lambda Calculus:Interpretation}
 
 \todo[inline,size=\normalsize]{Interpretação geral com categorias} 
+
+\todo[inline,size=\normalsize]{Não esquecer cena de lambda theories a afins, incluir def de equivalence classes -> slided categorias}
 
 
 
