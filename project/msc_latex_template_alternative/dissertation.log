@@ -1,4 +1,4 @@
-This is XeTeX, Version 3.141592653-2.6-0.999995 (MiKTeX 24.1) (preloaded format=xelatex 2024.7.31)  18 MAY 2025 20:03
+This is XeTeX, Version 3.141592653-2.6-0.999995 (MiKTeX 24.1) (preloaded format=xelatex 2024.7.31)  20 MAY 2025 23:28
 entering extended mode
  restricted \write18 enabled.
  file:line:error style messages enabled.
@@ -1620,10 +1620,7 @@ LaTeX Font Info:    Font shape `TU/SourceSansPro(0)/b/n' will be
 
 ]) (dissertation.toc [11
 
-]
-Underfull \vbox (badness 5756) has occurred while \output is active []
-
- [12])
+] [12])
 \tf@toc=\write6
 \openout6 = `dissertation.toc'.
 
@@ -1783,8 +1780,8 @@ Overfull \hbox (3.90575pt too wide) in paragraph at lines 1097--1100
  []
 
 
-Overfull \hbox (6.366pt too wide) in paragraph at lines 1106--1107
-[]\TU/SourceSansPro(0)/b/n/12 Definition 2.4.5 \TU/SourceSansPro(0)/m/n/12 (\TU/SourceSansPro(0)/m/it/12 Pushforward measure\TU/SourceSansPro(0)/m/n/12 )\TU/SourceSansPro(0)/b/n/12 . []\TU/SourceSansPro(0)/m/n/12 Let $\OT1/cmr/m/n/12 (\OML/cmm/m/it/12 S; \OMS/cmsy/m/n/12 B[]\OT1/cmr/m/n/12 )$ \TU/SourceSansPro(0)/m/n/12 and $\OT1/cmr/m/n/12 (\OML/cmm/m/it/12 T; \OMS/cmsy/m/n/12 B[]\OT1/cmr/m/n/12 )$ \TU/SourceSansPro(0)/m/n/12 be measurable spaces. Given
+Overfull \hbox (11.27182pt too wide) in paragraph at lines 1106--1107
+[]\TU/SourceSansPro(0)/b/n/12 Definition 2.4.5. []\TU/SourceSansPro(0)/m/n/12 Let $\OT1/cmr/m/n/12 (\OML/cmm/m/it/12 S; \OMS/cmsy/m/n/12 B[]\OT1/cmr/m/n/12 )$ \TU/SourceSansPro(0)/m/n/12 and $\OT1/cmr/m/n/12 (\OML/cmm/m/it/12 T; \OMS/cmsy/m/n/12 B[]\OT1/cmr/m/n/12 )$ \TU/SourceSansPro(0)/m/n/12 be measurable spaces. Given a function $\OML/cmm/m/it/12 f \OT1/cmr/m/n/12 : (\OML/cmm/m/it/12 S; \OMS/cmsy/m/n/12 B[]\OT1/cmr/m/n/12 ) \OMS/cmsy/m/n/12 !
  []
 
 [33]
@@ -1792,240 +1789,248 @@ Overfull \hbox (9.47934pt too wide) in paragraph at lines 1162--1163
 []\TU/SourceSansPro(0)/m/n/12 By a slight abuse of terminology, we will also refer to a mapping $\OML/cmm/m/it/12 P[] \OT1/cmr/m/n/12 : \OML/cmm/m/it/12 S \OMS/cmsy/m/n/12 ! \OT1/cmr/m/n/12 (\OMS/cmsy/m/n/12 B[] ! \OT1/cmr/m/n/12 [0\OML/cmm/m/it/12 ; \OT1/cmr/m/n/12 1]) \OML/cmm/m/it/12 P[]\OT1/cmr/m/n/12 (\OML/cmm/m/it/12 s\OT1/cmr/m/n/12 ) =
  []
 
-[34] [35] [36] [37]
-Overfull \hbox (26.37437pt too wide) in paragraph at lines 1344--1345
+[34] [35]
+Overfull \hbox (6.76428pt too wide) in paragraph at lines 1245--1246
+[]\TU/SourceSansPro(0)/m/n/12 a collection of morphisms $\OML/cmm/m/it/12 f; g; []$\TU/SourceSansPro(0)/m/n/12 , usually denoted $[]\OT1/cmr/m/n/12 (\OML/cmm/m/it/12 A; B\OT1/cmr/m/n/12 )$\TU/SourceSansPro(0)/m/n/12 , $[][]\OT1/cmr/m/n/12 (\OML/cmm/m/it/12 A; B\OT1/cmr/m/n/12 )$\TU/SourceSansPro(0)/m/n/12 , or $[]\OT1/cmr/m/n/12 (\OML/cmm/m/it/12 A; B\OT1/cmr/m/n/12 )$
+ []
+
+[36] [37]
+Overfull \hbox (26.37437pt too wide) in paragraph at lines 1345--1346
 []\TU/SourceSansPro(0)/b/n/12 Example 2.6.9. []\TU/SourceSansPro(0)/m/n/12 Given a functional programming language $\OML/cmm/m/it/12 L$\TU/SourceSansPro(0)/m/n/12 , we can define a category $[]$.
  []
 
-[38] [39]
+[38] [39] [40]
 Missing character: There is no ; in font nullfont!
-
-Underfull \vbox (badness 1681) has occurred while \output is active []
-
- [40]
 Missing character: There is no ; in font nullfont!
 [41] [42]
+Missing character: There is no ; in font nullfont!
+[43]
+Missing character: There is no ; in font nullfont!
+[44] [45] [46] [47] [48]
+Underfull \vbox (badness 6526) has occurred while \output is active []
+
+ [49] [50]
 Chapter 3.
 
 Underfull \vbox (badness 3271) has occurred while \output is active []
 
- [43
+ [51
 
-] [44]
+] [52]
 
-Package glossaries-extra Warning: Base acronym command \acrfull should not be used with new abbreviation definitions. Use \glsxtrfull instead on input line 1613.
-
-
-Package glossaries-extra Warning: Base acronym command \acrlong should not be used with new abbreviation definitions. Use \glsxtrlong instead on input line 1613.
+Package glossaries-extra Warning: Base acronym command \acrfull should not be used with new abbreviation definitions. Use \glsxtrfull instead on input line 1984.
 
 
-Package glossaries-extra Warning: Base acronym command \acrshort should not be used with new abbreviation definitions. Use \glsxtrshort instead on input line 1613.
+Package glossaries-extra Warning: Base acronym command \acrlong should not be used with new abbreviation definitions. Use \glsxtrlong instead on input line 1984.
 
 
-Package glossaries-extra Warning: Base acronym command \acrshort should not be used with new abbreviation definitions. Use \glsxtrshort instead on input line 1623.
+Package glossaries-extra Warning: Base acronym command \acrshort should not be used with new abbreviation definitions. Use \glsxtrshort instead on input line 1984.
+
+
+Package glossaries-extra Warning: Base acronym command \acrshort should not be used with new abbreviation definitions. Use \glsxtrshort instead on input line 1994.
 
 
 Underfull \vbox (badness 2245) has occurred while \output is active []
 
- [45] [46]
+ [53] [54]
 LaTeX Font Info:    Font shape `TU/SourceSansPro(0)/m/n' will be
-(Font)              scaled to size 10.95pt on input line 1662.
+(Font)              scaled to size 10.95pt on input line 2033.
 
-Overfull \hbox (145.57607pt too wide) in paragraph at lines 1755--1755
+Overfull \hbox (145.57607pt too wide) in paragraph at lines 2126--2126
 []$[]$ 
  []
 
 
-Overfull \hbox (116.26714pt too wide) in paragraph at lines 1755--1755
+Overfull \hbox (116.26714pt too wide) in paragraph at lines 2126--2126
 []$[]$ 
  []
 
 
-Overfull \hbox (39.76443pt too wide) in paragraph at lines 1755--1755
+Overfull \hbox (39.76443pt too wide) in paragraph at lines 2126--2126
 []$[]$ 
  []
 
 
-Overfull \hbox (36.72276pt too wide) in paragraph at lines 1755--1755
+Overfull \hbox (36.72276pt too wide) in paragraph at lines 2126--2126
 []$[]$ 
  []
 
 
-Overfull \hbox (65.92268pt too wide) in paragraph at lines 1755--1755
+Overfull \hbox (65.92268pt too wide) in paragraph at lines 2126--2126
 []$[]$ 
  []
 
 
 Underfull \vbox (badness 10000) has occurred while \output is active []
 
- [47]
+ [55]
 Underfull \vbox (badness 10000) has occurred while \output is active []
 
- [48]
+ [56]
 LaTeX Font Info:    Font shape `TU/SourceSansPro(0)/m/n' will be
-(Font)              scaled to size 7.0pt on input line 1813.
+(Font)              scaled to size 7.0pt on input line 2184.
 
 
 Package hyperref Warning: Token not allowed in a PDF string (Unicode):
-(hyperref)                removing `math shift' on input line 1813.
+(hyperref)                removing `math shift' on input line 2184.
 
 
 Package hyperref Warning: Token not allowed in a PDF string (Unicode):
-(hyperref)                removing `\alpha' on input line 1813.
+(hyperref)                removing `\alpha' on input line 2184.
 
 
 Package hyperref Warning: Token not allowed in a PDF string (Unicode):
-(hyperref)                removing `math shift' on input line 1813.
+(hyperref)                removing `math shift' on input line 2184.
 
-[49]
+[57]
 Underfull \vbox (badness 2376) has occurred while \output is active []
 
- [50] [51] [52]
-Overfull \hbox (30.13834pt too wide) in paragraph at lines 2072--2072
+ [58] [59] [60]
+Overfull \hbox (30.13834pt too wide) in paragraph at lines 2443--2443
 []$[]$ 
  []
 
 
-Overfull \hbox (87.33153pt too wide) in paragraph at lines 2072--2072
+Overfull \hbox (87.33153pt too wide) in paragraph at lines 2443--2443
 []$[]$ 
  []
 
 
-Overfull \hbox (25.46736pt too wide) in paragraph at lines 2072--2072
+Overfull \hbox (25.46736pt too wide) in paragraph at lines 2443--2443
 []$[]$ 
  []
 
 
-Overfull \hbox (14.47974pt too wide) detected at line 2073
+Overfull \hbox (14.47974pt too wide) detected at line 2444
  $[][]$ 
  []
 
-[53]
-Overfull \hbox (21.44798pt too wide) in paragraph at lines 2154--2155
+[61]
+Overfull \hbox (21.44798pt too wide) in paragraph at lines 2525--2526
 \TU/SourceSansPro(0)/m/n/12 Quantum lambda calculus integrates quantum computation with higher-order functions, thereby
  []
 
-[54]
+[62]
 LaTeX Font Info:    Font shape `TU/SourceSansPro(0)/m/sc' will be
-(Font)              scaled to size 12.0pt on input line 2163.
- [55]
-Overfull \hbox (205.04498pt too wide) in paragraph at lines 2271--2271
+(Font)              scaled to size 12.0pt on input line 2534.
+ [63]
+Overfull \hbox (205.04498pt too wide) in paragraph at lines 2642--2642
 []$[]$ 
  []
 
 
-Overfull \hbox (213.37123pt too wide) in paragraph at lines 2271--2271
+Overfull \hbox (213.37123pt too wide) in paragraph at lines 2642--2642
 []$[]$ 
  []
 
 
-Overfull \hbox (120.86447pt too wide) in paragraph at lines 2271--2271
+Overfull \hbox (120.86447pt too wide) in paragraph at lines 2642--2642
 []$[]$ 
  []
 
 
-Overfull \hbox (117.53113pt too wide) in paragraph at lines 2271--2271
+Overfull \hbox (117.53113pt too wide) in paragraph at lines 2642--2642
 []$[]$ 
  []
 
 
-Overfull \hbox (49.35582pt too wide) in paragraph at lines 2271--2271
+Overfull \hbox (49.35582pt too wide) in paragraph at lines 2642--2642
 []$[]$ 
  []
 
 
-Overfull \hbox (151.61688pt too wide) in paragraph at lines 2271--2271
+Overfull \hbox (151.61688pt too wide) in paragraph at lines 2642--2642
 []$[]$ 
  []
 
 
-Overfull \hbox (25.90512pt too wide) detected at line 2272
+Overfull \hbox (25.90512pt too wide) detected at line 2643
  $[][]$ 
  []
 
-[56]
+[64]
 
-Package glossaries-extra Warning: Base acronym command \acrshort should not be used with new abbreviation definitions. Use \glsxtrshort instead on input line 2307.
+Package glossaries-extra Warning: Base acronym command \acrshort should not be used with new abbreviation definitions. Use \glsxtrshort instead on input line 2678.
 
 
-Overfull \hbox (34.47281pt too wide) detected at line 2361
+Overfull \hbox (34.47281pt too wide) detected at line 2732
  $[][]$ 
  []
 
 
 Underfull \vbox (badness 2469) has occurred while \output is active []
 
- [57]
+ [65]
 
-Package glossaries-extra Warning: Base acronym command \acrshort should not be used with new abbreviation definitions. Use \glsxtrshort instead on input line 2371.
-
-
-Package glossaries-extra Warning: Base acronym command \acrshort should not be used with new abbreviation definitions. Use \glsxtrshort instead on input line 2371.
+Package glossaries-extra Warning: Base acronym command \acrshort should not be used with new abbreviation definitions. Use \glsxtrshort instead on input line 2742.
 
 
-Package glossaries-extra Warning: Base acronym command \acrshort should not be used with new abbreviation definitions. Use \glsxtrshort instead on input line 2371.
+Package glossaries-extra Warning: Base acronym command \acrshort should not be used with new abbreviation definitions. Use \glsxtrshort instead on input line 2742.
 
 
-Package glossaries-extra Warning: Base acronym command \acrshort should not be used with new abbreviation definitions. Use \glsxtrshort instead on input line 2371.
+Package glossaries-extra Warning: Base acronym command \acrshort should not be used with new abbreviation definitions. Use \glsxtrshort instead on input line 2742.
 
 
-Overfull \hbox (11.80319pt too wide) in paragraph at lines 2381--2383
+Package glossaries-extra Warning: Base acronym command \acrshort should not be used with new abbreviation definitions. Use \glsxtrshort instead on input line 2742.
+
+
+Overfull \hbox (11.80319pt too wide) in paragraph at lines 2752--2754
 []\TU/SourceSansPro(0)/m/n/12 It is straightforward to verify that the operators $\U/stmry/m/n/12 J[] \OT1/cmr/m/n/12 0\U/stmry/m/n/12 K$ \TU/SourceSansPro(0)/m/n/12 and $\U/stmry/m/n/12 J[] \OT1/cmr/m/n/12 1\U/stmry/m/n/12 K$ \TU/SourceSansPro(0)/m/n/12 are trace-preserving.
  []
 
 
-Overfull \hbox (0.83672pt too wide) detected at line 2387
+Overfull \hbox (0.83672pt too wide) detected at line 2758
 []
  []
 
 
-Package glossaries-extra Warning: Base acronym command \acrshort should not be used with new abbreviation definitions. Use \glsxtrshort instead on input line 2388.
+Package glossaries-extra Warning: Base acronym command \acrshort should not be used with new abbreviation definitions. Use \glsxtrshort instead on input line 2759.
 
-[58] [59]
-Overfull \hbox (17.12372pt too wide) detected at line 2437
+[66] [67]
+Overfull \hbox (17.12372pt too wide) detected at line 2808
  $[][]$  
  []
 
 
-Overfull \hbox (4.22488pt too wide) detected at line 2548
+Overfull \hbox (4.22488pt too wide) detected at line 2919
 []
  []
 
-[60]
+[68]
 Underfull \vbox (badness 10000) has occurred while \output is active []
 
- [61] [62]
+ [69] [70]
 Underfull \vbox (badness 10000) has occurred while \output is active []
 
- [63] [64]
+ [71] [72]
 
 Package hyperref Warning: Token not allowed in a PDF string (Unicode):
-(hyperref)                removing `math shift' on input line 2735.
-
-
-Package hyperref Warning: Token not allowed in a PDF string (Unicode):
-(hyperref)                removing `\lambda' on input line 2735.
+(hyperref)                removing `math shift' on input line 3106.
 
 
 Package hyperref Warning: Token not allowed in a PDF string (Unicode):
-(hyperref)                removing `math shift' on input line 2735.
+(hyperref)                removing `\lambda' on input line 3106.
 
-) (chapters/Contribution.tex [65] [66
+
+Package hyperref Warning: Token not allowed in a PDF string (Unicode):
+(hyperref)                removing `math shift' on input line 3106.
+
+) (chapters/Contribution.tex [73] [74
 
 ]
 Chapter 4.
-) (chapters/ConclusionsAndFutureWork.tex [67] [68
+) (chapters/ConclusionsAndFutureWork.tex [75] [76
 
 ]
 Chapter 5.
-) (dissertation.bbl [69] [70
+) (dissertation.bbl [77] [78
 
-] [71] [72] [73] [74]) [75] [76
+] [79] [80] [81] [82]) [83] [84
 
 ]
 runsystem(makeindex dissertation.idx)...executed safely (allowed).
 
- (dissertation.ind) (covers/BackCover.tex [77
+ (dissertation.ind) (covers/BackCover.tex [85
 
 ] [1]) (dissertation.aux)
  ***********
@@ -2037,15 +2042,15 @@ L3 programming layer <2024-01-22>
 LaTeX Warning: There were undefined references.
 
 Package rerunfilecheck Info: File `dissertation.out' has not changed.
-(rerunfilecheck)             Checksum: 60055DDAD56904BA2D40DC6B0A825154;10265.
+(rerunfilecheck)             Checksum: 898BFD76A54E7A29619939D2DD304535;10458.
  ) 
 Here is how much of TeX's memory you used:
- 53633 strings out of 409673
- 1121299 string characters out of 5774704
+ 53649 strings out of 409673
+ 1121600 string characters out of 5774704
  1958630 words of memory out of 5000000
- 74794 multiletter control sequences out of 15000+600000
+ 74810 multiletter control sequences out of 15000+600000
  572969 words of font info for 143 fonts, out of 8000000 for 9000
  1348 hyphenation exceptions out of 8191
  121i,36n,121p,2535b,1376s stack positions out of 10000i,1000n,20000p,200000b,200000s
 
-Output written on dissertation.xdv (102 pages, 1440208 bytes).
+Output written on dissertation.xdv (110 pages, 1580080 bytes).

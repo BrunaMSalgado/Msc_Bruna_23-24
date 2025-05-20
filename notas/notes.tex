@@ -1224,12 +1224,12 @@ It is necessary to prove that when $\hat{f}$ is defined as $\hat{f}([x],[y]) = [
 
 \vspace*{10pt}
 
-The category $\catCPTP$ of completely positive trace-preserving maps is a symmetric monoidal category with coproducts enriched over metric spaces \cite{dahlqvist2023syntactic}. The objects are natural numbers $n \geq 1$ and morphisms $n \rightarrow m$ are quantum channels $C^{n \times n} \rightarrow C^{m\times m}$.  An obvious candidate for the interpretation of quantum programs with coproducts is the category obtained by the coproduct cocompletion of $\catCPTP$,  $\catCPTP^{+}$ . In this setting, the $L^{\infty}$-norm arises as the natural metric. 
+The category $\catCPTP$ of completely positive trace-preserving maps is a symmetric monoidal category enriched over metric spaces \cite{dahlqvist2023syntactic}. The objects are natural numbers $n \geq 1$ and morphisms $n \rightarrow m$ are quantum channels $C^{n \times n} \rightarrow C^{m\times m}$.  An obvious candidate for the interpretation of quantum programs with coproducts is the category obtained by the coproduct cocompletion of $\catCPTP$,  $\catCPTP^{+}$ . In this setting, the $L^{\infty}$-norm arises as the natural metric. 
 
 
-However, coproducts alone are insufficient to express the measurement operation which maps a density matrix $ \rho \in \mathbb{C}^{2 \times 2}$ to a classical bit $b \in \mathbb{C} \oplus \mathbb{C}$. To properly capture such operations, the category must be equipped with biproducts, which can be constructed via the coproduct cocompletion of $(\catCPTP^{+})^{\cop}$ The dual of such category is denoted $\catCPTP^{\oplus}$. However, coproducts alone are insufficient to express the measurement operation which maps a density matrix $ \rho \in \mathbb{C}^{2 \times 2}$ to a classical bit $b \in \mathbb{C} \oplus \mathbb{C}$. To properly capture such operations, the category must be equipped with biproducts, which can be constructed via the coproduct cocompletion of $(\catCPTP^{+})^{\cop}$ The dual of such category is denoted $\catCPTP^{\oplus}$. Here, we may consider two natural candidates metrics for products: the $L^{\infty}$-norm and the $L^{1}$-norm. These correspond, respectively, to the following metrics: $d(\langle \phi, \psi \rangle, \langle \phi', \psi' \rangle ) = \sup \{ d(\phi, \phi' ), d(\psi, \psi') \}$ and $d(\langle \phi, \psi \rangle, \langle \phi', \psi' \rangle ) = d(\phi, \phi' ) +  d(\psi, \psi') $.
+However, coproducts alone are insufficient to express the measurement operation which maps a density matrix $ \rho \in \mathbb{C}^{2 \times 2}$ to a classical bit $b \in \mathbb{C} \oplus \mathbb{C}$. To properly capture such operations, the category must also be equipped with products. However $\catCPTP$ does not have products. As a result, we consider category $\catCPS$, the category of completely positive trace-nonincreasing maps which is a symmetric monoidal category  \cite{selinger04}. The category $\catCPS^{+}$ is constructed analogously to $\catCPTP^{+}$. A version of $\catCPS$ with biproducts can be constructed via the dual of the coproduct cocompletion of $(\catCPS^{+})^{\cop}$.  The resulting category is denoted $\catCPS^{\oplus}$. Here, we may consider two natural candidates metrics for products: the $L^{\infty}$-norm and the $L^{1}$-norm. These correspond, respectively, to the following metrics: $d(\langle \phi, \psi \rangle, \langle \phi', \psi' \rangle ) = \sup \{ d(\phi, \phi' ), d(\psi, \psi') \}$ and $d(\langle \phi, \psi \rangle, \langle \phi', \psi' \rangle ) = d(\phi, \phi' ) +  d(\psi, \psi') $.
 
-Let us start by verifying if the  $L^{\infty}$-norm is a suitable candidate for making $\catCPTP^{\oplus}$ a $\catMet$-enriched category. For instance, for CTPT maps $\phi_1, \phi_2,  \phi_1', \phi_2', \psi_1, \psi_2$ the following should hold:
+Let us start by verifying if the  $L^{\infty}$-norm is a suitable candidate for making $\catCPS^{\oplus}$ a $\catMet$-enriched category. For instance, for CPS maps $\phi_1, \phi_2,  \phi_1', \phi_2', \psi_1, \psi_2$ the following should hold:
 \begin{align*}
   d([\psi_1, \psi_2] \cdot \langle \phi_1, \phi_2 \rangle, [\psi_1, \psi_2] \cdot \langle \phi_1', \phi_2' \rangle ) \leq d(\langle \phi_1, \phi_2 \rangle, \langle \phi_1', \phi_2' \rangle )
 \end{align*}
@@ -1249,7 +1249,7 @@ Futhermore, if the metric is induced by a norm, $\ie$ $d (\psi_1, \psi_2) = \lVe
   & = 2 \cdot  d(\phi_1, \phi_1') > d(\phi_1, \phi_1') = \sup \{d(\phi_1, \phi_1'), d(\phi_2, \phi_2')\} = d(\langle \phi_1, \phi_2 \rangle, \langle \phi_1', \phi_2' \rangle )
 \end{align*}
 
-Thus, the $L^{\infty}$-norm is not a suitable candidate for making $\catCPTP^{\oplus}$ a $\catMet$-enriched category. Now let us consider the $L^{1}$-norm. For CTPT maps $ \phi, \phi', \phi_1, \phi_2$ the following should hold:
+Thus, the $L^{\infty}$-norm is not a suitable candidate for making $\catCPS^{\oplus}$ a $\catMet$-enriched category. Now let us consider the $L^{1}$-norm. For CPS maps $ \phi, \phi', \phi_1, \phi_2$ the following should hold:
 \begin{align*}
   d( \langle \phi_1, \phi_2 \rangle \cdot \phi, \langle \phi_1, \phi_2 \rangle \cdot \phi' ) \leq d(\phi, \phi')
 \end{align*}
@@ -1263,20 +1263,29 @@ Considering $\phi_1=\phi_2 = \id$ and $\phi \neq \phi'$, we have
   & = 2 \cdot d(  \phi,  \phi'  ) > d(  \phi,  \phi'  )
 \end{align*}
 
-Given that none of the ``natural'' metrics are suitable for making $\catCPTP^{\oplus}$ a $\catMet$-enriched category, we must now consider a metric between the $L^{\infty}$-norm and the $L^{1}$-norm, \ie, $$\sup \{ d(\phi, \phi' ), d(\psi, \psi') \} \leq d(\langle \phi, \psi \rangle, \langle \phi', \psi' \rangle ) \leq d(\phi, \phi' ) +  d(\psi, \psi').$$
+Given that none of the ``natural'' metrics are suitable for making $\catCPS^{\oplus}$ a $\catMet$-enriched category, we must now consider a metric between the $L^{\infty}$-norm and the $L^{1}$-norm, \ie, $$\sup \{ d(\phi, \phi' ), d(\psi, \psi') \} \leq d(\langle \phi, \psi \rangle, \langle \phi', \psi' \rangle ) \leq d(\phi, \phi' ) +  d(\psi, \psi').$$
 
-In order to verify if this metric is valid,  we must ensure that for CTPT maps $\phi_1, \phi_2,  \phi_1', \phi_2', \psi_1, \psi_2$ the following holds:
+In order to verify if this metric is valid,  we must ensure that for CPS maps $\phi_1, \phi_2,  \phi_1', \phi_2', \psi_1, \psi_2$ the following holds:
 \begin{align*}
-  d([\psi_1, \psi_2] \cdot \langle \phi_1, \phi_2 \rangle, [\psi_1, \psi_2] \cdot \langle \phi_1', \phi_2' \rangle ) \geq \sup \{ d(\phi, \phi' ), d(\psi, \psi') \}
+  d([\psi_1, \psi_2] \cdot \langle \phi_1, \phi_2 \rangle, [\psi_1, \psi_2] \cdot \langle \phi_1', \phi_2' \rangle ) \geq \sup \{ d(\phi_1, \phi_1' ), d(\phi_2, \phi_2') \}
 \end{align*}
 
-Considering $\phi_2=\phi_2'$, $\phi_1 \neq \phi_1'$, $\psi_1= \psi_2$, and that the metric is induced by a norm, we have
+Assuming \(\phi_2 = \phi_2'\), that the metric is induced by a submultiplicative norm with respect to composition, and that \(\|\phi_1\| < 1\), we have
 \begin{align*}
   & d([\psi_1, \psi_2] \cdot \langle \phi_1, \phi_2 \rangle, [\psi_1, \psi_2] \cdot \langle \phi_1', \phi_2' \rangle ) \\
   & = d(\psi_1 \cdot \phi_1 + \psi_2 \cdot \phi_2, \psi_1 \cdot \phi_1' + \psi_2 \cdot \phi_2') \\
-  & = \lVert \psi_1 (\phi_1- \phi_1' ) \lVert 
+  & = \lVert \psi_1 (\phi_1- \phi_1' ) \lVert \\
+  & \leq    \lVert \psi_1  \lVert  \lVert \phi_1- \phi_1'  \lVert \\
+  & = \lVert \phi_1- \phi_1'  \lVert  \\
+    & =  d(\phi_1, \phi_1' )
 \end{align*}
- 
+
+Consequently this norm is not fit either.
+
+
+\begin{comment}
+
+
 For instance, consider the trace norm, denoted $\tracenorm{-}$. Let $V$ and $W$ be finite-dimentional euclidean spaces and let $\mathcal{L}(V)$ denote the space of linear operators mapping a complex Euclidean space $V$ to itself.
 This norm is defined on operators $ A:V \to V $ and superoperators  $\phi:\mathcal{L}(V) \to \mathcal{L}(W)$ as follows:
 $$ \tracenorm{A} = \tr\left(\sqrt{A^\dagger A}\right) = \sum_i \tracenorm{A_i}  $$
@@ -1306,7 +1315,7 @@ On the other hand, it is evident that $\left\lVert \tr \left(  I - D_p \right) \
 
 \todo[inline]{Explicar melhor o op de Dephasing}
 
-
+\end{comment}
 
 
 
