@@ -1,7 +1,7 @@
 \chapter{Preliminaries} \label{sec:Preliminaries}
 
 
-\todo[inline,size=\normalsize]{Mudar esta descrição} 
+\todo[inline,size=\normalsize]{Mudar esta descrição.} 
 
 
 
@@ -10,26 +10,27 @@ The first two sections of this chapter present the mathematical and quantum comp
 
 \section{Linear Algebra} \label{sec:linalg}
 
-\todo[inline,size=\normalsize]{Tirar a descrição do que são vetores e coisas desse tipo, que eu não vou andar com este tipo de promenores para o resto} 
+\todo[inline,size=\normalsize]{Cenas para resolver: questão de normed spaces tb se aplicarem para o caso infinito} 
 
-\todo[inline,size=\normalsize]{Tirar as normas que eu não precisar}
 
-\todo[inline,size=\normalsize]{Definir trace class operators e traço de maneira mais geral} 
+\todo[inline,size=\normalsize]{Kronecker} 
+
+
 
 
 It is impossible to present the theory of quantum computation without introducing some concepts of linear algebra within finite-dimensional spaces. This section provides a brief overview of the aspects of linear algebra that are most pertinent to the study of quantum computation. 
 
 \subsection{Complex vector spaces}
 
-The basic objects of linear algebra are vector spaces. The vector spaces of interest in this work are the complex vector spaces, such as \gls{n-complex-space} and \gls{matrix-complex-space} therefore, the following definition is given in the context of complex vector spaces. 
+The basic objects of linear algebra are vector spaces. The vector spaces of interest in this work are the real and complex vector spaces, such as  \gls{real-space}  and \gls{n-complex-space} and \gls{matrix-complex-space}, respectively. 
 
 \begin{definition}
-A \emph{vector space} (over $\mathbb{C}$)  consists of a set $V$ whose elements are called vectors, together with two operations:
+A \emph{vector space} (over a field $\mathcal{F}$)  consists of a set $V$ whose elements are called vectors, together with two operations:
 \begin{itemize}
   \item An operation called vector addition that takes two vectors $v, w \in V$ , and results in a third vector, written $v + w \in V$;
-  \item An operation called scalar multiplication that takes a scalar $a \in \mathbb{C}$ and a vector $v \in V$ , and results in a new vector, written $r \cdot v \in V$
+  \item An operation called scalar multiplication that takes a scalar $a \in \mathcal{F}$ and a vector $v \in V$ , and results in a new vector, written $r \cdot v \in V$
 \end{itemize}
-which satisfy the following conditions (called axioms), for all $u, v, w \in V$ and $a_1, a_2 \in \mathbb{C}$:
+which satisfy the following axioms, for all $u, v, w \in V$ and $a_1, a_2 \in \mathcal{F}$:
 
 \begin{enumerate}
   \item Vector addition is commutative: $u + v = v + u$;
@@ -44,7 +45,11 @@ which satisfy the following conditions (called axioms), for all $u, v, w \in V$ 
 
 \end{definition}
 
-The letters \gls{vectorspaces} will often be used to refer to vector spaces. All vector spaces are assumed to be finite dimensional, unless otherwise noted.  
+ 
+
+The letters \gls{vectorspaces} will often be used to refer to complex vector spaces. In this section, all vector spaces are assumed to be finite dimensional, unless otherwise stated. 
+
+\begin{comment}
 
 In the case of the vector space $\mathbb{C}^{n}$, the space of all n-tuples of complex numbers, $(a_1, \ldots , a_n)$, addition and scalar multiplication are defined in the following standard way:
 \begin{itemize}
@@ -62,16 +67,22 @@ $\mathbb{C}^{n \times m}$ is a vector space when addition is defined as matrix a
   %If $A, B, C$ are matrices, and the matrix products are defined,
 %then the product is associative $(AB)C = A(BC)$ and distributes over matrix
 %addition $A(B + C) = AB + AC$ and $(B + C)A = BA + CA$.
-%\end{theorem}
 
 
 \begin{definition}
 A \emph{vector subspace} of a vector space $V$ is a subset $W$ of $V$ such that $W$ is also a vector space, that is, $W$ must be closed under scalar multiplication and addition.
 \end{definition}
+%\end{theorem}
+
 
 \begin{definition}
   A \emph{spanning set} of a vector space is a set of vectors $v_{1}, \ldots, v_{n}$ such that any vector $v$ in the vector space can be written as a linear combination $v = \sum_{i} a_{i} v_{i}$ of vectors in that set, where $a_{i}$ are scalars.
 \end{definition}
+
+\end{comment}
+
+
+
 
 \begin{definition}
 A set of non-zero vectors $v_1, \ldots, v_n$ are \emph{linearly dependent} if there exists a set of complex numbers $a_1, \ldots , a_n$ with $a_i \neq 0$ for at least one value of $i$, such that
@@ -95,10 +106,14 @@ $V$, denoted \gls{dim}.
 \end{definition}
 
 \subsection{Linear operators}
-A \emph{linear operator} between vector spaces $V$ and $W$ is defined to be any function $A : V \rightarrow W$ which is linear in its inputs, \textit{i.e.}
+
+\begin{definition}
+  A \emph{linear operator} between vector spaces $V$ and $W$ is defined to be any function $A : V \rightarrow W$ which is linear in its inputs, \textit{i.e.}
 \begin{equation*}
   A \left( \sum_{i} a_{i} v_{i} \right) = \sum_{i} a_i A (v_{i})
 \end{equation*}
+\end{definition}
+
 Usually $A(v)$ is just denoted $A v$.
 
 Suppose $V, W,$ and $R$ are vector spaces, and $A : V \rightarrow R$ and $B : W \rightarrow R$ are linear operators. Then the notation $BA$ is used  to denote the \emph{composition} of $B$ with $A$,
@@ -155,17 +170,22 @@ The inner product $ \langle v, w \rangle$ of two vectors $ v = (a_1, \ldots, a_n
 
 \subsubsection{Trace}
 
-In order to define inner product of a matrix, it is necessary to first define the trace of a matrix. The trace of a square matrix $A\in \mathbb{C}^{n\times n}$ defined to be the sum of its diagonal elements,
+In order to define inner product of a matrix, it is necessary to first define the trace of a matrix. 
+
+\begin{definition}
+  The trace of a square matrix $A\in \mathbb{C}^{n\times n}$ defined to be the sum of its diagonal elements,
 \begin{equation*}
   \text{tr}(A)= \sum_{i} A_{ii}.
 \end{equation*}
+\end{definition}
+
 
 The trace is \emph{cyclic}, that is, $\text{tr}(AB) = \text{tr}(BA)$ , and \emph{linear}, $\text{tr}(A + B) = \text{tr}(A)+\text{tr}(B), \text{tr}(a \cdot A) = a\cdot \hspace{1pt} \text{tr}(A)$, where matrices $A, B \in \mathbb{C}^{n\times n}$, and $a$ is a complex number.
 
 By means of the trace, one defines the inner product of two operators $A,B\in \mathbb{C}^{m \times n}$ as follows
-\begin{equation} \label{eq:inner_product_matrix}
+\begin{equation*} \label{eq:inner_product_matrix}
   \langle A, B \rangle = \text{tr}(A^{\dagger}B).
-\end{equation}
+\end{equation*}
 
 In the \emph{finite} dimensional complex vector spaces relevant to quantum computation and quantum information, a \emph{Hilbert space} is is equivalent to an inner product space.  As a result, both $\mathbb{C}^{n}$ and $\mathbb{C}^{n \times m}$ are Hilbert spaces.
 
@@ -185,7 +205,7 @@ A vector space together with a norm is called a \emph{normed vector space}.
 \end{definition}
 
 Every normed space may be regarded as a metric space, in which the
-distance \gls{distance} between vectors $x$ and $y$ is $\|x-y\|$ . The relevant properties of $d$ are
+distance \gls{distance} between vectors $x$ and $y$ is $\|x-y\|$ . The relevant properties of $d(x,y)$ are
 
 \begin{enumerate}
   \item $0 < d(x, y) < \infty $ for all $x$ and $y$,
@@ -202,7 +222,7 @@ Two vector $u, v$ are said to be \emph{orthogona}l if $\langle v,u\rangle$. An \
 \end{definition}
 
 \begin{definition}
-  A \emph{unit vector} is a vector $v$ such that $\|v\|  = 1$. It is also said that $v$ is \emph{normalized} if $\|v\|  = 1$
+  A \emph{unit vector} is a vector $v$ such that $\|v\|  = 1$. It is also said that $v$ is \emph{normalized} if $\|v\|  = 1$.
 \end{definition}
 
 \begin{definition}
@@ -286,7 +306,7 @@ Geometrically, unitary operators are important because they preserve inner produ
 the operator $U$ defined by $U = \sum_{i} w_i^{\dag} v_i$ is unitary.
 
 \begin{definition}
-  \emph{Density operator}. Positive semidefinite operators that have trace equal to 1 are called \emph{density operators}. Lowercase Greek letters, such as \gls{density-matrix} are conventionally used to denote density operators.
+  \emph{Density operator}. Positive semidefinite operators that have trace equal to 1 are called \emph{density operators}.  By convention, such operators are denoted by the lowercase Greek letter \gls{density-matrix}, often accompanied by subscripts.
 \end{definition}
 
 \begin{definition}
@@ -311,13 +331,17 @@ the operator $U$ defined by $U = \sum_{i} w_i^{\dag} v_i$ is unitary.
     \end{equation*}
 \end{definition}
 
+
+
 \begin{definition}\label{def:trace-norm-matriz}
   The \emph{trace norm}, \gls{trace-norm}, of a matrix $A$ is defined as:
-  \begin{equation} \label{eq:trace_norm_matrix_tr}
+  \begin{equation*} \label{eq:trace_norm_matrix_tr}
     \lVert A \rVert_{1} = \text{tr} \sqrt{A^{\dagger}A}
-  \end{equation}
+  \end{equation*}
   This norm is also  known as the Schatten 1-norm. The trace norm induces a metric on the set of density matrices which is defined by $d(\rho, \sigma) = \lVert \rho -\sigma\rVert_{1}$.
 \end{definition}
+
+\begin{comment}
 Alternatively, the trace norm  of a square matrix $A \in \mathbb{C}^{n \times n} $ can be defined in the following way:
 \begin{equation} \label{eq:trace_norm_matrix_U}
   \lVert A \rVert_{1} = \text{max} \{ |\langle U, A \rangle| \mid  U \in \mathbb{C}^{n \times n}   \text{ is a unitary operator}  \}.
@@ -334,7 +358,9 @@ Alternatively, the trace norm  of a square matrix $A \in \mathbb{C}^{n \times n}
 \end{itemize}
 
 \end{proposition}
+\end{comment}
 
+\begin{comment}
 \begin{definition} \label{def:spectral-norm}
 
   The \emph{spectral norm}, \gls{spectral-norm}, of an operator $A: \mathbb{C}^{n} \rightarrow \mathbb{C}^{m} $ is defined as:
@@ -350,15 +376,11 @@ Alternatively, the trace norm  of a square matrix $A \in \mathbb{C}^{n \times n}
   \end{equation*}
 \end{definition}
 
+
+
 The trace norm and the spectral norm are dual.
+\end{comment}
 
-
-\begin{definition} \label{def:op_norm}
-  Given  normed vector spaces $V$ and $W$, the operator,\gls{op-norm}, norm for an operator $E: V \rightarrow W$ is defined as
-  \begin{equation*}
-  \lVert E \rVert_{\sigma} = \text{sup} \{ \lVert E(A) \rVert \hspace{2pt} | \hspace{2pt} \lVert A \rVert = 1 \}.
-\end{equation*}
-\end{definition}
 
 
 
@@ -958,6 +980,8 @@ It should be noted that this principle is upheld by the type system outlined in 
 
 \section{Functional Analysis} \label{sec:funal}
 
+In this section, we are no longer restricted to finite dimensional vector spaces; the term 'vector space' now also encompasses infinite-dimensional ones.
+
 \begin{definition} (\emph{Cauchy sequence})
   Suppose $ d $ is a metric on a set $ X $. A sequence $ \{x_n\} \subset X $ is called a \emph{Cauchy sequence} if, for every $ \varepsilon > 0 $, there exists an integer $N \in \mathbb{N} $ such that $ d(x_m, x_n) < \varepsilon $ for all $ m, n > N $.  The metric \( d \) is said to be \emph{complete} if every Cauchy sequence in \( X \) converges to a point in \( X \)
 \end{definition}
@@ -966,10 +990,22 @@ It should be noted that this principle is upheld by the type system outlined in 
   A \emph{Banach space} is a normed vector space that is complete with respect to the metric induced by its norm. In other words, every Cauchy sequence in the space must converge to a limit within the space.
 \end{definition}
 
-\todo[inline,size=\normalsize]{Short map} 
+
+\begin{definition} \label{def:op_norm}
+  Given  normed vector spaces $V$ and $W$, the operator norm ,\gls{op-norm}, for an operator $E: V \rightarrow W$ is defined as
+  \begin{equation*}
+  \lVert E \rVert_{\text{op}} = \text{sup} \{ \lVert E(A) \rVert \hspace{2pt} | \hspace{2pt} \lVert A \rVert = 1 \}.
+\end{equation*}
+\end{definition}
+
+\todo[inline,size=\normalsize]{Short map, projective tensor product (tensor product Banach spaces), L-1 norm, L2 norm} 
 
 
-\todo[inline,size=\normalsize]{ duais, bounded operators, norm topology, weak topology ?} 
+\todo[inline,size=\normalsize]{ duais, bounded operators, trace class, norm topology, weak topology ?} 
+
+
+% traço + geral -> usar def the square op que mapeia um espaço de hilbert para ele mesmo -> depois usar a def de traço neste caso do watrous
+% trace class -> 18.3 Definition. a-course-in-operator-theory-john-b-conway
 
 % boundeness and stuff p.247 infinite dimensional analysis 
 
@@ -1230,7 +1266,8 @@ The following alternative definition is useful to compute the total variation no
 
 \section{Category theory} \label{sec:catgories}
 
-%awodeyCategoryTheory2010
+
+\todo[inline,size=\normalsize]{Cenas para a descrição da secção: ref awodeyCategoryTheory2010 e nota sobre a maioria dos exemplos serem retirados do noson} 
 
 Category theory originated as an effort to connect and unify two distinct areas of mathematics.  The goal was to study and classify specific geometric structures—such as topological spaces, manifolds, and bundles—by associating them with corresponding algebraic structures like groups, rings, and abelian groups. It became clear that a language was needed to connect geometric and algebraic objects—one not explicitly tailored to geometry or algebra. Only a language of such generality could allow meaningful discussion across both fields.  This is the birth of category theory.
 Described as "a language about nothing, and therefore about everything," category theory provides a highly general way of discussing mathematical concepts.  It was invented by Samuel Eilenberg and Saunders MacLane \cite{eilenbergGeneralTheoryNatural1945}. They organized various mathematical structures into categories called geometric others algebraic. To connect these categories, they defined functors, which map objects and morphisms from one category to another, much like functions do. They further introduced natural transformations, which provide a way to compare functors, translating the results of one functor into those of another. \cite{yanofskyMonoidalCategoryTheory2024}
@@ -1248,7 +1285,7 @@ Described as "a language about nothing, and therefore about everything," categor
     \begin{itemize}
       \item Each morphism has a specified domain and codomain; the notation $ f : A \to B $ indicates that $ f $ is a morphism from object $ A $ to object $ B $.  
        \item Every object $ A $ has an identity morphism $ \id_A : A \to A $.  
-      \item For any pair of morphisms $ f : A \to B $ and $ g : B \to C $, where the codomain of $ f $ matches the domain of $ g $, there exists a composite morphism $ g \circ f : X \to Z $. We will also write $g \circ f$ as $f \cdot g$.
+      \item For any pair of morphisms $ f : A \to B $ and $ g : B \to C $, where the codomain of $ f $ matches the domain of $ g $, there exists a composite morphism $ g \circ f : X \to Z $. We will also write $g \circ f$ as $f \cdot g$ or simply $f g$.
     \end{itemize}
 
      The composition is required to satisfy the two following laws: if $f : A \to B, g : B \to C,$ and $h:C \to D$ are morphisms, then
@@ -1317,9 +1354,9 @@ a \leq_A a' \quad \Rightarrow \quad m(a) \leq_B m(a').
 
 
 \begin{example}
-  $\catPO$ is the category of all partial orders and all monotone maps. First, for any poset \(A\), the identity function \(\mathrm{id}_A : A \to A\) is monotone. Indeed, for all \(a \in A\),
+  $\catPO$ is the category of all partial orders and all monotone maps. First, for any poset \(A\), the identity function \(\id_A : A \to A\) is monotone. Indeed, for all \(a \in A\),
 \[
-a \leq_A a \quad \Rightarrow \quad \mathrm{id}_A(a) \leq_A \mathrm{id}_A(a).
+a \leq_A a \quad \Rightarrow \quad \id_A(a) \leq_A \id_A(a).
 \]
 
 Next, given monotone maps \(f : A \to B\) and \(g : B \to C\), their composition \(g \circ f : A \to C\) is also monotone. For all \(a, a' \in A\), if \(a \leq_A a'\), then
@@ -1338,7 +1375,7 @@ so it follows that
 \end{example}
 
 \begin{example}
- $\catVect$ is the category of complex vector spaces and linear mappings.
+ $\catVect$ is the category of finite complex vector spaces and linear mappings.
 \end{example}
 
 \begin{example}
@@ -1374,30 +1411,49 @@ $A \cong B.$
 One of the central ideas in category theory is \emph{duality}. Simply put, for a given definition of a structure, there is often a corresponding dual concept obtained by reversing the directions of all the arrows. 
 
 \begin{definition} 
-Let \(\mathcal{A}\) be a category. The \emph{opposite category}, denoted \(\mathcal{A}^{\mathrm{op}}\), is defined as follows:
+Let \(\catC\) be a category. The \emph{opposite category}, denoted \(\catC^{\mathrm{op}}\), is defined as follows:
 \begin{itemize}
-  \item The objects of \(\mathcal{A}^{\mathrm{op}}\) are the same as those of \(\mathcal{A}\).
-  \item For any pair of objects \(a, b\), the hom-set in \(\mathcal{A}^{\mathrm{op}}\) is defined by
+  \item The objects of \(\catC^{\mathrm{op}}\) are the same as those of \(\catC\).
+  \item For any pair of objects \(A, B\), the hom-set in \(\catC^{\mathrm{op}}\) is defined by
   \[
-  \textit{Hom}_{\mathcal{A}^{\mathrm{op}}}(a, b) = \textit{Hom}_{\mathcal{A}}(b, a),
+  \textit{Hom}_{\catC^{\mathrm{op}}}(A, B) = \textit{Hom}_{\catC}(B, A),
   \]
-  that is, each morphism \(f: a \to b\) in \(\mathcal{A}^{\mathrm{op}}\) corresponds to a morphism \(f: b \to a\) in \(\mathcal{A}\).
-  \item Composition in \(\mathcal{A}^{\mathrm{op}}\) is defined using the composition in \(\mathcal{A}\), but in reverse order. That is, if
+  that is, each morphism \(f: A \to B\) in \(\catC^{\mathrm{op}}\) corresponds to a morphism \(f: B \to A\) in \(\catC\).
+  \item Composition in \(\catC^{\mathrm{op}}\) is defined using the composition in \(\catC\), but in reverse order. That is, if
   \[
-  a \xrightarrow{ \quad f \quad } b \xrightarrow{\quad g \quad } c
+  A \xrightarrow{ \quad f \quad } B \xrightarrow{\quad g \quad } C
   \]
-  are morphisms in \(\mathcal{A}^{\mathrm{op}}\), corresponding to morphisms
+  are morphisms in \(\catC^{\mathrm{op}}\), corresponding to morphisms
   \[
-  c \xrightarrow{ \quad g \quad} b \xrightarrow{ \quad f \quad} a
+  C \xrightarrow{ \quad g \quad} B \xrightarrow{ \quad f \quad} A
   \]
-  in \(\mathcal{A}\), then the composition in \(\mathcal{A}^{\mathrm{op}}\) is defined by
+  in \(\catC\), then the composition in \(\catC^{\mathrm{op}}\) is defined by
   \[
-  g \circ f := f \circ_{\mathcal{A}} g.
+  g \circ f := f \circ_{\catC} g.
   \]
 \end{itemize}
 
-Thus, \(\mathcal{A}^{\mathrm{op}}\) reverses the direction of morphisms and composition while retaining the same collection of objects.
+Thus, \(\catC^{\mathrm{op}}\) reverses the direction of morphisms and composition while retaining the same collection of objects.
 \end{definition}
+
+\begin{definition}
+  A subcategory \( \catD \) of a category \( \catC \) is a category such that 
+  \begin{itemize}
+    \item All the objects of \( \catD \) are objects of \( \catC \), and all the morphisms of \( \catD \) are morphisms of \( \catC \) (that is, \( \catD_0 \subseteq \catC_0 \) and \( \catD_1 \subseteq \catC_1 \)).
+    \item The domain and codomain of any morphism in \( \catD \) are the same as in \( \catC \) (in other words, the domain and codomain maps for \( \catD \) are the restrictions of those for \( \catC \)).
+    \item  It follows that for any objects \( A \) and \( B \) in \( \catD \), we have \( \mathrm{Hom}_{\catD}(A, B) \subseteq \mathrm{Hom}_{\catC}(A, B) \). If \( A \) is an object of \( \catD \), then its identity morphism \( \mathrm{id}_A \) in \( \catC \) also belongs to \( \catD \).
+    \item If \( f: A \to B \) and \( g: B \to C \) are morphisms in \( \catD \), then the composite \( g \circ f \), as defined in \( \catC \), is also in \( \catD \), and coincides with the composite in \( \catD \).
+  \end{itemize}
+  
+\end{definition}
+
+\begin{example}
+  The category $\catFinSet$, whose objects are finite sets and whose morphisms are functions between them, forms a subcategory of the category $\catSet$.
+\end{example}
+
+\begin{example}
+  The category $\catCPTP$ is a subcategory of $\catCPS$. 
+\end{example}
 
 
 % Partial order
@@ -1754,20 +1810,20 @@ In $\catCPTP$ the coproduct is also given by the direct sum. In both $\catCPTP$ 
   In the category \(\catBan\), the coproduct of Banach spaces is given by their direct sum equipped with the \(L_1\)-norm. The injections and copairing map are defined analogously to those in \(\catVect\). 
 \end{example}
 
-\subsection{Fuctors, Natural Transformations and Adjoints}
 
-\subsubsection{Functors}
+
+\subsection{Functors}
   
 
 Although categories are interesting on their own, the real strength of category theory lies in understanding how categories relate to one another. Just as functions express relationships between sets, functors play a similar role for categories. A functor maps each object in one category to an object in another category, and it does the same for morphisms, preserving the structure of the relationships.
 
 \begin{definition}
-  Let $\catC$ and $\catD$ be two categories. A \emph{functor} $F: \catC \to \catD$ consists of a mapping that assigns to each object $A$ in $\catC$ an object $FA$ in $\catD$, and to each morphism $f \in \mathrm{Hom}_{\catC}(A, B)$ a morphism $Ff \in \mathrm{Hom}_{\mathcal{D}}(FA, FB)$, in such a way that the following two conditions are satisfied for all objects $A, B, C$ in $\catC$ and all morphisms $f \in \mathrm{Hom}_{\catC}(A,B)$ and $g \in \mathrm{Hom}_{\catC}(B,C)$:
+  Let $\catC$ and $\catD$ be two categories. A \emph{functor} $F: \catC \to \catD$ consists of a mapping that assigns to each object $A$ in $\catC$ an object $FA$ in $\catD$, and to each morphism $f \in \mathrm{Hom}_{\catC}(A, B)$ a morphism $Ff \in \mathrm{Hom}_{\catD}(FA, FB)$, in such a way that the following two conditions are satisfied for all objects $A, B, C$ in $\catC$ and all morphisms $f \in \mathrm{Hom}_{\catC}(A,B)$ and $g \in \mathrm{Hom}_{\catC}(B,C)$:
 \[
-F(\mathrm{id}_A) = \mathrm{id}_{FA}, \qquad F(g \circ f) = F(g) \circ F(f).
+F(\id_A) = \id_{FA}, \qquad F(g \circ f) = F(g) \circ F(f).
 \]
 
-A functor $F: \catC \to \catD$ is said to be \emph{full} if, for all objects $A$ and $B$ in $\mathcal{C}$, the induced map
+A functor $F: \catC \to \catD$ is said to be \emph{full} if, for all objects $A$ and $B$ in $\catC$, the induced map
 \[
 F_{A,B}: \mathrm{Hom}_{\catC}(A, B) \longrightarrow \mathrm{Hom}_{\catD}(FA, FB), \quad f \mapsto Ff,
 \]
@@ -1778,7 +1834,7 @@ A \emph{full embedding} is a functor that is fully faithful and, in addition, in
 
 \begin {example}
 Let $\catC$ be a category. Then there exists an \emph{identity functor} $\id_{\catC} : \catC \to \catC,$
-which is defined on objects by $\id_{\catC}(A) = A$ for every object $A$ in $\catC$, and analogously on morphisms, that is, $\mathrm{Id}_{\catC}(f) = f$ for every morphism $f$ in $\catC$.
+which is defined on objects by $\id_{\catC}(A) = A$ for every object $A$ in $\catC$, and analogously on morphisms, that is, $\id_{\catC}(f) = f$ for every morphism $f$ in $\catC$.
 \end{example}
 
 \begin{example}
@@ -1791,22 +1847,55 @@ that maps each object $m \in \mathbb{N}$ to $m + 5$. This defines a functor beca
 
 Similarly, there exists a \emph{ceiling functor} $\mathrm{Ceil} : \mathbb{R} \to \mathbb{Z}$ that maps each real number $r$ to the least integer greater than or equal to $r$, denoted $\lceil r \rceil$.
 
-A natural transformation is a morphism of functors. They are to be thought of as different ways of “relating” functors to each other. Intuitively, if you think of functors
- F: A− BandG:A− BaswaysofprovidingimagesofAin
- B, then a natural transformation from F to G is a way of going from
- the image of F to the image of G. 
+
 \end{example}
 
 
+\begin{definition}
+  Given categories $\catC$, $\catD$, and $\catE$, a \emph{bifunctor}
+$F : \catC \times \catD \to \catE$
+is simply a functor from the product category $\catC \times \catD$ to $\catE$. In particular, $F$ is a rule that assigns:
+\begin{itemize}
+    \item to every object $A \in \catC$ and $B \in \catD$, an object $F(A, B) \in \catE$;
+    \item to every morphism $f : A \to A'$ in $\catC$ and $g : B \to B'$ in $\catD$, a morphism
+    $F(f, g) : F(A, B) \to F(A', B') \in \catE.$
+\end{itemize}
 
+These assignments must satisfy the following two requirements:
 
-\subsubsection{Natural Tranformations}
+\begin{itemize}
+    \item Respect for composition:  
+    For morphisms $f : A \to A'$, $f' : A' \to A''$ in $\catC$ and $g : B \to B'$, $g' : B' \to B''$ in $\catD$, it should hold that
+    \[
+    F(f' \circ f,\, g' \circ g) = F(f', g') \circ F(f, g),
+    \]
+    where the $\circ$ on the right-hand side is composition in $\catE$.
+
+    \item Respect for identities:  
+    For all objects $A \in \catC$ and $B \in \catD$, it should hold that
+    \[
+    F(\id_A, \id_B) = \id_{F(A, B)},
+    \]
+    where $\id_A$ and $\id_B$ are the identity morphisms in $\catC$ and $\catD$, respectively, and $\id_{F(A, B)}$ is the identity morphism in $\catE$.
+\end{itemize}
+
+Many times, rather than writing the name of the bifunctor before the input, like $F(A, B)$, we write the bifunctor as an operation between the inputs, for example, $a \mathbin{\Box} b$. If we use this notation, the condition
+\[
+F(f' \circ f,\, g' \circ g) = F(f', g') \circ F(f, g)
+\]
+becomes
+\[
+(f' \circ f) \mathbin{\Box} (g' \circ g) = (f' \mathbin{\Box} g') \circ (f \mathbin{\Box} g).
+\]
+\end{definition}
+
+\subsection{Natural Tranformations}
 A \emph{natural transformation} is a morphism between functors. It provides a way of relating two functors that have the same domain and codomain. Intuitively, if we consider two functors $F, G : \catC \to \catD$ as different ways of assigning images of the category $\catC$ into the category $\catD$, then a natural transformation $\eta : F \Rightarrow G$ is a coherent way of transforming the image of $F$ into the image of $G$.
 
 \begin{definition}
   Let $\catC$ and $\catD$ be categories, and let $F, G : \catC \to \catD$ be functors. A \emph{natural transformation} $\eta : F \Rightarrow G$ is a family of morphisms in $\catD$,
 \[
-\left( \eta_A : FA \to GA \right)_{A \in \mathrm{Ob}(\mathcal{C})},
+\left( \eta_A : FA \to GA \right)_{A \in \mathrm{Ob}(\catC)},
 \]
 indexed by the objects of $\catC$, such that for every morphism $f : A \to A'$ in $\catC$, the following diagram commutes. 
 
@@ -1844,13 +1933,13 @@ A natural transformation $\eta : F \Rightarrow G$ is represented diagrammaticall
 
 
 \begin{example}
-  For every functor $F : \mathcal{A} \to \mathcal{B}$, there exists a natural transformation
+  For every functor $F : \catC \to \catD$, there exists a natural transformation
   \[
     \iota_F : F \Rightarrow F
   \]
-  known as  \emph{identity natural transformation},  such that for each object $A \in \mathcal{A}$, each component of $\iota_F$ is the identity morphism:
+  known as  \emph{identity natural transformation},  such that for each object $A \in \catC$, each component of $\iota_F$ is the identity morphism:
   \[
-    (\iota_F)_A = \mathrm{id}_{F(A)} : F(A) \to F(A).
+    (\iota_F)_A = \id_{F(A)} : F(A) \to F(A).
     \] 
 \end{example}
 
@@ -1913,12 +2002,76 @@ $$
 \ast \;\; \quad \simeq \quad a \xlongrightarrow{\;\cong\;} b \;\; 
 $$
 
-More precisely, there is a unique functor \( ! : \mathbf{2}_I \to \mathbf{1} \), and a functor \( L : \mathbf{1} \to \mathbf{2}_I \) defined by \( L(\ast) = a \). Clearly, the composition \( ! \circ L \) is equal to \( \mathrm{Id}_{\mathbf{1}} \), and \( L \circ ! \cong \mathrm{Id}_{\mathbf{2}_I} \), since both objects \( a \) and \( b \) in \( \mathbf{2}_I \) are isomorphic. Thus, \( \mathbf{1} \simeq \mathbf{2}_I \).
+More precisely, there is a unique functor \( ! : \mathbf{2}_I \to \mathbf{1} \), and a functor \( L : \mathbf{1} \to \mathbf{2}_I \) defined by \( L(\ast) = a \). Clearly, the composition \( ! \circ L \) is equal to \( \id_{\mathbf{1}} \), and \( L \circ ! \cong \id_{\mathbf{2}_I} \), since both objects \( a \) and \( b \) in \( \mathbf{2}_I \) are isomorphic. Thus, \( \mathbf{1} \simeq \mathbf{2}_I \).
 \end{example}
 
-\subsubsection{Adjoints}
+\subsection{Adjoints}
 If we further weaken the notion of an equivalence of categories, we we arrive at the concept of an \emph{adjunction}. A central idea in category theory is that \emph{the weaker the assumptions we impose, the more mathematical phenomena we can capture}. This principle explains why adjunctions are among category theory's most important structures.
 
+\begin{definition}
+  An adjunction between categories $\catC$ and $\catD$ is given by a quadruple 
+$(L, R, \eta, \epsilon)$, where $L : \catC \to \catD$ and 
+$R : \catD \to \catC$ are functors, and 
+$\eta : \id_{\catC} \Rightarrow R L$ and 
+$\epsilon : L R \Rightarrow \id_{\catD}$ are natural transformations such that
+\[
+(\eta R) \circ (R \epsilon) = \id_R \quad \text{and} \quad (L \eta) \circ (\epsilon L) = \id_L.
+\]
+One says that $R$ is right adjoint to $L$, or that $L$ is left adjoint to $R$, and one calls 
+$\eta$ the \emph{unit} and $\epsilon$ the \emph{counit} of the adjunction.  Such an adjunction is denoted by $L \dashv R$, where the turn of the symbol $\dashv$ always points to the left adjoint.
+
+An adjunction between categories can be characterized in multiple equivalent ways. It follows one of the alternative formulations. 
+
+Given categories \(\catC\) and \(\catD\), a pair of functors \(L: \catC \to \catD\) and \(R: \catD \to \catC \) form an \emph{adjunction} \(L \dashv R\) if there exists a natural isomorphism:
+\[
+\mathrm{Hom}_{\catD}(L(A), B) 
+\xlongrightarrow{\quad \Phi_{A,B} \quad}
+\mathrm{Hom}_{\catC}(A, R(B)).
+\]
+
+\end{definition}
+
+\begin{example}
+  Consider the set of real numbers $\mathbb{R}$ and the set of integers $\mathbb{Z}$, each viewed as partial order categories. There is an inclusion functor $\mathrm{inc} : \mathbb{Z} \hookrightarrow \mathbb{R}$ which simply maps each integer to itself.  This inclusion has a left adjoint $L : \mathbb{R} \to \mathbb{Z}$. 
+
+To determine this left adjoint $L$, we use the definition of an adjunction:  for all $N \in \mathbb{Z}$ and $R \in \mathbb{R}$, we have a natural isomorphism:
+\[
+\mathrm{Hom}_{\mathbb{Z}}(L(R), N) \cong \mathrm{Hom}_{\mathbb{R}}(R, \mathrm{inc}(N)).
+\]
+
+Since both $\mathbb{Z}$ and $\mathbb{R}$ are partial orders, the hom-sets contain at most one morphism. Hence, this isomorphism reduces to the logical equivalence:
+\[
+ L(R) \leq N \text{ if and only if } R \leq \mathrm{inc}(N) = N.
+\]
+
+Take $R = 7.27$ as an example. Then the inequality $R \leq N$ holds precisely when $N$ is an integer greater than or equal to $7.27$. That is:
+\[
+7.27 \nleq 5,\quad 7.27 \nleq 6,\quad 7.27 \nleq 7,\quad 7.27 \leq 8,\quad 7.27 \leq 9, \quad \ldots
+\]
+By the condition above, we must then have:
+\[
+L(7.27) \nleq 5,\quad L(7.27) \nleq 6,\quad L(7.27) \nleq 7,\quad L(7.27) \leq 8,\quad L(7.27) \leq 9, \quad \ldots
+\]
+From this, we conclude that $L(7.27) = 8$. In general, $L(R)$ is the least integer greater than or equal to $R$, \ie, the ceiling function:
+\[
+L(r) = \lceil r \rceil.
+\]
+
+Thus, the inclusion functor $\mathrm{inc}$ has $\lceil \; \rceil$ as a left adjoint, \ie, $\lceil  \; \rceil \dashv \mathrm{inc}$.
+The unit of this adjunction is the natural transformation
+$\eta : \id_{\mathbb{R}} \Rightarrow \mathrm{inc} \circ \lceil  \;  \rceil,$
+which expresses the inequality $r \leq \lceil r \rceil$ for all $r \in \mathbb{R}$. The counit of the adjunction is the identity, since for any integer $n$, it holds that $\lceil N \rceil = N$.
+\end{example}
+
+
+
+\begin{definition}
+  Let \( F: \catC \to \catD \) and \( G:  \catD \to  \catE \) be functors. It is said that \( G \)  \emph{preserves coproducts} if  whenever $ L $ is a coproduct of \( F \), then \( G(L) \) is a coproduct of \( G \circ F \).
+\end{definition}
+
+\begin{theorem}
+ Left adjoints preserve coproducts.
+\end{theorem}
 
 % usar a def principal e a ds homsets
 
@@ -1927,14 +2080,208 @@ If we further weaken the notion of an equivalence of categories, we we arrive at
 %Adjoints preserve coproducts
 
 \subsection{Monoidal categories}
+\begin{definition}
+A \textbf{monoid} is a triple $(M, \cdot, u)$, where $M$ is a set equipped with 
+a binary operation $\cdot \colon M \times M \to M$ and a distinguished element 
+$u \in M$ called the \emph{unit}, satisfying the following axioms for all 
+$x, y, z \in M$:
+\begin{align*}
+    \text{(Associativity)} & & x \cdot (y \cdot z) &= (x \cdot y) \cdot z, \\
+    \text{(Unit laws)}     & & u \cdot x &= x = x \cdot u.
+\end{align*}
+\end{definition}
+
+Monoidal categories are named so because they are categories equipped with an additional structure that resembles the structure of monoids.
+
+\begin{comment}
+  
+\begin{definition}
+ A \emph{strict monoidal category} is a category $\catC$ equipped with a bifunctor $\otimes : \catC \times \catC \to \catC$
+called the \emph{tensor product}, which is associative, meaning that for all objects $A, B, C \in \catC$,
+\[
+A \otimes (B \otimes C) = (A \otimes B) \otimes C. 
+\]
+In addition, there is a distinguished object $I \in \catC$, called the \emph{unit}, that acts as a unit for $\otimes$, satisfying
+\[
+I \otimes C = C = C \otimes I \quad \text{for all } C \in \catC. 
+\]
+\end{definition}
+
+
+
+\begin{example}
+The partially ordered set of natural numbers $\mathbb{N}$ forms a strict monoidal category when equipped with addition, denoted $(\mathbb{N}, +, 0)$.  The tensor product is given by ordinary addition, and the unit object is $0$, since for any $n \in \mathbb{N}$ we have $0 + n = n = n + 0$, and addition is strictly associative.
+Moreover, the tensor product is monotonic with respect to the order: if $m \leq m'$ and $n \leq n'$, then $m + n \leq m' + n'$. This order preservation ensures functoriality of the monoidal structure.
+A similar argument applies to multiplication: if $m \leq m'$ and $n \leq n'$, then $m \cdot n \leq m' \cdot n'$. Therefore, $(\mathbb{N}, \cdot, 1)$ also forms a strict monoidal category under the same ordered structure.
+\end{example}
+
+\end{comment}
+
+\begin{definition}
+  A symmetric monoidal category consists of a category $\catC$ equipped with a bifunctor $\otimes : \catC \times \catC \to \catC$
+called \emph{tensor product} and a distinguished object $I \in \catC$, called \emph{unit} together with natural isomorphisms
+\[
+\alpha_{A,B,C} : A \otimes (B \otimes C) \rightarrow (A \otimes B) \otimes C,
+\]
+\[
+\lambda_A : I \otimes A \rightarrow A, \quad \rho_A : A \otimes I \rightarrow A,
+\]
+known as \emph{reassociator}, \emph{left unitor},and \emph{right unitor}, respectively.
+
+Moreover, these natural isomorphisms are required to make the following coherence diagrams commute.
+\[
+\begin{tikzpicture}
+  \matrix (m) [matrix of math nodes,row sep=3em,column sep=2em,minimum width=1em]
+  {
+    & (A \otimes B) \otimes (C \otimes D) & \\
+   A \otimes (B \otimes (C \otimes D)) &  & ((A \otimes B) \otimes C) \otimes D  \\
+    A \otimes ((B \otimes C) \otimes D)  & &  (A \otimes (B \otimes C)) \otimes D \\
+  };
+  \path[-stealth]
+    (m-1-2) edge  node [above] {$\alpha$} (m-2-3)
+    (m-3-3) edge  node [right] {$\alpha \otimes \id$} (m-2-3)
+    (m-3-1) edge  node [below] {$\alpha$} (m-3-3)
+    (m-2-1) edge  node [left] {$\id \otimes \alpha$} (m-3-1)
+    (m-2-1) edge  node [above] {$\alpha$} (m-1-2)
+    ;
+\end{tikzpicture}
+\]
+
+
+\[
+\begin{minipage}{0.45\textwidth}
+\centering
+\begin{tikzpicture}
+  \matrix (m) [matrix of math nodes,row sep=3em,column sep=2em,minimum width=1em]
+  {
+    A \otimes (I \otimes A) &   & (A \otimes I) \otimes A \\
+     & A \otimes A & \\
+  };
+  \path[-stealth]
+    (m-1-1) edge  node [above] {$\alpha$} (m-1-3)
+    (m-1-1) edge  node [left] {$\id \otimes \lambda_A$} (m-2-2)
+    (m-1-3) edge  node [right] {$\rho_A \otimes \id$} (m-2-2);
+\end{tikzpicture}
+\end{minipage}
+\quad \quad
+\begin{minipage}{0.45\textwidth}
+\centering
+\begin{tikzpicture}
+  \matrix (m) [matrix of math nodes,row sep=3em,column sep=3em,minimum width=1em]
+  {
+    I \otimes I &   & I \otimes I  \\
+     & I & \\
+  };
+  \path[-stealth]
+    (m-1-1) edge  node [left] {$\lambda_I$} (m-2-2)
+    (m-1-3) edge  node [right] {$\rho_I$} (m-2-2);
+  \draw[double equal sign distance] (m-1-1) -- (m-1-3);
+\end{tikzpicture}
+\end{minipage}
+\]
+
+\end{definition}
+
+
+
+
+
+
+\begin{definition}
+  A monoidal category is said to be \emph{symmetric} when it is
+equipped with a natural isomorphism $\sw : A \otimes B \rightarrow B \otimes A$ known as \emph{braiding} such that the following diagrams commute.
+
+
+\[
+\begin{minipage}{0.45\textwidth}
+\centering
+\begin{tikzpicture}
+  \matrix (m) [matrix of math nodes,row sep=3em,column sep=3em,minimum width=1em]
+  {
+    A \otimes B &   & B \otimes A  \\
+     & A \otimes B & \\
+  };
+  \path[-stealth]
+    (m-1-1) edge  node [above] {$\sw_{A,B}$} (m-1-3)
+    (m-1-3) edge  node [right=0.15cm] {$\sw_{B,A}$} (m-2-2);
+  \draw[double equal sign distance] (m-1-1) -- (m-2-2);
+\end{tikzpicture}
+\end{minipage}
+\quad \quad \
+\begin{minipage}{0.45\textwidth}
+\centering
+\begin{tikzpicture}
+  \matrix (m) [matrix of math nodes,row sep=3em,column sep=3em,minimum width=1em]
+  {
+    A \otimes I &   &  I \otimes A \\
+     & A & \\
+  };
+  \path[-stealth]
+    (m-1-1) edge  node [above] {$\sw_{A,I}$} (m-1-3)
+    (m-1-1) edge  node [left] {$\rho_A$} (m-2-2)
+    (m-1-3) edge  node [right=0.15cm] {$\lambda_A$} (m-2-2);
+\end{tikzpicture}
+\end{minipage}
+\]
+
+$$
+\begin{tikzpicture}
+  \matrix (m) [matrix of math nodes,row sep=3em,column sep=4em,minimum width=1em]
+  {
+  A \otimes (B \otimes C)  & (A \otimes B) \otimes C & C \otimes (A \otimes B) \\
+  A \otimes (C \otimes B) & (A \otimes C) \otimes B & (C \otimes A) \otimes B\\
+  };
+  \path[-stealth]
+    (m-1-1) edge  node [above] {$\alpha$} (m-1-2)
+    (m-1-2) edge  node [above] {$\sw$} (m-1-3)
+    (m-1-3) edge  node [right] {$\alpha$} (m-2-3)
+    (m-2-2) edge  node [below] {$\sw \otimes \id$} (m-2-3)
+    (m-2-1) edge  node [below] {$\alpha$} (m-2-2)
+    (m-1-1) edge  node [right] {$\id \otimes \sw$} (m-2-1)
+    ;
+\end{tikzpicture}
+$$
+
+\end{definition}
+
+\begin{definition}
+  A monoidal category $\catC$ is  said to be \emph{closed} if for each object
+  $A$ in $\catC$ the functor $- \otimes A$ has a right adjoint,
+  denoted by $A \multimap -$. 
+\end{definition}
+
+\begin{definition}
+        A monoidal category $\catC$ with coproducts is called
+        \emph{distributive} if for every object $A$ in $\catC$ the
+        functor $- \otimes A$ preserves coproducts. Explicitly
+        this means that the morphism,
+        \[
+                [\inl \otimes \id, \inr \otimes \id] : B \otimes A \oplus C \otimes                     A \to (B \oplus C) \otimes A
+        \]
+        is actually an isomorphism. We will denote the respective inverse
+        by $\dist$. Note that if $\catC$ is monoidal closed then it is automatically
+        distributive as left adjoints preserve all colimits.
+\end{definition}
+
+
+
+\begin{example}
+Examples of monoidal closed categories with coproducts include $\catSet$, the $\catVect$, and the $\catBan$. In $\catSet$, the tensor product is the cartesian product, the monoidal unit is the singleton set, the coproduct is the disjoint union, and the internal hom consists of all functions between sets. For $\catVect$, the tensor product is the standard tensor product of complex vector spaces, the field of complex number $\mathbb{C}$, the coproduct is the direct sum, and the internal hom is the space of linear maps. Similarly, in $\catBan$ the tensor product is the projective tensor product, the monoidal unit is $\mathbb{R}$, the coproduct is the direct sum equipped with the $L_1$-norm, and the internal hom consists of all functions between sets corresponds to space of short (linear) maps equiped with the operator norm.
+\end{example}
+
+\begin{example}
+  The (biproduct completion of ) category $\catCPS$ and, consequently, (the coproduct completion of) $\catCPTP$ provide examples of distributive monoidal categories with coproducts that are not closed \cite{selinger2004towards}. Their monoidal structure resembles that of $\catVect$. In this case, $\dist = \id$. We will explore this category in more detail in \autoref{ch:conditionals}.
+\end{example}
+
+\begin{theorem}[\emph{Coherence Theorem for Symmetric Monoidal Categories}]
+Any diagram in a symmetric monoidal category constructed only from associators $\alpha$, unitors $\lambda$, $\rho$, the symmetry $\sw$, and inverses and their composition and tensor product necessarily commutes.
+\end{theorem}
+
 
  
-\todo[inline,size=\normalsize]{Só cenas básicas: Qual é o interesse, o que é uma cat, isomorfismo, funtores, embeddings, tranformações naturais, produto, coproducto, tensor, categoria monoidal simetria, adjoint,  coherence theorem for symmetric monoidal categories, monoidal distributive} 
+\todo[inline,size=\normalsize]{Cenas que faltam:  categoria monoidal simetrica,  coherence theorem for symmetric monoidal categories, monoidal distributive, monoidal closed} 
 
  
-\todo[inline,size=\normalsize]{Esclarecer se posso escrever o coherence theorem for symmetric monoidal categories emm termos simples ou se tenho de usar a formulação da free symmetric
- monoidal category on one generator.}
-
 
 
 \todo[inline,size=\normalsize]{Esclarecer questão sobre o que é um terminal map to the unit object (of the monoidal category)}
