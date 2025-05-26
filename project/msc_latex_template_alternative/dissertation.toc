@@ -33,7 +33,7 @@
 \contentsline {subsubsection}{Kraus operator sum representation}{23}{definition.2.2.6}%
 \contentsline {subsubsection}{Non-selective measurements}{24}{definition.2.2.6}%
 \contentsline {subsubsection}{Norms on quantum channels}{25}{definition.2.2.6}%
-\contentsline {subsection}{\numberline {2.2.6}Quantum circuits}{25}{subsection.2.2.6}%
+\contentsline {subsection}{\numberline {2.2.6}Quantum circuits}{26}{subsection.2.2.6}%
 \contentsline {subsection}{\numberline {2.2.7}No-cloning theorem}{27}{subsection.2.2.7}%
 \contentsline {section}{\numberline {2.3}Functional Analysis}{27}{section.2.3}%
 \contentsline {section}{\numberline {2.4}Probabilistic Programming/Measure theory}{28}{section.2.4}%
@@ -47,7 +47,7 @@
 \contentsline {subsection}{\numberline {2.6.2}Produts and coproducts}{39}{subsection.2.6.2}%
 \contentsline {subsection}{\numberline {2.6.3}Functors}{45}{subsection.2.6.3}%
 \contentsline {subsection}{\numberline {2.6.4}Natural Tranformations}{47}{subsection.2.6.4}%
-\contentsline {subsection}{\numberline {2.6.5}Equivalence of Categories}{48}{subsection.2.6.5}%
+\contentsline {subsection}{\numberline {2.6.5}Equivalence of Categories}{49}{subsection.2.6.5}%
 \contentsline {subsection}{\numberline {2.6.6}Adjoints}{49}{subsection.2.6.6}%
 \contentsline {subsection}{\numberline {2.6.7}Monoidal categories}{51}{subsection.2.6.7}%
 \contentsline {chapter}{\numberline {3}Metric Lambda Calculus}{55}{chapter.3}%
@@ -61,19 +61,20 @@
 \contentsline {subsection}{\numberline {3.2.6}Substitution}{62}{subsection.3.2.6}%
 \contentsline {subsection}{\numberline {3.2.7}Properties}{63}{subsection.3.2.7}%
 \contentsline {subsection}{\numberline {3.2.8}Equations-in-context}{64}{subsection.3.2.8}%
-\contentsline {section}{\numberline {3.3}Metric equational system}{65}{section.3.3}%
-\contentsline {section}{\numberline {3.4}Interpretation}{66}{section.3.4}%
-\contentsline {subsection}{\numberline {3.4.1}Quantum Lambda Calculus}{67}{subsection.3.4.1}%
-\contentsline {subsubsection}{Types and operations in quantum lambda calculus}{69}{equation.3.4.2}%
-\contentsline {subsection}{\numberline {3.4.2}Example: Deutsch's Algorithm}{71}{subsection.3.4.2}%
-\contentsline {subsubsection}{Deutsch's Algorithm with Measurement Errors}{74}{equation.3.4.16}%
-\contentsline {subsection}{\numberline {3.4.3}Example: Proving an equivalence using equations-in-context}{76}{subsection.3.4.3}%
-\contentsline {subsection}{\numberline {3.4.4}Linear $\lambda $-calculus meets probabilistic programming}{77}{subsection.3.4.4}%
-\contentsline {chapter}{\numberline {4}Conditionals}{79}{chapter.4}%
-\contentsline {section}{\numberline {4.1}Syntax}{79}{section.4.1}%
-\contentsline {section}{\numberline {4.2}Interpretation}{79}{section.4.2}%
-\contentsline {section}{\numberline {4.3}Metric Equations}{79}{section.4.3}%
-\contentsline {section}{\numberline {4.4}Examples}{79}{section.4.4}%
-\contentsline {chapter}{\numberline {5}Conclusions and future work}{81}{chapter.5}%
-\contentsline {section}{\numberline {5.1}Conclusions}{81}{section.5.1}%
-\contentsline {section}{\numberline {5.2}Prospect for future work}{81}{section.5.2}%
+\contentsline {subsubsection}{Equivalence}{65}{section*.33}%
+\contentsline {section}{\numberline {3.3}Metric equational system}{66}{section.3.3}%
+\contentsline {section}{\numberline {3.4}Interpretation}{68}{section.3.4}%
+\contentsline {subsection}{\numberline {3.4.1}Quantum Lambda Calculus}{73}{subsection.3.4.1}%
+\contentsline {subsubsection}{Types and operations in quantum lambda calculus}{74}{subsection.3.4.1}%
+\contentsline {subsection}{\numberline {3.4.2}Example: Deutsch's Algorithm}{75}{subsection.3.4.2}%
+\contentsline {subsubsection}{Deutsch's Algorithm with Measurement Errors}{78}{equation.3.4.15}%
+\contentsline {subsection}{\numberline {3.4.3}Example: Proving an equivalence using equations-in-context}{81}{subsection.3.4.3}%
+\contentsline {subsection}{\numberline {3.4.4}Linear $\lambda $-calculus meets probabilistic programming}{81}{subsection.3.4.4}%
+\contentsline {chapter}{\numberline {4}Conditionals}{83}{chapter.4}%
+\contentsline {section}{\numberline {4.1}Syntax}{83}{section.4.1}%
+\contentsline {section}{\numberline {4.2}Interpretation}{83}{section.4.2}%
+\contentsline {section}{\numberline {4.3}Metric Equations}{83}{section.4.3}%
+\contentsline {section}{\numberline {4.4}Examples}{83}{section.4.4}%
+\contentsline {chapter}{\numberline {5}Conclusions and future work}{85}{chapter.5}%
+\contentsline {section}{\numberline {5.1}Conclusions}{85}{section.5.1}%
+\contentsline {section}{\numberline {5.2}Prospect for future work}{85}{section.5.2}%

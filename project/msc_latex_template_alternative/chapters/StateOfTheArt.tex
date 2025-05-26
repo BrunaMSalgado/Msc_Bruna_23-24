@@ -2,6 +2,7 @@
 
 
 \todo[inline,size=\normalsize]{Mudar esta descrição.} 
+\todo[inline,size=\normalsize]{Faltam as cenas de análise funcional} 
 
 
 
@@ -13,7 +14,6 @@ The first two sections of this chapter present the mathematical and quantum comp
 \todo[inline,size=\normalsize]{Cenas para resolver: questão de normed spaces tb se aplicarem para o caso infinito} 
 
 
-\todo[inline,size=\normalsize]{Kronecker} 
 
 
 
@@ -787,9 +787,9 @@ This last equality corresponds to an Kraus operator sum representation, where th
 \subsubsection{Norms on quantum channels}
 \begin{definition} \label{def:trace_norm_superoperator}
   The norm of a super-operator $Q: \mathbb{C}^{n\times n} \xrightarrow{} \mathbb{C}^{m\times m }$ is defined:
-  \begin{equation} 
+  \begin{equation*} 
     \lVert Q \rVert_{1} =  \max\{\lVert Q \hspace{1pt} A \rVert_{1}   \mid  \lVert A \rVert_{1}=1\}, 
-  \end{equation}
+  \end{equation*}
 \end{definition}
 where $A \in \mathbb{C}^{n \times n }$
 
@@ -820,9 +820,9 @@ Unfortunately, this norm is not stable under tensoring , given that the inequati
 
 \begin{definition}
   Given a super-operator $Q: \mathbb{C}^{n\times n} \xrightarrow{} \mathbb{C}^{m\times m }$, the diamond norm, \gls{diamond-norm} , is defined as:
-  \begin{equation}  \label{eq:diamond_distance}
+  \begin{equation*}  \label{eq:diamond_distance}
     \lVert Q \rVert_{\diamondsuit} =  \lVert Q \otimes I_{\mathbb{C}^{n \times n}} \rVert_{1}
-  \end{equation}
+  \end{equation*}
 \end{definition}
 %where $I_{\mathbb{C}^{n \times n}} $ is the identity super-operator over the space $\mathbb{C}^{n\times n}$.
 
@@ -884,13 +884,29 @@ consequence, composition of programs is valid.
   %\end{equation}
 %\end{lemma} 
 
-Consider an operator  $ \text{r} : (\mathbb{C}^{n} \xrightarrow[]{} \mathbb{C}^{m}) \xrightarrow[]{} (\mathbb{C}^{n\times n}\xrightarrow[]{} \mathbb{C}^{m\times m})$ that sends an operator $T$ to the mapping $A \mapsto TAT^{\dag}$. The exact calculation of distances induced by $\lVert \rVert_{\diamondsuit}$ tends to be quite complicated, but a useful property for calculating the distance between quantum channels in the image of $r$ is provided in \cite{watrous2018theory}.
-Consider two operators $T, S : n \xrightarrow{} m$. There exists a unit vector $v \in \mathbb{C}^{n}$ such that, 
-\begin{equation} \label{eq:norm_iso_r}
-\begin{centering}
-\lVert r(T) (vv^{\dag})-r(S) (vv^{\dag}) \rVert_{1} = \lVert r(T)-r(S) \rVert_{\diamondsuit}
- \end{centering}
-\end{equation}
+Since the diamond norm is generally difficult to compute, we will rely on the following properties, as given by the theorems below:
+
+\begin{theorem} \cite[Theorem 3.55]{watrous2018theory} \label{theorem:diamond_iso}
+  Let  $ n \leq m$, let $V_0,V_1: \mathbb{C}^{n \times n} \to \mathbb{C}^{m \times m}$ be isometries, and define CPTP operators $\phi_0,\phi_1:\mathbb{C}^{n \times n} \to \mathbb{C}^{m \times m}$ as
+\[
+\phi_0(\rho) = V_0 \rho V_0^\dag \quad \text{and} \quad \phi_1(\rho) = V_1 \rho V_1^\dag
+\]
+for all $\rho \in \mathbb{C}^{n \times n}$. There exists a unit vector $u \in \mathbb{C}^{n \times n}  $ such that
+\[
+\tracenorm{\phi_0(uu^\dag) - \phi_1(uu^\dag)} = \diamondnorm{\phi_0 - \phi_1}.
+\]
+\end{theorem}
+
+\begin{theorem} \cite[Theorem 3.56]{watrous2018theory} \label{theorem:diamond_cptp_id}
+ Let $\phi: \mathbb{C}^{n \times n} \to \mathbb{C}^{n \times n} $ be a quantum channel, let $\varepsilon \in [0,2]$, and suppose that
+    \[
+    \|\phi(\rho) - \rho\|_1 \leq \varepsilon
+    \]
+    for every density operator $\rho \in \mathbb{C}^{n \times n} $. It holds that
+    \[
+    \|\phi - \id_{\sigma}\|_1 \leq \sqrt{2\varepsilon}.
+    \]
+\end{theorem}
 
 \subsection{Quantum circuits}
 As quantum computation remains in its early stages of development, programming is primarily based on the use of \emph{quantum circuits}. A quantum circuit consists of wires and \emph{quantum gates}, which serve to transmit and manipulate quantum information. Each wire corresponds to a qubit, while the gates represent operations that can be applied to these qubits. 
@@ -1278,7 +1294,7 @@ Described as "a language about nothing, and therefore about everything," categor
 \begin{definition}
    A \emph{category} $\catC$ consists of
    \begin{itemize}
-    \item a collection of objects $A, B, C, \ldots$, denoted $\text{Obj}(\catC)$;
+    \item a collection of objects $A, B, C, \ldots$, denoted $\text{Obj}(|\catC|)$ or $\text{Obj}(\catC)$;
     \item a collection of morphisms $f, g, \ldots $, usually denoted $\catC(A,B)$, $\mathrm{Hom}_{\catC}(A,B)$, or $\mathrm{Hom}(A,B)$ if there is no ambiguity. 
    \end{itemize}
     The collection for morphisms has the following structure:
@@ -1454,6 +1470,11 @@ Thus, \(\catC^{\mathrm{op}}\) reverses the direction of morphisms and compositio
 \begin{example}
   The category $\catCPTP$ is a subcategory of $\catCPS$. 
 \end{example}
+
+\begin{definition}
+  A category is called \emph{small} if both its collection of objects and its collection of morphisms form sets.
+A category is called \emph{locally small} if, for every pair of objects, the corresponding hom-set is a set.
+\end{definition}
 
 
 % Partial order
@@ -2124,7 +2145,7 @@ called \emph{tensor product} and a distinguished object $I \in \catC$, called \e
 \alpha_{A,B,C} : A \otimes (B \otimes C) \rightarrow (A \otimes B) \otimes C,
 \]
 \[
-\lambda_A : I \otimes A \rightarrow A, \quad \rho_A : A \otimes I \rightarrow A,
+\lambda_A :\mathbb{I}\otimes A \rightarrow A, \quad \rho_A : A \otimes\mathbb{I}\rightarrow A,
 \]
 known as \emph{reassociator}, \emph{left unitor},and \emph{right unitor}, respectively.
 
@@ -2154,7 +2175,7 @@ Moreover, these natural isomorphisms are required to make the following coherenc
 \begin{tikzpicture}
   \matrix (m) [matrix of math nodes,row sep=3em,column sep=2em,minimum width=1em]
   {
-    A \otimes (I \otimes A) &   & (A \otimes I) \otimes A \\
+    A \otimes (\mathbb{I} \otimes A) &   & (A \otimes \mathbb{I}) \otimes A \\
      & A \otimes A & \\
   };
   \path[-stealth]
@@ -2169,8 +2190,8 @@ Moreover, these natural isomorphisms are required to make the following coherenc
 \begin{tikzpicture}
   \matrix (m) [matrix of math nodes,row sep=3em,column sep=3em,minimum width=1em]
   {
-    I \otimes I &   & I \otimes I  \\
-     & I & \\
+   \mathbb{I}\otimes\mathbb{I}&   &\mathbb{I}\otimes\mathbb{I} \\
+     &\mathbb{I}& \\
   };
   \path[-stealth]
     (m-1-1) edge  node [left] {$\lambda_I$} (m-2-2)
@@ -2213,7 +2234,7 @@ equipped with a natural isomorphism $\sw : A \otimes B \rightarrow B \otimes A$ 
 \begin{tikzpicture}
   \matrix (m) [matrix of math nodes,row sep=3em,column sep=3em,minimum width=1em]
   {
-    A \otimes I &   &  I \otimes A \\
+    A \otimes\mathbb{I}&   & \mathbb{I}\otimes A \\
      & A & \\
   };
   \path[-stealth]
@@ -2279,7 +2300,6 @@ Any diagram in a symmetric monoidal category constructed only from associators $
 
 
  
-\todo[inline,size=\normalsize]{Cenas que faltam:  categoria monoidal simetrica,  coherence theorem for symmetric monoidal categories, monoidal distributive, monoidal closed} 
 
  
 
@@ -2486,7 +2506,11 @@ The rule $(\mathbb{\otimes}_e)$ expresses if there is a term $w$ of type $\mathb
 The rule $(\mathbb{I}_e)$ states that if there is a term $w$ of type $\mathbb{A}$ and a term $v$ of type $\mathbb{I}$, then $v$ can be discarded, and only the term $w$ remains. 
 Finally, the rule $(\text{dis})$ asserts that a term $v$ of type $\mathbb{A}$ can be discarded, resulting in a term of type $\mathbb{I}$.
 
-For a better understanding of the rules, a few straightforward programming examples are provided.  For instance, the program that swaps the elements of a tensor product can be written as follows:
+For a better understanding of the rules, a few straightforward programming examples are provided.  
+
+\begin{example}
+
+For instance, the program that swaps the elements of a tensor product can be written as follows:
 \begin{equation*}
 \begin{split}
 & x : \mathbb{A},  y : \mathbb{B} \triangleright \text{pm} \hspace{3 pt} x \otimes y\hspace{3 pt} \text{to} \hspace{3 pt} a \otimes b. \hspace{1pt} b \otimes a : \mathbb{B} \otimes \mathbb{A}
@@ -2505,7 +2529,9 @@ Now, to prove that this program is well-typed one can write the following typing
 \end{split}
 \end{equation*}
 Observe that in the notation of the third column, the numbers correspond to the premises utilized in the application of the rule.
+\end{example}
 
+\begin{example}
 Another example is the function that recieves a tensor product and returns first element and discards the second:
 \begin{equation*}
 \begin{split}
@@ -2524,9 +2550,9 @@ To prove that this program is well-typed one can write the following typing deri
 7 \hspace{10 pt} & - \triangleright \lambda x: \mathbb{A \otimes B}. \text{pm} \hspace{3 pt} x \hspace{3 pt} \text{to} \hspace{3 pt} a \otimes b. \hspace{1 pt} \text{dis}(b) \hspace{3 pt} \text{ to } *.a: \mathbb{A} \hspace{10pt} & \text{($6,\multimap_i$)}
 \end{split}
 \end{equation*}
+\end{example}
 
 
-\todo[inline,size=\normalsize]{Also fala-se de Type inference algorithm? Tipo existe...}
 
 \subsection{$\alpha$-equivalence}
  
@@ -2580,14 +2606,19 @@ The sequential substitutions $M[M_i/x_i] \ldots [M_n/x_n]$ are writen as $M[M_i/
 
 The calculus defined in \autoref{fig:typing_rules_linear} possesses several desirable properties, which are listed below. Before proceeding, it is necessary to introduce some auxiliary notation. Given a context $\Gamma$, $te(\Gamma)$ denotes context $\Gamma$ with all types erased. The expression $\Gamma \simeq_{\pi} \Gamma'$ denotes that the contexts $\Gamma$ is a permutation of context $\Gamma'$.This notation also applies to non-repetitive lists of untyped variables $te(\Gamma)$. Additionally, a judgment $\Gamma \triangleright v: \mathbb{A}$ will often be abbreviated into $\Gamma \triangleright v $ or even just $v$ when no ambiguities arise.
 
-The properties are as follows:
- \begin{enumerate}
+\begin{theorem} \label{thm:exch_sub_no_cond} (\cite{dahlqvist2023complete})
+   The calculus defined by the rules of \autoref{fig:typing_rules_linear} enjoys the following properties:
+   \begin{enumerate}
    \item for all judgements $\Gamma \triangleright v$ and $\Gamma' \triangleright v$, te($\Gamma$) $\simeq_{\pi}$  te($\Gamma'$); 
    \item additionally if $\Gamma \triangleright v: \mathbb{A}, \Gamma'\triangleright v: \mathbb{A}'$, and $\Gamma \simeq_{\pi} \Gamma' $, then $\mathbb{A}$ must be equal to $\mathbb{A}'$;
    \item all judgements $\Gamma \triangleright v:\mathbb{A}$ have a unique derivation.
    \item (exchange) For every judgement $\Gamma,x:\mathbb{A}, y:\mathbb{B}, \Delta \triangleright v: \mathbb{D}$ it is possible to derive $\Gamma, y:\mathbb{B}, x:\mathbb{A}, \Delta \triangleright v: \mathbb{D}$. 
    \item (substitution) For all judgements  $\Gamma,x:\mathbb{A} \triangleright v: \mathbb{B}$ and $\Delta \triangleright w: \mathbb{A}$ it is possible to derive $ \Gamma, \Delta \triangleright v[w/x]: \mathbb{B}$.
  \end{enumerate}
+\end{theorem}
+
+
+ 
  
 
 
@@ -2640,9 +2671,66 @@ It is evident that, for example, equation $(\beta)$ enforces the meaning of  $(
 
 
 
+\begin{example} \label{ex:eq_contex_gen}
+  For instance, consider the $\lambda$-term 
+  $$ - \triangleright \big(\lambda z : \typeI \otimes \typeA. \, \text{pm } z \text{ to} * \otimes y. \, y\big) \, (v \otimes w): \typeA$$
+Applying the $\beta$ reduction, we have:
+\begin{align*}
+ - \triangleright \big(\lambda z : \typeI \otimes \typeA. \, \text{pm } z \text{ to } * \otimes y. \, y\big) \, (v \otimes w) 
+&= \text{pm }  v \otimes w \text{ to} * \otimes y. \, y : \typeA. 
+\end{align*}
+Next, applying the $\beta_{\otimes_e}$-reduction, it follows:
+\begin{align*}
+\text{pm }  v \otimes w \text{ to} * \otimes y. \, y : \typeA = w : \typeA. 
+\end{align*}
+\end{example}
+
+\todo[inline,size=\normalsize]{Não sei se este é o lugar mais indicado para estas definições} 
+
+\subsubsection{Equivalence}
+
+\begin{definition}
+  Let \( S \) be a set. A \emph{relation} on \( S \) is a subset \( R \subseteq S \times S \). An ordered pair \( (s_1, s_2) \in R \) means that \( s_1 \) is related to \( s_2 \).
+\end{definition}
+
+\begin{definition}
+  A relation on a set is an \emph{equivalence relation} if it is reflexive, symmetric, and transitive. We denote such a relation by \( \sim \subseteq S \times S \), and write \( r \sim s \) to mean that \( (r, s) \in \sim \).
+\end{definition}
+
+\begin{definition}
+  Given an equivalence relation on a set \( S \), we can describe disjoint subsets of \( S \) called \emph{equivalence classes}. If \( s \in S \), then the \emph{equivalence class} of \( s \) is the set of all elements related to it:
+\[
+[s] = \{ r \in S \mid r \sim s \}.
+\]
+That is, \( [s] \) is the set of all elements that are considered “the same” as \( s \) under the relation \( \sim \). For a given set \( S \) and an equivalence relation \( \sim \) on \( S \), we define the \emph{quotient set}, denoted \( S / \sim \), whose elements are all the equivalence classes of elements in \( S \). There is an obvious \emph{quotient function} from \( S \) to \( S / \sim \) that maps each element \( s \in S \) to its equivalence class \( [s] \).
+\end{definition}
+
+For instance, consider a set of cars \( S \). We can define an equivalence relation on \( S \) by grouping cars according to their colour. This results in subsets such as the set of blue cars, the set of red cars, the set of green cars, and so on — these subsets are the \emph{equivalence classes}. Moreover, the collection of all such equivalence classes forms a new set, called the \emph{quotient set}.
+
+
+\todo[inline,size=\normalsize]{Def congruence} 
+
+\begin{definition}
+  In this seting a \emph{congruence relation} or \emph{congruence} is an equivalence relation that respects the term formation rules, exchange and substitution.
+\end{definition}
+
+
+\begin{definition} \label{def:linear_lambda_theory}
+  Consider a pair $(G, \Sigma)$, where $G$ is a class of ground types and $\Sigma$ is a class of sorted operation symbols. A \emph{linear $\lambda$-theory} is a triple $((G, \Sigma), Ax)$, where $Ax$ is a class of equations-in-context over linear $\lambda$-terms constructed from $(G, \Sigma)$. The elements of $Ax$ are called the \emph{axioms} of the theory.
+\end{definition}
+
+
+
+
+
+ Let $Th(Ax)$ denote the smallest congruence containing $Ax$, the equations presented in \autoref{fig:equations-linear-lambda}, and closed under exchange and substitution (\autoref{thm:exch_sub_no_cond}). The elements of $Th(Ax)$ are called the \emph{theorems} of the theory.
+
+ For instance recall \autoref{ex:eq_contex_gen}: 
+ $$- \triangleright \big(\lambda z : \typeI \otimes \typeA. \, \text{pm } z \text{ to} * \otimes y. \, y\big) \, (v \otimes w): \typeA =  w : \typeA $$
+ is a theorem.
 
 \section{Metric equational system}
-\todo[inline,size=\normalsize]{Mete-se contexto e tipo nas eqs métricas? } 
+
 
 \emph{Metric equations} \cite{mardare2016quantitative}, \cite{mardare2017axiomatizability} are a strong candidate for reasoning about approximate program equivalence. These equations take the form of \gls{metric-equation}, where  $\epsilon$ is a non-negative rational representing the ``maximum distance" between the two terms $t$ and $s$. The metric equational system for linear lambda calculus is depicted in \autoref{fig:metric deductive system}.
 
@@ -2797,7 +2885,8 @@ Here, $\text{perm} (\Gamma)$ denotes the set of possible permutions of context $
 
 % dizer o que é perm
 
-To ilustrate the usefulness of these equations, consider the program $P$ that recieves a tensor product, swaps its elements and then applies a function $f$ to to the new second element of the tensor  pair:
+\begin{example}
+  To ilustrate the usefulness of these equations, consider the program $P$ that recieves a tensor product, swaps its elements and then applies a function $f$ to to the new second element of the tensor  pair:
 \begin{equation*}
 \begin{split}
 & P = x : \mathbb{A},  y : \mathbb{B} \triangleright \text{pm} \hspace{3 pt} x \otimes y\hspace{3 pt} \text{to} \hspace{3 pt} a \otimes b. \hspace{1pt} b \otimes f(a) : \mathbb{D} \otimes \mathbb{A} &
@@ -2819,6 +2908,13 @@ Knowing that $f(a)^{\epsilon} =_{\epsilon} f(a)$, it is possible to show that $P
   5\hspace{10 pt}& \text{pm} \hspace{3 pt} x \otimes y\hspace{3 pt} \text{to} \hspace{3 pt} a \otimes b. \hspace{1pt} b \otimes f(a)^{\epsilon} =_{\epsilon} \text{pm} \hspace{3 pt} x \otimes y\hspace{3 pt} \text{to} \hspace{3 pt} a \otimes b. \hspace{1pt} b \otimes f(a) & \hspace{10pt} \text{($3,4,\otimes_e$)}
   \end{split}
   \end{equation*}
+\end{example}
+
+\begin{definition}
+  Consider a tuple \( (G, \Sigma) \), where \( G \) is a class of ground types and \( \Sigma \) is a class of sorted operation symbols of the form \( f : A_1, \ldots, A_n \to A \) with \( n \geq 1 \). A \emph{linear metric $\lambda$-theory} is a tuple \( ((G, \Sigma), Ax) \), where \( Ax \) is a class of \emph{metric equations-in-context} over linear $\lambda$-terms constructed from \( (G, \Sigma) \).
+\end{definition}
+
+The elements of \( Ax \) are called the \emph{axioms} of the theory. Let \( Th(Ax) \) denote the smallest class that contains \( Ax \) and is closed under the rules presented in \autoref{fig:equations-linear-lambda} (i.e., the classical equational system) and \autoref{fig:metric deductive system}. The elements of \( Th(Ax) \) are called the \emph{theorems} of the theory.
 
 
 
@@ -2835,73 +2931,37 @@ Knowing that $f(a)^{\epsilon} =_{\epsilon} f(a)$, it is possible to show that $P
 
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-\section{Interpretation} \label{sec:Quantum Lambda Calculus:Interpretation}
+\section{Interpretation} \label{sec: Lambda Calculus:Interpretation}
 
 \todo[inline,size=\normalsize]{Interpretação geral com categorias} 
 
 \todo[inline,size=\normalsize]{Não esquecer cena de lambda theories a afins, incluir def de equivalence classes -> slided categorias}
 
 
+In order to define the interpretation of judgments $\Gamma \triangleright v: \mathbb{A}$, it is necessary to establish some notation first. Let $\catC$ be a symmetric monoidal category and $A$, $B$ and $C$ be objects of this category. For all morphisms $f: A \otimes B \xrightarrow{} C$, the morphism $\overline{f} : A \xrightarrow{} (B \multimap C)$ denotes the corresponding curried version. Moreover, there is the application morphism, $\text{app}: (A \multimap B) \otimes A \rightarrow B$.  
 
-\subsection{Quantum Lambda Calculus}
-
-
-Quantum lambda calculus integrates quantum computation with higher-order functions, thereby emerging as a powerful tool for formal reasoning about quantum programs within a functional programming framework. This functional paradigm, with a static type system, offers the significant advantage of ensuring the absence of run-time errors, \textit{i.e.}, potential errors can be detected at compile-time, when the program is written, rather than during execution.
-
-The principal distinction between the quantum lambda calculus introduced in this section and the formulation proposed by Selinger \cite{selinger2006lambda,selinger2009quantum} lies in the handling of data duplication. In this aproach, as dictated by the type system in \autoref{fig:typing_rules_linear}, duplication of any data is strictly prohibited. In contrast, Selinger's approach permits the duplication of classical data while strictly forbidding the duplication of quantum data.
-
-The syntax of the metric lambda calculus was presented in \Cref{ch:metriclambda}. Now, it is necessary to define the \emph{model} of the ``reality'' of interest, \textit{i.e.}, what the terms of the calculus mean within the ``reality'' considered. In the case of quantum lambda calculus, the model is based on quantum channels. The interpretation introduced in this subsection is based on the work of \cite{dahlqvist2022syntactic} with the addition of the measurement operation.
-% o outro modelo vai ser baseado em somas diretas de espaços vetoriais e quantum channels
-
-%and $!_{V}: V \xrightarrow{} \mathbb{C}$ is the trace operation applied to a vector, defined as  $!_{V}= v \xrightarrow{} \text{Tr} \hspace{1pt}v$.
-
-In order to define the interpretation of judgments $\Gamma \triangleright v: \mathbb{A}$, it is necessary to establish some notation first. Considering $v \in V$, $w \in W$, and $r \in R$  where $V, W, R$ represent vector spaces,  $\textsc{sw}_{V,W} : V\otimes W \xrightarrow{} W \otimes V$, denotes the swap operator, defined as $\textsc{sw}_{V,W}= v\otimes w \mapsto w \otimes v$;    $\lambda_{V} : \mathbb{C} \otimes V \xrightarrow{} V $ is the left unitor defined as $\lambda_{V}= 1 \otimes v \mapsto v $; $\rho_{V} : V  \otimes \mathbb{C} \xrightarrow{} V $ is the right unitor defined as $\rho_{V}= v \otimes 1 \mapsto v$; and $\alpha_{V,W,R} : V  \otimes (W \otimes R) \xrightarrow{} (V  \otimes W) \otimes R$ is the left associator, defined as $\alpha_{V,W,R}= v \otimes (w \otimes r) \mapsto (v \otimes w) \otimes r $. Moreover, for all operators $f: V \otimes W \xrightarrow{} R$, the operator $\overline{f} : V \xrightarrow{} (W \multimap R)$ denotes the corresponding curried version, defined as $\overline{f}(v) = w \mapsto  f(v,w)$. On the other hand, the application operator denoted $\text{app}: (V \multimap W) \otimes V \rightarrow W$, is defined as $f\hspace{1pt} v = w $, where $f: V \multimap W $.   The subscripts in these operators will be omitted unless ambiguity arises. 
-
-For all ground types $X \in G$  the interpretation of $[\![X]\!]$  is postulated as a vector space $V$. Types are interpreted inductively using the unit $\mathbb{I}$, the tensor $\otimes$, and the linear map $\multimap$. Given a non-empty context $\Gamma=\Gamma',x: \mathbb{A}$, its interpretation is defined by $[\![\Gamma',x: \mathbb{A}]\!] = [\![\Gamma']\!] \otimes [\![\mathbb{A}]\!]$ if $\Gamma'$ is non-empty and $[\![\Gamma',x: \mathbb{A}]\!] = [\![\mathbb{A}]\!]$ otherwise. The empty context $-$ is interpreted as $[\![-]\!] = [\![ \mathbb{I}]\!] = \mathbb{C}$. Given $X_{1}, . . . ,X_{n} \in V$, the $n$-tensor $(\ldots (X_1 \otimes X_2) \otimes \ldots ) \otimes X_{n}$ is denoted as $X_1 \otimes \ldots \otimes X_{n}$, and similarly for operators. 
+For all ground types $X \in G$  the interpretation of $[\![X]\!]$  is postulated  to be an object of $\catC$. Types are interpreted inductively using the unit $\mathbb{I}$, the tensor $\otimes$, and the linear map $\multimap$. Given a non-empty context $\Gamma=\Gamma',x: \mathbb{A}$, its interpretation is defined by $[\![\Gamma',x: \mathbb{A}]\!] = [\![\Gamma']\!] \otimes [\![\mathbb{A}]\!]$ if $\Gamma'$ is non-empty and $[\![\Gamma',x: \mathbb{A}]\!] = [\![\mathbb{A}]\!]$ otherwise. The empty context $-$ is interpreted as $[\![-]\!] = \mathbb{I}$. Given $X_{1}, . . . ,X_{n} \in V$, the $n$-tensor $(\ldots (X_1 \otimes X_2) \otimes \ldots ) \otimes X_{n}$ is denoted as $X_1 \otimes \ldots \otimes X_{n}$, and similarly for morphisms. 
 
 
-``Housekeeping" operators are employed to handle interactions between context interpretation and the vectorial model. Given $\Gamma_{1}, \ldots, \Gamma_{n}$, the operator that splits $[\![\Gamma_{1}, \ldots, \Gamma_{n}]\!]$ into $[\![\Gamma_{1}]\!] \otimes \ldots \otimes [\![\Gamma_{n}]\!]  $ is denoted by $\text{sp}_{\Gamma_1;\ldots;\Gamma_n}: [\![\Gamma_{1}, \ldots, \Gamma_{n}]\!] \xrightarrow{} [\![\Gamma_{1}]\!] \otimes \ldots \otimes [\![\Gamma_{n}]\!] $. For $n=1$, $\text{sp}_{\Gamma_1} = \text{id}$.
+``Housekeeping" morphisms are employed to handle interactions between context interpretation and the vectorial model. Given $\Gamma_{1}, \ldots, \Gamma_{n}$, the morphism that splits $[\![\Gamma_{1}, \ldots, \Gamma_{n}]\!]$ into $[\![\Gamma_{1}]\!] \otimes \ldots \otimes [\![\Gamma_{n}]\!]  $ is denoted by $\text{sp}_{\Gamma_1;\ldots;\Gamma_n}: [\![\Gamma_{1}, \ldots, \Gamma_{n}]\!] \xrightarrow{} [\![\Gamma_{1}]\!] \otimes \ldots \otimes [\![\Gamma_{n}]\!] $. For $n=1$, $\text{sp}_{\Gamma_1} = \text{id}$.
 Let $\Gamma_1$ and $\Gamma_2$ be two contexts, $\text{sp}_{\Gamma_1, \Gamma_2} \rightarrow \Gamma_1\otimes \Gamma_2$ is defined as:
 \begin{equation*}
-  \text{sp}_{-; \Gamma_2} = \lambda^{-1} \hspace{1cm} \text{sp}_{\Gamma_1; -} = \rho^{-1} \hspace{1cm} \text{sp}_{\Gamma_1;x:\mathbb{A}} = I \hspace{1cm} \text{sp}_{\Gamma_1; \Delta, x: \mathbb{A}} = \alpha \cdot (\text{sp}_{\Gamma_1; \Delta} \otimes I)
+  \text{sp}_{-; \Gamma_2} = \lambda^{-1} \hspace{1cm} \text{sp}_{\Gamma_1; -} = \rho^{-1} \hspace{1cm} \text{sp}_{\Gamma_1;x:\mathbb{A}} = \id \hspace{1cm} \text{sp}_{\Gamma_1; \Delta, x: \mathbb{A}} = \alpha \cdot (\text{sp}_{\Gamma_1; \Delta} \otimes \id)
 \end{equation*}
 For $n>2$, $\text{sp}_{\Gamma_1;\ldots;\Gamma_n}$ is is defined recursively based on the previous definition, using induction on $n$:
 \begin{equation*}
-  \text{sp}_{\Gamma_1;\ldots;\Gamma_n} = (\text{sp}_{\Gamma_1;\ldots;\Gamma_{n-1}} \otimes I )\cdot \text{sp}_{\Gamma_1, \ldots, \Gamma_{n-1} ;\Gamma_n}
+  \text{sp}_{\Gamma_1;\ldots;\Gamma_n} = (\text{sp}_{\Gamma_1;\ldots;\Gamma_{n-1}} \otimes \id )\cdot \text{sp}_{\Gamma_1, \ldots, \Gamma_{n-1} ;\Gamma_n}
 \end{equation*}
-On the other hand, $\text{jn}_{\Gamma_1;\ldots;\Gamma_n}$ denotes the inverse of $\text{sp}_{\Gamma_1;\ldots;\Gamma_n}$. Next, given $\Gamma, x : \mathbb{A}, y : \mathbb{B},\Delta$, the operator permuting $x$ and $y$ is denoted by $\text{exch}_{\Gamma, x : \mathbb{A}, y : \mathbb{B},\Delta}: [\![\Gamma,\underline{ x : \mathbb{A}, y : \mathbb{B}},\Delta]\!] \xrightarrow{} [\![\Gamma, y : \mathbb{B}, x : \mathbb{A}, \Delta]\!] $ and defined as:
+On the other hand, $\text{jn}_{\Gamma_1;\ldots;\Gamma_n}$ denotes the inverse of $\text{sp}_{\Gamma_1;\ldots;\Gamma_n}$. Next, given $\Gamma, x : \mathbb{A}, y : \mathbb{B},\Delta$, the morphism permuting $x$ and $y$ is denoted by $\text{exch}_{\Gamma, x : \mathbb{A}, y : \mathbb{B},\Delta}: [\![\Gamma,\underline{ x : \mathbb{A}, y : \mathbb{B}},\Delta]\!] \xrightarrow{} [\![\Gamma, y : \mathbb{B}, x : \mathbb{A}, \Delta]\!] $ and defined as:
 \begin{equation*}
-  \text{exch}_{\Gamma, \underline{ x : \mathbb{A}, y : \mathbb{B}},\Delta} = \text{jn}_{\Gamma; y:\mathbb{B}, x:\mathbb{A};\Delta} \cdot (I \otimes \text{sw} \otimes I ) \cdot \text{sp}_{\Gamma; x:\mathbb{A}, y:\mathbb{B};\Delta}
+  \text{exch}_{\Gamma, \underline{ x : \mathbb{A}, y : \mathbb{B}},\Delta} = \text{jn}_{\Gamma; y:\mathbb{B}, x:\mathbb{A};\Delta} \cdot (\id \otimes \text{sw} \otimes \id ) \cdot \text{sp}_{\Gamma; x:\mathbb{A}, y:\mathbb{B};\Delta}
 \end{equation*} 
 
 
-The shuffling operator $\text{sh}_{E}: [\![E]\!] \xrightarrow{} [\![\Gamma_1, \ldots, \Gamma_n ]\!]$ is defined as a suitable composition of exchange operators.
+The shuffling morphism $\text{sh}_{E}: [\![E]\!] \xrightarrow{} [\![\Gamma_1, \ldots, \Gamma_n ]\!]$ is defined as a suitable composition of exchange morphisms.
 
 
-For every operation symbol $f: \mathbb{A}_{1}, \ldots, \mathbb{A}_{n} \xrightarrow{} \mathbb{A}$ it is assumed the existence of an operator $[\![f]\!]: [\![\mathbb{A}_{1}]\!] \otimes \ldots \otimes [\![\mathbb{A}_{n}]\!] \xrightarrow{}  [\![\mathbb{A}]\!] $.
+For every operation symbol $f: \mathbb{A}_{1}, \ldots, \mathbb{A}_{n} \xrightarrow{} \mathbb{A}$ it is assumed the existence of an morphism $[\![f]\!]: [\![\mathbb{A}_{1}]\!] \otimes \ldots \otimes [\![\mathbb{A}_{n}]\!] \xrightarrow{}  [\![\mathbb{A}]\!] $.
 The interpretation of judgments is defined by induction over derivations according to the rules in \autoref{fig:denotational_sem} \cite{dahlqvist2022syntactic}.
 \vspace{-7pt}
 \begin{figure} [H]
@@ -3005,18 +3065,154 @@ The following diagrams are useful to better understand the interpretation of jud
      &\llbracket \mathbb{I}_e \rrbracket :  & [\![E]\!] & \xrightarrow{\hspace{2pt}\text{sh}_{E}\hspace{2pt}}   [\![\Gamma,\Delta ]\!]   \xrightarrow{\hspace{1pt}\text{sp}_{\Gamma;\Delta}\hspace{1pt}}  [\![\Gamma ]\!] \otimes [\![\Delta ]\!] \xrightarrow{ m \hspace{1pt} \otimes \hspace{1pt} \text{I}} [\![\mathbb{I} ]\!]\otimes [\![\Delta ]\!] \xrightarrow{\hspace{2pt} \lambda \hspace{3pt}} [\![\Delta ]\!]  \xrightarrow{\hspace{2pt} n \hspace{3pt}}  \llbracket \mathbb{A} \rrbracket    \\
       &\llbracket \multimap_i \rrbracket : & \llbracket \Gamma \rrbracket \otimes \llbracket \mathbb{A} \rrbracket & \xrightarrow{\hspace{2pt} \overline{m \cdot \text{jn}_{\Gamma;\mathbb{A}}}  \hspace{2pt}}  \llbracket \mathbb{A} \rrbracket \multimap \llbracket \mathbb{B} \rrbracket  \hspace{60pt} (\llbracket \Gamma \rrbracket \otimes \llbracket \mathbb{A} \rrbracket  \xrightarrow{\hspace{2pt} \text{jn}_{\Gamma; \mathbb{A}} \hspace{2pt}} \llbracket \Gamma, \mathbb{A} \rrbracket  \xrightarrow{\hspace{2pt} m \hspace{2pt}}  \llbracket \mathbb{B} \rrbracket )\\
       &\llbracket \multimap_e \rrbracket : & [\![E]\!] & \xrightarrow{\hspace{2pt}\text{sh}_{E}\hspace{2pt}}   [\![\Gamma,\Delta ]\!]   \xrightarrow{\hspace{1pt}\text{sp}_{\Gamma;\Delta}\hspace{1pt}}  [\![\Gamma ]\!] \otimes [\![\Delta ]\!]  \xrightarrow{\hspace{2pt} m \hspace{1pt} \otimes \hspace{1pt} n \hspace{2pt}} \llbracket \mathbb{A} \rrbracket \multimap \llbracket \mathbb{B} \rrbracket \otimes \llbracket \mathbb{A} \rrbracket  \xrightarrow{\hspace{2pt} \text{app} \hspace{2pt}} \llbracket \mathbb{B} \rrbracket \\
-      &\llbracket \text{dis} \rrbracket : & [\![\Gamma]\!] & \xrightarrow{\hspace{2pt} f \hspace{2pt}} \llbracket \mathbb{A} \rrbracket \xrightarrow{\hspace{2pt} \text{Tr} \hspace{2pt}} \llbracket \mathbb{I} \rrbracket
+      &\llbracket \text{dis} \rrbracket : & [\![\Gamma]\!] & \xrightarrow{\hspace{2pt} f \hspace{2pt}} \llbracket \mathbb{A} \rrbracket \xrightarrow{\hspace{2pt} \text{!} \hspace{2pt}} \llbracket \mathbb{I} \rrbracket
       %& \llbracket \Gamma \rrbracket \otimes \llbracket \mathbb{A} \rrbracket  \xrightarrow{\hspace{2pt} \text{jn}_{\Gamma; \mathbb{A}} \hspace{2pt}} \llbracket \Gamma, \mathbb{A} \rrbracket  \xrightarrow{\hspace{2pt} m \hspace{2pt}}  \llbracket \mathbb{B} \rrbracket 
 \end{align*} 
 
 
-Regarding the interpretation of the exhange and substitution properties, for any judgements $\Gamma, x: \mathbb{A}, y: \mathbb{B}, \Delta \triangleright v : \mathbb{D}$, $\Gamma, x: \mathbb{A} \triangleright v: \mathbb{B}$, and $\Delta \triangleright w: \mathbb{A}$, the following equations hold:
-\begin{equation}
+Regarding the interpretation of the exhange and substitution properties, we have the following lemma.
+
+\begin{lemma}
+  For any judgements $\Gamma, x: \mathbb{A}, y: \mathbb{B}, \Delta \triangleright v : \mathbb{D}$, $\Gamma, x: \mathbb{A} \triangleright v: \mathbb{B}$, and $\Delta \triangleright w: \mathbb{A}$, the following holds:
+\begin{equation*}
 \begin{split}
   \llbracket \Gamma, x: \mathbb{A}, y: \mathbb{B}, \Delta \triangleright v : \mathbb{D} \rrbracket & = \llbracket \Gamma,  y: \mathbb{B}, x: \mathbb{A}, \Delta \triangleright v : \mathbb{D} \rrbracket \cdot \text{exch}_{\Gamma, \underline{x: \mathbb{A}, y: \mathbb{B}}, \Delta}\\
   \llbracket \Gamma,\Delta \triangleright v[w/x]: \mathbb{B} \rrbracket & = \llbracket \Gamma, x: \mathbb{A} \triangleright v: \mathbb{B} \rrbracket \cdot \text{jn}_{\Gamma;\mathbb{A}} \cdot (\text{I} \otimes \llbracket \Delta \triangleright w: \mathbb{A} \rrbracket ) \cdot \text{sp}_{\Gamma; \Delta} 
 \end{split}
-\end{equation}
+\end{equation*}
+
+\end{lemma}
+
+
+
+\begin{theorem}
+The equations presented in \autoref{fig:equations-linear-lambda} are sound with respect to judgement interpretation. 
+More specifically, if \(\Gamma \vljud v = w : \typeA\) is one of the equations in \autoref{fig:equations-linear-lambda}, then 
+$\llbracket \Gamma \vljud v : A  \rrbracket = \llbracket  \Gamma \vljud w : \typeA\rrbracket.$
+\end{theorem}
+
+
+\begin{definition} [Models of linear \(\lambda\)-theories]
+Consider a linear \(\lambda\)-theory \(((G, \Sigma), Ax)\) and a symmetric monoidal closed category \(\catC\). 
+Suppose that for each \(X \in G\), we have an interpretation \(\llbracket X \rrbracket\), which is an object of \(\catC\), 
+and analogously for the operation symbols in \(\Sigma\). 
+This interpretation structure is a \emph{model} of the theory if all axioms in \(Ax\) are satisfied by the interpretation.
+\end{definition}
+
+\begin{theorem}[Soundness and Completeness]
+Consider a linear $\lambda$-theory $\mathscr{T}$. Then an equation 
+$\Gamma \vljud v = w : A$
+is a theorem of $\mathscr{T}$ if and only if it is satisfied by all models of the theory.
+\end{theorem}
+
+ \begin{definition}
+    A \emph{metric space} a pair $(X, d)$ where $X$ is a set and $d: X \times X \to \mathbb{R}_0^+$ is a function known as \emph{distance} satisfying:
+    \begin{enumerate}
+        \item $0 \leq d(x, y)$, with equality if and only if $x = y$,
+        \item $d(x, y) = d(y, x)$,
+        \item $d(x, z) \leq d(x, y) + d(y, z)$ for all $x, y, z \in X$.
+    \end{enumerate}
+  \end{definition}
+  
+  \begin{definition}
+    $\catMet$ denotes the category whose objects are metric spaces and whose morphisms are non-expansive maps, \ie, functions that do not increase the distance between points. More precisely, for two metric spaces $(X, d_X)$ and $(Y, d_Y)$, a morphism $f: (X, d_X) \to (Y, d_Y)$ is a function $f: X \to Y$ such that
+$$
+d_Y(f(x), f(y)) \leq d_X(x, y) \quad \text{for all } x, y \in X.
+$$
+  \end{definition}
+    
+
+
+\begin{definition}
+ A category $\catC$ is $\catMet$\emph{-enriched} (or simply a $\catMet$-category) if for each pair of objects $A$ and $B$ in $\catC$, the hom-set $\catC(A, B)$ is a metric space and if the composition of $\catC$-morphisms,
+ $$(\comp): \catC(A, B) \otimes \catC(B, C) \rightarrow \catC(A, C)$$
+ is a functor in the category of metric spaces. 
+ Given two $\catMet$-enriched categories $\catC$ and $\catD$ and a functor $F : \catC\to \catD$, we call 
+$F$ a \emph{$\catMet$-enriched functor} (or simply, a \emph{$\catMet$-functor}) if for all objects $A, B$ in $\catC$, 
+the map $F_{A,B} : \catC(A,B) \to \catC(FA, FB)$ is a $\catMet$-functor. 
+An adjunction $\catC : F \dashv G : \catD$ is called \emph{$\catMet$-enriched} if for all objects $A \in |\catC|$ 
+and $B \in |\catD|$ there exists a $\catMet$-isomorphism
+\[
+\mathcal{D}(FA, B) \cong \catC(A, GB)
+\]
+natural in $A$ and $B$.
+\end{definition}
+
+
+\begin{definition}
+A \emph{$\catMet$-enriched monoidal category} $\catC$ is a category that is both monoidal and $\catMet$-enriched, such that the bifunctor
+\[
+\otimes : \catC \times \catC \to \catC
+\]
+is a $\catMet$-functor, 
+\end{definition}
+
+\begin{definition}
+  A \emph{$\catMet$-enriched monoidal closed category} $\catC$ is a category that is both monoidal closed and a $\catMet$-enriched monoidal category, such that the adjunction
+\[
+(- \otimes A) \dashv (A \multimap -)
+\]
+is a $\catMet$-adjunction.
+\end{definition}
+
+\begin{definition}
+  It is said that a metric equation $\Gamma \vljud v =_{q} w : A$ is \emph{satisfied} by the interpretation presented in \autoref{fig:denotational_sem} if
+\[
+q \leq d( \llbracket \Gamma \vljud v : \typeA \rrbracket,\, \llbracket  \Gamma \vljud w : \typeA \rrbracket).
+\]
+\end{definition}
+
+
+\begin{theorem}
+The rules listed in \autoref{fig:equations-linear-lambda} and \autoref{fig:metric deductive system} are sound for $\catMet$-enriched monoidal closed categories $\catC$. Specifically, if $\Gamma \vljud v =_{q} w : \typeA$
+results from the rules in \autoref{fig:equations-linear-lambda} and \autoref{fig:metric deductive system}, then 
+$q \leq d(\llbracket \Gamma  \vljud  v : \typeA \rrbracket,\, \llbracket \Gamma \vljud  w : \typeA\llbracket)$.
+\end{theorem}
+
+\begin{definition}[(Models of linear metric $\lambda$-theories)]
+Consider a linear metric $\lambda$-theory $((G, \Sigma), \mathsf{Ax})$ and a $\catMet$-enriched autonomous category $\mathcal{C}$. 
+Suppose that for each $X \in G$, we are given an interpretation $\llbracket X \rrbracket$ as an object of $\mathcal{C}$, and analogously for the operation symbols in $\Sigma$. 
+This interpretation structure is a \emph{model} of the theory if all axioms in $\mathsf{Ax}$ are satisfied by the interpretation.
+\end{definition}
+
+
+\begin{definition}
+  
+For two types $\typeA$ and $\typeB$ of a metric $\lambda$-theory $\mathscr{T}$, consider the class \text{Values}$(\typeA,\typeB)$ of values $v$ such that $x : \typeA \vljud v : \typeB$. We equip $\text{Values}(\typeA,\typeB)$ with the function $d :\text{Values}(\typeA,\typeB) \times \text{Values}(\typeA,\typeB) \rightarrow \mathbb{R}^{+}_0$ defined by,
+
+$$d(v,w)=\inf{\{q \, \vert \, v=_q w \text{ is a theorem } \mathscr{T} \}}$$
+
+We then consider the equivalence relation $\sim$ on $\text{Values}(\typeA,\typeB)$ induced by $d$:
+\[
+v \sim w \quad \text{if and only if} \quad d(v,w) = 0.
+\]
+
+ The resulting quotient $\text{Values}(\typeA,\typeB)/{\sim}$ forms a separated $\catMet$-enriched category. We call  $\mathscr{T} $\emph{varietal} if (\text{Values}$(\typeA,\typeB),d)$/$\sim$ is a small  $\catMet$-enriched category for all types $\typeA$ and $\typeB$. 
+
+ \end{definition}
+
+\begin{theorem}[ Soundness and Completeness]
+Consider a varietal $\mathcal{V}\lambda$-theory. A $\mathcal{V}$-equation in context
+$\Gamma \vljud v =_{q} w : \typeA$
+is a theorem if and only if it holds in all models of the theory.
+\end{theorem}
+
+
+\subsection{Quantum Lambda Calculus}
+
+
+Quantum lambda calculus integrates quantum computation with higher-order functions, thereby emerging as a powerful tool for formal reasoning about quantum programs within a functional programming framework. This functional paradigm, with a static type system, offers the significant advantage of ensuring the absence of run-time errors, \textit{i.e.}, potential errors can be detected at compile-time, when the program is written, rather than during execution.
+
+The principal distinction between the quantum lambda calculus introduced in this section and the formulation proposed by Selinger \cite{selinger2006lambda,selinger2009quantum} lies in the handling of data duplication. In this aproach, as dictated by the type system in \autoref{fig:typing_rules_linear}, duplication of any data is strictly prohibited. In contrast, Selinger's approach permits the duplication of classical data while strictly forbidding the duplication of quantum data.
+
+The syntax of the metric lambda calculus was presented in \Cref{ch:metriclambda}. Now, it is necessary to define the \emph{model} of the ``reality'' of interest, \textit{i.e.}, what the terms of the calculus mean within the ``reality'' considered. In the case of quantum lambda calculus, the model is based on quantum channels. The interpretation introduced in this subsection is based on the work of \cite{dahlqvist2022syntactic} with the addition of the measurement operation.
+% o outro modelo vai ser baseado em somas diretas de espaços vetoriais e quantum channels
+
+%and $!_{V}: V \xrightarrow{} \mathbb{C}$ is the trace operation applied to a vector, defined as  $!_{V}= v \xrightarrow{} \text{Tr} \hspace{1pt}v$.
+
+In order to define the interpretation of judgments $\Gamma \triangleright v: \mathbb{A}$, it is necessary to establish some notation first. Considering $v \in V$, $w \in W$, and $r \in R$  where $V, W, R$ represent vector spaces,  $\textsc{sw}_{V,W} : V\otimes W \xrightarrow{} W \otimes V$, denotes the swap operator, defined as $\textsc{sw}_{V,W}= v\otimes w \mapsto w \otimes v$;    $\lambda_{V} : \mathbb{C} \otimes V \xrightarrow{} V $ is the left unitor defined as $\lambda_{V}= 1 \otimes v \mapsto v $; $\rho_{V} : V  \otimes \mathbb{C} \xrightarrow{} V $ is the right unitor defined as $\rho_{V}= v \otimes 1 \mapsto v$; and $\alpha_{V,W,R} : V  \otimes (W \otimes R) \xrightarrow{} (V  \otimes W) \otimes R$ is the left associator, defined as $\alpha_{V,W,R}= v \otimes (w \otimes r) \mapsto (v \otimes w) \otimes r $. Moreover, for all operators $f: V \otimes W \xrightarrow{} R$, the operator $\overline{f} : V \xrightarrow{} (W \multimap R)$ denotes the corresponding curried version, defined as $\overline{f}(v) = w \mapsto  f(v,w)$. On the other hand, the application operator denoted $\text{app}: (V \multimap W) \otimes V \rightarrow W$, is defined as $f\hspace{1pt} v = w $, where $f: V \multimap W $.   The subscripts in these operators will be omitted unless ambiguity arises. 
+
+
 
 \subsubsection{Types and operations in quantum lambda calculus}
 

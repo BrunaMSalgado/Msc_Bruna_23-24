@@ -1089,15 +1089,21 @@ The metric equation for conditionals is presented in \autoref{fig:metric conditi
 
 
   \begin{definition}
-    A metric space a pair $(X, d)$ where $X$ is a set and $d: X \times X \to \mathbb{R}_0^+$ is a function satisfying:
+    A metric space a pair $(X, d)$ where $X$ is a set and $d: X \times X \to \mathbb{R}_0^+$ is a function known as \emph{distance} satisfying:
     \begin{enumerate}
         \item $0 \leq d(x, y)$, with equality if and only if $x = y$,
         \item $d(x, y) = d(y, x)$,
         \item $d(x, z) \leq d(x, y) + d(y, z)$ for all $x, y, z \in X$.
     \end{enumerate}
+  \end{definition}
+  
+  \begin{definition}
+    $\catMet$ denotes the category whose objects are metric spaces and whose morphisms are non-expansive maps, \ie, functions that do not increase the distance between points. More precisely, for two metric spaces $(X, d_X)$ and $(Y, d_Y)$, a morphism $f: (X, d_X) \to (Y, d_Y)$ is a function $f: X \to Y$ such that
+$$
+d_Y(f(x), f(y)) \leq d_X(x, y) \quad \text{for all } x, y \in X.
+$$
+  \end{definition}
     
-    For two metric spaces $(X, d_X)$ and $(Y, d_Y)$, a morphism $f: (X, d_X) \to (Y, d_Y)$ is a function $f: X \to Y$ satisfying $d_Y(f(x), f(y)) \leq d_X(x, y)$ for all $x, y \in X$.
-    \end{definition}
 
 
 \begin{definition}
@@ -1161,7 +1167,7 @@ Consider a tuple $(G,\Sigma)$ consisting of a class $G$ of ground
 \end{definition}
 
 
-For two types $\typeA$ and of a metric $\lambda$-theory $\mathscr{T}$ , consider the class \textbf{Values}$(\typeA,\typeB)$ of values $v$ such that $x : \typeA \vljud v : \typeB$. We equip $\textbf{Values}(\typeA,\typeB)$ with the function $a :\textbf{Values}(\typeA,\typeB) \times \textbf{Values}(\typeA,\typeB) \rightarrow \mathbb{R}^{+}_0$ defined by,
+For two types $\typeA$ and of a metric $\lambda$-theory $\mathscr{T}$ , consider the class \textbf{Values}$(\typeA,\typeB)$ of values $v$ such that $x : \typeA \vljud v : \typeB$. We equip $\textbf{Values}(\typeA,\typeB)$ with the function $d :\textbf{Values}(\typeA,\typeB) \times \textbf{Values}(\typeA,\typeB) \rightarrow \mathbb{R}^{+}_0$ defined by,
 
 $$d(v,w)=\inf{\{q \, \vert \, v=_q w \text{ is a theorem } \mathscr{T} \}}$$
 
