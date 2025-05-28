@@ -28,7 +28,7 @@
 \contentsline {subsubsection}{Unitary operators}{18}{subsection.2.2.3}%
 \contentsline {subsubsection}{Measurements}{19}{theorem.2.2.2}%
 \contentsline {subsection}{\numberline {2.2.4}Density operators}{20}{subsection.2.2.4}%
-\contentsline {subsubsection}{Reduced density operator}{21}{equation.2.2.6}%
+\contentsline {subsubsection}{Reduced density operator}{21}{equation.2.2.5}%
 \contentsline {subsection}{\numberline {2.2.5}Quantum Channels}{23}{subsection.2.2.5}%
 \contentsline {subsubsection}{Kraus operator sum representation}{23}{definition.2.2.6}%
 \contentsline {subsubsection}{Non-selective measurements}{24}{definition.2.2.6}%
@@ -65,11 +65,15 @@
 \contentsline {section}{\numberline {3.3}Metric equational system}{66}{section.3.3}%
 \contentsline {section}{\numberline {3.4}Interpretation}{68}{section.3.4}%
 \contentsline {subsection}{\numberline {3.4.1}Quantum Lambda Calculus}{73}{subsection.3.4.1}%
-\contentsline {subsubsection}{Types and operations in quantum lambda calculus}{74}{subsection.3.4.1}%
-\contentsline {subsection}{\numberline {3.4.2}Example: Deutsch's Algorithm}{75}{subsection.3.4.2}%
-\contentsline {subsubsection}{Deutsch's Algorithm with Measurement Errors}{78}{equation.3.4.15}%
-\contentsline {subsection}{\numberline {3.4.3}Example: Proving an equivalence using equations-in-context}{81}{subsection.3.4.3}%
-\contentsline {subsection}{\numberline {3.4.4}Linear $\lambda $-calculus meets probabilistic programming}{81}{subsection.3.4.4}%
+\contentsline {subsubsection}{Syntax}{73}{subsection.3.4.1}%
+\contentsline {subsubsection}{Interpretation}{74}{subsection.3.4.1}%
+\contentsline {subsubsection}{Example: Deutsch's Algorithm}{74}{figure.caption.39}%
+\contentsline {subsubsection}{Deutsch's Algorithm with Measurement Errors}{77}{equation.3.4.11}%
+\contentsline {subsubsection}{Example: Proving an equivalence using equations-in-context}{78}{equation.3.4.12}%
+\contentsline {subsection}{\numberline {3.4.2}Linear $\lambda $-calculus meets probabilistic programming}{79}{subsection.3.4.2}%
+\contentsline {subsubsection}{Syntax}{79}{subsection.3.4.2}%
+\contentsline {subsubsection}{Interpretation}{79}{subsection.3.4.2}%
+\contentsline {subsubsection}{Random walk on $\mathbb {R}$}{80}{figure.caption.42}%
 \contentsline {chapter}{\numberline {4}Conditionals}{83}{chapter.4}%
 \contentsline {section}{\numberline {4.1}Syntax}{83}{section.4.1}%
 \contentsline {section}{\numberline {4.2}Interpretation}{83}{section.4.2}%

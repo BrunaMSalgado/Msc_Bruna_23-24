@@ -439,7 +439,7 @@ $\{\emph{delta}_r: \typeI \to \emph{real} \hspace{2pt} \vert \, r \in \mathbb{Q}
 \bigcup \, \{\emph{CoinToss}_p: \typeI \to \typeI \oplus \typeI \hspace{2pt} \vert \, p \in [0,1] \} $,  
 and a set of predetermined sampling functions 
 $ \{\emph{JumpL}_\mu: \emph{real}  \to \emph{real} \hspace{2pt} \vert \, \mu \in \mathcal{M}\mathbb{R} \} 
-\bigcup \, \{\emph{JumpR}_\mu: \emph{real}  \to \emph{real} \hspace{2pt} \vert \, \mu \in \mathcal{M}\mathbb{R} \}$, where $\mathcal{M}\mathbb{R}$ corresponds the Banach space of finite Borel measures on $\mathbb{R}$.  Operationally, $\emph{JumpL}_\mu (\nu)$ generates a sample from the Dirac delta distribution concentrated at $\nu-\mu$, while $\emph{JumpR}\mu(\nu)$ generates a sample from the Dirac measure concentrated at $\nu + \mu$.
+\bigcup \, \{\emph{JumpR}_\mu: \emph{real}  \to \emph{real} \hspace{2pt} \vert \, \mu \in \mathcal{M}\mathbb{R} \}$, where $\mathcal{M}\mathbb{R}$ corresponds the Banach space of finite Borel measures on $\mathbb{R}$.  Operationally, $\emph{JumpL}_\mu (\nu)$ (resp. $\emph{JumpR}_\mu (\nu)$) draws samples $u$ and $v$ from $\mu$ and $\nu$, respectively and jumps to $v-u$ (resp. $v+u$).
 
 
 \begin{example}[Random walk] \label{ex:random_walk_prob}
@@ -452,14 +452,14 @@ Now, we will use the aforementioned language to describe $n$ steps of a random w
   ; \inr(y) \Rightarrow x \text{ to } \ast.\, \emph{JumpR}_{\mu_2}(r);\}
   : \textit{real} \multimap \textit{real}   \\
   %
-  & \textbf{apply-n} = \lambda f_1, \dots, f_n, x.\; f_1(f_2(\dots(f_n\,x))): (\emph{real} \multimap \emph{real}) \multimap (\ldots ) \multimap (\emph{real} \multimap \emph{real}) \multimap \emph{real} \multimap \emph{real} \\
+  & \textbf{apply-n} = \lambda f_1, \dots, f_n, r.\; f_1(f_2(\dots(f_n\,x))): (\emph{real} \multimap \emph{real}) \multimap (\ldots ) \multimap (\emph{real} \multimap \emph{real}) \multimap \emph{real} \multimap \emph{real} \\
   %
   & \textbf{rwalk-n} = \textbf{apply-n } \textbf{ step} \ldots \textbf{step } (\emph{delta}_0) : \emph{real}
 \end{align*}
 
 
 Given a current position $r$, the function \textbf{step} performs a random jump: with probability $p$, the jump is drawn randomly from the distribution \( \mu_1 \); with probability $1-p$, it is drawn from $\mu_2$.
-The higher-order function \textbf{apply-n} takes $ n $  functions of type \( \emph{real} \multimap \emph{real} \) and a measure \( x \in \emph{real} \), and applies the functions in sequence from last to first.
+The higher-order function \textbf{apply-n} takes $ n $  functions of type \( \emph{real} \multimap \emph{real} \) and a measure \( r \in \emph{real} \), and applies the functions in sequence from last to first.
 The term \textbf{rwalk-n} represents a $n$-step walk  walk starting from the origin.
 
 
@@ -1683,7 +1683,7 @@ Attending to Theorem \ref{theorem:diamond_iso}, it follows that
   \end{align*}
 
 
-As a result, in  Example \ref{ex:quantum_state_discrimination_syntax}, considering the $\lambda$-term \textbf{HMeasure} and the erroneous implementation of $U$ described above, denoted $U^{\epsilon_1, \epsilon_2}$, using our deductive metric system, we have $U =_{\sqrt{2}\epsilon_1+ 3\epsilon_2} U^{\epsilon_1, \epsilon_2}$. Therefore, we deduce $\textbf{HMeasure} =_{\sqrt{2}\epsilon_1+ 3\epsilon_2} \textbf{HMeasure}^{\epsilon_1, \epsilon_2}$, where is the the judgement that results from replacing $U$ by $U^{\epsilon_1, \epsilon_2}$. Moreover, considering the erroneous implementation of the $R_y$ gate also afecting the \textbf{CoinToss} term, as discussed in the previous example, we deduce that 
+As a result, in  Example \ref{ex:quantum_state_discrimination_syntax}, considering the $\lambda$-term \textbf{HMeasure} and the erroneous implementation of $U$ described above, denoted $U^{\epsilon_1, \epsilon_2}$, using our deductive metric system, we have $U =_{\sqrt{2}\epsilon_1+ 3\epsilon_2} U^{\epsilon_1, \epsilon_2}$. Therefore, we deduce $\textbf{HMeasure} =_{\sqrt{2}\epsilon_1+ 3\epsilon_2} \textbf{HMeasure}^{\epsilon_1, \epsilon_2}$, where $\textbf{HMeasure}^{\epsilon_1, \epsilon_2}$ is the the judgement that results from replacing $U$ by $U^{\epsilon_1, \epsilon_2}$. Moreover, considering the erroneous implementation of the $R_y$ gate also afecting the \textbf{CoinToss} term, as discussed in the previous example, we deduce that 
 $$\textbf{Discrimination} =_{\sqrt{2}\epsilon_1+6\epsilon_2} \textbf{Discrimination}^{\epsilon_1,\epsilon_2}, $$
 where $\textbf{Discrimination}^{\epsilon_1,\epsilon_2}$ denotes the judgement that results from replacing $\textbf{HMeasure}$ by $\textbf{HMeasure}^{\epsilon_1, \epsilon_2}$ and $\textbf{CoinToss}$ by  $\textbf{CoinToss}^{\epsilon_2}$.
 
