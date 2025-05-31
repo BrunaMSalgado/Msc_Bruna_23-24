@@ -153,7 +153,7 @@ The \emph{inner product}  \gls{inner-product} is a function from a vector space 
 
 \begin{enumerate}
   \item Linearity in the second argument,$$ \left\langle v, \sum_{i} a_i w_i\right\rangle = \sum_i a_i \langle v, w_i\rangle. $$
-  \item $\langle v,w \rangle = \langle w,v \rangle^{\dag} $, \text{  where \gls{conj} is the complex conjugate operation.}
+  \item $\langle v,w \rangle = \langle w,v \rangle^{*} $, \text{  where \gls{conj} is the complex conjugate operation.}
   \item  $\langle v,w \rangle \geq 0 $ with equality if and only if $v = 0$.
 \end{enumerate}
 \end{definition}
@@ -200,7 +200,7 @@ In the \emph{finite} dimensional complex vector spaces relevant to quantum compu
   \end{enumerate}
 \end{definition}
 
-\begin{definition}
+\begin{definition} \label{def:normed_space}
 A vector space together with a norm is called a \emph{normed vector space}.
 \end{definition}
 
@@ -253,11 +253,8 @@ inversions in $\pi$ is odd and is $+1$ if the number of inversions is even.
 An \emph{eigenvector} of a linear operator $A$ on a vector space is a non-zero vector $v$ such that $A v  = \lambda v $, where $\lambda$ is a complex number known as the \emph{eigenvalue} of $A$ corresponding to $v$.
 \end{definition}
 
-The \emph{characteristic polynomial} of a square operator $A$ is the polynomial $p(\lambda) = \text{det}(A - \lambda I)$, where \gls{id} is the identity operator 
-\begin{align*}
-  I_V: & V \rightarrow V \\
-  & v \mapsto v.
-\end{align*}
+
+The \emph{characteristic polynomial} of a square operator $A$ is the polynomial $p(\lambda) = \text{det}(A - \lambda \id)$, where \gls{id} is the identity operator $\id_V:  V \rightarrow V, \,  v \mapsto v$,
 where $V$ is a vector space.  The subscript will be omitted unless ambiguity arises. It can be shown that the characteristic
 function depends only upon the operator A, and not on the specific matrix representation used for $A$. By the fundamental theorem of algebra, every polynomial has at least one complex root, so every operator $A$ has at least one eigenvalue, and a corresponding
 eigenvector. The solutions of the \emph{characteristic equation} $c(\lambda) = 0$ are the eigenvalues of the operator $A$. %The \emph{eigenspace} corresponding to an eigenvalue $\lambda$ is the set of vectors which have eigenvalue $\lambda$.
@@ -299,7 +296,7 @@ The following classes of operators are of particular interest in quantum informa
 \end{definition}
 
 \begin{definition}
-  \emph{Unitary operators.} A square operator $U$ is \emph{unitary} if $U^{\dagger}U = UU^{\dagger} = I$. The letter \gls{unitary} will often be used to refer to unitary
+  \emph{Unitary operators.} A square operator $U$ is \emph{unitary} if $U^{\dagger}U = UU^{\dagger} = \id$. The letter \gls{unitary} will often be used to refer to unitary
   operators.
 \end{definition}
 Geometrically, unitary operators are important because they preserve inner products between vectors, $\langle U v, U w \rangle = \langle v, w \rangle$  for any two vectors $v$ and $w$. Let $S_1=\{v_i\}$ be any orthonormal basis set. Define $ s_2= \{w_i\} = \{U v_i | v_i \in S \}$, so $S_2$ is also an orthonormal basis set, since unitary operators preserve inner products. Note that $U = \sum_{i} w_i v_i^{\dag}$. Conversely, if $\{v_i\}$ are any two orthonormal bases, then it is easily checked that
@@ -314,7 +311,7 @@ the operator $U$ defined by $U = \sum_{i} w_i^{\dag} v_i$ is unitary.
 \end{definition}
 
 \begin{definition}
-  \emph{Projectors}. A positive semidefinite operator $P$ is a projector if $P^2 = P$. Equivalently, a projection operator is a Hermitian operator whose only eigenvalues are 0 and 1. The \emph{orthogonal complement} of P is the operator $Q = I − P$.
+  \emph{Projectors}. A positive semidefinite operator $P$ is a projector if $P^2 = P$. Equivalently, a projection operator is a Hermitian operator whose only eigenvalues are 0 and 1. The \emph{orthogonal complement} of P is the operator $Q = \id − P$.
 \end{definition}
 
 \begin{definition}
@@ -574,13 +571,13 @@ Pauli matrices are examples of unitary operators. The $X$ and $Z$ gates are ofte
  
 When the Pauli matrices are exponentiated, they result in three valuable classes of unitary matrices, corresponding to the rotation operators around the $\hat{x}$, $\hat{y}$, and $\hat{z}$ axes, which are defined as follows:
 \begin{equation*}
-  R_{x}(\theta) = e^{-i\theta \sigma_{x}/2} = \text{cos} \left(\frac{\theta}{2} \right) I -i \text{sin} \left(\frac{\theta}{2} \right) \sigma_{x} = \begin{pmatrix} \cos(\frac{\theta}{2}) & -i\sin(\frac{\theta}{2})\\ -i\sin(\frac{\theta}{2}) & \cos(\frac{\theta}{2}) \end{pmatrix},
+  R_{x}(\theta) = e^{-i\theta \sigma_{x}/2} = \text{cos} \left(\frac{\theta}{2} \right) \id -i \text{sin} \left(\frac{\theta}{2} \right) \sigma_{x} = \begin{pmatrix} \cos(\frac{\theta}{2}) & -i\sin(\frac{\theta}{2})\\ -i\sin(\frac{\theta}{2}) & \cos(\frac{\theta}{2}) \end{pmatrix},
 \end{equation*}
 \begin{equation*}
-  R_{y}(\theta) = e^{-i\theta \sigma_{y}/2} = \text{cos} \left(\frac{\theta}{2} \right) I -i \text{sin} \left(\frac{\theta}{2} \right) \sigma_{y} = \begin{pmatrix} \cos(\frac{\theta}{2}) & -\sin(\frac{\theta}{2})\\ \sin(\frac{\theta}{2}) & \cos(\frac{\theta}{2}) \end{pmatrix},
+  R_{y}(\theta) = e^{-i\theta \sigma_{y}/2} = \text{cos} \left(\frac{\theta}{2} \right) \id -i \text{sin} \left(\frac{\theta}{2} \right) \sigma_{y} = \begin{pmatrix} \cos(\frac{\theta}{2}) & -\sin(\frac{\theta}{2})\\ \sin(\frac{\theta}{2}) & \cos(\frac{\theta}{2}) \end{pmatrix},
 \end{equation*}
 \begin{equation*}
-  R_{z}(\theta) = e^{-i\theta \sigma_{z}/2} = \text{cos} \left(\frac{\theta}{2} \right) I -i \text{sin} \left(\frac{\theta}{2} \right) \sigma_{z} = \begin{pmatrix} e^{-i\theta/2} & 0\\ 0 & e^{i\theta/2} \end{pmatrix}.
+  R_{z}(\theta) = e^{-i\theta \sigma_{z}/2} = \text{cos} \left(\frac{\theta}{2} \right) \id -i \text{sin} \left(\frac{\theta}{2} \right) \sigma_{z} = \begin{pmatrix} e^{-i\theta/2} & 0\\ 0 & e^{i\theta/2} \end{pmatrix}.
 \end{equation*}
 
 \begin{theorem} \label{unitary} \cite{nielsen2010quantum}
@@ -613,7 +610,7 @@ It should be noted that no completely closed systems exist in the universe. Neve
 
 There are times when it necessary to observe the system to extract information. This interection leaves the system no longer closed and, consequently, the evolution of the system is no longer unitary. 
 
-The act of measuring a qubit is represented by a set of operators called \emph{measurement operators}, denoted $\{M_{m}\}$. These operators act on the state space  of the system being measured. The index $m$ refers possible measurement outcomes. These measurement operators must satisfy the completeness equation $\sum_{m} M_{m}^{\dagger}M_{m} = I$, which ensures that the probabilities of all possible outcomes sum to 1. If a measurement ${M_m}$ is performed on a state $\ket{\psi}$ the outcome $m$ is observed with probability $p_m = \bra{\psi}M_{m}^{\dagger}M_{m}\ket{\psi}$ for each $m$. Moreover, after a measurement yielding outcome $m$, the state collapses to $\frac{M_{m}\ket{\psi}}{\sqrt{p_{m}}}$. 
+The act of measuring a qubit is represented by a set of operators called \emph{measurement operators}, denoted $\{M_{m}\}$. These operators act on the state space  of the system being measured. The index $m$ refers possible measurement outcomes. These measurement operators must satisfy the completeness equation $\sum_{m} M_{m}^{\dagger}M_{m} = \id$, which ensures that the probabilities of all possible outcomes sum to 1. If a measurement ${M_m}$ is performed on a state $\ket{\psi}$ the outcome $m$ is observed with probability $p_m = \bra{\psi}M_{m}^{\dagger}M_{m}\ket{\psi}$ for each $m$. Moreover, after a measurement yielding outcome $m$, the state collapses to $\frac{M_{m}\ket{\psi}}{\sqrt{p_{m}}}$. 
 
 In the case of the computational basis, the measurement operators are the projectors onto the basis states $\ket{0}$ and $\ket{1}$ denoted by $M_{0} = \ket{0}\bra{0}$ and $M_{1} = \ket{1}\bra{1}$, respectively. Considering an arbitrary state $\ket{\psi} = \alpha \ket{0} + \beta \ket{1}$, the probabilities of measuring 0 and 1 are $p_0 = \bra{\psi} M_{0} M_{0}^{\dag}\ket{\psi}=\bra{\psi} M_{0} \ket{\psi} = |\alpha|^{2}$, and $p_1 = \bra{\psi} M_{1} M_{1}^{\dag}\ket{\psi} = \bra{\psi} M_{1} \ket{\psi} =  |\beta|^{2} $. Consequently the states after measurement are $\frac{M_{0}\ket{\psi}} {|\alpha|} = \frac{\alpha}{|\alpha|} \ket{0} = \ket{0}$ (with $p=p_0$) and $\frac{M_{1}\ket{\psi}} {|\beta|} = \frac{\beta}{|\beta|} \ket{1} = \ket{1}$ (with $p=p_1$).
 
@@ -638,7 +635,7 @@ With respect to density operators, when applying a unitary operator $U$ to a sta
 
 In \autoref{subsec:hilb2D} it was shown how to determine the cartesian coordenates of a pure state in the Bloch Sphere from the state vector. For an arbitrary $2 \times 2$ density matrix, the following holds
 \begin{equation} \label{eq:bloch_vector_0}
-  \rho = \frac{1}{2}(I + r_{x}\sigma_{x} + r_{y}\sigma_{y} + r_{z}\sigma_{z}),
+  \rho = \frac{1}{2}(\id + r_{x}\sigma_{x} + r_{y}\sigma_{y} + r_{z}\sigma_{z}),
 \end{equation} 
 
 where $\vec{r} = (r_x, r_y, r_z)$ is a real three-dimensional vector such that $\| \vec{r} \|_2 \leq 1$. This vector is known as the Bloch vector for the state $\rho$. Since $\rho$ is Hermitian. $r_x, r_y$ and $r_z$ are always real.  The inverse map of \autoref{eq:bloch_vector_0} is
@@ -825,7 +822,7 @@ Unfortunately, this norm is not stable under tensoring , given that the inequati
 \begin{definition}
   Given a super-operator $Q: \mathbb{C}^{n\times n} \xrightarrow{} \mathbb{C}^{m\times m }$, the diamond norm, \gls{diamond-norm} , is defined as:
   \begin{equation*}  \label{eq:diamond_distance}
-    \lVert Q \rVert_{\diamondsuit} =  \lVert Q \otimes I_{\mathbb{C}^{n \times n}} \rVert_{1}
+    \lVert Q \rVert_{\diamondsuit} =  \lVert Q \otimes \id_{\mathbb{C}^{n \times n}} \rVert_{1}
   \end{equation*}
 \end{definition}
 %where $I_{\mathbb{C}^{n \times n}} $ is the identity super-operator over the space $\mathbb{C}^{n\times n}$.
@@ -1000,7 +997,40 @@ It should be noted that this principle is upheld by the type system outlined in 
 
 \section{Functional Analysis} \label{sec:funal}
 
-In this section, we are no longer restricted to finite dimensional vector spaces; the term 'vector space' now also encompasses infinite-dimensional ones.
+\todo[inline,size=\normalsize]{Livros}
+ \cite{guide2006infinite}
+ \cite{conwayCourseOperatorTheory2000}
+ \cite{rudin91functional}
+ \cite{blackadarOperatorAlgebrasTheory2010}
+ \cite{ryanIntroductionTensorProducts2013}
+
+In this section, we are no longer restricted to finite dimensional vector spaces; the term ``vector space" now also encompasses infinite-dimensional ones.
+
+
+\subsection{Normed spaces}
+
+The definition of normed spaces given in \autoref{def:normed_space} extends to infinite-dimensional vector spaces.
+
+\begin{definition} \label{def:op_norm}
+Let \( V \) and \( W \) be normed vector spaces, and let \( T: V \rightarrow W \) be a linear operator. The \emph{operator norm}, denoted by \gls{op-norm}, is defined as
+\[
+\norm{T}_{\text{op}} = \sup \{ \norm{T(v)} : v \in V, \, \norm{v} = 1 \}.
+\]
+If \( \norm{T}_{\text{op}} < \infty \), we say that \( T \) is a \emph{bounded operator}; otherwise, if \( \norm{T}_{\text{op}} = \infty \), we say that \( T \) is \emph{unbounded}. We denote by \( \mathcal{B}(V, W) \) the vector space of all bounded linear operators from \( V \) to \( W \), and we write \( \mathcal{B}(V) \)  for \( \mathcal{B}(V, V) \).
+\end{definition}
+
+\begin{lemma}
+Let \( T: V \rightarrow W \) be a bounded linear operator between normed spaces. Then the following statements hold:
+\begin{enumerate}
+  \item For every \( v \in V \), we have $
+  \norm{T(v)} \leq \norm{T}_{\text{op}} \cdot \norm{x}.$
+  \item The operator \( T \) is continuous if and only if it is bounded.
+\end{enumerate}
+\end{lemma}
+
+%short maps
+
+\subsection{Banach spaces}
 
 \begin{definition} (\emph{Cauchy sequence})
   Suppose $ d $ is a metric on a set $ X $. A sequence $ \{x_n\} \subset X $ is called a \emph{Cauchy sequence} if, for every $ \varepsilon > 0 $, there exists an integer $N \in \mathbb{N} $ such that $ d(x_m, x_n) < \varepsilon $ for all $ m, n > N $.  The metric \( d \) is said to be \emph{complete} if every Cauchy sequence in \( X \) converges to a point in \( X \)
@@ -1009,19 +1039,77 @@ In this section, we are no longer restricted to finite dimensional vector spaces
 \begin{definition}
   A \emph{Banach space} is a normed vector space that is complete with respect to the metric induced by its norm. In other words, every Cauchy sequence in the space must converge to a limit within the space.
 \end{definition}
+ 
+
+\begin{definition} [Algebraic Tensor Product]
+  Let \( V_1, \dots, V_n \) and \( W \) be vector spaces, and let
+\[
+\varphi : V_1 \times \cdots \times V_n \to W
+\]
+be a multilinear function, meaning a function for which the mapping
+\[
+u_k \mapsto \varphi(u_1, \dots, u_n)
+\]
+is linear for each \( k \in \{1, \dots, n\} \) and every fixed choice of vectors \( u_1, \dots, u_{k-1}, u_{k+1}, \dots, u_n \).
+
+Then there exists a unique linear mapping
+\[
+A : V_1 \otimes \cdots \otimes V_n \to W
+\]
+such that
+\[
+\varphi(u_1, \dots, u_n) = A(u_1 \otimes \cdots \otimes u_n)
+\]
+for all choices of \( u_1 \in V_1, \dots, u_n \in V_n \).
+\end{definition}
+
+\begin{definition}
+  Let $V$ and $W$ be Banach spaces. Let $u$ be any element of $V \otimes W$. The \emph{projective norm}, denoted \gls{proj_norm},  is defined by: 
+  \[
+ \projnorm{u} = \inf\left\{ \sum_{i=1}^n \norm{v_i} \norm{w_i} \Bigg| \, u = \sum_{i=1}^n v_i \otimes w_i\right\}.
+\]
+\end{definition}
+
+\begin{proposition} \label{prop:proj_norm_tensor_mult}
+   Let $V$ and $W$ be Banach spaces. Then, for every $v \in V$ and $w \in W$, it holds that $ \projnorm{v \otimes w} = \norm{v} \otimes \norm{w}$.
+\end{proposition}
+
+\begin{definition}
+  Let \( V \) and \( W \) be Banach spaces. The \emph{projective tensor product} of \( V \) and \( W \), denoted  \gls{proj_tensor}, is the completion of the algebraic tensor product \( V \otimes W \) with respect to the projective norm \( \projnorm{\cdot} \).
+\end{definition}
+
+%p.26/28
+
+%We shall denote by X ®1r Y the tensor product X ® Y endowed with  the projective norm, 1r. Unless the spaces X and Y are finite dimensional,  this space is not complete. We denote its completion by X ®11' Y. The Banach  space X ®1r Y will be referred to as the projective tensor product of the Banach  spaces X, Y. 
+
+%p.57->Bruce
+%p97/100 -> conway
 
 
-\begin{definition} \label{def:op_norm}
-  Given  normed vector spaces $V$ and $W$, the operator norm ,\gls{op-norm}, for an operator $E: V \rightarrow W$ is defined as
-  \begin{equation*}
-  \lVert E \rVert_{\text{op}} = \text{sup} \{ \lVert E(A) \rVert \hspace{2pt} | \hspace{2pt} \lVert A \rVert = 1 \}.
-\end{equation*}
+
+
+\subsection{Hilbert Spaces}
+\begin{definition}
+  Let $\mathcal{H}$ be an Hilbert space and $0 \leq T \in \mathcal{B}(\mathcal{H})$. The trace is defined as 
+\[
+\text{Tr}(T) := \sum_i \langle T v_i, v_i \rangle \in [0, \infty],
+\]
+where $\{v_i\}$ is an orthonormal basis for $\mathcal{H}$.
+\end{definition}
+
+\begin{definition}
+  Let $\mathcal{H}$ be an Hilbert space. An operator is \emph{trace class} if $\text{Tr}(|T|) < \infty$, where $|T|= \sqrt(T*T)$.
 \end{definition}
 
 \todo[inline,size=\normalsize]{Short map, projective tensor product (tensor product Banach spaces), L-1 norm, L2 norm} 
 
 
 \todo[inline,size=\normalsize]{ duais, bounded operators, trace class, norm topology, weak topology ?} 
+%dual ->p.213
+%nota sobre designar bounded ops de um esaço V para W por B(V,W) e se for de um espaço para si próprio é B(V)
+
+\todo[inline,size=\normalsize]{cenas do espaço de Hilbert -> definir espaço de hilbert em espaços possivelmente infinitos} 
+
 
 
 % traço + geral -> usar def the square op que mapeia um espaço de hilbert para ele mesmo -> depois usar a def de traço neste caso do watrous
@@ -1029,7 +1117,7 @@ In this section, we are no longer restricted to finite dimensional vector spaces
 
 % boundeness and stuff p.247 infinite dimensional analysis 
 
-\todo[inline,size=\normalsize]{Se calhar vou abolir isto e meter as coias relacionadas com pp em pp e as com as op algebras nas op algebras}
+
 
 %p.243 infinite dimensional analysis 
 
@@ -1184,19 +1272,19 @@ where $\{B_0, \dots, B_n\}$ forms a measurable partition of $S$, and within each
 
 In the case of a finite discrete space $n = \{1, 2, \dots, n\}$, the Lebesgue integral simplifies to a weighted sum:
 $$
-\int f \, d\mu = \sum_{i=1}^n f(i) \mu(\{i\}).
+\int f \, d\mu = \sum_{i=1}^n f(i) \mu(i).
 $$
 
 Given two measurable spaces $(S_1, \mathcal{B}_1)$ and $(S_2, \mathcal{B}_2)$, their product is the measurable space $(S_1 \times S_2, \mathcal{B}_1 \otimes \mathcal{B}_2)$, where $S_1  \times S_2$ is the cartesian product and $\mathcal{B}_1 \otimes \mathcal{B}_2$ is the $\sigma$-algebra generated by all measurable rectangles $B_1 \times B_2$ with $B_1 \in \mathcal{B}_1$ and $B_2 \in \mathcal{B}_2$:
 $$
-\mathcal{B}_1 \otimes \mathcal{B}_2 \coloneqq \sigma\left(\{ B_1 \times B_2 \mid B_1 \in \mathcal{B}_1,\, B_2 \in \mathcal{B}_2 \}\right).
+\mathcal{B}_1 \otimes_{\text{meas}} \mathcal{B}_2 \coloneqq \sigma\left(\{ B_1 \times B_2 \mid B_1 \in \mathcal{B}_1,\, B_2 \in \mathcal{B}_2 \}\right).
 $$
 Measures on this product space are called \emph{joint distributions}, and are uniquely determined by their values on measurable rectangles due to the inductive structure of the product $\sigma$-algebra. \emph{Product measures} are a significant class of joint distributions and are defined from measures
 
 \begin{definition} 
-   Let $(S_1, \mathcal{B}_1)$ and $(S_2, \mathcal{B}_2)$ be measurable spaces, and let $\mu_1$ and $\mu_2$ be measures on these spaces, respectively. The \emph{product measure} $\mu_1 \otimes \mu_2$ is  defined on measurable rectangles by
+   Let $(S_1, \mathcal{B}_1)$ and $(S_2, \mathcal{B}_2)$ be measurable spaces, and let $\mu_1$ and $\mu_2$ be measures on these spaces, respectively. The \emph{product measure} $\mu_1 \gls{product_meas} \, \mu_2$ is  defined on measurable rectangles by
 $$
-(\mu_1 \otimes \mu_2)(B_1 \times B_2) = \mu_1(B_1)\mu_2(B_2).
+(\mu_1 \otimes_{\text{meas}} \mu_2)(B_1 \times B_2) = \mu_1(B_1)\mu_2(B_2).
 $$
 This definition extends uniquely to a joint distribution $\mu_1 \otimes \mu_2: \mathcal{B}_1 \otimes \mathcal{B}_2 \to \mathbb{R}_0^+$, and reflects the notion of probabilistic independence: sampling from $\mu_1 \otimes \mu_2$ is equivalent to independently sampling from $\mu_1$ and $\mu_2$.
 \end{definition}
@@ -3556,7 +3644,7 @@ and a  set predetermined of sampling functiona
 Operationally, $\emph{Jump}_{\mu, p} (\nu)$  draws samples $u$ and $v$ from $\mu$ and $\nu$, respectively, and jumps to $v+u$, with probability ($1-p$), or is forced to return to the origin with probability $p$.
 
 \subsubsection{Interpretation}
-  The category $\catBan$ of Banach spaces and and short operators is a suitable model for the interpretation of metric $\lambda$-theories
+  The category $\catBan$ of Banach spaces and and short maps is a suitable model for the interpretation of metric $\lambda$-theories
   concerning probabilistic computation, as shown in \cite{dahlqvist2022syntactic}. 
 
   We establish the following interpretation: $\sem{\emph{real}} = \mathcal{M}\mathbb{R}$, $I = 1 \in \mathbb{R}$. Let $U(r,s)$ denote the continous uniform distibution, with $r$ and $s$ as the minimum and maximum values, respectively. For every $r,s, x_1, \ldots, x_n \in \mathbb{Q}$ and $p_1,\ldots,p_n \in [0,1]$, we have the  interpretation for the  set of predetermined functions is presented bellow.
@@ -3611,7 +3699,7 @@ Now, we will use the aforementioned language to describe $n$ steps of a random w
   %
   \hspace{-30pt} \text{apply-n} & = \lambda f_1, \dots, f_n, x.\; f_1(f_2(\dots(f_n\,r))): (\emph{real} \multimap \emph{real}) \multimap (\ldots ) \multimap (\emph{real} \multimap \emph{real}) \multimap \emph{real} \multimap \emph{real} \\
   %
-   \hspace{-30pt} \text{rwalk-n} & = \textbf{apply-n } \textbf{ step} \ldots \textbf{step } (\emph{delta}_0) : \emph{real}
+   \hspace{-30pt} \text{rwalk-n} & = \text{apply-n } \text{ step} \ldots \text{step } (\emph{delta}_0) : \emph{real}
 \end{align*}
 
 Given a current position $r$, the function \text{step} with probability $1-p$ performs a jump drawn randomly from the distribution \( \mu \), and with probability $p$, it is forced to return to the origin.
@@ -3620,38 +3708,63 @@ The term \text{rwalk-n} represents a $n$-step   walk starting from the origin.
 
 Due to the complexity of the operators, we refrain from exemplifying the interpretation of $\lambda$-terms in this case.
 
-We now analyse the effect of a change in parameter $p$ on the program using our deductive system. 
+We now analyse he impact of varying the parameter $\mu$  on the program using our deductive system. Let us consider that in operation $\emph{Jump}_{\mu,p}$, the parameter $\mu$ is afected by an error and in actuality we have operation  $\emph{Jump}_{\mu', p}$. 
+If we postulate axiom 
+$$\emph{Jump}_{\mu,p} =_{\epsilon}\emph{Jump}_{\mu', p}$$
+using using our metric deductive system it follows that 
+$$\text{step} =_{\epsilon} \text{step}^{\epsilon},$$
+where $\text{step}^{\epsilon}$ corresponds to the $\lambda$-term resulting from the substitution of the operation $\emph{Jump}_{\mu,p}$ by their erroneous versions. 
+Finally, designating $\text{rwalk-n}^{\epsilon}$ as the judgement that results from replacing $\text{step}$ by $\text{step}^{\epsilon}$, we can infer,
+$$\text{rwalk-n} =_{n \cdot \epsilon} \text{rwalk-n}^{\epsilon}.$$
 
- Let $i_1: \mathcal{M}\mathbb{R}  \to \mathbb{R} \otimes \mathcal{M}\mathbb{R}$ be the isomophism defined as $i_1(\nu) = 1  \widehat{\otimes}_{\pi} \nu$. 
-    This isomorphism is clearly a short map given that $ 1  \widehat{\otimes}_{\pi} \nu = \nu$. 
-    Next, consider the isomorphism $i_2: \mathcal{M}\mathbb{R} \,   \widehat{\otimes}_{\pi} \,   \mathcal{M}\mathbb{R} \to  \mathcal{M} \left( \mathbb{R} \times \mathbb{R} \right),$ 
-    $\mu  \widehat{\otimes}_{\pi} \nu \to \mu \otimes \nu.$ 
-    The product measure $\mu \otimes \nu$ is defined as $\mu  \otimes \nu (A \times B)= \mu(A)\cdot\nu(B).$
-    This is the measure produced by the Carath\'{e}odory's extension theorem \cite{aliprantisBanachLattices1999}.
-    Given that $\norm{\mu \otimes \nu}= |\mu (\mathbb{R})|\cdot |\nu (\mathbb{R})| = \norm{\mu} \cdot \norm{\nu}$, and $ \norm{\mu \, \widehat{\otimes}_{\pi} \, \nu} = \norm{\mu} \cdot \norm{\nu}$ (the projective norm is a cross norm) it follows that $i_2$ is a short map.
 
-  Since the diagram below commutes, and all the operations involved are short maps (considering $f$ as $\sem{\emph{delta}_r}$ or $\sem{\emph{u}_{r,s}}$), it follows that, if we have an axiom \(\sem{\mu} =_{\epsilon} \sem{\mu'}\), then we may postulate \(\emph{JumpL}_\mu =_{\epsilon} \emph{JumpL}_{\mu'}\). A similar diagram can be constructed using \(jr_{*}\), allowing us to apply the same reasoning to the corresponding axioms.
+ %Let $i_1: \mathcal{M}\mathbb{R}  \to \mathbb{R} \widehat{\otimes}_{\pi} \mathcal{M}\mathbb{R}$ be the isomophism defined as $i_1(\nu) = 1  \otimes 1 \otimes \nu  \otimes 1$. 
+  %This isomorphism is clearly a short map given that $ 1  \otimes 1 \otimes \nu  \otimes 1 = \nu$. 
 
+ 
+    Consider the isomorphism $i: \mathcal{M}\mathbb{R} \,   \widehat{\otimes}_{\pi} \,   \mathcal{M}\mathbb{R} \to  \mathcal{M} \left( \mathbb{R} \times \mathbb{R} \right),$ 
+    $\mu  \otimes \nu \to \mu \otimes_{\text{meas}} \nu.$ 
+    Recall that the product measure $\mu \otimes_{\text{meas}} \nu$ is defined as $\mu  \otimes_{\text{meas}} \nu (A \times B)= \mu(A)\cdot\nu(B).$
+    Given that $\norm{\mu \otimes_{\text{meas}} \nu}= |\mu (\mathbb{R})|\cdot |\nu (\mathbb{R})| = \norm{\mu} \cdot \norm{\nu}$, and $ \norm{\mu \, \otimes \, \nu} = \norm{\mu} \cdot \norm{\nu}$ (\autoref{prop:proj_norm_tensor_mult}) it follows that $i$ is a short map.
+
+
+  Since the diagram below commutes and all operations involved are short maps (considering \(f\) as either \(\sem{\emph{delta}_r}\) or \(\sem{\emph{u}_{r,s}}\), and noting that \(\catBan\) is a \(\catMet\)-enriched symmetric monoidal category), it follows that if $d(\mu, \mu')=\epsilon$, then we may postulate \(\emph{Jump}_{\mu,p} =_{\epsilon} \emph{JumpL}_{\mu',q}\).
+
+  \vspace{5pt}
     \begin{tikzpicture}
-      \matrix (m) [matrix of math nodes, row sep=4em, column sep=3em, minimum width=2em]
+      \matrix (m) [matrix of math nodes, row sep=4em, column sep=6em, minimum width=2em]
       {
-        \mathcal{M}\mathbb{R}  & \mathbb{R} \,   \widehat{\otimes}_{\pi} \,  \mathbb{R} \,   \widehat{\otimes}_{\pi} \mathcal{M}\mathbb{R} \,  \, & \mathcal{M}\mathbb{R} \, \widehat{\otimes}_{\pi} \,  \mathcal{M}\mathbb{R} &  \mathcal{M} \left( \mathbb{R} \times \mathbb{R} \right)  \\
-        & \mathcal{M}\mathbb{R}  \\
-      };
+        \mathcal{M}\mathbb{R}  & \mathbb{R} \,   \widehat{\otimes}_{\pi} \,  \mathbb{R} \,   \widehat{\otimes}_{\pi} \mathcal{M}\mathbb{R} \,  \,   \widehat{\otimes}_{\pi} \mathbb{R} \,  \\
+         \mathcal{M}\mathbb{R}& \mathcal{M}\mathbb{R} \, \widehat{\otimes}_{\pi} \,  \mathcal{M}\mathbb{R} \, \widehat{\otimes}_{\pi} \, \mathcal{M}\mathbb{R} \, \widehat{\otimes}_{\pi} \,  \mathcal{M}\mathbb{R}  \\
+         &     \mathcal{M}\mathbb{R} \, \widehat{\otimes}_{\pi} \, \mathcal{M} \left( \mathbb{R} \times \mathbb{R} \right)  \widehat{\otimes}_{\pi} \,  \mathcal{M}\mathbb{R}   \\
+        \mathcal{M} \left( \mathbb{R} \times \mathbb{R} \times \mathbb{R} \right)   & \mathcal{M} \mathbb{R}\, \widehat{\otimes}_{\pi} \,  \mathcal{M}\mathbb{R} \,  \widehat{\otimes}_{\pi} \,  \mathcal{M}\mathbb{R} \\
+      }; 
       \path[-stealth]
         (m-1-1) edge node [left] {$\sem{\emph{Jump}_{\mu,p}}$} (m-2-1)
         (m-1-1) edge node [above] {$\cong$} (m-1-2)
-        (m-1-2) edge node [above] {$f\,  \widehat{\otimes}_{\pi} \,  \id $} (m-1-3)
-        (m-1-3) edge node [above] {$\cong$} (m-1-4)
-        (m-1-4) edge node [above] {$jl_{*}$} (m-2-1)
+        (m-1-2) edge node [right] {$\, \sem{\emph{delta}_0}  \widehat{\otimes}_{\pi} \,f\,  \widehat{\otimes}_{\pi} \,  \id \,  \widehat{\otimes}_{\pi} \,  \sem{\emph{delta}_p}  $} (m-2-2)
+        (m-2-2) edge node [right] {$\cong$} (m-3-2)
+        (m-3-2) edge node [right] {$ \id \,  \widehat{\otimes}_{\pi} +_{*}   \widehat{\otimes}_{\pi} \, \id $} (m-4-2)
+        (m-4-2) edge node [above] {$\cong$} (m-4-1)
+        (m-4-1) edge node [left] {$\text{bern}_*$} (m-2-1)
         ;
     \end{tikzpicture}
   
+ For instance, consider $\mu=\delta_x$ and  $\mu'=\delta_y$. We calculate
+    \begin{align*}
+      \norm{\delta_x - \delta_y} = \sup \left\{ \sum_{i=1}^{n} |\delta_x - \delta_y (A_i)| \mid A_i \in \mathcal{B}(\mathbb{R}), A_i \cap A_j = \emptyset, \, i,  \neq j, n \in \mathbb{N}  \right\} = 2
+    \end{align*}
+    Note that there are only two possibilities: either \(\delta_x\) and \(\delta_y\) belong to the same partition, or they belong to different ones. In the first case, we have
+    \[
+    \sum_{i=1}^{n} \left| \delta_x(A_i) - \delta_y(A_i) \right| = |1 - 1| = 0,
+    \]
+    while in the second case, we obtain
+    \[
+    \sum_{i=1}^{n} \left| \left( \delta_x(A_i) - \delta_y(A_i) \right) \right| = |1| + |-1| = 2.
+    \]
+  
+    As a result, we can postulate the axiom $\emph{Jump}_{\delta_x,p} =_{2}\emph{Jump}_{\delta_y, p}$.
 
 
 
-
-\todo[inline,size=\normalsize]{Arranjar exemplo -> devo pegar no do paper e explanar síntaxe e assim} 
-
-\todo[inline,size=\normalsize]{Falar que aqui vamos usar a categoria do paper do professor Renato e q lá se prova que a cat e o functor $\otimes$ e a adjunção são met enriched.} 
 

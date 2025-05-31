@@ -2036,8 +2036,8 @@ Consequently, we postulate the following axiom:
     $\emph{CoinToss}_p (*) =_{\epsilon_1}\emph{CoinToss}_{p'}(*)$, 
     $\emph{JumpL}_{\mu_1} =_{\epsilon_2}\emph{JumpL}_{\mu_{1'}}$, and $\emph{JumpR}_{\mu_2} =_{\epsilon_3}\emph{JumpR}_{\mu_{2'}}$, using our metric deductive system it follows that 
     $$\textbf{step} =_{\epsilon_1 + \max\{\epsilon_2, \epsilon_3\}} \textbf{step}^{\epsilon_1, \epsilon_2, \epsilon_3},$$
-    where ${step}^{\epsilon_1, \epsilon_2, \epsilon_3}$ corresponds to the $\lambda$-term resulting form the substitution of operations $\emph{CoinToss}_p$, $\emph{JumpL}_{\mu_1}$ and $\emph{JumpL}_{\mu_2}$ by their erroneous versions. 
-    Finally, designating $\textbf{rwalk-n}^{\epsilon_1, \epsilon_2, \epsilon_3}$ as the judgement that results from replacing $\textbf{step}$ by ${step}^{\epsilon_1, \epsilon_2, \epsilon_3}$, we can infer,
+    where $\textbf{step}^{\epsilon_1, \epsilon_2, \epsilon_3}$ corresponds to the $\lambda$-term resulting from the substitution of operations $\emph{CoinToss}_p$, $\emph{JumpL}_{\mu_1}$ and $\emph{JumpL}_{\mu_2}$ by their erroneous versions. 
+    Finally, designating $\textbf{rwalk-n}^{\epsilon_1, \epsilon_2, \epsilon_3}$ as the judgement that results from replacing $\textbf{step}$ by $\textbf{step}^{\epsilon_1, \epsilon_2, \epsilon_3}$, we can infer,
     $$\textbf{rwalk-n} =_{n \cdot (\epsilon_1 + \max\{\epsilon_2, \epsilon_3\})} \textbf{rwalk-n}^{\epsilon_1, \epsilon_2, \epsilon_3},$$
 
       
@@ -2083,9 +2083,11 @@ Consequently, we postulate the following axiom:
     % se houver um erro com f teremos \mu \otimes \mu'
     % se sabemos a distancia entre mu e mu' estamos safos porque a seguir estamos a aplicar ops predefinidas e aí somam-se os erros dos argumentos
 
-    Let $i_1: \mathcal{M}\mathbb{R}  \to \mathbb{R} \otimes \mathcal{M}\mathbb{R}$ be the isomophism defined as $i_1(\nu) = 1  \widehat{\otimes}_{\pi} \nu$. 
-    This isomorphism is clearly a short map given that $ 1  \widehat{\otimes}_{\pi} \nu = \nu$. 
-    Next, consider the isomorphism $i_2: \mathcal{M}\mathbb{R} \,   \widehat{\otimes}_{\pi} \,   \mathcal{M}\mathbb{R} \to  \mathcal{M} \left( \mathbb{R} \times \mathbb{R} \right),$ 
+     \todo[inline,size=\normalsize]{Problema notação: tensor e product measure} 
+
+    %Let $i_1: \mathcal{M}\mathbb{R}  \to \mathbb{R} \otimes \mathcal{M}\mathbb{R}$ be the isomophism defined as $i_1(\nu) = 1  \widehat{\otimes}_{\pi} \nu$. 
+    %This isomorphism is clearly a short map given that $ 1  \widehat{\otimes}_{\pi} \nu = \nu$. 
+    Consider the isomorphism $i_2: \mathcal{M}\mathbb{R} \,   \widehat{\otimes}_{\pi} \,   \mathcal{M}\mathbb{R} \to  \mathcal{M} \left( \mathbb{R} \times \mathbb{R} \right),$ 
     $\mu  \widehat{\otimes}_{\pi} \nu \to \mu \otimes \nu.$ 
     The product measure $\mu \otimes \nu$ is defined as $\mu  \otimes \nu (A \times B)= \mu(A)\cdot\nu(B).$
     This is the measure produced by the Carath\'{e}odory's extension theorem \cite{aliprantisBanachLattices1999}.
@@ -2119,7 +2121,7 @@ Consequently, we postulate the following axiom:
 
     \end{comment}
 
-    Since the diagram below commutes, and all the operations involved are short maps (considering $f$ as $\sem{\emph{delta}_r}$ or $\sem{\emph{u}_{r,s}}$), it follows that, if we have an axiom \(\sem{\mu} =_{\epsilon} \sem{\mu'}\), then we may postulate \(\emph{JumpL}_\mu =_{\epsilon} \emph{JumpL}_{\mu'}\). A similar diagram can be constructed using \(jr_{*}\), allowing us to apply the same reasoning to the corresponding axioms.
+    Since the diagram below commutes, and all the operations involved are short maps (considering $f$ as $\sem{\emph{delta}_r}$ or $\sem{\emph{u}_{r,s}}$), it follows that, if $d(\mu, \mu')=\epsilon$, then we may postulate \(\emph{JumpL}_\mu =_{\epsilon} \emph{JumpL}_{\mu'}\). A similar diagram can be constructed using \(jr_{*}\), allowing us to apply the same reasoning to the corresponding axioms.
 
     \begin{tikzpicture}
       \matrix (m) [matrix of math nodes, row sep=4em, column sep=6em, minimum width=2em]
@@ -2136,8 +2138,8 @@ Consequently, we postulate the following axiom:
         ;
     \end{tikzpicture}
 
-    Now, we will present some examples of how to buid possible axioms \(\mu =_{\epsilon} \mu'\).
-    First, consider $\mu=\emph{delta}_x(*)$ and  $\mu'=\emph{delta}_x(*)$. We calculate
+   We now present examples of \(\mu\) and \(\mu'\), and demonstrate how to compute the distance between them.
+    First, consider $\mu=\delta_x$ and  $\mu'=\delta_y$. We calculate
 
     \begin{align*}
       \norm{\delta_x - \delta_y} = \sup \left\{ \sum_{i=1}^{n} |\delta_x - \delta_y (A_i)| \mid A_i \in \mathcal{B}(\mathbb{R}), A_i \cap A_j = \emptyset i,  \neq j, n \in \mathbb{N}  \right\} = 2
@@ -2151,7 +2153,7 @@ Consequently, we postulate the following axiom:
     \sum_{i=1}^{n} \left| \left( \delta_x(A_i) - \delta_y(A_i) \right) \right| = |1| + |-1| = 2.
     \]
     
-    Next, take $\mu=\emph{delta}_{p_1, \ldots, p_n}(*)$ and  $\mu'=\emph{delta}_{q_1, \ldots, q_n}(*)$. We compute
+    Next, take $\mu= \sum_{i=1}^{n} p_i \delta_{x_i}$ and  $\mu'= \sum_{i=1}^n q_i \delta_{x_i}$. We compute
 
     \begin{align*}
       \norm{\sum_i p_i \delta_{x_i} - \sum_i q_i \delta_{x_i}} &
@@ -2163,7 +2165,7 @@ Consequently, we postulate the following axiom:
 \left| \sum_{i=1}^{n} a_i \right| \leq \sum_{i=1}^{n} |a_i|, \quad \text{for all } n \in \mathbb{N}.
 \]
 
-Subsequently, let $\mu =\emph{u}_{a,b}(*)$ and  $\mu'=\emph{u}_{c,d}(*)$, such that the intervals $[a,b]$ and $[c,d]$ are disjoint ($[a, b] \cap [c, d] = \emptyset$). Then, the Radon-Nikodym derivatives (probability density functions) with respect to \( \nu = U(a, b) + U(c, d) \) are given by:
+Subsequently, let $\mu = U(a,b)$ and  $\mu'=U(c,d)$, such that the intervals $[a,b]$ and $[c,d]$ are disjoint ($[a, b] \cap [c, d] = \emptyset$). Then, the Radon-Nikodym derivatives (probability density functions) with respect to \( \nu = U(a, b) + U(c, d) \) are given by:
 
 \[
 \frac{dU(a, b)}{d\nu}(x) = u(a,b)(x) = 
@@ -2222,7 +2224,7 @@ At last, we calculate,
 
 \end{comment}
 
-Finally, consider $\mu =\emph{delta}_{x_0}(*) $  and $\mu' =\emph{u}_{x_0 - \epsilon,x_0 + \epsilon}(*) $. Let \(\nu = \delta_{x_0} + U(x_0 - \epsilon, x_0 + \epsilon) \). The Radon-Nikodym derivatives are:
+Finally, consider $\mu = \delta_{x_0} $  and $\mu' =  U(x_0 - \epsilon, x_0 + \epsilon) $. Let \(\nu = \delta_{x_0} + U(x_0 - \epsilon, x_0 + \epsilon) \). The Radon-Nikodym derivatives are:
 
 \[
 \frac{d\delta_{x_0}}{d\nu}(x) = f (x)
@@ -2392,7 +2394,7 @@ defines a completely bounded map $L_1 \widecheck{\otimes}_\varepsilon L_2: \math
 
 \begin{proof}
   Similarly to  \cite[ Proof of proposition 4.1]{dahlqvist2023syntactic}, in order to prove that $\WstarCPSUop$ is $\catMet$-enriched, it suffices to establish that for normal completely positive subunital maps $\phi: B(\mathcal{H_1}) \rightarrow B(\mathcal{H_2})$  and $\psi: B(\mathcal{K_1}) \rightarrow B(\mathcal{K_2})$, $\cbnorm{\phi \cdot \psi} \leq \phi$ and  $\cbnorm{\phi \cdot \psi} \leq \psi$. This follows directly from Lemma \ref{lem:cb_comp_submult} and the fact that all subunital maps are contractive.
-Next, regarding $\bar{\otimes}$, the inequations $\cbnorm{\phi \, \bar{\otimes} \id}  \leq \cbnorm{\phi}$ and  $ \cbnorm{\id \, \bar{\otimes}  \phi} \leq \cbnorm{\phi}$ are  sufficient conditions to prove the second part of the proposition. There inequations follow form Propositions \ref{prop:eqs_id_cb} and \ref{prop:dirsum_cb}.
+Next, regarding $\bar{\otimes}$, the inequations $\cbnorm{\phi \, \bar{\otimes} \id}  \leq \cbnorm{\phi}$ and  $ \cbnorm{\id \, \bar{\otimes}  \phi} \leq \cbnorm{\phi}$ are  sufficient conditions to prove the second part of the proposition. There inequations follow from Propositions \ref{prop:eqs_id_cb} and \ref{prop:dirsum_cb}.
 \end{proof}
 
 \end{comment}
