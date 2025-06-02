@@ -9,7 +9,7 @@
 \contentsline {section}{\numberline {1.3}Document Structure}{3}{section.1.3}%
 \contentsline {chapter}{\numberline {2}Preliminaries}{5}{chapter.2}%
 \contentsline {section}{\numberline {2.1}Linear Algebra}{5}{section.2.1}%
-\contentsline {subsection}{\numberline {2.1.1}Complex vector spaces}{5}{subsection.2.1.1}%
+\contentsline {subsection}{\numberline {2.1.1}Vector spaces}{5}{subsection.2.1.1}%
 \contentsline {subsection}{\numberline {2.1.2}Linear operators}{7}{subsection.2.1.2}%
 \contentsline {subsection}{\numberline {2.1.3}Inner product}{7}{subsection.2.1.3}%
 \contentsline {subsubsection}{Trace}{8}{Item.11}%
@@ -20,68 +20,69 @@
 \contentsline {subsection}{\numberline {2.1.8}Useful norms}{11}{subsection.2.1.8}%
 \contentsline {subsection}{\numberline {2.1.9}Tensor Products and Direct Sums of Complex spaces}{12}{subsection.2.1.9}%
 \contentsline {section}{\numberline {2.2}Quantum Computing Preliminaries}{13}{section.2.2}%
-\contentsline {subsection}{\numberline {2.2.1}The 2-Dimensional Hilbert Space}{13}{subsection.2.2.1}%
+\contentsline {subsection}{\numberline {2.2.1}The 2-Dimensional Hilbert Space}{14}{subsection.2.2.1}%
 \contentsline {subsection}{\numberline {2.2.2}Multi-qubit States}{15}{subsection.2.2.2}%
-\contentsline {subsubsection}{Entanglement}{15}{subsection.2.2.2}%
+\contentsline {subsubsection}{Entanglement}{16}{subsection.2.2.2}%
 \contentsline {subsection}{\numberline {2.2.3}Unitary operators and Measurements}{17}{subsection.2.2.3}%
 \contentsline {subsubsection}{Pauli Matrices}{17}{subsection.2.2.3}%
 \contentsline {subsubsection}{Unitary operators}{18}{subsection.2.2.3}%
 \contentsline {subsubsection}{Measurements}{19}{theorem.2.2.2}%
 \contentsline {subsection}{\numberline {2.2.4}Density operators}{20}{subsection.2.2.4}%
-\contentsline {subsubsection}{Reduced density operator}{20}{equation.2.2.5}%
-\contentsline {subsection}{\numberline {2.2.5}Quantum Channels}{22}{subsection.2.2.5}%
+\contentsline {subsubsection}{Reduced density operator}{21}{equation.2.2.5}%
+\contentsline {subsection}{\numberline {2.2.5}Quantum Channels}{23}{subsection.2.2.5}%
 \contentsline {subsubsection}{Kraus operator sum representation}{23}{definition.2.2.6}%
 \contentsline {subsubsection}{Non-selective measurements}{24}{definition.2.2.6}%
-\contentsline {subsubsection}{Norms on quantum channels}{24}{definition.2.2.6}%
-\contentsline {subsection}{\numberline {2.2.6}Quantum circuits}{25}{subsection.2.2.6}%
+\contentsline {subsubsection}{Norms on quantum channels}{25}{definition.2.2.6}%
+\contentsline {subsection}{\numberline {2.2.6}Quantum circuits}{26}{subsection.2.2.6}%
 \contentsline {subsection}{\numberline {2.2.7}No-cloning theorem}{27}{subsection.2.2.7}%
-\contentsline {section}{\numberline {2.3}Functional Analysis}{27}{section.2.3}%
+\contentsline {section}{\numberline {2.3}Functional Analysis}{28}{section.2.3}%
 \contentsline {subsection}{\numberline {2.3.1}Normed spaces}{28}{subsection.2.3.1}%
-\contentsline {subsection}{\numberline {2.3.2}Banach spaces}{28}{subsection.2.3.2}%
-\contentsline {subsection}{\numberline {2.3.3}Hilbert Spaces}{29}{subsection.2.3.3}%
-\contentsline {section}{\numberline {2.4}Probabilistic Programming/Measure theory}{30}{section.2.4}%
-\contentsline {subsection}{\numberline {2.4.1}Probabilistic Programming and Measure Theory}{30}{subsection.2.4.1}%
-\contentsline {subsection}{\numberline {2.4.2}What is measure theory?}{30}{subsection.2.4.2}%
-\contentsline {subsection}{\numberline {2.4.3}Measurable spaces and measures}{32}{subsection.2.4.3}%
-\contentsline {subsection}{\numberline {2.4.4}Spaces of Measures}{35}{subsection.2.4.4}%
-\contentsline {section}{\numberline {2.5}C* and W*-Algebras}{36}{section.2.5}%
-\contentsline {section}{\numberline {2.6}Category theory}{36}{section.2.6}%
-\contentsline {subsection}{\numberline {2.6.1}Categories}{36}{subsection.2.6.1}%
-\contentsline {subsection}{\numberline {2.6.2}Produts and coproducts}{41}{subsection.2.6.2}%
-\contentsline {subsection}{\numberline {2.6.3}Functors}{47}{subsection.2.6.3}%
-\contentsline {subsection}{\numberline {2.6.4}Natural Tranformations}{49}{subsection.2.6.4}%
-\contentsline {subsection}{\numberline {2.6.5}Equivalence of Categories}{50}{subsection.2.6.5}%
-\contentsline {subsection}{\numberline {2.6.6}Adjoints}{51}{subsection.2.6.6}%
-\contentsline {subsection}{\numberline {2.6.7}Monoidal categories}{53}{subsection.2.6.7}%
-\contentsline {chapter}{\numberline {3}Metric Lambda Calculus}{57}{chapter.3}%
-\contentsline {section}{\numberline {3.1}The Lambda Calculus}{57}{section.3.1}%
-\contentsline {section}{\numberline {3.2}Syntax}{59}{section.3.2}%
-\contentsline {subsection}{\numberline {3.2.1}Type system}{59}{subsection.3.2.1}%
-\contentsline {subsection}{\numberline {3.2.2}(Raw)Terms}{60}{subsection.3.2.2}%
-\contentsline {subsection}{\numberline {3.2.3}Free and Bound Variables}{60}{subsection.3.2.3}%
-\contentsline {subsection}{\numberline {3.2.4}Term formation rules}{61}{subsection.3.2.4}%
-\contentsline {subsection}{\numberline {3.2.5}$\alpha $-equivalence}{63}{subsection.3.2.5}%
-\contentsline {subsection}{\numberline {3.2.6}Substitution}{64}{subsection.3.2.6}%
-\contentsline {subsection}{\numberline {3.2.7}Properties}{65}{subsection.3.2.7}%
-\contentsline {subsection}{\numberline {3.2.8}Equations-in-context}{66}{subsection.3.2.8}%
-\contentsline {subsubsection}{Equivalence}{67}{section*.34}%
-\contentsline {section}{\numberline {3.3}Metric equational system}{68}{section.3.3}%
-\contentsline {section}{\numberline {3.4}Interpretation}{70}{section.3.4}%
-\contentsline {subsection}{\numberline {3.4.1}Quantum Lambda Calculus}{75}{subsection.3.4.1}%
-\contentsline {subsubsection}{Syntax}{75}{subsection.3.4.1}%
-\contentsline {subsubsection}{Interpretation}{76}{subsection.3.4.1}%
-\contentsline {subsubsection}{Example: Deutsch's Algorithm}{76}{figure.caption.40}%
-\contentsline {subsubsection}{Deutsch's Algorithm with Measurement Errors}{79}{equation.3.4.11}%
-\contentsline {subsubsection}{Example: Proving an equivalence using equations-in-context}{80}{equation.3.4.12}%
-\contentsline {subsection}{\numberline {3.4.2}Linear $\lambda $-calculus meets probabilistic programming}{81}{subsection.3.4.2}%
-\contentsline {subsubsection}{Syntax}{81}{subsection.3.4.2}%
-\contentsline {subsubsection}{Interpretation}{81}{subsection.3.4.2}%
-\contentsline {subsubsection}{Random walk on $\mathbb {R}$}{82}{figure.caption.43}%
-\contentsline {chapter}{\numberline {4}Conditionals}{85}{chapter.4}%
-\contentsline {section}{\numberline {4.1}Syntax}{85}{section.4.1}%
-\contentsline {section}{\numberline {4.2}Interpretation}{85}{section.4.2}%
-\contentsline {section}{\numberline {4.3}Metric Equations}{85}{section.4.3}%
-\contentsline {section}{\numberline {4.4}Examples}{85}{section.4.4}%
-\contentsline {chapter}{\numberline {5}Conclusions and future work}{87}{chapter.5}%
-\contentsline {section}{\numberline {5.1}Conclusions}{87}{section.5.1}%
-\contentsline {section}{\numberline {5.2}Prospect for future work}{87}{section.5.2}%
+\contentsline {subsection}{\numberline {2.3.2}Banach spaces}{29}{subsection.2.3.2}%
+\contentsline {subsection}{\numberline {2.3.3}Hilbert Spaces}{30}{subsection.2.3.3}%
+\contentsline {subsection}{\numberline {2.3.4}Topology}{30}{subsection.2.3.4}%
+\contentsline {section}{\numberline {2.4}Probabilistic Programming/Measure theory}{32}{section.2.4}%
+\contentsline {subsection}{\numberline {2.4.1}Probabilistic Programming and Measure Theory}{32}{subsection.2.4.1}%
+\contentsline {subsection}{\numberline {2.4.2}What is measure theory?}{32}{subsection.2.4.2}%
+\contentsline {subsection}{\numberline {2.4.3}Measurable spaces and measures}{34}{subsection.2.4.3}%
+\contentsline {subsection}{\numberline {2.4.4}Spaces of Measures}{37}{subsection.2.4.4}%
+\contentsline {section}{\numberline {2.5}C* and W*-Algebras}{38}{section.2.5}%
+\contentsline {section}{\numberline {2.6}Category theory}{38}{section.2.6}%
+\contentsline {subsection}{\numberline {2.6.1}Categories}{38}{subsection.2.6.1}%
+\contentsline {subsection}{\numberline {2.6.2}Produts and coproducts}{43}{subsection.2.6.2}%
+\contentsline {subsection}{\numberline {2.6.3}Functors}{49}{subsection.2.6.3}%
+\contentsline {subsection}{\numberline {2.6.4}Natural Tranformations}{51}{subsection.2.6.4}%
+\contentsline {subsection}{\numberline {2.6.5}Equivalence of Categories}{52}{subsection.2.6.5}%
+\contentsline {subsection}{\numberline {2.6.6}Adjoints}{53}{subsection.2.6.6}%
+\contentsline {subsection}{\numberline {2.6.7}Monoidal categories}{55}{subsection.2.6.7}%
+\contentsline {chapter}{\numberline {3}Metric Lambda Calculus}{59}{chapter.3}%
+\contentsline {section}{\numberline {3.1}The Lambda Calculus}{59}{section.3.1}%
+\contentsline {section}{\numberline {3.2}Syntax}{61}{section.3.2}%
+\contentsline {subsection}{\numberline {3.2.1}Type system}{61}{subsection.3.2.1}%
+\contentsline {subsection}{\numberline {3.2.2}(Raw)Terms}{62}{subsection.3.2.2}%
+\contentsline {subsection}{\numberline {3.2.3}Free and Bound Variables}{62}{subsection.3.2.3}%
+\contentsline {subsection}{\numberline {3.2.4}Term formation rules}{63}{subsection.3.2.4}%
+\contentsline {subsection}{\numberline {3.2.5}$\alpha $-equivalence}{65}{subsection.3.2.5}%
+\contentsline {subsection}{\numberline {3.2.6}Substitution}{66}{subsection.3.2.6}%
+\contentsline {subsection}{\numberline {3.2.7}Properties}{67}{subsection.3.2.7}%
+\contentsline {subsection}{\numberline {3.2.8}Equations-in-context}{68}{subsection.3.2.8}%
+\contentsline {subsubsection}{Equivalence}{69}{section*.33}%
+\contentsline {section}{\numberline {3.3}Metric equational system}{70}{section.3.3}%
+\contentsline {section}{\numberline {3.4}Interpretation}{72}{section.3.4}%
+\contentsline {subsection}{\numberline {3.4.1}Quantum Lambda Calculus}{77}{subsection.3.4.1}%
+\contentsline {subsubsection}{Syntax}{77}{subsection.3.4.1}%
+\contentsline {subsubsection}{Interpretation}{78}{subsection.3.4.1}%
+\contentsline {subsubsection}{Example: Deutsch's Algorithm}{78}{figure.caption.39}%
+\contentsline {subsubsection}{Deutsch's Algorithm with Measurement Errors}{81}{equation.3.4.11}%
+\contentsline {subsubsection}{Example: Proving an equivalence using equations-in-context}{82}{equation.3.4.12}%
+\contentsline {subsection}{\numberline {3.4.2}Linear $\lambda $-calculus meets probabilistic programming}{83}{subsection.3.4.2}%
+\contentsline {subsubsection}{Syntax}{83}{subsection.3.4.2}%
+\contentsline {subsubsection}{Interpretation}{83}{subsection.3.4.2}%
+\contentsline {subsubsection}{Random walk on $\mathbb {R}$}{84}{figure.caption.42}%
+\contentsline {chapter}{\numberline {4}Conditionals}{87}{chapter.4}%
+\contentsline {section}{\numberline {4.1}Syntax}{87}{section.4.1}%
+\contentsline {section}{\numberline {4.2}Interpretation}{87}{section.4.2}%
+\contentsline {section}{\numberline {4.3}Metric Equations}{87}{section.4.3}%
+\contentsline {section}{\numberline {4.4}Examples}{87}{section.4.4}%
+\contentsline {chapter}{\numberline {5}Conclusions and future work}{89}{chapter.5}%
+\contentsline {section}{\numberline {5.1}Conclusions}{89}{section.5.1}%
+\contentsline {section}{\numberline {5.2}Prospect for future work}{89}{section.5.2}%
