@@ -1,20 +1,23 @@
 \chapter{Preliminaries} \label{sec:Preliminaries}
 
 
-\todo[inline,size=\normalsize]{Mudar esta descrição.} 
-\todo[inline,size=\normalsize]{Faltam as cenas de análise funcional} 
+\todo[inline,size=\normalsize]{Mudar esta descrição, faltam as c and w algebras.} 
 
 
 
+The first two sections of this chapter present the mathematical and quantum computing preliminaries necessary for understanding the theory of quantum computation. 
+The introduction to quantum computing is primarily based on \cite{nielsen2010quantum,watrous2018theory}, while the mathematical foundations are also based on \cite{rudin91functional} and  \cite{guide2006infinite}.
 
-The first two sections of this chapter present the mathematical and quantum computing preliminaries necessary for understanding the theory of quantum computation. It should be noted that the concept of a norm, as well as the properties of some norms, are relevant here,  as the existence of a metric system implies that operators have a well-defined norm. The introduction to quantum computing is primarily based on \cite{nielsen2010quantum,watrous2018theory}, while the mathematical foundations are also based on \cite{rudin91functional} and  \cite{guide2006infinite}. The subsequent section delves into how the terms of quantum lambda calculus, which are constructed using \autoref{fig:typing_rules_linear}, are interpreted in the ``quantum world''. 
+The following section introduces core concepts from functional analysis, which are essential in measure theory and C$^*$- and W$^*$-algebras. This part is based on \cite{rudin91functional,guide2006infinite,ryanIntroductionTensorProducts2013,conwayCourseFunctionalAnalysis2007,conwayCourseOperatorTheory2000}.
+
+The section on measure theory introduces the fundamentals of measure theory, a key component in defining the semantics of probabilistic programs, drawing inspiration primarily from \cite{dahlqvistSemanticsProbabilisticProgramming2020a} and \cite{athreyaMeasureTheoryProbability2006}. For a more in-depth exploration of measure theory, see reference \cite{aliprantisBanachLattices1999}. 
+
+Finally, we present an exposition of the definitions and results from category theory used throughout the remainder of the thesis, drawing from \cite{yanofskyMonoidalCategoryTheory2024,barrCategoryTheoryComputing1990,maclane13}.
+
+
+%It should be noted that the concept of a norm, as well as the properties of some norms, are relevant here,  as the existence of a metric system implies that operators have a well-defined norm. 
 
 \section{Linear Algebra} \label{sec:linalg}
-
-\todo[inline,size=\normalsize]{Cenas para resolver: questão de normed spaces tb se aplicarem para o caso infinito} 
-
-
-
 
 
 
@@ -177,6 +180,13 @@ In order to define inner product of a matrix, it is necessary to first define th
 \begin{equation*}
   \text{tr}(A)= \sum_{i} A_{ii}.
 \end{equation*}
+ Alternatively, the trace can also be expressed as:
+  \[
+    \operatorname{tr}(A) := \sum_{i=1}^n \langle A v_i, v_i \rangle,
+  \]
+  where $\{v_i\}_{i=1}^n$ is any orthonormal basis of $\mathbb{C}^n$.
+where $\{v_i\}$ is an orthonormal basis for $\mathbb{C}^{n}$.
+
 \end{definition}
 
 
@@ -233,9 +243,6 @@ Two vector $u, v$ are said to be \emph{orthogona}l if $\langle v,u\rangle$. An \
 
 \begin{definition}
   An \emph{n-permutation} is a function on the first $n$ positive integers  $\pi = \{1,\ldots,n\} \rightarrow  \{1,\ldots,n\} $ that is one-to-one and onto. In a permutation each number $1,\dots, n$ appears as output for one and only one input.
-\end{definition}
-
-\begin{definition}
   The \emph{sign} of a permutation $\text{sgn}(\pi)$ is $-1$ if the number of
 inversions in $\pi$ is odd and is $+1$ if the number of inversions is even.
 \end{definition}
@@ -480,35 +487,50 @@ Considering vector spaces $V, W, R$, the following equalities hold:
 
 \section{Quantum Computing Preliminaries} \label{sec:Quantum Computing Preliminaries}
 
-The basic unit of information in quantum computation is a quantum bit or qubit \cite{perdrix2008quantum}. Just as classical bit, which can be in one of two states, 0 or 1, a qubit also has a state. Qubits are represented using \emph{Dirac notation},  where the ket symbol \gls{ket} is used to denote a quantum state $\psi$. The corresponding bra symbol \gls{bra} is used to denote the conjugate transpose of the state $\psi$. In this setting, the inner product of two states $\ket{\psi}$ and $\ket{\phi}$ is denoted \gls{innerproduct} and is the same as $\bra{\psi} \ket{\phi}$. %The outer product of two states $\ket{\psi}$ and $\ket{\phi}$ is denoted $\ket{\psi}\bra{\phi}$.
+The basic unit of information in quantum computation is a \emph{quantum bit} or \emph{qubit} \cite{perdrix2008quantum}. Just as classical bit, which can be in one of two states, 0 or 1, a qubit also has a state. Qubits are represented using \emph{Dirac notation},  where the ket symbol \gls{ket} is used to denote a quantum state $\psi$. The corresponding bra symbol \gls{bra} is used to denote the conjugate transpose of the state $\psi$. In this setting, the inner product of two states $\ket{\psi}$ and $\ket{\phi}$ is denoted \gls{innerproduct} and is the same as $\bra{\psi} \ket{\phi}$. %The outer product of two states $\ket{\psi}$ and $\ket{\phi}$ is denoted $\ket{\psi}\bra{\phi}$.
 
-\begin{definition} \cite{nielsen2010quantum}
+\begin{definition}
   Each isolated physical system is associated with a Hilbert space, known as the system's \emph{state space}. The system's state is fully characterized by a \emph{state vector}, which is a unit vector within this state space.
 \end{definition}
 
 \subsection{The 2-Dimensional Hilbert Space} \label{subsec:hilb2D}
- The state of a single qubit is described by a normalized vector of the 2-dimensional Hilbert space $\mathbb{C}^{2}$. States $\ket{0} = \begin{pmatrix} 1\\0 \end{pmatrix} $ and  $\ket{1} =   \begin{pmatrix} 0\\1 \end{pmatrix} $ are equivalent to the classical states 0 and 1, respectively.  These states, known as the \emph{computational basis} states, form an orthonormal basis for this vector space. Unlike classical bits, a qubit is not restricted to the states $\ket{0}$ and $\ket{1}$; it can exist in a linear combination of these states, commonly referred to as a \emph{superposition}. Consequently, a general qubit state can be written as
-\begin{equation*} \label{eq:qubit}
-  \ket{\psi} = \alpha \ket{0} + \beta \ket{1},
-\end{equation*}
-$\alpha$ and $\beta$ are known as \emph{amplitudes}. $|\alpha|^{2}$ and  $|\beta|^{2}$ can be seen as the probabilities of measuring each state. Because $|\alpha|^{2} + |\beta|^{2} = 1$, $\ket{\psi}$  can be rewritten as
-\begin{equation*} \label{eq:qubit2}
-  \ket{\psi} = e^{i \gamma} \left(\cos\left(\frac{\theta}{2}\right) \ket{0} + e^{i\phi}\sin\left(\frac{\theta}{2}\right)\ket{1}\right),
-\end{equation*}
-where $\theta$, $\phi$ and $\gamma$ are real numbers. $e^{i \gamma}$ is known as a \textit{global phase} and is often ignored because it has no observable effects, \textit{i.e.}, it does not affect the probabilities of measurement outcomes. When disregarding the global phase, the quantum state can $ \ket{\psi}$ be represented as:
-\begin{equation} \label{eq:qubit3}
-  \ket{\psi} = \cos\left(\frac{\theta}{2}\right) \ket{0} + e^{i\phi}\sin\left(\frac{\theta}{2}\right)\ket{1}
-\end{equation}
-which corresponds to a point in the unit sphere where $\theta$ marks the latitude (\textit{i.e.} the polar angle) and $\phi$ marks the longitude (\textit{i.e.} the azimuthal angle). This representation is traditionally called the Bloch sphere representation. A point in the latter representation
-corresponds to the vector in $\mathbb{R}^{3}$ defined by 
-\begin{equation} \label{eq:bloch_state_vec}
- (\cos \phi \sin \theta, \sin \phi \sin \theta, \cos \theta)
-\end{equation}
-and often called Bloch vector.
  
-\begin{figure} [H] 
+
+\begin{definition}
+  The \emph{state} of a single qubit is described by a normalized vector in the 2-dimensional Hilbert space \( \mathbb{C}^{2} \). The states 
+  \[
+  \ket{0} = \begin{pmatrix} 1\\0 \end{pmatrix}, \quad \ket{1} =   \begin{pmatrix} 0\\1 \end{pmatrix}
+  \]
+  correspond to the classical states 0 and 1, respectively. These states, known as the \emph{computational basis} states, form an orthonormal basis for this vector space.
+\end{definition}
+
+\begin{definition}
+  Unlike classical bits, a qubit is not restricted to the basis states \( \ket{0} \) and \( \ket{1} \). It can exist in a linear combination of these states, known as a \emph{superposition}. A general qubit state can be written as
+  \[
+  \ket{\psi} = \alpha \ket{0} + \beta \ket{1},
+  \]
+  where \( \alpha, \beta \in \mathbb{C} \) are called \emph{amplitudes}, and must satisfy the normalization condition \( |\alpha|^2 + |\beta|^2 = 1 \). The values \( |\alpha|^2 \) and \( |\beta|^2 \) represent the probabilities of measuring the qubit in the states \( \ket{0} \) and \( \ket{1} \), respectively.
+\end{definition}
+
+\begin{definition}
+  Any normalized qubit state \( \ket{\psi} \) can be written (up to a global phase) as
+  \[
+  \ket{\psi} = e^{i \gamma} \left(\cos\left(\frac{\theta}{2}\right) \ket{0} + e^{i\phi}\sin\left(\frac{\theta}{2}\right)\ket{1}\right),
+  \]
+  where \( \theta, \phi, \gamma \in \mathbb{R} \). The global phase factor \( e^{i \gamma} \) has no observable effect on the outcome of measurements and is often disregarded. Thus, the state is usually represented as:
+  \begin{equation} \label{eq:qubit3}
+  \ket{\psi} = \cos\left(\frac{\theta}{2}\right) \ket{0} + e^{i\phi}\sin\left(\frac{\theta}{2}\right)\ket{1}.
+  \end{equation}
+\end{definition}
+
+\begin{definition} \label{def:boch_sphere_state}
+  The above parametrization defines a point on the unit sphere in \( \mathbb{R}^3 \), known as the \emph{Bloch sphere}. The angles \( \theta \) and \( \phi \) represent the polar and azimuthal angles, respectively. Each pure qubit state corresponds to a point on this sphere, with associated \emph{Bloch vector} given by
+  $(\cos \phi \sin \theta, \sin \phi \sin \theta, \cos \theta).$
+\end{definition}
+ 
+\begin{figure}[H] 
   \centering
-  \includegraphics[width=0.4\textwidth]{images/bloch_sphere.jpg}
+  \includegraphics[width=0.35\textwidth]{images/bloch_sphere.jpg}
   \caption{Bloch sphere representation of a qubit}
   \label{fig:bloch_sphere}
 \end{figure}
@@ -523,18 +545,22 @@ There are infinite points in the Bloch sphere, which might suggest the possibili
 
 \subsection{Multi-qubit States} \label{subsec:entanglement}
 
- The state space of a composite physical system is the tensor product of the state spaces of the component physical systems. As a result, an $n$-qubit state can be represented by a unit vector in $2^n$-dimensional Hilbert space, $\mathbb{C}^{2^{n}}$. The notations \gls{states-otimes}, \gls{states-no-otimes}, and \gls{states-2gether} are  used to denote the tensor product of two states $\ket{\psi}$ and $\ket{\phi}$. As for any complex vector, $\ket{\psi}^{\otimes n}$ denotes the n-fold tensor product of state $\ket{\psi}$ with itself. The computational basis states of an $n$-qubit system are of the form $\ket{x_{1}\ldots x_{n}}$ and so a quantum state of such a system is specified by $2^{n}$ amplitudes. For instance, a two-qubit state can be written as
+\begin{definition}
+ The state space of a composite physical system is the tensor product of the state spaces of the component physical systems. As a result, an $n$\emph{-qubit state} can be represented by a unit vector in $2^n$-dimensional Hilbert space, $\mathbb{C}^{2^{n}}$. The notations \gls{states-otimes}, \gls{states-no-otimes}, and \gls{states-2gether} are  used to denote the tensor product of two states $\ket{\psi}$ and $\ket{\phi}$. As for any complex vector, $\ket{\psi}^{\otimes n}$ denotes the n-fold tensor product of state $\ket{\psi}$ with itself. The computational basis states of an $n$-qubit system are of the form $\ket{x_{1}\ldots x_{n}}$ and so a quantum state of such a system is specified by $2^{n}$ amplitudes. For instance, a two-qubit state can be written as
 \begin{equation*}
   \ket{\psi} = \alpha_{00}\ket{00} + \alpha_{01}\ket{01} + \alpha_{10}\ket{10} + \alpha_{11}\ket{11}.
 \end{equation*}
-
+\end{definition}
 It should be noted that unfortunately, no simple generalization of the Bloch sphere known for multiple qubits.
 
 %falta n-fold
 %ir ao tensor e acrecentar os operadores que mapeiam operadores
 
 \subsubsection{Entanglement}
-An interesting aspect of multi-qubit states is the phenomenon of \emph{entanglement}. This term means strong intrinsic correlations between two (or more) particles when the quantum state of each of them cannot be described independently of the state of the other, \text{i.e.} cannot be written as a product of states of the individual qubits. Measuring one qubit of the entangled pair affects the state of the other qubit. This must happen even if the particles are far apart.
+
+\begin{definition}
+  An interesting aspect of multi-qubit states is the phenomenon of \emph{entanglement}. This term means strong intrinsic correlations between two (or more) particles when the quantum state of each of them cannot be described independently of the state of the other, \text{i.e.} cannot be written as a product of states of the individual qubits. Measuring one qubit of the entangled pair affects the state of the other qubit. This must happen even if the particles are far apart.
+\end{definition}
 
 In order to better understand this concept, consider the follow \emph{Bell state} or \emph{EPR pair}:
 \begin{equation*}
@@ -561,10 +587,12 @@ Sixteen years later, Nicolas Gisin \cite{tittel1998experimental} and Anton Zeili
 
 
 \subsubsection{Pauli Matrices}
+\begin{definition}
 The Pauli matrices are a set of three $2 \times 2$ hermitian matrices that are defined as follows:
 \begin{equation*}
   \sigma_{x} = \begin{pmatrix} 0 & 1\\ 1 & 0 \end{pmatrix}, \hspace{1cm} \sigma_{y} = \begin{pmatrix} 0 & -i\\ i & 0 \end{pmatrix}, \hspace{1cm} \sigma_{z} = \begin{pmatrix} 1 & 0\\ 0 & -1 \end{pmatrix}.
 \end{equation*}
+\end{definition}
 
 The eigenvectors and eigenvalues of the Pauli matrices are as follows:
 \begin{align*}
@@ -579,8 +607,11 @@ When matrices $\sigma_x, \sigma_y$ or  $\sigma_z$ are applied to a state on the
 Matrices $\sigma_x$ and $\sigma_z$ will also be referred to as \gls{x} and \gls{z}, respectively.
 
 \subsubsection{Unitary operators}
-Closed systems, \text{i.e.}, systems that do not interact with other systems evolve according to unitary operators. In quantum computation, these unitary operators are also known as \emph{gates}. For a  state $\ket{\psi}$, a unitary operator $U$ describes an evolution from $\ket{\psi}$ to $ U\ket{\psi}$.
+\begin{definition}
+  \emph{Closed systems}, \text{i.e.}, systems that do not interact with other systems evolve according to unitary operators. In quantum computation, these unitary operators are also known as \emph{gates}. For a  state $\ket{\psi}$, a \emph{unitary operator} $U$ describes an evolution from $\ket{\psi}$ to $ U\ket{\psi}$.
+\end{definition}
 
+\begin{example}
 Pauli matrices are examples of unitary operators. The $X$ and $Z$ gates are often referred to as the \emph{not} and \emph{phase flip} gates, respectively. Other important unitary operators include   \emph{Hadamard gate}, denoted \gls{h}, which maps $\ket{0}$ to $\ket{+}$ and $\ket{1}$ to  $\ket{-}$, and the \emph{phase-shift gate}, denoted \gls{p}, which leaves $\ket{0}$ unaltered applies a phase shift of $\theta$ to the state $\ket{1}$:
 \begin{equation*}
  H = \frac{1}{\sqrt{2}}\begin{pmatrix} 1 & 1\\ 1 & -1 \end{pmatrix}, \hspace{1cm} P = \begin{pmatrix} 1 & 0\\ 0 & e^{i \theta} \end{pmatrix}.
@@ -596,6 +627,7 @@ When the Pauli matrices are exponentiated, they result in three valuable classes
 \begin{equation*}
   R_{z}(\theta) = e^{-i\theta \sigma_{z}/2} = \text{cos} \left(\frac{\theta}{2} \right) \id -i \text{sin} \left(\frac{\theta}{2} \right) \sigma_{z} = \begin{pmatrix} e^{-i\theta/2} & 0\\ 0 & e^{i\theta/2} \end{pmatrix}.
 \end{equation*}
+\end{example}
 
 \begin{theorem} \label{unitary} \cite{nielsen2010quantum}
   Suppose $U$ is a unitary operation on a single qubit. Then there exist real numbers $\alpha$, $\beta$, $\gamma$ and $\delta$ such that
@@ -604,6 +636,8 @@ When the Pauli matrices are exponentiated, they result in three valuable classes
   \end{equation*}
 \end{theorem}
 
+\begin{example}
+  
 There are also multi-qubit gates, such as the \emph{controlled-not} gate, denoted \gls{cnot}, which leaves the states $\ket{00}$ and  $\ket{01}$ unchanged, and maps $\ket{10}$ and $\ket{11}$ to each other:
 \begin{equation*}
   \textit{CNOT} = \begin{pmatrix} 1 & 0 & 0 & 0\\ 0 & 1 & 0 & 0\\ 0 & 0 & 0 & 1\\ 0 & 0 & 1 & 0 \end{pmatrix}.
@@ -615,6 +649,7 @@ There is an ``extension" of the controlled-not gate, the controlled-$U$ gate, wh
   &\textit{CU} (\ket{0} \otimes \ket{\psi}) = \ket{0} \otimes \ket{\psi}\\ 
   &\textit{CU} (\ket{1} \otimes \ket{\psi}) = \ket{1} \otimes U\ket{\psi}.
 \end{align*}
+\end{example}
 
 It should be noted that no completely closed systems exist in the universe. Nevertheless, for many systems, the approximation of a closed system is valid.
 % No fim nota sobre não haver sistemas completamente fechados no universo, mas que a aproximação de um sistema fechado é válida para muitos sistemas, p.82
@@ -627,9 +662,21 @@ It should be noted that no completely closed systems exist in the universe. Neve
 
 There are times when it necessary to observe the system to extract information. This interection leaves the system no longer closed and, consequently, the evolution of the system is no longer unitary. 
 
-The act of measuring a qubit is represented by a set of operators called \emph{measurement operators}, denoted $\{M_{m}\}$. These operators act on the state space  of the system being measured. The index $m$ refers possible measurement outcomes. These measurement operators must satisfy the completeness equation $\sum_{m} M_{m}^{\dagger}M_{m} = \id$, which ensures that the probabilities of all possible outcomes sum to 1. If a measurement ${M_m}$ is performed on a state $\ket{\psi}$ the outcome $m$ is observed with probability $p_m = \bra{\psi}M_{m}^{\dagger}M_{m}\ket{\psi}$ for each $m$. Moreover, after a measurement yielding outcome $m$, the state collapses to $\frac{M_{m}\ket{\psi}}{\sqrt{p_{m}}}$. 
+\begin{definition}
+The act of measuring a qubit is represented by a set of operators called \emph{measurement operators}, denoted $\{M_{m}\}$. These operators act on the state space  of the system being measured. The index $m$ refers possible measurement outcomes. These measurement operators must satisfy the completeness equation $\sum_{m} M_{m}^{\dagger}M_{m} = \id$, which ensures that the probabilities of all possible outcomes sum to 1. If a measurement ${M_m}$ is performed on a state $\ket{\psi}$ the outcome $m$ is observed with probability $p_m = \bra{\psi}M_{m}^{\dagger}M_{m}\ket{\psi}$ for each $m$. Moreover, after a measurement yielding outcome $m$, the state collapses to 
+\begin{align*}
+  \ket{\psi'}=\frac{M_{m}\ket{\psi}}{\sqrt{p_{m}}}.
+\end{align*}
+\end{definition}
 
-In the case of the computational basis, the measurement operators are the projectors onto the basis states $\ket{0}$ and $\ket{1}$ denoted by $M_{0} = \ket{0}\bra{0}$ and $M_{1} = \ket{1}\bra{1}$, respectively. Considering an arbitrary state $\ket{\psi} = \alpha \ket{0} + \beta \ket{1}$, the probabilities of measuring 0 and 1 are $p_0 = \bra{\psi} M_{0} M_{0}^{\dag}\ket{\psi}=\bra{\psi} M_{0} \ket{\psi} = |\alpha|^{2}$, and $p_1 = \bra{\psi} M_{1} M_{1}^{\dag}\ket{\psi} = \bra{\psi} M_{1} \ket{\psi} =  |\beta|^{2} $. Consequently the states after measurement are $\frac{M_{0}\ket{\psi}} {|\alpha|} = \frac{\alpha}{|\alpha|} \ket{0} = \ket{0}$ (with $p=p_0$) and $\frac{M_{1}\ket{\psi}} {|\beta|} = \frac{\beta}{|\beta|} \ket{1} = \ket{1}$ (with $p=p_1$).
+\begin{example}
+In the case of the computational basis, the measurement operators are the projectors onto the basis states $\ket{0}$ and $\ket{1}$ denoted by $M_{0} = \ket{0}\bra{0}$ and $M_{1} = \ket{1}\bra{1}$, respectively. Considering an arbitrary state $\ket{\psi} = \alpha \ket{0} + \beta \ket{1}$, the probabilities of measuring 0 and 1 are $p_0 = \bra{\psi} M_{0} M_{0}^{\dag}\ket{\psi}=\bra{\psi} M_{0} \ket{\psi} = |\alpha|^{2}$, and $p_1 = \bra{\psi} M_{1} M_{1}^{\dag}\ket{\psi} = \bra{\psi} M_{1} \ket{\psi} =  |\beta|^{2} $, respectively. Consequently the states after measurement are
+\begin{align*}
+  &\ket{\psi'}=\frac{M_{0}\ket{\psi}} {|\alpha|} = \frac{\alpha}{|\alpha|} \ket{0} = \ket{0} (\text{with  } p=p_0) \quad \text{and } \\
+  &\ket{\psi''}= \frac{M_{1}\ket{\psi}} {|\beta|} = \frac{\beta}{|\beta|} \ket{1} = \ket{1} (\text{with  } p=p_1)
+\end{align*}
+\end{example}
+
 
 From now on, unless stated otherwise, any reference to measurement should be understood as pertaining to the computational basis.
 
@@ -645,21 +692,39 @@ Until now the state vector formalism was used. However there is an alternative f
 
 %\subsubsection{General properties}
 
+\begin{definition}
+A quantum state $\ket{\psi}$ is said to be a \emph{pure state} if it is completely known, \ie if it can be written as a ket. In this case, the state can be written in the density operator formalism as $\rho = \ket{\psi}\bra{\psi}$. 
+\end{definition}
 
-A quantum state $\ket{\psi}$ is said to be a \emph{pure state} if it is completely known, \text{i.e.} if it can be written as a ket. In this case, the state can be written in the density operator formalism as $\rho = \ket{\psi}\bra{\psi}$. On the other hand, a state that is a probabilistic mixture of pure states is designated a \emph{mixed state}. A mixed state $\sum_i \alpha_i \ket{\psi_i}$ can be represented by a density operator $\rho= \sum_i |\alpha_i|^{2}\ket{\psi_i}\bra{\psi_i}$. Note that $|\alpha_i|^{2}$ is the probability of the system being in state $\ket{\psi_i}$. 
+\begin{definition}
+A state that is a probabilistic mixture of pure states is designated a \emph{mixed state}. A mixed state $\sum_i \alpha_i \ket{\psi_i}$ can be represented by a density operator $\rho= \sum_i |\alpha_i|^{2}\ket{\psi_i}\bra{\psi_i}$. Note that $|\alpha_i|^{2}$ is the probability of the system being in state $\ket{\psi_i}$.
+\end{definition} 
 
-With respect to density operators, when applying a unitary operator $U$ to a state $\rho$, the resulting state is $U\rho U^{\dag}$. Regarding measurements, given a collection of measurement operators, $\{M_{m}\}$, the probability of obtaining outcome $m$ is $p(m)=\text{Tr}(M_{m}\rho M_{m}^{\dag})$, and after a measurement yielding outcome $m$, the state collapes to  $\frac{M_{m}^{\dag}\rho M_{m}}{\text{Tr}(M_{m}\rho M_{m}^{\dag})}$.
+\begin{definition}[Unitary Evolution of a Density Operator]
+  When a unitary operator \( U \) is applied to a quantum state described by a density matrix \( \rho \), the resulting state is given by $ \rho' = U \rho U^\dagger.$
+\end{definition}
 
-In \autoref{subsec:hilb2D} it was shown how to determine the cartesian coordenates of a pure state in the Bloch Sphere from the state vector. For an arbitrary $2 \times 2$ density matrix, the following holds
+\begin{definition}[Measurement of a Density Operator]
+  Given a collection of measurement operators \( \{M_m\} \), the probability of obtaining outcome \( m \) when measuring a state \( \rho \) is $p_m = \text{Tr}(M_m \rho M_m^\dagger).$
+  After observing outcome $ m $, the post-measurement state collapses to:
+  \[
+  \rho' = \frac{M_m \rho M_m^\dagger}{\text{Tr}(M_m \rho M_m^\dagger)}.
+  \]
+\end{definition}
+
+
+\begin{definition}
+  In \autoref{subsec:hilb2D} it was shown how to determine the cartesian coordenates of a pure state in the Bloch sphere from the state vector. For an arbitrary $2 \times 2$ density matrix, the following holds
 \begin{equation} \label{eq:bloch_vector_0}
   \rho = \frac{1}{2}(\id + r_{x}\sigma_{x} + r_{y}\sigma_{y} + r_{z}\sigma_{z}),
-\end{equation} 
-
-where $\vec{r} = (r_x, r_y, r_z)$ is a real three-dimensional vector such that $\| \vec{r} \|_2 \leq 1$. This vector is known as the Bloch vector for the state $\rho$. Since $\rho$ is Hermitian. $r_x, r_y$ and $r_z$ are always real.  The inverse map of \autoref{eq:bloch_vector_0} is
+\end{equation}
+where $\vec{r} = (r_x, r_y, r_z)$ is a real three-dimensional vector such that $\| \vec{r} \|_2 \leq 1$. This vector is known as the \emph{Bloch vector for the state} $\rho$. Since $\rho$ is Hermitian. $r_x, r_y$ and $r_z$ are always real.  The inverse map of \autoref{eq:bloch_vector_0} is
 \begin{equation}
   \label{eq:Bloch_vector}
   r_{\mu} = \text{Tr}(\rho \sigma_{\mu})
-  \end{equation}
+  \end{equation} 
+\end{definition}
+
 
   Note that given that the trace is linear and matrix multiplication distributes over matrix addition, the cartesian coordinates of an operator consisting of the sum or subtraction of density operators can also be determined by \autoref{eq:Bloch_vector}.
 
@@ -667,7 +732,8 @@ where $\vec{r} = (r_x, r_y, r_z)$ is a real three-dimensional vector such that $
 
 Density operators are particularly well-suited for describing individual subsystems of a composite quantum system. This type of description is provided by the \emph{reduced density operator}
 
-Given physical systems $A$ and $B$ whose composite system is given by the density operator $\rho_{AB}$, the reduced density operator for subsystem $A$ is $$\rho_{A} = \text{Tr}_{B}(\rho_{AB}),$$ where $ \text{Tr}_{B}$ is the partial trace over the Hilbert space of subsystem $B$, defined as 
+\begin{definition}
+Let \( \ket{a_1}, \ket{a_2} \) be vectors in the Hilbert space of system \( A \), and \( \ket{b_1}, \ket{b_2} \) vectors in the Hilbert space of system \( B \). The \emph{partial trace over} \( B \) is defined by:
 \begin{align*}
   \text{Tr}_{B}(\ket{a_1}\bra{a_2} \otimes \ket{b_1}\bra{b_2}) & =\ket{a_1}\bra{a_2}\text{Tr}(\ket{b_1}\bra{b_2}) \\
   & = \ket{a_1}\bra{a_2}  \sum_{\mu} \bra{\mu} \ket{b_1}\bra{b_2} \ket{\mu} \\
@@ -675,41 +741,27 @@ Given physical systems $A$ and $B$ whose composite system is given by the densit
   & = \ket{a_1} \bra{a_2} \sum_{\mu} \braket{b_2}{\mu} \braket{\mu}{b_1} \\
   &= \ket{a_1}\bra{a_2}  \braket{b_2}{b_1}
 \end{align*}
- where $\ket{a_1}$ and $\ket{a_2}$ are any two vectors in the state space of $A$,  $\ket{b_1}$ and $\ket{b_2}$ are any two vectors in the state space of $B$, and $\{\ket{\mu}\}$, span the state space of $B$.  Therefore, by linearly, the partial trace of $\rho_{AB} = \sum_{ijkl} p_{ijkl} \ket{a_i} \bra{a_j}  \otimes \ket{b_k} \bra{b_l}$ is
-\begin{align*}
-  \text{Tr}_{B}(\rho_{AB}) &= \sum_{ijkl} p_{ijkl} \text{Tr}_{B}\left(\ket{a_i}\bra{a_j} \otimes \ket{b_k} \bra{b_l}\right) \\
-  & = \sum_{ijkl} p_{ijkl} \ket{a_i}\bra{a_j}  \sum_{\mu} \braket{b_l}{\mu} \braket{\mu}{b_k}= \sum_{ijkl} p_{ijkl} \ket{a_i}\bra{a_j}   \braket{b_l}{b_k} 
-  %& = \sum_{ijkk} p_{ijkk} \ket{a_i}\bra{a_j} = \sum_{ij} \overline{p_{ij}} \ket{a_i}\bra{a_j}
-\end{align*} 
-%Where, in the third line, it is assumed that $\{b_k\}$ forms an orthonormal basis, and $\overline{p_{ij}}= \sum_{k}p_{ijkk}$. The expression obtained.
-To demonstrate that this operator is a density operator, it must be shown that it possesses unit trace and is positive semidefinite. Given that the trace of $\rho_{AB}$ corresponds to the sum of the diagonal elements of the density matrix, $\sum_i{ik} p_{iikk}$, and that that is also the case for the reduced density operator $\rho_{A}$, the sum of the diagonal elements is preserved by the partial trace. Thus, $\rho_{a}$ has trace equal to 1.  Moreover, considering that %$\rho_{AB}$ is a density operator, one has that
-\begin{align*}
-  &\langle \ket{\psi}, \rho_{AB} \ket{\psi} \rangle = \bra{\psi} \rho_{AB} \ket{\psi} = \bra{\psi} \sum_{ijkl} p_{ijkl} \ket{a_i} \bra{a_j}  \otimes \ket{b_k} \bra{b_l} \ket{\psi} \\ 
-  = &\sum_{ijkl} p_{ijkl} \bra{\psi} \ket{a_i} \bra{a_j}  \otimes \ket{b_k} \bra{b_l} \ket{\psi} \\
-  = & \sum_{ijkl} p_{ijkl} \sum_m (\alpha_{m}^{*} \bra{a_m} \otimes \bra{b_m}) \ket{a_i} \bra{a_j} \otimes \ket{b_k} \bra{b_l}  \sum_m (\alpha_{m}  \ket{a_m} \otimes \ket{b_m} )\\
-  = & \sum_{ijklm} p_{ijkl} |\alpha_m|^{2} \braket{a_m}{a_i} \braket{a_j}{a_m} \braket{b_m}{b_k} \braket{b_l}{b_m} \\
-  = & \sum_{ijkl}  p_{ijkl}  \braket{a_j}{a_i} \braket{b_l}{b_k} \\
-\end{align*}
-and that,
-\begin{align*}
-  &\langle \ket{\psi}, \rho_{A} \ket{\psi} \rangle = \bra{\psi} \rho_{A} \ket{\psi}
-  = \bra{\psi} \sum_{ijkl} p_{ijkl} \ket{a_i}\bra{a_j} \braket{b_l}{b_k} \ket{\psi} \\
-  = & \sum_{ijkl} p_{ijkl}  \braket{b_l}{b_k}  \bra{\psi} \ket{a_i}\bra{a_j}\ket{\psi} = \\
-  = & \sum_{ijklm} p_{ijkl} \braket{b_l}{b_k} \sum_m (\alpha_{m}^{*} \bra{a_m}) \ket{a_i}\bra{a_j} \sum_m (\alpha_{m}  \ket{a_m} ) \\
-  = & \sum_{ijklm} p_{ijkl} \braket{b_l}{b_k} |\alpha_m|^{2} \braket{a_m}{a_i} \braket{a_j}{a_m} = \sum_{ijkl} p_{ijkl} \braket{b_l}{b_k} \braket{a_j}{a_i} \\
-  = & \sum_{ijkl} p_{ijkl}  \braket{a_j}{a_i} \braket{b_l}{b_k}
-\end{align*}
-where, $\{\ket{a_m}\}$ span the space of $A$ and $\{\ket{b_m}\}$ span the space of $B$, it is possible to conclude that $\langle \ket{\psi}, \rho_{AB} \ket{\psi} \rangle = \langle \ket{\psi}, \rho_{A} \ket{\psi} \rangle$. Thus, since $\langle \ket{\psi}, \rho_{AB} \ket{\psi} \rangle \geq 0$, the same applies to $\langle \ket{\psi}, \rho_{A} \ket{\psi} \rangle$. Therefore, $\rho_{A}$ is a positive semidefinite, and, consequently, a density operator.
-
-% Note that TrB can also de expressec as I_A \otimes Tr (\rho_AB), where I_A is the identity operator in the Hilbert space of A.
-
+where \( \{\ket{\mu}\} \) is an orthonormal basis spanning the state space of \( B \).
 In certain situations it is more advantageous to consider the reduced density operator for subsystem $A$ defined as:
 \begin{equation*}
   \rho_{A} = \text{Tr}_{B}(\rho_{AB}) = \sum_{\mu} \bra{\mu} \rho_{AB} \ket{\mu},
 \end{equation*}
 where $\{\ket{\mu}\}$, span the state space of $B$ and act only in the state space of $B$. 
+\end{definition}
 
-Similarly, the reduced density operator for subsystem $B$ is $\rho_{B} = \text{Tr}_{A}(\rho_{AB})$.
+\begin{definition}
+Given physical systems $A$ and $B$ whose composite system is given by the density operator $\rho_{AB}$, the \emph{reduced density operator} for subsystem $A$ is $$\rho_{A} = \text{Tr}_{B}(\rho_{AB}).$$ 
+
+Note that, by linearly, the partial trace of $\rho_{AB} = \sum_{ijkl} p_{ijkl} \ket{a_i} \bra{a_j}  \otimes \ket{b_k} \bra{b_l}$ is
+\begin{align*}
+  \text{Tr}_{B}(\rho_{AB}) &= \sum_{ijkl} p_{ijkl} \text{Tr}_{B}\left(\ket{a_i}\bra{a_j} \otimes \ket{b_k} \bra{b_l}\right) \\
+  & = \sum_{ijkl} p_{ijkl} \ket{a_i}\bra{a_j}  \sum_{\mu} \braket{b_l}{\mu} \braket{\mu}{b_k}= \sum_{ijkl} p_{ijkl} \ket{a_i}\bra{a_j}   \braket{b_l}{b_k} 
+\end{align*} 
+
+Similarly, the \emph{reduced density operator for subsystem} $B$ is $\rho_{B} = \text{Tr}_{A}(\rho_{AB})$.
+\end{definition}
+
+
 
 
  %\begin{align*}
@@ -758,10 +810,18 @@ Thus far, only two types of quantum operations have been discussed: unitary oper
   A super-operator $Q$ is called \emph{trace-preserving} if $\text{Tr} \hspace{2pt} (Q A)= \text{Tr} (A)$.
 \end{definition}
 
-Since density matrices are positive, any physically allowed transformation must be represented by a positive operator. Moreover, this is not sufficient on its own: since one can always extend the space $\mathbb{C}^{n \times n}$ to  $\mathbb{C}^{n \times n} \otimes \mathbb{C}^{k \times k} $ by adjoining a new quantum system, any physically allowed transformation must be completely positive. Finally, since the trace of a density matrix is always $1$, any physically allowed transformation must be trace-preserving. A \acrfull{cptp} operator is traditionally called a \emph{quantum channel}.
+Since density matrices are positive, any physically allowed transformation must be represented by a positive operator. Nonetheless, this is not sufficient on its own: since one can always extend the space $\mathbb{C}^{n \times n}$ to  $\mathbb{C}^{n \times n} \otimes \mathbb{C}^{m \times m} $ by adjoining a new quantum system, any physically allowed transformation must be completely positive. Finally, since the trace of a density matrix is always $1$, any physically allowed transformation must be trace-preserving. 
+
+\begin{definition}
+  A \acrfull{cptp} operator is traditionally called a \emph{quantum channel}.
+\end{definition}
+
+
 
 \subsubsection{Kraus operator sum representation}
-Assume that there is a quantum system $S$ of interest which is a subsystem of a larger system which also includes an environment $E$. These systems have a joint unitary evolution described by a unitary operator $U$ acting on the composite system, $U = \rho_{SE} \mapsto U \rho_{SE} U^{\dag}$. 
+
+
+Assume that there is a quantum system $S$ of interest which is a subsystem of a larger system which also includes an environment $E$. These systems have a joint unitary evolution described by a unitary operator $U$ acting on the composite system, $U (\rho_{SE} )= U \rho_{SE} U^{\dag}$. 
 
 Given that density matrices are positve operators, by (\autoref{def:positive}), the density operator of the environment $\rho_E$ initially can be written as 
 \begin{equation*}
@@ -771,7 +831,7 @@ where $\ket{i}$ form an orthonormal basis for the state space of $E$ and $p_{i}$
 
 The state of the subsystem $S$ after the unitary evolution corresponds to the partial trace of the joint state over the environment,
 \begin{align*}
-  \rho_{S} = & \text{Tr}_{E}(U \rho_{SE} U^{\dag}) \\
+  \rho_{S}' = & \text{Tr}_{E}(U \rho_{SE} U^{\dag}) \\
  = & \sum_{\mu} \bra{\mu} U \rho_{SE} U^{\dag} \ket{\mu}
 \end{align*}
 where $\{\ket{\mu}\}$ span the state space of $E$.
@@ -779,26 +839,31 @@ where $\{\ket{\mu}\}$ span the state space of $E$.
  
 Considering that initially both systems are completely decoupled, the initial state of the system can be written as $ \rho_{SE} = \rho_{S} \otimes \rho_{E}$. Thus,
 \begin{align*} 
-  \rho_{S} = & \sum_{\mu} \bra{\mu} U \rho_{S} \otimes \sum_{i} p_{i} \ket{i} \bra{i} U^{\dag} \ket{\mu} \\
+  \rho_{S}' = & \sum_{\mu} \bra{\mu} U \rho_{S} \otimes \sum_{i} p_{i} \ket{i} \bra{i} U^{\dag} \ket{\mu} \\
   = & \sum_{\mu i}  \sqrt{p_{i}} \bra{\mu} U \ket{i} \rho_{S} \sqrt{p_{i}} \bra{i} U^{\dag} \ket{\mu}  \\ 
   = & \sum_{\mu i} \text{K}_{\mu i} \rho_{S} \text{K}_{\mu i}^{\dag}
 \end{align*}
-where the set of operators $\{\text{K}_{\mu i}\}$ is designated \emph{Kraus operators} and $\text{K}_{\mu i} = \sqrt{p_{i}} \bra{\mu} U \ket{i}$. Note that $\{\ket{\mu}\}$ and $\{\ket{i}\}$, act only in the state space of $E$. The equation $ \rho_{S} = \sum_{\mu i} \text{K}_{\mu i} \rho_{S} \text{K}_{\mu i}^{\dag} $ is called an \emph{\acrfull{osr}}.
+where the set of operators $\{\text{K}_{\mu i}\}$ is designated \emph{Kraus operators} and $\text{K}_{\mu i} = \sqrt{p_{i}} \bra{\mu} U \ket{i}$. Note that $\{\ket{\mu}\}$ and $\{\ket{i}\}$, act only in the state space of $E$. 
 
-\acrshort{osr} can be thought of as a quantum channel that maps $\rho_{S}$ to $\sum_{\mu i} \text{K}_{\mu i} \rho_{S} \text{K}_{\mu i}^{\dag}$, given this map is \acrshort{cptp} \cite{lidar2019lecture}. 
+\begin{definition}
+  The equation $ \rho_{S}' = \sum_{\mu i} \text{K}_{\mu i} \rho_{S} \text{K}_{\mu i}^{\dag} $ is called an \emph{\acrfull{osr}}. An \acrshort{osr} can be thought of as a quantum channel that maps $\rho_{S}$ to $\sum_{\mu i} \text{K}_{\mu i} \rho_{S} \text{K}_{\mu i}^{\dag}$, given this map is \acrshort{cptp} \cite{lidar2019lecture, watrous2018theory}. 
+\end{definition}
+
+
+
 
 \subsubsection{Non-selective measurements}
 
-In the previously presented formalism to represent all the possible outcomes of a measurement, described by a set of operators $\{M_{m}\}$, on a state $\rho$, it would be necessary to write that state $\rho$ collapse to state $\rho_m=\frac{M_{m}^{\dag}\rho M_{m}}{\text{Tr}(M_{m}\rho M_{m}^{\dag})}$ with probability $p(m)=\text{Tr}(M_{m}\rho M_{m}^{\dag})$, for each possible outcome $m$. However, this is not appropriate for calculations. Consequently, to better represent the effect of a measurement on a quantum system \emph{non-selective measurements} are used. In this case, the possible outcomes are not explicitly stated, and the state after the measurement is as follows:
-\begin{equation*}
-  \rho = \sum_{m} p_m \rho_m = \sum_{m} M_m \rho M^{\dag}_m
-\end{equation*}
+In the previously presented formalism to represent all the possible outcomes of a measurement, described by a set of operators $\{M_{m}\}$, on a state $\rho$, it would be necessary to write that state $\rho$ collapse to state $\rho_m=\frac{M_{m}^{\dag}\rho M_{m}}{\text{Tr}(M_{m}\rho M_{m}^{\dag})}$ with probability $p_m=\text{Tr}(M_{m}\rho M_{m}^{\dag})$, for each possible outcome $m$. Although the selective description above is useful conceptually, it is often impractical for calculations. Instead, one uses \emph{non-selective measurements}, in which the possible outcomes are not explicitly stated.
+
+
+\begin{definition}
+A \emph{non-selective measurement} is a quantum measurement in which the post-measurement state of the system is then given by the weighted sum over all possible outcomes:
+\[
+\rho = \sum_m p(m) \rho_m = \sum_m M_m \rho M_m^{\dag}.
+\]
 This last equality corresponds to an Kraus operator sum representation, where the set of Kraus operators is $\{M_{m}\}$.
-
-% in the previouly presented formalism to express the resukt of a mesurment in a state we would have to say it is state x with probability px and y with probability py. However, this is not appropriate to perform calculations with. 
-
-
-%For every super-operator $ E: \mathcal{D}(n) \xrightarrow{} \mathcal{D}(m)$, there exists a set of Kraus operators $\{\epsilon_{k}\}_{k}$ such that $ E(\rho)= \Sigma_{k} \hspace{2pt} \epsilon_{k}\hspace{2pt} \rho \hspace{2pt} \epsilon_{k}^{\dag}$  for any input $\rho \in  \mathcal{D}(n) $. Note that the set of Kraus operators is finite if the Hilbert space is finite-dimensional. The Kraus form of $E$ is written as $E = \Sigma_{k} \hspace{2pt} \epsilon_{k} \circ  \epsilon_{k}^{\dag}$.
+\end{definition}
 
 
 
@@ -1015,12 +1080,6 @@ It should be noted that this principle is upheld by the type system outlined in 
 
 \section{Functional Analysis} \label{sec:funal}
 
-\todo[inline,size=\normalsize]{Livros}
- \cite{guide2006infinite}
- \cite{conwayCourseOperatorTheory2000}
- \cite{rudin91functional}
- \cite{blackadarOperatorAlgebrasTheory2010}
- \cite{ryanIntroductionTensorProducts2013}
 
 
  Functional analysis can be viewed as the  branch of mathematics that studies how the properties of finite-dimensional vector spaces generalize in infinite dimensional spaces.
@@ -1121,6 +1180,7 @@ for all choices of \( u_1 \in V_1, \dots, u_n \in V_n \).
   An \emph{Hilbert space} is an inner product space which is complete with respect to the induced norm.
 \end{definition}
 
+The definition of trace is extended in this setting as follows:
 \begin{definition}
   Let $\mathcal{H}$ be an Hilbert space and $0 \leq T \in \mathcal{B}(\mathcal{H})$. The trace is defined as 
 \[
@@ -1153,7 +1213,13 @@ A foundational idea in topology is that of a \emph{neighborhood}—a collection 
     \item $\tau$ is closed under arbitrary unions: if $\{U_\alpha\}_{\alpha \in A} \subseteq \tau$, then $\bigcup_{\alpha \in A} U_\alpha \in \tau$.
 \end{enumerate}
 
-A nonempty set $S$ equipped with a topology $\tau$ is called a \emph{topological space}, and is denoted by $(S, \tau)$ (or simply $X$ when no ambiguity arises). A member of $\tau$ is called an \emph{open set} in $S$. The complement of an open set is a \emph{closed set}.
+A nonempty set $S$ equipped with a topology $\tau$ is called a \emph{topological space}, and is denoted by $(S, \tau)$ (or simply $X$ when no ambiguity arises). A member of $\tau$ is called an \emph{open set} in $S$. The complement of an open set is a \emph{closed set}. 
+
+A set \( S \) can have many different topologies.  
+The family of all topologies on \( S \) is partially ordered by set inclusion.  
+If \( \tau_1 \subset \tau_2 \), that is, if every \( \tau_1 \)-open set is also \( \tau_2 \)-open,  
+then we say that \( \tau_1 \) is \emph{weaker} or \emph{coarser} than \( \tau_2 \),  
+and that \( \tau_2 \) is \emph{stronger} or \emph{finer} than \( \tau_1 \).
 \end{definition}
 
 \begin{example}
@@ -1193,28 +1259,33 @@ A \emph{topological vector space} is a vector space \( V \) equipped with a line
   A \emph{seminorm} on a vector space  $V$ is a real-valued function  $p : V \to \mathbb{R} $ that satisfies positive scalability and the triangle inequality.
 \end{definition}
 
-%p.115 - conway
+\begin{definition}
+  Let \(V\) be a normed space. For each \(v^* \in V^*\), define 
+$p_{v^*}(v) = |v^*(v)|,$  for all  $v \in V.$
+Then \(p_{v^*}\) is a seminorm, and the topology defined on \(V\) by these seminorms is called the \emph{weak topology} and is often denoted by \(\sigma(V, V^*)\). This is the coarsest topology on $V$ that makes all functionals $v*$ continuous.
+\end{definition}
 
-%p.43
+\begin{definition}
+  Let \( V \) be a normed space. For each \( x \in E \), define the map 
+  $p_v(v^*) = |v^*(v)|,$ for all  $v \in V$.
+  Then \( p_v \) is a seminorm on \( V^* \), and the topology defined on \(V\) by these seminorms is called the \emph{weak$^*$ topology} , and is often denoted by \( \sigma(V^*, V) \). This is the coarsest topology on $V$ that makes all evaluation maps $v^* \mapsto v^*(v)$ continuous.
+\end{definition}
 
-\todo[inline,size=\normalsize]{functionals, duais, weak topology and weak* topology} 
-%dual ->p.213
+\begin{lemma}
+  In the finite dimensional setting the norm topology and the weak topology coincide.
+\end{lemma}
 
 
 
 
 %p.243 infinite dimensional analysis 
 
-% The norm topology on a vector space X defines a topological dual X, giv ing rise to a natural dual pair X,X . Thus we may refer to the weak topologyon a normed space without specifying a dual pair. In such cases, it is understood that X is paired with its norm dual. Since a finite dimensional space has only one Hausdorff linear topology, the norm topology and the weak topology must be the same. This is not true in infinite dimensional normed spaces. On an infinite dimensional normed space, the weak topology is strictly weaker than the norm topology (Theorem 6.26). 
-%  Also, the weak topology on an infinite dimensional normed space is never metrizable (Theorem 6.26). Despite this, it is possible for the weak topology to be metrizable when restricted to bounded subsets, such as the unit ball (Theorems 6.30 and 6.31).
-
 %IMPORTANTE:Since a finite dimensional space has only one Hausdorff linear topology, the norm topology and the weak topology must be the same.
 
 
 
 \section{Probabilistic Programming/Measure theory} \label{sec:pp}
-
- This section introduces the fundamentals of measure theory, a key component in defining the semantics of probabilistic programs, drawing inspiration primarily from \cite{dahlqvistSemanticsProbabilisticProgramming2020a} and \cite{athreyaMeasureTheoryProbability2006}. For a more in-depth exploration of lambda calculus theory, see reference \cite{aliprantisBanachLattices1999}. 
+ 
 
 
 In this work, we only consider finite (positive) measures; hence, the term "measure" implicitly refers to a finite measure unless stated otherwise.
@@ -3490,7 +3561,6 @@ Considering that the squared absolute value of a real number is always non-negat
 
   \subsubsection{Example: Deutsch's Algorithm}
 
-  \todo[inline,size=\normalsize]{Preciso de alterar o erro -> coloacr um bit flip antes da medição (As contas estão erradas (estão para a trace norm) e com a diamond norm este exemplo ficaria muito complicado em termos de contas )} 
 
   In 1985, David Deutsch presented an algorithm that determines whether a function $f$ is constant for a single-bit input (\textit{i.e.}, either equal to 1 for all $x$ or equal to 0 for all $x$) or balanced (\textit{i.e.}, equal to 1 for half of the values of $x$ and equal to 0 for the other half) \cite{deutsch1985quantum}. Classically, to determine which case holds requires running $f$ twice. Quantumly, it suffices to run f once. The Deutsch-Jozsa Algorithm is a simple example of a quantum algorithm that outperforms its classical counterpart. The algorithm is based on the concept of a quantum oracle, which is a black box that implements a unitary transformation $U_f$ such that $U_f \ket{x}\ket{y} = \ket{x}\ket{y \oplus f(x)}$, where $\oplus$ denotes addition modulo 2. The quantum circuit implementing Deutsch’s algorithm is presented in  \autoref{fig:Deutsch-Jozsa}.
   
@@ -3660,7 +3730,7 @@ Now, regarding the interpretation of the lambda term \text{Deutch},
   If both $p_1 = p_2 = 1/2$ this operator corresponds to applying an $X$ gate before measurement. Therefore, in this case, we can write $\textit{meas}^{\epsilon}$ as $\text{meas} (X)$, in $\text{Deutsch}^{\epsilon}$, where $\text{Deutsch}^{\epsilon}$ is the the judgement that results from replacing $\textit{meas}$ by ${meas}^{\epsilon}$ in $\text{Deutsch}$ .
   
   
-  Consider an arbitrary quantum state $\ket{\psi}\bra{\psi}$, where $\ket{\psi}$ is given in \autoref{eq:qubit3}. Attending to \autoref{eq:bloch_state_vec}, the Bloch vectors of the states $\id(\ket{\psi})$ and $X(\ket{\psi})$ are given by 
+  Consider an arbitrary quantum state $\ket{\psi}\bra{\psi}$, where $\ket{\psi}$ is given in \autoref{eq:qubit3}. Attending to \autoref{def:boch_sphere_state}, the Bloch vectors of the states $\id(\ket{\psi})$ and $X(\ket{\psi})$ are given by 
 \[
 (\cos\phi \sin\theta, \sin\phi \sin\theta, \cos\theta)
 \quad \text{and} \quad
