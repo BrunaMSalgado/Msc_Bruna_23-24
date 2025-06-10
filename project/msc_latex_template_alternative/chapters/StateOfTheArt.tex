@@ -156,7 +156,7 @@ The \emph{inner product}  \gls{inner-product} is a function from a vector space 
 
 \begin{enumerate}
   \item Linearity in the second argument,$$ \left\langle v, \sum_{i} a_i w_i\right\rangle = \sum_i a_i \langle v, w_i\rangle. $$
-  \item $\langle v,w \rangle = \langle w,v \rangle^{*} $, \text{  where \gls{conj} is the complex conjugate operation.}
+  \item $\langle v,w \rangle = \overline{\langle w,v \rangle} $, \text{  where \gls{conj} is the complex conjugate operation.}
   \item  $\langle v,w \rangle \geq 0 $ with equality if and only if $v = 0$.
 \end{enumerate}
 \end{definition}
@@ -165,7 +165,7 @@ The \emph{inner product}  \gls{inner-product} is a function from a vector space 
 
 The inner product $ \langle v, w \rangle$ of two vectors $ v = (a_1, \ldots, a_n ),w = (b_1, \ldots, b_n) \in \mathbb{C}^{n}$ is defined as
 \begin{equation*}
-  \langle v, w \rangle = \sum_{i} a_i^{\ast} b_i. 
+  \langle v, w \rangle = \sum_{i} \overline{a}_i b_i. 
 \end{equation*}
 
 % = \begin{pmatrix} a_1, \ldots, a_n \end{pmatrix}  \begin{pmatrix} b_1 \\ \vdots \\ b_n \end{pmatrix}
@@ -404,16 +404,16 @@ The inner product in $V \oplus W$ is defined as follows:
 In this context, we introduce two commonly used norms, defined below.
 
 \begin{definition}
-Let \( x = (x_1, x_2, \dots, x_n) \in \mathbb{C}^n \). The \( \ell^1 \) norm, \gls{l1_norm},  is defined by
+Let \( x = (x_1, x_2, \dots, x_n) \in \mathbb{C}^n \). The \( L^1 \) norm, \gls{l1_norm},  is defined by
 \[
-\|x\|_{l1} = \sum_{i=1}^n |x_i|.
+\|x\|_{L^1} = \sum_{i=1}^n |x_i|.
 \]
 \end{definition}
 
 \begin{definition}
-Let \( x = (x_1, x_2, \dots, x_n) \in \mathbb{C}^n \) . The \( \ell^\infty \), \gls{l_inf_norm}, is defined by
+Let \( x = (x_1, x_2, \dots, x_n) \in \mathbb{C}^n \) . The \( L^\infty \), \gls{l_inf_norm}, is defined by
 \[
-\|x\|_{l\infty} = \max_{1 \leq i \leq n} |x_i|.
+\|x\|_{L^\infty} = \max_{1 \leq i \leq n} |x_i|.
 \]
 \end{definition}
 
@@ -718,7 +718,7 @@ A state that is a probabilistic mixture of pure states is designated a \emph{mix
 \begin{equation} \label{eq:bloch_vector_0}
   \rho = \frac{1}{2}(\id + r_{x}\sigma_{x} + r_{y}\sigma_{y} + r_{z}\sigma_{z}),
 \end{equation}
-where $\vec{r} = (r_x, r_y, r_z)$ is a real three-dimensional vector such that $\| \vec{r} \|_2 \leq 1$. This vector is known as the \emph{Bloch vector for the state} $\rho$. Since $\rho$ is Hermitian. $r_x, r_y$ and $r_z$ are always real.  The inverse map of \autoref{eq:bloch_vector_0} is
+where $r = (r_x, r_y, r_z)$ is a real three-dimensional vector such that $\| r \|_2 \leq 1$. This vector is known as the \emph{Bloch vector for the state} $\rho$. Since $\rho$ is Hermitian. $r_x, r_y$ and $r_z$ are always real.  The inverse map of \autoref{eq:bloch_vector_0} is
 \begin{equation}
   \label{eq:Bloch_vector}
   r_{\mu} = \text{Tr}(\rho \sigma_{\mu})
@@ -779,6 +779,8 @@ Similarly, the \emph{reduced density operator for subsystem} $B$ is $\rho_{B} = 
 % tudo sobre matrizes de densidade incuindo a definição de matriz de densidade reduzida e traço parcial
 
 % bloch vector for mixed states
+
+\todo[inline,size=\normalsize]{Decidir onde colocar a def de trace-nonincreasing op e quantum operation: aqui ou na parte das contribuições qd falar da categoria do selinger} 
 
 \subsection{Quantum Channels} \label{subsec:quantum_channels}
 
@@ -992,7 +994,11 @@ for all $\rho \in \mathbb{C}^{n \times n}$. There exists a unit vector $u \in \m
 \end{theorem}
 
 \subsection{Quantum circuits}
-As quantum computation remains in its early stages of development, programming is primarily based on the use of \emph{quantum circuits}. A quantum circuit consists of wires and \emph{quantum gates}, which serve to transmit and manipulate quantum information. Each wire corresponds to a qubit, while the gates represent operations that can be applied to these qubits. 
+As quantum computation remains in its early stages of development, programming is primarily based on the use of \emph{quantum circuits}. 
+
+\begin{definition}
+  A \emph{quantum circuit} consists of wires and quantum gates, which serve to transmit and manipulate quantum information. Each wire corresponds to a qubit, while the gates represent operations that can be applied to these qubits. 
+\end{definition}
 
 In this subsection the notation for the quantum gates used in this work will be introduced.
 
@@ -1099,7 +1105,7 @@ Let \( V \) and \( W \) be normed vector spaces, and let \( T: V \rightarrow W \
 If \( \norm{T}_{\text{op}} < \infty \), we say that \( T \) is a \emph{bounded operator}; otherwise, if \( \norm{T}_{\text{op}} = \infty \), we say that \( T \) is \emph{unbounded}. We denote by \( \mathcal{B}(V, W) \) the vector space of all bounded linear operators from \( V \) to \( W \), and we write \( \mathcal{B}(V) \)  for \( \mathcal{B}(V, V) \).
 \end{definition}
 
-\begin{lemma}
+\begin{lemma} \label{lemma:op_norm_submult}
 Let \( T: V \rightarrow W \) be a bounded linear operator between normed spaces. Then the following statements hold:
 \begin{enumerate}
   \item For every \( v \in V \), we have $
@@ -1190,7 +1196,7 @@ where $\{v_i\}$ is an orthonormal basis for $\mathcal{H}$.
 \end{definition}
 
 \begin{definition}
-  Let $\mathcal{H}$ be an Hilbert space. An operator is \emph{trace class} if $\text{Tr}(|T|) < \infty$, where $|T|= \sqrt{T^{*}T}$.
+  Let $\mathcal{H}$ be an Hilbert space. An operator $T$ is \emph{trace class} if $\text{Tr}(|T|) < \infty$, where $|T|= \left(\overline{T}T \right)^{1/2}$.
 \end{definition}
 
 \begin{definition}
@@ -1252,28 +1258,39 @@ A \emph{topological vector space} is a vector space \( V \) equipped with a line
 
 \begin{definition}
   Let $V$ be a vector space. 
-  Linear maps from $V$ to its scalar field are called \emph{linear functionals}. The set of all continuous linear functionals on $V$ forms a vector space, called the \emph{(topological) dual space} of $ V $, and is denoted by $V^*$.
+  Linear maps from $V$ to its scalar field are called \emph{linear functionals}. The set of all continuous linear functionals on $V$ forms a vector space, called the \emph{(topological) dual space} of $ V $, and is denoted by $V^*$. It is common to designate elements of the dual space \( V^* \)  by \( v^* \).  %and to write $\langle v, v^* \rangle $in place of \( v^*(v) \).
 \end{definition}
+
+%norma espaço dual
+
+
+\begin{theorem}
+Let \( V \) be a normed vector space. For each \( v^* \in V^* \), define its norm by
+\[
+\|v^*\| := \sup \left\{ | v^*(v) | : \|v\| = 1 \right\}.
+\]
+This defines a norm on \( V^* \) under which \( V^* \) is a Banach space. Moreover, for every \( v \in V \), we have
+\[
+\|v\| = \sup \left\{ | v^*(v) | : \|v^*\| = 1 \right\}.
+\]
+As a consequence, the map \( v^* \mapsto v^*(v)  \) defines a bounded linear functional on \( V^* \), and its norm equals \( \|v\| \).
+\end{theorem}
 
 \begin{definition}
-  A \emph{seminorm} on a vector space  $V$ is a real-valued function  $p : V \to \mathbb{R} $ that satisfies positive scalability and the triangle inequality.
+Let \( V \) be a vector space. The \emph{weak\(^*\)-topology} on the dual space \( V^* \) is the coarsest topology that makes all evaluation maps
+\[
+v^* \mapsto v^*(v) 
+\]
+continuous for every \( v \in V \).
 \end{definition}
 
-\begin{definition}
-  Let \(V\) be a normed space. For each \(v^* \in V^*\), define 
-$p_{v^*}(v) = |v^*(v)|,$  for all  $v \in V.$
-Then \(p_{v^*}\) is a seminorm, and the topology defined on \(V\) by these seminorms is called the \emph{weak topology} and is often denoted by \(\sigma(V, V^*)\). This is the coarsest topology on $V$ that makes all functionals $v*$ continuous.
-\end{definition}
 
-\begin{definition}
-  Let \( V \) be a normed space. For each \( x \in E \), define the map 
-  $p_v(v^*) = |v^*(v)|,$ for all  $v \in V$.
-  Then \( p_v \) is a seminorm on \( V^* \), and the topology defined on \(V\) by these seminorms is called the \emph{weak$^*$ topology} , and is often denoted by \( \sigma(V^*, V) \). This is the coarsest topology on $V$ that makes all evaluation maps $v^* \mapsto v^*(v)$ continuous.
-\end{definition}
+%p110, p.85
 
-\begin{lemma}
-  In the finite dimensional setting the norm topology and the weak topology coincide.
-\end{lemma}
+
+%\begin{lemma}
+  %In the finite dimensional setting the norm topology and the weak topology coincide.
+%\end{lemma}
 
 
 
@@ -1529,6 +1546,9 @@ The following alternative definition is useful to compute the total variation no
 
 
 \section{C* and W*-Algebras} \label{sec:c*_w*}
+
+%Proposition 5.13. theory of op algebras 1 Takesaki -> f \otimes g é cp se f e g são cp
+
 
 
 \section{Category theory} \label{sec:catgories}
@@ -2557,8 +2577,11 @@ Any diagram in a symmetric monoidal category constructed only from associators $
 
 \todo[inline,size=\normalsize]{Esclarecer questão sobre o que é um terminal map to the unit object (of the monoidal category)}
 
+\todo[inline,size=\normalsize]{Colocar um frase bonitinha sobre como isto acaba por ser tb um resumo do que eu aprendi e portanto são apresentados os conceitos de raiz} 
 
 \chapter{Metric Lambda Calculus} \label{ch:metriclambda}
+
+\todo[inline,size=\normalsize]{Ver questão da interpretação -> que categorias usar, maybe não vamos ver a parte metrica misturada com a interpretação, porque as provas dão trabalho q quero ter não. Cenas simples ver a interpretação nessas cats dos programas exemplo da sintaxe}
 
 \todo[inline,size=\normalsize]{Mudar a descrição co capítulo} 
 

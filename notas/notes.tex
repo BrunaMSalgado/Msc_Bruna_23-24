@@ -1822,8 +1822,8 @@ First, we calculate,
   & \tracenorm{ \id(\rho) - A_{\gamma}(\rho)} \\
   & =    \Big\lVert  |\alpha|^{2} \ket{0} \ket{0} + \alpha \beta^{*} \ket{0} \ket{1} + \alpha^{*} \beta \ket{1} \ket{0} + |\beta|^{2} \ket{1} \ket{1}  - \big((|\alpha|^{2} + \gamma |\beta|^{2}) \ket{0}\bra{0} \\ 
   & \hspace{10pt}  +  \sqrt{1-\gamma} \hspace{1pt} \alpha \beta^{*} \ket{0}\bra{1} + \sqrt{1-\gamma} \hspace{1pt} \alpha^{*} \beta \ket{1}\bra{0} + (1-\gamma) |\beta|^{2} \ket{1}\bra{1}\big) \Big\rVert_1 \\
-   & = \tracenorm{\gamma |\beta|^{2} \ket{0} \ket{0} + (1-\sqrt{1-\gamma}) (\alpha \beta^{*} \ket{0} \ket{1} + \alpha^{*} \beta \ket{1} \ket{0}) - \gamma |\beta|^{2} \ket{1} \ket{1}} \\
-   & = \tr \left( \sqrt{\left( \gamma |\beta|^{2} \ket{0} \ket{0} + (1-\sqrt{1-\gamma}) (\alpha \beta^{*} \ket{0} \ket{1} + \alpha^{*} \beta \ket{1} \ket{0}) - \gamma |\beta|^{2} \ket{1} \ket{1}  \right)^2}\right) \\
+   & = \tracenorm{\gamma |\beta|^{2} \ket{0} \bra{0} + (1-\sqrt{1-\gamma}) (\alpha \beta^{*} \ket{0} \bra{1} + \alpha^{*} \beta \ket{1} \bra{0}) - \gamma |\beta|^{2} \ket{1} \bra{1}} \\
+   & = \tr \left( \sqrt{\left( \gamma |\beta|^{2} \ket{0} \bra{0} + (1-\sqrt{1-\gamma}) (\alpha \beta^{*} \ket{0} \bra{1} + \alpha^{*} \beta \ket{1} \bra{0}) - \gamma |\beta|^{2} \ket{1} \bra{1}  \right)^2}\right) \\
    & = \tr \left( \sqrt{\left( (1-\sqrt{1-\gamma})^{2} |\alpha|^{2}|\beta|^{2} + \gamma^{2} |\beta|^{4} \right) (\ket{0} \bra{0} + \ket{1} \bra{1} ) } \right) \\
    & = 2 \cdot \sqrt{  (1-\sqrt{1-\gamma})^{2} |\alpha|^{2}|\beta|^{2} + \gamma^{2} |\beta|^{4}} \\
    & \leq 2 \gamma
@@ -1972,31 +1972,31 @@ Consequently, we postulate the following axiom:
   \end{align*}
   for all  $v \in V$, $w \in W$.
 
-  As a result, we will now consider the category obtained by the coproduct cocompletion of $\catBan$, $\catBan^+$.
+  
 
   Recall that every operator \( T: V \to U \) between Banach spaces \( V \) and \( U \) has a norm \( \norm{T} \), called the \emph{operator norm}, defined by
   \[
   \norm{T} = \sup \{ \norm{Tv} \mid \norm{v} = 1 \}.
   \]
   
-  Analogously to the case in \( \catQ \), this induces a metric \( d \) on the hom-set \( \catBan^+(V, U) \), given by
+  Analogously to the case in \( \catQ \), this induces a metric \( d \) on the hom-set \( \catBan(V, U) \), given by
   \[
   d(S, T) = \norm{S - T},
   \]
-  for any \( S, T \in \catBan^+(V, U) \).
+  for any \( S, T \in \catBan(V, U) \).
 
   \begin{proposition} \label{prop:met_cond_pp}
-    For all $T, T' \in \catBan^+(V,U)  $ and $S, S' \in \catBan^+(W,U) $, $[T-T',S-S']:\catBan^+(V,U) \otimes \catBan^+(W,U) \rightarrow \catBan^+(V \oplus W,U) $ is a functor in the category of metric spaces.
+    For all $T, T' \in \catBan(V,U)  $ and $S, S' \in \catBan(W,U) $, $[T-T',S-S']:\catBan(V,U) \otimes \catBan(W,U) \rightarrow \catBan(V \oplus W,U) $ is a functor in the category of metric spaces.
   \end{proposition}
 
   \begin{proof}
-    We deduce by unfolding the respective definitions that we need to prove that for all short operators $T, T' \in \catBan^+(V,U)  $ and $S, S' \in \catBan^+(W,U) $ the inequation $\norm{[T-T', S-S']} \leq  \sup \left\{ \norm{T-T'}, \norm{S-S'} \right\}$ holds.
+    We deduce by unfolding the respective definitions that we need to prove that for all short operators $T, T' \in \catBan(V,U)  $ and $S, S' \in \catBan(W,U) $ the inequation $\norm{[T-T', S-S']} \leq  \sup \left\{ \norm{T-T'}, \norm{S-S'} \right\}$ holds.
 
     Although Lemma~\ref{lem_op_max_trace} is stated for Euclidean (or Hilbert) spaces, a careful examination of its proof shows that the result extends to arbitrary normed spaces, including Banach spaces. Given we are considering the operator norm,  it follows that the inequality above  holds.
 
   \end{proof}
   
-  Note that given this result, \cite[Theorem 4.3]{dahlqvist2023syntactic} also holds for $\catBan^+$ and as result $\catBan^+$ is $\catMet$-enriched.
+  Note that given this result, \cite[Theorem 4.3]{dahlqvist2023syntactic} also holds for $\catBan$ and as result $\catBan$ is $\catMet$-enriched.
 
 
   \begin{example}[Random walk]
@@ -2251,6 +2251,11 @@ We compute,
 
 
 \subsection{Infinite-Dimensional Quantum Computation}
+
+In the previous quantum model, we considered the Schr\"odinger picture---that is, morphisms between quantum states (\ie density operators). In~\cite{choSemanticsQuantumProgramming2016}, the author presents a model in the Heisenberg picture, where maps are between observables (\ie self-adjoint operators), which can be seen as an infinite-dimensional extension of Selinger’s model. This model is given by the category $\WstarCPSUop$, the opposite of the category $\WstarCPSU$ whose objects are W$^*$-algebras and morphisms are completely positive subunital maps between them. It is shown that Selinger’s category $\catQ$ is equivalent (up to categorical equivalence) to the finite-dimensional subcategory of $\WstarCPSUop$.
+
+Since we will restrict our attention to spaces of the form $\mathcal{B}(\mathcal{H})$, we will work with the categories $\BHCPSU$ and $\BHCPSUop$. We also note that the aforementioned equivalence still holds when replacing the categories accordingly, as the full embedding maps morphisms in $\catQ$ to morphisms between bounded operators on Hilbert spaces.
+
 
 % depois
 % defs(C*-star, W*-star, dual, predual, etc.)
