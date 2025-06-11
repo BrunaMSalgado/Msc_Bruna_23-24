@@ -1088,16 +1088,7 @@ The metric equation for conditionals is presented in \autoref{fig:metric conditi
 
 
 
-  \begin{definition}
-    A metric space a pair $(X, d)$ where $X$ is a set and $d: X \times X \to \mathbb{R}_0^+$ is a function known as \emph{distance} satisfying:
-    \begin{enumerate}
-        \item $0 \leq d(x, y)$, with equality if and only if $x = y$,
-        \item $d(x, y) = d(y, x)$,
-        \item $d(x, z) \leq d(x, y) + d(y, z)$ for all $x, y, z \in X$.
-    \end{enumerate}
-  \end{definition}
-  
-  \begin{definition}
+\begin{definition}
     $\catMet$ denotes the category whose objects are metric spaces and whose morphisms are non-expansive maps, \ie, functions that do not increase the distance between points. More precisely, for two metric spaces $(X, d_X)$ and $(Y, d_Y)$, a morphism $f: (X, d_X) \to (Y, d_Y)$ is a function $f: X \to Y$ such that
 $$
 d_Y(f(x), f(y)) \leq d_X(x, y) \quad \text{for all } x, y \in X.
@@ -1107,26 +1098,45 @@ $$
 
 
 \begin{definition}
- A category $\catC$ is $\catMet$-enriched if for each pair of objects $X$ and $Y$ in $\catC$, the hom-set $\catC(X, Y)$ is a metric space and  if the composition of $\catC$-morphisms,
- $$(\comp): \catC(X, Y) \otimes \catC(Y, Z) \rightarrow \catC(X, Z)$$
- is a functor in the category of metric spaces.
+ A category $\catC$ is $\catMet$\emph{-enriched} (or simply a $\catMet$-category) if for each pair of objects $A$ and $B$ in $\catC$, the hom-set $\catC(A, B)$ is a metric space and if the composition of $\catC$-morphisms,
+ $$(\comp): \catC(A, B) \otimes \catC(B, C) \rightarrow \catC(A, C)$$
+ is a functor in the category of metric spaces. 
+ Given two $\catMet$-enriched categories $\catC$ and $\catD$ and a functor $F : \catC\to \catD$, we call 
+$F$ a \emph{$\catMet$-enriched functor} (or simply, a \emph{$\catMet$-functor}) if for all objects $A, B$ in $\catC$, 
+the map $F_{A,B} : \catC(A,B) \to \catC(FA, FB)$ is a $\catMet$-functor. 
+An adjunction $\catC : F \dashv G : \catD$ is called \emph{$\catMet$-enriched} if for all objects $A \in |\catC|$ 
+and $B \in |\catD|$ there exists a $\catMet$-isomorphism
+\[
+\mathcal{D}(FA, B) \cong \catC(A, GB)
+\]
+natural in $A$ and $B$.
 \end{definition}
-
-\todo[inline]{Which designation is more fitting functor in the category of metric spaces or non-expansive function?}
-
-Note that if $\catC$ is a  $\catMet$-enriched category, then $\catC \otimes \catC$ is also a  $\catMet$-enriched category.
 
 
 \begin{definition}
-  A given category $\catC$ with coproducts is said to be $\catMet$-enriched if in addition to the properties of a  $\catMet$-enriched category, the following holds: for $f  \in \catC(X,Z)  $ and $g  \in \catC(Y,Z) $, $ [f,g]:\catC(X,Z)  \otimes \catC(Y,Z) \rightarrow \catC(X \oplus Y,Z) $ is a functor in the category of metric spaces.
+A \emph{$\catMet$-enriched symmetric monoidal category} $\catC$ is a category that is both symmetric monoidal and $\catMet$-enriched, such that the bifunctor
+\[
+\otimes : \catC \times \catC \to \catC
+\]
+is a $\catMet$-functor. 
+\end{definition}
+
+\begin{definition}
+  A \emph{$\catMet$-enriched symmetric monoidal closed category} $\catC$ is a category that is both symmetric monoidal closed and a $\catMet$-enriched monoidal category, such that the adjunction
+\[
+(- \otimes A) \dashv (A \multimap -)
+\]
+is a $\catMet$-adjunction.
+\end{definition}
+
+
+\begin{definition}
+  A given category $\catC$ \emph{with coproducts} is said to be $\catMet$-\emph{enriched} if in addition to the properties of a  $\catMet$-enriched category, the following holds: for $f  \in \catC(X,Z)  $ and $g  \in \catC(Y,Z) $, $ [f,g]:\catC(X,Z)  \otimes \catC(Y,Z) \rightarrow \catC(X \oplus Y,Z) $ is a $\catMet$-functor.
  \end{definition}
 
 
   %Let $\catC$ be a category with coproducts $\catMet$-enriched, it holds that for $f, f'  \in \catC(X,Z)  $ and $g,g'  \in \catC(Y,Z) $, $d_{\catC(X,Z) \otimes \catC(Y,Z)}((f,f'),(g,g')) = \sup(d(f,f'),d(g,g'))$.
 
-
-
-\todo[inline]{Present the interpretation of the equational system via monoidal closed categories with coproducts and $\catMet$-enriched -> ???}
 
 
 
@@ -1512,9 +1522,8 @@ The inequality in Proposition \ref{prop:met_cond} follows from the linearity of 
 
 
 
-
 \begin{proof}
-  First, we establish that $\catQ$ is $\catMet$-enriched. By unpacking the relevant definitions, this reduces to proving the following: for all short operators $\phi, \phi' : \sigma \to \tau$ and $\psi, \psi' : \sigma \to \tau$ the inequation $\diamondnorm{\phi-\phi'} + \diamondnorm{\psi-\psi'} \geq \diamondnorm{\psi\phi-\psi'\phi'} $ holds. This follows directly from \cite[Proposition 3.38 (second statement)]{watrous2018theory}
+  First, we establish that $\catQ$ is $\catMet$-enriched. By unpacking the relevant definitions, this reduces to proving the following: for all short operators $\phi, \phi' : \sigma \to \tau$ and $\psi, \psi' : \tau \to \mu$ the inequation $\diamondnorm{\phi-\phi'} + \diamondnorm{\psi-\psi'} \geq \diamondnorm{\psi\phi-\psi'\phi'} $ holds. This follows directly from \cite[Proposition 3.38 (second statement)]{watrous2018theory}
 
   Next, regarding $\otimes$ we can also deduce by unfolding the respective definitions that we need to prove $ \diamondnorm{\phi - \phi'} + \diamondnorm{\psi - \psi'} \geq \diamondnorm{\psi \otimes \phi - \psi' \otimes \phi'}$. 
   For this case,  by \cite[Corollary 3.47]{watrous2018theory} and \cite[Proposition 3.44]{watrous2018theory} , we have the inequalities  
@@ -2001,7 +2010,7 @@ Consequently, we postulate the following axiom:
 
   \begin{example}[Random walk]
 
-    $\mathbf{Ban}^+$ provides a model of the metric $\lambda$-theory presented in \ref{ex:random_walk_prob}  via the following interpretation: $\sem{\emph{real}} = \mathcal{M}\mathbb{R}$, the Banach space of finite Borel measures on $\mathbb{R}$ equipped with the total  variation norm.
+    $\mathbf{Ban}$ provides a model of the metric $\lambda$-theory presented in \ref{ex:random_walk_prob}  via the following interpretation: $\sem{\emph{real}} = \mathcal{M}\mathbb{R}$, the Banach space of finite Borel measures on $\mathbb{R}$ equipped with the total  variation norm.
 
     For a finite measure $\nu$, the total variation norm is defined as
     \begin{align*}
@@ -2257,6 +2266,9 @@ In the previous quantum model, we considered the Schr\"odinger picture---that is
 Since we will restrict our attention to spaces of the form $\mathcal{B}(\mathcal{H})$, we will work with the categories $\BHCPSU$ and $\BHCPSUop$. We also note that the aforementioned equivalence still holds when replacing the categories accordingly, as the full embedding maps morphisms in $\catQ$ to morphisms between bounded operators on Hilbert spaces.
 
 
+
+%We start by proving that $\BHCPSUop$ is a $\catMet$-enriched symmetric monoidal category with coproducts.
+
 % depois
 % defs(C*-star, W*-star, dual, predual, etc.)
 % resultado Kenta sho e diagramas de passagem entre B(H) e T*(H)
@@ -2264,7 +2276,14 @@ Since we will restrict our attention to spaces of the form $\mathcal{B}(\mathcal
 
 % Agora
 
-\todo[inline]{Prova Stuff}
+\todo[inline]{Ver quais os conceitos de w* algebras são essenciais e acrescentar, def c* algebra,w* algebra, predual,ultraweak topololy, tensor product for W* algebras e props relevantes, dualidade trace class, BH }
+
+%def p.164 108 I -> produto tensorial
+
+ \todo[inline]{ Por frase do tipo " Due to limitations of space, here we just fix notations and
+ terminology, and list the basic results. A reader who is not familiar with these topics may consult bla bla"}
+
+For C$^*$-algebras $\mathcal{A}$ and $\mathcal{B}$, we denote by $\mathcal{A}\odot \mathcal{B} $ the algebraic tensor product of $\mathcal{A}$ and $\mathcal{B}$.
 
 %\begin{definition} Let $\mathcal{A}$ be a $C^*$-algebra, and let $\mathcal{V}$ be a subspace. Then we shall call $\mathcal{V}$ a \emph{(concrete) operator space}.
   
@@ -2289,7 +2308,7 @@ Note that $\|\cdot\|_{\text{cb}}$ is a norm on the space of completely bounded m
 \]
 \end{proposition}
 
-
+\begin{comment}
 \begin{theorem} \label{thm:tensor_cb} \cite[Proposition 12.3]{paulsenCompletelyBoundedMaps2003}
   Let $\mathcal{A}_i$ and $\mathcal{B}_i$ be unital $C^*$-algebras, let $\mathcal{S}_i \subseteq \mathcal{A}_i$ be subspaces, 
 and let $L_i: \mathcal{S}_i \to \mathcal{B}_i$ be completely bounded, $i = 1,2$. Then the linear map $L_1 \widecheck{\otimes}_\varepsilon 
@@ -2300,7 +2319,6 @@ defines a completely bounded map $L_1 \widecheck{\otimes}_\varepsilon L_2: \math
 \]
 \end{theorem}
 
-\begin{comment}
 
 \begin{proposition} \cite[Proposition 3.2.2]{effrosOperatorSpaces2000} \label{prop:cb_dual}
   Given $C^*$-algebras $\mathcal{A}$ and $\mathcal{B}$, and a completely bounded mapping $\phi : A \to B$, we have
@@ -2313,17 +2331,28 @@ defines a completely bounded map $L_1 \widecheck{\otimes}_\varepsilon L_2: \math
 
 \begin{lemma} \cite[p.19]{pisierIntroductionOperatorSpace2003} \label{lem:cb_comp_submult}
   Given completely bounded maps $\phi: B (\mathcal{H}) \to B (\mathcal{K}) $ and $\psi: B (\mathcal{K}) \to B (\mathcal{L})$, it holds that
-
   $$ \cbnorm{\psi \cdot \phi} \leq \cbnorm{\psi} \cdot \cbnorm{\phi}  $$
 \end{lemma}
 
 \begin{proposition} \label{prop:dirsum_cb} \cite[Exercise 2.1.3.]{pisierIntroductionOperatorSpace2003}
   Let $\mathcal{H}_1, \mathcal{H}_2,  \mathcal{K} $ be Hilbert spaces.   Consider $\phi_i \in CB(B(\mathcal{K}), B(\mathcal{H}_i))$ ($i = 1,2$), and let $\phi \in 
-  CB(E, B(\mathcal{H}_1 \oplus  \mathcal{H}_2))$ be defined by $\phi(x) = (\phi_1(x),  \phi2(x))$. It holds that 
+  CB(E, B(\mathcal{H}_1 \oplus  \mathcal{H}_2))$ be defined by $\phi(x) = (\phi_1(x),  \phi_2(x))$. It holds that 
   $$\cbnorm{\phi} = \max \{ \phi_1, \phi_2 \}.$$
-
-  
 \end{proposition}
+
+\begin{theorem} \cite[Theorem 112 XI]{westerbaanCategoryNeumannAlgebras2019} \label{thm:beta_alg_eq_beta_gamma}
+A tensor product $\gamma\colon \mathcal{A} \times \mathcal{B} \to \mathcal{T}$ of von Neumann algebras $\mathcal{A}$ and $\mathcal{B}$ satisfies the following universal property: for every normal bounded bilinear map $\beta\colon  \mathcal{A} \times  \mathcal{B} \to \mathcal{C}$ into a von Neumann algebra $\mathcal{C}$, there exists a unique ultraweakly continuous map $\beta_\gamma\colon \mathcal{T} \to \mathcal{C}$ such that $\beta_\gamma \circ \gamma = \beta$. Moreover, $ \norm{\beta_\gamma} = \norm{\beta_\odot}$, where $
+\beta_\odot\colon  \mathcal{A} \odot  \mathcal{B} \to \mathcal{C} 
+$ .
+\end{theorem}
+
+\begin{proposition} \cite[Proof 115 III] {westerbaanCategoryNeumannAlgebras2019} \label{prop:norm_beta_alg}
+  Let  $\mathcal{A}$ and $\mathcal{B}$ be von Neumann Algebras.
+  Given normal completely positive maps $f:\mathcal{A} \to \mathcal{C}$ and $g:\mathcal{B} \to \mathcal{C}$. We may take $ f \, \bar{\otimes} \, g = \beta_{\bar{\otimes}}$ as in the theorem above. Moreover, $\norm{\beta_\odot(s)} \leq \norm{f}\norm{g}\norm{s}$, given an element $s\in \mathcal{A} \bar{\otimes} \mathcal{B}$.
+\end{proposition}
+
+
+\begin{comment}
 
 \begin{proposition} \label{prop:eqs_id_cb}
    Let $\phi: B(\mathcal{H}) \to B(\mathcal{K})$ be a normal completely positive subunital map. It holds that $\cbnorm{\phi \, \widecheck{\otimes}_\varepsilon \id}$ and $\cbnorm{\id \, \widecheck{\otimes}_\varepsilon\phi}$ are completely bounded maps, such that
@@ -2349,25 +2378,6 @@ defines a completely bounded map $L_1 \widecheck{\otimes}_\varepsilon L_2: \math
 
 \todo[inline]{Caso finito -> tendo em conta que a weak topology e a norm topology coincidem e que portanto o tensor coincide o tensor algebrico (q coincide com o spatial) acho que a prop acima dá-nos o q queremos}
 
-\todo[inline]{perceber se o que está na tese do Abraham Anton Westerbaan coincide com o que está abaixo}
-
-\begin{proposition} \label{prop:cb_tensores}
-  Given normal completely positive subunital maps $ \phi \,\widecheck{\otimes}_\varepsilon \psi: B(\mathcal{H}_1) \,\widecheck{\otimes}_\varepsilon B(\mathcal{H}_2)  \to  B(\mathcal{K}_1) \,\widecheck{\otimes}_\varepsilon B(\mathcal{K}_2)$ 
-  and $ \phi \, \bar{\otimes} \, \psi: B(\mathcal{H}_1) \, \bar{\otimes} \, B(\mathcal{H}_2)  \to  B(\mathcal{K}_1) \, \bar{\otimes} \, B(\mathcal{K}_2)$, it holds that
-  \[
-  \cbnorm{\phi \,\bar{\otimes} \, \psi} \leq \cbnorm{\phi \,\widecheck{\otimes}_\varepsilon \psi} .
-\]
-\end{proposition}
-
-\begin{proof}
-  prova da p.173 da tese Abraham Anton Westerbaan -> Podemos inferir que $\norm{\phi \, \bar{\otimes} \, \psi} =  \norm{f} \cdot \norm{g} $?
-  
-  Em caso positivo -> a proposição segue de \ref{prop:cp_cb} (porque o tensor de 2 mapas cp é cp).
-
-\end{proof}
-
-
-
 \todo[inline]{Em ultimo caso podemos cingir-nos aos mapas unitais (trace preserving to lado dos trace class ops)}
 
 \begin{proposition} \label{prop:cb_unital_case}
@@ -2384,11 +2394,24 @@ defines a completely bounded map $L_1 \widecheck{\otimes}_\varepsilon L_2: \math
   On the other hand attending once more to Proposition \ref{prop:cp_cb}, and the fact that $\phi$ is unital it follows that $\cbnorm{\phi}=\norm{\phi (\id)}  = \norm{\id} = 1$, and $\cbnorm{\psi}=\norm{\psi (\id)}  = \norm{\id} = 1$. Consequently the inequations in Proposition \ref{prop:cb_unital_case} hold.
 \end{proof}
 
+\end{comment}
 
 
+\begin{proposition} \label{prop:cb_tensor_id}
+  Given a normal completely positive subunital map  $\phi$, it holds that
+  \[
+  \cbnorm{\phi \,\bar{\otimes} \, \id} \leq \cbnorm{\phi} \quad \text{and} \quad  \cbnorm{\id\,\bar{\otimes} \, \phi} \leq \cbnorm{\phi} .
+\]
+\end{proposition}
+
+\begin{proof}
+Considering Theorem \ref{thm:beta_alg_eq_beta_gamma} and Proposition
+\ref{prop:norm_beta_alg}, it follows that, given normal completely positive maps $\phi$ and $\psi$ we have $\norm{\phi \,\bar{\otimes} \, \psi} \leq \norm{\phi} \norm{\psi}$. Attending to Proposition \ref{prop:cp_cb}, we conclude that 
+$$\cbnorm{\phi \,\bar{\otimes} \, \psi} = \norm{\phi \,\bar{\otimes} \, \psi} =  \norm{\phi} \norm{\psi} $$
+The inequaties in Proposition \ref{prop:cb_tensor_id} follow from the fact that $\norm{\id}=1$.
+\end{proof}
 
 
-\todo[inline]{WstarCPSU -> is the category of bounded operators in a hilbert space (B(H)) and normal completely positive subunital maps.}
 
 \begin{comment}
 
@@ -2406,17 +2429,53 @@ Next, regarding $\bar{\otimes}$, the inequations $\cbnorm{\phi \, \bar{\otimes} 
 
 
 
-\begin{proposition}
-  For all $\phi, \phi' \in \WstarCPSUop(B(\mathcal{H}),B(\mathcal{L}))  $ and $\psi, \psi' \in \WstarCPSUop(B(\mathcal{K}),B(\mathcal{L})) $, $[\phi-\phi',\psi-\psi']:\WstarCPSUop(B(\mathcal{H}),B(\mathcal{L})) \otimes \WstarCPSUop(B(\mathcal{K}),B(\mathcal{L})) \rightarrow \WstarCPSUop(B(\mathcal{H}) \oplus B(\mathcal{K}), B(\mathcal{L})) $ is a functor in the category of metric spaces.
+\begin{proposition} \label{prop:cb_cop_functor}
+  For all $\phi, \phi' \in \BHCPSUop(B(\mathcal{H}),B(\mathcal{L}))  $ and $\psi, \psi' \in \BHCPSUop(B(\mathcal{K}),B(\mathcal{L})) $, $[\phi-\phi',\psi-\psi']:\BHCPSUop(B(\mathcal{H}),B(\mathcal{L})) \otimes \BHCPSUop(B(\mathcal{K}),B(\mathcal{L})) \rightarrow \BHCPSUop(B(\mathcal{H}) \oplus B(\mathcal{K}), B(\mathcal{L})) $ is a $\catMet$-functor.
 \end{proposition}
   
 \begin{proof}
   We deduce by unfolding the respective definitions that we need to prove that for all normal completely positive short operators $\phi, \phi' \in \WstarCPSUop(B(\mathcal{H}),B(\mathcal{L}))  $ and $\psi, \psi' \in \WstarCPSUop(B(\mathcal{K}),B(\mathcal{L}))$ the inequation $\cbnorm{[\phi, \psi] - [\phi', \psi']} \leq  \sup \left\{ \cbnorm{\phi-\phi'}, \cbnorm{\psi-\psi'} \right\}$ holds.
-  Firstly, note that the copairing in $\WstarCPSUop$ corresponds to the pairing in $\WstarCPSU$. As a result, this is equivalent to prove that for for all normal completely positive short operators $\phi, \phi' \in \WstarCPSU(B(\mathcal{H}),B(\mathcal{L}))  $ and $\psi, \psi' \in \WstarCPSU(B(\mathcal{K}),B(\mathcal{L}))$ the inequation $\cbnorm{\langle \phi, \psi \rangle - \langle \phi', \psi'\rangle} \leq  \sup \left\{ \cbnorm{\phi-\phi'}, \cbnorm{\psi-\psi'} \right\}.$ Given that by Proposition \ref{prop:cp_cb} $\phi, \phi', \psi, \psi'$ are completely bounded. Moreover note that by the triangle inequality if two maps are completely bounded so is their difference. As a result, by Proposition \ref{prop:dirsum_cb} it follows that the proposition above holds.
-  
+  Firstly, note that the copairing in $\WstarCPSUop$ corresponds to the pairing in $\WstarCPSU$. As a result, this is equivalent to prove that for for all normal completely positive short operators $\phi, \phi' \in \WstarCPSU(B(\mathcal{H}),B(\mathcal{L}))  $ and $\psi, \psi' \in \WstarCPSU(B(\mathcal{K}),B(\mathcal{L}))$ the inequation $\cbnorm{\langle \phi, \psi \rangle - \langle \phi', \psi'\rangle} \leq  \sup \left\{ \cbnorm{\phi-\phi'}, \cbnorm{\psi-\psi'} \right\}$ holds. Given that by Proposition \ref{prop:cp_cb} $\phi, \phi', \psi, \psi'$ are completely bounded. Moreover note that by the triangle inequality if two maps are completely bounded so is their difference. As a result, by Proposition \ref{prop:dirsum_cb}, the proposition above holds.
+\end{proof}
+
+\begin{proposition} \label{prop:cb_cat_met_otimes_met}
+  The category $\BHCPSUop$ is $\catMet$-enriched and the bifunctor $\bar{\otimes} : \BHCPSUop \, \bar{\otimes} \, \BHCPSUop \to \BHCPSUop$ is $\mathsf{Met}$-enriched as well.
+\end{proposition}
+
+\begin{proof}
+  Firstly, we establish that $\BHCPSUop$ is $\catMet$-enriched. By unpacking the relevant definitions, this reduces to proving the following: for all short operators $\phi, \phi' : \mathcal{B}(\mathcal{H})\to \mathcal{B}(\mathcal{K})$ and $\psi, \psi' : \mathcal{B}(\mathcal{K}) \to \mathcal{B}((\mathcal{L}))$ the inequation $\cbnorm{\phi-\phi'} + \cbnorm{\psi-\psi'} \geq \cbnorm{\psi\phi-\psi'\phi'} $ holds. Considering \cite[ Proof of proposition 4.1]{dahlqvist2023syntactic},  it is sufficient to establish that $\cbnorm{\psi(\phi-\phi')} \leq \cbnorm{\phi-\phi'}$ and $\cbnorm{(\psi-\psi')\phi} \leq \cbnorm{\psi-\psi'}$ which follows from Proposition \ref{prop:cp_cb}, the triangle inequality and Lemma \ref{lem:cb_comp_submult}.
+
+  Next, regarding $\bar{\otimes}$ we can also deduce by unfolding the respective definitions that we need to prove $ \cbnorm{\phi - \phi'} + \cbnorm{\psi - \psi'} \geq \cbnorm{\psi \bar{\otimes} \phi - \psi' \bar{\otimes} \phi'}$. 
+  For this case,  by Proposition \ref{prop:cb_tensor_id}, we have the inequalities  
+  \[
+  \cbnorm{\phi} \geq \cbnorm{ \phi \, \bar{\otimes} \, \id }
+  \quad \text{and} \quad  
+ \cbnorm{\phi}  \geq \cbnorm{\id \, \bar{\otimes} \, \phi}
+  \]  
+  for any super-operator \( \phi \). Attending to \cite[ Proof of proposition 4.1]{dahlqvist2023syntactic} these conditions are sufficient to establish that the bifunctor $\bar{\otimes} : \BHCPSUop \bar{\otimes} \BHCPSUop \to \BHCPSUop$ is $\mathsf{Met}$-enriched.
+\end{proof}
+
+\begin{theorem}
+  The category $\BHCPSUop$ is a $\catMet$-enriched symmetric monoidal category with coproducts.
+\end{theorem}
+
+\begin{proof}
+  This follows directly from Propositions \ref{prop:cb_cop_functor} and \ref{prop:cb_cat_met_otimes_met}.
 \end{proof}
 
 
+With the result above, we have established that the category $\BHCPSUop$ is a suitable model for our $\lambda$-calculus. Consequently, we obtain a framework for reasoning about approximate equivalence in infinite-dimensional quantum computation. This, for example, enables us to reason about errors in quantum walks on an infinite line \cite{venegasQuantumWalksComprehensive2012}.
+
+Furthermore, the result also allows us to define a metric on the category $\catQ$ by associating to each morphism $\phi \in \catQ$ the norm of its corresponding morphism in the finite-dimensional subcategory $\FinBHCPSUop$, under the equivalence $\catQ \simeq \FinBHCPSUop$ \cite{choSemanticsQuantumProgramming2016}. In fact, a quantum channel (resp. quantum operator) $\phi: \mathcal{T}(\mathcal{H})  \to \mathcal{T}(\mathcal{K})$ defines a linear mapping 
+$\phi^*: \mathcal{B}(\mathcal{K}) \to \mathcal{B}(\mathcal{H})$ completely positive and unital (resp. subunital) 
+\cite[4.1.2]{heinosaariMathematicalLanguageQuantum2011}. These maps are related in the following way:
+\begin{equation*}
+\operatorname{tr}[\phi(T) \cdot S] = \operatorname{tr}\big[T \cdot \phi^*(S)\big]
+\end{equation*}
+which holds for all trace-class operators $T \in \mathcal{T}(\mathcal{H})$ and all bounded operators $S \in \mathcal{B}(\mathcal{K})$.
+
+
+Another, and, perhaps more useful way, to describe this relashion is given by the diagram bellow 
 
 %$\odot$
 %$\widecheck{\otimes}_\varepsilon$

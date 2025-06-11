@@ -31,7 +31,7 @@ The basic objects of linear algebra are vector spaces. The vector spaces of inte
 A \emph{vector space} (over a field $\mathcal{F}$)  consists of a set $V$ whose elements are called vectors, together with two operations:
 \begin{itemize}
   \item An operation called vector addition that takes two vectors $v, w \in V$ , and results in a third vector, written $v + w \in V$;
-  \item An operation called scalar multiplication that takes a scalar $a \in \mathcal{F}$ and a vector $v \in V,$  and results in a new vector, written $r \cdot v \in V$
+  \item An operation called scalar multiplication that takes a scalar $a \in \mathcal{F}$ and a vector $v \in V,$  and results in a new vector, written $a \cdot v \in V$
 \end{itemize}
 which satisfy the following axioms, for all $u, v, w \in V$ and $a_1, a_2 \in \mathcal{F}$:
 
@@ -50,7 +50,7 @@ which satisfy the following axioms, for all $u, v, w \in V$ and $a_1, a_2 \in \m
 
  
 
-The letters \gls{vectorspaces} will often be used to refer to complex vector spaces. In this section, all vector spaces are assumed to be finite dimensional, unless otherwise stated. 
+The letters \gls{vectorspaces} will often be used to refer to vector spaces. In this section, all vector spaces are assumed to be finite dimensional, unless otherwise stated.  
 
 \begin{comment}
 
@@ -151,11 +151,13 @@ The matrix whose entries are the values $A_{ij}$ is said to form a \emph{matrix 
 \subsection{Inner product}
 %When refering to the vector product in an arbitrary vector space, the notation \gls{inner-product} will be used.
 
-\begin{definition}
-The \emph{inner product}  \gls{inner-product} is a function from a vector space $V$ to the complex numbers, $\langle \cdot, \cdot \rangle : V \times V \rightarrow \mathbb{C}$,  that satisfies the following properties for all $v, w \in V$ and $r \in \mathbb{C}$:
+\todo[inline,size=\normalsize]{A linearidade é no segundo ou no primeiro argumentos, é que uns livros usam no primeiro e outros no segundo?} 
+
+\begin{definition} \label{inner_product}
+The \emph{inner product}  \gls{inner-product} is a function from a vector space $V$ to the field of scalars, $\langle \cdot, \cdot \rangle : V \times V \rightarrow \mathcal{F}$,  that satisfies the following properties for all $v, w, w_1, \ldots, w_n \in V$ and $a_1, \ldots, a_n \in \mathcal{F}$
 
 \begin{enumerate}
-  \item Linearity in the second argument,$$ \left\langle v, \sum_{i} a_i w_i\right\rangle = \sum_i a_i \langle v, w_i\rangle. $$
+  \item Linearity in the second argument,$$ \left\langle v, \sum_{i=1}^n a_i w_i\right\rangle = \sum_{i=1}^n a_i \langle v, w_i\rangle. $$
   \item $\langle v,w \rangle = \overline{\langle w,v \rangle} $, \text{  where \gls{conj} is the complex conjugate operation.}
   \item  $\langle v,w \rangle \geq 0 $ with equality if and only if $v = 0$.
 \end{enumerate}
@@ -1105,7 +1107,7 @@ Let \( V \) and \( W \) be normed vector spaces, and let \( T: V \rightarrow W \
 If \( \norm{T}_{\text{op}} < \infty \), we say that \( T \) is a \emph{bounded operator}; otherwise, if \( \norm{T}_{\text{op}} = \infty \), we say that \( T \) is \emph{unbounded}. We denote by \( \mathcal{B}(V, W) \) the vector space of all bounded linear operators from \( V \) to \( W \), and we write \( \mathcal{B}(V) \)  for \( \mathcal{B}(V, V) \).
 \end{definition}
 
-\begin{lemma} \label{lemma:op_norm_submult}
+\begin{lemma} \label{lemma:op_norm_submult} %inf_dim_anal
 Let \( T: V \rightarrow W \) be a bounded linear operator between normed spaces. Then the following statements hold:
 \begin{enumerate}
   \item For every \( v \in V \), we have $
@@ -1161,7 +1163,7 @@ for all choices of \( u_1 \in V_1, \dots, u_n \in V_n \).
 \]
 \end{definition}
 
-\begin{proposition} \label{prop:proj_norm_tensor_mult}
+\begin{proposition} %ryan-artigoprofRenato \label{prop:proj_norm_tensor_mult}
    Let $V$ and $W$ be Banach spaces. Then, for every $v \in V$ and $w \in W$, it holds that $ \projnorm{v \otimes w} = \norm{v} \otimes \norm{w}$.
 \end{proposition}
 
@@ -1182,9 +1184,14 @@ for all choices of \( u_1 \in V_1, \dots, u_n \in V_n \).
 
 \subsection{Hilbert Spaces}
 
+\todo[inline,size=\normalsize]{Aqui $\mathcal{H}$ and $\mathcal{K}$ are typical designations for Hilber Spaces } 
+
+
 \begin{definition}
-  An \emph{Hilbert space} is an inner product space which is complete with respect to the induced norm.
+  A \emph{Hilbert space} $\mathcal{H}$ is an inner product space that is complete with respect to the norm induced by the inner product (\ie  $\|v\| = \sqrt{\langle v, v \rangle}$ for all $v \in \mathcal{H}$).
 \end{definition}
+
+The letters \gls{hilbertspaces} will often be used to refer to Hilbert spaces.
 
 The definition of trace is extended in this setting as follows:
 \begin{definition}
@@ -1229,7 +1236,7 @@ and that \( \tau_2 \) is \emph{stronger} or \emph{finer} than \( \tau_1 \).
 \end{definition}
 
 \begin{example}
-Below standard examples of topologies are presented below:
+Standard examples of topologies are presented below:
 \begin{enumerate}
     \item \emph{Trivial (or indiscrete) topology:} On a set $S$, the trivial topology consists only of the sets $\varnothing$ and $X$. These are also the only closed sets.
     
@@ -1264,7 +1271,7 @@ A \emph{topological vector space} is a vector space \( V \) equipped with a line
 %norma espaço dual
 
 
-\begin{theorem}
+\begin{theorem} %funcanl-Rudin
 Let \( V \) be a normed vector space. For each \( v^* \in V^* \), define its norm by
 \[
 \|v^*\| := \sup \left\{ | v^*(v) | : \|v\| = 1 \right\}.
@@ -1283,6 +1290,8 @@ v^* \mapsto v^*(v)
 \]
 continuous for every \( v \in V \).
 \end{definition}
+
+\todo[inline]{Dual de um mapa}
 
 
 %p110, p.85
@@ -3418,7 +3427,7 @@ A \emph{$\catMet$-enriched symmetric monoidal category} $\catC$ is a category th
 \[
 \otimes : \catC \times \catC \to \catC
 \]
-is a $\catMet$-functor, 
+is a $\catMet$-functor. 
 \end{definition}
 
 \begin{definition}
