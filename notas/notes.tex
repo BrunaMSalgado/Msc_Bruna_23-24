@@ -2278,6 +2278,22 @@ Since we will restrict our attention to spaces of the form $\mathcal{B}(\mathcal
 
 \todo[inline]{Ver quais os conceitos de w* algebras são essenciais e acrescentar, def c* algebra,w* algebra, predual,ultraweak topololy, tensor product for W* algebras e props relevantes, dualidade trace class, BH }
 
+\begin{proposition} \cite[Proposition 2.3.10]{pedersenAnalysisNow1989}
+Let \( f : V \to W \) be a bounded linear map. Then its dual \( f^* : V^* \to W^* \), defined by
+\[
+f^*(\varphi) = \varphi \circ f,
+\]
+is also a bounded linear map.
+\end{proposition}
+
+\begin{proposition} \cite[Theorem 19.2]{conwayCourseOperatorTheory2000}
+  Let \(\mathcal{H}\) be a Hilbert space. Let \(\mathcal{B}(\mathcal{H}) := \mathcal{B}(\mathcal{H}, \mathcal{H})\) denote the space of bounded operators on \(\mathcal{H}\), and let \(\mathcal{T}(\mathcal{H})\) denote the space of trace-class operators on \(\mathcal{H}\).
+    The dual of \(\mathcal{T}(\mathcal{H})\) is isometrically isomorphic to \(\mathcal{B}(\mathcal{H})\) via the map
+    \[
+    \phi : \mathcal{B}(\mathcal{H}) \to \mathcal{T}(\mathcal{H})^*, \quad \phi(T)(A) = \mathrm{tr}(TA), \quad \text{for all } A \in \mathcal{T}(\mathcal{H}).
+    \]
+\end{proposition}
+
 %def p.164 108 I -> produto tensorial
 
  \todo[inline]{ Por frase do tipo " Due to limitations of space, here we just fix notations and
@@ -2474,15 +2490,67 @@ $\phi^*: \mathcal{B}(\mathcal{K}) \to \mathcal{B}(\mathcal{H})$ completely posit
 \end{equation*}
 which holds for all trace-class operators $T \in \mathcal{T}(\mathcal{H})$ and all bounded operators $S \in \mathcal{B}(\mathcal{K})$.
 
+Another, perhaps more useful, way to describe the relationship between $\phi$ and $\phi^*$ in the finite-dimensional setting—where all trace-class operators are bounded and we have the identification \( \mathcal{B}(\mathcal{H}) = \mathcal{T}(\mathcal{H}) \)—is given by the diagram below:
 
-Another, and, perhaps more useful way, to describe this relashion is given by the diagram bellow 
+\[
+\begin{minipage}{0.45\textwidth}
+\centering
+\begin{tikzpicture}
+  \matrix (m) [matrix of math nodes,row sep=3em,column sep=2em,minimum width=1em]
+  { 
+    \mathcal{T}(\mathcal{H}) \\
+     \mathcal{T}(\mathcal{K})  \\
+  };
+  \path[-stealth]
+    (m-1-1) edge  node [right] {$\phi$} (m-2-1);
+\end{tikzpicture}
+\end{minipage}
+\hspace{-50pt}
+\begin{minipage}{0.45\textwidth}
+\centering
+\begin{tikzpicture}
+  \matrix (m) [matrix of math nodes,row sep=3em,column sep=12em,minimum width=1em]
+  {
+  \mathcal{T}(\mathcal{H})^*&  \mathcal{B}(\mathcal{H})  \\
+   \mathcal{T}(\mathcal{K})^* &  \mathcal{B}(\mathcal{K}) \\
+  };
+  \path[-stealth]
+    (m-1-1) edge  node [above] {$\varphi \mapsto \sum_{ij} \varphi(\ket{j}\bra{i}) \cdot \ket{i} \bra{j}  $} (m-1-2)
+    (m-2-2) edge [dotted]  node [right] {$\phi^*$} (m-1-2)
+    (m-2-2) edge  node [below] {$ A \mapsto (B \mapsto \tr(AB)) $} (m-2-1)
+    (m-2-1) edge  node [right] {$ \varphi \mapsto \varphi \cdot \phi $} (m-1-1)
+    ;
+\end{tikzpicture}
+\end{minipage}
+\]
 
-%$\odot$
-%$\widecheck{\otimes}_\varepsilon$
 
+This means that the map $\phi^* : \mathcal{B}(\mathcal{K}) \to \mathcal{B}(\mathcal{H})$ can be defined as
+\[
+\phi^*(A) = \sum_{i,j} \operatorname{tr}\left(A \cdot \phi(\ket{j}\bra{i})\right) \cdot \ket{i}\bra{j},
+\]
+where \( i \) and \( j \) range over an orthonormal basis of \( \mathcal{H} \). 
+
+Note that the map between spaces $\mathcal{T}(\mathcal{H})^*$ and $\mathcal{B}(\mathcal{H})$ is defined using the Riez Representation Theorem.
+
+\begin{definition} [Riesz Representation Theorem]
+Let $V$ be a finite-dimensional inner product space, and let $\varphi$ be a linear functional on $V$. Then there exists a unique vector $v_\varphi \in V$ such that
+$$
+\varphi(w) = \langle w, v_\varphi \rangle \quad \text{for all } w \in V.
+$$
+We call $v_\varphi$ the \emph{Riesz vector} for $\varphi$ and denote it by $v_\varphi$.\\
+\end{definition}
+
+Using the Riesz representation theorem, we can define a map 
+$\phi^* : V^* \to V$
+by setting \(\phi*(\varphi) = v_\varphi\), where \(v_\varphi\) is the Riesz vector corresponding to \(\varphi \in V^*\). Since the Riesz representation is unique, \(\phi^*\) is well-defined \cite{romanAdvancedLinearAlgebra1992}. 
+
+Let $\sigma= n_1, \ldots, n_s$. For $\phi: \mathcal{M}_\sigma^* \to \mathcal{M}_\sigma $, by the Riesz representation theorem, we have
+$$ \varphi(\ket{j} \bra{i})= \langle \ket{j} \bra{i},  v_\varphi  \rangle = \sum_{k=1}^s \langle \ket{j_k} \bra{i_k},  v_{\varphi,k}  \rangle = \sum_{k=1}^s  \tr \left( \ket{i_k} \bra{j_k} \cdot   v_{\varphi,k} \right) =  v_{\varphi,p_k,q_k} $$
+where the subscript \(k\) refers to the \(k\)-th component of the vector \(v_\varphi\), and \(v_{\varphi, p_k, q_k}\) denotes the entry in the \(p_k\)-th column and \(q_k\)-th row of the matrix \(v_{\varphi,k}\). Note that when the set of orthonormal basis states of \(\mathbb{C}^{n_1} \oplus \ldots \oplus \mathbb{C}^{n_s}\) is decomposed by its components, all but one of the components are zero vectors this is the one we designate by $k$ in the last step.
+
+As a result $\phi^*(\varphi) =  \sum_{ij} \varphi(\ket{j}\bra{i}) \cdot \ket{i} \bra{j} = \sum_{ij}  v_{\varphi,p_k,q_k} \cdot  \ket{i} \bra{j}  = v_{\varphi}$.
 %\bar{\otimes} 
-
-
 
 
 
