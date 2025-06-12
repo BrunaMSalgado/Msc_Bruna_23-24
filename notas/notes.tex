@@ -2263,11 +2263,11 @@ We compute,
 
 In the previous quantum model, we considered the Schr\"odinger picture---that is, morphisms between quantum states (\ie density operators). In~\cite{choSemanticsQuantumProgramming2016}, the author presents a model in the Heisenberg picture, where maps are between observables (\ie self-adjoint operators), which can be seen as an infinite-dimensional extension of Selinger’s model. This model is given by the category $\WstarCPSUop$, the opposite of the category $\WstarCPSU$ whose objects are W$^*$-algebras and morphisms are completely positive subunital maps between them. It is shown that Selinger’s category $\catQ$ is equivalent (up to categorical equivalence) to the finite-dimensional subcategory of $\WstarCPSUop$.
 
-Since we will restrict our attention to spaces of the form $\mathcal{B}(\mathcal{H})$, we will work with the categories $\BHCPSU$ and $\BHCPSUop$. We also note that the aforementioned equivalence still holds when replacing the categories accordingly, as the full embedding maps morphisms in $\catQ$ to morphisms between bounded operators on Hilbert spaces.
+%Since we will restrict our attention to spaces of the form $\mathcal{B}(\mathcal{H})$, we will work with the categories $\BHCPSU$ and $\WstarCPSUop$. We also note that the aforementioned equivalence still holds when replacing the categories accordingly, as the full embedding maps morphisms in $\catQ$ to morphisms between bounded operators on Hilbert spaces.
 
 
 
-%We start by proving that $\BHCPSUop$ is a $\catMet$-enriched symmetric monoidal category with coproducts.
+%We start by proving that $\WstarCPSUop$ is a $\catMet$-enriched symmetric monoidal category with coproducts.
 
 % depois
 % defs(C*-star, W*-star, dual, predual, etc.)
@@ -2276,7 +2276,10 @@ Since we will restrict our attention to spaces of the form $\mathcal{B}(\mathcal
 
 % Agora
 
-\todo[inline]{Ver quais os conceitos de w* algebras são essenciais e acrescentar, def c* algebra,w* algebra, predual,ultraweak topololy, tensor product for W* algebras e props relevantes, dualidade trace class, BH }
+
+\todo[inline]{Meter a notação uniform- w*algebras a serem designadas sempre pelas mesmas letras}
+
+
 
 \begin{proposition} \cite[Proposition 2.3.10]{pedersenAnalysisNow1989}
 Let \( f : V \to W \) be a bounded linear map. Then its dual \( f^* : V^* \to W^* \), defined by
@@ -2294,22 +2297,192 @@ is also a bounded linear map.
     \]
 \end{proposition}
 
+
+\begin{definition}
+  A \emph{\( C^* \)-algebra} is a complex vector space \( \mathcal{A} \) endowed with:
+\begin{enumerate}
+    \item a binary operation, called \emph{multiplication} (and denoted as such), which is associative and linear in both coordinates;
+    \item an element \( 1 \), called the \emph{unit}, such that \( 1 \cdot a = a = a \cdot 1 \) for all \( a \in A \);
+    \item a unary operation \( (\cdot)^* \), called \emph{involution}, such that for all \( a, b \in A \) and \( \lambda \in \mathbb{C} \),
+    \[
+    (a^*)^* = a, \quad (ab)^* = b^* a^*, \quad (\lambda a)^* = \overline{\lambda} a^*, \quad \text{and} \quad (a + b)^* = a^* + b^*;
+    \]
+    \item a complete norm \( \|\cdot\| \) such that \( \| ab \| \leq \|a\| \cdot \|b\| \) for all \( a, b \in A \), and
+    \[
+    \|a^* a\| = \|a\|^2.
+    \]
+    This last equality is called the \emph{\( C^* \)-identity}.
+\end{enumerate}
+\end{definition}
+
+
+
+\begin{definition}
+A linear map \( f: \mathcal{A} \to \mathcal{B} \) between \( C^* \)-algebras is said to be \emph{unital} if \( f(1) = 1 \) and \emph{subnital} if \( f(1) \leq 1 \).
+\end{definition}
+
+\begin{definition}
+   Let $\mathcal{A}$ be a \( C^* \)-algebra. An element $x$ of $\mathcal{A}$ is  positive if there exists an $y \in A$ such that $x = y^* y$;
+    We denote the set of positive elements of $\mathcal{A}$ by $\mathcal{A}_+$
+A linear map \( f: \mathcal{A} \to \mathcal{B} \) between \( C^* \)-algebras is called \emph{positive} if it maps positive elements of $A$ to positive elements of $B$.  
+It is called \emph{completely positive} if, for all \( n \in \mathbb{N} \), the map
+\[
+M_n(f): M_n(\mathcal{A}) \to M_n(\mathcal{B}), \quad M_n(f)\left([x_{kl}]_{k\ell}\right) = \left[f(x_{kl})\right]_{k\ell}
+\]
+is positive.  
+\end{definition}
+
+\begin{proposition} \cite[Proposition 2.4]{choSemanticsQuantumProgramming2016}
+Let \( f: \mathcal{A} \to \mathcal{B} \) be a positive map between \( C^* \)-algebras. Then \( f \) is subunital if and only if it is short.
+\end{proposition}
+
+\todo[inline]{Definir reps de C* algebras para despois definiar a spacial C* norm-  Theorem 2.3 artigo mais longo do Kenta Cho}
+
+\begin{definition}
+  Let \( \mathcal{A} \) and \(  \mathcal{B} \) be \( C^* \)-algebras. The least \( C^* \)-norm on the algebraic tensor product \( A \odot B \) is called the \emph{spatial \( C^* \)-norm}.  
+The \emph{spatial \( C^* \)-tensor product} of \( \mathcal{A} \) and \( \mathcal{B} \), denoted by \( \mathcal{A} \widecheck{\otimes} \mathcal{B} \), is the completion of \(  \mathcal{A} \odot \mathcal{B} \) with respect to the spatial \( C^* \)-norm.
+\end{definition}
+
+% example 3 V
+
+\begin{definition} \label{def:c*_direct_sum}
+  One can form products (in the categorical sense) of \( C^* \)-algebras as follows.  
+Let \( \mathcal{A}_i \) be a \( C^* \)-algebra for each \( i \) in some index set \( I \).  
+The \emph{direct sum} of the family \( (\mathcal{A}_i)_{i \in I} \) is the \( C^* \)-algebra denoted by \( \bigoplus_{i \in I} A_i \), consisting of elements
+\[
+a \in \prod_{i \in I} \mathcal{A}_i \quad \text{such that} \quad \sup_{i \in I} \|a(i)\| < \infty,
+\]
+with operations defined coordinatewise and norm given by
+\[
+\|a\| = \sup_{i \in I} \|a(i)\|.
+\]
+\end{definition}
+
+\begin{theorem} \cite[Theorem 3.1]{choSemanticsQuantumProgramming2016} \label{thm:c*_tensor_distributes_product}
+  Let \( \mathcal{A}, \mathcal{B}, \mathcal{C} \) be \(C^*\)-algebras. Then the canonical map
+\[
+ \langle \id \widecheck{\otimes} \pi_1, \id \widecheck{\otimes} \pi_1 \rangle : \mathcal{A} \widecheck{\otimes} (\mathcal{B} \times \mathcal{C}) \to (\mathcal{A} \widecheck{\otimes} \mathcal{B}) \times (\mathcal{A} \widecheck{\otimes} \mathcal{C})
+\]
+is (unital) $*$-isomorphism, and therefore, isometric. Therefore, the ensor product distributes over (binary) products. 
+\end{theorem}
+
+\begin{definition}
+A \( W^* \)-algebra is a \( C^* \)-algebra \( \mathcal{M} \) that admits a predual, i.e., a Banach space \( X \) together with an isometric isomorphism \( X^* \cong  \mathcal{M} \). It turns out that the predual of a \( W^* \)-algebra \(  \mathcal{M} \) is unique up to isometric isomorphism \cite[Corollary 1.13.3]{sakaiCAlgebrasWAlgebras1998}. 
+The weak\(^*\) topology on \(  \mathcal{M} \) induced by the predual is referred to as the \emph{ultraweak topology}. A linear map between \( W^* \)-algebras 
+is said to be \emph{normal} if it is ultraweakly continuous.
+We denote the set of normal functionals on \(  \mathcal{M} \) by \(  \mathcal{M}_* \); it is standard that \(  \mathcal{M}_* \) is a predual of \(  \mathcal{M} \).
+\end{definition}
+
+\todo[inline]{Nota: qd for colocar isto na tese colocar ref à prop la de cima do conway, em vez de "it is well-known"}
+\begin{example}
+   For a Hilbert space $\mathcal{H}$, $\mathcal{B}(\mathcal{H})$ is a $C^*$-algebra. It is well-known that  $\mathcal{B}(\mathcal{H})$ is dual of the space  $\mathcal{T}(\mathcal{H})$ of trace class operators. Hence $\mathcal{B}(\mathcal{H})$ is a $W^*$-algebra. %Moreover, the direct sum \( \bigoplus_i \mathcal{A}_i \)  of a family \( (\mathcal{A}_i)_i \) of $W^*$-algebras (see Definition \ref{def:c*_direct_sum}) is itself a $W^*$-algebras.
+\end{example}
+
+
+\begin{definition}
+  We denote the category of normal completely positive subunital maps by $\WstarCPSU$.
+\end{definition}
+
+\todo[inline]{Duvida: ver com o professor renato se podemos dizer que este produto tensorial é igual ao usual se for usar esse wue é mais simples p.163}
+% Af 0N coincides with with the closure of .M 0 N with respect to the weak-* topology of B(H 02 K). 
 %def p.164 108 I -> produto tensorial
+We define the tensor product as in \cite[Definition 108 I]{westerbaanCategoryNeumannAlgebras2019}
+
+\begin{definition}
+  A bilinear map \( \beta:  \mathcal{A} \times  \mathcal{B} \to  \mathcal{C} \) between $W^*$-algebras is said to be:
+
+\begin{enumerate}
+    \item \emph{unital} if \( \beta(1,1) = 1 \),
+    \item \emph{multiplicative} if \( \beta(ab, cd) = \beta(a, c) \, \beta(b, d) \) for all \( a, b \in \mathcal{A} \), \( c, d \in \mathcal{B} \),
+    \item \emph{involution preserving} if \( \beta(a, b)^* = \beta(a^*, b^*) \) for all \( a \in \mathcal{A} \), \( b \in \mathcal{B} \).
+\end{enumerate}
+From now on, we will refer to a bilinear map that is multiplicative, involution preserving, and unital as a \emph{miu-bilinear map}.
+\end{definition}
+
+
+\begin{definition}
+  A \(miu\)-bilinear map \( \gamma: \mathcal{A} \times \mathcal{B} \to \mathcal{C} \) between $W^*$-algebras is called a \emph{tensor product of \( \mathcal{A} \) and \( \mathcal{B} \)} when it satisfies the following three conditions:
+
+\begin{enumerate}
+    \item The range of \( \gamma \) generates \( \mathcal{C} \), meaning that the linear span of the image of \( \gamma \) is ultraweakly dense in \( \mathcal{C} \). This implies that for all \( f \in \mathcal{A}_* \) and \( g \in \mathcal{B}_* \), there exists \emph{at most one} \( h \in \mathcal{C}_* \) such that
+    \[
+    h(\gamma(a, b)) = f(a) g(b) \quad \text{for all } a \in \mathcal{A}, \, b \in \mathcal{B}.
+    \]
+    We call such an \( h \) the \emph{product functional} for \( f \) and \( g \), and denote it by \( \gamma(f, g) \) (when it exists).
+
+    \item For all normal positive functionals \( \sigma: \mathcal{A} \to \mathbb{C} \) and \( \tau: \mathcal{B} \to \mathbb{C} \), the product functional \( \gamma(\sigma, \tau): \mathcal{C} \to \mathbb{C} \) exists and is positive.
+
+    \item The product functionals \( \gamma(\sigma, \tau) \) of normal positive functionals \( \sigma \) and \( \tau \) form a \emph{faithful collection} of normal positive functionals on \( \mathcal{C} \) (\ie, \( a \in \mathcal{C}_+ \) is zero iff \( \gamma(\sigma, \tau)(a) = 0 \) for all such functionals).
+
+We will usually designate this bilinear map by $\overline{\otimes}$.
+\end{enumerate}
+\end{definition}
+
+\begin{definition}
+  For \( W^* \)-algebras \( \mathcal{M} \) and \( \mathcal{N} \), the \( W^* \)-algebra \( (\mathcal{M}_* \, \widecheck{\otimes} \, \mathcal{N}_* )^*\) is called the \emph{spatial \( W^* \)-tensor product} of \( \mathcal{M} \) and \( \mathcal{N} \), and is denoted by \( \mathcal{M} \,\overline{\otimes}\, \mathcal{N} \).
+\end{definition}
+
+\begin{proposition} \cite[Proposition 115 II]{westerbaanCategoryNeumannAlgebras2019}
+Given normal completely positive  maps \( f : \mathcal{A} \to \mathcal{C} \) and \( g : \mathcal{B} \to \mathcal{D} \) between $W^*$-algebras, there exists a unique normal completely positive map
+\[
+f \overline{\otimes} g: \mathcal{A} \,\overline{\otimes}\, \mathcal{B} \to \mathcal{C} \,\overline{\otimes}\, \mathcal{D}
+\]
+such that
+\[
+(f \otimes g)(a \otimes b) = f(a) \otimes g(b)
+\quad \text{for all } a \in \mathcal{A},\; b \in \mathcal{B}.
+\]Moreover \( f \overline{\otimes} g \) is (sub)unital if \( f \) and \( g \) are (sub)unital.
+\end{proposition}
+
+\begin{proposition}
+  
+\end{proposition}
+
+\begin{proposition} \cite[Exercise 47 IV]{westerbaanCategoryNeumannAlgebras2019}  \label{prop:wcpsu_products}
+  Let \( (\mathcal{A}_i)_i \) be a family of von Neumann algebras. Then the direct sum \( \bigoplus_i \mathcal{A}_i \) (see Definition \ref{def:c*_direct_sum}) is itself a von Neumann algebra, and the canonical projections
+\[
+\pi_j : \bigoplus_i A_i \to A_j, \quad \text{given by } \pi_j(a) = a(j),
+\]
+are normal.
+Moreover, this makes \( \bigoplus_i \mathcal{A}_i \) the categorical product of \( \mathcal{A}_i \) in the category $\WstarCPSU$ .
+\end{proposition}
+
+\begin{proposition}\cite[Proposition 117 III] {westerbaanCategoryNeumannAlgebras2019} \label{prop:w*_product_disct_tensor}
+  Given von Neumann algebras \( \mathcal{A} \) and \( (\mathcal{B}_i)_{i \in I} \), we have a natural isomorphism
+\[
+\mathcal{A} \,\overline{\otimes}\, \bigoplus_{i \in I} \mathcal{B}_i \;\cong\; \bigoplus_{i \in I} \mathcal{A} \,\overline{\otimes}\, \mathcal{B}_i.
+\]
+That is, the spatial tensor product distributes over (possibly infinite) direct sums.
+\end{proposition}
+
+\begin{theorem} \cite[Theorem 119 V]{westerbaanCategoryNeumannAlgebras2019} \label{thm:wcpsu_monoidal}
+Endowed with the tensor product, the category $\WstarCPSU$  is a symmetric monoidal category, with \( \mathbb{C} \) as the unit object.
+\end{theorem}
+
+\begin{theorem}
+The category $\WstarCPSUop$ is a distributive symmetric monoidal category.
+\end{theorem}
+
+\begin{proof}
+  It direclty follows from Propositions \ref{prop:wcpsu_products} and \ref{prop:w*_product_disct_tensor} and Theorem \ref{thm:wcpsu_monoidal}
+\end{proof}
+
+
 
  \todo[inline]{ Por frase do tipo " Due to limitations of space, here we just fix notations and
  terminology, and list the basic results. A reader who is not familiar with these topics may consult bla bla"}
 
-For C$^*$-algebras $\mathcal{A}$ and $\mathcal{B}$, we denote by $\mathcal{A}\odot \mathcal{B} $ the algebraic tensor product of $\mathcal{A}$ and $\mathcal{B}$.
+%For C$^*$-algebras $\mathcal{A}$ and $\mathcal{B}$, we denote by $\mathcal{A}\odot \mathcal{B} $ the algebraic tensor product of $\mathcal{A}$ and $\mathcal{B}$.
 
 %\begin{definition} Let $\mathcal{A}$ be a $C^*$-algebra, and let $\mathcal{V}$ be a subspace. Then we shall call $\mathcal{V}$ a \emph{(concrete) operator space}.
   
 %\end{definition}
 
-
-\begin{definition}
-Let $\mathcal{A}$ and $\mathcal{B}$ be $C^*$-algebras. Given  linear map $\phi: \mathcal{A} \to \mathcal{B}$ we define, we set
+%p4gliese
+\begin{definition} \cite[Introduction  p.4]{pisierTensorProductsCAlgebras2020} \label{def:cb_norm}
+Let $\mathcal{A}$, $\mathcal{B}$ and $\mathcal{C}$ be $C^*$-algebras. Given  linear map $\phi: \mathcal{A} \to \mathcal{B}$ we define, we set
 \[
-\|\phi\|_{\text{cb}} = \sup_n \|\mathcal{M}_n(\phi)\|.
+\|\phi\|_{\text{cb}} = \sup_{\mathcal{C}} \|\id_{\mathcal{C}} \widecheck{\otimes} \phi\|.
 \]
 We call $\phi$ \emph{completely bounded} if $\|\phi\|_{\text{cb}} $ is finite.
 Note that $\|\cdot\|_{\text{cb}}$ is a norm on the space of completely bounded maps. 
@@ -2327,11 +2500,11 @@ Note that $\|\cdot\|_{\text{cb}}$ is a norm on the space of completely bounded m
 \begin{comment}
 \begin{theorem} \label{thm:tensor_cb} \cite[Proposition 12.3]{paulsenCompletelyBoundedMaps2003}
   Let $\mathcal{A}_i$ and $\mathcal{B}_i$ be unital $C^*$-algebras, let $\mathcal{S}_i \subseteq \mathcal{A}_i$ be subspaces, 
-and let $L_i: \mathcal{S}_i \to \mathcal{B}_i$ be completely bounded, $i = 1,2$. Then the linear map $L_1 \widecheck{\otimes}_\varepsilon 
-L_2: \mathcal{S}_1 \widecheck{\otimes}_\varepsilon \mathcal{S}_2 \to \mathcal{B}_1 \widecheck{\otimes}_\varepsilon \mathcal{B}_2$, given by $(L_1 \widecheck{\otimes}_\varepsilon L_2)(a_1 \otimes a_2) = L_1(a_1) \otimes L_2(a_2)$, 
-defines a completely bounded map $L_1 \widecheck{\otimes}_\varepsilon L_2: \mathcal{S}_1 \widecheck{\otimes}_\varepsilon \mathcal{S}_2 \to \mathcal{B}_1 \widecheck{\otimes}_\varepsilon \mathcal{B}_2$, with
+and let $L_i: \mathcal{S}_i \to \mathcal{B}_i$ be completely bounded, $i = 1,2$. Then the linear map $L_1 \widecheck{\otimes} 
+L_2: \mathcal{S}_1 \widecheck{\otimes} \mathcal{S}_2 \to \mathcal{B}_1 \widecheck{\otimes} \mathcal{B}_2$, given by $(L_1 \widecheck{\otimes} L_2)(a_1 \otimes a_2) = L_1(a_1) \otimes L_2(a_2)$, 
+defines a completely bounded map $L_1 \widecheck{\otimes} L_2: \mathcal{S}_1 \widecheck{\otimes} \mathcal{S}_2 \to \mathcal{B}_1 \widecheck{\otimes} \mathcal{B}_2$, with
 \[
-\|L_1 \widecheck{\otimes}_\varepsilon L_2\|_{\text{cb}} = \|L_1\|_{\text{cb}} \|L_2\|_{\text{cb}}.
+\|L_1 \widecheck{\otimes}L_2\|_{\text{cb}} = \|L_1\|_{\text{cb}} \|L_2\|_{\text{cb}}.
 \]
 \end{theorem}
 
@@ -2343,7 +2516,7 @@ defines a completely bounded map $L_1 \widecheck{\otimes}_\varepsilon L_2: \math
 \]
 \end{proposition}
 
-\end{comment}
+
 
 \begin{lemma} \cite[p.19]{pisierIntroductionOperatorSpace2003} \label{lem:cb_comp_submult}
   Given completely bounded maps $\phi: B (\mathcal{H}) \to B (\mathcal{K}) $ and $\psi: B (\mathcal{K}) \to B (\mathcal{L})$, it holds that
@@ -2352,9 +2525,10 @@ defines a completely bounded map $L_1 \widecheck{\otimes}_\varepsilon L_2: \math
 
 \begin{proposition} \label{prop:dirsum_cb} \cite[Exercise 2.1.3.]{pisierIntroductionOperatorSpace2003}
   Let $\mathcal{H}_1, \mathcal{H}_2,  \mathcal{K} $ be Hilbert spaces.   Consider $\phi_i \in CB(B(\mathcal{K}), B(\mathcal{H}_i))$ ($i = 1,2$), and let $\phi \in 
-  CB(E, B(\mathcal{H}_1 \oplus  \mathcal{H}_2))$ be defined by $\phi(x) = (\phi_1(x),  \phi_2(x))$. It holds that 
+  CB(B(\mathcal{K}), B(\mathcal{H}_1 \oplus  \mathcal{H}_2))$ be defined by $\phi(x) = (\phi_1(x),  \phi_2(x))$. It holds that 
   $$\cbnorm{\phi} = \max \{ \phi_1, \phi_2 \}.$$
 \end{proposition}
+\end{comment}
 
 \begin{theorem} \cite[Theorem 112 XI]{westerbaanCategoryNeumannAlgebras2019} \label{thm:beta_alg_eq_beta_gamma}
 A tensor product $\gamma\colon \mathcal{A} \times \mathcal{B} \to \mathcal{T}$ of von Neumann algebras $\mathcal{A}$ and $\mathcal{B}$ satisfies the following universal property: for every normal bounded bilinear map $\beta\colon  \mathcal{A} \times  \mathcal{B} \to \mathcal{C}$ into a von Neumann algebra $\mathcal{C}$, there exists a unique ultraweakly continuous map $\beta_\gamma\colon \mathcal{T} \to \mathcal{C}$ such that $\beta_\gamma \circ \gamma = \beta$. Moreover, $ \norm{\beta_\gamma} = \norm{\beta_\odot}$, where $
@@ -2446,21 +2620,33 @@ Next, regarding $\bar{\otimes}$, the inequations $\cbnorm{\phi \, \bar{\otimes} 
 
 
 \begin{proposition} \label{prop:cb_cop_functor}
-  For all $\phi, \phi' \in \BHCPSUop(B(\mathcal{H}),B(\mathcal{L}))  $ and $\psi, \psi' \in \BHCPSUop(B(\mathcal{K}),B(\mathcal{L})) $, $[\phi-\phi',\psi-\psi']:\BHCPSUop(B(\mathcal{H}),B(\mathcal{L})) \otimes \BHCPSUop(B(\mathcal{K}),B(\mathcal{L})) \rightarrow \BHCPSUop(B(\mathcal{H}) \oplus B(\mathcal{K}), B(\mathcal{L})) $ is a $\catMet$-functor.
+  For all $\phi, \phi' \in \WstarCPSUop(\mathcal{A}, \mathcal{C})  $ and $\psi, \psi' \in \WstarCPSUop(\mathcal{B}, \mathcal{C}) $, $[\phi-\phi',\psi-\psi']:\WstarCPSUop(\mathcal{A}, \mathcal{C}) \otimes \WstarCPSUop(\mathcal{B}, \mathcal{C}) \rightarrow \WstarCPSUop(\mathcal{A} \oplus \mathcal{B}, \mathcal{C}) $ is a $\catMet$-functor.
 \end{proposition}
   
 \begin{proof}
-  We deduce by unfolding the respective definitions that we need to prove that for all normal completely positive short operators $\phi, \phi' \in \WstarCPSUop(B(\mathcal{H}),B(\mathcal{L}))  $ and $\psi, \psi' \in \WstarCPSUop(B(\mathcal{K}),B(\mathcal{L}))$ the inequation $\cbnorm{[\phi, \psi] - [\phi', \psi']} \leq  \sup \left\{ \cbnorm{\phi-\phi'}, \cbnorm{\psi-\psi'} \right\}$ holds.
-  Firstly, note that the copairing in $\WstarCPSUop$ corresponds to the pairing in $\WstarCPSU$. As a result, this is equivalent to prove that for for all normal completely positive short operators $\phi, \phi' \in \WstarCPSU(B(\mathcal{H}),B(\mathcal{L}))  $ and $\psi, \psi' \in \WstarCPSU(B(\mathcal{K}),B(\mathcal{L}))$ the inequation $\cbnorm{\langle \phi, \psi \rangle - \langle \phi', \psi'\rangle} \leq  \sup \left\{ \cbnorm{\phi-\phi'}, \cbnorm{\psi-\psi'} \right\}$ holds. Given that by Proposition \ref{prop:cp_cb} $\phi, \phi', \psi, \psi'$ are completely bounded. Moreover note that by the triangle inequality if two maps are completely bounded so is their difference. As a result, by Proposition \ref{prop:dirsum_cb}, the proposition above holds.
+  We deduce by unfolding the respective definitions that we need to prove that for all normal completely positive short operators $\phi, \phi' \in \WstarCPSUop(\mathcal{A}, \mathcal{C})  $ and $\psi, \psi' \in \WstarCPSUop(\mathcal{B}, \mathcal{C})$ the inequation $\cbnorm{[\phi, \psi] - [\phi', \psi']} \leq  \sup \left\{ \cbnorm{\phi-\phi'}, \cbnorm{\psi-\psi'} \right\}$ holds.
+  Firstly, note that the copairing in $\WstarCPSUop$ corresponds to the pairing in $\WstarCPSU$. As a result, this is equivalent to prove that for for all normal completely positive short operators $\phi, \phi' \in \WstarCPSU(\mathcal{A}, \mathcal{C})  $ and $\psi, \psi' \in \WstarCPSU(\mathcal{B}, \mathcal{C})$ the inequation $\cbnorm{\langle \phi, \psi \rangle - \langle \phi', \psi'\rangle} \leq  \sup \left\{ \cbnorm{\phi-\phi'}, \cbnorm{\psi-\psi'} \right\}$ holds. Given that by Proposition \ref{prop:cp_cb} $\phi, \phi', \psi, \psi'$ are completely bounded. Moreover note that by the triangle inequality if two maps are completely bounded so is their difference. 
+  Considering maps $\phi_1: \mathcal{A} \to \mathcal{C}$ and $\phi_2: \mathcal{B} \to \mathcal{C}$, by Definition \ref{def:cb_norm}, Theorem \ref{thm:c*_tensor_distributes_product} and Definition \ref{def:c*_direct_sum}, we have
+\begin{align*}
+  & \cbnorm{\langle \phi_1, \phi_2 \rangle} 
+  =  \sup_{\mathcal{D}} \|\id_{\mathcal{D}}\, \widecheck{\otimes} \, \langle \phi_1, \phi_2 \rangle\| =  \sup_{\mathcal{D}} \left\{\norm{\id_{\mathcal{D}} \otimes  \langle \phi_1, \phi_2 \rangle  \left(\sum_i a_i \otimes (b_i,c_i)\right)} \Big| \norm{\sum_i a_i \otimes (b_i,c_i)=1} \right\} \\
+  = &  \sup_{\mathcal{D}} \left\{\norm{  \sum_i \id_{\mathcal{D}}(a_i) \otimes (\phi_1 (b_i),\phi_2 (c_i))} \Big| \norm{\sum_i a_i \otimes (b_i,c_i)=1} \right\} \\
+  = & \sup_{\mathcal{D}} \left\{\norm{  \left(\sum_i (\id_{\mathcal{D}}(a_i) \otimes \phi_1 (b_i)), \sum_i (\id_{\mathcal{D}}(a_i) \otimes \phi_2 (c_i))\right)} \Big| \norm{\left(\sum_i a_i \otimes b_i, \sum_i a_i \otimes c_i\right)=1} \right\} \\
+  = & \sup_{\mathcal{D}} \left\{ \max \left\{\norm{  \sum_i (\id_{\mathcal{D}}(a_i) \otimes \phi_1 (b_i))}, \norm{\sum_i (\id_{\mathcal{D}}(a_i) \otimes \phi_2 (c_i))}\right\} \Big| \max \left\{ \norm{\sum_i a_i \otimes b_i}, \norm{\sum_i a_i \otimes c_i} \right\}=1 \right\} \\
+  %= & \max \left\{  \left(\sup_{\mathcal{D}} \norm{\sum_i (\id_{\mathcal{D}}(a_i) \otimes \phi_1 (b_i))}, \sup_{\mathcal{D}} \norm {\sum_i (\id_{\mathcal{D}}(a_i) \otimes \phi_2 (c_i))}\right) \Big| \norm{\left(\sum_i a_i \otimes b_i, \sum_i a_i \otimes c_i\right)=1}  \right\} \\
+  \leq &\max \{ \cbnorm{\phi_1}, \cbnorm{\phi_2} \}
+\end{align*}
+
+As a result the proposition above holds.
 \end{proof}
 
 \begin{proposition} \label{prop:cb_cat_met_otimes_met}
-  The category $\BHCPSUop$ is $\catMet$-enriched and the bifunctor $\bar{\otimes} : \BHCPSUop \, \bar{\otimes} \, \BHCPSUop \to \BHCPSUop$ is $\mathsf{Met}$-enriched as well.
+  The category $\WstarCPSUop$ is $\catMet$-enriched and the bifunctor $\bar{\otimes} : \WstarCPSUop \, \bar{\otimes} \, \WstarCPSUop \to \WstarCPSUop$ is $\mathsf{Met}$-enriched as well.
 \end{proposition}
 
 \begin{proof}
-  Firstly, we establish that $\BHCPSUop$ is $\catMet$-enriched. By unpacking the relevant definitions, this reduces to proving the following: for all short operators $\phi, \phi' : \mathcal{B}(\mathcal{H})\to \mathcal{B}(\mathcal{K})$ and $\psi, \psi' : \mathcal{B}(\mathcal{K}) \to \mathcal{B}((\mathcal{L}))$ the inequation $\cbnorm{\phi-\phi'} + \cbnorm{\psi-\psi'} \geq \cbnorm{\psi\phi-\psi'\phi'} $ holds. Considering \cite[ Proof of proposition 4.1]{dahlqvist2023syntactic},  it is sufficient to establish that $\cbnorm{\psi(\phi-\phi')} \leq \cbnorm{\phi-\phi'}$ and $\cbnorm{(\psi-\psi')\phi} \leq \cbnorm{\psi-\psi'}$ which follows from Proposition \ref{prop:cp_cb}, the triangle inequality and Lemma \ref{lem:cb_comp_submult}.
-
+  Firstly, we establish that $\WstarCPSUop$ is $\catMet$-enriched. By unpacking the relevant definitions, this reduces to proving the following: for all short operators $\phi, \phi' : \mathcal{A} \to \mathcal{B}$ and $\psi, \psi' : \mathcal{B} \to \mathcal{C}$ the inequation $\cbnorm{\phi-\phi'} + \cbnorm{\psi-\psi'} \geq \cbnorm{\psi\phi-\psi'\phi'} $ holds. Considering \cite[ Proof of proposition 4.1]{dahlqvist2023syntactic},  it is sufficient to establish that $\cbnorm{\psi(\phi-\phi')} \leq \cbnorm{\phi-\phi'}$ and $\cbnorm{(\psi-\psi')\phi} \leq \cbnorm{\psi-\psi'}$ which follows the fact that the cb-norm is obviously submultiplicative with respect to composition, from Proposition \ref{prop:cp_cb} and maps $\phi$ and $\psi$ being subunital, and therefore, short maps.
+  
   Next, regarding $\bar{\otimes}$ we can also deduce by unfolding the respective definitions that we need to prove $ \cbnorm{\phi - \phi'} + \cbnorm{\psi - \psi'} \geq \cbnorm{\psi \bar{\otimes} \phi - \psi' \bar{\otimes} \phi'}$. 
   For this case,  by Proposition \ref{prop:cb_tensor_id}, we have the inequalities  
   \[
@@ -2468,11 +2654,11 @@ Next, regarding $\bar{\otimes}$, the inequations $\cbnorm{\phi \, \bar{\otimes} 
   \quad \text{and} \quad  
  \cbnorm{\phi}  \geq \cbnorm{\id \, \bar{\otimes} \, \phi}
   \]  
-  for any super-operator \( \phi \). Attending to \cite[ Proof of proposition 4.1]{dahlqvist2023syntactic} these conditions are sufficient to establish that the bifunctor $\bar{\otimes} : \BHCPSUop \bar{\otimes} \BHCPSUop \to \BHCPSUop$ is $\mathsf{Met}$-enriched.
+  for any super-operator \( \phi \). Attending to \cite[ Proof of proposition 4.1]{dahlqvist2023syntactic} these conditions are sufficient to establish that the bifunctor $\bar{\otimes} : \WstarCPSUop \bar{\otimes} \WstarCPSUop \to \WstarCPSUop$ is $\mathsf{Met}$-enriched.
 \end{proof}
 
 \begin{theorem}
-  The category $\BHCPSUop$ is a $\catMet$-enriched symmetric monoidal category with coproducts.
+  The category $\WstarCPSUop$ is a $\catMet$-enriched symmetric monoidal category with coproducts.
 \end{theorem}
 
 \begin{proof}
@@ -2480,7 +2666,7 @@ Next, regarding $\bar{\otimes}$, the inequations $\cbnorm{\phi \, \bar{\otimes} 
 \end{proof}
 
 
-With the result above, we have established that the category $\BHCPSUop$ is a suitable model for our $\lambda$-calculus. Consequently, we obtain a framework for reasoning about approximate equivalence in infinite-dimensional quantum computation. This, for example, enables us to reason about errors in quantum walks on an infinite line \cite{venegasQuantumWalksComprehensive2012}.
+With the result above, we have established that the category $\WstarCPSUop$ is a suitable model for our $\lambda$-calculus. Consequently, we obtain a framework for reasoning about approximate equivalence in infinite-dimensional quantum computation. This, for example, enables us to reason about errors in quantum walks on an infinite line \cite{venegasQuantumWalksComprehensive2012}.
 
 Furthermore, the result also allows us to define a metric on the category $\catQ$ by associating to each morphism $\phi \in \catQ$ the norm of its corresponding morphism in the finite-dimensional subcategory $\FinBHCPSUop$, under the equivalence $\catQ \simeq \FinBHCPSUop$ \cite{choSemanticsQuantumProgramming2016}. In fact, a quantum channel (resp. quantum operator) $\phi: \mathcal{T}(\mathcal{H})  \to \mathcal{T}(\mathcal{K})$ defines a linear mapping 
 $\phi^*: \mathcal{B}(\mathcal{K}) \to \mathcal{B}(\mathcal{H})$ completely positive and unital (resp. subunital) 
