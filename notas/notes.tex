@@ -1231,6 +1231,355 @@ It is necessary to prove that when $\hat{f}$ is defined as $\hat{f}([x],[y]) = [
 
 \section{Examples}
 
+\subsection{Probabilistic computation}
+
+  The category $\catBan$ of Banach spaces and and short operators is a suitable model for the interpreation of metric $\lambda$-theories
+  concerning probabilistic computation without condicionals, as shown in \cite{dahlqvist2023syntactic}. 
+  
+  
+  $\catBan$ admits coproducts. Given two Banach spaces  $V$ e $W$, their coproduct is the direct sum $V \oplus W$, equipped with the norm
+  \begin{align*}
+    \norm{(v,w)} = \norm{v}+\norm{w}
+  \end{align*}
+  for all  $v \in V$, $w \in W$.
+
+  
+
+  Recall that every operator \( T: V \to U \) between Banach spaces \( V \) and \( U \) has a norm \( \norm{T} \), called the \emph{operator norm}, defined by
+  \[
+  \norm{T} = \sup \{ \norm{Tv} \mid \norm{v} = 1 \}.
+  \]
+  
+  This induces a metric \( d \) on the hom-set \( \catBan(V, U) \), given by
+  \[
+  d(S, T) = \norm{S - T},
+  \]
+  for any \( S, T \in \catBan(V, U) \).
+
+  \begin{lemma} \label{lem_op_max_trace}
+  Let $V$, $W$ and $U$ be Banach spaces. Let $ T: V \to U$ and $ S: W \to U$ be short maps. Then, it holds that 
+  $$ \opnorm{[T, S]}= \sup \{T,S\}$$
+\end{lemma}
+
+\begin{proof}
+
+We start by proving the inequality $\opnorm{[T, S]} \leq \sup \{[\opnorm{T}, \opnorm{S}]\}$. We calculate,
+
+\begin{align*} 
+  & \opnorm{[T, S]} \leq \sup \{[\opnorm{T}, \opnorm{S}]\} \\
+  &\Leftrightarrow \sup{\{ \norm{[T, S] (A)}  \hspace{2pt} |  \hspace{2pt}  \norm{A} = 1  \}}  
+  \leq \sup \{ \sup\{ \norm{T (A)} \hspace{2pt} |  \hspace{2pt}  \norm{A} = 1 \}, \sup\{ \norm{S (B)} \hspace{2pt} |  \hspace{2pt}  \norm{B} = 1 \}\} \\
+  &\Leftrightarrow  \text{sup}{\{ \norm{[T, S] (A_1, A_2)}   \hspace{2pt} |  \hspace{2pt}  \norm{(A_1, A_2 )} = 1  \}}  
+  \leq   \sup \left\{  \norm{T (A)} ,   \norm{S (B)}  \, \vert \,   \norm{A} = 1, \norm{B} = 1 \right\}  \\
+  & \Leftrightarrow \sup \left\{  \norm{T (A_1) + S (A_2)}  \, \vert \, \norm{A_1} + \norm{A_2}= 1 \right\}  
+  \leq \sup \left\{  \norm{T (A)},   \norm{S (B)}  \, \vert \,   \norm{A} = 1, \norm{B} = 1 \right\}  \\
+\end{align*}
+By the triangle inequality, proving the inequality bellow suffices to establish the inequality at hand.
+\begin{align*}
+  &\sup \left\{  \norm{T (A_1)} +   \norm{S (A_2)}  \, \vert \, \norm{T(A_1)} + \norm{S(A_2)}= 1 \right\}  \\
+  \leq & \sup \left\{  \norm{T (A)},   \norm{S (B)}  \, \vert \,   \norm{A} = 1, \norm{B} = 1 \right\} 
+\end{align*}
+Taking $A_1$ and $A_2$ as the operators that maximize $\norm{T (A_1)} + \norm{T (A_2)}$, it follows that if the inequality bellow is proven so is the  previous inequality:
+\begin{align*}
+  &  \lVert A_{1} \rVert+ \lVert A_{2} \rVert=1  \wedge  \norm{T (A_1)} +   \norm{S (A_2)}   
+  \leq   \max \left\{  \norm{T (A_{1} / \lVert A_{1} \rVert ) \rVert_{L^1},   \lVert S (A_{2} / \lVert A_{2} \rVert ) }  \right\}  
+\end{align*}
+Proving the inequality above is equivalent to demonstrating that for all $a+b=1$,
+ \begin{align*} 
+     x + y  \leq  \max \left\{   \dfrac{1}{a}x  ,   \dfrac{1}{b} y   \right\} \\
+ \end{align*}
+ This is done by arguing by \textit{reductio ad absurdum}, \textit{i.e.}, supposing otherwise leads to a contradiction:
+ \begin{align*} 
+     &
+      x + y  >  \max \left\{   \dfrac{1}{a}x  ,   \dfrac{1}{b} y   \right\} \\
+     & \Rightarrow  x + y > \dfrac{1}{a}x  \wedge x + y > \dfrac{1}{b}y \\
+     & \Rightarrow  a (x + y) > x  \wedge b (x + y)> y \\
+     & \Rightarrow  a x + a y > x  \wedge b x + by > y \\
+     & \Rightarrow  a x + a y > x  \wedge (1-a) x + (1-a)y > y\\
+     & \Rightarrow  a x + a y > x  \wedge x-ax + y -ay > y\\
+     & \Rightarrow  x < a x + a y   \wedge x > a x + a y  \\
+ \end{align*}
+It remains to prove the reverse inequality. The validity of this inequality stems from the observation that
+\begin{align*}
+  & \left\{ \sup  \{\norm{T (A)},   \norm{S (B)}  \, \vert \,   \norm{A} = 1, \norm{B} = 1 \}\right\}   \subseteq
+ \left\{  \norm{T (A)} + \norm{S (B)}  \, \vert \,   \norm{A} + \norm{B} = 1 \right\}.
+\end{align*}
+This inclusion holds because the first set considers only the special case where one component of the sum has an input with norm equal to one, while the input of the other component has zero norm, meaning it act acts as a null superoperator. Consequently,
+\begin{align*}
+  & \sup \left\{  \norm{T (A)},   \norm{S (B)}  \, \vert \,   \norm{A} = 1, \norm{B} = 1 \right\}   \leq
+ \sup \left\{  \norm{T (A)} + \norm{S (B)}  \, \vert \,   \norm{A} + \norm{B} = 1 \right\},
+\end{align*}
+and the equality is proven.
+
+\end{proof}
+
+  \begin{proposition} \label{prop:met_cond_pp}
+    For all $T, T' \in \catBan(V,U)  $ and $S, S' \in \catBan(W,U) $, $[T-T',S-S']:\catBan(V,U) \otimes \catBan(W,U) \rightarrow \catBan(V \oplus W,U) $ is a functor in the category of metric spaces.
+  \end{proposition}
+
+  \begin{proof}
+    We deduce by unfolding the respective definitions that we need to prove that for all short operators $T, T' \in \catBan(V,U)  $ and $S, S' \in \catBan(W,U) $ the inequation $\norm{[T-T', S-S']} \leq  \sup \left\{ \norm{T-T'}, \norm{S-S'} \right\}$ holds. This inequality follows directly from \autoref{lem_op_max_trace}.
+  \end{proof}
+
+  \begin{theorem}
+      The category $\catBan$ is a $\catMet$-enriched distributive symmetric monoidal category.
+  \end{theorem}
+
+\begin{proof}
+    This follows directly from \autoref{prop:met_cond_pp} and \cite[Theorem 4.3]{dahlqvist2023syntactic}.
+\end{proof} 
+
+
+  \begin{example}[Random walk]
+
+    $\mathbf{Ban}$ provides a model of the metric $\lambda$-theory presented in \ref{ex:random_walk_prob}  via the following interpretation: $\sem{\emph{real}} = \mathcal{M}\mathbb{R}$, the Banach space of finite Borel measures on $\mathbb{R}$ equipped with the total  variation norm.
+
+    For a finite measure $\nu$, the total variation norm is defined as
+    \begin{align*}
+      \norm{\nu} = \sup \left\{ \sum_{i=1}^n |\nu(A_i)| \mid A_i \in \mathcal{B}(\mathbb{R}), A_i \cap A_j = \emptyset, i \neq j, n \in \mathbb{N} \right\}
+    \end{align*}
+
+
+
+    The following alternative definition is useful to compute the total variation norm between measures.
+
+  \begin{definition} \cite{tsybakov2008}
+    Let  let $P$ and $Q$ be two probability measures on $\mathcal{M}\mathbb{R}$. Define
+    $$
+      \nu = P + Q, \quad p = \frac{dP}{d\nu}, \quad q = \frac{dQ}{d\nu},
+    $$
+    where $\frac{dP}{d\nu}$ denotes the  the Radon–Nikodym derivative of the measure $P$ with respect to the measure $\nu$. It holds that:
+    \begin{align*}
+      \norm{P-Q} = \sup \left\{ 2 \cdot \left\vert \int_{A} (p - q) \, d\nu \mid A \in  \mathcal{B}(\mathbb{R}) \right\vert \right\}
+    \end{align*}
+  \end{definition}
+  
+    Returning to the interpretation of our $\lambda$-theory, 
+    we have $I = \mathbb{R} \ni 1$, 
+    for every $r \in \mathbb{Q}$ we define $\sem{\emph{delta}_r}:\mathbb{R} \to \mathcal{M}\mathbb{R},\ x \mapsto x\delta_r$, where $\delta_r$ is the Dirac delta over $r$. 
+    Similarly for every $r,s \in \mathbb{Q}$ we have $\sem{\emph{u}_{r,s}}:\mathbb{R} \to \mathcal{M}\mathbb{R},\ 1 \mapsto U(r,s) $, where $U_{r,s}$ denotes the continous uniform distibution, with $r$ and $s$ as the minimum and maximum values, respectively. 
+    Next,  for every $p_1,\ldots,p_n \in [0,1]$, we have $\sem{\emph{delta}_{p_1,\ldots,p_n}}:\mathbb{R} \to \mathcal{M}\mathbb{R},\ 1 \mapsto \sum_{i=1}^n p_i\cdot \delta_{x_i}$, where $x_i \in \mathbb{Q}$
+    Moreover  for every $p \in [0,1]$ we define $\sem{\emph{CoinToss}_p}:\mathbb{R} \to \mathbb{R} \oplus \mathbb{R},\ 1 \mapsto (p, 1-p)$. 
+    Finally for every $\mu \in \mathcal{M}\mathbb{R}$ and for $\nu  \in \mathcal{M}\mathbb{R}$ we define $\sem{\emph{JumpL}_\mu} (\nu) = jl_{*}(\mu,\nu) $, the pushforward of the product measure $\mu \otimes \nu$ (seen as an element of $\mathcal{M}(\mathbb{R} \times \mathbb{R})$) under the Markov kernel $jl: \mathbb{R}^2 \to \mathcal{M}\mathbb{R},\ (u,v) \mapsto \delta_{v-u}$.  We define an analogous interpretation for the sampling function $\sem{\emph{JumpR}_\mu}$ considering the Markov kernel $jr: \mathbb{R}^2 \to \mathcal{M}\mathbb{R},\ (u,v) \mapsto \delta_{v+u}$.
+
+    Let us consider that in operations $\emph{CoinToss}_p$, $\emph{JumpL}_{\mu_1}$, $\emph{JumpR}_{\mu_1}$, the parameters $p, \mu_1$ and $\mu_2$ are afected by errors and in actuality we have operations $\emph{CoinToss}_{p'}$, $\emph{JumpL}_{\mu_{1'}}$, $\emph{JumpR}_{\mu_{2'}}$. 
+    If we have axioms 
+    $\emph{CoinToss}_p (*) =_{\epsilon_1}\emph{CoinToss}_{p'}(*)$, 
+    $\emph{JumpL}_{\mu_1} =_{\epsilon_2}\emph{JumpL}_{\mu_{1'}}$, and $\emph{JumpR}_{\mu_2} =_{\epsilon_3}\emph{JumpR}_{\mu_{2'}}$, using our metric deductive system it follows that 
+    $$\textbf{step} =_{\epsilon_1 + \max\{\epsilon_2, \epsilon_3\}} \textbf{step}^{\epsilon_1, \epsilon_2, \epsilon_3},$$
+    where $\textbf{step}^{\epsilon_1, \epsilon_2, \epsilon_3}$ corresponds to the $\lambda$-term resulting from the substitution of operations $\emph{CoinToss}_p$, $\emph{JumpL}_{\mu_1}$ and $\emph{JumpL}_{\mu_2}$ by their erroneous versions. 
+    Finally, designating $\textbf{rwalk-n}^{\epsilon_1, \epsilon_2, \epsilon_3}$ as the judgement that results from replacing $\textbf{step}$ by $\textbf{step}^{\epsilon_1, \epsilon_2, \epsilon_3}$, we can infer,
+    $$\textbf{rwalk-n} =_{n \cdot (\epsilon_1 + \max\{\epsilon_2, \epsilon_3\})} \textbf{rwalk-n}^{\epsilon_1, \epsilon_2, \epsilon_3},$$
+
+      
+
+
+    Let us now verify that we can in fact build the axioms previouly mentioned based on our model.
+
+
+   
+
+  Considering the absolute value as the norm on real numbers, it follows that
+  \begin{align*}
+    \norm {\sem{\emph{CoinToss}_p(*)} - \sem{\emph{CoinToss}_q(*)}} & = \norm {(p,1-p) - (q, 1-q)} \\
+    & =\norm {(p-q,q-p)}  = 2|p-q|
+  \end{align*}
+
+  As a result we can postulate the following metrix axiom:
+  $$ \emph{CoinToss}_p(*) =_{2|p-q|} \emph{CoinToss}_q(*)$$
+
+
+  Given a finite set of natural numbers \(N = \{1, \ldots, n\}\), let \(\mu \in \mathcal{M}(N)\) be a probability measure. Then \(\mu\) can be expressed as
+  \[
+  \mu = \sum_{i=1}^{n} p_i \delta_i,
+  \]
+  where each \(p_i\) is the probability assigned to \(i \in N\), and \(\delta_i\) denotes the Dirac measure at \(i\).
+
+    Consequently, we have that 
+    $$ \norm{\mu} =  \norm{\sum_{i=1}^{n} p_i \delta_i} = \sum_{i=1}^{n} p_i$$
+
+    Note that there is an isomorphism $ \mathbb{R} \times \mathbb{R}  \cong \mathcal{M}(1+1)$, given by $\phi: \mathcal{M}(1+1) \to \mathbb{R} \to \mathbb{R}  ,\ p_x \delta_x + p_y \delta_y  \mapsto (p_x, p_y)$. 
+
+  
+
+
+    
+
+
+    % considerando as props do tensor
+    
+    %RACIOCINIO: 
+    % 1ª op: \nu -> \nu \otimes 1
+    %no final de aplicarmos \id otimes f temos \nu \otimes \mu
+    % se houver um erro com f teremos \mu \otimes \mu'
+    % se sabemos a distancia entre mu e mu' estamos safos porque a seguir estamos a aplicar ops predefinidas e aí somam-se os erros dos argumentos
+
+     \todo[inline,size=\normalsize]{Problema notação: tensor e product measure} 
+
+    %Let $i_1: \mathcal{M}\mathbb{R}  \to \mathbb{R} \otimes \mathcal{M}\mathbb{R}$ be the isomophism defined as $i_1(\nu) = 1  \widehat{\otimes}_{\pi} \nu$. 
+    %This isomorphism is clearly a short map given that $ 1  \widehat{\otimes}_{\pi} \nu = \nu$. 
+    Consider the isomorphism $i_2: \mathcal{M}\mathbb{R} \,   \widehat{\otimes}_{\pi} \,   \mathcal{M}\mathbb{R} \to  \mathcal{M} \left( \mathbb{R} \times \mathbb{R} \right),$ 
+    $\mu  \widehat{\otimes}_{\pi} \nu \to \mu \otimes \nu.$ 
+    The product measure $\mu \otimes \nu$ is defined as $\mu  \otimes \nu (A \times B)= \mu(A)\cdot\nu(B).$
+    This is the measure produced by the Carath\'{e}odory's extension theorem \cite{aliprantisBanachLattices1999}.
+    Given that $\norm{\mu \otimes \nu}= |\mu (\mathbb{R})|\cdot |\nu (\mathbb{R})| = \norm{\mu} \cdot \norm{\nu}$, and $ \norm{\mu \, \widehat{\otimes}_{\pi} \, \nu} = \norm{\mu} \cdot \norm{\nu}$ (the projective norm is a cross norm) it follows that $i_2$ is a short map.
+
+
+
+    % Isto só funcinava se nos restrigissemos a M[0,1]
+    \begin{comment}
+    Next, consider the following commutative diagram:
+
+    \begin{tikzpicture}
+      \matrix (m) [matrix of math nodes, row sep=4em, column sep=6em, minimum width=2em]
+      {
+         \mathcal{M}\mathbb{R} \,   \widehat{\otimes}_{\pi} \,   \mathcal{M}\mathbb{R} &  \mathcal{M} \left( \mathbb{R} \times \mathbb{R} \right)  \\
+        \mathcal{M}\mathbb{R} \times \mathcal{M}\mathbb{R}   \\
+      };
+      \path[dotted, -stealth]
+      (m-2-1) edge node [left] {$\widehat{\otimes}_{\pi}$} (m-1-1);
+      \path[-stealth]
+        (m-1-1) edge node [above] {$i_2$} (m-1-2)
+        (m-2-1) edge node [above] {$f$} (m-1-2)
+        ;
+    \end{tikzpicture}
+
+    Where $i_2:  \mathcal{M}\mathbb{R} \,   \widehat{\otimes}_{\pi} \,   \mathcal{M}\mathbb{R} \to  \mathcal{M} \left( \mathbb{R} \times \mathbb{R} \right) $ is an isomorphism defined as $i_{2}( \mu  \widehat{\otimes}_{\pi} \nu ) = \mu \otimes \nu $ 
+    and the function $f: \mathcal{M}\mathbb{R} \times \mathcal{M}\mathbb{R}  \to \mathcal{M} \left( \mathbb{R} \times \mathbb{R} \right) $ is defined as $f((\mu, \nu)) = \mu \otimes \nu $. 
+    The product measure $\mu \otimes \nu$ is defined as $\mu \otimes \nu (A \times B)= \mu(A)\cdot\nu(B).$
+      This is the measure produced by the Carath\'{e}odory's extension theorem \cite{aliprantisBanachLattices1999}.
+       Given that $\norm{\mu \otimes \nu}= \norm{\mu} \cdot \norm{\nu}$,  and $\norm{(\mu, \nu)}= \max\{\norm{\mu}, \norm{\nu}\}$, for $\norm{\mu} \leq 1$ and $\norm{\nu} \leq 1$, it follows that $f$ is a short map.
+
+    \end{comment}
+
+    Since the diagram below commutes, and all the operations involved are short maps (considering $f$ as $\sem{\emph{delta}_r}$ or $\sem{\emph{u}_{r,s}}$), it follows that, if $d(\mu, \mu')=\epsilon$, then we may postulate \(\emph{JumpL}_\mu =_{\epsilon} \emph{JumpL}_{\mu'}\). A similar diagram can be constructed using \(jr_{*}\), allowing us to apply the same reasoning to the corresponding axioms.
+
+    \begin{tikzpicture}
+      \matrix (m) [matrix of math nodes, row sep=4em, column sep=6em, minimum width=2em]
+      {
+        \mathcal{M}\mathbb{R}  & \mathbb{R} \,   \widehat{\otimes}_{\pi} \mathcal{M}\mathbb{R} \,  \, & \mathcal{M}\mathbb{R} \, \widehat{\otimes}_{\pi} \,  \mathcal{M}\mathbb{R} &  \mathcal{M} \left( \mathbb{R} \times \mathbb{R} \right)  \\
+        \mathcal{M}\mathbb{R}  \\
+      };
+      \path[-stealth]
+        (m-1-1) edge node [left] {$\sem{\emph{JumpL}_\mu}$} (m-2-1)
+        (m-1-1) edge node [above] {$\cong$} (m-1-2)
+        (m-1-2) edge node [above] {$f\,  \widehat{\otimes}_{\pi} \,  \id $} (m-1-3)
+        (m-1-3) edge node [above] {$\cong$} (m-1-4)
+        (m-1-4) edge node [above] {$jl_{*}$} (m-2-1)
+        ;
+    \end{tikzpicture}
+
+   We now present examples of \(\mu\) and \(\mu'\), and demonstrate how to compute the distance between them.
+    First, consider $\mu=\delta_x$ and  $\mu'=\delta_y$. We calculate
+
+    \begin{align*}
+      \norm{\delta_x - \delta_y} = \sup \left\{ \sum_{i=1}^{n} |\delta_x - \delta_y (A_i)| \mid A_i \in \mathcal{B}(\mathbb{R}), A_i \cap A_j = \emptyset i,  \neq j, n \in \mathbb{N}  \right\} = 2
+    \end{align*}
+    Note that there are only two possibilities: either \(\delta_x\) and \(\delta_y\) belong to the same partition, or they belong to different ones. In the first case, we have
+    \[
+    \sum_{i=1}^{n} \left| \delta_x(A_i) - \delta_y(A_i) \right| = |1 - 1| = 0,
+    \]
+    while in the second case, we obtain
+    \[
+    \sum_{i=1}^{n} \left| \left( \delta_x(A_i) - \delta_y(A_i) \right) \right| = |1| + |-1| = 2.
+    \]
+    
+    Next, take $\mu= \sum_{i=1}^{n} p_i \delta_{x_i}$ and  $\mu'= \sum_{i=1}^n q_i \delta_{x_i}$. We compute
+
+    \begin{align*}
+      \norm{\sum_i p_i \delta_{x_i} - \sum_i q_i \delta_{x_i}} &
+      = \sup \left\{ \sum_{i=1}^{n} \left\lvert \left(\sum_i p_i \delta_{x_i} - \sum_i q_i \delta_{x_i} \right) (A_i) \right\rvert \,\Bigg| \, A_i \in \mathcal{B}(\mathbb{R}), A_i \cap A_j = \emptyset i,  \neq j, n \in \mathbb{N}  \right\} \\
+      & = \sum_i |p_i-q_i|
+    \end{align*}
+    Here, we apply the same reasoning as in the previous example, while also using the inequality
+\[
+\left| \sum_{i=1}^{n} a_i \right| \leq \sum_{i=1}^{n} |a_i|, \quad \text{for all } n \in \mathbb{N}.
+\]
+
+Subsequently, let $\mu = U(a,b)$ and  $\mu'=U(c,d)$, such that the intervals $[a,b]$ and $[c,d]$ are disjoint ($[a, b] \cap [c, d] = \emptyset$). Then, the Radon-Nikodym derivatives (probability density functions) with respect to \( \nu = U(a, b) + U(c, d) \) are given by:
+
+\[
+\frac{dU(a, b)}{d\nu}(x) = u(a,b)(x) = 
+\begin{cases} 
+\frac{1}{b - a} & \text{if } x \in [a, b], \\ 
+0 & \text{otherwise},
+\end{cases}
+\]
+and similarly,
+\[
+\frac{dU(c, d)}{d\nu}(x) = u(c,d)(x) = 
+\begin{cases} 
+\frac{1}{d - c} & \text{if } x \in [c, d], \\ 
+0 & \text{otherwise}.
+\end{cases}
+\]
+
+Here, similarly to the first example, we calculate
+\begin{align*}
+  &\norm{U(a,b)-U(c,d)} = 2 \cdot \sup_{A \in \mathcal{B}(\mathbb{R})}  \left\{ \left\vert\int_A (u(a,b)(x)- u(c,d)(x)) \, d \nu(x) \right\vert \right\} \\
+  & = 2 \cdot \sup_{A \in \mathcal{B}(\mathbb{R})}  \left\{ \left\vert\int_A (u(a,b)(x)) \, d \nu(x)  - \int_A (u(c,d)(x)) \,  d\nu(x) \right\vert \right\} = 2
+\end{align*}
+
+\begin{comment}
+Here, we calculate
+\begin{align*}
+  \norm{U(a,b)-U(c,d)} = 2 \cdot \sup_{A \in \mathcal{B}(\mathbb{R})}  \left\{ \left\vert\int_A (u(a,b)(x)- u(c,d)(x)) \, dx \right\vert \right\} = 2 \cdot \sup_{A \in \mathcal{B}(\mathbb{R})}  \left\{ \left\vert\int_A (u(a,b)(x)- u(c,d)(x)) \, dx \right\vert \right\}
+\end{align*}
+
+In this case, we consider three scenarios: 
+\begin{enumerate}
+    \item The intervals are disjoint: \([a, b] \cap [c, d] = \emptyset\),
+    \item One interval is fully contained in the other: for example, \([c, d] \subseteq [a, b]\) (or vice versa),
+    \item The intervals intersect, but neither is fully contained in the other.
+\end{enumerate}
+
+In the first case, we have
+\begin{align*}
+  \int |u(a,b)(x)- u(c,d)(x)| \, dx  & = \int_a^b |u(a,b)(x)- u(c,d)(x)| \, dx + \int_c^d |u(a,b)(x)- u(c,d)(x)| \, dx \\
+  & = \left\lvert \frac{b-a}{b-a}\right\rvert + \left\lvert- \frac{d-c}{d-c}\right\rvert = 2
+\end{align*}
+
+Regarding the second case, we compute
+\begin{align*}
+  \int |u(a,b)(x)- u(c,d)(x)| \, dx  & = \int_a^c |u(a,b)(x)- u(c,d)(x)| \, dx + \int_c^d |u(a,b)(x)- u(c,d)(x)| \, dx  \\
+   & \hspace{10pt }+\int_d^b |u(a,b)(x)- u(c,d)(x)| \, dx \\
+  & =  =  \frac{c-a}{b-a} + - (d-c) \left(\frac{1}{b-a} - \frac{1}{d-c}  \right)+  \frac{b-d}{b-a}
+\end{align*}
+
+At last, we calculate,
+\begin{align*}
+  \int |u(a,b)(x)- u(c,d)(x)| \, dx  & = \int_a^c |u(a,b)(x)- u(c,d)(x)| \, dx + \int_c^b |u(a,b)(x)- u(c,d)(x)| \, dx  \\
+   & \hspace{10pt }+\int_b^d |u(a,b)(x)- u(c,d)(x)| \, dx \\
+  & =  \frac{c-a}{b-a} +  (b-c) \left(\frac{1}{b-a} - \frac{1}{d-c}  \right)+  \frac{d-b}{b-a}
+\end{align*}
+
+\end{comment}
+
+Finally, consider $\mu = \delta_{x_0} $  and $\mu' =  U(x_0 - \epsilon, x_0 + \epsilon) $. Let \(\nu = \delta_{x_0} + U(x_0 - \epsilon, x_0 + \epsilon) \). The Radon-Nikodym derivatives are:
+
+\[
+\frac{d\delta_{x_0}}{d\nu}(x) = f (x)
+\begin{cases} 
+1 & \text{if } x = x_0, \\
+0 & \text{otherwise},
+\end{cases}
+\]
+
+\[
+\frac{dU(x_0 - \epsilon, x_0 + \epsilon)}{d\nu}(x) = u(x_0 - \epsilon, x_0 + \epsilon) = 
+\begin{cases} 
+\frac{1}{2\epsilon} & \text{if } x \in (x_0 - \epsilon, x_0 + \epsilon), \\
+0 & \text{otherwise}.
+\end{cases}
+\]
+
+We compute,
+\begin{align*}
+  \norm{\delta_{x_0}-U(x_0 - \epsilon, x_0 + \epsilon)} &= \sup_{A \in \mathcal{B}(\mathbb{R})} \left\{ \left\vert \int_A (f(x)- u(x_0 - \epsilon, x_0 + \epsilon) (x))\, d\nu(x) \right\vert \right\} \\
+  &= \sup_{A \in \mathcal{B}(\mathbb{R})} \left\{ \left\vert \int_A f(x)\, d\nu(x) -  \int_A   u(x_0 - \epsilon, x_0 + \epsilon) (x) \, d\nu(x) \right\vert \right\} = 2
+\end{align*}
+    
+
 \subsection{Finite-Dimensional Quantum Computation}
 
 \todo[inline]{Adicionar os preliminares de computação quantica: notação, esfera de Bloch , ops pos, unitarios, op densidade (e conversão ops densidade bloch vector), ops kraus, quantum channels +  cenas de algebra linear: traço e norma euclidiana}
@@ -1398,70 +1747,6 @@ d(\phi, \psi) = \diamondnorm{\phi, \psi},
 \]
 for \( \phi, \psi \in \mathbf{Q}(\sigma, \tau) \).
 
-\begin{lemma} \label{lem_op_max_trace}
-  Let $\sigma: n_1, \ldots, n_s$, $\tau: m_1, \ldots, m_t$ and $\mu: o_1, \ldots, o_r$ be signatures. Let $\phi \in \catQ(\sigma,\mu)  $ and $\psi \in \catQ(\tau,\mu) $ be superoperators. Then, it holds that 
-  $$ \opnorm{[\phi, \psi]}= \sup \{ \opnorm{\phi},\opnorm{\psi} \}$$
-\end{lemma}
-
-\begin{proof}
-
-We start by proving the inequality $\opnorm{[\phi, \psi]} \leq \sup \{[\opnorm{\phi}, \opnorm{\psi}]\}$. We calculate,
-
-\begin{align*} 
-  & \opnorm{[\phi, \psi]} \leq \sup \{[\opnorm{\phi}, \opnorm{\psi}]\} \\
-  &\Leftrightarrow \sup{\{ \norm{[\phi, \psi] (A)}  \hspace{2pt} |  \hspace{2pt}  \norm{A} = 1  \}}  
-  \leq \sup \{ \sup\{ \norm{\phi (A)} \hspace{2pt} |  \hspace{2pt}  \norm{A} = 1 \}, \sup\{ \norm{\psi (B)} \hspace{2pt} |  \hspace{2pt}  \norm{B} = 1 \}\} \\
-  &\Leftrightarrow  \text{sup}{\{ \norm{[\phi, \psi] (A_1, A_2)}   \hspace{2pt} |  \hspace{2pt}  \norm{(A_1, A_2 )} = 1  \}}  
-  \leq   \sup \left\{  \norm{\phi (A)} ,   \norm{\psi (B)}  \, \vert \,   \norm{A} = 1, \norm{B} = 1 \right\}  \\
-  & \Leftrightarrow \sup \left\{  \norm{\phi (A_1) + \psi (A_2)}  \, \vert \, \norm{\phi(A_1)} + \norm{\psi(A_2)}= 1 \right\}  
-  \leq \sup \left\{  \norm{\phi (A)},   \norm{\psi (B)}  \, \vert \,   \norm{A} = 1, \norm{B} = 1 \right\}  \\
-\end{align*}
-
-By the triangle inequality, proving the inequality bellow suffices to establish the inequality at hand.
-\begin{align*}
-  &\sup \left\{  \norm{\phi (A_1)} +   \norm{\psi (A_2)}  \, \vert \, \norm{\phi(A_1)} + \norm{\psi(A_2)}= 1 \right\}  
-  \leq \sup \left\{  \norm{\phi (A)},   \norm{\psi (B)}  \, \vert \,   \norm{A} = 1, \norm{B} = 1 \right\} 
-\end{align*}
-
-
-Taking $A_1$ and $A_2$ as the operators that maximize $\norm{\phi (A_1)} + \norm{\phi (A_2)}$, it follows that if the inequality bellow is proven so is the equality above:
-\begin{align*}
-  & \sup \left\{  \norm{\phi (A_1)} +   \norm{\psi (A_2)}  \right\}  
-  \leq  \sup \left\{  \norm{\phi (A_{1} / \lVert A_{1} \rVert ) \rVert_{L^1},   \lVert \psi (A_{2} / \lVert A_{2} \rVert ) }  \right\}  
-  \wedge  \lVert A_{1} \rVert+ \lVert A_{2} \rVert=1 
-\end{align*}
-
-
-Given the definition of \emph{supremum}, proving the inequality above is equivalent to demonstrating that for all $a+b=1$,
- \begin{align*} 
-     x + y  \leq  \max \left\{   \dfrac{1}{a}x  ,   \dfrac{1}{b} y   \right\} \\
- \end{align*}
- 
- This is done by arguing by \textit{reductio ad absurdum}, \textit{i.e.}, supposing otherwise leads to a contradiction:
- \begin{align*} 
-     &
-      x + y  >  \max \left\{   \dfrac{1}{a}x  ,   \dfrac{1}{b} y   \right\} \\
-     & \Rightarrow  x + y > \dfrac{1}{a}x  \wedge x + y > \dfrac{1}{b}y \\
-     & \Rightarrow  a (x + y) > x  \wedge b (x + y)> y \\
-     & \Rightarrow  a x + a y > x  \wedge b x + by > y \\
-     & \Rightarrow  a x + a y > x  \wedge (1-a) x + (1-a)y > y\\
-     & \Rightarrow  a x + a y > x  \wedge x-ax + y -ay > y\\
-     & \Rightarrow  x < a x + a y   \wedge x > a x + a y  \\
- \end{align*}
-
-It remains to prove the reverse inequality. The validity of this inequality stems from the observation that
-\begin{align*}
-  & \left\{  \norm{\phi (A)},   \norm{\psi (B)}  \, \vert \,   \norm{A} = 1, \norm{B} = 1 \right\}   \subseteq
- \left\{  \norm{\phi (A)} + \norm{\psi (B)}  \, \vert \,   \norm{A} + \norm{B} = 1 \right\}.
-\end{align*}
-This inclusion holds because the first set considers only the special case where one component of the sum has an input with norm equal to one, while the input of the other component has zero norm, meaning it act acts as a null superoperator. Consequently,
-\begin{align*}
-  & \sup \left\{  \norm{\phi (A)},   \norm{\psi (B)}  \, \vert \,   \norm{A} = 1, \norm{B} = 1 \right\}   \leq
- \sup \left\{  \norm{\phi (A)} + \norm{\psi (B)}  \, \vert \,   \norm{A} + \norm{B} = 1 \right\},
-\end{align*}
-and the equality is proven.
-
-\end{proof}
 
 
 \begin{proposition} \label{prop:met_cond}
@@ -1963,294 +2248,7 @@ Consequently, we postulate the following axiom:
 
 
 
-  \subsection{Probabilistic computation}
-
-  The category $\catBan$ of Banach spaces and and short operators is a suitable model for the interpreation of metric $\lambda$-theories
-  concerning probabilistic computation without condicionals, as shown in \cite{dahlqvist2023syntactic}. 
   
-  
-  $\catBan$ admits coproducts. Given two Banach spaces  $V$ e $W$, their coproduct is the direct sum $V \oplus W$, equipped with the norm
-  \begin{align*}
-    \norm{(v,w)} = \norm{v}+\norm{w}
-  \end{align*}
-  for all  $v \in V$, $w \in W$.
-
-  
-
-  Recall that every operator \( T: V \to U \) between Banach spaces \( V \) and \( U \) has a norm \( \norm{T} \), called the \emph{operator norm}, defined by
-  \[
-  \norm{T} = \sup \{ \norm{Tv} \mid \norm{v} = 1 \}.
-  \]
-  
-  Analogously to the case in \( \catQ \), this induces a metric \( d \) on the hom-set \( \catBan(V, U) \), given by
-  \[
-  d(S, T) = \norm{S - T},
-  \]
-  for any \( S, T \in \catBan(V, U) \).
-
-  \begin{proposition} \label{prop:met_cond_pp}
-    For all $T, T' \in \catBan(V,U)  $ and $S, S' \in \catBan(W,U) $, $[T-T',S-S']:\catBan(V,U) \otimes \catBan(W,U) \rightarrow \catBan(V \oplus W,U) $ is a functor in the category of metric spaces.
-  \end{proposition}
-
-  \begin{proof}
-    We deduce by unfolding the respective definitions that we need to prove that for all short operators $T, T' \in \catBan(V,U)  $ and $S, S' \in \catBan(W,U) $ the inequation $\norm{[T-T', S-S']} \leq  \sup \left\{ \norm{T-T'}, \norm{S-S'} \right\}$ holds.
-
-    Although Lemma~\ref{lem_op_max_trace} is stated for Euclidean (or Hilbert) spaces, a careful examination of its proof shows that the result extends to arbitrary normed spaces, including Banach spaces. Given we are considering the operator norm,  it follows that the inequality above  holds.
-
-  \end{proof}
-  
-  Note that given this result, \cite[Theorem 4.3]{dahlqvist2023syntactic} also holds for $\catBan$ and as result $\catBan$ is $\catMet$-enriched. 
-
-
-  \begin{example}[Random walk]
-
-    $\mathbf{Ban}$ provides a model of the metric $\lambda$-theory presented in \ref{ex:random_walk_prob}  via the following interpretation: $\sem{\emph{real}} = \mathcal{M}\mathbb{R}$, the Banach space of finite Borel measures on $\mathbb{R}$ equipped with the total  variation norm.
-
-    For a finite measure $\nu$, the total variation norm is defined as
-    \begin{align*}
-      \norm{\nu} = \sup \left\{ \sum_{i=1}^n |\nu(A_i)| \mid A_i \in \mathcal{B}(\mathbb{R}), A_i \cap A_j = \emptyset, i \neq j, n \in \mathbb{N} \right\}
-    \end{align*}
-
-
-
-    The following alternative definition is useful to compute the total variation norm between measures.
-
-  \begin{definition} \cite{tsybakov2008}
-    Let  let $P$ and $Q$ be two probability measures on $\mathcal{M}\mathbb{R}$. Define
-    $$
-      \nu = P + Q, \quad p = \frac{dP}{d\nu}, \quad q = \frac{dQ}{d\nu},
-    $$
-    where $\frac{dP}{d\nu}$ denotes the  the Radon–Nikodym derivative of the measure $P$ with respect to the measure $\nu$. It holds that:
-    \begin{align*}
-      \norm{P-Q} = \sup \left\{ 2 \cdot \left\vert \int_{A} (p - q) \, d\nu \mid A \in  \mathcal{B}(\mathbb{R}) \right\vert \right\}
-    \end{align*}
-  \end{definition}
-  
-    Returning to the interpretation of our $\lambda$-theory, 
-    we have $I = \mathbb{R} \ni 1$, 
-    for every $r \in \mathbb{Q}$ we define $\sem{\emph{delta}_r}:\mathbb{R} \to \mathcal{M}\mathbb{R},\ x \mapsto x\delta_r$, where $\delta_r$ is the Dirac delta over $r$. 
-    Similarly for every $r,s \in \mathbb{Q}$ we have $\sem{\emph{u}_{r,s}}:\mathbb{R} \to \mathcal{M}\mathbb{R},\ 1 \mapsto U(r,s) $, where $U_{r,s}$ denotes the continous uniform distibution, with $r$ and $s$ as the minimum and maximum values, respectively. 
-    Next,  for every $p_1,\ldots,p_n \in [0,1]$, we have $\sem{\emph{delta}_{p_1,\ldots,p_n}}:\mathbb{R} \to \mathcal{M}\mathbb{R},\ 1 \mapsto \sum_{i=1}^n p_i\cdot \delta_{x_i}$, where $x_i \in \mathbb{Q}$
-    Moreover  for every $p \in [0,1]$ we define $\sem{\emph{CoinToss}_p}:\mathbb{R} \to \mathbb{R} \oplus \mathbb{R},\ 1 \mapsto (p, 1-p)$. 
-    Finally for every $\mu \in \mathcal{M}\mathbb{R}$ and for $\nu  \in \mathcal{M}\mathbb{R}$ we define $\sem{\emph{JumpL}_\mu} (\nu) = jl_{*}(\mu,\nu) $, the pushforward of the product measure $\mu \otimes \nu$ (seen as an element of $\mathcal{M}(\mathbb{R} \times \mathbb{R})$) under the Markov kernel $jl: \mathbb{R}^2 \to \mathcal{M}\mathbb{R},\ (u,v) \mapsto \delta_{v-u}$.  We define an analogous interpretation for the sampling function $\sem{\emph{JumpR}_\mu}$ considering the Markov kernel $jr: \mathbb{R}^2 \to \mathcal{M}\mathbb{R},\ (u,v) \mapsto \delta_{v+u}$.
-
-    Let us consider that in operations $\emph{CoinToss}_p$, $\emph{JumpL}_{\mu_1}$, $\emph{JumpR}_{\mu_1}$, the parameters $p, \mu_1$ and $\mu_2$ are afected by errors and in actuality we have operations $\emph{CoinToss}_{p'}$, $\emph{JumpL}_{\mu_{1'}}$, $\emph{JumpR}_{\mu_{2'}}$. 
-    If we have axioms 
-    $\emph{CoinToss}_p (*) =_{\epsilon_1}\emph{CoinToss}_{p'}(*)$, 
-    $\emph{JumpL}_{\mu_1} =_{\epsilon_2}\emph{JumpL}_{\mu_{1'}}$, and $\emph{JumpR}_{\mu_2} =_{\epsilon_3}\emph{JumpR}_{\mu_{2'}}$, using our metric deductive system it follows that 
-    $$\textbf{step} =_{\epsilon_1 + \max\{\epsilon_2, \epsilon_3\}} \textbf{step}^{\epsilon_1, \epsilon_2, \epsilon_3},$$
-    where $\textbf{step}^{\epsilon_1, \epsilon_2, \epsilon_3}$ corresponds to the $\lambda$-term resulting from the substitution of operations $\emph{CoinToss}_p$, $\emph{JumpL}_{\mu_1}$ and $\emph{JumpL}_{\mu_2}$ by their erroneous versions. 
-    Finally, designating $\textbf{rwalk-n}^{\epsilon_1, \epsilon_2, \epsilon_3}$ as the judgement that results from replacing $\textbf{step}$ by $\textbf{step}^{\epsilon_1, \epsilon_2, \epsilon_3}$, we can infer,
-    $$\textbf{rwalk-n} =_{n \cdot (\epsilon_1 + \max\{\epsilon_2, \epsilon_3\})} \textbf{rwalk-n}^{\epsilon_1, \epsilon_2, \epsilon_3},$$
-
-      
-
-
-    Let us now verify that we can in fact build the axioms previouly mentioned based on our model.
-
-
-   
-
-  Considering the absolute value as the norm on real numbers, it follows that
-  \begin{align*}
-    \norm {\sem{\emph{CoinToss}_p(*)} - \sem{\emph{CoinToss}_q(*)}} & = \norm {(p,1-p) - (q, 1-q)} \\
-    & =\norm {(p-q,q-p)}  = 2|p-q|
-  \end{align*}
-
-  As a result we can postulate the following metrix axiom:
-  $$ \emph{CoinToss}_p(*) =_{2|p-q|} \emph{CoinToss}_q(*)$$
-
-
-  Given a finite set of natural numbers \(N = \{1, \ldots, n\}\), let \(\mu \in \mathcal{M}(N)\) be a probability measure. Then \(\mu\) can be expressed as
-  \[
-  \mu = \sum_{i=1}^{n} p_i \delta_i,
-  \]
-  where each \(p_i\) is the probability assigned to \(i \in N\), and \(\delta_i\) denotes the Dirac measure at \(i\).
-
-    Consequently, we have that 
-    $$ \norm{\mu} =  \norm{\sum_{i=1}^{n} p_i \delta_i} = \sum_{i=1}^{n} p_i$$
-
-    Note that there is an isomorphism $ \mathbb{R} \times \mathbb{R}  \cong \mathcal{M}(1+1)$, given by $\phi: \mathcal{M}(1+1) \to \mathbb{R} \to \mathbb{R}  ,\ p_x \delta_x + p_y \delta_y  \mapsto (p_x, p_y)$. 
-
-  
-
-
-    
-
-
-    % considerando as props do tensor
-    
-    %RACIOCINIO: 
-    % 1ª op: \nu -> \nu \otimes 1
-    %no final de aplicarmos \id otimes f temos \nu \otimes \mu
-    % se houver um erro com f teremos \mu \otimes \mu'
-    % se sabemos a distancia entre mu e mu' estamos safos porque a seguir estamos a aplicar ops predefinidas e aí somam-se os erros dos argumentos
-
-     \todo[inline,size=\normalsize]{Problema notação: tensor e product measure} 
-
-    %Let $i_1: \mathcal{M}\mathbb{R}  \to \mathbb{R} \otimes \mathcal{M}\mathbb{R}$ be the isomophism defined as $i_1(\nu) = 1  \widehat{\otimes}_{\pi} \nu$. 
-    %This isomorphism is clearly a short map given that $ 1  \widehat{\otimes}_{\pi} \nu = \nu$. 
-    Consider the isomorphism $i_2: \mathcal{M}\mathbb{R} \,   \widehat{\otimes}_{\pi} \,   \mathcal{M}\mathbb{R} \to  \mathcal{M} \left( \mathbb{R} \times \mathbb{R} \right),$ 
-    $\mu  \widehat{\otimes}_{\pi} \nu \to \mu \otimes \nu.$ 
-    The product measure $\mu \otimes \nu$ is defined as $\mu  \otimes \nu (A \times B)= \mu(A)\cdot\nu(B).$
-    This is the measure produced by the Carath\'{e}odory's extension theorem \cite{aliprantisBanachLattices1999}.
-    Given that $\norm{\mu \otimes \nu}= |\mu (\mathbb{R})|\cdot |\nu (\mathbb{R})| = \norm{\mu} \cdot \norm{\nu}$, and $ \norm{\mu \, \widehat{\otimes}_{\pi} \, \nu} = \norm{\mu} \cdot \norm{\nu}$ (the projective norm is a cross norm) it follows that $i_2$ is a short map.
-
-
-
-    % Isto só funcinava se nos restrigissemos a M[0,1]
-    \begin{comment}
-    Next, consider the following commutative diagram:
-
-    \begin{tikzpicture}
-      \matrix (m) [matrix of math nodes, row sep=4em, column sep=6em, minimum width=2em]
-      {
-         \mathcal{M}\mathbb{R} \,   \widehat{\otimes}_{\pi} \,   \mathcal{M}\mathbb{R} &  \mathcal{M} \left( \mathbb{R} \times \mathbb{R} \right)  \\
-        \mathcal{M}\mathbb{R} \times \mathcal{M}\mathbb{R}   \\
-      };
-      \path[dotted, -stealth]
-      (m-2-1) edge node [left] {$\widehat{\otimes}_{\pi}$} (m-1-1);
-      \path[-stealth]
-        (m-1-1) edge node [above] {$i_2$} (m-1-2)
-        (m-2-1) edge node [above] {$f$} (m-1-2)
-        ;
-    \end{tikzpicture}
-
-    Where $i_2:  \mathcal{M}\mathbb{R} \,   \widehat{\otimes}_{\pi} \,   \mathcal{M}\mathbb{R} \to  \mathcal{M} \left( \mathbb{R} \times \mathbb{R} \right) $ is an isomorphism defined as $i_{2}( \mu  \widehat{\otimes}_{\pi} \nu ) = \mu \otimes \nu $ 
-    and the function $f: \mathcal{M}\mathbb{R} \times \mathcal{M}\mathbb{R}  \to \mathcal{M} \left( \mathbb{R} \times \mathbb{R} \right) $ is defined as $f((\mu, \nu)) = \mu \otimes \nu $. 
-    The product measure $\mu \otimes \nu$ is defined as $\mu \otimes \nu (A \times B)= \mu(A)\cdot\nu(B).$
-      This is the measure produced by the Carath\'{e}odory's extension theorem \cite{aliprantisBanachLattices1999}.
-       Given that $\norm{\mu \otimes \nu}= \norm{\mu} \cdot \norm{\nu}$,  and $\norm{(\mu, \nu)}= \max\{\norm{\mu}, \norm{\nu}\}$, for $\norm{\mu} \leq 1$ and $\norm{\nu} \leq 1$, it follows that $f$ is a short map.
-
-    \end{comment}
-
-    Since the diagram below commutes, and all the operations involved are short maps (considering $f$ as $\sem{\emph{delta}_r}$ or $\sem{\emph{u}_{r,s}}$), it follows that, if $d(\mu, \mu')=\epsilon$, then we may postulate \(\emph{JumpL}_\mu =_{\epsilon} \emph{JumpL}_{\mu'}\). A similar diagram can be constructed using \(jr_{*}\), allowing us to apply the same reasoning to the corresponding axioms.
-
-    \begin{tikzpicture}
-      \matrix (m) [matrix of math nodes, row sep=4em, column sep=6em, minimum width=2em]
-      {
-        \mathcal{M}\mathbb{R}  & \mathbb{R} \,   \widehat{\otimes}_{\pi} \mathcal{M}\mathbb{R} \,  \, & \mathcal{M}\mathbb{R} \, \widehat{\otimes}_{\pi} \,  \mathcal{M}\mathbb{R} &  \mathcal{M} \left( \mathbb{R} \times \mathbb{R} \right)  \\
-        \mathcal{M}\mathbb{R}  \\
-      };
-      \path[-stealth]
-        (m-1-1) edge node [left] {$\sem{\emph{JumpL}_\mu}$} (m-2-1)
-        (m-1-1) edge node [above] {$\cong$} (m-1-2)
-        (m-1-2) edge node [above] {$f\,  \widehat{\otimes}_{\pi} \,  \id $} (m-1-3)
-        (m-1-3) edge node [above] {$\cong$} (m-1-4)
-        (m-1-4) edge node [above] {$jl_{*}$} (m-2-1)
-        ;
-    \end{tikzpicture}
-
-   We now present examples of \(\mu\) and \(\mu'\), and demonstrate how to compute the distance between them.
-    First, consider $\mu=\delta_x$ and  $\mu'=\delta_y$. We calculate
-
-    \begin{align*}
-      \norm{\delta_x - \delta_y} = \sup \left\{ \sum_{i=1}^{n} |\delta_x - \delta_y (A_i)| \mid A_i \in \mathcal{B}(\mathbb{R}), A_i \cap A_j = \emptyset i,  \neq j, n \in \mathbb{N}  \right\} = 2
-    \end{align*}
-    Note that there are only two possibilities: either \(\delta_x\) and \(\delta_y\) belong to the same partition, or they belong to different ones. In the first case, we have
-    \[
-    \sum_{i=1}^{n} \left| \delta_x(A_i) - \delta_y(A_i) \right| = |1 - 1| = 0,
-    \]
-    while in the second case, we obtain
-    \[
-    \sum_{i=1}^{n} \left| \left( \delta_x(A_i) - \delta_y(A_i) \right) \right| = |1| + |-1| = 2.
-    \]
-    
-    Next, take $\mu= \sum_{i=1}^{n} p_i \delta_{x_i}$ and  $\mu'= \sum_{i=1}^n q_i \delta_{x_i}$. We compute
-
-    \begin{align*}
-      \norm{\sum_i p_i \delta_{x_i} - \sum_i q_i \delta_{x_i}} &
-      = \sup \left\{ \sum_{i=1}^{n} \left\lvert \left(\sum_i p_i \delta_{x_i} - \sum_i q_i \delta_{x_i} \right) (A_i) \right\rvert \,\Bigg| \, A_i \in \mathcal{B}(\mathbb{R}), A_i \cap A_j = \emptyset i,  \neq j, n \in \mathbb{N}  \right\} \\
-      & = \sum_i |p_i-q_i|
-    \end{align*}
-    Here, we apply the same reasoning as in the previous example, while also using the inequality
-\[
-\left| \sum_{i=1}^{n} a_i \right| \leq \sum_{i=1}^{n} |a_i|, \quad \text{for all } n \in \mathbb{N}.
-\]
-
-Subsequently, let $\mu = U(a,b)$ and  $\mu'=U(c,d)$, such that the intervals $[a,b]$ and $[c,d]$ are disjoint ($[a, b] \cap [c, d] = \emptyset$). Then, the Radon-Nikodym derivatives (probability density functions) with respect to \( \nu = U(a, b) + U(c, d) \) are given by:
-
-\[
-\frac{dU(a, b)}{d\nu}(x) = u(a,b)(x) = 
-\begin{cases} 
-\frac{1}{b - a} & \text{if } x \in [a, b], \\ 
-0 & \text{otherwise},
-\end{cases}
-\]
-and similarly,
-\[
-\frac{dU(c, d)}{d\nu}(x) = u(c,d)(x) = 
-\begin{cases} 
-\frac{1}{d - c} & \text{if } x \in [c, d], \\ 
-0 & \text{otherwise}.
-\end{cases}
-\]
-
-Here, similarly to the first example, we calculate
-\begin{align*}
-  &\norm{U(a,b)-U(c,d)} = 2 \cdot \sup_{A \in \mathcal{B}(\mathbb{R})}  \left\{ \left\vert\int_A (u(a,b)(x)- u(c,d)(x)) \, d \nu(x) \right\vert \right\} \\
-  & = 2 \cdot \sup_{A \in \mathcal{B}(\mathbb{R})}  \left\{ \left\vert\int_A (u(a,b)(x)) \, d \nu(x)  - \int_A (u(c,d)(x)) \,  d\nu(x) \right\vert \right\} = 2
-\end{align*}
-
-\begin{comment}
-Here, we calculate
-\begin{align*}
-  \norm{U(a,b)-U(c,d)} = 2 \cdot \sup_{A \in \mathcal{B}(\mathbb{R})}  \left\{ \left\vert\int_A (u(a,b)(x)- u(c,d)(x)) \, dx \right\vert \right\} = 2 \cdot \sup_{A \in \mathcal{B}(\mathbb{R})}  \left\{ \left\vert\int_A (u(a,b)(x)- u(c,d)(x)) \, dx \right\vert \right\}
-\end{align*}
-
-In this case, we consider three scenarios: 
-\begin{enumerate}
-    \item The intervals are disjoint: \([a, b] \cap [c, d] = \emptyset\),
-    \item One interval is fully contained in the other: for example, \([c, d] \subseteq [a, b]\) (or vice versa),
-    \item The intervals intersect, but neither is fully contained in the other.
-\end{enumerate}
-
-In the first case, we have
-\begin{align*}
-  \int |u(a,b)(x)- u(c,d)(x)| \, dx  & = \int_a^b |u(a,b)(x)- u(c,d)(x)| \, dx + \int_c^d |u(a,b)(x)- u(c,d)(x)| \, dx \\
-  & = \left\lvert \frac{b-a}{b-a}\right\rvert + \left\lvert- \frac{d-c}{d-c}\right\rvert = 2
-\end{align*}
-
-Regarding the second case, we compute
-\begin{align*}
-  \int |u(a,b)(x)- u(c,d)(x)| \, dx  & = \int_a^c |u(a,b)(x)- u(c,d)(x)| \, dx + \int_c^d |u(a,b)(x)- u(c,d)(x)| \, dx  \\
-   & \hspace{10pt }+\int_d^b |u(a,b)(x)- u(c,d)(x)| \, dx \\
-  & =  =  \frac{c-a}{b-a} + - (d-c) \left(\frac{1}{b-a} - \frac{1}{d-c}  \right)+  \frac{b-d}{b-a}
-\end{align*}
-
-At last, we calculate,
-\begin{align*}
-  \int |u(a,b)(x)- u(c,d)(x)| \, dx  & = \int_a^c |u(a,b)(x)- u(c,d)(x)| \, dx + \int_c^b |u(a,b)(x)- u(c,d)(x)| \, dx  \\
-   & \hspace{10pt }+\int_b^d |u(a,b)(x)- u(c,d)(x)| \, dx \\
-  & =  \frac{c-a}{b-a} +  (b-c) \left(\frac{1}{b-a} - \frac{1}{d-c}  \right)+  \frac{d-b}{b-a}
-\end{align*}
-
-\end{comment}
-
-Finally, consider $\mu = \delta_{x_0} $  and $\mu' =  U(x_0 - \epsilon, x_0 + \epsilon) $. Let \(\nu = \delta_{x_0} + U(x_0 - \epsilon, x_0 + \epsilon) \). The Radon-Nikodym derivatives are:
-
-\[
-\frac{d\delta_{x_0}}{d\nu}(x) = f (x)
-\begin{cases} 
-1 & \text{if } x = x_0, \\
-0 & \text{otherwise},
-\end{cases}
-\]
-
-\[
-\frac{dU(x_0 - \epsilon, x_0 + \epsilon)}{d\nu}(x) = u(x_0 - \epsilon, x_0 + \epsilon) = 
-\begin{cases} 
-\frac{1}{2\epsilon} & \text{if } x \in (x_0 - \epsilon, x_0 + \epsilon), \\
-0 & \text{otherwise}.
-\end{cases}
-\]
-
-We compute,
-\begin{align*}
-  \norm{\delta_{x_0}-U(x_0 - \epsilon, x_0 + \epsilon)} &= \sup_{A \in \mathcal{B}(\mathbb{R})} \left\{ \left\vert \int_A (f(x)- u(x_0 - \epsilon, x_0 + \epsilon) (x))\, d\nu(x) \right\vert \right\} \\
-  &= \sup_{A \in \mathcal{B}(\mathbb{R})} \left\{ \left\vert \int_A f(x)\, d\nu(x) -  \int_A   u(x_0 - \epsilon, x_0 + \epsilon) (x) \, d\nu(x) \right\vert \right\} = 2
-\end{align*}
-    
 
 
 \subsection{Infinite-Dimensional Quantum Computation}
