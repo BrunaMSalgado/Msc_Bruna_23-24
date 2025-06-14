@@ -282,10 +282,11 @@ basic quantum operations:  the conversion of a bit into a qubit, $q : \typeI
 \oplus \typeI  \to \emph{qbit}$, the measurement of a qubit,
 $\emph{meas}:\emph{qbit} \to \typeI \oplus \typeI$, and a pre-determined set of
 operations on $n$-qubits, $\emph{U}:\emph{qbit},\ldots,\emph{qbit} \to
-\emph{qbit}^{\otimes n}$. The latter set can include not only unitary operations, as the Hadamard
+\emph{qbit}^{\otimes n}$ and $\emph{CPTP}:\emph{qbit},\ldots,\emph{qbit} \to
+\emph{qbit}^{\otimes n}$ . The latter includes unitary operations, as the Hadamard
 gate $H : \emph{qbit} \to \emph{qbit}$, the not-gate $X : \emph{qbit} \to
-\emph{qbit}$, or the cnot-gate $CNOT : \emph{qbit},\emph{qbit} \to
-\emph{qbit}^{\otimes 2}$, but also CPTP operations such as the dephasing with probability $p$, $D_p : \emph{qbit},\emph{qbit} \to
+\emph{qbit}$, and the cnot-gate $CNOT : \emph{qbit},\emph{qbit} \to
+\emph{qbit}^{\otimes 2}$, and the former set operations such as the dephasing with probability $p$, $D_p : \emph{qbit},\emph{qbit} \to
 \emph{qbit}^{\otimes 2}$. We consider as well a pre-determined set of quantum
 states $\ket{\psi} : \typeI \to \emph{qbit}$.  Finally note that the values
 \emph{true} and \emph{false} (in the type $\typeI \oplus \typeI$) are regarded to be 
@@ -429,7 +430,12 @@ teleportation procedure in $\lambda$-calculus as follows:
 
 \end{example}
 
-~\todo[inline]{Adicionar quantum walk}
+We now consider a slightly modified $\lambda$-theory, distinct from the one presented above: we no longer consider CPTP operations and introduce a new type, $\emph{Iqbit}$, representing qubits in an infinite-dimensional (separable) Hilbert space. Alongside this, we define a predetermined set of operations on $n$ "infinite qubits", such as $U_I\colon \emph{Iqbit}, \ldots, \emph{Iqbit} \to \emph{Iqbit}^{\otimes n}$.
+
+\begin{example} [Quantum walk on an infinite line]
+  ~\todo[inline]{Adicionar quantum walk}
+\end{example}
+
 
 \subsubsection{Linear $\lambda$-calculus and probabilistic computation} \label{subsec:syntax_pc}
 Next, we demonstrate the application of this language to in the probabilistic computation paradigm. To this end, we first consider a type \emph{real} of measurement, a set of predermined functions 
@@ -2461,8 +2467,7 @@ The category $\WstarCPSUop$ is a distributive symmetric monoidal category.
 
 
 
- \todo[inline]{ Por frase do tipo " Due to limitations of space, here we just fix notations and
- terminology, and list the basic results. A reader who is not familiar with these topics may consult bla bla"}
+
 
 %For C$^*$-algebras $\mathcal{A}$ and $\mathcal{B}$, we denote by $\mathcal{A}\odot \mathcal{B} $ the algebraic tensor product of $\mathcal{A}$ and $\mathcal{B}$.
 
@@ -2661,6 +2666,7 @@ As a result the proposition above holds.
 
 With the result above, we have established that the category $\WstarCPSUop$ is a suitable model for our $\lambda$-calculus. Consequently, we obtain a framework for reasoning about approximate equivalence in infinite-dimensional quantum computation. This, for example, enables us to reason about errors in quantum walks on an infinite line \cite{venegasQuantumWalksComprehensive2012}.
 
+
 Furthermore, the result also allows us to define a metric on the category $\catQ$ by associating to each morphism $\phi \in \catQ$ the norm of its corresponding morphism in the finite-dimensional subcategory $\FinBHCPSUop$, under the equivalence $\catQ \simeq \FinBHCPSUop$ \cite{choSemanticsQuantumProgramming2016}. In fact, a quantum channel (resp. quantum operator) $\phi: \mathcal{T}(\mathcal{H})  \to \mathcal{T}(\mathcal{K})$ defines a linear mapping 
 $\phi^*: \mathcal{B}(\mathcal{K}) \to \mathcal{B}(\mathcal{H})$ completely positive and unital (resp. subunital) 
 \cite[4.1.2]{heinosaariMathematicalLanguageQuantum2011}. These maps are related in the following way:
@@ -2729,6 +2735,194 @@ $$ \varphi(\ket{j} \bra{i})= \langle \ket{j} \bra{i},  v_\varphi  \rangle = \sum
 where the subscript \(k\) refers to the \(k\)-th component of the vector \(v_\varphi\), and \(v_{\varphi, p_k, q_k}\) denotes the entry in the \(p_k\)-th column and \(q_k\)-th row of the matrix \(v_{\varphi,k}\). Note that when the set of orthonormal basis states of \(\mathbb{C}^{n_1} \oplus \ldots \oplus \mathbb{C}^{n_s}\) is decomposed by its components, all but one of the components are zero vectors this is the one we designate by $k$ in the last step.
 
 As a result $\phi^*(\varphi) =  \sum_{ij} \varphi(\ket{j}\bra{i}) \cdot \ket{i} \bra{j} = \sum_{ij}  v_{\varphi,p_k,q_k} \cdot  \ket{i} \bra{j}  = v_{\varphi}$.
+
+
+
+\begin{example}
+  We now proceed to illustrate the aforementioned correspondence for specific operators $\phi$.
+  \begin{enumerate}
+    \item $\phi: \Complex \to \Complex^{2 \times 2}$, $ \phi(1)= \ket{\psi}\bra{\psi}$. In this case, $\phi^*:\Complex^{2 \times 2} \to \Complex$ is defined as  
+    $$\phi^*(\rho) =  \tr\left( \rho \cdot \ket{\psi}\bra{\psi}\right).$$ 
+    Note that for $S \in \Complex^{2 \times 2}$ and $T \in \Complex$, we have 
+    $$\tr(\phi(T)\cdot S) =  T \cdot \tr\left(\ket{\psi}\bra{\psi}\right) \cdot S = \tr(T\cdot \phi^*(S)). $$
+
+    \item $\phi: \Complex \oplus \Complex \to \Complex^{2 \times 2}$, $\phi((a,b))=\left(\begin{smallmatrix}
+    a & 0 \\
+    0 & b
+  \end{smallmatrix}\right).$ 
+  In this case, $\phi^*:\Complex^{2 \times 2} \to \Complex \oplus \Complex$ is defined as
+    $$\phi^*\left( \begin{pmatrix}
+    a & b \\
+    c & d
+    \end{pmatrix}\right) 
+    = \left( \tr\left( \begin{pmatrix}
+    a & b \\
+    c & d
+    \end{pmatrix}  \begin{pmatrix}
+    1 & 0 \\
+    0 & 0
+    \end{pmatrix}\right),
+     \tr\left( \begin{pmatrix}
+    a & b \\
+    c & d
+    \end{pmatrix}  \begin{pmatrix}
+    0 & 0 \\
+    0 & 1
+    \end{pmatrix}\right) \right)
+    %= \left( \tr \begin{pmatrix}
+    %a & 0 \\
+    %c & 0
+    %\end{pmatrix},\tr \begin{pmatrix}
+    %0 & b \\
+    %0 & d \end{pmatrix} \right) 
+    = \left(a,d\right).$$
+    Note that for all $S= \left(\begin{smallmatrix}
+    a & b \\
+    c & d
+  \end{smallmatrix}\right). $ and $T = (x,y)$, we have 
+    $$\tr(\phi(T)\cdot S) =   \tr\left(\begin{pmatrix}
+    x & 0 \\
+    0 & y
+    \end{pmatrix}\cdot \begin{pmatrix}
+    a & b \\
+    c & d
+    \end{pmatrix}\right) = x\cdot a + y \cdot d = \tr\left( (x,y) \cdot (a,d)\right) = \tr(T\cdot \phi^*(S)). $$
+
+
+    \item $\phi: \Complex^{2 \times 2} \to  \Complex \oplus \Complex $, $\phi\left(\begin{smallmatrix}
+    a & 0 \\
+    0 & b
+  \end{smallmatrix}\right) = (a,b).$  In this case, $\phi^*: \Complex \oplus \Complex \to \Complex^{2 \times 2}  $ is defined as
+    $$\phi^*\left( (a,b)\right) 
+    = \tr ((a,b) \cdot (1,0)) \cdot \ket{0}\bra{0} + \tr ((a,b) \cdot (0,1)) \cdot \ket{1}\bra{1}
+    = \begin{pmatrix}
+    a & 0 \\
+    0 & b
+    \end{pmatrix}.$$
+    Note that for all and $S = (a,b)$ and $T= \left(\begin{smallmatrix}
+    x & y \\
+    w & z
+  \end{smallmatrix}\right)$, we have 
+    $$\tr(\phi(T)\cdot S) = \tr\left( (x,z) \cdot (a,b)\right) = x\cdot a + y\cdot b =  \tr\left(\begin{pmatrix}
+    x & y \\
+    w & z
+    \end{pmatrix}\cdot \begin{pmatrix}
+    a & 0 \\
+    0 & d
+    \end{pmatrix}\right)  = \tr(T\cdot \phi^*(S)). $$
+    
+  \item  $\phi: \Complex^{2 \times 2} \to  \Complex \oplus \Complex $, $\phi(\rho) = T \rho T^\dag,$ with $T = \left(\begin{smallmatrix}
+    1 & 0 \\
+    0 & e^{-i \pi/4}
+  \end{smallmatrix}\right).$ In this case, $\phi^*: \Complex^{2 \times 2} \to \Complex^{2 \times 2}  $ is defined as
+    $$\phi^*\left( \rho\right) 
+    = T^\dag \rho T$$
+    Note that for all and $S = \left(\begin{smallmatrix}
+    a & b \\
+    c & d
+  \end{smallmatrix}\right)$ and $T= \left(\begin{smallmatrix}
+    x & y \\
+    w & z
+  \end{smallmatrix}\right)$, we have 
+  \begin{align*}
+    \tr(\phi(T)\cdot S) &= \tr\left(\begin{pmatrix}
+    x & y\cdot e^{i \pi/4} \\
+    w \cdot e^{-i \pi/4} & z
+    \end{pmatrix}\cdot \begin{pmatrix}
+    a & b \\
+    c & d
+    \end{pmatrix}\right) \\
+    &= x\cdot a + y \cdot c \cdot e^{i \pi/4} + w\cdot b \cdot e^{-i\pi/4} + z \cdot d \\
+    &= \tr\left(\begin{pmatrix}
+    x & y \\
+    w  & z
+    \end{pmatrix}\cdot \begin{pmatrix}
+    a & b\cdot e^{-i \pi/4} \\
+    c \cdot e^{i \pi/4} & d
+    \end{pmatrix}\right) = \tr(T\cdot \phi^*(S)).
+  \end{align*}
+
+  \item  $\phi: \Complex^{2 \times 2} \to  \Complex \oplus \Complex $, $\phi( \left(\begin{smallmatrix}
+    a & b \\
+    c & d
+  \end{smallmatrix}\right)) = \left(\begin{smallmatrix}
+    a+d & 0 \\
+    0 & 0
+  \end{smallmatrix}\right).$ In this case, $\phi^*: \Complex^{2 \times 2} \to \Complex^{2 \times 2}  $ is defined as
+    $$\phi^*\left( \begin{pmatrix}
+    a & b \\
+    c & d
+  \end{pmatrix}\right) 
+    =  \tr \left(\begin{pmatrix}
+    a & b \\
+    c & d
+  \end{pmatrix}\begin{pmatrix}
+    1 & 0 \\
+    0 & 0
+  \end{pmatrix}\right) \begin{pmatrix}
+    1 & 0 \\
+    0 & 0
+  \end{pmatrix}  
+  + \tr \left(\begin{pmatrix}
+    a & b \\
+    c & d
+  \end{pmatrix}\begin{pmatrix}
+    1 & 0 \\
+    0 & 0
+  \end{pmatrix}\right) \begin{pmatrix}
+    0 & 0 \\
+    0 & 1
+  \end{pmatrix} 
+  = \begin{pmatrix}
+    a & 0 \\
+    0 & a
+  \end{pmatrix}  $$
+ Note that for all and $S = \left(\begin{smallmatrix}
+    a & b \\
+    c & d
+  \end{smallmatrix}\right)$ and $T= \left(\begin{smallmatrix}
+    x & y \\
+    w & z
+  \end{smallmatrix}\right)$, we have 
+  \begin{align*}
+    \tr(\phi(T)\cdot S) &= \tr\left(\begin{pmatrix}
+    x +z& 0 \\
+    0 & 0
+    \end{pmatrix}\cdot \begin{pmatrix}
+    a & b \\
+    c & d
+    \end{pmatrix}\right) =(x+z)\cdot a  = \tr\left(\begin{pmatrix}
+    x & y \\
+    w  & z
+    \end{pmatrix}\cdot \begin{pmatrix}
+    a & 0 \\
+    0 & a
+    \end{pmatrix}\right) = \tr(T\cdot \phi^*(S)).
+  \end{align*}
+
+  \end{enumerate}
+\end{example}
+
+
+
+The category  $\WstarCPSUop$ is a model of the metric $\lambda$-theory for quantum computation under the following interpretation: are ``imported from'' $\catQ$
+$\sem{\typeI}$, 
+$\sem{\emph{qbit} \hspace{1pt}}$, $\sem{\emph{q} \hspace{1pt}}$, $\sem{\ket{\psi}}$ for $\psi \in \{0, 1\}$, $\sem{\emph{meas}}$ and $\sem{U}$. To these we add $\sem{\emph{Iqbit} \hspace{1pt}}= \mathcal{B}(\ell^2(\mathbb{Z}))$ and $\sem{U_I}= \rho \mapsto U_I \rho \, U_I^\dag$.
+
+Note that in the infinite-dimensional setting (for separable Hilbert spaces), unitary transformations of the form $\rho \mapsto U \rho U^\dag$ are still quantum channels, and are therefore completely positive and unital by definition \cite[Example~4.6, Definition~1.48]{heinosaariMathematicalLanguageQuantum2011}. 
+
+\todo[inline]{Questão modelo: Para termos medições em espaços infinitos teríamos de ter produtos infinitos? Also a questão da medição ser cpu é clean se for a medição tradicional da que temos tinha de provar à pata (em principio)}
+\todo[inline]{Ou seja não vou usar medições}
+%The same applies to measurements given they are channels and unital \cite[Proposition~4.21]{heinosaariMathematicalLanguageQuantum2011}.
+
+
+\begin{example} [Quantum walk]
+  \todo[inline]{Descrição Quantum Walk} %-> p.12 e robustness
+\end{example}
+
+
+ \todo[inline]{Estou aqui}
+
 %\bar{\otimes} 
 
 
