@@ -814,7 +814,7 @@ and substitution. We call the elements of  \emph{Th(Ax)} the \emph{theorems} of 
 
 \begin{definition}
   Consider a linear $\lambda$-theory $((\lambda, \Sigma), \emph{Ax})$ and
-  also a symmetric monoidal cloded category with coproducts $\catC$. Suppose that for each $X \in G$ we have an interpretation $\llbracket X \rrbracket$
+  also a distributive symmetric monoidal closed category  $\catC$. Suppose that for each $X \in G$ we have an interpretation $\llbracket X \rrbracket$
   that is a $\catC$-object and analogously for the operation symbols. This interpretation structure
   is a \emph{model} of the theory if all axioms are satisfied by the interpretation.
 \end{definition}
@@ -825,7 +825,7 @@ and substitution. We call the elements of  \emph{Th(Ax)} the \emph{theorems} of 
 
 
 \begin{proof}
-  Completeness is based on the idea of a \textit{Lindenbaum-Tarski algebra} and arises from constructing the syntactic category Syn($\mathscr{T}$) of a $\lambda$-theory $\mathscr{T}$ (also known as term model). By employing the equations in Figure \ref{fig:equations-in-context-cond}, we show that both the universal property of the coproduct and the distributive property are satisfied in Syn($\mathscr{T}$). The syntactic category of $\mathscr{T}$ has as objects the types of $\mathscr{T}$ and as morphisms $A \rightarrow B$ the equivalence classes (w.r.t. provability) of terms $v$ for which we can derive $x : \typeA \vljud v : \typeB$.
+  Completeness arises from constructing the syntactic category $\catSyn(\mathscr{T})$ of a $\lambda$-theory $\mathscr{T}$ (also known as term model). By employing the equations in Figure \ref{fig:equations-in-context-cond}, we show that both the universal property of the coproduct and the distributive property are satisfied in $\catSyn(\mathscr{T})$. The syntactic category of $\mathscr{T}$ has as objects the types of $\mathscr{T}$ and as morphisms $A \rightarrow B$ the equivalence classes (w.r.t. provability) of terms $v$ for which we can derive $x : \typeA \vljud v : \typeB$.
 
   In the syntactic category, the coproduct $[ p ,  q]$ can be seen as the equivalence
   class 
@@ -1061,7 +1061,7 @@ The proof that the distributive property is an isomorphism follows from the synt
 
 \section{Metric equations}
 
-A metric-equation-in-context is an expression $\Gamma \vljud v =_q w : \typeA$ with $q \in \mathbb{R}^+_0$, $\Gamma \vljud v : \typeA$
+A metric-equation-in-context is an expression $\Gamma \vljud v =_q w : \typeA$ with $q \in \mathbb{Q}^+_0$, $\Gamma \vljud v : \typeA$
 and $\Gamma \vljud w : \typeA$.  An equation-in-context $\Gamma \vljud v = w : \typeA$ now denotes the particular case in which both $\Gamma \vljud v =_0 w : \typeA$ and $\Gamma \vljud w =_0 v : \typeA$.
 
 The metric equation for conditionals is presented in \autoref{fig:metric conditionals}. 
@@ -1107,7 +1107,7 @@ the map $F_{A,B} : \catC(A,B) \to \catC(FA, FB)$ is a $\catMet$-functor.
 An adjunction $\catC : F \dashv G : \catD$ is called \emph{$\catMet$-enriched} if for all objects $A \in |\catC|$ 
 and $B \in |\catD|$ there exists a $\catMet$-isomorphism
 \[
-\mathcal{D}(FA, B) \cong \catC(A, GB)
+\catD(FA, B) \cong \catC(A, GB)
 \]
 natural in $A$ and $B$.
 \end{definition}
@@ -1131,25 +1131,23 @@ is a $\catMet$-adjunction.
 
 
 \begin{definition}
-  A given category $\catC$ \emph{with coproducts} is said to be $\catMet$-\emph{enriched} if in addition to the properties of a  $\catMet$-enriched category, the following holds: for $f  \in \catC(X,Z)  $ and $g  \in \catC(Y,Z) $, $ [f,g]:\catC(X,Z)  \otimes \catC(Y,Z) \rightarrow \catC(X \oplus Y,Z) $ is a $\catMet$-functor.
+  A  \emph{$\catMet$-enriched distributive symmetric monoidal category} $\catC$, is a category that is both distributive symmetric monoidal and a $\catMet$-enriched monoidal category, such that for all $f  \in \catC(X,Z)  $ and $g  \in \catC(Y,Z) $, $ [f,g]:\catC(X,Z)  \otimes \catC(Y,Z) \rightarrow \catC(X \oplus Y,Z) $ is a $\catMet$-functor.
  \end{definition}
 
 
   %Let $\catC$ be a category with coproducts $\catMet$-enriched, it holds that for $f, f'  \in \catC(X,Z)  $ and $g,g'  \in \catC(Y,Z) $, $d_{\catC(X,Z) \otimes \catC(Y,Z)}((f,f'),(g,g')) = \sup(d(f,f'),d(g,g'))$.
 
 
-
-
-Consider a symmetric monoidal closed category with coproducts $\catMet$-enriched $\catC$. A metric equation $\Gamma \vljud v =_{q} w : \typeA $ is satisfied by this interpretation if $q \leq d( \llbracket \Gamma  \vljud v : \typeA \rrbracket, \llbracket\Gamma \vljud w : \typeA \rrbracket)$ where $d : \catC(\llbracket \Gamma \rrbracket, \llbracket \typeA \rrbracket) \times \catC(\llbracket \Gamma \rrbracket, \llbracket \typeA \rrbracket) \rightarrow \mathbb{R}_0^+$ is the underlying function of the category  $\catMet$-enriched $\catC(\llbracket \Gamma \rrbracket, \llbracket \typeA \rrbracket)$.
+Consider a distributive symmetric monoidal closed category $\catMet$-enriched $\catC$. A metric equation $\Gamma \vljud v =_{q} w : \typeA $ is satisfied by the interpretation in \autoref{fig:denotational_sem cond} if $q \leq d( \llbracket \Gamma  \vljud v : \typeA \rrbracket, \llbracket\Gamma \vljud w : \typeA \rrbracket)$ where $d : \catC(\llbracket \Gamma \rrbracket, \llbracket \typeA \rrbracket) \times \catC(\llbracket \Gamma \rrbracket, \llbracket \typeA \rrbracket) \rightarrow \mathbb{Q}_0^+$ is the underlying function of the $\catMet$-enriched category   $\catC(\llbracket \Gamma \rrbracket, \llbracket \typeA \rrbracket)$.
 
 \begin{theorem}
-  The rules in Figures \ref{fig:equations-in-context-cond} and \ref{fig:metric conditionals} are sound for a symmetric monoidal closed category with coproducts $\catMet$-enriched $\catC$ over metric spaces. Specifically, if $\Gamma \vljud v =_{q} w : \typeA $ results from the rules in Figures \ref{fig:equations-in-context-cond} and \ref{fig:metric conditionals} then $q \geq d( \llbracket \Gamma  \vljud v : \typeA \rrbracket, \llbracket\Gamma \vljud w : \typeA \rrbracket)$.
+  The rules in Figures \ref{fig:equations-in-context-cond} and \ref{fig:metric conditionals} are sound for a  distributive symmetric monoidal closed category $\catMet$-enriched $\catC$ over metric spaces. Specifically, if $\Gamma \vljud v =_{q} w : \typeA $ results from the rules in Figures \ref{fig:equations-in-context-cond} and \ref{fig:metric conditionals} then $q \geq d( \llbracket \Gamma  \vljud v : \typeA \rrbracket, \llbracket\Gamma \vljud w : \typeA \rrbracket)$.
 \end{theorem}
 
 \begin{proof}
   Regarding the rules in Figure \ref{fig:equations-in-context-cond}, attending to the fact that an equation $\Gamma \vljud v=w: \typeA$ abbreviates the metric equation $\Gamma \vljud v =_0 w: \typeA$, and given that the rules in Figure \ref{fig:equations-in-context-cond} are sound for symmetric monoidal closed categories with coproducts, we have that $0 \leq d( \llbracket \Gamma  \vljud v : \typeA \rrbracket, \llbracket\Gamma \vljud w : \typeA \rrbracket)$.  
 
- Concerning the rule in Figure \ref{fig:equations-in-context-cond}, it follows from the fact that $\catC$ is $\catMet$-enriched and has coproducts.
+ Regarding the rule in Figure \ref{fig:metric conditionals}, it follows from the fact that $\catC$ is  $\catMet$-enriched and $\otimes$ and $[ \cdot , \cdot ]$ are $\catMet$-functors.
 
   \begin{align*}
     & d( \llbracket E  \vljud \text{ case } v \, \{\text{inl}_{\typeB}  (x) \Rightarrow w ; \, \text{inr}_{\typeA} (y) \Rightarrow u\} : \typeD \rrbracket, \llbracket E \vljud \text{ case } v' \, \{\text{inl}_{\typeB}  (x) \Rightarrow w' ; \, \text{inr}_{\typeA} (y) \Rightarrow u'\} : \typeD \rrbracket)  \\
@@ -1163,7 +1161,7 @@ Consider a symmetric monoidal closed category with coproducts $\catMet$-enriched
     & \leq q + \sup(r, s) \\
   \end{align*}
   
-  The second step follows from the fact that $\text{sp}_{\Gamma;\Delta} \comp \text{sh}_{E}$  is a morphism in $\catC$  and that $\catC$ is $\catMet$-enriched.  The third and fifth step follow from an analogous reasoning. The fourth step follows from  the premises of the rule in question and from the metric equation ($\otimes_e$). The sixth step follows from the fact that $\catC$ is has coproducts and is $\catMet$-enriched. Finally, the last step follows from the premise of the rule in question.
+   The second step follows from the fact that $\text{sp}_{\Gamma;\Delta} \comp \text{sh}_{E}$  is a morphism in $\catC$  and that $\catC$ is $\catMet$-enriched.  The third and fifth step follow from an analogous reasoning. The fourth step follows from  the premises of the rule in question and from the metric equation regarding tensors. The sixth step follows from the fact that $[ \cdot , \cdot ]$ is a $\catMet$-functor and $\catC$  is $\catMet$-enriched. Finally, the last step follows from the premise of the rule in question.
 
 \end{proof}
 
@@ -1173,26 +1171,25 @@ Consider a tuple $(G,\Sigma)$ consisting of a class $G$ of ground
 \end{definition}
 
 \begin{definition}
-  Consider a linear metric $\lambda$-theory $((G,\Sigma),\textit{Ax})$ and a symmetric monoidal closed category with coproducts $\catMet$-enriched $\catC$.  Suppose that for each $X \in G$ we have an interpretation $\llbracket X \rrbracket$ as a $\catC$-object and analogously for the operation symbols. This interpretation structure is a model of the theory if all axioms in \textit{Ax} are satisfied by the interpretation.
+  Consider a linear metric $\lambda$-theory $((G,\Sigma),\textit{Ax})$ and a distributive symmetric monoidal closed category $\catMet$-enriched $\catC$. Suppose that for each $X \in G$ we have an interpretation $\llbracket X \rrbracket$ as a $\catC$-object and analogously for the operation symbols. This interpretation structure is a model of the theory if all axioms in \textit{Ax} are satisfied by the interpretation.
 \end{definition}
 
 
-For two types $\typeA$ and of a metric $\lambda$-theory $\mathscr{T}$ , consider the class \textbf{Values}$(\typeA,\typeB)$ of values $v$ such that $x : \typeA \vljud v : \typeB$. We equip $\textbf{Values}(\typeA,\typeB)$ with the function $d :\textbf{Values}(\typeA,\typeB) \times \textbf{Values}(\typeA,\typeB) \rightarrow \mathbb{R}^{+}_0$ defined by,
+For two types $\typeA$ and $\typeB$ of a metric $\lambda$-theory $\mathscr{T}$ , consider the class \textbf{Values}$(\typeA,\typeB)$ of values $v$ such that $x : \typeA \vljud v : \typeB$. We equip $\textbf{Values}(\typeA,\typeB)$ with the function $d :\textbf{Values}(\typeA,\typeB) \times \textbf{Values}(\typeA,\typeB) \rightarrow \mathbb{Q}^{+}_0$ defined by,
+$$d(v,w)=\inf{\{q \, \vert \, v=_q w \text{ is a theorem of } \mathscr{T} \}}$$
 
-$$d(v,w)=\inf{\{q \, \vert \, v=_q w \text{ is a theorem } \mathscr{T} \}}$$
+It is easy to see that \textbf{Values}$((\typeA,\typeB),d)$ is a (possibly large)  $\catMet$-enriched category. We then quotient this  $\catMet$-enriched category into a separated  $\catMet$-enriched category which we denote by (\textbf{Values}$(\typeA,\typeB),d)$/$\sim$. We call  $\mathscr{T} $\emph{varietal} if (\textbf{Values}$(\typeA,\typeB),d)$/$\sim$ is a small  $\catMet$-enriched category for all types $\typeA$ and $\typeB$. For the rest of this work, we will focus exclusively on varietal theories and locally small categories
 
-
-It is easy to see that \textbf{Values}$((\typeA,\typeB),d)$ is a (possibly large)  $\catMet$-enriched category. We then quotient this  $\catMet$-enriched category into a separated  $\catMet$-enriched category which we denote by (\textbf{Values}$(\typeA,\typeB),d)$/$\sim$. We call  $\mathscr{T} $\emph{varietal} if (\textbf{Values}$(\typeA,\typeB),d)$/$\sim$ is a small  $\catMet$-enriched category for all types $\typeA$ and $\typeB$. For the rest of this work, we will focus exclusively on varietal theories and locally small categories.
 
 \begin{theorem} (Completeness)
   Consider a varietal metric $\lambda-theory$. A metric equation
 in-context $\Gamma \vljud v =_q w : A$ is a theorem iff it holds in all models of the theory.
 \end{theorem}
 \begin{proof}
-  We use a strategy similar to the proof of Theorem \ref{theorem:comp_eq_in_context} and take advantage of the quotienting of a  $\catMet$-enriched category into a separated  $\catMet$-enriched category. Analogously to Theorem \ref{theorem:comp_eq_in_context} we have a category Syn$(\mathscr{T})$ whose objects are the types of the language and whose hom-sets are the underlying sets of the  $\catMet$-enriched categories (\textbf{Values}$(\typeA,\typeB),d)$/$\sim$.
+  We use a strategy similar to the proof of Theorem \ref{theorem:comp_eq_in_context} and take advantage of the quotienting of a  $\catMet$-enriched category into a separated  $\catMet$-enriched category.  Note that the quotienting process identifies all terms $x : \typeA \triangleright v : \typeB$ and $x : \typeA \triangleright w : \typeB$ such that $v =_0 w$ and $w =_0 v$. This relation includes the equations-in-context from \autoref{fig:equations-in-context-cond} and, moreover, it is straightforward to verify that it is compatible with the term formation rules of the linear $\lambda$-calculus \autoref{fig:typing_rules_cond}. Thus, analogously to Theorem \ref{theorem:comp_eq_in_context} we obtain a category $\catSyn(\mathscr{T})$ whose objects are the types of the language and whose hom-sets are the underlying sets of the  $\catMet$-enriched categories (\textbf{Values}$(\typeA,\typeB),d)$/$\sim$.
 
-  We start by showing that the map $\text{Syn}(\mathscr{T})(\typeA,\typeC) \otimes \text{Syn}(\mathscr{T})(\typeB,\typeC) \rightarrow
-  \text{Syn}(\mathscr{T})(\typeA \otimes \typeB ,\typeC)$ is a functor in the category of metric spaces:
+  We start by showing that the map $\catSyn(\mathscr{T})(\typeA,\typeC) \otimes \catSyn(\mathscr{T})(\typeB,\typeC) \rightarrow
+  \catSyn(\mathscr{T})(\typeA \otimes \typeB ,\typeC)$ is a functor in the category of metric spaces:
 
   \begin{align*}
     & d(([w], [v]), ([w′], [v']))  \\
@@ -1206,9 +1203,9 @@ in-context $\Gamma \vljud v =_q w : A$ is a theorem iff it holds in all models o
     & = d([[v],[v']],[[w],[w']])  
   \end{align*}
 
-  The next step is to show that if an equation $\Gamma \vljud v =_q v' : \typeA$ with $q \in B$ is satisfied by Syn$(\mathscr{T})$ then it is a theorem of the linear metric $\lambda-theory$. By assumption $d([v],[v']) = d(v,v') =  \inf{ \{r \, \vert \, v =_r v'\}} \leq q$. It follows from the definition of the way-below relation that for all
-  $x \in B$ with $x>q$ there exists a finite set $A \subseteq \{r \, \vert \, v =_r v'\}$ such that $x \geq \inf{A}$. Then by an
- application of rule (join) we obtain $v =_{\inf{A}} v'$, and consequently, rule (weak) provides $v =_x v'$ for all $x > q$. Finally, by an application of rule (arch) we deduce that $v =_q v'$ is part of the theory.
+  The next step is to show that if an equation $\Gamma \vljud v =_q v' : \typeA$ with $q \in \mathbb{Q}^{+}_0$ is satisfied by Syn$(\mathscr{T})$ then it is a theorem of the linear metric $\lambda$-theory. By assumption $d([v],[v']) = d(v,v') =  \inf{ \{r \, \vert \, v =_r v'\}} \leq q$. It follows from the definition of the way-below relation that for all
+ $x \in \mathbb{Q}^{+}_0$ with $x>q$ there exists a finite set $A \subseteq \{r \, \vert \, v =_r v'\}$ such that $x \geq \inf{A}$. Then by an
+ application of rule (join) (\cite[Figure 4]{dahlqvist2023syntactic}) we obtain $v =_{\inf{A}} v'$, and consequently, rule (weak) (\cite[Figure 4]{dahlqvist2023syntactic}) provides $v =_x v'$ for all $x > q$. Finally, by an application of rule (arch) (\cite[Figure 4]{dahlqvist2023syntactic}) we deduce that $v =_q v'$ is part of the theory.
 
   Moreover, let us consider the following diagram:
 
@@ -1489,9 +1486,6 @@ and the equality is proven.
   
 The inequality in Proposition \ref{prop:met_cond} follows from the linearity of the co-pairing map.
 \end{proof}
-
-
-
 
 
   \begin{corollary} \label{cor:gen_diamond_cptp_norm}
@@ -2005,7 +1999,7 @@ Consequently, we postulate the following axiom:
 
   \end{proof}
   
-  Note that given this result, \cite[Theorem 4.3]{dahlqvist2023syntactic} also holds for $\catBan$ and as result $\catBan$ is $\catMet$-enriched.
+  Note that given this result, \cite[Theorem 4.3]{dahlqvist2023syntactic} also holds for $\catBan$ and as result $\catBan$ is $\catMet$-enriched. 
 
 
   \begin{example}[Random walk]
@@ -2633,8 +2627,9 @@ Next, regarding $\bar{\otimes}$, the inequations $\cbnorm{\phi \, \bar{\otimes} 
   = &  \sup_{\mathcal{D}} \left\{\norm{  \sum_i \id_{\mathcal{D}}(a_i) \otimes (\phi_1 (b_i),\phi_2 (c_i))} \Big| \norm{\sum_i a_i \otimes (b_i,c_i)=1} \right\} \\
   = & \sup_{\mathcal{D}} \left\{\norm{  \left(\sum_i (\id_{\mathcal{D}}(a_i) \otimes \phi_1 (b_i)), \sum_i (\id_{\mathcal{D}}(a_i) \otimes \phi_2 (c_i))\right)} \Big| \norm{\left(\sum_i a_i \otimes b_i, \sum_i a_i \otimes c_i\right)=1} \right\} \\
   = & \sup_{\mathcal{D}} \left\{ \max \left\{\norm{  \sum_i (\id_{\mathcal{D}}(a_i) \otimes \phi_1 (b_i))}, \norm{\sum_i (\id_{\mathcal{D}}(a_i) \otimes \phi_2 (c_i))}\right\} \Big| \max \left\{ \norm{\sum_i a_i \otimes b_i}, \norm{\sum_i a_i \otimes c_i} \right\}=1 \right\} \\
+  = & \max \left\{\sup_{\mathcal{D}} \norm{\id_{\mathcal{D}}\, \widecheck{\otimes}\phi_1} , \sup_{\mathcal{D}}  \norm{\id_{\mathcal{D}}\, \widecheck{\otimes}\phi_2} \right\}
   %= & \max \left\{  \left(\sup_{\mathcal{D}} \norm{\sum_i (\id_{\mathcal{D}}(a_i) \otimes \phi_1 (b_i))}, \sup_{\mathcal{D}} \norm {\sum_i (\id_{\mathcal{D}}(a_i) \otimes \phi_2 (c_i))}\right) \Big| \norm{\left(\sum_i a_i \otimes b_i, \sum_i a_i \otimes c_i\right)=1}  \right\} \\
-  \leq &\max \{ \cbnorm{\phi_1}, \cbnorm{\phi_2} \}
+  \leq \max \{ \cbnorm{\phi_1}, \cbnorm{\phi_2} \}
 \end{align*}
 
 As a result the proposition above holds.
