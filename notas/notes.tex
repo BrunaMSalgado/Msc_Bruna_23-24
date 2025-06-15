@@ -430,10 +430,14 @@ teleportation procedure in $\lambda$-calculus as follows:
 
 \end{example}
 
-We now consider a slightly modified $\lambda$-theory, distinct from the one presented above: we no longer consider CPTP operations and introduce a new type, $\emph{Iqbit}$, representing qubits in an infinite-dimensional (separable) Hilbert space. Alongside this, we define a predetermined set of operations on $n$ "infinite qubits", such as $U_I\colon \emph{Iqbit}, \ldots, \emph{Iqbit} \to \emph{Iqbit}^{\otimes n}$.
+We now consider a slightly modified $\lambda$-theory, distinct from the one presented above: we no longer consider CPTP operations and introduce a new type, $\emph{pos}$, representing ``position sites'' in a infinite line. Alongside this, we define an unitary operation $S\colon \emph{qubit}, \emph{pos} \to \emph{qbit} \otimes \emph{pos}$.
 
 \begin{example} [Quantum walk on an infinite line]
-  ~\todo[inline]{Adicionar quantum walk}
+  The quantum walk—the quantum mechanical counterpart of a classical random walk—is a widely studied concept in quantum computing and is regarded as a powerful tool for developing quantum algorithms \cite{venegasQuantumWalksComprehensive2012}. Here we consider a standard qubit, $q$ and a position, $p$. $p$ represents the position of the walker, while $q$ represents the state of the coin, which determines whether the walker moves left or right. The standard Hadamard gate, $H\colon \emph{qbit} \to \emph{qbit}$, acts as the coin-toss operator. After the coin is ``tossed,'' the shift operator $S\colon \emph{qbit}, \emph{pos}  \to \emph{qbit} \otimes \emph{pos}$ is applied, moving the walker left or right based on the result. Unlike in the classical case, the coin can be in a superposition of ``heads'' and ``tails,'' allowing the walker to move both left and right simultaneously. The step of the quantum walk previously described corresponds to the following $\lambda$-term:
+  \begin{align*}
+  &\textbf{StepQWalk} = q: \emph{qbit}, p: \emph{pos} \, \vljud  S(H(q), p) : \emph{qbit} \otimes \emph{pos}.
+\end{align*}
+
 \end{example}
 
 
@@ -2666,6 +2670,101 @@ As a result the proposition above holds.
 
 With the result above, we have established that the category $\WstarCPSUop$ is a suitable model for our $\lambda$-calculus. Consequently, we obtain a framework for reasoning about approximate equivalence in infinite-dimensional quantum computation. This, for example, enables us to reason about errors in quantum walks on an infinite line \cite{venegasQuantumWalksComprehensive2012}.
 
+\begin{example} [Quantum walk]
+  Here, we study how a depolarizing channel affects the coin-state qubit after the coin-toss operator $ H $ acts on the system. 
+We begin by noting that the notation $\ket{0}, \ket{1}, \ldots, \ket{n-1}$, commonly used for the standard basis vectors in $\mathbb{C}^{n}$, naturally extends to the infinite-dimensional Hilbert space $\ell^2(\mathbb{Z})$. Specifically, we denote the elements of the canonical orthonormal basis of $\ell^2(\mathbb{Z})$ by $\ket{i}$ for $i \in \mathbb{Z}$. Recall that $S$ is a unitary operator that moves the walker to the right if the associated coin state is one of the two basis states (e.g., $\ket{0}$), and to the left if the coin is in the other basis state (e.g., $\ket{1}$). As a result, this operator is defined as follows:
+\begin{equation*}
+\hat{S} = \ket{0}\bra{0} \otimes \sum_{i \in \mathbb{Z}} \ket{i+1}\bra{i} + \ket{1}\bra{1} \otimes \sum_{i \in \mathbb{Z}} \ket{i-1}\bra{i}.
+\end{equation*}
+ \textbf{Depolarizing channel}
+%p.413-nielsen chuang -> circuito
+The depolarizing channel models the complete loss of information (with probability $p$). Imagine we take a single qubit, and with probability $p$, that qubit is \emph{depolarized} — meaning it is replaced by the completely mixed state, $\frac{I}{2}$. With probability $1 - p$, the qubit remains unchanged. The state of the quantum system after pplying this channel is given by:
+\begin{equation*}
+\mathcal{E}(\rho) = p \frac{I}{2} + (1 - p)\rho.
+\end{equation*}
+Note that although the equation above is not expressed in the operator-sum (Kraus) representation, by making use of the identity
+\begin{equation*}
+  \frac{I}{2} = \frac{\rho + X\rho X + Y\rho Y + Z\rho Z}{4},
+\end{equation*}
+we get
+\begin{equation*}
+\mathcal{E}(\rho) = (1 - p)\rho + \frac{p}{3} \left(X\rho X + Y\rho Y + Z\rho Z\right).
+\end{equation*}
+This can be interpreted as leaving the state $\rho$ unchanged with probability $1 - p$, and applying one of the Pauli operators $X$, $Y$, or $Z$ each with probability $p/3$ \cite[Section 8.3.3]{nielsen2010quantum}. 
+As done in previous examples we will add an identity gate to the ideal program he calculations. consequently, now we consider slightly different versions of the quantum walk program:
+\begin{align*}\label{eq:id_error_qw}
+  &\textbf{StepQWalk} = q: \emph{qbit}, p: \emph{pos} \, \vljud  S( \id(H(q)), p) : \emph{qbit} \otimes \emph{pos} \\
+  & \textbf{StepQWalk}^{\varepsilon} = q: \emph{qbit}, p: \emph{pos} \, \vljud  S( \mathcal{E}(H(q)), p) : \emph{qbit} \otimes \emph{pos}
+\end{align*}
+
+First, we compute:
+\begin{align*}
+\id (\rho) - \mathcal{E}(\rho) &=    |\alpha|^{2} \ket{0} \ket{0} + \alpha \beta^{*} \ket{0} \ket{1} + \alpha^{*} \beta \ket{1} \ket{0} + |\beta|^{2} \ket{1} \ket{1}  - \big( p(I/ 2) + (1-p) \big(|\alpha|^{2}  \\ 
+  & \hspace{10pt}  +  \alpha \beta^{*} \ket{0}\bra{1} +  \alpha^{*} \beta \ket{1}\bra{0} + |\beta|^{2} \ket{1}\bra{1}\big)\big)\\
+& = p \left( (|\alpha|^2-1/2) \ket{0}\bra{0} +  \alpha \beta^{*} \ket{0} \bra{1} + \alpha^{*} \beta \ket{1} \bra{0} + (|\beta|^{2} -1/2) \ket{1} \bra{1} \right)
+\end{align*} 
+Considering that give a quantum state $\rho$ its cartesian cooredinates are given by 
+\begin{equation*}
+  r_{\mu} = \text{Tr}(\rho \sigma_{\mu}),
+\end{equation*} 
+we have,
+\begin{align*}
+  & r_x = \tr \left( p \begin{pmatrix}
+    |\alpha|^2-1/2 & \alpha \beta^{*} \\
+    \alpha^{*} \beta & |\beta|^{2} -1/2
+    \end{pmatrix}
+     \begin{pmatrix}
+   0 & 1 \\
+   1 & 0
+    \end{pmatrix}  \right)
+    = p(\alpha \beta^{*} + \alpha^{*} \beta) \\
+  & r_y = \tr\left(p\begin{pmatrix}
+    |\alpha|^2-1/2 & \alpha \beta^{*} \\
+    \alpha^{*} \beta & |\beta|^{2} -1/2
+    \end{pmatrix}
+     \begin{pmatrix}
+   0 & -i \\
+   i & 0
+    \end{pmatrix} \right) 
+    = p \cdot i(\alpha \beta^{*} - \alpha^{*} \beta) \\
+     & r_z = \tr \left( p\begin{pmatrix}
+    |\alpha|^2-1/2 & \alpha \beta^{*} \\
+    \alpha^{*} \beta & |\beta|^{2} -1/2
+    \end{pmatrix}
+     \begin{pmatrix}
+   1 & 0 \\
+   0 & -1
+    \end{pmatrix} \right) = p(|\alpha|^2-|\beta|^2 )
+\end{align*}
+
+As a result, it follows:
+\begin{align*}
+  \tracenorm{\id (\rho) - \mathcal{E}(\rho)} &= \euclideannorm{(p(\alpha \beta^{*} + \alpha^{*} \beta), p \cdot i(\alpha \beta^{*} - \alpha^{*} \beta) , p( |\alpha|^2-|\beta|^2))} \\
+  & = p \, \sqrt{\left(\alpha \beta^{*} + \alpha^{*} \beta \right)^2-\left(\alpha \beta^{*} - \alpha^{*} \beta \right)^2 + (|\alpha|^2-|\beta|^2)^2} \\
+  & = p \, \sqrt{2|\alpha|^2|\beta|^2 + (|\alpha|^2-|\beta|^2)^2} \\
+  & = p 
+\end{align*}
+
+
+
+Attending to Theorem \ref{theorem:diamond_cptp_id}, it holds that
+\begin{align*}
+  \diamondnorm{ \id - \mathcal{E}} \leq \sqrt{2p}
+\end{align*}
+
+As a result, we can postulate the following axiom:
+    \begin{align*} 
+        \id =_{\sqrt{2p}} \mathcal{E}.
+    \end{align*}
+
+ Finally, using our metric deductive system, we deduce
+\begin{align*}
+  &\textbf{StepQWalk}=_{\sqrt{2p}} \textbf{StepQWalk}
+\end{align*}
+
+
+\end{example}
+
 
 Furthermore, the result also allows us to define a metric on the category $\catQ$ by associating to each morphism $\phi \in \catQ$ the norm of its corresponding morphism in the finite-dimensional subcategory $\FinBHCPSUop$, under the equivalence $\catQ \simeq \FinBHCPSUop$ \cite{choSemanticsQuantumProgramming2016}. In fact, a quantum channel (resp. quantum operator) $\phi: \mathcal{T}(\mathcal{H})  \to \mathcal{T}(\mathcal{K})$ defines a linear mapping 
 $\phi^*: \mathcal{B}(\mathcal{K}) \to \mathcal{B}(\mathcal{H})$ completely positive and unital (resp. subunital) 
@@ -2905,9 +3004,9 @@ As a result $\phi^*(\varphi) =  \sum_{ij} \varphi(\ket{j}\bra{i}) \cdot \ket{i} 
 
 
 
-The category  $\WstarCPSUop$ is a model of the metric $\lambda$-theory for quantum computation under the following interpretation: are ``imported from'' $\catQ$
+The category  $\WstarCPSUop$ is a model of the metric $\lambda$-theory for quantum computation under the following interpretation: 
 $\sem{\typeI}$, 
-$\sem{\emph{qbit} \hspace{1pt}}$, $\sem{\emph{q} \hspace{1pt}}$, $\sem{\ket{\psi}}$ for $\psi \in \{0, 1\}$, $\sem{\emph{meas}}$ and $\sem{U}$. To these we add $\sem{\emph{Iqbit} \hspace{1pt}}= \mathcal{B}(\ell^2(\mathbb{Z}))$ and $\sem{U_I}= \rho \mapsto U_I \rho \, U_I^\dag$.
+$\sem{\emph{qbit} \hspace{1pt}}$, $\sem{\emph{q} \hspace{1pt}}$, $\sem{\ket{\psi}}$ for $\psi \in \{0, 1\}$, $\sem{\emph{meas}}$ and $\sem{U}$ are ``imported from'' $\catQ$. To these we add $\sem{\emph{pos} \hspace{1pt}}= \mathcal{B}(\ell^2(\mathbb{Z}))$ and $\sem{S}= \rho \mapsto S \rho \, S^\dag$.
 
 Note that in the infinite-dimensional setting (for separable Hilbert spaces), unitary transformations of the form $\rho \mapsto U \rho U^\dag$ are still quantum channels, and are therefore completely positive and unital by definition \cite[Example~4.6, Definition~1.48]{heinosaariMathematicalLanguageQuantum2011}. 
 
@@ -2916,12 +3015,8 @@ Note that in the infinite-dimensional setting (for separable Hilbert spaces), un
 %The same applies to measurements given they are channels and unital \cite[Proposition~4.21]{heinosaariMathematicalLanguageQuantum2011}.
 
 
-\begin{example} [Quantum walk]
-  \todo[inline]{Descrição Quantum Walk} %-> p.12 e robustness
-\end{example}
 
 
- \todo[inline]{Estou aqui}
 
 %\bar{\otimes} 
 
