@@ -467,10 +467,12 @@ the $\mathcal{V}$-category $\catC(\sem{\Gamma},\sem{\typeA})$.
 \end{theorem}
 
 \begin{proof}[Proof sketch]
-        The proof piggybacks on the one in~\cite{dahlqvist22,dahlqvist2023syntactic},
-        specifically we need to focus only on the cases involving additive disjunction.
-        The soundness part uses the linear and Cartesian enrichment as well as the
-        definition of a $\mathcal{V}$-category.
+        The proof piggybacks on the one
+        in~\cite{dahlqvist22,dahlqvist2023syntactic} -- specifically we need to
+        focus only on the cases involving additive disjunction.
+
+        The soundness part uses the linear and Cartesian enrichment as well as
+        the definition of a $\mathcal{V}$-category.
 
         Completeness as usual is based on the idea of a Lindenbaum-Tarski
         algebra: \ie\ we build the syntactic category $\catfont{Syn}(T)$ (also
@@ -523,12 +525,6 @@ the $\mathcal{V}$-category $\catC(\sem{\Gamma},\sem{\typeA})$.
 %\end{proof}
 
 
-\begin{theorem} (Completeness)
-  Consider a varietal metric $\lambda-theory$. A metric equation
-in-context $\Gamma \vljud v =_q w : A$ is a theorem iff it holds in all models of the theory.
-\end{theorem}
-\begin{proof}
-
 
   Completeness arises from constructing the syntactic category $\catSyn(\mathscr{T})$ of a $\lambda$-theory $\mathscr{T}$ (also known as term model)  and taking advantage of the quotienting of a  $\catMet$-enriched category into a separated  $\catMet$-enriched category. Note that the quotienting process identifies all terms $x : \typeA \triangleright v : \typeB$ and $x : \typeA \triangleright w : \typeB$ such that $v =_0 w$ and $w =_0 v$. This relation includes the equations-in-context from \autoref{fig:equations-in-context-cond} and, moreover, it is straightforward to verify that it is compatible with the term formation rules of the linear $\lambda$-calculus \autoref{fig:typing_rules_cond}. Thus, we obtain a category $\catSyn(\mathscr{T})$ whose objects are the types of the language and whose hom-sets are the underlying sets of the  $\catMet$-enriched categories (\textbf{Values}$(\typeA,\typeB),d)$/$\sim$.
 
@@ -571,7 +567,6 @@ in-context $\Gamma \vljud v =_q w : A$ is a theorem iff it holds in all models o
 
 
 It is necessary to prove that when $\hat{f}$ is defined as $\hat{f}([x],[y]) = [f(x,y)]$, $\hat{f}$ is a well-defined function. This is the case because if $[x] = [x']$ and $[y] = [y']$ then $x =_0 x'$ and $y =_0 y'$, and consequently applying rule  (refl) we obtain that $f(x,y) =_0 f(x',y')$.
-\end{proof} 
 
 
 \section{A brief illustration with probabilistic programming}
