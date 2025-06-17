@@ -46,9 +46,9 @@
 \usepackage{tikz-cd}
 
 
-\title{On the cartesian structure of quantalic $\lambda$-calculus} %TODO Please add
+\title{On the Additive Structure of Quantalic $\lambda$-Calculus} %TODO Please add
 
-\titlerunning{Dummy short title} %TODO optional, please use if title is longer than one line
+\titlerunning{On the Additive Structure of Quantalic $\lambda$-calculus} %TODO optional, please use if title is longer than one line
 
 \author{Bruna Salgado}{University of Minho and INESC-TEC, Portugal }{johnqpublic@dummyuni.org}{https://orcid.org/0000-0002-1825-0097}{}%TODO mandatory, please use full name; only 1 author per \author macro; first two parameters are mandatory, other parameters can be empty. Please provide at least the name of the affiliation and the country. The full address is optional
 
@@ -101,60 +101,80 @@ This work is financed by National Funds through FCT - Fundação para a Ciência
 %TODO mandatory: add short abstract of the document
 \begin{abstract}
 
-This work initiates a full account on extending quantalic linear
-$\lambda$-calculus with Cartesian structure. The focus will be on the additive
-disjunction operator $\oplus$, for it closes an important gap in our previous
-work: the lack of reasoning methods about conditionals, fundamental
-across a myriad of computational paradigms. 
+This work aims at extending quantalic linear $\lambda$-calculus with additive
+structure. The focus here will be on the additive disjunction operator $\oplus$
+for it closes an important gap in previous work: the lack of methods for
+reasoning about `case' statements  quantitatively, fundamental across a myriad
+of computational paradigms. 
 
-Among other things, we extend an existing quantalic equational system to
-encompass the operator $\oplus$. We then show that the extension is sound, (approximately)
-complete, and `quantalic congruent'. We also illustrate its use in the setting
-of probabilistic programming.
+Among other things, we extend the associated quantalic equational system to
+encompass the additive operator $\oplus$. We show that the extension is sound
+and (approximately) complete. We then briefly illustrate its use in
+probabilistic programming.
 
 \end{abstract}
 
 \section{Introduction}
 \label{sec:intro}
 
-%Program equivalence and its underlying theories traditionally rely on a binary
-%notion of equivalence: two programs are either equivalent or they are not. While this
-%dichotomy is often sufficient for classical programming, it proves too
-%coarse-grained for other computational paradigms. We extend previous work
-%on a quantalic equational system for
-%linear $\lambda$-calculus to the Cartesian domain.
-%we extend the framework by incorporating a metric equation for the conditional
-%statement. We prove that this extension is sound and complete. This result
-%allows us to explore models within quantum computing and probabilistic
-%computation suitable for reasoning about approximate program equivalence in
-%this setting.
+Previous work~\cite{dahlqvist22,dahlqvist2023syntactic} introduced a quantalic
+generalisation of linear $\lambda$-calculus, \ie\ the exponential-free,
+\emph{multiplicative} fragment of linear logic. Here we start exploring how to
+add \emph{additive} structure to this body of work -- more specifically we will
+focus on the additive disjunction operator $\oplus$ which gives rise to `case'
+statements (\ie\ conditionals) and it is typically interpreted via coproducts.
+Our motivation for it is very practical: in trying to reason quantitatively
+about higher-order programs we almost always fell short when these involved
+conditionals. Of course applications involving $\oplus$ are broader than this. For
+example, the extension here proposed can be used to reason about co-Cartesian
+categories enriched over so-called `generalised metric spaces'~\cite{paseka00}.
 
-\noindent
-\textbf{Motivation and context.}
-In various programming paradigms, interaction with the physical environment
-calls for notions of approximate program equivalence.  In quantum computing,
-for example, noise, such as decoherence, affects hardware
-\cite{watrous2018theory,nielsen2010quantum,preskill2018quantum}, making it
-unrealistic to expect an idealized quantum algorithm to run perfectly on a
-quantum device; only an approximation can be observed. 
-
-\cite{dahlqvist2023syntactic} incorporates a notion of approximate equivalence into the equational system of the affine $\lambda$-calculus by introducing, among other elements, \emph{metric equations} \cite{mardare2016quantitative, mardare2017axiomatizability}. These are equations of the form $t =_{\varepsilon} s$, where $\varepsilon$ is a non-negative rational number representing the `maximum distance' between terms $t$ and $s$.
-
-The literature describes multiple methods for incorporating quantitative features into programming languages, with $\lambda$-calculi-based approaches being most relevant to this work. This work builds on the approach developed in~\cite{dahlqvist2023syntactic}, which explores a notion of program equivalence taking values in a quantale $\mathcal{V}$. This framework encompasses, among others, (in)equations and (ultra)metric equations. The subsequent work \cite{dahlqvistCompleteVEquationalSystem2023} extends these ideas by introducing a sound and complete metric equational system for a $\lambda$-calculus with graded modal types, interpreted using what the authors call a \emph{Lipschitz exponential comonad}.
-
-
-In the context of probabilistic programming, \cite{crubilleMetricReasoningLterms2015, crubilleMetricReasoninglambda2017} introduced notions of distance—referred to as \emph{context distance}—first for an affine, and later for a more general $\lambda$-calculus. In a different direction, \cite{pistoneGeneralizedMetricSpaces2021} presented several Cartesian closed categories of generalized metric spaces, providing a quantitative semantics for the simply-typed $\lambda$-calculus based on a generalisation of logical relations. 
-
-%However, none of these approaches reason about distances within a quantitative equational system. In this regard, our work is more closely related to the framework of metric universal algebra developed in~\cite{mardare2016quantitative, mardare2017axiomatizability}. More recently, \cite{PDFQuantitativeMonoidal2025} proposed a quantitative framework for diagrammatic calculi, in which one can axiomatise notions of distance between string diagrams using $\mathcal{V}$-quantitative equations.
-
- %\cite{hung2019quantitative} and \cite{tao2021gleipnir} reason about the issue of noise in a quantum while-language by developing a deductive system to determine how similar a quantum program is from its idealised, noise-free version. The former introduces the ($Q$,$\lambda$)-diamond norm which analyzes the output error given that the input quantum state satisfies some quantum predicate $Q$ to degree $\lambda$. However, it does not specify any practical method for obtaining non-trivial quantum predicates. In fact, the methods used in \cite{hung2019quantitative} cannot produce any post conditions other than $(I,0)$ (\textit{i.e.}, the identity matrix $I$ to degree 0, analogous to a ``true” predicate) for large quantum programs. The latter specifically addresses and delves into this aspect.  
+Remarkably a number of important results already considered additive structure
+in the quantalic setting, even if sometimes implicitly. For example
+references~\cite{mardare2016quantitative,mardare2017axiomatizability,mio24,jurka24}
+are framed in the setting of universal algebra and thus involve additive
+conjunction (\ie\ $\&$) which is interpreted via products. In the setting of
+$\lambda$-calculus, reference~\cite{lago22} considers the case of additive
+conjunction being left adjoint to implication (interpreted via
+Cartesian-closedness), with a series of interesting negative results emerging
+from this.  Our work is orthogonal to these in that we study the dual of $\&$
+(\ie\ $\oplus$) and furthermore we assume the left adjoint of implication
+to be multiplicative conjunction (\ie\ $\otimes$) instead of the additive one. This
+makes the negative results discussed in~\cite{lago22} disappear.
 
 
+%However, none of these approaches reason about distances within a quantitative
+%equational system. In this regard, our work is more closely related to the
+%framework of metric universal algebra developed
+%in~\cite{mardare2016quantitative, mardare2017axiomatizability}. More recently,
+%\cite{PDFQuantitativeMonoidal2025} proposed a quantitative framework for
+%diagrammatic calculi, in which one can axiomatise notions of distance between
+%string diagrams using $\mathcal{V}$-quantitative equations.
 
-\noindent
-\textbf{Contributions.}
-In this paper, we extend the work of~\cite{dahlqvist2023syntactic} by introducing a metric equation for conditionals and proving its soundness and completeness for enriched distributive symmetric monoidal (closed) categories over metric spaces. We then explore a suitable model for reasoning about approximate equivalence in probabilistic computation, showing that it forms an enriched distributive symmetric monoidal closed category over metric spaces. Finally, we show that the category $\catQ$, introduced in \cite{selinger04} provides denotational semantics for the first-order functional quantum programming language QPL, is a suitable candidate.
-%discuss potential models for quantum computation, 
+In this note we extend the quantalic equational system
+of~\cite{dahlqvist22,dahlqvist2023syntactic} to encompass the additive operator
+$\oplus$. We show that the extension is both sound and complete. We also show
+that if the well-known Archimedean rule is dropped one still has approximate
+completeness. We then briefly illustrate our extended framework at work in the
+setting of probabilistic programming~\cite{dahlqvist19,barthe20}. We will focus
+specifically on reasoning about Cauchy sequences of higher-order probabilistic
+programs, thus emphasising the recent shift from ``seeing program semantics as
+the science of program equivalence''~\cite{lago22} to quantitative
+scientific concepts, involving functional analysis and beyond.
+
+%if we drop the well-known work
+%of~\cite{dahlqvist2023syntactic} by introducing a metric equation for
+%conditionals and proving its soundness and completeness for enriched
+%distributive symmetric monoidal (closed) categories over metric spaces. We then
+%explore a suitable model for reasoning about approximate equivalence in
+%probabilistic computation, showing that it forms an enriched distributive
+%symmetric monoidal closed category over metric spaces. 
+
+%%Finally, we
+%show that the category $\catQ$, introduced in \cite{selinger04} provides
+%denotational semantics for the first-order functional quantum programming
+%language QPL, is a suitable candidate.
+%%discuss potential models for quantum computation, 
 
 
 % we explore a couple quanum models a a probabilistic one, proving they are proper models to reason about program equivalence
