@@ -183,12 +183,70 @@ scientific concepts, involving functional analysis and beyond.
 
 \section{Quantalic $\lambda$-calculus with additive disjunction }
 
-Let $\mathcal{V}$ denote a commutative and unital quantale, $\otimes :
-\mathcal{V} \times \mathcal{V} \to \mathcal{V}$ the corresponding binary
-operation, and $k$ the corresponding unit~\cite{paseka00}.  We start by
-recalling two definitions concerning ordered
-structures~\cite{gierz03,JGL-topology}. 
+The extension of linear $\lambda$-calculus
+in~\cite{dahlqvist22,dahlqvist2023syntactic} with additive disjunction is quite
+simple. The grammar of types is given by,
+\begin{equation*} \label{eq:grammartypes}
+   \typeA ::= X \in G \mid \typeI \mid \typeA  \otimes \typeA \mid \typeA
+   \oplus \typeA \mid \typeA \multimap  \typeA
+\end{equation*}
+where $G$ is a set of ground types, and the judgement formation rules
+concerning $\oplus$ are those in \autoref{fig:typing_rules_cond}. 
+\begin{figure}[H]
+    \begin{equation*}
+            \hspace{60pt}
+    \begin{prooftree}
+        \hypo{\Gamma \vljud v: \typeA}
+        \infer1[(inl)]{\Gamma \vljud \inl_{\typeB}(v): \typeA \oplus \typeB}
+    \end{prooftree}
+    %
+    \hspace{30pt}
+    %
+    \begin{prooftree}
+        \hypo{\Gamma \vljud v: \typeB}
+        \infer1[(inr)]{\Gamma \vljud \inr_{\typeA}(v): \typeA \oplus \typeB}
+    \end{prooftree} 
+    %
+    \end{equation*}
+    \begin{equation*}
+            \hspace{30pt}
+    %
+    \begin{prooftree}
+        \hypo{\Gamma \vljud v: \typeA \oplus \typeB}
+        \hypo{\Delta, x: \typeA \vljud w: \typeD}
+        \hypo{\Delta, y: \typeB \vljud u: \typeD}
+        \hypo{E \in \Shuff(\Gamma; \Delta)}
+        \infer4[(case)]{E \vljud \text{case } v\,
+        \{\inl_{\typeB}(x) 
+            \Rightarrow w ; \,
+          \inr_{\typeA}(y) \Rightarrow u
+        \}: \typeD}
+    \end{prooftree}
+    %
+    \end{equation*}
+    \caption{Judgement formation rules for the additive operator $\oplus$.}
+    \label{fig:typing_rules_cond}
+\end{figure}
+It is laborious but straightforward to prove that the extended calculus
+inherits desirable features from the calculus
+in~\cite{dahlqvist22,dahlqvist2023syntactic}. Most notably it inherits the
+\emph{unique derivation}, \emph{substitution}, and \emph{exchange} properties.
+These are key in our framework and rely on a shuffling mechanism whose details
+can be consulted in~\cite{dahlqvist22,dahlqvist2023syntactic,shulman19}. This
+mechanism can actually be briefly glanced in \autoref{fig:typing_rules_cond},
+rule (case), where we stipulate that context $E$ is a \emph{shuffle} (Sf) of
+the contexts $\Gamma$ and $\Delta$: \ie\ a permutation of the variables in
+$\Gamma,\Delta$ which preserves their relative order in $\Gamma$ and $\Delta$.
 
+
+Next, in order to extend the quantalic equational system
+in~\cite{dahlqvist22,dahlqvist2023syntactic} with additive disjunction let us
+introduce notation and some basic properties about quantales.  Let
+$\mathcal{V}$ denote a commutative and unital quantale, $\otimes : \mathcal{V}
+\times \mathcal{V} \to \mathcal{V}$ the corresponding binary operation, and $k$
+the corresponding unit~\cite{paseka00}.  The following (domain-theoretic)
+definitions are useful not only for computational reasons, but also for
+formulating our `approximate completeness' result.
 \begin{definition}
 	Consider a complete lattice $L$.  For every $x, y \in L$ we say that
 	$y$ is \emph{way-below} $x$ (in symbols, $y \ll x$) if for every
@@ -208,73 +266,35 @@ structures~\cite{gierz03,JGL-topology}.
 \end{definition}
 We assume that the underlying lattice of $\mathcal{V}$ is continuous and has a
 basis $B \ni k$ closed under finite joins and the multiplication of the
-quantale $\otimes$. As explained in~\cite{dahlqvist22}, these assumptions allow
-us to work \emph{only} with a specified subset of $\mathcal{V}$-equations
-chosen \eg for computational reasons. We also assume that $\mathcal{V}$ is
-\emph{integral}, \ie that the unit $k$ is the top element of $\mathcal{V}$, a
-common assumption in quantale theory~\cite{velebil19}. Next we present two
-examples of quantales obeying these conditions. Other examples can be found
-in~\cite{dahlqvist22}.
+quantale $\otimes$. As explained in~\cite{dahlqvist22,dahlqvist2023syntactic},
+these assumptions allow us to work \emph{only} with a specified subset of the
+elements of the quantale which might be easier to handle in specific contexts
+for a variety of reasons.  We also assume that $\mathcal{V}$ is
+\emph{integral}, \ie\ that the unit $k$ is the top element of $\mathcal{V}$, a
+common assumption in quantale theory~\cite{velebil19}. Several examples of
+quantales that satisfy these constraints are presented
+in~\cite{dahlqvist22,dahlqvist2023syntactic}. Here we mention only the case of
+the metric quantale, since we use it in our illustration of probabilistic
+programming. Typically the basis $B$ that is chosen for this particular case is
+that of rational numbers.  Finaly, our extended quantalic system crucially
+relies on the following observation.  Since every quantale $\mathcal{V}$ is a
+cocomplete category (specifically a complete sup-lattice) it will be complete
+as well~\cite[Section 12]{cats} -- in other words, it has all infima
+$\bigwedge$. 
 
+We ready to present our quantalic equational system extended to additive
+disjunction $\oplus$.  Recall that in the original system equations are
+labelled by elements $q \in B \subseteq \mathcal{V}$ of the quantale, and that
+`classical' equations $v = w$ are represented by $v =_k w$ together with $w =_k
+v$. The extended system now incorporates the rules presented in
+Figure~\ref{fig:equations-in-context-cond}. The equations on top of the dotted
+line are those already known for additive disjunction in the classical setting
+(see for example~\cite{croleCategoriesTypes1994}). The ones on the bottom are
+new and serve as a form of `quantalic congruence'.
 
-
-We consider the affine $\lambda$-calculus described in \cite[Sections 2.1, 3.2, 3.4, 5.1]{dahlqvist2023syntactic} extended with conditionals. 
-%In this work the concept of \emph{shuffling} is employed to construct a linear typing system that ensures the admissibility of the exchange rule and enables unambiguous reference to judgment's denotation $[\![ \Gamma \triangleright v: \mathbb{A} ]\!]$.
-Due to space limitations, we cannot do this description ourselves, so we refer the reader to this work.  
-A reader who is not familiar with $\lambda$-calculus and the basics of category theory may consult \cite{croleCategoriesTypes1994, mackieLanguageAutonomous1993} and \cite{maclane13,barrCategoryTheoryComputing1990}, respectively.
-
-
-Considering a class $G$ of ground types, the grammar of types for linear lambda calculus with conditionals corresponds to:
-\begin{equation*} \label{eq:grammartypes}
-   \typeA ::= X \in G \hspace{3 pt} \vert \hspace{3 pt} \typeI \hspace{3 pt}  \vert \hspace{3 pt} \typeA  \otimes  \typeA \hspace{3 pt} \vert  \hspace{3 pt} \typeA  \oplus \typeA \hspace{3 pt}  \vert  \hspace{3 pt} \typeA \multimap  \typeA
-\end{equation*}
-
-The term formation rules for conditionals are depicted in \autoref{fig:typing_rules_cond}. 
-\begin{figure}[H]
-    \begin{equation*}
-    \begin{aligned}
-    &\hspace{10pt}
-    %
-    \begin{prooftree}
-        \hypo{\Gamma \vljud v: \typeA}
-        \infer1[(inl)]{\Gamma \vljud \inl_{\typeB}(v): \typeA \oplus \typeB}
-    \end{prooftree}
-    %
-    \hspace{30pt}
-    %
-    \begin{prooftree}
-        \hypo{\Gamma \vljud v: \typeB}
-        \infer1[(inr)]{\Gamma \vljud \inr_{\typeA}(v): \typeA \oplus \typeB}
-    \end{prooftree} 
-    %
-    \\
-    &\hspace{-20pt}
-    %
-    \begin{prooftree}
-        \hypo{\Gamma \vljud v: \typeA \oplus \typeB}
-        \hypo{\Delta, x: \typeA \vljud w: \typeD}
-        \hypo{\Delta, y: \typeB \vljud u: \typeD}
-        \hypo{E \in \Shuff(\Gamma; \Delta)}
-        \infer4[(case)]{E \vljud \text{case } v\,
-        \{\inl_{\typeB}(x) 
-            \Rightarrow w ; \,
-          \inr_{\typeA}(y) \Rightarrow u
-        \}: \typeD}
-    \end{prooftree}
-    %
-    \\[10pt]
-    \end{aligned}
-    \end{equation*}
-    \caption{Term formation rules for conditionals}
-    \label{fig:typing_rules_cond}
-\end{figure}
-
-The equational system for the conditionals is shown in Figure
-\ref{fig:equations-in-context-cond}.
   \begin{figure}[h!]
-    \centering
-    \begin{tcolorbox}[colframe=black, colback=white, boxrule=0.6pt, arc=1pt,boxsep=1pt,top=1pt,bottom=1pt, width=0.85 \textwidth]
     \begin{equation*}
+            \hspace{30pt}
         \begin{split}
           &(\beta_{case}^{inl}) \hspace{3pt} \text{case } 
           \inl_{\typeB}(v)\, \{ \inl_{\typeB} (x) \Rightarrow w 
@@ -294,58 +314,33 @@ The equational system for the conditionals is shown in Figure
           & (\eta_{case}) \hspace{3pt} \text{case } v\, \{\text{inl}_{\typeB} (y) \Rightarrow w [ \text{inl}_{\typeB}(y)/x] ;\, \text{inr}_{\typeA} (z) \Rightarrow w [ \text{inr}_{\typeA}(z)/x]\} = w[v/x] 
         \end{split}
     \end{equation*}
-    \end{tcolorbox}
-    \caption{Equational system for the conditionals}
-    \label{fig:equations-in-context-cond}
-    \end{figure}
-The rules presented in Figure \ref{fig:typing_rules_cond} enjoy the following
-properties.
-
-\begin{theorem} \label {theorem:unique_der}
-   Lambda calculus with conditionals has the following properties:
-   \begin{enumerate}
-     \item\label{perm} for all judgements $\Gamma \vljud v$ and $\Gamma'
-             \vljud v$, te($\Gamma$) $\simeq_{\pi}$  te($\Gamma'$); 
-     %
-     \item\label{type} additionally if $\Gamma \vljud v: \typeA,
-       \Gamma' \vljud v: \typeA'$, and $\Gamma \simeq_{\pi}
-       \Gamma'$, then $\typeA$ must be equal to $\typeA'$;
-     %
-     \item\label{der} all judgements $\Gamma \vljud v:\typeA$ have a unique derivation.
-\end{enumerate}
-\end{theorem}
-\begin{lemma}[Exchange and Subsitution]
-\label{lem:exh_and_sub} 
-For every judgement $\Gamma,x: \typeA, y: \typeB, \Delta \vljud v: \typeD$ the
-judgement $\Gamma, y:\typeB, x:\typeA, \Delta \vljud v:
-\typeD$ is derivable. Not only this, given judgements  $\Gamma,x:\typeA \vljud
-v: \typeB$ and $\Delta \vljud w: \typeA$ the judgement $\Gamma, \Delta \vljud
-v[w/x]: \typeB$ is also derivable.
-\end{lemma}
-
-
-
-\begin{figure}[H]
-  \begin{equation*}
-  \begin{aligned}
-  &
-  &
-  %
-  \begin{prooftree}
+    %
+    \noindent\dotfill{}
+    %
+    \begin{equation*}
+            \hspace{75pt}
+            \begin{prooftree}
+                    \hypo{ v =_q w}
+                    \infer1[]{\inl_\typeB(v) =_q \inl_\typeB(w)}
+            \end{prooftree}
+            \hspace{40pt}
+            \begin{prooftree}
+                    \hypo{ v =_q w}
+                    \infer1[]{\inr_\typeA(v) =_q \inl_\typeA(w)}
+            \end{prooftree}
+    \end{equation*}
+    \begin{equation*}
+    \hspace{20pt}
+   \begin{prooftree}
       \hypo{ v =_{q} v' }
       \hypo{w=_{r} w'}
       \hypo{u=_{s}u'}
-      \infer3[]{\text{ case } v \,   \{\text{inl} (x) \Rightarrow w ; \, \text{inr} (y) \Rightarrow u\} =_{q+\sup{\{ r, s \}}} \text{ case } v' \,  \{\text{inl} (x) \Rightarrow w' ; \,\text{inr} (y) \Rightarrow u'\} }
+      \infer3[]{\text{ case } v \,   \{\text{inl} (x) \Rightarrow w ; \, \text{inr} (y) \Rightarrow u\} =_{q\otimes(r \wedge s)} \text{ case } v' \,  \{\text{inl} (x) \Rightarrow w' ; \,\text{inr} (y) \Rightarrow u'\} }
   \end{prooftree}
-  %
-  \\[10pt]
-  \end{aligned}
-  \end{equation*}
-  \caption{Metric equation for condicionals}
-  \label{fig:metric conditionals}
-\end{figure}
-
-
+    \end{equation*}
+    \caption{Quantalic equational system for additive disjunction.}
+    \label{fig:equations-in-context-cond}
+    \end{figure}
 \section{Categorical semantics}
 \begin{definition}
  A category $\catC$ is $\catMet$\emph{-enriched} (or simply a $\catMet$-category) if for each pair of objects $A$ and $B$ in $\catC$, the hom-set $\catC(A, B)$ is a metric space and if the composition of $\catC$-morphisms,
