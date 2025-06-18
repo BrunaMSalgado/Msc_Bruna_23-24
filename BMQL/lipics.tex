@@ -118,29 +118,31 @@ probabilistic programming.
 \label{sec:intro}
 
 Previous work~\cite{dahlqvist22,dahlqvist2023syntactic} introduced a quantalic
-generalisation of linear $\lambda$-calculus, \ie\ the exponential-free,
-\emph{multiplicative} fragment of linear logic. Here we start exploring how to
-add \emph{additive} structure to this body of work -- more specifically we will
-focus on the additive disjunction operator $\oplus$ which gives rise to `case'
-statements (\ie\ conditionals) and it is typically interpreted via coproducts.
-Our motivation for it is very practical: in trying to reason quantitatively
-about higher-order programs we almost always fell short when these involved
-conditionals. Of course applications involving $\oplus$ are broader than this. For
-example, the extension here proposed can be used to reason about co-Cartesian
-categories enriched over so-called `generalised metric spaces'~\cite{paseka00}.
+generalisation of linear $\lambda$-calculus, \ie\ the exponential-free
+\emph{multiplicative} fragment of linear logic. In this note we start
+investigating the incorportation of \emph{additive} structure to this body of
+work. Specifically our focus is on the \emph{additive disjunction operator}
+$\oplus$ which is typically interpreted via coproducts and gives rise to case
+statements (\ie\ conditionals). Our motivation for it is highly practical: in
+trying to reason quantitatively about higher-order programs we often fell short
+when these involved conditionals. Of course applications involving $\oplus$ are
+broader than this, and typically fit in the more general pattern of reasoning
+quantitatively about co-Cartesian categories enriched over so-called
+generalised metric spaces~\cite{paseka00}.
 
 Remarkably a number of important results already considered additive structure
-in the quantalic setting, even if sometimes implicitly. For example
-references~\cite{mardare2016quantitative,mardare2017axiomatizability,mio24,jurka24}
-are framed in the setting of universal algebra and thus involve additive
-conjunction (\ie\ $\&$) which is interpreted via products. In the setting of
-$\lambda$-calculus, reference~\cite{lago22} considers the case of additive
-conjunction being left adjoint to implication (interpreted via
-Cartesian-closedness), with a series of interesting negative results emerging
-from this.  Our work is orthogonal to these in that we study the dual of $\&$
-(\ie\ $\oplus$) and furthermore we assume the left adjoint of implication
-to be multiplicative conjunction (\ie\ $\otimes$) instead of the additive one. This
-makes the negative results discussed in~\cite{lago22} disappear.
+in the quantalic setting, even if sometimes implicitly.
+References~\cite{mardare2016quantitative,mardare2017axiomatizability,mio24,jurka24}
+for example are framed in the setting of universal algebra and therefore
+involve additive conjunction (\ie\ $\&$), typically interpreted via categorical
+products.  In the higher-order setting, \cite{lago22} enforces additive
+conjunction to be left adjoint to implication (interpreted via
+Cartesian-closedness), with a series of negative results emerging from this.
+Our work is orthogonal to these in that we study the dual of $\&$ (\ie\
+$\oplus$) and furthermore we assume the left adjoint of implication to be
+multiplicative conjunction (\ie\ $\otimes$) instead of the additive
+counterpart. Among other things, this removes the obstacles discussed
+in~\cite{lago22}.
 
 
 %However, none of these approaches reason about distances within a quantitative
@@ -152,15 +154,16 @@ makes the negative results discussed in~\cite{lago22} disappear.
 %string diagrams using $\mathcal{V}$-quantitative equations.
 
 In this note we extend the quantalic equational system
-of~\cite{dahlqvist22,dahlqvist2023syntactic} to encompass the additive operator
-$\oplus$. We show that the extension is both sound and complete. We also show
-that if the well-known Archimedean rule is dropped one still has approximate
-completeness. We then briefly illustrate our extended framework at work in the
-setting of probabilistic programming~\cite{dahlqvist19,barthe20}. We will focus
-specifically on reasoning about Cauchy sequences of higher-order probabilistic
-programs, thus emphasising the recent shift from ``seeing program semantics as
-the science of program equivalence''~\cite{lago22} to quantitative
-scientific concepts, involving functional analysis and beyond.
+of~\cite{dahlqvist22,dahlqvist2023syntactic} to encompass the additive
+disjunction operator. We show that the extension is both sound and complete. We
+show that even if the well-known Archimedean rule (often problematic) is
+dropped one still retains `approximate completeness'. We briefly illustrate our
+extended framework at work in the setting of probabilistic
+programming~\cite{dahlqvist19,barthe20}. We will focus specifically on
+reasoning about Cauchy sequences of higher-order probabilistic programs -- thus
+emphasising the recent shift from ``seeing program semantics as the science of
+program equivalence''~\cite{lago22} to more flexible, quantitative perspectives,
+involving functional analysis and beyond.
 
 %if we drop the well-known work
 %of~\cite{dahlqvist2023syntactic} by introducing a metric equation for
@@ -185,13 +188,10 @@ scientific concepts, involving functional analysis and beyond.
 
 The extension of linear $\lambda$-calculus
 in~\cite{dahlqvist22,dahlqvist2023syntactic} with additive disjunction is quite
-simple. The grammar of types is given by,
-\begin{equation*} \label{eq:grammartypes}
-   \typeA ::= X \in G \mid \typeI \mid \typeA  \otimes \typeA \mid \typeA
-   \oplus \typeA \mid \typeA \multimap  \typeA
-\end{equation*}
-where $G$ is a set of ground types, and the judgement formation rules
-concerning $\oplus$ are those in \autoref{fig:typing_rules_cond}. 
+simple. The grammar of types now includes the construct $\typeA \oplus \typeA$
+and the judgement formation rules are extended with those in
+\autoref{fig:typing_rules_cond}. 
+
 \begin{figure}[H]
     \begin{equation*}
             \hspace{60pt}
@@ -228,25 +228,25 @@ concerning $\oplus$ are those in \autoref{fig:typing_rules_cond}.
     \label{fig:typing_rules_cond}
 \end{figure}
 It is laborious but straightforward to prove that the extended calculus
-inherits desirable features from the calculus
-in~\cite{dahlqvist22,dahlqvist2023syntactic}. Most notably it inherits the
-\emph{unique derivation}, \emph{substitution}, and \emph{exchange} properties.
-These are key in our framework and rely on a shuffling mechanism whose details
-can be consulted in~\cite{dahlqvist22,dahlqvist2023syntactic,shulman19}. This
-mechanism can actually be briefly glanced in \autoref{fig:typing_rules_cond},
-rule (case), where we stipulate that context $E$ is a \emph{shuffle} (Sf) of
-the contexts $\Gamma$ and $\Delta$: \ie\ a permutation of the variables in
-$\Gamma,\Delta$ which preserves their relative order in $\Gamma$ and $\Delta$.
+inherits desirable features from the original calculus. Most notably it
+inherits the \emph{unique derivation}, \emph{substitution}, and \emph{exchange}
+properties.  These are key in our framework and rely on a shuffling mechanism
+whose details can be consulted
+in~\cite{dahlqvist22,dahlqvist2023syntactic,shulman19}. The mechanism can
+actually be briefly glanced in  rule (case), where we stipulate that context
+$E$ is a \emph{shuffle} of the contexts $\Gamma$ and $\Delta$: in other words,
+it must be a permutation of the variables in $\Gamma,\Delta$ that preserves
+their relative order in $\Gamma$ and in $\Delta$.
 
 
-Next, in order to extend the quantalic equational system
-in~\cite{dahlqvist22,dahlqvist2023syntactic} with additive disjunction let us
-introduce notation and some basic properties about quantales.  Let
-$\mathcal{V}$ denote a commutative and unital quantale, $\otimes : \mathcal{V}
-\times \mathcal{V} \to \mathcal{V}$ the corresponding binary operation, and $k$
-the corresponding unit~\cite{paseka00}.  The following (domain-theoretic)
-definitions are useful not only for computational reasons, but also for
-formulating our `approximate completeness' result.
+In order to extend the quantalic equational system
+in~\cite{dahlqvist22,dahlqvist2023syntactic} with additive disjunction we
+introduce notation, definitions, and some basic properties about quantales.
+Thus let $\mathcal{V}$ denote a commutative and unital quantale, $\otimes :
+\mathcal{V} \times \mathcal{V} \to \mathcal{V}$ denote the corresponding binary
+operation, and $k$ its unit~\cite{paseka00}.  The following (domain-theoretic)
+definitions will be essential in formulating our `approximate completeness'
+result, among other things.
 \begin{definition}
 	Consider a complete lattice $L$.  For every $x, y \in L$ we say that
 	$y$ is \emph{way-below} $x$ (in symbols, $y \ll x$) if for every
@@ -266,32 +266,34 @@ formulating our `approximate completeness' result.
 \end{definition}
 We assume that the underlying lattice of $\mathcal{V}$ is continuous and has a
 basis $B \ni k$ closed under finite joins and the multiplication of the
-quantale $\otimes$. As explained in~\cite{dahlqvist22,dahlqvist2023syntactic},
+quantale $\otimes$. As detailed in~\cite{dahlqvist22,dahlqvist2023syntactic},
 these assumptions allow us to work \emph{only} with a specified subset of the
-elements of the quantale which might be easier to handle in specific contexts
-for a variety of reasons.  We also assume that $\mathcal{V}$ is
-\emph{integral}, \ie\ that the unit $k$ is the top element of $\mathcal{V}$, a
-common assumption in quantale theory~\cite{velebil19}. Finally, our extended
-quantalic system crucially relies on the following observation.  Since every
-quantale $\mathcal{V}$ is a cocomplete category (specifically a complete
-sup-lattice) it will be complete as well~\cite[Section 12]{cats} -- in other
-words, it has all infima $\bigwedge$. We will assume that for every $q \in B$
-the operation $q \wedge (-) : \mathcal{V} \to \mathcal{V}$ preserves suprema.
-Several examples of quantales that satisfy these constraints are presented
-in~\cite{dahlqvist22,dahlqvist2023syntactic}. Here we mention only the case of
-the metric quantale, since we use it in our illustration of probabilistic
-programming. Typically the basis $B$ that is chosen for this particular case is
-that of rational numbers.  
+elements of the quantale which may be easier to handle in a specific context.
+We also assume that $\mathcal{V}$ is \emph{integral}, \ie\ that the unit $k$ is
+the top element of $\mathcal{V}$, a common assumption in quantale
+theory~\cite{velebil19}. 
 
-We are ready to present our quantalic, equational system extended with the additive
-disjunction operator.  In the original system equations are
-labelled by elements $q \in B \subseteq \mathcal{V}$ of the quantale, and 
-`classical' equations $v = w$ are represented by $v =_k w$ together with $w =_k
-v$. The extended system now incorporates the rules presented in
-Figure~\ref{fig:equations-in-context-cond}. The equations on top of the dotted
-line are those already known for additive disjunction in the classical setting
-(see for example~\cite{croleCategoriesTypes1994}). The ones on the bottom are
-new and serve as a form of `quantalic congruence'. 
+Finally our extended quantalic system crucially relies on the following
+observation.  Since every quantale $\mathcal{V}$ is a cocomplete category
+(specifically, a complete sup-lattice) it will be complete as
+well~\cite[Section 12]{cats} -- in other words it has all infima. We will
+assume that for every $q \in \mathcal{V}$ the operation $q \wedge (-) :
+\mathcal{V} \to \mathcal{V}$ preserves suprema and that the basis $B$ is closed
+under binary infima.  Several examples of quantales that satisfy these
+constraints are presented and discussed
+in~\cite{dahlqvist22,dahlqvist2023syntactic}.  Here we mention only the case of
+the metric quantale for we use it in our illustration of probabilistic
+programming. 
+
+We are ready to present our quantalic, equational system extended with the
+additive disjunction operator.  In the original system equations are labelled
+by elements $q \in B \subseteq \mathcal{V}$ of the quantale and classical
+equations $v = w$ are represented by $v =_k w$ together with $w =_k v$. The
+main difference is that the extended system now incorporates the rules
+presented in Figure~\ref{fig:equations-in-context-cond}. The equations on top
+of the dotted line are those already known for additive disjunction in the
+classical setting (see for example~\cite{croleCategoriesTypes1994}). The ones
+on the bottom are new and serve as a form of `quantalic congruence'. 
 
 Observe that whilst the original quantalic system makes use of the quantale's
 linear structure (\ie\ $\otimes$), the extended version now also make use of
@@ -302,7 +304,7 @@ corresponding categorical semantics, which we detail in the following section.
             \hspace{30pt}
         \begin{split}
           &(\beta_{case}^{inl}) \hspace{3pt} \text{case } 
-          \inl_{\typeB}(v)\, \{ \inl_{\typeB} (x) \Rightarrow w 
+          \inl_{\typeB}(v)\, \{ \inl_{\typeB} (x) \Rightarrow w  
           ;\, \inr_{\typeA} (y) 
           \Rightarrow u\}= w[v/x]
           %
@@ -353,38 +355,41 @@ corresponding categorical semantics, which we detail in the following section.
 
 \section{Categorical semantics}
 
-The $\lambda$-terms of the calculus here involved are interpreted standardly in
-any symmetric monoidal closed (\ie\ autonomous) category with binary coproducts
-(see a complete account for example in~\cite{croleCategoriesTypes1994}).  The
-interpretation of $\mathcal{V}$-equations on the other hand requires a series
-of preliminaries which we briefly detail next.
+Note that the terms of the calculus detailed in the previous section are
+interpreted standardly in any symmetric monoidal closed (\ie\ autonomous)
+category with binary coproducts. See a complete account for example
+in~\cite{croleCategoriesTypes1994}.  The interpretation of
+$\mathcal{V}$-equations on the other hand requires a series of preliminaries
+which we briefly detail next.
 \begin{definition}
   \label{defn:vcat}
   A $\mathcal{V}$-category is a pair $(X,a)$ where $X$ is a set and $a : X
-  \times X \to \mathcal{V}$ is a function that satisfies:
+  \times X \to \mathcal{V}$ is a function (\ie\ a $\mathcal{V}$-relation) that
+  satisfies:
   \begin{flalign*}
     k \leq a(x_1,x_2) \qquad \text{ and }  \qquad
     a(x_1,x_2) \otimes a(x_2,x_3) \leq a(x_1,x_3) \hspace{2cm}
     (x_1,x_2,x_3 \in X)
   \end{flalign*}
-  For two $\mathcal{V}$-categories $(X,a)$ and $(Y,b)$, a
+  Take two $\mathcal{V}$-categories $(X,a)$ and $(Y,b)$. A
   $\mathcal{V}$-functor $f : (X,a) \to (Y,b)$ is a function
   $f : X \to Y$ that satisfies the inequality
   $a(x_1,x_2) \leq b(f(x_1),f(x_2))$ for all $x_1,x_2 \in X$.
 \end{definition}
 $\mathcal{V}$-categories and $\mathcal{V}$-functors form a category which we
 denote by $\VCat$.  A $\mathcal{V}$-category $(X,a)$ is called \emph{symmetric}
-if $a(x,y) = a(y,x)$ for all $x,y \in X$. We denote by $\VCatSy$ the full
-subcategory of $\VCat$ whose objects are symmetric. Every
-$\mathcal{V}$-category carries a natural order defined by $x \leq y$ whenever
-$k \leq a(x,y)$. A $\mathcal{V}$-category is called \emph{separated} if its
-natural order is anti-symmetric. We denote by $\VCatSe$ the full subcategory of
-$\VCat$ whose objects are separated. Note that for $\mathcal{V}$ the metric
-quantale, $\VCatSS$ is the category $\Met$ of metric spaces and non-expansive
-maps.  The categories $\VCat$, $\VCatSe$ and $\VCatSS$ are autonomous whenever
-the quantale $\mathcal{V}$ is
-integral~\cite{dahlqvist22,dahlqvist2023syntactic}.  Such gives rise to the
+if $a(x_1,x_2) = a(x_2,x_1)$ for all $x_1,x_2 \in X$. We denote by $\VCatSy$
+the full subcategory of $\VCat$ whose objects are symmetric. Every
+$\mathcal{V}$-category carries a natural order defined by $x_1 \leq x_2$
+whenever $k \leq a(x_1,x_2)$. A $\mathcal{V}$-category is called
+\emph{separated} if its natural order is anti-symmetric. We denote by $\VCatSe$
+the full subcategory of $\VCat$ whose objects are separated. Note that when
+$\mathcal{V}$ is the metric quantale $\VCatSS$ is the category $\Met$ of metric
+spaces and non-expansive maps.  The categories $\VCat$, $\VCatSe$ and $\VCatSS$
+are autonomous whenever the quantale $\mathcal{V}$ is integral (see details
+in~\cite{dahlqvist22,dahlqvist2023syntactic}).  Such gives rise to the
 following particular notion of enriched category. 
+
 \begin{definition}\label{defn:enr_aut}
   A $\VCat$-enriched autonomous category $\catC$ is an autonomous and
   $\VCat$-enriched category $\catC$ such that the bifunctor $\otimes : \catC
@@ -393,66 +398,45 @@ following particular notion of enriched category.
   notions of enriched autonomous category by replacing $\VCat$ (as basis of
   enrichment) with $\VCatSe$ and $\VCatSS$.
 \end{definition}
-
 Interestingly the category $\VCat$ and the aforementioned variants also have
-products, given precisely by the quantale's Cartesian structure. This means
-that $\VCat$ provides an additional basis of enrichment via products -- and
-this is what we will recur to in the interpretation of the extended quantalic
-system.  Specifically we will assume that the categories involved in the
-interpretation have binary coproducts enriched, not over the linear but, the
-Cartesian structure of $\VCat$. An abundance of examples of such categories is
-given by the following proposition.
+products, given precisely by the quantale's Cartesian structure (\ie\ infima).
+This means that $\VCat$ provides an additional basis of enrichment via products
+-- and this is what we will recur to in the interpretation of the extended
+quantalic system. More specifically we will assume that the categories involved
+in the interpretation have binary coproducts enriched over the Cartesian
+structure of $\VCat$ rather than the autonomous structure. An abundance of
+examples of such categories is given by the following proposition, which we
+prove in the appendix (Section~\ref{sec:proof}).
 
 \begin{proposition}
+        \label{prop:vcat}
         The categories $\VCat$, $\VCatSe$, and $\VCatSS$   have binary
         coproducts enriched over their Cartesian structure.
 \end{proposition}
-
-\begin{proof}
-        Given two $\mathcal{V}$-categories $(X,a_X)$ and $(Y,a_Y)$ the carrier
-        of the coproduct is given by the $\catfont{Set}$-theoretic coproduct $X
-        + Y$. The corresponding $\mathcal{V}$-relation $a_{X + Y}$ is given
-        by,
-        \[
-                \begin{cases}
-                        a_{X + Y}(\inl(x_1),\inl(x_2)) = a_X(x_1,x_2) \\
-                        a_{X + Y}(\inr(y_1),\inr(y_2)) = a_Y(y_1,y_2) \\
-                        a_{X + Y}(\inl(x), \inr(y)) = 
-                        a_{X + Y}(\inr(y), \inl(x))  = \bot
-                \end{cases}
-        \]
-        Co-pairing is defined as in $\catfont{Set}$. The Cartesian
-        enrichment follows straightforwardly from the fact that the
-        $\mathcal{V}$-relation of every hom-set $\VCat((X,a_X),(Y,a_Y))$ is
-        given by infima and the equation $(\bigwedge \mathscr{D}) \wedge
-        (\bigwedge \mathscr{F}) = \bigwedge (\mathscr{D} \cup \mathscr{F})$ for
-        all subsets $\mathscr{D},\mathscr{F}$ of $\mathcal{V}$.  The same
-        reasoning about the Cartesian enrichment applies to $\VCatSe$ and
-        $\VCatSS$.
-\end{proof}
-
 Our next step is to present soundness and completeness w.r.t.  the
-interpretation structures just described. We start by recalling the notion of a
-$\mathcal{V}\lambda$-theory.
+interpretation structures just described. We start by recalling the notion of
+(symmetric) $\mathcal{V}\lambda$-theory and corresponding models.
 
 \begin{definition}[$\mathcal{V} \lambda$-theories]\label{defn:theory}
   Consider a tuple $(G,\Sigma)$ consisting of a set $G$ of ground types and a
   set $\Sigma$ of sorted operation symbols.  A \emph{$\mathcal{V}
   \lambda$-theory} $((G,\Sigma),Ax)$ is a triple such that $Ax$ is a set of
   $\mathcal{V}$-equations-in-context over $\lambda$-terms built from
-  $(G,\Sigma)$.
+  $(G,\Sigma)$. The theory is called symmetric if it also contains the symmetry
+  rule (see details in~\cite{dahlqvist22,dahlqvist2023syntactic}).
 \end{definition}
 
 \begin{definition}[Models of $\mathcal{V} \lambda$-theories]\label{defn:model}
         Consider a $\mathcal{V}\lambda$-theory $((G,\Sigma),Ax)$ and a
-        $\VCatSe$-enriched autonomous category. Suppose that $\catC$ has
+        $\VCatSe$-enriched autonomous category $\catC$ with
         binary coproducts enriched over the Cartesian structure of $\VCatSe$.
         Suppose also that for each $X \in G$ we have an interpretation
         $\sem{X}$ as a $\catC$-object and analogously for the operation
         symbols.  This interpretation structure is a model of the theory if all
-        axioms in $Ax$ are satisfied by the interpretation.
+        axioms in $Ax$ are satisfied by the interpretation. In case the theory
+        is symmetric then we change the basis of enrichment from $\VCatSe$ to
+        $\VCatSS$ (see details in~\cite{dahlqvist22,dahlqvist2023syntactic}).
 \end{definition}
-
 Take an interpretation structure as per the previous definition.  We say that a
 $\mathcal{V}$-equation $\Gamma \vljud v =_q w : \typeA$ holds in the
 interpretation if $q \leq a(\sem{\Gamma \vljud v : \typeA}, \sem{\Gamma \vljud
@@ -469,14 +453,15 @@ the $\mathcal{V}$-category $\catC(\sem{\Gamma},\sem{\typeA})$.
 
 \begin{proof}[Proof sketch]
         The proof piggybacks on the one
-        in~\cite{dahlqvist22,dahlqvist2023syntactic}, in other words we only
+        in~\cite{dahlqvist22,dahlqvist2023syntactic}, \ie\ we only
         need to focus on the cases that involve additive disjunction.
         Nonetheless we still give a broad overview of the proof so that the
         reader gets a general feeling of what it requires.
 
-        The soundness part uses induction over the depth of proof trees. The
-        general strategy for each case is to use linear enrichment as well
-        as the definition of a $\mathcal{V}$-category.  The case of additive
+        The soundness part uses induction over the depth of proof trees that
+        arise from the extended deductive system. The general strategy for each
+        inference rule is to use the autonomous enrichment as well as the
+        definition of a $\mathcal{V}$-category.  The case of additive
         disjunction additionally requires the use of Cartesian enrichment.
 
         Completeness on the other hand is based on the idea of a
@@ -484,30 +469,30 @@ the $\mathcal{V}$-category $\catC(\sem{\Gamma},\sem{\typeA})$.
         $\catfont{Syn}(T)$ (also known as term model) of the underlying  theory
         $T$ and then show that provability of $\Gamma \vljud v =_q w : \typeA$
         in $T$ is equivalent to $a(\sem{v},\sem{w}) \geq q$ in the category
-        $\catfont{Syn}(T)$. Thus for two types $\typeA$ and $\typeB$ let
+        $\catfont{Syn}(T)$. Thus for two types $\typeA$ and $\typeB$, let
         \textbf{Values}$(\typeA,\typeB)$ be the set of $\lambda$-terms $v$ such
         that $x : \typeA \vljud v : \typeB$. We equip
         $\textbf{Values}(\typeA,\typeB)$ with the $\mathcal{V}$-relation $a$ defined by,
         \[
                         a(x : \typeA \vljud v : \typeB, y : \typeA \vljud  w : \typeB)
                         =\sup {\{q \, \vert \,
-                        v=_q w[x/y] \text{ is a theorem of } \mathscr{T} \}}
+                        v=_q w[x/y] \text{ is a theorem of } T \}}
         \]
         It is easy to see that \textbf{Values}$((\typeA,\typeB),a)$ is a
         $\mathcal{V}$-category. We then quotient it into a separated
         $\mathcal{V}$-category via the construction detailed
         in~\cite{dahlqvist22,dahlqvist2023syntactic}. The next step is to prove
         that this quotienting procedure is compatible with the term formation
-        rules of the calculus. Most cases use the fact that $\otimes$
-        distributes over suprema and the case of additive disjunction
-        additionally requires the fact that $q \wedge (-)$ distributes over
-        suprema for every $q \in \mathcal{V}$. This yields the desired category
-        $\catfont{Syn}(T)$ which will respect Definition~\ref{defn:enr_aut}
-        and moreover possess binary coproducts enriched over the Cartesian
-        structure of $\VCatSe$.
+        rules of the extended calculus. To this effect, in general one uses the fact
+        that $\otimes$ distributes over suprema and the case of additive
+        disjunction additionally requires the fact that $q \wedge (-)$
+        distributes over suprema for every $q \in \mathcal{V}$. This yields the
+        desired category $\catfont{Syn}(T)$ which will respect
+        Definition~\ref{defn:enr_aut} and moreover possess binary coproducts
+        enriched over the Cartesian structure of $\VCatSe$ (resp. $\VCatSS$).
 
 The final step is to show that if an equation $\Gamma \vljud v =_q v' : \typeA$
-with $q \in B$ holds in $\catfont{Syn}(T)$ then it is a theorem of $T$. By
+holds in $\catfont{Syn}(T)$ then it is a theorem of $T$. By
 assumption $a([v],[v']) = a(v,v') =  \sup{ \{r \mid v =_r v'\}} \geq q$. It
 follows from the definition of the way-below relation that for all $x \in B$
 with $x \ll q$ there exists a finite set $A \subseteq \{r \, \vert \, v =_r
@@ -541,10 +526,10 @@ the theory.
 %  The second step follows from the fact that $\text{sp}_{\Gamma;\Delta} \comp \text{sh}_{E}$  is a morphism in $\catC$  and that $\catC$ is $\catMet$-enriched.  The third and fifth step follow from an analogous reasoning. The fourth step follows from the premises of the rule in question and from the metric equation regarding tensors. The sixth step follows from the fact that $[ \cdot , \cdot ]$ is a $\catMet$-functor and $\catC$  is $\catMet$-enriched. Finally, the last step follows from the premise of the rule in question.
 %
 %\end{proof}
-
-If one drops the well-known Archimedean rule (arch), the following result can
-still be obtained just by slightly tweaking the last paragraph of the previous
-proof.
+Note that if one drops the well-known Archimedean rule
+(see~\cite{dahlqvist22,dahlqvist2023syntactic,mardare2016quantitative}) the
+following result can still be obtained just by slightly tweaking the last
+paragraph of the previous proof.
 
 \begin{theorem}[Approximate completeness]
         Let us consider a $\mathcal{V}\lambda$-theory $T$.  If a
@@ -555,48 +540,51 @@ proof.
         \typeA$.
 \end{theorem}
 
-
-
 \section{A brief illustration with probabilistic programming}
 \label{sec:ex}
-We now briefly illustrate the case of probabilistic computation, using as basic
-examples two main topics in probability theory~\cite{dudley18} -- probabilistic
-predicates and random walks on the real line.  Our illustration will be
-grounded on a standard probabilistic model, namely the category $\Ban$ of
-Banach spaces and linear contractions~\cite{dahlqvist19}. As discussed
-in~\cite{dahlqvist2023syntactic} this category has a $\Met$-enriched
-monoidal-closed structure and it is well-known that it has binary coproducts
-given by the direct sum equipped with the $\ell_1$ norm. Thus in order to fit
-$\Ban$ in our framework we only need to show that its coproduct structure is
-enriched over the Cartesian structure of $\Met$. We prove this in the appendix
-where we also recall some basic facts about measures.
 
-We proceed by presenting a simple a metric $\lambda$-theory on which to reason
-about predicates and random walks, as previously discussed. Our (only) ground
-type will be $\mathtt{real}$ to represent measures over real numbers, \ie\ we
-set $\sem{\mathtt{real}} = \Measu(\Reals)$.  Concerning operations we take a
-pre-determined set of predicates $p : \mathtt{real} \to \typeI \oplus \typeI$,
-whose interpretation takes the form $\sem{p}(\mu) = (\mu(U),
-\mu(\overline{U}))$ for some measurable subset of $U \subseteq \Reals$. In
-other words $U \subseteq \Reals$ corresponds to the subspace in which the
-predicate is supposed to hold. We also take a pre-determined set of actions $a
-: \typeI \to (\typeA \multimap \typeA)$ and a pre-determined set of measures $m
-: \typeI \to \mathtt{real}$, whose interpretation takes no particular form.
-Finally we consider an addition operation $+ : \mathtt{real},\mathtt{real} \to
-\mathtt{real}$ whose interpretation is given by $\mu \otimes \nu \mapsto
+We now briefly illustrate our framework in the setting of probabilistic
+programming, using as basic examples two main topics in probability
+theory~\cite{dudley18} -- probabilistic predicates and random walks on the real
+line.  Our illustration will be grounded on a standard probabilistic model,
+namely the category $\Ban$ of Banach spaces and linear
+contractions~\cite{dahlqvist19}. As discussed
+in~\cite{dahlqvist22,dahlqvist2023syntactic} this category has a
+$\Met$-enriched autonomous structure and it is well-known that it has binary
+coproducts given by the direct sum equipped with the $\ell_1$ norm. Thus in
+order to fit $\Ban$ in our framework we only need to show that its coproduct
+structure is enriched over the Cartesian structure of $\Met$. We detail this in
+the appendix (Section~\ref{sec:back}) where we also recall some basic facts
+about measure theory.
+
+We proceed by presenting a metric $\lambda$-theory on which to reason about
+predicates and random walks, as previously discussed. Our (only) ground type
+will be $\mathtt{real}$ to represent measures over real numbers, \ie\ we set
+$\sem{\mathtt{real}}$ to be the space of measures over the real line.
+Concerning operations we take a pre-determined set of predicates $p :
+\mathtt{real} \to \typeI \oplus \typeI$ whose interpretation takes the form
+$\sem{p}(\mu) = (\mu(U), \mu(\overline{U}))$ for some measurable subset of $U
+\subseteq \Reals$. Intuitively $U \subseteq \Reals$ corresponds to the subspace
+in which the predicate is supposed to hold. We also take a pre-determined set
+of actions $a : \typeI \to (\typeA \multimap \typeA)$ and a pre-determined set
+of measures $m : \typeI \to \mathtt{real}$ whose interpretation takes no
+particular form.  Finally we consider addition $+ : \mathtt{real},\mathtt{real}
+\to \mathtt{real}$ whose interpretation is given by $\mu \otimes \nu \mapsto
 +_\ast(\mu \otimes \nu)$ where $+_\ast$ is the pushforward measure construction
-w.r.t. the measurable map $+ : \Reals \times \Reals \to \Reals$.  Now, given a
-measure $m$ and actions $a,b$ consider the following 'abstract' Bernoulli
-trial,
+of $+$ (see further details in~\cite{dahlqvist22,dahlqvist2023syntactic}).
+Next, given a measure $m$ and actions $a,b$ consider the following `abstract'
+Bernoulli trial,
 \[
         p : \mathtt{real} \multimap \typeI \oplus \typeI
-        \vljud \underbrace{ \text{case } p(m) \text{ of } \inl(x) \Rightarrow a(x) ; 
+        \vljud \underbrace{ \text{case } p(m(\ast)) \text{ of } \inl(x) \Rightarrow a(x) ; 
         \inr(y) \Rightarrow b(y)}_{\mathtt{bern}(p)} : \typeA \multimap \typeA
 \]
-Note that if $p_1(x) =_\epsilon p_2(x)$ then  $\mathtt{bern}(\lambda x. p_1(x))
-=_\epsilon \mathtt{bern}(\lambda x. \, p_2(x))$ holds, as per our equational
-system. Such is useful to approximate Bernoulli trials that are hard to compute
-as the following example illustrates.
+Note that if the metric equation $p_1(x) =_\epsilon p_2(x)$ holds for two
+predicates $p_1, p_2 : \mathtt{real} \to \typeI \oplus \typeI$ then
+$\mathtt{bern}(\lambda x. p_1(x)) =_\epsilon \mathtt{bern}(\lambda x.  p_2(x))$
+must hold as well (as per our equational system). Such is useful to approximate
+Bernoulli trials that may be hard to compute as illustrated by the following
+examples.
 \begin{example}[Predicates as limits of Cauchy sequences]
         Consider the predicate,
         \[
@@ -605,15 +593,15 @@ as the following example illustrates.
         \]
         that returns true if $x < \frac{1}{2}\sqrt{2}$ and false otherwise.
         Given the irrationality of $\frac{1}{2}\sqrt{2}$ it is natural to
-        consider successive approximations $p_{q_n}(x) :  \typeI \oplus \typeI$
-        $(n \in \Nats)$ of this predicate in which the condition $x <
-        \frac{1}{2}{\sqrt{2}}$ is replaced by $x < q_n$ for $q_n$ a rational
-        number. We show next how our framework makes this idea precise. Take a
-        sequence of rational numbers $(q_n)_{n \in \Nats}$ that converges to
-        $\frac{1}{2}\sqrt{2}$ from below. We then postulate as axioms in our deductive
-        system that $(p_{q_n}(x))_{n \in \Nats}$ is a Cauchy sequence and
-        furthermore that it converges to $p_{\frac{1}{2} \sqrt{2}}(x)$.  Such
-        is asserted explicitly by setting,
+        consider successive approximations $x : \mathtt{real}\vljud p_{q_n}(x)
+        :  \typeI \oplus \typeI$ $(n \in \Nats)$ of this predicate in which the
+        condition $x < \frac{1}{2}{\sqrt{2}}$ is replaced by $x < q_n$ for
+        $q_n$ a rational number. We show next how our framework makes this idea
+        precise. Take a sequence of rational numbers $(q_n)_{n \in \Nats}$ that
+        converges to $\frac{1}{2}\sqrt{2}$ from below. We then postulate as
+        axioms in our deductive system that $(p_{q_n}(x))_{n \in \Nats}$ is a
+        Cauchy sequence and furthermore that it converges to $p_{\frac{1}{2}
+        \sqrt{2}}(x)$.  Such is asserted precisely by setting,
         \begin{equation}
                 \label{eq:sound}
                 \begin{cases}
@@ -628,53 +616,56 @@ as the following example illustrates.
                 \end{cases}
         \end{equation}
         for appropriate choices of $m$ (which in our context is irrelevant to
-        detail). Then note that according to our deductive system we have that
-        $\mathtt{bern}(\lambda x. \, p_{q_n}(x))_{n \in \Nats}$ is
-        a Cauchy sequence that furthermore converges to $\mathtt{bern}(\lambda
-        x. \, p_{\frac{1}{2}\sqrt{2}}(x))$. Then next step is to prove
-        that our axiomatics is sound, which we prove in the appendix as well.
+        detail). The next step is to prove that this axiomatics is sound which
+        is detailed in the appendix. In the next example we capitalise on such
+        predicate approximations, now formulated precisely, to reason about
+        approximations of random walks.
         \end{example}
 
-\begin{example}[From predicates approximation to random walk approximation] 
-        Let us now capitalise on the previous example to reason about
-        approximations of random walks. First consider the term,
+\begin{example}[Random walk approximations] 
+        Let us consider the $\lambda$-term,
         \[
                 (-) \vljud \underbrace{\lambda x_1. \, \dots \, x_k. \, y. \,
                 x_1 (\dots (x_k(y)) \dots)}_{\mathtt{sequence_k}}
         \]
-        which sequences $k$ terms given as input. Then take the $\lambda$-term
-        $\mathtt{sequence_k} \> \mathtt{bern}(\lambda x. \, p(x)) \dots \,
-        \mathtt{bern}(\lambda x. \, p(x)) : \typeA \to \typeA$ which
-        intuitively represents an abstract random walk of $k$-steps. In order
-        to keep our notation simple we will abbreviate this last $\lambda$-term to
-        $\mathtt{rwalk}(\lambda x. \, p(x))$.  It follows from our system that
-        if $p_1(x) =_\epsilon p_2(x)$ then,
+        which operationally speaking sequences $k$ terms given as input. Also
+        given a predicate $p : \mathtt{real} \to \typeI \oplus \typeI$, take
+        the term $(-) \vljud \mathtt{sequence_k} \>
+        \mathtt{bern}(\lambda x. \, p(x)) \dots \, \mathtt{bern}(\lambda x. \,
+        p(x)) : \typeA \multimap \typeA$ which intuitively represents an
+        \emph{abstract random walk of $k$-steps}. In order to keep our notation
+        simple we abbreviate this last term to $\mathtt{rwalk}(\lambda x. \,
+        p(x))$. Now, it follows from our system that if $p_1(x) =_\epsilon
+        p_2(x)$ for two predicates $p_1$ and $p_2$ then,
         \[
                 \mathtt{rwalk}(\lambda x. p_1(x)) =_{n \cdot \epsilon}
                 \mathtt{rwalk}(\lambda x. p_2(x)) 
         \]
-        In particular from the previous example we can deduce that
-        $\mathtt{rwalk}\left (\lambda x. \, p_{\frac{1}{2} q_n} (x) \right )$
-        is a Cauchy sequence that converges to $\mathtt{rwalk}\left (\lambda x.
-        \, p_{\frac{1}{2} \sqrt{2}} (x) \right )$.
+        In particular, from the previous example we deduce that $\mathtt{rwalk}
+        (\lambda x. \, p_{q_n} (x))$ is a Cauchy sequence that converges to
+        $\mathtt{rwalk}(\lambda x.  \, p_{\frac{1}{2} \sqrt{2}} (x) )$. In
+        other words the approximations obtained in the previous example
+        propagate to the corresponding random walks.
+
         As a final illustration of the synergy between syntax and semantics
         that our framework provides, suppose now that the actions $a,b : \typeI
         \to \typeA \multimap \typeA$ involved in $\mathtt{bern}(\lambda x. \,
         p(x))$ are concrete jumps on the real line. To this effect we set the
-        interpretations of $a$ and $b$ to be,
+        interpretations $\sem{a},\sem{b} : \sem{\typeI} \to
+        \sem{\mathtt{real}} \multimap \sem{\mathtt{real}}$ to be,
         \[
-                        \sem{a}(1)(\mu) = +_\ast(\mu \otimes \mathtt{unif}(0,1))
+                        \sem{a}(1)= \mu \mapsto +_\ast(\mu \otimes \mathtt{unif}(0,1))
                         \hspace{2cm}
-                        \sem{b}(1)(\mu) = +_\ast(\mu \otimes \mathtt{unif}(-1,0))
+                        \sem{b}(1) =\mu \mapsto +_\ast(\mu \otimes \mathtt{unif}(-1,0))
         \]
-        where $\mathtt{unif}(0,1)$ is the uniform distribution on the interval
-        $[0,1]$ and analogously for $\mathtt{unif}(-1,0)$.  Operationally $a$
-        corresponds to a jump to the right with magnitude between $0$ and $1$,
-        and analogously for $b$. Suppose we have another action $c : \typeI \to
-        (\typeA \multimap \typeA)$ whose interpretation is that of $a$ except
-        for the fact that $\mathtt{unif}(0,1)$ is replaced by
-        $\mathtt{unif}(0,1+\delta)$. What will be the effect on the random walk
-        when replacing $a$ by $c$? 
+        where $\mathtt{unif}(0,1) \in \Measu(\Reals)$ is the uniform
+        distribution on the interval $[0,1]$ and analogously for
+        $\mathtt{unif}(-1,0)$.  Operationally $a$ corresponds to a jump to the
+        right with magnitude between $0$ and $1$, and analogously for $b$.
+        Suppose we have another action $c : \typeI \to (\mathtt{real} \multimap
+        \mathtt{real})$ whose interpretation is that of $a$ except for the fact
+        that $\mathtt{unif}(0,1)$ is replaced by $\mathtt{unif}(0,1+\delta)$.
+        What will be the effect on the random walk when replacing $a$ by $c$?
         Our approach for answering the previous question starts by
         `decomposing' the actions $a$ and $c$, via the axioms,
         \[
@@ -685,49 +676,22 @@ as the following example illustrates.
         whose soundness is straightforward to prove. Note that we are slightly
         abusing notation by using $\mathtt{unif}(0,1)$ (resp.
         $\mathtt{unif}(0,1+\delta)$) both as syntactic and semantic objects.
-        The next step is to observe that  one can put an upper bound between
+
+        The next step is to observe that one can put an upper bound between
         $a(\ast)$ and $c(\ast)$ via the previous axioms and an upper bound
-        between the $\lambda$-terms $\mathtt{unif}(0,1)(\ast)$ and
-        $\mathtt{unif}(0,1+\delta)(\ast)$. The latter upper bound can be
-        obtained semantically, by computing $\norm{ \mathtt{unif}(0,1) -
-        \mathtt{unif}(0,1+\delta) }$ as follows:
+        between the terms $\mathtt{unif}(0,1)(\ast)$ and
+        $\mathtt{unif}(0,1+\delta)(\ast)$. The latter upper bound is obtained
+        \emph{semantically} by computing the norm $\norm{\mathtt{unif}(0,1) -
+        \mathtt{unif}(0,1+\delta) }$ in the way described in
+        Section~\ref{sec:back}. It will be specifically $2 \cdot
+        {\frac{\delta}{1 + \delta}}$. Then as our final step we proceed
+        \emph{syntactically} via the system
+        of~\cite{dahlqvist22,dahlqvist2023syntactic} extended with additive
+        disjunction, as follows.
         \begin{align*}
-        & \norm{ \mathtt{unif}(0,1) - \mathtt{unif}(0,1+\delta) }
-        \\
-        & =
-        (\mathtt{unif}(0,1) - \mathtt{unif}(0,1+\delta))^+ (\Reals)
-        +
-        (\mathtt{unif}(0,1) - \mathtt{unif}(0,1+\delta))^- (\Reals)
-        \end{align*}
-        and we proceed by computing the left-hand side of the addition,
-        \begin{align*} 
-        & (\mathtt{unif}(0,1) - \mathtt{unif}(0,1+\delta))^+ (\Reals)
-        \\
-        &  = 
-        \sup \{ \mathtt{unif}(0,1)(U) - \mathtt{unif}(0,1 + \delta)(U)
-        \mid U \subseteq \Reals \}
-        \\
-        & 
-        =
-        \sup \{ \mathtt{unif}(0,1)(U \cap [0,1]) 
-        - \mathtt{unif}(0,1 + \delta)(U \cap [0,1]) 
-        - \mathtt{unif}(0,1 + \delta)(U \cap (1,1 + \delta]) 
-        \mid U \subseteq \Reals \}
-        \\
-        &
-        = \sup \left \{ \left (1 - \frac{1}{1+\delta} \right ) 
-                \mathtt{unif}(0,1)(U \cap [0,1]) 
-        - \mathtt{unif}(0,1 + \delta)(U \cap (1,1 + \delta]) 
-        \mid U \subseteq \Reals \right \}
-        \\
-        & = 1 - \frac{1}{1+\delta} 
-        \end{align*}
-        Via an analogous reasoning one shows that the right-hand side of the
-        addition is equal to $\frac{\delta}{1 + \delta}$ and then proceeds
-        syntactically in the following manner.
-        \begin{align*}
-               \text{case } p(m) \text{ of } \inl(x) \Rightarrow a(x) ; 
+               &\, \text{case } p(m) \text{ of } \inl(x) \Rightarrow a(x) ; 
                \inr(y) \Rightarrow b(y)
+               \\
                & =_0
                \text{case } p(m) \text{ of } \inl(x) \Rightarrow x \text{ to} 
                \ast. \, a(\ast) 
@@ -756,7 +720,20 @@ as the following example illustrates.
         which will converge to $0$ as $\delta$ tends to $0$.
 \end{example}
 
+\section{Current and future work}
 
+We are currently exploring the application of our framework to three other
+computational paradigms that we find to be particularly enticing.  Namely,
+quantum computation~\cite{nielsen2010quantum}, stochastic hybrid
+computation~\cite{neves20}, and synthetic guarded domain
+theory~\cite{birkedal12}. Whilst the first two cases involve the metric
+quantale (as in the probabilitic example) the third case involves the so-called
+ultrametric quantale. For all three cases we are currently in the process of
+identifiying and/or building models that fit the requirements demanded from our
+framework.
+
+We are also exploring the hypothesis of obtaining a `concrete completeness'
+result for our quantalic equational system.
 
 %\subsection{Probabilistic computation}
 %
@@ -982,10 +959,11 @@ as the following example illustrates.
 
 \appendix
 \pagebreak
-\section{The category $\Ban$ and measures}
-Let us start with some preliminaries. The linear $\Met$-enrichment of $\Ban$ is
-induced by the \emph{operator norm}. Specifically given a linear map $T : V \to
-W$ between Banach spaces we have,
+\section{Support material for the probabilistic illustration}
+\label{sec:back}
+The autonomous $\Met$-enrichment of $\Ban$ is induced by the \emph{operator
+norm}. Specifically given a linear map $T : V \to W$ between Banach spaces we
+have,
 \[
         \norm{T} = \sup \{ \norm{T(v)} \mid v \in V, \norm{v} = 1 \}
 \]
@@ -1002,8 +980,8 @@ as,
         \hspace{1cm}
         \norm{v} + \norm{u} = 1
 \]
-The fact that the coproduct structure of $\Ban$ is $\Met$-enriched then follows
-rather directly,
+The fact that the coproduct structure of $\Ban$ is enriched over the Cartesian
+structure of $\Met$ then follows rather directly,
 \begin{align*}
         d([T,S] , [T',S']) 
         & = 
@@ -1018,8 +996,9 @@ rather directly,
         & =
         \max \{ d(T,T'), d(S,S') \}
 \end{align*}
-Next, we involve the notion of a measure (see \eg\ \cite[Chapter
-10]{aliprantis06} or \cite[Chapter 2]{panangaden09}).
+Our illustration involves the notion of a measure which we briefly describe
+next  (see \eg\ \cite[Chapter 10]{aliprantis06} or \cite[Chapter
+2]{panangaden09} for a thorough account).
 
 \begin{definition} For a measurable space $(X,\Sigma_X)$ a measure is a
         function $\mu : \Sigma_X \to \Reals$ such that $\mu(\emptyset) = 0$ and
@@ -1030,9 +1009,8 @@ Next, we involve the notion of a measure (see \eg\ \cite[Chapter
         \] 
 where $(U_i)_{i \in \omega}$ is any family of pairwise disjoint measurable
 sets.  A measure $\mu$ is called positive if $\mu(U) \geq 0$ for all measurable
-sets $U$.  
+sets $U$ and a distribution if furthermore $\mu(X) =1$.  
 \end{definition}
-
 For a measurable space $X$ the set of measures $\Measu(X)$ forms a vector space
 via pointwise extension. It also forms a Banach space when equipped with the
 total variation norm,
@@ -1042,17 +1020,10 @@ total variation norm,
              \{ U_1, \dots, U_n \} \text{ is a measurable partition }
         \right \}
 \]
-An extremely useful fact is that $\norm{\mu} = \mu^{+}(X) + \mu^{-}(X)$ where
-$\mu^{+}$ and $\mu^{-}$ are the positive and negative parts of $\mu$
-respectively (see details in~\cite[Section 8.2. and Section
-10.10]{aliprantis06}).
-
-\section{Proofs}
-In Section~\ref{sec:ex} we axiomatised that
-$\mathtt{bern}(\lambda x. \, p_{q_n}(x))_{n \in \Nats}$ is
-a Cauchy sequence that furthermore converges to $\mathtt{bern}(\lambda
-x. \, p_{\frac{1}{2}\sqrt{2}}(x))$. We show next that this axiomatics
-is sound.
+In our probabilistic illustration we axiomatised that $\mathtt{bern}(\lambda x.
+\, p_{q_n}(x))_{n \in \Nats}$ is a Cauchy sequence that furthermore converges
+to $\mathtt{bern}(\lambda x. \, p_{\frac{1}{2}\sqrt{2}}(x))$. We show next that
+this axiomatics is sound.
         \begin{align*}
                 \sem{p_{\frac{1}{2} \sqrt{2}}(x)}(\mu)
                 & = \left (\mu \left (-\infty, \frac{1}{2} \sqrt{2} \right ), 
@@ -1093,5 +1064,69 @@ is sound.
                 \sem{p_{q_n}(x)}(\mu)
                 &
         \end{align*}
+Finally a useful fact about computing norms is that $\norm{\mu} = \mu^{+}(X) +
+\mu^{-}(X)$ where $\mu^{+}$ and $\mu^{-}$ are the positive and negative parts
+of $\mu$ respectively (see details in~\cite[Section 8.2. and Section
+10.10]{aliprantis06}). We use this to compute the norm of $\mathtt{unif}(0,1) -
+\mathtt{unif}(0,1+\delta)$, as required in the main text. First,
+\begin{align*}
+        & \norm{ \mathtt{unif}(0,1) - \mathtt{unif}(0,1+\delta) }
+        \\
+        & =
+        (\mathtt{unif}(0,1) - \mathtt{unif}(0,1+\delta))^+ (\Reals)
+        +
+        (\mathtt{unif}(0,1) - \mathtt{unif}(0,1+\delta))^- (\Reals)
+        \end{align*}
+        and proceed by computing the left-hand side of the addition,
+        \begin{align*} 
+        & (\mathtt{unif}(0,1) - \mathtt{unif}(0,1+\delta))^+ (\Reals)
+        \\
+        &  = 
+        \sup \{ \mathtt{unif}(0,1)(U) - \mathtt{unif}(0,1 + \delta)(U)
+        \mid U \subseteq \Reals \}
+        \\
+        & 
+        =
+        \sup \{ \mathtt{unif}(0,1)(U \cap [0,1]) 
+        - \mathtt{unif}(0,1 + \delta)(U \cap [0,1]) 
+        - \mathtt{unif}(0,1 + \delta)(U \cap (1,1 + \delta]) 
+        \mid U \subseteq \Reals \}
+        \\
+        &
+        = \sup \left \{ \left (1 - \frac{1}{1+\delta} \right ) 
+                \mathtt{unif}(0,1)(U \cap [0,1]) 
+        - \mathtt{unif}(0,1 + \delta)(U \cap (1,1 + \delta]) 
+        \mid U \subseteq \Reals \right \}
+        \\
+        & = 1 - \frac{1}{1+\delta} 
+        \end{align*}
+        It follows from an analogous reasoning the right-hand side of the
+        addition will be $\frac{\delta}{1 + \delta}$ and therefore the norm
+        will be $2 \cdot {\frac{\delta}{1 + \delta}}$.
+\section{Proofs}
+\label{sec:proof}
+\begin{proof}[Proof of Proposition~\ref{prop:vcat}]
+        Given two $\mathcal{V}$-categories $(X,a_X)$ and $(Y,a_Y)$ the carrier
+        of the coproduct is given by the $\catfont{Set}$-theoretic coproduct $X
+        + Y$. The corresponding $\mathcal{V}$-relation $a_{X + Y}$ is given
+        by,
+        \[
+                \begin{cases}
+                        a_{X + Y}(\inl(x_1),\inl(x_2)) = a_X(x_1,x_2) \\
+                        a_{X + Y}(\inr(y_1),\inr(y_2)) = a_Y(y_1,y_2) \\
+                        a_{X + Y}(\inl(x), \inr(y)) = 
+                        a_{X + Y}(\inr(y), \inl(x))  = \bot
+                \end{cases}
+        \]
+        Co-pairing is defined as in $\catfont{Set}$. The Cartesian
+        enrichment follows straightforwardly from the fact that the
+        $\mathcal{V}$-relation of every hom-set $\VCat((X,a_X),(Y,a_Y))$ is
+        given by infima and the equation $(\bigwedge \mathscr{D}) \wedge
+        (\bigwedge \mathscr{F}) = \bigwedge (\mathscr{D} \cup \mathscr{F})$ for
+        all subsets $\mathscr{D},\mathscr{F}$ of $\mathcal{V}$.  The same
+        reasoning about the Cartesian enrichment applies to $\VCatSe$ and
+        $\VCatSS$.
+\end{proof}
+
 
 \end{document}
