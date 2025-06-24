@@ -155,55 +155,30 @@ P~Nick Benton.
 \newblock In {\em International Workshop on Computer Science Logic}, pages
   121--135. Springer, 1994.
 
-\bibitem{nielsen2010quantum}
-Michael~A Nielsen and Isaac~L Chuang.
-\newblock {\em Quantum computation and quantum information}.
-\newblock Cambridge university press, 2010.
+\bibitem{barendregt1984lambda}
+Hendrik~P Barendregt et~al.
+\newblock {\em The lambda calculus}, volume~3.
+\newblock North-Holland Amsterdam, 1984.
 
-\bibitem{rudin91functional}
-Walter Rudin.
-\newblock {\em Functional Analysis}.
-\newblock McGraw-Hill, 1991.
+\bibitem{bernays1936alonzo}
+Paul Bernays.
+\newblock Alonzo church. an unsolvable problem of elementary number theory.
+  american journal of mathematics, vol. 58 (1936), pp. 345--363.
+\newblock {\em The Journal of Symbolic Logic}, 1(2):73--74, 1936.
 
-\bibitem{guide2006infinite}
-A~Hitchhiker’s Guide.
-\newblock {\em Infinite dimensional analysis}.
-\newblock Springer, 2006.
+\bibitem{mackieLanguageAutonomous1993}
+Ian Mackie, Leopoldo Román, and Samson Abramsky.
+\newblock An internal language for autonomous categories.
+\newblock {\em Applied Categorical Structures}, 1(3):311--343, 1993.
 
-\bibitem{ryanIntroductionTensorProducts2013}
-Raymond~A. Ryan.
-\newblock {\em Introduction to {{Tensor Products}} of {{Banach Spaces}}}.
-\newblock Springer Science \& Business Media, 2013.
+\bibitem{croleCategoriesTypes1994}
+Roy~L. Crole.
+\newblock {\em Categories for {{Types}}}.
+\newblock Cambridge University Press, 1994.
 
-\bibitem{conwayCourseFunctionalAnalysis2007}
-John~B. Conway.
-\newblock {\em A {{Course}} in {{Functional Analysis}}}, volume~96 of {\em
-  Graduate {{Texts}} in {{Mathematics}}}.
-\newblock Springer, 2007.
-
-\bibitem{conwayCourseOperatorTheory2000}
-John~B. Conway.
-\newblock {\em A {{Course}} in {{Operator Theory}}}.
-\newblock American Mathematical Society, 2000.
-
-\bibitem{dahlqvistSemanticsProbabilisticProgramming2020a}
-Fredrik Dahlqvist, Alexandra Silva, and Dexter Kozen.
-\newblock Semantics of {{Probabilistic Programming}}: {{A Gentle
-  Introduction}}.
-\newblock In Gilles Barthe, Joost-Pieter Katoen, and Alexandra Silva, editors,
-  {\em Foundations of {{Probabilistic Programming}}}, pages 1--42. Cambridge
-  University Press, 2020.
-
-\bibitem{athreyaMeasureTheoryProbability2006}
-Krishna~B. Athreya and Soumendra~N. Lahiri.
-\newblock {\em Measure {{Theory}} and {{Probability Theory}}}.
-\newblock Springer Science \& Business Media, 2006.
-
-\bibitem{aliprantisBanachLattices1999}
-Charalambos~D. Aliprantis and Kim~C. Border.
-\newblock In Charalambos~D. Aliprantis and Kim~C. Border, editors, {\em
-  Infinite {{Dimensional Analysis}}: {{A Hitchhiker}}’s {{Guide}}}, pages
-  301--330. Springer, 1999.
+\bibitem{selinger2013lecture}
+Peter Selinger.
+\newblock Lecture notes on the lambda calculus, 2013.
 
 \bibitem{yanofskyMonoidalCategoryTheory2024}
 Noson~S. Yanofsky.
@@ -220,6 +195,102 @@ Michael Barr and Charles Wells.
 Saunders Mac~Lane.
 \newblock {\em Categories for the working mathematician}, volume~5.
 \newblock Springer Science \& Business Media, 2013.
+
+\bibitem{backus1960report}
+John~W Backus, Friedrich~L Bauer, Julien Green, Charles Katz, John McCarthy,
+  Alan~J Perlis, Heinz Rutishauser, Klaus Samelson, Bernard Vauquois,
+  Joseph~Henry Wegstein, et~al.
+\newblock Report on the algorithmic language algol 60.
+\newblock {\em Communications of the ACM}, 3(5):299--311, 1960.
+
+\bibitem{shulman2019practical}
+Michael Shulman.
+\newblock A practical type theory for symmetric monoidal categories.
+\newblock {\em Theory and Applications of Categories}, 37(5):863--907, 2021.
+
+\bibitem{dahlqvist2023complete}
+Fredrik Dahlqvist and Renato Neves.
+\newblock A complete v-equational system for graded lambda-calculus.
+\newblock {\em Electronic Notes in Theoretical Informatics and Computer
+  Science}, 3, 2023.
+
+\bibitem{mardare2016quantitative}
+Radu Mardare, Prakash Panangaden, and Gordon Plotkin.
+\newblock Quantitative algebraic reasoning.
+\newblock In {\em Proceedings of the 31st Annual ACM/IEEE Symposium on Logic in
+  Computer Science}, pages 700--709, 2016.
+
+\bibitem{mardare2017axiomatizability}
+Radu Mardare, Prakash Panangaden, and Gordon Plotkin.
+\newblock On the axiomatizability of quantitative algebras.
+\newblock In {\em 2017 32nd Annual ACM/IEEE Symposium on Logic in Computer
+  Science (LICS)}, pages 1--12. IEEE, 2017.
+
+\bibitem{eilenbergGeneralTheoryNatural1945}
+Samuel Eilenberg and Saunders MacLane.
+\newblock General {{Theory}} of {{Natural Equivalences}}.
+\newblock {\em Transactions of the American Mathematical Society},
+  58(2):231--294, 1945.
+
+\bibitem{selinger2004towards}
+Peter Selinger.
+\newblock Towards a quantum programming language.
+\newblock {\em Mathematical Structures in Computer Science}, 14(4):527--586,
+  2004.
+
+\bibitem{bartheFoundationsProbabilisticProgramming2020}
+Gilles Barthe, Joost-Pieter Katoen, and Alexandra Silva, editors.
+\newblock {\em Foundations of {{Probabilistic Programming}}}.
+\newblock Cambridge University Press, 2020.
+
+\bibitem{dahlqvistSemanticsProbabilisticProgramming2020a}
+Fredrik Dahlqvist, Alexandra Silva, and Dexter Kozen.
+\newblock Semantics of {{Probabilistic Programming}}: {{A Gentle
+  Introduction}}.
+\newblock In Gilles Barthe, Joost-Pieter Katoen, and Alexandra Silva, editors,
+  {\em Foundations of {{Probabilistic Programming}}}, pages 1--42. Cambridge
+  University Press, 2020.
+
+\bibitem{athreyaMeasureTheoryProbability2006}
+Krishna~B. Athreya and Soumendra~N. Lahiri.
+\newblock {\em Measure {{Theory}} and {{Probability Theory}}}.
+\newblock Springer Science \& Business Media, 2006.
+
+\bibitem{aliprantisBanachLattices1999}
+Charalambos~D. Aliprantis and Kim~C. Border.
+\newblock Infinite {{Dimensional Analysis}}: {{A Hitchhiker}}’s {{Guide}}.
+\newblock pages 301--330. Springer, 1999.
+
+\bibitem{tsybakov2008}
+Alexandre~B. Tsybakov.
+\newblock {\em Introduction to {{Nonparametric Estimation}}}.
+\newblock Springer Publishing Company, Incorporated, 1 edition, 2008.
+
+\bibitem{nielsen2010quantum}
+Michael~A Nielsen and Isaac~L Chuang.
+\newblock {\em Quantum computation and quantum information}.
+\newblock Cambridge university press, 2010.
+
+\bibitem{rudin91functional}
+Walter Rudin.
+\newblock {\em Functional Analysis}.
+\newblock McGraw-Hill, 1991.
+
+\bibitem{guide2006infinite}
+A~Hitchhiker’s Guide.
+\newblock {\em Infinite dimensional analysis}.
+\newblock Springer, 2006.
+
+\bibitem{conwayCourseFunctionalAnalysis2007}
+John~B. Conway.
+\newblock {\em A {{Course}} in {{Functional Analysis}}}, volume~96 of {\em
+  Graduate {{Texts}} in {{Mathematics}}}.
+\newblock Springer, 2007.
+
+\bibitem{conwayCourseOperatorTheory2000}
+John~B. Conway.
+\newblock {\em A {{Course}} in {{Operator Theory}}}.
+\newblock American Mathematical Society, 2000.
 
 \bibitem{perdrix2008quantum}
 Simon Perdrix.
@@ -272,100 +343,5 @@ Daniel~A Lidar.
 William~K Wootters and Wojciech~H Zurek.
 \newblock A single quantum cannot be cloned.
 \newblock {\em Nature}, 299(5886):802--803, 1982.
-
-\bibitem{bartheFoundationsProbabilisticProgramming2020}
-Gilles Barthe, Joost-Pieter Katoen, and Alexandra Silva, editors.
-\newblock {\em Foundations of {{Probabilistic Programming}}}.
-\newblock Cambridge University Press, 2020.
-
-\bibitem{tsybakov2008}
-Alexandre~B. Tsybakov.
-\newblock {\em Introduction to {{Nonparametric Estimation}}}.
-\newblock Springer Publishing Company, Incorporated, 1 edition, 2008.
-
-\bibitem{eilenbergGeneralTheoryNatural1945}
-Samuel Eilenberg and Saunders MacLane.
-\newblock General {{Theory}} of {{Natural Equivalences}}.
-\newblock {\em Transactions of the American Mathematical Society},
-  58(2):231--294, 1945.
-
-\bibitem{selinger2004towards}
-Peter Selinger.
-\newblock Towards a quantum programming language.
-\newblock {\em Mathematical Structures in Computer Science}, 14(4):527--586,
-  2004.
-
-\bibitem{barendregt1984lambda}
-Hendrik~P Barendregt et~al.
-\newblock {\em The lambda calculus}, volume~3.
-\newblock North-Holland Amsterdam, 1984.
-
-\bibitem{bernays1936alonzo}
-Paul Bernays.
-\newblock Alonzo church. an unsolvable problem of elementary number theory.
-  american journal of mathematics, vol. 58 (1936), pp. 345--363.
-\newblock {\em The Journal of Symbolic Logic}, 1(2):73--74, 1936.
-
-\bibitem{backus1960report}
-John~W Backus, Friedrich~L Bauer, Julien Green, Charles Katz, John McCarthy,
-  Alan~J Perlis, Heinz Rutishauser, Klaus Samelson, Bernard Vauquois,
-  Joseph~Henry Wegstein, et~al.
-\newblock Report on the algorithmic language algol 60.
-\newblock {\em Communications of the ACM}, 3(5):299--311, 1960.
-
-\bibitem{shulman2019practical}
-Michael Shulman.
-\newblock A practical type theory for symmetric monoidal categories.
-\newblock {\em Theory and Applications of Categories}, 37(5):863--907, 2021.
-
-\bibitem{dahlqvist2023complete}
-Fredrik Dahlqvist and Renato Neves.
-\newblock A complete v-equational system for graded lambda-calculus.
-\newblock {\em Electronic Notes in Theoretical Informatics and Computer
-  Science}, 3, 2023.
-
-\bibitem{mardare2016quantitative}
-Radu Mardare, Prakash Panangaden, and Gordon Plotkin.
-\newblock Quantitative algebraic reasoning.
-\newblock In {\em Proceedings of the 31st Annual ACM/IEEE Symposium on Logic in
-  Computer Science}, pages 700--709, 2016.
-
-\bibitem{mardare2017axiomatizability}
-Radu Mardare, Prakash Panangaden, and Gordon Plotkin.
-\newblock On the axiomatizability of quantitative algebras.
-\newblock In {\em 2017 32nd Annual ACM/IEEE Symposium on Logic in Computer
-  Science (LICS)}, pages 1--12. IEEE, 2017.
-
-\bibitem{selinger2006lambda}
-Peter Selinger and Beno{\^\i}t Valiron.
-\newblock A lambda calculus for quantum computation with classical control.
-\newblock {\em Mathematical Structures in Computer Science}, 16(3):527--552,
-  2006.
-
-\bibitem{selinger2009quantum}
-Peter Selinger, Beno{\i}t Valiron, et~al.
-\newblock Quantum lambda calculus.
-\newblock {\em Semantic techniques in quantum computation}, pages 135--172,
-  2009.
-
-\bibitem{selinger2004towards2}
-Peter Selinger.
-\newblock Towards a semantics for higher-order quantum computation.
-\newblock {\em Proceedings of the 2nd International Workshop on Quantum
-  Programming Languages}, pages 127--143, 01 2004.
-
-\bibitem{deutsch1985quantum}
-David Deutsch.
-\newblock Quantum theory, the church--turing principle and the universal
-  quantum computer.
-\newblock {\em Proceedings of the Royal Society of London. A. Mathematical and
-  Physical Sciences}, 400(1818):97--117, 1985.
-
-\bibitem{tannu2019mitigating}
-Swamit~S Tannu and Moinuddin~K Qureshi.
-\newblock Mitigating measurement errors in quantum computers by exploiting
-  state-dependent bias.
-\newblock In {\em Proceedings of the 52nd annual IEEE/ACM international
-  symposium on microarchitecture}, pages 279--290, 2019.
 
 \end{thebibliography}

@@ -11,6 +11,7 @@
 \usepackage{hyperref}
 \usepackage{aliascnt}
 \usepackage{amsthm}
+\usepackage{ebproof}
 \usepackage{hyperref}
 \usepackage[utf8]{inputenc} % Specify input encoding
 \usepackage{textcomp} % For additional text symbols
@@ -399,17 +400,18 @@
 \pagenumbering{arabic}
 
 %-- Dissertation 
-%\part{Introductory material}
+\part{Foundations}
 
 \input{chapters/Introduction}
 \input{chapters/StateOfTheArt}
 
 
-%\part{Core of the Dissertation}
-
 \input{chapters/Contribution}
 %\input{chapters/ProblemAndChallenges}
-%\input{chapters/Applications}
+
+\part{Applications}
+\input{chapters/PP}
+\input{chapters/QC}
 \input{chapters/ConclusionsAndFutureWork}
 %\input{chapters/PlannedSchedule}
 

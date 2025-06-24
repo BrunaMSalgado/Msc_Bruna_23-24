@@ -23,3 +23,80 @@ Writing up & & & & & & & $\bullet$ & $\bullet$ & $\bullet$ & $\bullet$ \\
 \end{center}
 \caption{Activities Plan}
 \end{table}
+
+%\chapter{Graded modalities} \label{chap:graded}
+
+%{selinger2009quantum} -> type !qubit does not exist in the quantum lambda calculus
+
+The linearity
+constraint is often deemed too restrictive, prompting research into relaxing it in various computational paradigms. In \cite{dahlqvist2023complete}, the controlled use of a resource multiple times is explored within approximate program equivalence paradigms. Moreover, the grammar introduced allows the specification of how many times a resource can be used—a notion particularly relevant in quantum computation, especially within the NISQ era where resources are scarce.
+
+\todo[inline,size=\normalsize]{Intro} 
+
+\section{Syntax}
+
+Here, the following grammar of types is used.
+\begin{equation*} \label{eq:grammar_graded}
+  \centering
+   \mathbb{A} ::= X  \hspace{3 pt} \vert \hspace{3 pt} \mathbb{I}  \hspace{3 pt}  \vert \hspace{3 pt} \mathbb{A}  \otimes  \mathbb{A} \hspace{3 pt} \vert \hspace{3 pt} \mathbb{A} \oplus \mathbb{A} \hspace{3 pt}  \vert \hspace{3 pt}   \mathbb{A} \multimap  \mathbb{A} \vert \hspace{3 pt} !_{r} \mathbb{A} \hspace{100pt} {X \in G,r \in \mathbb{N}} 
+  \end{equation*}
+
+
+  \begin{figure} [H]
+    {\small
+    \begin{equation*}
+    \begin{split}
+    \begin{aligned}
+    &
+    \begin{minipage}[t]{0.3\textwidth}
+    $\begin{array}{c}
+         \Gamma_{i} \triangleright v_{i}: !_{r\cdot s_{i}} \mathbb{A}_{i} \quad x_{1}:!_{ s_{1}} \mathbb{A}_{1},\ldots, x_{n}:!_{s_{n}} \mathbb{A}_{n}\triangleright u: \mathbb{A} \quad E \in \text{Sf}(\Gamma_{1}; \ldots; \Gamma_{n})\\
+        \hline
+       E \triangleright \text{pr}_{(r,[s_1,\ldots,s_n])} v_1, \ldots, v_n \text{ fr } x_1, \ldots, x_n. \hspace{1pt} u : !_{r} \mathbb{A}
+    \end{array}
+    $
+    \end{minipage}
+    \hspace{193pt}
+    (!_{i})
+     \hspace{10pt}
+    \begin{minipage}[t]{0.3\textwidth}
+    $\begin{array}{c}
+      \Gamma  \triangleright v : !_{1} \mathbb{A} \\
+        \hline
+        \Gamma \triangleright \text{dr } v:\mathbb{A}
+    \end{array}
+    $ \end{minipage}
+    \hspace{-74pt} (!_{e}) \\
+    &
+    \begin{minipage}[t]{0.3\textwidth}
+    $\begin{array}{c}
+        \Gamma \triangleright v : !_{0} \mathbb{A} \hspace{7pt} \Delta \triangleright u: \mathbb{B} \hspace{7pt} E \in \text{Sf}(\Gamma, \Delta)\\
+        \hline
+       E \triangleright v.\hspace{1pt}u: \mathbb{B}
+    \end{array}
+    $
+    \end{minipage}
+    \hspace{35pt}
+    (!_{0})
+    \hspace{5pt}
+    \begin{minipage}[t]{0.3\textwidth}
+    $\begin{array}{c}
+      \Gamma\triangleright v: !_{n+m} \mathbb{A} \hspace{7pt} \Delta,x:!_{n} \mathbb{A}, y:!_{m} \mathbb{B}\triangleright u: \mathbb{B} \hspace{7pt} E \in\text{Sf}(\Gamma, \Delta)\\
+        \hline
+       E \triangleright \text{cp}_{(n,m)} v \text{ to } x,y.  \hspace{1pt} u: \mathbb{B}
+    \end{array}
+    $ \end{minipage}
+    \hspace{120pt} (!_{n+m}) \\
+    \end{aligned}
+    \end{split}
+    \end{equation*}
+    }  
+    \caption{Term formation rules of graded lambda calculus.}
+    \label{fig:typing_rules_graded}
+    \end{figure}
+
+
+\section{Interpretation}
+%falar aqui do subspaço simetrico
+
+\section{Quantum State Discrimination}

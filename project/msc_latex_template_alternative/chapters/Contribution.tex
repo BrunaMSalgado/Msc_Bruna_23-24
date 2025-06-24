@@ -1,13 +1,36 @@
 \chapter{Conditionals} \label{ch:conditionals}
 
-\todo[inline,size=\normalsize]{Adicionar as coisas das notas dq elas estiverem corrigidas + doc booleanos + intro às coisas} 
+In the calculus introduced in the previous chapter, something appears to be missing: a metric equation for conditionals. In this chapter, we address this gap by introducing such an equation and proving its soundness and completeness.
 
-\todo[inline,size=\normalsize]{Na parte quantica mencionar o artigo do selinger de 2009, questão da linearidade} 
 
-\todo[inline,size=\normalsize]{Por isto no sitio certo -> modelo quantico aqui mudamos a op de meas e de conversão em bit em qb} 
+\todo[inline,size=\normalsize]{Way bellow and lattice stuff (complete lattice, distributive latice, R+ é uma distributive lattice)}
 
-Within the model of quantum lambda calculus, introduced in \autoref{sec:Quantum Lambda Calculus:Interpretation}, the measurement operation is defined in accordance with the standard approach in physics \cite{watrous2018theory}. However, within this definiton the distinction between classical and quantum states is made through the elements of the spaces and not the spaces themselves, in the sense that both the result of measuring a quantum state, which is a classical bit, and the quantum state itself are elements of the same space, $\mathbb{C}^{2 \times 2}$.
+\todo[inline,size=\normalsize]{Crole: tem as defs e diz que "Any poset which is a chain is distributive." tendo em conta que "A subset C of a preorder X is called a chain if for every
+x, y G C we have x < y or y < x."}
 
+\begin{definition}
+	Consider a complete lattice $L$.  For every $x, y \in L$ we say that
+	$y$ is \emph{way-below} $x$ (in symbols, $y \ll x$) if for every
+	subset $X \subseteq L$ whenever $x \leq \bigvee X$ there exists a
+	\emph{finite} subset $A \subseteq X$ such that $y \leq \bigvee A$.
+	The lattice $L$ is called \emph{continuous} iff for every $x \in L$,
+	\begin{flalign*}
+		x = \bigvee \{ y  \mid y \in L\ \text{and} \ y \ll x \}
+	\end{flalign*}
+\end{definition}
+
+\begin{definition}
+	Let $L$ be a complete lattice. A \emph{basis} $B$ of $L$ is a subset
+	$B \subseteq L$ such that for every $x \in L$ the set
+	$B \cap \{ y \mid y \in L\ \text{and} \ y \ll x \}$ is directed and
+	has $x$ as the least upper bound.
+\end{definition}
+
+%For the metric quantale, the way-below relation corresponds to the strictly greater relation with ∞ > ∞, and a basis for the underlying lattice that satisfies the conditions above is the set of extended non-negative rational numbers.
+
+\todo[inline,size=\normalsize]{Adicionar as coisas das notas dq elas estiverem corrigidas} 
+
+\todo[inline,size=\normalsize]{Intro} 
 
 
 
@@ -21,11 +44,9 @@ Within the model of quantum lambda calculus, introduced in \autoref{sec:Quantum 
 
 \section{Syntax}
 
-\section{Interpretation}
+\section{Soundeness and Completeness}
 
-\section{Metric Equations}
-
-\section{Examples}
+\section{A small example}
 
 \begin{comment}
 \begin{figure} [H]
