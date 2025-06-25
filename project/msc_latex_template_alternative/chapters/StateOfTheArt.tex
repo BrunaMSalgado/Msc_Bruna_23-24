@@ -863,14 +863,13 @@ Moreover, negation can be expressed by the following program:
 \begin{proof}
   This property follows from the equations $\eta_{\text{case}}$,  $c_{\mathbb{I}_{e}}$, $c_{\mathbb{I}_{e}}$, $\eta_{\mathbb{I}_{e}}$, and $\eta_{\text{dis}}$, and the $\alpha$-equivalence.
   
-  \begin{equation*}
-  \begin{split}
-     & \textbf{Conjunction} \, [v'/v,w'/w ] \\
-     & =\text{case } v\,
+  \begin{align*}
+     &  \hspace{-20pt} \textbf{Conjunction} \, [v'/v,w'/w ] \\
+     &  \hspace{-20pt} =\text{case } v\,
   \{\inl_{\typeI}(x) \Rightarrow x \text{ to} *. \, w ;
   \, \inr_{\typeI}(y) \Rightarrow y \text{ to} *. \,  \text{dis}(w) \text{ to} *. \inr_{\typeI}(*)
   \} [w'/w] \\
-  & =   \text{case } w' \,  
+  & \hspace{-20pt} =   \text{case } w' \,  
   \left\{
     \begin{aligned} 
     &\inl_{\typeI}(a) \Rightarrow \text{ case } v' \, \Bigg\{ 
@@ -885,7 +884,7 @@ Moreover, negation can be expressed by the following program:
       \end{aligned} \Bigg\}    \\ 
   \end{aligned}  
   \right\} &  (\eta_{\text{case}}) \\
-  &  =   \text{case } w' \,  
+  & \hspace{-20pt} =   \text{case } w' \,  
   \left\{
     \begin{aligned} 
     &\inl_{\typeI}(a) \Rightarrow \text{ case } v' \, \Bigg\{ 
@@ -900,7 +899,7 @@ Moreover, negation can be expressed by the following program:
       \end{aligned} \Bigg\}    \\ 
   \end{aligned}  
   \right\} &  (\eta_{\text{dis}}) \\
-  &  =   \text{case } w' \,  
+  &  \hspace{-20pt} =   \text{case } w' \,  
   \left\{
     \begin{aligned} 
     &\inl_{\typeI}(a) \Rightarrow \text{ case } v' \, \Bigg\{ 
@@ -915,7 +914,7 @@ Moreover, negation can be expressed by the following program:
       \end{aligned} \Bigg\}    \\ 
   \end{aligned}  
   \right\} &  (\eta_{\mathbb{I}_{e}}) \\
-   &  =   \text{case } w' \,  
+   &  \hspace{-20pt} =   \text{case } w' \,  
   \left\{
     \begin{aligned} 
     &\inl_{\typeI}(a) \Rightarrow \text{ case } v' \, \Bigg\{ 
@@ -930,7 +929,7 @@ Moreover, negation can be expressed by the following program:
       \end{aligned} \Bigg\}    \\ 
   \end{aligned}  
   \right\} &  (c_{\mathbb{I}_{e}}) \\
-  &  =   \text{case } w' \,  
+  & \hspace{-20pt} =   \text{case } w' \,  
   \left\{
     \begin{aligned} 
     &\inl_{\typeI}(a) \Rightarrow \text{ case } v' \, \Bigg\{ 
@@ -945,7 +944,7 @@ Moreover, negation can be expressed by the following program:
       \end{aligned} \Bigg\}    \\ 
   \end{aligned}  
   \right\} &  (\eta_{\mathbb{I}_{e}}) \\
-&=  \text{case } w' \,  
+&\hspace{-20pt} =  \text{case } w' \,  
 \left\{
   \begin{aligned} 
   &\inl_{\typeI}(a) \Rightarrow \text{ case } v' \, \Bigg\{ 
@@ -960,13 +959,12 @@ Moreover, negation can be expressed by the following program:
     \end{aligned} \Bigg\}    \\ 
 \end{aligned}  
 \right\} &  (\eta_{\text{dis}}) \\
-& = \text{case } w'\,
+& \hspace{-20pt} = \text{case } w'\,
 \{\inl_{\typeI}(a) \Rightarrow a \text{ to} *. \, v' ;
 \, \inr_{\typeI}(b) \Rightarrow b \text{ to} *. \,  \text{dis}(v') \text{ to} *. \inr_{\typeI}(*)
 \} &  (\eta_{case}) \\
-& = \textbf{Conjunction} \, [w'/v,v'/w ] 
-\end{split}
-  \end{equation*}
+& \hspace{-20pt} = \textbf{Conjunction} \, [w'/v,v'/w ] 
+  \end{align*}
 
 \end{proof}
 
@@ -1057,10 +1055,9 @@ This equality follows from the $\alpha$-equivalence and the equations $\eta_{\te
 \begin{proof}
   Both De Morgan's laws follow from the equations $\eta_{case}, \beta_{case}^{inl}$, $\beta_{case}^{inr}, c_{\mathbb{I}_{e}}, \eta_{\text{dis}} $, the syntatic fusion law (\text{SFL}), and the $\alpha$-equivalence.
 
-  \begin{equation*}
-  \begin{split}
-  & \textbf{Disjunction} [\textbf{Negation} \, [v'/v] / v, \textbf{Negation} \, [w'/v] / w ] \\
-  & \triangleq \text{case }  \, 
+  \begin{align*}
+  & \hspace{-27pt} \textbf{Disjunction} [\textbf{Negation} \, [v'/v] / v, \textbf{Negation} \, [w'/v] / w ] \\
+  & \hspace{-27pt} \triangleq \text{case }  \, 
     \text{case } v  
     \left\{ \begin{aligned}
     & \inl_{\typeI}(a) \Rightarrow \inr_{\typeI}(a); \\
@@ -1070,7 +1067,7 @@ This equality follows from the $\alpha$-equivalence and the equations $\eta_{\te
     & \inl_{\typeI}(x) \Rightarrow  \ldots ; \\
     & \inl_{\typeI}(y) \Rightarrow  \ldots
    \end{aligned} \right\} [v/v']\\
-   & = \text{case }  v'
+   & \hspace{-27pt} = \text{case }  v'
     \left\{ \begin{aligned}
       &\inl_{\typeI}(c) \Rightarrow \text{case } \, \text{case } \inl_{\typeI}(c)
         \left\{ \begin{aligned}  
@@ -1086,7 +1083,7 @@ This equality follows from the $\alpha$-equivalence and the equations $\eta_{\te
            \, \ldots 
     \end{aligned} \right\} 
    \, & (\eta_{case}) \\
-    & = \text{case }  v'
+    & \hspace{-27pt} = \text{case }  v'
     \left\{ \begin{aligned}
       &\inl_{\typeI}(c) \Rightarrow \text{case } \inr_{\typeI}(c)
            \left\{ \begin{aligned}
@@ -1100,7 +1097,7 @@ This equality follows from the $\alpha$-equivalence and the equations $\eta_{\te
             \end{aligned} \right\} 
     \end{aligned} \right\} 
    \, & \begin{aligned} & ( \beta_{case}^{inl} \\ & \text{and} \\  &\beta_{case}^{inr}) \end{aligned} \\
-   & = \text{case }  v'
+   & \hspace{-27pt} = \text{case }  v'
     \left\{ \begin{aligned}
       &\inl_{\typeI}(c) \Rightarrow  c \text{ to} *. \,   \textbf{Negation}[w'/v];  \\
       & \inl_{\typeI}(d) \Rightarrow  d \text{ to} *. \,  \text{dis}\left(\text{case } w'
@@ -1110,13 +1107,13 @@ This equality follows from the $\alpha$-equivalence and the equations $\eta_{\te
           \end{aligned} \right\}\right) \ldots
     \end{aligned} \right\} 
    \, &  \begin{aligned} & ( \beta_{case}^{inl} \\ & \text{and} \\  &\beta_{case}^{inr}) \end{aligned} \\
-      & = \text{case }  v'
+      & \hspace{-27pt} = \text{case }  v'
     \left\{ \begin{aligned}
       &\inl_{\typeI}(c) \Rightarrow c \text{ to} *. \,   \textbf{Negation}[w'/v];  \\
       & \inl_{\typeI}(d) \Rightarrow   d \text{ to} *. \, \text{dis}\left( w'\right) \text{ to} *. \,  \inl_{\typeI}(*)
     \end{aligned} \right\}  
    \, & (\eta_{\text{dis}}) \\
-      & = \text{case }  v'
+      & \hspace{-27pt} = \text{case }  v'
     \left\{ \begin{aligned}
       &\inl_{\typeI}(c) \Rightarrow c \text{ to} *. \,   \textbf{Negation}[w'/v];  \\
       & \inl_{\typeI}(d) \Rightarrow   d \text{ to} *. \, \text{dis}\left( w'\right) \text{ to} *. \,  \inr_{\typeI}(*) \left\{ \begin{aligned}  
@@ -1125,26 +1122,25 @@ This equality follows from the $\alpha$-equivalence and the equations $\eta_{\te
           \end{aligned} \right\}
     \end{aligned} \right\}  
    \, & (\beta_{case}^{inr}) \\
-   & = \text{case }  v'
+   & \hspace{-27pt} = \text{case }  v'
     \left\{ \begin{aligned}
       &\inl_{\typeI}(c) \Rightarrow  c \text{ to} *. \, \textbf{Negation}[ w'/v];  \\
       & \inl_{\typeI}(d) \Rightarrow   d \text{ to} *. \, \text{dis}\left( w'\right) \text{ to} *. \textbf{Negation}[\inr_{\typeI}(*)/v]
     \end{aligned} \right\}  
    \, &  \\
-   & = \text{case }  v'
+   & \hspace{-27pt} = \text{case }  v'
     \left\{ \begin{aligned}
       &\inl_{\typeI}(c) \Rightarrow  \textbf{Negation}[c \text{ to} *. \, w'/v];  \\
       & \inl_{\typeI}(d) \Rightarrow  \textbf{Negation}[ d \text{ to} *. \, \text{dis}\left( w'\right) \text{ to} *.\inr_{\typeI}(*)/v]
     \end{aligned} \right\}  
    \, & (c_{\mathbb{I}_{e}}) \\
-   & = \textbf{Negation}\left[ \text{case } v'\,
+   & \hspace{-27pt} = \textbf{Negation}\left[ \text{case } v'\,
 \{\inl_{\typeI}(c) \Rightarrow c \text{ to} *. \, w ; 
 \, \inr_{\typeI}(d) \Rightarrow d \text{ to} *. \,  \text{dis}(w) \text{ to} *. \inr_{\typeI}(*)
 \} / v\right] 
    \, & (\text{SFL})  \\
-   & = \textbf{Negation}[\textbf{Conjunction} [v'/v, w',w]  /v] & (\alpha)
-  \end{split}
-  \end{equation*}
+   & \hspace{-27pt} = \textbf{Negation}[\textbf{Conjunction} [v'/v, w',w]  /v] & (\alpha)
+  \end{align*}
 \end{proof}
 
 
@@ -1331,6 +1327,10 @@ Consider we can postulate the axiom $f^{\epsilon}(a) =_{\epsilon} f(a)$. Then, i
 \end{example}
 
 
+Note that without a metric equation for conditionals, we cannot, for instance, reason about approximate equivalence in programs such as  $\textbf{Conjunction}$, discussed in the previous subsubsection. For example, it would be interesting to know whether, given that \( v' =_{\varepsilon} \inl_{\typeI}(*) \), it follows that
+\[
+\textbf{Conjunction}[v/v', w/w'] =_{\varepsilon} \textbf{Conjunction}[\inl_{\typeI}(*)/v', w/w'].
+\]
 
 
 
@@ -1460,18 +1460,6 @@ The composition of morphisms is defined as follows: given two morphisms \( f \co
 Additionally, the identity morphism \( \id_X \colon X \to X \) represents the ``identity program," which returns its input without making any changes (i.e., it "does nothing").
 \end{example}
 
-\begin{example} \label{ex:cat_cptp}
-The category $\catCPTP$ is the category whose objects are natural numbers $n \geq 1$ and whose morphisms $n \rightarrow m$ are quantum channels $C^{n \times n} \rightarrow C^{m\times m}$.
-\end{example}
-
-\begin{example} \label{ex:cat_cps}
-The category $\catCPS$ is the category whose objects are natural numbers $n \geq 1$ and whose morphisms $n \rightarrow m$ are completely positive trace-nonincreasing maps $C^{n \times n} \rightarrow C^{m\times m}$.
-\end{example}
-
-\begin{example}
-  The category $\catBan$ is the category of Banach spaces and short maps.
-\end{example}
-
 
 \begin{definition} 
  A morphism $f : A \to B$  in a category $\catC$ be a category is called an \emph{isomorphism} if there exists a morphism $f^{-1} : B \to A$ such that
@@ -1525,9 +1513,6 @@ Thus, \(\catC^{\mathrm{op}}\) reverses the direction of morphisms and compositio
   The category $\catFinSet$, whose objects are finite sets and whose morphisms are functions between them, forms a subcategory of the category $\catSet$.
 \end{example}
 
-\begin{example}
-  The category $\catCPTP$ is a subcategory of $\catCPS$. 
-\end{example}
 
 \begin{definition}
   A category is called \emph{small} if both its collection of objects and its collection of morphisms form sets.
@@ -1715,11 +1700,10 @@ x \leq p \times q.
 This operation \( p \times q \) corresponds to what is commonly known as the \emph{greatest lower bound} or \emph{meet}, and is typically denoted by \( p \wedge q \).
 \end{example}
 
+\todo[inline,size=\normalsize]{Maybe tirar este exemplo} 
+
 \begin{example}
-  In the category $\catVect$, the product of two vector spaces $V$ and $W$ corresponds to their direct sum, denoted by
-\[
-V \oplus W.
-\]
+  In the category $\catVect$, the product of two vector spaces $V$ and $W$ corresponds to their direct sum, denoted by $V \oplus W$.
 The projection maps are the linear maps
 \[
 \pi_V : V \oplus W \to V, \quad \pi_V(v, w) = v,
@@ -1732,8 +1716,6 @@ is defined by
 \[
 \langle f, g\rangle (u) = (f(u), g(u)).
 \]
-Similarly, in $\catCPS$ the product corresponds to the sum and the projection and paring maps are defined in a analogous way.
-
 \end{example}
 
 
@@ -1868,8 +1850,10 @@ p + q \leq z.
 This operation \( p + q \) corresponds to what is commonly known as the \emph{least upper bound} or \emph{join}, and is typically denoted by \( p \vee q \).
 \end{example}
 
+\todo[inline,size=\normalsize]{Maybe tirar este exemplo} 
+
 \begin{example}
-  In both  $\catVect$ and $\catCPS$, the coproduct coincides with the product. In such cases, this structure is called a \emph{biproduct}. 
+  In $\catVect$, the coproduct coincides with the product. In such cases, this structure is called a \emph{biproduct}. 
   In both  $\catVect$. the injection maps are the linear maps
 \[
 \inl: V \to  V \oplus W, \quad  \inl(v)= (v,0),
@@ -1882,11 +1866,6 @@ is defined by
 \[
 [f, g] (v,w) = f(v)+ g(w).
 \]
-In $\catCPTP$ the coproduct is also given by the direct sum. In both $\catCPTP$ and $\catCPS$ injections and copairing map are defined analogously to those in \(\catVect\).
-\end{example}
-
-\begin{example}
-  In the category \(\catBan\), the coproduct of Banach spaces is given by their direct sum equipped with the \(L_1\)-norm. The injections and copairing map are defined analogously to those in \(\catVect\). 
 \end{example}
 
 
@@ -2343,14 +2322,15 @@ $$
 \end{definition}
 
 
+\begin{definition}
+        The \emph{terminal map to the unit object} (of a monoidal category) is the unique mapping form each object to the monoidal unit and is represented by $!$.
+\end{definition}
+
 
 \begin{example}
-Examples of monoidal closed categories with coproducts include $\catSet$, the $\catVect$, and the $\catBan$. In $\catSet$, the tensor product is the cartesian product, the monoidal unit is the singleton set, the coproduct is the disjoint union, and the internal hom consists of all functions between sets. For $\catVect$, the tensor product is the standard tensor product of complex vector spaces, the field of complex number $\mathbb{C}$, the coproduct is the direct sum, and the internal hom is the space of linear maps. Similarly, in $\catBan$ the tensor product is the projective tensor product, the monoidal unit is $\mathbb{R}$, the coproduct is the direct sum equipped with the $L_1$-norm, and the internal hom consists of all functions between sets corresponds to space of short (linear) maps equiped with the operator norm.
+Examples of monoidal closed categories with coproducts include $\catSet$ and $\catVect$. In $\catSet$, the tensor product is the cartesian product, the monoidal unit is the singleton set, the coproduct is the disjoint union, and the internal hom consists of all functions between sets. For $\catVect$, the tensor product is the standard tensor product of complex vector spaces, the field of complex number $\mathbb{C}$, the coproduct is the direct sum, and the internal hom is the space of complex linear maps. %Similarly, in $\catBan$ the tensor product is the projective tensor product, the monoidal unit is $\mathbb{R}$, the coproduct is the direct sum equipped with the $L_1$-norm, and the internal hom consists of all functions between sets corresponds to space of short (linear) maps equiped with the operator norm.
 \end{example}
 
-\begin{example}
-  The (biproduct completion of ) category $\catCPS$ and, consequently, (the coproduct completion of) $\catCPTP$ provide examples of distributive monoidal categories with coproducts that are not closed \cite{selinger2004towards}. Their monoidal structure resembles that of $\catVect$. In this case, $\dist = \id$. We will explore this category in more detail in \autoref{ch:conditionals}.
-\end{example}
 
 \begin{theorem}[\emph{Coherence Theorem for Symmetric Monoidal Categories}]
 Any diagram in a symmetric monoidal category constructed only from associators $\alpha$, unitors $\lambda$, $\rho$, the symmetry $\sw$, and inverses and their composition and tensor product necessarily commutes.
@@ -2362,7 +2342,6 @@ Any diagram in a symmetric monoidal category constructed only from associators $
  
 
 
-\todo[inline,size=\normalsize]{Esclarecer questão sobre o que é um terminal map to the unit object (of the monoidal category)}
 
 
 
@@ -2373,14 +2352,13 @@ Any diagram in a symmetric monoidal category constructed only from associators $
 
 \section{Interpretation} \label{sec: Lambda Calculus:Interpretation}
 
-\todo[inline,size=\normalsize]{Interpretação geral com categorias} 
-
-\todo[inline,size=\normalsize]{Não esquecer cena de lambda theories a afins, incluir def de equivalence classes -> slided categorias}
+\todo[inline,size=\normalsize]{Sets, sub, exchange, soundness and completeness, conds, diagrama a explicar} 
 
 
 In order to define the interpretation of judgments $\Gamma \triangleright v: \mathbb{A}$, it is necessary to establish some notation first. Let $\catC$ be a symmetric monoidal category and $A$, $B$ and $C$ be objects of this category. For all morphisms $f: A \otimes B \xrightarrow{} C$, the morphism $\overline{f} : A \xrightarrow{} (B \multimap C)$ denotes the corresponding curried version. Moreover, there is the application morphism, $\text{app}: (A \multimap B) \otimes A \rightarrow B$.  
 
-For all ground types $X \in G$  the interpretation of $[\![X]\!]$  is postulated  to be an object of $\catC$. Types are interpreted inductively using the unit $\mathbb{I}$, the tensor $\otimes$, and the linear map $\multimap$. Given a non-empty context $\Gamma=\Gamma',x: \mathbb{A}$, its interpretation is defined by $[\![\Gamma',x: \mathbb{A}]\!] = [\![\Gamma']\!] \otimes [\![\mathbb{A}]\!]$ if $\Gamma'$ is non-empty and $[\![\Gamma',x: \mathbb{A}]\!] = [\![\mathbb{A}]\!]$ otherwise. The empty context $-$ is interpreted as $[\![-]\!] = \mathbb{I}$. Given $X_{1}, . . . ,X_{n} \in V$, the $n$-tensor $(\ldots (X_1 \otimes X_2) \otimes \ldots ) \otimes X_{n}$ is denoted as $X_1 \otimes \ldots \otimes X_{n}$, and similarly for morphisms. 
+For all ground types $X \in G$  the interpretation of $[\![X]\!]$  is postulated  to be an object of $\catC$. Types are interpreted inductively using the unit $\mathbb{I}$, the tensor $\otimes$, the coproduct $\oplus$, and the linear map $\multimap$. Given a non-empty context $\Gamma=\Gamma',x: \mathbb{A}$, its interpretation is defined by $[\![\Gamma',x: \mathbb{A}]\!] = [\![\Gamma']\!] \otimes [\![\mathbb{A}]\!]$ if $\Gamma'$ is non-empty and $[\![\Gamma',x: \mathbb{A}]\!] = [\![\mathbb{A}]\!]$ otherwise. The empty context $-$ is interpreted as $[\![-]\!] = \mathbb{I}$. Given $A_{1}, . . . ,A_{n} \in \catC$, the $n$-tensor $(\ldots (A_1 \otimes A_2) \otimes \ldots ) \otimes A_{n}$ is denoted as $X_1 \otimes \ldots \otimes A_{n}$, and similarly for morphisms. 
+
 
 
 ``Housekeeping" morphisms are employed to handle interactions between context interpretation and the vectorial model. Given $\Gamma_{1}, \ldots, \Gamma_{n}$, the morphism that splits $[\![\Gamma_{1}, \ldots, \Gamma_{n}]\!]$ into $[\![\Gamma_{1}]\!] \otimes \ldots \otimes [\![\Gamma_{n}]\!]  $ is denoted by $\text{sp}_{\Gamma_1;\ldots;\Gamma_n}: [\![\Gamma_{1}, \ldots, \Gamma_{n}]\!] \xrightarrow{} [\![\Gamma_{1}]\!] \otimes \ldots \otimes [\![\Gamma_{n}]\!] $. For $n=1$, $\text{sp}_{\Gamma_1} = \text{id}$.
@@ -2484,13 +2462,47 @@ $\begin{array}{c}
    [\![ \Gamma \triangleright \text{dis}(v):  \mathbb{I} ]\!] = \text{Tr} \cdot f
 \end{array}
 $
-\end{minipage}
+\end{minipage} \\[5pt]
+&\hspace{5pt}
+  %
+  \begin{prooftree}
+      \hypo{ [\![\Gamma \vljud v: \typeA]\!] = m }
+      \infer1[]{ [\![ \Gamma \vljud \text{inl}_{\typeB} (v):  \typeA \oplus \typeB  ]\!] = \inl  \comp m}
+  \end{prooftree}
+  %
+  \hspace{140pt}
+  %
+  \begin{prooftree}
+    \hypo{ [\![\Gamma \vljud v: \typeB]\!] = m }
+    \infer1[]{ [\![ \Gamma \vljud \text{inr}_{\typeA} (v):  \typeA \oplus \typeB  ]\!] = \inr  \comp m}
+\end{prooftree}
+  %
+  \\[5pt]
+  &
+  %
+  \begin{prooftree}
+      \hypo{[\![\Gamma\vljud v: \typeA \oplus \typeB ]\!] = b}
+      \hypo{[\![\Delta, x:\typeA \vljud w: \typeD ]\!] = p}
+      \hypo{ [\![\Delta,y:\typeB \vljud u: \typeD ]\!] = q }
+      \hypo{E \in \Shuff(\Gamma; \Delta)}
+      \infer4[]{ [\![E \vljud \text{case } v\,  \{\text{inl}_{\typeB} (x) \Rightarrow w ;\, \text{inr}_{\typeA} (y) \Rightarrow u\}: \typeD ]\!] =   [p,q] \comp (\text{jn}_{\Delta;\typeA}\comp \sw \oplus \text{jn}_{\Delta;\typeB}\comp \sw) \comp \dist \comp (b \otimes \text{id}) \comp \text{sp}_{\Gamma;\Delta} \comp \text{sh}_{E}}
+  \end{prooftree} \\
+&\begin{minipage}[t]{0.3\textwidth}
+$\begin{array}{c}
+      [\![\Gamma_{i} \triangleright v_{i}: \mathbb{A}_{i} ]\!]=m_{i}  \quad f: \mathbb{A}_{1}, \ldots, \mathbb{A}_{n} \xrightarrow{} \mathbb{A} \in \Sigma \quad E \in \text{Sf}(\Gamma_{1}; \ldots; \Gamma_{n})\\
+    \hline
+  [\![E \triangleright f( v_{1},\ldots,v_{n}): \mathbb{A} ]\!] = [\![ f]\!] \cdot (m_{1}\otimes \ldots \otimes m_{n}) \cdot \\[-5pt]\text{sp}_{\Gamma_1;\ldots;\Gamma_n}\cdot \text{sh}_{E}
+\end{array}
+$
+\end{minipage} \\
 \end{aligned}
 \end{split}
 \end{equation*}
 \caption{Judgment interpretation}
 \label{fig:denotational_sem} 
 \end{figure}
+
+
 
 The following diagrams are useful to better understand the interpretation of judgements given in \autoref{fig:denotational_sem}.
 \begin{align*}
@@ -2545,98 +2557,4 @@ $\Gamma \vljud v = w : A$
 is a theorem of $\mathscr{T}$ if and only if it is satisfied by all models of the theory.
 \end{theorem}
 
- \begin{definition}
-    A \emph{metric space} a pair $(X, d)$ where $X$ is a set and $d: X \times X \to \mathbb{R}_0^+$ is a function known as \emph{distance} satisfying:
-    \begin{enumerate}
-        \item $0 \leq d(x, y)$, with equality if and only if $x = y$,
-        \item $d(x, y) = d(y, x)$,
-        \item $d(x, z) \leq d(x, y) + d(y, z)$ for all $x, y, z \in X$.
-    \end{enumerate}
-  \end{definition}
-  
-  \begin{definition}
-    $\catMet$ denotes the category whose objects are metric spaces and whose morphisms are non-expansive maps, \ie, functions that do not increase the distance between points. More precisely, for two metric spaces $(X, d_X)$ and $(Y, d_Y)$, a morphism $f: (X, d_X) \to (Y, d_Y)$ is a function $f: X \to Y$ such that
-$$
-d_Y(f(x), f(y)) \leq d_X(x, y) \quad \text{for all } x, y \in X.
-$$
-  \end{definition}
-    
-
-
-\begin{definition}
- A category $\catC$ is $\catMet$\emph{-enriched} (or simply a $\catMet$-category) if for each pair of objects $A$ and $B$ in $\catC$, the hom-set $\catC(A, B)$ is a metric space and if the composition of $\catC$-morphisms,
- $$(\comp): \catC(A, B) \otimes \catC(B, C) \rightarrow \catC(A, C)$$
- is a functor in the category of metric spaces. 
- Given two $\catMet$-enriched categories $\catC$ and $\catD$ and a functor $F : \catC\to \catD$, we call 
-$F$ a \emph{$\catMet$-enriched functor} (or simply, a \emph{$\catMet$-functor}) if for all objects $A, B$ in $\catC$, 
-the map $F_{A,B} : \catC(A,B) \to \catC(FA, FB)$ is a $\catMet$-functor. 
-An adjunction $\catC : F \dashv G : \catD$ is called \emph{$\catMet$-enriched} if for all objects $A \in |\catC|$ 
-and $B \in |\catD|$ there exists a $\catMet$-isomorphism
-\[
-\mathcal{D}(FA, B) \cong \catC(A, GB)
-\]
-natural in $A$ and $B$.
-\end{definition}
-
-
-\begin{definition}
-A \emph{$\catMet$-enriched symmetric monoidal category} $\catC$ is a category that is both symmetric monoidal and $\catMet$-enriched, such that the bifunctor
-\[
-\otimes : \catC \times \catC \to \catC
-\]
-is a $\catMet$-functor. 
-\end{definition}
-
-\begin{definition}
-  A \emph{$\catMet$-enriched symmetric monoidal closed category} $\catC$ is a category that is both symmetric monoidal closed and a $\catMet$-enriched monoidal category, such that the adjunction
-\[
-(- \otimes A) \dashv (A \multimap -)
-\]
-is a $\catMet$-adjunction.
-\end{definition}
-
-\begin{definition}
-  It is said that a metric equation $\Gamma \vljud v =_{q} w : A$ is \emph{satisfied} by the interpretation presented in \autoref{fig:denotational_sem} if
-\[
-q \leq d( \llbracket \Gamma \vljud v : \typeA \rrbracket,\, \llbracket  \Gamma \vljud w : \typeA \rrbracket).
-\]
-\end{definition}
-
-
-\begin{theorem}
-The rules listed in \autoref{fig:equations-linear-lambda} and \autoref{fig:metric deductive system} are sound for $\catMet$-enriched monoidal closed categories $\catC$. Specifically, if $\Gamma \vljud v =_{q} w : \typeA$
-results from the rules in \autoref{fig:equations-linear-lambda} and \autoref{fig:metric deductive system}, then 
-$q \leq d(\llbracket \Gamma  \vljud  v : \typeA \rrbracket,\, \llbracket \Gamma \vljud  w : \typeA\llbracket)$.
-\end{theorem}
-
-\begin{definition}[Models of linear metric $\lambda$-theories]
-Consider a linear metric $\lambda$-theory $((G, \Sigma), Ax$ and a $\catMet$-enriched autonomous category $\catC$. 
-Suppose that for each $X \in G$, we are given an interpretation $\llbracket X \rrbracket$ as an object of $\catC$, and analogously for the operation symbols in $\Sigma$. 
-This interpretation structure is a \emph{model} of the theory if all axioms in $Ax$ are satisfied by the interpretation.
-\end{definition}
-
-
-\begin{definition}
-  
-For two types $\typeA$ and $\typeB$ of a metric $\lambda$-theory $\mathscr{T}$, consider the class \text{Values}$(\typeA,\typeB)$ of values $v$ such that $x : \typeA \vljud v : \typeB$. We equip $\text{Values}(\typeA,\typeB)$ with the function $d :\text{Values}(\typeA,\typeB) \times \text{Values}(\typeA,\typeB) \rightarrow \mathbb{R}^{+}_0$ defined by,
-$$d(v,w)=\inf{\{q \, \vert \, v=_q w \text{ is a theorem } \mathscr{T} \}}$$
-
-We then consider the equivalence relation $\sim$ on $\text{Values}(\typeA,\typeB)$ induced by $d$:
-\[
-v \sim w \quad \text{if and only if} \quad d(v,w) = 0.
-\]
-
- The resulting quotient $\text{Values}(\typeA,\typeB)/{\sim}$ forms a separated $\catMet$-enriched category. We call  $\mathscr{T} $\emph{varietal} if (\text{Values}$(\typeA,\typeB),d)$/$\sim$ is a small  $\catMet$-enriched category for all types $\typeA$ and $\typeB$. 
-
- \end{definition}
-
-\begin{theorem}[ Soundness and Completeness]
-Consider a varietal metric $\lambda$-theory. A metric equation in context
-$\Gamma \vljud v =_{q} w : \typeA$
-is a theorem if and only if it holds in all models of the theory.
-\end{theorem}
-
-
-
-
-
+ 

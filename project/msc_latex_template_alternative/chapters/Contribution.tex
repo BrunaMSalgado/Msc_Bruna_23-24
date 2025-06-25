@@ -31,6 +31,103 @@ In the calculus introduced in the previous chapter, something appears to be miss
 
 The elements of \( Ax \) are called the \emph{axioms} of the theory. Let \( Th(Ax) \) denote the smallest class that contains \( Ax \) and is closed under the rules presented in \autoref{fig:equations-linear-lambda} (i.e., the classical equational system) and \autoref{fig:metric deductive system}. The elements of \( Th(Ax) \) are called the \emph{theorems} of the theory.
 
+\begin{definition}
+    A \emph{metric space} a pair $(X, d)$ where $X$ is a set and $d: X \times X \to \mathbb{R}_0^+$ is a function known as \emph{distance} satisfying:
+    \begin{enumerate}
+        \item $0 \leq d(x, y)$, with equality if and only if $x = y$,
+        \item $d(x, y) = d(y, x)$,
+        \item $d(x, z) \leq d(x, y) + d(y, z)$ for all $x, y, z \in X$.
+    \end{enumerate}
+  \end{definition}
+  
+  \begin{definition}
+    $\catMet$ denotes the category whose objects are metric spaces and whose morphisms are non-expansive maps, \ie, functions that do not increase the distance between points. More precisely, for two metric spaces $(X, d_X)$ and $(Y, d_Y)$, a morphism $f: (X, d_X) \to (Y, d_Y)$ is a function $f: X \to Y$ such that
+$$
+d_Y(f(x), f(y)) \leq d_X(x, y) \quad \text{for all } x, y \in X.
+$$
+  \end{definition}
+    
+
+
+\begin{definition}
+ A category $\catC$ is $\catMet$\emph{-enriched} (or simply a $\catMet$-category) if for each pair of objects $A$ and $B$ in $\catC$, the hom-set $\catC(A, B)$ is a metric space and if the composition of $\catC$-morphisms,
+ $$(\comp): \catC(A, B) \otimes \catC(B, C) \rightarrow \catC(A, C)$$
+ is a functor in the category of metric spaces. 
+ Given two $\catMet$-enriched categories $\catC$ and $\catD$ and a functor $F : \catC\to \catD$, we call 
+$F$ a \emph{$\catMet$-enriched functor} (or simply, a \emph{$\catMet$-functor}) if for all objects $A, B$ in $\catC$, 
+the map $F_{A,B} : \catC(A,B) \to \catC(FA, FB)$ is a $\catMet$-functor. 
+An adjunction $\catC : F \dashv G : \catD$ is called \emph{$\catMet$-enriched} if for all objects $A \in |\catC|$ 
+and $B \in |\catD|$ there exists a $\catMet$-isomorphism
+\[
+\mathcal{D}(FA, B) \cong \catC(A, GB)
+\]
+natural in $A$ and $B$.
+\end{definition}
+
+
+\begin{definition}
+A \emph{$\catMet$-enriched symmetric monoidal category} $\catC$ is a category that is both symmetric monoidal and $\catMet$-enriched, such that the bifunctor
+\[
+\otimes : \catC \times \catC \to \catC
+\]
+is a $\catMet$-functor. 
+\end{definition}
+
+\begin{definition}
+  A \emph{$\catMet$-enriched symmetric monoidal closed category} $\catC$ is a category that is both symmetric monoidal closed and a $\catMet$-enriched monoidal category, such that the adjunction
+\[
+(- \otimes A) \dashv (A \multimap -)
+\]
+is a $\catMet$-adjunction.
+\end{definition}
+
+\begin{definition}
+  It is said that a metric equation $\Gamma \vljud v =_{q} w : A$ is \emph{satisfied} by the interpretation presented in \autoref{fig:denotational_sem} if
+\[
+q \leq d( \llbracket \Gamma \vljud v : \typeA \rrbracket,\, \llbracket  \Gamma \vljud w : \typeA \rrbracket).
+\]
+\end{definition}
+
+
+\begin{theorem}
+The rules listed in \autoref{fig:equations-linear-lambda} and \autoref{fig:metric deductive system} are sound for $\catMet$-enriched monoidal closed categories $\catC$. Specifically, if $\Gamma \vljud v =_{q} w : \typeA$
+results from the rules in \autoref{fig:equations-linear-lambda} and \autoref{fig:metric deductive system}, then 
+$q \leq d(\llbracket \Gamma  \vljud  v : \typeA \rrbracket,\, \llbracket \Gamma \vljud  w : \typeA\llbracket)$.
+\end{theorem}
+
+\begin{definition}[Models of linear metric $\lambda$-theories]
+Consider a linear metric $\lambda$-theory $((G, \Sigma), Ax$ and a $\catMet$-enriched autonomous category $\catC$. 
+Suppose that for each $X \in G$, we are given an interpretation $\llbracket X \rrbracket$ as an object of $\catC$, and analogously for the operation symbols in $\Sigma$. 
+This interpretation structure is a \emph{model} of the theory if all axioms in $Ax$ are satisfied by the interpretation.
+\end{definition}
+
+
+\begin{definition}
+  
+For two types $\typeA$ and $\typeB$ of a metric $\lambda$-theory $\mathscr{T}$, consider the class \text{Values}$(\typeA,\typeB)$ of values $v$ such that $x : \typeA \vljud v : \typeB$. We equip $\text{Values}(\typeA,\typeB)$ with the function $d :\text{Values}(\typeA,\typeB) \times \text{Values}(\typeA,\typeB) \rightarrow \mathbb{R}^{+}_0$ defined by,
+$$d(v,w)=\inf{\{q \, \vert \, v=_q w \text{ is a theorem } \mathscr{T} \}}$$
+
+We then consider the equivalence relation $\sim$ on $\text{Values}(\typeA,\typeB)$ induced by $d$:
+\[
+v \sim w \quad \text{if and only if} \quad d(v,w) = 0.
+\]
+
+ The resulting quotient $\text{Values}(\typeA,\typeB)/{\sim}$ forms a separated $\catMet$-enriched category. We call  $\mathscr{T} $\emph{varietal} if (\text{Values}$(\typeA,\typeB),d)$/$\sim$ is a small  $\catMet$-enriched category for all types $\typeA$ and $\typeB$. 
+
+ \end{definition}
+
+\begin{theorem}[ Soundness and Completeness]
+Consider a varietal metric $\lambda$-theory. A metric equation in context
+$\Gamma \vljud v =_{q} w : \typeA$
+is a theorem if and only if it holds in all models of the theory.
+\end{theorem}
+
+
+
+
+
+
+
 
 \todo[inline,size=\normalsize]{Way bellow and lattice stuff (complete lattice, distributive latice, R+ é uma distributive lattice)}
 
