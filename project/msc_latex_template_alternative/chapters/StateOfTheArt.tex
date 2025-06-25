@@ -436,8 +436,8 @@ Now, let us examine a program that receives both a coproduct/sum and a tensor pr
 \text{case } x \,  
   \left\{
     \begin{aligned} 
-    &\inl_{\typeI}(w) \Rightarrow \text{dis}(w) \text{ to} * . \, \textbf{Dis1st} \, y; \\
-    &\inr_{\typeI}(z) \Rightarrow  \text{dis}(z) \text{ to} *. \textbf{Dis2nd} \, y   \\ 
+    &\inl_{\typeB}(w) \Rightarrow \text{dis}(w) \text{ to} * . \, \textbf{Dis1st} \, y; \\
+    &\inr_{\typeB}(z) \Rightarrow  \text{dis}(z) \text{ to} *. \textbf{Dis2nd} \, y   \\ 
   \end{aligned}  
   \right\}  & \\
 \end{split}
@@ -454,15 +454,15 @@ To prove that this program is well-typed one can write the following typing deri
 5 \hspace{10 pt} & w : \mathbb{B} \triangleright \text{dis}(w): \mathbb{I} \hspace{10 pt} & {(4,\text{dis})} \\
 6  \hspace{10 pt} & z : \mathbb{B} \triangleright z : \mathbb{B}  \hspace{10 pt} & {(\text{hyp})} \\
 7 \hspace{10 pt} & z : \mathbb{B} \triangleright \text{dis}(z): \mathbb{I} \hspace{10 pt} & {(6,\text{dis})} \\
-8 \hspace{10 pt} &  y : \mathbb{A}  \otimes \mathbb{A},  w : \mathbb{B},   \triangleright \text{dis}(w) \text{ to} * . \, \textbf{Dis1st} \, y : \typeA  & {(2,5,\mathbb{I}_{e})} \\
+8 \hspace{10 pt} &  y : \mathbb{A}  \otimes \mathbb{A},  w : \mathbb{B}   \triangleright \text{dis}(w) \text{ to} * . \, \textbf{Dis1st} \, y : \typeA  & {(2,5,\mathbb{I}_{e})} \\
 9 \hspace{10 pt} &   y : \mathbb{A}  \otimes \mathbb{A}, z : \mathbb{B}   \triangleright \text{dis}(z) \text{ to} * . \, \textbf{Dis2nd} \, y : \typeA & {(3,7,\mathbb{I}_{e})} \\
 10 \hspace{10 pt} & x : \mathbb{B \oplus B} \triangleright x : \mathbb{B \oplus B}  \hspace{10 pt} & {(\text{hyp})} \\
 11 \hspace{10 pt} &    x: \mathbb{\typeB \oplus \typeB},  y: \mathbb{A \otimes A} \triangleright \, 
 \text{case } x \,  
   \left\{
     \begin{aligned} 
-    &\inl_{\typeI}(w) \Rightarrow \text{dis}(w) \text{ to} * . \, \textbf{Dis1st} \, y; \\
-    &\inr_{\typeI}(z) \Rightarrow  \text{dis}(z) \text{ to} *. \textbf{Dis2nd} \, y   \\ 
+    &\inl_{\typeB}(w) \Rightarrow \text{dis}(w) \text{ to} * . \, \textbf{Dis1st} \, y; \\
+    &\inr_{\typeB}(z) \Rightarrow  \text{dis}(z) \text{ to} *. \textbf{Dis2nd} \, y   \\ 
   \end{aligned}  
   \right\}  & \text{($8,9,10,\text{case}$)} \\
 12 \hspace{10 pt} & x: \mathbb{\typeB \oplus \typeB} \triangleright \lambda y: \mathbb{A \otimes A}. \, 
@@ -503,6 +503,8 @@ Given the typings judgments $\Gamma, x: \mathbb{A} \triangleright v:\mathbb{B}$ 
   \hspace{-23pt}  \Delta \triangleright *[w/x] &=   \Delta \triangleright * ,\\
   \hspace{-23pt} \Gamma,  \Delta \triangleright (\lambda y: \mathbb{B}. v)[w/x] &= \Gamma,  \Delta \triangleright  \lambda y: \mathbb{B}. v[w/x],  \\
   \hspace{-23pt}(\text{dis}(v))[w/x] &= \text{dis}(v[w/x]),\\
+  \hspace{-23pt}(\text{inl}(v))[w/x] &= \text{inl}(v[w/x]),\\
+  \hspace{-23pt}(\text{inr}(v))[w/x] &= \text{inr}(v[w/x]),\\
   \hspace{-23pt}\text{In the next three cases, } \Gamma,x: \mathbb{A} \in & \text{Sf}(\Gamma_1,\ldots,\Gamma_i,\ldots,\Gamma_n) \text{ and } \Gamma_{i}  \triangleright v_{i}\\
   \hspace{-23pt} \Gamma, \Delta  \triangleright(f(v_1, \ldots, v_n))[w/x] &= \Gamma, \Delta  \triangleright f(v_1[w/x], \ldots, v_n),& (\text{ if } x: \mathbb{A} \in \Gamma_1)  \\
   \hspace{-23pt} \Gamma, \Delta  \triangleright(f(v_1, \ldots,v_i,\ldots, v_n))[w/x] &= \Gamma, \Delta  \triangleright f(v_1, \ldots,v_i[w/x],\ldots, v_n),& (\text{ if } x: \mathbb{A} \in T_i)  \\
@@ -519,10 +521,39 @@ Given the typings judgments $\Gamma, x: \mathbb{A} \triangleright v:\mathbb{B}$ 
   \hspace{-23pt}\text{In the next two cases, }\Gamma,x: \mathbb{A} &  \in \text{Sf}(\Gamma_1,\Gamma_2), \Gamma_1 \triangleright v \text{, and } \Gamma_2 \triangleright u  \\
   \hspace{-23pt}\Gamma, \Delta  \triangleright(v \hspace{3 pt} \text{to} \hspace{3 pt} *.u)[w/x] &= \Gamma, \Delta  \triangleright v[w/x] \hspace{3 pt} \text{to} \hspace{3 pt} *.u&  (\text{ if } x: \mathbb{A} \in \Gamma_1),\\
   \hspace{-23pt}\Gamma, \Delta  \triangleright(v \hspace{3 pt} \text{to} \hspace{3 pt} *.u)[w/x] &= \Gamma, \Delta  \triangleright v \hspace{3 pt} \text{to} \hspace{3 pt} *.u[w/x] &  (\text{ if } x: \mathbb{A} \in \Gamma_2).\\
+  \hspace{-23pt}\text{In the next two cases, }\Gamma,x: \mathbb{A}  \in \text{Sf}(&\Gamma_1,\Gamma_2), \Gamma_1 \triangleright v \text{, } \Gamma_2, y: \mathbb{D}\triangleright a   \text{, and } \\
+   & \hspace{-66pt} \Gamma_2, z: \mathbb{E}\triangleright b  \\
+   \hspace{-23pt} \text{case } v \,  
+  \left\{
+    \begin{aligned} 
+    &\inl_{\typeI}(y) \Rightarrow a; \\
+    &\inr_{\typeI}(z) \Rightarrow  b  \\ 
+  \end{aligned}  
+  \right\}[w/x] &=  \text{case } v [w/x]  \,  
+  \left\{
+    \begin{aligned} 
+    &\inl_{\typeI}(y) \Rightarrow a; \\
+    &\inr_{\typeI}(z) \Rightarrow  b  \\ 
+  \end{aligned}  
+  \right\}  &  (\text{ if } x: \mathbb{A} \in \Gamma_1) \\
+  \text{case } v \,  
+  \left\{
+    \begin{aligned} 
+    &\inl_{\typeE}(y) \Rightarrow a; \\
+    &\inr_{\typeD}(z) \Rightarrow  b  \\ 
+  \end{aligned}  
+  \right\}[w/x] &=  \text{case } v   \,  
+  \left\{
+    \begin{aligned} 
+    &\inl_{\typeE}(y) \Rightarrow a [w/x]; \\
+    &\inr_{\typeD}(z) \Rightarrow  b [w/x]  \\ 
+  \end{aligned}  
+  \right\}  &  (\text{ if } x: \mathbb{A} \in \Gamma_2) \\
 \end{align*}
 \end{definition}
 
-\todo[inline,size=\normalsize]{Estou aqui} 
+
+
 
 The sequential substitutions $M[M_i/x_i] \ldots [M_n/x_n]$ are writen as $M[M_i/x_i, \ldots ,M_n/x_n]$.
 
@@ -530,21 +561,98 @@ The sequential substitutions $M[M_i/x_i] \ldots [M_n/x_n]$ are writen as $M[M_i/
 \subsection{Properties}
 
 
-The calculus defined in \autoref{fig:typing_rules_linear} possesses several desirable properties, which are listed below. Before proceeding, it is necessary to introduce some auxiliary notation. Given a context $\Gamma$, $te(\Gamma)$ denotes context $\Gamma$ with all types erased. The expression $\Gamma \simeq_{\pi} \Gamma'$ denotes that the contexts $\Gamma$ is a permutation of context $\Gamma'$.This notation also applies to non-repetitive lists of untyped variables $te(\Gamma)$. Additionally, a judgment $\Gamma \triangleright v: \mathbb{A}$ will often be abbreviated into $\Gamma \triangleright v $ or even just $v$ when no ambiguities arise.
+The calculus defined in \autoref{fig:typing_rules_linear} possesses several desirable properties, which are listed below. Before proceeding, it is necessary to introduce some auxiliary notation. Given a context $\Gamma$, $te(\Gamma)$ denotes context $\Gamma$ with all types erased. The expression $\Gamma \simeq_{\pi} \Gamma'$ denotes that the contexts $\Gamma$ is a permutation of context $\Gamma'$. This notation also applies to non-repetitive lists of untyped variables $te(\Gamma)$. Additionally, a judgment $\Gamma \triangleright v: \mathbb{A}$ will often be abbreviated into $\Gamma \triangleright v $ or even just $v$ when no ambiguities arise.
 
-\begin{theorem} \label{thm:exch_sub_no_cond} (\cite{dahlqvist2023complete})
-   The calculus defined by the rules of \autoref{fig:typing_rules_linear} enjoys the following properties:
+
+\begin{theorem} \label {theorem:unique_der}
+   The lambda calculus defined by the rules of \autoref{fig:typing_rules_linear} has the following properties:
    \begin{enumerate}
-   \item for all judgements $\Gamma \triangleright v$ and $\Gamma' \triangleright v$, te($\Gamma$) $\simeq_{\pi}$  te($\Gamma'$); 
-   \item additionally if $\Gamma \triangleright v: \mathbb{A}, \Gamma'\triangleright v: \mathbb{A}'$, and $\Gamma \simeq_{\pi} \Gamma' $, then $\mathbb{A}$ must be equal to $\mathbb{A}'$;
-   \item all judgements $\Gamma \triangleright v:\mathbb{A}$ have a unique derivation.
-   \item (exchange) For every judgement $\Gamma,x:\mathbb{A}, y:\mathbb{B}, \Delta \triangleright v: \mathbb{D}$ it is possible to derive $\Gamma, y:\mathbb{B}, x:\mathbb{A}, \Delta \triangleright v: \mathbb{D}$. 
-   \item (substitution) For all judgements  $\Gamma,x:\mathbb{A} \triangleright v: \mathbb{B}$ and $\Delta \triangleright w: \mathbb{A}$ it is possible to derive $ \Gamma, \Delta \triangleright v[w/x]: \mathbb{B}$.
- \end{enumerate}
+     \item\label{perm} for all judgements $\Gamma \vljud v$ and $\Gamma'
+             \vljud v$, te($\Gamma$) $\simeq_{\pi}$  te($\Gamma'$); 
+     %
+     \item\label{type} additionally if $\Gamma \vljud v: \typeA,
+       \Gamma' \vljud v: \typeA'$, and $\Gamma \simeq_{\pi}
+       \Gamma'$, then $\typeA$ must be equal to $\typeA'$;
+     %
+     \item\label{der} all judgements $\Gamma \vljud v:\typeA$ have a unique derivation.
+\end{enumerate}
 \end{theorem}
 
+\begin{proof}
+Since these properties are established in \cite[Theorem 2.3]{dahlqvist2023complete} for the lambda calculus without conditionals, we only need to focus on them.
 
- 
+  It follows in all three cases from induction over the length of derivation
+trees. 
+
+Let us focus first on Property~\eqref{perm}. The case of the rules concerning
+injections is direct. As for rule~$(\text{case})$ take two contexts $E$ and
+$E'$ for the same conditional. According to this rule we obtain contexts
+$\Gamma$, $\Gamma'$, $\Delta$, $\Delta'$ such that $E \in
+\Shuff(\Gamma;\Delta)$ and $E' \in \Shuff(\Gamma';\Delta')$. It follows from
+induction that  $\Gamma \simeq_\pi \Gamma'$ and $\Delta \simeq_\pi \Delta'$,
+and the proof is then obtained from the sequence of equivalences,
+\begin{align*}
+        \text{te}(E) & \simeq_\pi \text{te}(\Gamma, \Delta) 
+        \\
+        & \simeq_\pi \text{te}(\Gamma', \Delta')
+        \\
+        & \simeq_\pi \text{te}(E')
+\end{align*}
+Concerning Property~\eqref{type}, the case of the rules concerning injections
+is direct and the case of rule~$(\text{case})$ is a corollary of
+Property~\eqref{perm}. Finally let us consider Property~\eqref{der}. Again the
+case concerning injections is direct and we thus focus only on
+rule~$(\text{case})$. According to this rule we obtain contexts $\Gamma$,
+$\Gamma'$, $\Delta$, $\Delta'$ such that $E \in \Shuff(\Gamma;\Delta)$ and $E
+\in \Shuff(\Gamma';\Delta')$. By an appeal to Property~\eqref{perm} we also
+obtain $\Gamma \simeq_\pi \Gamma'$ and $\Delta \simeq_\pi \Delta'$, and thus
+since shuffling preserves relative orders we obtain $\Gamma = \Gamma'$ and
+$\Delta = \Delta'$. The proof then follows by induction.
+\end{proof}
+
+
+\begin{lemma}[Exchange and Substitution]
+\label{lem:exh_and_sub} 
+For every judgement $\Gamma,x: \typeA, y: \typeB, \Delta \vljud v: \typeD$ the
+judgement $\Gamma, y:\typeB, x:\typeA, \Delta \vljud v:
+\typeD$ is derivable. Not only this, given judgements  $\Gamma,x:\typeA \vljud
+v: \typeB$ and $\Delta \vljud w: \typeA$ the judgement $\Gamma, \Delta \vljud
+v[w/x]: \typeB$ is also derivable.
+\end{lemma}
+
+\begin{proof}
+  Once again, these properties are established in \cite[Theorem 2.1]{dahlqvist2022syntactic} for the lambda calculus without conditionals, so we only need to focus on them.
+
+  We start with the exchange property which follows by induction over the length
+of derivation trees. The rules that involve injections are direct.  The rule
+$(\text{case})$ calls for case distinction, more specifically we  distinguish
+between the cases in which both variables ($x : \typeA$ and $y : \typeB$) are
+in $\Gamma$, both are in $\Delta$, and otherwise. The first two cases follow
+straightforwardly by induction and the definition of a shuffle. For the third
+case consider a judgement $E_1,x : \typeA, y : \typeB, E_2 \vljud \text{case }
+v\, \{\inl_{\typeF}(a) \Rightarrow w ; \, \inr_{\typeE}(b) \Rightarrow u \}:
+\typeD$, and assume with no loss of generality that $\Gamma$ is of the form
+$\Gamma_1, x : \typeA, \Gamma_2$ and $\Delta$ of the form $\Delta_1, y :
+\typeB, \Delta_2$. The proof now follows directly from the implication,
+\begin{align*}
+        & E_1, x : \typeA, y : \typeB, E_2 \in \Shuff(\Gamma_1, x : \typeA, \Gamma_2 ; \,
+        \Delta_1, y : \typeB, \Delta_2) \\
+        \Longrightarrow &
+        E_1, y : \typeB, x : \typeA, E_2 \in \Shuff(\Gamma_1, x : \typeA, \Gamma_2 ; \,
+        \Delta_1, y : \typeB, \Delta_2)
+\end{align*}
+(which holds by the definition of a shuffle).
+
+Finally we now focus on the substitution rule which also follows by induction over the
+length of derivation trees. Again the cases involving the injections are direct,
+and we thus only detail the proof of rule $(\text{case})$. Consider then
+judgements $E,x : \typeA \vljud \text{case } v\, \{\inl_{\typeD}(a) \Rightarrow
+w ; \, \inr_{\typeE}(b) \Rightarrow u \}: \typeB$ and
+$Z \vljud t : \typeA$ with $E \in \Shuff(\Gamma; \Delta)$. According to the definition
+of a shuffle either $\Gamma$ is of the form $\Gamma_1, x: \typeA$ or $\Delta$ is
+of the form $\Delta_1, x : \typeA$. The first case follows directly and the second case
+is a corollary of the exchange rule.
+\end{proof}
  
 
 
@@ -563,6 +671,15 @@ $(\eta_{\otimes_{e}})$   &\multicolumn{4}{c|}{$\Delta , \Gamma\hspace{1pt}\trian
  $(c_{\mathbb{I}_{e}})$  &\multicolumn{4}{c|}{ $\Delta,\Gamma, E \triangleright u[v \text{ to } \ast . w/z] = v \text{ to } \ast . u[w/z]:\mathbb{A}$ }\\
 $(c_{\otimes_{e}})$ & \multicolumn{4}{c|}{ $\Delta,\Gamma, E  \triangleright u[$pm $v$ to $x \otimes y.$ $w/z] =$ pm $v$ to $x \otimes y.$ $u[w/z]: \mathbb{A} $ }\\
 $(\eta_{\text{dis}})$ & \multicolumn{4}{c|}{ $x_1:\mathbb{A}_1, \ldots,x_n:\mathbb{A}_n\triangleright v = \text{dis}(x_1) \text{ to } \ast.$ $\ldots$ $\text{dis}(x_{n-1}) \text{ to } \ast \text{ dis}(x_{n}): \mathbb{ I}$ }\\
+$(\beta_{case}^{inl})$ &\multicolumn{4}{c|} {$\text{case } 
+          \inl_{\typeB}(v)\, \{ \inl_{\typeB} (x) \Rightarrow w 
+          ;\, \inr_{\typeA} (y) 
+          \Rightarrow u\}= w[v/x]$}\\
+$(\beta_{case}^{inr})$ &\multicolumn{4}{c|} {$\text{case } 
+          \inl_{\typeB}(v)\, \{ \inl_{\typeB} (x) \Rightarrow w 
+          ;\, \inr_{\typeA} (y) 
+          \Rightarrow u\}= u[v/y]$}\\
+$(\eta_{case})$ &\multicolumn{4}{c|} { $\text{case } v\, \{\text{inl}_{\typeB} (y) \Rightarrow w [ \text{inl}_{\typeB}(y)/x] ;\, \text{inr}_{\typeA} (z) \Rightarrow w [ \text{inr}_{\typeA}(z)/x]\} = w[v/x]$} \\
 \hline
   \end{tabular}
 \caption{Equations-in-context for affine lambda calculus}
@@ -605,22 +722,30 @@ Applying the $\beta$ reduction, we have:
  - \triangleright \big(\lambda z : \typeI \otimes \typeA. \, \text{pm } z \text{ to } * \otimes y. \, y\big) \, (v \otimes w) 
 &= \text{pm }  v \otimes w \text{ to} * \otimes y. \, y : \typeA. 
 \end{align*}
-Next, applying the $\beta_{\otimes_e}$-reduction, it follows:
+Next, applying the $\beta_{\otimes_e}$ reduction, it follows:
 \begin{align*}
 \text{pm }  v \otimes w \text{ to} * \otimes y. \, y : \typeA = w : \typeA. 
 \end{align*}
 \end{example}
 
-\todo[inline,size=\normalsize]{Não sei se este é o lugar mais indicado para estas definições} 
 
-\subsubsection{Equivalence}
+
+\todo[inline,size=\normalsize]{Não sei se este é o lugar mais indicado para estas definições, mas tb não estou a ver outro dado que as categorias só vêm a seguir. Ou então passar isto para a interpretação.} 
+
 
 \begin{definition}
   Let \( S \) be a set. A \emph{relation} on \( S \) is a subset \( R \subseteq S \times S \). An ordered pair \( (s_1, s_2) \in R \) means that \( s_1 \) is related to \( s_2 \).
 \end{definition}
 
+
 \begin{definition}
-  A relation on a set is an \emph{equivalence relation} if it is reflexive, symmetric, and transitive. We denote such a relation by \( \sim \subseteq S \times S \), and write \( r \sim s \) to mean that \( (r, s) \in \sim \).
+  A relation on a set \( S \) is an \emph{equivalence relation} if it is
+\begin{itemize}
+  \item reflexive: for all \( x \in S \), \( x \sim x \),
+  \item symmetric: for all \( x, y \in S \), if \( x \sim y \) then \( y \sim x \), and
+  \item transitive: for all \( x, y, z \in S \), if \( x \sim y \) and \( y \sim z \), then \( x \sim z \).
+\end{itemize} 
+We denote such a relation by \( \sim \,\subseteq S \times S \), and write \( x \sim y \) to mean that \( (x, y) \in \, \sim \).
 \end{definition}
 
 \begin{definition}
@@ -631,14 +756,8 @@ Next, applying the $\beta_{\otimes_e}$-reduction, it follows:
 That is, \( [s] \) is the set of all elements that are considered “the same” as \( s \) under the relation \( \sim \). For a given set \( S \) and an equivalence relation \( \sim \) on \( S \), we define the \emph{quotient set}, denoted \( S / \sim \), whose elements are all the equivalence classes of elements in \( S \). There is an obvious \emph{quotient function} from \( S \) to \( S / \sim \) that maps each element \( s \in S \) to its equivalence class \( [s] \).
 \end{definition}
 
-For instance, consider a set of cars \( S \). We can define an equivalence relation on \( S \) by grouping cars according to their colour. This results in subsets such as the set of blue cars, the set of red cars, the set of green cars, and so on — these subsets are the \emph{equivalence classes}. Moreover, the collection of all such equivalence classes forms a new set, called the \emph{quotient set}.
+%For instance, consider a set of cars \( S \). We can define an equivalence relation on \( S \) by grouping cars according to their colour. This results in subsets such as the set of blue cars, the set of red cars, the set of green cars, and so on — these subsets are the \emph{equivalence classes}. Moreover, the collection of all such equivalence classes forms a new set, called the \emph{quotient set}.
 
-
-\todo[inline,size=\normalsize]{Def congruence} 
-
-\begin{definition}
-  In this seting a \emph{congruence relation} or \emph{congruence} is an equivalence relation that respects the term formation rules, exchange and substitution.
-\end{definition}
 
 
 \begin{definition} \label{def:linear_lambda_theory}
@@ -649,16 +768,19 @@ For instance, consider a set of cars \( S \). We can define an equivalence relat
 
 
 
- Let $Th(Ax)$ denote the smallest congruence containing $Ax$, the equations presented in \autoref{fig:equations-linear-lambda}, and closed under exchange and substitution (\autoref{thm:exch_sub_no_cond}). The elements of $Th(Ax)$ are called the \emph{theorems} of the theory.
+ Let $Th(Ax)$ denote the smallest class containing $Ax$, the equations presented in \autoref{fig:equations-linear-lambda}, and closed under exchange and substitution (\autoref{lem:exh_and_sub}). The elements of $Th(Ax)$ are called the \emph{theorems} of the theory.
 
  For instance recall \autoref{ex:eq_contex_gen}: 
  $$- \triangleright \big(\lambda z : \typeI \otimes \typeA. \, \text{pm } z \text{ to} * \otimes y. \, y\big) \, (v \otimes w): \typeA =  w : \typeA $$
  is a theorem.
 
+\subsection{Interlude: Booleans}
+
+
+
 \subsection{Metric equational system}
 
-
-\emph{Metric equations} \cite{mardare2016quantitative}, \cite{mardare2017axiomatizability} are a strong candidate for reasoning about approximate program equivalence. These equations take the form of \gls{metric-equation}, where  $\epsilon$ is a non-negative rational representing the ``maximum distance" between the two terms $t$ and $s$. The metric equational system for linear lambda calculus is depicted in \autoref{fig:metric deductive system}.
+\emph{Metric equations} \cite{mardare2016quantitative,mardare2017axiomatizability} are a strong candidate for reasoning about approximate program equivalence. These equations take the form of \gls{metric-equation}, where  $\epsilon$ is a non-negative rational representing the ``maximum distance" between the two terms $t$ and $s$. The metric equational system for affine lambda calculus is depicted in \autoref{fig:metric deductive system}.
 
 \begin{figure} [H]
 \begin{equation*}
@@ -812,21 +934,22 @@ Here, $\text{perm} (\Gamma)$ denotes the set of possible permutions of context $
 % dizer o que é perm
 
 \begin{example}
-  To ilustrate the usefulness of these equations, consider the program $P$ that recieves a tensor product, swaps its elements and then applies a function $f$ to to the new second element of the tensor  pair:
+  To ilustrate the usefulness of these equations, consider the program $P$ that recieves a tensor product, swaps its elements and then applies a function $f: \typeA \to \typeD \in \Sigma $ to the new second element of the tensor  pair:
 \begin{equation*}
 \begin{split}
-& P = x : \mathbb{A},  y : \mathbb{B} \triangleright \text{pm} \hspace{3 pt} x \otimes y\hspace{3 pt} \text{to} \hspace{3 pt} a \otimes b. \hspace{1pt} b \otimes f(a) : \mathbb{D} \otimes \mathbb{A} &
+& P = x : \mathbb{A},  y : \mathbb{B} \triangleright \text{pm} \hspace{3 pt} x \otimes y\hspace{3 pt} \text{to} \hspace{3 pt} a \otimes b. \hspace{1pt} b \otimes f(a) : \mathbb{B} \otimes \mathbb{D} &
 \end{split}
 \end{equation*}
-Now, consider the case where $f$ is an idealized version of function $f^{\epsilon}$ mapping $a$ to $f(a)^{\epsilon}$. The program that applies the ``real'' function $f$ to the first element of the tensor pair is $P^{\epsilon}$:
+Let $ f^{\epsilon} $ be an erroneous implementation of $ f $. The program above is thus rewritten as:
 \begin{equation*}
   \begin{split}
-  & P^{\epsilon} = x : \mathbb{A},  y : \mathbb{B} \triangleright \text{pm} \hspace{3 pt} x \otimes y\hspace{3 pt} \text{to} \hspace{3 pt} a \otimes b. \hspace{1pt} b \otimes f(a)^{\epsilon}  : \mathbb{D} \otimes \mathbb{A} &
+  & P^{\epsilon} = x : \mathbb{A},  y : \mathbb{B} \triangleright \text{pm} \hspace{3 pt} x \otimes y\hspace{3 pt} \text{to} \hspace{3 pt} a \otimes b. \hspace{1pt} b \otimes f(a)^{\epsilon}  : \mathbb{B} \otimes \mathbb{D} &
   \end{split}
   \end{equation*}
-Knowing that $f(a)^{\epsilon} =_{\epsilon} f(a)$, it is possible to show that $P^{\epsilon} =_{\epsilon} P $ using the metric equational system. The prove is as follows. The types and contexts are omitted for brevity as no ambiguity arises.
+Consider we can postulate the axiom $f^{\epsilon} =_{\epsilon} f$. Then, it is possible to show that $P^{\epsilon} =_{\epsilon} P $ using our metric equational system. The prove is as follows. The types and contexts are omitted for brevity as no ambiguity arises.
 \begin{equation*}
   \begin{split}
+  1 \hspace{10 pt} & f^{\epsilon} =_{\epsilon} f \\
   1 \hspace{10 pt} & f(a)^{\epsilon} =_{\epsilon} f(a) \\
   2 \hspace{10 pt} &  b =_{0} b & {(\text{refl})} \\
   3 \hspace{10 pt} & b \otimes f(a)^{\epsilon}  =_{\epsilon} b \otimes f(a)  & \text{($1,2,\otimes_i$)} \\
