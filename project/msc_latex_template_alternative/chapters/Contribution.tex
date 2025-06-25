@@ -3,6 +3,35 @@
 In the calculus introduced in the previous chapter, something appears to be missing: a metric equation for conditionals. In this chapter, we address this gap by introducing such an equation and proving its soundness and completeness.
 
 
+
+
+%For the metric quantale, the way-below relation corresponds to the strictly greater relation with ∞ > ∞, and a basis for the underlying lattice that satisfies the conditions above is the set of extended non-negative rational numbers.
+
+\todo[inline,size=\normalsize]{Adicionar as coisas das notas dq elas estiverem corrigidas} 
+
+\todo[inline,size=\normalsize]{Intro} 
+
+
+
+
+%In order to established that the theory introduced is valid in quantum programming, it is necessary to build a model. The model can be seen as a category where the morphisms are the CPTP super-operators (quantum channels). The algebric structure of this model is given by the vector spaces. 
+%Any completely-positive and trace-preserving map has a diamond norm equal to one \cite{watrous2018theory}. Since the measurement operation is completely positive and trace-preserving, its  diamond norm is equal to one. This is a desirable property, as it ensures that the measurement operation does not increase the distance between states, and as a consequence, composition of programs remains valid.
+
+
+
+
+
+\section{Syntax}
+
+\section{Soundeness and Completeness}
+
+\begin{definition}
+  Consider a tuple \( (G, \Sigma) \), where \( G \) is a class of ground types and \( \Sigma \) is a class of sorted operation symbols of the form \( f : A_1, \ldots, A_n \to A \) with \( n \geq 1 \). A \emph{linear metric $\lambda$-theory} is a tuple \( ((G, \Sigma), Ax) \), where \( Ax \) is a class of \emph{metric equations-in-context} over linear $\lambda$-terms constructed from \( (G, \Sigma) \).
+\end{definition}
+
+The elements of \( Ax \) are called the \emph{axioms} of the theory. Let \( Th(Ax) \) denote the smallest class that contains \( Ax \) and is closed under the rules presented in \autoref{fig:equations-linear-lambda} (i.e., the classical equational system) and \autoref{fig:metric deductive system}. The elements of \( Th(Ax) \) are called the \emph{theorems} of the theory.
+
+
 \todo[inline,size=\normalsize]{Way bellow and lattice stuff (complete lattice, distributive latice, R+ é uma distributive lattice)}
 
 \todo[inline,size=\normalsize]{Crole: tem as defs e diz que "Any poset which is a chain is distributive." tendo em conta que "A subset C of a preorder X is called a chain if for every
@@ -25,26 +54,6 @@ x, y G C we have x < y or y < x."}
 	$B \cap \{ y \mid y \in L\ \text{and} \ y \ll x \}$ is directed and
 	has $x$ as the least upper bound.
 \end{definition}
-
-%For the metric quantale, the way-below relation corresponds to the strictly greater relation with ∞ > ∞, and a basis for the underlying lattice that satisfies the conditions above is the set of extended non-negative rational numbers.
-
-\todo[inline,size=\normalsize]{Adicionar as coisas das notas dq elas estiverem corrigidas} 
-
-\todo[inline,size=\normalsize]{Intro} 
-
-
-
-
-%In order to established that the theory introduced is valid in quantum programming, it is necessary to build a model. The model can be seen as a category where the morphisms are the CPTP super-operators (quantum channels). The algebric structure of this model is given by the vector spaces. 
-%Any completely-positive and trace-preserving map has a diamond norm equal to one \cite{watrous2018theory}. Since the measurement operation is completely positive and trace-preserving, its  diamond norm is equal to one. This is a desirable property, as it ensures that the measurement operation does not increase the distance between states, and as a consequence, composition of programs remains valid.
-
-
-
-
-
-\section{Syntax}
-
-\section{Soundeness and Completeness}
 
 \section{A small example}
 

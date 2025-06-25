@@ -775,7 +775,377 @@ That is, \( [s] \) is the set of all elements that are considered “the same”
  is a theorem.
 
 \subsection{Interlude: Booleans}
+Booleans can be represented as the type $\typeI \oplus \typeI$, in which case $\text{True} = \inl(*)$, $\text{False} = \inr(*)$ \cite{selinger2013lecture}. We will use the equations in \autoref{fig:equations-linear-lambda} to demonstrate that they possess certain properties that are characteristic of booleans in classical logic. The remaining properties can be proven through similar reasoning. 
 
+Given variables $v : \typeI \oplus \typeI$ and $w : \typeI \oplus \typeI$, their conjunction and disjunction correspond to the following programs:
+
+\begin{align*}
+  & \hspace{-25pt}\textbf{Conjunction} \triangleq v:\typeI \oplus \typeI, w:\typeI \oplus \typeI \vljud \text{case } v\,
+\left\{
+    \begin{aligned} 
+    &\inl_{\typeI}(x) \Rightarrow x \text{ to} *. \, w ; \\
+    &\inr_{\typeI}(y) \Rightarrow   \text{ to} *. \,  \text{dis}(w) \text{ to} *. \inr_{\typeI}(*)  \\ 
+  \end{aligned}  
+  \right\}
+\end{align*}
+
+\begin{align*}
+  & \hspace{-25pt}\textbf{Disjunction} \triangleq v:\typeI \oplus \typeI, w:\typeI \oplus \typeI \vljud \text{case } v\,
+\left\{
+    \begin{aligned} 
+    &\inl_{\typeI}(x) \Rightarrow  \text{ to} *. \,  \text{dis}(w) \text{ to} *. \inl_{\typeI}(*) ; \\
+    &\inr_{\typeI}(y) \Rightarrow  y \text{ to} *. \,  w  \\ 
+  \end{aligned}  
+  \right\}
+\end{align*}
+
+Moreover, negation can be expressed by the following program:
+  \begin{align*}
+  & \hspace{-25pt}\textbf{Negation} \triangleq v:\typeI \oplus \typeI \vljud \text{case } v\,
+\left\{
+    \begin{aligned} 
+    &\inl_{\typeI}(x) \Rightarrow \inr_{\typeI}(x) ; \\
+    &\inr_{\typeI}(y) \Rightarrow  \inl_{\typeI}(y)  \\ 
+  \end{aligned}  
+  \right\}
+\end{align*}
+
+  \begin{lemma} \label{lemma:inl_neutral}
+     $\inl(*)$ acts as the neutral element for conjunction, whereas $\inr(*)$ serves as the absorbing element, \ie
+     $$ \textbf{Conjunction} \, [\inl(*)/v,w'/w ] = w'  \quad \text{and} \quad \textbf{Conjunction} \, [\inr(*)/v,w'/w ] = \inr(*)$$.
+  \end{lemma}
+
+  \begin{proof}
+    These properties follow from the equations $\beta_{case}^{inl}$, $\beta_{case}^{inr}$, $\beta_{\mathbb{I}_{e}}$, and $\eta_{\text{dis}}$.
+
+    \begin{equation*}
+    \begin{split}
+      & \textbf{Conjunction} \, [\inl(*)/v,w'/w ] \\
+      & = \text{case } \inl(*)\,
+  \{\inl_{\typeI}(x) \Rightarrow x \text{ to} *. \, w' ;
+  \, \inr_{\typeI}(y) \Rightarrow y \text{ to} *. \,  \text{dis}(w') \text{ to} *. \inr_{\typeI}(*)
+  \} \\
+  & = * \text{ to} *. \, w' & (\beta_{case}^{inl}) \\
+  & =  * \text{ to} *. \, w' & (\beta_{\mathbb{I}_{e}}) \\
+  & = w'
+    \end{split}
+    \end{equation*}
+
+    For the second equality we note that in order for the equation no make sense the context of $w'$ must be empty.
+    \begin{align*}
+      & \textbf{Conjunction} \, [\inr(*)/v,w'/w ] \\
+      & = \text{case } \inr(*)\,
+  \{\inl_{\typeI}(x) \Rightarrow x \text{ to} *. \, w' ;
+  \, \inr_{\typeI}(y) \Rightarrow y \text{ to} *. \,  \text{dis}(w') \text{ to} *. \inr_{\typeI}(*)
+  \} \\
+  & =  * \, y \text{ to} *. \,  \text{dis}(w') \text{ to} *. \inr_{\typeI}(*) & (\beta_{case}^{inr}) \\
+  & = \text{dis}(w') \text{ to} *. \inr_{\typeI}(*) & (\beta_{\mathbb{I}_{e}}) \\
+  & = * \text{ to} *. \inr_{\typeI}(*) &  (\eta_\text{dis}) \\
+  & =  \inr_{\typeI}(*)
+    \end{align*}
+
+     \todo[inline,size=\normalsize]{Duvida na aplicação da regra do discard}
+  \end{proof}
+
+ 
+  Note that the idempotency property of conjunction (for $\inl(*)$ and $\inr(*)$) follows directly from the equalities above.
+
+
+\begin{lemma} \label{lem:comm}
+  %The conjunction, disjunction, and negation of Boolean values satisfy the standard properties of classical logic. In particular, conjunction and disjunction are commutative, associative, idempotent, and distributive with respect to each other. Negation follows the double negation property and De Morgan's laws.
+  The conjunction of two terms is comutative , \ie,
+ $$ \textbf{Conjunction} \, [v'/v,w'/w ] = \textbf{Conjunction} \, [w'/v,v'/w ]  $$ 
+\end{lemma}
+
+
+
+
+\begin{proof}
+  This property follows from the equations $\eta_{\text{case}}$,  $c_{\mathbb{I}_{e}}$, $c_{\mathbb{I}_{e}}$, $\eta_{\mathbb{I}_{e}}$, and $\eta_{\text{dis}}$, and the $\alpha$-equivalence.
+  
+  \begin{equation*}
+  \begin{split}
+     & \textbf{Conjunction} \, [v'/v,w'/w ] \\
+     & =\text{case } v\,
+  \{\inl_{\typeI}(x) \Rightarrow x \text{ to} *. \, w ;
+  \, \inr_{\typeI}(y) \Rightarrow y \text{ to} *. \,  \text{dis}(w) \text{ to} *. \inr_{\typeI}(*)
+  \} [w'/w] \\
+  & =   \text{case } w' \,  
+  \left\{
+    \begin{aligned} 
+    &\inl_{\typeI}(a) \Rightarrow \text{ case } v' \, \Bigg\{ 
+      \begin{aligned}
+      & \inl_{\typeI}(x) \Rightarrow x \text{ to} *. \, \inl_{\typeI}(a);\\
+      & \inr_{\typeI}(y) \Rightarrow y \text{ to} *. \,  \text{dis}(\inl_{\typeI}(a)) \text{ to} *. \inr_{\typeI}(*)
+      \end{aligned} \Bigg\} \\
+    &\inr_{\typeI}(b) \Rightarrow \text{ case } v' \, \Bigg\{ 
+      \begin{aligned}
+      & \inl_{\typeI}(x) \Rightarrow x \text{ to} *. \, \inr_{\typeI}(b);\\
+      & \inr_{\typeI}(y) \Rightarrow y \text{ to} *. \,  \text{dis}( \inr_{\typeI}(b)) \text{ to} *. \inr_{\typeI}(*)
+      \end{aligned} \Bigg\}    \\ 
+  \end{aligned}  
+  \right\} &  (\eta_{\text{case}}) \\
+  &  =   \text{case } w' \,  
+  \left\{
+    \begin{aligned} 
+    &\inl_{\typeI}(a) \Rightarrow \text{ case } v' \, \Bigg\{ 
+      \begin{aligned}
+      & \inl_{\typeI}(x) \Rightarrow x \text{ to} *. \,  \inl_{\typeI}(a);\\
+      & \inr_{\typeI}(y) \Rightarrow y \text{ to} *. \,  a \text{ to} *. \inr_{\typeI}(*)
+      \end{aligned} \Bigg\} \\
+    &\inr_{\typeI}(b) \Rightarrow \text{ case } v' \, \Bigg\{ 
+      \begin{aligned}
+      & \inl_{\typeI}(x) \Rightarrow x \text{ to} *. \, \inr_{\typeI}(b);\\
+      & \inr_{\typeI}(y) \Rightarrow y \text{ to} *. \,  b \text{ to} *.  \inr_{\typeI}(*)
+      \end{aligned} \Bigg\}    \\ 
+  \end{aligned}  
+  \right\} &  (\eta_{\text{dis}}) \\
+  &  =   \text{case } w' \,  
+  \left\{
+    \begin{aligned} 
+    &\inl_{\typeI}(a) \Rightarrow \text{ case } v' \, \Bigg\{ 
+      \begin{aligned}
+      & \inl_{\typeI}(x) \Rightarrow x \text{ to} *. \,  a \text{ to} *. \inl_{\typeI}(*) \, ;\\
+      & \inr_{\typeI}(y) \Rightarrow y \text{ to} *. \,  a \text{ to} *. \inl_{\typeI}(*)
+      \end{aligned} \Bigg\} \\
+    &\inr_{\typeI}(b) \Rightarrow \text{ case } v' \, \Bigg\{ 
+      \begin{aligned}
+      & \inl_{\typeI}(x) \Rightarrow x \text{ to} *. \, b \text{ to} *. \, \inr_{\typeI}(*);\\
+      & \inr_{\typeI}(y) \Rightarrow y \text{ to} *. \,  b \text{ to} *.  \inr_{\typeI}(*)
+      \end{aligned} \Bigg\}    \\ 
+  \end{aligned}  
+  \right\} &  (\eta_{\mathbb{I}_{e}}) \\
+   &  =   \text{case } w' \,  
+  \left\{
+    \begin{aligned} 
+    &\inl_{\typeI}(a) \Rightarrow \text{ case } v' \, \Bigg\{ 
+      \begin{aligned}
+      & \inl_{\typeI}(x) \Rightarrow a \text{ to} *. \,  \inl_{\typeI}(*) [x \text{ to} *. \, * /* ] ;\\
+      & \inr_{\typeI}(y) \Rightarrow a \text{ to} *. \,  \inl_{\typeI}(*) [y \text{ to} *. \, * /* ]
+      \end{aligned} \Bigg\} \\
+    &\inr_{\typeI}(b) \Rightarrow \text{ case } v' \, \Bigg\{ 
+      \begin{aligned}
+      & \inl_{\typeI}(x) \Rightarrow b \text{ to} *. \, \inl_{\typeI}(*) [x \text{ to} *. \, * /* ];\\
+      & \inr_{\typeI}(y) \Rightarrow b \text{ to} *. \,  \inl_{\typeI}(*) [y \text{ to} *. \, * /* ]
+      \end{aligned} \Bigg\}    \\ 
+  \end{aligned}  
+  \right\} &  (c_{\mathbb{I}_{e}}) \\
+  &  =   \text{case } w' \,  
+  \left\{
+    \begin{aligned} 
+    &\inl_{\typeI}(a) \Rightarrow \text{ case } v' \, \Bigg\{ 
+      \begin{aligned}
+      & \inl_{\typeI}(x) \Rightarrow a \text{ to} *. \,  \inl_{\typeI}(x);\\
+      & \inr_{\typeI}(y) \Rightarrow a \text{ to} *. \,  \inr_{\typeI}(y)
+      \end{aligned} \Bigg\} \\
+    &\inr_{\typeI}(b) \Rightarrow \text{ case } v' \, \Bigg\{ 
+      \begin{aligned}
+      & \inl_{\typeI}(x) \Rightarrow b \text{ to} *. \, x \text{ to} *. \, \inr_{\typeI}(*);\\
+      & \inr_{\typeI}(y) \Rightarrow b \text{ to} *. \,  y \text{ to} *.  \inr_{\typeI}(*)
+      \end{aligned} \Bigg\}    \\ 
+  \end{aligned}  
+  \right\} &  (\eta_{\mathbb{I}_{e}}) \\
+&=  \text{case } w' \,  
+\left\{
+  \begin{aligned} 
+  &\inl_{\typeI}(a) \Rightarrow \text{ case } v' \, \Bigg\{ 
+    \begin{aligned}
+    & \inl_{\typeI}(x) \Rightarrow a \text{ to} *. \, \inl_{\typeI}(x);\\
+    & \inr_{\typeI}(y) \Rightarrow a \text{ to} *. \inr_{\typeI}(y)
+    \end{aligned} \Bigg\} \\
+  &\inr_{\typeI}(b) \Rightarrow \text{ case } v' \, \Bigg\{ 
+    \begin{aligned}
+    & \inl_{\typeI}(x) \Rightarrow b \text{ to} *. \, \text{dis}(\inr_{\typeI}(x)) \text{ to} *. \, \inr_{\typeI}(*);\\
+    & \inr_{\typeI}(y) \Rightarrow b \text{ to} *. \,  \text{dis}(\inr_{\typeI}(y)) \text{ to} *. \inr_{\typeI}(*)
+    \end{aligned} \Bigg\}    \\ 
+\end{aligned}  
+\right\} &  (\eta_{\text{dis}}) \\
+& = \text{case } w'\,
+\{\inl_{\typeI}(a) \Rightarrow a \text{ to} *. \, v' ;
+\, \inr_{\typeI}(b) \Rightarrow b \text{ to} *. \,  \text{dis}(v') \text{ to} *. \inr_{\typeI}(*)
+\} &  (\eta_{case}) \\
+& = \textbf{Conjunction} \, [w'/v,v'/w ] 
+\end{split}
+  \end{equation*}
+
+\end{proof}
+
+To address the double negation property and De~Morgan's laws, we begin by establishing a key equality known as the \emph{syntactic fusion law}.
+
+\begin{lemma} [\emph{Syntactic fusion law}]
+  The following equality holds:
+  \begin{equation*}
+   v \left[ \left(\text{case } a \,\{\inl_{\typeB}(x) \Rightarrow w ; \, \inr_{\typeA}(y) \Rightarrow u\}\right)  / z \right]  =  \text{case } a \,\{\inl_{\typeB}(x) \Rightarrow v[w/z] ; \, \inr_{\typeA}(y) \Rightarrow v[u/z]\}.
+  \end{equation*}
+\end{lemma}
+
+  \begin{proof}
+    
+This equality follows from the $\alpha$-equivalence and the equations $\eta_{\text{case}}$, $\beta_{\text{case}}^{\text{inl}}$, and $\beta_{\text{case}}^{\text{inr}}$ . 
+
+\begin{equation*}
+\begin{split}
+  & v \left[ \left(\text{case } a \,\{\inl_{\typeB}(x) \Rightarrow w ; \, \inr_{\typeA}(y) \Rightarrow u\}\right)  / z \right] & \\
+  & =v  \left[ \left(\text{case } a \,\{\inl_{\typeB}(x') \Rightarrow w[x'/x] ; \, \inr_{\typeA}(y') \Rightarrow u[y'/y]\}\right)  / z \right] & (\alpha) \\
+  & = \text{case } a\,
+\left\{
+    \begin{aligned} 
+    &\inl_{\typeI}(x) \Rightarrow v \left[ \text{case } \inl_{\typeI}(x)\,
+\left\{
+    \begin{aligned} 
+    &\inl_{\typeI}(x') \Rightarrow w[x'/x] ; \\
+    &\inr_{\typeI}(y') \Rightarrow u[y'/y]  \\ 
+  \end{aligned}  
+  \right\} / z \right] ; \\
+    &\inr_{\typeI}(y) \Rightarrow   v \left[ \text{case } \inr_{\typeI}(y)\,
+\left\{
+    \begin{aligned} 
+    &\inl_{\typeI}(x') \Rightarrow w[x'/x] ; \\
+    &\inr_{\typeI}(y') \Rightarrow u[y'/y]  \\ 
+  \end{aligned}  
+  \right\} / z \right] \\
+  \end{aligned}  
+  \right\} & (\eta_{\text{case}}) \\
+   & = \text{case } a \,\{\inl_{\typeB}(x) \Rightarrow v[w[x'/x][x/x']/z] ; \, \inr_{\typeA}(y) \Rightarrow v[u[y'/y][y/y']/z]\}   & (\beta_{\text{case}}^{\text{inl}} \text{ and } \beta_{\text{case}}^{\text{inr}}  ) \\
+   & =  \text{case } a \,\{\inl_{\typeB}(x) \Rightarrow v[w/z] ; \, \inr_{\typeA}(y) \Rightarrow v[u/z]\}   
+\end{split}
+\end{equation*}
+  \end{proof}
+
+
+\begin{lemma} \label{lem:dneg}
+  The double negation of a term $w$ is equivalent to that term, \ie, 
+  $$\textbf{Negation} [\textbf{Negation} \, [w/v] / v ] = w.$$
+\end{lemma}
+
+\begin{proof}
+
+  This property follows from the syntactic fusion law and equations $\beta_{case}^{inl}$, $\beta_{case}^{inr}$, and  $\eta_{\text{case}}.$
+  
+    \begin{equation*}
+    \begin{split}
+       &\textbf{Negation} [\textbf{Negation} \, [w/v] / v ]  \\
+        & \triangleq   \textbf{Negation} [ \text{case } w\,
+    \{\inl_{\typeI}(x) 
+        \Rightarrow \inr_{\typeI}(x) ; \,
+      \inr_{\typeI}(y) \Rightarrow \inl_{\typeI}(y)
+    \}/v] \\
+    & = \text{case } w\,
+\left\{
+    \begin{aligned} 
+    &\inl_{\typeI}(x) \Rightarrow \textbf{Negation}[\inr_\typeI(x)/v]; \\
+    &\inr_{\typeI}(y) \Rightarrow  \textbf{Negation}[\inl_\typeI(y)/v]  \\ 
+  \end{aligned}  
+  \right\} & (\text{syntactic fusion law}) \\
+    & =  \text{case } w\,
+    \{\inl_{\typeI}(x) 
+        \Rightarrow \inr_{\typeI}(x) ; \,
+      \inl_{\typeI}(x) \Rightarrow \inr_{\typeI}(y)
+    \} & (\beta_{case}^{inl} \text{ and }\beta_{case}^{inr}) \\
+    & = w & (\eta_{case})
+    \end{split} 
+    \end{equation*}
+\end{proof}
+
+\begin{lemma} \label{lem:dmorgan} 
+  De Morgan's laws hold for terms  $\Gamma \vljud v': \typeI \oplus \typeI$ and $\Delta \vljud w: \typeI \oplus \typeI$, \ie, 
+  $$\textbf{Disjunction} [\textbf{Negation} \, [v'/v] / v, \textbf{Negation} \, [w'/v] / w ] =  \textbf{Negation}[\textbf{Conjunction} [v'/v, w'/w]  /v] $$ 
+  and 
+  $$\textbf{Conjunction} [\textbf{Negation} \, [v'/v] / v, \textbf{Negation} \, [w'/v] / w ] =  \textbf{Negation}[\textbf{Disjunction} [v'/v, w'/w]  /v].$$
+\end{lemma}
+
+\begin{proof}
+  Both De Morgan's laws follow from the equations $\eta_{case}, \beta_{case}^{inl}$, $\beta_{case}^{inr}, c_{\mathbb{I}_{e}}, \eta_{\text{dis}} $, the syntatic fusion law (\text{SFL}), and the $\alpha$-equivalence.
+
+  \begin{equation*}
+  \begin{split}
+  & \textbf{Disjunction} [\textbf{Negation} \, [v'/v] / v, \textbf{Negation} \, [w'/v] / w ] \\
+  & \triangleq \text{case }  \, 
+    \text{case } v  
+    \left\{ \begin{aligned}
+    & \inl_{\typeI}(a) \Rightarrow \inr_{\typeI}(a); \\
+    & \inl_{\typeI}(b) \Rightarrow \inl_{\typeI}(b) 
+  \end{aligned}  \right\}  
+   \left\{ \begin{aligned}
+    & \inl_{\typeI}(x) \Rightarrow  \ldots ; \\
+    & \inl_{\typeI}(y) \Rightarrow  \ldots
+   \end{aligned} \right\} [v/v']\\
+   & = \text{case }  v'
+    \left\{ \begin{aligned}
+      &\inl_{\typeI}(c) \Rightarrow \text{case } \, \text{case } \inl_{\typeI}(c)
+        \left\{ \begin{aligned}  
+          \inl_{\typeI}(a) \Rightarrow \inr_{\typeI}(a) ; \\
+          \inr_{\typeI}(b) \Rightarrow \inl_{\typeI}(b)
+          \end{aligned} \right\} 
+          \, \ldots; \\
+      & \inl_{\typeI}(d) \Rightarrow \text{case } \, \text{case } \inr_{\typeI}(d)
+        \left\{ \begin{aligned}  
+          \inl_{\typeI}(a) \Rightarrow \inr_{\typeI}(a) ; \\
+          \inr_{\typeI}(b) \Rightarrow \inl_{\typeI}(b)
+          \end{aligned} \right\} 
+           \, \ldots 
+    \end{aligned} \right\} 
+   \, & (\eta_{case}) \\
+    & = \text{case }  v'
+    \left\{ \begin{aligned}
+      &\inl_{\typeI}(c) \Rightarrow \text{case } \inr_{\typeI}(c)
+           \left\{ \begin{aligned}
+            & \inl_{\typeI}(x) \Rightarrow  \ldots; \\
+            & \inr_{\typeI}(y) \Rightarrow  \ldots
+            \end{aligned} \right\}; \\
+      & \inl_{\typeI}(d) \Rightarrow \text{case } \inl_{\typeI}(d) 
+           \left\{ \begin{aligned}
+            & \inl_{\typeI}(x) \Rightarrow  \ldots; \\
+            & \inr_{\typeI}(y) \Rightarrow  \ldots
+            \end{aligned} \right\} 
+    \end{aligned} \right\} 
+   \, & \begin{aligned} & ( \beta_{case}^{inl} \\ & \text{and} \\  &\beta_{case}^{inr}) \end{aligned} \\
+   & = \text{case }  v'
+    \left\{ \begin{aligned}
+      &\inl_{\typeI}(c) \Rightarrow  c \text{ to} *. \,   \textbf{Negation}[w'/v];  \\
+      & \inl_{\typeI}(d) \Rightarrow  d \text{ to} *. \,  \text{dis}\left(\text{case } w'
+        \left\{ \begin{aligned}  
+          \inl_{\typeI}(a) \Rightarrow \inr_{\typeI}(a) ; \\
+          \inr_{\typeI}(b) \Rightarrow \inl_{\typeI}(b)
+          \end{aligned} \right\}\right) \ldots
+    \end{aligned} \right\} 
+   \, &  \begin{aligned} & ( \beta_{case}^{inl} \\ & \text{and} \\  &\beta_{case}^{inr}) \end{aligned} \\
+      & = \text{case }  v'
+    \left\{ \begin{aligned}
+      &\inl_{\typeI}(c) \Rightarrow c \text{ to} *. \,   \textbf{Negation}[w'/v];  \\
+      & \inl_{\typeI}(d) \Rightarrow   d \text{ to} *. \, \text{dis}\left( w'\right) \text{ to} *. \,  \inl_{\typeI}(*)
+    \end{aligned} \right\}  
+   \, & (\eta_{\text{dis}}) \\
+      & = \text{case }  v'
+    \left\{ \begin{aligned}
+      &\inl_{\typeI}(c) \Rightarrow c \text{ to} *. \,   \textbf{Negation}[w'/v];  \\
+      & \inl_{\typeI}(d) \Rightarrow   d \text{ to} *. \, \text{dis}\left( w'\right) \text{ to} *. \,  \inr_{\typeI}(*) \left\{ \begin{aligned}  
+          \inl_{\typeI}(a) \Rightarrow \inr_{\typeI}(a) ; \\
+          \inr_{\typeI}(b) \Rightarrow \inl_{\typeI}(b)
+          \end{aligned} \right\}
+    \end{aligned} \right\}  
+   \, & (\beta_{case}^{inr}) \\
+   & = \text{case }  v'
+    \left\{ \begin{aligned}
+      &\inl_{\typeI}(c) \Rightarrow  c \text{ to} *. \, \textbf{Negation}[ w'/v];  \\
+      & \inl_{\typeI}(d) \Rightarrow   d \text{ to} *. \, \text{dis}\left( w'\right) \text{ to} *. \textbf{Negation}[\inr_{\typeI}(*)/v]
+    \end{aligned} \right\}  
+   \, &  \\
+   & = \text{case }  v'
+    \left\{ \begin{aligned}
+      &\inl_{\typeI}(c) \Rightarrow  \textbf{Negation}[c \text{ to} *. \, w'/v];  \\
+      & \inl_{\typeI}(d) \Rightarrow  \textbf{Negation}[ d \text{ to} *. \, \text{dis}\left( w'\right) \text{ to} *.\inr_{\typeI}(*)/v]
+    \end{aligned} \right\}  
+   \, & (c_{\mathbb{I}_{e}}) \\
+   & = \textbf{Negation}\left[ \text{case } v'\,
+\{\inl_{\typeI}(c) \Rightarrow c \text{ to} *. \, w ; 
+\, \inr_{\typeI}(d) \Rightarrow d \text{ to} *. \,  \text{dis}(w) \text{ to} *. \inr_{\typeI}(*)
+\} / v\right] 
+   \, & (\text{SFL})  \\
+   & = \textbf{Negation}[\textbf{Conjunction} [v'/v, w',w]  /v] & (\alpha)
+  \end{split}
+  \end{equation*}
+\end{proof}
 
 
 \subsection{Metric equational system}
@@ -933,6 +1303,8 @@ Here, $\text{perm} (\Gamma)$ denotes the set of possible permutions of context $
 
 % dizer o que é perm
 
+\todo[inline,size=\normalsize]{Não sei se dá para postular para f sem argumento, não dá para usar nenhuma das regras, a da substuição não dá para aplicar porque f sozinho não é termo} 
+
 \begin{example}
   To ilustrate the usefulness of these equations, consider the program $P$ that recieves a tensor product, swaps its elements and then applies a function $f: \typeA \to \typeD \in \Sigma $ to the new second element of the tensor  pair:
 \begin{equation*}
@@ -946,10 +1318,9 @@ Let $ f^{\epsilon} $ be an erroneous implementation of $ f $. The program above 
   & P^{\epsilon} = x : \mathbb{A},  y : \mathbb{B} \triangleright \text{pm} \hspace{3 pt} x \otimes y\hspace{3 pt} \text{to} \hspace{3 pt} a \otimes b. \hspace{1pt} b \otimes f(a)^{\epsilon}  : \mathbb{B} \otimes \mathbb{D} &
   \end{split}
   \end{equation*}
-Consider we can postulate the axiom $f^{\epsilon} =_{\epsilon} f$. Then, it is possible to show that $P^{\epsilon} =_{\epsilon} P $ using our metric equational system. The prove is as follows. The types and contexts are omitted for brevity as no ambiguity arises.
+Consider we can postulate the axiom $f^{\epsilon}(a) =_{\epsilon} f(a)$. Then, it is possible to show that $P^{\epsilon} =_{\epsilon} P $ using our metric equational system. The prove is as follows. The types and contexts are omitted for brevity as no ambiguity arises.
 \begin{equation*}
   \begin{split}
-  1 \hspace{10 pt} & f^{\epsilon} =_{\epsilon} f \\
   1 \hspace{10 pt} & f(a)^{\epsilon} =_{\epsilon} f(a) \\
   2 \hspace{10 pt} &  b =_{0} b & {(\text{refl})} \\
   3 \hspace{10 pt} & b \otimes f(a)^{\epsilon}  =_{\epsilon} b \otimes f(a)  & \text{($1,2,\otimes_i$)} \\
@@ -959,11 +1330,7 @@ Consider we can postulate the axiom $f^{\epsilon} =_{\epsilon} f$. Then, it is p
   \end{equation*}
 \end{example}
 
-\begin{definition}
-  Consider a tuple \( (G, \Sigma) \), where \( G \) is a class of ground types and \( \Sigma \) is a class of sorted operation symbols of the form \( f : A_1, \ldots, A_n \to A \) with \( n \geq 1 \). A \emph{linear metric $\lambda$-theory} is a tuple \( ((G, \Sigma), Ax) \), where \( Ax \) is a class of \emph{metric equations-in-context} over linear $\lambda$-terms constructed from \( (G, \Sigma) \).
-\end{definition}
 
-The elements of \( Ax \) are called the \emph{axioms} of the theory. Let \( Th(Ax) \) denote the smallest class that contains \( Ax \) and is closed under the rules presented in \autoref{fig:equations-linear-lambda} (i.e., the classical equational system) and \autoref{fig:metric deductive system}. The elements of \( Th(Ax) \) are called the \emph{theorems} of the theory.
 
 
 
