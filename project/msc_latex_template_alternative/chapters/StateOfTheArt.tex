@@ -119,7 +119,7 @@ For a more detailed study of lambda calculus theory, the reader is referred to \
 
 \section{The Lambda Calculus}
 
-The concept of a function takes a central role in the lambda calculus. But what exactly is a function?  In most mathematics, the “functions as graphs” paradigm the “functions as graphs” paradigm is the most elegant and appropriate framework for understanding functions. Within this paradigm, each function $f$ has a fixed domain $X$ and a fixed codomain $Y$. The function $f$ is then a subset of $X \times Y$ that satisfies the property that for each $x \in X$ there is a unique $y \in Y$ such that $(x,y) \in f$. Two functions $f$ and $g$ are equal if they yield the same output on each input, that is if $f(x) = g(x)$ for all $x \in X$. This perspective is known as the extensional view of functions, as it emphasizes that the only observable property of a function is how it maps inputs to outputs.
+The concept of a function takes a central role in the lambda calculus. But what exactly is a function?  In most mathematics, the “functions as graphs” paradigm is the most elegant and appropriate framework for understanding functions. Within this paradigm, each function $f$ has a fixed domain $X$ and a fixed codomain $Y$. The function $f$ is then a subset of $X \times Y$ that satisfies the property that for each $x \in X$ there is a unique $y \in Y$ such that $(x,y) \in f$. Two functions $f$ and $g$ are equal if they yield the same output on each input, that is if $f(x) = g(x)$ for all $x \in X$. This perspective is known as the extensional view of functions, as it emphasizes that the only observable property of a function is how it maps inputs to outputs.
 
 On the other hand, the “functions as rules” paradigm is more appropriate within computer science. In this context, defining a function involves specifying a rule or procedure for computing the function. Such a rule is often expressed in the form of a formula, for example, \( f(x) = x^2 \). As with the mathematical paradigm, two functions are considered extensionally equal if they exhibit the same input-output behavior. However, this view also introduces the notion of intensional equality: two functions are intensionally equal if they are defined by (essentially) the same formula.
 
@@ -376,34 +376,52 @@ Finally, the rule $\text{(case)}$ states that if there are two programs of type 
 
 For a better understanding of the rules, a few straightforward programming examples are provided.  
 
-\begin{example}
+\begin{example} \label{example:prog_swap}
 
 For instance, the program that swaps the elements of a tensor product can be written as follows:
+\begin{comment}
 \begin{equation*}
 \begin{split}
-& x : \mathbb{A},  y : \mathbb{B} \triangleright \text{pm} \hspace{3 pt} x \otimes y\hspace{3 pt} \text{to} \hspace{3 pt} a \otimes b. \hspace{1pt} b \otimes a : \mathbb{B} \otimes \mathbb{A}
+ \textbf{SwapTensor} \triangleq & - \triangleright \lambda x: \mathbb{A \otimes B}. \text{pm} \hspace{3 pt} x\hspace{3 pt} \text{to} \hspace{3 pt} a \otimes b. \hspace{1pt} b \otimes a : \mathbb{B} \otimes \mathbb{A}
 \end{split}
 \end{equation*}
 Now, to prove that this program is well-typed one can write the following typing derivation:
 \begin{equation*}
 \begin{split}
-1 \hspace{10 pt} & x : \mathbb{A} \triangleright x : \mathbb{A}  \hspace{10 pt} & {(\text{hyp})} \\
-2 \hspace{10 pt} &  y : \mathbb{B} \triangleright   y : \mathbb{B} \hspace{10 pt} & {(\text{hyp})} \\
-3 \hspace{10 pt} & x : \mathbb{A},  y : \mathbb{B} \triangleright x \otimes y : \mathbb{A} \otimes \mathbb{B} \hspace{10pt} & \text{($1,2,\otimes_i$)} \\
-4 \hspace{10 pt} &  b : \mathbb{B} \triangleright   b : \mathbb{B} \hspace{10 pt}&{(\text{hyp})} \\
-5 \hspace{10 pt} &   a : \mathbb{A} \triangleright  a : \mathbb{A} \hspace{10 pt}&{(\text{hyp})} \\
-6 \hspace{10 pt} &   b : \mathbb{B},a : \mathbb{A} \triangleright b \otimes a : \mathbb{B} \otimes \mathbb{A} \hspace{10pt} &\text{($4,5,\otimes_i$)} \\
-7\hspace{10 pt}& x : \mathbb{A},  y : \mathbb{B} \triangleright \text{pm} \hspace{3 pt} x \otimes y\hspace{3 pt} \text{to} \hspace{3 pt} a \otimes b. \hspace{1pt} b \otimes a : \mathbb{B} \otimes \mathbb{A}& \hspace{10pt} \text{($3,6,\otimes_e$)}
+1 \hspace{10 pt} & x : \mathbb{A} \triangleright x : \mathbb{A} \otimes \mathbb{B}   \hspace{10 pt} & {(\text{hyp})} \\
+2 \hspace{10 pt} &  b : \mathbb{B} \triangleright   b : \mathbb{B} \hspace{10 pt}&{(\text{hyp})} \\
+3 \hspace{10 pt} &   a : \mathbb{A} \triangleright  a : \mathbb{A} \hspace{10 pt}&{(\text{hyp})} \\
+4 \hspace{10 pt} &   b : \mathbb{B},a : \mathbb{A} \triangleright b \otimes a : \mathbb{B} \otimes \mathbb{A} \hspace{10pt} &\text{($2,3,\otimes_i$)} \\
+5\hspace{10 pt}& x : \mathbb{A} \otimes \typeB \triangleright \text{pm} \hspace{3 pt} x \hspace{3 pt} \text{to} \hspace{3 pt} a \otimes b. \hspace{1pt} b \otimes a : \mathbb{B} \otimes \mathbb{A}& \hspace{10pt} \text{($4,\otimes_e$)} \\
+6 \hspace{10 pt}& - \triangleright \lambda x: \mathbb{A \otimes B}. \text{pm} \hspace{3 pt} x\hspace{3 pt} \text{to} \hspace{3 pt} a \otimes b. \hspace{1pt} b \otimes a : \mathbb{B} \otimes \mathbb{A} & \text{($5,\multimap_i$)}
 \end{split}
 \end{equation*}
+\end{comment}
+\begin{equation*}
+\begin{split}
+&  \textbf{SwapTensor} \triangleq x : \mathbb{A} \otimes  \mathbb{B}  \triangleright \text{pm} \hspace{3 pt} x \hspace{3 pt} \text{to} \hspace{3 pt} a \otimes b. \hspace{1pt} b \otimes a : \mathbb{B} \otimes \mathbb{A}
+\end{split}
+\end{equation*}
+Now, to prove that this program is well-typed one can write the following typing derivation:
+\begin{equation*}
+\begin{split}
+1 \hspace{10 pt} & x : \mathbb{A} \otimes \mathbb{B} \triangleright   y : \mathbb{A} \otimes \mathbb{B} \hspace{10 pt} & {(\text{hyp})} \\
+2 \hspace{10 pt} &  b : \mathbb{B} \triangleright   b : \mathbb{B} \hspace{10 pt}&{(\text{hyp})} \\
+3 \hspace{10 pt} &   a : \mathbb{A} \triangleright  a : \mathbb{A} \hspace{10 pt}&{(\text{hyp})} \\
+4 \hspace{10 pt} &   b : \mathbb{B},a : \mathbb{A} \triangleright b \otimes a : \mathbb{B} \otimes \mathbb{A} \hspace{10pt} &\text{($2,3,\otimes_i$)} \\
+5\hspace{10 pt}& x : \mathbb{A},  y : \mathbb{B} \triangleright \text{pm} \hspace{3 pt} x \otimes y\hspace{3 pt} \text{to} \hspace{3 pt} a \otimes b. \hspace{1pt} b \otimes a : \mathbb{B} \otimes \mathbb{A}& \hspace{10pt} \text{($1,4,\otimes_e$)}
+\end{split}
+\end{equation*}
+
+
 Observe that in the notation of the third column, the numbers correspond to the premises utilized in the application of the rule.
 \end{example}
 
-\begin{example}
+\begin{example} \label{example:prog_Dis2nd}
 Another example is the function that recieves a tensor product and returns first element, discarding the second:
 \begin{equation*}
 \begin{split}
-& - \triangleright \lambda x: \mathbb{A \otimes A}. \text{pm} \hspace{3 pt} x \hspace{3 pt} \text{to} \hspace{3 pt} a \otimes b. \hspace{1 pt} \text{dis}(b) \hspace{3 pt} \text{ to } *.a: \mathbb{A}
+& \textbf{Dis2nd} \triangleq - \triangleright \lambda x: \mathbb{A \otimes A}. \text{pm} \hspace{3 pt} x \hspace{3 pt} \text{to} \hspace{3 pt} a \otimes b. \hspace{1 pt} \text{dis}(b) \hspace{3 pt} \text{ to } *.a: \mathbb{A}
 \end{split}
 \end{equation*}
 To prove that this program is well-typed one can write the following typing derivation:
@@ -420,8 +438,8 @@ To prove that this program is well-typed one can write the following typing deri
 \end{equation*}
 \end{example}
 
-\begin{example}
-  Let us designate the program presented in the last by $\textbf{Dis2nd}$.  Consider an analogous program that that recieves a tensor product and returns
+\begin{example} \label{example:prog_Dis1stor2nd}
+  Consider an analogous program to the previous example that that recieves a tensor product and returns
   second element, discarding the first: 
   \begin{equation*}
 \begin{split}
@@ -432,7 +450,7 @@ Following a similar line of reasoning as in the previous example, it is straight
 Now, let us examine a program that receives both a coproduct/sum and a tensor product, and applies either $\textbf{Dis1st}$ or $\textbf{Dis2nd}$ to the tensor product (or a mixture of both), depending on the value of the coproduct:
 \begin{equation*}
 \begin{split}
-&  - \triangleright  \lambda x: \mathbb{\typeB \oplus \typeB}. \, \lambda y: \mathbb{A \otimes A}. \, 
+&  \textbf{Dis1stOR2nd} \triangleq - \triangleright  \lambda x: \mathbb{\typeB \oplus \typeB}. \, \lambda y: \mathbb{A \otimes A}. \, 
 \text{case } x \,  
   \left\{
     \begin{aligned} 
@@ -579,7 +597,7 @@ The calculus defined in \autoref{fig:typing_rules_linear} possesses several desi
 \end{theorem}
 
 \begin{proof}
-Since these properties are established in \cite[Theorem 2.3]{dahlqvist2023complete} for the lambda calculus without conditionals, we only need to focus on them.
+Since these properties are established in \cite[Theorem 2.3]{dahlqvist2023complete} for the lambda calculus without conditionals,  it suffices to consider the cases involving conditionals.
 
   It follows in all three cases from induction over the length of derivation
 trees. 
@@ -621,7 +639,7 @@ v[w/x]: \typeB$ is also derivable.
 \end{lemma}
 
 \begin{proof}
-  Once again, these properties are established in \cite[Theorem 2.1]{dahlqvist2022syntactic} for the lambda calculus without conditionals, so we only need to focus on them.
+  Once again, these properties are established in \cite[Theorem 2.1]{dahlqvist2022syntactic} for the lambda calculus without conditionals, so it suffices to consider the cases involving conditionals.
 
   We start with the exchange property which follows by induction over the length
 of derivation trees. The rules that involve injections are direct.  The rule
@@ -2380,7 +2398,7 @@ The shuffling morphism $\text{sh}_{E}: [\![E]\!] \xrightarrow{} [\![\Gamma_1, \l
 
 
 For every operation symbol $f: \mathbb{A}_{1}, \ldots, \mathbb{A}_{n} \xrightarrow{} \mathbb{A}$ it is assumed the existence of an morphism $[\![f]\!]: [\![\mathbb{A}_{1}]\!] \otimes \ldots \otimes [\![\mathbb{A}_{n}]\!] \xrightarrow{}  [\![\mathbb{A}]\!] $.
-The interpretation of judgments is defined by induction over derivations according to the rules in \autoref{fig:denotational_sem} \cite{dahlqvist2022syntactic}.
+The interpretation of judgments is defined by induction over derivations according to the rules in \autoref{fig:denotational_sem}.
 \vspace{-7pt}
 \begin{figure} [H]
 \begin{equation*}
@@ -2400,7 +2418,7 @@ $
 $\begin{array}{c}
       \\
     \hline
-  [\![ x:\mathbb{A} \triangleright x:\mathbb{A}]\!] = \text{I}_{[\![\mathbb{A} ]\!]}
+  [\![ x:\mathbb{A} \triangleright x:\mathbb{A}]\!] = \id_{[\![\mathbb{A} ]\!]}
 \end{array}
 $ \end{minipage} \\
 &
@@ -2408,7 +2426,7 @@ $ \end{minipage} \\
 $\begin{array}{c}
      \\  
     \hline
-   [\![ - \triangleright *: \mathbb{I}]\!] = \text{I}_{[\![\mathbb{I} ]\!]}
+   [\![ - \triangleright *: \mathbb{I}]\!] = \id_{[\![\mathbb{I} ]\!]}
 \end{array}
 $
 \end{minipage}
@@ -2417,7 +2435,7 @@ $
 $\begin{array}{c}
       [\![\Gamma \triangleright v: \mathbb{A} \otimes \mathbb{B} ]\!]=m  \quad [\![\Delta,x: \mathbb{A}, y: \mathbb{B}  \triangleright w: \mathbb{D} ]\!] =n  \quad E \in \text{Sf}(\Gamma;\Delta)\\
     \hline
-  [\![ E\triangleright \text{pm } v \text{ to } x \otimes y. w :\mathbb{D}]\!] = n \cdot \text{jn}_{\Delta;\mathbb{A};\mathbb{B}} \cdot \alpha \cdot \text{sw}\cdot (m \otimes \text{I}) \cdot \text{sp}_{\Gamma;\Delta} \cdot \text{sh}_{E}
+  [\![ E\triangleright \text{pm } v \text{ to } x \otimes y. w :\mathbb{D}]\!] = n \cdot \text{jn}_{\Delta;\mathbb{A};\mathbb{B}} \cdot \alpha \cdot \text{sw}\cdot (m \otimes \id) \cdot \text{sp}_{\Gamma;\Delta} \cdot \text{sh}_{E}
 \end{array}
 $ \end{minipage} \\
 &
@@ -2434,7 +2452,7 @@ $
 $\begin{array}{c} 
     [\![\Gamma \triangleright v: \mathbb{I} ]\!]=m  \quad [\![\Delta \triangleright w: \mathbb{A}]\!]=n \quad E \in \text{Sf}(\Gamma;\Delta)  \\
     \hline
-  [\![E \triangleright v \text { to } *.w: \mathbb{A} ]\!]=n \cdot \lambda \cdot (m \otimes \text{I}) \cdot \text{sp}_{\Gamma;\Delta} \cdot \text{sh}_{E}
+  [\![E \triangleright v \text { to } *.w: \mathbb{A} ]\!]=n \cdot \lambda \cdot (m \otimes \id) \cdot \text{sp}_{\Gamma;\Delta} \cdot \text{sh}_{E}
 \end{array}
 $ \end{minipage} 
 \hspace{130 pt}
@@ -2459,7 +2477,7 @@ $ \end{minipage}
 $\begin{array}{c}
      [\![\Gamma \triangleright v: \mathbb{A}]\!]  = f \\
     \hline
-   [\![ \Gamma \triangleright \text{dis}(v):  \mathbb{I} ]\!] = \text{Tr} \cdot f
+   [\![ \Gamma \triangleright \text{dis}(v):  \mathbb{I} ]\!] = ! \cdot f
 \end{array}
 $
 \end{minipage} \\[5pt]
@@ -2477,21 +2495,18 @@ $
     \infer1[]{ [\![ \Gamma \vljud \text{inr}_{\typeA} (v):  \typeA \oplus \typeB  ]\!] = \inr  \comp m}
 \end{prooftree}
   %
-  \\[5pt]
-  &
-  %
-  \begin{prooftree}
-      \hypo{[\![\Gamma\vljud v: \typeA \oplus \typeB ]\!] = b}
-      \hypo{[\![\Delta, x:\typeA \vljud w: \typeD ]\!] = p}
-      \hypo{ [\![\Delta,y:\typeB \vljud u: \typeD ]\!] = q }
-      \hypo{E \in \Shuff(\Gamma; \Delta)}
-      \infer4[]{ [\![E \vljud \text{case } v\,  \{\text{inl}_{\typeB} (x) \Rightarrow w ;\, \text{inr}_{\typeA} (y) \Rightarrow u\}: \typeD ]\!] =   [p,q] \comp (\text{jn}_{\Delta;\typeA}\comp \sw \oplus \text{jn}_{\Delta;\typeB}\comp \sw) \comp \dist \comp (b \otimes \text{id}) \comp \text{sp}_{\Gamma;\Delta} \comp \text{sh}_{E}}
-  \end{prooftree} \\
+  \\
 &\begin{minipage}[t]{0.3\textwidth}
 $\begin{array}{c}
-      [\![\Gamma_{i} \triangleright v_{i}: \mathbb{A}_{i} ]\!]=m_{i}  \quad f: \mathbb{A}_{1}, \ldots, \mathbb{A}_{n} \xrightarrow{} \mathbb{A} \in \Sigma \quad E \in \text{Sf}(\Gamma_{1}; \ldots; \Gamma_{n})\\
+      [\![\Gamma\vljud v: \typeA \oplus \typeB ]\!] = b 
+      \quad [\![\Delta, x:\typeA \vljud w: \typeD ]\!] = p 
+      \quad [\![\Delta,y:\typeB \vljud u: \typeD ]\!] = q 
+      \quad E \in \Shuff(\Gamma; \Delta)
+      \\
     \hline
-  [\![E \triangleright f( v_{1},\ldots,v_{n}): \mathbb{A} ]\!] = [\![ f]\!] \cdot (m_{1}\otimes \ldots \otimes m_{n}) \cdot \\[-5pt]\text{sp}_{\Gamma_1;\ldots;\Gamma_n}\cdot \text{sh}_{E}
+  [\![E \vljud \text{case } v\,  \{\text{inl}_{\typeB} (x) \Rightarrow w ;\, \text{inr}_{\typeA} (y) \Rightarrow u\}: \typeD ]\!] =   [p,q] \comp (\text{jn}_{\Delta;\typeA}\comp \sw \oplus \text{jn}_{\Delta;\typeB}\comp \sw) 
+ \comp \dist \comp  
+ \\[-5pt] \hspace{160pt}  (b \otimes \text{id}) \comp \text{sp}_{\Gamma;\Delta} \comp \text{sh}_{E} 
 \end{array}
 $
 \end{minipage} \\
@@ -2504,36 +2519,46 @@ $
 
 
 
-The following diagrams are useful to better understand the interpretation of judgements given in \autoref{fig:denotational_sem}.
+The following diagrams are useful for a clearer understanding of the interpretation of judgements given in \autoref{fig:denotational_sem}.
 \begin{align*}
-  & \llbracket \text{ax} \rrbracket : & [\![E]\!] & \xrightarrow{\hspace{2pt}\text{sh}_{E}\hspace{2pt}}   [\![\Gamma_1,\ldots,\Gamma_n ]\!]   \xrightarrow{\hspace{1pt}\text{sp}_{\Gamma;\Delta}\hspace{1pt}}  \llbracket \Gamma_1 \rrbracket \otimes \ldots \otimes \llbracket \Gamma_n \rrbracket  \\
+   & \hspace{-20pt} \llbracket \text{ax} \rrbracket : & [\![E]\!] & \xrightarrow{\hspace{2pt}\text{sh}_{E}\hspace{2pt}}   [\![\Gamma_1,\ldots,\Gamma_n ]\!]   \xrightarrow{\hspace{1pt}\text{sp}_{\Gamma;\Delta}\hspace{1pt}}  \llbracket \Gamma_1 \rrbracket \otimes \ldots \otimes \llbracket \Gamma_n \rrbracket  \\
   & & & \xrightarrow{\hspace{2pt}m_1 \otimes \ldots \otimes m_n \hspace{2pt}} \llbracket \mathbb{A}_1 \rrbracket \otimes \ldots \otimes \llbracket \mathbb{A}_n \rrbracket \xrightarrow{\hspace{2pt}\llbracket f \rrbracket \hspace{2pt}} \llbracket \mathbb{A} \rrbracket \\
-  & \llbracket \text{hyp} \rrbracket : & \llbracket \mathbb{A} \rrbracket & \xrightarrow{\hspace{2pt}I_{\llbracket \mathbb{A}\rrbracket}\hspace{2pt}} \llbracket \mathbb{A}\rrbracket \\
-  & \llbracket \mathbb{I}_i \rrbracket :&  \llbracket \mathbb{I} \rrbracket & \xrightarrow{\hspace{2pt}I_{\llbracket \mathbb{I}\rrbracket}\hspace{2pt}}  \llbracket \mathbb{I} \rrbracket\\
-  &\llbracket \otimes_e \rrbracket : & [\![E]\!] & \xrightarrow{\hspace{2pt}\text{sh}_{E}\hspace{2pt}}   [\![\Gamma,\Delta ]\!]   \xrightarrow{\hspace{1pt}\text{sp}_{\Gamma;\Delta}\hspace{1pt}}  [\![\Gamma ]\!] \otimes [\![\Delta ]\!] \xrightarrow{ m \hspace{1pt} \otimes \hspace{1pt} \text{I}} ([\![\mathbb{A} ]\!] \otimes [\![\mathbb{B} ]\!]) \otimes [\![\Delta ]\!]   \\
+  & \hspace{-20pt} \llbracket \text{hyp} \rrbracket : & \llbracket \mathbb{A} \rrbracket & \xrightarrow{\hspace{2pt}\id_{\llbracket \mathbb{A}\rrbracket}\hspace{2pt}} \llbracket \mathbb{A}\rrbracket \\
+  & \hspace{-20pt}\llbracket \mathbb{I}_i \rrbracket :&  \llbracket \mathbb{I} \rrbracket & \xrightarrow{\hspace{2pt}\id_{\llbracket \mathbb{I}\rrbracket}\hspace{2pt}}  \llbracket \mathbb{I} \rrbracket\\
+  & \hspace{-20pt}\llbracket \otimes_e \rrbracket : & [\![E]\!] & \xrightarrow{\hspace{2pt}\text{sh}_{E}\hspace{2pt}}   [\![\Gamma,\Delta ]\!]   \xrightarrow{\hspace{1pt}\text{sp}_{\Gamma;\Delta}\hspace{1pt}}  [\![\Gamma ]\!] \otimes [\![\Delta ]\!] \xrightarrow{ m \hspace{1pt} \otimes \hspace{1pt} \id} ([\![\mathbb{A} ]\!] \otimes [\![\mathbb{B} ]\!]) \otimes [\![\Delta ]\!]   \\
      & &  &\xrightarrow{\hspace{2pt}\text{sw}\hspace{2pt}}  [\![\Delta ]\!] \otimes ([\![\mathbb{A} ]\!] \otimes [\![\mathbb{B} ]\!]) \xrightarrow{\hspace{3pt}\alpha\hspace{3pt}}  ([\![\Delta ]\!] \otimes [\![\mathbb{A} ]\!]) \otimes [\![\mathbb{B} ]\!] \xrightarrow{\hspace{2pt}\text{jn}_{\Delta; \mathbb{A}; \mathbb{B} }\hspace{2pt}}  \llbracket \Delta, \mathbb{A},\mathbb{B}  \rrbracket  \\
      &&& \xrightarrow{\hspace{3pt}n\hspace{3pt}} \llbracket \mathbb{D} \rrbracket \\
-     &\llbracket \otimes_i \rrbracket : & [\![E]\!] & \xrightarrow{\hspace{2pt}\text{sh}_{E}\hspace{2pt}}   [\![\Gamma,\Delta ]\!]   \xrightarrow{\hspace{1pt}\text{sp}_{\Gamma;\Delta}\hspace{1pt}}  [\![\Gamma ]\!] \otimes [\![\Delta ]\!]  \xrightarrow{\hspace{2pt} m \hspace{1pt} \otimes \hspace{1pt} n \hspace{2pt}} [\![\mathbb{A} ]\!] \otimes [\![\mathbb{B} ]\!] \\
-     &\llbracket \mathbb{I}_e \rrbracket :  & [\![E]\!] & \xrightarrow{\hspace{2pt}\text{sh}_{E}\hspace{2pt}}   [\![\Gamma,\Delta ]\!]   \xrightarrow{\hspace{1pt}\text{sp}_{\Gamma;\Delta}\hspace{1pt}}  [\![\Gamma ]\!] \otimes [\![\Delta ]\!] \xrightarrow{ m \hspace{1pt} \otimes \hspace{1pt} \text{I}} [\![\mathbb{I} ]\!]\otimes [\![\Delta ]\!] \xrightarrow{\hspace{2pt} \lambda \hspace{3pt}} [\![\Delta ]\!]  \xrightarrow{\hspace{2pt} n \hspace{3pt}}  \llbracket \mathbb{A} \rrbracket    \\
-      &\llbracket \multimap_i \rrbracket : & \llbracket \Gamma \rrbracket \otimes \llbracket \mathbb{A} \rrbracket & \xrightarrow{\hspace{2pt} \overline{m \cdot \text{jn}_{\Gamma;\mathbb{A}}}  \hspace{2pt}}  \llbracket \mathbb{A} \rrbracket \multimap \llbracket \mathbb{B} \rrbracket  \hspace{60pt} (\llbracket \Gamma \rrbracket \otimes \llbracket \mathbb{A} \rrbracket  \xrightarrow{\hspace{2pt} \text{jn}_{\Gamma; \mathbb{A}} \hspace{2pt}} \llbracket \Gamma, \mathbb{A} \rrbracket  \xrightarrow{\hspace{2pt} m \hspace{2pt}}  \llbracket \mathbb{B} \rrbracket )\\
-      &\llbracket \multimap_e \rrbracket : & [\![E]\!] & \xrightarrow{\hspace{2pt}\text{sh}_{E}\hspace{2pt}}   [\![\Gamma,\Delta ]\!]   \xrightarrow{\hspace{1pt}\text{sp}_{\Gamma;\Delta}\hspace{1pt}}  [\![\Gamma ]\!] \otimes [\![\Delta ]\!]  \xrightarrow{\hspace{2pt} m \hspace{1pt} \otimes \hspace{1pt} n \hspace{2pt}} \llbracket \mathbb{A} \rrbracket \multimap \llbracket \mathbb{B} \rrbracket \otimes \llbracket \mathbb{A} \rrbracket  \xrightarrow{\hspace{2pt} \text{app} \hspace{2pt}} \llbracket \mathbb{B} \rrbracket \\
-      &\llbracket \text{dis} \rrbracket : & [\![\Gamma]\!] & \xrightarrow{\hspace{2pt} f \hspace{2pt}} \llbracket \mathbb{A} \rrbracket \xrightarrow{\hspace{2pt} \text{!} \hspace{2pt}} \llbracket \mathbb{I} \rrbracket
-      %& \llbracket \Gamma \rrbracket \otimes \llbracket \mathbb{A} \rrbracket  \xrightarrow{\hspace{2pt} \text{jn}_{\Gamma; \mathbb{A}} \hspace{2pt}} \llbracket \Gamma, \mathbb{A} \rrbracket  \xrightarrow{\hspace{2pt} m \hspace{2pt}}  \llbracket \mathbb{B} \rrbracket 
+    & \hspace{-20pt}\llbracket \otimes_i \rrbracket : & [\![E]\!] & \xrightarrow{\hspace{2pt}\text{sh}_{E}\hspace{2pt}}   [\![\Gamma,\Delta ]\!]   \xrightarrow{\hspace{1pt}\text{sp}_{\Gamma;\Delta}\hspace{1pt}}  [\![\Gamma ]\!] \otimes [\![\Delta ]\!]  \xrightarrow{\hspace{2pt} m \hspace{1pt} \otimes \hspace{1pt} n \hspace{2pt}} [\![\mathbb{A} ]\!] \otimes [\![\mathbb{B} ]\!] \\
+    &\hspace{-20pt}\llbracket \mathbb{I}_e \rrbracket :  & [\![E]\!] & \xrightarrow{\hspace{2pt}\text{sh}_{E}\hspace{2pt}}   [\![\Gamma,\Delta ]\!]   \xrightarrow{\hspace{1pt}\text{sp}_{\Gamma;\Delta}\hspace{1pt}}  [\![\Gamma ]\!] \otimes [\![\Delta ]\!] \xrightarrow{ m \hspace{1pt} \otimes \hspace{1pt} \id} [\![\mathbb{I} ]\!]\otimes [\![\Delta ]\!] \xrightarrow{\hspace{2pt} \lambda \hspace{3pt}} [\![\Delta ]\!]  \xrightarrow{\hspace{2pt} n \hspace{3pt}}  \llbracket \mathbb{A} \rrbracket   \\
+    &\hspace{-20pt}\llbracket \multimap_i \rrbracket : & \llbracket \Gamma \rrbracket \otimes \llbracket \mathbb{A} \rrbracket & \xrightarrow{\hspace{2pt} \overline{m \cdot \text{jn}_{\Gamma;\mathbb{A}}}  \hspace{2pt}}  \llbracket \mathbb{A} \rrbracket \multimap \llbracket \mathbb{B} \rrbracket  \hspace{60pt} (\llbracket \Gamma \rrbracket \otimes \llbracket \mathbb{A} \rrbracket  \xrightarrow{\hspace{2pt} \text{jn}_{\Gamma; \mathbb{A}} \hspace{2pt}} \llbracket \Gamma, \mathbb{A} \rrbracket  \xrightarrow{\hspace{2pt} m \hspace{2pt}}  \llbracket \mathbb{B} \rrbracket )\\
+    &\hspace{-20pt}\llbracket \multimap_e \rrbracket : & [\![E]\!] & \xrightarrow{\hspace{2pt}\text{sh}_{E}\hspace{2pt}}   [\![\Gamma,\Delta ]\!]   \xrightarrow{\hspace{1pt}\text{sp}_{\Gamma;\Delta}\hspace{1pt}}  [\![\Gamma ]\!] \otimes [\![\Delta ]\!]  \xrightarrow{\hspace{2pt} m \hspace{1pt} \otimes \hspace{1pt} n \hspace{2pt}} \llbracket \mathbb{A} \rrbracket \multimap \llbracket \mathbb{B} \rrbracket \otimes \llbracket \mathbb{A} \rrbracket  \xrightarrow{\hspace{2pt} \text{app} \hspace{2pt}} \llbracket \mathbb{B} \rrbracket \\
+    & \hspace{-20pt} \llbracket \text{dis} \rrbracket : & [\![\Gamma]\!] & \xrightarrow{\hspace{2pt} f \hspace{2pt}} \llbracket \mathbb{A} \rrbracket \xrightarrow{\hspace{2pt} \text{!} \hspace{2pt}} \llbracket \mathbb{I} \rrbracket\\
+    & \hspace{-20pt}\llbracket \text{inl} \rrbracket : & [\![\Gamma]\!] & \xrightarrow{\hspace{2pt} m \hspace{2pt}} \llbracket \mathbb{A} \rrbracket \xrightarrow{\hspace{2pt}\inl \hspace{2pt}} \llbracket \typeA \oplus \typeB \rrbracket\\
+    &\hspace{-20pt}\llbracket \text{inr} \rrbracket : & [\![\Gamma]\!] & \xrightarrow{\hspace{2pt} m \hspace{2pt}} \llbracket \mathbb{B} \rrbracket \xrightarrow{\hspace{2pt}\inr \hspace{2pt}} \llbracket \typeA \oplus \typeB \rrbracket\\
+    &\hspace{-20pt}\llbracket \text{case} \rrbracket : & [\![E]\!] & \xrightarrow{\hspace{2pt}\text{sh}_{E}\hspace{2pt}}   [\![\Gamma,\Delta ]\!]   \xrightarrow{\hspace{1pt}\text{sp}_{\Gamma;\Delta}\hspace{1pt}}  [\![\Gamma ]\!] \otimes [\![\Delta ]\!] \xrightarrow{ b \hspace{1pt} \otimes \hspace{1pt} \id} ([\![\mathbb{A} ]\!] \oplus[\![\mathbb{B} ]\!]) \otimes [\![\Delta ]\!]   \\
+     & &  &\xrightarrow{\hspace{2pt}\dist\hspace{1pt}} \left([\![\mathbb{A} ]\!] \otimes [\![\Delta ]\!]\right) \oplus \left([\![\mathbb{B} ]\!] \otimes [\![\Delta ]\!]\right)  \\
+     & & &  \xrightarrow{\hspace{1pt}\text{jn}_{\Delta;\typeA}\comp \sw \,\oplus  \, \text{jn}_{\Delta;\typeB}\comp \sw\hspace{1pt}}  \left([\![ \Delta,\mathbb{A}]\!]\right) \oplus \left([\![\Delta, \mathbb{B} ]\!]\right) \xrightarrow{\hspace{2pt}[p,q]\hspace{2pt}} \llbracket \mathbb{D} \rrbracket \\
 \end{align*} 
 
 
 Regarding the interpretation of the exhange and substitution properties, we have the following lemma.
 
-\begin{lemma}
+\begin{lemma} \label{lem:sub_exch}
   For any judgements $\Gamma, x: \mathbb{A}, y: \mathbb{B}, \Delta \triangleright v : \mathbb{D}$, $\Gamma, x: \mathbb{A} \triangleright v: \mathbb{B}$, and $\Delta \triangleright w: \mathbb{A}$, the following holds:
 \begin{equation*}
 \begin{split}
   \llbracket \Gamma, x: \mathbb{A}, y: \mathbb{B}, \Delta \triangleright v : \mathbb{D} \rrbracket & = \llbracket \Gamma,  y: \mathbb{B}, x: \mathbb{A}, \Delta \triangleright v : \mathbb{D} \rrbracket \cdot \text{exch}_{\Gamma, \underline{x: \mathbb{A}, y: \mathbb{B}}, \Delta}\\
-  \llbracket \Gamma,\Delta \triangleright v[w/x]: \mathbb{B} \rrbracket & = \llbracket \Gamma, x: \mathbb{A} \triangleright v: \mathbb{B} \rrbracket \cdot \text{jn}_{\Gamma;\mathbb{A}} \cdot (\text{I} \otimes \llbracket \Delta \triangleright w: \mathbb{A} \rrbracket ) \cdot \text{sp}_{\Gamma; \Delta} 
+  \llbracket \Gamma,\Delta \triangleright v[w/x]: \mathbb{B} \rrbracket & = \llbracket \Gamma, x: \mathbb{A} \triangleright v: \mathbb{B} \rrbracket \cdot \text{jn}_{\Gamma;\mathbb{A}} \cdot (\id \otimes \llbracket \Delta \triangleright w: \mathbb{A} \rrbracket ) \cdot \text{sp}_{\Gamma; \Delta} 
 \end{split}
 \end{equation*}
-
 \end{lemma}
+
+
+\begin{proof}
+  This lemma is proved in \cite[Lemma 2.2]{dahlqvist2022syntactic} for the lambda calculus without conditionals, so we only need to address the conditional cases.
+\todo[inline,size=\normalsize]{Passar para aqui as provas qd elas estiverem vistas} 
+\end{proof}
+
 
 
 
@@ -2543,18 +2568,105 @@ More specifically, if \(\Gamma \vljud v = w : \typeA\) is one of the equations i
 $\llbracket \Gamma \vljud v : A  \rrbracket = \llbracket  \Gamma \vljud w : \typeA\rrbracket.$
 \end{theorem}
 
+\begin{proof}
+  Given the theorem is already proven in \cite[Theorem 2.3]{dahlqvist2022syntactic} for the lambda calculus without conditionals, it suffices to consider the cases involving conditionals.
+  \todo[inline,size=\normalsize]{Passar para aqui as provas qd elas estiverem vistas} 
+\end{proof}
 
 \begin{definition} [Models of linear \(\lambda\)-theories]
-Consider a linear \(\lambda\)-theory \(((G, \Sigma), Ax)\) and a symmetric monoidal closed category \(\catC\). 
+Consider a linear \(\lambda\)-theory \(((G, \Sigma), Ax)\) and a symmetric monoidal closed category with coproducts \(\catC\). 
 Suppose that for each \(X \in G\), we have an interpretation \(\llbracket X \rrbracket\), which is an object of \(\catC\), 
 and analogously for the operation symbols in \(\Sigma\). 
 This interpretation structure is a \emph{model} of the theory if all axioms in \(Ax\) are satisfied by the interpretation.
 \end{definition}
 
-\begin{theorem}[Soundness and Completeness]
+\begin{theorem}[Completeness]
 Consider a linear $\lambda$-theory $\mathscr{T}$. Then an equation 
-$\Gamma \vljud v = w : A$
+$\Gamma \vljud v = w : \typeA$
 is a theorem of $\mathscr{T}$ if and only if it is satisfied by all models of the theory.
 \end{theorem}
 
- 
+ \begin{proof}
+   This theorem is proved in \cite[Lemma 2.6]{dahlqvist2022syntactic} for the lambda calculus without conditionals, so we only need to address the conditional cases.
+\todo[inline,size=\normalsize]{Passar para aqui as provas qd elas estiverem vistas} 
+ \end{proof}
+
+
+\begin{example}
+  We now illustrate how the programs presented in Examples \ref{example:prog_swap}, \ref{example:prog_Dis2nd}, and \ref{example:prog_Dis1stor2nd}, with slight modifications, are interpreted in $\catSet$.
+   To this effect, we consider a type $N$ representing set of natural numbers, along with a family of operations $\{n : \typeI \to \emph{N} \mid n \in \mathbb{N}\}$, each mapping the monoidal unit to a corresponding natural number $n$. In $\catSet$ have $\sem{\typeI}= \{*\}$, and define $\sem{N} = \mathbb{N}$, and  $\sem{n} = \{*\} \to \mathbb{N}, \, * \mapsto n.$ 
+   Consider the following $\lambda$-term:
+   \begin{equation*}
+   \begin{split}
+    &   x : N \otimes N \triangleright \text{pm} \hspace{3 pt} x \hspace{3 pt} \text{to} \hspace{3 pt} a \otimes b. \hspace{1pt} b \otimes a \, [1(*)\otimes 2 (*)/x]: N \otimes N 
+  \end{split}
+  \end{equation*}
+
+   Attending to \autoref{fig:denotational_sem} this program is interpreted as follows:
+   \begin{align*}
+   & \hspace{-30pt} \sem{ \text{pm} \hspace{3 pt} x \hspace{3 pt} \text{to} \hspace{3 pt} a \otimes b. \hspace{1pt} b \otimes a \, [1(*)\otimes 2 (*)/x]} \\
+   & \hspace{-30pt} = \sem{\text{pm} \hspace{3 pt} x \hspace{3 pt} \text{to} \hspace{3 pt} a \otimes b. \hspace{1pt} b \otimes a} \cdot \jn \cdot \left( \id \otimes \sem{1(*)\otimes 2 (*)} \right) \cdot \spt & (\text{\autoref{lem:sub_exch}})\\
+   & \hspace{-30pt} = \sem{b \otimes a} \cdot \jn \cdot \alpha \cdot \sw \cdot \left( \sem{x} \otimes \id\right) \cdot \spt \cdot \sh \cdot \lambda \cdot ( \id \otimes (\sem{1(*)} \otimes \sem{2(*)}   & (\otimes_e, \otimes_i) \\
+   & \hspace{-20pt} \cdot \spt \cdot \sh))  \cdot \lambda^{-1} \\
+   & \hspace{-30pt} = \sem{b} \otimes \sem{a} \cdot \spt \cdot \sh \cdot (\lambda \otimes \id) \cdot \alpha \cdot \sw \cdot \rho^{-1} \cdot \lambda \cdot (\id \otimes ( 1 \cdot \sem{*} \cdot \spt \cdot \sh \, \otimes  & (\otimes_i, \text{hyp}, \\
+   & \hspace{-14pt}   2 \cdot \sem{*} \cdot \spt \cdot \sh \cdot \lambda^{-1}))  \cdot \lambda^{-1}  &  \text{ax}) \\
+   & \hspace{-30pt} = \sw \cdot \lambda \cdot (\id \otimes ( 1 \otimes 2 \cdot \lambda^{-1} )) \cdot \lambda^{-1} & (\text{hyp}, \typeI_i, \text{coh}) \\
+   & \hspace{-30pt} = 2 \otimes 1 \cdot \rho^{-1}  & (\text{nat}, \text{coh}) 
+   \end{align*}
+
+   Next, consider the  $\lambda$-terms below.
+
+   \begin{equation*}
+    \begin{split}
+    & \textbf{Dis2nd} \triangleq - \triangleright \lambda x: N \otimes N. \text{pm} \hspace{3 pt} x \hspace{3 pt} \text{to} \hspace{3 pt} a \otimes b. \hspace{1 pt} \text{dis}(b) \hspace{3 pt} \text{ to } *.a: N \otimes N \multimap N \\
+    & \textbf{Dis2nd} \,(1 (*) \otimes 2(*)) \\
+    \end{split}
+   \end{equation*}
+
+   \begin{comment}
+     &  \textbf{Dis1stOR2nd} \triangleq - \triangleright  \lambda y: N \otimes N . \, 
+\text{case } \text{inl} (*) \,  
+  \left\{
+    \begin{aligned} 
+    &\inl_{\typeB}(w) \Rightarrow  \textbf{Dis1st} \, x; \\
+    &\inr_{\typeB}(z) \Rightarrow  \textbf{Dis2nd} \, x   \\ 
+  \end{aligned}  
+  \right\} : N \otimes N \multimap N  & \\
+  & \textbf{Dis1stOR2nd} \, (1 (*) \otimes 2(*)) : N 
+    \end{comment}
+
+  In this case, we will ``cheat'' slightly by first using the equations in \autoref{fig:equations-linear-lambda} to simplify the term. We note that here we will not explicitly  illustrate the interpretation of the \text{case} statement, because in~$\catSet$, any term of type~$\typeA \otimes \typeA$, for any type~$\typeA$, corresponds to an injection ($\text{inl}(v)$ or $\text{inr}(v)$). As a result, we can ``escape'' any \text{case} statement by  applying the equations~$\beta_{case}^{inl}$ and~$\beta_{case}^{inr}$.
+
+
+   %In this case, we will ``cheat'' slightly by first using the equations in \autoref{fig:equations-linear-lambda} to simplify the term. However, to explicitly illustrate the interpretation of the \text{case} statement---and because in~$\catSet$, any term of type~$\typeA \otimes \typeA$, for any type~$\typeA$, corresponds to an injection ($\text{inl}(v)$ or $\text{inr}(v)$)---we will avoid applying the equations~$\beta_{case}^{inl}$ and~$\beta_{case}^{inr}$.
+   
+   Applying the $\beta$ equation we have 
+   \begin{equation*}
+    \begin{split}
+    \textbf{Dis2nd} \,(1 (*) \otimes 2(*)) & = \textbf{Dis2nd} \,[1 (*) \otimes 2(*)/x] \\
+    & = \text{pm} \hspace{3 pt}  1 (*) \otimes 2(*) \hspace{3 pt} \text{to} \hspace{3 pt} a \otimes b. \hspace{1 pt} \text{dis}(b) \hspace{3 pt} \text{ to } *.a
+\end{split}
+   \end{equation*}
+    The resulting program is interpreted as follows:
+    \begin{align*}
+   & \hspace{-30pt} \sem{ \text{pm} \hspace{3 pt}  1 (*) \otimes 2(*) \hspace{3 pt} \text{to} \hspace{3 pt} a \otimes b. \hspace{1 pt} \text{dis}(b) \hspace{3 pt} \text{ to } *.a} \\
+   & \hspace{-30pt} = \sem{\text{dis}(b) \hspace{3 pt} \text{ to } *.a} \cdot \jn \cdot \alpha \cdot \sw \cdot \left( \sem{1 (*) \otimes 2(*)} \otimes \id\right) \cdot \spt \cdot \sh   & (\otimes_e) \\
+   & \hspace{-30pt} = \sem{a} \cdot \lambda \cdot (\sem{\text{dis}(b)} \otimes \id) \cdot \spt \cdot \sh \cdot (\lambda \otimes \id) \cdot \alpha \cdot \sw \cdot (  (\sem{1(*)} \otimes \sem{2(*)}     & (\typeI_e, \otimes_i) \\
+   & \hspace{-20pt} \cdot \spt \cdot \sh)\otimes \id) \cdot  \lambda^{-1}  \\
+   & \hspace{-30pt} = \lambda \cdot (! \cdot \sem{b} \otimes \id) \cdot \sw \cdot   (\lambda \otimes \id)  \cdot \alpha \cdot \sw \cdot (( 1 \cdot \sem{*} \cdot \spt \cdot \sh \, \otimes 2 \cdot \sem{*} \cdot \spt  & (\text{hyp},\text{dis},  \text{ax})\\
+   &  \hspace{-14pt}    \cdot \sh \cdot \lambda^{-1})\otimes \id) \cdot \lambda^{-1} \\
+    & \hspace{-30pt} = \lambda \cdot (! \otimes \id) \cdot \sw \cdot \rho \cdot (( 1  \, \otimes 2 \cdot \lambda^{-1}  ) \otimes \id) \cdot \lambda^{-1}  & (\text{hyp},\typeI_i,\text{coh})\\
+   & \hspace{-30pt} =\lambda \cdot (! \otimes \id) \cdot  2  \, \otimes 1 \cdot \rho^{-1}   & (\text{nat}, \text{coh}) 
+   \end{align*}
+
+   The diagram below illustrates the resulting interpretation.
+   \begin{align*}
+   & \hspace{-40pt} & \{*\} & \xrightarrow{\hspace{2pt}\rho^{-1}\hspace{2pt}}    \{(*,*)\}  \xrightarrow{2  \, \otimes 1}   \{(2,1)\}     \xrightarrow{(! \otimes \id)} \{(*,1)\} \xrightarrow{\hspace{2pt}\lambda \hspace{2pt}} \{1\}
+   \end{align*}
+
+
+
+
+
+   %To make matters more simple we will consider that they are applied do arguments and use the classical equations to simplie them
+\end{example}
