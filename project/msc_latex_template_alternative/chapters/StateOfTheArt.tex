@@ -92,28 +92,20 @@
 
 \chapter{Metric Lambda Calculus} \label{ch:metriclambda}
 
-\todo[inline,size=\normalsize]{Cenas de Met-enriched e afins ficam neste capitulo ou passam para o próximo? (Estou a considerar a possibilidade de colocar só no próximo por causa de estar a definir 2 vezes metric lambda theory e cenas desse género. Also este capitulo vai ficar gigante.)}
-
-\todo[inline,size=\normalsize]{Sintaxe-> acrescentar exemplos com case, regras dos condicionais e respetiva explicação, a cena das free variables e a cena das props com prova.}
-
-
-\todo[inline,size=\normalsize]{Categorias -> tirar as cenas de cptp e ban e meter as cenas de quocientes algures}
-
 \todo[inline,size=\normalsize]{interpretação -> acrescentar a interpretação dos condicitinais; ver a interpretação em set dos programas exemplo da sintaxe}
-
-\todo[inline,size=\normalsize]{Mudar a descrição do capítulo} 
 
 The Lambda Calculus, developed by Church and Curry in the 1930s, serves as a formal language capturing the key attribute of higher-order functional languages, treating functions as first-class citizens, allowing them to be passed as arguments \cite{barendregt1984lambda}.  Moreover, lambda calculus has been proven to be universal in the sense that any computable function can be represented as an expression within the language \cite{bernays1936alonzo} . Beyond its foundational aspects, this calculus incorporates extensions for modeling side effects, including probabilistic or non-deterministic behaviors and shared memory.  Higher-order functions form a pivotal abstraction in practical programming languages such as LISP, Scheme, ML, and Haskell.
 
 %The metric lambda calculus incorporates a metric equational system, enabling reasoning about approximate program equivalence.
 
-This chapter introduces the metric lambda calculus as presented in \cite{dahlqvist2022syntactic} drawing also \cite{mackieLanguageAutonomous1993,croleCategoriesTypes1994,selinger2013lecture}. The metric lambda calculus integrates notions of
-approximation into the equational system of affine lambda calculus, a variant of lambda calculus that restricts each variable to being used at most once.  This chapter offers a brief insight into lambda calculus and an overview of the syntax, metric equational system and interpretation of the metric lambda calculus. It also includes an exposition of the definitions and results from category theory used throughout the remainder of the thesis, based on \cite{yanofskyMonoidalCategoryTheory2024,barrCategoryTheoryComputing1990,maclane13}.
-For structural reasons, soundness and completeness with respect to the ``traditional'' equational system are discussed in this chapter, while the corresponding notions for the metric $\lambda$-theory are addressed in the following chapter. It is worth noting that we explicitly prove certain results concerning conditionals; although these results are well known, their proofs appear to be absent from the existing literature. Additionally, we illustrate the usefulness of the ``traditional'' equational system by utilizing it to demonstrate that the terms $\inl(*)$ and $\inr(*)$ possess certain properties that are characteristic of booleans in classical logic.
+This chapter introduces the metric lambda calculus as presented in \cite{dahlqvist2022syntactic} drawing also from \cite{mackieLanguageAutonomous1993,croleCategoriesTypes1994,selinger2013lecture}. The metric lambda calculus integrates notions of
+approximation into the equational system of affine lambda calculus, a variant of lambda calculus that restricts each variable to being used at most once.  This chapter offers a brief insight into lambda calculus and an overview of the syntax, metric equational system and interpretation of the metric lambda calculus. It also includes an exposition of the definitions and results from category theory used throughout the remainder of the thesis,  based on \cite{yanofskyMonoidalCategoryTheory2024,barrCategoryTheoryComputing1990,maclane13}.  These categorical notions play a central role, as programs are interpreted within distributive symmetric monoidal (closed) categories.
+ It is worth noting that we explicitly prove certain results concerning conditionals; although these results are well known, their proofs appear to be absent from the existing literature. Additionally, we illustrate the usefulness of the ``traditional'' equational system by utilizing it to demonstrate that the terms $\inl(*)$ and $\inr(*)$ possess certain properties that are characteristic of booleans in classical logic.
 For a more detailed study of lambda calculus theory, the reader is referred to \cite{barendregt1984lambda}.
 
  
-%We then illustrate the use of the language for describing quantum and probabilistic programs. 
+%We then illustrate the use of the language for describing quantum and probabilistic programs.
+%For structural reasons, soundness and completeness with respect to the ``traditional'' equational system are discussed in this chapter, while the corresponding notions for the metric $\lambda$-theory are addressed in the following chapter. 
 
 
 
@@ -142,8 +134,6 @@ Nevertheless this remarkable aspect of lambda calculus, this work focuses on a m
 
 
 \section{Syntax}
-
-The grammar and term formation rules of the affine lambda calculus, discussed in \cite{dahlqvist2022syntactic}, are presented in this subsection.
 
 \subsection{Type system}
 
@@ -239,7 +229,7 @@ The concept of \emph{shuffling} is employed to construct a linear typing system 
 \begin{equation*}
 \begin{split}
 \begin{aligned}
-&
+& \hspace{-20pt}
 \begin{minipage}[t]{0.3\textwidth}
 $\begin{array}{c}
      \Gamma_{i} \triangleright v_{i}: \mathbb{A}_{i} \quad f: \mathbb{A}_{1}, \ldots, \mathbb{A}_{n} \xrightarrow{} \mathbb{A} \in \Sigma \quad E \in \text{Sf}(\Gamma_{1}; \ldots; \Gamma_{n})\\
@@ -259,7 +249,7 @@ $\begin{array}{c}
 \end{array}
 $ \end{minipage}
 \hspace{-68pt} \text{(hyp)} \\
-&
+& \hspace{-20pt}
 \begin{minipage}[t]{0.3\textwidth}
 $\begin{array}{c}
     \\
@@ -279,7 +269,7 @@ $\begin{array}{c}
 \end{array}
 $ \end{minipage}
 \hspace{117pt} (\otimes_{e}) \\
-&
+& \hspace{-20pt}
 \begin{minipage}[t]{0.3\textwidth}
 $\begin{array}{c}
      \Gamma \triangleright v: \mathbb{A} \quad  \Delta \triangleright w: \mathbb{B}  \quad E \in \text{Sf}(\Gamma;\Delta) \\
@@ -298,7 +288,7 @@ $\begin{array}{c}
 \end{array}
 $ \end{minipage}
 \hspace{38pt} (\mathbb{I}_{e}) \\
-&
+& \hspace{-20pt}
 \begin{minipage}[t]{0.3\textwidth}
 $\begin{array}{c}
      \Gamma,x:\mathbb{A} \triangleright v: \mathbb{B} \\
@@ -317,7 +307,7 @@ $\begin{array}{c}
 \end{array}
 $ \end{minipage}
 \hspace{67pt} (\multimap_{e}) \\
-& 
+& \hspace{-20pt}
 \begin{minipage}[t]{0.3\textwidth}
 $\begin{array}{c}
      \Gamma \triangleright v: \mathbb{A}  \\
@@ -342,7 +332,7 @@ $
     \end{prooftree} 
     %
     \\[10pt]
-    &\hspace{40pt}
+    &\hspace{20pt}
     %
     \begin{prooftree}
         \hypo{\Gamma \vljud v: \typeA \oplus \typeB}
@@ -2370,8 +2360,37 @@ Any diagram in a symmetric monoidal category constructed only from associators $
 
 \section{Interpretation} \label{sec: Lambda Calculus:Interpretation}
 
-\todo[inline,size=\normalsize]{Sets, sub, exchange, soundness and completeness, conds, diagrama a explicar} 
+\todo[inline,size=\normalsize]{Sets, sub, exchange, soundness and completeness, conds, diagrama a explicar}
 
+Up to this point, we have discussed $\lambda$-calculus in abstract terms: we explored which programs can be written, but we have not yet assigned them any meaning. This process—assigning meaning to syntactic expressions—is known as the \emph{interpretation} or \emph{semantics} of the language. In fact, the word ``semantics'' comes from the Greek word for ``meaning''.
+
+There are different kinds of semantics, in particular, \emph{denotational semantics} interprets terms as mathematical objects. This is done by defining a function that maps syntactic entities (such as types and terms) to semantic entities (such as sets and elements). This mapping is called the \emph{interpretation function}, typically denoted by $\sem{-}$. Thus, given a term $v$, we write $\sem{v}$ to denote its meaning under a specific interpretation.
+
+Naturally, this raises important questions: what guarantees do we have that the interpretation of terms respects the classical equations of the calculus? This leads us to the notions of \emph{soundness} and \emph{completeness}.
+
+With respect to a given class of interpretations:
+\begin{itemize}
+  \item \emph{Soundness} is the property 
+  \[
+  M = N \;\Rightarrow\; \llbracket M \rrbracket = \llbracket N \rrbracket
+  \quad \text{for all interpretations in the class.}
+  \]
+  That is, if two terms are provably equal, then they are interpreted as equal.
+  
+  \item \emph{Completeness} is the property 
+  \[
+  \llbracket M \rrbracket = \llbracket N \rrbracket
+  \;\Rightarrow\; M = N
+  \quad \text{for all interpretations in the class.}
+  \]
+  That is, if two terms are interpreted as equal, then they are provably equal.
+\end{itemize}
+
+Soundness ensures that our equations are \emph{correct}—all derivable equations are semantically valid. Completeness ensures that our equations are \emph{sufficient}—we can derive all semantically valid equations.
+
+We note that, in the case of the metric equations, the underlying idea is similar, although soundness and completeness are defined differently.
+
+\vspace{20pt}
 
 In order to define the interpretation of judgments $\Gamma \triangleright v: \mathbb{A}$, it is necessary to establish some notation first. Let $\catC$ be a symmetric monoidal category and $A$, $B$ and $C$ be objects of this category. For all morphisms $f: A \otimes B \xrightarrow{} C$, the morphism $\overline{f} : A \xrightarrow{} (B \multimap C)$ denotes the corresponding curried version. Moreover, there is the application morphism, $\text{app}: (A \multimap B) \otimes A \rightarrow B$.  
 
