@@ -1,133 +1,65 @@
 \chapter{Metric $\lambda$-calculus with conditionals} \label{ch:conditionals}
 
-In the calculus introduced in the previous chapter, something appears to be missing: a metric equation for conditionals. In this chapter, we address this gap by introducing such an equation and proving its soundness and completeness.
+As noted in \autoref{subsec:interlude_bool}, a metric equation for the conditional statement would be extremely helpful for reasoning about approximate equivalence within the $\lambda$-calculus with conditionals. In this chapter, we address this gap by introducing such an equation and proving both its soundness and completeness. We present the category of metric spaces as an example of a setting suitable for reasoning about approximate equivalence in this context and illustrate the usefulness of the introduced equation through two small examples: reasoning about approximate equivalence between boolean terms (i.e., terms of type $\typeI \oplus \typeI$) and the extensionality of copairing. We conclude the chapter with a brief discussion on the suitability of the chosen metric equation.
 
 
+\todo[inline,size=\normalsize]{ (Tentar) Meter tudo direito de soundness and completeness }
+
+\todo[inline,size=\normalsize]{ Exemplo MET : referir Example 3.13. que diz de MET é symmetric monoidal met-enriched}
+
+\todo[inline,size=\normalsize]{ Exemplo booleano }
 
 
-%For the metric quantale, the way-below relation corresponds to the strictly greater relation with ∞ > ∞, and a basis for the underlying lattice that satisfies the conditions above is the set of extended non-negative rational numbers.
+\todo[inline,size=\normalsize]{ Exemplo extensionalidade do copairing}
 
-\todo[inline,size=\normalsize]{Adicionar as coisas das notas dq elas estiverem corrigidas} 
-
-\todo[inline,size=\normalsize]{Intro} 
-
-
-
-
-%In order to established that the theory introduced is valid in quantum programming, it is necessary to build a model. The model can be seen as a category where the morphisms are the CPTP super-operators (quantum channels). The algebric structure of this model is given by the vector spaces. 
-%Any completely-positive and trace-preserving map has a diamond norm equal to one \cite{watrous2018theory}. Since the measurement operation is completely positive and trace-preserving, its  diamond norm is equal to one. This is a desirable property, as it ensures that the measurement operation does not increase the distance between states, and as a consequence, composition of programs remains valid.
-
-
+\todo[inline,size=\normalsize]{ Discussao sobre max(q+r, q+s) != max(q+r, q+s) }
 
 
 
 \section{Syntax}
 
+The metric equation for conditionals is presented in \autoref{fig:metric conditionals}. 
+
+\begin{figure}[H]
+  \begin{equation*}
+  \begin{aligned}
+  &
+  &
+  %
+  \begin{prooftree}
+      \hypo{ v =_{q} v' }
+      \hypo{w=_{r} w'}
+      \hypo{u=_{s}u'}
+      \infer3[]{\text{ case } v \,   \{\text{inl} (x) \Rightarrow w ; \, \text{inr} (y) \Rightarrow u\} =_{q+\sup{\{ r, s \}}} \text{ case } v' \,  \{\text{inl} (x) \Rightarrow w' ; \,\text{inr} (y) \Rightarrow u'\} }
+  \end{prooftree}
+  %
+  \\[10pt]
+  \end{aligned}
+  \end{equation*}
+  \caption{Metric equation for condicionals}
+  \label{fig:metric conditionals}
+\end{figure}
+
+
+Intuitively, this equation states that the maximum distance between the two conditional statements is determined the:
+
+\begin{itemize}
+    \item The larger of the maximum distances between the corresponding branches, \ie, the program pairs $(w, w')$ and $(u, u')$; and
+    \item The maximum distance between the terms $v$ and $v'$ on which their execution depends.
+\end{itemize}
+
+
+Recall \autoref{def:metric_lambda_theory}. Now, we extend \( Th(Ax) \) to denote the smallest class that contains \( Ax \) and is closed under the rules presented in \autoref{fig:equations-linear-lambda}, \autoref{fig:metric deductive system} and \autoref{fig:metric conditionals}.
+
+
+
 \section{Soundeness and Completeness}
 
-\begin{definition}
-  Consider a tuple \( (G, \Sigma) \), where \( G \) is a class of ground types and \( \Sigma \) is a class of sorted operation symbols of the form \( f : A_1, \ldots, A_n \to A \) with \( n \geq 1 \). A \emph{linear metric $\lambda$-theory} is a tuple \( ((G, \Sigma), Ax) \), where \( Ax \) is a class of \emph{metric equations-in-context} over linear $\lambda$-terms constructed from \( (G, \Sigma) \).
-\end{definition}
-
-The elements of \( Ax \) are called the \emph{axioms} of the theory. Let \( Th(Ax) \) denote the smallest class that contains \( Ax \) and is closed under the rules presented in \autoref{fig:equations-linear-lambda} (i.e., the classical equational system) and \autoref{fig:metric deductive system}. The elements of \( Th(Ax) \) are called the \emph{theorems} of the theory.
-
-\begin{definition}
-    A \emph{metric space} a pair $(X, d)$ where $X$ is a set and $d: X \times X \to \mathbb{R}_0^+$ is a function known as \emph{distance} satisfying:
-    \begin{enumerate}
-        \item $0 \leq d(x, y)$, with equality if and only if $x = y$,
-        \item $d(x, y) = d(y, x)$,
-        \item $d(x, z) \leq d(x, y) + d(y, z)$ for all $x, y, z \in X$.
-    \end{enumerate}
-  \end{definition}
-  
-  \begin{definition}
-    $\catMet$ denotes the category whose objects are metric spaces and whose morphisms are non-expansive maps, \ie, functions that do not increase the distance between points. More precisely, for two metric spaces $(X, d_X)$ and $(Y, d_Y)$, a morphism $f: (X, d_X) \to (Y, d_Y)$ is a function $f: X \to Y$ such that
-$$
-d_Y(f(x), f(y)) \leq d_X(x, y) \quad \text{for all } x, y \in X.
-$$
-  \end{definition}
-    
-
-
-\begin{definition}
- A category $\catC$ is $\catMet$\emph{-enriched} (or simply a $\catMet$-category) if for each pair of objects $A$ and $B$ in $\catC$, the hom-set $\catC(A, B)$ is a metric space and if the composition of $\catC$-morphisms,
- $$(\comp): \catC(A, B) \otimes \catC(B, C) \rightarrow \catC(A, C)$$
- is a functor in the category of metric spaces. 
- Given two $\catMet$-enriched categories $\catC$ and $\catD$ and a functor $F : \catC\to \catD$, we call 
-$F$ a \emph{$\catMet$-enriched functor} (or simply, a \emph{$\catMet$-functor}) if for all objects $A, B$ in $\catC$, 
-the map $F_{A,B} : \catC(A,B) \to \catC(FA, FB)$ is a $\catMet$-functor. 
-An adjunction $\catC : F \dashv G : \catD$ is called \emph{$\catMet$-enriched} if for all objects $A \in |\catC|$ 
-and $B \in |\catD|$ there exists a $\catMet$-isomorphism
-\[
-\mathcal{D}(FA, B) \cong \catC(A, GB)
-\]
-natural in $A$ and $B$.
-\end{definition}
-
-
-\begin{definition}
-A \emph{$\catMet$-enriched symmetric monoidal category} $\catC$ is a category that is both symmetric monoidal and $\catMet$-enriched, such that the bifunctor
-\[
-\otimes : \catC \times \catC \to \catC
-\]
-is a $\catMet$-functor. 
-\end{definition}
-
-\begin{definition}
-  A \emph{$\catMet$-enriched symmetric monoidal closed category} $\catC$ is a category that is both symmetric monoidal closed and a $\catMet$-enriched monoidal category, such that the adjunction
-\[
-(- \otimes A) \dashv (A \multimap -)
-\]
-is a $\catMet$-adjunction.
-\end{definition}
-
-\begin{definition}
-  It is said that a metric equation $\Gamma \vljud v =_{q} w : A$ is \emph{satisfied} by the interpretation presented in \autoref{fig:denotational_sem} if
-\[
-q \leq d( \llbracket \Gamma \vljud v : \typeA \rrbracket,\, \llbracket  \Gamma \vljud w : \typeA \rrbracket).
-\]
-\end{definition}
-
-
-\begin{theorem}
-The rules listed in \autoref{fig:equations-linear-lambda} and \autoref{fig:metric deductive system} are sound for $\catMet$-enriched monoidal closed categories $\catC$. Specifically, if $\Gamma \vljud v =_{q} w : \typeA$
-results from the rules in \autoref{fig:equations-linear-lambda} and \autoref{fig:metric deductive system}, then 
-$q \leq d(\llbracket \Gamma  \vljud  v : \typeA \rrbracket,\, \llbracket \Gamma \vljud  w : \typeA\llbracket)$.
-\end{theorem}
-
-\begin{definition}[Models of linear metric $\lambda$-theories]
-Consider a linear metric $\lambda$-theory $((G, \Sigma), Ax$ and a $\catMet$-enriched autonomous category $\catC$. 
-Suppose that for each $X \in G$, we are given an interpretation $\llbracket X \rrbracket$ as an object of $\catC$, and analogously for the operation symbols in $\Sigma$. 
-This interpretation structure is a \emph{model} of the theory if all axioms in $Ax$ are satisfied by the interpretation.
-\end{definition}
-
-
-\begin{definition}
-  
-For two types $\typeA$ and $\typeB$ of a metric $\lambda$-theory $\mathscr{T}$, consider the class \text{Values}$(\typeA,\typeB)$ of values $v$ such that $x : \typeA \vljud v : \typeB$. We equip $\text{Values}(\typeA,\typeB)$ with the function $d :\text{Values}(\typeA,\typeB) \times \text{Values}(\typeA,\typeB) \rightarrow \mathbb{R}^{+}_0$ defined by,
-$$d(v,w)=\inf{\{q \, \vert \, v=_q w \text{ is a theorem } \mathscr{T} \}}$$
-
-We then consider the equivalence relation $\sim$ on $\text{Values}(\typeA,\typeB)$ induced by $d$:
-\[
-v \sim w \quad \text{if and only if} \quad d(v,w) = 0.
-\]
-
- The resulting quotient $\text{Values}(\typeA,\typeB)/{\sim}$ forms a separated $\catMet$-enriched category. We call  $\mathscr{T} $\emph{varietal} if (\text{Values}$(\typeA,\typeB),d)$/$\sim$ is a small  $\catMet$-enriched category for all types $\typeA$ and $\typeB$. 
-
- \end{definition}
-
-\begin{theorem}[ Soundness and Completeness]
-Consider a varietal metric $\lambda$-theory. A metric equation in context
-$\Gamma \vljud v =_{q} w : \typeA$
-is a theorem if and only if it holds in all models of the theory.
-\end{theorem}
 
 
 
 
-
-
-
+%For the metric quantale, the way-below relation corresponds to the strictly greater relation with ∞ > ∞, and a basis for the underlying lattice that satisfies the conditions above is the set of extended non-negative rational numbers.
 
 \todo[inline,size=\normalsize]{Way bellow and lattice stuff (complete lattice, distributive latice, R+ é uma distributive lattice)}
 
@@ -154,140 +86,5 @@ x, y G C we have x < y or y < x."}
 
 \section{A small example}
 
-\begin{comment}
-\begin{figure} [H]
-  \centering
-  \begin{quantikz} [column sep=0.2cm, row sep=0.5cm] 
-      \lstick{$\ket{\psi}$}  & \qw &\qw & \qw & \qw & \qw& \qw & \qw &\qw  & \ctrl{1}\gategroup[2,steps=4,style={dashed,rounded
-      corners,fill=blue!20, inner
-      xsep=2pt},background,label style={label
-      position=below,anchor=north,yshift=-0.2cm}]{{\sc
-      BellMeasure}} & \gate{H} & \qw & \meter{} & \setwiretype{c}  &  & \gategroup[3,steps=4,style={dashed,rounded
-      corners,fill=blue!20, inner
-      xsep=2pt},background,label style={label
-      position=below,anchor=north,yshift=-0.2cm}]{{\sc
-      Correction}}  &  & & \ctrl[vertical
-wire=c]{2}  \\
-      \lstick {$\ket{0}$}  &\gate{H}\gategroup[2,steps=3,style={dashed,rounded
-      corners,fill=blue!20, inner
-      xsep=2pt},background,label style={label
-      position=below,anchor=north,yshift=-0.2cm}]{{\sc
-      EPR}}  & \qw  & \ctrl{1}& \qw &    & \gate{D_{p}}\gategroup[1,steps=1,style={dashed,rounded
-      corners,fill=blue!20, inner
-      xsep=2pt},background,label style={label
-      position=below,anchor=north,yshift=-0.2cm}]{{\sc
-      Dephasing}}  & \qw & \qw & \targ{} & \qw & \qw & \meter{} & \setwiretype{c} & & & \ctrl[vertical
-wire=c]{1} \\
-      \lstick{$\ket{0}$}  &  \qw & \qw &  \targ{} & \qw \qw & & \qw & \qw &\qw&\qw & \qw & \qw& \qw & \qw & \qw &  \qw & \gate{X} & \qw & \gate{Z} 
- \end{quantikz}
-  \caption{Quantum Teleportation Protocol: Dephasing with probability $p$ after EPR pair creation.}
-  \label{fig:teleport_dephasing}
-\end{figure}
 
 
-\begin{figure} [H]
-  \centering
-  \begin{quantikz} [column sep=0.2cm, row sep=0.5cm] 
-      \lstick{$\ket{\psi}$}  & \qw &\qw & \qw & \qw & \qw& \ctrl{1}\gategroup[2,steps=4,style={dashed,rounded
-      corners,fill=blue!20, inner
-      xsep=2pt},background,label style={label
-      position=below,anchor=north,yshift=-0.2cm}]{{\sc
-      BellMeasure}} & \gate{H} & \qw & \meter{} & \setwiretype{c}  &  & \gategroup[3,steps=4,style={dashed,rounded
-      corners,fill=blue!20, inner
-      xsep=2pt},background,label style={label
-      position=below,anchor=north,yshift=-0.2cm}]{{\sc
-      Correction}}  &  & & \ctrl[vertical
-wire=c]{2}  \\
-      \lstick {$\ket{0}$}  &\gate{H}\gategroup[2,steps=3,style={dashed,rounded
-      corners,fill=blue!20, inner
-      xsep=2pt},background,label style={label
-      position=below,anchor=north,yshift=-0.2cm}]{{\sc
-      EPR}} & \qw  & \ctrl{1}& \qw & \qw & \targ{} & \qw & \qw & \meter{} & \setwiretype{c} & & & \ctrl[vertical
-wire=c]{1} \\
-      \lstick{$\ket{0}$}  &  \qw & \qw &  \targ{} & \qw &\qw&\qw & \qw & \qw& \qw & \qw & \qw &  \qw & \gate{X} & \qw & \gate{Z} & \qw & \qw   & \gate{A_{\gamma}}\gategroup[1,steps=2,style={dashed,rounded
-      corners,fill=blue!20, inner
-      xsep=2pt},background,label style={label
-      position=below,anchor=north,yshift=-0.2cm}]{{\sc
-      { \hspace{50 pt} Amplitude Damping}}} & \qw
- \end{quantikz}
-  \caption{Quantum Teleportation Protocol: Amplitude Dampling with probability $\gamma$ after Correction.}
-  \label{fig:teleport_amplitude_damping}
-\end{figure}
-
-
-
-\begin{figure} [H]
-  \centering
-  \begin{quantikz} [column sep=0.2cm, row sep=0.5cm] 
-      \lstick{$\ket{\psi}$}  & \qw &\qw & \qw & \qw & \qw& \ctrl{1}\gategroup[2,steps=4,style={dashed,rounded
-      corners,fill=blue!20, inner
-      xsep=2pt},background,label style={label
-      position=below,anchor=north,yshift=-0.2cm}]{{\sc
-      BellMeasure}} & \gate{H^{\epsilon}} & \qw & \meter{} & \setwiretype{c}  &  & \gategroup[3,steps=4,style={dashed,rounded
-      corners,fill=blue!20, inner
-      xsep=2pt},background,label style={label
-      position=below,anchor=north,yshift=-0.2cm}]{{\sc
-      Correction}}  &  & & \ctrl[vertical
-wire=c]{2}  \\
-      \lstick {$\ket{0}$}  &\gate{H^{\epsilon}}\gategroup[2,steps=3,style={dashed,rounded
-      corners,fill=blue!20, inner
-      xsep=2pt},background,label style={label
-      position=below,anchor=north,yshift=-0.2cm}]{{\sc
-      EPR}} & \qw  & \ctrl{1}& \qw & \qw & \targ{} & \qw & \qw & \meter{} & \setwiretype{c} & & & \ctrl[vertical
-wire=c]{1} \\
-      \lstick{$\ket{0}$}  &  \qw & \qw &  \targ{} & \qw &\qw&\qw & \qw & \qw& \qw & \qw & \qw &  \qw & \gate{X} & \qw & \gate{Z} 
- \end{quantikz}
-  \caption{Quantum Teleportation Protocol: Erroneous implementation of the Hadamard gate. $H^{\epsilon}$ is regarded as the composition $R_{y}(\frac{\pi}{2})\cdot P(\pi + \epsilon)$.}
-  \label{fig:teleport_h}
-\end{figure}
-
-
-
-
-This operation is depicted in \autoref{fig:Operation_T}.
-
-\begin{figure} [H]
-  \centering
-  \begin{quantikz} [column sep=0.2cm, row sep=0.5cm,wire
-    types={n,n}]%
-      \lstick{$\ket{\phi}$}  &\qw \gategroup[2,steps=9,style={dashed,rounded
-      corners,fill=blue!20, inner
-      xsep=2pt},background,label style={label
-      position=below,anchor=north,yshift=-0.2cm}]{{\sc
-      T}} & \qw  & \qw   & \qw  & \qw & \qw & \gate{U} \qw &\qw & \qw & \qw \\
-      & & & \lstick {$\ket{0}$}  & \qw &\gate{R_X(\frac{\pi}{2})} \qw & \qw & \ctrl{-1} \qw & \qw & \gate{\text{Disc}} \qw 
-    \end{quantikz}
-  \caption{T operation}
-  \label{fig:Operation_T}
-\end{figure}
-
-
-\begin{figure} [H]
-  \centering
-  \begin{quantikz} [column sep=0.2cm, row sep=0.5cm,wire
-    types={n,n,n,n,n}]%
-      \lstick{$\ket{\psi}$}  & \qw &\qw & \qw & \qw & \qw &  \ctrl{1} \qw \gategroup[2,steps=2,style={dashed,rounded
-      corners,fill=blue!20, inner
-      xsep=2pt},background,label style={label
-      position=above,anchor=south,yshift=-0.2cm}]{{\sc
-      TeleportIntra-gate}} & \gate{H} \qw & \qw & \qw &\qw \gategroup[5,steps=18,style={dashed,rounded
-      corners,fill=blue!20, inner
-      xsep=2pt},background,label style={label
-      position=below,anchor=north,yshift=-0.2cm}]{{\sc
-      TMeasureCorrection}}  & \qw & \qw & \qw & \targ{} \qw  & \qw & \qw & \qw & \qw & \qw & \qw  & \qw& \meter{} \qw      & \setwiretype{c}  &  &  & & \ctrl[vertical
-wire=c]{2}  \\
-      \lstick {$\ket{0}$}  &\gate{H} \qw \gategroup[2,steps=3,style={dashed,rounded
-      corners,fill=blue!20, inner
-      xsep=2pt},background,label style={label
-      position=below,anchor=north,yshift=-0.2cm}]{{\sc
-      EPR}} & \qw  & \ctrl{1} \qw & \qw & \qw  & \targ{} \qw & \qw & \qw & \qw & \qw& \qw & \qw & \qw & \qw &  \qw & \qw & \qw & \qw &  \qw &  \targ{} \qw & \qw& \meter{} \qw & \setwiretype{c}  & & \ctrl[vertical
-wire=c]{1} \\
-      \lstick{$\ket{0}$}  &  \qw & \qw &  \targ{} \qw \qw & \qw &\qw&\qw & \qw & \qw& \qw & \qw & \qw & \qw& \qw & \qw & \qw & \qw &  \qw & \qw & \qw & \qw & \qw & \qw & \qw& \qw& \gate{X} \qw & \qw & \gate{Z} \qw\\
-       &   & &  &  & & &  &  & & & & & & &  & & & \lstick{$\ket{0}$}  & \gate{R_X(\frac{\pi}{2})} \qw& \ctrl{-2} \qw & \gate{\text{Disc}} \qw  \\
-      &   &  & & & & &  &  & & & & \lstick{$\ket{0}$}   &\gate{R_X(\frac{\pi}{2})} \qw  & \ctrl{-4} \qw & \gate{\text{Disc}} \qw & && &  &  &  &  &   & &  &  &  &  &  &
-    \end{quantikz}
-  \caption{Quantum Teleportation Protocol: Bit flip with  50\% probability before measurement.}
-  \label{fig:teleport_bit_flip}
-\end{figure}
-
-\end{comment}
