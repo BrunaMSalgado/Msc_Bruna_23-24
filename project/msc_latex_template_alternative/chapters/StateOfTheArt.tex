@@ -1151,7 +1151,9 @@ This equality follows from the $\alpha$-equivalence and the equations $\eta_{\te
 
 \subsection{Metric equational system}
 
-\emph{Metric equations} \cite{mardare2016quantitative,mardare2017axiomatizability} are a strong candidate for reasoning about approximate program equivalence. These equations take the form of \gls{metric-equation}, where  $\epsilon$ is a non-negative rational representing the ``maximum distance" between the two terms $t$ and $s$. The metric equational system for affine lambda calculus is depicted in \autoref{fig:metric deductive system}.
+\emph{Metric equations} \cite{mardare2016quantitative,mardare2017axiomatizability} are a strong candidate for reasoning about approximate program equivalence. These equations take the form of \gls{metric-equation}, where  $\epsilon$ is a non-negative rational representing the ``maximum distance" between the two terms $t$ and $s$. The metric equational system for affine lambda calculus is depicted in \autoref{fig:metric deductive system}. 
+Strictly speaking, the equations $\Gamma \triangleright v = w : A$ in \autoref{fig:equations-linear-lambda}, which in this setting abbreviate $\Gamma \triangleright w =_0 v : A$, are also part of the metric equational system.
+
 
 \begin{figure} [H]
 \begin{equation*}
@@ -2584,7 +2586,7 @@ Regarding the interpretation of the exhange and substitution properties, we have
 
 
 
-\begin{theorem}
+\begin{theorem} \label{thm:soundness_classical}
 The equations presented in \autoref{fig:equations-linear-lambda} are sound with respect to judgement interpretation. 
 More specifically, if \(\Gamma \vljud v = w : \typeA\) is one of the equations in \autoref{fig:equations-linear-lambda}, then 
 $\llbracket \Gamma \vljud v : A  \rrbracket = \llbracket  \Gamma \vljud w : \typeA\rrbracket.$
@@ -2602,7 +2604,7 @@ and analogously for the operation symbols in \(\Sigma\).
 This interpretation structure is a \emph{model} of the theory if all axioms in \(Ax\) are satisfied by the interpretation.
 \end{definition}
 
-\begin{theorem}[Completeness]
+\begin{theorem}[Completeness] \label{thm:completeness_classical}
 Consider a linear $\lambda$-theory $\mathscr{T}$. Then an equation 
 $\Gamma \vljud v = w : \typeA$
 is a theorem of $\mathscr{T}$ if and only if it is satisfied by all models of the theory.
@@ -2688,7 +2690,7 @@ is a theorem of $\mathscr{T}$ if and only if it is satisfied by all models of th
 \end{example}
 
 
-\subsection{Semantics of metric equations}
+\subsection{Semantics of metric equations} \autoref{subsec:semantics_metric}
  We will now turn our attention to the semantics of the metric equations. First, we recall the definition of a metric space.
 
  \begin{definition}
@@ -2755,6 +2757,13 @@ In this context, the notions of \emph{soundness} and \emph{completeness} are ext
 \todo[inline,size=\normalsize]{O que fazer com a def de adjunção -> theorem 4.2 artigo} 
 
 \begin{definition}
+    $\catMet$ denotes the category whose objects are metric spaces and whose morphisms are non-expansive maps, \ie, functions that do not increase the distance between points. More precisely, for two metric spaces $(X, d_X)$ and $(Y, d_Y)$, a morphism $f: (X, d_X) \to (Y, d_Y)$ is a function $f: X \to Y$ such that
+$$
+d_Y(f(x), f(y)) \leq d_X(x, y) \quad \text{for all } x, y \in X.
+$$
+  \end{definition}
+
+\begin{definition} \label{def:monoidal_closed_met_cat}
 A \emph{$\catMet$-category} $\catC$ is a category in which each hom-set $\catC(A, B)$ is equipped with a metric $d_{A,B}$, such that for all morphisms $f_1, f_2 \in \catC(A, B)$ and $g_1, g_2 \in \catC(B, C)$, the following inequality holds:
 \[
   d_{A,C}(g_1 \circ f_1, g_2 \circ f_2) \leq d_{A,B}(f_1, f_2) + d_{B,C}(g_1, g_2).
@@ -2773,17 +2782,17 @@ natural in $B$ and $C$.
 \end{definition}
 
 
-\begin{theorem}\cite[Theorem 4.2]{dahlqvist2022syntactic}
+\begin{theorem}\cite[Theorem 4.2]{dahlqvist2022syntactic} 
 Let $\catC$ be a category that is both monoidal closed and a symmetric monoidal $\catMet$- category, and suppose that for all objects $X \in \catC$, the functor $X \multimap - : \catC \to \catC$ is non-expansive. Then $\catC$ is a \emph{symmetric monoidal closed $\catMet$-category}.
 \end{theorem}
 
 
-\begin{theorem} [Soundness] \cite[Theorem 3.14]{dahlqvist2022syntactic} 
+\begin{theorem} [Soundness] \cite[Theorem 3.14]{dahlqvist2022syntactic}  \label{thm:soundness_metric_no_cond}
   The rules in Figures \ref{fig:equations-linear-lambda} and \ref{fig:metric deductive system} are sound for a  symmetric monoidal closed $\catMet$-category  $\catC$ over metric spaces. Specifically, if $\Gamma \vljud v =_{q} w : \typeA $ results from the rules in Figures \ref{fig:equations-linear-lambda} and \ref{fig:metric deductive system} then $q \geq d( \llbracket \Gamma  \vljud v : \typeA \rrbracket, \llbracket\Gamma \vljud w : \typeA \rrbracket)$.
 \end{theorem}
 
 
-\begin{definition}
+\begin{definition} \label{def:model_metric_no_cond}
   Consider a metric $\lambda$-theory $((G,\Sigma),Ax)$ and a symmetric monoidal closed $\catMet$-category $\catC$. Suppose that for each $X \in G$ we have an interpretation $\llbracket X \rrbracket$ as a $\catC$-object and analogously for the operation symbols. This interpretation structure is a model of the theory if all axioms in $Ax$ are satisfied by the interpretation.
 \end{definition}
 
@@ -2791,11 +2800,5 @@ Let $\catC$ be a category that is both monoidal closed and a symmetric monoidal 
 For two types $\typeA$ and $\typeB$ of a metric $\lambda$-theory $\mathscr{T}$ , consider the class \texttt{Values}$(\typeA,\typeB)$ of values $v$ such that $x : \typeA \vljud v : \typeB$. We equip $\texttt{Values}(\typeA,\typeB)$ with the function $d :\texttt{Values}(\typeA,\typeB) \times \texttt{Values}(\typeA,\typeB) \rightarrow \mathbb{Q}^{+}_0$ defined by,
 $$d(v,w)=\inf{\{q \, \vert \, v=_q w \text{ is a theorem of } \mathscr{T} \}}$$
 
-\texttt{Values}$((\typeA,\typeB),d)$ is a (possibly large)  $\catMet$- category. We  quotient this  $\catMet$-enriched category into a separated  $\catMet$-category which we denote by (\texttt{Values}$(\typeA,\typeB),d)$/$\sim$. We call  $\mathscr{T}$ \emph{varietal} if (\texttt{Values}$(\typeA,\typeB),d)$/$\sim$ is a small  $\catMet$-category for all types $\typeA$ and $\typeB$. For the rest of this work, we will focus exclusively on varietal theories and locally small categories.
+\texttt{Values}$((\typeA,\typeB),d)$ is a (possibly large)  $\catMet$- category. We  quotient this  $\catMet$-category into a separated  $\catMet$-category which we denote by (\texttt{Values}$(\typeA,\typeB),d)$/$\sim$. We call  $\mathscr{T}$ \emph{varietal} if (\texttt{Values}$(\typeA,\typeB),d)$/$\sim$ is a small  $\catMet$-category for all types $\typeA$ and $\typeB$. For the rest of this work, we will focus exclusively on varietal theories and locally small categories.
 
-
-\begin{theorem}[Completeness] \cite[Theorem 3.16]{dahlqvist2022syntactic}
-Consider a varietal metric $\lambda$-theory. A metric equation in context
-$\Gamma \vljud v =_{q} w : \typeA$
-is a theorem if and only if it holds in all models of the theory.
-\end{theorem}

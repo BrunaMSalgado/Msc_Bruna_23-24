@@ -6,45 +6,45 @@ The style file: unsrt.bst
 Reallocating 'name_of_file' (item size: 1) to 13 items.
 Database file #1: dissertation.bib
 Warning--empty booktitle in aliprantisBanachLattices1999
-You've used 59 entries,
+You've used 61 entries,
             1791 wiz_defined-function locations,
-            786 strings with 13502 characters,
-and the built_in function-call counts, 13582 in all, are:
-= -- 1199
-> -- 570
+            796 strings with 13906 characters,
+and the built_in function-call counts, 13982 in all, are:
+= -- 1231
+> -- 598
 < -- 16
-+ -- 217
-- -- 158
-* -- 837
-:= -- 2090
-add.period$ -- 181
-call.type$ -- 59
-change.case$ -- 43
++ -- 227
+- -- 166
+* -- 859
+:= -- 2158
+add.period$ -- 188
+call.type$ -- 61
+change.case$ -- 44
 chr.to.int$ -- 0
-cite$ -- 60
-duplicate$ -- 669
-empty$ -- 1392
-format.name$ -- 158
-if$ -- 3102
+cite$ -- 62
+duplicate$ -- 689
+empty$ -- 1430
+format.name$ -- 166
+if$ -- 3194
 int.to.chr$ -- 0
-int.to.str$ -- 59
-missing$ -- 73
-newline$ -- 296
-num.names$ -- 62
-pop$ -- 231
+int.to.str$ -- 61
+missing$ -- 77
+newline$ -- 306
+num.names$ -- 64
+pop$ -- 242
 preamble$ -- 1
 purify$ -- 0
 quote$ -- 0
-skip$ -- 306
+skip$ -- 311
 stack$ -- 0
 substring$ -- 787
-swap$ -- 170
+swap$ -- 172
 text.length$ -- 16
 text.prefix$ -- 0
 top$ -- 0
 type$ -- 0
 warning$ -- 1
-while$ -- 132
-width$ -- 61
-write$ -- 636
+while$ -- 134
+width$ -- 63
+write$ -- 658
 (There was 1 warning)

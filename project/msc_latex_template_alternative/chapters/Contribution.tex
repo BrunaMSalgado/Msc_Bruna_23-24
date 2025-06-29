@@ -3,14 +3,6 @@
 As noted in \autoref{subsec:interlude_bool}, a metric equation for the conditional statement would be extremely helpful for reasoning about approximate equivalence within the $\lambda$-calculus with conditionals. In this chapter, we address this gap by introducing such an equation and proving both its soundness and completeness. We present the category of metric spaces as an example of a setting suitable for reasoning about approximate equivalence in this context and illustrate the usefulness of the introduced equation through two small examples: reasoning about approximate equivalence between boolean terms (i.e., terms of type $\typeI \oplus \typeI$) and the extensionality of copairing. We conclude the chapter with a brief discussion on the suitability of the chosen metric equation.
 
 
-\todo[inline,size=\normalsize]{ (Tentar) Meter tudo direito de soundness and completeness }
-
-\todo[inline,size=\normalsize]{ Exemplo MET : referir Example 3.13. que diz de MET é symmetric monoidal met-enriched}
-
-\todo[inline,size=\normalsize]{ Exemplo booleano }
-
-
-\todo[inline,size=\normalsize]{ Exemplo extensionalidade do copairing}
 
 \todo[inline,size=\normalsize]{ Discussao sobre max(q+r, q+s) != max(q+r, q+s) }
 
@@ -52,39 +44,240 @@ Intuitively, this equation states that the maximum distance between the two cond
 Recall \autoref{def:metric_lambda_theory}. Now, we extend \( Th(Ax) \) to denote the smallest class that contains \( Ax \) and is closed under the rules presented in \autoref{fig:equations-linear-lambda}, \autoref{fig:metric deductive system} and \autoref{fig:metric conditionals}.
 
 
+\section{Interpretation}
 
-\section{Soundeness and Completeness}
+In this subsection, we extend the concepts introduced in \autoref{subsec:semantics_metric} to include the interpretation of the new metric equation.
+
+\begin{definition}
+  A \emph{distributive symmetric monoidal closed $\catMet$-category} $\catC$ is a category that is both distributive symmetric monoidal closed  and a symmetric monoidal closed $\catMet$‑category, such that, for all morphisms $f_1, f_2 \in \catC(A, C)$ and $g_1, g_2 \in \catC(B, C)$, we have:
+\[
+  d_{A \oplus B, C}([f_1, g_1], [f_2, g_2]) \leq \sup \{d_{A,C}(f_1, f_2), d_{B,C}(g_1, g_2)\}.
+\]
+\end{definition}
 
 
+\begin{definition}
+  Consider a metric $\lambda$-theory $((G,\Sigma),Ax)$ and a distributive symmetric monoidal closed $\catMet$-category $\catC$. Suppose that for each $X \in G$ we have an interpretation $\llbracket X \rrbracket$ as a $\catC$-object and analogously for the operation symbols. This interpretation structure is a model of the theory if all axioms in $Ax$ are satisfied by the interpretation.
+\end{definition}
 
+\todo[inline,size=\normalsize]{Não sei será melhor colocar isto elsewhere}
 
-
+\section{Lattice Theory Preliminaries}
+In this section, we introduce a few concepts from lattice theory that will be useful for the completeness proof and for the broader discussion of our results.
 %For the metric quantale, the way-below relation corresponds to the strictly greater relation with ∞ > ∞, and a basis for the underlying lattice that satisfies the conditions above is the set of extended non-negative rational numbers.
 
-\todo[inline,size=\normalsize]{Way bellow and lattice stuff (complete lattice, distributive latice, R+ é uma distributive lattice)}
-
-\todo[inline,size=\normalsize]{Crole: tem as defs e diz que "Any poset which is a chain is distributive." tendo em conta que "A subset C of a preorder X is called a chain if for every
-x, y G C we have x < y or y < x."}
 
 \begin{definition}
-	Consider a complete lattice $L$.  For every $x, y \in L$ we say that
-	$y$ is \emph{way-below} $x$ (in symbols, $y \ll x$) if for every
-	subset $X \subseteq L$ whenever $x \leq \bigvee X$ there exists a
-	\emph{finite} subset $A \subseteq X$ such that $y \leq \bigvee A$.
-	The lattice $L$ is called \emph{continuous} iff for every $x \in L$,
+   A \emph{lattice} is a partial order in which every finite subset has both a meet and a join. A \emph{complete lattice} is a partial order  in which every subset, finite or infinite, has a meet and a join.
+\end{definition}
+
+\begin{definition}
+  \emph{Quantales} are complete lattices equipped with an associative composition that preserves suprema in both arguments.
+\end{definition}
+
+\begin{example}
+  In this work, we consider only the standard metric quantale, whose complete lattice is the interval $[0, \infty]$ ordered by $\geq$. The associative composition is given by addition.
+\end{example}
+
+
+\begin{lemma}[Way-below relation for the metric quantale] \cite{dahlqvist2022syntactic}
+Let $L$ denote the complete lattice $[0, \infty]$ ordered by $\geq$.  
+For all $x, y \in L$ and for every subset $X \subseteq L$, if $y > x$, then whenever $x \geq \inf X$, there exists a \emph{finite} subset $A \subseteq X$ such that $y \geq \inf A$.
+
+This property characterizes the \emph{way-below relation} in the metric quantale. The lattice $L$ is \emph{continuous}, \ie for every $x \in L$,
 	\begin{flalign*}
-		x = \bigvee \{ y  \mid y \in L\ \text{and} \ y \ll x \}
+		x = \inf \{ y  \mid y \in L\ \text{and} \ y > x \}.
 	\end{flalign*}
+\end{lemma}
+
+
+\begin{definition}
+  A subset $D$ of a lattice $L$ is called \emph{directed} if it is nonempty and every finite subset of $D$ has an upper bound in $D$. A partially order is said to be \emph{directed complete} if every directed subset has a supremum. A directed complete poset is commonly referred to as a \emph{dcpo}.
 \end{definition}
 
 \begin{definition}
-	Let $L$ be a complete lattice. A \emph{basis} $B$ of $L$ is a subset
-	$B \subseteq L$ such that for every $x \in L$ the set
-	$B \cap \{ y \mid y \in L\ \text{and} \ y \ll x \}$ is directed and
-	has $x$ as the least upper bound.
+  A semilattice $L$ is called \emph{meet continuous} if it is directed complete, i.e., a dcpo, and satisfies the condition
+  \[
+    x \wedge \sup D = \sup \{x \wedge d \mid d \in D\} \tag{MC}
+  \]
+  for all $x \in L$ and all directed subsets $D \subseteq L$.
 \end{definition}
 
-\section{A small example}
+\begin{lemma} \cite[Proposition I-1.8]{gierzContinuousLatticesDomains2003} \label{lem:meet_continuos}
+  Every continuous lattice is meet continuous.
+\end{lemma}
+
+\begin{lemma} \cite[Lemma 2.23]{daveyIntroductionLatticesOrder2002} \label{lem:sup_union}
+Let \( P \) be a lattice, let \( S, T \subseteq P \) and assume that \( \bigvee S \),
+\( \bigvee T \), \( \bigwedge S \) and \( \bigwedge T \) exist in \( P \). Then
+$$ \bigvee(S \cup T) = \left(\bigvee S\right) \vee \left(\bigvee T\right) . $$
+\end{lemma}
+
+
+\section{Soundeness and Completeness}
+The proofs in this section are based on the proofs of 
+\autoref{thm:soundness_metric_no_cond} and \autoref{thm:completeness_metric_no_cond} in \cite{dahlqvist2022syntactic}.
+
+\begin{theorem}
+  The rules in Figures \ref{fig:equations-linear-lambda}, \ref{fig:metric deductive system} and \ref{fig:metric conditionals} are sound for a  distributive symmetric monoidal closed $\catMet$-category $\catC$. Specifically, if $\Gamma \vljud v =_{q} w : \typeA $ results from the rules in Figures  \ref{fig:equations-linear-lambda}, \ref{fig:metric deductive system} and \ref{fig:metric conditionals} then $q \geq d( \llbracket \Gamma  \vljud v : \typeA \rrbracket, \llbracket\Gamma \vljud w : \typeA \rrbracket)$.
+\end{theorem}
+
+\begin{proof}
+  As is shown in \cite{dahlqvist2022syntactic}, this proof uses induction over the depth of proof trees that
+  arise from the metric deductive system. The general strategy for each
+  inference rule is to use the definition of a distributive symmetric monoidal closed $\catMet$-category. 
+
+   More concretly, first, consider the equations on \autoref{fig:equations-linear-lambda} which abreviate equations $\Gamma \triangleright w =_0 v : \typeA$. By \autoref{thm:soundness_classical}, these equations are sound for distributive symmetric monoidal closed categories, \ie if $v=w$, then $\sem{v}=\sem{w}$ in $ \catC$. Then by the definition of a $\catMet$-Category (\autoref{def:monoidal_closed_met_cat}) we obtain $d(\sem{v},\sem{w}) = d(\sem{w},\sem{v})=0.$ 
+ 
+   The rules in \autoref{fig:metric deductive system} follows from the definition of a symmetric monoidal closed $\catMet$-category. Finally, regarding  the rule in  \autoref{fig:metric conditionals}, it follows from the fact that $\catC$ is distributive symmetric monoidal closed $\catMet$-category. We reason as follows:
+  \begin{align*}
+    & \hspace{-20pt} d( \llbracket  \text{ case } v \, \{\text{inl}_{\typeB}  (x) \Rightarrow w ; \, \text{inr}_{\typeA} (y) \Rightarrow u\}  \rrbracket, \llbracket \text{ case } v' \, \{\text{inl}_{\typeB}  (x) \Rightarrow w' ; \, \text{inr}_{\typeA} (y) \Rightarrow u'\} \rrbracket)  \\
+    &  \hspace{-20pt} = d( [\llbracket w\rrbracket ,\llbracket u\rrbracket] \comp (\text{jn}_{\Delta;\typeA}\comp \sw \oplus \text{jn}_{\Delta;\typeB}\comp \sw) \comp \dist \comp (\llbracket v\rrbracket \otimes \text{id}) \comp \text{sp}_{\Gamma;\Delta} \comp \text{sh}_{E}, \\
+    & \hspace{7pt} [\llbracket w'\rrbracket ,\llbracket u'\rrbracket] \comp (\text{jn}_{\Delta;\typeA}\comp \sw \oplus \text{jn}_{\Delta;\typeB}\comp \sw) \comp \dist \comp (\llbracket v'\rrbracket \otimes \text{id}) \comp \text{sp}_{\Gamma;\Delta} \comp \text{sh}_{E})\\
+    & \hspace{-20pt} \leq  d( [\llbracket w\rrbracket ,\llbracket u\rrbracket] \comp (\text{jn}_{\Delta;\typeA}\comp \sw \oplus \text{jn}_{\Delta;\typeB}\comp \sw) \comp \dist \comp (\llbracket v\rrbracket \otimes \text{id}),  [\llbracket w'\rrbracket ,\llbracket u'\rrbracket] \comp (\text{jn}_{\Delta;\typeA}\comp \sw \, \oplus \\
+    & \hspace{7pt}  \text{jn}_{\Delta;\typeB}\comp \sw) \comp \dist \comp (\llbracket v'\rrbracket \otimes \text{id}) )\\
+    & \hspace{-20pt} \leq  d(\llbracket v\rrbracket \otimes \text{id}, \llbracket v'\rrbracket \otimes \text{id}) +  d( [\llbracket w\rrbracket ,\llbracket u\rrbracket] \comp (\text{jn}_{\Delta;\typeA}\comp \sw \oplus \text{jn}_{\Delta;\typeB}\comp \sw) \comp \dist,  [\llbracket w'\rrbracket ,\llbracket u'\rrbracket]\comp \\
+    & \hspace{7pt} (\text{jn}_{\Delta;\typeA}\comp \sw \oplus \text{jn}_{\Delta;\typeB}\comp \sw) \comp \dist) \\
+    & \hspace{-20pt} \leq  q +  d( [\llbracket w\rrbracket ,\llbracket u\rrbracket] \comp (\text{jn}_{\Delta;\typeA}\comp \sw \oplus \text{jn}_{\Delta;\typeB}\comp \sw) \comp \dist,  [\llbracket w'\rrbracket ,\llbracket u'\rrbracket] \comp (\text{jn}_{\Delta;\typeA}\comp \sw \oplus \text{jn}_{\Delta;\typeB}\comp \sw)  \\
+    & \hspace{20pt} \comp \dist)\\
+    &  \hspace{-20pt} \leq q +  d( [\llbracket w\rrbracket ,\llbracket u\rrbracket],  [\llbracket w'\rrbracket ,\llbracket u'\rrbracket]) \\
+    & \hspace{-20pt}  \leq q + \sup(d( \llbracket w\rrbracket , \llbracket w' \rrbracket), d( \llbracket u\rrbracket , \llbracket u' \rrbracket)) \\
+    & \hspace{-20pt} \leq  q + \sup(r, s) \\
+  \end{align*}
+  The second step follows from the fact that $\text{sp}_{\Gamma;\Delta} \comp \text{sh}_{E}$  is a morphism in $\catC$  and that $\catC$ is a $\catMet$-category.  The third and fifth step follow from an analogous reasoning. The fourth step follows from the premises of the rule in question and the fact that $\catC$ is a symmetric monoidal $\catMet$-category The sixth step follows from the fact that $\catC$ is a distributive symmetric monoidal $\catMet$-enriched. Finally, the last step follows from the premise of the rule in question.
+
+\end{proof}
+
+Here, we note that in \texttt{Values}$((\typeA,\typeB),d)$, the definition of $d$ is extended incorporating the new theorems and we  quotient this  $\catMet$-category into a separated  $\catMet$-category which we denote by (\texttt{Values}$(\typeA,\typeB),d)$/$\sim$.
+
+
+\begin{theorem}[Completeness] \cite[Theorem 3.16]{dahlqvist2022syntactic} \label{thm:completeness_metric_no_cond}
+Consider a varietal metric $\lambda$-theory. A metric equation in context
+$\Gamma \vljud v =_{q} w : \typeA$
+is a theorem if and only if it holds in all models of the theory.
+\end{theorem}
+
+\begin{proof}
+  Completeness arises from constructing the syntactic category $\catSyn(\mathscr{T})$ of  $\lambda$-theory $\mathscr{T}$   of the underlying  theory
+  $\mathscr{T}$ and then show that provability of $\Gamma \vljud v =_q w : \typeA$
+  in $\mathscr{T}$ is equivalent to $a(\sem{v},\sem{w}) \geq q$ in the category
+  $\catfont{Syn}(\mathscr{T})$. Here we take advantage of the quotienting of a  $\catMet$-category into a separated  $\catMet$-category to prove that. First consider the following diagram:
+
+  \vspace{10pt}
+
+  \begin{tikzpicture}
+    \matrix (m) [matrix of math nodes, row sep=4em, column sep=7em, minimum width=2em]
+    {
+      X \times X  &  X /{\sim} \times X /{\sim}  \\
+      Y  \\
+    };
+    \path[-stealth]
+      (m-1-1) edge node [left] {$f$} (m-2-1)
+      (m-1-1) edge node [above] {} (m-1-2)
+      (m-1-2) edge node [above] {$\hat{f}$} (m-2-1)
+      ;
+  \end{tikzpicture}
+
+
+  It is necessary to prove that when $\hat{f}$ is defined as $\hat{f}([x],[y]) = [f(x,y)]$, $\hat{f}$ is a well-defined function. This is the case because if $[x] = [x']$ and $[y] = [y']$, then $x =_0 x'$ and $y =_0 y'$, and consequently applying rule  (refl) we obtain that $f(x,y) =_0 f(x',y')$. Therefore, the quotienting process identifies all terms $x : \typeA \triangleright v : \typeB$ and $x : \typeA \triangleright w : \typeB$ such that $v =_0 w$ and $w =_0 v$. This relation includes the equations-in-context from \autoref{fig:equations-in-context-cond} and, attending to \autoref{thm:completeness_classical} it is compatible with the term formation rules of the linear $\lambda$-calculus \autoref{fig:typing_rules_cond}. Thus, we obtain a category $\catSyn(\mathscr{T})$ whose objects are the types of the language and whose hom-sets are the underlying sets of the  $\catMet$-categories (\textbf{Values}$(\typeA,\typeB),d)$/$\sim$.
+
+
+  The next step is to show that $\catSyn(\mathscr{T})$ is a distributive symmetric monoidal $\catMet$-category. To this effect, in general one uses the fact that $+$ distributes over suprema and that $q \wedge (-)$
+  distributes over suprema for every $q \in [0, \infty]$  (\autoref{lem:meet_continuos}). With repect to the case statement, we reason as follows:
+
+  \begin{align*}
+    & \sup{\{d([v],[w]),d([v'],[w']) \}}  \\
+    & = \sup{\{d(v,w),d(v',w') \}} \\
+    & = \sup {\{ \inf{\{q \, \vert \, v=_q v'\}},\inf{\{r \, \vert \, w=_r w'\}}  \}} \\
+    & = \inf{\{ \sup \{ q, r \} \vert \, v=_q v', w=_r w' \}} &  \\
+    & \geq  \inf{ \{ q  \,\vert \, \text{ case } z \,   \{\text{inl} (x) \Rightarrow v ; \, \text{inr} (y) \Rightarrow w\} =_{q} \text{ case } z \,  \{\text{inl} (x) \Rightarrow v' ; \,\text{inr} (y) \Rightarrow w'\} \} } &  \\ 
+    & = d(\text{case } z \,   \{\text{inl} (x) \Rightarrow v ; \, \text{inr} (y) \Rightarrow w\}, \text{case } z \,  \{\text{inl} (x) \Rightarrow v' ; \,\text{inr} (y) \Rightarrow w'\}) \\
+    & = d([\text{case } z \,   \{\text{inl} (x) \Rightarrow v ; \, \text{inr} (y) \Rightarrow w\}], [\text{case } z \,  \{\text{inl} (x) \Rightarrow v' ; \,\text{inr} (y) \Rightarrow w'\}]) \\
+    & = d([[v],[v']],[[w],[w']])  
+  \end{align*}
+   The third step follows form the fact that $q \wedge (-)$
+  distributes over suprema for every $q \in [0, \infty]$, and the fourth step follows from the fact that for any sets $A$ and $B$, if $A \subseteq B$, then $\inf\{A\} \geq \inf\{B\}$.
+
+  The final step is to show that if an equation $\Gamma \vljud v =_q v' : \typeA$ with $q \in \mathbb{Q}^{+}_0$ is satisfied by Syn$(\mathscr{T})$ then it is a theorem of the linear metric $\lambda$-theory. By assumption, $d([v],[v']) = d(v,v') =  \inf{ \{r \, \vert \, v =_r v'\}} \leq q$. It follows from the definition of the way-below relation that for all
+ $x \in \mathbb{Q}^{+}_0$ with $x>q$ there exists a finite set $A \subseteq \{r \, \vert \, v =_r v'\}$ such that $x \geq \inf{A}$. Then by an
+ application of rule (join) we obtain $v =_{\inf{A}} v'$, and consequently, rule (weak) provides $v =_x v'$ for all $x > q$. Finally, by an application of rule (arch)  we deduce that $v =_q v'$ is part of the theory.
+\end{proof}
+
+\section{A small example: $\catMet$}
+
+\begin{proposition}
+        \label{prop:vcat}
+        The category $\catMet$ is a distributive symmetric monoidal closed $\catMet$-category 
+\end{proposition}
+
+\begin{proof}
+  By~\cite[Example 3.8]{dahlqvist2022syntactic}, the category $\catMet$ is a symmetric monoidal closed $\catMet$-category. As a result, it suffices to show that for all morphisms \( f_1, f_2 \in \catMet(A, C) \) and \( g_1, g_2 \in \catMet(B, C) \), the following inequality holds:
+  
+\[
+  d_{A \oplus B, C}([f_1, g_1], [f_2, g_2]) \leq \sup \{d_{A,C}(f_1, f_2), d_{B,C}(g_1, g_2)\}.
+\]
+
+In this category, the coproduct is defined as in $\catSet$. The distance function $d$ on the coproduct $A \oplus B$ is given by:
+   \[
+    \begin{cases}
+    d_{A \oplus B}(\inl(a_1),\inl(x_2)) = d_A(a_1,a_2) \\
+    d_{A \oplus B}(\inr(b_1),\inr(b_2)) = d_B(b_1,b_2) \\
+    d_{A \oplus B}(\inl(a), \inr(b)) = 
+    d_{A \oplus B}(\inr(b), \inl(a))  = \infty
+    \end{cases}
+    \]
+
+    The co-pairing is defined as in $\catfont{Set}$. The inequality we aim to prove follows directly from the fact that, given two morphisms  $f,g\in \catMet(A, B)$ the distance between them is defined as 
+  $$ d_{B}(\inl(x_1),\inl(x_2)) = \sup \{ d_A (f a, g a) \,\vert \, a \in A \} ,$$  
+    together with \autoref{lem:sup_union}. For  \( f_1, f_2 \in \catMet(A, C) \) and \( g_1, g_2 \in \catMet(B, C) \), we calculate:
+    \begin{align*}
+      & d_{A \oplus B, C}([f_1, g_1], [f_2, g_2]) \\
+      &  =  \sup \{ d_{A\oplus B} ([f_1, g_1] (a,b), [f_2, g_2] (a,b)) \,\vert \, (a,b) \in A \oplus B \} \\
+      & =  \sup \{ \{ d_{A\oplus B} ([f_1, g_1] (\inl(a)), [f_2, g_2] (\inl(a))) \,\vert \, a \in A \}    \\
+      & \hspace{15pt} \cup \{d_{A\oplus B} ([f_1, g_1] (\inr(b)), [f_2, g_2] (\inr(b))) \,\vert \, b \in B\}\} \\
+      & = \sup \{ \{ d_{A}(f_1 (a), f_2 (a)) \,\vert \, a \in A \} \cup  \{d_{B}(g_1 (b), g_2 (b)) \,\vert \, b \in B \}\} \\
+      & = \sup   \{ \sup \{ d_{A}(f_1 (a), f_2 (a)) \,\vert \, a \in A \}, \sup\{d_{B}(g_1 (b), g_2 (b)) \,\vert \, b \in B \}\} \\
+      &=  \sup \{d_{A,C}(f_1, f_2), d_{B,C}(g_1, g_2)\}. 
+    \end{align*}
+\end{proof}
+
+ 
 
 
 
+
+\section{Interlude:Booleans - Part 2}
+
+Having proven that the metric equation for conditionals is both sound and complete, we can now use it to explore the booleans introduced in the previous chapter in \autoref{subsec:interlude_bool}. For instance, given axioms
+$$ v' =_{\epsilon_1} a \quad \text{and}  \quad w' =_{\epsilon_2} b $$
+we can postulate 
+$$ \textbf{Conjunction} [v'/v, w'/w]  =_{\epsilon_1 + \epsilon_2}  \textbf{Conjunction} [a/v, b/w]. $$
+
+First note that using the equation $\eta_{\text{dis}}$, we have that $\Gamma \vljud \text{dis}(w) =_{0} \text{dis}(b)$.
+Then,using our metric deductive system we calculate
+
+\begin{align*}
+  &\text{case } v'  
+    \left\{ \begin{aligned}
+    \inl_{\typeI}(x) \Rightarrow  x \text{ to} *. \, w ;  \inl_{\typeI}(y) \Rightarrow y \text{ to} *. \,  \text{dis}(w) \text{ to} *. \, \inr_{\typeI}(*)
+  \end{aligned}  \right\}   \\
+  =_{\epsilon_1 + \epsilon_2} \, & \text{case } a  
+    \left\{ \begin{aligned}
+     \inl_{\typeI}(x) \Rightarrow  x \text{ to} *. \, b ;  \inl_{\typeI}(y) \Rightarrow y \text{ to} *. \,  \text{dis}(b) \text{ to} *. \, \inr_{\typeI}(*)
+  \end{aligned}  \right\}.
+\end{align*}
+
+Applying similar reasoning, is straightforward to see that we have a similar equation for the \textbf{Disjunction} program and that given an axiom $ v' =_{\epsilon} a $, we can postulate $\textbf{Negation} [v'/v] =_{\epsilon} \textbf{Negation} [a/v] $.
+
+Now, consider the axiom
+$$ v' =_{\epsilon} \inl_{\typeI}(*)$$
+
+Considering Lemma \ref{lemma:inl_neutral}, we have
+\begin{align*}
+   \textbf{Conjunction} [v'/v, w'/w]  &=_{\epsilon}  \textbf{Conjunction} [ \inl_{\typeI}(*)'/v, w'/w] = w'
+\end{align*}
+
+
+\section{Extensionality of the copairing}
+
+\section{Some remarks on the metric equation chosen}

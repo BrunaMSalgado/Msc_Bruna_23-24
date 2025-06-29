@@ -1,4 +1,4 @@
-This is XeTeX, Version 3.141592653-2.6-0.999995 (MiKTeX 24.1) (preloaded format=xelatex 2024.7.31)  28 JUN 2025 23:20
+This is XeTeX, Version 3.141592653-2.6-0.999995 (MiKTeX 24.1) (preloaded format=xelatex 2024.7.31)  29 JUN 2025 21:15
 entering extended mode
  restricted \write18 enabled.
  file:line:error style messages enabled.
@@ -1635,7 +1635,15 @@ LaTeX Font Info:    Font shape `TU/SourceSansPro(0)/b/n' will be
 
 ]) (dissertation.toc [11
 
-] [12])
+]
+LaTeX Font Info:    Font shape `TU/SourceSansPro(0)/m/n' will be
+(Font)              scaled to size 8.0pt on input line 40.
+LaTeX Font Info:    Font shape `TU/SourceSansPro(0)/m/n' will be
+(Font)              scaled to size 6.0pt on input line 40.
+
+Underfull \vbox (badness 5681) has occurred while \output is active []
+
+ [12])
 \tf@toc=\write6
 \openout6 = `dissertation.toc'.
 
@@ -1735,11 +1743,6 @@ Package glossaries-extra Warning: Base acronym command \acrshort should not be u
 Package glossaries-extra Warning: Base acronym command \acrshort should not be used with new abbreviation definitions. Use \glsxtrshort instead on input line 155.
 
 [9]
-LaTeX Font Info:    Font shape `TU/SourceSansPro(0)/m/n' will be
-(Font)              scaled to size 8.0pt on input line 161.
-LaTeX Font Info:    Font shape `TU/SourceSansPro(0)/m/n' will be
-(Font)              scaled to size 6.0pt on input line 161.
-
 Overfull \hbox (4.4259pt too wide) detected at line 207
  $[][]$ 
  []
@@ -1776,6 +1779,9 @@ Overfull \hbox (65.92268pt too wide) in paragraph at lines 349--349
  []
 
 [11] [12] [13]
+LaTeX Font Info:    Font shape `TU/SourceSansPro(0)/m/n' will be
+(Font)              scaled to size 7.0pt on input line 489.
+
 
 Package hyperref Warning: Token not allowed in a PDF string (Unicode):
 (hyperref)                removing `math shift' on input line 489.
@@ -1828,22 +1834,22 @@ Overfull \hbox (4.59152pt too wide) detected at line 1148
  []
 
 [25]
-Overfull \hbox (30.13834pt too wide) in paragraph at lines 1297--1297
+Overfull \hbox (30.13834pt too wide) in paragraph at lines 1299--1299
 []$[]$ 
  []
 
 
-Overfull \hbox (87.33153pt too wide) in paragraph at lines 1297--1297
+Overfull \hbox (87.33153pt too wide) in paragraph at lines 1299--1299
 []$[]$ 
  []
 
 
-Overfull \hbox (25.46736pt too wide) in paragraph at lines 1297--1297
+Overfull \hbox (25.46736pt too wide) in paragraph at lines 1299--1299
 []$[]$ 
  []
 
 
-Overfull \hbox (14.47974pt too wide) detected at line 1298
+Overfull \hbox (14.47974pt too wide) detected at line 1300
  $[][]$ 
  []
 
@@ -1851,12 +1857,12 @@ Overfull \hbox (14.47974pt too wide) detected at line 1298
 Underfull \vbox (badness 10000) has occurred while \output is active []
 
  [28]
-Overfull \hbox (6.76428pt too wide) in paragraph at lines 1366--1367
+Overfull \hbox (6.76428pt too wide) in paragraph at lines 1368--1369
 []\TU/SourceSansPro(0)/m/n/12 a collection of morphisms $\OML/cmm/m/it/12 f; g; []$\TU/SourceSansPro(0)/m/n/12 , usually denoted $[]\OT1/cmr/m/n/12 (\OML/cmm/m/it/12 A; B\OT1/cmr/m/n/12 )$\TU/SourceSansPro(0)/m/n/12 , $[][]\OT1/cmr/m/n/12 (\OML/cmm/m/it/12 A; B\OT1/cmr/m/n/12 )$\TU/SourceSansPro(0)/m/n/12 , or $[]\OT1/cmr/m/n/12 (\OML/cmm/m/it/12 A; B\OT1/cmr/m/n/12 )$
  []
 
 [29] [30]
-Overfull \hbox (26.37437pt too wide) in paragraph at lines 1466--1467
+Overfull \hbox (26.37437pt too wide) in paragraph at lines 1468--1469
 []\TU/SourceSansPro(0)/b/n/12 Example 2.3.9. []\TU/SourceSansPro(0)/m/n/12 Given a functional programming language $\OML/cmm/m/it/12 L$\TU/SourceSansPro(0)/m/n/12 , we can define a category $[]$.
  []
 
@@ -1871,57 +1877,57 @@ Underfull \vbox (badness 10000) has occurred while \output is active []
 Missing character: There is no ; in font nullfont!
 Missing character: There is no ; in font nullfont!
 [36] [37] [38] [39] [40] [41] [42]
-Overfull \hbox (16.81506pt too wide) in paragraph at lines 2080--2085
+Overfull \hbox (16.81506pt too wide) in paragraph at lines 2082--2087
 []\TU/SourceSansPro(0)/b/n/12 Definition 2.3.42. []\TU/SourceSansPro(0)/m/n/12 An adjunction between categories $[]$ and $[]$ is given by a quadruple $\OT1/cmr/m/n/12 (\OML/cmm/m/it/12 L; R; ^^Q; ^^O\OT1/cmr/m/n/12 )$\TU/SourceSansPro(0)/m/n/12 ,
  []
 
 [43] [44]
-Overfull \hbox (28.93152pt too wide) in paragraph at lines 2232--2233
+Overfull \hbox (28.93152pt too wide) in paragraph at lines 2234--2235
  [][] 
  []
 
 [45]
-Overfull \hbox (9.80533pt too wide) in paragraph at lines 2367--2368
+Overfull \hbox (9.80533pt too wide) in paragraph at lines 2369--2370
 \TU/SourceSansPro(0)/m/n/12 grams can be written, but we have not yet assigned them any meaning. This process—assigning
  []
 
 [46] [47]
-Overfull \hbox (205.04498pt too wide) in paragraph at lines 2536--2536
+Overfull \hbox (205.04498pt too wide) in paragraph at lines 2538--2538
 []$[]$ 
  []
 
 
-Overfull \hbox (220.00723pt too wide) in paragraph at lines 2536--2536
+Overfull \hbox (220.00723pt too wide) in paragraph at lines 2538--2538
 []$[]$ 
  []
 
 
-Overfull \hbox (120.86447pt too wide) in paragraph at lines 2536--2536
+Overfull \hbox (120.86447pt too wide) in paragraph at lines 2538--2538
 []$[]$ 
  []
 
 
-Overfull \hbox (120.21133pt too wide) in paragraph at lines 2536--2536
+Overfull \hbox (120.21133pt too wide) in paragraph at lines 2538--2538
 []$[]$ 
  []
 
 
-Overfull \hbox (49.35582pt too wide) in paragraph at lines 2536--2536
+Overfull \hbox (49.35582pt too wide) in paragraph at lines 2538--2538
 []$[]$ 
  []
 
 
-Overfull \hbox (151.61688pt too wide) in paragraph at lines 2536--2536
+Overfull \hbox (151.61688pt too wide) in paragraph at lines 2538--2538
 []$[]$ 
  []
 
 
-Overfull \hbox (292.32617pt too wide) in paragraph at lines 2536--2536
+Overfull \hbox (292.32617pt too wide) in paragraph at lines 2538--2538
 []$[]$ 
  []
 
 
-Overfull \hbox (25.90512pt too wide) detected at line 2537
+Overfull \hbox (25.90512pt too wide) detected at line 2539
  $[][]$ 
  []
 
@@ -1929,16 +1935,20 @@ Overfull \hbox (25.90512pt too wide) detected at line 2537
 Underfull \vbox (badness 10000) has occurred while \output is active []
 
  [48] [49] [50] [51]
-Overfull \hbox (7.73772pt too wide) in paragraph at lines 2703--2704
+
+LaTeX Warning: Reference `subsec:semantics_metric' on page 52 undefined on input line 2693.
+
+
+Overfull \hbox (7.73772pt too wide) in paragraph at lines 2705--2706
 \TU/SourceSansPro(0)/m/n/12 both composition and precomposition are non-expansive. That is, for all morphisms $\OML/cmm/m/it/12 f; f[]; f[] \OMS/cmsy/m/n/12 2
  []
 
-[52] [53]
-Overfull \hbox (2.52286pt too wide) in paragraph at lines 2787--2788
-[]\TU/SourceSansPro(0)/b/n/12 Definition 2.4.10. []\TU/SourceSansPro(0)/m/n/12 Consider a metric $\OML/cmm/m/it/12 ^^U$\TU/SourceSansPro(0)/m/n/12 -theory $\OT1/cmr/m/n/12 ((\OML/cmm/m/it/12 G; \OT1/cmr/m/n/12 ^^F)\OML/cmm/m/it/12 ; Ax\OT1/cmr/m/n/12 )$ \TU/SourceSansPro(0)/m/n/12 and a symmetric monoidal closed
+[52] [53] [54]
+Overfull \hbox (2.52286pt too wide) in paragraph at lines 2796--2797
+[]\TU/SourceSansPro(0)/b/n/12 Definition 2.4.11. []\TU/SourceSansPro(0)/m/n/12 Consider a metric $\OML/cmm/m/it/12 ^^U$\TU/SourceSansPro(0)/m/n/12 -theory $\OT1/cmr/m/n/12 ((\OML/cmm/m/it/12 G; \OT1/cmr/m/n/12 ^^F)\OML/cmm/m/it/12 ; Ax\OT1/cmr/m/n/12 )$ \TU/SourceSansPro(0)/m/n/12 and a symmetric monoidal closed
  []
 
-[54]) (chapters/Contribution.tex [55] [56
+) (chapters/Contribution.tex [55] [56
 
 ]
 Chapter 3.
@@ -1954,18 +1964,63 @@ Package hyperref Warning: Token not allowed in a PDF string (Unicode):
 Package hyperref Warning: Token not allowed in a PDF string (Unicode):
 (hyperref)                removing `math shift' on input line 1.
 
-[57]) [58] [59
+[57]
 
-] [60] (chapters/PP.tex
+LaTeX Warning: Reference `subsec:semantics_metric' on page 58 undefined on input line 49.
+
+
+Overfull \hbox (13.02797pt too wide) in paragraph at lines 52--53
+\TU/SourceSansPro(0)/m/n/12 is both distributive symmetric monoidal closed and a symmetric monoidal closed $[]$‑category,
+ []
+
+
+Overfull \hbox (20.81087pt too wide) in paragraph at lines 60--61
+[]\TU/SourceSansPro(0)/b/n/12 Definition 3.2.2. []\TU/SourceSansPro(0)/m/n/12 Consider a metric $\OML/cmm/m/it/12 ^^U$\TU/SourceSansPro(0)/m/n/12 -theory $\OT1/cmr/m/n/12 ((\OML/cmm/m/it/12 G; \OT1/cmr/m/n/12 ^^F)\OML/cmm/m/it/12 ; Ax\OT1/cmr/m/n/12 )$ \TU/SourceSansPro(0)/m/n/12 and a distributive symmetric monoidal
+ []
+
+[58] [59]
+Overfull \hbox (1.72398pt too wide) in paragraph at lines 132--133
+[]\TU/SourceSansPro(0)/m/n/12 The rules in [][]Figure 3[][][] follows from the definition of a symmetric monoidal closed $[]$-category.
+ []
+
+[60]
+
+LaTeX Warning: Reference `fig:equations-in-context-cond' on page 61 undefined on input line 182.
+
+
+LaTeX Warning: Reference `fig:typing_rules_cond' on page 61 undefined on input line 182.
+
+[61]
+
+Package hyperref Warning: Token not allowed in a PDF string (Unicode):
+(hyperref)                removing `math shift' on input line 206.
+
+
+Package hyperref Warning: Token not allowed in a PDF string (Unicode):
+(hyperref)                removing `math shift' on input line 206.
+
+
+Overfull \hbox (1.79596pt too wide) in paragraph at lines 210--211
+[]\TU/SourceSansPro(0)/b/n/12 Proposition 3.5.1. []\TU/SourceSansPro(0)/m/it/12 The category $[]$ is a distributive symmetric monoidal closed $[]$-category 
+ []
+
+
+Overfull \hbox (7.77875pt too wide) in paragraph at lines 214--215
+\TU/SourceSansPro(0)/m/n/12 As a result, it suffices to show that for all morphisms $\OML/cmm/m/it/12 f[]; f[] \OMS/cmsy/m/n/12 2 []\OT1/cmr/m/n/12 (\OML/cmm/m/it/12 A; C\OT1/cmr/m/n/12 )$ \TU/SourceSansPro(0)/m/n/12 and $\OML/cmm/m/it/12 g[]; g[] \OMS/cmsy/m/n/12 2 []\OT1/cmr/m/n/12 (\OML/cmm/m/it/12 B; C\OT1/cmr/m/n/12 )$\TU/SourceSansPro(0)/m/n/12 ,
+ []
+
+[62] [63]) [64] [65
+
+] [66] (chapters/PP.tex
 Chapter 4.
-[61
+[67
 
-] [62]
+] [68]
 Overfull \hbox (1.34132pt too wide) in paragraph at lines 104--105
 \TU/SourceSansPro(0)/m/n/12 foundation in reasoning about probability distributions. That is where measure theory comes
  []
 
-[63] [64] [65]
+[69] [70] [71]
 Overfull \hbox (3.90575pt too wide) in paragraph at lines 203--206
 \TU/SourceSansPro(0)/m/n/12 These are of the form $[][] \OML/cmm/m/it/12 a[]^^N[]$\TU/SourceSansPro(0)/m/n/12 , where $\OML/cmm/m/it/12 a[] \OMS/cmsy/m/n/12 ^^U \OT1/cmr/m/n/12 0$ \TU/SourceSansPro(0)/m/n/12 for all $\OML/cmm/m/it/12 s \OMS/cmsy/m/n/12 2 \OML/cmm/m/it/12 C$\TU/SourceSansPro(0)/m/n/12 , and the weights satisfy $[][] \OML/cmm/m/it/12 a[] \OT1/cmr/m/n/12 =
  []
@@ -1975,40 +2030,40 @@ Overfull \hbox (11.27182pt too wide) in paragraph at lines 212--213
 []\TU/SourceSansPro(0)/b/n/12 Definition 4.3.5. []\TU/SourceSansPro(0)/m/n/12 Let $\OT1/cmr/m/n/12 (\OML/cmm/m/it/12 S; \OMS/cmsy/m/n/12 B[]\OT1/cmr/m/n/12 )$ \TU/SourceSansPro(0)/m/n/12 and $\OT1/cmr/m/n/12 (\OML/cmm/m/it/12 T; \OMS/cmsy/m/n/12 B[]\OT1/cmr/m/n/12 )$ \TU/SourceSansPro(0)/m/n/12 be measurable spaces. Given a function $\OML/cmm/m/it/12 f \OT1/cmr/m/n/12 : (\OML/cmm/m/it/12 S; \OMS/cmsy/m/n/12 B[]\OT1/cmr/m/n/12 ) \OMS/cmsy/m/n/12 !
  []
 
-[66] [67]
+[72] [73]
 Overfull \hbox (9.47934pt too wide) in paragraph at lines 268--269
 []\TU/SourceSansPro(0)/m/n/12 By a slight abuse of terminology, we will also refer to a mapping $\OML/cmm/m/it/12 P[] \OT1/cmr/m/n/12 : \OML/cmm/m/it/12 S \OMS/cmsy/m/n/12 ! \OT1/cmr/m/n/12 (\OMS/cmsy/m/n/12 B[] ! \OT1/cmr/m/n/12 [0\OML/cmm/m/it/12 ; \OT1/cmr/m/n/12 1]) \OML/cmm/m/it/12 P[]\OT1/cmr/m/n/12 (\OML/cmm/m/it/12 s\OT1/cmr/m/n/12 ) =
  []
 
-[68]) (chapters/QC.tex [69] [70
+[74]) (chapters/QC.tex [75] [76
 
 ]
 Chapter 5.
-[71] [72] [73] [74]
+[77] [78] [79] [80]
 Overfull \hbox (23.89615pt too wide) in paragraph at lines 238--241
 []\TU/SourceSansPro(0)/b/n/12 Definition 5.1.14. []\TU/SourceSansPro(0)/m/n/12 An \TU/SourceSansPro(0)/m/it/12 n-permutation \TU/SourceSansPro(0)/m/n/12 is a function on the first $\OML/cmm/m/it/12 n$ \TU/SourceSansPro(0)/m/n/12 positive integers $\OML/cmm/m/it/12 ^^Y \OT1/cmr/m/n/12 = \OMS/cmsy/m/n/12 f\OT1/cmr/m/n/12 1\OML/cmm/m/it/12 ; [] ; n\OMS/cmsy/m/n/12 g !
  []
 
-[75] [76] [77]
+[81] [82] [83]
 Overfull \hbox (1.32188pt too wide) in paragraph at lines 415--416
 []\TU/SourceSansPro(0)/b/n/12 Definition 5.1.31. []\TU/SourceSansPro(0)/m/n/12 Consider two finite complex spaces spaces $\OML/cmm/m/it/12 V$ \TU/SourceSansPro(0)/m/n/12 and $\OML/cmm/m/it/12 W$ \TU/SourceSansPro(0)/m/n/12 with respective bases
  []
 
-[78] [79] [80]
+[84] [85] [86]
 File: images/bloch_sphere.jpg Graphic file (type bmp)
 <images/bloch_sphere.jpg>
 
 Underfull \vbox (badness 3514) has occurred while \output is active []
 
- [81] [82]
+ [87] [88]
 Underfull \vbox (badness 10000) has occurred while \output is active []
 
- [83] [84] [85] [86]
+ [89] [90] [91] [92]
 Overfull \hbox (1.51337pt too wide) in paragraph at lines 693--694
 \TU/SourceSansPro(0)/m/it/12 state\TU/SourceSansPro(0)/m/n/12 . A mixed state $[][] \OML/cmm/m/it/12 ^^K[] []$ \TU/SourceSansPro(0)/m/n/12 can be represented by a density operator $\OML/cmm/m/it/12 ^^Z \OT1/cmr/m/n/12 = [][] \OMS/cmsy/m/n/12 j\OML/cmm/m/it/12 ^^K[]\OMS/cmsy/m/n/12 j[] [] []$\TU/SourceSansPro(0)/m/n/12 .
  []
 
-[87] [88]
+[93] [94]
 
 Package glossaries-extra Warning: Base acronym command \acrfull should not be used with new abbreviation definitions. Use \glsxtrfull instead on input line 811.
 
@@ -2018,7 +2073,7 @@ Package glossaries-extra Warning: Base acronym command \acrlong should not be us
 
 Package glossaries-extra Warning: Base acronym command \acrshort should not be used with new abbreviation definitions. Use \glsxtrshort instead on input line 811.
 
-[89]
+[95]
 
 Package glossaries-extra Warning: Base acronym command \acrfull should not be used with new abbreviation definitions. Use \glsxtrfull instead on input line 844.
 
@@ -2034,13 +2089,13 @@ Package glossaries-extra Warning: Base acronym command \acrshort should not be u
 
 Package glossaries-extra Warning: Base acronym command \acrshort should not be used with new abbreviation definitions. Use \glsxtrshort instead on input line 844.
 
-[90]
+[96]
 Overfull \hbox (13.88992pt too wide) in paragraph at lines 897--898
 []\TU/SourceSansPro(0)/m/n/12 Unfortunately, this norm is not stable under tensoring , given that the inequation $\OMS/cmsy/m/n/12 k\OML/cmm/m/it/12 Q \OMS/cmsy/m/n/12 
  \OML/cmm/m/it/12 I[]\OMS/cmsy/m/n/12 k[] ^^T
  []
 
-[91] [92]
+[97] [98]
 
 Package glossaries-extra Warning: Base acronym command \acrshort should not be used with new abbreviation definitions. Use \glsxtrshort instead on input line 1042.
 
@@ -2048,9 +2103,9 @@ Package glossaries-extra Warning: Base acronym command \acrshort should not be u
 Package glossaries-extra Warning: Base acronym command \acrshort should not be used with new abbreviation definitions. Use \glsxtrshort instead on input line 1042.
 
 
-LaTeX Warning: Reference `subsec:noisy_teleportation' on page 93 undefined on input line 1042.
+LaTeX Warning: Reference `subsec:noisy_teleportation' on page 99 undefined on input line 1042.
 
-[93] [94] [95]
+[99] [100] [101]
 
 Package hyperref Warning: Token not allowed in a PDF string (Unicode):
 (hyperref)                removing `math shift' on input line 1198.
@@ -2063,16 +2118,16 @@ Package hyperref Warning: Token not allowed in a PDF string (Unicode):
 Package hyperref Warning: Token not allowed in a PDF string (Unicode):
 (hyperref)                removing `math shift' on input line 1198.
 
-[96]) (chapters/ConclusionsAndFutureWork.tex [97] [98
+[102]) (chapters/ConclusionsAndFutureWork.tex [103] [104
 
 ]
 Chapter 6.
-) (dissertation.bbl [99] [100
+) (dissertation.bbl [105] [106
 
-] [101] [102] [103] [104] [105]) [106]
+] [107] [108] [109] [110] [111]) [112]
 runsystem(makeindex dissertation.idx)...executed safely (allowed).
 
- (dissertation.ind) (covers/BackCover.tex [107
+ (dissertation.ind) (covers/BackCover.tex [113
 
 
 ] [1]) (dissertation.aux)
@@ -2085,15 +2140,15 @@ L3 programming layer <2024-01-22>
 LaTeX Warning: There were undefined references.
 
 Package rerunfilecheck Info: File `dissertation.out' has not changed.
-(rerunfilecheck)             Checksum: 3DBF9D5347DD666C7FF85453C1B3D390;11304.
+(rerunfilecheck)             Checksum: D5D1298B7DBB7C250739A0DAE1915BB5;12359.
  ) 
 Here is how much of TeX's memory you used:
- 54095 strings out of 409673
- 1130585 string characters out of 5774704
+ 54117 strings out of 409673
+ 1131327 string characters out of 5774704
  1959630 words of memory out of 5000000
- 75232 multiletter control sequences out of 15000+600000
- 578158 words of font info for 172 fonts, out of 8000000 for 9000
+ 75253 multiletter control sequences out of 15000+600000
+ 578166 words of font info for 173 fonts, out of 8000000 for 9000
  1348 hyphenation exceptions out of 8191
  121i,36n,121p,2536b,1376s stack positions out of 10000i,1000n,20000p,200000b,200000s
 
-Output written on dissertation.xdv (134 pages, 1891532 bytes).
+Output written on dissertation.xdv (140 pages, 1991400 bytes).
