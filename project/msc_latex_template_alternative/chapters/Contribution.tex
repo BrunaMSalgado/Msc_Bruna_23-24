@@ -72,7 +72,7 @@ In this section, we introduce a few concepts from lattice theory that will be us
 \end{definition}
 
 \begin{definition}
-  \emph{Quantales} are complete lattices equipped with an associative composition that preserves suprema in both arguments.
+  \emph{Quantales} are complete lattices equipped with an associative composition, typically denoted $\otimes$, that preserves suprema in both arguments.
 \end{definition}
 
 \begin{example}
@@ -110,7 +110,7 @@ This property characterizes the \emph{way-below relation} in the metric quantale
 \begin{lemma} \cite[Lemma 2.23]{daveyIntroductionLatticesOrder2002} \label{lem:sup_union}
 Let \( P \) be a lattice, let \( S, T \subseteq P \) and assume that \( \bigvee S \),
 \( \bigvee T \), \( \bigwedge S \) and \( \bigwedge T \) exist in \( P \). Then
-$$ \bigvee(S \cup T) = \left(\bigvee S\right) \vee \left(\bigvee T\right) . $$
+$$ \bigvee(S \cup T) = \left(\bigvee S\right) \vee \left(\bigvee T\right) \quad \text{and} \quad \bigwedge(S \cup T) = \left(\bigwedge S\right) \wedge \left(\bigwedge T\right) . $$
 \end{lemma}
 
 
@@ -280,4 +280,88 @@ Considering Lemma \ref{lemma:inl_neutral}, we have
 
 \section{Extensionality of the copairing}
 
+A $\lambda$-abstraction that receives inputs of a disjunctive type is determined by what it does to inputs ``from the left and from the right'', \ie,
+\[
+\left\{
+\begin{aligned}
+&(\lambda x.t)\, \text{inl}(y) = (\lambda x.s)\, \text{inl}(y) \\
+&(\lambda x.t)\, \text{inr}(z) =(\lambda x.s)\, \text{inr}(z)
+\end{aligned}
+\right.
+\implies \lambda x.t = \lambda x.s
+\]
+
+The proof is as follows:
+
+Using the $\beta$ equation we have
+\begin{equation} \label{eq:beta_red}
+  \left\{
+\begin{aligned}
+&(\lambda x.t)\, \text{inl}(y) = (\lambda x.s)\, \text{inl}(y) \\
+&(\lambda x.t)\, \text{inr}(z) =(\lambda x.s)\, \text{inr}(z)
+\end{aligned}
+\right.
+= \left\{
+\begin{aligned}
+&t\,[\text{inl}(y)/x]  = s\, [\text{inl}(y)/x] \\
+&t\,[\text{inr}(z)/x]  = s\, [\text{inr}(z]/x] 
+\end{aligned}
+\right.
+\end{equation}
+Next, considering the equations above, $\eta_{case}$, and the $\alpha$-equivalence we reason as follows:
+\begin{equation*}
+\begin{split}
+  t = & t[x'/x] = \text{case } x'  
+    \left\{ \begin{aligned}
+    \inl_{\typeI}(y) \Rightarrow t\,[\text{inl}(y)/x] ;  
+    \inl_{\typeI}(z) \Rightarrow t\,[\text{inr}(z)/x]
+  \end{aligned}  \right\} & (\alpha,\eta_{case})\\
+  & = \text{case } x'  
+    \left\{ \begin{aligned}
+    \inl_{\typeI}(y) \Rightarrow s\,[\text{inl}(y)/x] ;  
+    \inl_{\typeI}(z) \Rightarrow s\,[\text{inr}(z)/x]
+  \end{aligned}  \right\} = s & (\text{\autoref{eq:beta_red}},\eta_{case},\alpha)
+\end{split}
+\end{equation*}
+Finally, it is straightforward that $ t=s \implies \lambda x.t = \lambda x.s$.
+
+Now assume that 
+\[
+\left\{
+\begin{aligned}
+&(\lambda x.t)\, \text{inl}(y) =_{\epsilon_1} (\lambda x.s)\, \text{inl}(y) \\
+&(\lambda x.t)\, \text{inr}(z) =_{\epsilon_2}(\lambda x.s)\, \text{inr}(z)
+\end{aligned}
+\right.
+\implies \lambda x.t = \lambda x.s
+\]
+Following the same reasoning as before and applying the metric equation for condicionals we obtain:
+\begin{equation*}
+\begin{split}
+  &t =  \text{case } x'  
+    \left\{ \begin{aligned}
+    \inl_{\typeI}(y) \Rightarrow t\,[\text{inl}(y)/x] ;  
+    \inl_{\typeI}(z) \Rightarrow t\,[\text{inr}(z)/x]
+  \end{aligned}  \right\} & (\alpha,\eta_{case})\\
+  &=_{\max \{\epsilon_1,\epsilon_2\}} \text{case } x'  
+    \left\{ \begin{aligned}
+    \inl_{\typeI}(y) \Rightarrow s\,[\text{inl}(y)/x] ;  
+    \inl_{\typeI}(z) \Rightarrow s\,[\text{inr}(z)/x]
+  \end{aligned}  \right\} = s & (\text{\autoref{fig:metric conditionals}},\eta_{case},\alpha)
+\end{split}
+\end{equation*}
+As a result, given our metric deductive system we obtain $\lambda x.t =_{\max \{\epsilon_1,\epsilon_2\}} \lambda x.s$.
+
+% cena de coproduct cocopletion->
+
 \section{Some remarks on the metric equation chosen}
+
+\todo[inline,size=\normalsize]{Falta exemplo de quantale em que não yemos distributividade}
+
+One might wonder why, in the definition of the metric, we chose to use the expression \( q + \sup\{r, s\} \) rather than \( \sup\{q + r, q + s\} \), given that these two expressions are, in fact, equal in the metric quantale. More generally, this equality corresponds to the identity
+\[
+q \otimes \inf\{r, s\} = \inf\{q \otimes r, q \otimes s\},
+\]
+for \( r, s \in L \), where \( L \) denotes the underlying lattice of the quantale. (Note again that in the case of the metric quantale, the usual order is reversed, so infima correspond to suprema in the standard order.)
+
+However, this identity does \emph{not} hold in arbitrary quantales~\textbf{[CONTRAEXAMPLE NEEDED]}. Moreover, as becomes clear in the soundness proof, it is the expression \( q \otimes \sup\{r, s\} \) that arises naturally. 

@@ -836,17 +836,27 @@ Moreover, negation can be expressed by the following program:
     \end{split}
     \end{equation*}
 
-    For the second equality we note that in order for the equation no make sense the context of $w'$ must be empty.
+    For the second equality to be well-defined, we observe that the context of $ w'$ must be empty. Moreover, we remark on the following:
     \begin{align*}
-      & \textbf{Conjunction} \, [\inr(*)/v,w'/w ] \\
-      & = \text{case } \inr(*)\,
+       & x:\typeI \vljud \, x \text{ to} *. \, \text{dis}(w) = x \text{ to} *. \, x : \typeI    & (\eta_{\text{dis}}) \\
+       & \implies - \vljud \,x \text{ to} *. \, \text{dis}(w)[*/x] = x \text{ to} *. \, x  [*/x]  : \typeI \\
+       & \implies - \vljud \, * \text{ to} *. \, \text{dis}(w) = * \text{ to} *. \, *  : \typeI \\
+       & \implies - \vljud \,  \text{dis}(w) = * : \typeI & (\beta_{\mathbb{I}_{e}})
+    \end{align*}
+
+
+
+    With the equation above in hand, we have:
+    \begin{align*}
+      & \hspace{-22pt} \textbf{Conjunction} \, [\inr(*)/v,w'/w ] \\
+      & \hspace{-22pt}  = \text{case } \inr(*)\,
   \{\inl_{\typeI}(x) \Rightarrow x \text{ to} *. \, w' ;
   \, \inr_{\typeI}(y) \Rightarrow y \text{ to} *. \,  \text{dis}(w') \text{ to} *. \inr_{\typeI}(*)
   \} \\
-  & =  * \, y \text{ to} *. \,  \text{dis}(w') \text{ to} *. \inr_{\typeI}(*) & (\beta_{case}^{inr}) \\
-  & = \text{dis}(w') \text{ to} *. \inr_{\typeI}(*) & (\beta_{\mathbb{I}_{e}}) \\
-  & = * \text{ to} *. \inr_{\typeI}(*) &  (\eta_\text{dis}) \\
-  & =  \inr_{\typeI}(*)
+  & \hspace{-22pt}  =  * \, y \text{ to} *. \,  \text{dis}(w') \text{ to} *. \inr_{\typeI}(*) & (\beta_{case}^{inr}) \\
+  & \hspace{-22pt}  = \text{dis}(w') \text{ to} *. \inr_{\typeI}(*) & (\beta_{\mathbb{I}_{e}}) \\
+  & \hspace{-22pt}  = * \text{ to} *. \inr_{\typeI}(*) &  (\eta_\text{dis} \text{ and } \beta_{\mathbb{I}_{e}}) \\
+  & \hspace{-22pt}  =  \inr_{\typeI}(*)
     \end{align*}
 
      \todo[inline,size=\normalsize]{Duvida na aplicação da regra do discard}
