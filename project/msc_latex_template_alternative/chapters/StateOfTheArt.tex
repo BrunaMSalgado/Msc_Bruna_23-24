@@ -876,7 +876,7 @@ Moreover, negation can be expressed by the following program:
 
 
 \begin{proof}
-  This property follows from the equations $\eta_{\text{case}}$,  $c_{\mathbb{I}_{e}}$, $c_{\mathbb{I}_{e}}$, $\eta_{\mathbb{I}_{e}}$, and $\eta_{\text{dis}}$, and the $\alpha$-equivalence.
+  This property follows from the equations $\eta_{\text{case}}$,  $c_{\mathbb{I}_{e}}$, $c_{\mathbb{I}_{e}}$, $\eta_{\mathbb{I}_{e}}$, and $\eta_{\text{dis}}$, and $\alpha$-equivalence.
   
   \begin{align*}
      &  \hspace{-20pt} \textbf{Conjunction} \, [v'/v,w'/w ] \\
@@ -994,7 +994,7 @@ To address the double negation property and De~Morgan's laws, we begin by establ
 
   \begin{proof}
     
-This equality follows from the $\alpha$-equivalence and the equations $\eta_{\text{case}}$, $\beta_{\text{case}}^{\text{inl}}$, and $\beta_{\text{case}}^{\text{inr}}$ . 
+This equality follows from  $\alpha$-equivalence and the equations $\eta_{\text{case}}$, $\beta_{\text{case}}^{\text{inl}}$, and $\beta_{\text{case}}^{\text{inr}}$ . 
 
 \begin{equation*}
 \begin{split}
@@ -1068,7 +1068,7 @@ This equality follows from the $\alpha$-equivalence and the equations $\eta_{\te
 \end{lemma}
 
 \begin{proof}
-  Both De Morgan's laws follow from the equations $\eta_{case}, \beta_{case}^{inl}$, $\beta_{case}^{inr}, c_{\mathbb{I}_{e}}, \eta_{\text{dis}} $, the syntatic fusion law (\text{SFL}), and the $\alpha$-equivalence.
+  Both De Morgan's laws follow from the equations $\eta_{case}, \beta_{case}^{inl}$, $\beta_{case}^{inr}, c_{\mathbb{I}_{e}}, \eta_{\text{dis}} $, the syntatic fusion law (\text{SFL}), and $\alpha$-equivalence.
 
   \begin{align*}
   & \hspace{-27pt} \textbf{Disjunction} [\textbf{Negation} \, [v'/v] / v, \textbf{Negation} \, [w'/v] / w ] \\
@@ -1312,7 +1312,8 @@ $ \end{minipage}
 \label{fig:metric deductive system}
 \end{figure}
 
-Here, $\text{perm} (\Gamma)$ denotes the set of possible permutions of context $\Gamma$. The rules (refl), (trans), and (sym)  generalize the properties of reflexivity, transitivity, and symmetry of equality.  Rule (weak) asserts that if two terms are at a maximum distance $q$ from each other, then they are also separated by any $r \geq q$. Rule (arch) states that if $v =_r w$ for all approximations $r$ of $q$, then it necessarily follows that $v =_q w$. The rule  (join) expresses that if several maximum distances between two terms are known, the actual maximum distance between them is the minimum of these distances. The rule that follows conveys that if the maximum distance between two terms $v$ and $w$ is $q$, and the maximum distance between terms $v'$ and $w'$ is $r$, then the maximum distance between the tensor products $v \otimes v'$ and $w \otimes w'$ is $q + r$. The remaining rules follow similar reasoning.
+Here, $\text{perm} (\Gamma)$ denotes the set of possible permutions of context $\Gamma$. The rules (refl), (trans), and (sym)  generalize the properties of reflexivity, transitivity, and symmetry of equality.  Rule (weak) asserts that if two terms are at a maximum distance $q$ from each other, then they are also separated by any $r \geq q$. Rule (arch) states that if $v =_r w$ for all approximations $r$ of $q$, then it necessarily follows that $v =_q w$. The rule  (join) expresses that if several maximum distances between two terms are known, the actual maximum distance between them is the minimum of these distances. In particular, it is always the
+ case that $v =_{\infty} w$.  The rule that follows conveys that if the maximum distance between two terms $v$ and $w$ is $q$, and the maximum distance between terms $v'$ and $w'$ is $r$, then the maximum distance between the tensor products $v \otimes v'$ and $w \otimes w'$ is $q + r$. The remaining rules follow similar reasoning.
 
 % dizer o que é perm
 
@@ -2061,7 +2062,7 @@ whose component at a set \(S\), \(\mathrm{Reverse}_S\), maps each list to its re
 
 \subsection{Equivalence of Categories}
 
-In category theory, the concept of isomorphism between categories can be quite strict - is is not often is arises in a non-trivial manner. So, we weaken the notion of isomorphism and come to the concept of an \emph{equivalence of categories}.
+In category theory, the concept of isomorphism between categories can be quite strict - is is not often it arises in a non-trivial manner. So, we weaken the notion of isomorphism and come to the concept of an \emph{equivalence of categories}.
 
 If \( F: \catC \to \catD \) is an isomorphism of categories, then for every object \( B \in \catD \), there exists a \emph{unique} object \( A \in \catC \) such that \( F(A) = B \). This expresses the idea that \( \catC \) and \( \catD \) are structurally identical.
 
@@ -2198,7 +2199,7 @@ A similar argument applies to multiplication: if $m \leq m'$ and $n \leq n'$, th
 \end{comment}
 
 \begin{definition}
-  A symmetric monoidal category consists of a category $\catC$ equipped with a bifunctor $\otimes : \catC \times \catC \to \catC$
+  A \emph{monoidal category} consists of a category $\catC$ equipped with a bifunctor $\otimes : \catC \times \catC \to \catC$
 called \emph{tensor product} and a distinguished object $I \in \catC$, called \emph{unit} together with natural isomorphisms
 \[
 \alpha_{A,B,C} : A \otimes (B \otimes C) \rightarrow (A \otimes B) \otimes C,
@@ -2700,11 +2701,11 @@ is a theorem of $\mathscr{T}$ if and only if it is satisfied by all models of th
 \end{example}
 
 
-\subsection{Semantics of metric equations} \autoref{subsec:semantics_metric}
+\subsection{Semantics of metric equations} \label{subsec:semantics_metric}
  We will now turn our attention to the semantics of the metric equations. First, we recall the definition of a metric space.
 
  \begin{definition}
-    A \emph{metric space} is a pair $(X, d)$ where $X$ is a set and $d: X \times X \to [0, \infty)$ is a function known as \emph{distance} satisfying:
+    A \emph{metric space} is a pair $(X, d)$ where $X$ is a set and $d: X \times X \to [0, \infty]$ is a function known as \emph{distance} satisfying:
     \begin{enumerate}
         \item $0 \leq d(x, y)$, with equality if and only if $x = y$,
         \item $d(x, y) = d(y, x)$,
@@ -2807,8 +2808,17 @@ Let $\catC$ be a category that is both monoidal closed and a symmetric monoidal 
 \end{definition}
 
 
-For two types $\typeA$ and $\typeB$ of a metric $\lambda$-theory $\mathscr{T}$ , consider the class \texttt{Values}$(\typeA,\typeB)$ of values $v$ such that $x : \typeA \vljud v : \typeB$. We equip $\texttt{Values}(\typeA,\typeB)$ with the function $d :\texttt{Values}(\typeA,\typeB) \times \texttt{Values}(\typeA,\typeB) \rightarrow \mathbb{Q}^{+}_0$ defined by,
-$$d(v,w)=\inf{\{q \, \vert \, v=_q w \text{ is a theorem of } \mathscr{T} \}}$$
+For two types $\typeA$ and $\typeB$ of a metric $\lambda$-theory $\mathscr{T}$, consider the class \texttt{Values}$(\typeA,\typeB)$ of values $v$ such that $x : \typeA \vljud v : \typeB$. We equip $\texttt{Values}(\typeA,\typeB)$ with the function $d :\texttt{Values}(\typeA,\typeB) \times \texttt{Values}(\typeA,\typeB) \rightarrow \mathbb{Q}^{+}_0$ defined by,
+$$d(v,w)=\inf{\{q \, \vert \, v=_q w \text{ is a theorem of } \mathscr{T} \}}.$$
 
-\texttt{Values}$((\typeA,\typeB),d)$ is a (possibly large)  $\catMet$- category. We  quotient this  $\catMet$-category into a separated  $\catMet$-category which we denote by (\texttt{Values}$(\typeA,\typeB),d)$/$\sim$. We call  $\mathscr{T}$ \emph{varietal} if (\texttt{Values}$(\typeA,\typeB),d)$/$\sim$ is a small  $\catMet$-category for all types $\typeA$ and $\typeB$. For the rest of this work, we will focus exclusively on varietal theories and locally small categories.
+
+Given that the equations $\Gamma \vljud v = w : \typeA$ are abbreviations of $\Gamma \vljud v =_0 w : \typeA$, $\texttt{Values}((\typeA,\typeB), d)$ is a pseudometric category, \ie, it allows distinct terms to have distance zero. Consequently, we quotient this category by the relation $\sim$ (identifying elements at distance zero) to obtain a separated category, denoted by $(\texttt{Values}(\typeA, \typeB), d)/{\sim}$, which is a $\catMet$-category.
+
+We say that a theory $\mathscr{T}$ is \emph{varietal} if $(\texttt{Values}(\typeA, \typeB), d)/{\sim}$ is a small $\catMet$-category for all types $\typeA$ and $\typeB$. For the remainder of this work, we restrict our attention to varietal theories and locally small categories.
+
+\begin{theorem}[Completeness] \cite[Theorem 3.16]{dahlqvist2022syntactic} \label{thm:completeness_metric_no_cond}
+Consider a varietal metric $\lambda$-theory. A metric equation in context
+$\Gamma \vljud v =_{q} w : \typeA$
+is a theorem if and only if it holds in all models of the theory.
+\end{theorem}
 

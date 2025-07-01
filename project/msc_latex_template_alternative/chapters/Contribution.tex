@@ -1,10 +1,11 @@
 \chapter{Metric $\lambda$-calculus with conditionals} \label{ch:conditionals}
 
-As noted in \autoref{subsec:interlude_bool}, a metric equation for the conditional statement would be extremely helpful for reasoning about approximate equivalence within the $\lambda$-calculus with conditionals. In this chapter, we address this gap by introducing such an equation and proving both its soundness and completeness. We present the category of metric spaces as an example of a setting suitable for reasoning about approximate equivalence in this context and illustrate the usefulness of the introduced equation through two small examples: reasoning about approximate equivalence between boolean terms (i.e., terms of type $\typeI \oplus \typeI$) and the extensionality of copairing. We conclude the chapter with a brief discussion on the suitability of the chosen metric equation.
+As noted in \autoref{subsec:interlude_bool}, a metric equation for the conditional statement would be extremely helpful for reasoning about approximate equivalence within the $\lambda$-calculus with conditionals. In this chapter, we address this gap by introducing such an equation and proving both its soundness and completeness. 
+We present the category of metric spaces as an example of a setting suitable for reasoning about approximate equivalence in this context. Furthermore, we prove if $\catC$ is a $\catMet$-category, then its coproduct cocompletion admits a metric making it a distributive $\catMet$-enriched category.
+Finally, we illustrate the usefulness of the introduced equation through two small examples: reasoning about approximate equivalence between boolean terms (i.e., terms of type $\typeI \oplus \typeI$) and the extensionality of copairing. We conclude the chapter with a brief discussion on the suitability of the chosen metric equation.
 
 
 
-\todo[inline,size=\normalsize]{ Discussao sobre max(q+r, q+s) != max(q+r, q+s) }
 
 
 
@@ -60,7 +61,7 @@ In this subsection, we extend the concepts introduced in \autoref{subsec:semanti
   Consider a metric $\lambda$-theory $((G,\Sigma),Ax)$ and a distributive symmetric monoidal closed $\catMet$-category $\catC$. Suppose that for each $X \in G$ we have an interpretation $\llbracket X \rrbracket$ as a $\catC$-object and analogously for the operation symbols. This interpretation structure is a model of the theory if all axioms in $Ax$ are satisfied by the interpretation.
 \end{definition}
 
-\todo[inline,size=\normalsize]{Não sei será melhor colocar isto elsewhere}
+
 
 \section{Lattice Theory Preliminaries}
 In this section, we introduce a few concepts from lattice theory that will be useful for the completeness proof and for the broader discussion of our results.
@@ -76,7 +77,7 @@ In this section, we introduce a few concepts from lattice theory that will be us
 \end{definition}
 
 \begin{example}
-  In this work, we consider only the standard metric quantale, whose complete lattice is the interval $[0, \infty]$ ordered by $\geq$. The associative composition is given by addition.
+  In this work, we consider only the standard metric quantale, whose underlying complete lattice is the interval $[0, \infty]$ ordered by $\geq$, with associative composition given by addition. Note that, since the order is reversed in this quantale, suprema in general lattices correspond to infima here, and vice versa.
 \end{example}
 
 
@@ -123,13 +124,14 @@ The proofs in this section are based on the proofs of
 \end{theorem}
 
 \begin{proof}
-  As is shown in \cite{dahlqvist2022syntactic}, this proof uses induction over the depth of proof trees that
+  We follow the same strategy as \cite{dahlqvist2022syntactic}.
+  This proof uses induction over the depth of proof trees that
   arise from the metric deductive system. The general strategy for each
   inference rule is to use the definition of a distributive symmetric monoidal closed $\catMet$-category. 
 
    More concretly, first, consider the equations on \autoref{fig:equations-linear-lambda} which abreviate equations $\Gamma \triangleright w =_0 v : \typeA$. By \autoref{thm:soundness_classical}, these equations are sound for distributive symmetric monoidal closed categories, \ie if $v=w$, then $\sem{v}=\sem{w}$ in $ \catC$. Then by the definition of a $\catMet$-Category (\autoref{def:monoidal_closed_met_cat}) we obtain $d(\sem{v},\sem{w}) = d(\sem{w},\sem{v})=0.$ 
  
-   The rules in \autoref{fig:metric deductive system} follows from the definition of a symmetric monoidal closed $\catMet$-category. Finally, regarding  the rule in  \autoref{fig:metric conditionals}, it follows from the fact that $\catC$ is distributive symmetric monoidal closed $\catMet$-category. We reason as follows:
+   The rules in \autoref{fig:metric deductive system} follow from the definition of a symmetric monoidal closed $\catMet$-category. Finally, regarding  the rule in  \autoref{fig:metric conditionals}, it follows from the fact that $\catC$ is distributive symmetric monoidal closed $\catMet$-category. We reason as follows:
   \begin{align*}
     & \hspace{-20pt} d( \llbracket  \text{ case } v \, \{\text{inl}_{\typeB}  (x) \Rightarrow w ; \, \text{inr}_{\typeA} (y) \Rightarrow u\}  \rrbracket, \llbracket \text{ case } v' \, \{\text{inl}_{\typeB}  (x) \Rightarrow w' ; \, \text{inr}_{\typeA} (y) \Rightarrow u'\} \rrbracket)  \\
     &  \hspace{-20pt} = d( [\llbracket w\rrbracket ,\llbracket u\rrbracket] \comp (\text{jn}_{\Delta;\typeA}\comp \sw \oplus \text{jn}_{\Delta;\typeB}\comp \sw) \comp \dist \comp (\llbracket v\rrbracket \otimes \text{id}) \comp \text{sp}_{\Gamma;\Delta} \comp \text{sh}_{E}, \\
@@ -144,46 +146,71 @@ The proofs in this section are based on the proofs of
     & \hspace{-20pt}  \leq q + \sup(d( \llbracket w\rrbracket , \llbracket w' \rrbracket), d( \llbracket u\rrbracket , \llbracket u' \rrbracket)) \\
     & \hspace{-20pt} \leq  q + \sup(r, s) \\
   \end{align*}
-  The second step follows from the fact that $\text{sp}_{\Gamma;\Delta} \comp \text{sh}_{E}$  is a morphism in $\catC$  and that $\catC$ is a $\catMet$-category.  The third and fifth step follow from an analogous reasoning. The fourth step follows from the premises of the rule in question and the fact that $\catC$ is a symmetric monoidal $\catMet$-category The sixth step follows from the fact that $\catC$ is a distributive symmetric monoidal $\catMet$-enriched. Finally, the last step follows from the premise of the rule in question.
+  The second step follows from the fact that $\text{sp}_{\Gamma;\Delta} \comp \text{sh}_{E}$  is a morphism in $\catC$  and that $\catC$ is a $\catMet$-category.  The third and fifth step follow from an analogous reasoning. The fourth step follows from the premises of the rule in question and the fact that $\catC$ is a symmetric monoidal $\catMet$-category. The sixth step follows from the fact that $\catC$ is a distributive symmetric monoidal $\catMet$-enriched. Finally, the last step follows from the premise of the rule in question.
 
 \end{proof}
 
-Here, we note that in \texttt{Values}$((\typeA,\typeB),d)$, the definition of $d$ is extended incorporating the new theorems and we  quotient this  $\catMet$-category into a separated  $\catMet$-category which we denote by (\texttt{Values}$(\typeA,\typeB),d)$/$\sim$.
+Next, we extend  \texttt{Values}$((\typeA,\typeB),d)$, by incorporating the new theorems and quotient this category into a  $\catMet$-category (\texttt{Values}$(\typeA,\typeB),d)$/$\sim$.
 
 
-\begin{theorem}[Completeness] \cite[Theorem 3.16]{dahlqvist2022syntactic} \label{thm:completeness_metric_no_cond}
+\begin{theorem}[Completeness]
 Consider a varietal metric $\lambda$-theory. A metric equation in context
 $\Gamma \vljud v =_{q} w : \typeA$
 is a theorem if and only if it holds in all models of the theory.
 \end{theorem}
 
 \begin{proof}
-  Completeness arises from constructing the syntactic category $\catSyn(\mathscr{T})$ of  $\lambda$-theory $\mathscr{T}$   of the underlying  theory
+  Here, we focus only on the coproduct, as the remaining cases are proven in~\cite{dahlqvist2022syntactic}.
+  Completeness arises from constructing the syntactic category $\catSyn(\mathscr{T})$ of the underlying  theory
   $\mathscr{T}$ and then show that provability of $\Gamma \vljud v =_q w : \typeA$
   in $\mathscr{T}$ is equivalent to $a(\sem{v},\sem{w}) \geq q$ in the category
-  $\catfont{Syn}(\mathscr{T})$. Here we take advantage of the quotienting of a  $\catMet$-category into a separated  $\catMet$-category to prove that. First consider the following diagram:
+  $\catfont{Syn}(\mathscr{T})$. We use the category (\texttt{Values}$(\typeA,\typeB),d)$/$\sim$ to this end.  Note that the quotienting process identifies all terms $x : \typeA \triangleright v : \typeB$ and $x : \typeA \triangleright w : \typeB$ such that $v =_0 w$ and $w =_0 v$. This relation includes the equations-in-context from \autoref{fig:equations-linear-lambda}.
+     First, we remark that all sets of the form $\{ q \mid v =_q w \}$ are directed: they are non-empty, since by equation~(join) we always have at least $v =_{\infty} w$, and again by~(join), every finite subset of $\{ q \mid v =_q w \}$ has a lower bound in the set. This will be useful for applying \autoref{lem:meet_continuos}.
+   
+   Next, we need to prove that the copairing is well defined in (\texttt{Values}$(\typeA,\typeB),d)$/$\sim$, \ie, for any $a, a', b, b'$ if $a\sim a'$ and $b\sim b'$, then $[a,b] \sim [a',b']$. 
 
-  \vspace{10pt}
+   This is equivalent to demonstrating the following implication:
+   \begin{align*}
+    \begin{cases}
+      \inf \{ q \, \vert \, v=_q w \} \leq 0 \\
+      \inf \{ r \, \vert \, v=_r w \} \leq 0 \\
+    \end{cases} \implies \inf \left\{q \, \bigg\vert \,  
+    \begin{aligned}
+       &\text{ case } z \,   \{\text{inl} (x) \Rightarrow v ; \, \text{inr} (y) \Rightarrow w\} =_{q} \\
+       &\text{ case } z \,  \{\text{inl} (x) \Rightarrow v' ; \,\text{inr} (y) \Rightarrow w'\}
+    \end{aligned}\right\} \leq 0.
+   \end{align*}
+%which follows from \autoref{lem:meet_continuos}, \autoref{lem:sup_union} and the metric equation for conditionals. 
+Let $L$ be a lattice, and let $D, F \subseteq L$ be directed sets. Observe the following:
+\begin{equation} \label{eq:completeness}
+  \begin{split}
+     & \sup \{ \inf D, \inf F \} \\\
+    & = \inf \{ \sup \{\inf D, f\} \, \vert \, f \in F \} & (\text{\autoref{lem:meet_continuos}}) \\
+    & = \inf \{ \inf\{ \sup \{\inf d, f\} \,\vert \, d \in D \} \vert \, f \in F \} & (\text{\autoref{lem:meet_continuos}}) \\
+    & =  \inf \{  \sup \{d,f\} \, \vert \, d \in D, f \in F \} & (\text{\autoref{lem:sup_union}})
+  \end{split}
+  \end{equation}
+With the equality above, we have
+\begin{align*}
+    &\begin{cases}
+      \inf \{ q \, \vert \, v=_q w \} \leq 0 \\
+      \inf \{ r \, \vert \, v=_r w \} \leq 0 \\
+    \end{cases} \\
+    &\implies  \sup \{ \inf \{ q \, \vert \, v=_q w \} , \inf \{ r \, \vert \, v=_r w \} \} \leq 0 \\
+    & \implies \inf \{ \sup \{q,r\} \vert \,  v=_q w,  v=_r w  \} \leq 0 & (\text{\autoref{eq:completeness}})  \\
+    & \implies \left\{q \, \bigg\vert \,  
+    \begin{aligned}
+       &\text{ case } z \,   \{\text{inl} (x) \Rightarrow v ; \, \text{inr} (y) \Rightarrow w\} =_{q}\\
+        &\text{ case } z \,  \{\text{inl} (x) \Rightarrow v' ; \,\text{inr} (y) \Rightarrow w'\}
+    \end{aligned}\right\} \leq 0
+  \end{align*}
 
-  \begin{tikzpicture}
-    \matrix (m) [matrix of math nodes, row sep=4em, column sep=7em, minimum width=2em]
-    {
-      X \times X  &  X /{\sim} \times X /{\sim}  \\
-      Y  \\
-    };
-    \path[-stealth]
-      (m-1-1) edge node [left] {$f$} (m-2-1)
-      (m-1-1) edge node [above] {} (m-1-2)
-      (m-1-2) edge node [above] {$\hat{f}$} (m-2-1)
-      ;
-  \end{tikzpicture}
 
 
-  It is necessary to prove that when $\hat{f}$ is defined as $\hat{f}([x],[y]) = [f(x,y)]$, $\hat{f}$ is a well-defined function. This is the case because if $[x] = [x']$ and $[y] = [y']$, then $x =_0 x'$ and $y =_0 y'$, and consequently applying rule  (refl) we obtain that $f(x,y) =_0 f(x',y')$. Therefore, the quotienting process identifies all terms $x : \typeA \triangleright v : \typeB$ and $x : \typeA \triangleright w : \typeB$ such that $v =_0 w$ and $w =_0 v$. This relation includes the equations-in-context from \autoref{fig:equations-in-context-cond} and, attending to \autoref{thm:completeness_classical} it is compatible with the term formation rules of the linear $\lambda$-calculus \autoref{fig:typing_rules_cond}. Thus, we obtain a category $\catSyn(\mathscr{T})$ whose objects are the types of the language and whose hom-sets are the underlying sets of the  $\catMet$-categories (\textbf{Values}$(\typeA,\typeB),d)$/$\sim$.
+  Thus, we obtain a category $\catSyn(\mathscr{T})$ whose objects are the types of the language and whose hom-sets are the underlying sets of the  $\catMet$-category (\textbf{Values}$(\typeA,\typeB),d)$/$\sim$.
 
 
-  The next step is to show that $\catSyn(\mathscr{T})$ is a distributive symmetric monoidal $\catMet$-category. To this effect, in general one uses the fact that $+$ distributes over suprema and that $q \wedge (-)$
-  distributes over suprema for every $q \in [0, \infty]$  (\autoref{lem:meet_continuos}). With repect to the case statement, we reason as follows:
+  The next step is to show that $\catSyn(\mathscr{T})$ is a distributive symmetric monoidal $\catMet$-category. To this effect, with repect to the case statement, we reason as follows:
 
   \begin{align*}
     & \sup{\{d([v],[w]),d([v'],[w']) \}}  \\
@@ -195,11 +222,10 @@ is a theorem if and only if it holds in all models of the theory.
     & = d([\text{case } z \,   \{\text{inl} (x) \Rightarrow v ; \, \text{inr} (y) \Rightarrow w\}], [\text{case } z \,  \{\text{inl} (x) \Rightarrow v' ; \,\text{inr} (y) \Rightarrow w'\}]) \\
     & = d([[v],[v']],[[w],[w']])  
   \end{align*}
-   The third step follows form the fact that $q \wedge (-)$
-  distributes over suprema for every $q \in [0, \infty]$, and the fourth step follows from the fact that for any sets $A$ and $B$, if $A \subseteq B$, then $\inf\{A\} \geq \inf\{B\}$.
+   The third step follows from \autoref{eq:completeness}, and the fourth step follows from the fact that for any sets $A$ and $B$, if $A \subseteq B$, then $\inf\{A\} \geq \inf\{B\}$.
 
-  The final step is to show that if an equation $\Gamma \vljud v =_q v' : \typeA$ with $q \in \mathbb{Q}^{+}_0$ is satisfied by Syn$(\mathscr{T})$ then it is a theorem of the linear metric $\lambda$-theory. By assumption, $d([v],[v']) = d(v,v') =  \inf{ \{r \, \vert \, v =_r v'\}} \leq q$. It follows from the definition of the way-below relation that for all
- $x \in \mathbb{Q}^{+}_0$ with $x>q$ there exists a finite set $A \subseteq \{r \, \vert \, v =_r v'\}$ such that $x \geq \inf{A}$. Then by an
+  The final step is to show that if an equation $\Gamma \vljud v =_q v' : \typeA$ with $q \in [0, \infty]$ is satisfied by Syn$(\mathscr{T})$ then it is a theorem of the linear metric $\lambda$-theory. By assumption, $d([v],[v']) = d(v,v') =  \inf{ \{r \, \vert \, v =_r v'\}} \leq q$. It follows from the definition of the way-below relation that for all
+ $x \in [0, \infty]$ with $x>q$ there exists a finite set $A \subseteq \{r \, \vert \, v =_r v'\}$ such that $x \geq \inf{A}$. Then by an
  application of rule (join) we obtain $v =_{\inf{A}} v'$, and consequently, rule (weak) provides $v =_x v'$ for all $x > q$. Finally, by an application of rule (arch)  we deduce that $v =_q v'$ is part of the theory.
 \end{proof}
 
@@ -241,9 +267,42 @@ In this category, the coproduct is defined as in $\catSet$. The distance functio
     \end{align*}
 \end{proof}
 
- 
 
 
+
+
+\section{Coproduct cocompletion}
+\todo[inline,size=\normalsize]{Ir à parte das cats e acrescentar que não temos só produtos e coproductos binários -> p64 prod, Proposition 3.12. Coproducts are unique up to isomorphism. ->awodey}
+
+We note that more powerful machinery, based on advanced categorical structures such as presheaves, can be employed to address the fact that the coproduct cocompletion of a category $\catC$ forms a $\catMet$-category. 
+
+
+Up until how we have only discussed binary products/coproducts. However ....
+
+The idea behind the coproduct completion of a category $\catC$ is to create a new category where all small coproducts exist by formally adding them to $\catC$  in the simplest way possible.
+
+\begin{definition}
+  A \emph{(free) coproduct completion} of a category \(\mathcal{C}\) is the category whose objects are families \((X_i)_{i \in I}\) of objects of \(\mathcal{C}\), where \(I\) is a set; an arrow \((X_i)_{i \in I} \to (Y_j)_{j \in J}\) consists of a pair \((f, (\phi_i)_{i \in I})\), where \(f : I \to J\) is a function between the index sets, and \((\phi_i)_{i \in I}\) is a family of morphisms \(\phi_i : X_i \to Y_{f(i)}\) in \(\mathcal{C}\). Given morphisms $(f,(\phi)_i): (X_i)_{i \in I} \to (Y_j)_{j \in J}$ and $(g,(\psi)_i): (Y_j)_{j \in J} \to (Z_k)_{k \in K}$, their composition is defined as the morphism, given by the pair \((g \comp f, (\theta_i)_{i \in I})\), where $ \theta_i := \psi_{f(i)} \circ \varphi_i : X_i \to Z_{g(f(i))}$. From now on, unless ambiguity arises, we will omit the indexing function and use uppercase letters to refer to families of morphisms.
+\end{definition}
+
+If $\catC$ is a $\catMet$-category, one may define a metric on the morphims of its coproduct cocompletion as follows:
+
+\begin{equation*}
+  d(\Phi, \Psi) = \sup \left\{ d'(\phi_i, \psi_i) \;\middle\vert\; i \in I \right\},\text{ where } 
+  d'(\phi_i, \psi_i) 
+  = 
+  \begin{cases}
+    \infty, & \text{if } f(i) \neq g(i), \\
+    d(\phi_i, \psi_i), & \text{otherwise}.
+  \end{cases}
+\end{equation*}
+
+
+
+
+
+\todo[inline,size=\normalsize]{Mostrar q tb funciona para a soma?}
+Alternatively we may take the sum as the metric:
 
 
 \section{Interlude:Booleans - Part 2}
@@ -352,7 +411,7 @@ Following the same reasoning as before and applying the metric equation for cond
 \end{equation*}
 As a result, given our metric deductive system we obtain $\lambda x.t =_{\max \{\epsilon_1,\epsilon_2\}} \lambda x.s$.
 
-% cena de coproduct cocopletion->
+
 
 \section{Some remarks on the metric equation chosen}
 
@@ -362,6 +421,6 @@ One might wonder why, in the definition of the metric, we chose to use the expre
 \[
 q \otimes \inf\{r, s\} = \inf\{q \otimes r, q \otimes s\},
 \]
-for \( r, s \in L \), where \( L \) denotes the underlying lattice of the quantale. (Note again that in the case of the metric quantale, the usual order is reversed, so infima correspond to suprema in the standard order.)
+for \( r, s \in L \), where \( L \) denotes the underlying lattice of the quantale.
 
 However, this identity does \emph{not} hold in arbitrary quantales~\textbf{[CONTRAEXAMPLE NEEDED]}. Moreover, as becomes clear in the soundness proof, it is the expression \( q \otimes \sup\{r, s\} \) that arises naturally. 
