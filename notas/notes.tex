@@ -897,6 +897,123 @@ This equality follows from the $\alpha$-equivalence and the equations in Figure 
    & = \left[ \text{case } a \,\{\inl_{\typeB}(x) \Rightarrow v[w/z] ; \, \inr_{\typeA}(y) \Rightarrow v[u/z]\}\right] 
 \end{align*}
 
+
+
+The fact that the distributivity map \(\dist\) is an isomorphism follows by applying reasoning analogous to that used previously to show that it is a copairing, together with the well-known categorical result that coproducts are unique up to isomorphism. We note that there is an additional step consisting of verifying that \(\dist\) satisfies the identities
+\[
+\dist \cdot \inl' = \inl \quad \text{and} \quad \dist \cdot \inr' = \inr,
+\]
+where $\inl' \cdot \inr'$ are the injections of this other coproduct. This is immediate once it is established that \(\dist\) a copairing.
+
+This reduces to proving that the class
+ \begin{align*}
+    \big[z:(\typeA \otimes \mathbb{\typeB}) \otimes \mathbb{\typeD} \vljud \text{pm } z \text{ to } a \otimes b. \text{ case } a\,\{ &\inl_{\typeB}(x) \Rightarrow f[x \otimes b/z']; \\
+    & \inr_{\typeA}(y) \Rightarrow g [y \otimes b/z']\}: \typeE \big],
+  \end{align*} 
+equipped with the injections
+ \begin{align*}
+    & \left[ x: \typeA \otimes \typeD \vljud\text{pm }x \text{ to } a\otimes c. \, \inl_{\typeB}(a) \otimes c : (\typeA \oplus \typeB) \otimes \typeD   \right],\\
+    & \left[ x: \typeB \otimes \typeD \vljud\text{pm }x \text{ to } b\otimes c. \, \inr_{\typeA}(b) \otimes c : (\typeA \oplus \typeB) \otimes \typeD   \right]
+  \end{align*}
+is a copairing.
+
+
+The proof of the coproduct diagram comutes follow directly from equations $\eta_{\otimes_e}$, $\beta_{\otimes_e}$ and $\beta_{\text{case}}^{\text{inl}}$, and $\alpha$-equivalence. Specifically, for the left triangle in the coproduct diagram, we have:
+  \begin{align*}
+    & \left[\text{pm } z \text{ to } a \otimes b. \text{ case } a\, \left\{ \begin{aligned}
+      & \inl_{\typeB}(x) \Rightarrow f[x \otimes b/z'];\\
+      & \inr_{\typeA}(y) \Rightarrow g [y \otimes b/z']
+    \end{aligned}
+      \right\}
+      \right] \comp \left[\text{pm }x \text{ to } a\otimes c. \, \inl_{\typeB}(a) \otimes c \right]  \\
+    =& \left(\text{pm } z \text{ to } a \otimes b. \text{ case } a\, \left\{ \begin{aligned}
+      & \inl_{\typeB}(x) \Rightarrow f[x \otimes b/z'];\\
+      & \inr_{\typeA}(y) \Rightarrow g [y \otimes b/z']
+    \end{aligned}
+      \right\} \right) \cdot \left( \text{pm }x \text{ to } a\otimes c. \, \inl_{\typeB}(a) \otimes c \right) 
+   \\
+    =& \text{pm } (\text{pm }x \text{ to } a\otimes c. \, \inl_{\typeB}(a) \otimes c ) \text{ to } a' \otimes b . \, \text{ case } a'\, \left\{ \begin{aligned}
+      & \inl_{\typeB}(x) \Rightarrow f[x \otimes b/z'];\\
+      & \inr_{\typeA}(y) \Rightarrow g [y \otimes b/z']
+    \end{aligned} \right\}\\
+    = &\text{pm } \inl_{\typeB}(a) \otimes c  \text{ to } a' \otimes b [x/ a \otimes c]. \, \text{ case } a'\, \left\{ \begin{aligned}
+      & \inl_{\typeB}(x) \Rightarrow f[x \otimes b/z'];\\
+      & \inr_{\typeA}(y) \Rightarrow g [y \otimes b/z']
+    \end{aligned} \right\} & (\eta_{\otimes_e},\alpha)  \\
+     = &\text{ case } \inl_{\typeB}(a)\, \left\{ \begin{aligned}
+      & \inl_{\typeB}(x) \Rightarrow f[x \otimes c/z'];\\
+      & \inr_{\typeA}(y) \Rightarrow g [y \otimes c/z']
+    \end{aligned} \right\} [x/ a \otimes c]. & (\eta_{\otimes_e})  \\
+    = & p[x \otimes b/z'] [x/ a \otimes c] & (\beta_{\text{case}}^{\text{inl}}) \\
+    = & f  & (\alpha) \\
+    = &  \left[ f\right]  \\
+  \end{align*}
+  The proof for the right triangle in the coproduct diagram is analogous.
+
+  Next to establish that this arrow is unique, we first observe that given any morphism $m'$ from $(\typeA \otimes \typeB) \otimes \typeD $ to $\typeE$, $z: (\typeA \otimes \typeB) \otimes \typeD \vljud m : \typeE $ , we have
+  \begin{align*}
+   & \left[\text{pm } z \text{ to } a \otimes b. \text{ case } a\, \left\{ \begin{aligned}
+      & \inl_{\typeB}(x) \Rightarrow m[\inl_{\typeB}(x) \otimes b/z];\\
+      & \inr_{\typeA}(y) \Rightarrow m [\inr_{\typeA}(y) \otimes b/z]
+    \end{aligned}
+      \right\}
+      \right] \\
+    & =  \text{pm } z \text{ to } a \otimes b. \text{ case } a\, \left\{ \begin{aligned}
+      & \inl_{\typeB}(x) \Rightarrow m[\inl_{\typeB}(x) \otimes b/z];\\
+      & \inr_{\typeA}(y) \Rightarrow m [\inr_{\typeA}(y) \otimes b/z]
+    \end{aligned}
+      \right\} \\
+    & =   \text{pm } z \text{ to } a \otimes b. \, m \left[\text{case } a\, \left\{ \begin{aligned}
+      & \inl_{\typeB}(x) \Rightarrow \inl_{\typeB}(x) \otimes b;\\
+      & \inr_{\typeA}(y) \Rightarrow \inr_{\typeA}(y) \otimes b
+    \end{aligned}  \right\}/z \right] & (\text{syntactically fusion law}) \\
+    & = \text{pm } z \text{ to } a \otimes b. \, m \left[\text{case } a\, \left\{ \begin{aligned}
+      & \inl_{\typeB}(x) \Rightarrow x' \otimes b [\inl_{\typeB}(x)/x'];\\
+      & \inr_{\typeA}(y) \Rightarrow  x' \otimes b [\inr_{\typeA}(y)/x']
+    \end{aligned}  \right\}/z \right] &  \\
+    & = \text{pm } z \text{ to } a \otimes b. \, m \left[ x' \otimes b \, [a/x'] \,/z \right] & (\eta_{\text{case}})  \\ 
+    & = m[a \otimes b/z][z/a\otimes b] & (\eta_{\otimes_e}) \\
+    & = m = [m]
+  \end{align*}
+
+  If $m$ is a copairing then, it satisfies 
+  \begin{align*}
+    & \left[m [\text{pm } x \text{ to } a\otimes c. \, \inl_{\typeB}(a) \otimes c/ z] = f \right] \quad \text{ and } \quad \left[m [\text{pm } x \text{ to } b\otimes c. \, \inr_{\typeA}(b) \otimes c/ z] = g \right].
+  \end{align*}
+  Observe that,
+  \begin{align*}
+    & \left[m [\text{pm } x \text{ to } a\otimes c. \, \inl_{\typeB}(a) \otimes c/ z]  \right] \\
+    & = m [\text{pm }x \text{ to } a\otimes c. \, \inl_{\typeB}(a) \otimes c/ z]   \\
+    & = \text{pm }x \text{ to } a\otimes c. m[\inl_{\typeB}(a) \otimes c/ z] & (c_{\otimes_e})\\
+    & = m[\inl_{\typeB}(a) \otimes c/ z] [a \otimes b/ x] & (\eta_{\otimes_e}) \\
+    & = \left[  m[\inl_{\typeB}(a) \otimes c/ z] [a \otimes c/ x] \right]
+  \end{align*}
+  Similarly we obtain $\left[m [\text{pm } x \text{ to } b\otimes c. \, \inr_{\typeA}(b) \otimes c/ z]  \right] = \left[m [ \, \inr_{\typeA}(b) \otimes c/ z] [b \otimes c/ x]  \right]. $
+
+  Consequently,
+   \begin{align*}
+    &  \left[  m[\inl_{\typeB}(x) \otimes c/ z] \right] = f[x \otimes b/z'] \quad \text{and} \quad  \left[  m[\inl_{\typeA}(x) \otimes c/ z] \right] = g[x \otimes b/z']
+  \end{align*}
+
+  As a result,
+  \begin{align*}
+    [m] 
+    & = \left[\text{pm } z \text{ to } a \otimes b. \text{ case } a\, \left\{ \begin{aligned}
+      & \inl_{\typeB}(x) \Rightarrow m[\inl_{\typeB}(x) \otimes b/z];\\
+      & \inr_{\typeA}(y) \Rightarrow g [\inr_{\typeA}(y) \otimes b/z]
+    \end{aligned}
+      \right\}
+      \right]\\
+    &= \left[\text{pm } z \text{ to } a \otimes b. \text{ case } a\, \left\{ \begin{aligned}
+      & \inl_{\typeB}(x) \Rightarrow f[x \otimes b/z'];\\
+      & \inr_{\typeA}(y) \Rightarrow g [y \otimes b/z']
+    \end{aligned}
+      \right\}
+      \right]
+  \end{align*}
+
+
+\begin{comment}
 The proof that the distributive property is an isomorphism follows from the syntactic fusion law, the equations in Figure \ref{fig:equations-in-context-cond}, the equations $\beta_{\otimes_{e}}$ and $\eta_{\otimes_{e}}$, the $\alpha$-equivalence, and Lemma \ref{lem:exh_and_sub}. 
 
 \begin{align*}
@@ -1063,6 +1180,7 @@ The proof that the distributive property is an isomorphism follows from the synt
     \end{aligned} \right\}  [z/ a \otimes b]  & (\beta_{\otimes_{e}}) \\
   & = a \otimes b [z/ a \otimes b] = z = [z] & (\eta_{\text{case}})
 \end{align*} 
+\end{comment}
 
 \end{proof}
 

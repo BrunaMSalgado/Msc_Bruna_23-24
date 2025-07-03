@@ -858,8 +858,6 @@ Moreover, negation can be expressed by the following program:
   & \hspace{-22pt}  = * \text{ to} *. \inr_{\typeI}(*) &  (\eta_\text{dis} \text{ and } \beta_{\mathbb{I}_{e}}) \\
   & \hspace{-22pt}  =  \inr_{\typeI}(*)
     \end{align*}
-
-     \todo[inline,size=\normalsize]{Duvida na aplicação da regra do discard}
   \end{proof}
 
  
@@ -1568,7 +1566,7 @@ $X$ to $Y$ yield equal morphisms.
 \end{definition}
 
 \begin{definition}
-  An object \( T \) in a category \( \catC  \) is called a \emph{terminal object} if for every object \( A \in \catC  \), there exists a unique morphism $ f: A \to T $ .
+  An object \( 1 \) in a category \( \catC  \) is called a \emph{terminal object} if for every object \( A \in \catC  \), there exists a unique morphism $ f: A \to 1 $ .
 \end{definition}
 
 \begin{example}
@@ -1836,6 +1834,13 @@ f \oplus g = [\inl \circ f,\, \inr \circ g].
 \]
 
 \end{proof}
+
+\begin{proposition} \cite[Proposition 3.12]{awodeyCategoryTheory2010} 
+  Coproducts are unique up to isomorphism. Alternatively, this can be formulated as follows: let \((C, \inl: A \to C, \inr: B \to C)\) and \((C', \inl': A \to C', \inr': B \to C')\) be two coproducts of objects \(A\) and \(B\) in a category. Then there exists a unique isomorphism \(\varphi: C \to C'\) such that
+\[
+\varphi \cdot \inl = \inl' \quad \text{and} \quad \varphi \cdot \inr = \inr'.
+\]
+\end{proposition}
 
 \begin{example}
   In the category $\catSet$, the coproduct \( A \oplus B \) of two sets is their disjoint union, which can be constructed as
