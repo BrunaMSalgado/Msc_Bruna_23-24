@@ -108,9 +108,10 @@ reasoning about `case' statements  quantitatively, fundamental across a myriad
 of computational paradigms. 
 
 Among other things, we extend the associated quantalic equational system to
-encompass the additive operator $\oplus$. We show that the extension is sound
-and (approximately) complete. We then briefly illustrate its use in
-probabilistic programming.
+encompass the additive operator $\oplus$. We show that this extension is sound.
+We also show that when certain continuity properties (of the underlying
+quantale) are adopted it is additionally (approximately) complete. We briefly
+illustrate its use in probabilistic programming.
 
 \end{abstract}
 
@@ -118,9 +119,9 @@ probabilistic programming.
 \label{sec:intro}
 
 Previous work~\cite{dahlqvist22,dahlqvist2023syntactic} introduced a quantalic
-generalisation of linear $\lambda$-calculus, \ie\ the exponential-free
-\emph{multiplicative} fragment of linear logic. In this note we start
-investigating the incorportation of \emph{additive} structure to this body of
+generalisation of linear $\lambda$-calculus -- \ie\ the exponential-free
+\emph{multiplicative} fragment of linear logic. Here we start
+investigating the incorporation of \emph{additive} structure to this body of
 work. Specifically our focus is on the \emph{additive disjunction operator}
 $\oplus$ which is typically interpreted via coproducts and gives rise to case
 statements (\ie\ conditionals). Our motivation for it is highly practical: in
@@ -155,15 +156,17 @@ in~\cite{lago22}.
 
 In this note we extend the quantalic equational system
 of~\cite{dahlqvist22,dahlqvist2023syntactic} to encompass the additive
-disjunction operator. We show that the extension is both sound and complete. We
-show that even if the well-known Archimedean rule (often problematic) is
-dropped one still retains `approximate completeness'. We briefly illustrate our
-extended framework at work in the setting of probabilistic
-programming~\cite{dahlqvist19,barthe20}. We will focus specifically on
-reasoning about Cauchy sequences of higher-order probabilistic programs -- thus
-emphasising the recent shift from ``seeing program semantics as the science of
-program equivalence''~\cite{lago22} to more flexible, quantitative perspectives,
-involving functional analysis and beyond.
+disjunction operator. We show that the extension is sound. We also show that
+the continuity properties assumed from the quantale
+in~\cite{dahlqvist22,dahlqvist2023syntactic} are key for achieving
+completeness. We show furthermore that even if the well-known Archimedean rule
+(often problematic) is dropped one still retains `approximate completeness'. We
+briefly illustrate our extended framework at work for 
+probabilistic programming~\cite{dahlqvist19,barthe20}. We will focus
+specifically on reasoning about Cauchy sequences of higher-order programs --
+thus emphasising the emergent shift from ``seeing program semantics as the
+science of program equivalence''~\cite{lago22} to more flexible, quantitative
+perspectives, involving functional analysis and beyond.
 
 %if we drop the well-known work
 %of~\cite{dahlqvist2023syntactic} by introducing a metric equation for
@@ -274,16 +277,22 @@ the top element of $\mathcal{V}$, a common assumption in quantale
 theory~\cite{velebil19}. 
 
 Finally our extended quantalic system crucially relies on the following
-observation.  Since every quantale $\mathcal{V}$ is a cocomplete category
-(specifically, a complete sup-lattice) it will be complete as
-well~\cite[Section 12]{cats} -- in other words it has all infima. We will
-assume that for every $q \in \mathcal{V}$ the operation $q \wedge (-) :
-\mathcal{V} \to \mathcal{V}$ preserves suprema and that the basis $B$ is closed
-under binary infima.  Several examples of quantales that satisfy these
-constraints are presented and discussed
+observations.  Since every quantale $\mathcal{V}$ is a cocomplete category
+(specifically a complete sup-lattice) it will be complete as well~\cite[Section
+12]{cats}, in other words it has all infima. We will thus assume that the basis
+$B$ is closed under binary infima.  Several examples of quantales that satisfy
+these constraints are presented and discussed
 in~\cite{dahlqvist22,dahlqvist2023syntactic}.  Here we mention only the case of
 the metric quantale for we use it in our illustration of probabilistic
-programming. 
+programming.  Next, as previously mentioned the assumption that $\mathcal{V}$
+is continuous will play a key rôle in (approximate) completeness. The key point
+is that the continuity of $\mathcal{V}$ entails that for every $x \in
+\mathcal{V}$ the operation,
+\[
+        x \wedge (-) : \mathcal{V} \to \mathcal{V}
+\]
+is continuous, \ie\ it preserves directed
+suprema~\cite[Proposition I-1.8]{gierz03}.
 
 We are ready to present our quantalic, equational system extended with the
 additive disjunction operator.  In the original system equations are labelled
@@ -486,7 +495,7 @@ the $\mathcal{V}$-category $\catC(\sem{\Gamma},\sem{\typeA})$.
         rules of the extended calculus. To this effect, in general one uses the fact
         that $\otimes$ distributes over suprema and the case of additive
         disjunction additionally requires the fact that $q \wedge (-)$
-        distributes over suprema for every $q \in \mathcal{V}$. This yields the
+        distributes over directed suprema for every $q \in \mathcal{V}$. This yields the
         desired category $\catfont{Syn}(T)$ which will respect
         Definition~\ref{defn:enr_aut} and moreover possess binary coproducts
         enriched over the Cartesian structure of $\VCatSe$ (resp. $\VCatSS$).
