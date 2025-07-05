@@ -4,6 +4,110 @@
 
 \section{Motivation and Context}
 
+\todo[inline,size=\normalsize]{Frase importante "Há qualquer coisa de pasmoso no facto de que, na raíz dos computadores pessoais que usamos hoje diariamente, esteja uma ideia (a ideia da universalidade em computação) que surgiu por intermédio de questões da fundamentação da matemática. "}
+
+\todo[inline,size=\normalsize]{Esqueleto \\
+1. Hilbert e colocar a matemática em solo absolutamente seguro. O que isto é? Cena mais abaixo `uma visão magnífica da matemática. A visão leibniziana dum calculus ratiocinator no domínio  da matemática teria sido plenamente justificada. Perante um problema  matemático, por mais difícil que fosse, bastaria “pegar na pena e sentar-se ao  ábaco e (na presença de um amigo, se se quiser) dizer um para o outro: calculemus”. O cálculo seria efetivo, cego, como na multiplicação em numeração  decimal, e daria sempre resposta. A matemática seria segura (consistência) e responderia a todas as questões (completude)'.\\
+2. Isto comtemplava provar certas coisas entre elas o problema da decidibilidade -> tentar fazer descrição mais breve do formalismo ou passar por cima, eis a questão\\
+3. Church -> Primeiro e importante para as linguagens functionais;\\
+4. Turing -> Maquina universal, mais relacionado com hardware. }
+%Back then the concept of a computer algorithm had not taken shape. Turing first established a working definition for the term – algorithm
+%Despite its simplicity, the Turing machine can simulate any computer algorithm, no matter how complex it is. Alan Turing demonstrated that everything that can be reasonably said to be computed by a human using a standard procedure can be computed by the Turing machine. Turing used a human as the basis for his model. He abstracted the actions of a human ‘computer’ using paper and pencil to perform a calculation into a hypothesised machine that could manipulate symbols on an infinite paper tape.
+
+
+% O	problema da	decisão	e a	máquina	universal de Turing -> Leibneiz, Hilbert (queria por a matematica em terriotio absolutamente seguro),  Church and Turing um lambda calculus outro maquina de turing provaram a a resposta era negativa. Turing no apendice do seu artigo mpstra que as defs de comtutabilidade dos 2 são equivalente . Maquinas de turing -> pi, lambda calculus ->pf
+%Em Setembro de 1928, realizou-se em Bolonha o VI Congresso Internacional de Matemáticos. Na sua comunicação ao  congresso, fez um apelo:  É claro que, para o completo desenvolvimento desta tarefa, é necessária a  fervorosa colaboração da geração mais jovem de matemáticos.  De que tarefa falava Hilbert? Tratava-se, sem mais nem menos, de pôr a  matemática em solo absolutamente seguro. Mas porquê? Para isso precisamos de recuar mais uns anos...
+%Em 1902 cai sobre a comunidade matemática uma  espécie de bomba: o paradoxo de Russell. Dada uma qualquer condição (p. ex., a  condição de ser homem) podemos considerar a sua extensão (o conjunto de  todos os homens). Normalmente, um conjunto não é membro de si próprio. O  conjunto de todos os homens não é um homem. Mas, por vezes, é-o: o conjunto de todas as abstrações é, ele próprio, uma abstração. Bertrand Russell  considerou o conjunto de todos os conjuntos que não são membros de si  próprios. Põe-se a questão: é o conjunto de Russell membro de si próprio? Se é,  então dada a sua definição (trata-se do conjunto formado pelos conjuntos que não são membros de si próprios), não é. Mas se não é, é. Chegamos a uma  situação paradoxal: o conjunto de Russell nem pode ser membro de si próprio, nem pode deixar de o ser! 
+%A descoberta do paradoxo de Russell provocou reações díspares e, por vezes, emotivas, entre os matemáticos. Uns matemáticos  os modernos, atarefaram-se em tentar compreender as razões para o aparecimento do paradoxo e propuseram programas de fundamentação da matemática. Hilbert encontrava-se entre estes últimos e, nos anos vinte do século passado, propôs o seu próprio programa de  fundamentação da matemática: o formalismo. Este programa competia com o  programa logicista do próprio Russell e com o denominado programa  intuicionista do matemático holandês L. E. J. Brouwer. 
+% O programa de Hilbert concebia a matemática como uma espécie de jogo. No jogo  de xadrez há a partida propriamente dita, jogada de acordo com regras exatas.  Há, também, a teoria sobre o jogo de xadrez. Faz parte desta teoria a afirmação  de que não é possível dar cheque-mate com apenas dois cavalos a um rei isolado.  Já não se trata agora de jogar uma partida de xadrez mas sim de investigar o jogo  em si. É metaxadrez. A matemática, quando vista axiomaticamente, também tem  regras bem definidas. Elas são dadas pelos axiomas e pelas regras de inferência.  Os axiomas correspondem ao tabuleiro inicial duma partida de xadrez – as peças  na sua posição inicial – e as regras de inferência correspondem às jogadas  permitidas. A ideia fundamental do formalismo é ver a matemática como um jogo  (dedutivo) simbólico. As peças deste jogo simbólico são as fórmulas da linguagem da matemática. Para que este jogo tenha regras exatas, como acontece  no xadrez, é necessário simbolizar (formalizar) completamente a linguagem da  matemática. Não basta enunciar o primeiro axioma da geometria euclidiana  dizendo que por dois pontos passa uma reta. É necessário formulá-lo numa  linguagem exata. Na notação da lógica simbólica, o axioma de Euclides escreve-se  assim: ∀x∀y(Px ∧ Py → ∃z(Rz ∧ Ixz ∧ Iyz)) As regras de inferência permitem gerar (deduzir) novas  fórmulas a partir de outras fórmulas. Uma regra de inferência básica é a regra do  modus ponens. Por exemplo:   Se x incide sobre z, então x é um ponto  x incide sobre z ___________________________________________________________________  Logo, x é um ponto  Na notação da lógica, podemos inferir a configuração simbólica “Px” a partir das configurações “Ixz → Px” e “Ixz”. O “jogo de fórmulas” consiste em gerar certas  sequências de símbolos (os teoremas) a partir de determinadas sequências  dadas inicialmente (os axiomas) por intermédio das regras de inferência. Hilbert exige que, no cálculo axiomático formal, não se chegue a contradições, i. e. não se chegue a fórmulas da forma “A e não-A” (simbolicamente “A ∧¬A”). O  “jogo”, neste caso, deixaria de ter interesse até porque, duma contradição, é  possível inferir qualquer fórmula. Por isso o paradoxo de Russell é tão  devastador: toda a fórmula seria um teorema. 
+%Na sua palestra em Bolonha, Hilbert menciona vários problemas relacionados  com o seu programa fundacional. Um é o problema de consistência que acabámos  de discutir. Hilbert pretendia mostrar que as regras do jogo formal das  axiomáticas importantes para a matemática – um jogo cujas regras são  completamente exatas, como é o xadrez – nunca levariam à dedução de  contradições. Outro dos problemas  mencionados na palestra foi o problema da completude. No caso da axiomática da  aritmética, este problema consiste em mostrar que, para qualquer asserção simbólica da linguagem formal da aritmética, ou ela ou a sua negação é um  eorema. Um terceiro problema foi também mencionado em 1928, mas num livro de Hilbert com o seu aluno Wilhelm Ackermann. É o problema da decisão,  também conhecido pelo seu nome alemão: Entscheidungsproblem. Hilbert e  Ackermann escreveram que “o Entscheidungsproblem deve ser considerado o  problema principal da lógica matemática” (em itálico no original).
+
+%Hilbert e Ackermann escreveram que “o Entscheidungsproblem deve ser considerado o  problema principal da lógica matemática” (em itálico no original). O problema da decisão é o problema de encontrar um método efetivo (também  se diz mecânico ou algorítmico) de acordo com o qual, dada uma fórmula da  linguagem do cálculo de predicados, se determina se essa fórmula é, ou não, um  teorema da lógica (i. e. deduzível apenas a partir dos axiomas do cálculo de  predicados).  Um método ou procedimento é efetivo se:  1. puder ser descrito através dum número finito de instruções exatas;  2. produzir o resultado desejável ao fim dum número finito de passos  (desde que se sigam as instruções sem erro);  3. puder, em princípio, ser executado por um ser humano apenas com a  ajuda de papel e lápis;  4. não exigir nem criatividade nem perspicácia por parte do ser humano.  Os algoritmos que as crianças aprendem para efetuar as operações básicas da aritmética são exemplos de procedimentos efetivos. 
+%Uma solução positiva para os três problemas hilbertianos da completude, consistência e decisão subscreveria uma visão magnífica da matemática. A  matemática poderia ser vista como um grandioso cálculo formal – consistente, completo e decidível. A visão leibniziana dum calculus ratiocinator no domínio  da matemática teria sido plenamente justificada. Perante um problema  matemático, por mais difícil que fosse, bastaria “pegar na pena e sentar-se ao  ábaco e (na presença de um amigo, se se quiser) dizer um para o outro: calculemus”. O cálculo seria efetivo, cego, como na multiplicação em numeração  decimal, e daria sempre resposta. A matemática seria segura (consistência) e responderia a todas as questões (completude)
+%Não se tinham passado ainda três anos sobre a palestra de Hilbert em Bolonha  quando o jovem matemático austríaco Kurt Gödel (nascido em Brno, hoje na  República Checa, em 1906) mostra que a axiomática da aritmética, desde que seja consistente, não é completa. Umas semanas mais tarde, mostra que não é  possível demonstrar a consistência da aritmética por meio de métodos aceitáveis  para Hilbert (os métodos da metamatemática). Curiosamente, Gödel fez o ,anúncio público do primeiro destes resultados também em Königsberg,  precisamente na véspera da comunicação de Hilbert de 1931. A volte-face foi  totalmente inesperada e apanhou de surpresa o mundo matemático. Os  resultados de Gödel demoraram algum tempo a ser plenamente apreciados e  compreendidos. Afinal, o programa de Hilbert não era possível de levar a cabo. Afinal o grande matemático estava errado.
+%O artigo de Turing de 1936 “On computable numbers with an application to the  Entscheidungsproblem” (Sobre números computáveis com uma aplicação ao  Entscheidungsproblem) é brilhante. Contém um análise conceptual do que é um  processo efetivo e, concomitantemente, propõe uma definição matematicamente  rigorosa do que se pode calcular com tais processos. Contém a descrição duma  “super-máquina” com poder computacional para executar qualquer processo  efetivo. Mostra que há problemas de decisão (i. e. de resposta “sim” ou “não”)  que não têm soluções através de processos efetivos. Finalmente, contém a solução para o Entscheidungsproblem.
+%Turing participou na história da  construção de computadores, nomeadamente na construção de um dos  primeiros computadores eletrónicos, o ACE (Automatic Computing Engine). O  relatório técnico que Turing escreveu para o ACE (provavelmente nos últimos  meses de 1945) continha discussões detalhadas de engenharia e, inclusivamente,  avançava com uma verba concreta para o custo da construção da máquina.  Naturalmente, a construção dum computador digital é em grande parte um  empreendimento de engenharia. Porém, ainda que seja interessante falar dos  problemas complicados de engenharia e de programação que tiveram que ser  superados para construir os computadores electrónicos assim como mencionar o  incrível avanço tecnológico a que temos assistido desde meados dos anos quarenta, não se pode esquecer que venceu uma conceção de computador que  desafia o senso comum. Ainda em 1956 (vinte anos depois do artigo seminal de  Turing!), Howard Aiken, um dos pioneiros da computação e professor na Universidade de Harvard afirmava: Howard Aiken, um dos pioneiros da computação e professor na  Universidade de Harvard afirmava: … se porventura vier a acontecer que as bases lógicas de uma máquina  concebida para a solução numérica de equações diferenciais coincide com as  lógicas duma máquina concebida para a contabilidade de um armazém,  considerá-la-ia a mais espantosa coincidência que alguma vez encontrei. 
+%Este é o senso comum, mas os computadores atuais não são como o senso comum sugere. São computadores de propósito geral, capazes de ler software adequado, este sim de propósito específico. Os computadores atuais permitem ter como entradas instruções (software) desenhadas para desempenhar tarefas específicas: são, em suma, incorporações da ideia de máquina universal. Hoje em dia os computadores são um utensílio doméstico, como uma televisão ou um frigorífico. Há qualquer coisa de pasmoso no facto de que, na raíz dos computadores pessoais que usamos hoje diariamente, esteja uma ideia (a ideia da universalidade em computação) que surgiu por intermédio de questões da fundamentação da matemática. 
+%Na parte final do seu artigo, como aplicação dos conceitos anteriormente  introduzidos, Turing resolve o Entscheidungsproblem. O título da última secção é,  precisamente, “Aplicação ao Entscheidungsproblem”. Turing baseia-se em  trabalho que efetuou numa secção prévia, onde exibe um problema de decisão  que não pode ser decidido de modo efetivo (um problema destes diz-se  indecidível). O problema é o seguinte: decidir, dadas entradas αM e β, se a  máquina M para com a entrada β, i. e. se M(β)↓. A este problema chama-se o  problema da paragem (“halting problem”, em inglês). O raciocínio de Turing é  por redução ao absurdo. Turing vai supor que o problema da paragem é  decidível e, a partir desta suposição, vai chegar a uma contradição. O problema da paragem é o problema indecidível paradigmático. Em geral,  mostra-se que um dado problema é indecidível através da redução do problema  da paragem a esse problema. A ideia é simples. Para mostrar que um problema é  indecidível mostra-se que se fosse decidível então o problema da paragem  também o seria. Quod non (o que não é o caso). 
+%Quando Turing estava a terminar o seu artigo na primavera de 1936, tomou  conhecimento de um trabalho do lógico americano Alonzo Church que também  continha uma solução para o Entscheidungsproblem. O artigo intitulava-se “A  note on the Entscheidungsproblem”.
+%o artigo  de Turing introduz o conceito de máquina universal e argumenta que a noção de  máquina de Turing captura a noção informal de efetividade computacional. 
+%A identificação da noção informal de função efetivamente computável com uma noção matematicamente rigorosa tinha sido primeiramente proposta, também por Church, num outro artigo do ano de 1936.
+%(mais tarde, no apêndice ao seu artigo de 1936, Turing mostra que  a sua definição de computabilidade em termos de máquina de Turing coincide  com a noção de Church e Kleene: as três noções são, pois, equivalentes). A  identificação entre estas noções formais e a noção informal de computabilidade  efetiva ficou conhecida na literatura por tese de Church.
+%No caso da computabilidade efetiva, dá-se um “milagre” porque é possível  caracterizar os processos mecânicos básicos que dão origem a toda e qualquer computação efetiva, o que está estreitamente ligado a não ser possível decidir  efetivamente se uma determinada lista de instruções básicas dá, ou não, origem a um processo que termina.
+
+
+%Any problem for which the answer is yes or no is a 'decision problem'. Other problems for which the answer is to find an optimal solution (such as a shortest path or something similar) are not 'decision problems'. The halting problem is the decision problem asking whether a given program will terminate in finite time (on given input). The halting problem is proven to be unsolvable over Turing machines. Meaning no computer program can decide whether another program will terminate or run forever.
+%O Church foi o primeiro a provar -> The part of the λ-calculus dealing only with functions turned out to be  quite successful. Using this theory Church proposed a formalization of the  notion "effectively computable" by the concept of λ-definability. Kleene  [1936] showed that λ-definability is equivalent to Gödel-Herbrand re cursiveness and in the meantime Church formulated his thesis (stating that  recursiveness is the proper formalization of effective computability). Turing [1936], [1937] gave an analysis of machine computability and showed  that the resulting notion (Turing computable) is equivalent to λ-definability.
+%By the analysis of Turing it follows that in spite of its very simple syntax,  the λ-calculus is strong enough to describe all mechanically computable  functions. Therefore the λ-calculus can be viewed as a paradigmatic  programming language. This certainly does not imply that one should use  it to write actual programs. What is meant is that in the λ-calculus several  programming problems, specifically those concerning procedure calls, are  in a pure form. For example, several programming languages have features inspired by  λ-calculus (perhaps unconsciously so). 
+
+%Classically, in set theory, a function is represented by its graph. Two functions are equal if they have the same graph; later this notion of equality will be referred to as extensional equality. From the point of view of Computer Science, this representation is not very useful. We are usually as interested in how a function computes its answer as in what it computes. For example, all sorting functions have the same graph and are thus (extensionally) equal but a large part of the Computer Science literature has been devoted to the definition and analysis of different sorting algorithms, so we are clearly missing something. The casual use of the word "algorithm" in the last sentence is the key; we should represent a function by a rule, which describes how the result is calculated, rather than its graph.
+
+%The A-calculus consists of a notation for expressing rules, A-notation, and a set of axioms and rules which tell us how to compute with terms expressed in the notation. 
+
+%A major limitation of the notation seems to be that we can only define unary functions; we can only introduce one formal argument at a time. The fact that this is not a real restriction was first observed by Schönfinkel... bla bla bla p.19 lambda calculus for compouter science
+
+%The A-calculus is an example of a formal system ("Hilberts Game"): we have formulae, axioms and rules for deriving new terms -> acho q não me vou meter pro aqui
+
+\subsection*{Some History}
+
+\subsection*{$\lambda$-calculus}
+
+
+\todo[inline,size=\normalsize]{Esqueleto \\
+1. Funções: functions as graphs vs functions as rule \\
+2. lambda calculus and functions as formulae
+3. higher-order \\
+4. Brief mention to the logic part? "The lambda calculus not only permits the design of all computable functions, but it also allows
+ one to draw a correspondence between proofs in logic and programs. This correspondence, known as
+ the Curry-Howard isomorphism (Girard et al., 1990)" \\
+5. Acabar com "Beyond its foundational aspects, this
+calculus incorporates extensions for modeling side effects, including probabilistic or non‑
+deterministic behaviors and shared memory. Higher‑order functions form a pivotal abstrac‑
+tion in practical programming languages such as LISP, Scheme, ML, and Haskell."}
+
+
+
+
+
+% 
+
+
+% cena das funções provavelmente
+
+%nota sobre ligação com logicas, embora não será esse o nosso foco
+
+\subsubsection*{Metric $\lambda$-calculus}
+\todo[inline,size=\normalsize]{Tenho que ver como introduzo a parte métrica}
+\begin{comment}
+Previous work~\cite{dahlqvist22,dahlqvist2023syntactic} introduced a quantalic generalisation of affine $\lambda$-calculus. In this note we start
+investigating the incorportation of \emph{additive} structure to this body of
+work. Specifically our focus is on the \emph{additive disjunction operator}
+$\oplus$ which is typically interpreted via coproducts and gives rise to case
+statements (\ie\ conditionals). Our motivation for it is highly practical: in
+trying to reason quantitatively about higher-order programs we often fell short
+when these involved conditionals. 
+\end{comment}
+
+
+\todo[inline,size=\normalsize]{Fazer respetivo state of the art metrico e tb para a parte probabilistica}
+%madarde ->  Quantititive analogue of a universal algebra, axioms are not strict equities. We define an equality relation indexed by rationals: a = b which we think of as saying that “a is ap proximately equal to b up to an error of ”.
+%como definir universal algebras em termos simples -> A universal algebra is a set with any number of operations.After the operations have been specified, the nature of the algebra is further defined by axioms, which in universal algebra often take the form of identities, or equational laws.
+%dallagoQuantitativeAlgebraicHigherOrder2022 ->  In the higher-order setting, \cite{lago22} enforces additive conjunction to be left adjoint to implication (interpreted via Cartesian-closedness), with a series of negative results emerging from this. Our work is orthogonal to these in that we study the dual of $\&$ (\ie\ $\oplus$) and furthermore we assume the left adjoint of implication to be multiplicative conjunction (\ie\ $\otimes$) instead of the additive counterpart. (Tradtução: eles obtêm resultados negativos dado estarem a usar categorias cartesian closed -> A questão é escrever isto em termos mais leigos)
+%outros-> só referir
+
+%It can be applied to several computational paradigms, in this work we highlight probabilistic and quantum computing paradigms.
+\subsection*{Probabilistic Programming}
+
+\todo[inline,size=\normalsize]{Pequena a introdução a pp e porque é que queremos saber de noções de equivalência aproximada neste setting}
+
+\subsection*{Quantum Computation}
+
+
+\todo[inline,size=\normalsize]{Reduzir parte quântica: tirar histórias das linguagens e assim, mas deixar as do selinger}
+
+\todo[inline,size=\normalsize]{Parte das op algebras?-> Tradicionalmente faz-se blá, mas existe outra perspetiva... Kenta Cho vs Selinger + temos espaços infinitos}
+
+
 
 Quantum computing dates back to 1982 when Nobel laureate Richard Feynman proposed the idea of constructing computers based on quantum mechanics principles to efficiently simulate quantum phenomena \cite{feynman2018simulating}. 
 
@@ -38,7 +142,6 @@ An alternative approach was explored in \cite{dahlqvist2022syntactic}, using lin
 integrated in the calculus via the so-called diamond norm , which induces a metric (roughly, a distance function) on the space of quantum programs (seen semantically as completely positive trace-preserving super-operators) [\cite{watrous2018theory}]. The authors argue that their deductive system allows to compute an approximate distance between two quantum programs easily as opposed to computing an exact distance ``semantically" which tends to involve quite complex operators.  Some positive results were achieved in this setting, but much remains to be done.
 
 
-\todo[inline,size=\normalsize]{Dar mais ênfase ao lambda calculus -> Procurar livros para inspiração}
 \todo[inline,size=\normalsize]{Colocar o que fiz em termos mais leigos}
 \todo[inline,size=\normalsize]{Maybe posso na mesma discorrer um pouco sobre a parte quantica, fazendo o parentesis que é a área em que tenho mais experiencia}
 
