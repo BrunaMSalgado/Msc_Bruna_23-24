@@ -93,7 +93,7 @@
 \chapter{Metric Lambda Calculus} \label{ch:metriclambda}
 
 
-The Lambda Calculus, developed by Church and Curry in the 1930s, serves as a formal language capturing the key attribute of higher-order functional languages, treating functions as first-class citizens, allowing them to be passed as arguments \cite{barendregt1984lambda}.  Moreover, lambda calculus has been proven to be universal in the sense that any computable function can be represented as an expression within the language \cite{bernays1936alonzo} . Beyond its foundational aspects, this calculus incorporates extensions for modeling side effects, including probabilistic or non-deterministic behaviors and shared memory.  Higher-order functions form a pivotal abstraction in practical programming languages such as LISP, Scheme, ML, and Haskell.
+ %Moreover, lambda calculus has been proven to be universal in the sense that any computable function can be represented as an expression within the language \cite{bernays1936alonzo} .  Higher-order functions form a pivotal abstraction in practical programming languages such as LISP, Scheme, ML, and Haskell.
 
 %The metric lambda calculus incorporates a metric equational system, enabling reasoning about approximate program equivalence.
 
@@ -108,24 +108,7 @@ For a more detailed study of lambda calculus theory, the reader is referred to \
 
 
 
-\section{The Lambda Calculus}
-
-The concept of a function takes a central role in the lambda calculus. But what exactly is a function?  In most mathematics, the “functions as graphs” paradigm is the most elegant and appropriate framework for understanding functions. Within this paradigm, each function $f$ has a fixed domain $X$ and a fixed codomain $Y$. The function $f$ is then a subset of $X \times Y$ that satisfies the property that for each $x \in X$ there is a unique $y \in Y$ such that $(x,y) \in f$. Two functions $f$ and $g$ are equal if they yield the same output on each input, that is if $f(x) = g(x)$ for all $x \in X$. This perspective is known as the extensional view of functions, as it emphasizes that the only observable property of a function is how it maps inputs to outputs.
-
-On the other hand, the “functions as rules” paradigm is more appropriate within computer science. In this context, defining a function involves specifying a rule or procedure for computing the function. Such a rule is often expressed in the form of a formula, for example, \( f(x) = x^2 \). As with the mathematical paradigm, two functions are considered extensionally equal if they exhibit the same input-output behavior. However, this view also introduces the notion of intensional equality: two functions are intensionally equal if they are defined by (essentially) the same formula.
-
-
-In the lambda calculus, functions are described explicitly as formulae. The function $f:x \mapsto f(x)$ is represented as $\lambda x.f(x)$.  Applying a function to an argument is done by juxtaposing the two expressions. For instance consider the function $f:x \mapsto x+1$, to compute $f(2)$ one writes $(\lambda x.x+1)(2)$.
-
-The expression of higher‑order functions - functions whose inputs and/or outputs are themselves functions- in a simple manner is an essential feature of lambda calculus. For example, the composition operator $f,g \mapsto f \circ g$ is written as $\lambda f. \lambda g. \lambda x. f(g(x))$. Considering the functions $f:x \mapsto x^2$ and $g:x \mapsto x+1$, to compute $(f \circ g)(2)$ one writes $$(\lambda f. \lambda g. \lambda x. f(g(x)))(\lambda x.x^2)(\lambda x.x+1)(2).$$
-
-As mentioned above,  within  the “functions as rules” paradigm, is not
-always necessary to specify the domain and codomain of a function in advance. For instance, the identity function $f: x \mapsto x$, can have any set $X$ as its domain and codomain, provided that the domain and codomain are the same. In this case, one says that $f$ has type $X \rightarrow{} X$. In the case of the composition operator, $h=\lambda f. \lambda g. \lambda x. f(g(x))$, the domain and codomain of the functions $f$ and $g$ must match. Specifically, $f$ can have any set $X$ as its domain and any set  $Y$ as its codomain, provided that $Y$ is the domain of $g$. Similarly, $g$ can have any set $Z$ as its codomain.  Thus,  $h$ has type $$(X \rightarrow{} Y) \rightarrow{} (Y \rightarrow{} Z) \rightarrow{} (X \rightarrow{} Z).$$ 
-
-This flexibility regarding domains and codomains enables operations on functions that are not possible in ordinary mathematics. For instance, if $f = \lambda x.x$ is the identity function, then one has that $f(x) = x$ for any $x$. In particular, by substituting $f$ for $x$, one obtains $f(f) = (\lambda x.x)(f) = f$. Note that the equation $f(f) = f$ is not valid in conventional mathematics, as it is not permissible, due to set-theoretic constraints, for a function to belong to its own domain.
-
-Nevertheless this remarkable aspect of lambda calculus, this work focuses on a more restricted version of the lambda calculus, known as the simply-typed lambda calculus. Here, each expression is always assigned a type, which is very similar to the situation in mathematics. A function may only be applied to an argument if the argument's type aligns with the function's expected domain. Consequently, terms such as $f(f)$ are not allowed, even if $f$ represents the identity function.
-
+%\section{The Lambda Calculus}
 
 
 

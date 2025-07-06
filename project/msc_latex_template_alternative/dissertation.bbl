@@ -1,5 +1,35 @@
 \begin{thebibliography}{10}
 
+\bibitem{Godel}
+Richard Zach.
+\newblock Chapter 71 - {{Kurt Gödel}}, paper on the incompleteness theorems
+  (1931).
+\newblock In I.~Grattan-Guinness, Roger Cooke, Leo Corry, Pierre Crépel, and
+  Niccolo Guicciardini, editors, {\em Landmark {{Writings}} in {{Western
+  Mathematics}} 1640-1940}, pages 917--925. Elsevier Science, 2005.
+
+\bibitem{hilbert1938}
+D.~Hilbert and W.~Ackermann.
+\newblock {\em Grundzüge Der {{Theoretischen Logik}}}.
+\newblock Springer, 1938.
+
+\bibitem{church1936}
+Alonzo Church.
+\newblock An {{Unsolvable Problem}} of {{Elementary Number Theory}}.
+\newblock {\em American Journal of Mathematics}, 58(2):345--363, 1936.
+
+\bibitem{turingComputableNumbersApplication1937}
+A.~M. Turing.
+\newblock On {{Computable Numbers}}, with an {{Application}} to the
+  {{Entscheidungsproblem}}.
+\newblock {\em Proceedings of the London Mathematical Society},
+  s2-42(1):230--265.
+
+\bibitem{girardProofsTypes1989}
+Jean-Yves Girard, Yves Lafont, and Paul Taylor.
+\newblock {\em Proofs and {{Types}}}.
+\newblock Cambridge University Press, 1989.
+
 \bibitem{feynman2018simulating}
 Richard~P. Feynman.
 \newblock Simulating physics with computers.
@@ -62,11 +92,6 @@ Lukas Burgholzer and Robert Wille.
 \newblock Advanced equivalence checking for quantum circuits.
 \newblock {\em IEEE Transactions on Computer-Aided Design of Integrated
   Circuits and Systems}, 40(9):1810--1824, 2020.
-
-\bibitem{watrous2018theory}
-John Watrous.
-\newblock {\em The theory of quantum information}.
-\newblock Cambridge university press, 2018.
 
 \bibitem{winskel1993formal}
 Glynn Winskel.
@@ -155,16 +180,10 @@ P~Nick Benton.
 \newblock In {\em International Workshop on Computer Science Logic}, pages
   121--135. Springer, 1994.
 
-\bibitem{barendregt1984lambda}
-Hendrik~P Barendregt et~al.
-\newblock {\em The lambda calculus}, volume~3.
-\newblock North-Holland Amsterdam, 1984.
-
-\bibitem{bernays1936alonzo}
-Paul Bernays.
-\newblock Alonzo church. an unsolvable problem of elementary number theory.
-  american journal of mathematics, vol. 58 (1936), pp. 345--363.
-\newblock {\em The Journal of Symbolic Logic}, 1(2):73--74, 1936.
+\bibitem{watrous2018theory}
+John Watrous.
+\newblock {\em The theory of quantum information}.
+\newblock Cambridge university press, 2018.
 
 \bibitem{mackieLanguageAutonomous1993}
 Ian Mackie, Leopoldo Román, and Samson Abramsky.
@@ -195,6 +214,11 @@ Michael Barr and Charles Wells.
 Saunders Mac~Lane.
 \newblock {\em Categories for the working mathematician}, volume~5.
 \newblock Springer Science \& Business Media, 2013.
+
+\bibitem{barendregt1984lambda}
+Hendrik~P Barendregt et~al.
+\newblock {\em The lambda calculus}, volume~3.
+\newblock North-Holland Amsterdam, 1984.
 
 \bibitem{backus1960report}
 John~W Backus, Friedrich~L Bauer, Julien Green, Charles Katz, John McCarthy,

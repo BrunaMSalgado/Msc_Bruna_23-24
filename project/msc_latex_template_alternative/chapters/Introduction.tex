@@ -4,13 +4,7 @@
 
 \section{Motivation and Context}
 
-\todo[inline,size=\normalsize]{Frase importante "Há qualquer coisa de pasmoso no facto de que, na raíz dos computadores pessoais que usamos hoje diariamente, esteja uma ideia (a ideia da universalidade em computação) que surgiu por intermédio de questões da fundamentação da matemática. "}
 
-\todo[inline,size=\normalsize]{Esqueleto \\
-1. Hilbert e colocar a matemática em solo absolutamente seguro. O que isto é? Cena mais abaixo `uma visão magnífica da matemática. A visão leibniziana dum calculus ratiocinator no domínio  da matemática teria sido plenamente justificada. Perante um problema  matemático, por mais difícil que fosse, bastaria “pegar na pena e sentar-se ao  ábaco e (na presença de um amigo, se se quiser) dizer um para o outro: calculemus”. O cálculo seria efetivo, cego, como na multiplicação em numeração  decimal, e daria sempre resposta. A matemática seria segura (consistência) e responderia a todas as questões (completude)'.\\
-2. Isto comtemplava provar certas coisas entre elas o problema da decidibilidade -> tentar fazer descrição mais breve do formalismo ou passar por cima, eis a questão\\
-3. Church -> Primeiro e importante para as linguagens functionais;\\
-4. Turing -> Maquina universal, mais relacionado com hardware. }
 %Back then the concept of a computer algorithm had not taken shape. Turing first established a working definition for the term – algorithm
 %Despite its simplicity, the Turing machine can simulate any computer algorithm, no matter how complex it is. Alan Turing demonstrated that everything that can be reasonably said to be computed by a human using a standard procedure can be computed by the Turing machine. Turing used a human as the basis for his model. He abstracted the actions of a human ‘computer’ using paper and pencil to perform a calculation into a hypothesised machine that could manipulate symbols on an infinite paper tape.
 
@@ -40,44 +34,73 @@
 %O Church foi o primeiro a provar -> The part of the λ-calculus dealing only with functions turned out to be  quite successful. Using this theory Church proposed a formalization of the  notion "effectively computable" by the concept of λ-definability. Kleene  [1936] showed that λ-definability is equivalent to Gödel-Herbrand re cursiveness and in the meantime Church formulated his thesis (stating that  recursiveness is the proper formalization of effective computability). Turing [1936], [1937] gave an analysis of machine computability and showed  that the resulting notion (Turing computable) is equivalent to λ-definability.
 %By the analysis of Turing it follows that in spite of its very simple syntax,  the λ-calculus is strong enough to describe all mechanically computable  functions. Therefore the λ-calculus can be viewed as a paradigmatic  programming language. This certainly does not imply that one should use  it to write actual programs. What is meant is that in the λ-calculus several  programming problems, specifically those concerning procedure calls, are  in a pure form. For example, several programming languages have features inspired by  λ-calculus (perhaps unconsciously so). 
 
-%Classically, in set theory, a function is represented by its graph. Two functions are equal if they have the same graph; later this notion of equality will be referred to as extensional equality. From the point of view of Computer Science, this representation is not very useful. We are usually as interested in how a function computes its answer as in what it computes. For example, all sorting functions have the same graph and are thus (extensionally) equal but a large part of the Computer Science literature has been devoted to the definition and analysis of different sorting algorithms, so we are clearly missing something. The casual use of the word "algorithm" in the last sentence is the key; we should represent a function by a rule, which describes how the result is calculated, rather than its graph.
-
-%The A-calculus consists of a notation for expressing rules, A-notation, and a set of axioms and rules which tell us how to compute with terms expressed in the notation. 
-
-%A major limitation of the notation seems to be that we can only define unary functions; we can only introduce one formal argument at a time. The fact that this is not a real restriction was first observed by Schönfinkel... bla bla bla p.19 lambda calculus for compouter science
-
-%The A-calculus is an example of a formal system ("Hilberts Game"): we have formulae, axioms and rules for deriving new terms -> acho q não me vou meter pro aqui
 
 \subsection*{Some History}
 
+In September 1928, David Hilbert presented his vision for the foundations of mathematics at the International Congress of Mathematicians in Bologna. He believed it would be possible to place mathematics on an absolutely secure foundation. This would mean that no matter how difficult a mathematical problem might be, one would only need to "take up the pen, sit at the abacus, and calculate." The process would be entirely deterministic—requiring no intuition or creativity, only strict adherence to formal rules, like performing multiplication in decimal notation. Every problem would, in principle, be solvable by such mechanical procedures. Mathematics, would be both complete (able to answer every question) and consistent (free of contradictions). 
+
+However, this vision was shattered by Kurt Gödel’s Incompleteness Theorems (1931) \cite{Godel}, which showed that no set of mathematical rules powerful enough to handle basic arithmetic could ever be both complete (answering every question) and consistent (free of contradictions) at the same time.
+
+
+Why is this relevant to the present thesis? Remarkably, it was Alonzo Church—using $\lambda$-\textit{calculus}—who first addressed Hilbert’s \emph{Entscheidungsproblem} (German for ``decision problem'') \cite{hilbert1938}, a cornerstone in his formalism. This \emph{Entscheidungsproblem} sought an effective method (also called a mechanical procedure or algorithm) to determine the truth or falsity of any mathematical statement. A method or procedure is effective if:
+\begin{enumerate}
+    \item it can be described by a finite number of exact instructions;
+    \item it produces the desired result after a finite number of steps (provided the instructions are followed without error);
+    \item it can, in principle, be carried out by a human using only paper and pencil;
+    \item it does not require any creativity or insight from the human.
+\end{enumerate}
+The algorithms that children learn to perform basic arithmetic operations are examples of effective procedures.
+
+ In 1936, Alonzo Church published a solution to the \emph{Entscheidungsproblem}, proving that no such universal method exists for all mathematical statements~\cite{church1936}. In the same work, he introduced a mathematically precise definition of effective computability using what is now known as the $\lambda$-calculus. Today, this result is often referred to as Church’s Theorem.
+
+ At the same time, another individual was working on this problem independently—without prior knowledge of Church’s work. His name was Alan Turing. In science, credit typically goes to the first person to prove a result. Yet Turing’s 1937 paper, On Computable Numbers, with an Application to the Entscheidungsproblem, was groundbreaking in its own right. In it, he introduced the concept of a universal machine and demonstrated that any function computable by a human following a systematic procedure could also be computed by a Turing machine \cite{turingComputableNumbersApplication1937}. Moreover, Turing proved that his definition of computability aligned with Church’s.
+
+By Turing’s analysis, it became clear that the $\lambda$-calculus was sufficiently powerful to express all mechanically computable functions.
+The $\lambda$-calculus played an important role in functional programming, influencing the design of languages like LISP, Pascal, and GEDANKEN—many of which incorporate $\lambda$-calculus-inspired features, either explicitly or implicitly.
+
+Nowadays, computers are ubiquitous household appliances, as commonplace as televisions or refrigerators. Yet there is  something astounding in the fact that the personal computers we use daily trace their roots to an idea born from questions about the foundations of mathematics: the principle of universality in computation. 
+
+The idea that such important aspects of modern computer science emerged from foundational questions in mathematics is nothing short of extraordinary.
+
+
+
+
 \subsection*{$\lambda$-calculus}
 
+The Lambda Calculus, developed by Church and Curry in the 1930s, serves as a formal language capturing the key attribute of higher-order functional languages, treating functions as first-class citizens, allowing them to be passed as arguments. 
 
-\todo[inline,size=\normalsize]{Esqueleto \\
-1. Funções: functions as graphs vs functions as rule \\
-2. lambda calculus and functions as formulae
-3. higher-order \\
-4. Brief mention to the logic part? "The lambda calculus not only permits the design of all computable functions, but it also allows
- one to draw a correspondence between proofs in logic and programs. This correspondence, known as
- the Curry-Howard isomorphism (Girard et al., 1990)" \\
-5. Acabar com "Beyond its foundational aspects, this
-calculus incorporates extensions for modeling side effects, including probabilistic or non‑
-deterministic behaviors and shared memory. Higher‑order functions form a pivotal abstrac‑
-tion in practical programming languages such as LISP, Scheme, ML, and Haskell."}
+The concept of a function takes a central role in the lambda calculus. But what exactly is a function?  In most mathematics, the ``functions as graph'' paradigm is the most elegant and appropriate framework for understanding functions. Within this paradigm, each function $f$ has a fixed domain $X$ and a fixed codomain $Y$. The function $f$ is then a subset of $X \times Y$ that satisfies the property that for each $x \in X$ there is a unique $y \in Y$ such that $(x,y) \in f$. Two functions $f$ and $g$ are equal if they yield the same output on each input, that is if $f(x) = g(x)$ for all $x \in X$. This perspective is known as the \emph{extensional} view of functions, as it emphasizes that the only observable property of a function is how it maps inputs to outputs.
+
+From a Computer Science perspective, this representation is not very useful. We are typically just as concerned with how a function computes its result as we are with what it produces. For instance, consider sorting: every correct sorting algorithm, from the simplest to the most sophisticated, produces the same output for a given input. Yet entire books and research papers are devoted to analyzing different sorting techniques. Clearly, something important is being overlooked. The casual use of the term ``algorith'' in that context is revealing: a function should be represented not by its graph, but by the rule or process that describes how its result is computed. Such a rule is often expressed in the form of a formula, for example, \( f(x) = x^2 \). As with the mathematical paradigm, two functions are considered extensionally equal if they exhibit the same input-output behavior. However, this view also introduces the notion of \emph{intensional} equality: two functions are intensionally equal if they are defined by (essentially) the same formula.
+
+% From the point of view of Computer Science, this representation is not very useful. We are usually as interested in how a function computes its answer as in what it computes. For example, all sorting functions have the same graph and are thus (extensionally) equal but a large part of the Computer Science literature has been devoted to the definition and analysis of different sorting algorithms, so we are clearly missing something. The casual use of the word "algorithm" in the last sentence is the key; we should represent a function by a rule, which describes how the result is calculated, rather than its graph.
 
 
+In the lambda calculus, functions are described explicitly as \emph{formulae}. The function $f:x \mapsto f(x)$ is represented as $\lambda x.f(x)$.  Applying a function to an argument is done by juxtaposing the two expressions. For instance consider the function $f:x \mapsto x+1$, to compute $f(2)$ one writes $(\lambda x.x+1)(2)$.
+
+A major limitation of the notation appears to be that we can only define unary functions, that is, we can introduce only one  argument at a time. However, this is not a true restriction.  Suppose we have a binary function represented as an expression with formal arguments $ x $ and $ y $, say $f(x, y)$. Then we can define a new function $ g $ as $g = \lambda y.\, (\lambda x.\, f(x, y))$.
+This function $ g $ is equivalent to the original binary function $ f $, but it takes its arguments one at a time. This idea, known as \emph{currying}, shows how functions of multiple arguments can be represented using only unary functions.
+
+The expression of \emph{higher‑order functions}, functions whose inputs and/or outputs are themselves functions, in a simple manner is an essential feature of lambda calculus. For example, the composition operator $f,g \mapsto f \circ g$ is written as $\lambda f. \lambda g. \lambda x. f(g(x))$. Considering the functions $f:x \mapsto x^2$ and $g:x \mapsto x+1$, to compute $(f \circ g)(2)$ one writes $$(\lambda f. \lambda g. \lambda x. f(g(x)))(\lambda x.x^2)(\lambda x.x+1)(2).$$
+
+As mentioned above,  within  the “functions as rules” paradigm, is not
+always necessary to specify the domain and codomain of a function in advance. For instance, the identity function $f: x \mapsto x$, can have any set $X$ as its domain and codomain, provided that the domain and codomain are the same. In this case, one says that $f$ has type $X \rightarrow{} X$.% In the case of the composition operator, $h=\lambda f. \lambda g. \lambda x. f(g(x))$, the domain and codomain of the functions $f$ and $g$ must match. Specifically, $f$ can have any set $X$ as its domain and any set  $Y$ as its codomain, provided that $Y$ is the domain of $g$. Similarly, $g$ can have any set $Z$ as its codomain.  Thus,  $h$ has type $$(X \rightarrow{} Y) \rightarrow{} (Y \rightarrow{} Z) \rightarrow{} (X \rightarrow{} Z).$$ 
+
+This flexibility regarding domains and codomains enables operations on functions that are not possible in ordinary mathematics. For instance, if $f = \lambda x.x$ is the identity function, then one has that $f(x) = x$ for any $x$. In particular, by substituting $f$ for $x$, one obtains $f(f) = (\lambda x.x)(f) = f$. Note that the equation $f(f) = f$ is not valid in conventional mathematics, as it is not permissible, due to set-theoretic constraints, for a function to belong to its own domain.
+
+Nevertheless this remarkable aspect of lambda calculus, this work focuses on a more restricted version of the lambda calculus, known as the simply-typed lambda calculus. Here, each expression is always assigned a type, which is very similar to the situation in mathematics. A function may only be applied to an argument if the argument's type aligns with the function's expected domain. Consequently, terms such as $f(f)$ are not allowed, even if $f$ represents the identity function.
+
+
+\todo[inline]{Incluir cena do Curry-Howard isomorphism? -> Não quero q me comecem a fazer perguntas sobre isto}
+On another note, the lambda calculus not only allows us to express all computable functions, but also establishes a correspondence between logical proofs and programs. This is known as the \emph{Curry-Howard isomorphism} \cite{girardProofsTypes1989}.
 
 
 
-% 
-
-
-% cena das funções provavelmente
-
-%nota sobre ligação com logicas, embora não será esse o nosso foco
 
 \subsubsection*{Metric $\lambda$-calculus}
-\todo[inline,size=\normalsize]{Tenho que ver como introduzo a parte métrica}
+
+Beyond its foundational aspects, this calculus incorporates extensions for modeling side effects, including probabilistic or non-deterministic behaviors and shared memory. In this work, we are concerned with a version of $\lambda$-calculus that allows us to reason about approximate equivalence of programs, refered to as \emph{metric }$\lambda$\emph{-calculus}.
+
 \begin{comment}
 Previous work~\cite{dahlqvist22,dahlqvist2023syntactic} introduced a quantalic generalisation of affine $\lambda$-calculus. In this note we start
 investigating the incorportation of \emph{additive} structure to this body of
@@ -123,7 +146,7 @@ The field has since evolved into a multidisciplinary research area that combines
 The quantum computing paradigm holds immense promise, as evidenced by this compelling result in computational complexity theory.  While hardware advancements have brought the scientific community closer to realizing this potential, the ultimate goal is yet to be accomplished. A \acrfull{nisq} computer equipped with 50-100 qubits may surpass the capabilities of current classical computers, yet the impact of quantum noise, such as decoherence in entangled states, imposes limitations on the size of quantum circuits that can be executed reliably \cite{preskill2018quantum}. Unfortunately, general-purpose error correction techniques \cite{calderbank1996good, gottesman1997stabilizer, steane1996error} consume a substantial number of qubits, making it difficult for \acrshort{nisq} devices to make use of them in the near term. For instance, the implementation of a single logical qubit may require between $10^3$ and $10^4$ physical qubits \cite{fowler2012surface}. As a result, it is unreasonable to expect that the idealized quantum algorithm will run perfectly on a quantum device, instead
 only a mere approximation will be observed.
 
-To reconcile quantum computation with \acrshort{nisq} computers, quantum compilers perform transformations for error mitigation \cite{wallman2016noise} and noise-adaptive optimization \cite{murali2019noise}. Additionally, current quantum computers only support a restricted, albeit universal, set of quantum operations. As a result, nonnative operations must be decomposed into sequences of native operations before execution \cite{harrow2002efficient}, \cite{burgholzer2020advanced}. In general, perfect computational universality is not sought, but only the ability to approximate any quantum algorithm, with a preference for minimizing the use of additional gates beyond the original requirements. The assessment of these compiler transformations necessitates a comparison of the error bounds between the source and compiled quantum programs. Additionally, in quantum information theory, it is essential to account for errors arising from malicious attacks or noisy channels \cite{watrous2018theory}. 
+To reconcile quantum computation with \acrshort{nisq} computers, quantum compilers perform transformations for error mitigation \cite{wallman2016noise} and noise-adaptive optimization \cite{murali2019noise}. Additionally, current quantum computers only support a restricted, albeit universal, set of quantum operations. As a result, nonnative operations must be decomposed into sequences of native operations before execution \cite{harrow2002efficient,burgholzer2020advanced}. The assessment of these compiler transformations necessitates a comparison of the error bounds between the source and compiled quantum programs. 
 
 This suggests the development of appropriate notions of approximate program equivalence, \textit {in lieu} of the classical program equivalence and underlying theories that typically hinge on the idea that equivalence is binary, \textit{i.e.} two programs are either equivalent or they are not \cite{winskel1993formal}.
 
@@ -139,11 +162,10 @@ Most of the current research on algorithms and programming languages assumes tha
 \cite{hung2019quantitative} and \cite{tao2021gleipnir} reason about the issue of noise in a quantum while-language by developing a deductive system to determine how similar a quantum program is from its idealised, noise-free version. The former introduces the ($Q$,$\lambda$)-diamond norm which analyzes the output error given that the input quantum state satisfies some quantum predicate $Q$ to degree $\lambda$. However, it does not specify any practical method for obtaining non-trivial quantum predicates. In fact, the methods used in \cite{hung2019quantitative} cannot produce any post conditions other than $(I,0)$ (\textit{i.e.}, the identity matrix $I$ to degree 0, analogous to a ``true” predicate) for large quantum programs. The latter specifically addresses and delves into this aspect.  
 
 An alternative approach was explored in \cite{dahlqvist2022syntactic}, using linear $\lambda$-calculus as basis – \textit{i.e} programs are written as linear $\lambda$-terms – which has deep connections to both logic and category theory \cite{girard1995advances}, \cite{benton1994mixed}. A notion of approximate equivalence is then
-integrated in the calculus via the so-called diamond norm , which induces a metric (roughly, a distance function) on the space of quantum programs (seen semantically as completely positive trace-preserving super-operators) [\cite{watrous2018theory}]. The authors argue that their deductive system allows to compute an approximate distance between two quantum programs easily as opposed to computing an exact distance ``semantically" which tends to involve quite complex operators.  Some positive results were achieved in this setting, but much remains to be done.
+integrated in the calculus via the so-called diamond norm , which induces a metric (roughly, a distance function) on the space of quantum programs (seen semantically as completely positive trace-preserving super-operators) \cite{watrous2018theory}. The authors argue that their deductive system allows to compute an approximate distance between two quantum programs easily as opposed to computing an exact distance ``semantically" which tends to involve quite complex operators.  Some positive results were achieved in this setting, but much remains to be done.
 
 
-\todo[inline,size=\normalsize]{Colocar o que fiz em termos mais leigos}
-\todo[inline,size=\normalsize]{Maybe posso na mesma discorrer um pouco sobre a parte quantica, fazendo o parentesis que é a área em que tenho mais experiencia}
+
 
 %falar do lambda calculus e da sua ambivalencia e mencionar que nos vamos focar no caso quantico
 
