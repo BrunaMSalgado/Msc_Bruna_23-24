@@ -30,6 +30,115 @@ Jean-Yves Girard, Yves Lafont, and Paul Taylor.
 \newblock {\em Proofs and {{Types}}}.
 \newblock Cambridge University Press, 1989.
 
+\bibitem{winskel93}
+Glynn Winskel.
+\newblock {\em The Formal Semantics of Programming Languages: An Introduction}.
+\newblock MIT Press, 1993.
+
+\bibitem{dahlqvistInternalLanguage2022}
+Fredrik Dahlqvist and Renato Neves.
+\newblock An {{Internal Language}} for {{Categories Enriched}} over
+  {{Generalised Metric Spaces}}.
+\newblock In Florin Manea and Alex Simpson, editors, {\em 30th {{EACSL Annual
+  Conference}} on {{Computer Science Logic}} ({{CSL}} 2022)}, volume 216 of
+  {\em Leibniz {{International Proceedings}} in {{Informatics}} ({{LIPIcs}})},
+  pages 16:1--16:18. Schloss Dagstuhl – Leibniz-Zentrum für Informatik,
+  2022.
+
+\bibitem{dahlqvist2023syntactic}
+Fredrik Dahlqvist and Renato Neves.
+\newblock The syntactic side of autonomous categories enriched over generalised
+  metric spaces.
+\newblock {\em Logical Methods in Computer Science}, Volume 19, Issue 4, 2023.
+
+\bibitem{mardare2016quantitative}
+Radu Mardare, Prakash Panangaden, and Gordon Plotkin.
+\newblock Quantitative algebraic reasoning.
+\newblock In {\em Proceedings of the 31st Annual ACM/IEEE Symposium on Logic in
+  Computer Science}, pages 700--709, 2016.
+
+\bibitem{mardare2017axiomatizability}
+Radu Mardare, Prakash Panangaden, and Gordon Plotkin.
+\newblock On the axiomatizability of quantitative algebras.
+\newblock In {\em 2017 32nd Annual ACM/IEEE Symposium on Logic in Computer
+  Science (LICS)}, pages 1--12. IEEE, 2017.
+
+\bibitem{mio24}
+Matteo Mio, Ralph Sarkis, and Valeria Vignudelli.
+\newblock Universal quantitative algebra for fuzzy relations and generalised
+  metric spaces.
+\newblock {\em Log. Methods Comput. Sci.}, 20(4), 2024.
+
+\bibitem{jurka24}
+Jan Jurka, Stefan Milius, and Henning Urbat.
+\newblock Algebraic reasoning over relational structures.
+\newblock {\em CoRR}, abs/2401.08445, 2024.
+
+\bibitem{lago22}
+Ugo~Dal Lago, Furio Honsell, Marina Lenisa, and Paolo Pistone.
+\newblock On quantitative algebraic higher-order theories.
+\newblock In Amy~P. Felty, editor, {\em 7th International Conference on Formal
+  Structures for Computation and Deduction, {FSCD} 2022, August 2-5, 2022,
+  Haifa, Israel}, volume 228 of {\em LIPIcs}, pages 4:1--4:18. Schloss Dagstuhl
+  - Leibniz-Zentrum f{\"{u}}r Informatik, 2022.
+
+\bibitem{de1956computability}
+Karel De~Leeuw, Edward~F Moore, Claude~E Shannon, and Norman Shapiro.
+\newblock Computability by probabilistic machines.
+\newblock {\em Automata studies}, 34:183--198, 1956.
+
+\bibitem{pearl2014}
+Judea Pearl.
+\newblock {\em Probabilistic {{Reasoning}} in {{Intelligent Systems}}:
+  {{Networks}} of {{Plausible Inference}}}.
+\newblock Elsevier, 2014.
+
+\bibitem{thrun2002robotic}
+Sebastian Thrun et~al.
+\newblock Robotic mapping: A survey.
+\newblock 2002.
+
+\bibitem{manning1999foundations}
+Christopher Manning and Hinrich Schutze.
+\newblock {\em Foundations of {{Statistical Natural Language Processing}}}.
+\newblock MIT Press, 1999.
+
+\bibitem{goldwasserProbabilisticEncryption1984}
+Shafi Goldwasser and Silvio Micali.
+\newblock Probabilistic encryption.
+\newblock {\em Journal of Computer and System Sciences}, 28(2):270--299, 1984.
+
+\bibitem{motwaniRandomizedAlgorithms1995}
+Rajeev Motwani and Prabhakar Raghavan.
+\newblock {\em Randomized {{Algorithms}}}.
+\newblock Cambridge University Press, 1995.
+
+\bibitem{Church2008}
+Noah Goodman, Vikash Mansinghka, Daniel Roy, Kallista Bonawitz, and Joshua
+  Tenenbaum.
+\newblock Church: A language for generative models.
+\newblock volume 2008, pages 220--229, 01 2008.
+
+\bibitem{Anglican2015}
+David Tolpin, Jan-Willem van~de Meent, and Frank Wood.
+\newblock Probabilistic programming in anglican.
+\newblock In {\em Machine Learning and Knowledge Discovery in Databases:
+  European Conference, ECML PKDD 2015, Porto, Portugal, September 7-11, 2015,
+  Proceedings, Part III 15}, pages 308--311. Springer, 2015.
+
+\bibitem{crubilleMetricReasoningLterms2015}
+Raphaëlle Crubillé and Ugo Dal~Lago.
+\newblock Metric reasoning about λ-terms: {{The}} affine case.
+\newblock In {\em 2015 30th {{Annual ACM}}/{{IEEE Symposium}} on {{Logic}} in
+  {{Computer Science}}}, pages 633--644, 2015.
+
+\bibitem{crubilleMetricReasoninglambda2017}
+Raphaëlle Crubillé and Ugo Dal~Lago.
+\newblock Metric {{Reasoning About}} \$\$\textbackslash lambda \$\$-{{Terms}}:
+  {{The General Case}}.
+\newblock In Hongseok Yang, editor, {\em Programming {{Languages}} and
+  {{Systems}}}, pages 341--367. Springer, 2017.
+
 \bibitem{feynman2018simulating}
 Richard~P. Feynman.
 \newblock Simulating physics with computers.
@@ -163,12 +272,6 @@ Runzhou Tao, Yunong Shi, Jianan Yao, John Hui, Frederic~T Chong, and Ronghui
 \newblock In {\em Proceedings of the 42nd ACM SIGPLAN International Conference
   on Programming Language Design and Implementation}, pages 48--64, 2021.
 
-\bibitem{dahlqvist2022syntactic}
-Fredrik Dahlqvist and Renato Neves.
-\newblock The syntactic side of autonomous categories enriched over generalised
-  metric spaces.
-\newblock {\em Logical Methods in Computer Science}, Volume 19, Issue 4, 2023.
-
 \bibitem{girard1995advances}
 Jean-Yves Girard, Yves Lafont, and Laurent Regnier.
 \newblock {\em Advances in linear logic}, volume 222.
@@ -238,18 +341,6 @@ Fredrik Dahlqvist and Renato Neves.
 \newblock {\em Electronic Notes in Theoretical Informatics and Computer
   Science}, 3, 2023.
 
-\bibitem{mardare2016quantitative}
-Radu Mardare, Prakash Panangaden, and Gordon Plotkin.
-\newblock Quantitative algebraic reasoning.
-\newblock In {\em Proceedings of the 31st Annual ACM/IEEE Symposium on Logic in
-  Computer Science}, pages 700--709, 2016.
-
-\bibitem{mardare2017axiomatizability}
-Radu Mardare, Prakash Panangaden, and Gordon Plotkin.
-\newblock On the axiomatizability of quantitative algebras.
-\newblock In {\em 2017 32nd Annual ACM/IEEE Symposium on Logic in Computer
-  Science (LICS)}, pages 1--12. IEEE, 2017.
-
 \bibitem{eilenbergGeneralTheoryNatural1945}
 Samuel Eilenberg and Saunders MacLane.
 \newblock General {{Theory}} of {{Natural Equivalences}}.
@@ -272,11 +363,6 @@ G.~Gierz, K.~H. Hofmann, K.~Keimel, J.~D. Lawson, M.~Mislove, and D.~S. Scott.
 B.~A. Davey and H.~A. Priestley.
 \newblock {\em Introduction to {{Lattices}} and {{Order}}}.
 \newblock Cambridge University Press, 2 edition, 2002.
-
-\bibitem{bartheFoundationsProbabilisticProgramming2020}
-Gilles Barthe, Joost-Pieter Katoen, and Alexandra Silva, editors.
-\newblock {\em Foundations of {{Probabilistic Programming}}}.
-\newblock Cambridge University Press, 2020.
 
 \bibitem{dahlqvistSemanticsProbabilisticProgramming2020a}
 Fredrik Dahlqvist, Alexandra Silva, and Dexter Kozen.

@@ -42,7 +42,7 @@ In September 1928, David Hilbert presented his vision for the foundations of mat
 However, this vision was shattered by Kurt Gödel’s Incompleteness Theorems (1931) \cite{Godel}, which showed that no set of mathematical rules powerful enough to handle basic arithmetic could ever be both complete (answering every question) and consistent (free of contradictions) at the same time.
 
 
-Why is this relevant to the present thesis? Remarkably, it was Alonzo Church—using $\lambda$-\textit{calculus}—who first addressed Hilbert’s \emph{Entscheidungsproblem} (German for ``decision problem'') \cite{hilbert1938}, a cornerstone in his formalism. This \emph{Entscheidungsproblem} sought an effective method (also called a mechanical procedure or algorithm) to determine the truth or falsity of any mathematical statement. A method or procedure is effective if:
+Why is this relevant to the present dissertation? Remarkably, it was Alonzo Church—using $\lambda$-\textit{calculus}—who first addressed Hilbert’s \emph{Entscheidungsproblem} (German for ``decision problem'') \cite{hilbert1938}, a cornerstone in his formalism. This \emph{Entscheidungsproblem} sought an effective method (also called a mechanical procedure or algorithm) to determine the truth or falsity of any mathematical statement. A method or procedure is effective if:
 \begin{enumerate}
     \item it can be described by a finite number of exact instructions;
     \item it produces the desired result after a finite number of steps (provided the instructions are followed without error);
@@ -56,7 +56,7 @@ The algorithms that children learn to perform basic arithmetic operations are ex
  At the same time, another individual was working on this problem independently—without prior knowledge of Church’s work. His name was Alan Turing. In science, credit typically goes to the first person to prove a result. Yet Turing’s 1937 paper, On Computable Numbers, with an Application to the Entscheidungsproblem, was groundbreaking in its own right. In it, he introduced the concept of a universal machine and demonstrated that any function computable by a human following a systematic procedure could also be computed by a Turing machine \cite{turingComputableNumbersApplication1937}. Moreover, Turing proved that his definition of computability aligned with Church’s.
 
 By Turing’s analysis, it became clear that the $\lambda$-calculus was sufficiently powerful to express all mechanically computable functions.
-The $\lambda$-calculus played an important role in functional programming, influencing the design of languages like LISP, Pascal, and GEDANKEN—many of which incorporate $\lambda$-calculus-inspired features, either explicitly or implicitly.
+This calculus played an important role in functional programming, influencing the design of languages like LISP, Pascal, and GEDANKEN—many of which incorporate $\lambda$-calculus-inspired features, either explicitly or implicitly.
 
 Nowadays, computers are ubiquitous household appliances, as commonplace as televisions or refrigerators. Yet there is  something astounding in the fact that the personal computers we use daily trace their roots to an idea born from questions about the foundations of mathematics: the principle of universality in computation. 
 
@@ -67,13 +67,14 @@ The idea that such important aspects of modern computer science emerged from fou
 
 \subsection*{$\lambda$-calculus}
 
-The Lambda Calculus, developed by Church and Curry in the 1930s, serves as a formal language capturing the key attribute of higher-order functional languages, treating functions as first-class citizens, allowing them to be passed as arguments. 
+%The Lambda Calculus, developed by Church and Curry in the 1930s, serves as a formal language capturing the key attribute of higher-order functional languages, treating functions as first-class citizens, allowing them to be passed as arguments. 
+
+
 
 The concept of a function takes a central role in the lambda calculus. But what exactly is a function?  In most mathematics, the ``functions as graph'' paradigm is the most elegant and appropriate framework for understanding functions. Within this paradigm, each function $f$ has a fixed domain $X$ and a fixed codomain $Y$. The function $f$ is then a subset of $X \times Y$ that satisfies the property that for each $x \in X$ there is a unique $y \in Y$ such that $(x,y) \in f$. Two functions $f$ and $g$ are equal if they yield the same output on each input, that is if $f(x) = g(x)$ for all $x \in X$. This perspective is known as the \emph{extensional} view of functions, as it emphasizes that the only observable property of a function is how it maps inputs to outputs.
 
-From a Computer Science perspective, this representation is not very useful. We are typically just as concerned with how a function computes its result as we are with what it produces. For instance, consider sorting: every correct sorting algorithm, from the simplest to the most sophisticated, produces the same output for a given input. Yet entire books and research papers are devoted to analyzing different sorting techniques. Clearly, something important is being overlooked. The casual use of the term ``algorith'' in that context is revealing: a function should be represented not by its graph, but by the rule or process that describes how its result is computed. Such a rule is often expressed in the form of a formula, for example, \( f(x) = x^2 \). As with the mathematical paradigm, two functions are considered extensionally equal if they exhibit the same input-output behavior. However, this view also introduces the notion of \emph{intensional} equality: two functions are intensionally equal if they are defined by (essentially) the same formula.
+From a Computer Science perspective, this is not very useful. We are typically just as concerned with how a function computes its result as we are with what it produces. For instance, consider sorting: every correct sorting algorithm, from the simplest to the most sophisticated, produces the same output for a given input. Yet entire books and research papers are devoted to analyzing different sorting techniques. Clearly, something important is being overlooked. The casual use of the term ``algorithm'' in that context is revealing: a function should be represented not by its graph, but by the rule or process that describes how its result is computed. Such a rule is often expressed in the form of a formula, for example, \( f(x) = x^2 \). As with the mathematical paradigm, two functions are considered extensionally equal if they exhibit the same input-output behavior. However, this view also introduces the notion of \emph{intensional} equality: two functions are intensionally equal if they are defined by (essentially) the same formula.
 
-% From the point of view of Computer Science, this representation is not very useful. We are usually as interested in how a function computes its answer as in what it computes. For example, all sorting functions have the same graph and are thus (extensionally) equal but a large part of the Computer Science literature has been devoted to the definition and analysis of different sorting algorithms, so we are clearly missing something. The casual use of the word "algorithm" in the last sentence is the key; we should represent a function by a rule, which describes how the result is calculated, rather than its graph.
 
 
 In the lambda calculus, functions are described explicitly as \emph{formulae}. The function $f:x \mapsto f(x)$ is represented as $\lambda x.f(x)$.  Applying a function to an argument is done by juxtaposing the two expressions. For instance consider the function $f:x \mapsto x+1$, to compute $f(2)$ one writes $(\lambda x.x+1)(2)$.
@@ -91,6 +92,7 @@ This flexibility regarding domains and codomains enables operations on functions
 Nevertheless this remarkable aspect of lambda calculus, this work focuses on a more restricted version of the lambda calculus, known as the simply-typed lambda calculus. Here, each expression is always assigned a type, which is very similar to the situation in mathematics. A function may only be applied to an argument if the argument's type aligns with the function's expected domain. Consequently, terms such as $f(f)$ are not allowed, even if $f$ represents the identity function.
 
 
+
 \todo[inline]{Incluir cena do Curry-Howard isomorphism? -> Não quero q me comecem a fazer perguntas sobre isto}
 On another note, the lambda calculus not only allows us to express all computable functions, but also establishes a correspondence between logical proofs and programs. This is known as the \emph{Curry-Howard isomorphism} \cite{girardProofsTypes1989}.
 
@@ -101,27 +103,61 @@ On another note, the lambda calculus not only allows us to express all computabl
 
 Beyond its foundational aspects, this calculus incorporates extensions for modeling side effects, including probabilistic or non-deterministic behaviors and shared memory. In this work, we are concerned with a version of $\lambda$-calculus that allows us to reason about approximate equivalence of programs, refered to as \emph{metric }$\lambda$\emph{-calculus}.
 
+Program equivalence and its underlying theories traditionally rely on a binary notion of equivalence: two programs are either equivalent or not \cite{winskel93}. While this dichotomy is often sufficient for classical programming, it proves too coarse-grained for other computational paradigms. For instance, in various programming paradigms, interaction with the physical environment calls for notions of approximate program equivalence. 
+
+To address this, \cite{dahlqvistInternalLanguage2022,dahlqvist2023syntactic} incorporate a notion of approximate equivalence into the equational system of the affine $\lambda$-calculus by introducing, among other elements, \emph{metric equations} \cite{mardare2016quantitative, mardare2017axiomatizability}. These are equations of the form $t =_{\varepsilon} s$, where $\varepsilon$ is a non-negative real number representing the ``maximum distance'' between terms $t$ and $s$. Here we start investigating the incorporation of a metric equation for the case statements (\ie\ conditionals). Our motivation for it is highly practical: in trying to reason quantitatively about higher-order programs we often fell short when these involved conditionals.
+
+
+Other works in the spirit of this dissertation include \cite{mardare2016quantitative, mardare2017axiomatizability, mio24, jurka24}, which explore (generalized) metric universal algebras. A universal algebra, in simple terms, is a set equipped with any number of operations, further defined  by axioms typically expressed as identities or equational laws. In a (generalized) metric universal algebra, these axioms are relaxed into (generalized) metric equations rather than strict equalities. In the higher-order setting, \cite{lago22}, following the framework introduced by Mardare \cite{mardare2016quantitative}, investigates the problem of defining quantitative algebras that are capable of interpreting terms in higher-order calculi.
+\todo[inline,size=\normalsize]{Falar do $\&$, não falor do $\&$, eis a questão }
+
+
+
 \begin{comment}
-Previous work~\cite{dahlqvist22,dahlqvist2023syntactic} introduced a quantalic generalisation of affine $\lambda$-calculus. In this note we start
-investigating the incorportation of \emph{additive} structure to this body of
-work. Specifically our focus is on the \emph{additive disjunction operator}
-$\oplus$ which is typically interpreted via coproducts and gives rise to case
-statements (\ie\ conditionals). Our motivation for it is highly practical: in
-trying to reason quantitatively about higher-order programs we often fell short
-when these involved conditionals. 
+Remarkably a number of important results already considered additive structure
+in the quantalic setting, even if sometimes implicitly.
+References~\cite{mardare2016quantitative,mardare2017axiomatizability,mio24,jurka24}
+for example are framed in the setting of universal algebra and therefore
+involve additive conjunction (\ie\ $\&$), typically interpreted via categorical
+products.  In the higher-order setting, \cite{lago22} enforces additive
+conjunction to be left adjoint to implication (interpreted via
+Cartesian-closedness), with a series of negative results emerging from this.
+Our work is orthogonal to these in that we study the dual of $\&$ (\ie\
+$\oplus$) and furthermore we assume the left adjoint of implication to be
+multiplicative conjunction (\ie\ $\otimes$) instead of the additive
+counterpart. Among other things, this removes the obstacles discussed
+in~\cite{lago22}.
 \end{comment}
 
 
-\todo[inline,size=\normalsize]{Fazer respetivo state of the art metrico e tb para a parte probabilistica}
-%madarde ->  Quantititive analogue of a universal algebra, axioms are not strict equities. We define an equality relation indexed by rationals: a = b which we think of as saying that “a is ap proximately equal to b up to an error of ”.
-%como definir universal algebras em termos simples -> A universal algebra is a set with any number of operations.After the operations have been specified, the nature of the algebra is further defined by axioms, which in universal algebra often take the form of identities, or equational laws.
-%dallagoQuantitativeAlgebraicHigherOrder2022 ->  In the higher-order setting, \cite{lago22} enforces additive conjunction to be left adjoint to implication (interpreted via Cartesian-closedness), with a series of negative results emerging from this. Our work is orthogonal to these in that we study the dual of $\&$ (\ie\ $\oplus$) and furthermore we assume the left adjoint of implication to be multiplicative conjunction (\ie\ $\otimes$) instead of the additive counterpart. (Tradtução: eles obtêm resultados negativos dado estarem a usar categorias cartesian closed -> A questão é escrever isto em termos mais leigos)
-%outros-> só referir
 
-%It can be applied to several computational paradigms, in this work we highlight probabilistic and quantum computing paradigms.
 \subsection*{Probabilistic Programming}
 
-\todo[inline,size=\normalsize]{Pequena a introdução a pp e porque é que queremos saber de noções de equivalência aproximada neste setting}
+
+%Probabilistic programs offer a structured approach to drawing statistical conclusions from uncertain data or real-world observations. They generalize probabilistic graphical models beyond the capabilities of Bayesian networks and are expected to have broader applications in machine intelligence. These programs are are employed across various domains. They control autonomous systems, verify security protocols, and implement randomized algorithms for solving computationally intractable problems. As a result, they are becoming increasingly central to AI development. At their core, they aim to democratize probabilistic modeling by providing programmers with expressive, high-level abstractions for machine learning and statistical reasoning \cite{bartheFoundationsProbabilisticProgramming2020}. 
+
+
+Computer science and probability theory have shared a fruitful relationship since the early days \cite{de1956computability}. Over the years, probabilistic algorithms have emerged as powerful tools, across diverse domains—from machine learning \cite{pearl2014}  and robotics \cite{thrun2002robotic} to computational linguistics \cite{manning1999foundations}. These algorithms play a pivotal role in modern cryptography, particularly in public-key systems \cite{goldwasserProbabilisticEncryption1984}, and tackle computationally intractable  problems \cite{motwaniRandomizedAlgorithms1995}.
+
+The growing influence of probabilistic methods has also spurred the development of probabilistic programming languages, both concrete and abstract. Early examples include higher-order probabilistic languages like Church \cite{Church2008}, while more recent innovations, such as Anglican \cite{Anglican2015}, continue to expand the expressive power and practicality of probabilistic programming.
+
+
+In this setting, Crubillé and Dal Lago introduced the notion of a \emph{context distance} in~\cite{crubilleMetricReasoningLterms2015,crubilleMetricReasoninglambda2017}, as a metric analogue of Morris' context equivalence. In Morris' framework, two programs are said to be \emph{context equivalent} if their observable behavior---that is, 
+what an external observer can measure during execution---is identical in any context.  This distance was first developed for an affine $\lambda$-calculus and later extended to a more general 
+setting that, for instance, allows copying.
+
+In \cite{dahlqvist2023syntactic}, the authors reason about approximate equivalence using the \emph{operator norm} on the space of probabilistic programs (which are interpreted as short maps between Banach spaces).
+
+
+
+
+
+
+
+
+%maybe questões de energia
+
+
 
 \subsection*{Quantum Computation}
 
@@ -161,7 +197,7 @@ Most of the current research on algorithms and programming languages assumes tha
 
 \cite{hung2019quantitative} and \cite{tao2021gleipnir} reason about the issue of noise in a quantum while-language by developing a deductive system to determine how similar a quantum program is from its idealised, noise-free version. The former introduces the ($Q$,$\lambda$)-diamond norm which analyzes the output error given that the input quantum state satisfies some quantum predicate $Q$ to degree $\lambda$. However, it does not specify any practical method for obtaining non-trivial quantum predicates. In fact, the methods used in \cite{hung2019quantitative} cannot produce any post conditions other than $(I,0)$ (\textit{i.e.}, the identity matrix $I$ to degree 0, analogous to a ``true” predicate) for large quantum programs. The latter specifically addresses and delves into this aspect.  
 
-An alternative approach was explored in \cite{dahlqvist2022syntactic}, using linear $\lambda$-calculus as basis – \textit{i.e} programs are written as linear $\lambda$-terms – which has deep connections to both logic and category theory \cite{girard1995advances}, \cite{benton1994mixed}. A notion of approximate equivalence is then
+An alternative approach was explored in \cite{dahlqvist2023syntactic}, using linear $\lambda$-calculus as basis – \textit{i.e} programs are written as linear $\lambda$-terms – which has deep connections to both logic and category theory \cite{girard1995advances}, \cite{benton1994mixed}. A notion of approximate equivalence is then
 integrated in the calculus via the so-called diamond norm , which induces a metric (roughly, a distance function) on the space of quantum programs (seen semantically as completely positive trace-preserving super-operators) \cite{watrous2018theory}. The authors argue that their deductive system allows to compute an approximate distance between two quantum programs easily as opposed to computing an exact distance ``semantically" which tends to involve quite complex operators.  Some positive results were achieved in this setting, but much remains to be done.
 
 
@@ -169,8 +205,8 @@ integrated in the calculus via the so-called diamond norm , which induces a metr
 
 %falar do lambda calculus e da sua ambivalencia e mencionar que nos vamos focar no caso quantico
 
-\section{Goals}
-%The notion of approximate equivalence for quantum programming explored in \cite{dahlqvist2022syntactic} does not take important operations into account. Specifically, the corresponding mathematical model does not include measurements, classical control flow, or discard operations. Also, the corresponding typing system is often times too strict and cannot properly handle multiple uses of the same resource, such as sampling exactly $n$-times from a distribution. The overarching goal of this M.Sc. project is to tackle the aforementioned limitations. A successful completion of this goal will provide a fully-fledged quantum programming language on which to study metric program equivalence in various scenarios. This includes not only quantum algorithmics – where, for example, the number of iterations in Grover’s algorithm involves approximations – but also quantum information theory, where, for instance, quantum teleportation and the problem of the discrimination of quantum states have important roles \cite{nielsen2010quantum}.
+\section{Contributions}
+%The notion of approximate equivalence for quantum programming explored in \cite{dahlqvist2023syntactic} does not take important operations into account. Specifically, the corresponding mathematical model does not include measurements, classical control flow, or discard operations. Also, the corresponding typing system is often times too strict and cannot properly handle multiple uses of the same resource, such as sampling exactly $n$-times from a distribution. The overarching goal of this M.Sc. project is to tackle the aforementioned limitations. A successful completion of this goal will provide a fully-fledged quantum programming language on which to study metric program equivalence in various scenarios. This includes not only quantum algorithmics – where, for example, the number of iterations in Grover’s algorithm involves approximations – but also quantum information theory, where, for instance, quantum teleportation and the problem of the discrimination of quantum states have important roles \cite{nielsen2010quantum}.
 
 
 \section{Document Structure}

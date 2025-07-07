@@ -81,7 +81,7 @@ In this section, we introduce a few concepts from lattice theory that will be us
 \end{example}
 
 
-\begin{lemma}[Way-below relation for the metric quantale] \cite{dahlqvist2022syntactic}
+\begin{lemma}[Way-below relation for the metric quantale] \cite{dahlqvist2023syntactic}
 Let $L$ denote the complete lattice $[0, \infty]$ ordered by $\geq$.  
 For all $x, y \in L$ and for every subset $X \subseteq L$, if $y > x$, then whenever $x \geq \inf X$, there exists a \emph{finite} subset $A \subseteq X$ such that $y \geq \inf A$.
 
@@ -117,14 +117,14 @@ $$ \bigvee(S \cup T) = \left(\bigvee S\right) \vee \left(\bigvee T\right) \quad 
 
 \section{Soundeness and Completeness}
 The proofs in this section are based on the proofs of 
-\autoref{thm:soundness_metric_no_cond} and \autoref{thm:completeness_metric_no_cond} in \cite{dahlqvist2022syntactic}.
+\autoref{thm:soundness_metric_no_cond} and \autoref{thm:completeness_metric_no_cond} in \cite{dahlqvist2023syntactic}.
 
 \begin{theorem}
   The rules in Figures \ref{fig:equations-linear-lambda}, \ref{fig:metric deductive system} and \ref{fig:metric conditionals} are sound for a  symmetric monoidal closed $\catMet$-category with coproducts $\catC$. Specifically, if $\Gamma \vljud v =_{q} w : \typeA $ results from the rules in Figures  \ref{fig:equations-linear-lambda}, \ref{fig:metric deductive system} and \ref{fig:metric conditionals} then $q \geq d( \llbracket \Gamma  \vljud v : \typeA \rrbracket, \llbracket\Gamma \vljud w : \typeA \rrbracket)$.
 \end{theorem}
 
 \begin{proof}
-  We follow the same strategy as \cite{dahlqvist2022syntactic}.
+  We follow the same strategy as \cite{dahlqvist2023syntactic}.
   This proof uses induction over the depth of proof trees that
   arise from the metric deductive system. The general strategy for each
   inference rule is to use the definition of a symmetric monoidal closed $\catMet$-category with coproducts. 
@@ -160,7 +160,7 @@ is a theorem if and only if it holds in all models of the theory.
 \end{theorem}
 
 \begin{proof}
-  Here, we focus only on the coproduct, as the remaining cases are proven in~\cite{dahlqvist2022syntactic}.
+  Here, we focus only on the coproduct, as the remaining cases are proven in~\cite{dahlqvist2023syntactic}.
   Completeness arises from constructing the syntactic category $\catSyn(\mathscr{T})$ of the underlying  theory
   $\mathscr{T}$ and then show that provability of $\Gamma \vljud v =_q w : \typeA$
   in $\mathscr{T}$ is equivalent to $a(\sem{v},\sem{w}) \geq q$ in the category
@@ -237,7 +237,7 @@ With the equality above, we have
 \end{proposition}
 
 \begin{proof}
-  By~\cite[Example 3.8]{dahlqvist2022syntactic}, the category $\catMet$ is a symmetric monoidal closed $\catMet$-category. As a result, it suffices to show that for all morphisms \( f_1, f_2 \in \catMet(A, C) \) and \( g_1, g_2 \in \catMet(B, C) \), the following inequality holds:
+  By~\cite[Example 3.8]{dahlqvist2023syntactic}, the category $\catMet$ is a symmetric monoidal closed $\catMet$-category. As a result, it suffices to show that for all morphisms \( f_1, f_2 \in \catMet(A, C) \) and \( g_1, g_2 \in \catMet(B, C) \), the following inequality holds:
   
 \[
   d_{A \oplus B, C}([f_1, g_1], [f_2, g_2]) \leq \sup \{d_{A,C}(f_1, f_2), d_{B,C}(g_1, g_2)\}.

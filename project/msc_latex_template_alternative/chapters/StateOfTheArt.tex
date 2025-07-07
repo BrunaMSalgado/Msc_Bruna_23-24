@@ -97,7 +97,7 @@
 
 %The metric lambda calculus incorporates a metric equational system, enabling reasoning about approximate program equivalence.
 
-This chapter introduces the metric lambda calculus as presented in \cite{dahlqvist2022syntactic} drawing also from \cite{mackieLanguageAutonomous1993,croleCategoriesTypes1994,selinger2013lecture}. The metric lambda calculus integrates notions of
+This chapter introduces the metric lambda calculus as presented in \cite{dahlqvist2023syntactic} drawing also from \cite{mackieLanguageAutonomous1993,croleCategoriesTypes1994,selinger2013lecture}. The metric lambda calculus integrates notions of
 approximation into the equational system of affine lambda calculus, a variant of lambda calculus that restricts each variable to being used at most once.  This chapter offers a brief insight into lambda calculus and an overview of the syntax, metric equational system and interpretation of the metric lambda calculus. It also includes an exposition of the definitions and results from category theory used throughout the remainder of the thesis,  based on \cite{yanofskyMonoidalCategoryTheory2024,barrCategoryTheoryComputing1990,maclane13}.  These categorical notions play a central role, as programs are interpreted within distributive symmetric monoidal (closed) categories.
  It is worth noting that we explicitly prove certain results concerning conditionals; although these results are well known, their proofs appear to be absent from the existing literature. Additionally, we illustrate the usefulness of the ``traditional'' equational system by utilizing it to demonstrate that the terms $\inl(*)$ and $\inr(*)$ possess certain properties that are characteristic of booleans in classical logic.
 For a more detailed study of lambda calculus theory, the reader is referred to \cite{barendregt1984lambda}.
@@ -611,7 +611,7 @@ v[w/x]: \typeB$ is also derivable.
 \end{lemma}
 
 \begin{proof}
-  Once again, these properties are established in \cite[Theorem 2.1]{dahlqvist2022syntactic} for the lambda calculus without conditionals, so it suffices to consider the cases involving conditionals.
+  Once again, these properties are established in \cite[Theorem 2.1]{dahlqvist2023syntactic} for the lambda calculus without conditionals, so it suffices to consider the cases involving conditionals.
 
   We start with the exchange property which follows by induction over the length
 of derivation trees. The rules that involve injections are direct.  The rule
@@ -2577,7 +2577,7 @@ Regarding the interpretation of the exhange and substitution properties, we have
 
 
 \begin{proof}
-  This lemma is proved in \cite[Lemma 2.2]{dahlqvist2022syntactic} for the lambda calculus without conditionals, so we only need to address the conditional cases.
+  This lemma is proved in \cite[Lemma 2.2]{dahlqvist2023syntactic} for the lambda calculus without conditionals, so we only need to address the conditional cases.
 \todo[inline,size=\normalsize]{Passar para aqui as provas qd elas estiverem vistas} 
 \end{proof}
 
@@ -2591,7 +2591,7 @@ $\llbracket \Gamma \vljud v : A  \rrbracket = \llbracket  \Gamma \vljud w : \typ
 \end{theorem}
 
 \begin{proof}
-  Given the theorem is already proven in \cite[Theorem 2.3]{dahlqvist2022syntactic} for the lambda calculus without conditionals, it suffices to consider the cases involving conditionals.
+  Given the theorem is already proven in \cite[Theorem 2.3]{dahlqvist2023syntactic} for the lambda calculus without conditionals, it suffices to consider the cases involving conditionals.
   \todo[inline,size=\normalsize]{Passar para aqui as provas qd elas estiverem vistas} 
 \end{proof}
 
@@ -2609,7 +2609,7 @@ is a theorem of $\mathscr{T}$ if and only if it is satisfied by all models of th
 \end{theorem}
 
  \begin{proof}
-   This theorem is proved in \cite[Lemma 2.6]{dahlqvist2022syntactic} for the lambda calculus without conditionals, so we only need to address the conditional cases.
+   This theorem is proved in \cite[Lemma 2.6]{dahlqvist2023syntactic} for the lambda calculus without conditionals, so we only need to address the conditional cases.
 \todo[inline,size=\normalsize]{Passar para aqui as provas qd elas estiverem vistas} 
  \end{proof}
 
@@ -2780,12 +2780,12 @@ natural in $B$ and $C$.
 \end{definition}
 
 
-\begin{theorem}\cite[Theorem 4.2]{dahlqvist2022syntactic} 
+\begin{theorem}\cite[Theorem 4.2]{dahlqvist2023syntactic} 
 Let $\catC$ be a category that is both monoidal closed and a symmetric monoidal $\catMet$- category, and suppose that for all objects $X \in \catC$, the functor $X \multimap - : \catC \to \catC$ is non-expansive. Then $\catC$ is a \emph{symmetric monoidal closed $\catMet$-category}.
 \end{theorem}
 
 
-\begin{theorem} [Soundness] \cite[Theorem 3.14]{dahlqvist2022syntactic}  \label{thm:soundness_metric_no_cond}
+\begin{theorem} [Soundness] \cite[Theorem 3.14]{dahlqvist2023syntactic}  \label{thm:soundness_metric_no_cond}
   The rules in Figures \ref{fig:equations-linear-lambda} and \ref{fig:metric deductive system} are sound for a  symmetric monoidal closed $\catMet$-category  $\catC$ over metric spaces. Specifically, if $\Gamma \vljud v =_{q} w : \typeA $ results from the rules in Figures \ref{fig:equations-linear-lambda} and \ref{fig:metric deductive system} then $q \geq d( \llbracket \Gamma  \vljud v : \typeA \rrbracket, \llbracket\Gamma \vljud w : \typeA \rrbracket)$.
 \end{theorem}
 
@@ -2803,7 +2803,7 @@ Given that the equations $\Gamma \vljud v = w : \typeA$ are abbreviations of $\G
 
 We say that a theory $\mathscr{T}$ is \emph{varietal} if $(\texttt{Values}(\typeA, \typeB), d)/{\sim}$ is a small $\catMet$-category for all types $\typeA$ and $\typeB$. For the remainder of this work, we restrict our attention to varietal theories and locally small categories.
 
-\begin{theorem}[Completeness] \cite[Theorem 3.16]{dahlqvist2022syntactic} \label{thm:completeness_metric_no_cond}
+\begin{theorem}[Completeness] \cite[Theorem 3.16]{dahlqvist2023syntactic} \label{thm:completeness_metric_no_cond}
 Consider a varietal metric $\lambda$-theory. A metric equation in context
 $\Gamma \vljud v =_{q} w : \typeA$
 is a theorem if and only if it holds in all models of the theory.

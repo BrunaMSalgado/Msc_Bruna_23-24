@@ -6,46 +6,48 @@ The style file: unsrt.bst
 Reallocating 'name_of_file' (item size: 1) to 13 items.
 Database file #1: dissertation.bib
 Warning--empty year in turingComputableNumbersApplication1937
+Warning--empty journal in thrun2002robotic
+Warning--empty booktitle in Church2008
 Warning--empty booktitle in aliprantisBanachLattices1999
-You've used 66 entries,
+You've used 80 entries,
             1791 wiz_defined-function locations,
-            829 strings with 14750 characters,
-and the built_in function-call counts, 15184 in all, are:
-= -- 1341
-> -- 650
-< -- 17
-+ -- 246
-- -- 180
-* -- 929
-:= -- 2341
-add.period$ -- 205
-call.type$ -- 66
-change.case$ -- 47
+            913 strings with 17545 characters,
+and the built_in function-call counts, 19062 in all, are:
+= -- 1706
+> -- 796
+< -- 26
++ -- 299
+- -- 219
+* -- 1154
+:= -- 2895
+add.period$ -- 251
+call.type$ -- 80
+change.case$ -- 58
 chr.to.int$ -- 0
-cite$ -- 68
-duplicate$ -- 750
-empty$ -- 1552
-format.name$ -- 180
-if$ -- 3474
+cite$ -- 84
+duplicate$ -- 950
+empty$ -- 1935
+format.name$ -- 219
+if$ -- 4394
 int.to.chr$ -- 0
-int.to.str$ -- 66
-missing$ -- 85
-newline$ -- 331
-num.names$ -- 71
-pop$ -- 268
+int.to.str$ -- 80
+missing$ -- 103
+newline$ -- 401
+num.names$ -- 90
+pop$ -- 330
 preamble$ -- 1
 purify$ -- 0
 quote$ -- 0
-skip$ -- 336
+skip$ -- 462
 stack$ -- 0
-substring$ -- 850
-swap$ -- 186
-text.length$ -- 17
+substring$ -- 1102
+swap$ -- 265
+text.length$ -- 26
 text.prefix$ -- 0
 top$ -- 0
 type$ -- 0
-warning$ -- 2
-while$ -- 145
-width$ -- 68
-write$ -- 712
-(There were 2 warnings)
+warning$ -- 4
+while$ -- 183
+width$ -- 82
+write$ -- 867
+(There were 4 warnings)
