@@ -51,12 +51,13 @@ Why is this relevant to the present dissertation? Remarkably, it was Alonzo Chur
 \end{enumerate}
 The algorithms that children learn to perform basic arithmetic operations are examples of effective procedures.
 
- In 1936, Alonzo Church published a solution to the \emph{Entscheidungsproblem}, proving that no such universal method exists for all mathematical statements~\cite{church1936}. In the same work, he introduced a mathematically precise definition of effective computability using what is now known as the $\lambda$-calculus. Today, this result is often referred to as Church’s Theorem.
+ In 1936, Alonzo Church published a solution to the \emph{Entscheidungsproblem}, proving that no such universal method exists for all mathematical statements~\cite{church1936}. Today, this result is often referred to as Church’s Theorem. In the same work, he introduced a mathematically precise definition of effective computability using what is now known as the $\lambda$-calculus: a function is computable if
+ and only if it can be written as a lambda term. This calculus played an important role in functional programming, influencing the design of languages like LISP, Pascal, and GEDANKEN—many of which incorporate $\lambda$-calculus-inspired features, either explicitly or implicitly.Furthermore, Lambda calculus may be employed to prove properties of programming language (such as: a well-formed program will not crash)and as a tool in the construction of compilers \cite{jonesImplementationFunctionalProgramming}.
+
 
  At the same time, another individual was working on this problem independently—without prior knowledge of Church’s work. His name was Alan Turing. In science, credit typically goes to the first person to prove a result. Yet Turing’s 1937 paper, On Computable Numbers, with an Application to the Entscheidungsproblem, was groundbreaking in its own right. In it, he introduced the concept of a universal machine and demonstrated that any function computable by a human following a systematic procedure could also be computed by a Turing machine \cite{turingComputableNumbersApplication1937}. Moreover, Turing proved that his definition of computability aligned with Church’s.
 
-By Turing’s analysis, it became clear that the $\lambda$-calculus was sufficiently powerful to express all mechanically computable functions.
-This calculus played an important role in functional programming, influencing the design of languages like LISP, Pascal, and GEDANKEN—many of which incorporate $\lambda$-calculus-inspired features, either explicitly or implicitly.
+%By Turing’s analysis, it became clear that the $\lambda$-calculus was sufficiently powerful to express all mechanically computable functions.
 
 Nowadays, computers are ubiquitous household appliances, as commonplace as televisions or refrigerators. Yet there is  something astounding in the fact that the personal computers we use daily trace their roots to an idea born from questions about the foundations of mathematics: the principle of universality in computation. 
 
@@ -91,9 +92,9 @@ This flexibility regarding domains and codomains enables operations on functions
 
 Nevertheless this remarkable aspect of lambda calculus, this work focuses on a more restricted version of the lambda calculus, known as the simply-typed lambda calculus. Here, each expression is always assigned a type, which is very similar to the situation in mathematics. A function may only be applied to an argument if the argument's type aligns with the function's expected domain. Consequently, terms such as $f(f)$ are not allowed, even if $f$ represents the identity function.
 
+Moreover, the $\lambda$-calculus includes a set of equations that clarify and simplify the meaning of operations. For instance, one such equation states that a function applying another function $f$ to an argument $x$ can be simplified to $f$ itself: $\lambda x.(f, x) = f$. When viewed as a programming language, the $\lambda$-calculus is typically equipped with a  semantics, \ie, its terms are assigned specific meanings. In this work, we are particularly interested in interpreting these terms as mathematical objects, especially those arising in category theory. If the aforementioned equations hold under a given interpretation, we refer to it as a \emph{model}.
+%One way to study the lambda calculus is to give mathematical models of it, i.e.,to provide spaces in which lambda terms can be given meaning. Such models are  constructed using methods from algebra, partially ordered sets, topology,category theory, and other areas of mathematics
 
-
-\todo[inline]{Incluir cena do Curry-Howard isomorphism? -> Não quero q me comecem a fazer perguntas sobre isto}
 On another note, the lambda calculus not only allows us to express all computable functions, but also establishes a correspondence between logical proofs and programs. This is known as the \emph{Curry-Howard isomorphism} \cite{girardProofsTypes1989}.
 
 
@@ -146,25 +147,12 @@ In this setting, Crubillé and Dal Lago introduced the notion of a \emph{context
 what an external observer can measure during execution---is identical in any context.  This distance was first developed for an affine $\lambda$-calculus and later extended to a more general 
 setting that, for instance, allows copying.
 
-In \cite{dahlqvist2023syntactic}, the authors reason about approximate equivalence using the \emph{operator norm} on the space of probabilistic programs (which are interpreted as short maps between Banach spaces).
+In \cite{dahlqvist2023syntactic}, the authors reason about approximate equivalence using the \emph{operator norm} which induces a metric (roughly, a distance function) on the space of probabilistic programs (which are interpreted as short maps between Banach spaces).
 
-
-
-
-
-
-
-
-%maybe questões de energia
 
 
 
 \subsection*{Quantum Computation}
-
-
-\todo[inline,size=\normalsize]{Reduzir parte quântica: tirar histórias das linguagens e assim, mas deixar as do selinger}
-
-\todo[inline,size=\normalsize]{Parte das op algebras?-> Tradicionalmente faz-se blá, mas existe outra perspetiva... Kenta Cho vs Selinger + temos espaços infinitos}
 
 
 
@@ -182,37 +170,43 @@ The field has since evolved into a multidisciplinary research area that combines
 The quantum computing paradigm holds immense promise, as evidenced by this compelling result in computational complexity theory.  While hardware advancements have brought the scientific community closer to realizing this potential, the ultimate goal is yet to be accomplished. A \acrfull{nisq} computer equipped with 50-100 qubits may surpass the capabilities of current classical computers, yet the impact of quantum noise, such as decoherence in entangled states, imposes limitations on the size of quantum circuits that can be executed reliably \cite{preskill2018quantum}. Unfortunately, general-purpose error correction techniques \cite{calderbank1996good, gottesman1997stabilizer, steane1996error} consume a substantial number of qubits, making it difficult for \acrshort{nisq} devices to make use of them in the near term. For instance, the implementation of a single logical qubit may require between $10^3$ and $10^4$ physical qubits \cite{fowler2012surface}. As a result, it is unreasonable to expect that the idealized quantum algorithm will run perfectly on a quantum device, instead
 only a mere approximation will be observed.
 
-To reconcile quantum computation with \acrshort{nisq} computers, quantum compilers perform transformations for error mitigation \cite{wallman2016noise} and noise-adaptive optimization \cite{murali2019noise}. Additionally, current quantum computers only support a restricted, albeit universal, set of quantum operations. As a result, nonnative operations must be decomposed into sequences of native operations before execution \cite{harrow2002efficient,burgholzer2020advanced}. The assessment of these compiler transformations necessitates a comparison of the error bounds between the source and compiled quantum programs. 
-
-This suggests the development of appropriate notions of approximate program equivalence, \textit {in lieu} of the classical program equivalence and underlying theories that typically hinge on the idea that equivalence is binary, \textit{i.e.} two programs are either equivalent or they are not \cite{winskel1993formal}.
+To reconcile quantum computation with \acrshort{nisq} computers, quantum compilers perform transformations for error mitigation \cite{wallman2016noise} and noise-adaptive optimization \cite{murali2019noise}. Additionally, current quantum computers only support a restricted, albeit universal, set of quantum operations. As a result, nonnative operations must be decomposed into sequences of native operations before execution \cite{harrow2002efficient,burgholzer2020advanced}. The assessment of these compiler transformations necessitates a comparison of the error bounds between the source and compiled quantum programs, which calls  for the development of appropriate notions of approximate program equivalence.
 
 %Furthermore, in quantum information theory, the concept of an $\epsilon-\text{approximation}$ channel is fundamental when studying quantum teleportation via noisy channels \cite{watrous2018theory}. 
 
-As previously noted, Shor's algorithm has played a pivotal role in sparking heightened interest within the scientific community toward quantum computing research. Several quantum programming languages have surfaced over the past 25 years \cite{zhao2020quantum,serrano2022quantum}. These include imperative languages such as Qiskit \cite{Qiskit} and Silq \cite{bichsel2020silq}, as well as functional languages such as Quipper \cite{green2013quipper} and Q\# \cite{svore2018q}. On one hand, the design of quantum programming languages is strongly oriented towards implementing quantum algorithms. On the other hand, the  definition of functional paradigmatic languages or functional calculi serves as a valuable tool for delving into theoretical aspects of quantum computing, particularly exploring the foundational basis of quantum computation \cite{zorzi2016quantum}. 
+As previously noted, Shor's algorithm has played a pivotal role in sparking heightened interest within the scientific community toward quantum computing research. Several quantum programming languages have surfaced over the past 25 years \cite{zhao2020quantum,serrano2022quantum}. Among them, we remark on Selinger's and Valerion's work. In 2004, Selinger introduced a first-order functional language for quantum computation along with its denotational semantics \cite{selinger2004towards}. Building on this, Selinger and Valiron later developed a higher-order functional language for quantum computation—commonly referred to as a quantum lambda calculus. They first presented a version with classical control and its operational semantics in \cite{selinger2006lambda}. This was followed by a denotational semantics for a fragment of the language in \cite{selinger2008fully}. In subsequent work, they extended the quantum lambda calculus to include recursion and infinite types, along with its operational semantics \cite{selinger2009quantum}. Later, they proposed an alternative approach to its denotational semantics \cite{selinger2014}.
 
-%Given the nature of this work, the focus will be on quantum languages designed with this latter aspect in mind. 
-%QPL, a quantum language within the functional programming paradigm, marks a significant milestone in this context \cite{selinger2004towards}. It is a first-order functional language with a static type system that integrates classical control and quantum data, and its denotational semantics is based on superoperators. 
+
+These works adopt the Schr\"odinger picture, where quantum programs are interpreted as maps between quantum states (\ie, density operators). In contrast, \cite{choSemanticsQuantumProgramming2016, choNeumannAlgebrasForm2016} consider the Heisenberg picture, in which programs are modeled as maps between observables (\ie, self-adjoint operators). Particularly, \cite{choSemanticsQuantumProgramming2016} presents a model based on von Neumann algebras, which can be viewed as an infinite-dimensional extension of \cite{selinger2004towards}. Moreover, \cite{choSemanticsQuantumProgramming2016} presents a model of Selinger and Valiron’s quantum lambda calculus \cite{selinger2006lambda, selinger2008linear, selinger2009quantum}, also based on von Neumann algebras, and proves the model's adequacy.
+
 
 Most of the current research on algorithms and programming languages assumes that addressing the challenge of noise during program execution will be resolved either by the hardware or through the implementation of fault-tolerant protocols designed independently of any specific application \cite{chong2017programming}. As previously stated, this assumption is not realistic in the \acrshort{nisq} era. Nonetheless, there have been efforts to address the challenge of approximate program equivalence in the quantum setting. 
 
 \cite{hung2019quantitative} and \cite{tao2021gleipnir} reason about the issue of noise in a quantum while-language by developing a deductive system to determine how similar a quantum program is from its idealised, noise-free version. The former introduces the ($Q$,$\lambda$)-diamond norm which analyzes the output error given that the input quantum state satisfies some quantum predicate $Q$ to degree $\lambda$. However, it does not specify any practical method for obtaining non-trivial quantum predicates. In fact, the methods used in \cite{hung2019quantitative} cannot produce any post conditions other than $(I,0)$ (\textit{i.e.}, the identity matrix $I$ to degree 0, analogous to a ``true” predicate) for large quantum programs. The latter specifically addresses and delves into this aspect.  
 
-An alternative approach was explored in \cite{dahlqvist2023syntactic}, using linear $\lambda$-calculus as basis – \textit{i.e} programs are written as linear $\lambda$-terms – which has deep connections to both logic and category theory \cite{girard1995advances}, \cite{benton1994mixed}. A notion of approximate equivalence is then
-integrated in the calculus via the so-called diamond norm , which induces a metric (roughly, a distance function) on the space of quantum programs (seen semantically as completely positive trace-preserving super-operators) \cite{watrous2018theory}. The authors argue that their deductive system allows to compute an approximate distance between two quantum programs easily as opposed to computing an exact distance ``semantically" which tends to involve quite complex operators.  Some positive results were achieved in this setting, but much remains to be done.
-
+An alternative approach was explored in \cite{dahlqvist2023syntactic}, using linear $\lambda$-calculus as basis. A notion of approximate equivalence is then
+integrated in the calculus via the so-called diamond norm, which induces a metric on the space of quantum programs (seen semantically as completely positive trace-preserving super-operators) \cite{watrous2018theory}. 
 
 
 
 %falar do lambda calculus e da sua ambivalencia e mencionar que nos vamos focar no caso quantico
 
 \section{Contributions}
-%The notion of approximate equivalence for quantum programming explored in \cite{dahlqvist2023syntactic} does not take important operations into account. Specifically, the corresponding mathematical model does not include measurements, classical control flow, or discard operations. Also, the corresponding typing system is often times too strict and cannot properly handle multiple uses of the same resource, such as sampling exactly $n$-times from a distribution. The overarching goal of this M.Sc. project is to tackle the aforementioned limitations. A successful completion of this goal will provide a fully-fledged quantum programming language on which to study metric program equivalence in various scenarios. This includes not only quantum algorithmics – where, for example, the number of iterations in Grover’s algorithm involves approximations – but also quantum information theory, where, for instance, quantum teleportation and the problem of the discrimination of quantum states have important roles \cite{nielsen2010quantum}.
+We build on the work of \cite{dahlqvist2023syntactic} by introducing a metric equation for conditionals and proving both its soundness and completeness. Soundness ensures that if a metric equation $t =_{\varepsilon} s$ can be derived in the calculus, then the distance between the interpretations of $t$ and $s$ is at most $\varepsilon$. Completeness guarantees that if $\varepsilon$ is the maximal distance between the interpretations of two programs, then we can derive $t =_{\varepsilon} s$ in the calculus. 
+
+We then show that the category of metric spaces and the cocompletion of a $ \catMet $-category $ C $ satisfy the requirements for a model suitable for reasoning about approximate equivalence using this equation.  Next, to illustrate the utility of the metric equation introduced, we present two simple examples: reasoning about approximate equivalence between boolean terms (\ie terms of type $ \typeI \oplus \typeI $) the extensionality of copairing.
+
+
+Next, we explore two computational paradigms in greater detail: \emph{Cref{ch:metriclambda} presents (metric) $\lambda$-calculus and its categorical interpretation as a result beeing accompanied with the  the notions of category theory used in the thesis. Given that one of the advantages of having a metric equation system is that we can reason syntatically about approximate equivalente, we take advantage of this cue and in this section also ilustrate the usefullness of the classical equation system in an interlude about booleans (\ie terms of type $ \typeI \oplus \typeI $). In \Cref{ch:conditionals} we introduce  a metric equation for conditionals, prove its soundness and completeness and present a couple models in this setting, along with a couple syntatic esimple examples. Subsequently, in \autoref{ch:pp} and \autoref{ch:qc}  we will focus specifically on reasoning about f higher-order probabilistic programs and first-order quantum programs, respectively. probabilistic} and \emph{quantum programming}. For the former, we prove that the category $ \catBan $ of Banach spaces and short maps constitutes a model in this setting, and use a random walk as an illustrative example. For the latter, we consider two categorical models: Selinger’s \( \catQ \), the category of quantum operationts (\ie, completely positive, trace-nonincreasing superoperators) \cite{selinger2004towards}, and Cho’s \( \WstarCPSUop \), the opposite category of W$^*$-algebras and normal, completely positive, subunital maps~\cite{choSemanticsQuantumProgramming2016}. We show that both are first-order models. Finally, we use quantum state discrimination, quantum teleportation, and quantum random walks as illustrative examples in this setting.
+
+
+%for enriched symmetric monoidal closed categories with binary copr0ducts over metric spaces.
 
 
 \section{Document Structure}
-%Notação
-%dizer que vamos acrescentando novas regras ao longo dos capitulos ao nosso lambda calculua -> construção incremental do sistema
 
-\todo[inline,size=\normalsize]{Nota sobre conhecimentos q assumo}
+\Cref{ch:metriclambda} introduces (metric) $\lambda$-calculus along with its categorical interpretation, accompanied by the necessary notions from category theory used throughout the thesis. One advantage of working with a metric equational system is the ability to reason syntactically about approximate equivalence. We leverage this idea in an interlude on booleans (i.e., terms of type $\typeI \oplus \typeI$) to illustrate the usefulness of the classical equational system. In \Cref{ch:conditionals}, we introduce a metric equation for conditionals, prove its soundness and completeness, and present a few models in this setting, along with a few illustrative syntactic examples. Then, in \Cref{ch:pp} and \Cref{ch:qc}, we focus on reasoning about higher-order probabilistic programs and first-order quantum programs, respectively,  including the necessary background in each domain. The thesis concludes with directions for future work in \Cref{ch:future_work}.
 
-\todo[inline,size=\normalsize]{Nota sobre conhecimentos q tenho -> conhecimento superficial o qual apresento, não mais de que isso}
+Although this work uses knowlage across multiple areas, the author's engagement with them is mostly limited to the scope of this thesis.
+
+

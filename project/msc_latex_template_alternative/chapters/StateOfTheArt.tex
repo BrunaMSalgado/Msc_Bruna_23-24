@@ -88,7 +88,7 @@
 
 
 
-\todo[inline,size=\normalsize]{Colocar um frase bonitinha sobre como isto acaba por ser tb um resumo do que eu aprendi e portanto são apresentados os conceitos de raiz} 
+
 
 \chapter{Metric Lambda Calculus} \label{ch:metriclambda}
 
@@ -98,7 +98,7 @@
 %The metric lambda calculus incorporates a metric equational system, enabling reasoning about approximate program equivalence.
 
 This chapter introduces the metric lambda calculus as presented in \cite{dahlqvist2023syntactic} drawing also from \cite{mackieLanguageAutonomous1993,croleCategoriesTypes1994,selinger2013lecture}. The metric lambda calculus integrates notions of
-approximation into the equational system of affine lambda calculus, a variant of lambda calculus that restricts each variable to being used at most once.  This chapter offers a brief insight into lambda calculus and an overview of the syntax, metric equational system and interpretation of the metric lambda calculus. It also includes an exposition of the definitions and results from category theory used throughout the remainder of the thesis,  based on \cite{yanofskyMonoidalCategoryTheory2024,barrCategoryTheoryComputing1990,maclane13}.  These categorical notions play a central role, as programs are interpreted within distributive symmetric monoidal (closed) categories.
+approximation into the equational system of affine lambda calculus, a variant of lambda calculus that restricts each variable to being used at most once.  This chapter offers a brief insight into lambda calculus and an overview of the syntax, metric equational system and interpretation of the metric lambda calculus. It also includes an exposition of the definitions and results from category theory used throughout the remainder of the thesis,  based on \cite{yanofskyMonoidalCategoryTheory2024,barrCategoryTheoryComputing1990,maclane13}. We note that the vast majority of the examples used in this context are drawn form \cite{yanofskyMonoidalCategoryTheory2024}.  These categorical notions play a central role, as programs are interpreted within distributive symmetric monoidal (closed) categories.
  It is worth noting that we explicitly prove certain results concerning conditionals; although these results are well known, their proofs appear to be absent from the existing literature. Additionally, we illustrate the usefulness of the ``traditional'' equational system by utilizing it to demonstrate that the terms $\inl(*)$ and $\inr(*)$ possess certain properties that are characteristic of booleans in classical logic.
 For a more detailed study of lambda calculus theory, the reader is referred to \cite{barendregt1984lambda}.
 
@@ -1297,7 +1297,6 @@ Here, $\text{perm} (\Gamma)$ denotes the set of possible permutions of context $
 
 % dizer o que é perm
 
-\todo[inline,size=\normalsize]{Não sei se dá para postular para f sem argumento, não dá para usar nenhuma das regras, a da substuição não dá para aplicar porque f sozinho não é termo} 
 
 \begin{example} \label{ex:metric_eqs}
   To ilustrate the usefulness of these equations, consider the program $P$ that recieves a tensor product, swaps its elements and then applies a function $f: \typeA \to \typeD \in \Sigma $ to the new second element of the tensor  pair:
@@ -1343,8 +1342,6 @@ For instance, in \autoref{ex:metric_eqs}, $\textbf{Conjunction}[v/v', w/w'] =_{\
 
 \section{Category theory} \label{sec:catgories}
 
-
-\todo[inline,size=\normalsize]{Cenas para a descrição da secção: ref awodeyCategoryTheory2010 e nota sobre a maioria dos exemplos serem retirados do noson} 
 
 Category theory originated as an effort to connect and unify two distinct areas of mathematics.  The goal was to study and classify specific geometric structures—such as topological spaces, manifolds, and bundles—by associating them with corresponding algebraic structures like groups, rings, and abelian groups. It became clear that a language was needed to connect geometric and algebraic objects—one not explicitly tailored to geometry or algebra. Only a language of such generality could allow meaningful discussion across both fields.  This is the birth of category theory.
 Described as "a language about nothing, and therefore about everything," category theory provides a highly general way of discussing mathematical concepts.  It was invented by Samuel Eilenberg and Saunders MacLane \cite{eilenbergGeneralTheoryNatural1945}. They organized various mathematical structures into categories called geometric others algebraic. To connect these categories, they defined functors, which map objects and morphisms from one category to another, much like functions do. They further introduced natural transformations, which provide a way to compare functors, translating the results of one functor into those of another. \cite{yanofskyMonoidalCategoryTheory2024}

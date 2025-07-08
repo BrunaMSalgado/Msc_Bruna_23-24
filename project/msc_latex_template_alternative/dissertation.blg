@@ -5,49 +5,51 @@ Reallocating 'name_of_file' (item size: 1) to 6 items.
 The style file: unsrt.bst
 Reallocating 'name_of_file' (item size: 1) to 13 items.
 Database file #1: dissertation.bib
+Warning--entry type for "choNeumannAlgebrasForm2016" isn't style-file defined
+--line 1297 of file dissertation.bib
 Warning--empty year in turingComputableNumbersApplication1937
 Warning--empty journal in thrun2002robotic
 Warning--empty booktitle in Church2008
 Warning--empty booktitle in aliprantisBanachLattices1999
-You've used 80 entries,
+You've used 81 entries,
             1791 wiz_defined-function locations,
-            913 strings with 17545 characters,
-and the built_in function-call counts, 19062 in all, are:
-= -- 1706
-> -- 796
-< -- 26
-+ -- 299
-- -- 219
-* -- 1154
-:= -- 2895
-add.period$ -- 251
-call.type$ -- 80
-change.case$ -- 58
+            926 strings with 17565 characters,
+and the built_in function-call counts, 19144 in all, are:
+= -- 1753
+> -- 772
+< -- 23
++ -- 291
+- -- 210
+* -- 1140
+:= -- 2903
+add.period$ -- 256
+call.type$ -- 81
+change.case$ -- 60
 chr.to.int$ -- 0
-cite$ -- 84
-duplicate$ -- 950
-empty$ -- 1935
-format.name$ -- 219
-if$ -- 4394
+cite$ -- 85
+duplicate$ -- 965
+empty$ -- 1928
+format.name$ -- 210
+if$ -- 4423
 int.to.chr$ -- 0
-int.to.str$ -- 80
+int.to.str$ -- 81
 missing$ -- 103
-newline$ -- 401
-num.names$ -- 90
-pop$ -- 330
+newline$ -- 406
+num.names$ -- 91
+pop$ -- 315
 preamble$ -- 1
 purify$ -- 0
 quote$ -- 0
-skip$ -- 462
+skip$ -- 483
 stack$ -- 0
-substring$ -- 1102
-swap$ -- 265
-text.length$ -- 26
+substring$ -- 1114
+swap$ -- 273
+text.length$ -- 23
 text.prefix$ -- 0
 top$ -- 0
 type$ -- 0
 warning$ -- 4
-while$ -- 183
-width$ -- 82
-write$ -- 867
-(There were 4 warnings)
+while$ -- 184
+width$ -- 83
+write$ -- 883
+(There were 5 warnings)

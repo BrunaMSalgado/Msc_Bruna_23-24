@@ -1,4 +1,4 @@
-\chapter{Quantum computation}
+\chapter{Quantum computation}\label{ch:qc}
 
 The first two sections of this chapter present the mathematical and quantum computing preliminaries necessary for understanding the theory of quantum computation. 
 The introduction to quantum computing is primarily based on \cite{nielsen2010quantum,watrous2018theory}, while the mathematical foundations are also based on \cite{rudin91functional} and  \cite{guide2006infinite}.
@@ -14,7 +14,14 @@ The following section introduces core concepts from functional analysis, which a
 
 It is impossible to present the theory of quantum computation without introducing some concepts of linear algebra within finite-dimensional spaces. This section provides a brief overview of the aspects of linear algebra that are most pertinent to the study of quantum computation. 
 
-\subsection{Vector spaces}
+
+The letters \gls{vectorspaces} will often be used to refer to vector spaces. In this section, all vector spaces are assumed to be finite dimensional, unless otherwise stated
+
+
+
+\begin{comment}
+
+  \subsection{Vector spaces}
 
 The basic objects of linear algebra are vector spaces. The vector spaces of interest in this work are the real and complex vector spaces, such as  \gls{real-space}  and \gls{n-complex-space} and \gls{matrix-complex-space}, respectively. 
 
@@ -73,10 +80,6 @@ A \emph{vector subspace} of a vector space $V$ is a subset $W$ of $V$ such that 
   A \emph{spanning set} of a vector space is a set of vectors $v_{1}, \ldots, v_{n}$ such that any vector $v$ in the vector space can be written as a linear combination $v = \sum_{i} a_{i} v_{i}$ of vectors in that set, where $a_{i}$ are scalars.
 \end{definition}
 
-\end{comment}
-
-
-
 
 \begin{definition}
 A set of non-zero vectors $v_1, \ldots, v_n$ are \emph{linearly dependent} if there exists a set of complex numbers $a_1, \ldots , a_n$ with $a_i \neq 0$ for at least one value of $i$, such that
@@ -98,6 +101,10 @@ independent and that spans the space.
 The number of elements in the basis is defined to be the \emph{dimension}  of
 $V$, denoted \gls{dim}.
 \end{definition}
+
+
+
+
 
 \subsection{Linear operators}
 
@@ -136,7 +143,7 @@ The matrix whose entries are the values $A_{ij}$ is said to form a \emph{matrix 
 %\end{equation*}
 %The matrix whose entries are the values $A_{ij}$ is said to form a \emph{matrix representation} of the operator $A$. This matrix representation of $A$ is completely equivalent to the operator $A$. As a result, when considering operators on vector spaces of the form $\mathbb{C}^n$ or $\mathbb{C}^{n\times n}$, it is common to refer to the operator $A$ and its matrix representation interchangeably.
 
-
+\end{comment}
 
 
 \subsection{Inner product}
@@ -192,33 +199,13 @@ By means of the trace, one defines the inner product of two operators $A,B\in \m
 
 In the \emph{finite} dimensional complex vector spaces relevant to quantum computation and quantum information, a \emph{Hilbert space} is is equivalent to an inner product space.  As a result, both $\mathbb{C}^{n}$ and $\mathbb{C}^{n \times m}$ are Hilbert spaces.
 
-\subsection{Norm and normed spaces}
-
-\begin{definition} \label{def:norm}
-  A \emph{norm} \gls{norm} is a function that associates an element of a vector space $V$ with a non-negative real number, such that the following properties hold:
-  \begin{enumerate}
-    \item Positive definiteness: $\|v\| \geq 0$ for all $v \in V$, with $\|v\| = 0$ if and only if $v = 0$;
-    \item Positive scalability: $\|av\| = |a|\|v\|$ for all $v \in V$ scalar $a$;
-    \item The triangle inequality: $\|v + w\| \leq \|v\| + \|w\|$ for all $v, w \in V$.
-  \end{enumerate}
-\end{definition}
-
-\begin{definition} \label{def:normed_space}
-A vector space together with a norm is called a \emph{normed vector space}.
-\end{definition}
-
-Every normed space may be regarded as a metric space, in which the
-distance \gls{distance} between vectors $x$ and $y$ is $\|x-y\|$ . The relevant properties of $d(x,y)$ are
-
-\begin{enumerate}
-  \item $0 < d(x, y) < \infty $ for all $x$ and $y$,
-  \item $d(x, y) = 0$ if and only if $x = y$,
-  \item $d(x, y) = d(y, x)$ for all $x$ and $y$,
-  \item $d(x, z) < d(x, y) + d(y, z)$ for all $x, y, z$.
-\end{enumerate}
-
-
 Every inner product space is a normed space, where the norm of a vector $v$ is defined as $\|v\| = \sqrt{\langle v, v \rangle}$.
+
+
+
+
+
+\begin{comment}
 
 \begin{definition}
 Two vector $u, v$ are said to be \emph{orthogona}l if $\langle v,u\rangle$. An \emph{orthogonal set} is a set of orthogonal vectors of the same vector space.
@@ -259,7 +246,10 @@ where $V$ is a vector space.  The subscript will be omitted unless ambiguity ari
 function depends only upon the operator A, and not on the specific matrix representation used for $A$. By the fundamental theorem of algebra, every polynomial has at least one complex root, so every operator $A$ has at least one eigenvalue, and a corresponding
 eigenvector. The solutions of the \emph{characteristic equation} $c(\lambda) = 0$ are the eigenvalues of the operator $A$. %The \emph{eigenspace} corresponding to an eigenvalue $\lambda$ is the set of vectors which have eigenvalue $\lambda$.
 
-A \emph{diagonal representation} of an operator $A$ on a vector space $V$ is an expression of the form $A = \sum_i \lambda_i v_i v_i^{\dag}$, where the vectors $v_i$ form an orthonormal set of eigenvectors for $A$, with corresponding eigenvalues $\lambda_i$, and \gls{dag} is the adjoint operation. 
+A \emph{diagonal representation} of an operator $A$ on a vector space $V$ is an expression of the form $A = \sum_i \lambda_i v_i v_i^{\dag}$, where the vectors $v_i$ form an orthonormal set of eigenvectors for $A$, with corresponding eigenvalues $\lambda_i$, and \gls{dag} is the adjoint operation.
+
+\end{comment}
+
 
 %classes de operadores
 

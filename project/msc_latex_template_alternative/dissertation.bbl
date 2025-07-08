@@ -18,6 +18,11 @@ Alonzo Church.
 \newblock An {{Unsolvable Problem}} of {{Elementary Number Theory}}.
 \newblock {\em American Journal of Mathematics}, 58(2):345--363, 1936.
 
+\bibitem{jonesImplementationFunctionalProgramming}
+Simon~Peyton Jones.
+\newblock {\em The Implementation of Functional Programming Languages}.
+\newblock Prentice Hall, 1987.
+
 \bibitem{turingComputableNumbersApplication1937}
 A.~M. Turing.
 \newblock On {{Computable Numbers}}, with an {{Application}} to the
@@ -114,10 +119,10 @@ Rajeev Motwani and Prabhakar Raghavan.
 \newblock Cambridge University Press, 1995.
 
 \bibitem{Church2008}
-Noah Goodman, Vikash Mansinghka, Daniel Roy, Kallista Bonawitz, and Joshua
-  Tenenbaum.
-\newblock Church: A language for generative models.
-\newblock volume 2008, pages 220--229, 01 2008.
+Noah~D. Goodman, Vikash~K. Mansinghka, Daniel Roy, Keith Bonawitz, and
+  Joshua~B. Tenenbaum.
+\newblock Church: a language for generative models.
+\newblock UAI'08, page 220–229, Arlington, Virginia, USA, 2008. AUAI Press.
 
 \bibitem{Anglican2015}
 David Tolpin, Jan-Willem van~de Meent, and Frank Wood.
@@ -202,11 +207,6 @@ Lukas Burgholzer and Robert Wille.
 \newblock {\em IEEE Transactions on Computer-Aided Design of Integrated
   Circuits and Systems}, 40(9):1810--1824, 2020.
 
-\bibitem{winskel1993formal}
-Glynn Winskel.
-\newblock {\em The formal semantics of programming languages: an introduction}.
-\newblock MIT press, 1993.
-
 \bibitem{zhao2020quantum}
 Jianjun Zhao.
 \newblock Quantum software engineering: Landscapes and horizons.
@@ -219,38 +219,54 @@ Manuel~A Serrano, Jose~A Cruz-Lemus, Ricardo Perez-Castillo, and Mario
   assessment.
 \newblock {\em ACM Computing Surveys}, 55(8):1--31, 2022.
 
-\bibitem{Qiskit}
-{Qiskit contributors}.
-\newblock Qiskit: An open-source framework for quantum computing, 2023.
+\bibitem{selinger2004towards}
+Peter Selinger.
+\newblock Towards a quantum programming language.
+\newblock {\em Mathematical Structures in Computer Science}, 14(4):527--586,
+  2004.
 
-\bibitem{bichsel2020silq}
-Benjamin Bichsel, Maximilian Baader, Timon Gehr, and Martin Vechev.
-\newblock Silq: A high-level quantum language with safe uncomputation and
-  intuitive semantics.
-\newblock In {\em Proceedings of the 41st ACM SIGPLAN Conference on Programming
-  Language Design and Implementation}, pages 286--300, 2020.
+\bibitem{selinger2006lambda}
+Peter Selinger and Beno{\^\i}t Valiron.
+\newblock A lambda calculus for quantum computation with classical control.
+\newblock {\em Mathematical Structures in Computer Science}, 16(3):527--552,
+  2006.
 
-\bibitem{green2013quipper}
-Alexander~S Green, Peter~LeFanu Lumsdaine, Neil~J Ross, Peter Selinger, and
-  Beno{\^\i}t Valiron.
-\newblock Quipper: a scalable quantum programming language.
-\newblock In {\em Proceedings of the 34th ACM SIGPLAN conference on Programming
-  language design and implementation}, pages 333--342, 2013.
+\bibitem{selinger2008fully}
+Peter Selinger and Beno{\^\i}t Valiron.
+\newblock On a fully abstract model for a quantum linear functional language.
+\newblock {\em Electronic Notes in Theoretical Computer Science}, 210:123--137,
+  2008.
 
-\bibitem{svore2018q}
-Krysta Svore, Alan Geller, Matthias Troyer, John Azariah, Christopher Granade,
-  Bettina Heim, Vadym Kliuchnikov, Mariia Mykhailova, Andres Paz, and Martin
-  Roetteler.
-\newblock Q\# enabling scalable quantum computing and development with a
-  high-level dsl.
-\newblock In {\em Proceedings of the real world domain specific languages
-  workshop 2018}, pages 1--10, 2018.
+\bibitem{selinger2009quantum}
+Peter Selinger, Beno{\i}t Valiron, et~al.
+\newblock Quantum lambda calculus.
+\newblock {\em Semantic techniques in quantum computation}, pages 135--172,
+  2009.
 
-\bibitem{zorzi2016quantum}
-Margherita Zorzi.
-\newblock On quantum lambda calculi: a foundational perspective.
-\newblock {\em Mathematical Structures in Computer Science}, 26(7):1107--1195,
-  2016.
+\bibitem{selinger2014}
+Michele Pagani, Peter Selinger, and Beno\^{\i}t Valiron.
+\newblock Applying quantitative semantics to higher-order quantum computing.
+\newblock In {\em Proceedings of the 41st ACM SIGPLAN-SIGACT Symposium on
+  Principles of Programming Languages}, POPL '14, page 647–658, New York, NY,
+  USA, 2014. Association for Computing Machinery.
+
+\bibitem{choSemanticsQuantumProgramming2016}
+Kenta Cho.
+\newblock Semantics for a {{Quantum Programming Language}} by {{Operator
+  Algebras}}.
+\newblock {\em New Generation Computing}, 34(1):25--68, 2016.
+
+\bibitem{choNeumannAlgebrasForm2016}
+Kenta Cho and Abraham Westerbaan.
+\newblock Von {{Neumann Algebras}} form a {{Model}} for the {{Quantum Lambda
+  Calculus}}, 2016.
+
+\bibitem{selinger2008linear}
+Peter Selinger and Beno{\^\i}t Valiron.
+\newblock A linear-non-linear model for a computational call-by-value lambda
+  calculus.
+\newblock In {\em International Conference on Foundations of Software Science
+  and Computational Structures}, pages 81--96. Springer, 2008.
 
 \bibitem{chong2017programming}
 Frederic~T Chong, Diana Franklin, and Margaret Martonosi.
@@ -271,17 +287,6 @@ Runzhou Tao, Yunong Shi, Jianan Yao, John Hui, Frederic~T Chong, and Ronghui
 \newblock Gleipnir: toward practical error analysis for quantum programs.
 \newblock In {\em Proceedings of the 42nd ACM SIGPLAN International Conference
   on Programming Language Design and Implementation}, pages 48--64, 2021.
-
-\bibitem{girard1995advances}
-Jean-Yves Girard, Yves Lafont, and Laurent Regnier.
-\newblock {\em Advances in linear logic}, volume 222.
-\newblock Cambridge University Press, 1995.
-
-\bibitem{benton1994mixed}
-P~Nick Benton.
-\newblock A mixed linear and non-linear logic: Proofs, terms and models.
-\newblock In {\em International Workshop on Computer Science Logic}, pages
-  121--135. Springer, 1994.
 
 \bibitem{watrous2018theory}
 John Watrous.
