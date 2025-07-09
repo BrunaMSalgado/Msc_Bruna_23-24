@@ -1,21 +1,25 @@
 \chapter{Quantum computation}\label{ch:qc}
 
-The first two sections of this chapter present the mathematical and quantum computing preliminaries necessary for understanding the theory of quantum computation. 
-The introduction to quantum computing is primarily based on \cite{nielsen2010quantum,watrous2018theory}, while the mathematical foundations are also based on \cite{rudin91functional} and  \cite{guide2006infinite}.
 
-The following section introduces core concepts from functional analysis, which are essential in C$^*$- and W$^*$-algebras. This part is based on \cite{rudin91functional,guide2006infinite,conwayCourseFunctionalAnalysis2007,conwayCourseOperatorTheory2000}.
-
-
-\todo[inline,size=\normalsize]{Faltam as w* algebras} 
-
-\section{Linear Algebra} \label{sec:linalg}
+The first two sections of this chapter present the mathematical and quantum computing preliminaries necessary for understanding the theory of quantum computation. The introduction to quantum computing draws primarily from \cite{nielsen2010quantum,watrous2018theory}, while the mathematical foundations are also based on \cite{heinosaariMathematicalLanguageQuantum2011,conwayCourseFunctionalAnalysis2007,conwayCourseOperatorTheory2000}.
+The next section introduces core concepts from functional analysis that are essential for understanding W$^*$-algebras, based on \cite{rudin91functional,guide2006infinite}. This is followed by a section presenting the fundamentals of W$^*$-algebras, drawing on \cite{sakaiCAlgebrasWAlgebras1998,takesakiTheoryOperatorAlgebras1979,pisierIntroductionOperatorSpace2003}.
+We then show that both Selinger’s category 
+$\catQ$ of quantum operations (i.e., completely positive, trace-nonincreasing superoperators) \cite{selinger2004towards}, and Cho’s category 
+$\WstarCPSUop$, the opposite category of W$^*$-algebras with normal, completely positive, subunital maps \cite{choSemanticsQuantumProgramming2016}, are first-order models.
+Finally, the last section provides a few illustrative examples.
 
 
 
-It is impossible to present the theory of quantum computation without introducing some concepts of linear algebra within finite-dimensional spaces. This section provides a brief overview of the aspects of linear algebra that are most pertinent to the study of quantum computation. 
+
+\section{Hilbert Spaces} \label{sec:linalg}
 
 
-The letters \gls{vectorspaces} will often be used to refer to vector spaces. In this section, all vector spaces are assumed to be finite dimensional, unless otherwise stated
+
+It is impossible to present the theory of quantum computation without introducing some concepts of theory of Hilbert spaces and operators. This section provides a brief overview of the aspects of Hilbert spaces that are most pertinent to the study of quantum computation. 
+
+In this section, all vector spaces are assumed to be infinite dimensional, unless otherwise stated.
+
+%The letters \gls{vectorspaces} will often be used to refer to vector spaces. In this section, all vector spaces are assumed to be finite dimensional, unless otherwise stated.
 
 
 
@@ -152,7 +156,7 @@ The matrix whose entries are the values $A_{ij}$ is said to form a \emph{matrix 
 \todo[inline,size=\normalsize]{A linearidade é no segundo ou no primeiro argumentos, é que uns livros usam no primeiro e outros no segundo?} 
 
 \begin{definition} \label{inner_product}
-The \emph{inner product}  \gls{inner-product} is a function from a vector space $V$ to the field of scalars, $\langle \cdot, \cdot \rangle : V \times V \rightarrow \mathcal{F}$,  that satisfies the following properties for all $v, w, w_1, \ldots, w_n \in V$ and $a_1, \ldots, a_n \in \mathcal{F}$
+The \emph{inner product}  \gls{inner-product} on a vector space $V$ is a function from a mapping $V\times V$ to the field of scalars, $\langle \cdot, \cdot \rangle : V \times V \rightarrow \mathcal{F}$,  that satisfies the following properties for all $v, w, w_1, \ldots, w_n \in V$ and $a_1, \ldots, a_n \in \mathcal{F}$
 
 \begin{enumerate}
   \item Linearity in the second argument,$$ \left\langle v, \sum_{i=1}^n a_i w_i\right\rangle = \sum_{i=1}^n a_i \langle v, w_i\rangle. $$
@@ -162,44 +166,69 @@ The \emph{inner product}  \gls{inner-product} is a function from a vector space 
 \end{definition}
 
 
-
-The inner product $ \langle v, w \rangle$ of two vectors $ v = (a_1, \ldots, a_n ),w = (b_1, \ldots, b_n) \in \mathbb{C}^{n}$ is defined as
+For instance, the inner product $ \langle v, w \rangle$ of two vectors $ v = (a_1, \ldots, a_n ),w = (b_1, \ldots, b_n) \in \mathbb{C}^{n}$ is defined as
 \begin{equation*}
   \langle v, w \rangle = \sum_{i} \overline{a}_i b_i. 
 \end{equation*}
 
-% = \begin{pmatrix} a_1, \ldots, a_n \end{pmatrix}  \begin{pmatrix} b_1 \\ \vdots \\ b_n \end{pmatrix}
-%Note that in this case a vector $v \in \mathbb{C}^{n} $ is written as a column matrix. Consequently conjugate transpose of $v$,  $v^{\dag}$, is written in as a row matrix. Here  \gls{dag} is the adjoint operation.
+Every inner product space is a normed space, where the norm of a vector $v \in V$ is defined as $\|v\| = \sqrt{\langle v, v \rangle}$.
 
-\subsubsection{Trace}
 
-In order to define inner product of a matrix, it is necessary to first define the trace of a matrix. 
+\begin{definition}
+  A \emph{Hilbert space} $\mathcal{H}$ is an inner product space that is complete with respect to the norm induced by the inner product.
+\end{definition}
+
+
+The letters \gls{hilbertspaces} will often be used to refer to Hilbert spaces.
+
+
+\begin{definition}
+  A Hilbert space \( \mathcal{H} \) is called \emph{separable} if it has a countable orthonormal basis.
+\end{definition}
+
+\begin{center}
+\fbox{From now on, all Hilbert spaces are assumed to be separable.}
+\end{center}
+
+
+\subsection{Trace}
+
+\begin{definition}
+  Let $\mathcal{H}$ be an Hilbert space and $ T \in \mathcal{B}(\mathcal{H})$ a positive operator (\autoref{def:positive}). The trace of $T$ is defined as 
+\[
+\text{Tr}(T) := \sum_i \langle T v_i, v_i \rangle \in [0, \infty],
+\]
+where $\{v_i\}$ is an orthonormal basis for $\mathcal{H}$.
+\end{definition}
+
+
+The trace is \emph{linear}, $\text{tr}(A + B) = \text{tr}(A)+\text{tr}(B), \text{tr}(a \cdot A) = a\cdot \hspace{1pt} \text{tr}(A)$, where $A, B \in \BoundOp{\HilbH}$, and $a$ is a complex number.
+
+In finite-dimensional spaces, the trace of a square matrix can alternatively be defined as follows.
 
 \begin{definition}
   The trace of a square matrix $A\in \mathbb{C}^{n\times n}$ defined to be the sum of its diagonal elements,
 \begin{equation*}
   \text{tr}(A)= \sum_{i} A_{ii}.
 \end{equation*}
- Alternatively, the trace can also be expressed as:
-  \[
-    \operatorname{tr}(A) := \sum_{i=1}^n \langle A v_i, v_i \rangle,
-  \]
-  where $\{v_i\}_{i=1}^n$ is any orthonormal basis of $\mathbb{C}^n$.
-where $\{v_i\}$ is an orthonormal basis for $\mathbb{C}^{n}$.
 
 \end{definition}
 
-
-The trace is \emph{cyclic}, that is, $\text{tr}(AB) = \text{tr}(BA)$ , and \emph{linear}, $\text{tr}(A + B) = \text{tr}(A)+\text{tr}(B), \text{tr}(a \cdot A) = a\cdot \hspace{1pt} \text{tr}(A)$, where matrices $A, B \in \mathbb{C}^{n\times n}$, and $a$ is a complex number.
-
 By means of the trace, one defines the inner product of two operators $A,B\in \mathbb{C}^{m \times n}$ as follows
 \begin{equation*} \label{eq:inner_product_matrix}
-  \langle A, B \rangle = \text{tr}(A^{\dagger}B).
+  \langle A, B \rangle = \text{tr}(A^{\dagger}B),
 \end{equation*}
+where \gls{dag} denotes the adjoint operation.
 
-In the \emph{finite} dimensional complex vector spaces relevant to quantum computation and quantum information, a \emph{Hilbert space} is is equivalent to an inner product space.  As a result, both $\mathbb{C}^{n}$ and $\mathbb{C}^{n \times m}$ are Hilbert spaces.
 
-Every inner product space is a normed space, where the norm of a vector $v$ is defined as $\|v\| = \sqrt{\langle v, v \rangle}$.
+\begin{definition}
+  Let $\mathcal{H}$ be an Hilbert space. An operator $A \in \mathcal{B}(\HilbH) $ is \emph{trace class} if $\text{Tr}(|A|) < \infty$, where $|A|= \left(\overline{A}A \right)^{1/2}$.  We denote by $\mathcal{T} (\HilbH)$ the set of trace class operators.
+\end{definition}
+If $\HilbH$ is infinite dimensional, the set $\mathcal{T} (\HilbH)$ is a proper subset of $\mathcal{B}(\HilbH)$.
+
+
+%In the \emph{finite} dimensional complex vector spaces relevant to quantum computation and quantum information, a \emph{Hilbert space} is is equivalent to an inner product space.  As a result, both $\mathbb{C}^{n}$ and $\mathbb{C}^{n \times m}$ are Hilbert spaces.
+
 
 
 
@@ -253,80 +282,103 @@ A \emph{diagonal representation} of an operator $A$ on a vector space $V$ is an 
 
 %classes de operadores
 
-\subsection{Spectral theorem}
+ 
 
-\begin{theorem}  \cite{nielsen2010quantum}
-  Every normal operator $A \in \mathbb{C}^{n \times n} $ can be expressed as a linear combination $\sum_{i} \lambda_{i}b_{i}b_{i}^{\dag}$ where the set $\{b_{i}, \ldots , b{n}\}$ is an orthonormal basis on $\mathbb{C}^{n}$.
-\end{theorem}
+\subsection{Important classes of operators}
 
-Using this last result any function $f:\mathbb{C} \xrightarrow{} \mathbb{C}$, can be extended to normal matrices via,
-  \begin{equation} \label{eq:apply_f_diag} 
-    f(A) = \sum_{i} f(\lambda_{i})b_{i}b_{i}^{\dag}
-\end {equation}
-where $A = \sum_{i} \lambda_{i}b_{i}b_{i}^{\dag}$ is the spectral decomposition of $A$.
+%Given Hilbert Spaces, the notation \gls{linearoperators} denoted the vector space of all linear operators from \( \HilbH \) to \( \HilbK \).
 
-\subsection{Important classes of operators/matrices}
-
-Linear operators mapping a complex space $\mathbb{C}^{n}$ or $\mathbb{C}^{n\times n}$  to itself will be called \emph{square operators} due to the fact that their matrix representations are square matrices. Therefore, those definitions given in the context of square operators are also valid for square matrices.
+Linear operators mapping a Hilbert space to itself are known as \emph{square operators} due to the fact that their matrix representations are square matrices. %We write \gls{linearoperatorsH} to denote $\mathcal{L}(\HilbH, \HilbH) $.
 
 The following classes of operators are of particular interest in quantum information theory.
 
 \begin{definition}
-  \emph{Normal operators.} A square operator $A$ is \emph{normal} if $AA^{\dagger} = A^{\dagger}A$.
+  \emph{Normal operators.} A square operator $A \in \mathcal{B}(\HilbH)$ is \emph{normal} if $AA^{\dagger} = A^{\dagger}A$.
 \end{definition}
 
 \begin{definition} \label{def:hermitian}
-  \emph{Hermitian operators.} A square operator $A$ is \emph{hermitian} if $A = A^{\dagger}$. Every Hermitian operator is a normal operator.
+  \emph{Hermitian operators.} A square operator $A \in \mathcal{B}(\HilbH)$ is \emph{hermitian}  if $A = A^{\dagger}$. Every Hermitian operator is a normal operator.
 \end {definition}
 
 \begin{definition} \label{def:positive}
-  \emph{Positive (semidefinite) operators}. A square operator $A:\mathbb{C}^{n} \rightarrow \mathbb{C^{n}}$ is \emph{positive}, denoted $A \geq 0$, if $\langle v, Av \rangle \geq 0$ for all $v \in \mathbb{C}^{n}$.  The sum of two positive semidefinite operators is positive semidefinite. Positive matrices are hermitian, and consequently, by the spectral decomposition, have diagonal representation $A =  \sum_i \lambda_i v_i v_i^{\dag}$, with non-negative eigenvalues $\lambda_i$ \cite{nielsen2010quantum}.
+  \emph{Positive (semidefinite) operators}. A square operator $A\in \mathcal{B}(\HilbH)$ is \emph{positive}, denoted $A \geq 0$, if $\langle v, Av \rangle \geq 0$ for all $v \in  \mathcal{B}(\HilbH)$.  Positive operators are self-adjoint.
 
   %sum ->p.163 theory of quantum information
 \end{definition}
 
 \begin{definition}
-  \emph{Unitary operators.} A square operator $U$ is \emph{unitary} if $U^{\dagger}U = UU^{\dagger} = \id$. The letter \gls{unitary} will often be used to refer to unitary
+  \emph{Unitary operators.} A square operator $U \in  \mathcal{B}(\HilbH)$ is \emph{unitary} if $U^{\dagger}U = UU^{\dagger} = \id$. The letter \gls{unitary} will often be used to refer to unitary
   operators.
 \end{definition}
-Geometrically, unitary operators are important because they preserve inner products between vectors, $\langle U v, U w \rangle = \langle v, w \rangle$  for any two vectors $v$ and $w$. Let $S_1=\{v_i\}$ be any orthonormal basis set. Define $ s_2= \{w_i\} = \{U v_i | v_i \in S \}$, so $S_2$ is also an orthonormal basis set, since unitary operators preserve inner products. Note that $U = \sum_{i} w_i v_i^{\dag}$. Conversely, if $\{v_i\}$ are any two orthonormal bases, then it is easily checked that
-the operator $U$ defined by $U = \sum_{i} w_i^{\dag} v_i$ is unitary.
+Geometrically, unitary operators are important because they preserve inner products between vectors, $\langle U v, U w \rangle = \langle v, w \rangle$  for any two vectors $v$ and $w$. 
 
 \begin{definition}
-  \emph{Density operator}. Positive semidefinite operators that have trace equal to 1 are called \emph{density operators}.  By convention, such operators are denoted by the lowercase Greek letter \gls{density-matrix}, often accompanied by subscripts.
-\end{definition}
-
-\begin{definition}
-  \emph{Isometries}. An operator $A: \mathbb{C}^{n} \rightarrow \mathbb{C}^{m}$ is as isometry if $\|Av\| = \|v\|$ for all elements all elements $v \in \mathbb{C}^{n} $.
+  \emph{Density operator}. Positive  trace class operators of trace 1 are called \emph{density operators}.  By convention, such operators are denoted by the lowercase Greek letter \gls{density-matrix}, often accompanied by subscripts.
 \end{definition}
 
 \begin{definition}
-  \emph{Projectors}. A positive semidefinite operator $P$ is a projector if $P^2 = P$. Equivalently, a projection operator is a Hermitian operator whose only eigenvalues are 0 and 1. The \emph{orthogonal complement} of P is the operator $Q = \id − P$.
+  \emph{Isometries}. An operator $A \in \BoundOp{\HilbH}$ is as isometry if $\|Av\| = \|v\|$ for all elements all elements $v \in \HilbH $.
 \end{definition}
 
 \begin{definition}
-  \emph{Diagonal operators}. A square operator $A$ is \emph{diagonal} if $A_{ij} = 0$ for all $i \neq j$.
+  \emph{Projectors}. A positive operator $P \in \BoundOp{\HilbH}$ is a projector if $P^2 = P$.
 \end{definition}
 
-
-\subsection{Useful norms}
-
-\begin{definition} \label{eq:euclidean_distance}
-  The \emph{euclidean norm}, \gls{euclidean-norm}, of a vector $v \in \mathbb{C}^{n} $ is defined as:
-  \begin{equation*}
-    \lVert v \rVert_{2} = \sqrt{\langle v, v\rangle}. 
-    \end{equation*}
+\subsection{Important classes of superoperators}
+\begin{definition}
+  A \emph{super-operator} $Q$ is a linear map between the space of operators on a Hilbert space. 
 \end{definition}
 
-
-
-\begin{definition}\label{def:trace-norm-matriz}
-  The \emph{trace norm}, \gls{trace-norm}, of a matrix $A$ is defined as:
-  \begin{equation*} \label{eq:trace_norm_matrix_tr}
-    \lVert A \rVert_{1} = \text{tr} \sqrt{A^{\dagger}A}
-  \end{equation*}
-  This norm is also  known as the Schatten 1-norm. The trace norm induces a metric on the set of density matrices which is defined by $d(\rho, \sigma) = \lVert \rho -\sigma\rVert_{1}$.
+\begin{definition} \label{def:positive_superoperator}
+  A super-operator $Q$ is called \emph{positive} if it sends positive matrices to positive matrices, \textit{i.e.} $A \geq 0 \Rightarrow{} Q A \geq 0$.
 \end{definition}
+
+\begin{definition} \label{def:completely_positive_superoperator}
+  A super-operator $Q$ is said to be \emph{completely positive} if for all $k$, 
+  $$Q \otimes I_{\mathbb{C}^{k \times k}}: \mathbb{C}^{n \times n} \otimes \mathbb{C}^{k \times k} \rightarrow \mathbb{C}^{m \times m} \otimes \mathbb{C}^{k \times k}  $$
+   is positive.
+  %A super-operator $Q : V \rightarrow W$ is said to be \emph{completely positive} if for all $R$, $Q \otimes I_{R}: V \otimes R \rightarrow W \otimes R$
+   %is positive.
+\end{definition}
+
+\begin{definition} \label{def:trace_preserving_superoperator}
+  A super-operator $Q$ is called \emph{trace-preserving} if $\text{Tr} \hspace{2pt} (Q A)= \text{Tr} (A)$.
+\end{definition}
+
+Since density matrices are positive, any physically allowed transformation must be represented by a positive operator. Nonetheless, this is not sufficient on its own: since one can always extend the space $\mathbb{C}^{n \times n}$ to  $\mathbb{C}^{n \times n} \otimes \mathbb{C}^{m \times m} $ by adjoining a new quantum system, any physically allowed transformation must be completely positive. Finally, since the trace of a density matrix is always $1$, any physically allowed transformation must be trace-preserving. 
+
+\begin{definition}
+  A \acrfull{cptp} operator is traditionally called a \emph{quantum channel}.
+\end{definition}
+
+\todo[inline,size=\normalsize]{Trace non increasing e quantum operation}
+
+
+\subsection{Spectral theorem}
+
+\begin{theorem}  \cite[Corollary 1.4 ]{watrous2018theory}
+  Let $\mathcal{H}$ be finite-dimensional Hilbert space. Every normal operator $A \in \mathcal{L}(\mathcal{H})$ can be expressed as a linear combination $\sum_{i=1}^n \lambda_{i}b_{i}b_{i}^{\dag}$ where the set $\{b_{1}, \ldots , b{n}\}$ is an orthonormal basis on $\mathcal{H}$.
+\end{theorem}
+
+Using this last result any function $f:\mathbb{C} \xrightarrow{} \mathbb{C}$, can be extended to normal operators via,
+  \begin{equation} \label{eq:apply_f_diag} 
+    f(A) = \sum_{i} f(\lambda_{i})b_{i}b_{i}^{\dag}
+\end {equation}
+where $A = \sum_{i} \lambda_{i}b_{i}b_{i}^{\dag}$ is the spectral decomposition of $A$.
+
+\subsection{Riez Representation Theorem}
+
+\begin{definition} [Riesz Representation Theorem]
+Let $\mathcal{H}$ be a finite-dimensional Hilbert space, and let $\varphi$ be a linear functional on $V$. Then there exists a unique vector $v_\varphi \in V$ such that
+$$
+\varphi(w) = \langle w, v_\varphi \rangle \quad \text{for all } w \in V.
+$$
+We call $v_\varphi$ the \emph{Riesz vector} for $\varphi$ and denote it by $v_\varphi$.\\
+\end{definition}
+
+\todo[inline,size=\normalsize]{Colocar reparo das notas}
+
+
 
 \begin{comment}
 Alternatively, the trace norm  of a square matrix $A \in \mathbb{C}^{n \times n} $ can be defined in the following way:
@@ -346,6 +398,7 @@ Alternatively, the trace norm  of a square matrix $A \in \mathbb{C}^{n \times n}
 
 \end{proposition}
 \end{comment}
+
 
 \begin{comment}
 \begin{definition} \label{def:spectral-norm}
@@ -372,20 +425,262 @@ The trace norm and the spectral norm are dual.
 
 
 
-\subsection {Tensor Products and Direct Sums of Complex spaces}
+\subsection {Tensor Products and Direct Sums of Hilbert Spaces}
 
 \begin{definition}
-  The \emph{direct sum} of two vector spaces $V$ and $W$, denoted $V \oplus W$, is the space of all pairs $(v, w)$ where $v \in V$ and $w \in W$.
+  The \emph{direct sum} of two finite-dimensinal Hilbert spaces $\HilbH$ and $\HilbK$, denoted $\HilbH \oplus \HilbK$, is the space of all pairs $(v, w)$ where $v \in \HilbH$ and $w \in \HilbK$.
 \end{definition}
 
-The inner product in $V \oplus W$ is defined as follows:
+The inner product in $\HilbH \oplus \HilbK$ is defined as follows:
 \begin{equation*}
   \langle (v_1, w_1), (v_2, w_2) \rangle = \langle v_1, v_2 \rangle + \langle w_1, w_2 \rangle.
 \end{equation*}
 
 
-In this context, we introduce two commonly used norms, defined below.
 
+\begin{definition} \label{def:tensor_prod_fin_hilb}
+Consider two finite dimensinal Hilbert spaces $\HilbH$ and $\HilbK$ with respective basis $v=(v_1, \ldots , v_n)$ and $w=(w_1, \ldots , w_m)$.  Then $\HilbH \otimes \HilbK$  is an $mn$ dimensional vector space and $v \otimes w$ corresponds to the vector
+\[
+(v_1 w_1, \ldots, v_1 w_m, \ldots, v_n w_1, \ldots, v_n w_m),
+\]
+which is a basis for  $\HilbH \otimes \HilbK$.  The tensor product of two elements $v = \sum_i a_i v_i$ and w = $\sum_j b_j  w_j$ is:
+\begin{equation*}
+  v \otimes w = \sum_{i,j} a_i b_j \cdot v_i \otimes w_j.
+\end{equation*}
+ The inner product in $V \otimes W$ is defined as follows 
+\begin{equation*}
+  \langle v_1 \otimes w_1, v_2 \otimes w_2 \rangle = \langle v_1, v_2 \rangle \langle w_1, w_2 \rangle.
+\end{equation*}
+This is definition is known as the \emph{Kronecker product}.
+\end{definition}
+
+\begin{comment}
+Considering vector spaces $V, W, R$, the following equalities hold:
+\begin{align*}
+  & v \otimes (w + r) = v \otimes w + v \otimes r, \text{ for all } v,w,r \in V,W,R; \\
+  & (v + w) \otimes r = v \otimes r + w \otimes u, \text{ for all } v,w,r \in V,W,R; \\
+  & (a v) \otimes (b w) = ab \hspace{1pt} (v \otimes w), \text{ for all } v,w \in V,W \text{ and scalars } a, b.   \\
+\end{align*}
+\end{comment}
+
+
+\begin{definition}
+  Consider two finite dimensinal Hilbert spaces $\HilbH$ and $\HilbK$. 
+  The tensor product of two operators $A \in \BoundOp{\HilbH} $ and $B \in  \in \BoundOp{\HilbK}$ an operator $A \otimes B \in  \BoundOp{\HilbH \otimes \HilbK} $ defined by the equation
+\begin{equation*}
+  (A \otimes B)(v \otimes w) = Av \otimes Bw.
+\end{equation*}
+The definition of $A \otimes B$ is extended to all elements of $\HilbH \otimes \HilbK$ in the natural way to ensure linearity of the tensor product operator. That is,
+\begin{equation*} \label{eq:linear_tensor_operator}
+(A \otimes B) \left( \sum_i a_i\, v_i \otimes w_i \right)
+= \sum_i a_i\, (A v_i \otimes B w_i).
+\end{equation*}
+Suppose $A$ is an $n \times n$ matrix, and $B$ is a $m \times m$ matrix. Then we have the matrix representation:
+\begin{equation*} \label{eq:matrix_tensor_product}
+A \otimes B \coloneqq
+\begin{bmatrix}
+A_{11} B & A_{12} B & \cdots & A_{1n} B \\
+A_{21} B & A_{22} B & \cdots & A_{2n} B \\
+\vdots   & \vdots   & \ddots & \vdots   \\
+A_{n1} B & A_{n2} B & \cdots & A_{nn} B
+\end{bmatrix}
+\end{equation*}
+
+In this representation, each block $A_{ij} B$ is a $p \times q$ submatrix whose entries are proportional to $B$, with overall proportionality constant $A_{ij}$.
+
+
+For example the tensor product of the matrices $A= \left(\begin{smallmatrix}
+    1 & 2 \\
+    3 & 4
+  \end{smallmatrix}\right) $ and $A=\id $ is
+\begin{equation} \label{eq:pauli_tensor}
+A \otimes B =
+\begin{bmatrix}
+1 \cdot \id & 2 \cdot \id \\
+3 \cdot \id & 0 \cdot \id
+\end{bmatrix}
+=
+\begin{bmatrix}
+1 & 0 & 2 & 0 \\
+0 & 1 & 0 & 2 \\
+3 & 0 & 4 & 0 \\
+0 & 3 & 0 & 4
+\end{bmatrix}.
+\end{equation}
+
+\end{definition}
+
+
+\begin{comment}
+The tensor product of two operators $P: \mathbb{C}^{n \times n} \rightarrow \mathbb{C}^{m \times m} $ and $Q \in \mathbb{C}^{o \times o} \rightarrow \mathbb{C}^{p \times p}$ is defined as the operator $ P \otimes Q \in  \mathbb{C}^{n \times n} \otimes \mathbb{C}^{o \times o} \rightarrow \mathbb{C}^{m \times m} \otimes \mathbb{C}^{p \times p}   $ such that
+\begin{equation*}
+  (P \otimes Q)(A \otimes B) = P (A) \otimes Q(B).
+\end{equation*}
+
+The tensor product of two vector spaces corresponding to the direct sums of other vector spaces $ V = V_1 \oplus \ldots \oplus V_n$ and  $ W = W_1 \oplus \ldots \oplus W_n$  is defined as 
+\begin{equation*}
+  V \otimes W = V_1 \otimes W_1 \oplus \ldots \oplus V_1 \otimes W_n  \oplus \ldots \oplus V_n \otimes W_1 \oplus \ldots   \oplus \ldots \oplus W_n \otimes V_n.
+\end{equation*}
+\end{comment}
+
+The notation \gls{n-fold-tensor}  will be used to  denote the tensor product of a vector space, vector, or operator with itself $n$ times.
+
+%p.19 
+
+
+\begin{definition}
+  Let \( \mathcal{H} \)and \( \mathcal{K} \) be Hilbert spaces. We denote by \gls{hilb_tensor} the Hilbert space tensor product, obtained by completing \( \mathcal{H}  \otimes \mathcal{K} \) equipped with the standard inner product characterized by
+\[
+\langle k_1 \otimes h_1,\, k_2 \otimes h_2 \rangle = \langle k_1, k_2 \rangle \cdot \langle h_1, h_2 \rangle.
+\] 
+\end{definition}
+
+
+
+\subsection{Useful norms in finite-dimensional Hilbert Spaces}
+In this section we only consider finite dimensional Hilbert spaces.
+
+\begin{definition} \label{eq:euclidean_distance}
+  The \emph{euclidean norm}, \gls{euclidean-norm}, of a vector $v \in \HilbH $ is defined as:
+  \begin{equation*}
+    \lVert v \rVert_{2} = \sqrt{\langle v, v\rangle}. 
+    \end{equation*}
+\end{definition}
+
+
+\begin{definition}\label{def:trace-norm-matriz}
+  The \emph{trace norm}, \gls{trace-norm}, of a matrix $A \in \BoundOp{\HilbH}$ is defined as:
+  \begin{equation*} \label{eq:trace_norm_matrix_tr}
+    \lVert A \rVert_{1} = \text{tr} \sqrt{A^{\dagger}A}
+  \end{equation*}
+  This norm is also  known as the Schatten 1-norm. The trace norm induces a metric on the set of density matrices which is defined by $d(\rho, \sigma) = \lVert \rho -\sigma\rVert_{1}$.
+\end{definition}
+
+\subsubsection{Norms on quantum channels}
+\begin{definition} \label{def:trace_norm_superoperator}
+  The norm of a super-operator $Q: \mathbb{C}^{n\times n} \xrightarrow{} \mathbb{C}^{m\times m }$ is defined:
+  \begin{equation*} 
+    \lVert Q \rVert_{1} =  \max\{\lVert Q \hspace{1pt} A \rVert_{1}   \mid  \lVert A \rVert_{1}=1\}, 
+  \end{equation*}
+\end{definition}
+where $A \in \mathbb{C}^{n \times n }$
+
+%\begin{theorem} \label{thm:Russo–Dye} \cite[Theorem 3.39]{watrous2018theory}
+  %Let $Q: \mathbb{C}^{n \times n} \rightarrow \mathbb{C}^{m \times m}$ be a positive super-operator and $u \in \mathbb{C}^{n}$. It holds that 
+  %\begin{equation}
+    %\lVert Q \rVert_{1} = \max \{\text{Tr}\left(Q(uu^{*}) \right) \vert \hspace{2pt}  \lVert u \rVert_{1}=1 \}.
+  %\end{equation}
+%\end{theorem}
+
+%\begin{proposition} \cite[Proposition 3.41]{watrous2018theory}
+%The following facts hold for the trace norm:
+%\begin{enumerate}
+  %\item The trace norm is submultiplicative with respect to composition of super-operators , \textit{i.e.}, for all super-operators  $Q: \mathbb{C}^{n \times n} \rightarrow \mathbb{C}^{m \times m}$ and $S: \mathbb{C}^{m \times m} \rightarrow \mathbb{C}^{o \times o}$
+  %\begin{equation}
+    %\lVert S  Q \rVert_{1} \leq \lVert S \rVert_{1} \lVert Q \rVert_{1}.
+  %\end{equation}
+  %\item Let $U_0,$ $V_0 \in \mathbb{C}^{n\times n}$ and $U_1,$ $V_1 \in \mathbb{C}^{m\times m}$ be unitary operators, let $Q,$ $S: \mathbb{C}^{n \times n} \rightarrow \mathbb{C}^{m \times m}$ be super-operators, where $S$ is defined as:
+  %\begin{equation}
+    %S(X) = U_1 Q(U_0 A V_0) V_1
+ % \end{equation}
+  %for all $A \in \mathbb{C}^{n\times n}$. It holds that $\lVert Q \rVert_{1} = \lVert S \rVert_{1} $.
+%\end{enumerate}
+%\end{proposition}
+
+
+Unfortunately, this norm is not stable under tensoring , given that the inequation $ \lVert Q \otimes I_{\mathbb{C}^{n\times n}} \rVert_{1} \leq \lVert Q \rVert_{1}$ does not hold \cite{watrous2018theory}. As a result, the diamond norm, which is based on the trace norm, is used instead in the context of quantum channels. 
+
+\begin{definition}
+  Given a super-operator $Q: \mathbb{C}^{n\times n} \xrightarrow{} \mathbb{C}^{m\times m }$, the diamond norm, \gls{diamond-norm} , is defined as:
+  \begin{equation*}  \label{eq:diamond_distance}
+    \lVert Q \rVert_{\diamondsuit} =  \lVert Q \otimes \id_{\mathbb{C}^{n \times n}} \rVert_{1}
+  \end{equation*}
+\end{definition}
+%where $I_{\mathbb{C}^{n \times n}} $ is the identity super-operator over the space $\mathbb{C}^{n\times n}$.
+
+%3.46
+%For all super-operators $Q: \mathbb{C}^{n \times n}\rightarrow \mathbb{C}^{m \times m} $, it holds that 
+%\begin{equation}
+  %\lVert Q \rVert_{\diamondsuit} \geq \lVert Q \otimes I_{\mathbb{C}^{o\times o}} \rVert_{1},
+%\end{equation}
+%if $\text{dim}(\mathbb{C}^{o\times o}) \geq \text{dim}(\mathbb{C}^{n\times n})$.
+
+For this norm it holds that for all super-operators $Q: \mathbb{C}^{n \times n}\rightarrow \mathbb{C}^{m \times m} $ and $S:\mathbb{C}^{m \times m} \rightarrow \mathbb{C}^{o \times o} $, if $Q$ is a quantum channel then $\lVert S  Q \rVert_{\diamondsuit} \leq \lVert S \rVert_{\diamondsuit}$ \cite[Proposition 3.44 and Proposition 3.48]{watrous2018theory}, and if $S$ is a quantum channel, then $\lVert S  Q \rVert_{\diamondsuit} \leq \lVert Q \rVert_{\diamondsuit}$. This is a desireble property, as is guarantees that quantum operations do not increase the distance between states, and as a
+consequence, composition of programs is valid.
+%Moreover, the following inequalties hold for a super-operator $Q$: $ \lVert Q \rVert_{\diamondsuit} \geq \lVert Q \otimes I \rVert_{\diamondsuit} $ and $\lVert Q \rVert_{\diamondsuit} \geq \lVert I \otimes Q  \rVert_{\diamondsuit} $
+%3.44
+%\begin{proposition} \cite[Proposition 3.44]{watrous2018theory}
+   %For all quantum channels $Q:\mathbb{C}^{n \times n}\rightarrow \mathbb{C}^{m \times m}$, it holds that $\lVert Q \rVert_{\diamondsuit} = 1$.
+%\end{proposition}
+
+%\begin{theorem} \label{thm:tensor_stability} \cite[Theorem 3.46 ]{watrous2018theory}
+%For all super-operators $Q:\mathbb{C}^{n \times n}\rightarrow \mathbb{C}^{m \times m}$ and complex spaces $\mathbb{C}^{o\times o}$  it holds that:
+%\begin{equation}
+  %\lVert Q \otimes I_{\mathbb{C}^{o\times o}} \rVert_{1} \leq  \lVert Q \rVert_{\diamondsuit}. 
+%\end{equation}
+%with equality holding under the assumption that $\text{dim}(\mathbb{C}^{o\times o}) \geq  \text{dim}(\mathbb{C}^{n \times n})$.
+%\end{theorem}
+
+%\begin{corollary} \label{cor:diamond_otimes_I} \cite[Corollary 3.47]{watrous2018theory}
+   %For all super-operators $Q:\mathbb{C}^{n \times n}\rightarrow \mathbb{C}^{m \times m}$ and complex spaces $\mathbb{C}^{o\times o}$  it holds that:
+  %\begin{equation}
+    %\lVert Q \rVert_{\diamondsuit} = \lVert Q \otimes I_{\mathbb{C}^{o\times o}} \rVert_{\diamondsuit} .
+  %\end{equation}
+%\end{corollary}
+
+%\begin{proposition} \cite[Proposition 3.48]{watrous2018theory}
+  %Moreover the following properties hold for the diamond norm:
+  %\begin{enumerate}
+    %\item The diamond norm is submultiplicative with respect to composition of , \textit{i.e.}, for all super-operators $Q: \mathbb{C}^{n \times n} \rightarrow \mathbb{C}^{m \times m}$ and $S: \mathbb{C}^{m \times m} \rightarrow \mathbb{C}^{o \times o}$, it holds that:
+  %\begin{equation}
+    %\lVert S  Q \rVert_{\diamondsuit} \leq \lVert S \rVert_{\diamondsuit} \lVert Q \rVert_{\diamondsuit}.
+  %\end{equation}
+  %\item For all super-operators $Q_0, S_0: \mathbb{C}^{n \times n} \rightarrow \mathbb{C}^{m \times m}$ and $Q_1, S_1: \mathbb{C}^{m \times m} \rightarrow \mathbb{C}^{o \times o}$, it holds that:
+  %\begin{equation}
+  %\lVert S_1 S_0 - Q_1 Q_0  \rVert_{\diamondsuit} \leq \lVert S_0 - Q_0 \rVert_{\diamondsuit} + \lVert S_1 - Q_1 \rVert_{\diamondsuit}.
+  %\end{equation}
+%\end{enumerate}
+%\end{proposition}
+
+%\begin{theorem} \cite[Theorem 3.49]{watrous2018theory}
+  %\item The diamond norm is multiplicative with respect to tensor products, \textit{i.e.}, for all super-operators $Q: \mathbb{C}^{n \times n} \rightarrow \mathbb{C}^{m \times m}$ and $S: \mathbb{C}^{o \times o} \rightarrow \mathbb{C}^{p \times p}$, it holds that:
+  %\begin{equation}
+    %\lVert Q \otimes S \rVert_{\diamondsuit} = \lVert Q \rVert_{\diamondsuit} \lVert S \rVert_{\diamondsuit}.
+  %\end{equation}
+%\end{theorem}
+
+%\begin{lemma} \cite[Lemma 3.45]{watrous2018theory} \label{lem:otimes_unit_uv}
+  %Let $Q: \mathbb{C}^{n \times n} \rightarrow \mathbb{C}^{m \times m}$ be a superoperator. For every choice of a complex Euclidean space $\mathbb{C}^{o}$ and unit vectors $v_1, v_2 \in \mathbb{C}^{n} \otimes \mathbb{C}^{o}$, there exist unit vectors $w_1, w_2 \in \mathbb{C}^{n} \otimes \mathbb{C}^{n}$ such that the following equalities hold:
+  %\begin{equation}
+  %\lVert Q \otimes I_{\mathbb{C}^{o \times o}} (v_1 v_2^\dag)\rVert_{1} = \lVert Q \otimes I_{\mathbb{C}^{n \times n}} (w_1 w_2^\dag)\rVert_{1}
+  %\end{equation}
+%\end{lemma} 
+
+Since the diamond norm is generally difficult to compute, we will rely on the following properties, as given by the theorems below:
+
+\begin{theorem} \cite[Theorem 3.55]{watrous2018theory} \label{theorem:diamond_iso}
+  Let  $ n \leq m$, let $V_0,V_1: \mathbb{C}^{n \times n} \to \mathbb{C}^{m \times m}$ be isometries, and define CPTP operators $\phi_0,\phi_1:\mathbb{C}^{n \times n} \to \mathbb{C}^{m \times m}$ as
+\[
+\phi_0(\rho) = V_0 \rho V_0^\dag \quad \text{and} \quad \phi_1(\rho) = V_1 \rho V_1^\dag
+\]
+for all $\rho \in \mathbb{C}^{n \times n}$. There exists a unit vector $u \in \mathbb{C}^{n \times n}  $ such that
+\[
+\tracenorm{\phi_0(uu^\dag) - \phi_1(uu^\dag)} = \diamondnorm{\phi_0 - \phi_1}.
+\]
+\end{theorem}
+
+\begin{theorem} \cite[Theorem 3.56]{watrous2018theory} \label{theorem:diamond_cptp_id}
+ Let $\phi: \mathbb{C}^{n \times n} \to \mathbb{C}^{n \times n} $ be a quantum channel, let $\varepsilon \in [0,2]$, and suppose that
+    \[
+    \|\phi(\rho) - \rho\|_1 \leq \varepsilon
+    \]
+    for every density operator $\rho \in \mathbb{C}^{n \times n} $. It holds that
+    \[
+    \|\phi - \id_{\sigma}\|_1 \leq \sqrt{2\varepsilon}.
+    \]
+\end{theorem}
+
+\begin{comment}
 \begin{definition}
 Let \( x = (x_1, x_2, \dots, x_n) \in \mathbb{C}^n \). The \( L^1 \) norm, \gls{l1_norm},  is defined by
 \[
@@ -399,54 +694,7 @@ Let \( x = (x_1, x_2, \dots, x_n) \in \mathbb{C}^n \) . The \( L^\infty \), \gls
 \|x\|_{L^\infty} = \max_{1 \leq i \leq n} |x_i|.
 \]
 \end{definition}
-
-
-\begin{definition} \label{def:tensor_prod_fin_hilb}
-Consider two finite complex spaces spaces $V$ and $W$ with respective bases $(e_1, \ldots , e_n)$ and $(f_1, \ldots , f_k)$. The tensor product of $V$ and $W$, denoted $V \otimes W$, is defined as the space generated by the basis of syntactic symbols:
-\begin{equation*}
-  (e_1 \otimes f_1, \ldots , e_1 \otimes f_k, \ldots , e_n \otimes f_1, \ldots , e_n \otimes f_k).
-\end{equation*}
-The tensor product of two elements $v = \sum_i \lambda_i \cdot e_i$ and w = $\sum_j \mu_j \cdot f_j$ is:
-\begin{equation*}
-  v \otimes w = \sum_{i,j} \lambda_i \mu_j \cdot e_i \otimes f_j.
-\end{equation*}
-\end{definition}
-
-The inner product in $V \otimes W$ is defined as follows 
-\begin{equation*}
-  \langle e_i \otimes f_j, e_k \otimes f_l \rangle = \langle e_i, e_k \rangle \langle f_j, f_l \rangle.
-\end{equation*}
-
-The tensor product of two vectors $v = (v_1, \ldots, v_n)\in \mathbb{C}^{n}$ and $w = (w_1, \ldots, w_m) \in \mathbb{C}^{m}$ is defined as the vector $v \otimes w \in \mathbb{C}^{nm}$ such that
-\begin{equation*}
-  v \otimes w = \begin{pmatrix} v_1 w_1 \\ \vdots \\ v_1 w_m \\ \vdots \\ v_n w_1 \\ \vdots \\ v_n w_m \end{pmatrix}.
-\end{equation*}
-
-The tensor product of two operators $A \in \mathbb{C}^{n \times m}$ and $B \in \mathbb{C}^{p \times q}$ is defined as the operator $A \otimes B \in \mathbb{C}^{np \times mq}$ such that
-\begin{equation*}
-  (A \otimes B)(v \otimes w) = Av \otimes Bw.
-\end{equation*}
-The tensor product of two operators $P: \mathbb{C}^{n \times n} \rightarrow \mathbb{C}^{m \times m} $ and $Q \in \mathbb{C}^{o \times o} \rightarrow \mathbb{C}^{p \times p}$ is defined as the operator $ P \otimes Q \in  \mathbb{C}^{n \times n} \otimes \mathbb{C}^{o \times o} \rightarrow \mathbb{C}^{m \times m} \otimes \mathbb{C}^{p \times p}   $ such that
-\begin{equation*}
-  (P \otimes Q)(A \otimes B) = P (A) \otimes Q(B).
-\end{equation*}
-
-The tensor product of two vector spaces corresponding to the direct sums of other vector spaces $ V = V_1 \oplus \ldots \oplus V_n$ and  $ W = W_1 \oplus \ldots \oplus W_n$  is defined as 
-\begin{equation*}
-  V \otimes W = V_1 \otimes W_1 \oplus \ldots \oplus V_1 \otimes W_n  \oplus \ldots \oplus V_n \otimes W_1 \oplus \ldots   \oplus \ldots \oplus W_n \otimes V_n.
-\end{equation*}
-
-The notation \gls{n-fold-tensor}  will be used to  denote the tensor product of a vector space, vector, or operator with itself $n$ times.
-
-%p.19 
-Considering vector spaces $V, W, R$, the following equalities hold:
-\begin{align*}
-  & v \otimes (w + r) = v \otimes w + v \otimes r, \text{ for all } v,w,r \in V,W,R; \\
-  & (v + w) \otimes r = v \otimes r + w \otimes u, \text{ for all } v,w,r \in V,W,R; \\
-  & (a v) \otimes (b w) = ab \hspace{1pt} (v \otimes w), \text{ for all } v,w \in V,W \text{ and scalars } a, b.   \\
-\end{align*}
-
-
+\end{comment}
 
 
 %operadores lineares e relação com matrizes, operadores hermitianos e normais , op positivo e matriz positiva
@@ -595,7 +843,7 @@ Matrices $\sigma_x$ and $\sigma_z$ will also be referred to as \gls{x} and \gls{
 \end{definition}
 
 \begin{example}
-Pauli matrices are examples of unitary operators. The $X$ and $Z$ gates are often referred to as the \emph{not} and \emph{phase flip} gates, respectively. Other important unitary operators include   \emph{Hadamard gate}, denoted \gls{h}, which maps $\ket{0}$ to $\ket{+}$ and $\ket{1}$ to  $\ket{-}$, and the \emph{phase-shift gate}, denoted \gls{p}, which leaves $\ket{0}$ unaltered applies a phase shift of $\theta$ to the state $\ket{1}$:
+Pauli matrices are examples of unitary operators. The $X$ and $Z$ gates are often referred to as the \emph{not} and \emph{phase flip} gates, respectively. Other important unitary operators include   \emph{Hadamard gate}, denoted \gls{h}, which maps $\ket{0}$ to $\ket{+}$ and $\ket{1}$ to  $\ket{-}$, and the \emph{phase-shift gate}, denoted $P$, which leaves $\ket{0}$ unaltered applies a phase shift of $\theta$ to the state $\ket{1}$:
 \begin{equation*}
  H = \frac{1}{\sqrt{2}}\begin{pmatrix} 1 & 1\\ 1 & -1 \end{pmatrix}, \hspace{1cm} P = \begin{pmatrix} 1 & 0\\ 0 & e^{i \theta} \end{pmatrix}.
 \end{equation*}
@@ -650,6 +898,10 @@ The act of measuring a qubit is represented by a set of operators called \emph{m
 \begin{align*}
   \ket{\psi'}=\frac{M_{m}\ket{\psi}}{\sqrt{p_{m}}}.
 \end{align*}
+\end{definition}
+
+\begin{definition}
+  A measurement is called a \emph{projective measurement} if its measurement operators are projectors.
 \end{definition}
 
 \begin{example}
@@ -763,43 +1015,18 @@ Similarly, the \emph{reduced density operator for subsystem} $B$ is $\rho_{B} = 
 
 % bloch vector for mixed states
 
-\todo[inline,size=\normalsize]{Decidir onde colocar a def de trace-nonincreasing op e quantum operation: aqui ou na parte das contribuições qd falar da categoria do selinger} 
+
 
 \subsection{Quantum Channels} \label{subsec:quantum_channels}
 
 % Fazer secção chamada quantum chanels e falar de super operadores e cptp maps, normas, kraus operators
 
-Thus far, only two types of quantum operations have been discussed: unitary operators, which describe the evolution of a closed quantum system, and measurements, which describe the act of observing a quantum system. Now, a new type of quantum operation that accounts for the more realistic notion of interaction between a quantum system and an environment will be introduced. Nonetheless, it is necessary to first introduce a few key concepts.
+Thus far, only two types of quantum operations have been discussed: unitary operators, which describe the evolution of a closed quantum system, and measurements, which describe the act of observing a quantum system. Now, a new type of quantum operation that accounts for the more realistic notion of interaction between a quantum system and an environment will be introduced. %Nonetheless, it is necessary to first introduce a few key concepts.
 
 
 
 %the evolution of a quantum system has been described by unitary operators. However, in practice, quantum systems are not isolated, and they interact with their environment. This interaction is described by a \emph{quantum channel}, which is a completely positive trace-preserving (CPTP) linear map. A quantum channel is a generalization of a unitary operator that allows for the description of the evolution of a quantum system under the influence of an environment.
 
-\begin{definition}
-  A \emph{super-operator} $Q$ is a linear map between the space of operators on a Hilbert space. 
-\end{definition}
-
-\begin{definition} \label{def:positive_superoperator}
-  A super-operator $Q$ is called \emph{positive} if it sends positive matrices to positive matrices, \textit{i.e.} $A \geq 0 \Rightarrow{} Q A \geq 0$.
-\end{definition}
-
-\begin{definition} \label{def:completely_positive_superoperator}
-  A super-operator $Q$ is said to be \emph{completely positive} if for all $k$, 
-  $$Q \otimes I_{\mathbb{C}^{k \times k}}: \mathbb{C}^{n \times n} \otimes \mathbb{C}^{k \times k} \rightarrow \mathbb{C}^{m \times m} \otimes \mathbb{C}^{k \times k}  $$
-   is positive.
-  %A super-operator $Q : V \rightarrow W$ is said to be \emph{completely positive} if for all $R$, $Q \otimes I_{R}: V \otimes R \rightarrow W \otimes R$
-   %is positive.
-\end{definition}
-
-\begin{definition} \label{def:trace_preserving_superoperator}
-  A super-operator $Q$ is called \emph{trace-preserving} if $\text{Tr} \hspace{2pt} (Q A)= \text{Tr} (A)$.
-\end{definition}
-
-Since density matrices are positive, any physically allowed transformation must be represented by a positive operator. Nonetheless, this is not sufficient on its own: since one can always extend the space $\mathbb{C}^{n \times n}$ to  $\mathbb{C}^{n \times n} \otimes \mathbb{C}^{m \times m} $ by adjoining a new quantum system, any physically allowed transformation must be completely positive. Finally, since the trace of a density matrix is always $1$, any physically allowed transformation must be trace-preserving. 
-
-\begin{definition}
-  A \acrfull{cptp} operator is traditionally called a \emph{quantum channel}.
-\end{definition}
 
 
 
@@ -852,129 +1079,7 @@ This last equality corresponds to an Kraus operator sum representation, where th
 
 
 
-\subsubsection{Norms on quantum channels}
-\begin{definition} \label{def:trace_norm_superoperator}
-  The norm of a super-operator $Q: \mathbb{C}^{n\times n} \xrightarrow{} \mathbb{C}^{m\times m }$ is defined:
-  \begin{equation*} 
-    \lVert Q \rVert_{1} =  \max\{\lVert Q \hspace{1pt} A \rVert_{1}   \mid  \lVert A \rVert_{1}=1\}, 
-  \end{equation*}
-\end{definition}
-where $A \in \mathbb{C}^{n \times n }$
 
-%\begin{theorem} \label{thm:Russo–Dye} \cite[Theorem 3.39]{watrous2018theory}
-  %Let $Q: \mathbb{C}^{n \times n} \rightarrow \mathbb{C}^{m \times m}$ be a positive super-operator and $u \in \mathbb{C}^{n}$. It holds that 
-  %\begin{equation}
-    %\lVert Q \rVert_{1} = \max \{\text{Tr}\left(Q(uu^{*}) \right) \vert \hspace{2pt}  \lVert u \rVert_{1}=1 \}.
-  %\end{equation}
-%\end{theorem}
-
-%\begin{proposition} \cite[Proposition 3.41]{watrous2018theory}
-%The following facts hold for the trace norm:
-%\begin{enumerate}
-  %\item The trace norm is submultiplicative with respect to composition of super-operators , \textit{i.e.}, for all super-operators  $Q: \mathbb{C}^{n \times n} \rightarrow \mathbb{C}^{m \times m}$ and $S: \mathbb{C}^{m \times m} \rightarrow \mathbb{C}^{o \times o}$
-  %\begin{equation}
-    %\lVert S  Q \rVert_{1} \leq \lVert S \rVert_{1} \lVert Q \rVert_{1}.
-  %\end{equation}
-  %\item Let $U_0,$ $V_0 \in \mathbb{C}^{n\times n}$ and $U_1,$ $V_1 \in \mathbb{C}^{m\times m}$ be unitary operators, let $Q,$ $S: \mathbb{C}^{n \times n} \rightarrow \mathbb{C}^{m \times m}$ be super-operators, where $S$ is defined as:
-  %\begin{equation}
-    %S(X) = U_1 Q(U_0 A V_0) V_1
- % \end{equation}
-  %for all $A \in \mathbb{C}^{n\times n}$. It holds that $\lVert Q \rVert_{1} = \lVert S \rVert_{1} $.
-%\end{enumerate}
-%\end{proposition}
-
-
-Unfortunately, this norm is not stable under tensoring , given that the inequation $ \lVert Q \otimes I_{\mathbb{C}^{n\times n}} \rVert_{1} \leq \lVert Q \rVert_{1}$ does not hold \cite{watrous2018theory}. As a result, the diamond norm, which is based on the trace norm, is used instead in the context of quantum channels. 
-
-\begin{definition}
-  Given a super-operator $Q: \mathbb{C}^{n\times n} \xrightarrow{} \mathbb{C}^{m\times m }$, the diamond norm, \gls{diamond-norm} , is defined as:
-  \begin{equation*}  \label{eq:diamond_distance}
-    \lVert Q \rVert_{\diamondsuit} =  \lVert Q \otimes \id_{\mathbb{C}^{n \times n}} \rVert_{1}
-  \end{equation*}
-\end{definition}
-%where $I_{\mathbb{C}^{n \times n}} $ is the identity super-operator over the space $\mathbb{C}^{n\times n}$.
-
-%3.46
-%For all super-operators $Q: \mathbb{C}^{n \times n}\rightarrow \mathbb{C}^{m \times m} $, it holds that 
-%\begin{equation}
-  %\lVert Q \rVert_{\diamondsuit} \geq \lVert Q \otimes I_{\mathbb{C}^{o\times o}} \rVert_{1},
-%\end{equation}
-%if $\text{dim}(\mathbb{C}^{o\times o}) \geq \text{dim}(\mathbb{C}^{n\times n})$.
-
-For this norm it holds that for all super-operators $Q: \mathbb{C}^{n \times n}\rightarrow \mathbb{C}^{m \times m} $ and $S:\mathbb{C}^{m \times m} \rightarrow \mathbb{C}^{o \times o} $, if $Q$ is a quantum channel then $\lVert S  Q \rVert_{\diamondsuit} \leq \lVert S \rVert_{\diamondsuit}$ \cite[Proposition 3.44 and Proposition 3.48]{watrous2018theory}, and if $S$ is a quantum channel, then $\lVert S  Q \rVert_{\diamondsuit} \leq \lVert Q \rVert_{\diamondsuit}$. This is a desireble property, as is guarantees that quantum operations do not increase the distance between states, and as a
-consequence, composition of programs is valid.
-%Moreover, the following inequalties hold for a super-operator $Q$: $ \lVert Q \rVert_{\diamondsuit} \geq \lVert Q \otimes I \rVert_{\diamondsuit} $ and $\lVert Q \rVert_{\diamondsuit} \geq \lVert I \otimes Q  \rVert_{\diamondsuit} $
-%3.44
-%\begin{proposition} \cite[Proposition 3.44]{watrous2018theory}
-   %For all quantum channels $Q:\mathbb{C}^{n \times n}\rightarrow \mathbb{C}^{m \times m}$, it holds that $\lVert Q \rVert_{\diamondsuit} = 1$.
-%\end{proposition}
-
-%\begin{theorem} \label{thm:tensor_stability} \cite[Theorem 3.46 ]{watrous2018theory}
-%For all super-operators $Q:\mathbb{C}^{n \times n}\rightarrow \mathbb{C}^{m \times m}$ and complex spaces $\mathbb{C}^{o\times o}$  it holds that:
-%\begin{equation}
-  %\lVert Q \otimes I_{\mathbb{C}^{o\times o}} \rVert_{1} \leq  \lVert Q \rVert_{\diamondsuit}. 
-%\end{equation}
-%with equality holding under the assumption that $\text{dim}(\mathbb{C}^{o\times o}) \geq  \text{dim}(\mathbb{C}^{n \times n})$.
-%\end{theorem}
-
-%\begin{corollary} \label{cor:diamond_otimes_I} \cite[Corollary 3.47]{watrous2018theory}
-   %For all super-operators $Q:\mathbb{C}^{n \times n}\rightarrow \mathbb{C}^{m \times m}$ and complex spaces $\mathbb{C}^{o\times o}$  it holds that:
-  %\begin{equation}
-    %\lVert Q \rVert_{\diamondsuit} = \lVert Q \otimes I_{\mathbb{C}^{o\times o}} \rVert_{\diamondsuit} .
-  %\end{equation}
-%\end{corollary}
-
-%\begin{proposition} \cite[Proposition 3.48]{watrous2018theory}
-  %Moreover the following properties hold for the diamond norm:
-  %\begin{enumerate}
-    %\item The diamond norm is submultiplicative with respect to composition of , \textit{i.e.}, for all super-operators $Q: \mathbb{C}^{n \times n} \rightarrow \mathbb{C}^{m \times m}$ and $S: \mathbb{C}^{m \times m} \rightarrow \mathbb{C}^{o \times o}$, it holds that:
-  %\begin{equation}
-    %\lVert S  Q \rVert_{\diamondsuit} \leq \lVert S \rVert_{\diamondsuit} \lVert Q \rVert_{\diamondsuit}.
-  %\end{equation}
-  %\item For all super-operators $Q_0, S_0: \mathbb{C}^{n \times n} \rightarrow \mathbb{C}^{m \times m}$ and $Q_1, S_1: \mathbb{C}^{m \times m} \rightarrow \mathbb{C}^{o \times o}$, it holds that:
-  %\begin{equation}
-  %\lVert S_1 S_0 - Q_1 Q_0  \rVert_{\diamondsuit} \leq \lVert S_0 - Q_0 \rVert_{\diamondsuit} + \lVert S_1 - Q_1 \rVert_{\diamondsuit}.
-  %\end{equation}
-%\end{enumerate}
-%\end{proposition}
-
-%\begin{theorem} \cite[Theorem 3.49]{watrous2018theory}
-  %\item The diamond norm is multiplicative with respect to tensor products, \textit{i.e.}, for all super-operators $Q: \mathbb{C}^{n \times n} \rightarrow \mathbb{C}^{m \times m}$ and $S: \mathbb{C}^{o \times o} \rightarrow \mathbb{C}^{p \times p}$, it holds that:
-  %\begin{equation}
-    %\lVert Q \otimes S \rVert_{\diamondsuit} = \lVert Q \rVert_{\diamondsuit} \lVert S \rVert_{\diamondsuit}.
-  %\end{equation}
-%\end{theorem}
-
-%\begin{lemma} \cite[Lemma 3.45]{watrous2018theory} \label{lem:otimes_unit_uv}
-  %Let $Q: \mathbb{C}^{n \times n} \rightarrow \mathbb{C}^{m \times m}$ be a superoperator. For every choice of a complex Euclidean space $\mathbb{C}^{o}$ and unit vectors $v_1, v_2 \in \mathbb{C}^{n} \otimes \mathbb{C}^{o}$, there exist unit vectors $w_1, w_2 \in \mathbb{C}^{n} \otimes \mathbb{C}^{n}$ such that the following equalities hold:
-  %\begin{equation}
-  %\lVert Q \otimes I_{\mathbb{C}^{o \times o}} (v_1 v_2^\dag)\rVert_{1} = \lVert Q \otimes I_{\mathbb{C}^{n \times n}} (w_1 w_2^\dag)\rVert_{1}
-  %\end{equation}
-%\end{lemma} 
-
-Since the diamond norm is generally difficult to compute, we will rely on the following properties, as given by the theorems below:
-
-\begin{theorem} \cite[Theorem 3.55]{watrous2018theory} \label{theorem:diamond_iso}
-  Let  $ n \leq m$, let $V_0,V_1: \mathbb{C}^{n \times n} \to \mathbb{C}^{m \times m}$ be isometries, and define CPTP operators $\phi_0,\phi_1:\mathbb{C}^{n \times n} \to \mathbb{C}^{m \times m}$ as
-\[
-\phi_0(\rho) = V_0 \rho V_0^\dag \quad \text{and} \quad \phi_1(\rho) = V_1 \rho V_1^\dag
-\]
-for all $\rho \in \mathbb{C}^{n \times n}$. There exists a unit vector $u \in \mathbb{C}^{n \times n}  $ such that
-\[
-\tracenorm{\phi_0(uu^\dag) - \phi_1(uu^\dag)} = \diamondnorm{\phi_0 - \phi_1}.
-\]
-\end{theorem}
-
-\begin{theorem} \cite[Theorem 3.56]{watrous2018theory} \label{theorem:diamond_cptp_id}
- Let $\phi: \mathbb{C}^{n \times n} \to \mathbb{C}^{n \times n} $ be a quantum channel, let $\varepsilon \in [0,2]$, and suppose that
-    \[
-    \|\phi(\rho) - \rho\|_1 \leq \varepsilon
-    \]
-    for every density operator $\rho \in \mathbb{C}^{n \times n} $. It holds that
-    \[
-    \|\phi - \id_{\sigma}\|_1 \leq \sqrt{2\varepsilon}.
-    \]
-\end{theorem}
 
 \subsection{Quantum circuits}
 As quantum computation remains in its early stages of development, programming is primarily based on the use of \emph{quantum circuits}. 
@@ -1029,7 +1134,7 @@ An arbitrary unitary operator acting on $n$ qubits is represented as a box actin
  \end{quantikz}
 \end{figure}
 
-\acrshort{cptp} maps are depicted as boxes containing the corresponding map symbols. The relevant \acrshort{cptp} operators will be introduced in \autoref{subsec:noisy_teleportation}.
+\acrshort{cptp} maps are depicted as boxes containing the corresponding map symbols.
 
 The measurement operation is representes by a ``meter'' symbol. Given that output of a measurement is a classical bit, the wire representing the output of a measurement is a classical wire, representes by a double line. 
 
@@ -1073,38 +1178,9 @@ In this section, we are no longer restricted to finite dimensional vector spaces
 
 \todo[inline,size=\normalsize]{Resolver questões de notação, espaços e tensores} 
 
-\subsection{Hilbert Spaces}
-
-\todo[inline,size=\normalsize]{Aqui $\mathcal{H}$ and $\mathcal{K}$ are typical designations for Hilber Spaces } 
 
 
-\begin{definition}
-  A \emph{Hilbert space} $\mathcal{H}$ is an inner product space that is complete with respect to the norm induced by the inner product (\ie  $\|v\| = \sqrt{\langle v, v \rangle}$ for all $v \in \mathcal{H}$).
-\end{definition}
 
-The letters \gls{hilbertspaces} will often be used to refer to Hilbert spaces.
-
-The definition of trace is extended in this setting as follows:
-\begin{definition}
-  Let $\mathcal{H}$ be an Hilbert space and $0 \leq T \in \mathcal{B}(\mathcal{H})$. The trace is defined as 
-\[
-\text{Tr}(T) := \sum_i \langle T v_i, v_i \rangle \in [0, \infty],
-\]
-where $\{v_i\}$ is an orthonormal basis for $\mathcal{H}$.
-\end{definition}
-
-\begin{definition}
-  Let $\mathcal{H}$ be an Hilbert space. An operator $T$ is \emph{trace class} if $\text{Tr}(|T|) < \infty$, where $|T|= \left(\overline{T}T \right)^{1/2}$.
-\end{definition}
-
-\begin{definition}
-  Let \( \mathcal{H} \)and \( \mathcal{K} \) be Hilbert spaces. We denote by \gls{hilb_tensor} the Hilbert space tensor product, obtained by completing \( \mathcal{H}  \otimes \mathcal{K} \) equipped with the standard inner product characterized by
-\[
-\langle k_1 \otimes h_1,\, k_2 \otimes h_2 \rangle = \langle k_1, k_2 \rangle \cdot \langle h_1, h_2 \rangle.
-\] 
-\end{definition}
-
-\subsection{Topology}
 Topology is the abstract mathematical study of concepts like convergence and approximation, generalizing familiar notions from calculus and analysis. 
 Note that, for instance, in a metric space, a sequence $\{x_n\}$ with $n \in \mathbb{N}$ converges to a point $x$ if the distance $d(x_n, x)$ tends to zero; that is, for every $\varepsilon > 0$, there exists $n_0$ such that $d(x_n, x) < \varepsilon$ for all $n \geq n_0$. However, metric spaces are not sufficient to describe all types of convergence.  An example is the pointwise convergence of all real-valued functions on the interval $[0, 1]$. In fact, there is no metric on the space of all real functions on the interval $[0,1]$ for which one can define a distance function $d(f_n, f)$ such that $d(f_n, f) \to 0$ if and only if $f_n(x) \to f(x)$ for every $x \in [0, 1]$. 
 A foundational idea in topology is that of a \emph{neighborhood}—a collection of points considered ``sufficiently close'' to a given point. From this arises the concept of \emph{open sets}, which are sets that serve as neighborhoods for all their points. The collection of all such open sets defines a \emph{topology}, and a set equipped with a topology becomes a \emph{topological space}. This framework introduces some subtleties: for example, traditional sequences are often inadequate for capturing convergence, requiring the more general notion of \emph{nets}, which are indexed over broader structures than the natural numbers.

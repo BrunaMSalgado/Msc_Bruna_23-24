@@ -19,6 +19,7 @@
 \usepackage{xargs}                      % Use more than one optional parameter in a new commands
 \usepackage[pdftex,dvipsnames]{xcolor}  % Coloured text etc.
 \usepackage[colorinlistoftodos,prependcaption,textsize=tiny]{todonotes}
+\input{macros}
 \newcommandx{\unsure}[2][1=]{\todo[linecolor=red,backgroundcolor=red!25,bordercolor=red,#1]{#2}}
 \newcommandx{\change}[2][1=]{\todo[linecolor=blue,backgroundcolor=blue!25,bordercolor=blue,#1]{#2}}
 \newcommandx{\info}[2][1=]{\todo[linecolor=OliveGreen,backgroundcolor=OliveGreen!25,bordercolor=OliveGreen,#1]{#2}}
@@ -170,17 +171,17 @@
 }
 \newglossaryentry{euclidean-norm}
 {
-    name={$\|.\|_2$},
+    name={$\|\cdot\|_2$},
     description={Euclidean norm.}
 }
 \newglossaryentry{trace-norm}
 {
-    name={$\|.\|_1$},
+    name={$\|\cdot\|_1$},
     description={Trace norm.}
 }
 \newglossaryentry{op-norm}
 {
-    name={$\|.\|_{\text{op}}$},
+    name={$\|\cdot\|_{\text{op}}$},
     description={Operator norm.}
 }
 \newglossaryentry{n-fold-tensor}
@@ -307,7 +308,18 @@
     name={$ \mathcal{H},  \mathcal{K} $},
     description={Typical names for Hilbert spaces.}
 }
-\input{macros}
+\newglossaryentry{boundedoperators}
+{
+    name={$ \mathcal{B}(V, W)  $},
+    description={Vector space of all bounded linear operators from \( V \) to \( W \).}
+}
+\newglossaryentry{boundedoperatorsVV}
+{
+    name={$ \mathcal{B}(V)  $},
+    description={Vector space of all bounded linear operators from \( V \) to itself.}
+}
+
+
 
 %\glsaddall
 %comando para ir da source para o pdf: ctrl + Alt + J 

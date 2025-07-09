@@ -1,12 +1,9 @@
 \chapter{Probabilistic Programming} \label{ch:pp}
 
+This chapter begins with an introduction to Banach spaces based on \cite{rudin91functional,guide2006infinite, ryanIntroductionTensorProducts2013}. We then show that $\catBan$, the category of Banach spaces and short maps, is a model in this setting. The  next section  introduces the fundamentals of measure theory, a key component in defining the semantics of probabilistic programs, drawing inspiration primarily from \cite{dahlqvistSemanticsProbabilisticProgramming2020a} and \cite{athreyaMeasureTheoryProbability2006}. For a more in-depth exploration of measure theory, see reference \cite{aliprantisBanachLattices1999}. 
+Finally, we study approximate equivalence in the context of a random walk.
 
 
-
-The  next section  introduces the fundamentals of measure theory, a key component in defining the semantics of probabilistic programs, drawing inspiration primarily from \cite{dahlqvistSemanticsProbabilisticProgramming2020a} and \cite{athreyaMeasureTheoryProbability2006}. For a more in-depth exploration of measure theory, see reference \cite{aliprantisBanachLattices1999}. 
-
-\todo[inline,size=\normalsize]{Meter esta intro direita} 
-%ryanIntroductionTensorProducts2013, rudin91functional,guide2006infinite-> refs banach spaces
 
 \section{Banach spaces}
 
@@ -43,7 +40,7 @@ Let \( V \) and \( W \) be normed vector spaces, and let \( T: V \rightarrow W \
 \[
 \norm{T}_{\text{op}} = \sup \{ \norm{T(v)} : v \in V, \, \norm{v} = 1 \}.
 \]
-If \( \norm{T}_{\text{op}} < \infty \), we say that \( T \) is a \emph{bounded operator}; otherwise, if \( \norm{T}_{\text{op}} = \infty \), we say that \( T \) is \emph{unbounded}. We denote by \( \mathcal{B}(V, W) \) the vector space of all bounded linear operators from \( V \) to \( W \), and we write \( \mathcal{B}(V) \)  for \( \mathcal{B}(V, V) \).
+If \( \norm{T}_{\text{op}} < \infty \), we say that \( T \) is a \emph{bounded operator}; otherwise, if \( \norm{T}_{\text{op}} = \infty \), we say that \( T \) is \emph{unbounded}. We denote by \gls{boundedoperators} the vector space of all bounded linear operators from \( V \) to \( W \), and we write  \gls{boundedoperatorsVV} for \( \mathcal{B}(V, V) \).
 \end{definition}
 
 \begin{lemma} \label{lemma:op_norm_submult} %inf_dim_anal
@@ -96,30 +93,61 @@ for all choices of \( u_1 \in V_1, \dots, u_n \in V_n \).
 \end{definition}
 
 \begin{definition}
-  Let $V$ and $W$ be Banach spaces. Let $u$ be any element of $V \otimes W$. The \emph{projective norm}, denoted \gls{proj_norm},  is defined by: 
+  Let $V$ and $W$ be Banach spaces. Let $u$ be any element of $V \otimes W$. The \emph{projective norm}, denoted $\norm{ \cdot }_{\pi}$,  is defined by: 
   \[
  \projnorm{u} = \inf\left\{ \sum_{i=1}^n \norm{v_i} \norm{w_i} \Bigg| \, u = \sum_{i=1}^n v_i \otimes w_i\right\}.
 \]
 \end{definition}
 
-\begin{proposition} %ryan-artigoprofRenato \label{prop:proj_norm_tensor_mult}
-   Let $V$ and $W$ be Banach spaces. Then, for every $v \in V$ and $w \in W$, it holds that $ \projnorm{v \otimes w} = \norm{v} \otimes \norm{w}$.
-\end{proposition}
+%\begin{proposition} %ryan-artigoprofRenato \label{prop:proj_norm_tensor_mult}
+   %Let $V$ and $W$ be Banach spaces. Then, for every $v \in V$ and $w \in W$, it holds that $ \projnorm{v \otimes w} = \norm{v} \otimes \norm{w}$.
+%\end{proposition}
 
 \begin{definition}
-  Let \( V \) and \( W \) be Banach spaces. The \emph{projective tensor product} of \( V \) and \( W \), denoted  \gls{proj_tensor}, is the completion of the algebraic tensor product \( V \otimes W \) with respect to the projective norm \( \projnorm{\cdot} \).
+  Let \( V \) and \( W \) be Banach spaces. The \emph{projective tensor product} of \( V \) and \( W \), denoted  $ V \widehat{\otimes}_\pi W$, is the completion of the algebraic tensor product \( V \otimes W \) with respect to the projective norm \( \projnorm{\cdot} \).
 \end{definition}
 
 
 \section{Category Ban}
 
-\begin{example}
-  The category $\catBan$ is the category of Banach spaces and short maps.
-\end{example}
+\begin{definition}
+  The category $\catBan$ is the category of Banach spaces and short maps.  In the category \(\catBan\), the coproduct of Banach spaces is given by their direct sum equipped with the \(L_1\)-norm. The injections and copairing map are defined analogously to those in \(\catVect\). 
+\end{definition}
 
-\begin{example}
-  In the category \(\catBan\), the coproduct of Banach spaces is given by their direct sum equipped with the \(L_1\)-norm. The injections and copairing map are defined analogously to those in \(\catVect\). 
-\end{example}
+
+\begin{lemma} \label{lem_op_max_trace}
+  Let $V$, $W$ and $U$ be Banach spaces. Let $ T: V \to U$ and $ S: W \to U$ be short maps. Then, it holds that 
+  $$ \opnorm{[T, S]} \leq \sup \{\opnorm{T},\opnorm{S}\}$$
+\end{lemma}
+
+\begin{proof}
+We calculate,
+\begin{align*} 
+   \opnorm{[T, S]} &  = \text{sup}{\{ \norm{[T, S] (v_0)}   \hspace{2pt} |  \hspace{2pt}  \norm{(v_0)} = 1  \}}\\
+   & = \text{sup}{\{ \norm{[T, S] (v, w)}   \hspace{2pt} |  \hspace{2pt}  \norm{(v, w )} = 1  \}}  \\
+   & = \sup \left\{  \norm{T (v) + S (w)}  \, \vert \, \norm{v} + \norm{w}= 1 \right\} \\
+   & \leq \sup \left\{  \norm{T (v)} + \norm{S (w)}  \, \vert \, \norm{v} + \norm{w}= 1 \right\} \\
+   & = \sup \left\{ \norm{v} \cdot   T \left( v / \norm{v }\right) + \norm{w} \cdot S \left( w / \norm{w}\right)  \, \vert \, \norm{v} + \norm{w}= 1  \right\}  \\
+   & = \sup  \left\{ \sup \left\{\norm{T(v)}   \hspace{2pt} |  \hspace{2pt}  \norm{(v)} = 1  \right\},\sup \left\{\norm{S(w)}   \hspace{2pt} |  \hspace{2pt}  \norm{(w)} = 1   \right\}  \right\} \\
+   & = \sup \{\opnorm{T},\opnorm{S}\}
+\end{align*}
+ 
+\end{proof}
+
+
+\begin{theorem} \cite[Theorem 4.3]{dahlqvist2023syntactic} \label{thm:ban_monoidal_met}
+      The category $\catBan$ is a  symmetric monoidal $\catMet$-category.
+  \end{theorem}
+
+  \begin{theorem}
+      The category $\catBan$ is a  symmetric monoidal $\catMet$-category with binary coproducts.
+  \end{theorem}
+
+\begin{proof}
+  Considering the definition of a symmetric monoidal $\catMet$-category with binary coproducts, this follows directly from \autoref{thm:ban_monoidal_met} and \autoref{lem_op_max_trace}.    
+\end{proof}
+
+
 
 \section{Measure theory}
 Probabilistic computation involves running programs incorporating randomness, leading to output behaviors characterized by probability distributions rather than deterministic outcomes. To effectively understand and analyze these programs, it is essential to have a solid foundation in reasoning about probability distributions. That is where measure theory comes into play.
@@ -334,4 +362,4 @@ The following alternative definition is useful to compute the total variation no
   \end{definition}
 
   
-\section{Examples}
+\section{Example}
