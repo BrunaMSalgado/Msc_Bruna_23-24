@@ -72,6 +72,51 @@ Let \( T: V \rightarrow W \) be a bounded linear operator between normed spaces.
 \end{definition}
  
 
+\todo[inline,size=\normalsize]{Meter isto direito -> Aqui está apenas a prop universal}
+
+
+\begin{definition} [Algebraic Tensor Product]
+The tensor product of vector spaces \( V \) and \( W \) is a vector space 
+\( V \otimes W \) together with a bilinear function (\ie linear in both variables)
+\(f : V \times W \to V \otimes W\)
+such that for every bilinear function \( g: V \times W \to R \), there exists a unique linear function 
+\(h: V \otimes W \to R\)
+such that \( g = h \circ f \).
+\[
+\begin{tikzpicture}
+  \matrix (m) [matrix of math nodes,row sep=4em,column sep=7em,minimum width=2em]
+  {
+   V \times W  & V \otimes W    \\
+      & R \\
+  };
+  \path[-stealth]
+    (m-1-1) edge  node [above] {$f$} (m-1-2)
+    (m-1-1) edge  node [below] {$g$} (m-2-2)
+    (m-1-2) edge [dotted]  node [right] {$h$} (m-2-2);
+    ;
+\end{tikzpicture}
+\]
+The function \( f \) usually remains anonymous and is written as \( (a, b) \mapsto a \otimes b \).
+
+It follows that arbitrary elements of \( V \otimes W \) take the form 
+\[
+\sum_{i=1}^{n} a_i (v_i \otimes w_i)
+\]
+for \( a_i \in \mathbb{C} \), \( v_i \in V \), and \( w_i \in W \).
+
+The tensor product also extends to linear maps. If 
+\(f_1: V_1 \to W_1 \quad \text{and} \quad f_2: V_2 \to W_2\)
+are linear maps, then there is a unique linear map 
+\(
+f_1 \otimes f_2: V_1 \otimes V_2 \to W_1 \otimes W_2
+\)
+that satisfies
+\[(f_1 \otimes f_2)(v_1 \otimes v_2) = f_1(v_1) \otimes f_2(v_2)
+\]
+for all \( v_1 \in V_1 \), \( v_2 \in V_2 \).
+\end{definition}
+
+\begin{comment}
 \begin{definition} [Algebraic Tensor Product]
   Let \( V_1, \dots, V_n \) and \( W \) be vector spaces, and let
 \[
@@ -93,6 +138,7 @@ such that
 \]
 for all choices of \( u_1 \in V_1, \dots, u_n \in V_n \).
 \end{definition}
+\end{comment}
 
 \begin{definition}
   Let $V$ and $W$ be Banach spaces. Let $u$ be any element of $V \otimes W$. The \emph{projective norm}, denoted $\norm{ \cdot }_{\pi}$,  is defined by: 
@@ -111,6 +157,15 @@ for all choices of \( u_1 \in V_1, \dots, u_n \in V_n \).
 
 
 \section{Category Ban}
+
+\todo[inline,size=\normalsize]{falta o producto tensorial e dizer o que é a L1 norm e tb soma direta, i guess}
+
+\begin{definition}
+Let \( x = (x_1, x_2, \dots, x_n) \in \mathbb{C}^n \). The \( L^1 \) norm, \gls{l1_norm},  is defined by
+\[
+\|x\|_{L^1} = \sum_{i=1}^n |x_i|.
+\]
+\end{definition}
 
 \begin{definition}
   The category $\catBan$ is the category of Banach spaces and short maps.  In the category \(\catBan\), the coproduct of Banach spaces is given by their direct sum equipped with the \(L_1\)-norm. The injections and copairing map are defined analogously to those in \(\catVect\). 

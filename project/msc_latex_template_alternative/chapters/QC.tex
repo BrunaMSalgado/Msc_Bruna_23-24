@@ -202,21 +202,21 @@ where $\{v_i\}$ is an orthonormal basis for $\mathcal{H}$.
 \end{definition}
 
 
-The trace is \emph{linear}, $\text{tr}(A + B) = \text{tr}(A)+\text{tr}(B), \text{tr}(a \cdot A) = a\cdot \hspace{1pt} \text{tr}(A)$, where $A, B \in \BoundOp{\HilbH}$, and $a$ is a complex number.
+The trace is \emph{linear}, $\text{Tr}(A + B) = \text{Tr}(A)+\text{Tr}(B), \text{Tr}(a \cdot A) = a\cdot \hspace{1pt} \text{Tr}(A)$, where $A, B \in \BoundOp{\HilbH}$, and $a$ is a complex number.
 
 The trace of a square matrix can alternatively be defined as follows.
 
 \begin{definition}
   The trace of a square matrix $A\in \mathbb{C}^{n\times n}$ defined to be the sum of its diagonal elements,
 \begin{equation*}
-  \text{tr}(A)= \sum_{i} A_{ii}.
+  \text{Tr}(A)= \sum_{i} A_{ii}.
 \end{equation*}
 
 \end{definition}
 
 By means of the trace, one defines the inner product of two operators $A,B\in \mathbb{C}^{m \times n}$ as follows
 \begin{equation*} \label{eq:inner_product_matrix}
-  \langle A, B \rangle = \text{tr}(A^{\dagger}B),
+  \langle A, B \rangle = \text{Tr}(A^{\dagger}B),
 \end{equation*}
 where \gls{dag} denotes the adjoint operation.
 
@@ -295,7 +295,7 @@ The following classes of operators are of particular interest in quantum informa
 \end {definition}
 
 \begin{definition} \label{def:positive}
-  \emph{Positive (semidefinite) operators}. A square operator $A\in \mathcal{B}(\HilbH)$ is \emph{positive}, denoted $A \geq 0$, if $\langle v, Av \rangle \geq 0$ for all $v \in  \mathcal{B}(\HilbH)$.  Positive operators are self-adjoint.
+  \emph{Positive (semidefinite) operators}. A square operator $A\in \mathcal{B}(\HilbH)$ is \emph{positive}, denoted $A \geq 0$, if $\langle v, Av \rangle \geq 0$ for all $v \in  \mathcal{B}(\HilbH)$.   Positive matrices are hermitian, and consequently, by the spectral decomposition, have diagonal representation $A =  \sum_i \lambda_i v_i v_i^{\dag}$, with non-negative eigenvalues $\lambda_i$. 
 
   %sum ->p.163 theory of quantum information
 \end{definition}
@@ -433,8 +433,8 @@ Considering vector spaces $V, W, R$, the following equalities hold:
 
 
 \begin{definition}
-  Consider two finite dimensinal Hilbert spaces $\HilbH$ and $\HilbK$. 
-  The tensor product of two operators $A \in \BoundOp{\HilbH} $ and $B \in  \in \BoundOp{\HilbK}$ an operator $A \otimes B \in  \BoundOp{\HilbH \otimes \HilbK} $ defined by the equation
+  Consider two Hilbert spaces $\HilbH$ and $\HilbK$. 
+  The tensor product of two operators $A \in \BoundOp{\HilbH} $ and $B \in   \BoundOp{\HilbK}$ is an operator $A \otimes B \in  \BoundOp{\HilbH \otimes \HilbK} $ defined by the equation
 \begin{equation*}
   (A \otimes B)(v \otimes w) = Av \otimes Bw.
 \end{equation*}
@@ -514,7 +514,7 @@ In this section we only consider finite dimensional Hilbert spaces.
 \begin{definition}\label{def:trace-norm-matriz}
   The \emph{trace norm}, \gls{trace-norm}, of a matrix $A \in \BoundOp{\HilbH}$ is defined as:
   \begin{equation*} \label{eq:trace_norm_matrix_tr}
-    \lVert A \rVert_{1} = \text{tr} \sqrt{A^{\dagger}A}
+    \lVert A \rVert_{1} = \text{Tr} \sqrt{A^{\dagger}A}
   \end{equation*}
   This norm is also  known as the Schatten 1-norm. The trace norm induces a metric on the set of density matrices which is defined by $d(\rho, \sigma) = \lVert \rho -\sigma\rVert_{1}$.
 \end{definition}
@@ -539,7 +539,7 @@ In this subsection we lift the restriction to finite-dimensional Hilbert spaces.
 If $\mathcal{H}$ is infinite-dimensional, the set $\mathcal{T}(\mathcal{H})$ forms a proper subset of $\mathcal{B}(\mathcal{H})$. In the finite-dimensional case, however, the two spaces coincide and can be identified with one another.
 
 \begin{definition}
-  Let \( \mathcal{H} \)and \( \mathcal{K} \) be Hilbert spaces. We denote by \gls{hilb_tensor} the Hilbert space tensor product, obtained by completing \( \mathcal{H}  \otimes \mathcal{K} \) equipped with the standard inner product characterized by
+  Let \( \mathcal{H} \)and \( \mathcal{K} \) be Hilbert spaces. We denote by \gls{hilb_tensor} the Hilbert space tensor product, obtained by completing \( \mathcal{H}  \otimes \mathcal{K} \) equipped with the standard inner product
 \[
 \langle w_1 \otimes v_1,\, w_2 \otimes v_2 \rangle = \langle w_1, v_2 \rangle \cdot \langle w_1, v_2 \rangle.
 \] 
@@ -618,9 +618,8 @@ The basic unit of information in quantum computation is a \emph{quantum bit} or 
   \begin{equation} \label{eq:qubit3}
   \ket{\psi} = \cos\left(\frac{\theta}{2}\right) \ket{0} + e^{i\phi}\sin\left(\frac{\theta}{2}\right)\ket{1}.
   \end{equation}
-\end{definition}
-
-\begin{definition} \label{def:boch_sphere_state}
+%\end{definition}
+%\begin{definition} \label{def:boch_sphere_state}
   The above parametrization defines a point on the unit sphere in \( \mathbb{R}^3 \), known as the \emph{Bloch sphere}. The angles \( \theta \) and \( \phi \) represent the polar and azimuthal angles, respectively. Each pure qubit state corresponds to a point on this sphere, with associated \emph{Bloch vector} given by
   $(\cos \phi \sin \theta, \sin \phi \sin \theta, \cos \theta).$
 \end{definition}
@@ -643,7 +642,7 @@ There are infinite points in the Bloch sphere, which might suggest the possibili
 \subsection{Multi-qubit States} \label{subsec:entanglement}
 
 \begin{definition}
- The state space of a composite physical system is the tensor product of the state spaces of the component physical systems. As a result, an $n$\emph{-qubit state} can be represented by a unit vector in $2^n$-dimensional Hilbert space, $\mathbb{C}^{2^{n}}$. The notations \gls{states-otimes}, \gls{states-no-otimes}, and \gls{states-2gether} are  used to denote the tensor product of two states $\ket{\psi}$ and $\ket{\phi}$. As for any complex vector, $\ket{\psi}^{\otimes n}$ denotes the n-fold tensor product of state $\ket{\psi}$ with itself. The computational basis states of an $n$-qubit system are of the form $\ket{x_{1}\ldots x_{n}}$ and so a quantum state of such a system is specified by $2^{n}$ amplitudes. For instance, a two-qubit state can be written as
+ The state space of a composite physical system is the \emph{tensor product} of the state spaces of the component physical systems. As a result, an $n$\emph{-qubit state} can be represented by a unit vector in $2^n$-dimensional Hilbert space, $\mathbb{C}^{2^{n}}$. The notations \gls{states-otimes}, \gls{states-no-otimes}, and \gls{states-2gether} are  used to denote the tensor product of two states $\ket{\psi}$ and $\ket{\phi}$. As for any complex vector, $\ket{\psi}^{\otimes n}$ denotes the n-fold tensor product of state $\ket{\psi}$ with itself. The computational basis states of an $n$-qubit system are of the form $\ket{x_{1}\ldots x_{n}}$ and so a quantum state of such a system is specified by $2^{n}$ amplitudes. For instance, a two-qubit state can be written as
 \begin{equation*}
   \ket{\psi} = \alpha_{00}\ket{00} + \alpha_{01}\ket{01} + \alpha_{10}\ket{10} + \alpha_{11}\ket{11}.
 \end{equation*}
@@ -678,7 +677,7 @@ In 1982, Alain Aspect conducted an experiment that confirmed the violation of th
 
 Sixteen years later, Nicolas Gisin \cite{tittel1998experimental} and Anton Zeilinger \cite{pan1998experimental} conducted similar experiments, demonstrating that entanglement persists over distances of several kilometers. More recently,  \cite{yin2017satellite} extended these tests using entangled photon pairs sent from a satellite to verify Bell's inequalities over a distance of one thousand kilometers, further confirming that, regardless of the distance, entangled particles behave as an indivisible, inseparable whole. The connection between them is so profound that it appears to challenge the principles of relativity. This phenomenon is known as \emph{quantum nonlocality}.
 
-\subsection{Unitary operators and Measurements}\label{subsec:unitary-operators&measurements}
+\subsection{Unitary operators}\label{subsec:unitary-operators}
 
 
 
@@ -753,7 +752,7 @@ It should be noted that no completely closed systems exist in the universe. Neve
 
 
 
-\subsubsection{Measurements}
+\subsection{Measurements}
 
 % decidir se e como por M0 e M1
 
@@ -912,7 +911,7 @@ Thus far, only two types of quantum operations have been discussed: unitary oper
 
 \begin{definition} \label{def:completely_positive_superoperator}
   A linear mapping $ \Phi : \mathcal{T}(\HilbH_1) \to \mathcal{T}(\HilbH_2)$ is \emph{completely positive} if the mapping 
-$\Phi$ on $\mathcal{T}(\mathcal{H}_A \otimes \HilbK) \to \mathcal{T}(\mathcal{T}(\HilbH_2)\otimes \HilbK) $ is positive for all finite-dimensional Hilbert spaces $\HilbK$.
+$\Phi \otimes \id$ on $\mathcal{T}(\mathcal{H}_A \otimes \HilbK) \to \mathcal{T}(\mathcal{T}(\HilbH_2)\otimes \HilbK) $ is positive for any Hilbert space $\HilbK$.
 \end{definition}
 
 \begin{definition} \label{def:trace_preserving_superoperator}
@@ -935,7 +934,7 @@ It is sometimes convenient to relax the trace-preserving condition to a trace-no
 
 Assume that there is a quantum system $S$ of interest which is a subsystem of a larger system which also includes an environment $E$. These systems have a joint unitary evolution described by a unitary operator $U$ acting on the composite system, $U (\rho_{SE} )= U \rho_{SE} U^{\dag}$. 
 
-Given that density matrices are positve operators, by (\autoref{def:positive}), the density operator of the environment $\rho_E$ initially can be written as 
+Given that density matrices are positve operators, the density operator of the environment $\rho_E$ initially can be written as 
 \begin{equation*}
   \rho_E = \sum_{i} p_{i} \ket{i} \bra{i}
 \end{equation*}
@@ -1017,69 +1016,35 @@ Unfortunately, this norm is not stable under tensoring , given that the inequati
     \lVert \Phi \rVert_{\diamondsuit} =  \lVert \Phi \otimes \id_{\TraceOp{\HilbH}} \rVert_{1}
   \end{equation*}
 \end{definition}
-%where $I_{\mathbb{C}^{n \times n}} $ is the identity super-operator over the space $\mathbb{C}^{n\times n}$.
 
-%3.46
-%For all super-operators $Q: \mathbb{C}^{n \times n}\rightarrow \mathbb{C}^{m \times m} $, it holds that 
-%\begin{equation}
-  %\lVert Q \rVert_{\diamondsuit} \geq \lVert Q \otimes I_{\mathbb{C}^{o\times o}} \rVert_{1},
-%\end{equation}
-%if $\text{dim}(\mathbb{C}^{o\times o}) \geq \text{dim}(\mathbb{C}^{n\times n})$.
 
-\todo[inline,size=\normalsize]{Meter as proposições de que vou precisar depois.}
+%For this norm it holds that for all super-operators $Q: \mathbb{C}^{n \times n}\rightarrow \mathbb{C}^{m \times m} $ and $S:\mathbb{C}^{m \times m} \rightarrow \mathbb{C}^{o \times o} $, if $Q$ is a quantum channel then $\lVert S  Q \rVert_{\diamondsuit} \leq \lVert S \rVert_{\diamondsuit}$ \cite[Proposition 3.44 and Proposition 3.48]{watrous2018theory}, and if $S$ is a quantum channel, then $\lVert S  Q \rVert_{\diamondsuit} \leq \lVert Q \rVert_{\diamondsuit}$. This is a desireble property, as is guarantees that quantum operations do not increase the distance between states, and as a
+%consequence, composition of programs is valid.
 
-For this norm it holds that for all super-operators $Q: \mathbb{C}^{n \times n}\rightarrow \mathbb{C}^{m \times m} $ and $S:\mathbb{C}^{m \times m} \rightarrow \mathbb{C}^{o \times o} $, if $Q$ is a quantum channel then $\lVert S  Q \rVert_{\diamondsuit} \leq \lVert S \rVert_{\diamondsuit}$ \cite[Proposition 3.44 and Proposition 3.48]{watrous2018theory}, and if $S$ is a quantum channel, then $\lVert S  Q \rVert_{\diamondsuit} \leq \lVert Q \rVert_{\diamondsuit}$. This is a desireble property, as is guarantees that quantum operations do not increase the distance between states, and as a
-consequence, composition of programs is valid.
-%Moreover, the following inequalties hold for a super-operator $Q$: $ \lVert Q \rVert_{\diamondsuit} \geq \lVert Q \otimes I \rVert_{\diamondsuit} $ and $\lVert Q \rVert_{\diamondsuit} \geq \lVert I \otimes Q  \rVert_{\diamondsuit} $
-%3.44
-%\begin{proposition} \cite[Proposition 3.44]{watrous2018theory}
-   %For all quantum channels $Q:\mathbb{C}^{n \times n}\rightarrow \mathbb{C}^{m \times m}$, it holds that $\lVert Q \rVert_{\diamondsuit} = 1$.
-%\end{proposition}
 
-%\begin{theorem} \label{thm:tensor_stability} \cite[Theorem 3.46 ]{watrous2018theory}
-%For all super-operators $Q:\mathbb{C}^{n \times n}\rightarrow \mathbb{C}^{m \times m}$ and complex spaces $\mathbb{C}^{o\times o}$  it holds that:
-%\begin{equation}
-  %\lVert Q \otimes I_{\mathbb{C}^{o\times o}} \rVert_{1} \leq  \lVert Q \rVert_{\diamondsuit}. 
-%\end{equation}
-%with equality holding under the assumption that $\text{dim}(\mathbb{C}^{o\times o}) \geq  \text{dim}(\mathbb{C}^{n \times n})$.
-%\end{theorem}
+Since the diamond norm is generally difficult to compute, we will rely on the following properties:
 
-%\begin{corollary} \label{cor:diamond_otimes_I} \cite[Corollary 3.47]{watrous2018theory}
-   %For all super-operators $Q:\mathbb{C}^{n \times n}\rightarrow \mathbb{C}^{m \times m}$ and complex spaces $\mathbb{C}^{o\times o}$  it holds that:
-  %\begin{equation}
-    %\lVert Q \rVert_{\diamondsuit} = \lVert Q \otimes I_{\mathbb{C}^{o\times o}} \rVert_{\diamondsuit} .
-  %\end{equation}
-%\end{corollary}
 
-%\begin{proposition} \cite[Proposition 3.48]{watrous2018theory}
-  %Moreover the following properties hold for the diamond norm:
-  %\begin{enumerate}
-    %\item The diamond norm is submultiplicative with respect to composition of , \textit{i.e.}, for all super-operators $Q: \mathbb{C}^{n \times n} \rightarrow \mathbb{C}^{m \times m}$ and $S: \mathbb{C}^{m \times m} \rightarrow \mathbb{C}^{o \times o}$, it holds that:
-  %\begin{equation}
-    %\lVert S  Q \rVert_{\diamondsuit} \leq \lVert S \rVert_{\diamondsuit} \lVert Q \rVert_{\diamondsuit}.
-  %\end{equation}
-  %\item For all super-operators $Q_0, S_0: \mathbb{C}^{n \times n} \rightarrow \mathbb{C}^{m \times m}$ and $Q_1, S_1: \mathbb{C}^{m \times m} \rightarrow \mathbb{C}^{o \times o}$, it holds that:
-  %\begin{equation}
-  %\lVert S_1 S_0 - Q_1 Q_0  \rVert_{\diamondsuit} \leq \lVert S_0 - Q_0 \rVert_{\diamondsuit} + \lVert S_1 - Q_1 \rVert_{\diamondsuit}.
-  %\end{equation}
-%\end{enumerate}
-%\end{proposition}
+\begin{theorem} \label{thm:russo_dye}
+Let \(\Phi \in \mathcal{T}(\HilbH) \to \mathcal{T}(\HilbK)\) be a positive map. Then it holds that
+\[
+\tracenorm{\Phi}= \max \{ \operatorname{Tr} \left( \Phi(vv^*) \right) \, \vert \, \euclideannorm{v}=1 \}.
+\]
+\end{theorem}
 
-%\begin{theorem} \cite[Theorem 3.49]{watrous2018theory}
-  %\item The diamond norm is multiplicative with respect to tensor products, \textit{i.e.}, for all super-operators $Q: \mathbb{C}^{n \times n} \rightarrow \mathbb{C}^{m \times m}$ and $S: \mathbb{C}^{o \times o} \rightarrow \mathbb{C}^{p \times p}$, it holds that:
-  %\begin{equation}
-    %\lVert Q \otimes S \rVert_{\diamondsuit} = \lVert Q \rVert_{\diamondsuit} \lVert S \rVert_{\diamondsuit}.
-  %\end{equation}
-%\end{theorem}
+\begin{proposition} \label{prop:diamond_submult}
+  For all maps \(\Phi \in \mathcal{T}(\HilbH) \to \mathcal{T}(\HilbK)\) and \(\Psi \in \mathcal{T}(\HilbK) \to \mathcal{T}(\HilbL)\), it holds that
+  \begin{align*}
+    \diamondnorm{\Psi \Phi} \leq  \diamondnorm{\Psi} \diamondnorm{\Phi} 
+  \end{align*}
+\end{proposition}
 
-%\begin{lemma} \cite[Lemma 3.45]{watrous2018theory} \label{lem:otimes_unit_uv}
-  %Let $Q: \mathbb{C}^{n \times n} \rightarrow \mathbb{C}^{m \times m}$ be a superoperator. For every choice of a complex Euclidean space $\mathbb{C}^{o}$ and unit vectors $v_1, v_2 \in \mathbb{C}^{n} \otimes \mathbb{C}^{o}$, there exist unit vectors $w_1, w_2 \in \mathbb{C}^{n} \otimes \mathbb{C}^{n}$ such that the following equalities hold:
-  %\begin{equation}
-  %\lVert Q \otimes I_{\mathbb{C}^{o \times o}} (v_1 v_2^\dag)\rVert_{1} = \lVert Q \otimes I_{\mathbb{C}^{n \times n}} (w_1 w_2^\dag)\rVert_{1}
-  %\end{equation}
-%\end{lemma} 
-
-Since the diamond norm is generally difficult to compute, we will rely on the following properties, as given by the theorems below:
+\begin{theorem}\label{thm:diamond_tensor_comp}
+  Let $\Phi \in \mathcal{T}(\HilbH_1) \to \mathcal{T}(\HilbK_1)$ and \(\Psi \in \mathcal{T}(\HilbH_2) \to \mathcal{T}(\HilbK_2)\) be maps. Then it holds that
+\[
+\diamondnorm{\Phi \otimes \Psi} = \diamondnorm{\Phi}\diamondnorm{\Phi}
+\]
+\end{theorem}
 
 \begin{theorem} \cite[Theorem 3.55]{watrous2018theory} \label{theorem:diamond_iso}
   Let  $ n \leq m$, let $V_0,V_1: \TraceOp{\HilbH,\HilbK}$ be isometries, and define CPTP operators $\Phi_0,\Phi_1:\TraceOp{\HilbH} \to \TraceOp{\HilbK}$ as
@@ -1125,7 +1090,7 @@ Wires in parallel represent the tensor product of the respective qubits. For ins
  \end{quantikz}
 \end{figure}
 
-The single bit gates presented in \Cref{subsec:unitary-operators&measurements} are represented as a box with the symbom of the gate inside. For example, the Hadamard gate is represented as
+The single bit gates presented in \Cref{subsec:unitary-operators} are represented as a box with the symbom of the gate inside. For example, the Hadamard gate is represented as
 \begin{figure} [H]
   \centering
   \begin{quantikz} [column sep=0.5cm, row sep=0.8cm] 
@@ -1202,9 +1167,6 @@ It should be noted that this principle is upheld by the type system outlined in 
 
 In this section, we are no longer restricted to finite dimensional vector spaces; the term ``vector space" now also encompasses infinite-dimensional ones.
 
-\todo[inline,size=\normalsize]{Resolver questões de notação, espaços e tensores} 
-
-
 
 
 Topology is the abstract mathematical study of concepts like convergence and approximation, generalizing familiar notions from calculus and analysis. 
@@ -1264,7 +1226,7 @@ A \emph{topological vector space} is a vector space \( V \) equipped with a line
 %norma espaço dual
 
 
-\begin{theorem} %funcanl-Rudin
+\begin{theorem} \cite[Theorem 4.3]{rudin91functional} %funcanl-Rudin
 Let \( V \) be a normed vector space. For each \( v^* \in V^* \), define its norm by
 \[
 \|v^*\| := \sup \left\{ | v^*(v) | : \|v\| = 1 \right\}.
@@ -1284,24 +1246,36 @@ v^* \mapsto v^*(v)
 continuous for every \( v \in V \).
 \end{definition}
 
-\todo[inline]{Dual de um mapa}
+\begin{proposition} \cite[Proposition 2.3.10]{pedersenAnalysisNow1989}
+Let \( f : V \to W \) be a bounded linear map. Then its dual \( f^* : V^* \to W^* \), defined by
+\[
+f^*(\varphi) = \varphi \circ f,
+\]
+is also a bounded linear map.
+\end{proposition}
 
 
 \section{W$^*$-Algebras}
 
 \section{Categories for (first-order) quantum computation}
 
+In \cite{dahlqvist2023syntactic} so...
+
 \begin{example} \label{ex:cat_cptp}
 The category $\catCPTP$ is the category whose objects are natural numbers $n \geq 1$ and whose morphisms $n \rightarrow m$ are quantum channels $C^{n \times n} \rightarrow C^{m\times m}$.
 \end{example}
 
-\begin{example} \label{ex:cat_cps}
-The category $\catCPS$ is the category whose objects are natural numbers $n \geq 1$ and whose morphisms $n \rightarrow m$ are completely positive trace-nonincreasing maps $C^{n \times n} \rightarrow C^{m\times m}$.
-\end{example}
+Here we draw attention to the fact that ...
+
+%Eu estava a pensar na questão Selinger/Watrous. E gostaria de saber se podemos raciocinar da seguinte forma: O Watrous no que diz respeito à diamond / trace norm trabalha com mapas do tipo  Φ = L( H ) -> L( K), onde L(H) designa o espaço  dos mapas lineares de H para H. Ora, A = (A_1, A_2) ∈ C^{n×n} ⊕ C^{m×m}  pode ser visto com um mapa linear em L(C^n ⊕  C^m) definido como (A_1, A_2) (a,b) = (A_1(a), A_2(b)). Assim sendo, Φ:  C^{n_1×n_1} ⊕ C^{m_1×m_1} \-> C^{n_2×n_2} ⊕ C^{m_2×m_2} também pode ser visto como um mapa  Φ: L(C^n_1 ⊕  C^m_1) -> L(C^n_2 ⊕  C^m_2) e, portando, o "casamento Selinger/Watrous" é automático: podemos usar a diamond norm diretamente nos mapas Φ do Selinger. No caso de esta linha de racicionio não estar correta, pedia que, se possível, marcássemos uma reunião online ainda esta semana, porque parece-me que definir a norma de um mapa Φ do Selinger com base na diamond norma de somas diretas de mapas Φ_i:  L( H ) -> L( K), levanta alguns problemas.
+
+Given this negative result, we will shift our focus to a category that is known to possess both products (and therefore supports measures) and coproducts: Selinger’s QPL model, the category~$\catQ$.
 
 
 
 \section{Examples}
+
+\section{High-order}
 
 
 \begin{comment}

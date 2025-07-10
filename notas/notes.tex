@@ -2788,6 +2788,12 @@ As a result the proposition above holds.
 
 With the result above, we have established that the category $\WstarCPSUop$ is a suitable model for our $\lambda$-calculus. Consequently, we obtain a framework for reasoning about approximate equivalence in infinite-dimensional quantum computation. This, for example, enables us to reason about errors in quantum walks on an infinite line \cite{venegasQuantumWalksComprehensive2012}.
 
+The category  $\WstarCPSUop$ is a model of the metric $\lambda$-theory for quantum computation under the following interpretation: 
+$\sem{\typeI}$, 
+$\sem{\emph{qbit} \hspace{1pt}}$, $\sem{\emph{q} \hspace{1pt}}$, $\sem{\ket{\psi}}$ for $\psi \in \{0, 1\}$, $\sem{\emph{meas}}$ and $\sem{U}$ are ``imported from'' $\catQ$. To these we add $\sem{\emph{pos} \hspace{1pt}}= \mathcal{B}(\ell^2(\mathbb{Z}))$ and $\sem{S}= \rho \mapsto S \rho \, S^\dag$.
+
+Note that in the infinite-dimensional setting (for separable Hilbert spaces), unitary transformations of the form $\rho \mapsto U \rho U^\dag$ are still quantum channels, and are therefore completely positive and unital by definition \cite[Example~4.6, Definition~1.48]{heinosaariMathematicalLanguageQuantum2011}. 
+
 \begin{example} [Quantum walk]
   Here, we study how a depolarizing channel affects the coin-state qubit after the coin-toss operator $ H $ acts on the system. 
 We begin by noting that the notation $\ket{0}, \ket{1}, \ldots, \ket{n-1}$, commonly used for the standard basis vectors in $\mathbb{C}^{n}$, naturally extends to the infinite-dimensional Hilbert space $\ell^2(\mathbb{Z})$. Specifically, we denote the elements of the canonical orthonormal basis of $\ell^2(\mathbb{Z})$ by $\ket{i}$ for $i \in \mathbb{Z}$. Recall that $S$ is a unitary operator that moves the walker to the right if the associated coin state is one of the two basis states (e.g., $\ket{0}$), and to the left if the coin is in the other basis state (e.g., $\ket{1}$). As a result, this operator is defined as follows:
@@ -3122,11 +3128,7 @@ As a result $\phi^*(\varphi) =  \sum_{ij} \varphi(\ket{j}\bra{i}) \cdot \ket{i} 
 
 
 
-The category  $\WstarCPSUop$ is a model of the metric $\lambda$-theory for quantum computation under the following interpretation: 
-$\sem{\typeI}$, 
-$\sem{\emph{qbit} \hspace{1pt}}$, $\sem{\emph{q} \hspace{1pt}}$, $\sem{\ket{\psi}}$ for $\psi \in \{0, 1\}$, $\sem{\emph{meas}}$ and $\sem{U}$ are ``imported from'' $\catQ$. To these we add $\sem{\emph{pos} \hspace{1pt}}= \mathcal{B}(\ell^2(\mathbb{Z}))$ and $\sem{S}= \rho \mapsto S \rho \, S^\dag$.
 
-Note that in the infinite-dimensional setting (for separable Hilbert spaces), unitary transformations of the form $\rho \mapsto U \rho U^\dag$ are still quantum channels, and are therefore completely positive and unital by definition \cite[Example~4.6, Definition~1.48]{heinosaariMathematicalLanguageQuantum2011}. 
 
 \todo[inline]{Questão modelo: Para termos medições em espaços infinitos teríamos de ter produtos infinitos? Also a questão da medição ser cpu é clean se for a medição tradicional da que temos tinha de provar à pata (em principio)}
 \todo[inline]{Ou seja não vou usar medições}
