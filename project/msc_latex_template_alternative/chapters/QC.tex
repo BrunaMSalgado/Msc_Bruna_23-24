@@ -17,7 +17,13 @@ Finally, the last section provides a few illustrative examples.
 
 It is impossible to present the theory of quantum computation without introducing some concepts of theory of Hilbert spaces and operators. This section provides a brief overview of the aspects of Hilbert spaces that are most pertinent to the study of quantum computation. 
 
-In this section, all vector spaces are assumed to be infinite dimensional, unless otherwise stated.
+\begin{center}
+\fbox{\parbox{0.95\textwidth}{
+In this section and the one that follows, vector spaces are assumed to be finite-dimensional, unless otherwise stated.
+}}
+\end{center}
+
+
 
 %The letters \gls{vectorspaces} will often be used to refer to vector spaces. In this section, all vector spaces are assumed to be finite dimensional, unless otherwise stated.
 
@@ -155,8 +161,8 @@ The matrix whose entries are the values $A_{ij}$ is said to form a \emph{matrix 
 
 \todo[inline,size=\normalsize]{A linearidade é no segundo ou no primeiro argumentos, é que uns livros usam no primeiro e outros no segundo?} 
 
-\begin{definition} \label{inner_product}
-The \emph{inner product}  \gls{inner-product} on a vector space $V$ is a function from a mapping $V\times V$ to the field of scalars, $\langle \cdot, \cdot \rangle : V \times V \rightarrow \mathcal{F}$,  that satisfies the following properties for all $v, w, w_1, \ldots, w_n \in V$ and $a_1, \ldots, a_n \in \mathcal{F}$
+\begin{definition} \label{def:inner_product}
+An \emph{inner product}~\gls{inner-product} on a vector space $V$ is a function from a mapping $V\times V$ to the field of scalars, $\langle \cdot, \cdot \rangle : V \times V \rightarrow \mathcal{F}$,  that satisfies the following properties for all $v, w, w_1, \ldots, w_n \in V$ and $a_1, \ldots, a_n \in \mathcal{F}$
 
 \begin{enumerate}
   \item Linearity in the second argument,$$ \left\langle v, \sum_{i=1}^n a_i w_i\right\rangle = \sum_{i=1}^n a_i \langle v, w_i\rangle. $$
@@ -175,25 +181,19 @@ Every inner product space is a normed space, where the norm of a vector $v \in V
 
 
 \begin{definition}
-  A \emph{Hilbert space} $\mathcal{H}$ is an inner product space that is complete with respect to the norm induced by the inner product.
+  A \emph{Hilbert space} $\mathcal{H}$ is an inner product space.
 \end{definition}
 
 
 The letters \gls{hilbertspaces} will often be used to refer to Hilbert spaces.
 
 
-\begin{definition}
-  A Hilbert space \( \mathcal{H} \) is called \emph{separable} if it has a countable orthonormal basis.
-\end{definition}
 
-\begin{center}
-\fbox{From now on, all Hilbert spaces are assumed to be separable.}
-\end{center}
 
 
 \subsection{Trace}
 
-\begin{definition}
+\begin{definition} \label{def:trace} 
   Let $\mathcal{H}$ be an Hilbert space and $ T \in \mathcal{B}(\mathcal{H})$ a positive operator (\autoref{def:positive}). The trace of $T$ is defined as 
 \[
 \text{Tr}(T) := \sum_i \langle T v_i, v_i \rangle \in [0, \infty],
@@ -204,7 +204,7 @@ where $\{v_i\}$ is an orthonormal basis for $\mathcal{H}$.
 
 The trace is \emph{linear}, $\text{tr}(A + B) = \text{tr}(A)+\text{tr}(B), \text{tr}(a \cdot A) = a\cdot \hspace{1pt} \text{tr}(A)$, where $A, B \in \BoundOp{\HilbH}$, and $a$ is a complex number.
 
-In finite-dimensional spaces, the trace of a square matrix can alternatively be defined as follows.
+The trace of a square matrix can alternatively be defined as follows.
 
 \begin{definition}
   The trace of a square matrix $A\in \mathbb{C}^{n\times n}$ defined to be the sum of its diagonal elements,
@@ -221,15 +221,9 @@ By means of the trace, one defines the inner product of two operators $A,B\in \m
 where \gls{dag} denotes the adjoint operation.
 
 
-\begin{definition}
-  Let $\mathcal{H}$ be an Hilbert space. An operator $A \in \mathcal{B}(\HilbH) $ is \emph{trace class} if $\text{Tr}(|A|) < \infty$, where $|A|= \left(\overline{A}A \right)^{1/2}$.  We denote by $\mathcal{T} (\HilbH)$ the set of trace class operators.
-\end{definition}
-If $\HilbH$ is infinite dimensional, the set $\mathcal{T} (\HilbH)$ is a proper subset of $\mathcal{B}(\HilbH)$.
 
 
 %In the \emph{finite} dimensional complex vector spaces relevant to quantum computation and quantum information, a \emph{Hilbert space} is is equivalent to an inner product space.  As a result, both $\mathbb{C}^{n}$ and $\mathbb{C}^{n \times m}$ are Hilbert spaces.
-
-
 
 
 
@@ -287,13 +281,13 @@ A \emph{diagonal representation} of an operator $A$ on a vector space $V$ is an 
 \subsection{Important classes of operators}
 
 %Given Hilbert Spaces, the notation \gls{linearoperators} denoted the vector space of all linear operators from \( \HilbH \) to \( \HilbK \).
-
-Linear operators mapping a Hilbert space to itself are known as \emph{square operators} due to the fact that their matrix representations are square matrices. %We write \gls{linearoperatorsH} to denote $\mathcal{L}(\HilbH, \HilbH) $.
+ In a finite-dimensional Hilbert space $\HilbH$ every lin ear mapping is continuous, hence a bounded operator. 
+For an $n$-dimensional Hilbert space $\mathcal{H}$, we can identify $\mathcal{B}(\mathcal{H})$ with the space $\mathbb{C}^{n\times n}$ of $n \times n$ complex matrices known as square matrices. As a result,linear operators mapping a Hilbert space to itself are known as \emph{square operators}. %We write \gls{linearoperatorsH} to denote $\mathcal{L}(\HilbH, \HilbH) $.
 
 The following classes of operators are of particular interest in quantum information theory.
 
 \begin{definition}
-  \emph{Normal operators.} A square operator $A \in \mathcal{B}(\HilbH)$ is \emph{normal} if $AA^{\dagger} = A^{\dagger}A$.
+  \emph{Normal operators.} A square operator $A \in \mathcal{B}(\HilbH,\HilbK)$ is \emph{normal} if $AA^{\dagger} = A^{\dagger}A$.
 \end{definition}
 
 \begin{definition} \label{def:hermitian}
@@ -317,47 +311,21 @@ Geometrically, unitary operators are important because they preserve inner produ
 \end{definition}
 
 \begin{definition}
-  \emph{Isometries}. An operator $A \in \BoundOp{\HilbH}$ is as isometry if $\|Av\| = \|v\|$ for all elements all elements $v \in \HilbH $.
+  \emph{Isometries}. An operator $A \in \BoundOp{\HilbH,\HilbK }$ is as isometry if $\|Av\| = \|v\|$ for all elements all elements $v \in \HilbH $.
 \end{definition}
 
 \begin{definition}
   \emph{Projectors}. A positive operator $P \in \BoundOp{\HilbH}$ is a projector if $P^2 = P$.
 \end{definition}
 
-\subsection{Important classes of superoperators}
-\begin{definition}
-  A \emph{super-operator} $Q$ is a linear map between the space of operators on a Hilbert space. 
-\end{definition}
 
-\begin{definition} \label{def:positive_superoperator}
-  A super-operator $Q$ is called \emph{positive} if it sends positive matrices to positive matrices, \textit{i.e.} $A \geq 0 \Rightarrow{} Q A \geq 0$.
-\end{definition}
 
-\begin{definition} \label{def:completely_positive_superoperator}
-  A super-operator $Q$ is said to be \emph{completely positive} if for all $k$, 
-  $$Q \otimes I_{\mathbb{C}^{k \times k}}: \mathbb{C}^{n \times n} \otimes \mathbb{C}^{k \times k} \rightarrow \mathbb{C}^{m \times m} \otimes \mathbb{C}^{k \times k}  $$
-   is positive.
-  %A super-operator $Q : V \rightarrow W$ is said to be \emph{completely positive} if for all $R$, $Q \otimes I_{R}: V \otimes R \rightarrow W \otimes R$
-   %is positive.
-\end{definition}
-
-\begin{definition} \label{def:trace_preserving_superoperator}
-  A super-operator $Q$ is called \emph{trace-preserving} if $\text{Tr} \hspace{2pt} (Q A)= \text{Tr} (A)$.
-\end{definition}
-
-Since density matrices are positive, any physically allowed transformation must be represented by a positive operator. Nonetheless, this is not sufficient on its own: since one can always extend the space $\mathbb{C}^{n \times n}$ to  $\mathbb{C}^{n \times n} \otimes \mathbb{C}^{m \times m} $ by adjoining a new quantum system, any physically allowed transformation must be completely positive. Finally, since the trace of a density matrix is always $1$, any physically allowed transformation must be trace-preserving. 
-
-\begin{definition}
-  A \acrfull{cptp} operator is traditionally called a \emph{quantum channel}.
-\end{definition}
-
-\todo[inline,size=\normalsize]{Trace non increasing e quantum operation}
 
 
 \subsection{Spectral theorem}
 
 \begin{theorem}  \cite[Corollary 1.4 ]{watrous2018theory}
-  Let $\mathcal{H}$ be finite-dimensional Hilbert space. Every normal operator $A \in \mathcal{L}(\mathcal{H})$ can be expressed as a linear combination $\sum_{i=1}^n \lambda_{i}b_{i}b_{i}^{\dag}$ where the set $\{b_{1}, \ldots , b{n}\}$ is an orthonormal basis on $\mathcal{H}$.
+  Let $\mathcal{H}$ be a Hilbert space. Every normal operator $A \in \mathcal{L}(\mathcal{H})$ can be expressed as a linear combination $\sum_{i=1}^n \lambda_{i}b_{i}b_{i}^{\dag}$ where the set $\{b_{1}, \ldots , b{n}\}$ is an orthonormal basis on $\mathcal{H}$.
 \end{theorem}
 
 Using this last result any function $f:\mathbb{C} \xrightarrow{} \mathbb{C}$, can be extended to normal operators via,
@@ -369,7 +337,7 @@ where $A = \sum_{i} \lambda_{i}b_{i}b_{i}^{\dag}$ is the spectral decomposition 
 \subsection{Riez Representation Theorem}
 
 \begin{definition} [Riesz Representation Theorem]
-Let $\mathcal{H}$ be a finite-dimensional Hilbert space, and let $\varphi$ be a linear functional on $V$. Then there exists a unique vector $v_\varphi \in V$ such that
+Let $\mathcal{H}$ be a Hilbert space, and let $\varphi$ be a linear functional on $V$. Then there exists a unique vector $v_\varphi \in V$ such that
 $$
 \varphi(w) = \langle w, v_\varphi \rangle \quad \text{for all } w \in V.
 $$
@@ -528,16 +496,11 @@ The notation \gls{n-fold-tensor}  will be used to  denote the tensor product of 
 %p.19 
 
 
-\begin{definition}
-  Let \( \mathcal{H} \)and \( \mathcal{K} \) be Hilbert spaces. We denote by \gls{hilb_tensor} the Hilbert space tensor product, obtained by completing \( \mathcal{H}  \otimes \mathcal{K} \) equipped with the standard inner product characterized by
-\[
-\langle k_1 \otimes h_1,\, k_2 \otimes h_2 \rangle = \langle k_1, k_2 \rangle \cdot \langle h_1, h_2 \rangle.
-\] 
-\end{definition}
+\
 
 
 
-\subsection{Useful norms in finite-dimensional Hilbert Spaces}
+\subsection{Useful norms }
 In this section we only consider finite dimensional Hilbert spaces.
 
 \begin{definition} \label{eq:euclidean_distance}
@@ -556,129 +519,32 @@ In this section we only consider finite dimensional Hilbert spaces.
   This norm is also  known as the Schatten 1-norm. The trace norm induces a metric on the set of density matrices which is defined by $d(\rho, \sigma) = \lVert \rho -\sigma\rVert_{1}$.
 \end{definition}
 
-\subsubsection{Norms on quantum channels}
-\begin{definition} \label{def:trace_norm_superoperator}
-  The norm of a super-operator $Q: \mathbb{C}^{n\times n} \xrightarrow{} \mathbb{C}^{m\times m }$ is defined:
-  \begin{equation*} 
-    \lVert Q \rVert_{1} =  \max\{\lVert Q \hspace{1pt} A \rVert_{1}   \mid  \lVert A \rVert_{1}=1\}, 
-  \end{equation*}
-\end{definition}
-where $A \in \mathbb{C}^{n \times n }$
+\subsection{Infinite-dimensional Hilbert Spaces}
+In this subsection we lift the restriction to finite-dimensional Hilbert spaces.
 
-%\begin{theorem} \label{thm:Russo–Dye} \cite[Theorem 3.39]{watrous2018theory}
-  %Let $Q: \mathbb{C}^{n \times n} \rightarrow \mathbb{C}^{m \times m}$ be a positive super-operator and $u \in \mathbb{C}^{n}$. It holds that 
-  %\begin{equation}
-    %\lVert Q \rVert_{1} = \max \{\text{Tr}\left(Q(uu^{*}) \right) \vert \hspace{2pt}  \lVert u \rVert_{1}=1 \}.
-  %\end{equation}
-%\end{theorem}
-
-%\begin{proposition} \cite[Proposition 3.41]{watrous2018theory}
-%The following facts hold for the trace norm:
-%\begin{enumerate}
-  %\item The trace norm is submultiplicative with respect to composition of super-operators , \textit{i.e.}, for all super-operators  $Q: \mathbb{C}^{n \times n} \rightarrow \mathbb{C}^{m \times m}$ and $S: \mathbb{C}^{m \times m} \rightarrow \mathbb{C}^{o \times o}$
-  %\begin{equation}
-    %\lVert S  Q \rVert_{1} \leq \lVert S \rVert_{1} \lVert Q \rVert_{1}.
-  %\end{equation}
-  %\item Let $U_0,$ $V_0 \in \mathbb{C}^{n\times n}$ and $U_1,$ $V_1 \in \mathbb{C}^{m\times m}$ be unitary operators, let $Q,$ $S: \mathbb{C}^{n \times n} \rightarrow \mathbb{C}^{m \times m}$ be super-operators, where $S$ is defined as:
-  %\begin{equation}
-    %S(X) = U_1 Q(U_0 A V_0) V_1
- % \end{equation}
-  %for all $A \in \mathbb{C}^{n\times n}$. It holds that $\lVert Q \rVert_{1} = \lVert S \rVert_{1} $.
-%\end{enumerate}
-%\end{proposition}
-
-
-Unfortunately, this norm is not stable under tensoring , given that the inequation $ \lVert Q \otimes I_{\mathbb{C}^{n\times n}} \rVert_{1} \leq \lVert Q \rVert_{1}$ does not hold \cite{watrous2018theory}. As a result, the diamond norm, which is based on the trace norm, is used instead in the context of quantum channels. 
+\autoref{def:inner_product} extends naturally to infinite-dimensional vector spaces, as stated, and the same applies to \autoref{def:trace}.
 
 \begin{definition}
-  Given a super-operator $Q: \mathbb{C}^{n\times n} \xrightarrow{} \mathbb{C}^{m\times m }$, the diamond norm, \gls{diamond-norm} , is defined as:
-  \begin{equation*}  \label{eq:diamond_distance}
-    \lVert Q \rVert_{\diamondsuit} =  \lVert Q \otimes \id_{\mathbb{C}^{n \times n}} \rVert_{1}
-  \end{equation*}
+  A \emph{Hilbert space} $\mathcal{H}$ is an inner product space that is complete with respect to the norm induced by the inner product.
 \end{definition}
-%where $I_{\mathbb{C}^{n \times n}} $ is the identity super-operator over the space $\mathbb{C}^{n\times n}$.
 
-%3.46
-%For all super-operators $Q: \mathbb{C}^{n \times n}\rightarrow \mathbb{C}^{m \times m} $, it holds that 
-%\begin{equation}
-  %\lVert Q \rVert_{\diamondsuit} \geq \lVert Q \otimes I_{\mathbb{C}^{o\times o}} \rVert_{1},
-%\end{equation}
-%if $\text{dim}(\mathbb{C}^{o\times o}) \geq \text{dim}(\mathbb{C}^{n\times n})$.
 
-For this norm it holds that for all super-operators $Q: \mathbb{C}^{n \times n}\rightarrow \mathbb{C}^{m \times m} $ and $S:\mathbb{C}^{m \times m} \rightarrow \mathbb{C}^{o \times o} $, if $Q$ is a quantum channel then $\lVert S  Q \rVert_{\diamondsuit} \leq \lVert S \rVert_{\diamondsuit}$ \cite[Proposition 3.44 and Proposition 3.48]{watrous2018theory}, and if $S$ is a quantum channel, then $\lVert S  Q \rVert_{\diamondsuit} \leq \lVert Q \rVert_{\diamondsuit}$. This is a desireble property, as is guarantees that quantum operations do not increase the distance between states, and as a
-consequence, composition of programs is valid.
-%Moreover, the following inequalties hold for a super-operator $Q$: $ \lVert Q \rVert_{\diamondsuit} \geq \lVert Q \otimes I \rVert_{\diamondsuit} $ and $\lVert Q \rVert_{\diamondsuit} \geq \lVert I \otimes Q  \rVert_{\diamondsuit} $
-%3.44
-%\begin{proposition} \cite[Proposition 3.44]{watrous2018theory}
-   %For all quantum channels $Q:\mathbb{C}^{n \times n}\rightarrow \mathbb{C}^{m \times m}$, it holds that $\lVert Q \rVert_{\diamondsuit} = 1$.
-%\end{proposition}
+\begin{definition}
+  A Hilbert space \( \mathcal{H} \) is called \emph{separable} if it has a countable orthonormal basis.
+\end{definition}
 
-%\begin{theorem} \label{thm:tensor_stability} \cite[Theorem 3.46 ]{watrous2018theory}
-%For all super-operators $Q:\mathbb{C}^{n \times n}\rightarrow \mathbb{C}^{m \times m}$ and complex spaces $\mathbb{C}^{o\times o}$  it holds that:
-%\begin{equation}
-  %\lVert Q \otimes I_{\mathbb{C}^{o\times o}} \rVert_{1} \leq  \lVert Q \rVert_{\diamondsuit}. 
-%\end{equation}
-%with equality holding under the assumption that $\text{dim}(\mathbb{C}^{o\times o}) \geq  \text{dim}(\mathbb{C}^{n \times n})$.
-%\end{theorem}
+\begin{definition}
+  Let $\mathcal{H}$ be an Hilbert space. An operator $A \in \mathcal{B}(\HilbH) $ is \emph{trace class} if $\text{Tr}(|A|) < \infty$, where $|A|= \left(\overline{A}A \right)^{1/2}$.  We denote by $\mathcal{T} (\HilbH)$ the set of trace class operators.
+\end{definition}
+If $\mathcal{H}$ is infinite-dimensional, the set $\mathcal{T}(\mathcal{H})$ forms a proper subset of $\mathcal{B}(\mathcal{H})$. In the finite-dimensional case, however, the two spaces coincide and can be identified with one another.
 
-%\begin{corollary} \label{cor:diamond_otimes_I} \cite[Corollary 3.47]{watrous2018theory}
-   %For all super-operators $Q:\mathbb{C}^{n \times n}\rightarrow \mathbb{C}^{m \times m}$ and complex spaces $\mathbb{C}^{o\times o}$  it holds that:
-  %\begin{equation}
-    %\lVert Q \rVert_{\diamondsuit} = \lVert Q \otimes I_{\mathbb{C}^{o\times o}} \rVert_{\diamondsuit} .
-  %\end{equation}
-%\end{corollary}
-
-%\begin{proposition} \cite[Proposition 3.48]{watrous2018theory}
-  %Moreover the following properties hold for the diamond norm:
-  %\begin{enumerate}
-    %\item The diamond norm is submultiplicative with respect to composition of , \textit{i.e.}, for all super-operators $Q: \mathbb{C}^{n \times n} \rightarrow \mathbb{C}^{m \times m}$ and $S: \mathbb{C}^{m \times m} \rightarrow \mathbb{C}^{o \times o}$, it holds that:
-  %\begin{equation}
-    %\lVert S  Q \rVert_{\diamondsuit} \leq \lVert S \rVert_{\diamondsuit} \lVert Q \rVert_{\diamondsuit}.
-  %\end{equation}
-  %\item For all super-operators $Q_0, S_0: \mathbb{C}^{n \times n} \rightarrow \mathbb{C}^{m \times m}$ and $Q_1, S_1: \mathbb{C}^{m \times m} \rightarrow \mathbb{C}^{o \times o}$, it holds that:
-  %\begin{equation}
-  %\lVert S_1 S_0 - Q_1 Q_0  \rVert_{\diamondsuit} \leq \lVert S_0 - Q_0 \rVert_{\diamondsuit} + \lVert S_1 - Q_1 \rVert_{\diamondsuit}.
-  %\end{equation}
-%\end{enumerate}
-%\end{proposition}
-
-%\begin{theorem} \cite[Theorem 3.49]{watrous2018theory}
-  %\item The diamond norm is multiplicative with respect to tensor products, \textit{i.e.}, for all super-operators $Q: \mathbb{C}^{n \times n} \rightarrow \mathbb{C}^{m \times m}$ and $S: \mathbb{C}^{o \times o} \rightarrow \mathbb{C}^{p \times p}$, it holds that:
-  %\begin{equation}
-    %\lVert Q \otimes S \rVert_{\diamondsuit} = \lVert Q \rVert_{\diamondsuit} \lVert S \rVert_{\diamondsuit}.
-  %\end{equation}
-%\end{theorem}
-
-%\begin{lemma} \cite[Lemma 3.45]{watrous2018theory} \label{lem:otimes_unit_uv}
-  %Let $Q: \mathbb{C}^{n \times n} \rightarrow \mathbb{C}^{m \times m}$ be a superoperator. For every choice of a complex Euclidean space $\mathbb{C}^{o}$ and unit vectors $v_1, v_2 \in \mathbb{C}^{n} \otimes \mathbb{C}^{o}$, there exist unit vectors $w_1, w_2 \in \mathbb{C}^{n} \otimes \mathbb{C}^{n}$ such that the following equalities hold:
-  %\begin{equation}
-  %\lVert Q \otimes I_{\mathbb{C}^{o \times o}} (v_1 v_2^\dag)\rVert_{1} = \lVert Q \otimes I_{\mathbb{C}^{n \times n}} (w_1 w_2^\dag)\rVert_{1}
-  %\end{equation}
-%\end{lemma} 
-
-Since the diamond norm is generally difficult to compute, we will rely on the following properties, as given by the theorems below:
-
-\begin{theorem} \cite[Theorem 3.55]{watrous2018theory} \label{theorem:diamond_iso}
-  Let  $ n \leq m$, let $V_0,V_1: \mathbb{C}^{n \times n} \to \mathbb{C}^{m \times m}$ be isometries, and define CPTP operators $\phi_0,\phi_1:\mathbb{C}^{n \times n} \to \mathbb{C}^{m \times m}$ as
+\begin{definition}
+  Let \( \mathcal{H} \)and \( \mathcal{K} \) be Hilbert spaces. We denote by \gls{hilb_tensor} the Hilbert space tensor product, obtained by completing \( \mathcal{H}  \otimes \mathcal{K} \) equipped with the standard inner product characterized by
 \[
-\phi_0(\rho) = V_0 \rho V_0^\dag \quad \text{and} \quad \phi_1(\rho) = V_1 \rho V_1^\dag
-\]
-for all $\rho \in \mathbb{C}^{n \times n}$. There exists a unit vector $u \in \mathbb{C}^{n \times n}  $ such that
-\[
-\tracenorm{\phi_0(uu^\dag) - \phi_1(uu^\dag)} = \diamondnorm{\phi_0 - \phi_1}.
-\]
-\end{theorem}
+\langle w_1 \otimes v_1,\, w_2 \otimes v_2 \rangle = \langle w_1, v_2 \rangle \cdot \langle w_1, v_2 \rangle.
+\] 
+\end{definition}
 
-\begin{theorem} \cite[Theorem 3.56]{watrous2018theory} \label{theorem:diamond_cptp_id}
- Let $\phi: \mathbb{C}^{n \times n} \to \mathbb{C}^{n \times n} $ be a quantum channel, let $\varepsilon \in [0,2]$, and suppose that
-    \[
-    \|\phi(\rho) - \rho\|_1 \leq \varepsilon
-    \]
-    for every density operator $\rho \in \mathbb{C}^{n \times n} $. It holds that
-    \[
-    \|\phi - \id_{\sigma}\|_1 \leq \sqrt{2\varepsilon}.
-    \]
-\end{theorem}
 
 \begin{comment}
 \begin{definition}
@@ -1021,11 +887,45 @@ Similarly, the \emph{reduced density operator for subsystem} $B$ is $\rho_{B} = 
 
 % Fazer secção chamada quantum chanels e falar de super operadores e cptp maps, normas, kraus operators
 
-Thus far, only two types of quantum operations have been discussed: unitary operators, which describe the evolution of a closed quantum system, and measurements, which describe the act of observing a quantum system. Now, a new type of quantum operation that accounts for the more realistic notion of interaction between a quantum system and an environment will be introduced. %Nonetheless, it is necessary to first introduce a few key concepts.
+Thus far, only two types of quantum operations have been discussed: unitary operators, which describe the evolution of a closed quantum system, and measurements, which describe the act of observing a quantum system. Now, a new type of quantum operation that accounts for the more realistic notion of interaction between a quantum system and an environment will be introduced. Nonetheless, it is necessary to first introduce a few key concepts.
 
 
 
 %the evolution of a quantum system has been described by unitary operators. However, in practice, quantum systems are not isolated, and they interact with their environment. This interaction is described by a \emph{quantum channel}, which is a completely positive trace-preserving (CPTP) linear map. A quantum channel is a generalization of a unitary operator that allows for the description of the evolution of a quantum system under the influence of an environment.
+
+
+\begin{definition}
+ Operators that map operators to other opertors are known as \emph{super-operators}. 
+\end{definition}
+
+
+\begin{definition} \label{def:positive_superoperator}
+  A super-operator $\Phi: \TraceOp{\HilbH} \to \TraceOp{\HilbK} $ is called \emph{positive} if it sends positive operators to positive operators, \textit{i.e.} $A \geq 0 \Rightarrow{} Q A \geq 0$.
+\end{definition}
+
+\begin{definition}
+  The tensor product of two super-operators $\Phi: \TraceOp{\HilbH_1} \rightarrow \TraceOp{\HilbK_1} $ and $\Psi : \TraceOp{\HilbH_2} \rightarrow \TraceOp{\HilbK_2}$ is an operator $ \Phi \otimes \Psi:  \TraceOp{\HilbH_1} \otimes \TraceOp{\HilbK_1} \rightarrow \TraceOp{\HilbH_2} \otimes \TraceOp{\HilbK_2}$ defined by the equation:
+\begin{equation*}
+  (P \otimes Q)(A \otimes B) = P (A) \otimes Q(B).
+\end{equation*}
+\end{definition}
+
+\begin{definition} \label{def:completely_positive_superoperator}
+  A linear mapping $ \Phi : \mathcal{T}(\HilbH_1) \to \mathcal{T}(\HilbH_2)$ is \emph{completely positive} if the mapping 
+$\Phi$ on $\mathcal{T}(\mathcal{H}_A \otimes \HilbK) \to \mathcal{T}(\mathcal{T}(\HilbH_2)\otimes \HilbK) $ is positive for all finite-dimensional Hilbert spaces $\HilbK$.
+\end{definition}
+
+\begin{definition} \label{def:trace_preserving_superoperator}
+  A super-operator $\Phi$ is called \emph{trace-preserving} (resp. \emph{trace-nonincreasing}) if $\text{Tr} \hspace{2pt} (\Phi A)= \text{Tr} (A) $ (resp. ($\text{Tr} \hspace{2pt} (\Phi A)\leq \text{Tr} (A)$)).
+\end{definition}
+
+Since density matrices are positive, any physically allowed transformation must be represented by a positive operator. Nonetheless, this is not sufficient on its own: since one can always extend the space $\mathbb{C}^{n \times n}$ to  $\mathbb{C}^{n \times n} \otimes \mathbb{C}^{m \times m} $ by adjoining a new quantum system, any physically allowed transformation must be completely positive. Finally, since the trace of a density matrix is always $1$, any physically allowed transformation must be trace-preserving. A \acrfull{cptp} operator is traditionally called a \emph{quantum channel}.
+
+It is sometimes convenient to relax the trace-preserving condition to a trace-non-increasing one, resulting in what is known as a \emph{quantum operation}.
+
+
+
+
 
 
 
@@ -1076,6 +976,132 @@ A \emph{non-selective measurement} is a quantum measurement in which the post-me
 \]
 This last equality corresponds to an Kraus operator sum representation, where the set of Kraus operators is $\{M_{m}\}$.
 \end{definition}
+
+\subsection{Norms on quantum channels}
+\begin{definition} \label{def:trace_norm_superoperator}
+  The trace norm of a super-operator $Q:\Phi: \TraceOp{\HilbH} \rightarrow \TraceOp{\HilbK}$ is defined as:
+  \begin{equation*} 
+    \lVert Q \rVert_{1} =  \max\{\lVert Q \hspace{1pt} A \rVert_{1}   \mid  \lVert A \rVert_{1}=1\}, 
+  \end{equation*}
+\end{definition}
+where $A \in \TraceOp{\HilbH}$
+
+%\begin{theorem} \label{thm:Russo–Dye} \cite[Theorem 3.39]{watrous2018theory}
+  %Let $Q: \mathbb{C}^{n \times n} \rightarrow \mathbb{C}^{m \times m}$ be a positive super-operator and $u \in \mathbb{C}^{n}$. It holds that 
+  %\begin{equation}
+    %\lVert Q \rVert_{1} = \max \{\text{Tr}\left(Q(uu^{*}) \right) \vert \hspace{2pt}  \lVert u \rVert_{1}=1 \}.
+  %\end{equation}
+%\end{theorem}
+
+%\begin{proposition} \cite[Proposition 3.41]{watrous2018theory}
+%The following facts hold for the trace norm:
+%\begin{enumerate}
+  %\item The trace norm is submultiplicative with respect to composition of super-operators , \textit{i.e.}, for all super-operators  $Q: \mathbb{C}^{n \times n} \rightarrow \mathbb{C}^{m \times m}$ and $S: \mathbb{C}^{m \times m} \rightarrow \mathbb{C}^{o \times o}$
+  %\begin{equation}
+    %\lVert S  Q \rVert_{1} \leq \lVert S \rVert_{1} \lVert Q \rVert_{1}.
+  %\end{equation}
+  %\item Let $U_0,$ $V_0 \in \mathbb{C}^{n\times n}$ and $U_1,$ $V_1 \in \mathbb{C}^{m\times m}$ be unitary operators, let $Q,$ $S: \mathbb{C}^{n \times n} \rightarrow \mathbb{C}^{m \times m}$ be super-operators, where $S$ is defined as:
+  %\begin{equation}
+    %S(X) = U_1 Q(U_0 A V_0) V_1
+ % \end{equation}
+  %for all $A \in \mathbb{C}^{n\times n}$. It holds that $\lVert Q \rVert_{1} = \lVert S \rVert_{1} $.
+%\end{enumerate}
+%\end{proposition}
+
+
+Unfortunately, this norm is not stable under tensoring , given that the inequation $ \lVert \Phi \otimes I_{\TraceOp{\HilbH}} \rVert_{1} \geq \lVert \Phi \rVert_{1}$ does not hold \cite{watrous2018theory}. As a result, the diamond norm, which is based on the trace norm, is used instead in the context of quantum channels. 
+
+\begin{definition}
+  Given a super-operator $\Phi \TraceOp{\HilbH} \to \TraceOp{\HilbK}$, the diamond norm, \gls{diamond-norm}, is defined as:
+  \begin{equation*}  \label{eq:diamond_distance}
+    \lVert \Phi \rVert_{\diamondsuit} =  \lVert \Phi \otimes \id_{\TraceOp{\HilbH}} \rVert_{1}
+  \end{equation*}
+\end{definition}
+%where $I_{\mathbb{C}^{n \times n}} $ is the identity super-operator over the space $\mathbb{C}^{n\times n}$.
+
+%3.46
+%For all super-operators $Q: \mathbb{C}^{n \times n}\rightarrow \mathbb{C}^{m \times m} $, it holds that 
+%\begin{equation}
+  %\lVert Q \rVert_{\diamondsuit} \geq \lVert Q \otimes I_{\mathbb{C}^{o\times o}} \rVert_{1},
+%\end{equation}
+%if $\text{dim}(\mathbb{C}^{o\times o}) \geq \text{dim}(\mathbb{C}^{n\times n})$.
+
+\todo[inline,size=\normalsize]{Meter as proposições de que vou precisar depois.}
+
+For this norm it holds that for all super-operators $Q: \mathbb{C}^{n \times n}\rightarrow \mathbb{C}^{m \times m} $ and $S:\mathbb{C}^{m \times m} \rightarrow \mathbb{C}^{o \times o} $, if $Q$ is a quantum channel then $\lVert S  Q \rVert_{\diamondsuit} \leq \lVert S \rVert_{\diamondsuit}$ \cite[Proposition 3.44 and Proposition 3.48]{watrous2018theory}, and if $S$ is a quantum channel, then $\lVert S  Q \rVert_{\diamondsuit} \leq \lVert Q \rVert_{\diamondsuit}$. This is a desireble property, as is guarantees that quantum operations do not increase the distance between states, and as a
+consequence, composition of programs is valid.
+%Moreover, the following inequalties hold for a super-operator $Q$: $ \lVert Q \rVert_{\diamondsuit} \geq \lVert Q \otimes I \rVert_{\diamondsuit} $ and $\lVert Q \rVert_{\diamondsuit} \geq \lVert I \otimes Q  \rVert_{\diamondsuit} $
+%3.44
+%\begin{proposition} \cite[Proposition 3.44]{watrous2018theory}
+   %For all quantum channels $Q:\mathbb{C}^{n \times n}\rightarrow \mathbb{C}^{m \times m}$, it holds that $\lVert Q \rVert_{\diamondsuit} = 1$.
+%\end{proposition}
+
+%\begin{theorem} \label{thm:tensor_stability} \cite[Theorem 3.46 ]{watrous2018theory}
+%For all super-operators $Q:\mathbb{C}^{n \times n}\rightarrow \mathbb{C}^{m \times m}$ and complex spaces $\mathbb{C}^{o\times o}$  it holds that:
+%\begin{equation}
+  %\lVert Q \otimes I_{\mathbb{C}^{o\times o}} \rVert_{1} \leq  \lVert Q \rVert_{\diamondsuit}. 
+%\end{equation}
+%with equality holding under the assumption that $\text{dim}(\mathbb{C}^{o\times o}) \geq  \text{dim}(\mathbb{C}^{n \times n})$.
+%\end{theorem}
+
+%\begin{corollary} \label{cor:diamond_otimes_I} \cite[Corollary 3.47]{watrous2018theory}
+   %For all super-operators $Q:\mathbb{C}^{n \times n}\rightarrow \mathbb{C}^{m \times m}$ and complex spaces $\mathbb{C}^{o\times o}$  it holds that:
+  %\begin{equation}
+    %\lVert Q \rVert_{\diamondsuit} = \lVert Q \otimes I_{\mathbb{C}^{o\times o}} \rVert_{\diamondsuit} .
+  %\end{equation}
+%\end{corollary}
+
+%\begin{proposition} \cite[Proposition 3.48]{watrous2018theory}
+  %Moreover the following properties hold for the diamond norm:
+  %\begin{enumerate}
+    %\item The diamond norm is submultiplicative with respect to composition of , \textit{i.e.}, for all super-operators $Q: \mathbb{C}^{n \times n} \rightarrow \mathbb{C}^{m \times m}$ and $S: \mathbb{C}^{m \times m} \rightarrow \mathbb{C}^{o \times o}$, it holds that:
+  %\begin{equation}
+    %\lVert S  Q \rVert_{\diamondsuit} \leq \lVert S \rVert_{\diamondsuit} \lVert Q \rVert_{\diamondsuit}.
+  %\end{equation}
+  %\item For all super-operators $Q_0, S_0: \mathbb{C}^{n \times n} \rightarrow \mathbb{C}^{m \times m}$ and $Q_1, S_1: \mathbb{C}^{m \times m} \rightarrow \mathbb{C}^{o \times o}$, it holds that:
+  %\begin{equation}
+  %\lVert S_1 S_0 - Q_1 Q_0  \rVert_{\diamondsuit} \leq \lVert S_0 - Q_0 \rVert_{\diamondsuit} + \lVert S_1 - Q_1 \rVert_{\diamondsuit}.
+  %\end{equation}
+%\end{enumerate}
+%\end{proposition}
+
+%\begin{theorem} \cite[Theorem 3.49]{watrous2018theory}
+  %\item The diamond norm is multiplicative with respect to tensor products, \textit{i.e.}, for all super-operators $Q: \mathbb{C}^{n \times n} \rightarrow \mathbb{C}^{m \times m}$ and $S: \mathbb{C}^{o \times o} \rightarrow \mathbb{C}^{p \times p}$, it holds that:
+  %\begin{equation}
+    %\lVert Q \otimes S \rVert_{\diamondsuit} = \lVert Q \rVert_{\diamondsuit} \lVert S \rVert_{\diamondsuit}.
+  %\end{equation}
+%\end{theorem}
+
+%\begin{lemma} \cite[Lemma 3.45]{watrous2018theory} \label{lem:otimes_unit_uv}
+  %Let $Q: \mathbb{C}^{n \times n} \rightarrow \mathbb{C}^{m \times m}$ be a superoperator. For every choice of a complex Euclidean space $\mathbb{C}^{o}$ and unit vectors $v_1, v_2 \in \mathbb{C}^{n} \otimes \mathbb{C}^{o}$, there exist unit vectors $w_1, w_2 \in \mathbb{C}^{n} \otimes \mathbb{C}^{n}$ such that the following equalities hold:
+  %\begin{equation}
+  %\lVert Q \otimes I_{\mathbb{C}^{o \times o}} (v_1 v_2^\dag)\rVert_{1} = \lVert Q \otimes I_{\mathbb{C}^{n \times n}} (w_1 w_2^\dag)\rVert_{1}
+  %\end{equation}
+%\end{lemma} 
+
+Since the diamond norm is generally difficult to compute, we will rely on the following properties, as given by the theorems below:
+
+\begin{theorem} \cite[Theorem 3.55]{watrous2018theory} \label{theorem:diamond_iso}
+  Let  $ n \leq m$, let $V_0,V_1: \TraceOp{\HilbH,\HilbK}$ be isometries, and define CPTP operators $\Phi_0,\Phi_1:\TraceOp{\HilbH} \to \TraceOp{\HilbK}$ as
+\[
+\phi_0(\rho) = V_0 \rho V_0^\dag \quad \text{and} \quad \phi_1(\rho) = V_1 \rho V_1^\dag
+\]
+for all $\rho \in \TraceOp{\HilbH}$. There exists a unit vector $u \in \HilbH $ such that
+\[
+\tracenorm{\phi_0(uu^\dag) - \phi_1(uu^\dag)} = \diamondnorm{\phi_0 - \phi_1}.
+\]
+\end{theorem}
+
+\begin{theorem} \cite[Theorem 3.56]{watrous2018theory} \label{theorem:diamond_cptp_id}
+ Let $\Phi:\TraceOp{\HilbH} \to \TraceOp{\HilbK} $ be a quantum channel, let $\varepsilon \in [0,2]$, and suppose that
+    \[
+    \|\phi(\rho) - \rho\|_1 \leq \varepsilon
+    \]
+    for every density operator $\rho \in \TraceOp{\HilbH}$. It holds that
+    \[
+    \|\phi - \id_{\TraceOp{\HilbH}}\|_1 \leq \sqrt{2\varepsilon}.
+    \]
+\end{theorem}
 
 
 

@@ -1,4 +1,4 @@
-This is XeTeX, Version 3.141592653-2.6-0.999995 (MiKTeX 24.1) (preloaded format=xelatex 2024.7.31)  9 JUL 2025 21:46
+This is XeTeX, Version 3.141592653-2.6-0.999995 (MiKTeX 24.1) (preloaded format=xelatex 2024.7.31)  10 JUL 2025 02:47
 entering extended mode
  restricted \write18 enabled.
  file:line:error style messages enabled.
@@ -1979,22 +1979,22 @@ Chapter 4.
 [75
 
 ] [76] [77]
-Overfull \hbox (1.34132pt too wide) in paragraph at lines 153--154
+Overfull \hbox (1.34132pt too wide) in paragraph at lines 155--156
 \TU/SourceSansPro(0)/m/n/12 foundation in reasoning about probability distributions. That is where measure theory comes
  []
 
 [78] [79] [80]
-Overfull \hbox (3.90575pt too wide) in paragraph at lines 252--255
+Overfull \hbox (3.90575pt too wide) in paragraph at lines 254--257
 \TU/SourceSansPro(0)/m/n/12 These are of the form $[][] \OML/cmm/m/it/12 a[]^^N[]$\TU/SourceSansPro(0)/m/n/12 , where $\OML/cmm/m/it/12 a[] \OMS/cmsy/m/n/12 ^^U \OT1/cmr/m/n/12 0$ \TU/SourceSansPro(0)/m/n/12 for all $\OML/cmm/m/it/12 s \OMS/cmsy/m/n/12 2 \OML/cmm/m/it/12 C$\TU/SourceSansPro(0)/m/n/12 , and the weights satisfy $[][] \OML/cmm/m/it/12 a[] \OT1/cmr/m/n/12 =
  []
 
 
-Overfull \hbox (11.27182pt too wide) in paragraph at lines 261--262
+Overfull \hbox (11.27182pt too wide) in paragraph at lines 263--264
 []\TU/SourceSansPro(0)/b/n/12 Definition 4.3.5. []\TU/SourceSansPro(0)/m/n/12 Let $\OT1/cmr/m/n/12 (\OML/cmm/m/it/12 S; \OMS/cmsy/m/n/12 B[]\OT1/cmr/m/n/12 )$ \TU/SourceSansPro(0)/m/n/12 and $\OT1/cmr/m/n/12 (\OML/cmm/m/it/12 T; \OMS/cmsy/m/n/12 B[]\OT1/cmr/m/n/12 )$ \TU/SourceSansPro(0)/m/n/12 be measurable spaces. Given a function $\OML/cmm/m/it/12 f \OT1/cmr/m/n/12 : (\OML/cmm/m/it/12 S; \OMS/cmsy/m/n/12 B[]\OT1/cmr/m/n/12 ) \OMS/cmsy/m/n/12 !
  []
 
 [81]
-Overfull \hbox (9.47934pt too wide) in paragraph at lines 317--318
+Overfull \hbox (9.47934pt too wide) in paragraph at lines 319--320
 []\TU/SourceSansPro(0)/m/n/12 By a slight abuse of terminology, we will also refer to a mapping $\OML/cmm/m/it/12 P[] \OT1/cmr/m/n/12 : \OML/cmm/m/it/12 S \OMS/cmsy/m/n/12 ! \OT1/cmr/m/n/12 (\OMS/cmsy/m/n/12 B[] ! \OT1/cmr/m/n/12 [0\OML/cmm/m/it/12 ; \OT1/cmr/m/n/12 1]) \OML/cmm/m/it/12 P[]\OT1/cmr/m/n/12 (\OML/cmm/m/it/12 s\OT1/cmr/m/n/12 ) =
  []
 
@@ -2002,72 +2002,89 @@ Overfull \hbox (9.47934pt too wide) in paragraph at lines 317--318
 
 ]
 Chapter 5.
+
+Underfull \hbox (badness 1325) in paragraph at lines 23--23
+[]\TU/SourceSansPro(0)/m/n/12 In this section and the one that follows, vector spaces are assumed to be finite-
+ []
+
 [85] [86] [87]
-
-Package glossaries-extra Warning: Base acronym command \acrfull should not be used with new abbreviation definitions. Use \glsxtrfull instead on input line 351.
-
-
-Package glossaries-extra Warning: Base acronym command \acrlong should not be used with new abbreviation definitions. Use \glsxtrlong instead on input line 351.
-
-
-Package glossaries-extra Warning: Base acronym command \acrshort should not be used with new abbreviation definitions. Use \glsxtrshort instead on input line 351.
-
-[88]
-Underfull \hbox (badness 10000) in paragraph at lines 375--377
+Underfull \hbox (badness 10000) in paragraph at lines 343--345
 
  []
 
-[89] [90]
-Overfull \hbox (13.88992pt too wide) in paragraph at lines 591--592
-[]\TU/SourceSansPro(0)/m/n/12 Unfortunately, this norm is not stable under tensoring , given that the inequation $\OMS/cmsy/m/n/12 k\OML/cmm/m/it/12 Q \OMS/cmsy/m/n/12 
- \OML/cmm/m/it/12 I[]\OMS/cmsy/m/n/12 k[] ^^T
+[88] [89]
+Overfull \hbox (21.18144pt too wide) in paragraph at lines 539--540
+[]\TU/SourceSansPro(0)/m/n/12 If $\OMS/cmsy/m/n/12 H$ \TU/SourceSansPro(0)/m/n/12 is infinite-dimensional, the set $\OMS/cmsy/m/n/12 T\OT1/cmr/m/n/12 (\OMS/cmsy/m/n/12 H\OT1/cmr/m/n/12 )$ \TU/SourceSansPro(0)/m/n/12 forms a proper subset of $\OMS/cmsy/m/n/12 B\OT1/cmr/m/n/12 (\OMS/cmsy/m/n/12 H\OT1/cmr/m/n/12 )$\TU/SourceSansPro(0)/m/n/12 . In the finite-dimensional
  []
 
-[91] [92]
+[90] [91]
 File: images/bloch_sphere.jpg Graphic file (type bmp)
 <images/bloch_sphere.jpg>
- [93] [94]
+
+Underfull \vbox (badness 3514) has occurred while \output is active []
+
+ [92] [93]
 Underfull \vbox (badness 10000) has occurred while \output is active []
 
- [95] [96] [97] [98]
-Overfull \hbox (1.51337pt too wide) in paragraph at lines 935--936
+ [94] [95] [96] [97]
+Overfull \hbox (1.51337pt too wide) in paragraph at lines 801--802
 \TU/SourceSansPro(0)/m/it/12 state\TU/SourceSansPro(0)/m/n/12 . A mixed state $[][] \OML/cmm/m/it/12 ^^K[] []$ \TU/SourceSansPro(0)/m/n/12 can be represented by a density operator $\OML/cmm/m/it/12 ^^Z \OT1/cmr/m/n/12 = [][] \OMS/cmsy/m/n/12 j\OML/cmm/m/it/12 ^^K[]\OMS/cmsy/m/n/12 j[] [] []$\TU/SourceSansPro(0)/m/n/12 .
  []
 
-[99] [100] [101]
-
-Package glossaries-extra Warning: Base acronym command \acrfull should not be used with new abbreviation definitions. Use \glsxtrfull instead on input line 1061.
-
-
-Package glossaries-extra Warning: Base acronym command \acrlong should not be used with new abbreviation definitions. Use \glsxtrlong instead on input line 1061.
+[98] [99]
+Overfull \hbox (20.54402pt too wide) in paragraph at lines 898--899
+[]\TU/SourceSansPro(0)/b/n/12 Definition 5.2.23. []\TU/SourceSansPro(0)/m/n/12 Operators that map operators to other opertors are known as \TU/SourceSansPro(0)/m/it/12 super-operators\TU/SourceSansPro(0)/m/n/12 . 
+ []
 
 
-Package glossaries-extra Warning: Base acronym command \acrshort should not be used with new abbreviation definitions. Use \glsxtrshort instead on input line 1061.
+Package glossaries-extra Warning: Base acronym command \acrfull should not be used with new abbreviation definitions. Use \glsxtrfull instead on input line 922.
 
 
-Package glossaries-extra Warning: Base acronym command \acrshort should not be used with new abbreviation definitions. Use \glsxtrshort instead on input line 1061.
+Package glossaries-extra Warning: Base acronym command \acrlong should not be used with new abbreviation definitions. Use \glsxtrlong instead on input line 922.
 
 
-Package glossaries-extra Warning: Base acronym command \acrshort should not be used with new abbreviation definitions. Use \glsxtrshort instead on input line 1061.
+Package glossaries-extra Warning: Base acronym command \acrshort should not be used with new abbreviation definitions. Use \glsxtrshort instead on input line 922.
 
-[102]
+[100]
 
-Package glossaries-extra Warning: Base acronym command \acrshort should not be used with new abbreviation definitions. Use \glsxtrshort instead on input line 1137.
+Package glossaries-extra Warning: Base acronym command \acrfull should not be used with new abbreviation definitions. Use \glsxtrfull instead on input line 961.
 
-[103] [104] [105]
+
+Package glossaries-extra Warning: Base acronym command \acrlong should not be used with new abbreviation definitions. Use \glsxtrlong instead on input line 961.
+
+
+Package glossaries-extra Warning: Base acronym command \acrshort should not be used with new abbreviation definitions. Use \glsxtrshort instead on input line 961.
+
+
+Package glossaries-extra Warning: Base acronym command \acrshort should not be used with new abbreviation definitions. Use \glsxtrshort instead on input line 961.
+
+
+Package glossaries-extra Warning: Base acronym command \acrshort should not be used with new abbreviation definitions. Use \glsxtrshort instead on input line 961.
+
+[101]
+Overfull \hbox (12.39859pt too wide) in paragraph at lines 1012--1013
+[]\TU/SourceSansPro(0)/m/n/12 Unfortunately, this norm is not stable under tensoring , given that the inequation $\OMS/cmsy/m/n/12 k\OT1/cmr/m/n/12 ^^H \OMS/cmsy/m/n/12 
+ \OML/cmm/m/it/12 I[]\OMS/cmsy/m/n/12 k[] ^^U
+ []
+
+[102] [103]
+
+Package glossaries-extra Warning: Base acronym command \acrshort should not be used with new abbreviation definitions. Use \glsxtrshort instead on input line 1163.
+
+[104] [105] [106]
 
 Package hyperref Warning: Token not allowed in a PDF string (Unicode):
-(hyperref)                removing `math shift' on input line 1264.
+(hyperref)                removing `math shift' on input line 1290.
 
 
 Package hyperref Warning: Token not allowed in a PDF string (Unicode):
-(hyperref)                removing `superscript' on input line 1264.
+(hyperref)                removing `superscript' on input line 1290.
 
 
 Package hyperref Warning: Token not allowed in a PDF string (Unicode):
-(hyperref)                removing `math shift' on input line 1264.
+(hyperref)                removing `math shift' on input line 1290.
 
-[106]) (chapters/ConclusionsAndFutureWork.tex [107] [108
+) (chapters/ConclusionsAndFutureWork.tex [107] [108
 
 ]
 Chapter 6.
@@ -2085,15 +2102,15 @@ LaTeX2e <2023-11-01> patch level 1
 L3 programming layer <2024-01-22>
  ***********
 Package rerunfilecheck Info: File `dissertation.out' has not changed.
-(rerunfilecheck)             Checksum: AC1EE83BCA54E8E445204B162C092AF8;12450.
+(rerunfilecheck)             Checksum: 9AC894620C207BFBFB10B6E378FF4160;12454.
  ) 
 Here is how much of TeX's memory you used:
- 54249 strings out of 409673
- 1135347 string characters out of 5774704
- 1965630 words of memory out of 5000000
- 75385 multiletter control sequences out of 15000+600000
+ 54252 strings out of 409673
+ 1135389 string characters out of 5774704
+ 1956630 words of memory out of 5000000
+ 75388 multiletter control sequences out of 15000+600000
  578166 words of font info for 173 fonts, out of 8000000 for 9000
  1348 hyphenation exceptions out of 8191
  121i,36n,121p,2536b,1376s stack positions out of 10000i,1000n,20000p,200000b,200000s
 
-Output written on dissertation.xdv (144 pages, 2139340 bytes).
+Output written on dissertation.xdv (144 pages, 2149592 bytes).
