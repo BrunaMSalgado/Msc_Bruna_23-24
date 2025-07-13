@@ -6,52 +6,53 @@ The style file: unsrt.bst
 Reallocating 'name_of_file' (item size: 1) to 13 items.
 Database file #1: dissertation.bib
 Warning--entry type for "choNeumannAlgebrasForm2016" isn't style-file defined
---line 1297 of file dissertation.bib
+--line 1296 of file dissertation.bib
 Warning--entry type for "ferreiraProblemaDecisaoMaquina" isn't style-file defined
---line 1472 of file dissertation.bib
+--line 1471 of file dissertation.bib
 Warning--empty year in turingComputableNumbersApplication1937
 Warning--empty journal in thrun2002robotic
 Warning--empty booktitle in Church2008
-Warning--empty booktitle in aliprantisBanachLattices1999
-You've used 97 entries,
+Warning--empty author and editor in InfiniteDimensionalAnalysis2006
+Warning--empty year in InfiniteDimensionalAnalysis2006
+You've used 96 entries,
             1791 wiz_defined-function locations,
-            1018 strings with 20177 characters,
-and the built_in function-call counts, 22421 in all, are:
-= -- 2029
-> -- 913
-< -- 26
-+ -- 346
-- -- 249
-* -- 1354
-:= -- 3423
-add.period$ -- 304
-call.type$ -- 97
-change.case$ -- 69
+            1014 strings with 20014 characters,
+and the built_in function-call counts, 22028 in all, are:
+= -- 1984
+> -- 902
+< -- 25
++ -- 342
+- -- 246
+* -- 1340
+:= -- 3366
+add.period$ -- 299
+call.type$ -- 96
+change.case$ -- 67
 chr.to.int$ -- 0
 cite$ -- 101
-duplicate$ -- 1124
-empty$ -- 2271
-format.name$ -- 249
-if$ -- 5158
+duplicate$ -- 1104
+empty$ -- 2235
+format.name$ -- 246
+if$ -- 5059
 int.to.chr$ -- 0
-int.to.str$ -- 97
-missing$ -- 124
-newline$ -- 485
-num.names$ -- 108
-pop$ -- 373
+int.to.str$ -- 96
+missing$ -- 122
+newline$ -- 479
+num.names$ -- 106
+pop$ -- 368
 preamble$ -- 1
 purify$ -- 0
 quote$ -- 0
-skip$ -- 542
+skip$ -- 528
 stack$ -- 0
-substring$ -- 1283
-swap$ -- 302
-text.length$ -- 26
+substring$ -- 1251
+swap$ -- 293
+text.length$ -- 25
 text.prefix$ -- 0
 top$ -- 0
 type$ -- 0
-warning$ -- 4
-while$ -- 212
-width$ -- 99
-write$ -- 1052
-(There were 6 warnings)
+warning$ -- 5
+while$ -- 207
+width$ -- 98
+write$ -- 1037
+(There were 7 warnings)

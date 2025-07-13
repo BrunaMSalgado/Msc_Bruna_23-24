@@ -2,7 +2,7 @@
 
 
 The first two sections of this chapter present the mathematical and quantum computing preliminaries necessary for understanding the theory of quantum computation. The introduction to quantum computing draws primarily from \cite{nielsen2010quantum,watrous2018theory}, while the mathematical foundations are also based on \cite{heinosaariMathematicalLanguageQuantum2011,conwayCourseFunctionalAnalysis2007,conwayCourseOperatorTheory2000}.
-The next section introduces core concepts from functional analysis that are essential for understanding W$^*$-algebras, based on \cite{rudin91functional,guide2006infinite}. This is followed by a section presenting the fundamentals of W$^*$-algebras, drawing on \cite{sakaiCAlgebrasWAlgebras1998,takesakiTheoryOperatorAlgebras1979,pisierIntroductionOperatorSpace2003}.
+The next section introduces core concepts from functional analysis that are essential for understanding W$^*$-algebras, based on \cite{rudin91functional,InfiniteDimensionalAnalysis2006}. This is followed by a section presenting the fundamentals of W$^*$-algebras, drawing on \cite{sakaiCAlgebrasWAlgebras1998,takesakiTheoryOperatorAlgebras1979,pisierIntroductionOperatorSpace2003}.
 We then show that both Selinger’s category 
 $\catQ$ of quantum operations (i.e., completely positive, trace-nonincreasing super-operators) \cite{selinger2004towards}, and Cho’s category 
 $\WstarCPSUop$, the opposite category of W$^*$-algebras with normal, completely positive, subunital maps \cite{choSemanticsQuantumProgramming2016}, are first-order models.
@@ -1530,23 +1530,23 @@ The inequality in Proposition \ref{prop:Q_dist} follows from the linearity of th
 \section{Examples}
 
 We now illustrate the use of (first-order) $\lambda$-calculus with conditionals for describing quantum
-programs. To this effect, we first consider a type \emph{qbit} of qubits, the
+programs. To this effect, we first consider a type $\mathtt{qbit}$ of qubits, the
 basic unit of information in quantum computation. We then regard $\typeI \oplus
 \typeI$ to be the type of bits. Next we propound the following
 basic quantum operations:  the conversion of a bit into a qubit, $q : \typeI
-\oplus \typeI  \to \emph{qbit}$, the measurement of a qubit,
-$\emph{meas}:\emph{qbit} \to \typeI \oplus \typeI$, and pre-determined sets of
-operations on $n$-qubits, $\emph{U}:\emph{qbit},\ldots,\emph{qbit} \to
-\emph{qbit}^{\otimes n}$ and $\emph{CPTP}:\emph{qbit},\ldots,\emph{qbit} \to
-\emph{qbit}^{\otimes n}$ . The former includes unitary operations, as the Hadamard
-gate $H : \emph{qbit} \to \emph{qbit}$, the not-gate $X : \emph{qbit} \to
-\emph{qbit}$, and the cnot-gate $CNOT : \emph{qbit},\emph{qbit} \to
-\emph{qbit}^{\otimes 2}$, and the  latterr set included operations such as the dephasing with probability $p$, $D_p : \emph{qbit},\emph{qbit} \to
-\emph{qbit}^{\otimes 2}$. We consider as well a pre-determined set of quantum
-states $\ket{\psi} : \typeI \to \emph{qbit}$.  
+\oplus \typeI  \to \mathtt{qbit}$, the measurement of a qubit,
+$\emph{meas}:\mathtt{qbit} \to \typeI \oplus \typeI$, and pre-determined sets of
+operations on $n$-qubits, $\emph{U}:\mathtt{qbit},\ldots,\mathtt{qbit} \to
+\mathtt{qbit}^{\otimes n}$ and $\emph{CPTP}:\mathtt{qbit},\ldots,\mathtt{qbit} \to
+\mathtt{qbit}^{\otimes n}$ . The former includes unitary operations, as the Hadamard
+gate $H : \mathtt{qbit} \to \mathtt{qbit}$, the not-gate $X : \mathtt{qbit} \to
+\mathtt{qbit}$, and the cnot-gate $CNOT : \mathtt{qbit},\mathtt{qbit} \to
+\mathtt{qbit}^{\otimes 2}$, and the  latterr set included operations such as the dephasing with probability $p$, $D_p : \mathtt{qbit},\mathtt{qbit} \to
+\mathtt{qbit}^{\otimes 2}$. We consider as well a pre-determined set of quantum
+states $\ket{\psi} : \typeI \to \mathtt{qbit}$.  
 
 $\catQ$ forms a model of the metric $\lambda$-theory for quantum computation via the following interpretation: $\sem{\typeI}= \mathbb{C} \ni  1$, 
-$\sem{\emph{qbit} \hspace{1pt}}= \mathbb{C}^2$, 
+$\sem{\mathtt{qbit} \hspace{1pt}}= \mathbb{C}^2$, 
 $\sem{\emph{q} \hspace{1pt}}((a,b)) = \big(\begin{smallmatrix}
   a & 0\\
   0 & b
@@ -1564,7 +1564,7 @@ and quantum information.
 
 \begin{example} [Coin-Toss]
   In the quantum setting, tossing a ``fair'' coin can be described as preparing a qubit in a superposition of two states, $\ket{0}$ and $\ket{1}$, representing `heads' and `tails', each with an equal probability of $0.5$ and then measuring it. This is achieved by simply applying a Hadamard gate to the initial state $\ket{0}$, followed by a measurement.
-More generally, tossing a coin (whether ``fair'' or ``unfair'') can be described as preparing a qubit in a superposition of  $\ket{0}$ and $\ket{1}$, with probabilities $p$ and $1-p$, respectively,  and then measuring it.  Considering $p= \cos(\theta/2)^2$ and the quantum gate $R_{y,\theta} : \emph{qbit} \to \emph{qbit}$, representing a single-qubit rotation by an angle \( \theta \) around the y-axis,  this process is described by the following $\lambda$-term:
+More generally, tossing a coin (whether ``fair'' or ``unfair'') can be described as preparing a qubit in a superposition of  $\ket{0}$ and $\ket{1}$, with probabilities $p$ and $1-p$, respectively,  and then measuring it.  Considering $p= \cos(\theta/2)^2$ and the quantum gate $R_{y,\theta} : \mathtt{qbit} \to \mathtt{qbit}$, representing a single-qubit rotation by an angle \( \theta \) around the y-axis,  this process is described by the following $\lambda$-term:
 \begin{align*}
   &\textbf{CoinToss} = - \vljud \emph{meas} (R_{y,\theta} (\ket{0})): \typeI \oplus \typeI
 \end{align*}
@@ -1663,13 +1663,13 @@ to the quantum state, followed by a measurement in the computational basis.
 We will now show how to describe this discrimination task in
 $\lambda$-calculus.  Consider two pure states $\ket{\psi_0}$ and
 $\ket{\psi_1}$, prepared \emph{a priori} with probabilities $p_0$ and $p_1 = 1-p_0$,
-respectively. Consider as well an operation $U : \emph{qbit} \to \emph{qbit}$ which
+respectively. Consider as well an operation $U : \mathtt{qbit} \to \mathtt{qbit}$ which
 corresponds to the basis-change associated with the optimal measurement.
 The relevant $\lambda$-terms are then:
 \begin{align*}
   &\textbf{StatePreparation} =  b: \typeI \oplus \typeI  \vljud  \text{case } b\,
-  \{\inl_{\typeB}(x) \Rightarrow \ket{\psi_0} ; \inr_{\typeA}(y) \Rightarrow \ket{\psi_1}\}: \textit{qbit} \\
-  &\textbf{HMeasure} =  x : \emph{qbit} \vljud \emph{meas} (\emph{U}(x)): \typeI \oplus \typeI \\
+  \{\inl_{\typeB}(x) \Rightarrow \ket{\psi_0} ; \inr_{\typeA}(y) \Rightarrow \ket{\psi_1}\}: \mathtt{qbit} \\
+  &\textbf{HMeasure} =  x : \mathtt{qbit} \vljud \emph{meas} (\emph{U}(x)): \typeI \oplus \typeI \\
   %&\textbf{Discrimination} = (p_0,p_1): \typeI\oplus \typeI \vljud \textbf{HMeasure} [ \textbf{StatePreparation} [(p_0,p_1)/ b] / x] : \typeI\oplus \typeI
   &\textbf{Discrimination} = - \vljud \textbf{HMeasure} [ \textbf{StatePreparation} [\textbf{CoinToss}(*)/ b] / x] : \typeI\oplus \typeI
 \end{align*}
@@ -1770,21 +1770,21 @@ wire=c]{1} \\
   \label{fig:teleport}
 \end{figure}
 We first describe each of the rectangles filled in blue separately, and using
-standard quantum gate operations, namely $H: \emph{qbit} \to \emph{qbit}$, $X:
-\emph{qbit} \to  \emph{qbit}$, $Z: \emph{qbit} \to \emph{qbit}$, and
-$\emph{CNOT}: \emph{qbit}, \emph{qbit} \to \emph{qbit} \otimes \emph{qbit}$:
+standard quantum gate operations, namely $H: \mathtt{qbit} \to \mathtt{qbit}$, $X:
+\mathtt{qbit} \to  \mathtt{qbit}$, $Z: \mathtt{qbit} \to \mathtt{qbit}$, and
+$\emph{CNOT}: \mathtt{qbit}, \mathtt{qbit} \to \mathtt{qbit} \otimes \mathtt{qbit}$:
 \begin{align*}
-   & \hspace{-25pt} \textbf{EPR} =  \emph{CNOT} (\emph{H}\ket{0},\ket{0}) : \emph{qbit} \otimes
-   \emph{qbit}  \\ 
+   & \hspace{-25pt} \textbf{EPR} =  \emph{CNOT} (\emph{H}\ket{0},\ket{0}) : \mathtt{qbit} \otimes
+   \mathtt{qbit}  \\ 
    %
-   &\hspace{-25pt}\textbf{BellMeasure} =  q_{1}: \textit{qbit}, q_{2}: \textit{qbit}
+   &\hspace{-25pt}\textbf{BellMeasure} =  q_{1}: \mathtt{qbit}, q_{2}: \mathtt{qbit}
    \vljud  \text{pm} \, \textit{CNOT} (q_{1},q_{2})
   \,  \text{to}\, x \otimes y. \,
     \\
    & \hspace{150pt} \textit{meas} (\textit{H} (x)) \otimes \textit{meas} (y) : \left(\typeI\oplus \typeI\right) \otimes \left(\typeI\oplus
    \typeI\right) \\
    %
-   &\hspace{-25pt}\textbf{Correction}= q: \textit{qbit}, x: \typeI \oplus \typeI,  y:
+   &\hspace{-25pt}\textbf{Correction}= q: \mathtt{qbit}, x: \typeI \oplus \typeI,  y:
         \typeI \oplus \typeI \, \vljud \\
     &\hspace{50pt} \text{case } x \left\{ 
         \begin{aligned} 
@@ -1801,16 +1801,16 @@ $\emph{CNOT}: \emph{qbit}, \emph{qbit} \to \emph{qbit} \otimes \emph{qbit}$:
                   &\inr (y_{1}) \Rightarrow{} y_1 \text{ to } \ast. \, \emph{Z}
 (\emph{X}(q))
                 \end{aligned} \right\}
-        \end{aligned}\right\} : \emph{qbit}
+        \end{aligned}\right\} : \mathtt{qbit}
 \end{align*}
 
 Designating the qubit to be teleported as $qb_0$, one then describes the
 teleportation procedure in $\lambda$-calculus as follows:
  \begin{align*}
-  \textbf{QTP} = qb_{0}: \textit{qbit}\hspace{3 pt} \vljud \hspace{3 pt} & \text{pm} \hspace{5pt} \textbf{EPR} \hspace{5pt} \text{to} \hspace{5pt}  qb_{1} \otimes qb_{2}.  \notag \\
+  \textbf{QTP} = qb_{0}: \mathtt{qbit}\hspace{3 pt} \vljud \hspace{3 pt} & \text{pm} \hspace{5pt} \textbf{EPR} \hspace{5pt} \text{to} \hspace{5pt}  qb_{1} \otimes qb_{2}.  \notag \\
      & \text{pm}\hspace{5pt} \textbf{BellMeasure}\, [qb_0/q_1,qb_{1}/q_2] \hspace{5pt}  \text{to} \hspace{5pt} c_{0}\otimes c_{1} . \notag \\
      & \textbf{Correction}\, [qb_{2}/q,c_{0}/x, c_{1}/y] 
-     : \emph{qbit} 
+     : \mathtt{qbit} 
  \end{align*}
 
 
@@ -1910,11 +1910,11 @@ teleportation procedure in $\lambda$-calculus as follows:
 
      If a dephasing channel acts on the first qubit of the EPR state, we are interested in reasoning about the following judgements:
      \begin{align*}
-      &\textbf{EPR} = (\id \otimes \id)(\emph{CNOT} (\emph{H}\ket{0},\ket{0})) : \emph{qbit} \otimes
-      \emph{qbit}  \\ 
+      &\textbf{EPR} = (\id \otimes \id)(\emph{CNOT} (\emph{H}\ket{0},\ket{0})) : \mathtt{qbit} \otimes
+      \mathtt{qbit}  \\ 
       %
-      &\textbf{EPR}^{\epsilon_1,\epsilon_2, \epsilon_3,p} =  (D_p \otimes \id) (\emph{CNOT} ( \emph{H}^{\epsilon_1,\epsilon_2, \epsilon_3}\ket{0},\ket{0})) : \emph{qbit} \otimes
-      \emph{qbit} 
+      &\textbf{EPR}^{\epsilon_1,\epsilon_2, \epsilon_3,p} =  (D_p \otimes \id) (\emph{CNOT} ( \emph{H}^{\epsilon_1,\epsilon_2, \epsilon_3}\ket{0},\ket{0})) : \mathtt{qbit} \otimes
+      \mathtt{qbit} 
    \end{align*}
 
    Given axioms in equations \eqref{eq:h_error_telepor} and \eqref{eq:dephasing_telepor}, using our metric deductive system, we infer that
@@ -1967,18 +1967,18 @@ As a result, we can postulate the following axiom:
 When an amplitude damping channel acts on the final qubit following the Correction block, we define two new lambda terms consisting of the ideal operation \textbf{Id} and its erroneous counterpart  $\textbf{Id}^{\gamma}$.
 
 \begin{align}\label{eq:id_error_teleport}
-  &\textbf{Id} = qb:\textit{qbit} \, \vljud \id (qb) \\
-  & \textbf{Id}^{\gamma} = A_{\gamma} (q):\textit{qbit} \, \vljud  A_{\gamma} (qb)
+  &\textbf{Id} = qb:\mathtt{qbit} \, \vljud \id (qb) \\
+  & \textbf{Id}^{\gamma} = A_{\gamma} (q):\mathtt{qbit} \, \vljud  A_{\gamma} (qb)
 \end{align}
 
 
 Consequently the ideal version of teleportation protocol is now defined as follows
 
 \begin{align*} 
-  \textbf{QTP} = qb_{0}: \textit{qbit}\hspace{3 pt} \vljud \hspace{3 pt} & \text{pm} \hspace{5pt} \textbf{EPR} \hspace{5pt} \text{to} \hspace{5pt}  qb_{1} \otimes qb_{2}.  \notag \\
+  \textbf{QTP} = qb_{0}: \mathtt{qbit}\hspace{3 pt} \vljud \hspace{3 pt} & \text{pm} \hspace{5pt} \textbf{EPR} \hspace{5pt} \text{to} \hspace{5pt}  qb_{1} \otimes qb_{2}.  \notag \\
      & \text{pm}\hspace{5pt} \textbf{BellMeasure}\, [qb_0/q_1,qb_{1}/q_2] \hspace{5pt}  \text{to} \hspace{5pt} c_{0}\otimes c_{1} . \notag \\
      & \textbf{Id} \, [ \textbf{Correction}/qb] \, [qb_{2}/q,c_{0}/x, c_{1}/y] 
-     : \emph{qbit}  
+     : \mathtt{qbit}  
  \end{align*}
 
  Considering the axiom in equation \eqref{eq:amp_damp_teleport} and our metric deductive system, it holds that 
@@ -1992,8 +1992,8 @@ Finally, consider a malicious attack on the quantum teleportation protocol in th
 More generally,  one can define an operation $T$ that applies a unitary operation $U$ to the state given as input with 50\% probability. Operation $T$ can be defined as follows:
 \begin{equation*}
 \begin{split}
-  &T: \hspace{5pt} \textit{qbit}  \to \textit{qbit} \\
-  &T= q:\textit{qbit} \hspace{2pt} \vljud \text{pm} \hspace{2pt} CU ( R_{x,\frac{\pi}{2}}(\ket{0}) ,q) \hspace{2pt} \text{to} \hspace{2pt} newq \otimes qb. \hspace{2pt} \textit{disc} (newq) 
+  &T: \hspace{5pt} \mathtt{qbit}  \to \mathtt{qbit} \\
+  &T= q:\mathtt{qbit} \hspace{2pt} \vljud \text{pm} \hspace{2pt} CU ( R_{x,\frac{\pi}{2}}(\ket{0}) ,q) \hspace{2pt} \text{to} \hspace{2pt} newq \otimes qb. \hspace{2pt} \textit{disc} (newq) 
 \end {split}
 \end{equation*}
 Here, $CU$ denotes the controlled operation that applies $U$ to the second qubit when the first qubit is in the state $\ket{1}\bra{1}$, and leaves it unchanged when the first qubit is in the state $\ket{0}\bra{0}$. The operator $R_{x,\frac{\pi}{2}}$ represents a rotation by $\frac{\pi}{2}$ around the x-axis of the Bloch sphere.
@@ -2055,14 +2055,14 @@ Consequently, we postulate the following axiom:
 
     In this case we reason about the following $\lambda$-terms:
     \begin{align*}
-      &\textbf{BellMeasure} =  q_{1}: \textit{qbit}, q_{2}: \textit{qbit}
+      &\textbf{BellMeasure} =  q_{1}: \mathtt{qbit}, q_{2}: \mathtt{qbit}
    \vljud  \text{pm} \, \textit{CNOT} (q_{1},q_{2})
   \,  \text{to}\, x \otimes y. \,
     \\ 
    & \hspace{170pt} \textit{meas} (\textit{H} (x)) \otimes \textit{meas} (y) : \left(\typeI\oplus \typeI\right) \otimes \left(\typeI\oplus
    \typeI\right) \\
       %
-      & \textbf{BellMeasure}^{\epsilon_1, \epsilon_2,\epsilon_3,T} =  q_{1}: \textit{qbit}, q_{2}: \textit{qbit}
+      & \textbf{BellMeasure}^{\epsilon_1, \epsilon_2,\epsilon_3,T} =  q_{1}: \mathtt{qbit}, q_{2}: \mathtt{qbit}
       \vljud  \text{pm} \, \textit{CNOT} (q_{1},q_{2})
      \,  \text{to}\, x \otimes y. \,
      \\
