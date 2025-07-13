@@ -13,45 +13,45 @@ Warning--empty year in turingComputableNumbersApplication1937
 Warning--empty journal in thrun2002robotic
 Warning--empty booktitle in Church2008
 Warning--empty booktitle in aliprantisBanachLattices1999
-You've used 88 entries,
+You've used 97 entries,
             1791 wiz_defined-function locations,
-            962 strings with 18600 characters,
-and the built_in function-call counts, 20203 in all, are:
-= -- 1839
-> -- 805
-< -- 25
-+ -- 306
-- -- 218
-* -- 1176
-:= -- 3066
-add.period$ -- 277
-call.type$ -- 88
-change.case$ -- 61
+            1018 strings with 20177 characters,
+and the built_in function-call counts, 22421 in all, are:
+= -- 2029
+> -- 913
+< -- 26
++ -- 346
+- -- 249
+* -- 1354
+:= -- 3423
+add.period$ -- 304
+call.type$ -- 97
+change.case$ -- 69
 chr.to.int$ -- 0
-cite$ -- 92
-duplicate$ -- 1033
-empty$ -- 2062
-format.name$ -- 218
-if$ -- 4674
+cite$ -- 101
+duplicate$ -- 1124
+empty$ -- 2271
+format.name$ -- 249
+if$ -- 5158
 int.to.chr$ -- 0
-int.to.str$ -- 88
-missing$ -- 114
-newline$ -- 440
-num.names$ -- 99
-pop$ -- 357
+int.to.str$ -- 97
+missing$ -- 124
+newline$ -- 485
+num.names$ -- 108
+pop$ -- 373
 preamble$ -- 1
 purify$ -- 0
 quote$ -- 0
-skip$ -- 503
+skip$ -- 542
 stack$ -- 0
-substring$ -- 1114
-swap$ -- 284
-text.length$ -- 25
+substring$ -- 1283
+swap$ -- 302
+text.length$ -- 26
 text.prefix$ -- 0
 top$ -- 0
 type$ -- 0
 warning$ -- 4
-while$ -- 191
-width$ -- 90
-write$ -- 953
+while$ -- 212
+width$ -- 99
+write$ -- 1052
 (There were 6 warnings)

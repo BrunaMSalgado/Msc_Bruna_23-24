@@ -271,7 +271,7 @@ In this category, the coproduct is defined as in $\catSet$. The distance functio
 
 
 
-\section{Coproduct cocompletion}
+\section{Coproduct cocompletion} \label{sec:Coproduct_cocompletion}
 
 
 \todo[inline,size=\normalsize]{Porque é que queriamos fazer corpoduct completion de uma categoria C de q não tem productos? Os productos nesta cat não respeitariam as condições de C}
@@ -298,11 +298,11 @@ A \(\catC\) is said to have \emph{all small products} if every small set of obje
 The idea behind the coproduct completion of a category $\catC$ is to create a new category where all small coproducts exist by formally adding them to $\catC$  in the simplest way possible.
 
 \begin{definition}
-  A \emph{(free) coproduct completion} of a category \(\catC\), denoted $\catCcop$, is the category whose objects are families \((X_i)_{i \in I}\) of objects of \(\catC\), where \(I\) is a set; an arrow \((X_i)_{i \in I} \to (Y_j)_{j \in J}\) consists of a pair \((f, (\phi_i)_{i \in I})\), where \(f : I \to J\) is a function between the index sets, and \((\phi_i)_{i \in I}\) is a family of morphisms \(\phi_i : X_i \to Y_{f(i)}\) in \(\catC\). Given morphisms $(f,(\phi)_i): (X_i)_{i \in I} \to (Y_j)_{j \in J}$ and $(g,(\psi)_i): (Y_j)_{j \in J} \to (Z_k)_{k \in K}$, their composition is defined as the morphism, given by the pair \((g \comp f, (\theta_i)_{i \in I})\), where $ \theta_i := \psi_{f(i)} \circ \varphi_i : X_i \to Z_{g(f(i))}$. From now on, unless ambiguity arises, we will omit the indexing function and use letters $\Phi, \Psi, \xi$ to refer to families of morphisms.
+  A \emph{(free) coproduct completion} of a category \(\catC\), denoted $\catCcop$, is the category whose objects are families \((A_i)_{i \in I}\) of objects of \(\catC\), where \(I\) is a set; an arrow \((A_i)_{i \in I} \to (B_j)_{j \in J}\) consists of a pair \((f, (\phi_i)_{i \in I})\), where \(f : I \to J\) is a function between the index sets, and \((\phi_i)_{i \in I}\) is a family of morphisms \(\phi_i : X_i \to Y_{f(i)}\) in \(\catC\). Given morphisms $(f,(\phi)_i): (A_i)_{i \in I} \to (B_j)_{j \in J}$ and $(g,(\psi)_i): (Y_j)_{j \in J} \to (Z_k)_{k \in K}$, their composition is defined as the morphism, given by the pair \((g \comp f, (\theta_i)_{i \in I})\), where $ \theta_i := \psi_{f(i)} \circ \varphi_i : X_i \to Z_{g(f(i))}$. From now on, unless ambiguity arises, we will omit the indexing function and use letters $\Phi, \Psi, \xi$ to refer to families of morphisms.
 \end{definition}
 
 \todo[inline,size=\normalsize]{É para colocar a parte monoidal?}
-\todo[inline,size=\normalsize]{Also na parte quantica nós falamos de metricas para produtos não coprodutos}
+
 
 If $\catC$ is a $\catMet$-category, one may define a metric on the morphims of its coproduct cocompletion $\catCcop$ as follows:
 

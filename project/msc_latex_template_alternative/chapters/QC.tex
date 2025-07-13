@@ -4,7 +4,7 @@
 The first two sections of this chapter present the mathematical and quantum computing preliminaries necessary for understanding the theory of quantum computation. The introduction to quantum computing draws primarily from \cite{nielsen2010quantum,watrous2018theory}, while the mathematical foundations are also based on \cite{heinosaariMathematicalLanguageQuantum2011,conwayCourseFunctionalAnalysis2007,conwayCourseOperatorTheory2000}.
 The next section introduces core concepts from functional analysis that are essential for understanding W$^*$-algebras, based on \cite{rudin91functional,guide2006infinite}. This is followed by a section presenting the fundamentals of W$^*$-algebras, drawing on \cite{sakaiCAlgebrasWAlgebras1998,takesakiTheoryOperatorAlgebras1979,pisierIntroductionOperatorSpace2003}.
 We then show that both Selinger’s category 
-$\catQ$ of quantum operations (i.e., completely positive, trace-nonincreasing superoperators) \cite{selinger2004towards}, and Cho’s category 
+$\catQ$ of quantum operations (i.e., completely positive, trace-nonincreasing super-operators) \cite{selinger2004towards}, and Cho’s category 
 $\WstarCPSUop$, the opposite category of W$^*$-algebras with normal, completely positive, subunital maps \cite{choSemanticsQuantumProgramming2016}, are first-order models.
 Finally, the last section provides a few illustrative examples.
 
@@ -534,7 +534,7 @@ In this subsection we lift the restriction to finite-dimensional Hilbert spaces.
 \end{definition}
 
 \begin{definition}
-  Let $\mathcal{H}$ be an Hilbert space. An operator $A \in \mathcal{B}(\HilbH) $ is \emph{trace class} if $\text{Tr}(|A|) < \infty$, where $|A|= \left(\overline{A}A \right)^{1/2}$.  We denote by $\mathcal{T} (\HilbH)$ the set of trace class operators.
+  Let $\mathcal{H}$ be an Hilbert space. An operator $A \in \mathcal{B}(\HilbH) $ is \emph{trace class} if $\text{Tr}(|A|) < \infty$, where $|A|= \left(\overline{A}A \right)^{1/2}$.  We denote by $\mathcal{T} (\HilbH)$ the set of trace class operators on $\mathcal{H}$.
 \end{definition}
 If $\mathcal{H}$ is infinite-dimensional, the set $\mathcal{T}(\mathcal{H})$ forms a proper subset of $\mathcal{B}(\mathcal{H})$. In the finite-dimensional case, however, the two spaces coincide and can be identified with one another.
 
@@ -1010,8 +1010,8 @@ where $A \in \TraceOp{\HilbH}$
 
 Unfortunately, this norm is not stable under tensoring , given that the inequation $ \lVert \Phi \otimes I_{\TraceOp{\HilbH}} \rVert_{1} \geq \lVert \Phi \rVert_{1}$ does not hold \cite{watrous2018theory}. As a result, the diamond norm, which is based on the trace norm, is used instead in the context of quantum channels. 
 
-\begin{definition}
-  Given a super-operator $\Phi \TraceOp{\HilbH} \to \TraceOp{\HilbK}$, the diamond norm, \gls{diamond-norm}, is defined as:
+\begin{definition} \label{def:diamond_norm}
+  Given a super-operator $\Phi: \TraceOp{\HilbH} \to \TraceOp{\HilbK}$, the diamond norm, \gls{diamond-norm}, is defined as:
   \begin{equation*}  \label{eq:diamond_distance}
     \lVert \Phi \rVert_{\diamondsuit} =  \lVert \Phi \otimes \id_{\TraceOp{\HilbH}} \rVert_{1}
   \end{equation*}
@@ -1259,23 +1259,828 @@ is also a bounded linear map.
 
 \section{Categories for (first-order) quantum computation}
 
-In \cite{dahlqvist2023syntactic} so...
+Given that the categories that ``naturally arise'' in quantum computation are first-order, in this section we restrict the $\lambda$-calculus to the first-order setting. Consequently, our models will be distributive symmetric monoidal $\catMet$-categories, that is, we do not require a $\catMet$-isomorphism
+\[
+  \catC(B \otimes A, C) \cong \catC(C, A \multimap B).
+\]
 
-\begin{example} \label{ex:cat_cptp}
-The category $\catCPTP$ is the category whose objects are natural numbers $n \geq 1$ and whose morphisms $n \rightarrow m$ are quantum channels $C^{n \times n} \rightarrow C^{m\times m}$.
-\end{example}
+%The category $\catCPTP$ of completely positive trace-preserving maps is a symmetric monoidal category enriched over metric spaces \cite{dahlqvist2023syntactic}. 
 
-Here we draw attention to the fact that ...
+%An alternative approach was explored in \cite{dahlqvist2023syntactic}, using linear $\lambda$-calculus as basis. A notion of approximate equivalence is then integrated in the calculus via the so-called diamond norm, which induces a metric on the space of quantum programs (seen semantically as completely positive trace-preserving super-operators) \cite{watrous2018theory}. 
+
+
+We begin by presenting the category $\catCPTP$ of completely positive trace-preserving maps, which was shown in \cite{dahlqvist2023syntactic} to form a symmetric monoidal $\catMet$-category. In this section \gls{square_matrix} will denote the vector space of complex $n\times n$ matrices.
+
+%In \cite{dahlqvist2023syntactic} showed that the $\catCPTP$ of completely positive trace-preserving maps is a symmetric monoidal category enriched over metric spaces \cite{dahlqvist2023syntactic}.
+
+\begin{definition} \label{ex:cat_cptp}
+The category $\catCPTP$ is the category whose objects are natural numbers $n \geq 1$ and whose morphisms $n \rightarrow m$ are quantum channels $\mathcal{M}_n \rightarrow \mathcal{M}_m$.
+\end{definition}
+
+
+A natural candidate for interpreting quantum programs with coproducts is the category $\catCPTP^+$, obtained via the coproduct cocompletion of $\catCPTP$. For $\catCPTP^+$ to serve as a suitable model for quantum computation, its morphisms should be able to express the measurement operation, \ie, an operation mapping a density matrix $\rho \in \mathcal{M}_2$ to a classical bit $b \in \mathbb{C} \oplus \mathbb{C}$. However, this is not the case.
+Recall that in $\catCPTP^+$, a morphism consists of a pair $(f, (\phi_i)_{i \in I})$, where: $f \colon I \to J$ is a function between index sets, and
+ $(\phi_i)_{i \in I}$ is a family of $\catCPTP$-morphisms $\phi_i \colon A_i \to B_{f(i)}$. Because $f$ is a function, the category does not support morphisms of the form $(f,\phi_i \colon A \to C_i)_{i \in I}$ when $I$ has more than one element. As a result, we do not have products, and consequently, measurements.
+
+
+Given this negative result, we will shift our focus to a category that is known to possess both products (and therefore supports measures) and coproducts: Selinger’s QPL model, the category~$\catQ$ \cite{selinger2004towards}.
+
+\begin{definition} \label{def:catQ}
+  The category $\catQ$ is defined as the the finite biproduct completion of $\catCP$ (which extends $\catCPTP$ to include all completely positive maps),  further restricted to trace-nonincreasing morphisms. 
+  \begin{itemize}
+    \item An object is a signature $\sigma= n_1, \ldots, n_s$. We denote these signatures by the Greek letters $\sigma, \tau$ and $\mu$.
+    \item  Given signatures  $\sigma = n_1, \ldots, n_s $ and $\tau= m_1, \ldots, m_t $, a morphism $\Phi \in \sigma \to \tau $ is a matrix
+    $$\begin{pmatrix}
+      \Phi_{11} & \ldots & \Phi_{s1}, \\
+      \vdots & \ddots  & \vdots \\
+      \Phi_{1t} & \ldots & \Phi_{ts} \\
+    \end{pmatrix}$$
+    of arrows $\Phi_{ij}: \mathcal{M}_{n_i} \rightarrow \mathcal{M}_{m_j}$ in $\catCP$ which is trace-nonincreasing, \ie, the following condition holds:
+    $$ \sum_j \sum_i \tr \left(\Phi_{ij} (A_i)\right)   \leq  \sum_i \tr \left(A_i\right) $$
+   for all positive $A_i \in \mathcal{M}_{n_i}$.
+
+    More concretely, $ij$-component of $\Phi$ is given by the function $\Phi_{ij} = \pi_{j} \comp \Phi \comp \mathrm{in}_{i} : \mathcal{M}_{n_i} \rightarrow \mathcal{M}_{n_j} $, where $\mathrm{in}_{i}$ is the injection of  $\mathcal{M}_{n_i}$ into the input space of $\Phi$ and  $\pi_{j}$ is the projection onto the $j$-th component.
+  \end{itemize}
+\end{definition}
+
+Trace-non increasing  maps are used here instead of strictly trace-preserving maps to account for possible non-termination in programs, particularly since the language  QPL includes while loops.
+
+Every signature $\sigma$, is associated with a complex vector space   
+$\mathcal{M}_\sigma \coloneqq \SqMatrix{n_1} \oplus \cdots \oplus \SqMatrix{n_s}$
+
+This space consists of matrix vectors 
+$$A = \begin{pmatrix} A_1 \\ \vdots \\ A_n \end{pmatrix}$$
+where the signature $\sigma$ specifies both the number of matrices, $s$,  and their respective dimensions, $n_i \times n_i$. The elements of $\mathcal{M}_\sigma$ are represented uppercase letters such as $A$, $B$, etc.
+We also establish that $\mathbb{C}^\sigma \coloneqq \mathbb{C}^{n_1} \oplus \cdots \oplus \mathbb{C}^{n_s}$.
+
+Note that attending to the definition of trace, for $A = \begin{pmatrix} A_1 & \ldots & A_n \end{pmatrix}^T$, we have $\tr(A) = \sum_{i=1}^n \tr(A_i).$
+ 
+
+\begin{definition} \label{def:biproduct} \emph{Product and Coproduct}
+  The biproduct is given by the direct sum $\oplus$. Consequently, $\sigma \oplus \sigma'$ represents the concatenation of signatures. The co-pairing map $[\Phi, \Psi]: \sigma \oplus \sigma' \to \tau$ is defined as  $[\Phi, \Psi](A, B) = \Phi(A) + \Psi(B)$, and the pairing map $\langle \Phi, \Psi \rangle: \sigma \to \tau \oplus \tau'$ is given by  $\langle \Phi, \Psi \rangle(A) = (\Phi(A), \Psi(A))$.
+\end{definition}
+
+\begin{definition} \label{def:tensor} \emph{Tensor Product }
+  For signatures $\sigma = n_1, \ldots, n_s $ and $\tau= m_1, \ldots, m_t $, the tensor product of $\sigma$ and $\tau$ is defined as $\sigma \otimes \tau = n_1 m_1, \ldots ,n_1 m_t, \ldots, n_s m_1,...,n_s m_t$. 
+  The morphism part of the tensor product follows the definition in the category of vector spaces. If $\Phi: \sigma \rightarrow \tau$ and $\Psi: \sigma' \rightarrow  \tau'$, then their tensor product $\Psi \otimes \Phi: \sigma \otimes \sigma' \rightarrow  \tau \otimes \tau' $ is defined on a basis element $A \otimes B$ by  
+$$
+(\Phi \otimes \Psi)(A \otimes B) = \Phi(A) \otimes \Psi(B),
+$$
+and extends to arbitrary elements by linearity. More concretly, the tensor product $\Phi \otimes \Psi$ is the Kronecker product of their matrices representation, \ie,
+\begin{align*}
+  \Phi \otimes \Psi = 
+  \begin{pmatrix}
+  \Phi_{11} \otimes \Psi_{11} & \ldots & \Phi_{11} \otimes \Psi_{s'1} & \ldots   & \Phi_{s1} \otimes \Psi_{11} & \ldots & \Phi_{s1} \otimes \Psi_{s'1} \\
+  \vdots & & & & & & \vdots \\
+  \Phi_{1t} \otimes \Psi_{1t'} & \ldots & \Phi_{1t} \otimes \Psi_{s't'} & \ldots   & \Phi_{st} \otimes \Psi_{1t'} & \ldots & \Phi_{st} \otimes \Psi_{s't'}
+\end{pmatrix}
+\end{align*}
+
+
+
+ Moreover, $\dist$ is an identity map:
+  \[ (\sigma \oplus \sigma') \otimes \tau = (\sigma \otimes \tau ) \oplus (\sigma' \otimes \tau ) \]
+
+  
+\end{definition}
+
+
+The category $\catQ$ is a distributive symmetric monoidal category with (finite) biproducts. However, this category is not closed \cite{selinger2004b}.
+
+%to the following metrics: $d(\langle \phi, \psi \rangle, \langle \phi', \psi' \rangle ) = \sup \{ d(\phi, \phi' ), d(\psi, \psi') \}$ and $d(\langle \phi, \psi \rangle, \langle \phi', \psi' \rangle ) = d(\phi, \phi' ) +  d(\psi, \psi') $.
+
+We begin by applying the insights from \Cref{sec:Coproduct_cocompletion} and considering the following metric on the pairing:  
+\[
+d\big( \langle \phi, \psi \rangle, \langle \phi', \psi' \rangle \big) \coloneqq \sup \big\{ d(\phi, \phi'),\ d(\psi, \psi') \big\}.
+\]
+
+For this to be a suitable metric, for $\catQ$-maps $\phi_1, \phi_2,  \phi_1', \phi_2', \psi_1, \psi_2$ the following should hold:
+\begin{align*}
+  d([\psi_1, \psi_2] \cdot \langle \phi_1, \phi_2 \rangle, [\psi_1, \psi_2] \cdot \langle \phi_1', \phi_2' \rangle ) \leq d(\langle \phi_1, \phi_2 \rangle, \langle \phi_1', \phi_2' \rangle )
+\end{align*}
+Considering $\phi_1=\phi_2$, $\phi_1'=\phi_2'$, $\phi_1 \neq \phi_1'$ and $\psi_1= \psi_2 = \id$, we have
+\begin{align*}
+  & d([\psi_1, \psi_2] \cdot \langle \phi_1, \phi_2 \rangle, [\psi_1, \psi_2] \cdot \langle \phi_1', \phi_2' \rangle ) \\
+  & = d(\psi_1 \cdot \phi_1 + \psi_2 \cdot \phi_2, \psi_1 \cdot \phi_1' + \psi_2 \cdot \phi_2') \\
+  & = d(2 \phi_1, 2 \phi_1')
+\end{align*}
+
+Futhermore, if the metric is induced by a norm, $\ie$ $d (\psi_1, \psi_2) = \lVert \psi_1 - \psi_2\lVert$, it follows that
+\begin{align*}
+  & d(2 \phi_1, 2 \phi_1') \\
+  & = \lVert 2 \phi_1 - 2 \phi_1' \lVert \\
+  & = 2 \cdot \lVert \phi_1 - \phi_1' \lVert \\
+  & = 2 \cdot  d(\phi_1, \phi_1') > d(\phi_1, \phi_1') = \sup \{d(\phi_1, \phi_1'), d(\phi_2, \phi_2')\} = d(\langle \phi_1, \phi_2 \rangle, \langle \phi_1', \phi_2' \rangle )
+\end{align*}
+Thus, this metric is not a suitable candidate for making $\catQ$ a $\catMet$-category.
+
+Now let us consider the metric below
+\[
+d\big( \langle \phi, \psi \rangle, \langle \phi', \psi' \rangle \big) \coloneqq  d(\phi, \phi') + \ d(\psi, \psi').
+\]
+For $\catQ$-maps $ \phi, \phi', \phi_1, \phi_2$ the following should hold:
+\begin{align*}
+  d( \langle \phi_1, \phi_2 \rangle \cdot \phi, \langle \phi_1, \phi_2 \rangle \cdot \phi' ) \leq d(\phi, \phi')
+\end{align*}
+
+Considering $\phi_1=\phi_2 = \id$ and $\phi \neq \phi'$, we have
+\begin{align*}
+  & d( \langle \phi_1, \phi_2 \rangle \cdot \phi, \langle \phi_1, \phi_2 \rangle \cdot \phi' )  \\
+  & = d(  \langle \phi_1 \cdot \phi, \phi_2 \cdot \phi \rangle \langle \phi_1 \cdot \phi', \phi_2 \cdot \phi' \rangle ) \\
+  & = d(  \langle  \phi, \phi \rangle, \langle  \phi',  \phi' \rangle  )  \\
+  & = d(  \phi,  \phi'  ) +  d(  \phi,  \phi'  ) \\
+  & = 2 \cdot d(  \phi,  \phi'  ) > d(  \phi,  \phi'  )
+\end{align*}
+
+Next, we will consider a metric between the other two, \ie, $$\sup \{ d(\phi, \phi' ), d(\psi, \psi') \} \leq d(\langle \phi, \psi \rangle, \langle \phi', \psi' \rangle ) \leq d(\phi, \phi' ) +  d(\psi, \psi').$$
+
+In order to verify if this metric is valid,  we must ensure that for $\catQ$-maps $\phi_1, \phi_2,  \phi_1', \phi_2', \psi_1, \psi_2$ the following holds:
+\begin{align*}
+  d([\psi_1, \psi_2] \cdot \langle \phi_1, \phi_2 \rangle, [\psi_1, \psi_2] \cdot \langle \phi_1', \phi_2' \rangle ) \geq \sup \{ d(\phi_1, \phi_1' ), d(\phi_2, \phi_2') \}.
+\end{align*}
+
+Assuming that \(\phi_2 = \phi_2'\),  the metric is induced by a submultiplicative norm with respect to composition, and \(\|\phi_1\| < 1\), we have
+\begin{align*}
+  & d([\psi_1, \psi_2] \cdot \langle \phi_1, \phi_2 \rangle, [\psi_1, \psi_2] \cdot \langle \phi_1', \phi_2' \rangle ) \\
+  & = d(\psi_1 \cdot \phi_1 + \psi_2 \cdot \phi_2, \psi_1 \cdot \phi_1' + \psi_2 \cdot \phi_2') \\
+  & = \lVert \psi_1 (\phi_1- \phi_1' ) \lVert \\
+  & \leq    \lVert \psi_1  \lVert  \lVert \phi_1- \phi_1'  \lVert \\
+  & = \lVert \phi_1- \phi_1'  \lVert  \\
+    & =  d(\phi_1, \phi_1' ).
+\end{align*}
+
+
+
+Consequently this norm is not fit either.
+
+
+Given that our attempts to consider a simpler metric were not fruitful, we now turn our attention to the diamond norm (\autoref{def:diamond_norm}). First, note the following inclusions, given signatures $\sigma$ and $\tau$:
+\[
+\SqMatrix{n_1} \oplus \cdots \oplus \SqMatrix{n_s} 
+\xhookrightarrow{\text{inc}} 
+\TraceOp{\mathbb{C}_{n_1} \oplus \cdots \oplus \mathbb{C}_{n_s}}, 
+\quad \text{and} \quad 
+\SqMatrix{\sigma \otimes \tau} 
+\xhookrightarrow{\text{inc}} 
+\TraceOp{\mathbb{C}_{\sigma} \otimes \mathbb{C}_{\tau}},
+\]
+where the second inclusion arises from the fact that $\dist = \id$, and thus $\mathbb{C}_{\sigma} \otimes \mathbb{C}_{\tau} = \mathbb{C}_{\sigma \otimes \tau}$.
+
+Let us denote by $\mathcal{LS}(\HilbH, \HilbK)$ the vector space of linear maps from $\TraceOp{\HilbH}$ to $\TraceOp{\HilbK}$. Given signatures $\sigma, \sigma', \tau, \tau'$ and super-operators $\Phi \colon \sigma \to \tau$, $\Psi \colon \sigma' \to \tau'$, we have:
+\[
+\Phi: \SqMatrix{\sigma} \to \SqMatrix{\tau} \in \mathcal{LS}(\mathbb{C}_{\sigma}, \mathbb{C}_{\tau})
+\quad \text{and} \quad
+\Phi \otimes \Psi : \SqMatrix{\sigma \otimes \sigma'} \to \SqMatrix{\tau \otimes \tau'} \in  \mathcal{LS}(\mathbb{C}_{\sigma} \otimes \mathbb{C}_{\sigma'} , \mathbb{C}_{\tau} \otimes \mathbb{C}_{\tau'})
+\]
+
+With these inclusions established, it is now clear that we can use the diamond norm on $\catQ$'s morphisms.
+
+
+\begin{proposition} \label{prop:Q_dist}
+  For all $\Phi, \Phi' \in \catQ(\sigma,\mu)  $ and $\Psi, \Psi' \in \catQ(\tau,\mu) $, it holds that
+  $$ \diamondnorm{[\Phi-\Phi',\Psi-\Psi']} \leq \sup\{\Phi-\Phi',  \Psi-\Psi' \}.$$
+\end{proposition}
+
+\begin{proof}
+  Attending to the definition of the diamond norm, the fact that $\dist$ is an identity  and \autoref{lem_op_max_trace} we compute:
+    \begin{align*}
+      & \gendiamondnorm{[\Phi, \Psi]} \\
+      &= \tracenorm{[\Phi, \Psi] \otimes \id_{\SqMatrix{\sigma\oplus\tau}}} \\
+      &= \tracenorm{[\Phi \otimes \id_{\SqMatrix{\sigma}}, \Psi \otimes \id_{\SqMatrix{\tau}}]}& (\dist=\id) \\
+      & \leq  \sup \{ \tracenorm{\Phi \otimes \id_{\SqMatrix{\sigma}}}, \tracenorm{\Psi \otimes \id_{\SqMatrix{\tau}} }\} & (\text{\autoref{lem_op_max_trace}})\\
+      & = \sup \left\{ \diamondnorm{\Phi}, \diamondnorm{\Psi} \right\}
+    \end{align*}
+The inequality in Proposition \ref{prop:Q_dist} follows from the linearity of the co-pairing map.
+\end{proof}
+
+
+  \begin{corollary} \label{cor:gen_diamond_cptp_norm}
+    Let $\sigma: n_1, \ldots, n_s$ and  $\tau: m_1, \ldots, m_t$  be signatures. Let  $\Phi: \sigma  \rightarrow \tau$ be a  completely positive trace-nonincreasing super-operator. 
+  \end{corollary}
+ 
+
+  \begin{proof}
+    Given that $\Phi$ is a  completely positive trace-nonincreasing super-operator, if follows that $ \Phi \otimes  \id_{\SqMatrix{\sigma}}$ is a positive trace-nonincreasing super-operator. Let $\Psi = \Phi \otimes \id$, it holds that,
+    \begin{align*}
+      & \hspace{-20pt} \diamondnorm{\Phi} =\tracenorm{\Psi}\\
+      &  \hspace{-20pt} = \max \left\{\tr \left( \Psi (u u^\dag)\right) \, \vert \, \euclideannorm{u}=1 \right\}  & \left(\text{\autoref{thm:russo_dye}}\right)\\
+      & \hspace{-20pt} = \max \left\{ \sum_i \sum_j \tr \left( \Psi_{ij} (u_i u_i^\dag)\right) \Bigm|  \euclideannorm{\begin{pmatrix} u_1, \ldots, u_s^2 \end{pmatrix}^T}=1 \right\} \\
+      &  \hspace{-20pt} \leq \max \left\{ \sum_i \tr \left( u_i u_i^\dag \right) \Biggm| \sqrt{\sum_i \euclideannorm{u_i}^2}=1 \right\}   & (\Psi \text{ is trace-nonincreasing}) \\
+      &  \hspace{-20pt} = 1
+    \end{align*}
+    
+    % isto é verdade porque tr(u_iu_i^\dag ) =  \\ u_i\\^2 . consideremos u_i= (a_1,...,a_n), tr(ui)= |a_1|^2+...+ |a_n|^2 e \\ u_i\\ = \sqrt(|a_1|^2+...+ |a_n|^2)
+    
+    
+  \end{proof}
+
+  
+
+\begin{proposition} \label{prop:Q_monoidal}
+  The category $\catQ$ a symmetric monoidal $\catMet$-category.
+\end{proposition}
+
+
+\begin{proof}
+  Here we follow the same reasoning as \cite[Proof of  Proposition 4.1]{dahlqvist2023syntactic}.
+
+  First, we establish that $\catQ$ is $\catMet$-enriched. By unpacking the relevant definitions, this reduces to proving the following: for all $\catQ$-morphisms $\Phi, \Phi' : \sigma \to \tau$ and $\Psi, \Psi' : \tau \to \mu$ the inequation $\diamondnorm{\Phi-\Phi'} + \diamondnorm{\Psi-\Psi'} \geq \diamondnorm{\Psi\Phi-\Psi'\Phi'} $ holds. 
+  We proceed as follows:
+\begin{align*}
+  & \diamondnorm{\Phi - \Phi'} + \diamondnorm{\Psi - \Psi'} \\
+&\geq \diamondnorm{(\Phi - \Phi')\Psi} +  \diamondnorm{\Phi'(\Psi - \Psi')}  & (\text{\autoref{prop:diamond_submult}}, \text{ and \autoref{cor:gen_diamond_cptp_norm}}) \\
+& = \diamondnorm{\Phi \Psi- \Phi' \Psi} +  \diamondnorm{\Phi'\Psi - \Phi' \Psi'} \\
+& \geq  \diamondnorm{\Phi \Psi- \Phi' \Psi + \Phi'\Psi - \Phi' \Psi' }  & \{ \text{Triangle inequality} \} \\
+&= \diamondnorm{\Psi\Phi-\Psi'\Phi'}.
+\end{align*}
+
+  Next, to prove that  $\diamondnorm{\Phi-\Phi'} + \diamondnorm{\Psi-\Psi'} \geq \diamondnorm{\Psi \otimes \Phi-\Psi' \otimes \Phi'} $, we calculate
+  \begin{align*}
+      & \hspace{-30pt} \|\Psi - \Psi'\| + \|\Phi - \Phi'\| \\
+      & \hspace{-30pt} \geq \diamondnorm{\id \otimes \left(\Psi-\Psi'\right)} + \diamondnorm{\id \otimes \left(\Phi-\Phi'\right)} & (\text{\autoref{thm:diamond_tensor_comp} and \autoref{cor:gen_diamond_cptp_norm} })  \\
+      &\hspace{-30pt} =  \diamondnorm{\id \otimes \Psi- \id \otimes\Psi'} + \diamondnorm{\id \otimes \Phi- \id \otimes\Phi'} \\
+      &\hspace{-30pt} \geq \diamondnorm{\left( \id \otimes \Psi \right) \cdot \left( \Phi \otimes \id \right)} -  \diamondnorm{\left( \id \otimes \Psi' \right) \cdot \left( \Phi' \otimes \id \right)} & (\catQ \text{ is a} \mathsf{Met}\text{-category}) \\
+      &\hspace{-30pt} = \diamondnorm{\Psi \otimes \Phi - \Psi' \otimes \Phi'}
+  \end{align*}
+
+\end{proof}
+
+\begin{theorem}
+  $\catQ$ is a distributive symmetric monoidal $\catMet$-category. 
+\end{theorem}
+
+\begin{proof}
+  It follows directly from \autoref{prop:Q_dist} and  \autoref{prop:Q_monoidal}.
+\end{proof}
+
+
+% \TraceOp{\HilbH}
+
+
+
+
+%Here we draw attention to the fact that ...
 
 %Eu estava a pensar na questão Selinger/Watrous. E gostaria de saber se podemos raciocinar da seguinte forma: O Watrous no que diz respeito à diamond / trace norm trabalha com mapas do tipo  Φ = L( H ) -> L( K), onde L(H) designa o espaço  dos mapas lineares de H para H. Ora, A = (A_1, A_2) ∈ C^{n×n} ⊕ C^{m×m}  pode ser visto com um mapa linear em L(C^n ⊕  C^m) definido como (A_1, A_2) (a,b) = (A_1(a), A_2(b)). Assim sendo, Φ:  C^{n_1×n_1} ⊕ C^{m_1×m_1} \-> C^{n_2×n_2} ⊕ C^{m_2×m_2} também pode ser visto como um mapa  Φ: L(C^n_1 ⊕  C^m_1) -> L(C^n_2 ⊕  C^m_2) e, portando, o "casamento Selinger/Watrous" é automático: podemos usar a diamond norm diretamente nos mapas Φ do Selinger. No caso de esta linha de racicionio não estar correta, pedia que, se possível, marcássemos uma reunião online ainda esta semana, porque parece-me que definir a norma de um mapa Φ do Selinger com base na diamond norma de somas diretas de mapas Φ_i:  L( H ) -> L( K), levanta alguns problemas.
 
-Given this negative result, we will shift our focus to a category that is known to possess both products (and therefore supports measures) and coproducts: Selinger’s QPL model, the category~$\catQ$.
+%\( \iota: A \xhookrightarrow{\text{inc}} B \)
 
 
 
 \section{Examples}
 
-\section{High-order}
+We now illustrate the use of (first-order) $\lambda$-calculus with conditionals for describing quantum
+programs. To this effect, we first consider a type \emph{qbit} of qubits, the
+basic unit of information in quantum computation. We then regard $\typeI \oplus
+\typeI$ to be the type of bits. Next we propound the following
+basic quantum operations:  the conversion of a bit into a qubit, $q : \typeI
+\oplus \typeI  \to \emph{qbit}$, the measurement of a qubit,
+$\emph{meas}:\emph{qbit} \to \typeI \oplus \typeI$, and pre-determined sets of
+operations on $n$-qubits, $\emph{U}:\emph{qbit},\ldots,\emph{qbit} \to
+\emph{qbit}^{\otimes n}$ and $\emph{CPTP}:\emph{qbit},\ldots,\emph{qbit} \to
+\emph{qbit}^{\otimes n}$ . The former includes unitary operations, as the Hadamard
+gate $H : \emph{qbit} \to \emph{qbit}$, the not-gate $X : \emph{qbit} \to
+\emph{qbit}$, and the cnot-gate $CNOT : \emph{qbit},\emph{qbit} \to
+\emph{qbit}^{\otimes 2}$, and the  latterr set included operations such as the dephasing with probability $p$, $D_p : \emph{qbit},\emph{qbit} \to
+\emph{qbit}^{\otimes 2}$. We consider as well a pre-determined set of quantum
+states $\ket{\psi} : \typeI \to \emph{qbit}$.  
+
+$\catQ$ forms a model of the metric $\lambda$-theory for quantum computation via the following interpretation: $\sem{\typeI}= \mathbb{C} \ni  1$, 
+$\sem{\emph{qbit} \hspace{1pt}}= \mathbb{C}^2$, 
+$\sem{\emph{q} \hspace{1pt}}((a,b)) = \big(\begin{smallmatrix}
+  a & 0\\
+  0 & b
+\end{smallmatrix}\big)$, 
+for $\psi \in \{0, 1\}$ we define $\sem{\ket{\psi}} (1)= \ket{\psi} \bra{\psi}$,
+$\sem{\emph{meas} \hspace{1pt}} (\rho)= (\text{Tr} (M_{0} \rho M_{0}^{\dag}), \text{Tr} (M_{1} \rho M_{1}^{\dag}))$, 
+for unitary operations $U$ we define $\sem{U}= U \rho U^{\dag}$. 
+For completely positive trace-preserving operators $\emph{CPTP}$, defined as $\emph{CPTP} (\rho) = \sum_i K_i \rho K_i^{\dag}$, we define  $\sem{\emph{CPTP}} = \emph{CPTP}(\rho)$.
+
+Let us now apply this machinery to two well-known problems in quantum computation
+and quantum information.
+
+\subsection{Quantum state discrimination}
+
+
+\begin{example} [Coin-Toss]
+  In the quantum setting, tossing a ``fair'' coin can be described as preparing a qubit in a superposition of two states, $\ket{0}$ and $\ket{1}$, representing `heads' and `tails', each with an equal probability of $0.5$ and then measuring it. This is achieved by simply applying a Hadamard gate to the initial state $\ket{0}$, followed by a measurement.
+More generally, tossing a coin (whether ``fair'' or ``unfair'') can be described as preparing a qubit in a superposition of  $\ket{0}$ and $\ket{1}$, with probabilities $p$ and $1-p$, respectively,  and then measuring it.  Considering $p= \cos(\theta/2)^2$ and the quantum gate $R_{y,\theta} : \emph{qbit} \to \emph{qbit}$, representing a single-qubit rotation by an angle \( \theta \) around the y-axis,  this process is described by the following $\lambda$-term:
+\begin{align*}
+  &\textbf{CoinToss} = - \vljud \emph{meas} (R_{y,\theta} (\ket{0})): \typeI \oplus \typeI
+\end{align*}
+
+When running a quantum program on a real quantum computer, the quantum circuits are mapped to the hardware's native quantum gates during compilation. For instance consider 2020 IBM's native quantum gate set $U_1,U_2,U_3,CX$ where
+
+  \begin{align*}
+    U_1(\lambda) &= 
+    \begin{pmatrix}
+        1 & 0 \\
+        0 & e^{i\lambda}
+    \end{pmatrix} \\
+    U_2(\phi, \lambda) &= 
+    \frac{1}{\sqrt{2}}
+    \begin{pmatrix}
+        1 & -e^{i\lambda} \\
+        e^{i\phi} & e^{i(\phi+\lambda)}
+    \end{pmatrix} \\
+    U_3(\theta, \phi, \lambda) &= 
+    \begin{pmatrix}
+        \cos(\theta/2) & -e^{i\lambda}\sin(\theta/2) \\
+        e^{i\phi}\sin(\theta/2) & e^{i(\phi+\lambda)}\cos(\theta/2)
+    \end{pmatrix} \\
+\end{align*}
+
+Here, \( R_{y,\theta} \), can be expressed as \( U_3(\theta, 0, 0) \). We now examine how the coin toss outcome is affected when the \( U_3 \) gate is faulty, particularly when its parameter \( \theta \) is perturbed by an error \( \epsilon \). In this case, the implemented gate becomes \( U_3(\theta + \epsilon, \phi, \lambda) \), \ie, $R_{y,\theta+\epsilon}$.
+First, we compute the action of the unitary operator \( U_3(\theta, \phi, \lambda) \) on an arbitrary quantum state \( \ket{\psi} \).
+\begin{align*}
+  U_3(\theta, \phi, \lambda) \ket{\psi} 
+  & = U_3(\theta, \phi, \lambda) \left(\cos(\alpha/2) \ket{0} + e^{i\beta}\sin(\alpha/2) \ket{1} \right)\\
+  & = \left(\cos(\alpha/2) \cos(\theta/2) - e^{i (\lambda + \beta)}  \sin(\alpha/2)\sin(\theta/2) \right) \ket{0} \\
+  & + \left(e^{i \phi}\cos(\alpha/2)\sin(\theta/2) + e^{i (\beta + \lambda + \phi)} \sin(\alpha/2) \cos(\theta/2 ) \right) \ket{1}
+\end{align*}
+Designating $U_3(\theta, \phi, \lambda) \ket{\psi} = a \ket{0} + b \ket{1}$, one has
+\begin{align*}
+  \hspace{-25pt} a a^* &= \vert \cos(\alpha/2) \cos(\theta/2) - e^{i (\lambda + \beta) }  \sin(\alpha/2)\sin(\theta/2) \vert ^2 \\
+  \hspace{-25pt} & = \cos^2(\alpha/2) \cos^2(\theta/2) - 2 \cos(\beta + \lambda) \cos(\alpha/2) \cos(\theta/2)  \sin(\alpha/2)\sin(\theta/2)  \\
+  \hspace{-25pt} & \hspace{10pt} + \sin(\alpha/2)^2 \sin^2(\theta/2) \\
+  \hspace{-25pt} & = \cos^2(\alpha/2) \cos^2(\theta/2) + \sin^2(\alpha/2) \sin^2(\theta/2)  - 1/2 \cos(\beta + \lambda) \sin(\alpha)\sin(\theta) \\
+  \hspace{-25pt} & = \cos^2((\theta+\alpha)/2)+(1-\cos(\beta + \lambda))\sin(\alpha)\sin(\theta) -1 \\
+  \hspace{-25pt} a^*b & = \left(\cos(\alpha/2) \cos(\theta/2) - e^{-i (\lambda + \beta)}  \sin(\alpha/2)\sin(\theta/2) \right) \big(e^{i \phi}\cos(\alpha/2)\sin(\theta/2) \\
+  \hspace{-25pt} & \hspace{10pt}  + e^{i (\beta + \lambda + \phi)} \sin(\alpha/2) \cos(\theta/2 ) \big) \\
+  \hspace{-25pt} & = (1/2) \big( e^{i \phi} \cos^2(\alpha/2) \sin(\theta) + e^{i (\beta + \lambda + \phi)} \sin(\alpha) \cos^2(\theta/2) - e^{-i (\beta + \lambda -\phi)} \sin(\alpha) \sin^2(\theta/2) \\
+  \hspace{-25pt} & \hspace{10pt}  - e^{i \phi} \sin^2(\alpha/2) \cos(\theta/2)  \big) \\
+  \hspace{-25pt} & = (1/2) \left( e^{i \phi}\cos(\alpha) \sin(\theta) +  \sin(\alpha) \left(e^{i (\beta + \lambda + \phi)} \cos^2(\theta/2) - e^{-i (\beta + \lambda - \phi)} \sin^2(\theta/2)\right)  \right)
+\end{align*}
+Then, we calculate the vector Bloch of $U_3(\theta, \phi, \lambda) \ket{\psi}$,
+\begin{align*}
+  &x = 2 \text{Im} \left( a^{*}b \right) =   \cos(\phi) \cos(\alpha) \sin(\theta) +  \sin(\alpha) \big(\cos{(\beta + \lambda + \phi)} \cos^2(\theta/2) \\
+  & \hspace{10pt} - \cos{(\beta + \lambda - \phi)} \sin^2(\theta/2)\big)  \\
+  &y = 2 \text{Re} \left( a^{*}b \right) = \sin(\phi) \cos(\alpha) \sin(\theta) +  \sin(\alpha) \big(\sin{(\beta + \lambda + \phi)} \cos^2(\theta/2) \\
+  & \hspace{10pt} + \sin{(\beta + \lambda - \phi)} \sin^2(\theta/2)\big) \\
+  & z = 2 aa^* -1 = 2 \cos^2((\theta+\alpha)/2)+(1-\cos(\beta + \lambda))\sin(\alpha)\sin(\theta) -1
+\end{align*}
+As a result, we have,
+\begin{align*}
+  & \tracenorm{U_3(\theta, 0, 0) \ket{\psi}\bra{\psi} U_3(\theta, 0, 0)^\dag - U_3(\theta + \epsilon, 0, 0) \ket{\psi}\bra{\psi}U_3(\theta+\epsilon, 0, 0)^\dag } \\
+  & = \lVert ( \cos(\alpha) (\sin(\theta) - \sin(\theta + \epsilon)) +  \sin(\alpha) \cos{\beta} \left(\cos(\theta) - \cos(\theta + \epsilon) \right) , 0,\\
+  & \hspace{20pt} 2 (\cos^2((\theta+\alpha)/2) - \cos^2((\theta+ \epsilon+\alpha)/2))+\cos(\beta) \sin(\alpha)(\sin(\theta) - \sin(\theta+\epsilon)) )\rVert_2 \\
+  %& \leq \lVert  (\sin(\theta) - \sin(\theta + \epsilon) + \cos(\theta) - \cos(\theta + \epsilon),0, \\
+  %&  \hspace{20pt}  2 (\cos^2((\theta+\alpha)/2) - \cos^2((\theta+ \epsilon+\alpha)/2))+(\sin(\theta) - \sin(\theta+\epsilon))) \rVert_2   \\
+  &  \leq \euclideannorm{( \cos(\alpha)\epsilon + \sin(\alpha)\cos(\beta) \epsilon, 0, 2\epsilon + \sin(\alpha)\cos(\beta) \epsilon)} \\
+  & = \sqrt{\epsilon^2(\cos^2(\alpha) + 2\sin^2(\alpha)\cos^2(\beta)+\sin(2\alpha)\cos(\beta) + 2\sin(\alpha)\cos(\beta) + 4 )} \\
+  &\leq \epsilon \sqrt{(1 + \sin^2(\alpha) +\sin(2\alpha) + 2\sin(\alpha) + 4 )} \\
+  & \leq \epsilon \sqrt{(1 + 4 + 4 )} = 3 \epsilon
+\end{align*}
+
+The first inequality arises from both functions $\cos$ and $\sin$ being Lipschitz continuous. Attending to \autoref{theorem:diamond_iso}, it follows that
+  \begin{align*}
+    \diamondnorm{R_{y, \theta}- R_{y, \theta + \epsilon} } \leq 3 \epsilon
+  \end{align*}
+
+Using our metric deductive system, we can easily conclude that $\textbf{CoinToss} =_{3 \epsilon} \textbf{CoinToss}^{\epsilon}$, where $\textbf{CoinToss}^{\epsilon}$ is the the judgement that results from replacing $R_{y, \theta}$ by $U^{R_{y, \theta + \epsilon}}$.
+
+\end{example}
+
+
+\begin{example}[Quantum state discrimination] \label{ex:quantum_state_discrimination_syntax}
+
+Quantum state discrimination is a pivotal challenge in 
+ quantum theory of communications \cite{barnett2009qinfo,watrous2018theory} and  quantum cryptography \cite{Gisin02qcripto}. 
+While orthogonal states can be perfectly distinguished, the same does not apply
+to nonorthogonal states. In fact, even when the set of possible nonorthogonal
+states is known, determining the optimal discrimination strategy is considered
+a nontrivial problem.
+
+The problem of quantum state discrimination can be naturally introduced through its connection with quantum communication. Consider two parties, Alice and Bob, who want to communicate with each other using a quantum channel. Alice chooses a state from a known set $\{\ket{\psi_i}\}$, each occurring with a known probability $p_i$ and sends it to Bob through the channel. Bob, who knows both the set of possible states and their associated probabilities, performs a suitable measurement to determine which state Alice sent. This scenario defines the quantum state discrimination problem: how to optimally distinguish between a known set of quantum states, each prepared with a known prior probability $p_i$.
+
+When distinguishing between two pure states, the optimal measurement known as the \emph{Helstrom measurement} is given by a projective measurement
+\cite{barnett2009qinfo}.  When operating within the computational basis, a
+projective measurement can be understood as the application of a unitary
+operator followed by a subsequent measurement in the computational basis. Thus
+the optimal measurement can be interpreted as a unitary transformation applied
+to the quantum state, followed by a measurement in the computational basis. 
+
+We will now show how to describe this discrimination task in
+$\lambda$-calculus.  Consider two pure states $\ket{\psi_0}$ and
+$\ket{\psi_1}$, prepared \emph{a priori} with probabilities $p_0$ and $p_1 = 1-p_0$,
+respectively. Consider as well an operation $U : \emph{qbit} \to \emph{qbit}$ which
+corresponds to the basis-change associated with the optimal measurement.
+The relevant $\lambda$-terms are then:
+\begin{align*}
+  &\textbf{StatePreparation} =  b: \typeI \oplus \typeI  \vljud  \text{case } b\,
+  \{\inl_{\typeB}(x) \Rightarrow \ket{\psi_0} ; \inr_{\typeA}(y) \Rightarrow \ket{\psi_1}\}: \textit{qbit} \\
+  &\textbf{HMeasure} =  x : \emph{qbit} \vljud \emph{meas} (\emph{U}(x)): \typeI \oplus \typeI \\
+  %&\textbf{Discrimination} = (p_0,p_1): \typeI\oplus \typeI \vljud \textbf{HMeasure} [ \textbf{StatePreparation} [(p_0,p_1)/ b] / x] : \typeI\oplus \typeI
+  &\textbf{Discrimination} = - \vljud \textbf{HMeasure} [ \textbf{StatePreparation} [\textbf{CoinToss}(*)/ b] / x] : \typeI\oplus \typeI
+\end{align*}
+
+An arbitrary single qubit unitary $U \in \mathbb{C}^{2 \times 2}$ may be written
+\[
+U = e^{i\alpha} R_{z,\beta} R_{y,\gamma} R_{z,\delta},
+\]
+for appropriate choices of angles $\alpha$, $\beta$, $\gamma$ and $\delta$.
+
+
+As in the previous example, we assume the hardware's native gate set consists of $\{U_1, U_2, U_3, \text{CNOT}\}$, and the quantum circuit is compiled into these gates.  
+As previously noted, the $R_y(\theta)$ gate can be implemented as $U_3(\theta, 0, 0)$.  
+Similarly, the $R_z(\lambda)$ gate is equivalent to $U_1(\lambda)$ up to a global phase factor $e^{-i\lambda/2}$, consequently, it can be directly implemented using this gate.  
+We will also consider that the gates $U_1$ and $U_3$ are affected by errors $\epsilon_1$ and $\epsilon_2$, respectively. 
+More precisely, we will consider erroneous implementations of this gates $U_1(\lambda + \epsilon_1)$ and $U_3(\theta + \epsilon_2, \phi, \lambda)$. 
+From the previous example, we know that the error in the $R_y$ gate is bounded by $3 \epsilon_2$. 
+Consider the single-qubit state
+\[
+\ket{\psi} = \cos\left(\frac{\alpha}{2}\right)\ket{0} + e^{i\beta}\sin\left(\frac{\alpha}{2}\right)\ket{1}.
+\]
+Applying the \( U_1(\lambda) \) gate yields
+\[
+U_1(\lambda)\ket{\psi} = \cos\left(\frac{\alpha}{2}\right)\ket{0} + e^{i(\beta + \lambda)}\sin\left(\frac{\alpha}{2}\right)\ket{1}.
+\]
+The corresponding Bloch vector is then
+\[
+\left(\!\cos(\beta + \lambda)\sin\alpha,\; \sin(\beta + \lambda)\sin\alpha,\; \cos\alpha\right).
+\]
+Consequently, applying the same reasoning as in the previous example, it follows that
+\begin{align*}
+  & \hspace{-15pt} \tracenorm{U_1(\lambda) \ket{\psi}\bra{\psi} U_1(\lambda)^\dag - U_1(\lambda + \epsilon) \ket{\psi}\bra{\psi}U_1(\lambda + \epsilon)^\dag } \\
+  & \hspace{-15pt} = \euclideannorm{\left(\sin(\alpha) \left( \cos(\beta + \lambda) -  \cos(\beta + \lambda + \epsilon) \right),\sin(\alpha) \left( \sin(\beta + \lambda) -  \sin(\beta + \lambda + \epsilon) \right),0 \right)} \\
+  & \hspace{-15pt}\leq \euclideannorm{\left( \cos(\beta + \lambda) -  \cos(\beta + \lambda + \epsilon) , \sin(\beta + \lambda) -  \sin(\beta + \lambda + \epsilon) ,0 \right)} \\
+  & \hspace{-15pt} \leq \euclideannorm{\left( \epsilon, \epsilon ,0 \right)} \\
+  & \hspace{-15pt} = \sqrt{2}\epsilon \\
+\end{align*} 
+
+Attending to \autoref{theorem:diamond_iso}, it follows that
+  \begin{align*}
+    \diamondnorm{U_1(\lambda)- U_1(\lambda + \epsilon) } \leq \sqrt{2} \epsilon
+  \end{align*}
+
+  
+
+
+As a result, considering the $\lambda$-term \textbf{HMeasure} and the erroneous implementation of $U$ described above, denoted $U^{\epsilon_1, \epsilon_2}$, using our deductive metric system, we have $U =_{\sqrt{2}\epsilon_1+ 3\epsilon_2} U^{\epsilon_1, \epsilon_2}$. Therefore, we deduce $\textbf{HMeasure} =_{\sqrt{2}\epsilon_1+ 3\epsilon_2} \textbf{HMeasure}^{\epsilon_1, \epsilon_2}$, where $\textbf{HMeasure}^{\epsilon_1, \epsilon_2}$ is the the judgement that results from replacing $U$ by $U^{\epsilon_1, \epsilon_2}$. Moreover, considering the erroneous implementation of the $R_y$ gate also afecting the \textbf{CoinToss} term, as discussed in the previous example, we deduce that 
+$$\textbf{Discrimination} =_{\sqrt{2}\epsilon_1+6\epsilon_2} \textbf{Discrimination}^{\epsilon_1,\epsilon_2}, $$
+where $\textbf{Discrimination}^{\epsilon_1,\epsilon_2}$ denotes the judgement that results from replacing $\textbf{HMeasure}$ by $\textbf{HMeasure}^{\epsilon_1, \epsilon_2}$ and $\textbf{CoinToss}$ by  $\textbf{CoinToss}^{\epsilon_2}$.
+
+\end{example}
+
+\subsection{Quantum teleportation protocol}
+
+
+\begin{example}[Quantum teleportation] \label{ex:quantum_teleportation_syntax}
+\cite{bennett1993teleporting} introduced the concept of quantum teleportation,
+a protocol that allows the transfer of  unknown quantum states between distant
+parties.  The quantum teleportation protocol is a fundamental building block of
+quantum communication, quantum computation, and quantum networks, its
+applications ranging from secure quantum communication to distributed quantum
+computing
+\cite{briegel1998quantum,gottesman1999demonstrating,kimble2008quantum}.
+
+Conceptually it can be described as follows: Alice and Bob share an entangled
+pair of qubits, specifically in a Bell state. Alice keeps the first qubit and
+Bob the second. Moreover, Alice has a qubit in an unknown state $\ket{\psi}$
+that she wants to send to Bob.  Alice entangles her qubit and the first qubit
+in the Bell state, and then measures both. The result of this measurement is
+two classical bits that Alice then sends to Bob though a classical channel.
+Based on the measurement results, Bob applies a correction to his qubit so it
+matches the initial state $\ket{\psi}$.  The circuit corresponding to the
+implementation of quantum teleportation is depicted in \autoref{fig:teleport}.
+
+
+\begin{figure} [H]
+  \centering
+  \begin{quantikz} [column sep=0.2cm, row sep=0.5cm] 
+      \lstick{$\ket{\psi}$}  & \qw &\qw & \qw & \qw & \qw& \ctrl{1}\gategroup[2,steps=4,style={dashed,rounded
+      corners,fill=blue!20, inner
+      xsep=2pt},background,label style={label
+      position=below,anchor=north,yshift=-0.2cm}]{{\sc
+      BellMeasure}} & \gate{H} & \qw & \meter{} & \setwiretype{c}  &  & \gategroup[3,steps=4,style={dashed,rounded
+      corners,fill=blue!20, inner
+      xsep=2pt},background,label style={label
+      position=below,anchor=north,yshift=-0.2cm}]{{\sc
+      Correction}}  &  & & \ctrl[vertical
+wire=c]{2}  \\
+      \lstick {$\ket{0}$}  &\gate{H}\gategroup[2,steps=3,style={dashed,rounded
+      corners,fill=blue!20, inner
+      xsep=2pt},background,label style={label
+      position=below,anchor=north,yshift=-0.2cm}]{{\sc
+      EPR}} & \qw  & \ctrl{1}& \qw & \qw & \targ{} & \qw & \qw & \meter{} & \setwiretype{c} & & & \ctrl[vertical
+wire=c]{1} \\
+      \lstick{$\ket{0}$}  &  \qw & \qw &  \targ{} & \qw &\qw&\qw & \qw & \qw& \qw & \qw & \qw &  \qw & \gate{X} & \qw & \gate{Z} 
+ \end{quantikz}
+  \caption{Quantum Teleportation Protocol}
+  \label{fig:teleport}
+\end{figure}
+We first describe each of the rectangles filled in blue separately, and using
+standard quantum gate operations, namely $H: \emph{qbit} \to \emph{qbit}$, $X:
+\emph{qbit} \to  \emph{qbit}$, $Z: \emph{qbit} \to \emph{qbit}$, and
+$\emph{CNOT}: \emph{qbit}, \emph{qbit} \to \emph{qbit} \otimes \emph{qbit}$:
+\begin{align*}
+   & \hspace{-25pt} \textbf{EPR} =  \emph{CNOT} (\emph{H}\ket{0},\ket{0}) : \emph{qbit} \otimes
+   \emph{qbit}  \\ 
+   %
+   &\hspace{-25pt}\textbf{BellMeasure} =  q_{1}: \textit{qbit}, q_{2}: \textit{qbit}
+   \vljud  \text{pm} \, \textit{CNOT} (q_{1},q_{2})
+  \,  \text{to}\, x \otimes y. \,
+    \\
+   & \hspace{150pt} \textit{meas} (\textit{H} (x)) \otimes \textit{meas} (y) : \left(\typeI\oplus \typeI\right) \otimes \left(\typeI\oplus
+   \typeI\right) \\
+   %
+   &\hspace{-25pt}\textbf{Correction}= q: \textit{qbit}, x: \typeI \oplus \typeI,  y:
+        \typeI \oplus \typeI \, \vljud \\
+    &\hspace{50pt} \text{case } x \left\{ 
+        \begin{aligned} 
+          & \inl (x_{0}) \Rightarrow x_0 \text{ to } \ast. \text{case } y \left\{
+                \begin{aligned}
+                  &\inl (y_{0})  \Rightarrow  y_0 \text{ to } \ast.
+                        \, q; \\
+                  &\inr (y_{1}) \Rightarrow y_1 \text{ to } \ast. \, \emph{X}
+                \end{aligned} \right\}; \\
+          & \inr (x_{1})  \Rightarrow x_1 \text{ to } \ast. \text{case } y \left\{
+                \begin{aligned}
+                  &  \inl (y_{0})  \Rightarrow
+        y_0 \text{ to } \ast. \, \emph{Z}(q); \\
+                  &\inr (y_{1}) \Rightarrow{} y_1 \text{ to } \ast. \, \emph{Z}
+(\emph{X}(q))
+                \end{aligned} \right\}
+        \end{aligned}\right\} : \emph{qbit}
+\end{align*}
+
+Designating the qubit to be teleported as $qb_0$, one then describes the
+teleportation procedure in $\lambda$-calculus as follows:
+ \begin{align*}
+  \textbf{QTP} = qb_{0}: \textit{qbit}\hspace{3 pt} \vljud \hspace{3 pt} & \text{pm} \hspace{5pt} \textbf{EPR} \hspace{5pt} \text{to} \hspace{5pt}  qb_{1} \otimes qb_{2}.  \notag \\
+     & \text{pm}\hspace{5pt} \textbf{BellMeasure}\, [qb_0/q_1,qb_{1}/q_2] \hspace{5pt}  \text{to} \hspace{5pt} c_{0}\otimes c_{1} . \notag \\
+     & \textbf{Correction}\, [qb_{2}/q,c_{0}/x, c_{1}/y] 
+     : \emph{qbit} 
+ \end{align*}
+
+
+ Following the approach of previous examples, we analyze erroneous implementations of the gates $U_1$ and $U_3$ within the hardware’s native gate set. Additionally, we consider the action of both dephasing and amplitude damping channels. Furthermore, we account for an adversarial agent that applies a bit-flip operation immediately prior to measurement with probability $ p = 0.5 $.  
+
+    Here, we consider imperfect implementations of the gates $U_1$ and $U_3$, given by $ U_1(\lambda) $ and $ U_3(\theta, \phi + \epsilon_2, \lambda + \epsilon_3)$, respectively. 
+    Recall from the previous example that we established the bound $\diamondnorm{U_1(\lambda)- U_1(\lambda + \epsilon) } \leq \sqrt{2} \epsilon$.
+     The Hadamard gate, $H$, is the composition $U_3(\pi/2, 0, 0)\cdot U_1(\pi)$. We calculate,
+    \begin{align*}
+      &\tracenorm{U_3(\pi/2, 0, 0) \ket{\psi}\bra{\psi}U_3(\pi/2, 0, 0)^\dag - U_3(\pi/2, \epsilon_2, \epsilon_3)  \ket{\psi}\bra{\psi}U_3(\pi/2, \epsilon_2, \epsilon_3)^\dag} \\
+      & = \lVert (\cos(\alpha)( 1-\cos{\epsilon_2}) + \sin(\alpha)( 1/2(\cos(\beta + \epsilon_2 + \epsilon_3)-\cos(\beta - \epsilon_2 + \epsilon_3))), \\
+      & \hspace{20pt} \cos(\alpha)( 1-\sin{\epsilon_2}) + (1/2)\sin(\alpha) (\sin(\beta)-\sin(\beta+\epsilon_2 + \epsilon_3)   \\
+      & \hspace{20pt} + \sin(\beta)-\sin(\beta-\epsilon_2 + \epsilon_3)),  (\cos(\beta + \epsilon_3)-\cos(\beta))\sin(\alpha) ) \lVert_2 \\
+      & \leq ||(\cos(\alpha) \epsilon_2 + (1/2)\sin(\alpha) (\epsilon_2 + \epsilon_3) ,\cos(\alpha) \epsilon_2 + (1/2)  \sin(\alpha) (\epsilon_2 + \epsilon_3 + |\epsilon_3-\epsilon_2|), \\
+      & \hspace{20pt} \sin(\alpha) \epsilon_3)||_2 \\
+      &  < \euclideannorm{(\epsilon_2 + (1/2)(\epsilon_2 + \epsilon_3), \epsilon_2 + (1/2)   (\epsilon_2 + \epsilon_3 + |\epsilon_3-\epsilon_2|), \epsilon_3)}  \\
+      & \leq 3 \epsilon_2 +  2\epsilon_3 + |\epsilon_2-\epsilon_3| \\
+    \end{align*}
+
+    Attending to \autoref{theorem:diamond_iso}, it follows that
+    \begin{align*}
+      \diamondnorm{U_3(\pi/2, 0, 0)- U_3(\pi/2, \epsilon_2, \epsilon_3) } \leq 3 \epsilon_2 +  2\epsilon_3 + |\epsilon_2-\epsilon_3|
+    \end{align*}
+    
+    As a result, denoting the imperfect implementation of the Hadamard gate as $H^{\epsilon_1 ,\epsilon_2, \epsilon_3}$, we have 
+    \begin{align} \label{eq:h_error_telepor}
+      H =_{ \sqrt{2}\epsilon_1 + 3 \epsilon_2 + 2\epsilon_3 + |\epsilon_2-\epsilon_3|} H^{\epsilon_1 ,\epsilon_2, \epsilon_3}.
+    \end{align}
+ 
+
+    The gate $X$ can be implemented as $U_3(\pi, \psi, 0)$. We compute,
+    \begin{align*}
+      &\tracenorm{U_3(\pi, 0 , \pi) \ket{\psi}\bra{\psi}U_3(\pi,0,\pi)^\dag - U_3(\pi,\epsilon_2,\pi+\epsilon_3)  \ket{\psi}\bra{\psi}U_3(\pi,\epsilon_2,\pi+\epsilon_3)^\dag}  \\
+      & =\euclideannorm{( \sin(\alpha) (\cos(\beta)+\cos(\beta + \epsilon_3-\epsilon_2)), \sin(\alpha) (\sin(\beta + \epsilon_3-\epsilon_2)-\sin(\beta)),0 )} \\
+      &  \leq \euclideannorm{(|\epsilon_3-\epsilon_2|, |\epsilon_3-\epsilon_2|,0 )} \\
+      & = \sqrt{2} |\epsilon_3-\epsilon_2|
+    \end{align*}
+
+    Considering \autoref{theorem:diamond_iso}, it holds that
+    \begin{align*}
+      \diamondnorm{U_3(\pi, 0 , \pi)- U_3(\pi,\epsilon_2,\pi+\epsilon_3) } \leq \sqrt{2} |\epsilon_3-\epsilon_2|
+    \end{align*}
+
+    As a result, denoting the erroneous implementation of the $X$ gate as $X^{\epsilon_2, \epsilon_3}$, we have
+    \begin{align} \label{eq:x_error_telepor}
+      X =_{\sqrt{2} |\epsilon_3-\epsilon_2|} X^{\epsilon_2, \epsilon_3}.
+    \end{align}
+  
+
+    Finally, the gate $Z$ corresponds to $U_1(\pi)$, therefore, denoting the erroneous implementation of the $X$ gate as $X^{\epsilon_1}$, we postulate the following axiom
+    \begin{align} \label{eq:Correction_error_telepor}
+      Z =_{\sqrt{2} \epsilon_1} Z^{\epsilon_1}.
+    \end{align}
+
+    Designating the \textbf{Correction} block with the imperfect implementations of $X$ and $Z$ by $\textbf{Correction}^{\epsilon_1, \epsilon_2, \epsilon_3}$, in light of the axioms in equations \eqref{eq:x_error_telepor} and \eqref{eq:x_error_telepor} and our metric deductive system we have that
+    \begin{align} \label{eq:z_error_telepor}
+      \textbf{Correction} =_{\sqrt{2} \left(\epsilon_1 +|\epsilon_3-\epsilon_2| \right)} \textbf{Correction}^{\epsilon_1, \epsilon_2, \epsilon_3}.
+    \end{align}
+
+
+     \textbf{Dephasing channel}
+
+     Realistic quantum systems are never isolated, but are immersed in the surrounding environment and interact continuously with it. Decoherence can be seen as the consequence of that  `openness' of quantum systems to their  environments .  To study decoherence in a quantum channel within the presented metric deductive system, one can consider the application of a dephasing channel in the quantum teleportation protocol with a certain probability $p$.
+     
+     The Kraus operators of the dephasing channel with probability $p$ are expressed as:
+     \begin{equation*}
+          D_{0}= \frac{\sqrt{2-p}}{\sqrt{2}} I,  D_{1}= \frac{\sqrt{p}}{\sqrt{2}} Z
+     \end{equation*}
+     
+     Considering a density operator $\rho=|\alpha|^{2} \ket{0} \bra{0} + \alpha \beta^{*} \ket{0} \bra{1}+ \alpha^{*} \beta \ket{1} \bra{0} + |\beta|^{2} \ket{1} \bra{1}$, using these Kraus operators, it is possible to easily verify  that after applying the dephasing channel with probability $p$, the resulting operator $\rho'$ is given by: 
+     \begin{equation*} 
+          \rho' = D_p(\rho)= D_{0} \rho D_{0}^{\dag} + D_{1} \rho D_{1}^{\dag} = |\alpha|^{2} \ket{0} \bra{0} +  (1-p) \alpha \beta^{*} \ket{0} \bra{1}+  (1-p) \alpha^{*}  \beta \ket{1} \bra{0} + |\beta|^{2} \ket{1} \bra{1}
+     \end{equation*}
+     This shows that the dephasing channel with probability $p$ preserves the diagonal elements of the density matrix while attenuating the off-diagonal elements by a factor of $(1-p)$.
+
+     In this scenario (and in subsequent ones), we will add identity gates to the ideal program to simplify the calculations. Thus, attending to the definition of trace norm for matrices and \autoref{eq:apply_f_diag}, we have:
+     \begin{align*}
+      & \tracenorm{ \id(\rho) - D_{p}(\rho)} \\
+      & \tracenorm{ \alpha \beta^{*} \ket{0} \bra{1}+ \alpha^{*} \beta \ket{1} \bra{0}  -   (1-p) \alpha \beta^{*} \ket{0} \bra{1}-  (1-p) \alpha^{*}  \beta \ket{1} \bra{0} } \\
+      & = p \cdot  \tracenorm{ \alpha \beta^{*} \ket{0} \bra{1} + \alpha^{*}  \beta \ket{1} \bra{0} } \\
+      & = p \cdot \tr \left(\sqrt{\left( \alpha \beta^{*} \ket{0} \bra{1} + \alpha^{*}  \beta \ket{1} \bra{0} \right)^2} \right) \\
+      & = p \cdot  \tr \left(\sqrt{|\alpha|^{2}|\beta|^{2} (\ket{0} \bra{0}+ \ket{1} \bra{1})  } \right) \\
+      & = 2 \cdot p \cdot |\alpha||\beta| \\
+      & \leq p \\
+     \end{align*}
+     The last step arises from the fact that the expression is maximized when $|\alpha|=|\beta|=1/\sqrt{2}$.
+
+     Considering Theorem \ref{theorem:diamond_cptp_id}, it holds that
+     \begin{align*}
+        \diamondnorm{ \id - D_p} \leq \sqrt{2p}
+     \end{align*}
+
+     Consequently, we can postulate the following axiom:
+      \begin{align} \label{eq:dephasing_telepor}
+         \id =_{\sqrt{2p}}  D_p  .
+      \end{align}
+
+     If a dephasing channel acts on the first qubit of the EPR state, we are interested in reasoning about the following judgements:
+     \begin{align*}
+      &\textbf{EPR} = (\id \otimes \id)(\emph{CNOT} (\emph{H}\ket{0},\ket{0})) : \emph{qbit} \otimes
+      \emph{qbit}  \\ 
+      %
+      &\textbf{EPR}^{\epsilon_1,\epsilon_2, \epsilon_3,p} =  (D_p \otimes \id) (\emph{CNOT} ( \emph{H}^{\epsilon_1,\epsilon_2, \epsilon_3}\ket{0},\ket{0})) : \emph{qbit} \otimes
+      \emph{qbit} 
+   \end{align*}
+
+   Given axioms in equations \eqref{eq:h_error_telepor} and \eqref{eq:dephasing_telepor}, using our metric deductive system, we infer that
+   \begin{align} \label{eq:epr_error_teleport}
+    \textbf{EPR} =_{\sqrt{2}\epsilon_1 + 3 \epsilon_2 + 2\epsilon_3 + |\epsilon_2-\epsilon_3| + \sqrt{2p}} \textbf{EPR}^{\epsilon_1,\epsilon_2, \epsilon_3,p}
+   \end{align}
+
+
+     \textbf{Amplitude Dephasing channel}
+
+     Next, the amplitude-damping channel is considered as a source of noise in the quantum teleportation protocol. Similarly to the dephasing channel, the amplitude damping channel serves as a model illustrating the dissipation of energy between a qubit and its environment. An example of this type of noise is found in the spontaneous emission of a photon by a two-level atom into an electromagnetic field environment with either a finite or infinite number of modes at zero temperature \cite{salles2008experimental, Wang_2011}.
+
+     The amplitude damping channel with probability $\gamma$ is described by the Kraus operators:
+\begin{equation*}
+     A_{0}= \ket{0} \bra{0} + \sqrt{1-\gamma} \ket{1} \bra{1} ,  A_{1}= \sqrt{\gamma} \ket{0} \bra{1}
+\end{equation*}
+
+Applying these Kraus operators an arbitray density operator $\rho=|\alpha|^{2} \ket{0} \ket{0} + \alpha \beta^{*} \ket{0} \ket{1} + \alpha^{*} \beta \ket{1} \ket{0} + |\beta|^{2} \ket{1} \ket{1}$, we obtain the state $\rho'$ as follows:
+\begin{align*}
+     \rho' & = A_\gamma(\rho) =  A_{0} \rho A_{0}^{\dag} + A_{1} \rho A_{1}^{\dag} \\
+     & = (|\alpha|^{2} + \gamma |\beta|^{2}) \ket{0}\bra{0} + \sqrt{1-\gamma} \hspace{1pt} \alpha \beta^{*} \ket{0}\bra{1} + \sqrt{1-\gamma} \hspace{1pt} \alpha^{*} \beta \ket{1}\bra{0} + (1-\gamma) |\beta|^{2} \ket{1}\bra{1}
+\end{align*}
+
+Once again, we will add identity gates to the ideal program to simplify the calculations, as a result it is necessary to compute the trace norm of the diference between the identity applied to the density operator $\rho = \ket{\psi} \bra{\psi}$ and the amplitude damping channel applied to $\rho$.
+First, attending to the definition of trace norm for matrices and \autoref{eq:apply_f_diag}, we calculate, 
+\begin{align*}
+  & \tracenorm{ \id(\rho) - A_{\gamma}(\rho)} \\
+  & =    \Big\lVert  |\alpha|^{2} \ket{0} \ket{0} + \alpha \beta^{*} \ket{0} \ket{1} + \alpha^{*} \beta \ket{1} \ket{0} + |\beta|^{2} \ket{1} \ket{1}  - \big((|\alpha|^{2} + \gamma |\beta|^{2}) \ket{0}\bra{0} \\ 
+  & \hspace{10pt}  +  \sqrt{1-\gamma} \hspace{1pt} \alpha \beta^{*} \ket{0}\bra{1} + \sqrt{1-\gamma} \hspace{1pt} \alpha^{*} \beta \ket{1}\bra{0} + (1-\gamma) |\beta|^{2} \ket{1}\bra{1}\big) \Big\rVert_1 \\
+   & = \tracenorm{\gamma |\beta|^{2} \ket{0} \bra{0} + (1-\sqrt{1-\gamma}) (\alpha \beta^{*} \ket{0} \bra{1} + \alpha^{*} \beta \ket{1} \bra{0}) - \gamma |\beta|^{2} \ket{1} \bra{1}} \\
+   & = \tr \left( \sqrt{\left( \gamma |\beta|^{2} \ket{0} \bra{0} + (1-\sqrt{1-\gamma}) (\alpha \beta^{*} \ket{0} \bra{1} + \alpha^{*} \beta \ket{1} \bra{0}) - \gamma |\beta|^{2} \ket{1} \bra{1}  \right)^2}\right) \\
+   & = \tr \left( \sqrt{\left( (1-\sqrt{1-\gamma})^{2} |\alpha|^{2}|\beta|^{2} + \gamma^{2} |\beta|^{4} \right) (\ket{0} \bra{0} + \ket{1} \bra{1} ) } \right) \\
+   & = 2 \cdot \sqrt{  (1-\sqrt{1-\gamma})^{2} |\alpha|^{2}|\beta|^{2} + \gamma^{2} |\beta|^{4}} \\
+   & \leq 2 \gamma
+\end{align*}
+This final step follows because the expression attains its maximum when 
+$|\alpha|=0 $ and $|\beta|=0.$
+
+Attending to Theorem \ref{theorem:diamond_cptp_id}, it holds that
+\begin{align*}
+  \diamondnorm{ \id - A_\gamma} \leq 2 \sqrt{\gamma}
+\end{align*}
+
+As a result, we can postulate the following axiom:
+    \begin{align} \label{eq:amp_damp_teleport}
+        \id =_{2 \sqrt{\gamma}} A_\gamma.
+    \end{align}
+
+
+When an amplitude damping channel acts on the final qubit following the Correction block, we define two new lambda terms consisting of the ideal operation \textbf{Id} and its erroneous counterpart  $\textbf{Id}^{\gamma}$.
+
+\begin{align}\label{eq:id_error_teleport}
+  &\textbf{Id} = qb:\textit{qbit} \, \vljud \id (qb) \\
+  & \textbf{Id}^{\gamma} = A_{\gamma} (q):\textit{qbit} \, \vljud  A_{\gamma} (qb)
+\end{align}
+
+
+Consequently the ideal version of teleportation protocol is now defined as follows
+
+\begin{align*} 
+  \textbf{QTP} = qb_{0}: \textit{qbit}\hspace{3 pt} \vljud \hspace{3 pt} & \text{pm} \hspace{5pt} \textbf{EPR} \hspace{5pt} \text{to} \hspace{5pt}  qb_{1} \otimes qb_{2}.  \notag \\
+     & \text{pm}\hspace{5pt} \textbf{BellMeasure}\, [qb_0/q_1,qb_{1}/q_2] \hspace{5pt}  \text{to} \hspace{5pt} c_{0}\otimes c_{1} . \notag \\
+     & \textbf{Id} \, [ \textbf{Correction}/qb] \, [qb_{2}/q,c_{0}/x, c_{1}/y] 
+     : \emph{qbit}  
+ \end{align*}
+
+ Considering the axiom in equation \eqref{eq:amp_damp_teleport} and our metric deductive system, it holds that 
+\begin{align*}
+  &\textbf{Id}=_{2 \sqrt{\gamma}} \textbf{Id}^{\gamma}
+\end{align*}
+
+\textbf{Malicious attack}
+
+Finally, consider a malicious attack on the quantum teleportation protocol in the form of a bit-flip occurring with a 50\% probability before measurement.
+More generally,  one can define an operation $T$ that applies a unitary operation $U$ to the state given as input with 50\% probability. Operation $T$ can be defined as follows:
+\begin{equation*}
+\begin{split}
+  &T: \hspace{5pt} \textit{qbit}  \to \textit{qbit} \\
+  &T= q:\textit{qbit} \hspace{2pt} \vljud \text{pm} \hspace{2pt} CU ( R_{x,\frac{\pi}{2}}(\ket{0}) ,q) \hspace{2pt} \text{to} \hspace{2pt} newq \otimes qb. \hspace{2pt} \textit{disc} (newq) 
+\end {split}
+\end{equation*}
+Here, $CU$ denotes the controlled operation that applies $U$ to the second qubit when the first qubit is in the state $\ket{1}\bra{1}$, and leaves it unchanged when the first qubit is in the state $\ket{0}\bra{0}$. The operator $R_{x,\frac{\pi}{2}}$ represents a rotation by $\frac{\pi}{2}$ around the x-axis of the Bloch sphere.
+
+
+This operation is depicted in \autoref{fig:Operation_T}.
+
+\begin{figure} [H]
+  \centering
+  \begin{quantikz} [column sep=0.2cm, row sep=0.5cm,wire
+    types={n,n}]%
+      \lstick{$\ket{\phi}$}  &\qw \gategroup[2,steps=9,style={dashed,rounded
+      corners,fill=blue!20, inner
+      xsep=2pt},background,label style={label
+      position=below,anchor=north,yshift=-0.2cm}]{{\sc
+      T}} & \qw  & \qw   & \qw  & \qw & \qw & \gate{U} \qw &\qw & \qw & \qw \\
+      & & & \lstick {$\ket{0}$}  & \qw &\gate{R_x(\frac{\pi}{2})} \qw & \qw & \ctrl{-1} \qw & \qw & \gate{\text{Disc}} \qw 
+    \end{quantikz}
+  \caption{T operation}
+  \label{fig:Operation_T}
+\end{figure}
+
+First, let us verify the result  of applying operation  $T$ to a quantum state $\rho=\ket{\psi}\bra{\psi}$:
+\begin{equation*} \label{eq:operation_T}
+  \begin{split}
+  &\ket{\psi} \bra{\psi}\\
+ \xmapsto{ \hspace{6pt}\id  \otimes \sem{\ket{0}} \hspace{6pt}} \quad & \ket{\psi} \bra{\psi} \otimes \ket{0} \bra{0} \\
+  \xmapsto{ \id  \otimes \sem{R_{x,\frac{\pi}{2}}}} \quad  & \ket{\psi} \bra{\psi} \otimes \frac{1}{2} \left( \ket{0}\bra{0} -i \ket{0}\bra{1} + i \ket{1}\bra{0} + \ket{1}\bra{1} \right)  \\
+  & = \frac{1}{2} \left( \ket{\psi} \bra{\psi}  \ket{0}\bra{0} -i \ket{\psi} \bra{\psi}\ket{0}\bra{1} + i \ket{\psi} \bra{\psi} \ket{1}\bra{0} + \ket{\psi} \bra{\psi}  \ket{1}\bra{1} \right) \\
+  \xmapsto{\hspace{12pt} \sem{\text{CU}} \hspace{12pt}} \quad & \frac{1}{2} \left( \ket{\psi} \bra{\psi} \ket{0}\bra{0} - i\ket{\psi} \bra{\psi}\ket{0}\bra{1} U^{\dag} + i \hspace{1pt} U\ket{\psi} \bra{\psi} \ket{1}\bra{0} + U \ket{\psi} \bra{\psi}  \ket{1}\bra{1}U^{\dag} \right) \\ 
+  \xmapsto{ \hspace{10pt} \id \hspace{1pt}\otimes \hspace{1pt} \tr \hspace{10pt} } \quad & \frac{1}{2} \left(\ket{\psi} \bra{\psi} + U\ket{\psi} \bra{\psi}U^{\dag} \right) \\
+  \end{split} 
+\end{equation*}
+
+Considering $X$ as $U$, we compute
+\begin{align*}
+  &  \tracenorm{ \id(\rho) - T(\rho)} \\
+  &  = \Big|\Big| (1/2) \Big( (|\alpha|^2 -|\beta|^2) \ket{0}\bra{0} + (\alpha \beta^*-\alpha^* \beta)\ket{0}\bra{1} + (\alpha^* \beta-\alpha \beta^*)\ket{0}\bra{1}    \\
+  & \hspace{10pt}  + (|\beta|^2 -|\alpha|^2 )\ket{1}\bra{1} \Big) \Big|\Big|_1  \\
+  &  = (1/2) \tr \Big( \sqrt{\big( (|\alpha|^2 -|\beta|^2) \ket{0}\bra{0} + (\alpha \beta^*-\alpha^* \beta)\ket{0}\bra{1} + (\alpha^* \beta-\alpha \beta^*)\ket{0}\bra{1} }  \\
+  & \hspace{10pt} \overline{+(|\beta|^2 -|\alpha|^2 )\ket{1}\bra{1}   \big)^2\Big)}\\
+  &  = (1/2) \tr \left( \sqrt{\left( ((|\alpha|^2 -|\beta|^2 )^2 + (\alpha \beta^*-\alpha^* \beta)(\alpha^* \beta-\alpha \beta^*))  (\ket{0}\bra{0} + \ket{1}\bra{1})  \right)}\right)  \\
+  &  = (1/2) \tr \left( \sqrt{\left( ((|\alpha|^2 -|\beta|^2 )^2 + 2|\alpha|^2|\beta|^2 - (\alpha^{*})^{2}\beta^2 -  (\beta^{*})^{2}\alpha^2 )  (\ket{0}\bra{0} + \ket{1}\bra{1})  \right)}\right) \\
+  &  = (1/2) \tr \left( \sqrt{\left( (|\alpha|^4+ |\beta|^4 - 2 \text{Re}(\alpha \beta) )  (\ket{0}\bra{0} + \ket{1}\bra{1})  \right)}\right) \\
+  & =  \sqrt{|\alpha|^4+ |\beta|^4 - 2 \text{Re}(\alpha \beta)} \\
+  & \leq 1
+\end{align*}
+This last step holds because the expression is maximized when the imaginary part of $\alpha$ or $\beta$ is $1$.
+
+Considering Theorem \ref{theorem:diamond_cptp_id}, it holds that
+\begin{align*}
+  \diamondnorm{ \id - T} \leq \sqrt{2}
+\end{align*}
+
+Consequently, we postulate the following axiom:
+    \begin{align} \label{eq:t_teleport}
+        \id =_{ \sqrt{2}} T.
+    \end{align}
+
+    In this case we reason about the following $\lambda$-terms:
+    \begin{align*}
+      &\textbf{BellMeasure} =  q_{1}: \textit{qbit}, q_{2}: \textit{qbit}
+   \vljud  \text{pm} \, \textit{CNOT} (q_{1},q_{2})
+  \,  \text{to}\, x \otimes y. \,
+    \\ 
+   & \hspace{170pt} \textit{meas} (\textit{H} (x)) \otimes \textit{meas} (y) : \left(\typeI\oplus \typeI\right) \otimes \left(\typeI\oplus
+   \typeI\right) \\
+      %
+      & \textbf{BellMeasure}^{\epsilon_1, \epsilon_2,\epsilon_3,T} =  q_{1}: \textit{qbit}, q_{2}: \textit{qbit}
+      \vljud  \text{pm} \, \textit{CNOT} (q_{1},q_{2})
+     \,  \text{to}\, x \otimes y. \,
+     \\
+      &  \hspace{120pt} \textit{meas} (T(\textit{H}^{\epsilon_1, \epsilon_2,\epsilon_3} (x))) \otimes \textit{meas} ( T(y)):\left(\typeI\oplus \typeI\right) \otimes \left(\typeI\oplus
+      \typeI\right) \\
+    \end{align*}
+  
+  Attending to the axioms in equations \eqref{eq:h_error_telepor} and \eqref{eq:t_teleport}, via our metric deductive system, we infer that
+  \begin{align} \label{eq:bell_error_teleport}
+    \textbf{BellMeasure} =_{2 \sqrt{2} + \sqrt{2}\epsilon_1 + 3\epsilon_2 + 2\epsilon_3 + |\epsilon_2-\epsilon_3|} \textbf{BellMeasure}^{\epsilon_1, \epsilon_2,\epsilon_3,T}
+  \end{align}
+
+  Lastly, designating the judgment \textbf{QTP} with the erroneous implementations of \textbf{EPR}, \textbf{BellMeasure}, \textbf{Correction}, \textbf{Id}, by $\textbf{QTP}^{\epsilon_1, \epsilon_2,\epsilon_3,T,p,\gamma}$, given equations \eqref{eq:epr_error_teleport}, \eqref{eq:bell_error_teleport}, \eqref{eq:Correction_error_telepor}, and  \eqref{eq:id_error_teleport}, using our deductive metric system, it follows that
+  \begin{align*}
+    \textbf{QTP} =_{ 3\sqrt{2}\epsilon_1 + 6\epsilon_2 + 4\epsilon_3 + (2+\sqrt{2})|\epsilon_2-\epsilon_3| + 2 \sqrt{2} + \sqrt{2p}  +2\sqrt{\gamma}} \textbf{QTP}^{\epsilon_1, \epsilon_2,\epsilon_3,T,p,\gamma}
+  \end{align*}
+
+\end{example}
 
 
 \begin{comment}
@@ -1353,7 +2158,7 @@ We consider the following interpretation for types $ \llbracket \typeI \rrbracke
 
 
 
-\todo[inline,size=\normalsize]{Interpretação Teleporte Quântico}
+%\todo[inline,size=\normalsize]{Interpretação Teleporte Quântico}
 
 \begin{comment}
 Regarding the interpretation of the quantum teleportation protocol, considering $\rho = |\phi\rangle \langle \phi|$ as the state of the system before measurement, $|\phi\rangle$  is calculated as follows, where $|\psi\rangle$ is the state of the qubit to be teleported:
@@ -1396,7 +2201,7 @@ With respect to the final step of the protocol, attending to the interpretation 
 
 
 
-\todo[inline,size=\normalsize]{Daqui tirar o measurement error}
+%\todo[inline,size=\normalsize]{Daqui tirar o measurement error}
 
 \begin{comment}
 
