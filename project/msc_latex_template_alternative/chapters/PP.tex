@@ -1,5 +1,17 @@
 \chapter{Probabilistic Programming} \label{ch:pp}
 
+
+Computer science and probability theory have shared a fruitful relationship since the early days \cite{de1956computability}. Over the years, probabilistic algorithms have emerged as powerful tools, across diverse domains—from machine learning \cite{pearl2014}  and robotics \cite{thrun2002robotic} to computational linguistics \cite{manning1999foundations}. These algorithms play a pivotal role in modern cryptography, particularly in public-key systems \cite{goldwasserProbabilisticEncryption1984}, and tackle computationally intractable  problems \cite{motwaniRandomizedAlgorithms1995}.
+
+The growing influence of probabilistic methods has also spurred the development of probabilistic programming languages, both concrete and abstract. Early examples include higher-order probabilistic languages like Church \cite{Church2008}, while more recent innovations, such as Anglican \cite{Anglican2015}, continue to expand the expressive power and practicality of probabilistic programming.
+
+
+In this setting, Crubillé and Dal Lago introduced the notion of a \emph{context distance} in~\cite{crubilleMetricReasoningLterms2015,crubilleMetricReasoninglambda2017}, as a metric analogue of Morris' context equivalence. In Morris' framework, two programs are said to be \emph{context equivalent} if their observable behavior---that is, 
+what an external observer can measure during execution---is identical in any context.  This distance was first developed for an affine $\lambda$-calculus and later extended to a more general 
+setting that, for instance, allows copying.
+
+In \cite{dahlqvist2023syntactic}, the authors reason about approximate equivalence using the \emph{operator norm} which induces a metric (roughly, a distance function) on the space of probabilistic programs (which are interpreted as short maps between Banach spaces).
+
 This chapter begins with an introduction to Banach spaces based on \cite{rudin91functional,InfiniteDimensionalAnalysis2006, ryanIntroductionTensorProducts2013}. We then show that $\catBan$, the category of Banach spaces and short maps, is a model in this setting. The  next section  introduces the fundamentals of measure theory, a key component in defining the semantics of probabilistic programs, drawing inspiration primarily from \cite{dahlqvistSemanticsProbabilisticProgramming2020a, bogachevMeasureTheory2007,InfiniteDimensionalAnalysis2006}.  
 Finally, we study approximate equivalence in the context of a random walk on the real line.
 
@@ -72,7 +84,7 @@ Let \( T: V \rightarrow W \) be a bounded linear operator between normed spaces.
 \end{definition}
  
 
-\todo[inline,size=\normalsize]{Meter isto direito -> Aqui está apenas a prop universal}
+
 
 
 \begin{definition} [Algebraic Tensor Product]
@@ -158,17 +170,20 @@ for all choices of \( u_1 \in V_1, \dots, u_n \in V_n \).
 
 \section{Category Ban}
 
-\todo[inline,size=\normalsize]{falta o producto tensorial e dizer o que é a L1 norm e tb soma direta, i guess}
 
+
+\begin{comment}
 \begin{definition}
 Let \( x = (x_1, x_2, \dots, x_n) \in \mathbb{C}^n \). The \( L^1 \) norm, \gls{l1_norm},  is defined by
 \[
 \|x\|_{L^1} = \sum_{i=1}^n |x_i|.
 \]
 \end{definition}
+\end{comment}
 
 \begin{definition}
-  The category $\catBan$ is the category of Banach spaces and short maps.  In the category \(\catBan\), the coproduct of Banach spaces is given by their direct sum equipped with the \(L_1\)-norm. The injections and copairing map are defined analogously to those in \(\catVect\). 
+  The category $\catBan$ is the category of Banach spaces and short maps. It has a (symmetric) monoidal structure  where the tensor product is the projective tensor $\widehat{\otimes}_\pi$.
+  The (binary) coproduct of two Banach spaces $V,W$ is given by their direct sum equipped with the norm $\norm{(v,w)} = v + w$.  
 \end{definition}
 
 

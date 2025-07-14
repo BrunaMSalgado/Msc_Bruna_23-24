@@ -6,60 +6,62 @@
 \contentsline {part}{I\hspace {1em}Foundations}{1}{part.1}%
 \contentsline {chapter}{\numberline {1}Introduction}{3}{chapter.1}%
 \contentsline {section}{\numberline {1.1}Motivation and Context}{3}{section.1.1}%
-\contentsline {section}{\numberline {1.2}Contributions}{11}{section.1.2}%
-\contentsline {section}{\numberline {1.3}Document Structure}{11}{section.1.3}%
-\contentsline {chapter}{\numberline {2}Metric Lambda Calculus}{13}{chapter.2}%
-\contentsline {section}{\numberline {2.1}Syntax}{13}{section.2.1}%
-\contentsline {subsection}{\numberline {2.1.1}Type system}{13}{subsection.2.1.1}%
-\contentsline {subsection}{\numberline {2.1.2}(Raw)Terms}{14}{subsection.2.1.2}%
-\contentsline {subsection}{\numberline {2.1.3}Free and Bound Variables}{15}{subsection.2.1.3}%
-\contentsline {subsection}{\numberline {2.1.4}Term formation rules}{15}{subsection.2.1.4}%
-\contentsline {subsection}{\numberline {2.1.5}$\alpha $-equivalence}{19}{subsection.2.1.5}%
-\contentsline {subsection}{\numberline {2.1.6}Substitution}{20}{subsection.2.1.6}%
-\contentsline {subsection}{\numberline {2.1.7}Properties}{21}{subsection.2.1.7}%
-\contentsline {subsection}{\numberline {2.1.8}Equations-in-context}{23}{subsection.2.1.8}%
-\contentsline {subsection}{\numberline {2.1.9}Interlude: Booleans}{26}{subsection.2.1.9}%
-\contentsline {subsection}{\numberline {2.1.10}Metric equational system}{31}{subsection.2.1.10}%
-\contentsline {section}{\numberline {2.2}Category theory}{33}{section.2.2}%
-\contentsline {subsection}{\numberline {2.2.1}Categories}{33}{subsection.2.2.1}%
-\contentsline {subsection}{\numberline {2.2.2}Produts and coproducts}{37}{subsection.2.2.2}%
-\contentsline {subsection}{\numberline {2.2.3}Functors}{43}{subsection.2.2.3}%
-\contentsline {subsection}{\numberline {2.2.4}Natural Tranformations}{45}{subsection.2.2.4}%
-\contentsline {subsection}{\numberline {2.2.5}Equivalence of Categories}{47}{subsection.2.2.5}%
-\contentsline {subsection}{\numberline {2.2.6}Adjoints}{47}{subsection.2.2.6}%
-\contentsline {subsection}{\numberline {2.2.7}Monoidal categories}{49}{subsection.2.2.7}%
-\contentsline {section}{\numberline {2.3}Interpretation}{51}{section.2.3}%
-\contentsline {subsection}{\numberline {2.3.1}Classical Semantics}{52}{subsection.2.3.1}%
-\contentsline {subsection}{\numberline {2.3.2}Semantics of metric equations}{56}{subsection.2.3.2}%
-\contentsline {chapter}{\numberline {3}Metric $\lambda $-calculus with conditionals}{61}{chapter.3}%
-\contentsline {section}{\numberline {3.1}Syntax}{61}{section.3.1}%
-\contentsline {section}{\numberline {3.2}Interpretation}{62}{section.3.2}%
-\contentsline {section}{\numberline {3.3}Lattice Theory Preliminaries}{62}{section.3.3}%
-\contentsline {section}{\numberline {3.4}Soundeness and Completeness}{63}{section.3.4}%
-\contentsline {section}{\numberline {3.5}A small example: $\mathsf {Met}$}{66}{section.3.5}%
-\contentsline {section}{\numberline {3.6}Coproduct cocompletion}{67}{section.3.6}%
-\contentsline {section}{\numberline {3.7}Interlude:Booleans - Part 2}{70}{section.3.7}%
-\contentsline {section}{\numberline {3.8}Extensionality of the copairing}{71}{section.3.8}%
-\contentsline {section}{\numberline {3.9}Some remarks on the metric equation chosen}{71}{section.3.9}%
-\contentsline {part}{II\hspace {1em}Applications}{73}{part.2}%
-\contentsline {chapter}{\numberline {4}Probabilistic Programming}{75}{chapter.4}%
-\contentsline {section}{\numberline {4.1}Banach spaces}{75}{section.4.1}%
-\contentsline {subsection}{\numberline {4.1.1}Normed spaces}{75}{subsection.4.1.1}%
-\contentsline {subsection}{\numberline {4.1.2}Banach spaces}{76}{subsection.4.1.2}%
-\contentsline {section}{\numberline {4.2}Category Ban}{77}{section.4.2}%
-\contentsline {section}{\numberline {4.3}Measure theory}{78}{section.4.3}%
-\contentsline {subsection}{\numberline {4.3.1}What is measure theory?}{79}{subsection.4.3.1}%
-\contentsline {subsection}{\numberline {4.3.2}Measurable spaces and measures}{80}{subsection.4.3.2}%
-\contentsline {subsection}{\numberline {4.3.3}Spaces of Measures}{83}{subsection.4.3.3}%
-\contentsline {section}{\numberline {4.4}Example}{84}{section.4.4}%
-\contentsline {chapter}{\numberline {5}Quantum computation}{89}{chapter.5}%
-\contentsline {section}{\numberline {5.1}Hilbert Spaces}{89}{section.5.1}%
-\contentsline {subsection}{\numberline {5.1.1}Inner product}{89}{subsection.5.1.1}%
-\contentsline {subsection}{\numberline {5.1.2}Trace}{90}{subsection.5.1.2}%
+\contentsline {section}{\numberline {1.2}Contributions}{7}{section.1.2}%
+\contentsline {section}{\numberline {1.3}Document Structure}{8}{section.1.3}%
+\contentsline {chapter}{\numberline {2}Metric Lambda Calculus}{9}{chapter.2}%
+\contentsline {section}{\numberline {2.1}The Lambda Calculus}{9}{section.2.1}%
+\contentsline {section}{\numberline {2.2}Syntax}{11}{section.2.2}%
+\contentsline {subsection}{\numberline {2.2.1}Type system}{11}{subsection.2.2.1}%
+\contentsline {subsection}{\numberline {2.2.2}(Raw)Terms}{12}{subsection.2.2.2}%
+\contentsline {subsection}{\numberline {2.2.3}Free and Bound Variables}{12}{subsection.2.2.3}%
+\contentsline {subsection}{\numberline {2.2.4}Term formation rules}{13}{subsection.2.2.4}%
+\contentsline {subsection}{\numberline {2.2.5}$\alpha $-equivalence}{16}{subsection.2.2.5}%
+\contentsline {subsection}{\numberline {2.2.6}Substitution}{17}{subsection.2.2.6}%
+\contentsline {subsection}{\numberline {2.2.7}Properties}{19}{subsection.2.2.7}%
+\contentsline {subsection}{\numberline {2.2.8}Equations-in-context}{21}{subsection.2.2.8}%
+\contentsline {subsection}{\numberline {2.2.9}Interlude: Booleans}{23}{subsection.2.2.9}%
+\contentsline {subsection}{\numberline {2.2.10}Metric equational system}{28}{subsection.2.2.10}%
+\contentsline {section}{\numberline {2.3}Category theory}{30}{section.2.3}%
+\contentsline {subsection}{\numberline {2.3.1}Categories}{30}{subsection.2.3.1}%
+\contentsline {subsection}{\numberline {2.3.2}Produts and coproducts}{35}{subsection.2.3.2}%
+\contentsline {subsection}{\numberline {2.3.3}Functors}{41}{subsection.2.3.3}%
+\contentsline {subsection}{\numberline {2.3.4}Natural Tranformations}{42}{subsection.2.3.4}%
+\contentsline {subsection}{\numberline {2.3.5}Equivalence of Categories}{44}{subsection.2.3.5}%
+\contentsline {subsection}{\numberline {2.3.6}Adjoints}{45}{subsection.2.3.6}%
+\contentsline {subsection}{\numberline {2.3.7}Monoidal categories}{46}{subsection.2.3.7}%
+\contentsline {section}{\numberline {2.4}Interpretation}{48}{section.2.4}%
+\contentsline {subsection}{\numberline {2.4.1}Classical Semantics}{50}{subsection.2.4.1}%
+\contentsline {subsection}{\numberline {2.4.2}Semantics of metric equations}{54}{subsection.2.4.2}%
+\contentsline {chapter}{\numberline {3}Metric $\lambda $-calculus with conditionals}{59}{chapter.3}%
+\contentsline {section}{\numberline {3.1}Syntax}{59}{section.3.1}%
+\contentsline {section}{\numberline {3.2}Interpretation}{60}{section.3.2}%
+\contentsline {section}{\numberline {3.3}Lattice Theory Preliminaries}{60}{section.3.3}%
+\contentsline {section}{\numberline {3.4}Soundeness and Completeness}{61}{section.3.4}%
+\contentsline {section}{\numberline {3.5}A small example: $\mathsf {Met}$}{64}{section.3.5}%
+\contentsline {section}{\numberline {3.6}Coproduct cocompletion}{65}{section.3.6}%
+\contentsline {section}{\numberline {3.7}Interlude:Booleans - Part 2}{68}{section.3.7}%
+\contentsline {section}{\numberline {3.8}Extensionality of the copairing}{69}{section.3.8}%
+\contentsline {section}{\numberline {3.9}Some remarks on the metric equation chosen}{69}{section.3.9}%
+\contentsline {part}{II\hspace {1em}Applications}{71}{part.2}%
+\contentsline {chapter}{\numberline {4}Probabilistic Programming}{73}{chapter.4}%
+\contentsline {section}{\numberline {4.1}Banach spaces}{74}{section.4.1}%
+\contentsline {subsection}{\numberline {4.1.1}Normed spaces}{74}{subsection.4.1.1}%
+\contentsline {subsection}{\numberline {4.1.2}Banach spaces}{75}{subsection.4.1.2}%
+\contentsline {section}{\numberline {4.2}Category Ban}{76}{section.4.2}%
+\contentsline {section}{\numberline {4.3}Measure theory}{77}{section.4.3}%
+\contentsline {subsection}{\numberline {4.3.1}What is measure theory?}{77}{subsection.4.3.1}%
+\contentsline {subsection}{\numberline {4.3.2}Measurable spaces and measures}{78}{subsection.4.3.2}%
+\contentsline {subsection}{\numberline {4.3.3}Spaces of Measures}{81}{subsection.4.3.3}%
+\contentsline {section}{\numberline {4.4}Example}{83}{section.4.4}%
+\contentsline {chapter}{\numberline {5}Quantum computation}{87}{chapter.5}%
+\contentsline {paragraph}{Quantum computing and the need for quantitative reasoning}{87}{chapter.5}%
+\contentsline {section}{\numberline {5.1}Hilbert Spaces}{90}{section.5.1}%
+\contentsline {subsection}{\numberline {5.1.1}Inner product}{90}{subsection.5.1.1}%
+\contentsline {subsection}{\numberline {5.1.2}Trace}{91}{subsection.5.1.2}%
 \contentsline {subsection}{\numberline {5.1.3}Important classes of operators}{91}{subsection.5.1.3}%
 \contentsline {subsection}{\numberline {5.1.4}Spectral theorem}{92}{subsection.5.1.4}%
 \contentsline {subsection}{\numberline {5.1.5}Riez Representation Theorem}{92}{subsection.5.1.5}%
-\contentsline {subsection}{\numberline {5.1.6}Tensor Products and Direct Sums of Hilbert Spaces}{92}{subsection.5.1.6}%
+\contentsline {subsection}{\numberline {5.1.6}Tensor Products and Direct Sums of Hilbert Spaces}{93}{subsection.5.1.6}%
 \contentsline {subsection}{\numberline {5.1.7}Useful norms }{94}{subsection.5.1.7}%
 \contentsline {subsection}{\numberline {5.1.8}Infinite-dimensional Hilbert Spaces}{94}{subsection.5.1.8}%
 \contentsline {section}{\numberline {5.2}Quantum Computing Preliminaries}{95}{section.5.2}%
@@ -68,20 +70,20 @@
 \contentsline {subsubsection}{Entanglement}{97}{definition.5.2.5}%
 \contentsline {subsection}{\numberline {5.2.3}Unitary operators}{99}{subsection.5.2.3}%
 \contentsline {subsubsection}{Pauli Matrices}{99}{subsection.5.2.3}%
-\contentsline {subsubsection}{Unitary operators}{99}{definition.5.2.7}%
+\contentsline {subsubsection}{Unitary operators}{100}{definition.5.2.7}%
 \contentsline {subsection}{\numberline {5.2.4}Measurements}{101}{subsection.5.2.4}%
 \contentsline {subsection}{\numberline {5.2.5}Density operators}{102}{subsection.5.2.5}%
 \contentsline {subsubsection}{Reduced density operator}{103}{equation.5.2.5}%
-\contentsline {subsection}{\numberline {5.2.6}Quantum Channels}{103}{subsection.5.2.6}%
-\contentsline {subsubsection}{Kraus operator sum representation}{104}{definition.5.2.26}%
-\contentsline {subsubsection}{Non-selective measurements}{105}{definition.5.2.27}%
+\contentsline {subsection}{\numberline {5.2.6}Quantum Channels}{104}{subsection.5.2.6}%
+\contentsline {subsubsection}{Kraus operator sum representation}{105}{definition.5.2.26}%
+\contentsline {subsubsection}{Non-selective measurements}{106}{definition.5.2.27}%
 \contentsline {subsection}{\numberline {5.2.7}Norms on quantum channels}{106}{subsection.5.2.7}%
 \contentsline {subsection}{\numberline {5.2.8}Quantum circuits}{107}{subsection.5.2.8}%
-\contentsline {subsection}{\numberline {5.2.9}No-cloning theorem}{108}{subsection.5.2.9}%
+\contentsline {subsection}{\numberline {5.2.9}No-cloning theorem}{109}{subsection.5.2.9}%
 \contentsline {section}{\numberline {5.3}Functional Analysis}{109}{section.5.3}%
-\contentsline {section}{\numberline {5.4}W$^*$-Algebras}{111}{section.5.4}%
-\contentsline {section}{\numberline {5.5}Categories for (first-order) quantum computation}{111}{section.5.5}%
-\contentsline {section}{\numberline {5.6}Examples}{117}{section.5.6}%
+\contentsline {section}{\numberline {5.4}W$^*$-Algebras}{112}{section.5.4}%
+\contentsline {section}{\numberline {5.5}Categories for (first-order) quantum computation}{112}{section.5.5}%
+\contentsline {section}{\numberline {5.6}Examples}{118}{section.5.6}%
 \contentsline {subsection}{\numberline {5.6.1}Quantum state discrimination}{118}{subsection.5.6.1}%
 \contentsline {subsection}{\numberline {5.6.2}Quantum teleportation protocol}{122}{subsection.5.6.2}%
 \contentsline {chapter}{\numberline {6}Future work}{131}{chapter.6}%

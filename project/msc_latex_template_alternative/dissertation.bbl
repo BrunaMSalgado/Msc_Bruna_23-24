@@ -12,6 +12,18 @@ Richard Zach.
   Niccolo Guicciardini, editors, {\em Landmark {{Writings}} in {{Western
   Mathematics}} 1640-1940}, pages 917--925. Elsevier Science, 2005.
 
+\bibitem{godelVollstandigkeitAxiomeLogischen1930}
+Kurt Gödel.
+\newblock Die {{Vollständigkeit}} der {{Axiome}} des logischen
+  {{Funktionenkalküls}}.
+\newblock {\em Monatshefte für Mathematik und Physik}, 37(1):349--360,
+  1930-12-01.
+
+\bibitem{franzenGodelsTheorem2008}
+Torkel Franzén.
+\newblock {\em Gödel's {{Theorem}}}.
+\newblock A. K. Peters.
+
 \bibitem{hilbert1938}
 D.~Hilbert and W.~Ackermann.
 \newblock {\em Grundzüge Der {{Theoretischen Logik}}}.
@@ -91,67 +103,10 @@ Ugo~Dal Lago, Furio Honsell, Marina Lenisa, and Paolo Pistone.
   Haifa, Israel}, volume 228 of {\em LIPIcs}, pages 4:1--4:18. Schloss Dagstuhl
   - Leibniz-Zentrum f{\"{u}}r Informatik, 2022.
 
-\bibitem{de1956computability}
-Karel De~Leeuw, Edward~F Moore, Claude~E Shannon, and Norman Shapiro.
-\newblock Computability by probabilistic machines.
-\newblock {\em Automata studies}, 34:183--198, 1956.
-
-\bibitem{pearl2014}
-Judea Pearl.
-\newblock {\em Probabilistic {{Reasoning}} in {{Intelligent Systems}}:
-  {{Networks}} of {{Plausible Inference}}}.
-\newblock Elsevier, 2014.
-
-\bibitem{thrun2002robotic}
-Sebastian Thrun et~al.
-\newblock Robotic mapping: A survey.
-\newblock 2002.
-
-\bibitem{manning1999foundations}
-Christopher Manning and Hinrich Schutze.
-\newblock {\em Foundations of {{Statistical Natural Language Processing}}}.
-\newblock MIT Press, 1999.
-
-\bibitem{goldwasserProbabilisticEncryption1984}
-Shafi Goldwasser and Silvio Micali.
-\newblock Probabilistic encryption.
-\newblock {\em Journal of Computer and System Sciences}, 28(2):270--299, 1984.
-
-\bibitem{motwaniRandomizedAlgorithms1995}
-Rajeev Motwani and Prabhakar Raghavan.
-\newblock {\em Randomized {{Algorithms}}}.
-\newblock Cambridge University Press, 1995.
-
-\bibitem{Church2008}
-Noah~D. Goodman, Vikash~K. Mansinghka, Daniel Roy, Keith Bonawitz, and
-  Joshua~B. Tenenbaum.
-\newblock Church: a language for generative models.
-\newblock UAI'08, page 220–229, Arlington, Virginia, USA, 2008. AUAI Press.
-
-\bibitem{Anglican2015}
-David Tolpin, Jan-Willem van~de Meent, and Frank Wood.
-\newblock Probabilistic programming in anglican.
-\newblock In {\em Machine Learning and Knowledge Discovery in Databases:
-  European Conference, ECML PKDD 2015, Porto, Portugal, September 7-11, 2015,
-  Proceedings, Part III 15}, pages 308--311. Springer, 2015.
-
-\bibitem{crubilleMetricReasoningLterms2015}
-Raphaëlle Crubillé and Ugo Dal~Lago.
-\newblock Metric reasoning about λ-terms: {{The}} affine case.
-\newblock In {\em 2015 30th {{Annual ACM}}/{{IEEE Symposium}} on {{Logic}} in
-  {{Computer Science}}}, pages 633--644, 2015.
-
-\bibitem{crubilleMetricReasoninglambda2017}
-Raphaëlle Crubillé and Ugo Dal~Lago.
-\newblock Metric {{Reasoning About}} \$\$\textbackslash lambda \$\$-{{Terms}}:
-  {{The General Case}}.
-\newblock In Hongseok Yang, editor, {\em Programming {{Languages}} and
-  {{Systems}}}, pages 341--367. Springer, 2017.
-
-\bibitem{feynman2018simulating}
-Richard~P. Feynman.
-\newblock Simulating physics with computers.
-\newblock {\em International Journal of Theoretical Physics}, 21(6-7), 1982.
+\bibitem{bartheFoundationsProbabilisticProgramming2020}
+Gilles Barthe, Joost-Pieter Katoen, and Alexandra Silva, editors.
+\newblock {\em Foundations of {{Probabilistic Programming}}}.
+\newblock Cambridge University Press, 2020.
 
 \bibitem{shor1994algorithms}
 Peter~W Shor.
@@ -160,142 +115,17 @@ Peter~W Shor.
 \newblock In {\em Proceedings 35th annual symposium on foundations of computer
   science}, pages 124--134. Ieee, 1994.
 
-\bibitem{preskill2018quantum}
-John Preskill.
-\newblock Quantum computing in the nisq era and beyond.
-\newblock {\em Quantum}, 2:79, 2018.
-
-\bibitem{calderbank1996good}
-A~Robert Calderbank and Peter~W Shor.
-\newblock Good quantum error-correcting codes exist.
-\newblock {\em Physical Review A}, 54(2):1098, 1996.
-
-\bibitem{gottesman1997stabilizer}
-Daniel Gottesman.
-\newblock {\em Stabilizer codes and quantum error correction}.
-\newblock California Institute of Technology, 1997.
-
-\bibitem{steane1996error}
-Andrew~M Steane.
-\newblock Error correcting codes in quantum theory.
-\newblock {\em Physical Review Letters}, 77(5):793, 1996.
-
-\bibitem{fowler2012surface}
-Austin~G Fowler, Matteo Mariantoni, John~M Martinis, and Andrew~N Cleland.
-\newblock Surface codes: Towards practical large-scale quantum computation.
-\newblock {\em Physical Review A}, 86(3):032324, 2012.
-
-\bibitem{wallman2016noise}
-Joel~J Wallman and Joseph Emerson.
-\newblock Noise tailoring for scalable quantum computation via randomized
-  compiling.
-\newblock {\em Physical Review A}, 94(5):052325, 2016.
-
-\bibitem{murali2019noise}
-Prakash Murali, Jonathan~M Baker, Ali Javadi-Abhari, Frederic~T Chong, and
-  Margaret Martonosi.
-\newblock Noise-adaptive compiler mappings for noisy intermediate-scale quantum
-  computers.
-\newblock In {\em Proceedings of the twenty-fourth international conference on
-  architectural support for programming languages and operating systems}, pages
-  1015--1029, 2019.
-
-\bibitem{harrow2002efficient}
-Aram~W Harrow, Benjamin Recht, and Isaac~L Chuang.
-\newblock Efficient discrete approximations of quantum gates.
-\newblock {\em Journal of Mathematical Physics}, 43(9):4445--4451, 2002.
-
-\bibitem{burgholzer2020advanced}
-Lukas Burgholzer and Robert Wille.
-\newblock Advanced equivalence checking for quantum circuits.
-\newblock {\em IEEE Transactions on Computer-Aided Design of Integrated
-  Circuits and Systems}, 40(9):1810--1824, 2020.
-
-\bibitem{zhao2020quantum}
-Jianjun Zhao.
-\newblock Quantum software engineering: Landscapes and horizons.
-\newblock {\em arXiv preprint arXiv:2007.07047}, 2020.
-
-\bibitem{serrano2022quantum}
-Manuel~A Serrano, Jose~A Cruz-Lemus, Ricardo Perez-Castillo, and Mario
-  Piattini.
-\newblock Quantum software components and platforms: Overview and quality
-  assessment.
-\newblock {\em ACM Computing Surveys}, 55(8):1--31, 2022.
-
 \bibitem{selinger2004towards}
 Peter Selinger.
 \newblock Towards a quantum programming language.
 \newblock {\em Mathematical Structures in Computer Science}, 14(4):527--586,
   2004.
 
-\bibitem{selinger2006lambda}
-Peter Selinger and Beno{\^\i}t Valiron.
-\newblock A lambda calculus for quantum computation with classical control.
-\newblock {\em Mathematical Structures in Computer Science}, 16(3):527--552,
-  2006.
-
-\bibitem{selinger2008fully}
-Peter Selinger and Beno{\^\i}t Valiron.
-\newblock On a fully abstract model for a quantum linear functional language.
-\newblock {\em Electronic Notes in Theoretical Computer Science}, 210:123--137,
-  2008.
-
-\bibitem{selinger2009quantum}
-Peter Selinger, Beno{\i}t Valiron, et~al.
-\newblock Quantum lambda calculus.
-\newblock {\em Semantic techniques in quantum computation}, pages 135--172,
-  2009.
-
-\bibitem{selinger2014}
-Michele Pagani, Peter Selinger, and Beno\^{\i}t Valiron.
-\newblock Applying quantitative semantics to higher-order quantum computing.
-\newblock In {\em Proceedings of the 41st ACM SIGPLAN-SIGACT Symposium on
-  Principles of Programming Languages}, POPL '14, page 647–658, New York, NY,
-  USA, 2014. Association for Computing Machinery.
-
 \bibitem{choSemanticsQuantumProgramming2016}
 Kenta Cho.
 \newblock Semantics for a {{Quantum Programming Language}} by {{Operator
   Algebras}}.
 \newblock {\em New Generation Computing}, 34(1):25--68, 2016.
-
-\bibitem{choNeumannAlgebrasForm2016}
-Kenta Cho and Abraham Westerbaan.
-\newblock Von {{Neumann Algebras}} form a {{Model}} for the {{Quantum Lambda
-  Calculus}}, 2016.
-
-\bibitem{selinger2008linear}
-Peter Selinger and Beno{\^\i}t Valiron.
-\newblock A linear-non-linear model for a computational call-by-value lambda
-  calculus.
-\newblock In {\em International Conference on Foundations of Software Science
-  and Computational Structures}, pages 81--96. Springer, 2008.
-
-\bibitem{chong2017programming}
-Frederic~T Chong, Diana Franklin, and Margaret Martonosi.
-\newblock Programming languages and compiler design for realistic quantum
-  hardware.
-\newblock {\em Nature}, 549(7671):180--187, 2017.
-
-\bibitem{hung2019quantitative}
-Shih-Han Hung, Kesha Hietala, Shaopeng Zhu, Mingsheng Ying, Michael Hicks, and
-  Xiaodi Wu.
-\newblock Quantitative robustness analysis of quantum programs.
-\newblock {\em Proceedings of the ACM on Programming Languages}, 3(POPL):1--29,
-  2019.
-
-\bibitem{tao2021gleipnir}
-Runzhou Tao, Yunong Shi, Jianan Yao, John Hui, Frederic~T Chong, and Ronghui
-  Gu.
-\newblock Gleipnir: toward practical error analysis for quantum programs.
-\newblock In {\em Proceedings of the 42nd ACM SIGPLAN International Conference
-  on Programming Language Design and Implementation}, pages 48--64, 2021.
-
-\bibitem{watrous2018theory}
-John Watrous.
-\newblock {\em The theory of quantum information}.
-\newblock Cambridge university press, 2018.
 
 \bibitem{mackieLanguageAutonomous1993}
 Ian Mackie, Leopoldo Román, and Samson Abramsky.
@@ -373,6 +203,63 @@ B.~A. Davey and H.~A. Priestley.
 \newblock {\em Introduction to {{Lattices}} and {{Order}}}.
 \newblock Cambridge University Press, 2 edition, 2002.
 
+\bibitem{de1956computability}
+Karel De~Leeuw, Edward~F Moore, Claude~E Shannon, and Norman Shapiro.
+\newblock Computability by probabilistic machines.
+\newblock {\em Automata studies}, 34:183--198, 1956.
+
+\bibitem{pearl2014}
+Judea Pearl.
+\newblock {\em Probabilistic {{Reasoning}} in {{Intelligent Systems}}:
+  {{Networks}} of {{Plausible Inference}}}.
+\newblock Elsevier, 2014.
+
+\bibitem{thrun2002robotic}
+Sebastian Thrun et~al.
+\newblock Robotic mapping: A survey.
+\newblock 2002.
+
+\bibitem{manning1999foundations}
+Christopher Manning and Hinrich Schutze.
+\newblock {\em Foundations of {{Statistical Natural Language Processing}}}.
+\newblock MIT Press, 1999.
+
+\bibitem{goldwasserProbabilisticEncryption1984}
+Shafi Goldwasser and Silvio Micali.
+\newblock Probabilistic encryption.
+\newblock {\em Journal of Computer and System Sciences}, 28(2):270--299, 1984.
+
+\bibitem{motwaniRandomizedAlgorithms1995}
+Rajeev Motwani and Prabhakar Raghavan.
+\newblock {\em Randomized {{Algorithms}}}.
+\newblock Cambridge University Press, 1995.
+
+\bibitem{Church2008}
+Noah~D. Goodman, Vikash~K. Mansinghka, Daniel Roy, Keith Bonawitz, and
+  Joshua~B. Tenenbaum.
+\newblock Church: a language for generative models.
+\newblock UAI'08, page 220–229, Arlington, Virginia, USA, 2008. AUAI Press.
+
+\bibitem{Anglican2015}
+David Tolpin, Jan-Willem van~de Meent, and Frank Wood.
+\newblock Probabilistic programming in anglican.
+\newblock In {\em Machine Learning and Knowledge Discovery in Databases:
+  European Conference, ECML PKDD 2015, Porto, Portugal, September 7-11, 2015,
+  Proceedings, Part III 15}, pages 308--311. Springer, 2015.
+
+\bibitem{crubilleMetricReasoningLterms2015}
+Raphaëlle Crubillé and Ugo Dal~Lago.
+\newblock Metric reasoning about λ-terms: {{The}} affine case.
+\newblock In {\em 2015 30th {{Annual ACM}}/{{IEEE Symposium}} on {{Logic}} in
+  {{Computer Science}}}, pages 633--644, 2015.
+
+\bibitem{crubilleMetricReasoninglambda2017}
+Raphaëlle Crubillé and Ugo Dal~Lago.
+\newblock Metric {{Reasoning About}} \$\$\textbackslash lambda \$\$-{{Terms}}:
+  {{The General Case}}.
+\newblock In Hongseok Yang, editor, {\em Programming {{Languages}} and
+  {{Systems}}}, pages 341--367. Springer, 2017.
+
 \bibitem{rudin91functional}
 Walter Rudin.
 \newblock {\em Functional Analysis}.
@@ -404,6 +291,136 @@ Vladimir~I. Bogachev.
 Krishna~B. Athreya and Soumendra~N. Lahiri.
 \newblock {\em Measure {{Theory}} and {{Probability Theory}}}.
 \newblock Springer Science \& Business Media, 2006.
+
+\bibitem{feynman2018simulating}
+Richard~P. Feynman.
+\newblock Simulating physics with computers.
+\newblock {\em International Journal of Theoretical Physics}, 21(6-7), 1982.
+
+\bibitem{preskill2018quantum}
+John Preskill.
+\newblock Quantum computing in the nisq era and beyond.
+\newblock {\em Quantum}, 2:79, 2018.
+
+\bibitem{calderbank1996good}
+A~Robert Calderbank and Peter~W Shor.
+\newblock Good quantum error-correcting codes exist.
+\newblock {\em Physical Review A}, 54(2):1098, 1996.
+
+\bibitem{gottesman1997stabilizer}
+Daniel Gottesman.
+\newblock {\em Stabilizer codes and quantum error correction}.
+\newblock California Institute of Technology, 1997.
+
+\bibitem{steane1996error}
+Andrew~M Steane.
+\newblock Error correcting codes in quantum theory.
+\newblock {\em Physical Review Letters}, 77(5):793, 1996.
+
+\bibitem{fowler2012surface}
+Austin~G Fowler, Matteo Mariantoni, John~M Martinis, and Andrew~N Cleland.
+\newblock Surface codes: Towards practical large-scale quantum computation.
+\newblock {\em Physical Review A}, 86(3):032324, 2012.
+
+\bibitem{wallman2016noise}
+Joel~J Wallman and Joseph Emerson.
+\newblock Noise tailoring for scalable quantum computation via randomized
+  compiling.
+\newblock {\em Physical Review A}, 94(5):052325, 2016.
+
+\bibitem{murali2019noise}
+Prakash Murali, Jonathan~M Baker, Ali Javadi-Abhari, Frederic~T Chong, and
+  Margaret Martonosi.
+\newblock Noise-adaptive compiler mappings for noisy intermediate-scale quantum
+  computers.
+\newblock In {\em Proceedings of the twenty-fourth international conference on
+  architectural support for programming languages and operating systems}, pages
+  1015--1029, 2019.
+
+\bibitem{harrow2002efficient}
+Aram~W Harrow, Benjamin Recht, and Isaac~L Chuang.
+\newblock Efficient discrete approximations of quantum gates.
+\newblock {\em Journal of Mathematical Physics}, 43(9):4445--4451, 2002.
+
+\bibitem{burgholzer2020advanced}
+Lukas Burgholzer and Robert Wille.
+\newblock Advanced equivalence checking for quantum circuits.
+\newblock {\em IEEE Transactions on Computer-Aided Design of Integrated
+  Circuits and Systems}, 40(9):1810--1824, 2020.
+
+\bibitem{zhao2020quantum}
+Jianjun Zhao.
+\newblock Quantum software engineering: Landscapes and horizons.
+\newblock {\em arXiv preprint arXiv:2007.07047}, 2020.
+
+\bibitem{serrano2022quantum}
+Manuel~A Serrano, Jose~A Cruz-Lemus, Ricardo Perez-Castillo, and Mario
+  Piattini.
+\newblock Quantum software components and platforms: Overview and quality
+  assessment.
+\newblock {\em ACM Computing Surveys}, 55(8):1--31, 2022.
+
+\bibitem{selinger2006lambda}
+Peter Selinger and Beno{\^\i}t Valiron.
+\newblock A lambda calculus for quantum computation with classical control.
+\newblock {\em Mathematical Structures in Computer Science}, 16(3):527--552,
+  2006.
+
+\bibitem{selinger2008fully}
+Peter Selinger and Beno{\^\i}t Valiron.
+\newblock On a fully abstract model for a quantum linear functional language.
+\newblock {\em Electronic Notes in Theoretical Computer Science}, 210:123--137,
+  2008.
+
+\bibitem{selinger2009quantum}
+Peter Selinger, Beno{\i}t Valiron, et~al.
+\newblock Quantum lambda calculus.
+\newblock {\em Semantic techniques in quantum computation}, pages 135--172,
+  2009.
+
+\bibitem{selinger2014}
+Michele Pagani, Peter Selinger, and Beno\^{\i}t Valiron.
+\newblock Applying quantitative semantics to higher-order quantum computing.
+\newblock In {\em Proceedings of the 41st ACM SIGPLAN-SIGACT Symposium on
+  Principles of Programming Languages}, POPL '14, page 647–658, New York, NY,
+  USA, 2014. Association for Computing Machinery.
+
+\bibitem{choNeumannAlgebrasForm2016}
+Kenta Cho and Abraham Westerbaan.
+\newblock Von {{Neumann Algebras}} form a {{Model}} for the {{Quantum Lambda
+  Calculus}}, 2016.
+
+\bibitem{selinger2008linear}
+Peter Selinger and Beno{\^\i}t Valiron.
+\newblock A linear-non-linear model for a computational call-by-value lambda
+  calculus.
+\newblock In {\em International Conference on Foundations of Software Science
+  and Computational Structures}, pages 81--96. Springer, 2008.
+
+\bibitem{chong2017programming}
+Frederic~T Chong, Diana Franklin, and Margaret Martonosi.
+\newblock Programming languages and compiler design for realistic quantum
+  hardware.
+\newblock {\em Nature}, 549(7671):180--187, 2017.
+
+\bibitem{hung2019quantitative}
+Shih-Han Hung, Kesha Hietala, Shaopeng Zhu, Mingsheng Ying, Michael Hicks, and
+  Xiaodi Wu.
+\newblock Quantitative robustness analysis of quantum programs.
+\newblock {\em Proceedings of the ACM on Programming Languages}, 3(POPL):1--29,
+  2019.
+
+\bibitem{tao2021gleipnir}
+Runzhou Tao, Yunong Shi, Jianan Yao, John Hui, Frederic~T Chong, and Ronghui
+  Gu.
+\newblock Gleipnir: toward practical error analysis for quantum programs.
+\newblock In {\em Proceedings of the 42nd ACM SIGPLAN International Conference
+  on Programming Language Design and Implementation}, pages 48--64, 2021.
+
+\bibitem{watrous2018theory}
+John Watrous.
+\newblock {\em The theory of quantum information}.
+\newblock Cambridge university press, 2018.
 
 \bibitem{nielsen2010quantum}
 Michael~A Nielsen and Isaac~L Chuang.

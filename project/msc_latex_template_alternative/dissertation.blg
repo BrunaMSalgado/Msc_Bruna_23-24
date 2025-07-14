@@ -9,50 +9,51 @@ Warning--entry type for "choNeumannAlgebrasForm2016" isn't style-file defined
 --line 1296 of file dissertation.bib
 Warning--entry type for "ferreiraProblemaDecisaoMaquina" isn't style-file defined
 --line 1471 of file dissertation.bib
+Warning--empty year in franzenGodelsTheorem2008
 Warning--empty year in turingComputableNumbersApplication1937
 Warning--empty journal in thrun2002robotic
 Warning--empty booktitle in Church2008
 Warning--empty author and editor in InfiniteDimensionalAnalysis2006
 Warning--empty year in InfiniteDimensionalAnalysis2006
-You've used 96 entries,
+You've used 99 entries,
             1791 wiz_defined-function locations,
-            1014 strings with 20014 characters,
-and the built_in function-call counts, 22028 in all, are:
-= -- 1984
-> -- 902
+            1028 strings with 20422 characters,
+and the built_in function-call counts, 22577 in all, are:
+= -- 2031
+> -- 922
 < -- 25
-+ -- 342
-- -- 246
-* -- 1340
-:= -- 3366
-add.period$ -- 299
-call.type$ -- 96
-change.case$ -- 67
++ -- 350
+- -- 251
+* -- 1371
+:= -- 3452
+add.period$ -- 308
+call.type$ -- 99
+change.case$ -- 68
 chr.to.int$ -- 0
-cite$ -- 101
-duplicate$ -- 1104
-empty$ -- 2235
-format.name$ -- 246
-if$ -- 5059
+cite$ -- 105
+duplicate$ -- 1134
+empty$ -- 2297
+format.name$ -- 251
+if$ -- 5182
 int.to.chr$ -- 0
-int.to.str$ -- 96
-missing$ -- 122
-newline$ -- 479
-num.names$ -- 106
-pop$ -- 368
+int.to.str$ -- 99
+missing$ -- 126
+newline$ -- 494
+num.names$ -- 110
+pop$ -- 383
 preamble$ -- 1
 purify$ -- 0
 quote$ -- 0
-skip$ -- 528
+skip$ -- 535
 stack$ -- 0
-substring$ -- 1251
-swap$ -- 293
+substring$ -- 1276
+swap$ -- 296
 text.length$ -- 25
 text.prefix$ -- 0
 top$ -- 0
 type$ -- 0
-warning$ -- 5
-while$ -- 207
-width$ -- 98
-write$ -- 1037
-(There were 7 warnings)
+warning$ -- 6
+while$ -- 212
+width$ -- 101
+write$ -- 1067
+(There were 8 warnings)
