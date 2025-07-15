@@ -62,6 +62,73 @@ Moreover, the $\lambda$-calculus includes a set of equations that clarify and si
 
 On another note, the lambda calculus not only allows us to express all computable functions, but also establishes a correspondence between logical proofs and programs. This is known as the \emph{Curry-Howard isomorphism} \cite{girardProofsTypes1989}.
 
+% Categorical logic stuff
+
+%the objects of type theory and set theory are structured by the operations of their respective systems in certain ways that are not mathematically salient. That additional information is essentially what is lost by our comparisons, e.g. distinctions between basic data and derived objects, between types of different complexity, ordinal rank of a set, membership chains within a set, etc. Categorical structure is closer to the mathematical content, and it is not lost in translation. Equivalence of categories preserves categorical properties and structures, because these are determined only up to isomorphism in the first place. The structural approach implemented by category theory is thus more stable, more robust, more invariant than type or set theoretic constructions. By contrast, the purely structural approach of category theory sometimes, offers comparatively little such “extra” structure to hold on to. Practically speaking, it can be harder to give an invariant proof. That is why it’s good to know that such logical structure can always be introduced into a category when needed; the devices of introducing an internal logic or a set theoretic structure into a category, as sketched in the foregoing sections, were originally developed in order to benefit from their advantages, much like introducing local coordinates on a manifold for the sake of calculation. So it is with categorical versus logical foundations: category theory implements the structural approach directly. It admits interpretations of the conventional logical systems, without being tied to them. Category theory presents the invariant content of logical foundations.
+
+%Category theory provides a language to describe precisely many similar phenomena that occur in different mathematical fields. For example, (1) Each finite dimensional vector space is isomorphic to its dual and hence also to its second dual. The second correspondence is considered “natural”, but the first is not. Category theory allows one to precisely make the distinction via the notion of natural isomorphism.
+
+%One of the reasons why set theory was important is that sets and mappings wereactually used to characterize and study mathematical structures (like groups or topological spaces; see the chapter by McLarty). This way of looking at mathematical topics led to new kinds of definitions, problems, and proof methods, generally referred to by the name ‘structuralism.’
+
+% category theory is in line with an important shift in mathematical methodology that emerged in the 19th and early 20th centuries, and investigating that shift further can help us understand “structuralism” better in general, including its categorical versions (as will become clearer later)
+
+%Structuralism: Category theory is often associated with structuralism, the view that mathematical objects are defined by their relationships within a structure, rather than by their intrinsic properties. 
+
+%When Eilenberg and Mac Lane first introduced (in 1945) the concepts of category and functor their concerns were far removed from the theory of types. Yet category theory and type theory have proved to have deep connections. In fact categories can themselves be viewed as type theories of a certain kind; this fact alone indicates that type theory is much more closely related to category theory than it is to set theory In thinking of a category as a type theory, the objects of a category are regarded as types (or sorts) and the arrows as mappings between the corresponding types. In the 1970s Lambek20 established that, viewed in this way, cartesian closed categories correspond to the typed λ-calculus. . Lambek and Dana Scott independently observed that C-monoids, i.e., categories with products and exponentials and a single, nonterminal object correspond to the untyped λ-calculus.  -> TYPES, SETS, AND CATEGORIES John L. Bell (v6 history of logic)
+%At this point is matters to note that in this work we work with a typed lambda calculus wich in lawnmens terms means that each term is assined a type (\ie domain?)
+%The typing concept also arises in concrete situations. Consider, for example, an automotive toolkit. Here one is provided with nuts, bolts and wrench bits to attach nuts to bolts. This gives three types: N, B, and S. Then given the instruction Use to attach to , it is implicit that the blanks be filled in with (names of) components of types S, N, and B respectively. 
+
+%Categorical logic, as its name indicates, is logic in the setting of category theory. But this description does not say much. Most readers would probably find more instructive to learn that categorical logic is algebraic logic, pure and simple. It is logic in an algebraic dressing. Just as algebraic logic encodes propositional logic in its different guises (classical, intuitionistic, etc.) by their LindenbaumTarski algebras (Boolean algebras, Heyting algebras and so on), categorical logic encodes first-order and higher-order logics (classical, intuitionistic, etc.) by categories with additional properties and structure (Boolean categories, Heyting categories and so on). Thus, from the purely technical point of view, categorical logic constitutes a generalization of the algebraic encoding of propositional logic to firstorder, higher-order and other logics.
+
+%A category C is an aggregate of abstract elements X, called the objects of thecategory, and abstract elements f, called mappings of the category
+%. Not only sets should be treated in a categorical framework, but also logical aspects of the foundations of mathematics should be treated categorically, in as much as they have an objective content. In particular, the logical and the foundational are directly revealed by adjoint functors.
+
+%Going back to his original program of clarifying the conceptual content of semantics, Lawvere realized that certain types of categories can be defined purely by stipulating that certain adjoint functors to given elementary functors exist. The definitions can be given by this data and nothing else. In a loose sense, defining a category via the existence of adjoints amounts to the claim that certain basic conceptual operations can be represented in that category. This in itself would probably not be of foundational relevance, were it not for the fact that the categories so defined correspond in a precise technical sense to logical concepts and theories. Thus the existence of certain adjoints to specific elementary functors amounts to a specification of logical structures and resources. With these ideas and results in his pocket, Lawvere could see that a program of “functorizing” the study of mathematical concepts in general could be formulated.
+
+%any λ-theory T determines a Cartesian closed category C(T). Inversely, each Cartesian closed category E determines a λ-theory T h(E) -> handbook
+
+
+%One of the most important observations of category theory is that large parts of mathematics can be internalized in any category with sufficient structure. The idea is to exploit the fact that all mathematics can be written in the language of logic, and seek a way to internalize logic in a category with sufficient structure. -> nlab
+
+% We now de ne a formal language, the typed-calculus, and show how it serves as a so-called internal language for cartesian closed categories. Over the last 25 years the typed-calculus (originally invented in the 1930ies by A. Church) has experienced a renaissance in (theoretical) computer science as a foundation for functional programming.
+
+%Typed lambda calculi are foundational programming languages and are the base of typed functional programming languages such as ML and Haskell and, more indirectly, typed imperative programming languages. Typed lambda calculi play an important role in the design of type systems for programming languages; here, typability usually captures desirable properties of the program (e.g., the program will not cause a memory access violation).
+%Typed lambda calculi are closely related to mathematical logic and proof theory via the Curry–Howard isomorphism and they can be considered as the internal language of certain classes of categories. For example, the simply typed lambda calculus is the language of Cartesian closed categories (CCCs).[2]
+
+%Moreover, as we have already mentioned, categorical logic provides bridges between constructive and classical approaches, geometry and logic, topology and logic, to name but the most obvious links
+
+
+
+%EXCERTOS IMPORTANTES 
+
+%categorical logic Handbook
+%A category C is an aggregate of abstract elements X, called the objects of thecategory, and abstract elements f, called mappings of the category
+%.
+%in addition to their usual role, they become the algebraic descriptions of formal systems and, as such, can be thought of as formal systems; but they also provide the underlying framework for semantics and, as such, can be thought of as universe of interpretations.
+
+
+%In particular, cartesian closed categories (§4.2) can be used to model simply typed lambda calculus. Each lambda calculus theory is the internal logical language of a cartesian closed ategory (the category's own structure defines the logic;The structure of the category (how objects and arrows interact) directly encodes the rules of logic or lambda calculus.)
+
+%In broad terms, categorical logic represents both syntax and semantics by a category, and an interpretation by a functor.
+
+%typed lambda calculus is a type theory
+
+%When Eilenberg and Mac Lane first introduced (in 1945) the concepts of category and functor their concerns were far removed from the theory of types. Yet category theory and type theory have proved to have deep connections. In fact categories can themselves be viewed as type theories of a certain kind; this fact alone indicates that type theory is much more closely related to category theory than it is to set theory In thinking of a category as a type theory, the objects of a category are regarded as types (or sorts) and the arrows as mappings between the corresponding types. In the 1970s Lambek20 established that, viewed in this way, cartesian closed categories correspond to the typed λ-calculus. . Lambek and Dana Scott independently observed that C-monoids, i.e., categories with products and exponentials and a single, nonterminal object correspond to the untyped λ-calculus.  -> TYPES, SETS, AND CATEGORIES John L. Bell (v6 history of logic)
+
+%any λ-theory T determines a Cartesian closed category C(T). Inversely, each Cartesian closed category E determines a λ-theory T h(E) -> handbook
+
+%Moreover, as we have already mentioned, categorical logic provides bridges between constructive and classical approaches, geometry and logic, topology and logic, to name but the most obvious links
+
+
+%Category theory describes properties of mathematical structures via their transformations or morphisms On the other hand mathematical logic provides languages for formalizing proper ties of structures directly in terms of their constituent parts elements of sets functions between sets relations on sets and so on It might seem that the kind of properties that can be described purely in terms of morphisms and their composition would be quite limited However beginning with the attempt of Lawvere  to reformulate the foundations of mathematics using the language of category theory the de velopment of categorical logic over the last three decades has shown that this is far from true. Indeed it turns out that many logical constructs can be characterized in terms of relatively few categorical ones principal among which is the concept of adjoint functor .
+%Many systems of logic can only be modelled in a su ciently complete waybygoingbeyond the usual setbased structures of classical model theory Categorical logic introduces the idea of a structure valuedinacategory Cwith the classical model theoretic notion of structure Chang and Keisler appearing as the special case when C is the category of sets and functions. For a particular logical concept one seeks to identify what properties or extra structure are needed in an arbitrary category to interpret the concept in a way that respects given logical axioms and rules A wellknown example is the interpretation of simply typed lambda calculus in cartesian closed categories
+
+% Ângulo Interpretação categorica -> categorias e parabola do elefante; In the 1970s Lambek20 established that, viewed in this way, cartesian closed categories correspond to the typed λ-calculus. . Lambek and Dana Scott independently observed that C-monoids, i.e., categories with products and exponentials and a single, nonterminal object correspond to the untyped λ-calculus. Furthermore, parte da lógica...
+
+% Categorias = multliplas perspetivas, mas não só. Lambda calculus e a mesmo a lógica em geral têm laços mais profundos com teoria das categorias. Um destes laços mais "automatico" prende-se com uma restrição do lambda calculus conhecida como simply typed lambda calculus que é uma typed theory. Aqui os termos são assigned a type (ie objects of a syntactic nature that are assigned to lambda terms). In fact categories can themselves be viewed as type theories of a certain kind; this fact alone indicates that type theory is much more closely related to category theory than it is to set theory In thinking of a category as a type theory, the objects of a category are regarded as types (or sorts) and the arrows as mappings between the corresponding types. Roughly speaking, a category may be thought of a type theory shorn of its syntax . In the 1970s Lambek20 established that, viewed in this way, cartesian closed categories correspond to the typed λ-calculus, \ie any λ-theory (def lambda theory) T determines a Cartesian closed category C(T). Inversely, each Cartesian closed category E determines a λ-theory Th(E). Furtermore this connection extends to the logic: Each lambda calculus theory is the internal logical language of a cartesian closed ategory (the category's own structure defines the logic;The structure of the category (how objects and arrows interact) directly encodes the rules of logic or lambda calculus.). In deed there's a branch of logics known as categorical  which ...
+
+%ver catl
+
 
 
 
