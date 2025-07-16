@@ -6,54 +6,53 @@ The style file: unsrt.bst
 Reallocating 'name_of_file' (item size: 1) to 13 items.
 Database file #1: dissertation.bib
 Warning--entry type for "choNeumannAlgebrasForm2016" isn't style-file defined
---line 1296 of file dissertation.bib
+--line 1294 of file dissertation.bib
 Warning--entry type for "ferreiraProblemaDecisaoMaquina" isn't style-file defined
---line 1471 of file dissertation.bib
+--line 1469 of file dissertation.bib
 Warning--empty year in franzenGodelsTheorem2008
-Warning--empty year in turingComputableNumbersApplication1937
 Warning--empty journal in thrun2002robotic
 Warning--empty booktitle in Church2008
 Warning--empty author and editor in InfiniteDimensionalAnalysis2006
 Warning--empty year in InfiniteDimensionalAnalysis2006
-You've used 99 entries,
+You've used 100 entries,
             1791 wiz_defined-function locations,
-            1028 strings with 20422 characters,
-and the built_in function-call counts, 22577 in all, are:
-= -- 2031
-> -- 922
-< -- 25
-+ -- 350
-- -- 251
+            1032 strings with 20473 characters,
+and the built_in function-call counts, 22833 in all, are:
+= -- 2057
+> -- 930
+< -- 26
++ -- 353
+- -- 253
 * -- 1371
-:= -- 3452
-add.period$ -- 308
-call.type$ -- 99
+:= -- 3487
+add.period$ -- 311
+call.type$ -- 100
 change.case$ -- 68
 chr.to.int$ -- 0
 cite$ -- 105
-duplicate$ -- 1134
-empty$ -- 2297
-format.name$ -- 251
-if$ -- 5182
+duplicate$ -- 1153
+empty$ -- 2321
+format.name$ -- 253
+if$ -- 5251
 int.to.chr$ -- 0
-int.to.str$ -- 99
-missing$ -- 126
-newline$ -- 494
-num.names$ -- 110
-pop$ -- 383
+int.to.str$ -- 100
+missing$ -- 128
+newline$ -- 499
+num.names$ -- 111
+pop$ -- 391
 preamble$ -- 1
 purify$ -- 0
 quote$ -- 0
-skip$ -- 535
+skip$ -- 549
 stack$ -- 0
-substring$ -- 1276
-swap$ -- 296
-text.length$ -- 25
+substring$ -- 1283
+swap$ -- 306
+text.length$ -- 26
 text.prefix$ -- 0
 top$ -- 0
 type$ -- 0
-warning$ -- 6
-while$ -- 212
-width$ -- 101
-write$ -- 1067
-(There were 8 warnings)
+warning$ -- 5
+while$ -- 214
+width$ -- 103
+write$ -- 1078
+(There were 7 warnings)

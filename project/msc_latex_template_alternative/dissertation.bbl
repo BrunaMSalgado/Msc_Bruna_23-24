@@ -1,4 +1,4 @@
-\begin{thebibliography}{10}
+\begin{thebibliography}{100}
 
 \bibitem{ferreiraProblemaDecisaoMaquina}
 Fernando Ferreira.
@@ -24,10 +24,10 @@ Torkel Franzén.
 \newblock {\em Gödel's {{Theorem}}}.
 \newblock A. K. Peters.
 
-\bibitem{hilbert1938}
+\bibitem{hilbert1928}
 D.~Hilbert and W.~Ackermann.
 \newblock {\em Grundzüge Der {{Theoretischen Logik}}}.
-\newblock Springer, 1938.
+\newblock Springer, 1928.
 
 \bibitem{church1936}
 Alonzo Church.
@@ -39,17 +39,21 @@ Simon~Peyton Jones.
 \newblock {\em The Implementation of Functional Programming Languages}.
 \newblock Prentice Hall, 1987.
 
-\bibitem{turingComputableNumbersApplication1937}
-A.~M. Turing.
-\newblock On {{Computable Numbers}}, with an {{Application}} to the
-  {{Entscheidungsproblem}}.
-\newblock {\em Proceedings of the London Mathematical Society},
-  s2-42(1):230--265.
-
 \bibitem{girardProofsTypes1989}
 Jean-Yves Girard, Yves Lafont, and Paul Taylor.
 \newblock {\em Proofs and {{Types}}}.
 \newblock Cambridge University Press, 1989.
+
+\bibitem{lambek1980lambda}
+Joachim Lambek.
+\newblock From lambda-calculus to cartesian closed categories.
+\newblock {\em To HB Curry: essays on combinatory logic, lambda calculus and
+  formalism}, pages 375--402, 1980.
+
+\bibitem{lambekscott988}
+J.~Lambek and P.~J. Scott.
+\newblock {\em Introduction to {{Higher-Order Categorical Logic}}}.
+\newblock Cambridge University Press, 1988.
 
 \bibitem{winskel93}
 Glynn Winskel.

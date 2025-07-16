@@ -21,86 +21,71 @@ With these notions in place, we can now turn to Gödel’s result, known as the 
  
 
 
-%The formal rules of logical reasoning used in a first-order theory have the property of being sound with respect to the notion of logical consequence. What this means is that anything that can be proved from a set of axioms using these rules of reasoning is also a logical consequence of the axioms in the sense defined.
-
-
-
-
-
-
-
 \noindent \textbf{Entscheidungsproblem}
-%we just intoduced two of the main points of focus of this thesis soundness and completeness - we will proced to introduce another the lambda calculus with has close ties with the notion of an effective method/computability fists formalized by hilbert as one of the thing that should hold in its optimistic vision of mathmatics 
-Why is this relevant to the present dissertation? Remarkably, it was Alonzo Church—using $\lambda$-\textit{calculus}—who first addressed Hilbert’s \emph{Entscheidungsproblem} (German for ``decision problem''), a cornerstone in his  optimistic vision for mathematics\cite{hilbert1938}. This \emph{Entscheidungsproblem} sought an effective method (also called a mechanical procedure or algorithm) to determine the truth or falsity of any mathematical statement. A method or procedure is effective if:
+We have just introduced two of the main  pillars of this thesis ---
+soundness and completeness. We now proceed to introduce a third,  deeply tied to Hilbert's ambitious vision for mathematics. Recall that Hilbert not only sought a complete and consistent foundation for mathematics, but also believed in the possibility of an entirely \emph{mechanical} method to resolve any mathematical problem---a process requiring no intuition or creative insight. In 1928, he formulated the Entscheidungsproblem (German for “decision problem”), which sought an \emph{effective method} (also called a mechanical procedure or algorithm)  to determine  the truth or falsity of any mathematical statement \cite{hilbert1928}.  A method or procedure is effective if:
 \begin{enumerate}
     \item it can be described by a finite number of exact instructions;
     \item it produces the desired result after a finite number of steps (provided the instructions are followed without error);
     \item it can, in principle, be carried out by a human using only paper and pencil;
     \item it does not require any creativity or insight from the human.
 \end{enumerate}
-The algorithms that children learn to perform basic arithmetic operations are examples of effective procedures.
+The algorithms that children learn to perform basic arithmetic operations are examples of effective procedures. 
+   
 
- In 1936, Alonzo Church published a solution to the \emph{Entscheidungsproblem}, proving that no such universal method exists for all mathematical statements~\cite{church1936}. Today, this result is often referred to as Church’s Theorem. In the same work, he introduced a mathematically precise definition of effective computability using what is now known as the $\lambda$-calculus: a function is computable if
- and only if it can be written as a lambda term. This calculus played an important role in functional programming, influencing the design of languages like LISP, Pascal, and GEDANKEN—many of which incorporate $\lambda$-calculus-inspired features, either explicitly or implicitly.Furthermore, Lambda calculus may be employed to prove properties of programming language (such as: a well-formed program will not crash)and as a tool in the construction of compilers \cite{jonesImplementationFunctionalProgramming}.
+ 
+\noindent \textbf{Alonzo Church and the $\lambda$-calculus enter the scene}
+Remarkably, it was Alonzo Church—using $\lambda$-\textit{calculus}—who first addressed Hilbert’s \emph{Entscheidungsproblem}. This brings us to the third central theme of this dissertation: $\lambda$-\textit{calculus}. In 1936, Alonzo Church published a solution to the \emph{Entscheidungsproblem}, proving that no universal algorithmic method  could decide the truth of all mathematical statements~\cite{church1936}. Today, this result is often referred to as emph{Church’s Theorem}. In the same work, he provided a mathematically precise notion of an effective method. He proposed that a function is effectively computable a function is computable if and only if it can be written as a lambda term. This equivalence provided the first rigorous mathematical criterion for computability.
 
-
- At the same time, another individual was working on this problem independently—without prior knowledge of Church’s work. His name was Alan Turing. In science, credit typically goes to the first person to prove a result. Yet Turing’s 1937 paper, On Computable Numbers, with an Application to the Entscheidungsproblem, was groundbreaking in its own right. In it, he introduced the concept of a universal machine and demonstrated that any function computable by a human following a systematic procedure could also be computed by a Turing machine \cite{turingComputableNumbersApplication1937}. Moreover, Turing proved that his definition of computability aligned with Church’s.
-
-%By Turing’s analysis, it became clear that the $\lambda$-calculus was sufficiently powerful to express all mechanically computable functions.
-
-Nowadays, computers are ubiquitous household appliances, as commonplace as televisions or refrigerators. Yet there is  something astounding in the fact that the personal computers we use daily trace their roots to an idea born from questions about the foundations of mathematics: the principle of universality in computation. 
+This calculus played an important role in functional programming, influencing the design of languages like LISP, Pascal, and GEDANKEN—many of which incorporate $\lambda$-calculus-inspired features, either explicitly or implicitly.Furthermore, $\lambda$-calculus may be employed to prove properties of programming language (such as: a well-formed program will not crash) and as a tool in the construction of compilers \cite{jonesImplementationFunctionalProgramming}.
 
 The idea that such important aspects of modern computer science emerged from foundational questions in mathematics is nothing short of extraordinary.
 
+\noindent \textbf{A note on Turing's work}
+Around the same time, another researcher—unaware of Church’s work—was independently addressing the same problem: Alan Turing, now widely regarded as the father of computer science. He introduced the concept of a universal machine, now known as the \emph{Turing Machine}. While Turing’s model is groundbreaking in its own right, it is largely orthogonal to this dissertation, as it is more closely associated with automata theory than with the syntax and semantics of programming languages.
+
+%In science, credit typically goes to the first person to prove a result. Yet Turing’s 1937 paper, On Computable Numbers, with an Application to the Entscheidungsproblem, was groundbreaking in its own right. In it, he introduced the concept of a universal machine and demonstrated that any function computable by a human following a systematic procedure could also be computed by a Turing machine \cite{turingComputableNumbersApplication1937}. Moreover, Turing proved that his definition of computability aligned with Church’s.
+
+
+%Nowadays, computers are ubiquitous household appliances, as commonplace as televisions or refrigerators. Yet there is  something astounding in the fact that the personal computers we use daily trace their roots to an idea born from questions about the foundations of mathematics: the principle of universality in computation. 
 
 
 
 \subsection*{ $\lambda$-calculus}
+\noindent \textbf{$\lambda$-calculus and functions}
+The $\lambda$-calculus serves as a formal language that captures a key feature of higher-order functional languages: treating functions as ``first-class citizens'' that can be passed as arguments. Here functions are expressed as \emph{formulae} of the form $\lambda x.\,f(x)$, with application denoted by juxtaposition. For example, the expression $f(2)$, where $f(x) = x + 1$, is written as $(\lambda x.\,x + 1)(2)$.
+
+\noindent \textbf{Typed-lambda calculus}
+In this work, we use the typed $\lambda$-calculus, a variant where each term is ``labeled'' by a syntactic object called a \emph{type}. Types serve as a mechanism for ensuring that programs are meaningful. In contrast, the untyped version allows, for example, a function to be applied to itself, as in $(\lambda x.\,x\,x)(\lambda x.\,x\,x)$, leading to non-termination. It also allows nonsensical operations, such as applying a boolean to a number or a function to a string.
 
 
-%Our previous use of a  (firt-order) logic as a way to introduce soundness and completeness to the reader is not completely innocent. In fact, the lambda calculus not only allows us to express all computable functions, but also establishes a correspondence between logical proofs and programs. This is known as the \emph{Curry-Howard isomorphism} \cite{girardProofsTypes1989}. Moreover, the lambda calculus itsef comes equipped with an equation logic, \ie, a set of equs, and that is why the concepts of soundness and completeness arise in this context ...  lambda theorey...-> ver isto melhor com o prof Renato
 
-Moreover, the $\lambda$-calculus includes a set of equations that clarify and simplify the meaning of operations. For instance, one such equation states that a function applying another function $f$ to an argument $x$ can be simplified to $f$ itself: $\lambda x.(f, x) = f$. When viewed as a programming language, the $\lambda$-calculus is typically equipped with a  semantics, \ie, its terms are assigned specific meanings. In this work, we are particularly interested in interpreting these terms as mathematical objects, especially those arising in category theory. If the aforementioned equations hold under a given interpretation, we refer to it as a \emph{model}.
+\noindent \textbf{$\lambda$-calculus and logic} 
+We previously mentioned that one of our main results pertains to soundness and completeness---a notion we deliberately introduced in the setting of (first-order) logic. In fact, the typed lambda calculus itself is equipped with an equational logic, i.e., a system of equations. These equations arise because the $\lambda$-calculus includes $n$-ary function symbols, which may be accompanied by equality axioms specifying their  intended properties. Moreover, the lambda calculus allows to establishe a correspondence between logical proofs and programs. This is known as the \emph{Curry-Howard isomorphism} \cite{girardProofsTypes1989}.
+
+%For instance, one such equation states that a function applying another function $f$ to an argument $x$ can be simplified to $f$ itself: $\lambda x.(f, x) = f$. 
+ 
+
+%Moreover, the $\lambda$-calculus includes a set of equations that clarify and simplify the meaning of operations. For instance, one such equation states that a function applying another function $f$ to an argument $x$ can be simplified to $f$ itself: $\lambda x.(f, x) = f$. When viewed as a programming language, the $\lambda$-calculus is typically equipped with a  semantics, \ie, its terms are assigned specific meanings. In this work, we are particularly interested in interpreting these terms as mathematical objects, especially those arising in category theory. If the aforementioned equations hold under a given interpretation, we refer to it as a \emph{model}.
+
+
+\noindent \textbf{Semantics:$\lambda$-calculus and category theory} In this work, we interpret programs as mathematical objects, particularly those arising in category theory. But why choose a categorical interpretation interpretation over other alternatives?
+
+Consider an ancient Indian parable: six blind men encounter an elephant for the first time. Each man touches a different part of the animal—the side, tusk, trunk, leg, ear, or tail—and draws a conclusion based solely on that limited experience. One describes it as a spear (the tusk), another as a snake (the trunk), and another as a fan (the ear). Each is convinced of his own interpretation and dismisses the others as incorrect. None of them realises that they are each experiencing only a part of the same elephant, and that their individual descriptions are incomplete. In some versions of the story, the men stop arguing, begin listening to one another, and collaborate to form a more accurate understanding of the whole elephant. 
+
+Category theory plays a similar role in computer science. Each category embodies a distinct perspective ---a "part of the elephant" ---capturing a specific computational paradigms. Adopting a categorical approach, allows us to generalize our results across diverse computational paradigms.
+
+
+However, there is a deeper reason for using category theory in this setting: it is intimately connected to the $\lambda$-calculus. First, it should be noted that $\lambda$-calculus is a type theory --- and here lies the twist: categories themselves can be viewed as type theories. The objects may be regarded as types (of sorts), and the arrows as functions between those types. In this sense, a category may be thought of as a type theory stripped of its syntax. With this perspective in mind, in the 1970s, Joachim Lambek established a correspondence with cartesian closed categories and the $\lambda$-calculus \cite{lambek1980lambda}. That is, types correspond to objects, and programs correspond to arrows in such categories. This correspondence extends further to logic, under the so-called Curry–Howard–Lambek correspondence, where formulas correspond to types and proofs to arrows.  Later, Lambek and Dana Scott independently observed that C-monoids (\ie categories equipped with products, exponentials, and a single non-terminal object) correspond to the untyped $\lambda$-calculus \cite{lambekscott988}.
+
+
+
+
+
+%any λ-theory (def lambda theory) T determines a Cartesian closed category C(T). Inversely, each Cartesian closed category E determines a λ-theory Th(E). Furtermore this connection extends to the logic: Each lambda calculus theory is the internal logical language of a cartesian closed ategory (the category's own structure defines the logic;The structure of the category (how objects and arrows interact) directly encodes the rules of logic or lambda calculus.)  
+
+%If the aforementioned equations hold under a given interpretation, we refer to it as a \emph{model}.
 %One way to study the lambda calculus is to give mathematical models of it, i.e.,to provide spaces in which lambda terms can be given meaning. Such models are  constructed using methods from algebra, partially ordered sets, topology,category theory, and other areas of mathematics
-
-On another note, the lambda calculus not only allows us to express all computable functions, but also establishes a correspondence between logical proofs and programs. This is known as the \emph{Curry-Howard isomorphism} \cite{girardProofsTypes1989}.
-
-% Categorical logic stuff
-
-
-%categories&(simply-typed)lambda-calculus
-%But why chosing a categorical interpretation? Well, firstly is has deep connections with $\lambda$-calculus. Actually we take this cue to make a detour and introduce the typed-lambda calculus, a version of lambda calculus where each term has an bject of syntatic nature associated know as type (and the onde used in this work). In a way types are a way of making sure that our programs make sence, given the untyped version allows  for instance , a function can be applied to itself, e.g., (λx. x x)(λx. x x), leading to infinite loops (non-termination) and applying a "boolean" to a "number", or a "function" to a "string" — there's no way to prevent nonsense. Simply typded $\lambda$-calculus is an example of a type-theory. And here comes the funny part: categories can themselves be viewed as type theories of a certain kind.  In thinking of a category as a type theory, the objects of a category are regarded as types (or sorts) and the arrows as mappings between the corresponding types. Roughly speaking, a category may be thought of a type theory shorn of its syntax ... lambert e tal
-%categories & the Blind men and an elephant parabole
-
-
-
-
-% Ângulo Interpretação categorica -> categorias e parabola do elefante; 
-
-%here is a parable that originated in India thousands of years ago about six blind men and an elephant. Having never encountered an elephant before, each man touches a different part of the animal—the side, tusk, trunk, leg, ear, or tail—and draws a conclusion based solely on that limited experience. One describes it as a spear (the tusk), another as a snake (the trunk), and another as a fan (the ear). Each is convinced of his own interpretation and dismisses the others as incorrect. None of them realises that they are each experiencing only a part of the same elephant, and that their individual descriptions are incomplete.
-%In some versions of the story, the men stop arguing, begin listening to one another, and collaborate to form a more accurate understanding of the whole elephant.
-%Similarly, in category theory, we can think of each category as representing a part of the elephant---that is, as offering a particular perspective on computer science. By applying category theory, we unify these perspectives, allowing us to generalize result across diverse computational paradigms.
-
-
-
-
-
-% Categorias = multliplas perspetivas, mas não só. Lambda calculus tem laços mais profundos com teoria das categorias. Um destes laços mais "automatico" prende-se com uma restrição do lambda calculus conhecida como simply typed lambda calculus que é uma typed theory Church [1940]. Aqui os termos são assigned a type (ie objects of a syntactic nature that are assigned to lambda terms). In fact categories can themselves be viewed as type theories of a certain kind; this fact alone indicates that type theory is much more closely related to category theory than it is to set theory In thinking of a category as a type theory, the objects of a category are regarded as types (or sorts) and the arrows as mappings between the corresponding types. Roughly speaking, a category may be thought of a type theory shorn of its syntax . In the 1970s Lambek20 established that, viewed in this way, cartesian closed categories correspond to the typed λ-calculus, \ie any λ-theory (def lambda theory) T determines a Cartesian closed category C(T). Inversely, each Cartesian closed category E determines a λ-theory Th(E). Furtermore this connection extends to the logic: Each lambda calculus theory is the internal logical language of a cartesian closed ategory (the category's own structure defines the logic;The structure of the category (how objects and arrows interact) directly encodes the rules of logic or lambda calculus.)  Moreover, Lambek and Dana Scott independently observed that C-monoids, i.e., categories with products and exponentials and a single, nonterminal object correspond to the untyped λ-calculus. 
-
-
-%A first thought, naturally, is that types resemble the syntactic or grammatical categories forming the basis of language in that the specification of types furnish the conditions for expressions to be well formed, or meaningful. The typing concept also arises in concrete situations. Consider, for example, an automotive toolkit. Here one is provided with nuts, bolts and wrench bits to attach nuts to bolts. This gives three types: N, B, and S. Then given the instruction Use to attach to , it is implicit that the blanks be filled in with (names of) components of types S, N, and B respectively. 
-
-%A category C is an aggregate of abstract elements X, called the objects of thecategory, and abstract elements f, called mappings of the category
-%. Category theory describes properties of mathematical structures via their transformations or morphisms.
-
-
-
-%In deed there's a branch of logics known as categorical logic in which for a particular logical concept one seeks to identify what properties or extra structure are needed in an arbitrary category to interpret the concept in a way that respects given logical axioms and rules. This logic trancends the capacicied of setbased structures of classical model theory encoding of propositional logic to firstorder, higher-order and other logics.
-
-%ver catl
-
-%Such categorical semantics can provide a completely general and often quite simple formulation of what is required to model a theory in the logic This has proved useful in cases where more traditional settheoretic methods of de ning a notion of model either lack generality or are in conveniently complicated to describe or both
-
 
 
 
@@ -110,11 +95,13 @@ Beyond its foundational aspects, this calculus incorporates extensions for model
 
 Program equivalence and its underlying theories traditionally rely on a binary notion of equivalence: two programs are either equivalent or not \cite{winskel93}. While this dichotomy is often sufficient for classical programming, it proves too coarse-grained for other computational paradigms. For instance, in various programming paradigms, interaction with the physical environment calls for notions of approximate program equivalence. 
 
-To address this, \cite{dahlqvistInternalLanguage2022,dahlqvist2023syntactic} incorporate a notion of approximate equivalence into the equational system of the affine $\lambda$-calculus by introducing, among other elements, \emph{metric equations} \cite{mardare2016quantitative, mardare2017axiomatizability}. These are equations of the form $t =_{\varepsilon} s$, where $\varepsilon$ is a non-negative real number representing the ``maximum distance'' between terms $t$ and $s$. Here we start investigating the incorporation of a metric equation for the case statements (\ie\ conditionals). Our motivation for it is highly practical: in trying to reason quantitatively about higher-order programs we often fell short when these involved conditionals.
 
+To adress this, \cite{dahlqvistInternalLanguage2022,dahlqvist2023syntactic} incorporate a notion of approximate equivalence into the equational system of the affine $\lambda$-calculus by introducing, among other elements, \emph{metric equations} \cite{mardare2016quantitative, mardare2017axiomatizability}. These are equations of the form $t =_{\varepsilon} s$, where $\varepsilon$ is a non-negative real number representing the ``maximum distance'' between terms $t$ and $s$. Here we start investigating the incorporation of a metric equation for the case statements (\ie\ conditionals). Our motivation for it is highly practical: in trying to reason quantitatively about higher-order programs we often fell short when these involved conditionals.
+
+Quantitative logics offer a way forward, extending beyond  $\lambda$-calculus. They reflects a broader effort to move beyond rigid binary concepts, such as equality and bisimulation, and toward more flexible frameworks better suited to real-world computation.
 
 Other works in the spirit of this dissertation include \cite{mardare2016quantitative, mardare2017axiomatizability, mio24, jurka24}, which explore (generalized) metric universal algebras. A universal algebra, in simple terms, is a set equipped with any number of operations, further defined  by axioms typically expressed as identities or equational laws. In a (generalized) metric universal algebra, these axioms are relaxed into (generalized) metric equations rather than strict equalities. In the higher-order setting, \cite{lago22}, following the framework introduced by Mardare \cite{mardare2016quantitative}, investigates the problem of defining quantitative algebras that are capable of interpreting terms in higher-order calculi.
-\todo[inline,size=\normalsize]{Falar do $\&$, não falor do $\&$, eis a questão }
+
 
 
 
@@ -142,15 +129,35 @@ In 1994, Peter Shor demonstrated that a quantum computer with sufficiently many 
 
 
 
-%falar do lambda calculus e da sua ambivalencia e mencionar que nos vamos focar no caso quantico
-
 \section{Contributions}
-We build on the work of \cite{dahlqvist2023syntactic} by introducing a metric equation for conditionals and proving both its soundness and completeness. Soundness ensures that if a metric equation $t =_{\varepsilon} s$ can be derived in the calculus, then the distance between the interpretations of $t$ and $s$ is at most $\varepsilon$. Completeness guarantees that if $\varepsilon$ is the maximal distance between the interpretations of two programs, then we can derive $t =_{\varepsilon} s$ in the calculus. 
 
-We then show that the category of metric spaces and the cocompletion of a $ \catMet $-category $ C $ satisfy the requirements for a model suitable for reasoning about approximate equivalence using this equation.  Next, to illustrate the utility of the metric equation introduced, we present two simple examples: reasoning about approximate equivalence between boolean terms (\ie terms of type $ \typeI \oplus \typeI $) the extensionality of copairing.
+Our contributions fall into three categories: syntactic, semantic, and  concerned with the connection between the two.
+
+\subsection*{Syntatic}
+
+We build on the work of \cite{dahlqvist2023syntactic} by introducing a metric equation for conditionals.  Next, to illustrate the utility of the metric equation introduced, we present two simple examples: reasoning about approximate equivalence between boolean terms (\ie terms of type $ \typeI \oplus \typeI $) the extensionality of copairing.
 
 
-Next, we explore two computational paradigms in greater detail: probabilistic and quantum computation. For the former, we prove that the category $ \catBan $ of Banach spaces and short maps constitutes a model in this setting, and use a random walk as an illustrative example. For the latter, we consider two categorical models: Selinger’s \( \catQ \), the category of quantum operationts (\ie, completely positive, trace-nonincreasing superoperators) \cite{selinger2004towards}, and Cho’s \( \WstarCPSUop \), the opposite category of W$^*$-algebras and normal, completely positive, subunital maps~\cite{choSemanticsQuantumProgramming2016}. We show that both are first-order models. Finally, we use quantum state discrimination, quantum teleportation, and quantum random walks as illustrative examples in this setting.
+\subsection*{Semantic}
+
+Returning to our earlier elephant parable, we study various “perspectives” by proving that the corresponding categories are indeed models:
+\begin{itemize}
+    \item The category of metric spaces $\catMet$;
+    \item Cocompletion of a $\catMet$-category $\catC$;
+    \item Category $ \catBan $ of Banach spaces and short maps;
+    \item  Selinger’s \( \catQ \), the category of quantum operationts (\ie, completely positive, trace nonincreasing superoperators) \cite{selinger2004towards}, and Cho’s \( \WstarCPSUop \), the opposite category of W$^*$-algebras and normal, completely positive, subunital maps~\cite{choSemanticsQuantumProgramming2016}.
+\end{itemize}
+This demonstrates that our work is applicable across several domains. For the last two quantum models, we restrict our attention to the first-order fragment of the $\lambda$-calculus, noting that extensions to higher-order are possible using more  more advances categorical tools, as  in\cite{dahlqvist2023syntactic}.
+
+We investigate two paradigms in greater detail: probabilistic computation (via $\catBan$) and quantum computation (via $\catQ$ and $\WstarCPSUop$). In the probabilistic setting, we use a random walk to reason about approximate equivalence. In the quantum setting, we use three examples: quantum state discrimination, quantum teleportation, and quantum random walks.
+ 
+
+%In this context, we show that the category of metric spaces and the cocompletion of a $\catMet$-category $\catC$ satisfy the requirements for a model suitable for reasoning about approximate equivalence using this equation.
+
+%Next, we explore two computational paradigms in greater detail: probabilistic and quantum computation. For the former, we prove that the category $ \catBan $ of Banach spaces and short maps constitutes a model in this setting, and use a random walk as an illustrative example. For the latter, we consider a restriction of $\lambda$-calculus to first order, knowing that later they can be extended to higher-oder using more advanced categorical machinery as in \cite{dahlqvist2023syntactic}.  That beeing said, we consider two categorical models: Selinger’s \( \catQ \), the category of quantum operationts (\ie, completely positive, trace-nonincreasing superoperators) \cite{selinger2004towards}, and Cho’s \( \WstarCPSUop \), the opposite category of W$^*$-algebras and normal, completely positive, subunital maps~\cite{choSemanticsQuantumProgramming2016}. We show that both are first-order models. Finally, we use quantum state discrimination, quantum teleportation, and quantum random walks as illustrative examples in this setting.
+
+\subsection*{Connection between syntax and semantics}
+We prove that the metric equation introduced its sound and complete. Soundness ensures that if a metric equation $t =_{\varepsilon} s$ can be derived in the calculus, then the distance between the interpretations of $t$ and $s$ is at most $\varepsilon$. Completeness guarantees that if $\varepsilon$ is the maximal distance between the interpretations of two programs, then we can derive $t =_{\varepsilon} s$ in the calculus. 
 
 
 %for enriched symmetric monoidal closed categories with binary copr0ducts over metric spaces.
