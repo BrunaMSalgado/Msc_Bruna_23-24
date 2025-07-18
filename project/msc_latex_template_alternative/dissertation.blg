@@ -14,45 +14,46 @@ Warning--empty journal in thrun2002robotic
 Warning--empty booktitle in Church2008
 Warning--empty author and editor in InfiniteDimensionalAnalysis2006
 Warning--empty year in InfiniteDimensionalAnalysis2006
-You've used 100 entries,
+Warning--empty journal in dahlqvistCompleteVEquationalSystem2023
+You've used 107 entries,
             1791 wiz_defined-function locations,
-            1032 strings with 20473 characters,
-and the built_in function-call counts, 22833 in all, are:
-= -- 2057
-> -- 930
-< -- 26
-+ -- 353
-- -- 253
-* -- 1371
-:= -- 3487
-add.period$ -- 311
-call.type$ -- 100
-change.case$ -- 68
+            1076 strings with 21850 characters,
+and the built_in function-call counts, 24400 in all, are:
+= -- 2197
+> -- 1001
+< -- 27
++ -- 379
+- -- 272
+* -- 1462
+:= -- 3728
+add.period$ -- 333
+call.type$ -- 107
+change.case$ -- 74
 chr.to.int$ -- 0
-cite$ -- 105
-duplicate$ -- 1153
-empty$ -- 2321
-format.name$ -- 253
-if$ -- 5251
+cite$ -- 113
+duplicate$ -- 1235
+empty$ -- 2471
+format.name$ -- 272
+if$ -- 5614
 int.to.chr$ -- 0
-int.to.str$ -- 100
-missing$ -- 128
-newline$ -- 499
-num.names$ -- 111
-pop$ -- 391
+int.to.str$ -- 107
+missing$ -- 134
+newline$ -- 534
+num.names$ -- 119
+pop$ -- 413
 preamble$ -- 1
 purify$ -- 0
 quote$ -- 0
-skip$ -- 549
+skip$ -- 598
 stack$ -- 0
-substring$ -- 1283
-swap$ -- 306
-text.length$ -- 26
+substring$ -- 1355
+swap$ -- 331
+text.length$ -- 27
 text.prefix$ -- 0
 top$ -- 0
 type$ -- 0
-warning$ -- 5
-while$ -- 214
-width$ -- 103
-write$ -- 1078
-(There were 7 warnings)
+warning$ -- 6
+while$ -- 225
+width$ -- 110
+write$ -- 1155
+(There were 8 warnings)

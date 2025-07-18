@@ -2821,8 +2821,8 @@ As done in previous examples we will add an identity gate to the ideal program h
 
 First, we compute:
 \begin{align*}
-\id (\rho) - \mathcal{E}(\rho) &=    |\alpha|^{2} \ket{0} \ket{0} + \alpha \beta^{*} \ket{0} \ket{1} + \alpha^{*} \beta \ket{1} \ket{0} + |\beta|^{2} \ket{1} \ket{1}  - \big( p(I/ 2) + (1-p) \big(|\alpha|^{2}  \\ 
-  & \hspace{10pt}  +  \alpha \beta^{*} \ket{0}\bra{1} +  \alpha^{*} \beta \ket{1}\bra{0} + |\beta|^{2} \ket{1}\bra{1}\big)\big)\\
+\id (\rho) - \mathcal{E}(\rho) &=    |\alpha|^{2} \ket{0} \bra{0} + \alpha \beta^{*} \ket{0} \bra{1} + \alpha^{*} \beta \ket{1} \bra{0} + |\beta|^{2} \ket{1} \bra{1}  - \big( p(I/ 2) + (1-p)   \\ 
+  & \hspace{10pt}  \big(|\alpha|^{2} \ket{0} \bra{0} +  \alpha \beta^{*} \ket{0}\bra{1} +  \alpha^{*} \beta \ket{1}\bra{0} + |\beta|^{2} \ket{1}\bra{1}\big)\big)\\
 & = p \left( (|\alpha|^2-1/2) \ket{0}\bra{0} +  \alpha \beta^{*} \ket{0} \bra{1} + \alpha^{*} \beta \ket{1} \bra{0} + (|\beta|^{2} -1/2) \ket{1} \bra{1} \right)
 \end{align*} 
 Considering that give a quantum state $\rho$ its cartesian cooredinates are given by 

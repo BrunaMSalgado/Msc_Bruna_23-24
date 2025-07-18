@@ -1,4 +1,4 @@
-This is XeTeX, Version 3.141592653-2.6-0.999995 (MiKTeX 24.1) (preloaded format=xelatex 2024.7.31)  16 JUL 2025 20:26
+This is XeTeX, Version 3.141592653-2.6-0.999995 (MiKTeX 24.1) (preloaded format=xelatex 2024.7.31)  19 JUL 2025 00:55
 entering extended mode
  restricted \write18 enabled.
  file:line:error style messages enabled.
@@ -1720,9 +1720,14 @@ Package glossaries-extra Warning: Base acronym command \acrlong should not be us
 
 Package glossaries-extra Warning: Base acronym command \acrshort should not be used with new abbreviation definitions. Use \glsxtrshort instead on input line 123.
 
+
+Overfull \hbox (25.59071pt too wide) in paragraph at lines 148--149
+\TU/SourceSansPro(0)/m/n/12 increasing superoperators) [[]], and Cho’s $[][]$, the opposite category of $[]$,
+ []
+
 [8]
-Overfull \hbox (1.72795pt too wide) in paragraph at lines 152--153
-[]\TU/SourceSansPro(0)/m/n/12 We investigate two paradigms in greater detail: probabilistic computation (via $[]$) and quan-
+Overfull \hbox (10.02797pt too wide) in paragraph at lines 152--153
+\TU/SourceSansPro(0)/m/n/12 examples: quantum state discrimination, quantum teleportation, and quantum random walks. 
  []
 
 [9]) (chapters/StateOfTheArt.tex [10]
@@ -2157,12 +2162,11 @@ Underfull \hbox (badness 1221) in paragraph at lines 556--560
 \TU/SourceSansPro(0)/m/n/12 quantum computation using teleportation and single-qubit operations.  \TU/SourceSansPro(0)/m/it/12 Nature\TU/SourceSansPro(0)/m/n/12 ,
  []
 
-) [143] [144
-
-]
+[143]) [144]
 runsystem(makeindex dissertation.idx)...executed safely (allowed).
 
  (dissertation.ind) (covers/BackCover.tex [145
+
 
 ] [1]) (dissertation.aux)
  ***********
@@ -2173,12 +2177,12 @@ Package rerunfilecheck Info: File `dissertation.out' has not changed.
 (rerunfilecheck)             Checksum: 36F5C885A36C524FC402D3C2016B08CA;12430.
  ) 
 Here is how much of TeX's memory you used:
- 55570 strings out of 409673
- 1167478 string characters out of 5774704
+ 55593 strings out of 409673
+ 1168344 string characters out of 5774704
  1990630 words of memory out of 5000000
- 76701 multiletter control sequences out of 15000+600000
+ 76724 multiletter control sequences out of 15000+600000
  578190 words of font info for 176 fonts, out of 8000000 for 9000
  1348 hyphenation exceptions out of 8191
  121i,36n,121p,2536b,1501s stack positions out of 10000i,1000n,20000p,200000b,200000s
 
-Output written on dissertation.xdv (170 pages, 2631556 bytes).
+Output written on dissertation.xdv (170 pages, 2665980 bytes).

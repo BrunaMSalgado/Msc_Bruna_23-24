@@ -1,16 +1,12 @@
 \chapter{Future work}\label{ch:future_work}
 
-% Quantais
+%quantain
 
-% Boolean (partial order), ultrametric (ultrametric spaces), 
+This work focuses specifically on the metric quantale. A natural direction for future research would be to generalize the metric equations and the associated results of soundness and completeness to other quantales, such as the Boolean, ultrametric, and Gödel quantales.
 
-%whichis (tacitly) used to interpret Nakano’s guarded λ-calculus [BSS10] and also to interpret a higher-order language for functional reactive programming [KB11]. Another interesting quantale is the G¨odel one which is a basis for fuzzy logic [DEW13] and whose V-equations give rise to what we call fuzzy inequations.
+In the case of the Boolean quantale, the relevant equations are labelled by $\{0,1\}$. The judgement $\Gamma \vljud v =_{1} w : \typeA$ can be  treated as an inequation $\Gamma \leq v =_{1} w : \typeA$, whereas $\Gamma \vljud v =_{0} w : \typeA$ corresponds to a trivial equation---that is, one that always holds. In this context, it would be interesting to explore, for instance, affine Boolean $\lambda$-theories in the setting of real-time computation, particularly in scenarios where the exact timing difference between two programs is irrelevant---what matters is simply whether one program finishes before the other~\cite{dahlqvist2023syntactic}. For the ultrametric quantale, one could investigate ultrametric $\lambda$-theories~\cite{dahlqvist2023syntactic} within computational paradigms such as the guarded $\lambda$-calculus~\cite{guarded_ultrametric} and functional reactive programming~\cite{Ultrametric_reactive}. Finally, the Gödel quantale, which underlies fuzzy logic~\cite{deneckeGaloisConnectionsApplications2004}, gives rise to what we refer to as \emph{fuzzy inequations}.
 
-% Real-time computation ->  Now, it may be the case that is unnecessary to know the distance between the execution time of two programs– instead it suffices to know whether a program finishes its execution before another one. 
 
-%Equations t =0 s state that the terms t and s are exactly the same and equations t =ϵ s state that t and s differ by at most ϵ seconds in their execution time.
-
-% Boolean quantale, V-equations are labelled by {0,1}. We will see that Γ ▷v =1 w : A can be effectively treated as an inequation Γ ▷v ≤ w : A, whilst Γ▷v =0 w : A corresponds to a trivial V-equation, i.e. a V-equation that always holds.
 
 % fuzzy logic -> imprecise date
 
@@ -21,11 +17,16 @@
 
 % Estender parte quantica para higher order
 
-%The quantum models discussed in SECALGO are not closed. In \cite{dahlqvist2023syntactic}, the authors used general results from category theory to address a similar issue in the category $\catCPTP$. A natural next step would be to extend such a construction for $\catQ$ and $\WstarCPSUop$.
+
+Another possible direction stems from the fact that the quantum categories discussed in \autoref{sec:quantum_cats} are not closed. In \cite{dahlqvist2023syntactic}, the authors used general results from category theory to address a similar issue in the category $\catCPTP$. A natural next step would be to extend such a construction for $\catQ$ and $\WstarCPSUop$.
 
 
 
 % Graded cenas
+
+  \cite{dahlqvistCompleteVEquationalSystem2023} extends  \cite{dahlqvist2023syntactic} by introducing a sound and complete $\mathcal{V}$- equation system ---which includes the metric quantale--- for a$\lambda$-calculus with graded modal types, allowing multiple uses of the same resource. Since this work does not consider quantum computation, a natural next step would be to explore categorical models suited for this setting. Such an extension would enable us to reason about approximate equivalence in various scenarios, such as discriminating between two known states given $n$ copies of an unknown state \cite{Multiple_copy_two_state_discrimination}, or estimating an unknown parameter across $n$ copies of quantum channels in quantum metrology \cite{Giovannetti_Quantum_Metrology, Zhou_Limits_Noisy_Quantum_Metrology}.
+
+%The subsequent work \cite{dahlqvistCompleteVEquationalSystem2023} extends these ideas by introducing a sound and complete metric equational system for a $\lambda$-calculus with graded modal types, interpreted using what the authors call a \emph{Lipschitz exponential comonad}.
 
 %estender modelo qunatico seria util por causa de quantum discrimination e quatum metrology -> ver onde andam os artigos
 
@@ -33,7 +34,7 @@
 
 %\cite{Giovannetti_Quantum_Metrology, Zhou_Limits_Noisy_Quantum_Metrology}
 
-%The goal is to estimate an unknown parameter encoded in a quantum channel, To improve the sensitivity and accuracy of measurements, quantum metrology takes advantage of the peculiar properties of quantum systems, such as entanglement and superposition. It is possible, for example, to estimate physical quantities more precisely using entangled states rather than classical states. Numerous applications of quantum metrology — which we will go into more detail shortly — can be found in fields such as navigation, communication, and medicine.
+
 
 
 
