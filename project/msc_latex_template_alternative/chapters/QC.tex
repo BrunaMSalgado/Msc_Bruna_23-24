@@ -20,7 +20,7 @@ As previously noted, Shor's algorithm has played a pivotal role in sparking heig
 These works adopt the Schr\"odinger picture, where quantum programs are interpreted as maps between quantum states (\ie, density operators). In contrast, \cite{choSemanticsQuantumProgramming2016, choNeumannAlgebrasForm2016} consider the Heisenberg picture, in which programs are modeled as maps between observables (\ie, self-adjoint operators). Particularly, \cite{choSemanticsQuantumProgramming2016} presents a model based on von Neumann algebras, which can be viewed as an infinite-dimensional extension of \cite{selinger2004towards}. Moreover, \cite{choSemanticsQuantumProgramming2016} presents a model of Selinger and Valiron’s quantum lambda calculus \cite{selinger2006lambda, selinger2008linear, selinger2009quantum}, also based on von Neumann algebras, and proves the model's adequacy.
 
 
-However, most of the current research on algorithms and programming languages assumes that addressing the challenge of noise during program execution will be resolved either by the hardware or through the implementation of fault-tolerant protocols designed independently of any specific application \cite{chong2017programming}. As previously stated, this assumption is not realistic in the NISQ era. Nonetheless, there have been efforts to address the challenge of approximate program equivalence in the quantum setting. 
+Most of the current research on algorithms and programming languages assumes that addressing the challenge of noise during program execution will be resolved either by the hardware or through the implementation of fault-tolerant protocols designed independently of any specific application \cite{chong2017programming}. As previously stated, this assumption is not realistic in the NISQ era. Nonetheless, there have been efforts to address the challenge of approximate program equivalence in the quantum setting. 
 
 \cite{hung2019quantitative} and \cite{tao2021gleipnir} reason about the issue of noise in a quantum while-language by developing a deductive system to determine how similar a quantum program is from its idealised, noise-free version. The former introduces the ($Q$,$\lambda$)-diamond norm which analyzes the output error given that the input quantum state satisfies some quantum predicate $Q$ to degree $\lambda$. However, it does not specify any practical method for obtaining non-trivial quantum predicates. In fact, the methods used in \cite{hung2019quantitative} cannot produce any post conditions other than $(I,0)$ (\textit{i.e.}, the identity matrix $I$ to degree 0, analogous to a ``true” predicate) for large quantum programs. The latter specifically addresses and delves into this aspect.  
 
@@ -641,7 +641,7 @@ The basic unit of information in quantum computation is a \emph{quantum bit} or 
   where \( \alpha, \beta \in \mathbb{C} \) are called \emph{amplitudes}, and must satisfy the normalization condition \( |\alpha|^2 + |\beta|^2 = 1 \). The values \( |\alpha|^2 \) and \( |\beta|^2 \) represent the probabilities of measuring the qubit in the states \( \ket{0} \) and \( \ket{1} \), respectively.
 \end{definition}
 
-\begin{definition}
+
   Any normalized qubit state \( \ket{\psi} \) can be written (up to a global phase) as
   \[
   \ket{\psi} = e^{i \gamma} \left(\cos\left(\frac{\theta}{2}\right) \ket{0} + e^{i\phi}\sin\left(\frac{\theta}{2}\right)\ket{1}\right),
@@ -654,7 +654,7 @@ The basic unit of information in quantum computation is a \emph{quantum bit} or 
 %\begin{definition} \label{def:boch_sphere_state}
   The above parametrization defines a point on the unit sphere in \( \mathbb{R}^3 \), known as the \emph{Bloch sphere}. The angles \( \theta \) and \( \phi \) represent the polar and azimuthal angles, respectively. Each pure qubit state corresponds to a point on this sphere, with associated \emph{Bloch vector} given by
   $(\cos \phi \sin \theta, \sin \phi \sin \theta, \cos \theta).$
-\end{definition}
+
  
 \begin{figure}[H] 
   \centering
@@ -1290,6 +1290,49 @@ is also a bounded linear map.
 
 
 \section{W$^*$-Algebras}
+
+%intro a porque é que queremos saber the w*algebras there's two pictures, bla bla
+
+%\mathscr{B}
+
+
+
+\begin{comment}
+We begin with some considerations on how the definition of complete positivity for C$^*$-algebras aligns with the corresponding notion in the setting of finite-dimensional Hilbert spaces. As the theorems below demonstrate, this correspondence is established through the Choi matrix representation.
+
+\begin{theorem} \cite[Theorem 4.6]{heinosaariMathematicalLanguageQuantum2011}
+Let $\Phi : \mathcal{M}_n \to \mathcal{M}_m$ be a positive linear mapping, and let  $\{ \ket{i}\bra{j} \}_{i,j=1}^n $ denote any orthonormal basis for \( \mathcal{M}_n \). Then the following statements are equivalent:
+\begin{enumerate}
+    \item[(i)] $\Phi$ is completely positive, \ie  
+$\Phi \otimes \id_{\mathcal{T}(\HilbK)}$ is positive for any finite-dimensional Hilbert space $\HilbK$;
+    \item[(ii)] $\Phi \otimes \text{Id}_{\mathcal{M}_n}$ is a positive map;
+    \item[(iii)] the matrix \( \left( \Phi(\ket{i}\bra{j}) \right)_{i,j=1}^n \) is positive.  This is called the \emph{Choi matrix} of $\Phi$.
+\end{enumerate}
+\end{theorem}
+
+\begin{theorem} \cite[Theorem 3.14]{paulsenCompletelyBoundedMaps2003}
+Let \( \Phi : \mathcal{M}_n \to \mathcal{M}_m \), and let  $\{ \ket{i}\bra{j} \}_{i,j=1}^n $ denote any orthonormal basis for \( \mathcal{M}_n \). The following are equivalent:
+\begin{itemize}
+    \item[(i)] \( \Phi \) is completely positive, \emph{i.e.} for all \( o \in \mathbb{N} \), the map $\mathcal{M}_o(f): \mathcal{M}_o(\mathcal{M}_n) \to \mathcal{M}_o(\mathcal{M}_m)$ 
+is positive. 
+    \item[(ii)] \( \Phi \) is \( n \)-positive.
+    \item[(iii)] The matrix \( \left( \Phi(\ket{i}\bra{j}) \right)_{i,j=1}^n \) is positive in \( \mathcal{M}_n(\mathcal{M}_n) \).
+\end{itemize}
+\end{theorem}
+
+
+\[
+    \mathbf{E} = \begin{pmatrix}
+    \mathcal{E}(|1\rangle\langle 1|) & \cdots & \mathcal{E}(|1\rangle\langle d|) \\
+    \vdots & \ddots & \vdots \\
+    \mathcal{E}(|d\rangle\langle 1|) & \cdots & \mathcal{E}(|d\rangle\langle d|)
+    \end{pmatrix}
+    \]
+\end{comment}
+
+
+
+
 
 \section{Categories for (first-order) quantum computation} \label{sec:quantum_cats}
 

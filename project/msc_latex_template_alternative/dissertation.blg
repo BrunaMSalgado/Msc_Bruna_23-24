@@ -15,45 +15,45 @@ Warning--empty booktitle in Church2008
 Warning--empty author and editor in InfiniteDimensionalAnalysis2006
 Warning--empty year in InfiniteDimensionalAnalysis2006
 Warning--empty journal in dahlqvistCompleteVEquationalSystem2023
-You've used 107 entries,
+You've used 108 entries,
             1791 wiz_defined-function locations,
-            1076 strings with 21850 characters,
-and the built_in function-call counts, 24400 in all, are:
-= -- 2197
-> -- 1001
+            1081 strings with 22029 characters,
+and the built_in function-call counts, 24558 in all, are:
+= -- 2213
+> -- 1005
 < -- 27
-+ -- 379
-- -- 272
-* -- 1462
-:= -- 3728
-add.period$ -- 333
-call.type$ -- 107
++ -- 381
+- -- 273
+* -- 1466
+:= -- 3754
+add.period$ -- 337
+call.type$ -- 108
 change.case$ -- 74
 chr.to.int$ -- 0
-cite$ -- 113
-duplicate$ -- 1235
-empty$ -- 2471
-format.name$ -- 272
-if$ -- 5614
+cite$ -- 114
+duplicate$ -- 1245
+empty$ -- 2490
+format.name$ -- 273
+if$ -- 5653
 int.to.chr$ -- 0
-int.to.str$ -- 107
-missing$ -- 134
-newline$ -- 534
-num.names$ -- 119
-pop$ -- 413
+int.to.str$ -- 108
+missing$ -- 136
+newline$ -- 539
+num.names$ -- 120
+pop$ -- 418
 preamble$ -- 1
 purify$ -- 0
 quote$ -- 0
-skip$ -- 598
+skip$ -- 600
 stack$ -- 0
 substring$ -- 1355
-swap$ -- 331
+swap$ -- 332
 text.length$ -- 27
 text.prefix$ -- 0
 top$ -- 0
 type$ -- 0
 warning$ -- 6
-while$ -- 225
-width$ -- 110
-write$ -- 1155
+while$ -- 226
+width$ -- 111
+write$ -- 1166
 (There were 8 warnings)

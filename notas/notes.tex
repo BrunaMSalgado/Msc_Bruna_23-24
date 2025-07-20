@@ -2552,9 +2552,6 @@ such that
 \]Moreover \( f \overline{\otimes} g \) is (sub)unital if \( f \) and \( g \) are (sub)unital.
 \end{proposition}
 
-\begin{proposition}
-  
-\end{proposition}
 
 \begin{proposition} \cite[Exercise 47 IV]{westerbaanCategoryNeumannAlgebras2019}  \label{prop:wcpsu_products}
   Let \( (\mathcal{A}_i)_i \) be a family of von Neumann algebras. Then the direct sum \( \bigoplus_i \mathcal{A}_i \) (see Definition \ref{def:c*_direct_sum}) is itself a von Neumann algebra, and the canonical projections
@@ -2657,6 +2654,34 @@ $ .
   Let  $\mathcal{A}$ and $\mathcal{B}$ be von Neumann Algebras.
   Given normal completely positive maps $f:\mathcal{A} \to \mathcal{C}$ and $g:\mathcal{B} \to \mathcal{C}$. We may take $ f \, \bar{\otimes} \, g = \beta_{\bar{\otimes}}$ as in the theorem above. Moreover, $\norm{\beta_\odot(s)} \leq \norm{f}\norm{g}\norm{s}$, given an element $s\in \mathcal{A} \bar{\otimes} \mathcal{B}$.
 \end{proposition}
+
+\begin{theorem} \cite[Theorem 1.22.6]{sakaiCAlgebrasWAlgebras1998} \label{thm:sakai_tensor_min}
+  Let \( \mathscr{A}\) and \( \mathscr{B} \) be two unital \( C^* \).
+Then the minimal \( C^* \)-norm \( \|\cdot\|_{\min} \) on \( A \otimes B \) is the least \( C^* \)-norm among all \( C^* \)-norms \( \alpha \) on \( \mathscr{A} \odot \mathscr{B} \). That is,
+\[
+\|x\|_{\min} \leq \|x\|_{\alpha} \quad \text{for all } x \in A \odot B.
+\]
+\end{theorem}
+
+\begin{proposition} \cite[Proposition 1.22.7]{sakaiCAlgebrasWAlgebras1998} \label{prop:sakai_tensor_min}
+  Let \( \mathscr{A}\ \) and \( \mathscr{B}\ \) be \( C^* \)-algebras, and let \( \alpha \) be a \( C^* \)-norm on the algebraic tensor product \( A \otimes B \) such that
+\[
+\|a \otimes b\|_{\alpha} \leq k \|a\| \cdot \|b\| \quad \text{for all } a \in A,\, b \in B,
+\]
+where \( k \) is a fixed positive constant.
+
+Then,
+\[
+\|\cdot\|_{\min} \leq \|\cdot\|_{\alpha}.
+\]
+\end{proposition}
+
+\begin{proposition} \cite[Exercise 116 III]{westerbaanCategoryNeumannAlgebras2019} \label{prop:norm_tensor_w_mult}
+   Let \( \mathscr{A}\ \) and \( \mathscr{B}\ \) be \( W^* \)-algebras, $\norm{a\otimes b}= \norm{a}\norm{b}$ for all $a \in \mathscr{A}$ and  $b \in \mathscr{B}$.
+\end{proposition}
+
+%exercicio do Abrafam 
+
 
 
 \begin{comment}
@@ -2786,11 +2811,125 @@ As a result the proposition above holds.
 
 With the result above, we have established that the category $\WstarCPSUop$ is a suitable model for our $\lambda$-calculus. Consequently, we obtain a framework for reasoning about approximate equivalence in infinite-dimensional quantum computation. This, for example, enables us to reason about errors in quantum walks on an infinite line \cite{venegasQuantumWalksComprehensive2012}.
 
+
+\todo[inline]{Nota professor Renator: Como eu vi por exemplo o Kenta a usar defs the completa potitividade diferentes (não explitamente mas ao citar livros que usam um definição diferente da dele) resolvi provar explitamente que as defs são equivalentes, até porque ficaria um pouco estranho ter duas definições da mesma coisa e não estabelecer uma relação entre elas. A def $1$ é a do Watrous e a $2$ é a das C$^*$-algebras.}
+
+\begin{proposition}
+  The definitions of completely positivity presented are equivalente for maps 
+  $$\Phi: \mathcal{M}_{n1} \oplus \ldots \oplus  \mathcal{M}_{ns} \to \mathcal{M}_{m1} \oplus \ldots \oplus  \mathcal{M}_{mt}. $$
+\end{proposition}
+
+\begin{proof}
+  We begin by observing that the composition of positive maps is positive, and that the map which swaps tensor factors is itself positive \cite{watrous2018theory}. Therefore, Definition~1 is equivalent to the one obtained by replacing \( \Phi \otimes \id_{\mathcal{T}(\HilbH)} \) with \( \id_{\mathcal{T}(\HilbH)} \otimes \Phi \). 
+
+  We now proceed to demonstrate the equivalence between this definition and Definition 2. Here we note the isometric isomorphisms $\mathcal{B}(\HilbH)\cong \SqMatrix{n}$ \cite{watrous2018theory} with $\text{dim}(\HilbH)=n$ and $\mathcal{M}_o(\mathcal{M}_{n1} \oplus \ldots \oplus  \mathcal{M}_{ns} )\cong \mathcal{M}_o \otimes (\mathcal{M}_{n1} \oplus \ldots \oplus  \mathcal{M}_{nt})$ \cite[Corollary 8.1.3]{effrosOperatorSpaces2000}. It is straightforward that the first isomorphism is positive. Now, regarding the second isomorphism, consider that $[a_{i,j}] \in \mathcal{M}_o(\mathcal{M}_{n1} \oplus \ldots \oplus  \mathcal{M}_{nr})$ is positive, \ie $[a_{i,j}] = [b_{i,j}]^* [b_{i,j}] $. Note that
+  \begin{align*}
+     [b_{i,j}]^* [b_{i,j}] = [b_{i,j}^*] [b_{i,j}] = \left[  \left(\sum_k b_{k,i}^* b_{k,j} \right)_{i,j} \right],
+  \end{align*}
+\ie, the $(i,j)$-th entry of the resulting matrix is the sum $\sum_k b_{k,i}^* b_{k,j}$.
+The isomorphism $i:\mathcal{M}_o(\mathcal{M}_{n1} \oplus \ldots \oplus  \mathcal{M}_{nr} ) \to \mathcal{M}_o \otimes (\mathcal{M}_{n1} \oplus \ldots \oplus  \mathcal{M}_{nr})$ is defined as $i([a_{i,j}]) = \sum_{i,j}  \ket{i}\bra{j} \otimes a_{ij} $,
+where $\{ \ket{i}\bra{j} \}_{i,j=1}^n  $ denotes any orthonormal basis for \( \mathcal{M}_n \).
+As a result, $b \coloneqq i([b_{i,j}]) = \sum_{i,j}  \ket{i}\bra{j} \otimes b_{ij}$ and $b^* \coloneqq i([b_{i,j}^*]) = \sum_{i,j}  \ket{i}\bra{j} \otimes b_{ij}^*$.
+Next, we calculate:
+\begin{align*}
+  b^*b &= \left( \sum_{i,j}  \ket{j}\bra{i} \otimes b_{ij}^* \right)  \left( \sum_{i,j}  \ket{i}\bra{j} \otimes b_{ij} \right) \\
+  & = \sum_{i,k,l,j} \ket{i}\bra{k} \ket{l}\bra{j} \otimes  b_{k,i}^* b_{l,j} \\
+  & = \sum_{i,k,l,j} \ket{i}\bra{j} \otimes \left(\sum_{k} b_{k,i}^* b_{k,j}\right)  & ( \ket{i}\bra{k} \ket{l}\bra{j} = \delta_{kl} \ket{i}\bra{j}) \\
+  & = i([b_{i,j}]^* [b_{i,j}]),
+\end{align*} 
+thereby demonstrating that $i$ is positive.
+
+Let $\sigma:1, \ldots, s$, and $\tau:1, \ldots, t$, the equivalence of definitions 1 and 2, follows from the fact that the two diagrams below commute and the composition of positive maps is positive. For the first we assume that $\id_{\mathcal{T}(\HilbH)} \otimes \Phi$ is positive for all finite dimensional $\mathcal{H}$, and for the second that $\SqMatrix{o}(\Phi)$ is positive for all $o \in \mathbb{N}$. 
+
+%[a_{i,j}] \mapsto \sum_{i,j}  \ket{i}\bra{j} \otimes a_{ij}
+
+\[
+\hspace{-30pt}
+\begin{minipage}{0.45\textwidth}
+\centering
+\begin{tikzpicture}
+  \matrix (m) [matrix of math nodes,row sep=3em,column sep=6em,minimum width=1em]
+  {
+  \mathcal{T}(\HilbH) \otimes  \SqMatrix{\sigma}&  \mathcal{T}(\HilbH) \otimes  \SqMatrix{\tau}  \\
+  \SqMatrix{o} \otimes  \SqMatrix{\sigma} &  \SqMatrix{o} \otimes  \SqMatrix{\tau}  \\
+  \SqMatrix{o}( \SqMatrix{\sigma}) &  \SqMatrix{o}( \SqMatrix{\tau}) \\
+  };
+  \path[-stealth]
+    (m-1-1) edge  node [above] {$\id_{\mathcal{T}(\HilbH)} \otimes \Phi  $} (m-1-2)
+    (m-1-2) edge   node [right] {$\cong $} (m-2-2)
+    (m-2-2) edge  node [right] {$ A \otimes B \mapsto [(a_{i,j} B)_{i,j}] $} (m-3-2)
+    (m-2-1) edge  node [right] {$ \cong $} (m-1-1)
+    (m-3-1) edge  node [right] {$[a_{i,j}] \mapsto \sum_{i,j}  \ket{i}\bra{j} \otimes a_{ij} $} (m-2-1)
+    (m-3-1) edge  node [below] {$\SqMatrix{o}(\Phi)$} (m-3-2)
+    ;
+\end{tikzpicture}
+\end{minipage}
+\hspace{20pt}
+\begin{minipage}{0.45\textwidth}
+\centering
+\begin{tikzpicture}
+  \matrix (m) [matrix of math nodes,row sep=3em,column sep=5em,minimum width=1em]
+  {
+  \mathcal{T}(\HilbH) \otimes  \SqMatrix{\sigma}&  \mathcal{T}(\HilbH) \otimes  \SqMatrix{\tau}  \\
+  \SqMatrix{o} \otimes  \SqMatrix{\sigma} &  \SqMatrix{o} \otimes  \SqMatrix{\tau}  \\
+  \SqMatrix{o}( \SqMatrix{\sigma}) &  \SqMatrix{o}( \SqMatrix{\tau}) \\
+  };
+  \path[-stealth]
+    (m-1-1) edge  node [above] {$\id_{\mathcal{T}(\HilbH)} \otimes \Phi  $} (m-1-2)
+    (m-2-2) edge   node [right] {$\cong $} (m-1-2)
+    (m-3-2) edge  node [right] {$ [a_{i,j}] \mapsto \sum_{i,j}  \ket{i}\bra{j} \otimes a_{ij}$} (m-2-2)
+    (m-1-1) edge  node [right] {$ \cong $} (m-2-1)
+    (m-2-1) edge  node [right] {$ A \otimes B \mapsto [(a_{i,j} B)_{i,j}] $} (m-3-1)
+    (m-3-1) edge  node [below] {$\SqMatrix{o}(\Phi)$} (m-3-2)
+    ;
+\end{tikzpicture}
+\end{minipage}
+\]
+
+\end{proof}
+
+
+
+
+First, we note that the definition of unitary operators extends for separable Hilbert spaces \cite{heinosaariMathematicalLanguageQuantum2011}, and from that it follows that they are unital.  Their complete positivity is established by the following theorem.
+
+%\todo[inline]{Dúvida para professor Renato: De uma maneira geral há $3$ formas de definir completa positividade para um superop $f$: a das C$^*$-Algebras com M$_n(f)$ a ter de ser pos para cada $n \in \mathbb{N}$, e depois nos espaços de Hilbert diferentes autores definem como $\id_{B(H)} \otimes f$ ou $f \otimes \id_{B(H)}$ deve ser pos para qualquer $H$. Por exemplo o Selinger e o Chuang usam a primeira e é facil ver a correspondencia desta para a das C$^*$ algebras. No entanto, por exemplo, o Watrous usa a segunda. A minha questão é o $f \otimes \id_{B(H)}$ também é equivalente às restantes? Porque eu não estou a conseguir ver como.}
+
+\begin{theorem} \cite[Theorem 1.6]{pisierIntroductionOperatorSpace2003}
+Let \( \mathcal{H}_1 \), \( \mathcal{H}_2 \) and \( \mathcal{K} \)  be Hilbert spaces, let \( \pi :  \mathcal{K} \to \mathcal{B}(\mathcal{H}_2) \) be a $*$-homomorphism, and let \( V_1 : \mathcal{H}_1 \to \mathcal{H}_2 \), and \( V_2 : \mathcal{H}_2 \to \mathcal{H}_1 \) be bounded operators. Define a map \( \Phi :  \mathcal{B}(\mathcal{K})  \to \mathcal{B}(\mathcal{H}_1) \) by
+\[
+\Phi(a) = V_2 \pi(a) V_1.
+\]
+Then \( \Phi \) is completely bounded with
+\[
+\| \Phi \|_{\mathrm{cb}} \leq \|V_1\| \cdot \|V_2\|,
+\]
+and if \( V_1 = V_2^{\dag} \), then \( \Phi \) is completely positive.
+\end{theorem}
+
+The next propositions will be useful to compute norms in the example that follows.
+
+\begin{proposition} \cite[Proposition 8.11] {paulsenCompletelyBoundedMaps2003} \label{prop:Mn_cb_norm}
+  Let \( \Phi : \mathcal{M}_{m} \to \mathcal{M}_n \) be a linear map. Then
+\[
+\|\varphi_n\| = \|\varphi\|_{\text{cb}}.
+\]
+\end{proposition}
+
+\begin{proposition}  \cite[Exercise 3.10]{paulsenCompletelyBoundedMaps2003}  \label{prop:Mn_phi_n_norm}
+  Let \( \mathscr{A} \) and \( \mathscr{B} \) be unital \( C^* \)-algebras, and let \( \Phi: \mathscr{A} \to \mathscr{B} \) be a bounded linear map.  Then,
+\[
+\|\Phi_n\| \leq n \|\Phi\|.
+\]
+\end{proposition}
+
+
 The category  $\WstarCPSUop$ is a model of the metric $\lambda$-theory for quantum computation under the following interpretation: 
 $\sem{\typeI}$, 
-$\sem{\emph{qbit} \hspace{1pt}}$, $\sem{\emph{q} \hspace{1pt}}$, $\sem{\ket{\psi}}$ for $\psi \in \{0, 1\}$, $\sem{\emph{meas}}$ and $\sem{U}$ are ``imported from'' $\catQ$. To these we add $\sem{\emph{pos} \hspace{1pt}}= \mathcal{B}(\ell^2(\mathbb{Z}))$ and $\sem{S}= \rho \mapsto S \rho \, S^\dag$.
+$\sem{\emph{qbit} \hspace{1pt}}$, $\sem{\ket{\psi}}$ for $\psi \in \{0, 1\}$, and $\sem{U}$ are ``imported from'' $\catQ$. To these we add $\sem{\emph{pos} \hspace{1pt}}= \mathcal{B}(\ell^2(\mathbb{Z}))$ and $\sem{S}= \rho \mapsto S \rho \, S^\dag$.
 
-Note that in the infinite-dimensional setting (for separable Hilbert spaces), unitary transformations of the form $\rho \mapsto U \rho U^\dag$ are still quantum channels, and are therefore completely positive and unital by definition \cite[Example~4.6, Definition~1.48]{heinosaariMathematicalLanguageQuantum2011}. 
+%Note that in the infinite-dimensional setting (for separable Hilbert spaces), unitary transformations of the form $\rho \mapsto U \rho U^\dag$ are still quantum channels, and are therefore completely positive and unital by definition \cite[Example~4.6, Definition~1.48]{heinosaariMathematicalLanguageQuantum2011}.
+
 
 \begin{example} [Quantum walk]
   Here, we study how a depolarizing channel affects the coin-state qubit after the coin-toss operator $ H $ acts on the system. 
@@ -2825,7 +2964,7 @@ First, we compute:
   & \hspace{10pt}  \big(|\alpha|^{2} \ket{0} \bra{0} +  \alpha \beta^{*} \ket{0}\bra{1} +  \alpha^{*} \beta \ket{1}\bra{0} + |\beta|^{2} \ket{1}\bra{1}\big)\big)\\
 & = p \left( (|\alpha|^2-1/2) \ket{0}\bra{0} +  \alpha \beta^{*} \ket{0} \bra{1} + \alpha^{*} \beta \ket{1} \bra{0} + (|\beta|^{2} -1/2) \ket{1} \bra{1} \right)
 \end{align*} 
-Considering that give a quantum state $\rho$ its cartesian cooredinates are given by 
+Considering that give a quantum state $\rho$ its cartesian coordinates are given by 
 \begin{equation*}
   r_{\mu} = \text{Tr}(\rho \sigma_{\mu}),
 \end{equation*} 
@@ -2859,17 +2998,34 @@ we have,
     \end{pmatrix} \right) = p(|\alpha|^2-|\beta|^2 )
 \end{align*}
 
-As a result, it follows:
+As a result, given that for $A \in \TraceOp{\HilbH}$, it holds that $\opnorm{A} \leq  \tracenorm{A}$ \cite{heinosaariMathematicalLanguageQuantum2011,watrous2018theory},
+it follows:
 \begin{align*}
-  \tracenorm{\id (\rho) - \mathcal{E}(\rho)} &= \euclideannorm{(p(\alpha \beta^{*} + \alpha^{*} \beta), p \cdot i(\alpha \beta^{*} - \alpha^{*} \beta) , p( |\alpha|^2-|\beta|^2))} \\
+  \opnorm{\id (\rho) - \mathcal{E}(\rho)} \leq \tracenorm{\id (\rho) - \mathcal{E}(\rho)} &= \euclideannorm{(p(\alpha \beta^{*} + \alpha^{*} \beta), p \cdot i(\alpha \beta^{*} - \alpha^{*} \beta) , p( |\alpha|^2-|\beta|^2))} \\
   & = p \, \sqrt{\left(\alpha \beta^{*} + \alpha^{*} \beta \right)^2-\left(\alpha \beta^{*} - \alpha^{*} \beta \right)^2 + (|\alpha|^2-|\beta|^2)^2} \\
   & = p \, \sqrt{2|\alpha|^2|\beta|^2 + (|\alpha|^2-|\beta|^2)^2} \\
-  & = p 
+  & \leq  p
 \end{align*}
 
+\todo[inline]{NOTA:Alternativamente se a Proposição 3.46 estiver correta, como temos $\norm{\SqMatrix{o}(\Phi)} = \norm{\id_{\mathcal{T}(\HilbH)} \otimes \Phi}$, podemos ir pela diamond norm que dá um bound mais pequeno.}
 
 
-Attending to Theorem \ref{theorem:diamond_cptp_id}, it holds that
+Attending to Propositions \ref{prop:Mn_cb_norm} and \ref{prop:Mn_phi_n_norm}, it holds that
+\begin{align*}
+  \cbnorm{ \id - \mathcal{E}} \leq 2p
+\end{align*}
+
+As a result, we can postulate the following axiom:
+    \begin{align*} 
+        \id =_{2p} \mathcal{E}.
+    \end{align*}
+
+Finally, using our metric deductive system, we deduce
+\begin{align*}
+  &\textbf{StepQWalk}=_{2p} \textbf{StepQWalk}
+\end{align*}
+
+\begin{comment}
 \begin{align*}
   \diamondnorm{ \id - \mathcal{E}} \leq \sqrt{2p}
 \end{align*}
@@ -2883,6 +3039,7 @@ As a result, we can postulate the following axiom:
 \begin{align*}
   &\textbf{StepQWalk}=_{\sqrt{2p}} \textbf{StepQWalk}
 \end{align*}
+\end{comment}
 
 
 \end{example}
