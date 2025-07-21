@@ -2540,7 +2540,7 @@ We will usually designate this bilinear map by $\overline{\otimes}$.
   For \( W^* \)-algebras \( \mathcal{M} \) and \( \mathcal{N} \), the \( W^* \)-algebra \( (\mathcal{M}_* \, \widecheck{\otimes} \, \mathcal{N}_* )^*\) is called the \emph{spatial \( W^* \)-tensor product} of \( \mathcal{M} \) and \( \mathcal{N} \), and is denoted by \( \mathcal{M} \,\overline{\otimes}\, \mathcal{N} \).
 \end{definition}
 
-\begin{proposition} \cite[Proposition 115 II]{westerbaanCategoryNeumannAlgebras2019}
+\begin{proposition} \cite[Proposition 115 II]{westerbaanCategoryNeumannAlgebras2019} \label{prop:mapa_tensor_w_u_ncpsu}
 Given normal completely positive  maps \( f : \mathcal{A} \to \mathcal{C} \) and \( g : \mathcal{B} \to \mathcal{D} \) between $W^*$-algebras, there exists a unique normal completely positive map
 \[
 f \overline{\otimes} g: \mathcal{A} \,\overline{\otimes}\, \mathcal{B} \to \mathcal{C} \,\overline{\otimes}\, \mathcal{D}
@@ -2664,7 +2664,7 @@ Then the minimal \( C^* \)-norm \( \|\cdot\|_{\min} \) on \( A \otimes B \) is t
 \end{theorem}
 
 \begin{proposition} \cite[Proposition 1.22.7]{sakaiCAlgebrasWAlgebras1998} \label{prop:sakai_tensor_min}
-  Let \( \mathscr{A}\ \) and \( \mathscr{B}\ \) be \( C^* \)-algebras, and let \( \alpha \) be a \( C^* \)-norm on the algebraic tensor product \( A \otimes B \) such that
+  Let \( \mathscr{A}\ \) and \( \mathscr{B}\ \) be \( C^* \)-algebras, and let \( \alpha \) be a \( C^* \)-norm on the algebraic tensor product \( A \odot B \) such that
 \[
 \|a \otimes b\|_{\alpha} \leq k \|a\| \cdot \|b\| \quad \text{for all } a \in A,\, b \in B,
 \]
@@ -2679,6 +2679,39 @@ Then,
 \begin{proposition} \cite[Exercise 116 III]{westerbaanCategoryNeumannAlgebras2019} \label{prop:norm_tensor_w_mult}
    Let \( \mathscr{A}\ \) and \( \mathscr{B}\ \) be \( W^* \)-algebras, $\norm{a\otimes b}= \norm{a}\norm{b}$ for all $a \in \mathscr{A}$ and  $b \in \mathscr{B}$.
 \end{proposition}
+
+\begin{proposition} \cite[Exercise 114 II]{westerbaanCategoryNeumannAlgebras2019} \label{prop:tenso_w_unique}
+   The tensor product of von Neumann algebras $\mathscr{A}$ and $\mathscr{B}$ is unique in the sense that when $\gamma \colon \mathscr{A} \times \mathscr{B} \to \mathscr{T}$ and $\gamma' \colon \mathscr{A} \times \mathscr{B} \to \mathscr{T'}$ are tensor products of $\mathscr{A}$ and $\mathscr{B}$, then there is a unique normal miu-isomorphism $\varphi \colon \mathscr{T} \to \mathscr{T'}$ with $\varphi(\gamma(a,b)) = \gamma'(a,b)$ for all $a \in \mathscr{A}$ and $b \in \mathscr{B}$. In other words, the tensor product of von Neumann algebras $\mathscr{A}$ and $\mathscr{B}$ is unique up to unique normal miu-isomorphism.
+\end{proposition}
+
+Note that $\varphi$ is an $*$-isomorphism and therefore an isometry.
+
+\begin{definition}\label{def:uni_cont}
+  A function \( f : (V, d) \to (W, d') \) between two metric spaces is said to be \emph{uniformly continuous} if for every \( \varepsilon > 0 \) there exists some \( \delta > 0 \) (depending only on \( \varepsilon \)) such that  
+\[
+d(x, y) < \delta \quad \Rightarrow \quad d'(f(x), f(y)) < \varepsilon
+\]
+for all \( x, y \in X \).  
+Any uniformly continuous function is obviously continuous.  
+An important property of uniformly continuous functions is that they map Cauchy sequences into Cauchy sequences \cite{aliprantisBanachLattices1999}. 
+\end{definition}
+
+\begin{definition} \label{def:lip_uni_cont}
+  A function \( f : (V, d) \to (W, d') \) between metric spaces is said to be \emph{Lipschitz continuous} if there exists a real number \( c \geq 0 \) such that for every \( v_1, v_2 \in V \),
+\[
+d'(f(v_1), f(v_2)) \leq c \cdot d(v_1, v_2).
+\]
+The number \( c \) is called a \emph{Lipschitz constant} for \( f \).  
+Clearly, every Lipschitz continuous function is uniformly continuous  \cite{aliprantisBanachLattices1999}.
+\end{definition}
+
+\begin{lemma} \cite[Lemma 7.3.19]{goubault-larrecqNonHausdorffTopologyDomain2013}  \label{lem:completion_unique}
+Let \( A \) be a dense subset of a topological space \( V \), and let  
+\( f: A \to W \) be a continuous map into a metric space \( W \).  
+Then \( f \) has at most one continuous extension \( g: V \to W \), \ie, one such that $f$ and $g$ coincide on $A$.  
+
+This continuous extension \( g \) exists if \( (V,d) \) is a metric space, \( (W,d') \) is a complete metric space, and \( f \) is uniformly continuous from \( (A,d) \) to \( (W,d') \). 
+\end{lemma}
 
 %exercicio do Abrafam 
 
@@ -2768,19 +2801,72 @@ Next, regarding $\bar{\otimes}$, the inequations $\cbnorm{\phi \, \bar{\otimes} 
 \begin{proof}
   We deduce by unfolding the respective definitions that we need to prove that for all normal completely positive short operators $\phi, \phi' \in \WstarCPSUop(\mathcal{A}, \mathcal{C})  $ and $\psi, \psi' \in \WstarCPSUop(\mathcal{B}, \mathcal{C})$ the inequation $\cbnorm{[\phi, \psi] - [\phi', \psi']} \leq  \sup \left\{ \cbnorm{\phi-\phi'}, \cbnorm{\psi-\psi'} \right\}$ holds.
   Firstly, note that the copairing in $\WstarCPSUop$ corresponds to the pairing in $\WstarCPSU$. As a result, this is equivalent to prove that for for all normal completely positive short operators $\phi, \phi' \in \WstarCPSU(\mathcal{A}, \mathcal{C})  $ and $\psi, \psi' \in \WstarCPSU(\mathcal{B}, \mathcal{C})$ the inequation $\cbnorm{\langle \phi, \psi \rangle - \langle \phi', \psi'\rangle} \leq  \sup \left\{ \cbnorm{\phi-\phi'}, \cbnorm{\psi-\psi'} \right\}$ holds. Given that by Proposition \ref{prop:cp_cb} $\phi, \phi', \psi, \psi'$ are completely bounded. Moreover note that by the triangle inequality if two maps are completely bounded so is their difference. 
+
   Considering maps $\phi_1: \mathcal{A} \to \mathcal{C}$ and $\phi_2: \mathcal{B} \to \mathcal{C}$, by Definition \ref{def:cb_norm}, Theorem \ref{thm:c*_tensor_distributes_product} and Definition \ref{def:c*_direct_sum}, we have
 \begin{align*}
   & \cbnorm{\langle \phi_1, \phi_2 \rangle} 
-  =  \sup_{\mathcal{D}} \|\id_{\mathcal{D}}\, \widecheck{\otimes} \, \langle \phi_1, \phi_2 \rangle\| =  \sup_{\mathcal{D}} \left\{\norm{\id_{\mathcal{D}} \otimes  \langle \phi_1, \phi_2 \rangle  \left(\sum_i a_i \otimes (b_i,c_i)\right)} \Big| \norm{\sum_i a_i \otimes (b_i,c_i)=1} \right\} \\
+  =  \sup_{\mathcal{D}} \|\id_{\mathcal{D}}\, \odot \, \langle \phi_1, \phi_2 \rangle\| =  \sup_{\mathcal{D}} \left\{\norm{\id_{\mathcal{D}} \otimes  \langle \phi_1, \phi_2 \rangle  \left(\sum_i a_i \otimes (b_i,c_i)\right)} \Big| \norm{\sum_i a_i \otimes (b_i,c_i)=1} \right\} \\
   = &  \sup_{\mathcal{D}} \left\{\norm{  \sum_i \id_{\mathcal{D}}(a_i) \otimes (\phi_1 (b_i),\phi_2 (c_i))} \Big| \norm{\sum_i a_i \otimes (b_i,c_i)=1} \right\} \\
   = & \sup_{\mathcal{D}} \left\{\norm{  \left(\sum_i (\id_{\mathcal{D}}(a_i) \otimes \phi_1 (b_i)), \sum_i (\id_{\mathcal{D}}(a_i) \otimes \phi_2 (c_i))\right)} \Big| \norm{\left(\sum_i a_i \otimes b_i, \sum_i a_i \otimes c_i\right)=1} \right\} \\
   = & \sup_{\mathcal{D}} \left\{ \max \left\{\norm{  \sum_i (\id_{\mathcal{D}}(a_i) \otimes \phi_1 (b_i))}, \norm{\sum_i (\id_{\mathcal{D}}(a_i) \otimes \phi_2 (c_i))}\right\} \Big| \max \left\{ \norm{\sum_i a_i \otimes b_i}, \norm{\sum_i a_i \otimes c_i} \right\}=1 \right\} \\
-  = & \max \left\{\sup_{\mathcal{D}} \norm{\id_{\mathcal{D}}\, \widecheck{\otimes}\phi_1} , \sup_{\mathcal{D}}  \norm{\id_{\mathcal{D}}\, \widecheck{\otimes}\phi_2} \right\}
+  = & \max \left\{\sup_{\mathcal{D}} \norm{\id_{\mathcal{D}}\, \odot\phi_1} , \sup_{\mathcal{D}}  \norm{\id_{\mathcal{D}}\, \odot\phi_2} \right\}
   %= & \max \left\{  \left(\sup_{\mathcal{D}} \norm{\sum_i (\id_{\mathcal{D}}(a_i) \otimes \phi_1 (b_i))}, \sup_{\mathcal{D}} \norm {\sum_i (\id_{\mathcal{D}}(a_i) \otimes \phi_2 (c_i))}\right) \Big| \norm{\left(\sum_i a_i \otimes b_i, \sum_i a_i \otimes c_i\right)=1}  \right\} \\
   \leq \max \{ \cbnorm{\phi_1}, \cbnorm{\phi_2} \}
-\end{align*}
+  \end{align*}
 
-As a result the proposition above holds.
+  Considering Theorem \ref{thm:beta_alg_eq_beta_gamma}, we know that $\norm{\id_{\mathcal{D}} \odot\phi_1} = \norm{\id_{\mathcal{D}} \overline{\otimes}\phi_1}$. Consequently, the next step is to prove that $ \norm{\id_{\mathcal{D}}\, \widecheck{\otimes}\, \phi} \leq \norm{\id_{\mathcal{D}} \, \overline{\otimes} \, \phi}$. Given Propositions \ref{prop:sakai_tensor_min} and \ref{prop:norm_tensor_w_mult}, we have that $$\norm{v}_\text{min} \leq \norm{v}  \quad \text{for all } v \in \mathscr{A} \widecheck{\otimes} \mathscr{B}.$$
+  
+  This means that in order to prove that the proposition holds it suffices to prove that for all $ v \in \mathscr{A} \widecheck{\otimes} \mathscr{B}$, $\phi \, \widecheck{\otimes} \, \psi (v) = \phi \, \overline{\otimes} \, \psi (v)$.
+
+
+  This follows because the three diagrams below commute, which is a consequence of the universal property of the algebraic tensor product, Theorem \ref{thm:beta_alg_eq_beta_gamma}, and Proposition Lemma~\ref{lem:completion_unique}, together with the observation that $\id \odot \phi$ is subunital and hence Lipschitz continuous. 
+
+  \[
+  \hspace{-40pt}
+\begin{minipage}{0.45\textwidth}
+\centering
+\begin{tikzcd}[row sep=4em, column sep=6em]
+V \times W \arrow[r, "T"] \arrow[d, "\odot",shorten >=2pt, shorten <=2pt] &  Z\\
+{V \odot W}\arrow[d, hookrightarrow, "\iota",right, shorten >=2pt, shorten <=2pt]  \arrow[ur,  dashed, "T'",shorten >=2pt, shorten <=2pt]  \\
+V \widehat{\otimes}W \arrow[uur,dashed,"\widehat{T}",shorten >=2pt, shorten <=2pt]\\
+\end{tikzcd}
+\end{minipage}
+ \hspace{-110pt}
+\begin{minipage}{0.45\textwidth}
+\centering
+\begin{tikzcd}[row sep=4em, column sep=6em]
+V \times W \arrow[r, "T"] \arrow[d, "\odot",shorten >=2pt, shorten <=2pt] &  Z\\
+{V \odot W}\arrow[d, hookrightarrow, "\iota",right, shorten >=2pt, shorten <=2pt]   \\
+V \overline{\otimes}W \arrow[uur,dashed,"\widehat{T}",shorten >=2pt, shorten <=2pt]\\
+\end{tikzcd}
+ \hspace{-100pt}
+\end{minipage}
+\begin{minipage}{0.45\textwidth}
+\centering
+\begin{tikzcd}[row sep=4em, column sep=6em]
+ Z\\
+{V \odot W}\arrow[d, hookrightarrow, "\iota_1",right, shorten >=2pt, shorten <=2pt]  \arrow[dr,  hookrightarrow, "\iota_2",shorten >=2pt, shorten <=2pt]  \arrow[u, dashed, "T'", shorten >=2pt, shorten <=2pt]     \\
+V \widehat{\otimes}W \arrow[r,  hookrightarrow, "\iota_3"] \arrow[uu,bend left=50, dashed, "\widehat{T}", shorten >=2pt, shorten <=2pt ]  & V \overline{\otimes}W \arrow[uul,  dashed, "\overline{T}", shorten >=2pt, shorten <=2pt]  \\
+\end{tikzcd}
+\end{minipage}
+\]
+In the third diagram, we reason as follows:
+from the first diagram above, we obtain $ \widehat{T} \cdot \iota_1 = T =  \overline{T} \cdot \iota_2$, then, given that $\iota_2 = \iota_3 \cdot \iota_1$, we have  $ \widehat{T} \cdot \iota_1 =  \overline{T} \cdot \iota_3 \cdot \iota_1$, from where if follows that $\overline{T} \circ \iota_3 = \widehat{T}$.
+
+
+
+We note that since \cite{sakaiCAlgebrasWAlgebras1998} and \cite{takesakiTheoryOperatorAlgebras1979} employ the standard completion, we may assume it satisfies the usual properties. 
+
+
+
+
+
+
+
+
+  %def:lip_uni_cont
+
+
 \end{proof}
 
 \begin{proposition} \label{prop:cb_cat_met_otimes_met}
@@ -2812,7 +2898,7 @@ As a result the proposition above holds.
 With the result above, we have established that the category $\WstarCPSUop$ is a suitable model for our $\lambda$-calculus. Consequently, we obtain a framework for reasoning about approximate equivalence in infinite-dimensional quantum computation. This, for example, enables us to reason about errors in quantum walks on an infinite line \cite{venegasQuantumWalksComprehensive2012}.
 
 
-\todo[inline]{Nota professor Renator: Como eu vi por exemplo o Kenta a usar defs the completa potitividade diferentes (não explitamente mas ao citar livros que usam um definição diferente da dele) resolvi provar explitamente que as defs são equivalentes, até porque ficaria um pouco estranho ter duas definições da mesma coisa e não estabelecer uma relação entre elas. A def $1$ é a do Watrous e a $2$ é a das C$^*$-algebras.}
+\todo[inline]{Nota para professor Renator: Como eu vi por exemplo o Kenta a usar defs the completa potitividade diferentes (não explitamente mas ao citar livros que usam um definição diferente da dele) resolvi provar explitamente que as defs são equivalentes, até porque ficaria um pouco estranho ter duas definições da mesma coisa e não estabelecer uma relação entre elas. A def $1$ é a do Watrous e a $2$ é a das C$^*$-algebras.}
 
 \begin{proposition}
   The definitions of completely positivity presented are equivalente for maps 

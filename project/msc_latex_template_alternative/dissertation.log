@@ -1,4 +1,4 @@
-This is XeTeX, Version 3.141592653-2.6-0.999995 (MiKTeX 24.1) (preloaded format=xelatex 2024.7.31)  19 JUL 2025 14:59
+This is XeTeX, Version 3.141592653-2.6-0.999995 (MiKTeX 24.1) (preloaded format=xelatex 2024.7.31)  21 JUL 2025 01:04
 entering extended mode
  restricted \write18 enabled.
  file:line:error style messages enabled.
@@ -1966,7 +1966,7 @@ Package hyperref Warning: Token not allowed in a PDF string (Unicode):
 (hyperref)                removing `math shift' on input line 232.
 
 
-Overfull \hbox (7.77875pt too wide) in paragraph at lines 240--241
+Overfull \hbox (7.77875pt too wide) in paragraph at lines 242--243
 \TU/SourceSansPro(0)/m/n/12 As a result, it suffices to show that for all morphisms $\OML/cmm/m/it/12 f[]; f[] \OMS/cmsy/m/n/12 2 []\OT1/cmr/m/n/12 (\OML/cmm/m/it/12 A; C\OT1/cmr/m/n/12 )$ \TU/SourceSansPro(0)/m/n/12 and $\OML/cmm/m/it/12 g[]; g[] \OMS/cmsy/m/n/12 2 []\OT1/cmr/m/n/12 (\OML/cmm/m/it/12 B; C\OT1/cmr/m/n/12 )$\TU/SourceSansPro(0)/m/n/12 ,
  []
 
@@ -1981,34 +1981,29 @@ Underfull \vbox (badness 10000) has occurred while \output is active []
 
 ] [76]
 Missing character: There is no ; in font nullfont!
-[77]
-Overfull \hbox (1.34132pt too wide) in paragraph at lines 225--226
+[77] [78]
+Overfull \hbox (1.34132pt too wide) in paragraph at lines 236--237
 \TU/SourceSansPro(0)/m/n/12 foundation in reasoning about probability distributions. That is where measure theory comes
  []
 
-[78] [79] [80]
-Overfull \hbox (9.27998pt too wide) in paragraph at lines 293--297
+[79] [80]
+Overfull \hbox (9.27998pt too wide) in paragraph at lines 304--308
 \TU/SourceSansPro(0)/m/n/12 that includes the closed sets and is closed under countable intersections and countable unions.
  []
 
 [81]
-Overfull \hbox (11.27182pt too wide) in paragraph at lines 334--335
+Overfull \hbox (11.27182pt too wide) in paragraph at lines 345--346
 []\TU/SourceSansPro(0)/b/n/12 Definition 4.3.5. []\TU/SourceSansPro(0)/m/n/12 Let $\OT1/cmr/m/n/12 (\OML/cmm/m/it/12 S; \OMS/cmsy/m/n/12 B[]\OT1/cmr/m/n/12 )$ \TU/SourceSansPro(0)/m/n/12 and $\OT1/cmr/m/n/12 (\OML/cmm/m/it/12 T; \OMS/cmsy/m/n/12 B[]\OT1/cmr/m/n/12 )$ \TU/SourceSansPro(0)/m/n/12 be measurable spaces. Given a function $\OML/cmm/m/it/12 f \OT1/cmr/m/n/12 : (\OML/cmm/m/it/12 S; \OMS/cmsy/m/n/12 B[]\OT1/cmr/m/n/12 ) \OMS/cmsy/m/n/12 !
  []
 
-[82]
-Overfull \hbox (14.74316pt too wide) in paragraph at lines 390--391
-[]\TU/SourceSansPro(0)/m/n/12 By a slight abuse of terminology, we will also refer to a mapping $\OML/cmm/m/it/12 P[] \OT1/cmr/m/n/12 : \OML/cmm/m/it/12 S \OMS/cmsy/m/n/12 ! \OT1/cmr/m/n/12 (\OMS/cmsy/m/n/12 B[] ! \OT1/cmr/m/n/12 [0\OML/cmm/m/it/12 ; \OT1/cmr/m/n/12 1])\OML/cmm/m/it/12 ;  P[]\OT1/cmr/m/n/12 (\OML/cmm/m/it/12 s\OT1/cmr/m/n/12 ) =
- []
+[82] [83] [84] [85] [86]) (chapters/QC.tex [87] [88
 
-[83] [84] [85] [86] [87]) (chapters/QC.tex [88]
+]
 Chapter 5.
 
 Underfull \vbox (badness 1668) has occurred while \output is active []
 
- [89
-
-]
+ [89]
 Overfull \hbox (0.18718pt too wide) in paragraph at lines 13--14
 []\TU/SourceSansPro(0)/m/n/12 To reconcile quantum computation with NISQ computers, quantum compilers perform trans-
  []
@@ -2075,103 +2070,117 @@ Overfull \hbox (12.39859pt too wide) in paragraph at lines 1043--1044
  \OML/cmm/m/it/12 I[]\OMS/cmsy/m/n/12 k[] ^^U
  []
 
-[108] [109] [110] [111] [112]
+[108] [109] [110] [111] [112] [113] [114]
 
 Package hyperref Warning: Token not allowed in a PDF string (Unicode):
-(hyperref)                removing `math shift' on input line 1292.
-
-
-Package hyperref Warning: Token not allowed in a PDF string (Unicode):
-(hyperref)                removing `superscript' on input line 1292.
+(hyperref)                removing `math shift' on input line 1347.
 
 
 Package hyperref Warning: Token not allowed in a PDF string (Unicode):
-(hyperref)                removing `math shift' on input line 1292.
+(hyperref)                removing `superscript' on input line 1347.
 
 
-Overfull \hbox (7.82607pt too wide) in paragraph at lines 1299--1300
-\TU/SourceSansPro(0)/m/n/12 We begin with some considerations on how the definition of complete positivity for C$[]$-algebras
- []
+Package hyperref Warning: Token not allowed in a PDF string (Unicode):
+(hyperref)                removing `math shift' on input line 1347.
 
-[113] [114]
-Overfull \hbox (8.49039pt too wide) in paragraph at lines 1347--1350
+
+Package hyperref Warning: Token not allowed in a PDF string (Unicode):
+(hyperref)                removing `math shift' on input line 1367.
+
+
+Package hyperref Warning: Token not allowed in a PDF string (Unicode):
+(hyperref)                removing `superscript' on input line 1367.
+
+
+Package hyperref Warning: Token not allowed in a PDF string (Unicode):
+(hyperref)                removing `math shift' on input line 1367.
+
+
+Package hyperref Warning: Token not allowed in a PDF string (Unicode):
+(hyperref)                removing `math shift' on input line 1370.
+
+
+Package hyperref Warning: Token not allowed in a PDF string (Unicode):
+(hyperref)                removing `superscript' on input line 1370.
+
+
+Package hyperref Warning: Token not allowed in a PDF string (Unicode):
+(hyperref)                removing `math shift' on input line 1370.
+
+[115]
+Overfull \hbox (8.49039pt too wide) in paragraph at lines 1437--1440
 []\TU/SourceSansPro(0)/m/n/12 A natural candidate for interpreting quantum programs with coproducts is the category $[][]$,
  []
 
-[115] [116] [117] [118]
-Underfull \vbox (badness 2478) has occurred while \output is active []
-
- [119]
-Overfull \hbox (1.93526pt too wide) detected at line 1570
+[116] [117] [118] [119] [120]
+Overfull \hbox (1.93526pt too wide) detected at line 1660
 []
  []
 
-[120] [121]
-Overfull \hbox (5.74608pt too wide) detected at line 1679
+[121] [122]
+Overfull \hbox (5.74608pt too wide) detected at line 1771
 []
- []
-
-[122]
-Overfull \hbox (4.628pt too wide) in paragraph at lines 1713--1719
-\TU/SourceSansPro(0)/m/n/12 While orthogonal states can be perfectly distinguished, the same does not apply to nonorthog-
- []
-
-
-Overfull \hbox (1.42001pt too wide) in paragraph at lines 1722--1728
-\TU/SourceSansPro(0)/m/n/12 the optimal measurement can be interpreted as a unitary transformation applied to the quan-
  []
 
 [123]
-Overfull \hbox (34.40985pt too wide) in paragraph at lines 1750--1757
-[]\TU/SourceSansPro(0)/m/n/12 As in the previous example, we assume the hardware’s native gate set consists of $\OMS/cmsy/m/n/12 f\OML/cmm/m/it/12 U[]; U[]; U[]; []\OMS/cmsy/m/n/12 g$\TU/SourceSansPro(0)/m/n/12 ,
+Overfull \hbox (4.628pt too wide) in paragraph at lines 1805--1811
+\TU/SourceSansPro(0)/m/n/12 While orthogonal states can be perfectly distinguished, the same does not apply to nonorthog-
  []
 
 [124]
-Overfull \hbox (2.29962pt too wide) in paragraph at lines 1785--1786
+Overfull \hbox (1.42001pt too wide) in paragraph at lines 1814--1820
+\TU/SourceSansPro(0)/m/n/12 the optimal measurement can be interpreted as a unitary transformation applied to the quan-
+ []
+
+
+Overfull \hbox (34.40985pt too wide) in paragraph at lines 1842--1849
+[]\TU/SourceSansPro(0)/m/n/12 As in the previous example, we assume the hardware’s native gate set consists of $\OMS/cmsy/m/n/12 f\OML/cmm/m/it/12 U[]; U[]; U[]; []\OMS/cmsy/m/n/12 g$\TU/SourceSansPro(0)/m/n/12 ,
+ []
+
+[125]
+Overfull \hbox (2.29962pt too wide) in paragraph at lines 1877--1878
 \TU/SourceSansPro(0)/m/n/12 scribed above, denoted $\OML/cmm/m/it/12 U[]$\TU/SourceSansPro(0)/m/n/12 , using our deductive metric system, we have $\OML/cmm/m/it/12 U \OT1/cmr/m/n/12 =[] \OML/cmm/m/it/12 U[]$\TU/SourceSansPro(0)/m/n/12 .
  []
 
+[126]
 LaTeX Font Info:    Font shape `TU/SourceSansPro(0)/m/sc' will be
-(Font)              scaled to size 12.0pt on input line 1834.
+(Font)              scaled to size 12.0pt on input line 1926.
 
-Underfull \vbox (badness 10000) has occurred while \output is active []
+Underfull \vbox (badness 4229) has occurred while \output is active []
 
- [125]
-Overfull \hbox (8.03279pt too wide) in paragraph at lines 1885--1888
+ [127]
+Overfull \hbox (8.03279pt too wide) in paragraph at lines 1977--1980
 \TU/SourceSansPro(0)/m/n/12 bound $[][] \OMS/cmsy/m/n/12 ^^T []\OML/cmm/m/it/12 ^^O$\TU/SourceSansPro(0)/m/n/12 . The Hadamard gate, $\OML/cmm/m/it/12 H$\TU/SourceSansPro(0)/m/n/12 , is the composition $\OML/cmm/m/it/12 U[]\OT1/cmr/m/n/12 (\OML/cmm/m/it/12 ^^Y\OT1/cmr/m/n/12 /2\OML/cmm/m/it/12 ; \OT1/cmr/m/n/12 0\OML/cmm/m/it/12 ; \OT1/cmr/m/n/12 0) \OMS/cmsy/m/n/12 ^^A
  []
 
-[126] [127]
-Overfull \hbox (47.65775pt too wide) in paragraph at lines 1934--1935
+[128]
+Overfull \hbox (47.65775pt too wide) in paragraph at lines 2026--2027
 []\TU/SourceSansPro(0)/m/n/12 Designating the \TU/SourceSansPro(0)/b/n/12 Correction \TU/SourceSansPro(0)/m/n/12 block with the imperfect implementations of $\OML/cmm/m/it/12 X$ \TU/SourceSansPro(0)/m/n/12 and $\OML/cmm/m/it/12 Z$ \TU/SourceSansPro(0)/m/n/12 by $[][]$,
  []
 
 
-Overfull \hbox (1.83765pt too wide) detected at line 1952
+Overfull \hbox (1.83765pt too wide) detected at line 2044
  $\OML/cmm/m/it/12 ^^Z[] \OT1/cmr/m/n/12 = \OML/cmm/m/it/12 D[]\OT1/cmr/m/n/12 (\OML/cmm/m/it/12 ^^Z\OT1/cmr/m/n/12 ) = \OML/cmm/m/it/12 D[]^^ZD[] \OT1/cmr/m/n/12 + \OML/cmm/m/it/12 D[]^^ZD[] \OT1/cmr/m/n/12 = \OMS/cmsy/m/n/12 j\OML/cmm/m/it/12 ^^K\OMS/cmsy/m/n/12 j[] [] [] \OT1/cmr/m/n/12 + (1 \OMS/cmsy/m/n/12 ^^@ \OML/cmm/m/it/12 p\OT1/cmr/m/n/12 )\OML/cmm/m/it/12 ^^K^^L[] [] [] \OT1/cmr/m/n/12 + (1 \OMS/cmsy/m/n/12 ^^@ \OML/cmm/m/it/12 p\OT1/cmr/m/n/12 )\OML/cmm/m/it/12 ^^K[]^^L [] [] \OT1/cmr/m/n/12 + \OMS/cmsy/m/n/12 j\OML/cmm/m/it/12 ^^L\OMS/cmsy/m/n/12 j[] [] []$ 
  []
 
-[128]
-Overfull \hbox (12.80109pt too wide) detected at line 2005
+[129] [130]
+Overfull \hbox (12.80109pt too wide) detected at line 2097
 []
  []
 
-[129] [130]
-Overfull \hbox (0.26416pt too wide) detected at line 2095
+[131] [132]
+Overfull \hbox (0.26416pt too wide) detected at line 2187
  $[][]$ 
  []
 
-
-Underfull \vbox (badness 10000) has occurred while \output is active []
-
- [131] [132]) (chapters/ConclusionsAndFutureWork.tex [133] [134
-
-]
+[133]) (chapters/ConclusionsAndFutureWork.tex [134]
 Chapter 6.
-) (dissertation.bbl [135] [136
+) (dissertation.bbl [135
+
+] [136
 
 ] [137] [138] [139] [140] [141] [142] [143] [144]
-Underfull \hbox (badness 1221) in paragraph at lines 562--566
+Underfull \hbox (badness 1221) in paragraph at lines 571--575
 \TU/SourceSansPro(0)/m/n/12 quantum computation using teleportation and single-qubit operations.  \TU/SourceSansPro(0)/m/it/12 Nature\TU/SourceSansPro(0)/m/n/12 ,
  []
 
@@ -2187,15 +2196,15 @@ LaTeX2e <2023-11-01> patch level 1
 L3 programming layer <2024-01-22>
  ***********
 Package rerunfilecheck Info: File `dissertation.out' has not changed.
-(rerunfilecheck)             Checksum: 36F5C885A36C524FC402D3C2016B08CA;12430.
+(rerunfilecheck)             Checksum: 0F248EEAB3AB4C2270982522AE35CC1B;13010.
  ) 
 Here is how much of TeX's memory you used:
- 55596 strings out of 409673
- 1168464 string characters out of 5774704
- 1989630 words of memory out of 5000000
- 76727 multiletter control sequences out of 15000+600000
- 578190 words of font info for 176 fonts, out of 8000000 for 9000
+ 55618 strings out of 409673
+ 1169023 string characters out of 5774704
+ 1987630 words of memory out of 5000000
+ 76746 multiletter control sequences out of 15000+600000
+ 578214 words of font info for 179 fonts, out of 8000000 for 9000
  1348 hyphenation exceptions out of 8191
  121i,36n,121p,2536b,1501s stack positions out of 10000i,1000n,20000p,200000b,200000s
 
-Output written on dissertation.xdv (172 pages, 2678208 bytes).
+Output written on dissertation.xdv (172 pages, 2711616 bytes).

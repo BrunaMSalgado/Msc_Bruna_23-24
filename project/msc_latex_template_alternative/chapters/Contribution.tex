@@ -1,7 +1,7 @@
 \chapter{Metric $\lambda$-calculus with conditionals} \label{ch:conditionals}
 
 As noted in \Cref{subsec:interlude_bool}, a metric equation for the conditional statement would be extremely helpful for reasoning about approximate equivalence within the $\lambda$-calculus with conditionals. In this chapter, we address this gap by introducing such an equation and proving both its soundness and completeness. 
-We present the category of metric spaces as an example of a setting suitable for reasoning about approximate equivalence in this context. Furthermore, we prove if $\catC$ is a $\catMet$-category, then its coproduct cocompletion admits a metric making it a $\catMet$-enriched category with coproducts.
+We, then,  present the category of metric spaces as an example of a setting suitable for reasoning about approximate equivalence in this context. Furthermore, we prove if $\catC$ is a $\catMet$-category, then its coproduct cocompletion admits a metric making it a $\catMet$-enriched category with coproducts.
 Finally, we illustrate the usefulness of the introduced equation through two small examples: reasoning about approximate equivalence between boolean terms (i.e., terms of type $\typeI \oplus \typeI$) and the extensionality of copairing. We conclude the chapter with a brief discussion on the suitability of the chosen metric equation.
 
 
@@ -231,6 +231,8 @@ With the equality above, we have
 
 \section{A small example: $\catMet$}
 
+Here we present the category of metric spaces as an example of a model.
+
 \begin{proposition}
         \label{prop:vcat}
         The category $\catMet$ is a symmetric monoidal closed with binary coproducts $\catMet$-category 
@@ -274,7 +276,6 @@ In this category, the coproduct is defined as in $\catSet$. The distance functio
 \section{Coproduct cocompletion} \label{sec:Coproduct_cocompletion}
 
 
-\todo[inline,size=\normalsize]{Porque é que queriamos fazer corpoduct completion de uma categoria C de q não tem productos? Os productos nesta cat não respeitariam as condições de C}
 
 We note that more powerful machinery, based on advanced categorical structures such as presheaves, can be employed to address the fact that the coproduct cocompletion of a category $\catC$ forms a $\catMet$-category. However, since categories are used here as a tool rather than the main focus of this thesis, the elegance of the proof is not a primary concern.
 

@@ -19,6 +19,8 @@ Finally, we study approximate equivalence in the context of a random walk on the
 
 \section{Banach spaces}
 
+Before introducing the category of Banach spaces and proving it is a model, we first introduce the relevant concepts in this setting. 
+
 
 
 
@@ -75,6 +77,7 @@ Let \( T: V \rightarrow W \) be a bounded linear operator between normed spaces.
 
 \subsection{Banach spaces}
 
+
 \begin{definition} (\emph{Cauchy sequence})
   Suppose $ d $ is a metric on a set $ X $. A sequence $ \{x_n\} \subset X $ is called a \emph{Cauchy sequence} if, for every $ \varepsilon > 0 $, there exists an integer $N \in \mathbb{N} $ such that $ d(x_m, x_n) < \varepsilon $ for all $ m, n > N $.  The metric \( d \) is said to be \emph{complete} if every Cauchy sequence in \( X \) converges to a point in \( X \)
 \end{definition}
@@ -98,13 +101,13 @@ such that \( g = h \circ f \).
 \begin{tikzpicture}
   \matrix (m) [matrix of math nodes,row sep=4em,column sep=7em,minimum width=2em]
   {
-   V \times W  & V \otimes W    \\
+   V \times W  & V \odot W    \\
       & R \\
   };
   \path[-stealth]
     (m-1-1) edge  node [above] {$f$} (m-1-2)
     (m-1-1) edge  node [below] {$g$} (m-2-2)
-    (m-1-2) edge [dotted]  node [right] {$h$} (m-2-2);
+    (m-1-2) edge [dashed]  node [right] {$h$} (m-2-2);
     ;
 \end{tikzpicture}
 \]
@@ -120,10 +123,10 @@ The tensor product also extends to linear maps. If
 \(f_1: V_1 \to W_1 \quad \text{and} \quad f_2: V_2 \to W_2\)
 are linear maps, then there is a unique linear map 
 \(
-f_1 \otimes f_2: V_1 \otimes V_2 \to W_1 \otimes W_2
+f_1 \odot f_2: V_1 \odot V_2 \to W_1 \odot W_2
 \)
 that satisfies
-\[(f_1 \otimes f_2)(v_1 \otimes v_2) = f_1(v_1) \otimes f_2(v_2)
+\[(f_1 \odot f_2)(v_1 \otimes v_2) = f_1(v_1) \otimes f_2(v_2)
 \]
 for all \( v_1 \in V_1 \), \( v_2 \in V_2 \).
 \end{definition}
@@ -153,7 +156,7 @@ for all choices of \( u_1 \in V_1, \dots, u_n \in V_n \).
 \end{comment}
 
 \begin{definition}
-  Let $V$ and $W$ be Banach spaces. Let $u$ be any element of $V \otimes W$. The \emph{projective norm}, denoted $\norm{ \cdot }_{\pi}$,  is defined by: 
+  Let $V$ and $W$ be Banach spaces. Let $u$ be any element of $V \odot W$. The \emph{projective norm}, denoted $\norm{ \cdot }_{\pi}$,  is defined by: 
   \[
  \projnorm{u} = \inf\left\{ \sum_{i=1}^n \norm{v_i} \norm{w_i} \Bigg| \, u = \sum_{i=1}^n v_i \otimes w_i\right\}.
 \]
@@ -163,14 +166,22 @@ for all choices of \( u_1 \in V_1, \dots, u_n \in V_n \).
    %Let $V$ and $W$ be Banach spaces. Then, for every $v \in V$ and $w \in W$, it holds that $ \projnorm{v \otimes w} = \norm{v} \otimes \norm{w}$.
 %\end{proposition}
 
+\todo[inline,size=\normalsize]{O que dizer sobre completion? (Sou ``obrigada'' a meter-me nos quotients)}
+
+
 \begin{definition}
   Let \( V \) and \( W \) be Banach spaces. The \emph{projective tensor product} of \( V \) and \( W \), denoted  $ V \widehat{\otimes}_\pi W$, is the completion of the algebraic tensor product \( V \otimes W \) with respect to the projective norm \( \projnorm{\cdot} \).
 \end{definition}
 
 
+
+
+
+
+
 \section{Category Ban}
 
-
+In this section, leveraging results from \cite{dahlqvist2023syntactic}, we prove that the category of Banach spaces with short maps forms a suitable model.
 
 \begin{comment}
 \begin{definition}
@@ -373,7 +384,7 @@ $$
 This definition extends uniquely to a joint distribution $\mu_1 \otimes \mu_2: \mathcal{B}_1 \otimes \mathcal{B}_2 \to \mathbb{R}$, and reflects the notion of probabilistic independence: sampling from $\mu_1 \otimes \mu_2$ is equivalent to independently sampling from $\mu_1$ and $\mu_2$.
 \end{definition}
 
-
+\begin{comment}
 %MarkovKernels
 \begin{definition}
 Let $(S, \mathcal{B}_S)$ and $(T, \mathcal{B}_T)$ be measurable spaces. A \emph{Markov kernel} is a mapping $P : S \times \mathcal{B}_T \to [0,1]$
@@ -397,6 +408,8 @@ $$
 \end{definition}
 
 Any measurable function \( f : (S, \mathcal{B}_S) \to (T, \mathcal{B}_T) \) induces a simple Markov kernel $ s \mapsto \delta_{f(s)} $. As a result,  the usual definition of the pushforward measure (Definition \ref{def:pushforward_meas_1}) becomes a special case of the general formulation defined above.
+
+\end{comment}
 
 \subsection{Spaces of Measures}
 
@@ -488,7 +501,7 @@ Note that we are slightly abusing notation by using $\mathtt{unif}(a,b)$ both as
 +_\ast(\mu \otimes \nu)$.
 Finally, we consider a pre-determined set of jumps $j: \typeI \to (\mathtt{real} \multimap \mathtt{real}) $ interpreted as 
 \[ 
-\sem{j}(1)= \mu \mapsto +_\ast(\mu \otimes \sem{m_0}(*)),
+\sem{j}(1)= \mu \mapsto +_\ast(\mu \otimes_{\text{meas}} \sem{m_0}(*)),
 \]
 where $m_0 \in m$.
 
