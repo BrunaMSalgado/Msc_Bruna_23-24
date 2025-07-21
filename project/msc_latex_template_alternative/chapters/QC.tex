@@ -1364,7 +1364,6 @@ We would like to focus instead on the
   
 Since it is impossible to introduce \( W^* \)-algebras without first covering \( C^* \)-algebras, this section presents the key concepts and results of both, laying the groundwork for \Cref{subsec:w*_cats}.
 
-
 \subsection{\( C^* \)-Algebras}
 
 Uppercase letters in math script, \gls{c*_alg}, will typically denote $C^*$-algebras.
@@ -1489,22 +1488,72 @@ In \autoref{def:completely_positive_superoperator}
 
 \todo[inline,size=\normalsize]{Colocar a correspondencia entre definições de cp, após o professor a ter aprovado.}
 
-\begin{comment}
-\[
-\norm{A_{ij}} 
-=\sup \left\{ \left(\sum_{i} \norm{\sum_{j} A_{ij}(v_j) }^2 \right)^{\frac{1}{2}} \Bigg|   \sum_{j} \norm{v_j} = 1 \right\} = 
-\]
-\end{comment}
 
-% we use the faithull rep in prop bla given pi is an isometry \autoref{prop:*hom_short_*_iso_iso} to define the norm
-% It iseasilychecked(Exercise1.1) thateveryelementofMn(B(H))definesaboundedlinearoperatoronH(n) and
- %thatthiscorrespondenceyieldsaone-to-one∗-isomorphismofMn(B(H))onto B(H(n))(Exercise1.2).Thus,theidentificationMn(B(H))=B(H(n))givesus anormthatmakesMn(B(H))aC∗-algebra
 
 \subsubsection{Tensor products of $C^*$-Algebras}
 
+%cross norm
+%spatial norm 
+%norm on the faithful reps -> Lemma 3.6.3. tese
+%completion -> when ambiguity arises we will refer to this as ||.||_min
+
+\begin{definition}
+  Given $C^*$-algebras $\mathscr{A}_1$ and $\mathscr{A}_2$, the \emph{injective} $C^*$\emph{norm} on $\mathscr{A}_1 \odot \mathscr{A}_2$ is defined by
+\[
+\|a\|_{\min} = \sup \left\{ \|(\pi_1 \odot \pi_2)(a)\| \right\},
+\quad a \in \mathscr{A}_1 \odot \mathscr{A}_2,
+\]
+where $\pi_1$ and $\pi_2$ run over all  representations of $\mathscr{A}_1$ and $\mathscr{A}_2$, respectively. The subscript $\min$  will be ommited unless ambiguity arises.
+The completion $A_1 \widehat{\otimes} A_2$ is called the \emph{injective $C^*$-tensor product} of $A_1$ and $A_2$. The injective  $C^*$-norm (respectively, $C^*$-tensor product) is also referred to as the \emph{spatial} (or \emph{spatial}) $C^*$-norm (respectively, $C^*$-tensor product).
+\end{definition}
+
+\begin{proposition} \cite[Proposition 1.22.7]{sakaiCAlgebrasWAlgebras1998} \label{prop:sakai_tensor_min}
+  Let \( \mathscr{A}\ \) and \( \mathscr{B}\ \) be \( C^* \)-algebras, and let \( \alpha \) be a \( C^* \)-norm on the algebraic tensor product \( A \odot B \) such that
+\[
+\|a \otimes b\|_{\alpha} \leq k \|a\| \cdot \|b\| \quad \text{for all } a \in A,\, b \in B,
+\]
+where \( k \) is a fixed positive constant.
+Then,
+\[
+\|\cdot\|_{\min} \leq \|\cdot\|_{\alpha}.
+\]
+\end{proposition}
+
+We note that although \cite{sakaiCAlgebrasWAlgebras1998} uses a diferent definition from they are shown no be equivalent in \cite[Theorem 4.9]{takesakiTheoryOperatorAlgebras1979}.
+
+
+
+
+% example 3 V
+
+
 \subsubsection{Direct sums of $C^*$-Algebras}
 
+\begin{definition} \label{def:c*_direct_sum}
+  One can form products (in the categorical sense) of \( C^* \)-algebras as follows.  
+Let \( \mathscr{A}_i \) be a \( C^* \)-algebra for each \( i \) in some index set \( I \).  
+The \emph{direct sum} of the family \( (\mathscr{A}_i)_{i \in I} \) is the \( C^* \)-algebra denoted by \( \bigoplus_{i \in I} A_i \), consisting of elements
+\[
+a \in \prod_{i \in I} \mathscr{A}_i \quad \text{such that} \quad \sup_{i \in I} \|a(i)\| < \infty,
+\]
+with operations defined coordinatewise and norm given by
+\[
+\|a\| = \sup_{i \in I} \|a(i)\|.
+\]
+\end{definition}
+
+
 \subsubsection{Distributivity}
+
+\begin{theorem} \cite[Theorem 3.1]{choSemanticsQuantumProgramming2016} \label{thm:c*_tensor_distributes_product}
+  Let \( \mathscr{A}, \mathscr{B}, \mathcal{C} \) be \(C^*\)-algebras. Then the canonical map
+\[
+ \langle \id \widecheck{\otimes} \pi_1, \id \widecheck{\otimes} \pi_1 \rangle : \mathscr{A} \widecheck{\otimes} (\mathscr{B} \times \mathcal{C}) \to (\mathscr{A} \widecheck{\otimes} \mathscr{B}) \times (\mathscr{A} \widecheck{\otimes} \mathcal{C})
+\]
+is a unital $*$-isomorphism, and therefore, isometric. Thus, the tensor product distributes over (binary) products. 
+\end{theorem}
+
+
 
 
 \subsection{\( W^* \)-Algebras}
