@@ -159,7 +159,7 @@ Note that this is an inductive definition. Ground types are things such as boole
 \subsection{(Raw)Terms}
 
 
-The expressions of the lambda calculus are called lambda terms. In the simply-typed lambda calculus, each lambda term is assigned a type. The terms without the specification of a type are called \emph{raw typed lambda terms}. The grammar of \emph{raw typed lambda terms} is given by the \acrshort{bnf} below.
+The expressions of the lambda calculus are called lambda terms. In the simply-typed lambda calculus, each lambda term is assigned a type. The terms without the specification of a type are called \emph{raw typed lambda terms}. The grammar of \emph{raw typed lambda terms} is given by the BNF below.
 \begin{equation*} \label{eq:grammarlambda}
 \begin{split}
  v,v_1, \ldots, v_n,w \hspace{10 pt} ::= \hspace{10 pt}& x \hspace{3 pt} \vert \hspace{3 pt} f(v_1, \ldots, v_n) \hspace{3 pt} \vert \hspace{3 pt} *  \hspace{3 pt} \vert \hspace{3 pt} (\lambda x: \mathbb{A}. v )\hspace{3 pt} \vert \hspace{3 pt} (v w) \hspace{3 pt}  \vert \hspace{3 pt} v \otimes w \hspace{3 pt} \vert

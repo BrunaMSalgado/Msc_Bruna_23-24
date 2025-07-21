@@ -21,6 +21,7 @@ Finally, we study approximate equivalence in the context of a random walk on the
 
 Before introducing the category of Banach spaces and proving it is a model, we first introduce the relevant concepts in this setting. 
 
+The letters \gls{vectorspaces} will often be used to refer to vector spaces and $\gls{field}$ denotes the field of scalars of a vector space.
 
 
 
@@ -30,7 +31,7 @@ Before introducing the category of Banach spaces and proving it is a model, we f
   A \emph{norm} \gls{norm} is a function that associates an element of a vector space $V$ with a non-negative real number, such that the following properties hold:
   \begin{enumerate}
     \item Positive definiteness: $\|v\| \geq 0$ for all $v \in V$, with $\|v\| = 0$ if and only if $v = 0$;
-    \item Positive scalability: $\|av\| = |a|\|v\|$ for all $v \in V$ scalar $a$;
+    \item Positive scalability: $\|av\| = |\alpha|\|v\|$ for all $v \in V$  $\alpha \in \mathcal{F}$;
     \item The triangle inequality: $\|v + w\| \leq \|v\| + \|w\|$ for all $v, w \in V$.
   \end{enumerate}
 \end{definition}
@@ -115,9 +116,9 @@ The function \( f \) usually remains anonymous and is written as \( (a, b) \maps
 
 It follows that arbitrary elements of \( V \otimes W \) take the form 
 \[
-\sum_{i=1}^{n} a_i (v_i \otimes w_i)
+\sum_{i=1}^{n} \alpha_i (v_i \otimes w_i)
 \]
-for \( a_i \in \mathbb{C} \), \( v_i \in V \), and \( w_i \in W \).
+for \( \alpha_i \in \mathbb{C} \), \( v_i \in V \), and \( w_i \in W \).
 
 The tensor product also extends to linear maps. If 
 \(f_1: V_1 \to W_1 \quad \text{and} \quad f_2: V_2 \to W_2\)
@@ -334,8 +335,8 @@ $$
 0, & \text{if } s \notin B.
 \end{cases} \quad \text{ for all } B \in \mathcal{B}
 $$
-A measure is called \emph{discrete} if represented as a countable weighted sum of Dirac measures. In particular, a \emph{convex combination} of Dirac measures yields a discrete probability measure. These are of the form $\sum_{i} a_i \delta_i$,
-where $ a_i \geq 0 $, and the weights satisfy $ \sum_{i} a_i = 1 $.
+A measure is called \emph{discrete} if represented as a countable weighted sum of Dirac measures. In particular, a \emph{convex combination} of Dirac measures yields a discrete probability measure. These are of the form $\sum_{i} \alpha_i \delta_i$,
+where $ \alpha_i \geq 0 $, and the weights satisfy $ \sum_{i} \alpha_i = 1 $.
 
 On the other hand, a measure $ \mu $ on a measurable space $ (S, \mathcal{B}) $ is called \emph{continuous} if it assigns zero measure to all singleton sets, i.e., $ \mu(\{s\}) = 0 $ for every $ s \in S $. An example of a continuous measure is the \emph{Lebesgue measure} on $ \mathbb{R}^n $ (for $ n \in \mathbb{N} $).
 
@@ -636,7 +637,7 @@ Given \autoref{def:tvnorm}, we compute,
     \end{align*}
     Here, we use the inequality
 \[
-\left| \sum_{i=1}^{n} a_i \right| \leq \sum_{i=1}^{n} |a_i|, \quad \text{for all } n \in \mathbb{N}.
+\left| \sum_{i=1}^{n} \alpha_i \right| \leq \sum_{i=1}^{n} |\alpha_i|, \quad \text{for all } n \in \mathbb{N}.
 \]
 
 Applying the same reasoning as above, if $\textbf{rwalk}$ is the random walk that involves jump $jl$ and $ \emph{CoinToss}_p$  and $\textbf{rwalk'}$ the random walk that involves jump $jl^{q_i}$ and $ \emph{CoinToss}_q$ , we obtain 

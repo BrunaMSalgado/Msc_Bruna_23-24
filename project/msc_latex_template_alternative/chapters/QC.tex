@@ -31,10 +31,10 @@ integrated in the calculus via the so-called diamond norm, which induces a metri
 \vspace{20pt}
 
 The first two sections of this chapter present the mathematical and quantum computing preliminaries necessary for understanding the theory of quantum computation. The introduction to quantum computing draws primarily from \cite{nielsen2010quantum,watrous2018theory}, while the mathematical foundations are also based on \cite{heinosaariMathematicalLanguageQuantum2011,conwayCourseFunctionalAnalysis2007,conwayCourseOperatorTheory2000}.
-The next section introduces core concepts from functional analysis that are essential for understanding W$^*$-algebras, based on \cite{rudin91functional,InfiniteDimensionalAnalysis2006}. This is followed by a section presenting the fundamentals of W$^*$-algebras, drawing primarily from \cite{sakaiCAlgebrasWAlgebras1998,takesakiTheoryOperatorAlgebras1979,westerbaanCategoryNeumannAlgebras2019,pisierIntroductionOperatorSpace2003}.
+The next section introduces core concepts from functional analysis that are essential for understanding \( W^* \)-algebras, based on \cite{rudin91functional,InfiniteDimensionalAnalysis2006}. This is followed by a section presenting the fundamentals of \( W^* \)-algebras, drawing primarily from \cite{sakaiCAlgebrasWAlgebras1998,takesakiTheoryOperatorAlgebras1979,westerbaanCategoryNeumannAlgebras2019,pisierIntroductionOperatorSpace2003}.
 We then show that both Selinger’s category 
 $\catQ$ of quantum operations (i.e., completely positive, trace-nonincreasing super-operators) \cite{selinger2004towards}, and Cho’s category 
-$\WstarCPSUop$, the opposite category of W$^*$-algebras with normal, completely positive, subunital maps \cite{choSemanticsQuantumProgramming2016}, are first-order models.
+$\WstarCPSUop$, the opposite category of \( W^* \)-algebras with normal, completely positive, subunital maps \cite{choSemanticsQuantumProgramming2016}, are first-order models.
 Finally, the last section provides a few illustrative examples.
 
 
@@ -194,19 +194,19 @@ The matrix whose entries are the values $A_{ij}$ is said to form a \emph{matrix 
 \todo[inline,size=\normalsize]{A linearidade é no segundo ou no primeiro argumentos, é que uns livros usam no primeiro e outros no segundo?} 
 
 \begin{definition} \label{def:inner_product}
-An \emph{inner product}~\gls{inner-product} on a vector space $V$ is a function from a mapping $V\times V$ to the field of scalars, $\langle \cdot, \cdot \rangle : V \times V \rightarrow \mathcal{F}$,  that satisfies the following properties for all $v, w, w_1, \ldots, w_n \in V$ and $a_1, \ldots, a_n \in \mathcal{F}$
+An \emph{inner product}~\gls{inner-product} on a vector space $V$ is a function from a mapping $V\times V$ to the field of scalars, $\langle \cdot, \cdot \rangle : V \times V \rightarrow \mathcal{F}$,  that satisfies the following properties for all $v, w, w_1, \ldots, w_n \in V$ and $\alpha_1, \ldots, \alpha_n \in \mathcal{F}$
 
 \begin{enumerate}
-  \item Linearity in the second argument,$$ \left\langle v, \sum_{i=1}^n a_i w_i\right\rangle = \sum_{i=1}^n a_i \langle v, w_i\rangle. $$
+  \item Linearity in the second argument,$$ \left\langle v, \sum_{i=1}^n \alpha_i w_i\right\rangle = \sum_{i=1}^n \alpha_i \langle v, w_i\rangle. $$
   \item $\langle v,w \rangle = \overline{\langle w,v \rangle} $, \text{  where \gls{conj} is the complex conjugate operation.}
   \item  $\langle v,w \rangle \geq 0 $ with equality if and only if $v = 0$.
 \end{enumerate}
 \end{definition}
 
 
-For instance, the inner product $ \langle v, w \rangle$ of two vectors $ v = (a_1, \ldots, a_n ),w = (b_1, \ldots, b_n) \in \mathbb{C}^{n}$ is defined as
+For instance, the inner product $ \langle v, w \rangle$ of two vectors $ v = (\alpha_1, \ldots, \alpha_n ),w = (\beta_1, \ldots, \beta_n) \in \mathbb{C}^{n}$ is defined as
 \begin{equation*}
-  \langle v, w \rangle = \sum_{i} \overline{a}_i b_i. 
+  \langle v, w \rangle = \sum_{i} \overline{\alpha}_i \beta_i. 
 \end{equation*}
 
 Every inner product space is a normed space, where the norm of a vector $v \in V$ is defined as $\|v\| = \sqrt{\langle v, v \rangle}$.
@@ -234,7 +234,7 @@ where $\{v_i\}$ is an orthonormal basis for $\mathcal{H}$.
 \end{definition}
 
 
-The trace is \emph{linear}, $\text{Tr}(A + B) = \text{Tr}(A)+\text{Tr}(B), \text{Tr}(a \cdot A) = a\cdot \hspace{1pt} \text{Tr}(A)$, where $A, B \in \BoundOp{\HilbH}$, and $a$ is a complex number.
+The trace is \emph{linear}, $\text{Tr}(A + B) = \text{Tr}(A)+\text{Tr}(B), \text{Tr}(\alpha \cdot A) = \alpha \cdot \hspace{1pt} \text{Tr}(A)$, where $A, B \in \BoundOp{\HilbH}$, and $\alpha$ is a complex number.
 
 The trace of a square matrix can alternatively be defined as follows.
 
@@ -313,8 +313,8 @@ A \emph{diagonal representation} of an operator $A$ on a vector space $V$ is an 
 \subsection{Important classes of operators}
 
 %Given Hilbert Spaces, the notation \gls{linearoperators} denoted the vector space of all linear operators from \( \HilbH \) to \( \HilbK \).
- In a finite-dimensional Hilbert space $\HilbH$ every lin ear mapping is continuous, hence a bounded operator. 
-For an $n$-dimensional Hilbert space $\mathcal{H}$, we can identify $\mathcal{B}(\mathcal{H})$ with the space $\mathbb{C}^{n\times n}$ of $n \times n$ complex matrices known as square matrices. As a result,linear operators mapping a Hilbert space to itself are known as \emph{square operators}. %We write \gls{linearoperatorsH} to denote $\mathcal{L}(\HilbH, \HilbH) $.
+ In a finite-dimensional Hilbert space $\HilbH$ every linear mapping is continuous, hence a bounded operator. 
+For an $n$-dimensional Hilbert space $\mathcal{H}$, we can identify $\mathcal{B}(\mathcal{H})$ with the space $\mathbb{C}^{n\times n}$ of $n \times n$ complex matrices known as square matrices. As a result, linear operators mapping a Hilbert space to itself are known as \emph{square operators}. %We write \gls{linearoperatorsH} to denote $\mathcal{L}(\HilbH, \HilbH) $.
 
 The following classes of operators are of particular interest in quantum information theory.
 
@@ -356,25 +356,25 @@ Geometrically, unitary operators are important because they preserve inner produ
 
 \subsection{Spectral theorem}
 
-\begin{theorem}  \cite[Corollary 1.4 ]{watrous2018theory}
-  Let $\mathcal{H}$ be a Hilbert space. Every normal operator $A \in \mathcal{L}(\mathcal{H})$ can be expressed as a linear combination $\sum_{i=1}^n \lambda_{i}b_{i}b_{i}^{\dag}$ where the set $\{b_{1}, \ldots , b{n}\}$ is an orthonormal basis on $\mathcal{H}$.
+\begin{theorem}  \cite[Corollary 1.4]{watrous2018theory}
+  Let $\mathcal{H}$ be a Hilbert space. Every normal operator $A \in \mathcal{L}(\mathcal{H})$ can be expressed as a linear combination $\sum_{i=1}^n \lambda_{i}v_{i}v_{i}^{\dag}$ where the set $\{v_{1}, \ldots , v_{n}\}$ is an orthonormal basis on $\mathcal{H}$.
 \end{theorem}
 
 Using this last result any function $f:\mathbb{C} \xrightarrow{} \mathbb{C}$, can be extended to normal operators via,
   \begin{equation} \label{eq:apply_f_diag} 
-    f(A) = \sum_{i} f(\lambda_{i})b_{i}b_{i}^{\dag}
+    f(A) = \sum_{i} f(\lambda_{i})v_{i}v_{i}^{\dag}
 \end {equation}
-where $A = \sum_{i} \lambda_{i}b_{i}b_{i}^{\dag}$ is the spectral decomposition of $A$.
+where $A = \sum_{i} \lambda_{i}v_{i}v_{i}^{\dag}$ is the spectral decomposition of $A$.
 
 \subsection{Riez Representation Theorem}
 
-\begin{definition} [Riesz Representation Theorem]
+\begin{theorem} \cite[Theorem 9.15]{romanAdvancedLinearAlgebra1992}
 Let $\mathcal{H}$ be a Hilbert space, and let $\varphi$ be a linear functional on $V$. Then there exists a unique vector $v_\varphi \in V$ such that
-$$
+\[
 \varphi(w) = \langle w, v_\varphi \rangle \quad \text{for all } w \in V.
-$$
+\]
 We call $v_\varphi$ the \emph{Riesz vector} for $\varphi$ and denote it by $v_\varphi$.\\
-\end{definition}
+\end{theorem}
 
 \todo[inline,size=\normalsize]{Colocar reparo das notas}
 
@@ -443,9 +443,9 @@ Consider two finite dimensinal Hilbert spaces $\HilbH$ and $\HilbK$ with respect
 \[
 (v_1 w_1, \ldots, v_1 w_m, \ldots, v_n w_1, \ldots, v_n w_m),
 \]
-which is a basis for  $\HilbH \otimes \HilbK$.  The tensor product of two elements $v = \sum_i a_i v_i$ and w = $\sum_j b_j  w_j$ is:
+which is a basis for  $\HilbH \otimes \HilbK$.  The tensor product of two elements $v = \sum_i \alpha_i v_i$ and w = $\sum_j b_j  w_j$ is:
 \begin{equation*}
-  v \otimes w = \sum_{i,j} a_i b_j \cdot v_i \otimes w_j.
+  v \otimes w = \sum_{i,j} \alpha_i b_j \cdot v_i \otimes w_j.
 \end{equation*}
  The inner product in $V \otimes W$ is defined as follows 
 \begin{equation*}
@@ -472,8 +472,8 @@ Considering vector spaces $V, W, R$, the following equalities hold:
 \end{equation*}
 The definition of $A \otimes B$ is extended to all elements of $\HilbH \otimes \HilbK$ in the natural way to ensure linearity of the tensor product operator. That is,
 \begin{equation*} \label{eq:linear_tensor_operator}
-(A \otimes B) \left( \sum_i a_i\, v_i \otimes w_i \right)
-= \sum_i a_i\, (A v_i \otimes B w_i).
+(A \otimes B) \left( \sum_i \alpha_i\, v_i \otimes w_i \right)
+= \sum_i \alpha_i\, (A v_i \otimes B w_i).
 \end{equation*}
 Suppose $A$ is an $n \times n$ matrix, and $B$ is a $m \times m$ matrix. Then we have the matrix representation:
 \begin{equation*} \label{eq:matrix_tensor_product}
@@ -943,7 +943,7 @@ Thus far, only two types of quantum operations have been discussed: unitary oper
 
 \begin{definition} \label{def:completely_positive_superoperator}
   A linear mapping $ \Phi : \mathcal{T}(\HilbH_1) \to \mathcal{T}(\HilbH_2)$ is \emph{completely positive} if the mapping 
-$\Phi \otimes \id$ on $\mathcal{T}(\mathcal{H}_A \otimes \HilbK) \to \mathcal{T}(\mathcal{T}(\HilbH_2)\otimes \HilbK) $ is positive for any Hilbert space $\HilbK$.
+$\Phi \otimes \id_{\mathcal{T}(\HilbK)}$ on $\mathcal{T}(\mathcal{H}_1 \otimes \HilbK) \to \mathcal{T}(\HilbH_2 \otimes \HilbK) $ is positive for any Hilbert space $\HilbK$.
 \end{definition}
 
 \begin{definition} \label{def:trace_preserving_superoperator}
@@ -1275,7 +1275,7 @@ A \emph{topological vector space} is a vector space \( V \) equipped with a line
 
 \begin{definition}
   Let $V$ be a vector space. 
-  Linear maps from $V$ to its scalar field are called \emph{linear functionals}. The set of all continuous linear functionals on $V$ forms a vector space, called the \emph{(topological) dual space} of $ V $, and is denoted by $V^*$. It is common to designate elements of the dual space \( V^* \)  by \( v^* \).  %and to write $\langle v, v^* \rangle $in place of \( v^*(v) \).
+  Linear maps from $V$ to its scalar field are called \emph{linear functionals}. The set of all continuous linear functionals on $V$ forms a vector space, called the \emph{(topological) dual space} of $ V $, and is denoted by  \gls{topological_dual_space}. It is common to designate elements of the dual space  $V^*$  by \( v^* \).  %and to write $\langle v, v^* \rangle $in place of \( v^*(v) \).
 \end{definition}
 
 %norma espaço dual
@@ -1344,7 +1344,7 @@ This continuous extension \( g \) exists if \( (V,d_V) \) is a metric space, \( 
 
 
 
-\section{W$^*$-Algebras}
+\section{\( W^* \)-Algebras}
 
 \begin{comment}
 We would like to focus instead on the
@@ -1356,18 +1356,158 @@ We would like to focus instead on the
 \end{comment}
 
 
- While quantum theory is traditionally formulated in terms of Hilbert spaces, there is also a more abstract and general formulation using operator algebras. This perspective traces back to Heisenberg’s work on the spectral lines of the hydrogen atom in 1925, where he realized that  observable quantities in quantum systems, such as the position of an electron in a hydrogen atom, are better represented by infinite arrays of complex numbers. Born and Jordan subsequently recognized that these arrays should follow the rules of matrix multiplication. To address the mathematical challenges posed by infinite matrices, Von Neumann formalized these ideas using operators on Hilbert spaces, more concretely, \emph{Von Neumann} algebras. This gave rive to the study of operator algebras, which are now applied in various domains in quantum theory, including quantum statistical mechanics, quantum field theory, and quantum information theory. We refer to the abstract characterization von Neumann algebras, as $W*$-algebras, although the terms are often used interchangeably in literature.
+ While quantum theory is traditionally formulated in terms of Hilbert spaces, there is also a more abstract and general formulation using operator algebras. This perspective traces back to Heisenberg’s work on the spectral lines of the hydrogen atom in 1925, where he realized that  observable quantities in quantum systems, such as the position of an electron in a hydrogen atom, are better represented by infinite arrays of complex numbers \cite{heisenbergUeberQuantentheoretischeUmdeutung1925}. Born and Jordan subsequently recognized that these arrays should follow the rules of matrix multiplication \cite{bornZurQuantenmechanik1925}. To address the mathematical challenges posed by infinite matrices, Von Neumann formalized these ideas using operators on Hilbert spaces, more concretely, \emph{Von Neumann} algebras \cite{neumann1927wahrscheinlichkeitstheoretischer}. This gave rive to the study of operator algebras, which are now applied in various domains in quantum theory, including quantum statistical mechanics \cite{bratteliOperatorAlgebrasQuantum1987}, quantum field theory \cite{arakiMathematicalTheoryQuantum1999,haagAlgebraicApproachQuantum1964}, and quantum information theory \cite{keylFundamentalsQuantumInformation2002}. We refer to the abstract characterization von Neumann algebras, as $W^*$-algebras, although the terms are often used interchangeably in literature.
 
-  While  $C^*$-algebras could also be used to model quantum computing, for instance the fact that while $C^*$-algebras correspond to noncommutative geometry, W-algebras can be viewed as noncommutative analogues of measure theory or probability, aligning  with the probabilistic nature of quantum mechanics. Moreover there is previous work in this setting: in \cite{choSemanticsQuantumProgramming2016}  it is shown that Selinger’s category $\catQ$ corresponds (up to categorical equivalence) to the finite-dimensional subcategory of $\WstarCPSUop$.
+
+ While $C^*$-algebras can also model quantum computing, $W^*$-algebras may be more suitable for this purpose. For instance, whereas $C^*$-algebras correspond to noncommutative geometry \cite{connesNoncommutativeGeometry1995}, $W^*$-algebras can be viewed as noncommutative analogues of measure theory or probability, aligning  with the probabilistic nature of quantum \cite{hamhalterQuantumMeasureTheory2003,HansQuantumProbabilityQuantumInformationTheory10}. Moreover there is previous work in this setting: in \cite{choSemanticsQuantumProgramming2016}  it is shown that Selinger’s category $\catQ$ corresponds (up to categorical equivalence) to the finite-dimensional subcategory of $\WstarCPSUop$.
   
   
-%Since it is impossible to introduce W$^*$-algebras without first covering C$^$-algebras, this section presents the key concepts and results of both, laying the groundwork for \autoref{subsec:w*_cats}.
+Since it is impossible to introduce \( W^* \)-algebras without first covering \( C^* \)-algebras, this section presents the key concepts and results of both, laying the groundwork for \Cref{subsec:w*_cats}.
 
 
-\subsection{C$^*$-Algebras}
+\subsection{\( C^* \)-Algebras}
+
+Uppercase letters in math script, \gls{c*_alg}, will typically denote $C^*$-algebras.
 
 
-\subsection{W$^*$-Algebras}
+\begin{definition}
+  A \emph{\( C^* \)-algebra} is a complex vector space \( \mathscr{A} \) endowed with:
+\begin{enumerate}
+    \item a binary operation, called \emph{multiplication} (and denoted as such), which is associative and linear in both coordinates;
+    \item an element \( 1 \), called the \emph{unit}, such that \( 1 \cdot a = a = a \cdot 1 \) for all \( a \in \mathscr{A} \);
+    \item a unary operation \( (\cdot)^* \), called \emph{involution}, such that for all \( a, b \in \mathscr{A} \) and \( \lambda \in \mathbb{C} \),
+    \[
+    (a^*)^* = a, \quad (ab)^* = b^* a^*, \quad (\lambda a)^* = \overline{\lambda} a^*, \quad \text{and} \quad (a + b)^* = a^* + b^*;
+    \]
+    \item a complete norm \( \|\cdot\| \) such that \( \| ab \| \leq \|a\| \cdot \|b\| \) for all \( a, b \in \mathscr{A} \), and
+    \[
+    \|a^* a\| = \|a\|^2.
+    \]
+    This last equality is called the \emph{\( C^* \)-identity}.
+\end{enumerate}
+\end{definition}
+
+Note that while we have previously used $(\cdot)^*$ to denote elements of dual spaces, in the definition above and in the definition of involutive maps, this symbol will denote the involution operation.
+
+\begin{remark}  
+  In the literature, a \( C^* \)-algebra is typically not required to have a unit. When it does, it is called a \emph{unital \( C^* \)-algebra}.
+\end{remark}
+
+
+
+\subsubsection{Maps between $C^*$-Algebras}
+
+We consider only linear maps, hence the term ``map'' will always mean a linear map.
+
+
+\begin{definition}
+  Let $ \mathscr{A}$ be a \( C^* \)-algebra. An element $x$ of $ \mathscr{A}$ is  positive if there exists an $y \in  \mathscr{A}$ such that $x = y^* y$.
+  We denote the set of positive elements of $ \mathscr{A}$ by $ \mathscr{A}_+$.
+  %A linear map \( f:  \mathscr{A} \to  \mathscr{B} \) between \( C^* \)-algebras is called \emph{positive} if it maps positive elements of $ \mathscr{A}$ to positive elements of $ \mathscr{B}$.  
+\end{definition}
+
+
+\begin{definition}
+ A linear map $\Phi: \mathscr{A} \to \mathscr{B}$ between $C^*$-algebras is called
+\begin{enumerate}
+    \item \emph{multiplicative} if $\Phi(ab) = \Phi(a)\Phi(b)$ for all $a, b \in \mathscr{A} $;
+    \item \emph{involution preserving} if $\Phi(a^*) = \Phi(a)^*$ for all $a \in \mathscr{A} $;
+    \item \emph{unital} if $\Phi(1) = 1$;
+    \item \emph{subunital} if $\Phi(1) \leq 1$;
+    \item \emph{positive} if $\Phi(a)$ is positive for every positive $a \in \mathscr{A} $.
+\end{enumerate}
+A multiplicative involutive linear map is called a \(*\)-\emph{homomorphism} and a unital \(*\)-\emph{homomorphism} is also known as a \acrshort{miu}-map. A bijective \(*\)-homomorphism is called a \(*\)-isomorphism.
+\end{definition}
+
+\begin{proposition} \cite[Theorem 1.5.7]{pedersenCalgebrasTheirAutomorphism1979} \label{prop:HomShortIsoIso}
+  Every \(*\)-homomorphism \( \Phi: \mathscr{A} \to \mathscr{B} \) between \( C^* \)-algebras is \emph{short}. Moreover, \( \Phi \) is \emph{isometric} if and only if it is injective.
+\end{proposition}
+
+\begin{proposition} \cite[Proposition 2.4]{choSemanticsQuantumProgramming2016}
+Let \( \Phi: \mathscr{A} \to \mathscr{B} \) be a positive map between \( C^* \)-algebras. Then \( \Phi \) is subunital if and only if it is short.
+\end{proposition}
+
+
+\subsubsection{Representations of $C^*$-Algebras}
+
+\begin{definition}
+  A \emph{representation} of a \( C^* \)-algebra \(  \mathscr{A} \) is a pair \( (\mathcal{H}, \pi) \), where \( \mathcal{H} \) is a Hilbert space and \( \pi:  \mathscr{A} \to \mathcal{B}(\mathcal{H}) \) is a miu-map. The representation is said to be \emph{faithful} if \( \pi \) is injective. 
+\end{definition}
+
+\begin{theorem} \cite[Theorem 9.18.]{takesakiTheoryOperatorAlgebras1979}
+  Every $C^*$-algebra admits a faithful representation.
+\end{theorem}
+
+\subsubsection{Matrices over $C^*$-Algebras}
+
+\begin{definition}
+  Let \( \mathscr{A} \) be a \(C^*\)-algebra. For \( n \in \mathbb{N} \), let \( \MnMatrix{\mathscr{A} }\) denote the set of \( n \times n \) matrices with entries in \( \mathscr{A} \). Then \( \MnMatrix{\mathscr{A} }\) is equipped with the following operations:
+
+\begin{itemize}
+    \item \emph{Addition and scalar multiplication} are defined pointwise:
+    \[
+    (a_{ij}) + (b_{ij}) := (a_{ij} + b_{ij}), \qquad
+    \alpha (a_{ij}) := (\alpha a_{ij})
+    \]
+    
+    \item \emph{Multiplication} is matrix multiplication:
+    \[
+    (a_{ij}) (b_{ij}) := \left[ \sum_k a_{ik} b_{kj} \right]
+    \]
+    
+    \item \emph{Involution} is given by the conjugate transpose:
+    \[
+    (a_{ij})^* := (a_{ji}^*).
+    \]
+\end{itemize}
+\end{definition}
+
+\begin{proposition} \cite[p.16-17]{paulsenCompletelyBoundedMaps2003}
+  Let $ \mathscr{A}$ be a $C^*$-algebra. Then $\MnMatrix{\mathscr{A}}$ is a $C^*$-algebra, too.
+\end{proposition}
+
+In the context of the proposition above, the norm is determined via the identification $\mathcal{M}_n(\BoundOp{\HilbH}) =\BoundOp{\HilbH^{\oplus n}}$
+\cite[Exercises~1.1 and~1.2]{paulsenCompletelyBoundedMaps2003}. That is, considering a faithful representation \((\HilbH, \pi)\) of \(\MnMatrix{\mathscr{A}}\), and given \((A_{ij}) \in \MnMatrix{\mathscr{A}}\), we have
+\[
+\norm{(A_{ij})} = \norm{\pi(A_{ij})} = \opnorm{(A_{ij})} = \sup\{ \norm{(A_{ij})(v)} \mid \euclideannorm{v} = 1 \}.
+\]
+Note that, by \autoref{prop:HomShortIsoIso}, \(\pi\) is an isometry.
+
+These matrices are important because they are used to define complete positivity in this setting.
+
+\begin{definition}
+  Let \( \Phi : \mathscr{A} \to \mathscr{B} \) be a linear map between \( C^* \)-algebras. For each \( n \in \mathbb{N} \), \( \Phi \) induces a linear map
+\[
+\MnMatrix{\Phi} :\MnMatrix{\mathscr{A}} \to \MnMatrix{\mathscr{B}}, \quad \MnMatrix{\Phi}\big[ x_{ij} \big] := \big[ f(x_{ij}) \big].
+\]
+The map \( \Phi \) is said to be \emph{\( n \)-positive} if \(\MnMatrix{\Phi} \) is positive, and \emph{completely positive} if \( \MnMatrix{\Phi} \) is positive for all \( n \in \mathbb{N} \).
+\end{definition}
+
+We have previously a definition of complete positivity in the setting of bounded/trace-class operators over finite dimensional Hilbert spaces. Given $\BoundOp{\HilbH}$ is an example of a $C^*-algebra$, we will check that the definitions are equivalent.
+
+In \autoref{def:completely_positive_superoperator}
+
+\todo[inline,size=\normalsize]{Colocar a correspondencia entre definições de cp, após o professor a ter aprovado.}
+
+\begin{comment}
+\[
+\norm{A_{ij}} 
+=\sup \left\{ \left(\sum_{i} \norm{\sum_{j} A_{ij}(v_j) }^2 \right)^{\frac{1}{2}} \Bigg|   \sum_{j} \norm{v_j} = 1 \right\} = 
+\]
+\end{comment}
+
+% we use the faithull rep in prop bla given pi is an isometry \autoref{prop:*hom_short_*_iso_iso} to define the norm
+% It iseasilychecked(Exercise1.1) thateveryelementofMn(B(H))definesaboundedlinearoperatoronH(n) and
+ %thatthiscorrespondenceyieldsaone-to-one∗-isomorphismofMn(B(H))onto B(H(n))(Exercise1.2).Thus,theidentificationMn(B(H))=B(H(n))givesus anormthatmakesMn(B(H))aC∗-algebra
+
+\subsubsection{Tensor products of $C^*$-Algebras}
+
+\subsubsection{Direct sums of $C^*$-Algebras}
+
+\subsubsection{Distributivity}
+
+
+\subsection{\( W^* \)-Algebras}
 
 %intro a porque é que queremos saber the w*algebras there's two pictures, bla bla
 
@@ -1376,7 +1516,7 @@ We would like to focus instead on the
 
 
 \begin{comment}
-We begin with some considerations on how the definition of complete positivity for C$^*$-algebras aligns with the corresponding notion in the setting of finite-dimensional Hilbert spaces. As the theorems below demonstrate, this correspondence is established through the Choi matrix representation.
+We begin with some considerations on how the definition of complete positivity for \( C^* \)-algebras aligns with the corresponding notion in the setting of finite-dimensional Hilbert spaces. As the theorems below demonstrate, this correspondence is established through the Choi matrix representation.
 
 \begin{theorem} \cite[Theorem 4.6]{heinosaariMathematicalLanguageQuantum2011}
 Let $\Phi : \mathcal{M}_n \to \mathcal{M}_m$ be a positive linear mapping, and let  $\{ \ket{i}\bra{j} \}_{i,j=1}^n $ denote any orthonormal basis for \( \mathcal{M}_n \). Then the following statements are equivalent:
@@ -1423,7 +1563,11 @@ Given that the categories that ``naturally arise'' in quantum computation are fi
 
 %An alternative approach was explored in \cite{dahlqvist2023syntactic}, using linear $\lambda$-calculus as basis. A notion of approximate equivalence is then integrated in the calculus via the so-called diamond norm, which induces a metric on the space of quantum programs (seen semantically as completely positive trace-preserving super-operators) \cite{watrous2018theory}. 
 
-% We devide this section in two parts wich correspond to different formulations of quantum theory. In the first shroddinger pictures where... we study Selinger's category Q. Next,....
+
+We divide this section into two parts, each corresponding to a different formulation of quantum theory. In the first part, we consider the Schr\"odinger picture, where quantum programs are interpreted as maps between quantum states (\ie, density operators). Here, we study Selinger's category~$\catQ$.
+In the second part, we adopt the Heisenberg picture, in which programs are modeled as maps between observables (\ie, self-adjoint operators). In this setting, we explore Cho's category~$\WstarCPSUop$, the opposite of the category~$\WstarCPSU$, whose objects are \( W^* \)-algebras and morphisms are completely positive subunital maps between them. 
+We remark of the following connection between the two categories: the full subcategory of $\WstarCPSUop$ consisting of finite dimensional \( W^* \) algebras has bewn shown to be equivalent to~$\catQ$ \cite{choSemanticsQuantumProgramming2016}.
+
 
 \subsection{Schrödinger's picture}
 
@@ -1865,7 +2009,7 @@ Consequently, applying the same reasoning as in the previous example, it follows
   & \hspace{-15pt} = \euclideannorm{\left(\sin(\alpha) \left( \cos(\beta + \lambda) -  \cos(\beta + \lambda + \epsilon) \right),\sin(\alpha) \left( \sin(\beta + \lambda) -  \sin(\beta + \lambda + \epsilon) \right),0 \right)} \\
   & \hspace{-15pt}\leq \euclideannorm{\left( \cos(\beta + \lambda) -  \cos(\beta + \lambda + \epsilon) , \sin(\beta + \lambda) -  \sin(\beta + \lambda + \epsilon) ,0 \right)} \\
   & \hspace{-15pt} \leq \euclideannorm{\left( \epsilon, \epsilon ,0 \right)} \\
-  & \hspace{-15pt} = \sqrt{2}\epsilon \\
+  & \hspace{-15pt} = \sqrt{2}\epsilon 
 \end{align*} 
 
 Attending to \autoref{theorem:diamond_iso}, it follows that
@@ -2040,18 +2184,18 @@ teleportation procedure in $\lambda$-calculus as follows:
           D_{0}= \frac{\sqrt{2-p}}{\sqrt{2}} I,  D_{1}= \frac{\sqrt{p}}{\sqrt{2}} Z
      \end{equation*}
      
-     Considering a density operator $\rho=|\alpha|^{2} \ket{0} \bra{0} + \alpha \beta^{*} \ket{0} \bra{1}+ \alpha^{*} \beta \ket{1} \bra{0} + |\beta|^{2} \ket{1} \bra{1}$, using these Kraus operators, it is possible to easily verify  that after applying the dephasing channel with probability $p$, the resulting operator $\rho'$ is given by: 
+     Considering a density operator $\rho=|\alpha|^{2} \ket{0} \bra{0} + \alpha \overline{\beta} \ket{0} \bra{1}+ \overline{\alpha} \beta \ket{1} \bra{0} + |\beta|^{2} \ket{1} \bra{1}$, using these Kraus operators, it is possible to easily verify  that after applying the dephasing channel with probability $p$, the resulting operator $\rho'$ is given by: 
      \begin{equation*} 
-          \rho' = D_p(\rho)= D_{0} \rho D_{0}^{\dag} + D_{1} \rho D_{1}^{\dag} = |\alpha|^{2} \ket{0} \bra{0} +  (1-p) \alpha \beta^{*} \ket{0} \bra{1}+  (1-p) \alpha^{*}  \beta \ket{1} \bra{0} + |\beta|^{2} \ket{1} \bra{1}
+          \rho' = D_p(\rho)= D_{0} \rho D_{0}^{\dag} + D_{1} \rho D_{1}^{\dag} = |\alpha|^{2} \ket{0} \bra{0} +  (1-p) \alpha \overline{\beta} \ket{0} \bra{1}+  (1-p) \overline{\alpha}  \beta \ket{1} \bra{0} + |\beta|^{2} \ket{1} \bra{1}
      \end{equation*}
      This shows that the dephasing channel with probability $p$ preserves the diagonal elements of the density matrix while attenuating the off-diagonal elements by a factor of $(1-p)$.
 
      In this scenario (and in subsequent ones), we will add identity gates to the ideal program to simplify the calculations. Thus, attending to the definition of trace norm for matrices and \autoref{eq:apply_f_diag}, we have:
      \begin{align*}
       & \tracenorm{ \id(\rho) - D_{p}(\rho)} \\
-      & \tracenorm{ \alpha \beta^{*} \ket{0} \bra{1}+ \alpha^{*} \beta \ket{1} \bra{0}  -   (1-p) \alpha \beta^{*} \ket{0} \bra{1}-  (1-p) \alpha^{*}  \beta \ket{1} \bra{0} } \\
-      & = p \cdot  \tracenorm{ \alpha \beta^{*} \ket{0} \bra{1} + \alpha^{*}  \beta \ket{1} \bra{0} } \\
-      & = p \cdot \tr \left(\sqrt{\left( \alpha \beta^{*} \ket{0} \bra{1} + \alpha^{*}  \beta \ket{1} \bra{0} \right)^2} \right) \\
+      & \tracenorm{ \alpha \overline{\beta} \ket{0} \bra{1}+ \overline{\alpha} \beta \ket{1} \bra{0}  -   (1-p) \alpha \overline{\beta} \ket{0} \bra{1}-  (1-p) \overline{\alpha}  \beta \ket{1} \bra{0} } \\
+      & = p \cdot  \tracenorm{ \alpha \overline{\beta} \ket{0} \bra{1} + \overline{\alpha}  \beta \ket{1} \bra{0} } \\
+      & = p \cdot \tr \left(\sqrt{\left( \alpha \overline{\beta} \ket{0} \bra{1} + \overline{\alpha}  \beta \ket{1} \bra{0} \right)^2} \right) \\
       & = p \cdot  \tr \left(\sqrt{|\alpha|^{2}|\beta|^{2} (\ket{0} \bra{0}+ \ket{1} \bra{1})  } \right) \\
       & = 2 \cdot p \cdot |\alpha||\beta| \\
       & \leq p \\
@@ -2092,20 +2236,20 @@ teleportation procedure in $\lambda$-calculus as follows:
      A_{0}= \ket{0} \bra{0} + \sqrt{1-\gamma} \ket{1} \bra{1} ,  A_{1}= \sqrt{\gamma} \ket{0} \bra{1}
 \end{equation*}
 
-Applying these Kraus operators an arbitray density operator $\rho=|\alpha|^{2} \ket{0} \ket{0} + \alpha \beta^{*} \ket{0} \ket{1} + \alpha^{*} \beta \ket{1} \ket{0} + |\beta|^{2} \ket{1} \ket{1}$, we obtain the state $\rho'$ as follows:
+Applying these Kraus operators an arbitray density operator $\rho=|\alpha|^{2} \ket{0} \ket{0} + \alpha \overline{\beta} \ket{0} \ket{1} + \overline{\alpha} \beta \ket{1} \ket{0} + |\beta|^{2} \ket{1} \ket{1}$, we obtain the state $\rho'$ as follows:
 \begin{align*}
      \rho' & = A_\gamma(\rho) =  A_{0} \rho A_{0}^{\dag} + A_{1} \rho A_{1}^{\dag} \\
-     & = (|\alpha|^{2} + \gamma |\beta|^{2}) \ket{0}\bra{0} + \sqrt{1-\gamma} \hspace{1pt} \alpha \beta^{*} \ket{0}\bra{1} + \sqrt{1-\gamma} \hspace{1pt} \alpha^{*} \beta \ket{1}\bra{0} + (1-\gamma) |\beta|^{2} \ket{1}\bra{1}
+     & = (|\alpha|^{2} + \gamma |\beta|^{2}) \ket{0}\bra{0} + \sqrt{1-\gamma} \hspace{1pt} \alpha \overline{\beta} \ket{0}\bra{1} + \sqrt{1-\gamma} \hspace{1pt} \overline{\alpha} \beta \ket{1}\bra{0} + (1-\gamma) |\beta|^{2} \ket{1}\bra{1}
 \end{align*}
 
 Once again, we will add identity gates to the ideal program to simplify the calculations, as a result it is necessary to compute the trace norm of the diference between the identity applied to the density operator $\rho = \ket{\psi} \bra{\psi}$ and the amplitude damping channel applied to $\rho$.
 First, attending to the definition of trace norm for matrices and \autoref{eq:apply_f_diag}, we calculate, 
 \begin{align*}
   & \tracenorm{ \id(\rho) - A_{\gamma}(\rho)} \\
-  & =    \Big\lVert  |\alpha|^{2} \ket{0} \ket{0} + \alpha \beta^{*} \ket{0} \ket{1} + \alpha^{*} \beta \ket{1} \ket{0} + |\beta|^{2} \ket{1} \ket{1}  - \big((|\alpha|^{2} + \gamma |\beta|^{2}) \ket{0}\bra{0} \\ 
-  & \hspace{10pt}  +  \sqrt{1-\gamma} \hspace{1pt} \alpha \beta^{*} \ket{0}\bra{1} + \sqrt{1-\gamma} \hspace{1pt} \alpha^{*} \beta \ket{1}\bra{0} + (1-\gamma) |\beta|^{2} \ket{1}\bra{1}\big) \Big\rVert_1 \\
-   & = \tracenorm{\gamma |\beta|^{2} \ket{0} \bra{0} + (1-\sqrt{1-\gamma}) (\alpha \beta^{*} \ket{0} \bra{1} + \alpha^{*} \beta \ket{1} \bra{0}) - \gamma |\beta|^{2} \ket{1} \bra{1}} \\
-   & = \tr \left( \sqrt{\left( \gamma |\beta|^{2} \ket{0} \bra{0} + (1-\sqrt{1-\gamma}) (\alpha \beta^{*} \ket{0} \bra{1} + \alpha^{*} \beta \ket{1} \bra{0}) - \gamma |\beta|^{2} \ket{1} \bra{1}  \right)^2}\right) \\
+  & =    \Big\lVert  |\alpha|^{2} \ket{0} \ket{0} + \alpha \overline{\beta} \ket{0} \ket{1} + \overline{\alpha} \beta \ket{1} \ket{0} + |\beta|^{2} \ket{1} \ket{1}  - \big((|\alpha|^{2} + \gamma |\beta|^{2}) \ket{0}\bra{0} \\ 
+  & \hspace{10pt}  +  \sqrt{1-\gamma} \hspace{1pt} \alpha \overline{\beta} \ket{0}\bra{1} + \sqrt{1-\gamma} \hspace{1pt} \overline{\alpha} \beta \ket{1}\bra{0} + (1-\gamma) |\beta|^{2} \ket{1}\bra{1}\big) \Big\rVert_1 \\
+   & = \tracenorm{\gamma |\beta|^{2} \ket{0} \bra{0} + (1-\sqrt{1-\gamma}) (\alpha \overline{\beta} \ket{0} \bra{1} + \overline{\alpha} \beta \ket{1} \bra{0}) - \gamma |\beta|^{2} \ket{1} \bra{1}} \\
+   & = \tr \left( \sqrt{\left( \gamma |\beta|^{2} \ket{0} \bra{0} + (1-\sqrt{1-\gamma}) (\alpha \overline{\beta} \ket{0} \bra{1} + \overline{\alpha} \beta \ket{1} \bra{0}) - \gamma |\beta|^{2} \ket{1} \bra{1}  \right)^2}\right) \\
    & = \tr \left( \sqrt{\left( (1-\sqrt{1-\gamma})^{2} |\alpha|^{2}|\beta|^{2} + \gamma^{2} |\beta|^{4} \right) (\ket{0} \bra{0} + \ket{1} \bra{1} ) } \right) \\
    & = 2 \cdot \sqrt{  (1-\sqrt{1-\gamma})^{2} |\alpha|^{2}|\beta|^{2} + \gamma^{2} |\beta|^{4}} \\
    & \leq 2 \gamma
@@ -2191,12 +2335,12 @@ First, let us verify the result  of applying operation  $T$ to a quantum state $
 Considering $X$ as $U$, we compute
 \begin{align*}
   &  \tracenorm{ \id(\rho) - T(\rho)} \\
-  &  = \Big|\Big| (1/2) \Big( (|\alpha|^2 -|\beta|^2) \ket{0}\bra{0} + (\alpha \beta^*-\alpha^* \beta)\ket{0}\bra{1} + (\alpha^* \beta-\alpha \beta^*)\ket{0}\bra{1}    \\
+  &  = \Big|\Big| (1/2) \Big( (|\alpha|^2 -|\beta|^2) \ket{0}\bra{0} + (\alpha \overline{\beta}-\overline{\alpha} \beta)\ket{0}\bra{1} + (\overline{\alpha} \beta-\alpha \overline{\beta})\ket{0}\bra{1}    \\
   & \hspace{10pt}  + (|\beta|^2 -|\alpha|^2 )\ket{1}\bra{1} \Big) \Big|\Big|_1  \\
-  &  = (1/2) \tr \Big( \sqrt{\big( (|\alpha|^2 -|\beta|^2) \ket{0}\bra{0} + (\alpha \beta^*-\alpha^* \beta)\ket{0}\bra{1} + (\alpha^* \beta-\alpha \beta^*)\ket{0}\bra{1} }  \\
+  &  = (1/2) \tr \Big( \sqrt{\big( (|\alpha|^2 -|\beta|^2) \ket{0}\bra{0} + (\alpha \overline{\beta}-\overline{\alpha} \beta)\ket{0}\bra{1} + (\overline{\alpha} \beta-\alpha \overline{\beta})\ket{0}\bra{1} }  \\
   & \hspace{10pt} \overline{+(|\beta|^2 -|\alpha|^2 )\ket{1}\bra{1}   \big)^2\Big)}\\
-  &  = (1/2) \tr \left( \sqrt{\left( ((|\alpha|^2 -|\beta|^2 )^2 + (\alpha \beta^*-\alpha^* \beta)(\alpha^* \beta-\alpha \beta^*))  (\ket{0}\bra{0} + \ket{1}\bra{1})  \right)}\right)  \\
-  &  = (1/2) \tr \left( \sqrt{\left( ((|\alpha|^2 -|\beta|^2 )^2 + 2|\alpha|^2|\beta|^2 - (\alpha^{*})^{2}\beta^2 -  (\beta^{*})^{2}\alpha^2 )  (\ket{0}\bra{0} + \ket{1}\bra{1})  \right)}\right) \\
+  &  = (1/2) \tr \left( \sqrt{\left( ((|\alpha|^2 -|\beta|^2 )^2 + (\alpha \overline{\beta}-\overline{\alpha} \beta)(\overline{\alpha} \beta-\alpha \overline{\beta}))  (\ket{0}\bra{0} + \ket{1}\bra{1})  \right)}\right)  \\
+  &  = (1/2) \tr \left( \sqrt{\left( ((|\alpha|^2 -|\beta|^2 )^2 + 2|\alpha|^2|\beta|^2 - (\overline{\alpha})^{2}\beta^2 -  (\overline{\beta})^{2}\alpha^2 )  (\ket{0}\bra{0} + \ket{1}\bra{1})  \right)}\right) \\
   &  = (1/2) \tr \left( \sqrt{\left( (|\alpha|^4+ |\beta|^4 - 2 \text{Re}(\alpha \beta) )  (\ket{0}\bra{0} + \ket{1}\bra{1})  \right)}\right) \\
   & =  \sqrt{|\alpha|^4+ |\beta|^4 - 2 \text{Re}(\alpha \beta)} \\
   & \leq 1

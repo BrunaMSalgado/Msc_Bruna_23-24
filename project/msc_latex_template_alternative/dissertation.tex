@@ -63,6 +63,11 @@
 \aliascntresetthe{convention}
 \providecommand*{\conventionautorefname}{Convention}
 
+\newaliascnt{remark}{theorem}
+\newtheorem{remark}[remark]{Remark}
+\aliascntresetthe{remark}
+\providecommand*{\conventionautorefname}{Remark}
+
 
 
 \makenoidxglossaries 
@@ -73,6 +78,7 @@
 \newacronym{bnf}{BNF}{Backus-Naur Form}
 \newacronym{cptp}{CPTP}{Completely Positive Trace-Preserving}
 \newacronym{osr}{OSR}{Operator Sum Representation}
+\newacronym{miu}{miu}{Multiplicative involutive unital}
 \newglossaryentry{ket}
 {
     name=$\ket{\psi}$,
@@ -105,7 +111,7 @@
 }
 \newglossaryentry{vectorspaces}
 {
-    name={$R,V, W$},
+    name={$V, W$},
     description={Typical names for vector spaces.}
 }
 \newglossaryentry{equation-in-context}
@@ -327,6 +333,26 @@
 {
     name={$ \mathcal{M}_n  $},
     description={Vector space of complex $n\times n$ matrices.}
+}
+\newglossaryentry{topological_dual_space}
+{
+    name={$ V^* $},
+    description={ Topological dual space of $ V $}
+}
+\newglossaryentry{topological_dual_space_elem}
+{
+    name={$ v^* $},
+    description={Element of the dual space \( V^* \) (considering $v \in V$).}
+}
+\newglossaryentry{field}
+{
+    name={$ \mathcal{F} $},
+    description={Field of scalars of a vector space.}
+}
+\newglossaryentry{c*_alg}
+{
+    name={$\mathscr{A}, \mathscr{B}, \mathscr{C}, \ldots$},
+    description={Typical names for C$^*$-algebras.}
 }
 
 

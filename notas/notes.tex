@@ -2902,18 +2902,19 @@ With the result above, we have established that the category $\WstarCPSUop$ is a
 
 \begin{proposition}
   The definitions of completely positivity presented are equivalente for maps 
-  $$\Phi: \mathcal{M}_{n1} \oplus \ldots \oplus  \mathcal{M}_{ns} \to \mathcal{M}_{m1} \oplus \ldots \oplus  \mathcal{M}_{mt}. $$
+  $$\Phi: \BoundOp{\HilbH \otimes \HilbK_1 } \to \BoundOp{\HilbH \otimes \HilbK_2}, $$
+where $\HilbH, \HilbK$ are finite-dimensional.
 \end{proposition}
 
 \begin{proof}
-  We begin by observing that the composition of positive maps is positive, and that the map which swaps tensor factors is itself positive \cite{watrous2018theory}. Therefore, Definition~1 is equivalent to the one obtained by replacing \( \Phi \otimes \id_{\mathcal{T}(\HilbH)} \) with \( \id_{\mathcal{T}(\HilbH)} \otimes \Phi \). 
+  We begin by observing that the composition of positive maps is positive, and that the map which swaps tensor factors is itself positive \cite{watrous2018theory}. Therefore, Definition~1 is equivalent to the one obtained by replacing \( \Phi \otimes \id_{\mathcal{B}(\HilbH)} \) with \( \id_{\mathcal{B}(\HilbH)} \otimes \Phi \). 
 
-  We now proceed to demonstrate the equivalence between this definition and Definition 2. Here we note the isometric isomorphisms $\mathcal{B}(\HilbH)\cong \SqMatrix{n}$ \cite{watrous2018theory} with $\text{dim}(\HilbH)=n$ and $\mathcal{M}_o(\mathcal{M}_{n1} \oplus \ldots \oplus  \mathcal{M}_{ns} )\cong \mathcal{M}_o \otimes (\mathcal{M}_{n1} \oplus \ldots \oplus  \mathcal{M}_{nt})$ \cite[Corollary 8.1.3]{effrosOperatorSpaces2000}. It is straightforward that the first isomorphism is positive. Now, regarding the second isomorphism, consider that $[a_{i,j}] \in \mathcal{M}_o(\mathcal{M}_{n1} \oplus \ldots \oplus  \mathcal{M}_{nr})$ is positive, \ie $[a_{i,j}] = [b_{i,j}]^* [b_{i,j}] $. Note that
+  We now proceed to demonstrate the equivalence between this definition and Definition 2. Here we note the isometric isomorphisms $\mathcal{M}_n \otimes \mathcal{M}_m \cong \mathcal{M}_{nm}$, $\mathcal{B}(\HilbH)\cong \SqMatrix{n}$ \cite{watrous2018theory} with $\text{dim}(\HilbH)=n$ and $\mathcal{M}_n(\BoundOp{\HilbH})\cong \mathcal{M}_n \otimes \BoundOp{\HilbH}$ \cite[Corollary 8.1.3]{effrosOperatorSpaces2000}. It is straightforward that the first two isomorphisms are positive. Now, regarding the third isomorphism, consider that $[a_{i,j}] \in \mathcal{M}_n(\BoundOp{\HilbH})$ is positive, \ie $[a_{i,j}] = [b_{i,j}]^* [b_{i,j}] $. Note that
   \begin{align*}
      [b_{i,j}]^* [b_{i,j}] = [b_{i,j}^*] [b_{i,j}] = \left[  \left(\sum_k b_{k,i}^* b_{k,j} \right)_{i,j} \right],
   \end{align*}
 \ie, the $(i,j)$-th entry of the resulting matrix is the sum $\sum_k b_{k,i}^* b_{k,j}$.
-The isomorphism $i:\mathcal{M}_o(\mathcal{M}_{n1} \oplus \ldots \oplus  \mathcal{M}_{nr} ) \to \mathcal{M}_o \otimes (\mathcal{M}_{n1} \oplus \ldots \oplus  \mathcal{M}_{nr})$ is defined as $i([a_{i,j}]) = \sum_{i,j}  \ket{i}\bra{j} \otimes a_{ij} $,
+The isomorphism $i:\mathcal{M}_n(\BoundOp{\HilbH}) \to \mathcal{M}_n \otimes \BoundOp{\HilbH}$ is defined as $i([a_{i,j}]) = \sum_{i,j}  \ket{i}\bra{j} \otimes a_{ij} $,
 where $\{ \ket{i}\bra{j} \}_{i,j=1}^n  $ denotes any orthonormal basis for \( \mathcal{M}_n \).
 As a result, $b \coloneqq i([b_{i,j}]) = \sum_{i,j}  \ket{i}\bra{j} \otimes b_{ij}$ and $b^* \coloneqq i([b_{i,j}^*]) = \sum_{i,j}  \ket{i}\bra{j} \otimes b_{ij}^*$.
 Next, we calculate:
@@ -2925,7 +2926,7 @@ Next, we calculate:
 \end{align*} 
 thereby demonstrating that $i$ is positive.
 
-Let $\sigma:1, \ldots, s$, and $\tau:1, \ldots, t$, the equivalence of definitions 1 and 2, follows from the fact that the two diagrams below commute and the composition of positive maps is positive. For the first we assume that $\id_{\mathcal{T}(\HilbH)} \otimes \Phi$ is positive for all finite dimensional $\mathcal{H}$, and for the second that $\SqMatrix{o}(\Phi)$ is positive for all $o \in \mathbb{N}$. 
+The equivalence of definitions 1 and 2, follows from the fact that the two diagrams below commute and the composition of positive maps is positive. For the first we assume that $\id_{\mathcal{T}(\HilbH)} \otimes \Phi$ is positive for all finite dimensional $\mathcal{H}$, and for the second that $\SqMatrix{n}(\Phi)$ is positive for all $m \in \mathbb{N}$. 
 
 %[a_{i,j}] \mapsto \sum_{i,j}  \ket{i}\bra{j} \otimes a_{ij}
 
@@ -2936,17 +2937,20 @@ Let $\sigma:1, \ldots, s$, and $\tau:1, \ldots, t$, the equivalence of definitio
 \begin{tikzpicture}
   \matrix (m) [matrix of math nodes,row sep=3em,column sep=6em,minimum width=1em]
   {
-  \mathcal{T}(\HilbH) \otimes  \SqMatrix{\sigma}&  \mathcal{T}(\HilbH) \otimes  \SqMatrix{\tau}  \\
-  \SqMatrix{o} \otimes  \SqMatrix{\sigma} &  \SqMatrix{o} \otimes  \SqMatrix{\tau}  \\
-  \SqMatrix{o}( \SqMatrix{\sigma}) &  \SqMatrix{o}( \SqMatrix{\tau}) \\
+  \BoundOp{\HilbH \otimes \HilbK_1} & \BoundOp{\HilbH \otimes \HilbK_2} \\
+  \SqMatrix{nm} & \SqMatrix{no}   \\
+  \SqMatrix{n} \otimes  \SqMatrix{m} &  \SqMatrix{n} \otimes  \SqMatrix{o}  \\
+  \SqMatrix{n}( \SqMatrix{m}) &  \SqMatrix{n}( \SqMatrix{o}) \\
   };
   \path[-stealth]
     (m-1-1) edge  node [above] {$\id_{\mathcal{T}(\HilbH)} \otimes \Phi  $} (m-1-2)
+    (m-2-2) edge   node [right] {$\cong $} (m-3-2)
     (m-1-2) edge   node [right] {$\cong $} (m-2-2)
-    (m-2-2) edge  node [right] {$ A \otimes B \mapsto [(a_{i,j} B)_{i,j}] $} (m-3-2)
+    (m-3-2) edge  node [right] {$ A \otimes B \mapsto [(a_{i,j} B)_{i,j}] $} (m-4-2)
+    (m-3-1) edge  node [right] {$ \cong $} (m-2-1)
     (m-2-1) edge  node [right] {$ \cong $} (m-1-1)
-    (m-3-1) edge  node [right] {$[a_{i,j}] \mapsto \sum_{i,j}  \ket{i}\bra{j} \otimes a_{ij} $} (m-2-1)
-    (m-3-1) edge  node [below] {$\SqMatrix{o}(\Phi)$} (m-3-2)
+    (m-4-1) edge  node [right] {$[a_{i,j}] \mapsto \sum_{i,j}  \ket{i}\bra{j} \otimes a_{ij} $} (m-3-1)
+    (m-4-1) edge  node [below] {$\SqMatrix{n}(\Phi)$} (m-4-2)
     ;
 \end{tikzpicture}
 \end{minipage}
@@ -2956,17 +2960,20 @@ Let $\sigma:1, \ldots, s$, and $\tau:1, \ldots, t$, the equivalence of definitio
 \begin{tikzpicture}
   \matrix (m) [matrix of math nodes,row sep=3em,column sep=5em,minimum width=1em]
   {
-  \mathcal{T}(\HilbH) \otimes  \SqMatrix{\sigma}&  \mathcal{T}(\HilbH) \otimes  \SqMatrix{\tau}  \\
-  \SqMatrix{o} \otimes  \SqMatrix{\sigma} &  \SqMatrix{o} \otimes  \SqMatrix{\tau}  \\
-  \SqMatrix{o}( \SqMatrix{\sigma}) &  \SqMatrix{o}( \SqMatrix{\tau}) \\
+    \BoundOp{\HilbH \otimes \HilbK_1} & \BoundOp{\HilbH \otimes \HilbK_2} \\
+  \SqMatrix{nm} & \SqMatrix{no}   \\
+  \SqMatrix{n} \otimes  \SqMatrix{m} &  \SqMatrix{n} \otimes  \SqMatrix{o}  \\
+  \SqMatrix{n}( \SqMatrix{m}) &  \SqMatrix{n}( \SqMatrix{o}) \\
   };
   \path[-stealth]
     (m-1-1) edge  node [above] {$\id_{\mathcal{T}(\HilbH)} \otimes \Phi  $} (m-1-2)
     (m-2-2) edge   node [right] {$\cong $} (m-1-2)
-    (m-3-2) edge  node [right] {$ [a_{i,j}] \mapsto \sum_{i,j}  \ket{i}\bra{j} \otimes a_{ij}$} (m-2-2)
+    (m-3-2) edge   node [right] {$\cong $} (m-2-2)
+    (m-4-2) edge  node [right] {$ [a_{i,j}] \mapsto \sum_{i,j}  \ket{i}\bra{j} \otimes a_{ij}$} (m-3-2)
     (m-1-1) edge  node [right] {$ \cong $} (m-2-1)
-    (m-2-1) edge  node [right] {$ A \otimes B \mapsto [(a_{i,j} B)_{i,j}] $} (m-3-1)
-    (m-3-1) edge  node [below] {$\SqMatrix{o}(\Phi)$} (m-3-2)
+    (m-2-1) edge  node [right] {$ \cong $} (m-3-1)
+    (m-3-1) edge  node [right] {$ A \otimes B \mapsto [(a_{i,j} B)_{i,j}] $} (m-4-1)
+    (m-4-1) edge  node [below] {$\SqMatrix{o}(\Phi)$} (m-4-2)
     ;
 \end{tikzpicture}
 \end{minipage}
@@ -3182,13 +3189,13 @@ where \( i \) and \( j \) range over an orthonormal basis of \( \mathcal{H} \).
 
 Note that the map between spaces $\mathcal{T}(\mathcal{H})^*$ and $\mathcal{B}(\mathcal{H})$ is defined using the Riez Representation Theorem.
 
-\begin{definition} [Riesz Representation Theorem]
-Let $V$ be a finite-dimensional inner product space, and let $\varphi$ be a linear functional on $V$. Then there exists a unique vector $v_\varphi \in V$ such that
+\begin{theorem} \cite[Theorem 9.15]{romanAdvancedLinearAlgebra1992}
+Let $\mathcal{H}$ be a Hilbert space, and let $\varphi$ be a linear functional on $V$. Then there exists a unique vector $v_\varphi \in V$ such that
 $$
 \varphi(w) = \langle w, v_\varphi \rangle \quad \text{for all } w \in V.
 $$
 We call $v_\varphi$ the \emph{Riesz vector} for $\varphi$ and denote it by $v_\varphi$.\\
-\end{definition}
+\end{theorem}
 
 Using the Riesz representation theorem, we can define a map 
 $\phi^* : V^* \to V$
