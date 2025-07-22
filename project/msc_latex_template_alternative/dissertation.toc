@@ -60,40 +60,44 @@
 \contentsline {subsection}{\numberline {5.1.2}Trace}{93}{subsection.5.1.2}%
 \contentsline {subsection}{\numberline {5.1.3}Important classes of operators}{93}{subsection.5.1.3}%
 \contentsline {subsection}{\numberline {5.1.4}Spectral theorem}{94}{subsection.5.1.4}%
-\contentsline {subsection}{\numberline {5.1.5}Riez Representation Theorem}{94}{subsection.5.1.5}%
-\contentsline {subsection}{\numberline {5.1.6}Tensor Products and Direct Sums of Hilbert Spaces}{95}{subsection.5.1.6}%
-\contentsline {subsection}{\numberline {5.1.7}Useful norms }{96}{subsection.5.1.7}%
-\contentsline {subsection}{\numberline {5.1.8}Infinite-dimensional Hilbert Spaces}{96}{subsection.5.1.8}%
+\contentsline {subsection}{\numberline {5.1.5}Tensor Products and Direct Sums of Hilbert Spaces}{94}{subsection.5.1.5}%
+\contentsline {subsection}{\numberline {5.1.6}Useful norms }{96}{subsection.5.1.6}%
+\contentsline {subsection}{\numberline {5.1.7}Infinite-dimensional Hilbert Spaces}{96}{subsection.5.1.7}%
 \contentsline {section}{\numberline {5.2}Quantum Computing Preliminaries}{97}{section.5.2}%
 \contentsline {subsection}{\numberline {5.2.1}The 2-Dimensional Hilbert Space}{97}{subsection.5.2.1}%
 \contentsline {subsection}{\numberline {5.2.2}Multi-qubit States}{99}{subsection.5.2.2}%
 \contentsline {subsubsection}{Entanglement}{99}{definition.5.2.4}%
 \contentsline {subsection}{\numberline {5.2.3}Unitary operators}{101}{subsection.5.2.3}%
 \contentsline {subsubsection}{Pauli Matrices}{101}{subsection.5.2.3}%
-\contentsline {subsubsection}{Unitary operators}{102}{definition.5.2.6}%
+\contentsline {subsubsection}{Unitary operators}{101}{definition.5.2.6}%
 \contentsline {subsection}{\numberline {5.2.4}Measurements}{103}{subsection.5.2.4}%
 \contentsline {subsection}{\numberline {5.2.5}Density operators}{104}{subsection.5.2.5}%
 \contentsline {subsubsection}{Reduced density operator}{105}{equation.5.2.5}%
-\contentsline {subsection}{\numberline {5.2.6}Quantum Channels}{106}{subsection.5.2.6}%
-\contentsline {subsubsection}{Kraus operator sum representation}{107}{definition.5.2.25}%
-\contentsline {subsubsection}{Non-selective measurements}{108}{definition.5.2.26}%
+\contentsline {subsection}{\numberline {5.2.6}Quantum Channels}{105}{subsection.5.2.6}%
+\contentsline {subsubsection}{Kraus operator sum representation}{106}{definition.5.2.25}%
+\contentsline {subsubsection}{Non-selective measurements}{107}{definition.5.2.26}%
 \contentsline {subsection}{\numberline {5.2.7}Norms on quantum channels}{108}{subsection.5.2.7}%
 \contentsline {subsection}{\numberline {5.2.8}Quantum circuits}{109}{subsection.5.2.8}%
-\contentsline {subsection}{\numberline {5.2.9}No-cloning theorem}{111}{subsection.5.2.9}%
+\contentsline {subsection}{\numberline {5.2.9}No-cloning theorem}{110}{subsection.5.2.9}%
 \contentsline {section}{\numberline {5.3}Functional Analysis}{111}{section.5.3}%
 \contentsline {section}{\numberline {5.4}\( W^* \)-Algebras}{115}{section.5.4}%
-\contentsline {subsection}{\numberline {5.4.1}\( C^* \)-Algebras}{116}{subsection.5.4.1}%
+\contentsline {subsection}{\numberline {5.4.1}\( C^* \)-Algebras}{115}{subsection.5.4.1}%
 \contentsline {subsubsection}{Maps between $C^*$-Algebras}{116}{remark.5.4.2}%
 \contentsline {subsubsection}{Representations of $C^*$-Algebras}{117}{proposition.5.4.6}%
 \contentsline {subsubsection}{Matrices over $C^*$-Algebras}{117}{theorem.5.4.8}%
-\contentsline {subsubsection}{Tensor products of $C^*$-Algebras}{118}{section*.42}%
-\contentsline {subsubsection}{Direct sums of $C^*$-Algebras}{119}{proposition.5.4.13}%
-\contentsline {subsubsection}{Distributivity}{119}{definition.5.4.14}%
+\contentsline {subsubsection}{Direct sums of $C^*$-Algebras}{118}{section*.42}%
+\contentsline {subsubsection}{Tensor products of $C^*$-Algebras}{118}{definition.5.4.12}%
+\contentsline {subsubsection}{Distributivity}{119}{proposition.5.4.14}%
 \contentsline {subsection}{\numberline {5.4.2}\( W^* \)-Algebras}{119}{subsection.5.4.2}%
-\contentsline {section}{\numberline {5.5}Categories for (first-order) quantum computation}{119}{section.5.5}%
-\contentsline {subsection}{\numberline {5.5.1}Schrödinger's picture}{120}{subsection.5.5.1}%
-\contentsline {subsection}{\numberline {5.5.2}Heisenberg 's picture}{126}{subsection.5.5.2}%
-\contentsline {section}{\numberline {5.6}Examples}{126}{section.5.6}%
-\contentsline {subsection}{\numberline {5.6.1}Quantum state discrimination}{126}{subsection.5.6.1}%
-\contentsline {subsection}{\numberline {5.6.2}Quantum teleportation protocol}{131}{subsection.5.6.2}%
-\contentsline {chapter}{\numberline {6}Future work}{139}{chapter.6}%
+\contentsline {subsubsection}{Basics of \( W^* \)-Algebras}{119}{subsection.5.4.2}%
+\contentsline {subsubsection}{Direct Sums of $W^*$-Algebras}{120}{definition.5.4.22}%
+\contentsline {subsubsection}{Tensor products of $W^*$-Algebras}{120}{proposition.5.4.23}%
+\contentsline {subsubsection}{Distributivity}{123}{proposition.5.4.33}%
+\contentsline {subsection}{\numberline {5.4.3}The completely bounded norm}{123}{subsection.5.4.3}%
+\contentsline {section}{\numberline {5.5}Categories for (first-order) quantum computation}{123}{section.5.5}%
+\contentsline {subsection}{\numberline {5.5.1}Schrödinger's picture}{124}{subsection.5.5.1}%
+\contentsline {subsection}{\numberline {5.5.2}Heisenberg 's picture}{130}{subsection.5.5.2}%
+\contentsline {section}{\numberline {5.6}Examples}{130}{section.5.6}%
+\contentsline {subsection}{\numberline {5.6.1}Quantum state discrimination}{130}{subsection.5.6.1}%
+\contentsline {subsection}{\numberline {5.6.2}Quantum teleportation protocol}{135}{subsection.5.6.2}%
+\contentsline {chapter}{\numberline {6}Future work}{143}{chapter.6}%
