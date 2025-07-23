@@ -2454,6 +2454,10 @@ is positive.
 Let \( f: \mathcal{A} \to \mathcal{B} \) be a positive map between \( C^* \)-algebras. Then \( f \) is subunital if and only if it is short.
 \end{proposition}
 
+\begin{proposition} [Proposition 2.3] \cite{choSemanticsQuantumProgramming2016} \label{prop:miu_cp}
+  Let $\Phi : \mathscr{A} \to \mathscr{B}$ be a $\ast$-homomorphism between $C^{\ast}$-algebras. Then $\Phi$ is completely positive.
+\end{proposition}
+
 \todo[inline]{Definir reps de C* algebras para despois definiar a spacial C* norm-  Theorem 2.3 artigo mais longo do Kenta Cho}
 
 \begin{definition}
@@ -2536,9 +2540,26 @@ We will usually designate this bilinear map by $\overline{\otimes}$.
 \end{enumerate}
 \end{definition}
 
+%\begin{definition}
+  %For \( W^* \)-algebras \( \mathcal{M} \) and \( \mathcal{N} \), the \( W^* \)-algebra \( (\mathcal{M}_* \, \widecheck{\otimes} \, \mathcal{N}_* )^*\) is called the \emph{spatial \( W^* \)-tensor product} of \( \mathcal{M} \) and \( \mathcal{N} \), and is denoted by \( \mathcal{M} \,\overline{\otimes}\, \mathcal{N} \).
+%\end{definition}
+
 \begin{definition}
-  For \( W^* \)-algebras \( \mathcal{M} \) and \( \mathcal{N} \), the \( W^* \)-algebra \( (\mathcal{M}_* \, \widecheck{\otimes} \, \mathcal{N}_* )^*\) is called the \emph{spatial \( W^* \)-tensor product} of \( \mathcal{M} \) and \( \mathcal{N} \), and is denoted by \( \mathcal{M} \,\overline{\otimes}\, \mathcal{N} \).
+  A \emph{basic functional} is a map $\omega: \mathscr{M} \odot \mathscr{N} \to \mathbb{C}$ with
+\[
+\omega \equiv (\varphi_1 \odot \varphi_2)(t^{*}(\cdot)t)
+\]
+for some normal positive maps $\varphi_1: \mathscr{M} \to \mathbb{C}$, $\varphi_2: \mathscr{N} \to \mathbb{C}$, and $t \in \mathscr{M} \odot \mathscr{N}$. A \emph{simple functional} is a finite sum of basic functionals.
 \end{definition}
+
+\begin{definition}
+  The tensor product norm on $\mathscr{M} \odot \mathscr{N}$ is the norm  given by
+\[
+\|t\| = \sup \{ w(t^*t)^{\frac{1}{2}} \mid \omega(1) \leq 1 \},
+\]
+where $\omega$ ranges over all basic functionals.
+\end{definition}
+
 
 \begin{proposition} \cite[Proposition 115 II]{westerbaanCategoryNeumannAlgebras2019} \label{prop:mapa_tensor_w_u_ncpsu}
 Given normal completely positive  maps \( f : \mathcal{A} \to \mathcal{C} \) and \( g : \mathcal{B} \to \mathcal{D} \) between $W^*$-algebras, there exists a unique normal completely positive map
@@ -2581,6 +2602,14 @@ The category $\WstarCPSUop$ is a distributive symmetric monoidal category.
 \begin{proof}
   It direclty follows from Propositions \ref{prop:wcpsu_products} and \ref{prop:w*_product_disct_tensor} and Theorem \ref{thm:wcpsu_monoidal}
 \end{proof}
+
+\begin{theorem} \cite[Theorem 3.2]{choSemanticsQuantumProgramming2016} \label{thm:w*_tensor_distributes_product}
+  Let \( \mathscr{A}, \mathscr{B}, \mathscr{C} \) be \(W^*\)-algebras. Then the canonical map
+\[
+ \langle \id \overline{\otimes} \pi_1, \id \overline{\otimes} \pi_1 \rangle : \mathscr{A} \overline{\otimes} (\mathscr{B} \times \mathscr{C}) \to (\mathscr{A} \overline{\otimes} \mathscr{B}) \times (\mathscr{A} \overline{\otimes} \mathscr{C})
+\]
+is a unital $*$-isomorphism, and therefore, isometric.
+\end{theorem}
 
 
 

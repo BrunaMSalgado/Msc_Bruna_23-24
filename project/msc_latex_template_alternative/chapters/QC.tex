@@ -31,7 +31,7 @@ integrated in the calculus via the so-called diamond norm, which induces a metri
 \vspace{20pt}
 
 The first two sections of this chapter present the mathematical and quantum computing preliminaries necessary for understanding the theory of quantum computation. The introduction to quantum computing draws primarily from \cite{nielsen2010quantum,watrous2018theory}, while the mathematical foundations are also based on \cite{heinosaariMathematicalLanguageQuantum2011,conwayCourseFunctionalAnalysis2007,conwayCourseOperatorTheory2000}.
-The next section introduces core concepts from functional analysis that are essential for understanding \( W^* \)-algebras, based on \cite{rudin91functional,InfiniteDimensionalAnalysis2006}. This is followed by a section presenting the fundamentals of \( W^* \)-algebras, drawing primarily from \cite{sakaiCAlgebrasWAlgebras1998,takesakiTheoryOperatorAlgebras1979,westerbaanCategoryNeumannAlgebras2019,pisierIntroductionOperatorSpace2003}.
+The next section introduces core concepts from functional analysis that are essential for understanding \( W^* \)-algebras, based on \cite{rudin91functional,InfiniteDimensionalAnalysis2006}. This is followed by a section presenting the fundamentals of \( W^* \)-algebras, drawing primarily from \cite{sakaiCAlgebrasWAlgebras1998,takesakiTheoryOperatorAlgebras1979,westerbaanCategoryNeumannAlgebras2019}.
 We then show that both Selinger’s category 
 $\catQ$ of quantum operations (i.e., completely positive, trace-nonincreasing super-operators) \cite{selinger2004towards}, and Cho’s category 
 $\WstarCPSUop$, the opposite category of \( W^* \)-algebras with normal, completely positive, subunital maps \cite{choSemanticsQuantumProgramming2016}, are first-order models.
@@ -1195,14 +1195,14 @@ Note that, for instance, in a metric space, a sequence $\{x_n\}$ with $n \in \ma
 A foundational idea in topology is that of a \emph{neighborhood}—a collection of points considered ``sufficiently close'' to a given point. From this arises the concept of \emph{open sets}, which are sets that serve as neighborhoods for all their points. The collection of all such open sets defines a \emph{topology}, and a set equipped with a topology becomes a \emph{topological space}. This framework introduces some subtleties: for example, traditional sequences are often inadequate for capturing convergence, requiring the more general notion of \emph{nets}, which are indexed over broader structures than the natural numbers.
 
 \begin{definition}
-  A \emph{topology} $\tau$ on a set $X$ is a collection of subsets of $X$ satisfying the following properties:
+  A \emph{topology} $\tau$ on a set $S$ is a collection of subsets of $X$ satisfying the following properties:
 \begin{enumerate}
-    \item $\varnothing \in \tau$ and $X \in \tau$.
+    \item $\varnothing \in \tau$ and $S \in \tau$.
     \item $\tau$ is closed under finite intersections: if $U_1, U_2, \dots, U_n \in \tau$, then $\bigcap_{i=1}^n U_i \in \tau$.
     \item $\tau$ is closed under arbitrary unions: if $\{U_\alpha\}_{\alpha \in A} \subseteq \tau$, then $\bigcup_{\alpha \in A} U_\alpha \in \tau$.
 \end{enumerate}
 
-A nonempty set $S$ equipped with a topology $\tau$ is called a \emph{topological space}, and is denoted by $(S, \tau)$ (or simply $X$ when no ambiguity arises). A member of $\tau$ is called an \emph{open set} in $S$. The complement of an open set is a \emph{closed set}. 
+A nonempty set $S$ equipped with a topology $\tau$ is called a \emph{topological space}, and is denoted by $(S, \tau)$ (or simply $S$ when no ambiguity arises). A member of $\tau$ is called an \emph{open set} in $S$. The complement of an open set is a \emph{closed set}. 
 
 A set \( S \) can have many different topologies.  
 The family of all topologies on \( S \) is partially ordered by set inclusion.  
@@ -1239,7 +1239,7 @@ More generally, continuity may be defined as follows:
   Let $(V, \tau_V)$ and $(Y, \tau_Y)$ be topological spaces. A map $f \colon V \to W$ is \emph{continuous} if and only if for every open subset $A \subseteq W$, the preimage $f^{-1}(A)$ is open in $V$.
 \end{definition}
 The theorem below presents continuity in a more intuitive way:
-\begin{theorem} \cite[Theorem 2.28]{guide2006infinite}
+\begin{theorem} \cite[Theorem 2.28]{guide2006infinite} \label{def:continuidade_top}
   Let $f \colon V \to W$ be a function between topological spaces, and let $v \in V$. The following statements are equivalent:
 \begin{enumerate}
     \item The function $f$ is continuous at $v$.
@@ -1281,7 +1281,7 @@ This defines a norm on \( V^* \) under which \( V^* \) is a Banach space. Moreov
 As a consequence, the map \( v^* \mapsto v^*(v)  \) defines a bounded linear functional on \( V^* \), and its norm equals \( \|v\| \).
 \end{theorem}
 
-\begin{definition}
+\begin{definition} \label{def:weak*_top}
 Let \( V \) be a vector space. The \emph{weak\(^*\)-topology} on the dual space \( V^* \) is the coarsest topology that makes all evaluation maps
 \[
 v^* \mapsto v^*(v) 
@@ -1487,6 +1487,12 @@ In \autoref{def:completely_positive_superoperator}
 
 \todo[inline,size=\normalsize]{Colocar a correspondencia entre definições de cp, após o professor a ter aprovado.}
 
+The following result we be useful later on.
+
+\begin{proposition} [Proposition 2.3] \cite{choSemanticsQuantumProgramming2016} \label{prop:miu_cp}
+  Let $\Phi : \mathscr{A} \to \mathscr{B}$ be a $\ast$-homomorphism between $C^{\ast}$-algebras. Then $\Phi$ is completely positive.
+\end{proposition}
+
 \subsubsection{Direct sums of $C^*$-Algebras}
 
 \begin{definition} \label{def:c*_direct_sum}
@@ -1542,7 +1548,7 @@ We note that although \cite{sakaiCAlgebrasWAlgebras1998} uses a diferent definit
 
 
 
-
+\begin{comment}
 
 \subsubsection{Distributivity}
 
@@ -1553,6 +1559,7 @@ We note that although \cite{sakaiCAlgebrasWAlgebras1998} uses a diferent definit
 \]
 is a unital $*$-isomorphism, and therefore, isometric. Thus, the tensor product distributes over (binary) products. 
 \end{theorem}
+\end{comment}
 
 
 
@@ -1585,7 +1592,7 @@ One of the most important examples of a $W^*$-algebra is $\BoundOp{\HilbH}$, the
   Let \(\mathcal{H}\) be a Hilbert space. Let \(\mathcal{B}(\mathcal{H}) \) denote the space of bounded operators on \(\mathcal{H}\), and let \(\mathcal{T}(\mathcal{H})\) denote the space of trace-class operators on \(\mathcal{H}\).
     The dual of \(\mathcal{T}(\mathcal{H})\) is isometrically isomorphic to \(\mathcal{B}(\mathcal{H})\) via the map
     \[
-    \Phi : \mathcal{B}(\mathcal{H}) \to \mathcal{T}(\mathcal{H})^*, \quad \Phi(T)(A) = \mathrm{tr}(TA), \quad \text{for all } A \in \mathcal{T}(\mathcal{H}).
+    -\Phi : \mathcal{B}(\mathcal{H}) \to \mathcal{T}(\mathcal{H})^*, \quad \Phi(T)(-) = \mathrm{tr}(T(-)), \quad \text{for all } A \in \mathcal{T}(\mathcal{H}).
     \]
 \end{proposition}
 
@@ -1718,17 +1725,31 @@ Moreover \( f \overline{\otimes} g \) is (sub)unital if \( f \) and \( g \) are 
   Given normal completely positive maps $f:\mathscr{M} \to \mathscr{T}$ and $g:\mathscr{N} \to \mathscr{T}$. We may take $ f \, \overline{\otimes} \, g = \beta_{\bar{\otimes}}$ as in the theorem \autoref{thm:beta_alg_eq_beta_gamma}. Moreover, $\norm{\beta_\odot(s)} \leq \norm{f}\norm{g}\norm{s}$, given an element $s\in \mathscr{M} \overline{\otimes} \mathscr{N}$.
 \end{proposition}
 
+\begin{comment}
 \begin{proposition} \cite[Exercise 116 III]{westerbaanCategoryNeumannAlgebras2019} \label{prop:norm_tensor_w_mult}
    Let \( \mathscr{M}\ \) and \( \mathscr{N}\ \) be \( W^* \)-algebras, $\norm{m\overline{\otimes} n}= \norm{m}\norm{n}$ for all $m \in \mathscr{M}$ and  $n \in \mathscr{N}$.
+\end{proposition}
+\end{comment}
+
+\begin{proposition} \cite[Exercise 119 IVc]{westerbaanCategoryNeumannAlgebras2019} \label{prop:swap_nmiu}
+  Let $\mathscr{M}$ and $\mathscr{N}$ be von Neumann algebras.
+There exists a unique normal $\ast$-isomorphism (nmiu-isomorphism)
+\[
+    \sw_{\mathscr{M},\mathscr{N}} \colon \mathscr{M} \otimes \mathscr{N} \to \mathscr{N} \otimes \mathscr{M},
+    \]
+    called the \emph{braiding isomorphism}, satisfying
+    \[
+    \sw_{\mathscr{M},\mathscr{N}}(m \otimes n) = n \otimes m \quad \text{for all } n \in \mathscr{M}, m \in \mathscr{N}.
+    \]
 \end{proposition}
 
 
 \subsubsection{Distributivity}
 
 \begin{proposition}\cite[Proposition 117 III] {westerbaanCategoryNeumannAlgebras2019} \label{prop:w*_product_disct_tensor}
-  Given $W^*$-algebras \( \mathcal{A} \) and \( (\mathcal{B}_i)_{i \in I} \), we have a natural isomorphism
+  Given $W^*$-algebras \( \mathscr{M} \) and \( (\mathscr{N}_i)_{i \in I} \), we have a natural isomorphism
 \[
-\mathcal{A} \,\overline{\otimes}\, \bigoplus_{i \in I} \mathcal{B}_i \;\cong\; \bigoplus_{i \in I} \mathcal{A} \,\overline{\otimes}\, \mathcal{B}_i.
+\mathscr{M}  \,\overline{\otimes}\, \bigoplus_{i \in I} \mathscr{N}_i \;\cong\; \bigoplus_{i \in I} \mathscr{M}  \,\overline{\otimes}\, \mathscr{N}_i.
 \]
 That is, the spatial tensor product distributes over (possibly infinite) direct sums.
 \end{proposition}
@@ -1742,11 +1763,22 @@ The category $\WstarCPSUop$ is a distributive symmetric monoidal category.
 \end{theorem}
 
 \begin{proof}
-  It direclty follows from Propositions \ref{prop:wcpsu_products} and \ref{prop:w*_product_disct_tensor} and Theorem \ref{thm:wcpsu_monoidal}
+  It follows directly from Propositions \ref{prop:wcpsu_products} and \ref{prop:w*_product_disct_tensor} and Theorem \ref{thm:wcpsu_monoidal}
 \end{proof}
 
-\subsection{The completely bounded norm}
-The norm on $W^*$-algebras does not have the same problem as the trace norm
+The following result will be useful for demonstrating that $\WstarCPSU$ is a first-order model in \Cref{subsec:w*_cats}.
+
+\begin{theorem} \cite[Theorem 3.2]{choSemanticsQuantumProgramming2016} \label{thm:w*_tensor_distributes_product}
+  Let \( \mathscr{A}, \mathscr{B}, \mathscr{C} \) be \(W^*\)-algebras. Then the canonical map
+\[
+ \langle \id \overline{\otimes} \pi_1, \id \overline{\otimes} \pi_1 \rangle : \mathscr{A} \overline{\otimes} (\mathscr{B} \times \mathscr{C}) \to (\mathscr{A} \overline{\otimes} \mathscr{B}) \times (\mathscr{A} \overline{\otimes} \mathscr{C})
+\]
+is a unital $*$-isomorphism, and therefore, isometric.
+\end{theorem}
+
+
+%\subsection{The completely bounded norm}
+%The norm on $W^*$-algebras does not have the same problem as the trace norm
 
 
 
@@ -2019,7 +2051,7 @@ The inequality in Proposition \ref{prop:Q_dist} follows from the linearity of th
 
   
 
-\begin{proposition} \label{prop:Q_monoidal}
+\begin{proposition} \label{prop:Q_monoidal} 
   The category $\catQ$ a symmetric monoidal $\catMet$-category.
 \end{proposition}
 
@@ -2057,7 +2089,189 @@ The inequality in Proposition \ref{prop:Q_dist} follows from the linearity of th
 \end{proof}
 
 
-\subsection{Heisenberg 's picture} \label{subsec:w*_cats}
+\subsection{Heisenberg's picture} \label{subsec:w*_cats}
+
+In the previous quantum model, we considered the Schr\"odinger picture---that is, morphisms between quantum states (\ie, density operators). In~\cite{choSemanticsQuantumProgramming2016}, the author presents a model in the Heisenberg picture, where maps are between observables (\ie, self-adjoint operators), which can be seen as an infinite-dimensional extension of Selinger’s model. This model is given by the category $\WstarCPSUop$, the opposite of the category $\WstarCPSU$ whose objects are W$^*$-algebras and morphisms are completely positive subunital maps between them. It is shown that Selinger’s category $\catQ$ is equivalent (up to categorical equivalence) to the finite-dimensional subcategory of $\WstarCPSUop$,$\FdWstarCPSUop$.
+
+
+
+\todo[inline,size=\normalsize]{Ver com professor Renato o que vai primeiro: provas norma or Q vs W*cpsu -> depende daquele remark sobre normas}
+
+
+
+\subsubsection{$\catQ$ and $\FdWstarCPSUop$}
+
+
+\todo[inline,size=\normalsize]{De acordo com a decisão acima ver o que digo sobre a norma}
+
+
+In \cite{choSemanticsQuantumProgramming2016}, the author established an equivalence of categories  
+$\catQ \simeq \FdWstarCPSU^{\mathrm{op}}$.  
+Using this equivalence, we can induce an alternative norm on $\catQ$ by assigning to each super-operator $\Phi \in \catQ$ the norm of its corresponding map $\Phi^* \in \FdWstarCPSU^{\mathrm{op}}$.
+
+
+Now we describe how to obtain  $\Phi^*$ from $\Phi$. 
+Recall that for a Hilbert space \( \mathcal{H} \), \( \mathcal{B}(\mathcal{H}) \), \ie, the set of bounded operators on \( \mathcal{H} \), is a \( W^* \)-algebra with the predual \( \mathcal{T}(\mathcal{H}) \).
+A quantum channel (resp. quantum operator) $\Phi: \mathcal{T}(\mathcal{H})  \to \mathcal{T}(\mathcal{K})$ defines a linear mapping 
+$\Phi^*: \mathcal{B}(\mathcal{K}) \to \mathcal{B}(\mathcal{H})$ completely positive and unital (resp. subunital) \cite[Proposition 5.1,]{choSemanticsQuantumProgramming2016}. These maps are related in the following way:
+\begin{equation*}
+\tr\left[\Phi(T) \cdot S\right] = \tr \left[T \cdot \Phi^*(S)\right]
+\end{equation*}
+which holds for all trace-class operators $T \in \mathcal{T}(\mathcal{H})$ and all bounded operators $S \in \mathcal{B}(\mathcal{K})$.
+
+Another, perhaps more useful, way to describe the relationship between $\Phi$ and $\Phi^*$ in the finite-dimensional setting---where all trace-class operators are bounded and we have the identification \( \mathcal{B}(\mathcal{H}) = \mathcal{T}(\mathcal{H}) \)---is given by the diagram below:
+
+\[
+\hspace{-50pt}
+\begin{minipage}{0.45\textwidth}
+\centering
+\begin{tikzpicture}
+  \matrix (m) [matrix of math nodes,row sep=3em,column sep=2em,minimum width=1em]
+  { 
+    \mathcal{T}(\mathcal{H}) \\
+     \mathcal{T}(\mathcal{K})  \\
+  };
+  \path[-stealth]
+    (m-1-1) edge  node [right] {$\Phi$} (m-2-1);
+\end{tikzpicture}
+\end{minipage}
+\hspace{-50pt}
+\begin{minipage}{0.45\textwidth}
+\centering
+\begin{tikzpicture}
+  \matrix (m) [matrix of math nodes,row sep=3em,column sep=12em,minimum width=1em]
+  {
+  \mathcal{T}(\mathcal{H})^*&  \mathcal{B}(\mathcal{H})  \\
+   \mathcal{T}(\mathcal{K})^* &  \mathcal{B}(\mathcal{K}) \\
+  };
+  \path[-stealth]
+    (m-1-1) edge  node [above] {$\varphi \mapsto \sum_{ij} \varphi(\ket{j}\bra{i}) \cdot \ket{i} \bra{j}  $} (m-1-2)
+    (m-2-2) edge [dotted]  node [right] {$\Phi^*$} (m-1-2)
+    (m-2-2) edge  node [below] {$ A \mapsto (B \mapsto \tr(AB)) $} (m-2-1)
+    (m-2-1) edge  node [right] {$ \varphi \mapsto \varphi \cdot \Phi $} (m-1-1)
+    ;
+\end{tikzpicture}
+\end{minipage}
+\]
+
+
+\vspace{10pt}
+
+\subsubsection{$\WstarCPSUop$ forms a first-oder model}
+
+
+\todo[inline,size=\normalsize]{Fiquei um pouco em dúvida sobre onde meter isto}
+
+We start with some considerations on the choice of norm for morphisms in $\WstarCPSU$. The norm on morphisms between $C^*$-algebras
+faces  an issue analogous to the trace norm in the context of quantum operations:  there exists a positive unital isometry \( \Phi \colon \mathscr{A} \to \mathscr{A} \) such that the induced map
+\[
+\Phi \odot \mathrm{id}_\mathscr{A} \colon \mathscr{A} \odot \mathscr{A} \to \mathscr{A} \odot \mathscr{A}
+\]
+is unbounded \cite[Prop. 3.5.2]{brownCalgebrasFinitedimensionalApproximations}.
+
+Due to these limitations, the \emph{completely bounded norm} becomes the natural choice for studying maps between $C^*$-algebras \cite{effrosOperatorSpaces2000,paulsenCompletelyBoundedMaps2003}.Given a map \( \Phi \colon \mathscr{A} \to \mathscr{B} \), this norm is defined as
+\[
+\cbnorm{\Phi} = \sup_n \left\| \MnMatrix{\Phi} \right\|,
+\]
+and can alternatively be expressed as
+\[
+\cbnorm{\Phi} = \sup_{\mathscr{C}} \left\| \id_{\mathscr{C}} \widecheck{\otimes} \Phi \right\|,
+\]
+where the supremum ranges over all $C^*$-algebras \( \mathscr{C} \) \cite[Introduction, p.~4]{pisierTensorProductsCAlgebras2020}.
+
+In the context of $W^*$-algebras, since we are concerned with tensor product of $W^*$-algebras, we introduce a similar norm---one which, to the author's knowledge, has not previously appeared in the literature.
+\begin{definition} \label{def:wcb_nor}
+The \emph{$W^*$ completely bounded norm} is defined as follows,
+  \[ \wcbnorm{\Phi} = \sup_{\mathscr{M}} \norm{\id_{\mathscr{M}} \overline{\otimes} \Phi}, \]
+where the supremum ranges over all $W^*$-algebras \( \mathscr{M} \).
+\end{definition}
+
+In this work, our focus is limited to showing that the metric induced by this norm makes $\WstarCPSUop$ into a first-order model. In future work, we hope to establish a connection between this norm and the completely bounded norm, as well as to derive further results that simplify the computation of distances between morphisms.
+
+We now establish some results, so we can infer that $\WstarCPSUop$ is a (first-oder) model.
+
+\begin{proposition} \label{prop:cb_tensor_mult}
+  Given normal completely positive maps  $\Phi$ and $\Psi$ between $W^*$-algebras, it holds that
+  \[
+  \norm{\phi \,\bar{\otimes} \, \psi} \leq \norm{\Phi} \norm{\Psi}.
+\]
+\end{proposition}
+
+\begin{proof}
+It follows directly from Theorem \ref{thm:beta_alg_eq_beta_gamma} and Proposition
+\ref{prop:norm_beta_alg}.
+\end{proof}
+
+\begin{corollary} \label{cor:cbnorm_tensor_leq_norm}
+   Given a normal completely positive subunital map  $\Phi$ between $W^*$-algebras, it holds that
+   \[
+  \wcbnorm{\Phi} \leq \norm{\Phi}.
+\]
+\end{corollary}
+
+\begin{proposition} \label{prop:cbnorm_id_otimes_phi}
+   Given a normal map $\Phi$ between $W^*$-algebras, it holds that
+  \[
+  \wcbnorm{\Phi \,\bar{\otimes} \, \id} \leq \wcbnorm{\Phi} \quad \text{and} \quad  \wcbnorm{\id\,\bar{\otimes} \, \Phi} \leq \wcbnorm{\Phi} .
+\]
+\end{proposition}
+
+\begin{proof}
+  It is straightforward that the $W^*$ completely bounded norm is submultiplicative with respect to composition. As a result, 
+  \[
+  \wcbnorm{\Phi \,\bar{\otimes} \, \id} = \wcbnorm{\sw \cdot (\id \,\bar{\otimes} \,\Phi)} \leq \wcbnorm{\sw} \wcbnorm{\id \,\bar{\otimes} \,\Phi}
+  \]
+By \autoref{prop:swap_nmiu} and \autoref{prop:miu_cp}, it follows that $\sw$ is a completely positive normal map and therefore by \autoref{prop:cbnorm_id_otimes_phi} and \autoref{prop:HomShortIsoIso}, we obtain
+\[
+  \wcbnorm{\Phi \,\bar{\otimes} \, \id}  \leq \wcbnorm{\id \,\bar{\otimes} \,\Phi}
+\]
+At last, we need to prove that
+\[
+  \wcbnorm{\Phi \,\bar{\otimes} \, \id} \leq \wcbnorm{\Phi},
+\]  
+which follows direcly from the definition of the norm \autoref{def:wcb_nor} given the tensor product of $W^*$-algebras is itself a $W^*$-algebra \cite[Definition 5.1]{takesakiTheoryOperatorAlgebras1979}.
+\end{proof}
+
+\begin{proposition}
+    Given  maps  $\Phi: \mathscr{M} \to \mathscr{N}$ and $\Psi: \mathscr{M} \to \mathscr{T}$ between $W^*$-algebras, it holds that
+  \[
+  \wcbnorm{\langle \Phi, \Psi \rangle} \leq \max \{\wcbnorm{\Phi}, \wcbnorm{\Psi}\}.
+\]
+\end{proposition}
+
+\begin{proof}
+  By \autoref{thm:beta_alg_eq_beta_gamma}, \autoref{thm:w*_tensor_distributes_product}, and \autoref{def:c*_direct_sum} we have
+  \begin{align*}
+    & \hspace{-25pt} \wcbnorm{\langle \Phi, \Psi \rangle}  = \norm{\id \, \overline{\otimes} \, \langle \Phi, \Psi \rangle} \\
+    & \hspace{-25pt} = \norm{\id  \odot \langle \Phi, \Psi \rangle} & (\text{Thm. \ref{thm:beta_alg_eq_beta_gamma}}) \\
+    & \hspace{-25pt} = \sup_{s_i} \left\{ \norm{\id \odot \langle \Phi, \Psi \rangle \left(\sum_i s_i \otimes (m_i \otimes n_i)\right) } \Bigg| \norm{\sum_i s_i \otimes (m_i, n_i)}  = 1 \right\} \\
+    & \hspace{-25pt} = \sup_{s_i} \left\{ \norm{ \sum_i( s_i \otimes \Phi(m_i), s_i \otimes \Phi(n_i) ) } \Bigg| \norm{\sum_i (s_i \otimes m_i, s_i \otimes n_i)}  = 1 \right\} & (\text{Thm. \ref{thm:w*_tensor_distributes_product}})\\
+    & \hspace{-25pt} =  \sup_{\mathscr{S}}\left\{ \max \{\norm{\id_\mathscr{S} \odot \Phi},\norm{\id_\mathscr{S} \odot \Psi} \} \right\} & (\text{Def. \ref{def:c*_direct_sum}})\\
+    & \hspace{-25pt} = \max \{  \sup_{\mathscr{S}} \id \, \overline{\otimes} \, \Phi, \sup_{\mathscr{S}} \id \, \overline{\otimes} \, \Psi  \}  & (\text{Thm. \ref{thm:beta_alg_eq_beta_gamma}}) \\
+    &  \hspace{-25pt}\leq  \max \{  \wcbnorm{\id \, \overline{\otimes} \, \Phi} , \wcbnorm{\id \, \overline{\otimes} \, \Psi}  \}
+  \end{align*} 
+\end{proof}
+
+%\label{prop:Q_monoidal} 
+
+\begin{comment}
+\begin{definition} \cite[Introduction  p.4]{pisierTensorProductsCAlgebras2020} \label{def:cb_norm}
+Let $\mathcal{A}$, $\mathcal{B}$ and $\mathcal{C}$ be $C^*$-algebras. Given  linear map $\phi: \mathcal{A} \to \mathcal{B}$ we define, we set
+\[
+\|\phi\|_{\text{cb}} = \sup_{\mathcal{C}} \|\id_{\mathcal{C}} \widecheck{\otimes} \phi\|.
+\]
+We call $\phi$ \emph{completely bounded} if $\|\phi\|_{\text{cb}} $ is finite.
+Note that $\|\cdot\|_{\text{cb}}$ is a norm on the space of completely bounded maps. 
+\end{comment}
+
+
+%\mathscr{N}
+
+%\cite[Prop. 3.5.2]{brownCalgebrasFinitedimensionalApproximations}
+%motivação p/cb norm
+
+%Fact 3.6.8 ([10, Prop. 3.5.2]). There exists a positive unital isometry f : A ! A such that f ⊙ idA : A ⊙ A ! A ⊙ A is unbounded (i.e. not norm-continuous). ◁
+
 
 % \TraceOp{\HilbH}
 
