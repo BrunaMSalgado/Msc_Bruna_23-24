@@ -1,4 +1,4 @@
-This is XeTeX, Version 3.141592653-2.6-0.999995 (MiKTeX 24.1) (preloaded format=xelatex 2024.7.31)  23 JUL 2025 11:56
+This is XeTeX, Version 3.141592653-2.6-0.999995 (MiKTeX 24.1) (preloaded format=xelatex 2024.7.31)  23 JUL 2025 22:00
 entering extended mode
  restricted \write18 enabled.
  file:line:error style messages enabled.
@@ -1627,7 +1627,10 @@ LaTeX Font Info:    Font shape `TU/SourceSansPro(0)/b/n' will be
 
 ]) (preamble/Abstract.tex [5] [6
 
-] [7] [8
+]
+LaTeX Font Info:    Font shape `TU/SourceSansPro(0)/m/it' will be
+(Font)              scaled to size 12.0pt on input line 12.
+ [7] [8
 
 ] [9
 
@@ -1678,8 +1681,6 @@ LaTeX Font Info:    Font shape `TU/SourceSansPro(0)/b/n' will be
 
 ] [2] (chapters/Introduction.tex
 Chapter 1.
-LaTeX Font Info:    Font shape `TU/SourceSansPro(0)/m/it' will be
-(Font)              scaled to size 12.0pt on input line 18.
 
 Underfull \vbox (badness 10000) has occurred while \output is active []
 
@@ -1721,7 +1722,7 @@ Package glossaries-extra Warning: Base acronym command \acrlong should not be us
 
 Package glossaries-extra Warning: Base acronym command \acrshort should not be used with new abbreviation definitions. Use \glsxtrshort instead on input line 123.
 
-[8] [9]) (chapters/StateOfTheArt.tex [10]
+[8]) (chapters/StateOfTheArt.tex [9] [10]
 Chapter 2.
 [11
 
@@ -1953,11 +1954,6 @@ Package hyperref Warning: Token not allowed in a PDF string (Unicode):
 Package hyperref Warning: Token not allowed in a PDF string (Unicode):
 (hyperref)                removing `math shift' on input line 232.
 
-
-Overfull \hbox (7.77875pt too wide) in paragraph at lines 242--243
-\TU/SourceSansPro(0)/m/n/12 As a result, it suffices to show that for all morphisms $\OML/cmm/m/it/12 f[]; f[] \OMS/cmsy/m/n/12 2 []\OT1/cmr/m/n/12 (\OML/cmm/m/it/12 A; C\OT1/cmr/m/n/12 )$ \TU/SourceSansPro(0)/m/n/12 and $\OML/cmm/m/it/12 g[]; g[] \OMS/cmsy/m/n/12 2 []\OT1/cmr/m/n/12 (\OML/cmm/m/it/12 B; C\OT1/cmr/m/n/12 )$\TU/SourceSansPro(0)/m/n/12 ,
- []
-
 [66] [67] [68] [69] [70] [71]) [72] [73
 
 ] [74] (chapters/PP.tex
@@ -2133,7 +2129,7 @@ Overfull \hbox (3.2933pt too wide) in paragraph at lines 2265--2267
 Underfull \vbox (badness 1199) has occurred while \output is active []
 
  [134]
-Overfull \hbox (5.74608pt too wide) detected at line 2389
+Overfull \hbox (5.74608pt too wide) detected at line 2406
 []
  []
 
@@ -2141,58 +2137,73 @@ Overfull \hbox (5.74608pt too wide) detected at line 2389
 Underfull \vbox (badness 3078) has occurred while \output is active []
 
  [135]
-Overfull \hbox (4.628pt too wide) in paragraph at lines 2423--2429
+Overfull \hbox (4.628pt too wide) in paragraph at lines 2440--2446
 \TU/SourceSansPro(0)/m/n/12 While orthogonal states can be perfectly distinguished, the same does not apply to nonorthog-
  []
 
 [136]
-Overfull \hbox (1.42001pt too wide) in paragraph at lines 2432--2438
+Overfull \hbox (1.42001pt too wide) in paragraph at lines 2449--2455
 \TU/SourceSansPro(0)/m/n/12 the optimal measurement can be interpreted as a unitary transformation applied to the quan-
  []
 
 
-Overfull \hbox (34.40985pt too wide) in paragraph at lines 2460--2467
+Overfull \hbox (34.40985pt too wide) in paragraph at lines 2477--2484
 []\TU/SourceSansPro(0)/m/n/12 As in the previous example, we assume the hardware’s native gate set consists of $\OMS/cmsy/m/n/12 f\OML/cmm/m/it/12 U[]; U[]; U[]; []\OMS/cmsy/m/n/12 g$\TU/SourceSansPro(0)/m/n/12 ,
  []
 
 [137]
-Overfull \hbox (2.29962pt too wide) in paragraph at lines 2495--2496
+Overfull \hbox (2.29962pt too wide) in paragraph at lines 2512--2513
 \TU/SourceSansPro(0)/m/n/12 scribed above, denoted $\OML/cmm/m/it/12 U[]$\TU/SourceSansPro(0)/m/n/12 , using our deductive metric system, we have $\OML/cmm/m/it/12 U \OT1/cmr/m/n/12 =[] \OML/cmm/m/it/12 U[]$\TU/SourceSansPro(0)/m/n/12 .
  []
 
 [138]
 LaTeX Font Info:    Font shape `TU/SourceSansPro(0)/m/sc' will be
-(Font)              scaled to size 12.0pt on input line 2544.
+(Font)              scaled to size 12.0pt on input line 2562.
 
 Underfull \vbox (badness 7308) has occurred while \output is active []
 
  [139]
-Overfull \hbox (8.03279pt too wide) in paragraph at lines 2595--2598
+Overfull \hbox (8.03279pt too wide) in paragraph at lines 2613--2616
 \TU/SourceSansPro(0)/m/n/12 bound $[][] \OMS/cmsy/m/n/12 ^^T []\OML/cmm/m/it/12 ^^O$\TU/SourceSansPro(0)/m/n/12 . The Hadamard gate, $\OML/cmm/m/it/12 H$\TU/SourceSansPro(0)/m/n/12 , is the composition $\OML/cmm/m/it/12 U[]\OT1/cmr/m/n/12 (\OML/cmm/m/it/12 ^^Y\OT1/cmr/m/n/12 /2\OML/cmm/m/it/12 ; \OT1/cmr/m/n/12 0\OML/cmm/m/it/12 ; \OT1/cmr/m/n/12 0) \OMS/cmsy/m/n/12 ^^A
  []
 
 [140]
-Overfull \hbox (47.65775pt too wide) in paragraph at lines 2644--2645
+Overfull \hbox (47.65775pt too wide) in paragraph at lines 2662--2663
 []\TU/SourceSansPro(0)/m/n/12 Designating the \TU/SourceSansPro(0)/b/n/12 Correction \TU/SourceSansPro(0)/m/n/12 block with the imperfect implementations of $\OML/cmm/m/it/12 X$ \TU/SourceSansPro(0)/m/n/12 and $\OML/cmm/m/it/12 Z$ \TU/SourceSansPro(0)/m/n/12 by $[][]$,
  []
 
 [141] [142]
-Overfull \hbox (3.30096pt too wide) detected at line 2715
+Overfull \hbox (3.30096pt too wide) detected at line 2733
 []
  []
 
 [143] [144]
-Overfull \hbox (0.26416pt too wide) detected at line 2805
+Overfull \hbox (0.26416pt too wide) detected at line 2823
  $[][]$ 
  []
 
-[145]) (chapters/ConclusionsAndFutureWork.tex [146]
+[145] [146]
+Overfull \hbox (3.29597pt too wide) detected at line 2916
+[]
+ []
+
+[147]
+Overfull \hbox (27.71379pt too wide) detected at line 2949
+[]
+ []
+
+[148]
+Overfull \hbox (9.21213pt too wide) in paragraph at lines 3008--3009
+[]\TU/SourceSansPro(0)/m/n/12 Finally, denoting by $[][]$ the program resulting from introducing replacing \TU/SourceSansPro(0)/b/n/12 StepQWalk
+ []
+
+) (chapters/ConclusionsAndFutureWork.tex [149] [150
+
+]
 Chapter 6.
-) (dissertation.bbl [147
+) (dissertation.bbl [151] [152
 
-] [148
-
-] [149] [150] [151] [152] [153] [154] [155] [156]
+] [153] [154] [155] [156] [157] [158] [159] [160]
 Underfull \hbox (badness 1571) in paragraph at lines 553--557
 \TU/SourceSansPro(0)/m/it/12 Nachrichten von der Gesellschaft der Wissenschaften zu Göttingen, Mathematisch-
  []
@@ -2202,33 +2213,38 @@ Underfull \hbox (badness 1072) in paragraph at lines 574--577
 []\TU/SourceSansPro(0)/m/n/12 Michael Keyl.  Fundamentals of quantum information theory.  \TU/SourceSansPro(0)/m/it/12 Physics Reports\TU/SourceSansPro(0)/m/n/12 ,
  []
 
-[157]
+[161]
 Underfull \hbox (badness 1221) in paragraph at lines 651--655
 \TU/SourceSansPro(0)/m/n/12 quantum computation using teleportation and single-qubit operations.  \TU/SourceSansPro(0)/m/it/12 Nature\TU/SourceSansPro(0)/m/n/12 ,
  []
 
-[158]) [159] [160
+[162]) [163] [164
 
 ]
 runsystem(makeindex dissertation.idx)...executed safely (allowed).
 
- (dissertation.ind) (covers/BackCover.tex [161
+ (dissertation.ind) (covers/BackCover.tex [165
 
-] [1]) (dissertation.aux)
+]
+Overfull \hbox (22.37988pt too wide) in paragraph at lines 11--13
+\TU/SourceSansPro(0)/m/n/12 with reference \TU/lmtt/m/n/12 PTDC/CCI-COM/4280/2021 \TU/SourceSansPro(0)/m/n/12 ([][]https://doi.org/10.54499/PTDC/CCI-COM/4280/2021[][]). 
+ []
+
+[1]) (dissertation.aux)
  ***********
 LaTeX2e <2023-11-01> patch level 1
 L3 programming layer <2024-01-22>
  ***********
 Package rerunfilecheck Info: File `dissertation.out' has not changed.
-(rerunfilecheck)             Checksum: 71BC727CCAEDE32B222E64D58FC77CE7;12847.
+(rerunfilecheck)             Checksum: EE1962D3003BF907409229125DD8EC2F;12972.
  ) 
 Here is how much of TeX's memory you used:
- 55967 strings out of 409673
- 1177608 string characters out of 5774704
+ 55970 strings out of 409673
+ 1177740 string characters out of 5774704
  1989630 words of memory out of 5000000
- 77093 multiletter control sequences out of 15000+600000
+ 77096 multiletter control sequences out of 15000+600000
  581942 words of font info for 190 fonts, out of 8000000 for 9000
  1348 hyphenation exceptions out of 8191
  121i,36n,121p,2536b,1501s stack positions out of 10000i,1000n,20000p,200000b,200000s
 
-Output written on dissertation.xdv (186 pages, 2964780 bytes).
+Output written on dissertation.xdv (190 pages, 3031872 bytes).

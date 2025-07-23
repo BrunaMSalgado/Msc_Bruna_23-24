@@ -2272,6 +2272,23 @@ which follows direcly from the definition of the norm \autoref{def:wcb_nor} give
 
 
 \begin{comment}
+
+  
+With the result above, we have established that the category $\WstarCPSUop$ is a suitable model for our $\lambda$-calculus. Consequently, we obtain a framework for reasoning about approximate equivalence in infinite-dimensional quantum computation. This, for example, enables us to reason about errors in quantum walks on a line \cite{venegasQuantumWalksComprehensive2012}.
+
+Studying the Discrete Quantum Walk on a Line (DQWL) is important in quantum computation for several reasons:
+
+\begin{enumerate}
+    \item DQWL can be extended to construct quantum walks on more sophisticated structures, such as circles or general graphs.
+    
+    \item As a simple model, DQWL provides a valuable tool for exploring, identifying, and understanding fundamental properties of quantum walks that are crucial for developing quantum algorithms.
+    
+    \item DQWL serves as a testbed for verifying the quantumness of experimental implementations in quantum computing platforms.
+\end{enumerate}
+\end{comment}
+
+
+\begin{comment}
 \begin{definition} \cite[Introduction  p.4]{pisierTensorProductsCAlgebras2020} \label{def:cb_norm}
 Let $\mathcal{A}$, $\mathcal{B}$ and $\mathcal{C}$ be $C^*$-algebras. Given  linear map $\phi: \mathcal{A} \to \mathcal{B}$ we define, we set
 \[
@@ -2497,6 +2514,7 @@ $$\textbf{Discrimination} =_{\sqrt{2}\epsilon_1+6\epsilon_2} \textbf{Discriminat
 where $\textbf{Discrimination}^{\epsilon_1,\epsilon_2}$ denotes the judgement that results from replacing $\textbf{HMeasure}$ by $\textbf{HMeasure}^{\epsilon_1, \epsilon_2}$ and $\textbf{CoinToss}$ by  $\textbf{CoinToss}^{\epsilon_2}$.
 
 \end{example}
+
 
 \subsection{Quantum teleportation protocol}
 
@@ -2857,6 +2875,158 @@ Consequently, we postulate the following axiom:
   \end{align*}
 
 \end{example}
+
+\subsection{Quantum walk}
+
+\begin{example}[Discrete-time quantum walks on a circle]
+
+The quantum walk—the quantum mechanical counterpart of a classical random walk—is a widely studied concept in quantum computing and is regarded as a powerful tool for developing quantum algorithms \cite{venegasQuantumWalksComprehensive2012}. 
+
+To perform a discrete-time quantum walk with non-trivial evolution, both the coin and the walker must be quantum systems. Thus, a discrete-time quantum walk involves two quantum systems ---the coin and the walker---together with a unitary coin operator (which ``tosses the coin'') and a conditional shift operator (which shifts the walker to the left or right, depending on the corresponding component of the coin state).Unlike in the classical case, the coin can be in a superposition of ``heads'' and ``tails,'' allowing the walker to move both left and right simultaneously. In the case if the discrete-time quantum walks on a circle, the circle has $n \in \mathbb{N}$ position sites, and each position which we will represent by $n/2$ qubits if $n$ is even and $n/2+1$ otherwise. 
+
+For discrete-time quantum walks on a circle with \( n \) position sites, we represent each position using a register of qubits: \( n/2 \) qubits if \( n \) is even, or \( \lfloor n/2 \rfloor + 1 \) qubits if \( n \) is odd. 
+
+In what follows, we consider a standard qubit \( q \) representing the coin, and a position register \( p \), encoded as a tensor product of qubits. The program proceeds as follows: if the walker reaches position \( p = n \), the walk halts — no further action is taken. Otherwise, another step of the quantum walk is applied. Our coin operator is the Hadamard gate and $S$ denotes the shift operator, which we will proceed do describe.  Recall that $S$ is a unitary operator that moves the walker to the right if the associated coin state is one of the two basis states (e.g., $\ket{0}$), and to the left if the coin is in the other basis state (e.g., $\ket{1}$). As a result, this operator is defined as follows:
+\begin{equation*}
+\hat{S} = \ket{0}\bra{0} \otimes \sum_{i} \ket{i+1(mod\, n)}\bra{i} + \ket{1}\bra{1} \otimes \sum_{i} \ket{i-1 (mod\, n)}\bra{i}.
+\end{equation*}
+
+To make matters easier, in the program that follows we will always consider that $n$ is even.  The step of the quantum walk previously described corresponds to the following $\lambda$-terms:
+\begin{align*}
+  &\hspace{-25pt} \textbf{StepQWalk} = q: \mathtt{qbit} , p: \mathtt{qbit}  \otimes \ldots \otimes \mathtt{qbit}  \, \vljud  S(H(q), p) : \mathtt{qbit}  \otimes (\mathtt{qbit}  \otimes \ldots \otimes \mathtt{qbit})  \\
+  %&\hspace{-25pt} \textbf{MeasAll} = p: \mathtt{qbit}  \otimes \ldots \otimes \mathtt{qbit}  \, \vljud  \text{pm } p \text{ to } p_1 \otimes \ldots \otimes p_n. \, \\
+  %& \hspace{155 pt} \emph{meas}(p_1) \otimes \ldots \otimes  \emph{meas}(p_n): (\typeI \oplus \typeI) \otimes \ldots (\typeI \oplus \typeI)  \, \\
+  & \hspace{-25pt} \textbf{StepOrHalt} =  q_0: \mathtt{qbit} , p: \mathtt{qbit}  \otimes \ldots \otimes \mathtt{qbit}  \,  \vljud  \text{pm } p \text{ to } p_1 \otimes \ldots \otimes p_n. \, \\
+    &\hspace{-20pt} \text{case } \emph{meas}(p_1) \left\{ 
+        \begin{aligned} 
+          & \inl (x_{1}) \Rightarrow x_{1} \text{ to } \ast. \textbf{StepQWalk}[ q_0/q ,\ket{0} \otimes p_2 \otimes \ldots \otimes p_n / p]    ; \\
+          & \inr (y_{1})  \Rightarrow y_1 \text{ to } \ast. \, \text{case } \emph{meas}(p_2)   \\
+          &  \, \left\{
+                \begin{aligned}
+                  &  \inl (x_{2}) \Rightarrow{}   x_{2} \text{ to } \ast. \textbf{StepQWalk}[\ldots] \\
+                  &\inr (y_{2}) \Rightarrow{}\, y_{2} \text{ to } \ast. \ldots \, y_{n-1} \text{ to } \ast. \, \text{case } \emph{meas}(p_n)   \\
+                  &  \, \left\{
+                \begin{aligned}
+                  &  \inl (x_{n})  \Rightarrow
+         x_{n} \text{ to } \ast. \textbf{StepQWalk}[ q_0/q ,\ket{1} \otimes \ket{1} \otimes \ldots \otimes \ket{0} / p]; \\
+                  &\inr (y_{n}) \Rightarrow{} y_1 \text{ to } \ast. p
+                \end{aligned} \right\}
+                 \end{aligned} \right\}   \\
+        \end{aligned}\right\} 
+\end{align*}
+
+
+\vspace{10pt}
+
+In this example, we study the effect of a depolarizing channel on the coin-state qubit following the application of the coin-toss operator $H$ in \textbf{StepQWalk}. 
+
+\textbf{Depolarizing channel}
+%p.413-nielsen chuang -> circuito
+The depolarizing channel models the complete loss of information (with probability $p$). Imagine we take a single qubit, and with probability $p$, that qubit is \emph{depolarized} — meaning it is replaced by the completely mixed state, $\frac{I}{2}$. With probability $1 - p$, the qubit remains unchanged. The state of the quantum system after pplying this channel is given by:
+\begin{equation*}
+\mathcal{E}(\rho) = p \frac{I}{2} + (1 - p)\rho.
+\end{equation*}
+Note that although the equation above is not expressed in the operator-sum (Kraus) representation, by making use of the identity
+\begin{equation*}
+  \frac{I}{2} = \frac{\rho + X\rho X + Y\rho Y + Z\rho Z}{4},
+\end{equation*}
+we get
+\begin{equation*}
+\mathcal{E}(\rho) = (1 - p)\rho + \frac{p}{3} \left(X\rho X + Y\rho Y + Z\rho Z\right).
+\end{equation*}
+This can be interpreted as leaving the state $\rho$ unchanged with probability $1 - p$, and applying one of the Pauli operators $X$, $Y$, or $Z$ each with probability $p/3$ \cite[Section 8.3.3]{nielsen2010quantum}. 
+As done in previous examples we will add an identity gate to the ideal program he calculations. consequently, now we consider slightly different versions of the quantum walk program:
+\begin{align*}\label{eq:id_error_qw}
+  &\textbf{StepQWalk} = q: \emph{qbit}, p: \emph{pos} \, \vljud  S( \id(H(q)), p) : \emph{qbit} \otimes \emph{pos} \\
+  & \textbf{StepQWalk}^{\varepsilon} = q: \emph{qbit}, p: \emph{pos} \, \vljud  S( \mathcal{E}(H(q)), p) : \emph{qbit} \otimes \emph{pos}
+\end{align*}
+
+First, we compute:
+\begin{align*}
+\id (\rho) - \mathcal{E}(\rho) &=    |\alpha|^{2} \ket{0} \ket{0} + \alpha \beta^{*} \ket{0} \ket{1} + \alpha^{*} \beta \ket{1} \ket{0} + |\beta|^{2} \ket{1} \ket{1}  - \big( p(I/ 2) + (1-p) \big(|\alpha|^{2}  \\ 
+  & \hspace{10pt}  +  \alpha \beta^{*} \ket{0}\bra{1} +  \alpha^{*} \beta \ket{1}\bra{0} + |\beta|^{2} \ket{1}\bra{1}\big)\big)\\
+& = p \left( (|\alpha|^2-1/2) \ket{0}\bra{0} +  \alpha \beta^{*} \ket{0} \bra{1} + \alpha^{*} \beta \ket{1} \bra{0} + (|\beta|^{2} -1/2) \ket{1} \bra{1} \right)
+\end{align*} 
+Considering that give a quantum state $\rho$ its cartesian cooredinates are given by 
+\begin{equation*}
+  r_{\mu} = \text{Tr}(\rho \sigma_{\mu}),
+\end{equation*} 
+we have,
+\begin{align*}
+  & r_x = \tr \left( p \begin{pmatrix}
+    |\alpha|^2-1/2 & \alpha \beta^{*} \\
+    \alpha^{*} \beta & |\beta|^{2} -1/2
+    \end{pmatrix}
+     \begin{pmatrix}
+   0 & 1 \\
+   1 & 0
+    \end{pmatrix}  \right)
+    = p(\alpha \beta^{*} + \alpha^{*} \beta) \\
+  & r_y = \tr\left(p\begin{pmatrix}
+    |\alpha|^2-1/2 & \alpha \beta^{*} \\
+    \alpha^{*} \beta & |\beta|^{2} -1/2
+    \end{pmatrix}
+     \begin{pmatrix}
+   0 & -i \\
+   i & 0
+    \end{pmatrix} \right) 
+    = p \cdot i(\alpha \beta^{*} - \alpha^{*} \beta) \\
+     & r_z = \tr \left( p\begin{pmatrix}
+    |\alpha|^2-1/2 & \alpha \beta^{*} \\
+    \alpha^{*} \beta & |\beta|^{2} -1/2
+    \end{pmatrix}
+     \begin{pmatrix}
+   1 & 0 \\
+   0 & -1
+    \end{pmatrix} \right) = p(|\alpha|^2-|\beta|^2 )
+\end{align*}
+
+As a result, it follows:
+\begin{align*}
+  \tracenorm{\id (\rho) - \mathcal{E}(\rho)} &= \euclideannorm{(p(\alpha \beta^{*} + \alpha^{*} \beta), p \cdot i(\alpha \beta^{*} - \alpha^{*} \beta) , p( |\alpha|^2-|\beta|^2))} \\
+  & = p \, \sqrt{\left(\alpha \beta^{*} + \alpha^{*} \beta \right)^2-\left(\alpha \beta^{*} - \alpha^{*} \beta \right)^2 + (|\alpha|^2-|\beta|^2)^2} \\
+  & = p \, \sqrt{2|\alpha|^2|\beta|^2 + (|\alpha|^2-|\beta|^2)^2} \\
+  & = p 
+\end{align*}
+
+
+Attending to Theorem \ref{theorem:diamond_cptp_id}, it holds that
+\begin{align*}
+  \diamondnorm{ \id - \mathcal{E}} \leq \sqrt{2p}
+\end{align*}
+
+As a result, we can postulate the following axiom:
+    \begin{align*} 
+        \id =_{\sqrt{2p}} \mathcal{E}.
+    \end{align*}
+
+ Using our metric deductive system, we deduce
+\begin{align*}
+  &\textbf{StepQWalk}=_{\sqrt{2p}} \textbf{StepQWalk}^{\epsilon}
+\end{align*}
+
+Finally, denoting by $\textbf{StepOrHalt}^{\epsilon}$ the program resulting from introducing replacing \textbf{StepQWalk} with $\textbf{StepQWalk}^{\epsilon}$ in \textbf{StepOrHalt}, we infer 
+\begin{align*}
+  &\textbf{StepOrHalt}=_{\sqrt{2p}} \textbf{StepOrHalt}^{\epsilon}
+\end{align*}
+
+  
+\end{example}
+
+
+% discrete-time quantum walks on a circle
+% Discrete quantum walks on a line (DQWL) is the most studied model of discrete quantum walks. 
+
+\begin{comment}
+ In order to perform a discrete DQWL with non-trivial evolution, we use an additional quantum system: a coin. Thus, a DQW Lcomprises
+ two quantum systems, coin and walker, along with a unitary coin operator (“to toss
+ a coin”) and a conditional shift operator (to displace the walker to either left or right
+ depending on the accompanying coin state component).
+\end{comment}
+
+%Thecircle has n different position sites. At any step, the particle has a probability p of going to the right and q=1−p of going to the left
+
+
 
 
 \begin{comment}
