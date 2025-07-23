@@ -1421,7 +1421,7 @@ A multiplicative involutive linear map is called a \(*\)-\emph{homomorphism} and
   Every \(*\)-homomorphism \( \Phi: \mathscr{A} \to \mathscr{B} \) between \( C^* \)-algebras is \emph{short}. Moreover, \( \Phi \) is \emph{isometric} if and only if it is injective.
 \end{proposition}
 
-\begin{proposition} \cite[Proposition 2.4]{choSemanticsQuantumProgramming2016}
+\begin{proposition} \cite[Proposition 2.4]{choSemanticsQuantumProgramming2016} \label{prop:subunital_short}
 Let \( \Phi: \mathscr{A} \to \mathscr{B} \) be a positive map between \( C^* \)-algebras. Then \( \Phi \) is subunital if and only if it is short.
 \end{proposition}
 
@@ -2232,7 +2232,7 @@ At last, we need to prove that
 which follows direcly from the definition of the norm \autoref{def:wcb_nor} given the tensor product of $W^*$-algebras is itself a $W^*$-algebra \cite[Definition 5.1]{takesakiTheoryOperatorAlgebras1979}.
 \end{proof}
 
-\begin{proposition}
+\begin{proposition} \label{prop:product_cb}
     Given  maps  $\Phi: \mathscr{M} \to \mathscr{N}$ and $\Psi: \mathscr{M} \to \mathscr{T}$ between $W^*$-algebras, it holds that
   \[
   \wcbnorm{\langle \Phi, \Psi \rangle} \leq \max \{\wcbnorm{\Phi}, \wcbnorm{\Psi}\}.
@@ -2252,7 +2252,24 @@ which follows direcly from the definition of the norm \autoref{def:wcb_nor} give
   \end{align*} 
 \end{proof}
 
-%\label{prop:Q_monoidal} 
+
+
+\begin{theorem}
+  $\WstarCPSUop$ is a distributive symmetric monoidal $\catMet$-category. 
+\end{theorem}
+
+\begin{proof}
+
+  Firstly, note that the copairing in $\WstarCPSUop$ corresponds to the pairing in $\WstarCPSU$. As a result, by proof of \autoref{prop:Q_monoidal} and the definition of  symmetric monoidal $\catMet$-category, we need to prove that for any normal completely subunital maps $\Phi,\Phi',\Psi,\Psi' $ between $W^*$-algebras:
+  \begin{enumerate}
+    \item $\wcbnorm{(\Phi - \Phi')\Psi} \leq \wcbnorm{\Phi - \Phi'}  $ and  $\wcbnorm{\Phi'(\Psi - \Psi')} \leq \wcbnorm{\Psi - \Psi'}$. 
+     It is straightforward that the $W^*$ completely bounded norm is submultiplicative with respect to composition. Given these operadors are normal completely positive subunital by \autoref{cor:cbnorm_tensor_leq_norm} and \autoref{prop:subunital_short} the inequalities hold.
+     \item $\wcbnorm{\Phi \,\bar{\otimes} \, \id} \leq \wcbnorm{\Phi} \quad \text{and} \quad  \wcbnorm{\id\,\bar{\otimes} \, \Phi} \leq \wcbnorm{\Phi}$. It follows directly from \autoref{prop:cbnorm_id_otimes_phi}.
+     \item $\wcbnorm{\langle \Phi - \Phi' , \Psi- \Psi' \rangle} \leq \max \{\wcbnorm{ \Phi - \Phi'}, \wcbnorm{\Psi- \Psi'}\}$. It follows directly from \autoref{prop:product_cb}.
+  \end{enumerate}
+
+\end{proof}
+
 
 \begin{comment}
 \begin{definition} \cite[Introduction  p.4]{pisierTensorProductsCAlgebras2020} \label{def:cb_norm}
