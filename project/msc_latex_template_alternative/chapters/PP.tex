@@ -9,7 +9,7 @@ The growing influence of probabilistic methods has also spurred the development 
 In this setting, Crubillé and Dal Lago introduced the notion of a \emph{context distance} in~\cite{crubilleMetricReasoningLterms2015,crubilleMetricReasoninglambda2017}, as a metric analogue of Morris' context equivalence. In Morris' framework, two programs are said to be \emph{context equivalent} if their observable behavior---that is, 
 what an external observer can measure during execution---is identical in any context.  This distance was first developed for an affine $\lambda$-calculus and later extended to a more general 
 setting that, for instance, allows copying.
-
+%
 In \cite{dahlqvist2023syntactic}, the authors reason about approximate equivalence using the \emph{operator norm} which induces a metric (roughly, a distance function) on the space of probabilistic programs (which are interpreted as short maps between Banach spaces).
 
 This chapter begins with an introduction to Banach spaces based on \cite{rudin91functional,InfiniteDimensionalAnalysis2006, ryanIntroductionTensorProducts2013}. We then show that $\catBan$, the category of Banach spaces and short maps, is a model in this setting. The  next section  introduces the fundamentals of measure theory, a key component in defining the semantics of probabilistic programs, drawing inspiration primarily from \cite{dahlqvistSemanticsProbabilisticProgramming2020a, bogachevMeasureTheory2007,InfiniteDimensionalAnalysis2006}.  
@@ -25,7 +25,7 @@ The letters \gls{vectorspaces} will often be used to refer to vector spaces and 
 
 
 
-\subsection{Normed spaces}
+%\subsection{Normed spaces}
 
 \begin{definition} \label{def:norm}
   A \emph{norm} \gls{norm} is a function that associates an element of a vector space $V$ with a non-negative real number, such that the following properties hold:
@@ -76,7 +76,7 @@ Let \( T: V \rightarrow W \) be a bounded linear operator between normed spaces.
 
 
 
-\subsection{Banach spaces}
+%\subsection{Banach spaces}
 
 
 \begin{definition} (\emph{Cauchy sequence})
@@ -180,7 +180,7 @@ for all choices of \( u_1 \in V_1, \dots, u_n \in V_n \).
 
 
 
-\section{Category Ban}
+\section{The category Ban}
 
 In this section, leveraging results from \cite{dahlqvist2023syntactic}, we prove that the category of Banach spaces with short maps forms a suitable model.
 
@@ -485,7 +485,7 @@ for all \( B \in \mathcal{B} \).
  
 
   
-\section{Example}
+\section{Case-study:Random Walk}
 
  
 

@@ -53,7 +53,9 @@ Around the same time, another researcher—unaware of Church’s work—was inde
 
 \subsection*{ $\lambda$-calculus}
 \noindent \textbf{$\lambda$-calculus and functions}
-The $\lambda$-calculus serves as a formal language that captures a key feature of higher-order functional languages: treating functions as ``first-class citizens'' that can be passed as arguments. Here functions are expressed as \emph{formulae} of the form $\lambda x.\,f(x)$, with application denoted by juxtaposition. For example, the expression $f(2)$, where $f(x) = x + 1$, is written as $(\lambda x.\,x + 1)(2)$.
+The $\lambda$-calculus serves as a formal language that captures a key feature of higher-order functional languages: treating functions as ``first-class citizens'' that can be passed as arguments. Here functions are expressed as \emph{abstractions} of the form $\lambda x.\,f(x)$, with application denoted by juxtaposing the abstraction with its argument. For example, the expression $f(2)$, where $f(x) = x + 1$, is written as $(\lambda x.\,x + 1)(2)$.
+
+
 
 \noindent \textbf{Typed-lambda calculus}
 In this work, we use the typed $\lambda$-calculus, a variant where each term is ``labeled'' by a syntactic object called a \emph{type}. Types serve as a mechanism for ensuring that programs are meaningful. In contrast, the untyped version allows, for example, a function to be applied to itself, as in $(\lambda x.\,x\,x)(\lambda x.\,x\,x)$, leading to non-termination. It also allows nonsensical operations, such as applying a boolean to a number or a function to a string.
@@ -91,7 +93,8 @@ However, there is a deeper reason for using category theory in this setting: it 
 
 \subsection*{Going quantitative}
 
-Beyond its foundational aspects, this calculus incorporates extensions for modeling side effects, including probabilistic or non-deterministic behaviors and shared memory. In this work, we are concerned with a version of $\lambda$-calculus that allows us to reason about approximate equivalence of programs, refered to as \emph{metric }$\lambda$\emph{-calculus}.
+Beyond its foundational aspects, this calculus incorporates extensions for modeling side effects, including probabilistic or non-deterministic behaviors and shared memory. In this work, we are concerned with a version of $\lambda$-calculus that allows us to reason about approximate equivalence of programs, refered to as \emph{metric }$\lambda$\emph{-calculus}. The metric lambda calculus integrates notions of
+approximation into the equational system of linear lambda calculus, a variant of lambda calculus that restricts each variable to being exactly once.
 
 Program equivalence and its underlying theories traditionally rely on a binary notion of equivalence: two programs are either equivalent or not \cite{winskel93}. While this dichotomy is often sufficient for classical programming, it proves too coarse-grained for other computational paradigms. For instance, in various programming paradigms, interaction with the physical environment calls for notions of approximate program equivalence. 
 
