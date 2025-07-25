@@ -19,7 +19,10 @@
 \contentsline {subsection}{\numberline {2.2.6}Typing rules}{17}{subsection.2.2.6}%
 \contentsline {subsection}{\numberline {2.2.7}Properties}{20}{subsection.2.2.7}%
 \contentsline {subsection}{\numberline {2.2.8}Equations-in-context}{22}{subsection.2.2.8}%
-\contentsline {subsection}{\numberline {2.2.9}Interlude: Booleans}{25}{subsection.2.2.9}%
+\contentsline {subsection}{\numberline {2.2.9}Interlude: Booleans - Part 1}{24}{subsection.2.2.9}%
+\contentsline {subsubsection}{Boolean operators}{24}{subsection.2.2.9}%
+\contentsline {subsubsection}{Extensionality of the copairing}{25}{subsection.2.2.9}%
+\contentsline {subsubsection}{Properties}{25}{equation.2.2.2}%
 \contentsline {subsection}{\numberline {2.2.10}Metric equational system}{30}{subsection.2.2.10}%
 \contentsline {section}{\numberline {2.3}Category theory}{32}{section.2.3}%
 \contentsline {subsection}{\numberline {2.3.1}Categories}{32}{subsection.2.3.1}%
@@ -35,13 +38,13 @@
 \contentsline {chapter}{\numberline {3}A Metric Equation for Conditionals}{59}{chapter.3}%
 \contentsline {section}{\numberline {3.1}Syntax}{59}{section.3.1}%
 \contentsline {section}{\numberline {3.2}Interlude: Booleans - Part 2}{60}{section.3.2}%
-\contentsline {section}{\numberline {3.3}Extensionality of the copairing}{61}{section.3.3}%
+\contentsline {section}{\numberline {3.3}Extensionality of the copairing}{60}{section.3.3}%
 \contentsline {section}{\numberline {3.4}Interpretation}{61}{section.3.4}%
-\contentsline {section}{\numberline {3.5}A small example: $\mathsf {Met}$}{62}{section.3.5}%
-\contentsline {section}{\numberline {3.6}Coproduct cocompletion}{63}{section.3.6}%
-\contentsline {section}{\numberline {3.7}Lattice Theory Preliminaries}{66}{section.3.7}%
-\contentsline {section}{\numberline {3.8}Soundeness and Completeness}{67}{section.3.8}%
-\contentsline {section}{\numberline {3.9}Discussion}{70}{section.3.9}%
+\contentsline {section}{\numberline {3.5}A small example: $\mathsf {Met}$}{61}{section.3.5}%
+\contentsline {section}{\numberline {3.6}Coproduct cocompletion}{62}{section.3.6}%
+\contentsline {section}{\numberline {3.7}Lattice Theory Preliminaries}{65}{section.3.7}%
+\contentsline {section}{\numberline {3.8}Soundeness and Completeness}{66}{section.3.8}%
+\contentsline {section}{\numberline {3.9}Discussion}{69}{section.3.9}%
 \contentsline {part}{II\hspace {1em}Applications}{71}{part.2}%
 \contentsline {chapter}{\numberline {4}Probabilistic Programming}{73}{chapter.4}%
 \contentsline {section}{\numberline {4.1}Banach spaces}{74}{section.4.1}%
@@ -50,7 +53,7 @@
 \contentsline {subsection}{\numberline {4.3.1}What is measure theory?}{77}{subsection.4.3.1}%
 \contentsline {subsection}{\numberline {4.3.2}Measurable spaces and measures}{78}{subsection.4.3.2}%
 \contentsline {subsection}{\numberline {4.3.3}Spaces of Measures}{81}{subsection.4.3.3}%
-\contentsline {section}{\numberline {4.4}Case-study:Random Walk}{82}{section.4.4}%
+\contentsline {section}{\numberline {4.4}Case-study : Random Walk}{82}{section.4.4}%
 \contentsline {chapter}{\numberline {5}Quantum computation}{87}{chapter.5}%
 \contentsline {paragraph}{Quantum computing and the need for quantitative reasoning}{87}{chapter.5}%
 \contentsline {section}{\numberline {5.1}Hilbert Spaces}{90}{section.5.1}%
@@ -93,7 +96,7 @@
 \contentsline {section}{\numberline {5.5}Categories for (first-order) quantum computation}{124}{section.5.5}%
 \contentsline {subsection}{\numberline {5.5.1}Schrödinger's picture}{124}{subsection.5.5.1}%
 \contentsline {subsection}{\numberline {5.5.2}Heisenberg's picture}{130}{subsection.5.5.2}%
-\contentsline {subsubsection}{$\mathsf {Q}$ and $\left (\mathsf {FdW^*_{CPSU}}\right )^{\mathsf {op}}$}{130}{section*.44}%
+\contentsline {subsubsection}{$\mathsf {Q}$ and $\left (\mathsf {FdW^*_{CPSU}}\right )^{\mathsf {op}}$}{130}{section*.43}%
 \contentsline {subsubsection}{$\left (\mathsf {W^*_{CPSU}}\right )^{\mathsf {op}}$ forms a first-oder model}{132}{Item.65}%
 \contentsline {section}{\numberline {5.6}Examples}{135}{section.5.6}%
 \contentsline {subsection}{\numberline {5.6.1}Quantum state discrimination}{136}{subsection.5.6.1}%

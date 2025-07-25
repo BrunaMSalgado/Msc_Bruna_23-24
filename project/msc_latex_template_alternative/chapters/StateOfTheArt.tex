@@ -163,6 +163,13 @@ The expressions of the lambda calculus are called lambda terms. In the simply-ty
 
 Here $x$ ranges over an infinite set of variables, and $f \in \Sigma$, where  $\Sigma$ corresponds to a set of sorted operation symbols. The expression $f(v_1, \ldots, v_n)$ corresponds to the application of the function $f$ to the arguments $v_1, \ldots, v_n$. The symbol $*$ is the unit. The term $(\lambda x. v )$ is the lambda abstraction term, representing a function that takes an argument of type $x$ and returns the value $v$. The term $v \,w$ is the application term, which applies the function $v$ to the argument $w$.  The term $v \otimes w$ is the tensor product of $v$ and $w$. The term $\text{pm} \hspace{3 pt} v \hspace{3 pt} \text{to} \hspace{3 pt} x \otimes y. w$ is the pattern-matching construct that deconstructs a tensor product into components $x$ and $y$. The term $v \text{ to } *.w$ is used to discard a variable $v$ (of the unit type). The terms $\text{inl}(v)$ and $\text{inr}(v)$ represent the left and right injections of $v$, respectively. Intuitively, the case statement executes $w$ when $v$ is a left injection, and $u$ when $v$ is a right injection, and a ``mixture'' of both otherwise.
 
+\begin{convention}
+   \begin{itemize}
+    \item Applications associate to the left; that is, the expression $vwu$ is interpreted as $(vu)u$. This convention is convenient when applying a function to multiple arguments: for example, $fxyz$ is read as $(((f x) y) z)$.
+    \item The body of a lambda abstraction, as well as pattern matching and discarding constructs (\ie, the part after the dot), extends as far to the right as possible. For instance, $\lambda x.\,vw$ is interpreted as $\lambda x.\,(vw)$, not $(\lambda x.\,v)w$.
+   \end{itemize}
+\end{convention}
+
 %evaluates $v$ and stores the value of the right and left components in variables $x$ and $y$, respectively, and then 
 
 
@@ -200,66 +207,97 @@ FV(v \text{ to } *.w) &= FV(v) \cup FV(w)  &  FV(\text{inl}_\typeB) &=  FV(v). \
 &FV(x) = \{x\}, &&  FV(*) = \emptyset,  \\
 &FV(f(v_1, \ldots, v_n)), = FV(v_1) \cup \ldots \cup FV(v_n)&& FV(\lambda x: \mathbb{A}. v) = FV(v) \backslash \{x\}, \\
 &FV(v w) = FV(v) \cup FV(w), && FV(v \otimes w) = FV(v) \cup FV(w), \\
-& FV(\text{pm} \hspace{3 pt} v \hspace{3 pt} \text{to} \hspace{3 pt} x \otimes y. w), = FV(v) \cup (FV(w)  \backslash \{x,y\}) && FV(\text{dis}(v)) = FV(v),\\
-&FV(v \text{ to } *.w) = FV(v) \cup FV(w)  &&  FV(\text{inl}_\typeB (v)) =  FV(\text{inr}_\typeA (v)) = FV(v). \\
+& FV(\text{pm} \hspace{3 pt} v \hspace{3 pt} \text{to} \hspace{3 pt} x \otimes y. w), = FV(v) \cup (FV(w)  \backslash \{x,y\}) &&  FV(\text{inl}_\typeB (v)) =  FV(\text{inr}_\typeA (v)) = FV(v)\\
+&FV(v \text{ to } *.w) = FV(v) \cup FV(w)  &&   \\
 \end{split}
 \end{equation*}
 \vspace{-20pt}
+\vspace{1pt}
 \begin{equation*}
   \begin{split}
-& \hspace{-30pt} FV(\text{case } v \,   \{\text{inl}_{\typeB} (x) \Rightarrow w ; \, \text{inr}_{\typeA} (y) \Rightarrow u\}) = FV(v) \cup  (FV(w) \backslash \{x\}) \cup (FV(u)\backslash \{y\})
+& \hspace{-30pt} FV(\text{case } v \,   \{\text{inl}_{\typeB} (x) \Rightarrow w ; \, \text{inr}_{\typeA} (y) \Rightarrow u\}) = FV(v) \cup  (FV(w) \backslash \{x\}) \cup (FV(u)\backslash \{y\}).
 \end{split}
 \end{equation*}
 
 
 \subsection{$\alpha$-equivalence}
 
-\todo[inline]{tirar tipos}
- 
-A natural notion of equivalence definition stems from the fact that terms that differ only in the names of their bound variables represent the same program. For instance, the functions $\lambda x:\mathbb{A}.x $ and $\lambda y:\mathbb{A}.y$ have the same input-output behavior, despite being represented by different lambda terms. This equivalence is called $\alpha$\emph{-equivalence}.
 
-\begin{definition}
-  The $\alpha$-equivalence is an equivalence relation on lambda terms that is used to rename bound variables. To rename a variable $x$ as $y$ in a term $v$, denoted by $v\{y/x\}$, is to replace all occurrences of $x$ in $v$ by $y$. Two terms $v$ and $w$ are $\alpha$-equivalent, written $=_{\alpha}$, if one can be derived from the other by a series of
-  changes of bound variables
+ 
+A natural notion of equivalence should stem from the fact that terms that differ only in the names of their bound variables represent the same program. For instance, the functions $\lambda x.x $ and $\lambda y.y$ have the same input-output behavior, despite being represented by different lambda terms. The equivalence we are referring to is called $\alpha$\emph{-equivalence}.
+
+\begin{definition} [$\alpha$-renaming]
+  The $\alpha$-equivalence is an equivalence relation on lambda terms that is used to, among other things, rename bound variables (se will see that such is crucial in defining crucial operations in lambda-calculus). To rename a variable $x$ as $y$ in a term $v$, denoted by $v\{y/x\}$, is to replace all occurrences of $x$ in $v$ by $y$. Two terms $v$ and $w$ are $\alpha$-equivalent, written $=_{\alpha}$, if one can be derived from the other by a series of changes of bound variables.
 \end{definition}
 
 \begin{convention}
-  Terms are considered up to $\alpha$-equivalence from now on.
+  Terms are considered up to $\alpha$-equivalence from now on, \ie,  terms are treated as equal if they differ only by the renaming of bound variables.
 \end{convention}
 
 \subsection{Substitution}
 
-\todo[inline]{tirar tipos, contextos, ver Sel p.15}
 
-The substitution of a variable $x$ for a term $w$ in a term $v$ is denoted by \gls{substitution}. It is only  permitted  to replace free variables. For instance, $\lambda x. \hspace{1pt} x  \hspace{2pt} [v/x]$ is $\lambda x. \hspace{1pt} x  \hspace{2pt}$ and not  $\lambda x. \hspace{1pt} v  \hspace{2pt}$. Moreover, it is necessary to avoid the unintended binding of free variables. For example, $$(\text{pm} \hspace{3 pt} x \otimes y\hspace{3 pt} \text{to} \hspace{3 pt} a \otimes b. \hspace{1pt} b \otimes a \otimes z) \hspace{2 pt}  [z/\text{pm} \hspace{3 pt} c \otimes d\hspace{3 pt} \text{to} \hspace{3 pt} e \otimes f. \hspace{1pt} f \otimes e \otimes a]$$ is not the same as $$\text{pm} \hspace{3 pt} x \otimes y\hspace{3 pt} \text{to} \hspace{3 pt} a \otimes b. \hspace{1pt} b \otimes a \otimes (\text{pm} \hspace{3 pt} c \otimes d\hspace{3 pt} \text{to} \hspace{3 pt} e \otimes f. \hspace{1pt} f \otimes e \otimes a ). $$ Instead, the bounded variable $a$ must be renamed before the substitution, and in this case, the proper substitution is $$(\text{pm} \hspace{3 pt} x \otimes y\hspace{3 pt} \text{to} \hspace{3 pt} t \otimes b. \hspace{1pt} b \otimes t \otimes z) \hspace{2 pt}  [z/\text{pm} \hspace{3 pt} c \otimes d\hspace{3 pt} \text{to} \hspace{3 pt} e \otimes f. \hspace{1pt} f \otimes e \otimes a]$$ which is equal to $$\text{pm} \hspace{3 pt} x \otimes y\hspace{3 pt} \text{to} \hspace{3 pt} t \otimes b. \hspace{1pt} b \otimes t \otimes (\text{pm} \hspace{3 pt} c \otimes d\hspace{3 pt} \text{to} \hspace{3 pt} e \otimes f. \hspace{1pt} f \otimes e \otimes a) .$$
 
-Note that a simple way of ensuring these restrictions are satisfied is not allowing the variable $x$ to occur in the context of $w$ in $v[w/x]$. Since $x$ is in the context of $v$, this is always the case in the affine lambda calculus.
+The substitution of a variable $x$ for a term $w$ in a term $v$ is denoted by \gls{substitution}. It is only permitted to replace free variables. In this context, it is necessary to avoid the unintended binding of free variables. For example, consider terms $ v \triangleq \lambda x. \, yx$ and $ w \triangleq \lambda z. \, xz$. Note that $x$ is bounded in $v$ and free in $w$, Consequently, the term $v[w/y]$ is not the same as $  \lambda x. \,  (\lambda z. \, xz) x$.  The proper thing to do is to rename the bound variable \emph{before} the substitution:
+\[v[w/y] = \lambda x'. \, yx' [w/y]=  \lambda x'. \,  (\lambda z. \, xz) x'. \]
+
+Thus, the operation of substitution may require renaming bound variables. 
+In such cases, it is preferable to select a \emph{fresh} variable---that is, 
+a variable that has not yet been used---as the new name for the bound variable. 
+The assumption that the set of variables is infinite ensures that a fresh variable is always available when needed.
 
 \begin{definition}
-Given the typings judgments $\Gamma, x: \mathbb{A} \triangleright v:\mathbb{B}$ and $\Delta \triangleright w: \mathbb{A}$, the substitution $\Gamma, \Delta \, \triangleright \,  v[w/x]:\mathbb{B}$ is defined below. The types of judgments are omitted as no ambiguity arises.
+Given terms $v$ and $w$, the substitution $ v[w/x]$ is defined below. 
 \begin{align*}
-  \hspace{-23pt}\Gamma,  \Delta \triangleright y[w/x] &=  \Gamma, \Delta \triangleright y, \\
-  \hspace{-23pt}  \Delta \triangleright *[w/x] &=   \Delta \triangleright * ,\\
-  \hspace{-23pt} \Gamma,  \Delta \triangleright (\lambda y: \mathbb{B}. v)[w/x] &= \Gamma,  \Delta \triangleright  \lambda y: \mathbb{B}. v[w/x],  \\
-  \hspace{-23pt}(\text{dis}(v))[w/x] &= \text{dis}(v[w/x]),\\
-  \hspace{-23pt}(\text{inl}(v))[w/x] &= \text{inl}(v[w/x]),\\
+   \hspace{-23pt}  x[w/x] &= w \\
+   \hspace{-23pt}  y[w/x] &= y && \text{ if $x \neq y$}, \\
+  \hspace{-23pt}   *[w/x] &=   * ,\\
+  \hspace{-23pt}  (\lambda x. v)[w/x] &=  \lambda x. v,  \\
+  \hspace{-23pt}  (\lambda y. v)[w/x] &=  \lambda y: \mathbb{B}. v[w/x],  &&\text{ if $x \neq y$ and $y \notin FV(w)$}  \\
+   \hspace{-23pt}  \lambda y. v[w/x] &=  \lambda y': \mathbb{B}. v\{y'/y\}[w/y],  &&\text{ if $x \neq y$, $y \in FV(w),$}  \\
+   \hspace{-23pt}& && \text{and $y'$ is fresh}\\
+   \hspace{-23pt} (v \, u) [w/x] &= v [w/x] \, u [w/x] \\
+   \hspace{-23pt}  (f(v_1, \ldots, v_n))[w/x] & = f(v_1[w/x], \ldots, v_n[w/x]) \\
+   \hspace{-23pt}  (v \otimes u)[w/x] & = (v[w/x] \otimes u[w/x]) \\
+   \hspace{-23pt} (\text{pm} \hspace{3 pt} v \hspace{3 pt} \text{to} \hspace{3 pt} y \otimes z. u)[w/x] &= \text{pm} \hspace{3 pt} v[w/x] \hspace{3 pt} \text{to} \hspace{3 pt} y \otimes z. u [w/x],  &&   \text{if $y \notin FV(w)$, $z \notin FV(w)$} \\
+   \hspace{-23pt} (\text{pm} \hspace{3 pt} v \hspace{3 pt} \text{to} \hspace{3 pt} y \otimes z. u)[w/x] &= \text{pm} \hspace{3 pt} v [w/x] \hspace{3 pt} \text{to} \hspace{3 pt} y' \otimes z.  &&  \text{if $y \in FV(w)$, $z \notin FV(w)$,  } \\
+   \hspace{-23pt}  &  \hspace{16pt} u \{ y'/y\} [w/x], && \text{and $y'$ is fresh}\\
+   \hspace{-23pt} (\text{pm} \hspace{3 pt} v \hspace{3 pt} \text{to} \hspace{3 pt} y \otimes z. u)[w/x] &= \text{pm} \hspace{3 pt} v [w/x] \hspace{3 pt} \text{to} \hspace{3 pt} y \otimes z'.   &&  \text{if $y \notin FV(w)$, $z \in FV(w)$,} \\
+    \hspace{-23pt}& \hspace{16pt} u \{ z'/z\} [w/x], && \text{and $z'$ is fresh}\\
+   \hspace{-23pt} (\text{pm} \hspace{3 pt} v \hspace{3 pt} \text{to} \hspace{3 pt} y \otimes z. u)[w/x] &= \text{pm} \hspace{3 pt} v [w/x] \hspace{3 pt} \text{to} \hspace{3 pt} y' \otimes z'. &&  \text{if $y \in FV(w)$, $z \in FV(w)$,} \\
+   \hspace{-23pt}& \hspace{16pt} u \{ y'/y\} \{ z'/z\} [w/x], && \text{and $y',z'$ are fresh}\\
+   \hspace{-23pt} (v \hspace{3 pt} \text{to} \hspace{3 pt} *.u)[w/x] &=  v[w/x] \hspace{3 pt} \text{to} \hspace{3 pt} *.u[w/x] && \\
+    \hspace{-23pt}(\text{inl}(v))[w/x] &= \text{inl}(v[w/x]),\\
   \hspace{-23pt}(\text{inr}(v))[w/x] &= \text{inr}(v[w/x]),\\
-  \hspace{-23pt}\text{In the next three cases, } \Gamma,x: \mathbb{A} \in & \text{Sf}(\Gamma_1,\ldots,\Gamma_i,\ldots,\Gamma_n) \text{ and } \Gamma_{i}  \triangleright v_{i}\\
-  \hspace{-23pt} \Gamma, \Delta  \triangleright(f(v_1, \ldots, v_n))[w/x] &= \Gamma, \Delta  \triangleright f(v_1[w/x], \ldots, v_n),& (\text{ if } x: \mathbb{A} \in \Gamma_1)  \\
-  \hspace{-23pt} \Gamma, \Delta  \triangleright(f(v_1, \ldots,v_i,\ldots, v_n))[w/x] &= \Gamma, \Delta  \triangleright f(v_1, \ldots,v_i[w/x],\ldots, v_n),& (\text{ if } x: \mathbb{A} \in T_i)  \\
-  \hspace{-23pt}\Gamma, \Delta  \triangleright(f(v_1, \ldots, v_n))[w/x] &= \Gamma, \Delta  \triangleright f(v_1, \ldots, v_n[w/x]),& (\text{ if } x: \mathbb{A} \in \Gamma_n)  \\
-  \hspace{-23pt}\text{In the next two cases, }\Gamma,x: \mathbb{A} & \in \text{Sf}(\Gamma_1,\Gamma_2), \Gamma_1 \triangleright v \text{, and } \Gamma_2 \triangleright u  \\
-  \hspace{-23pt}\Gamma, \Delta  \triangleright (v \hspace{1pt}  u)[w/x] &= \Gamma, \Delta  \triangleright (v[w/x] \hspace{1pt} u), & (\text{ if } x: \mathbb{A} \in \Gamma_1)\\
-  \hspace{-23pt}\Gamma, \Delta  \triangleright (v \hspace{1pt}  u)[w/x] &= \Gamma, \Delta  \triangleright (v \hspace{1pt} u[w/x]), & (\text{ if } x: \mathbb{A} \in \Gamma_2)\\
-  \hspace{-23pt}\text{In the next two cases, }\Gamma,x: \mathbb{A} & \in \text{Sf}(\Gamma_1,\Gamma_2), \Gamma_1 \triangleright v \text{, and } \Gamma_2 \triangleright u  \\
-  \hspace{-23pt}\Gamma, \Delta  \triangleright (v \otimes u)[w/x] &= \Gamma, \Delta  \triangleright v[w/x] \otimes u, & (\text{ if } x: \mathbb{A} \in \Gamma_1)\\ 
-  \hspace{-23pt}\Gamma, \Delta  \triangleright (v \otimes u)[w/x] &= \Gamma, \Delta  \triangleright v \otimes u[w/x], & (\text{ if } x: \mathbb{A} \in \Gamma_2)\\
-  \hspace{-23pt}\text{In the next two cases, }\Gamma,x: \mathbb{A}  \in \text{Sf}(&\Gamma_1,\Gamma_2), \Gamma_1 \triangleright v \text{, and } \Gamma_2, y: \mathbb{D}, z:\mathbb{E} \triangleright u  \\
-  \hspace{-23pt} \Gamma, \Delta  \triangleright (\text{pm} \hspace{3 pt} v \hspace{3 pt} \text{to} \hspace{3 pt} y \otimes z. u)[w/x] &= \Gamma, \Delta  \triangleright \text{pm} \hspace{3 pt} v[w/x] \hspace{3 pt} \text{to} \hspace{3 pt} y \otimes z. u,  &  (\text{ if } x: \mathbb{A} \in \Gamma_1) \\
-  \hspace{-23pt} \Gamma, \Delta  \triangleright (\text{pm} \hspace{3 pt} v \hspace{3 pt} \text{to} \hspace{3 pt} y \otimes z. u)[w/x] &= \Gamma, \Delta  \triangleright \text{pm} \hspace{3 pt} v \hspace{3 pt} \text{to} \hspace{3 pt} y \otimes z. u[w/x],  &  (\text{ if } x: \mathbb{A} \in \Gamma_2) \\
-  \hspace{-23pt}\text{In the next two cases, }\Gamma,x: \mathbb{A} &  \in \text{Sf}(\Gamma_1,\Gamma_2), \Gamma_1 \triangleright v \text{, and } \Gamma_2 \triangleright u  \\
-  \hspace{-23pt}\Gamma, \Delta  \triangleright(v \hspace{3 pt} \text{to} \hspace{3 pt} *.u)[w/x] &= \Gamma, \Delta  \triangleright v[w/x] \hspace{3 pt} \text{to} \hspace{3 pt} *.u&  (\text{ if } x: \mathbb{A} \in \Gamma_1),\\
-  \hspace{-23pt}\Gamma, \Delta  \triangleright(v \hspace{3 pt} \text{to} \hspace{3 pt} *.u)[w/x] &= \Gamma, \Delta  \triangleright v \hspace{3 pt} \text{to} \hspace{3 pt} *.u[w/x] &  (\text{ if } x: \mathbb{A} \in \Gamma_2).\\
+  \hspace{-23pt} \text{case } v \,  
+  \left\{
+    \begin{aligned} 
+    &\inl(y) \Rightarrow p; \\
+    &\inr(z) \Rightarrow  q  \\ 
+  \end{aligned}  
+  \right\}[w/x] &=  \text{case } v [w/x]  \,  
+  \left\{
+    \begin{aligned} 
+    &\inl(y) \Rightarrow  \\
+    & p[w/x];\\
+    &\inr(z) \Rightarrow  \\ 
+    & q[w/x]
+  \end{aligned}  
+  \right\}, && \text{if $y \notin FV(w)$, $z \notin FV(w)$}
+\\ 
+& (\ldots) \\
+ \hspace{-23pt} (\text{case } v \,  
+  \{\inl(y) \Rightarrow p; 
+  \hspace{35pt} &=  \text{case } v [w/x]     
+   && \text{if $y \in FV(w)$, $z \in FV(w),$}   \\ 
+  \inr(z) \Rightarrow  q  \})[w/x]&  \hspace{12pt} \{\inl(y) \Rightarrow  p\{y'/y\} \{z'/z\} && \text{and $y',z'$ are fresh} \\
+  &  \hspace{16pt}[w/x]; \\
+   & \hspace{16pt}  \inr(z) \Rightarrow q\{y'/y\}  
+   &&  \\
+  & \hspace{16pt} \{z'/z\}[w/x] \} \\
+\end{align*}
+\end{definition}
+\begin{comment}
   \hspace{-23pt}\text{In the next two cases, }\Gamma,x: \mathbb{A}  \in \text{Sf}(&\Gamma_1,\Gamma_2), \Gamma_1 \triangleright v \text{, } \Gamma_2, y: \mathbb{D}\triangleright a   \text{, and } \\
    & \hspace{-66pt} \Gamma_2, z: \mathbb{E}\triangleright b  \\
    \hspace{-23pt} \text{case } v \,  
@@ -288,13 +326,9 @@ Given the typings judgments $\Gamma, x: \mathbb{A} \triangleright v:\mathbb{B}$ 
     &\inr_{\typeD}(z) \Rightarrow  b [w/x]  \\ 
   \end{aligned}  
   \right\}  &  (\text{ if } x: \mathbb{A} \in \Gamma_2) \\
-\end{align*}
-\end{definition}
+     \end{comment}
 
-
-
-
-The sequential substitutions $M[M_i/x_i] \ldots [M_n/x_n]$ are writen as $M[M_i/x_i, \ldots ,M_n/x_n]$.
+The sequential substitutions $v[w_1/x_1] \ldots [w_n/x_n]$ are writen as $v[w_1/x_1, \ldots ,w_n/x_n]$.
 
 
 \subsection{Typing rules}
@@ -377,7 +411,7 @@ $ \end{minipage}
 $\begin{array}{c}
      \Gamma,x:\mathbb{A} \triangleright v: \mathbb{B} \\
     \hline
-   \Gamma \triangleright \lambda x:\mathbb{A} . v: \mathbb{A} \multimap \mathbb{B} 
+   \Gamma \triangleright \lambda x:\mathbb{A} . \, v: \mathbb{A} \multimap \mathbb{B} 
 \end{array}
 $
 \end{minipage}
@@ -423,22 +457,27 @@ $ \end{minipage}
 \end{split}
 \end{equation*}
   }
-\caption{Term formation rules of lienar lambda calculus.}
+\caption{Term formation rules of linear lambda calculus.}
 \label{fig:typing_rules_linear}
 \end{figure}
+\begin{comment}
+\todo[inline]{Tirar texto?}
 The rule (ax) states that if there is a function $f \in \Sigma$ that has type $\mathbb{A}_1, \ldots, \mathbb{A}_n \rightarrow \mathbb{A}$ and a set of variables $v_1,\ldots, v_n$ whose types match the type of the arguments of $f$, then if that function is applied to $v_1,…,v_n$ the respective result is of type $\mathbb{A}$.
 The rule (hyp) is a tautology: under the assumption that $x$ has type $\mathbb{A}$, $x$ has type $\mathbb{A}$. 
 The rule ($\mathbb{I}_{i}$) asserts that the unit element $*$ always has type $\mathbb{I}$. 
 The rule ($\multimap_i$) expresses that if $v$ is a term of type $\mathbb{B}$ with a variable $x$ of type $\mathbb{A}$, then $\lambda x:\mathbb{A} . v$ is a function of type $\mathbb{A} \multimap \mathbb{B} $. 
-The rule $(\multimap_e)$ states that a function of type $\mathbb{A} \multimap \mathbb{B}$  can be applied to an argument of type $\mathbb{A}$  to produce a result of type $\mathbb{B}$. 
-The rule $(\mathbb{\otimes}_i)$  asserts that if there is a term $v$ of type $\mathbb{A}$ and a term $w$ of type $\mathbb{B}$,  then the tensor of these terms is of type $\mathbb{A} \otimes \mathbb{B}$.
+The rule $(\multimap_e)$ states that a function of type $\mathbb{A} \multimap \mathbb{B}$ can be applied to an argument of type $\mathbb{A}$ to produce a result of type $\mathbb{B}$. 
+The rule $(\mathbb{\otimes}_i)$ asserts that if there is a term $v$ of type $\mathbb{A}$ and a term $w$ of type $\mathbb{B}$,  then the tensor of these terms is of type $\mathbb{A} \otimes \mathbb{B}$.
 The rule $(\mathbb{\otimes}_e)$ expresses if there is a term $w$ of type $\mathbb{D}$ with variables $x$ and $y$ of types $\mathbb{A}$ and $\mathbb{B}$, respectively, and a term $v$ of type $\mathbb{A} \otimes \mathbb{B}$, then $v$ can be deconstructed into $x \otimes y$. 
 The rule $(\mathbb{I}_e)$ states that if there is a term $w$ of type $\mathbb{A}$ and a term $v$ of type $\mathbb{I}$, then $v$ can be discarded, and only the term $w$ remains. 
-The rule $(\text{dis})$ asserts that a term $v$ of type $\mathbb{A}$ can be discarded, resulting in a term of type $\mathbb{I}$. The rules $(\text{inl}_\typeB)$ (resp. $(\text{inr}_\typeA)$) states that if we inject a term $v$ of type $\typeA$ (resp. $\typeB$) into $\typeA \oplus \typeB$ we obtain a term of type $\typeA \oplus \typeB$. 
+The rule $(\text{inl}_\typeB)$ (resp. $(\text{inr}_\typeA)$) states that if we inject a term $v$ of type $\typeA$ (resp. $\typeB$) into $\typeA \oplus \typeB$ we obtain a term of type $\typeA$ or $\typeB$. 
 Finally, the rule $\text{(case)}$ states that if there are two programs of type $\typeD$ to be executed depending on the value of a term $v$ of type $\typeA \oplus \typeB$ (whose right and left components are assigned to variables $x$ and $y$, respectively), then the resulting program also has type $\typeD$.
+\end{comment}
+ 
 
 
-For a better understanding of the rules, a few straightforward programming examples are provided.  
+
+A few straightforward programming examples are provided for a better understanding of the rules.  
 
 \begin{example} \label{example:prog_swap}
 
@@ -473,7 +512,7 @@ Now, to prove that this program is well-typed one can write the following typing
 2 \hspace{10 pt} &  b : \mathbb{B} \triangleright   b : \mathbb{B} \hspace{10 pt}&{(\text{hyp})} \\
 3 \hspace{10 pt} &   a : \mathbb{A} \triangleright  a : \mathbb{A} \hspace{10 pt}&{(\text{hyp})} \\
 4 \hspace{10 pt} &   b : \mathbb{B},a : \mathbb{A} \triangleright b \otimes a : \mathbb{B} \otimes \mathbb{A} \hspace{10pt} &\text{($2,3,\otimes_i$)} \\
-5\hspace{10 pt}& x : \mathbb{A},  y : \mathbb{B} \triangleright \text{pm} \hspace{3 pt} x \otimes y\hspace{3 pt} \text{to} \hspace{3 pt} a \otimes b. \hspace{1pt} b \otimes a : \mathbb{B} \otimes \mathbb{A}& \hspace{10pt} \text{($1,4,\otimes_e$)}
+5\hspace{10 pt}& x : \mathbb{A} \otimes \mathbb{B}  \triangleright \text{pm} \hspace{3 pt} x \hspace{3 pt} \text{to} \hspace{3 pt} a \otimes b. \hspace{1pt} b \otimes a : \mathbb{B} \otimes \mathbb{A}& \hspace{10pt} \text{($1,4,\otimes_e$)}
 \end{split}
 \end{equation*}
 
@@ -482,26 +521,81 @@ Observe that in the notation of the third column, the numbers correspond to the 
 \end{example}
 
 \begin{example} \label{example:prog_Dis2nd}
-Another example is the function that recieves a tensor product and returns first element, discarding the second:
+Another example is the function that recieves a tensor product of type $\typeI \otimes \typeI$ and returns first element, discarding the second:
 \begin{equation*}
 \begin{split}
-& \textbf{Dis2nd} \triangleq - \triangleright \lambda x: \mathbb{A \otimes A}. \text{pm} \hspace{3 pt} x \hspace{3 pt} \text{to} \hspace{3 pt} a \otimes b. \hspace{1 pt} \text{dis}(b) \hspace{3 pt} \text{ to } *.a: \mathbb{A}
+& \textbf{Dis2nd} \triangleq - \triangleright \lambda x: \mathbb{I \otimes I}. \, \text{pm} \hspace{3 pt} x \hspace{3 pt} \text{to} \hspace{3 pt} a \otimes b. \hspace{1 pt} b \hspace{3 pt} \text{ to } *. \,a:\mathbb{I}
 \end{split}
 \end{equation*}
 To prove that this program is well-typed one can write the following typing derivation:
 \begin{equation*}
 \begin{split}
-1  \hspace{10 pt} & b : \mathbb{A} \triangleright b : \mathbb{A}  \hspace{10 pt} & {(\text{hyp})} \\
-2 \hspace{10 pt} & b : \mathbb{A} \triangleright \text{dis}(b): \mathbb{I} \hspace{10 pt} & {(1,\text{dis})} \\
-3 \hspace{10 pt} & a : \mathbb{A} \triangleright a : \mathbb{A}  \hspace{10 pt} & {(\text{hyp})} \\
-4 \hspace{10 pt} &  a : \mathbb{A}, b : \mathbb{A}  \triangleright \text{dis}(b) \hspace{3 pt} \text{ to } *.a  & {(2,3,\mathbb{I}_{e})} \\
-5 \hspace{10 pt} & x : \mathbb{A \otimes A} \triangleright x : \mathbb{A \otimes A}  \hspace{10 pt} & {(\text{hyp})} \\
-6 \hspace{10 pt} & x : \mathbb{A \otimes A} \triangleright \text{pm} \hspace{3 pt} x \hspace{3 pt} \text{to} \hspace{3 pt} a \otimes b. \hspace{1 pt} \text{dis}(b) \hspace{3 pt} \text{ to } *.a : \mathbb{A} \hspace{10pt} & \text{($4,5,\otimes_{e}$)} \\
-7 \hspace{10 pt} & - \triangleright \lambda x: \mathbb{A \otimes A}. \text{pm} \hspace{3 pt} x \hspace{3 pt} \text{to} \hspace{3 pt} a \otimes b. \hspace{1 pt} \text{dis}(b) \hspace{3 pt} \text{ to } *.a: \mathbb{A} \hspace{10pt} & \text{($6,\multimap_i$)}
+1  \hspace{10 pt} & b : \mathbb{I} \triangleright b : \mathbb{I}  \hspace{10 pt} & {(\text{hyp})} \\
+2 \hspace{10 pt} & a : \mathbb{I} \triangleright a : \mathbb{I}  \hspace{10 pt} & {(\text{hyp})} \\
+3 \hspace{10 pt} &  a : \mathbb{I}, b : \mathbb{I}  \triangleright b \hspace{3 pt} \text{ to } *.\,a: \typeI  & {(1,2,\mathbb{I}_{e})} \\
+4 \hspace{10 pt} & x : \mathbb{I \otimes I} \triangleright x : \mathbb{I \otimes I}  \hspace{10 pt} & {(\text{hyp})} \\
+5 \hspace{10 pt} & x : \mathbb{I \otimes I} \triangleright \text{pm} \hspace{3 pt} x \hspace{3 pt} \text{to} \hspace{3 pt} a \otimes b. \hspace{1 pt} b \hspace{3 pt} \text{ to } *.\,a : \mathbb{I} \hspace{10pt} & \text{($3,4,\otimes_{e}$)} \\
+6 \hspace{10 pt} & - \triangleright \lambda x: \mathbb{I \otimes I}. \, \text{pm} \hspace{3 pt} x \hspace{3 pt} \text{to} \hspace{3 pt} a \otimes b. \hspace{1 pt} b \hspace{3 pt} \text{ to } *.\,a: \mathbb{I} \hspace{10pt} & \text{($5,\multimap_i$)}
 \end{split}
 \end{equation*}
 \end{example}
 
+\begin{example}
+Next, consider the following program which can be seen as the distributive property:
+\begin{equation*}
+  \begin{split}
+    z:(\typeA \oplus \mathbb{\typeB}) \otimes \mathbb{\typeD} \vljud \text{pm } z \text{ to } a \otimes b. \text{ case } a\,\left\{ 
+      \begin{aligned}
+    &\inl_{\typeB}(x) \Rightarrow \inl_{\typeB \otimes \typeD}(x \otimes b); \\
+    & \inr_{\typeA}(y) \Rightarrow \inr_{\typeA \otimes \typeD} (y \otimes b)
+      \end{aligned}
+    \right\}: (\typeA \otimes \typeD) \oplus (\typeB \otimes \typeD)
+\end{split}
+\end{equation*}
+
+To prove that this program is well-typed, we reason as follows:
+\begin{equation*}
+\begin{split}
+1  \hspace{10 pt} & x : \mathbb{A}  \triangleright x : \mathbb{A}  & {(\text{hyp})} \\
+2  \hspace{10 pt} & b : \mathbb{D}  \triangleright x : \mathbb{D}  & {(\text{hyp})} \\
+3  \hspace{10 pt} & b : \mathbb{D}, x : \mathbb{A}  \triangleright \inl_{\typeB \otimes \typeD}(x \otimes b): (\typeA \otimes \typeD) \oplus (\typeB \otimes \typeD)  & {(1,2,\text{inl})} \\
+4  \hspace{10 pt} & y : \mathbb{B}  \triangleright x : \mathbb{B}  & {(\text{hyp})} \\
+5  \hspace{10 pt} & b : \mathbb{D},y : \mathbb{B}  \triangleright \inr_{\typeA \otimes \typeD}(x \otimes b): (\typeA \otimes \typeD) \oplus (\typeB \otimes \typeD)  & {(2,4,\text{inr})} \\
+6  \hspace{10 pt} & a : \mathbb{A} \oplus \mathbb{B} \triangleright a : \mathbb{A} \otimes \mathbb{B}  \hspace{10 pt} & {(\text{hyp})} \\ 
+7 \hspace{10 pt} &    a: \mathbb{\typeA \oplus \typeB},  b: \mathbb{D} \triangleright \, 
+\text{case } a \,  
+  \left\{
+    \begin{aligned} 
+    &\inl_{\typeB}(x) \Rightarrow \inl_{\typeB \otimes \typeD}(x \otimes b); \\
+    &\inr_{\typeB}(y) \Rightarrow \inr_{\typeA \otimes \typeD}(x \otimes b)   \\ 
+  \end{aligned}  
+  \right\}: (\typeA \otimes \typeD) \oplus (\typeB \otimes \typeD)  & \text{($6,3,5,\text{case}$)} \\
+  8 \hspace{10 pt} & z : \mathbb{(A \oplus B) \otimes D} \triangleright z : \mathbb{(A \oplus B) \otimes D}  \hspace{10 pt} & {(\text{hyp})} \\
+9 \hspace{10 pt} &  z:(\typeA \oplus \mathbb{\typeB}) \otimes \mathbb{\typeD} \vljud \text{pm } z \text{ to } a \otimes b. \text{ case } a\,\left\{ \ldots
+    \right\}: (\typeA \otimes \typeD) \oplus (\typeB \otimes \typeD) & \text{($8,7,\otimes_{e}$)} \\
+\end{split}
+\end{equation*}
+
+
+It should be noted that there are two distinct conventions for typing terms. One is the Church-style typing, in which all subterms are explicitly typed. This is the convention we adopt. The other is the Curry-style typing, where only the outermost term is assigned a type, and the types of subterms are left implicit.  For instance, consider the Curry-style typing judgment:
+\[
+x : \typeA \triangleright (\lambda f.\,x)(\lambda y.\,y) : \typeA.
+\]
+Here, the variable $x$ has an explicitly assigned type, but the variable $y$ does not. Its type is not constrained and could be anything. The consequence is that a typed term alone does not uniquely determine its typing derivation.
+
+\begin{convention}
+  \begin{itemize}
+    \item A judgment $\Gamma \triangleright v: \mathbb{A}$ will often be abbreviated into $\Gamma \triangleright v $ or even just $v$ when no ambiguities arise.
+    \item The type annotations in terms $\Gamma \triangleright \lambda x:\mathbb{A} . \, v$, $\Gamma \triangleright \inl_{\typeB}(v)$ and $\Gamma \triangleright \inr_{\typeA}(v)$ will also often be ommited when no ambiguities arise.
+  \end{itemize}
+\end{convention}
+
+
+
+
+\end{example}
+
+\begin{comment}
 \begin{example} \label{example:prog_Dis1stor2nd}
   Consider an analogous program to the previous example that that recieves a tensor product and returns
   second element, discarding the first: 
@@ -524,6 +618,7 @@ Now, let us examine a program that receives both a coproduct/sum and a tensor pr
   \right\}  & \\
 \end{split}
 \end{equation*}
+
 
 
 To prove that this program is well-typed one can write the following typing derivation (the derivations regarding \textbf{Dis1st} and \textbf{Dis2nd} will be omitted):
@@ -558,6 +653,7 @@ To prove that this program is well-typed one can write the following typing deri
 \end{split}
 \end{equation*}
 \end{example}
+\end{comment}
 
 
 
@@ -567,7 +663,7 @@ To prove that this program is well-typed one can write the following typing deri
 \subsection{Properties}
 
 
-The calculus defined in \autoref{fig:typing_rules_linear} possesses several desirable properties, which are listed below. Before proceeding, it is necessary to introduce some auxiliary notation. Given a context $\Gamma$, $te(\Gamma)$ denotes context $\Gamma$ with all types erased. The expression $\Gamma \simeq_{\pi} \Gamma'$ denotes that the contexts $\Gamma$ is a permutation of context $\Gamma'$. This notation also applies to non-repetitive lists of untyped variables $te(\Gamma)$. Additionally, a judgment $\Gamma \triangleright v: \mathbb{A}$ will often be abbreviated into $\Gamma \triangleright v $ or even just $v$ when no ambiguities arise.
+The calculus defined in \autoref{fig:typing_rules_linear} possesses several desirable properties, which are listed below. Before detailing them, it is necessary to introduce some auxiliary notation. Given a context $\Gamma$, $te(\Gamma)$ denotes context $\Gamma$ with all types erased. The expression $\Gamma \simeq_{\pi} \Gamma'$ means  contexts $\Gamma$ is a permutation of context $\Gamma'$. This notation also applies to non-repetitive lists of untyped variables $te(\Gamma)$.
 
 
 \begin{theorem} \label {theorem:unique_der}
@@ -586,8 +682,7 @@ The calculus defined in \autoref{fig:typing_rules_linear} possesses several desi
 
 \begin{proof}
 Since these properties are established in \cite[Theorem 2.3]{dahlqvist2023complete} for the lambda calculus without conditionals,  it suffices to consider the cases involving conditionals.
-
-  It follows in all three cases from induction over the length of derivation
+It follows in all three cases from induction over the length of judgement derivation
 trees. 
 
 Let us focus first on Property~\eqref{perm}. The case of the rules concerning
@@ -595,7 +690,7 @@ injections is direct. As for rule~$(\text{case})$ take two contexts $E$ and
 $E'$ for the same conditional. According to this rule we obtain contexts
 $\Gamma$, $\Gamma'$, $\Delta$, $\Delta'$ such that $E \in
 \Shuff(\Gamma;\Delta)$ and $E' \in \Shuff(\Gamma';\Delta')$. It follows from
-induction that  $\Gamma \simeq_\pi \Gamma'$ and $\Delta \simeq_\pi \Delta'$,
+induction that  $\text{te}(\Gamma) \simeq_\pi \text{te}(\Gamma')$ and $\text{te}(\Delta) \simeq_\pi \text{te}(\Delta')$,
 and the proof is then obtained from the sequence of equivalences,
 \begin{align*}
         \text{te}(E) & \simeq_\pi \text{te}(\Gamma, \Delta) 
@@ -642,15 +737,15 @@ $\Gamma_1, x : \typeA, \Gamma_2$ and $\Delta$ of the form $\Delta_1, y :
 \typeB, \Delta_2$. The proof now follows directly from the implication,
 \begin{align*}
         & E_1, x : \typeA, y : \typeB, E_2 \in \Shuff(\Gamma_1, x : \typeA, \Gamma_2 ; \,
-        \Delta_1, y : \typeB, \Delta_2) \\
-        \Longrightarrow &
+        \Delta_1, y : \typeB, \Delta_2) \Longrightarrow  \\
+        &
         E_1, y : \typeB, x : \typeA, E_2 \in \Shuff(\Gamma_1, x : \typeA, \Gamma_2 ; \,
         \Delta_1, y : \typeB, \Delta_2)
 \end{align*}
 (which holds by the definition of a shuffle).
 
 Finally we now focus on the substitution rule which also follows by induction over the
-length of derivation trees. Again the cases involving the injections are direct,
+length of judgement derivation trees. Again the cases involving the injections are direct,
 and we thus only detail the proof of rule $(\text{case})$. Consider then
 judgements $E,x : \typeA \vljud \text{case } v\, \{\inl_{\typeD}(a) \Rightarrow
 w ; \, \inr_{\typeE}(b) \Rightarrow u \}: \typeB$ and
@@ -663,20 +758,20 @@ is a corollary of the exchange rule.
 
 
 \subsection{Equations-in-context}
-The simply typed lambda calculus is a formal language that captures operations like the application of a function to an argument and the elimination of variables. To express these operations there is a set of rules known as reduction rules. These rules fall into two primary categories: the $\beta$\emph{-reductions}, which perform operations and enforce the implicit meaning of the term, and $\eta$\emph{-reductions}, which simplify terms by exploiting the extensionality of functions. 
+\todo[inline]{Ver historia de reduções vs eqs}
+The simply typed lambda calculus is a formal language that captures operations like the application of a function to an argument and the elimination of variables. To express these operations, there is a set of rules known as reduction rules. These rules fall into two primary categories: the $\beta$\emph{-reductions}, which intuitively perform operations and enforce the intended meaning of the term, and $\eta$\emph{-reductions}, which simplify terms by exploiting extensionality. 
 There is also a secondary class of reductions known as \emph{commuting conversions}, which serve to disambiguate terms that, while equivalent, have different representations.
-As a result, affine $\lambda$-calculus comes equipped with the so-called equations-in-context \gls{equation-in-context}, depicted in \autoref{fig:equations-linear-lambda}.
+As a result, affine $\lambda$-calculus comes equipped with the so-called equations-in-context \gls{equation-in-context}, which are often abbreviated as $v = w : \mathbb{A}$, or simply $v = w$ when the type is clear from context. These equations are illustrated in \autoref{fig:equations-linear-lambda}.
 \begin{figure}[H]
   \centering
   \begin{tabular}{ |ccccc| }
     \hline
-$(\beta)$ &  $\Gamma, \Delta \triangleright (\lambda x : \mathbb{A}.$ $v) \hspace{1pt}  w = v[w/x]: \mathbb{B} $ & &$(\eta)$ &  $\Gamma  \triangleright \lambda x : \mathbb{A} .(v \hspace{1pt} x) = v: \mathbb{A} \multimap \mathbb{B} $ \\
-$(\beta_{\mathbb{I}_{e}})$ &   $ \Gamma \triangleright * \text { to } *.$ $v = v:\mathbb{A}$ && $(\eta_{\mathbb{I}_{e}})$ & $ \Delta, \Gamma \triangleright v$ to $*$ . $w[* / z] = w[v / z]: \mathbb{A}$  \\
-$(\beta_{\otimes_{e}})$   &\multicolumn{4}{c|}{$ \hspace{-10pt}  E, \Gamma, \Delta \hspace{1pt}\triangleright \text{pm } v \otimes w$ to $x \otimes y.$ $u = u[v/x,w/y]:\mathbb{A}$ }\\
-$(\eta_{\otimes_{e}})$   &\multicolumn{4}{c|}{$\Delta , \Gamma\hspace{1pt}\triangleright \text{pm } v$ to $x \otimes y.$ $u[x \otimes y/z] = u[v/z] :\mathbb{A} $}\\
- $(c_{\mathbb{I}_{e}})$  &\multicolumn{4}{c|}{ $\Delta,\Gamma, E \triangleright u[v \text{ to } \ast . w/z] = v \text{ to } \ast . u[w/z]:\mathbb{A}$ }\\
-$(c_{\otimes_{e}})$ & \multicolumn{4}{c|}{ $\Delta,\Gamma, E  \triangleright u[$pm $v$ to $x \otimes y.$ $w/z] =$ pm $v$ to $x \otimes y.$ $u[w/z]: \mathbb{A} $ }\\
-$(\eta_{\text{dis}})$ & \multicolumn{4}{c|}{ $x_1:\mathbb{A}_1, \ldots,x_n:\mathbb{A}_n\triangleright v = \text{dis}(x_1) \text{ to } \ast.$ $\ldots$ $\text{dis}(x_{n-1}) \text{ to } \ast \text{ dis}(x_{n}): \mathbb{ I}$ }\\
+$(\beta)$ &  $ (\lambda x : \mathbb{A}.$ $v) \, w = v[w/x] $ & &$(\eta)$ &  $ \lambda x : \mathbb{A} . \, (v \, x) = v $ \\
+$(\beta_{\mathbb{I}_{e}})$ &   $  * \text { to } *.$ $v = v$ && $(\eta_{\mathbb{I}_{e}})$ & $v$ to $*$ . $w[* / z] = w[v / z]$  \\
+$(\beta_{\otimes_{e}})$   &\multicolumn{4}{c|}{$ \hspace{-10pt}  \text{pm } v \otimes w$ to $x \otimes y.$ $u = u[v/x,w/y]$ }\\
+$(\eta_{\otimes_{e}})$   &\multicolumn{4}{c|}{$\text{pm } v$ to $x \otimes y.$ $u[x \otimes y/z] = u[v/z] $}\\
+ $(c_{\mathbb{I}_{e}})$  &\multicolumn{4}{c|}{ $ u[v \text{ to } \ast . w/z] = v \text{ to } \ast . u[w/z]$ }\\
+$(c_{\otimes_{e}})$ & \multicolumn{4}{c|}{ $ u[$pm $v$ to $x \otimes y.$ $w/z] =$ pm $v$ to $x \otimes y.$ $u[w/z] $ }\\
 $(\beta_{case}^{inl})$ &\multicolumn{4}{c|} {$\text{case } 
           \inl_{\typeB}(v)\, \{ \inl_{\typeB} (x) \Rightarrow w 
           ;\, \inr_{\typeA} (y) 
@@ -688,126 +783,139 @@ $(\beta_{case}^{inr})$ &\multicolumn{4}{c|} {$\text{case }
 $(\eta_{case})$ &\multicolumn{4}{c|} { $\text{case } v\, \{\text{inl}_{\typeB} (y) \Rightarrow w [ \text{inl}_{\typeB}(y)/x] ;\, \text{inr}_{\typeA} (z) \Rightarrow w [ \text{inr}_{\typeA}(z)/x]\} = w[v/x]$} \\
 \hline
   \end{tabular}
-\caption{Equations-in-context for affine lambda calculus}
+\caption{Equations-in-context for linear lambda calculus}
 \label{fig:equations-linear-lambda}
 \end{figure}
 
-It is evident that, for example, equation $(\beta)$ enforces the meaning of  $(\lambda x : \mathbb{A}.$ $v) \hspace{1pt} w $, which is interpreted as ``$v$ with $w$ in place of $x$". The equation $(\eta)$, on the other hand, is a simplification rule that states that a function that applies another function $v$ to an argument $x$ can be simplified to the function $v$ itself. The remaining $\beta$ e $\eta$ equations follow similar reasoning. The commuting conversion $(c_{\mathbb{I}_{e}})$ expresses that substituting a variable $z$ by a term that maps a term $v$ to the unit element $*$ in a term $w$ is equivalent to mapping a term $v$ to the unit element $*$ and then replacing $z$ by $w$. The other commuting conversion has a similar interpretation.
-%\begin{figure}[H]
-  %\centering
-  %\begin{tabular}{ |c|c| }
-      %\hline 
-      %Monoidal structure & Higher-order structure \\
-      %\hline
-      %pm $v \otimes w$ to $x \otimes y.$ $u = u[v/x,w/y]$& \\
-      %pm $v$ to $x \otimes y.$ $u[x \otimes y/z] = u[v/z]$ & $(\lambda x : A.$ $v) w = v[w/x]$\\
-      %$* \text { to } *.$ $v = v$ & $\lambda x : A.(v x) = v$ \\
-      %$v$ to $*$ . $w[* / z] = w[v / z]$ & \\
-      %\hline
-      %\multicolumn{2}{|c|}{Commuting conversions} \\
-      %\hline
-      %\multicolumn{2}{|c|}{$u[v \text{ to } \ast . w/z] = v \text{ to } \ast . u[w/z]$}  \\
-      %\multicolumn{2}{|c|}{$u[$pm $v$ to $x \otimes y.$ $w/z] =$ pm $v$ to $x \otimes y.$ $u[w/z]$} \\
-      %\hline
-      %\multicolumn{2}{|c|}{Discard} \\
-      %\hline
-      %\multicolumn{2}{|c|}{$v: \mathbb{I} = \text{dis}(x_1) \text{ to } \ast.$ $\ldots$ $\text{dis}(x_{n-1}) \text{ to } \ast \text{ dis}(x_{n})$} \\
-      %\hline
-  %\end{tabular}
-  %\caption{Equations-in-context for affine lambda calculus}
-  %\label{fig:equations-linear-lambda}
-%\end{figure}
+It is evident that, for example, equation $(\beta)$ enforces the meaning of application in  $(\lambda x : \mathbb{A}.$ $v) \hspace{1pt} w $, which is interpreted as ``$v$ with $w$ in place of $x$".
+On the other hand, the equation $(\eta)$ is a simplification rule exploring extensionality: it states that a function that applies another function $v$ to an argument $x$ can be simplified to the function $v$ itself. 
+The remaining $\beta$ e $\eta$ equations follow similar reasoning.
 
-
+The following example demonstrates how these equations can be used in practice.
 
 \begin{example} \label{ex:eq_contex_gen}
-  For instance, consider the $\lambda$-term 
-  $$ - \triangleright \big(\lambda z : \typeI \otimes \typeA. \, \text{pm } z \text{ to} * \otimes y. \, y\big) \, (v \otimes w): \typeA$$
-Applying the $\beta$ reduction, we have:
+  For instance, consider a program that receives a tensor of terms, where the first component is $*$, and discards it. Such a program can be simplified to the term corresponding to the second component of the tensor. In other words, we will show that the $\lambda$-term
+\[
+ - \vljud \big(\lambda z : \typeI \otimes \typeA.\, \text{pm } z \text{ to } x \otimes y.\, x \text{ to } *.\, y\big)\, (* \otimes v) : \typeA
+\]
+can be simplified to $v : \typeA$.
+
+Applying equation $\beta$ , we have:
+\begin{equation*}
+  \begin{split}
+ - \triangleright \big(\lambda z : \typeI \otimes \typeA. \, \text{pm } z \text{ to } x \otimes y. \, x \text{ to } *.\, y \big) \, (* \otimes  v) 
+&= \text{pm }  * \otimes \, w \text{ to } x \otimes y. \, x \text{ to } *.\, y  : \typeA. 
+ \end{split}
+\end{equation*}
+Next, applying  equation $\beta_{\otimes_e}$, it follows:
 \begin{align*}
- - \triangleright \big(\lambda z : \typeI \otimes \typeA. \, \text{pm } z \text{ to } * \otimes y. \, y\big) \, (v \otimes w) 
-&= \text{pm }  v \otimes w \text{ to} * \otimes y. \, y : \typeA. 
+\text{pm }  * \otimes \, v \text{ to } x \otimes y. \, x \text{ to } *.\, y  
+=   * \text{ to } *.\, v: \typeA
 \end{align*}
-Next, applying the $\beta_{\otimes_e}$ reduction, it follows:
+Finally, applying  equation $\beta_{\typeI_e}$, we have:
 \begin{align*}
-\text{pm }  v \otimes w \text{ to} * \otimes y. \, y : \typeA = w : \typeA. 
+ * \text{ to } *.\, v = v: \typeA
 \end{align*}
+
 \end{example}
 
 
 
-\todo[inline,size=\normalsize]{Não sei se este é o lugar mais indicado para estas definições, mas tb não estou a ver outro dado que as categorias só vêm a seguir. Ou então passar isto para a interpretação.} 
+\todo[inline,size=\normalsize]{Ver o que fazer com as cenas comentadas no fim, não esquecer esquema do quociente se incluir} 
 
 
+\begin{comment}
 \begin{definition}
   Let \( S \) be a set. A \emph{relation} on \( S \) is a subset \( R \subseteq S \times S \). An ordered pair \( (s_1, s_2) \in R \) means that \( s_1 \) is related to \( s_2 \).
 \end{definition}
+\end{comment}
 
-
+\begin{comment}
 \begin{definition}
-  A relation on a set \( S \) is an \emph{equivalence relation} if it is
+  A relation $\sim$ on a set \( S \) is an \emph{equivalence relation} if it is
 \begin{itemize}
   \item reflexive: for all \( x \in S \), \( x \sim x \),
   \item symmetric: for all \( x, y \in S \), if \( x \sim y \) then \( y \sim x \), and
   \item transitive: for all \( x, y, z \in S \), if \( x \sim y \) and \( y \sim z \), then \( x \sim z \).
 \end{itemize} 
-We denote such a relation by \( \sim \,\subseteq S \times S \), and write \( x \sim y \) to mean that \( (x, y) \in \, \sim \).
 \end{definition}
 
 \begin{definition}
-  Given an equivalence relation on a set \( S \), we can describe disjoint subsets of \( S \) called \emph{equivalence classes}. If \( s \in S \), then the \emph{equivalence class} of \( s \) is the set of all elements related to it:
+  Given an equivalence relation on a set \( S \), we can describe the so-called \emph{equivalence classes}. If \( s \in S \), then the \emph{equivalence class} of \( s \) is the set of all elements related to it:
 \[
 [s] = \{ r \in S \mid r \sim s \}.
 \]
-That is, \( [s] \) is the set of all elements that are considered “the same” as \( s \) under the relation \( \sim \). For a given set \( S \) and an equivalence relation \( \sim \) on \( S \), we define the \emph{quotient set}, denoted \( S / \sim \), whose elements are all the equivalence classes of elements in \( S \). There is an obvious \emph{quotient function} from \( S \) to \( S / \sim \) that maps each element \( s \in S \) to its equivalence class \( [s] \).
+That is, \( [s] \) is the set of all elements that are considered “the same” as \( s \) under the relation \( \sim \). For a given set \( S \) and an equivalence relation \( \sim \) on \( S \), we define the \emph{quotient set}, denoted \( S /\sim \), whose elements are all the equivalence classes of elements in \( S \). There is an obvious \emph{quotient function} from \( S \) to \( S/\sim \) that maps each element \( s \in S \) to its equivalence class \( [s] \).
 \end{definition}
 
 %For instance, consider a set of cars \( S \). We can define an equivalence relation on \( S \) by grouping cars according to their colour. This results in subsets such as the set of blue cars, the set of red cars, the set of green cars, and so on — these subsets are the \emph{equivalence classes}. Moreover, the collection of all such equivalence classes forms a new set, called the \emph{quotient set}.
 
+\noindent Here, a \emph{congruence} is an equivalence relation closed under:
+\begin{itemize}
+    \item Term constructors (abstraction, application, etc.),
+    \item Substitution of free variables,
+    \item Exchange of typing contexts.
+\end{itemize}
+\end{comment}
+
 
 
 \begin{definition} \label{def:linear_lambda_theory}
-  Consider a pair $(G, \Sigma)$, where $G$ is a class of ground types and $\Sigma$ is a class of sorted operation symbols. A \emph{$\lambda$-theory} is a triple $((G, \Sigma), Ax)$, where $Ax$ is a class of equations-in-context over $\lambda$-terms constructed from $(G, \Sigma)$. The elements of $Ax$ are called the \emph{axioms} of the theory.
+  Consider a pair $(G, \Sigma)$, where $G$ is a set of ground types and $\Sigma$ is a set of sorted operation symbols. A \emph{$\lambda$-theory} is a triple $((G, \Sigma), Ax)$, where $Ax$ is a set of equations-in-context over $\lambda$-terms constructed from $(G, \Sigma)$. The elements of $Ax$ are called the \emph{axioms} of the theory.
 \end{definition}
 
 
- Let $Th(Ax)$ denote the smallest class containing $Ax$, the equations presented in \autoref{fig:equations-linear-lambda}, and closed under exchange and substitution (\autoref{lem:exh_and_sub}). The elements of $Th(Ax)$ are called the \emph{theorems} of the theory.
+ Let $Th(Ax)$ denote the smallest be the smallest
+ congruence that containing $Ax$, the equations presented in \autoref{fig:equations-linear-lambda}, and closed under exchange and substitution (\autoref{lem:exh_and_sub}). The elements of $Th(Ax)$ are called the \emph{theorems} of the theory.
 
  For instance recall \autoref{ex:eq_contex_gen}: 
- $$- \triangleright \big(\lambda z : \typeI \otimes \typeA. \, \text{pm } z \text{ to} * \otimes y. \, y\big) \, (v \otimes w): \typeA =  w : \typeA $$
+ $$ - \vljud \big(\lambda z : \typeI \otimes \typeA.\, \text{pm } z \text{ to } x \otimes y.\, x \text{ to } *.\, y\big)\, (* \otimes v)=  v : \typeA $$
  is a theorem.
 
-\subsection{Interlude: Booleans} \label{subsec:interlude_bool}
+\subsection{Interlude: Booleans - Part 1} \label{subsec:interlude_bool}
 
 %The term dis(v) is the discard term, which is used to mark a term $v$ as discardable.
 
-Booleans can be represented as the type $\typeI \oplus \typeI$, in which case $\text{True} = \inl(*)$, $\text{False} = \inr(*)$ \cite{selinger2013lecture}. We will use the equations in \autoref{fig:equations-linear-lambda} to demonstrate that they possess certain properties that are characteristic of booleans in classical logic. The remaining properties can be proven through similar reasoning. 
 
-Given variables $v : \typeI \oplus \typeI$ and $w : \typeI \oplus \typeI$, their conjunction and disjunction correspond to the following programs:
+In this subsection, we illustrate the usefulness of the classical equational system by showing how it can be used to connect the type $\typeI \oplus \typeI$ to Boolean algebra. More precisely, we use the previously introduced calculus to write programs corresponding to Boolean operations such as conjunction, disjunction, and negation. We then use the extensionality of the copairing and the equations-in-context to demonstrate that these operations satisfy the properties required by Boolean algebra.
+
+The type $\typeI \oplus \typeI$ can be used to represent truth-values, in which case $\text{True} = \inl(*)$, $\text{False} = \inr(*)$ \cite{selinger2013lecture}. We will use the equations in \autoref{fig:equations-linear-lambda} to demonstrate that they possess certain properties typical of Boolean algebras.
+
+\subsubsection{Boolean operators}
+
+As a part of our $\lambda$-theory we consider an operation $\text{dis}: \typeI \oplus \typeI \to \typeI$ which discards its input, accompanied by the following axiom
+\[\text{dis}(v) = \text{case } v \left\{
+    \begin{aligned} 
+    &\inl_{\typeI}(x) \Rightarrow \inl_{\typeI}(x) ; \\
+    &\inr_{\typeI}(y) \Rightarrow  \inr_{\typeI}(y)  \\ 
+  \end{aligned}  
+  \right\} . \]
+
+Given variables $a : \typeI \oplus \typeI$ and $b : \typeI \oplus \typeI$, their conjunction and disjunction correspond to the following programs:
 
 \begin{align*}
-  & \hspace{-25pt}\textbf{Conjunction} \triangleq v:\typeI \oplus \typeI, w:\typeI \oplus \typeI \vljud \text{case } v\,
+  & \hspace{-25pt}\textbf{Conjunction}\,(a,b) \triangleq a:\typeI \oplus \typeI, b:\typeI \oplus \typeI \vljud \text{case } a\,
 \left\{
     \begin{aligned} 
-    &\inl_{\typeI}(x) \Rightarrow x \text{ to} *. \, w ; \\
-    &\inr_{\typeI}(y) \Rightarrow   \text{ to} *. \,  \text{dis}(w) \text{ to} *. \inr_{\typeI}(*)  \\ 
+    &\inl_{\typeI}(x) \Rightarrow x \text{ to} *. \, b ; \\
+    &\inr_{\typeI}(y) \Rightarrow   \text{ to} *. \,  \text{dis}(b) \text{ to} *. \inr_{\typeI}(*)  \\ 
   \end{aligned}  
   \right\}
 \end{align*}
 
 \begin{align*}
-  & \hspace{-25pt}\textbf{Disjunction} \triangleq v:\typeI \oplus \typeI, w:\typeI \oplus \typeI \vljud \text{case } v\,
+  & \hspace{-25pt}\textbf{Disjunction}\,(a,b) \triangleq v:\typeI \oplus \typeI, w:\typeI \oplus \typeI \vljud \text{case } a\,
 \left\{
     \begin{aligned} 
-    &\inl_{\typeI}(x) \Rightarrow  \text{ to} *. \,  \text{dis}(w) \text{ to} *. \inl_{\typeI}(*) ; \\
-    &\inr_{\typeI}(y) \Rightarrow  y \text{ to} *. \,  w  \\ 
+    &\inl_{\typeI}(x) \Rightarrow  \text{ to} *. \,  \text{dis}(b) \text{ to} *. \inl_{\typeI}(*) ; \\
+    &\inr_{\typeI}(y) \Rightarrow  y \text{ to} *. \,  b  \\ 
   \end{aligned}  
   \right\}
 \end{align*}
 
 Moreover, negation can be expressed by the following program:
   \begin{align*}
-  & \hspace{-25pt}\textbf{Negation} \triangleq v:\typeI \oplus \typeI \vljud \text{case } v\,
+  & \hspace{-25pt}\textbf{Negation}\,(a) \triangleq a:\typeI \oplus \typeI \vljud \text{case } a\,
 \left\{
     \begin{aligned} 
     &\inl_{\typeI}(x) \Rightarrow \inr_{\typeI}(x) ; \\
@@ -815,6 +923,62 @@ Moreover, negation can be expressed by the following program:
   \end{aligned}  
   \right\}
 \end{align*}
+
+ This result will enable us to verify that the programs we define satisfy the desired properties in a systematic and straightforward manner.
+
+
+
+\subsubsection{Extensionality of the copairing}
+
+A $\lambda$-abstraction that receives inputs of a disjunctive type is determined by what it does to inputs ``from the left and from the right'', \ie,
+\[
+\left\{
+\begin{aligned}
+&(\lambda x.t)\, \text{inl}(y) = (\lambda x.s)\, \text{inl}(y) \\
+&(\lambda x.t)\, \text{inr}(z) =(\lambda x.s)\, \text{inr}(z)
+\end{aligned}
+\right.
+\implies \lambda x.t = \lambda x.s
+\]
+
+The proof is as follows:
+
+Using the $\beta$ equation we have
+\begin{equation} \label{eq:beta_red}
+  \left\{
+\begin{aligned}
+&(\lambda x.t)\, \text{inl}(y) = (\lambda x.s)\, \text{inl}(y) \\
+&(\lambda x.t)\, \text{inr}(z) =(\lambda x.s)\, \text{inr}(z)
+\end{aligned}
+\right.
+= \left\{
+\begin{aligned}
+&t\,[\text{inl}(y)/x]  = s\, [\text{inl}(y)/x] \\
+&t\,[\text{inr}(z)/x]  = s\, [\text{inr}(z]/x] 
+\end{aligned}
+\right.
+\end{equation}
+Next, considering the equations above, $\eta_{case}$, and the $\alpha$-equivalence we reason as follows:
+\begin{equation*}
+\begin{split}
+  t = & t[x'/x] = \text{case } x'  
+    \left\{ \begin{aligned}
+    \inl_{\typeI}(y) \Rightarrow t\,[\text{inl}(y)/x] ;  
+    \inl_{\typeI}(z) \Rightarrow t\,[\text{inr}(z)/x]
+  \end{aligned}  \right\} & (\alpha,\eta_{case})\\
+  & = \text{case } x'  
+    \left\{ \begin{aligned}
+    \inl_{\typeI}(y) \Rightarrow s\,[\text{inl}(y)/x] ;  
+    \inl_{\typeI}(z) \Rightarrow s\,[\text{inr}(z)/x]
+  \end{aligned}  \right\} = s & (\text{\autoref{eq:beta_red}},\eta_{case},\alpha)
+\end{split}
+\end{equation*}
+Finally, it is straightforward that $ t=s \implies \lambda x.t = \lambda x.s$.
+
+
+\vspace{5pt}
+
+\subsubsection{Properties}
 
   \begin{lemma} \label{lemma:inl_neutral}
      $\inl(*)$ acts as the neutral element for conjunction, whereas $\inr(*)$ serves as the absorbing element, \ie
@@ -1156,6 +1320,8 @@ This equality follows from  $\alpha$-equivalence and the equations $\eta_{\text{
    & \hspace{-27pt} = \textbf{Negation}[\textbf{Conjunction} [v'/v, w',w]  /v] & (\alpha)
   \end{align*}
 \end{proof}
+
+The remaining properties can be proven through similar reasoning. 
 
 
 \subsection{Metric equational system}

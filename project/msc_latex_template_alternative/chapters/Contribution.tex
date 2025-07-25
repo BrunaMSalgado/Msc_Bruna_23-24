@@ -83,52 +83,7 @@ Considering Lemma \ref{lemma:inl_neutral}, we have
 
 \section{Extensionality of the copairing}
 
-A $\lambda$-abstraction that receives inputs of a disjunctive type is determined by what it does to inputs ``from the left and from the right'', \ie,
-\[
-\left\{
-\begin{aligned}
-&(\lambda x.t)\, \text{inl}(y) = (\lambda x.s)\, \text{inl}(y) \\
-&(\lambda x.t)\, \text{inr}(z) =(\lambda x.s)\, \text{inr}(z)
-\end{aligned}
-\right.
-\implies \lambda x.t = \lambda x.s
-\]
-
-The proof is as follows:
-
-Using the $\beta$ equation we have
-\begin{equation} \label{eq:beta_red}
-  \left\{
-\begin{aligned}
-&(\lambda x.t)\, \text{inl}(y) = (\lambda x.s)\, \text{inl}(y) \\
-&(\lambda x.t)\, \text{inr}(z) =(\lambda x.s)\, \text{inr}(z)
-\end{aligned}
-\right.
-= \left\{
-\begin{aligned}
-&t\,[\text{inl}(y)/x]  = s\, [\text{inl}(y)/x] \\
-&t\,[\text{inr}(z)/x]  = s\, [\text{inr}(z]/x] 
-\end{aligned}
-\right.
-\end{equation}
-Next, considering the equations above, $\eta_{case}$, and the $\alpha$-equivalence we reason as follows:
-\begin{equation*}
-\begin{split}
-  t = & t[x'/x] = \text{case } x'  
-    \left\{ \begin{aligned}
-    \inl_{\typeI}(y) \Rightarrow t\,[\text{inl}(y)/x] ;  
-    \inl_{\typeI}(z) \Rightarrow t\,[\text{inr}(z)/x]
-  \end{aligned}  \right\} & (\alpha,\eta_{case})\\
-  & = \text{case } x'  
-    \left\{ \begin{aligned}
-    \inl_{\typeI}(y) \Rightarrow s\,[\text{inl}(y)/x] ;  
-    \inl_{\typeI}(z) \Rightarrow s\,[\text{inr}(z)/x]
-  \end{aligned}  \right\} = s & (\text{\autoref{eq:beta_red}},\eta_{case},\alpha)
-\end{split}
-\end{equation*}
-Finally, it is straightforward that $ t=s \implies \lambda x.t = \lambda x.s$.
-
-Now assume that 
+Assume that 
 \[
 \left\{
 \begin{aligned}
@@ -138,7 +93,7 @@ Now assume that
 \right.
 \implies \lambda x.t = \lambda x.s
 \]
-Following the same reasoning as before and applying the metric equation for condicionals we obtain:
+Following the same reasoning as beforein \Cref{subsec:interlude_bool} and applying the metric equation for condicionals we obtain:
 \begin{equation*}
 \begin{split}
   &t =  \text{case } x'  
