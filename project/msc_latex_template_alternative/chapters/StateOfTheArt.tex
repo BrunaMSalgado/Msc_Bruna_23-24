@@ -883,7 +883,7 @@ The type $\typeI \oplus \typeI$ can be used to represent truth-values, in which 
 
 \subsubsection{Boolean operators}
 
-As a part of our $\lambda$-theory we consider an operation $\text{dis}: \typeI \oplus \typeI \to \typeI$ which discards its input, accompanied by the following axiom
+As a part of our $\lambda$-theory we consider an operation $\text{dis}: \typeI \oplus \typeI \to \typeI$ which discards its input, accompanied by the following axiom which we will denote by $ax_\text{dis}$,
 \[\text{dis}(v) = \text{case } v \left\{
     \begin{aligned} 
     &\inl_{\typeI}(x) \Rightarrow \inl_{\typeI}(x) ; \\
@@ -898,7 +898,7 @@ Given variables $a : \typeI \oplus \typeI$ and $b : \typeI \oplus \typeI$, their
 \left\{
     \begin{aligned} 
     &\inl_{\typeI}(x) \Rightarrow x \text{ to} *. \, b ; \\
-    &\inr_{\typeI}(y) \Rightarrow   \text{ to} *. \,  \text{dis}(b) \text{ to} *. \inr_{\typeI}(*)  \\ 
+    &\inr_{\typeI}(y) \Rightarrow y  \text{ to} *. \,  \text{dis}(b) \text{ to} *. \inr_{\typeI}(*)  \\ 
   \end{aligned}  
   \right\}
 \end{align*}
@@ -907,7 +907,7 @@ Given variables $a : \typeI \oplus \typeI$ and $b : \typeI \oplus \typeI$, their
   & \hspace{-25pt}\textbf{Disjunction}\,(a,b) \triangleq v:\typeI \oplus \typeI, w:\typeI \oplus \typeI \vljud \text{case } a\,
 \left\{
     \begin{aligned} 
-    &\inl_{\typeI}(x) \Rightarrow  \text{ to} *. \,  \text{dis}(b) \text{ to} *. \inl_{\typeI}(*) ; \\
+    &\inl_{\typeI}(x) \Rightarrow  x\text{ to} *. \,  \text{dis}(b) \text{ to} *. \inl_{\typeI}(*) ; \\
     &\inr_{\typeI}(y) \Rightarrow  y \text{ to} *. \,  b  \\ 
   \end{aligned}  
   \right\}
@@ -918,8 +918,8 @@ Moreover, negation can be expressed by the following program:
   & \hspace{-25pt}\textbf{Negation}\,(a) \triangleq a:\typeI \oplus \typeI \vljud \text{case } a\,
 \left\{
     \begin{aligned} 
-    &\inl_{\typeI}(x) \Rightarrow \inr_{\typeI}(x) ; \\
-    &\inr_{\typeI}(y) \Rightarrow  \inl_{\typeI}(y)  \\ 
+    &\inl_{\typeI}(x) \Rightarrow x ; \\
+    &\inr_{\typeI}(y) \Rightarrow  y  \\ 
   \end{aligned}  
   \right\}
 \end{align*}
@@ -934,256 +934,179 @@ A $\lambda$-abstraction that receives inputs of a disjunctive type is determined
 \[
 \left\{
 \begin{aligned}
-&(\lambda x.t)\, \text{inl}(y) = (\lambda x.s)\, \text{inl}(y) \\
-&(\lambda x.t)\, \text{inr}(z) =(\lambda x.s)\, \text{inr}(z)
+&(\lambda x.v)\, \text{inl}(y) = (\lambda x.w)\, \text{inl}(y) \\
+&(\lambda x.v)\, \text{inr}(z) =(\lambda x.w)\, \text{inr}(z)
 \end{aligned}
 \right.
-\implies \lambda x.t = \lambda x.s
+\implies \lambda x.v = \lambda x.w
 \]
 
 The proof is as follows:
 
-Using the $\beta$ equation we have
+Using the $\beta$-equation we have
 \begin{equation} \label{eq:beta_red}
   \left\{
 \begin{aligned}
-&(\lambda x.t)\, \text{inl}(y) = (\lambda x.s)\, \text{inl}(y) \\
-&(\lambda x.t)\, \text{inr}(z) =(\lambda x.s)\, \text{inr}(z)
+&(\lambda x.v)\, \text{inl}(y) = (\lambda x.w)\, \text{inl}(y) \\
+&(\lambda x.v)\, \text{inr}(z) =(\lambda x.w)\, \text{inr}(z)
 \end{aligned}
 \right.
 = \left\{
 \begin{aligned}
-&t\,[\text{inl}(y)/x]  = s\, [\text{inl}(y)/x] \\
-&t\,[\text{inr}(z)/x]  = s\, [\text{inr}(z]/x] 
+&v\,[\text{inl}(y)/x]  = w\, [\text{inl}(y)/x] \\
+&v\,[\text{inr}(z)/x]  = w\, [\text{inr}(z)/x] 
 \end{aligned}
 \right.
 \end{equation}
-Next, considering the equations above, $\eta_{case}$, and the $\alpha$-equivalence we reason as follows:
+Next, considering the equations above and  $\eta_{case}$ we reason as follows:
 \begin{equation*}
 \begin{split}
-  t = & t[x'/x] = \text{case } x'  
+ v &= \text{case } x'  
     \left\{ \begin{aligned}
-    \inl_{\typeI}(y) \Rightarrow t\,[\text{inl}(y)/x] ;  
-    \inl_{\typeI}(z) \Rightarrow t\,[\text{inr}(z)/x]
-  \end{aligned}  \right\} & (\alpha,\eta_{case})\\
+    \inl_{\typeI}(y) \Rightarrow v\,[\text{inl}(y)/x] ;  
+    \inl_{\typeI}(z) \Rightarrow v\,[\text{inr}(z)/x]
+  \end{aligned}  \right\} & (\eta_{case})\\
   & = \text{case } x'  
     \left\{ \begin{aligned}
-    \inl_{\typeI}(y) \Rightarrow s\,[\text{inl}(y)/x] ;  
-    \inl_{\typeI}(z) \Rightarrow s\,[\text{inr}(z)/x]
-  \end{aligned}  \right\} = s & (\text{\autoref{eq:beta_red}},\eta_{case},\alpha)
+    \inl_{\typeI}(y) \Rightarrow w\,[\text{inl}(y)/x] ;  
+    \inl_{\typeI}(z) \Rightarrow w\,[\text{inr}(z)/x]
+  \end{aligned}  \right\} = w & (\text{\autoref{eq:beta_red}},\eta_{case})
 \end{split}
 \end{equation*}
-Finally, it is straightforward that $ t=s \implies \lambda x.t = \lambda x.s$.
+Finally, we derive $ \lambda x.v = \lambda x.w$ from the conjunture.
 
 
 \vspace{5pt}
 
 \subsubsection{Properties}
 
+Next, we will show that the programs we have defined verify certain properties of their namesake operations in Boolean algebra. Given we have just established the extensionality of the copairing, it follows that if the desired properties hold for the injections, then they also hold for any terms of type $\typeI \oplus \typeI$.
+
   \begin{lemma} \label{lemma:inl_neutral}
-     $\inl(*)$ acts as the neutral element for conjunction, whereas $\inr(*)$ serves as the absorbing element, \ie
-     $$ \textbf{Conjunction} \, [\inl(*)/v,w'/w ] = w'  \quad \text{and} \quad \textbf{Conjunction} \, [\inr(*)/v,w'/w ] = \inr(*)$$.
+     $\inl(*)$ acts as the neutral element for conjunction, whereas $\inr(*)$ serves as the absorbing element, \ie,  for $ \Gamma \vljud v: \typeI \oplus \typeI$
+     \[
+      \left\{
+      \begin{aligned}
+      & \Gamma \vljud \textbf{Conjunction} \, (\inl(*),v) = v  \\
+      & \Gamma \vljud \textbf{Conjunction} \, (\inr(*), v) = \inr(*)
+      \end{aligned}
+      \right.
+      \]
   \end{lemma}
 
   \begin{proof}
-    These properties follow from the equations $\beta_{case}^{inl}$, $\beta_{case}^{inr}$, $\beta_{\mathbb{I}_{e}}$, and $\eta_{\text{dis}}$.
+    These properties follow from the equations $\beta_{case}^{inl}$, $\beta_{case}^{inr}$, $\beta_{\mathbb{I}_{e}}$, $\eta_{\mathbb{I}_{e}}$, and $ax_\text{dis}$.
 
     \begin{equation*}
     \begin{split}
-      & \textbf{Conjunction} \, [\inl(*)/v,w'/w ] \\
-      & = \text{case } \inl(*)\,
-  \{\inl_{\typeI}(x) \Rightarrow x \text{ to} *. \, w' ;
-  \, \inr_{\typeI}(y) \Rightarrow y \text{ to} *. \,  \text{dis}(w') \text{ to} *. \inr_{\typeI}(*)
+      & \textbf{Conjunction} \, (\inl(*),v) \\
+      & \triangleq  \text{case } \inl(*)\,
+  \{\inl(x) \Rightarrow x \text{ to} *. \, w' ;
+  \, \inr(y) \Rightarrow y \text{ to} *. \,  \text{dis}(w') \text{ to} *. \inr(*)
   \} \\
   & = * \text{ to} *. \, w' & (\beta_{case}^{inl}) \\
-  & =  * \text{ to} *. \, w' & (\beta_{\mathbb{I}_{e}}) \\
-  & = w'
+  & = w' & (\beta_{\mathbb{I}_{e}}) 
     \end{split}
     \end{equation*}
 
-    For the second equality to be well-defined, we observe that the context of $ w'$ must be empty. Moreover, we remark on the following:
+    For the second equality, by the extensionality of the coparing we need to prove that 
+     \[
+      \left\{
+      \begin{aligned}
+      &   \textbf{Conjunction} \, (\inr(*), \inl(z)) = \inr(*)  \\
+      & \textbf{Conjunction} \, (\inr(*), \inr(z)) = \inr(*)
+      \end{aligned}
+      \right.
+      \]
+
+    For the first equation, we reason as follows:
     \begin{align*}
-       & x:\typeI \vljud \, x \text{ to} *. \, \text{dis}(w) = x \text{ to} *. \, x : \typeI    & (\eta_{\text{dis}}) \\
-       & \implies - \vljud \,x \text{ to} *. \, \text{dis}(w)[*/x] = x \text{ to} *. \, x  [*/x]  : \typeI \\
-       & \implies - \vljud \, * \text{ to} *. \, \text{dis}(w) = * \text{ to} *. \, *  : \typeI \\
-       & \implies - \vljud \,  \text{dis}(w) = * : \typeI & (\beta_{\mathbb{I}_{e}})
+      & \hspace{-22pt} \textbf{Conjunction} \, (\inr(*), \inl(z)) \\
+      & \hspace{-22pt}  \triangleq  \text{case } \inr(*)\,   \left\{\begin{aligned} 
+ &\inl(x) \Rightarrow x \text{ to} *. \,  \inl(z) ; \\
+  &\inr(y) \Rightarrow y \text{ to} *. \,  \text{dis}(\inl(z)) \text{ to} *. \inr(*) \end{aligned} 
+  \right\} \\
+  & \hspace{-22pt}  =  *  \text{ to} *. \,  \text{dis}(\inl(z)) \text{ to} *. \inr(*) & (\beta_{case}^{inr}) \\
+  & \hspace{-22pt}  =  *  \text{ to} *. \, z \text{  to} *. \inr(*) & (ax_\text{dis}, \beta_{case}^{inl}) \\
+  & \hspace{-22pt}  =  \inr(*) & (\beta_{\mathbb{I}_{e}},\eta_{\mathbb{I}_{e}}) \\
     \end{align*}
-
-
-
-    With the equation above in hand, we have:
-    \begin{align*}
-      & \hspace{-22pt} \textbf{Conjunction} \, [\inr(*)/v,w'/w ] \\
-      & \hspace{-22pt}  = \text{case } \inr(*)\,
-  \{\inl_{\typeI}(x) \Rightarrow x \text{ to} *. \, w' ;
-  \, \inr_{\typeI}(y) \Rightarrow y \text{ to} *. \,  \text{dis}(w') \text{ to} *. \inr_{\typeI}(*)
-  \} \\
-  & \hspace{-22pt}  =  * \, y \text{ to} *. \,  \text{dis}(w') \text{ to} *. \inr_{\typeI}(*) & (\beta_{case}^{inr}) \\
-  & \hspace{-22pt}  = \text{dis}(w') \text{ to} *. \inr_{\typeI}(*) & (\beta_{\mathbb{I}_{e}}) \\
-  & \hspace{-22pt}  = * \text{ to} *. \inr_{\typeI}(*) &  (\eta_\text{dis} \text{ and } \beta_{\mathbb{I}_{e}}) \\
-  & \hspace{-22pt}  =  \inr_{\typeI}(*)
-    \end{align*}
+      The second equation is obtained through similar reasoning.
   \end{proof}
 
- 
-  Note that the idempotency property of conjunction (for $\inl(*)$ and $\inr(*)$) follows directly from the equalities above.
+
+  Note that the idempotency property of conjunction, --- that is, $ \textbf{Conjunction} \, (\inl(*), \inl(*)) = \inl(*)$ and  $ \textbf{Conjunction} \, (\inr(*), \inr(*)) = \inr(*)$ ---   follows directly from the equalities above.
 
 
-\begin{lemma} \label{lem:comm}
+\begin{proposition} \label{lem:comm}
   %The conjunction, disjunction, and negation of Boolean values satisfy the standard properties of classical logic. In particular, conjunction and disjunction are commutative, associative, idempotent, and distributive with respect to each other. Negation follows the double negation property and De Morgan's laws.
-  The conjunction of two terms is comutative , \ie,
- $$ \textbf{Conjunction} \, [v'/v,w'/w ] = \textbf{Conjunction} \, [w'/v,v'/w ]  $$ 
-\end{lemma}
+  The conjunction of two terms is commutative , \ie,
+ $$ \textbf{Conjunction} \, (v,w) = \textbf{Conjunction} \, (w,v)  $$ 
+\end{proposition}
 
 
 
 
 \begin{proof}
-  This property follows from the equations $\eta_{\text{case}}$,  $c_{\mathbb{I}_{e}}$, $c_{\mathbb{I}_{e}}$, $\eta_{\mathbb{I}_{e}}$, and $\eta_{\text{dis}}$, and $\alpha$-equivalence.
+ Once again, by the extensionality of copairing, it suffices to prove the equality for the four base cases:
+ \[
+      \left\{
+      \begin{aligned}
+      &   \textbf{Conjunction} \, (\inl(c), \inl(d)) =  \textbf{Conjunction} \, (\inl(d), \inl(c))  \\
+      &  \textbf{Conjunction} \, (\inl(c), \inr(d)) =  \textbf{Conjunction} \, (\inr(d), \inl(c))  \\
+      & \textbf{Conjunction} \, (\inr(c), \inl(d)) =  \textbf{Conjunction} \, (\inl(d), \inr(c))  \\
+      &   \textbf{Conjunction} \, (\inr(c), \inr(d)) =  \textbf{Conjunction} \, (\inr(d), \inr(c))  
+      \end{aligned}
+      \right.
+      \]
+
+These equalities follow from the equations 
+\(\beta_{case}^{inl}\), \(\beta_{case}^{inr}\), \(\eta_{\mathbb{I}_e}\), and \(ax_\text{dis}\). 
+We will explicitly prove the second equality below; the others follow by similar reasoning.
   
   \begin{align*}
-     &  \hspace{-20pt} \textbf{Conjunction} \, [v'/v,w'/w ] \\
-     &  \hspace{-20pt} =\text{case } v\,
-  \{\inl_{\typeI}(x) \Rightarrow x \text{ to} *. \, w ;
-  \, \inr_{\typeI}(y) \Rightarrow y \text{ to} *. \,  \text{dis}(w) \text{ to} *. \inr_{\typeI}(*)
-  \} [w'/w] \\
-  & \hspace{-20pt} =   \text{case } w' \,  
+     &   \textbf{Conjunction} \, (\inl(c), \inr(d)) \\
+     &  \triangleq \text{case } \inl(c)\,
   \left\{
-    \begin{aligned} 
-    &\inl_{\typeI}(a) \Rightarrow \text{ case } v' \, \Bigg\{ 
-      \begin{aligned}
-      & \inl_{\typeI}(x) \Rightarrow x \text{ to} *. \, \inl_{\typeI}(a);\\
-      & \inr_{\typeI}(y) \Rightarrow y \text{ to} *. \,  \text{dis}(\inl_{\typeI}(a)) \text{ to} *. \inr_{\typeI}(*)
-      \end{aligned} \Bigg\} \\
-    &\inr_{\typeI}(b) \Rightarrow \text{ case } v' \, \Bigg\{ 
-      \begin{aligned}
-      & \inl_{\typeI}(x) \Rightarrow x \text{ to} *. \, \inr_{\typeI}(b);\\
-      & \inr_{\typeI}(y) \Rightarrow y \text{ to} *. \,  \text{dis}( \inr_{\typeI}(b)) \text{ to} *. \inr_{\typeI}(*)
-      \end{aligned} \Bigg\}    \\ 
-  \end{aligned}  
-  \right\} &  (\eta_{\text{case}}) \\
-  & \hspace{-20pt} =   \text{case } w' \,  
-  \left\{
-    \begin{aligned} 
-    &\inl_{\typeI}(a) \Rightarrow \text{ case } v' \, \Bigg\{ 
-      \begin{aligned}
-      & \inl_{\typeI}(x) \Rightarrow x \text{ to} *. \,  \inl_{\typeI}(a);\\
-      & \inr_{\typeI}(y) \Rightarrow y \text{ to} *. \,  a \text{ to} *. \inr_{\typeI}(*)
-      \end{aligned} \Bigg\} \\
-    &\inr_{\typeI}(b) \Rightarrow \text{ case } v' \, \Bigg\{ 
-      \begin{aligned}
-      & \inl_{\typeI}(x) \Rightarrow x \text{ to} *. \, \inr_{\typeI}(b);\\
-      & \inr_{\typeI}(y) \Rightarrow y \text{ to} *. \,  b \text{ to} *.  \inr_{\typeI}(*)
-      \end{aligned} \Bigg\}    \\ 
-  \end{aligned}  
-  \right\} &  (\eta_{\text{dis}}) \\
-  &  \hspace{-20pt} =   \text{case } w' \,  
-  \left\{
-    \begin{aligned} 
-    &\inl_{\typeI}(a) \Rightarrow \text{ case } v' \, \Bigg\{ 
-      \begin{aligned}
-      & \inl_{\typeI}(x) \Rightarrow x \text{ to} *. \,  a \text{ to} *. \inl_{\typeI}(*) \, ;\\
-      & \inr_{\typeI}(y) \Rightarrow y \text{ to} *. \,  a \text{ to} *. \inl_{\typeI}(*)
-      \end{aligned} \Bigg\} \\
-    &\inr_{\typeI}(b) \Rightarrow \text{ case } v' \, \Bigg\{ 
-      \begin{aligned}
-      & \inl_{\typeI}(x) \Rightarrow x \text{ to} *. \, b \text{ to} *. \, \inr_{\typeI}(*);\\
-      & \inr_{\typeI}(y) \Rightarrow y \text{ to} *. \,  b \text{ to} *.  \inr_{\typeI}(*)
-      \end{aligned} \Bigg\}    \\ 
-  \end{aligned}  
-  \right\} &  (\eta_{\mathbb{I}_{e}}) \\
-   &  \hspace{-20pt} =   \text{case } w' \,  
-  \left\{
-    \begin{aligned} 
-    &\inl_{\typeI}(a) \Rightarrow \text{ case } v' \, \Bigg\{ 
-      \begin{aligned}
-      & \inl_{\typeI}(x) \Rightarrow a \text{ to} *. \,  \inl_{\typeI}(*) [x \text{ to} *. \, * /* ] ;\\
-      & \inr_{\typeI}(y) \Rightarrow a \text{ to} *. \,  \inl_{\typeI}(*) [y \text{ to} *. \, * /* ]
-      \end{aligned} \Bigg\} \\
-    &\inr_{\typeI}(b) \Rightarrow \text{ case } v' \, \Bigg\{ 
-      \begin{aligned}
-      & \inl_{\typeI}(x) \Rightarrow b \text{ to} *. \, \inl_{\typeI}(*) [x \text{ to} *. \, * /* ];\\
-      & \inr_{\typeI}(y) \Rightarrow b \text{ to} *. \,  \inl_{\typeI}(*) [y \text{ to} *. \, * /* ]
-      \end{aligned} \Bigg\}    \\ 
-  \end{aligned}  
-  \right\} &  (c_{\mathbb{I}_{e}}) \\
-  & \hspace{-20pt} =   \text{case } w' \,  
-  \left\{
-    \begin{aligned} 
-    &\inl_{\typeI}(a) \Rightarrow \text{ case } v' \, \Bigg\{ 
-      \begin{aligned}
-      & \inl_{\typeI}(x) \Rightarrow a \text{ to} *. \,  \inl_{\typeI}(x);\\
-      & \inr_{\typeI}(y) \Rightarrow a \text{ to} *. \,  \inr_{\typeI}(y)
-      \end{aligned} \Bigg\} \\
-    &\inr_{\typeI}(b) \Rightarrow \text{ case } v' \, \Bigg\{ 
-      \begin{aligned}
-      & \inl_{\typeI}(x) \Rightarrow b \text{ to} *. \, x \text{ to} *. \, \inr_{\typeI}(*);\\
-      & \inr_{\typeI}(y) \Rightarrow b \text{ to} *. \,  y \text{ to} *.  \inr_{\typeI}(*)
-      \end{aligned} \Bigg\}    \\ 
-  \end{aligned}  
-  \right\} &  (\eta_{\mathbb{I}_{e}}) \\
-&\hspace{-20pt} =  \text{case } w' \,  
-\left\{
-  \begin{aligned} 
-  &\inl_{\typeI}(a) \Rightarrow \text{ case } v' \, \Bigg\{ 
     \begin{aligned}
-    & \inl_{\typeI}(x) \Rightarrow a \text{ to} *. \, \inl_{\typeI}(x);\\
-    & \inr_{\typeI}(y) \Rightarrow a \text{ to} *. \inr_{\typeI}(y)
-    \end{aligned} \Bigg\} \\
-  &\inr_{\typeI}(b) \Rightarrow \text{ case } v' \, \Bigg\{ 
-    \begin{aligned}
-    & \inl_{\typeI}(x) \Rightarrow b \text{ to} *. \, \text{dis}(\inr_{\typeI}(x)) \text{ to} *. \, \inr_{\typeI}(*);\\
-    & \inr_{\typeI}(y) \Rightarrow b \text{ to} *. \,  \text{dis}(\inr_{\typeI}(y)) \text{ to} *. \inr_{\typeI}(*)
-    \end{aligned} \Bigg\}    \\ 
-\end{aligned}  
-\right\} &  (\eta_{\text{dis}}) \\
-& \hspace{-20pt} = \text{case } w'\,
-\{\inl_{\typeI}(a) \Rightarrow a \text{ to} *. \, v' ;
-\, \inr_{\typeI}(b) \Rightarrow b \text{ to} *. \,  \text{dis}(v') \text{ to} *. \inr_{\typeI}(*)
-\} &  (\eta_{case}) \\
-& \hspace{-20pt} = \textbf{Conjunction} \, [w'/v,v'/w ] 
-  \end{align*}
-
+    &\inl(x) \Rightarrow x \text{ to} *. \, \inr(d) ;\\
+  \,& \inr(y) \Rightarrow y \text{ to} *. \,  \text{dis}(\inr(d)) \text{ to} *. \inr(*)
+  \end{aligned} 
+  \right\} \\
+  & = c \text{  to} *. \, \inr(*) &  (\beta_{case}^{inl}) \\
+  & =  \text{dis}(\inl(c)) \text{ to} *. \inr(*) & (ax_\text{dis}, \beta_{case}^{inl}) \\
+  &= d \text{  to} *. \, \text{dis}(\inl(c)) \text{ to} *. \inr(*) & (\eta_{\mathbb{I}_e}) \\
+  & = \text{case } \inr(d)\, \left\{ \begin{aligned}
+    &\inl(x) \Rightarrow x \text{ to} *. \, \inl(c) ;\\
+  \,& \inr(y) \Rightarrow y \text{ to} *. \,  \text{dis}(\inl(c)) \text{ to} *. \inr(*)
+  \end{aligned} \right\} & (\beta_{case}^{inr}) \\
+  & \triangleq \textbf{Conjunction} \, (\inr(d), \inl(c))
+\end{align*}
 \end{proof}
 
-To address the double negation property and De~Morgan's laws, we begin by establishing a key equality known as the \emph{syntactic fusion law}.
+\todo[inline]{Isto vai sair daqui e ir para a prova de soundeness classica}
 
-\begin{lemma} [\emph{Syntactic fusion law}]
+%To address the double negation property and De~Morgan's laws, we begin by establishing a key equality known as the \emph{syntactic fusion law}.
+
+
+\begin{proposition} [\emph{Syntactic fusion law}]
   The following equality holds:
   \begin{equation*}
    v \left[ \left(\text{case } a \,\{\inl_{\typeB}(x) \Rightarrow w ; \, \inr_{\typeA}(y) \Rightarrow u\}\right)  / z \right]  =  \text{case } a \,\{\inl_{\typeB}(x) \Rightarrow v[w/z] ; \, \inr_{\typeA}(y) \Rightarrow v[u/z]\}.
   \end{equation*}
-\end{lemma}
+\end{proposition}
 
   \begin{proof}
     
-This equality follows from  $\alpha$-equivalence and the equations $\eta_{\text{case}}$, $\beta_{\text{case}}^{\text{inl}}$, and $\beta_{\text{case}}^{\text{inr}}$ . 
+This equality follows from the extensionality of copairing and equations  $\beta_{\text{case}}^{\text{inl}}$, and $\beta_{\text{case}}^{\text{inr}}$. 
+By the extensionality of copairing, it suffices to prove the equility for  $\text{inl}(b)$ and $\text{inl}(b)$.
+We present the explicit proof for $\text{inl}(c)$; the proof for  $\text{inl}(d)$ follows similar reasoning.
 
 \begin{equation*}
 \begin{split}
-  & v \left[ \left(\text{case } a \,\{\inl_{\typeB}(x) \Rightarrow w ; \, \inr_{\typeA}(y) \Rightarrow u\}\right)  / z \right] & \\
-  & =v  \left[ \left(\text{case } a \,\{\inl_{\typeB}(x') \Rightarrow w[x'/x] ; \, \inr_{\typeA}(y') \Rightarrow u[y'/y]\}\right)  / z \right] & (\alpha) \\
-  & = \text{case } a\,
-\left\{
-    \begin{aligned} 
-    &\inl_{\typeI}(x) \Rightarrow v \left[ \text{case } \inl_{\typeI}(x)\,
-\left\{
-    \begin{aligned} 
-    &\inl_{\typeI}(x') \Rightarrow w[x'/x] ; \\
-    &\inr_{\typeI}(y') \Rightarrow u[y'/y]  \\ 
-  \end{aligned}  
-  \right\} / z \right] ; \\
-    &\inr_{\typeI}(y) \Rightarrow   v \left[ \text{case } \inr_{\typeI}(y)\,
-\left\{
-    \begin{aligned} 
-    &\inl_{\typeI}(x') \Rightarrow w[x'/x] ; \\
-    &\inr_{\typeI}(y') \Rightarrow u[y'/y]  \\ 
-  \end{aligned}  
-  \right\} / z \right] \\
-  \end{aligned}  
-  \right\} & (\eta_{\text{case}}) \\
-   & = \text{case } a \,\{\inl_{\typeB}(x) \Rightarrow v[w[x'/x][x/x']/z] ; \, \inr_{\typeA}(y) \Rightarrow v[u[y'/y][y/y']/z]\}   & (\beta_{\text{case}}^{\text{inl}} \text{ and } \beta_{\text{case}}^{\text{inr}}  ) \\
-   & =  \text{case } a \,\{\inl_{\typeB}(x) \Rightarrow v[w/z] ; \, \inr_{\typeA}(y) \Rightarrow v[u/z]\}   
+  & v \left[ \left(\text{case } \text{inl}(b) \,\{\inl(x) \Rightarrow w ; \, \inr(y) \Rightarrow u\}\right)  / z \right] & \\
+  & =  v [w[b/x]\,/z] & (\beta_{\text{case}}^{\text{inl}})\\
+  & =   v [[w/z]\,[b/x]]    \\
+   & =  \text{case } \text{inl}(b) \,\{\inl_{\typeB}(x) \Rightarrow v[w/z] ; \, \inr_{\typeA}(y) \Rightarrow v[u/z]\}   & (\beta_{\text{case}}^{\text{inl}})
 \end{split}
 \end{equation*}
   \end{proof}
@@ -1191,137 +1114,77 @@ This equality follows from  $\alpha$-equivalence and the equations $\eta_{\text{
 
 \begin{lemma} \label{lem:dneg}
   The double negation of a term $w$ is equivalent to that term, \ie, 
-  $$\textbf{Negation} [\textbf{Negation} \, [w/v] / v ] = w.$$
+  $$\textbf{Negation} (\textbf{Negation} (v) ) = v.$$
 \end{lemma}
 
 \begin{proof}
-
-  This property follows from the syntactic fusion law and equations $\beta_{case}^{inl}$, $\beta_{case}^{inr}$, and  $\eta_{\text{case}}.$
+  By the extensionality of copairing, it suffices to prove the equality for the base cases, \ie, the injections. This follows directly from the equations \(\beta_{case}^{inl}\) and \(\beta_{case}^{inr}\). Once again, we will prove one of the resulting equalities explicitly; the other follows by similar reasoning.
   
     \begin{equation*}
     \begin{split}
-       &\textbf{Negation} [\textbf{Negation} \, [w/v] / v ]  \\
-        & \triangleq   \textbf{Negation} [ \text{case } w\,
-    \{\inl_{\typeI}(x) 
-        \Rightarrow \inr_{\typeI}(x) ; \,
-      \inr_{\typeI}(y) \Rightarrow \inl_{\typeI}(y)
-    \}/v] \\
-    & = \text{case } w\,
-\left\{
-    \begin{aligned} 
-    &\inl_{\typeI}(x) \Rightarrow \textbf{Negation}[\inr_\typeI(x)/v]; \\
-    &\inr_{\typeI}(y) \Rightarrow  \textbf{Negation}[\inl_\typeI(y)/v]  \\ 
-  \end{aligned}  
-  \right\} & (\text{syntactic fusion law}) \\
-    & =  \text{case } w\,
-    \{\inl_{\typeI}(x) 
-        \Rightarrow \inr_{\typeI}(x) ; \,
-      \inl_{\typeI}(x) \Rightarrow \inr_{\typeI}(y)
-    \} & (\beta_{case}^{inl} \text{ and }\beta_{case}^{inr}) \\
-    & = w & (\eta_{case})
+       &\textbf{Negation} (\textbf{Negation} (\inl(z)) )  \\
+        & \triangleq   \textbf{Negation} ( \text{case } \inl(z) \,
+    \{\inl(x) 
+        \Rightarrow \inr(x) ; \,
+      \inr(y) \Rightarrow \inl(y)
+    \}) \\
+    & = \textbf{Negation}(\inr(z)) & (\beta_{case}^{inl}) \\
+    & = \inl(z) & (\beta_{case}^{inr})
     \end{split} 
     \end{equation*}
 \end{proof}
 
 \begin{lemma} \label{lem:dmorgan} 
-  De Morgan's laws hold for terms  $\Gamma \vljud v': \typeI \oplus \typeI$ and $\Delta \vljud w: \typeI \oplus \typeI$, \ie, 
-  $$\textbf{Disjunction} [\textbf{Negation} \, [v'/v] / v, \textbf{Negation} \, [w'/v] / w ] =  \textbf{Negation}[\textbf{Conjunction} [v'/v, w'/w]  /v] $$ 
-  and 
-  $$\textbf{Conjunction} [\textbf{Negation} \, [v'/v] / v, \textbf{Negation} \, [w'/v] / w ] =  \textbf{Negation}[\textbf{Disjunction} [v'/v, w'/w]  /v].$$
+  De Morgan's laws hold for terms  $v: \typeI \oplus \typeI$ and $w: \typeI \oplus \typeI$, \ie, 
+  $$\textbf{Disjunction} (\textbf{Negation} (v) , \textbf{Negation} (w)) =  \textbf{Negation}(\textbf{Conjunction} (v, w)) $$ 
 \end{lemma}
 
 \begin{proof}
-  Both De Morgan's laws follow from the equations $\eta_{case}, \beta_{case}^{inl}$, $\beta_{case}^{inr}, c_{\mathbb{I}_{e}}, \eta_{\text{dis}} $, the syntatic fusion law (\text{SFL}), and $\alpha$-equivalence.
 
-  \begin{align*}
-  & \hspace{-27pt} \textbf{Disjunction} [\textbf{Negation} \, [v'/v] / v, \textbf{Negation} \, [w'/v] / w ] \\
-  & \hspace{-27pt} \triangleq \text{case }  \, 
-    \text{case } v  
+  Once again, by the extensionality of copairing, it suffices to prove the equality for the four base cases. The corresponding equalities follow from the equations 
+\(\beta_{case}^{inl}\), \(\beta_{case}^{inr}\) and \(c_{\mathbb{I}_e}\). 
+We will explicitly prove one of the equalities below; the others follow by similar reasoning.
+
+\begin{equation*}
+  \begin{split}
+  & \textbf{Disjunction} (\textbf{Negation} (\inl(c)), \textbf{Negation}, (\inl(d))) \\ 
+  & \triangleq \text{case }  \, 
+    \text{case } \inl(c)  
     \left\{ \begin{aligned}
-    & \inl_{\typeI}(a) \Rightarrow \inr_{\typeI}(a); \\
-    & \inl_{\typeI}(b) \Rightarrow \inl_{\typeI}(b) 
+    & \inl(a) \Rightarrow \inr(a); \\
+    & \inl(b) \Rightarrow \inl(b) 
   \end{aligned}  \right\}  
    \left\{ \begin{aligned}
-    & \inl_{\typeI}(x) \Rightarrow  \ldots ; \\
-    & \inl_{\typeI}(y) \Rightarrow  \ldots
-   \end{aligned} \right\} [v/v']\\
-   & \hspace{-27pt} = \text{case }  v'
+    & \inl(x) \Rightarrow  \ldots ; \\
+    & \inl(y) \Rightarrow  \ldots
+   \end{aligned} \right\} \\
+   &  =  c \text{ to} *. \, \text{case } \inr(d)  
     \left\{ \begin{aligned}
-      &\inl_{\typeI}(c) \Rightarrow \text{case } \, \text{case } \inl_{\typeI}(c)
-        \left\{ \begin{aligned}  
-          \inl_{\typeI}(a) \Rightarrow \inr_{\typeI}(a) ; \\
-          \inr_{\typeI}(b) \Rightarrow \inl_{\typeI}(b)
-          \end{aligned} \right\} 
-          \, \ldots; \\
-      & \inl_{\typeI}(d) \Rightarrow \text{case } \, \text{case } \inr_{\typeI}(d)
-        \left\{ \begin{aligned}  
-          \inl_{\typeI}(a) \Rightarrow \inr_{\typeI}(a) ; \\
-          \inr_{\typeI}(b) \Rightarrow \inl_{\typeI}(b)
-          \end{aligned} \right\} 
-           \, \ldots 
-    \end{aligned} \right\} 
-   \, & (\eta_{case}) \\
-    & \hspace{-27pt} = \text{case }  v'
+    & \inl(x) \Rightarrow \inr(a); \\
+    & \inl(y) \Rightarrow \inl(b) 
+  \end{aligned}  \right\}   & (\beta_{case}^{inl},\beta_{case}^{inr}) \\
+  & =  \text{case } c \text{ to} *. \inr(d)  
     \left\{ \begin{aligned}
-      &\inl_{\typeI}(c) \Rightarrow \text{case } \inr_{\typeI}(c)
-           \left\{ \begin{aligned}
-            & \inl_{\typeI}(x) \Rightarrow  \ldots; \\
-            & \inr_{\typeI}(y) \Rightarrow  \ldots
-            \end{aligned} \right\}; \\
-      & \inl_{\typeI}(d) \Rightarrow \text{case } \inl_{\typeI}(d) 
-           \left\{ \begin{aligned}
-            & \inl_{\typeI}(x) \Rightarrow  \ldots; \\
-            & \inr_{\typeI}(y) \Rightarrow  \ldots
-            \end{aligned} \right\} 
-    \end{aligned} \right\} 
-   \, & \begin{aligned} & ( \beta_{case}^{inl} \\ & \text{and} \\  &\beta_{case}^{inr}) \end{aligned} \\
-   & \hspace{-27pt} = \text{case }  v'
-    \left\{ \begin{aligned}
-      &\inl_{\typeI}(c) \Rightarrow  c \text{ to} *. \,   \textbf{Negation}[w'/v];  \\
-      & \inl_{\typeI}(d) \Rightarrow  d \text{ to} *. \,  \text{dis}\left(\text{case } w'
-        \left\{ \begin{aligned}  
-          \inl_{\typeI}(a) \Rightarrow \inr_{\typeI}(a) ; \\
-          \inr_{\typeI}(b) \Rightarrow \inl_{\typeI}(b)
-          \end{aligned} \right\}\right) \ldots
-    \end{aligned} \right\} 
-   \, &  \begin{aligned} & ( \beta_{case}^{inl} \\ & \text{and} \\  &\beta_{case}^{inr}) \end{aligned} \\
-      & \hspace{-27pt} = \text{case }  v'
-    \left\{ \begin{aligned}
-      &\inl_{\typeI}(c) \Rightarrow c \text{ to} *. \,   \textbf{Negation}[w'/v];  \\
-      & \inl_{\typeI}(d) \Rightarrow   d \text{ to} *. \, \text{dis}\left( w'\right) \text{ to} *. \,  \inl_{\typeI}(*)
-    \end{aligned} \right\}  
-   \, & (\eta_{\text{dis}}) \\
-      & \hspace{-27pt} = \text{case }  v'
-    \left\{ \begin{aligned}
-      &\inl_{\typeI}(c) \Rightarrow c \text{ to} *. \,   \textbf{Negation}[w'/v];  \\
-      & \inl_{\typeI}(d) \Rightarrow   d \text{ to} *. \, \text{dis}\left( w'\right) \text{ to} *. \,  \inr_{\typeI}(*) \left\{ \begin{aligned}  
-          \inl_{\typeI}(a) \Rightarrow \inr_{\typeI}(a) ; \\
-          \inr_{\typeI}(b) \Rightarrow \inl_{\typeI}(b)
-          \end{aligned} \right\}
-    \end{aligned} \right\}  
-   \, & (\beta_{case}^{inr}) \\
-   & \hspace{-27pt} = \text{case }  v'
-    \left\{ \begin{aligned}
-      &\inl_{\typeI}(c) \Rightarrow  c \text{ to} *. \, \textbf{Negation}[ w'/v];  \\
-      & \inl_{\typeI}(d) \Rightarrow   d \text{ to} *. \, \text{dis}\left( w'\right) \text{ to} *. \textbf{Negation}[\inr_{\typeI}(*)/v]
-    \end{aligned} \right\}  
-   \, &  \\
-   & \hspace{-27pt} = \text{case }  v'
-    \left\{ \begin{aligned}
-      &\inl_{\typeI}(c) \Rightarrow  \textbf{Negation}[c \text{ to} *. \, w'/v];  \\
-      & \inl_{\typeI}(d) \Rightarrow  \textbf{Negation}[ d \text{ to} *. \, \text{dis}\left( w'\right) \text{ to} *.\inr_{\typeI}(*)/v]
-    \end{aligned} \right\}  
-   \, & (c_{\mathbb{I}_{e}}) \\
-   & \hspace{-27pt} = \textbf{Negation}\left[ \text{case } v'\,
-\{\inl_{\typeI}(c) \Rightarrow c \text{ to} *. \, w ; 
-\, \inr_{\typeI}(d) \Rightarrow d \text{ to} *. \,  \text{dis}(w) \text{ to} *. \inr_{\typeI}(*)
-\} / v\right] 
-   \, & (\text{SFL})  \\
-   & \hspace{-27pt} = \textbf{Negation}[\textbf{Conjunction} [v'/v, w',w]  /v] & (\alpha)
-  \end{align*}
+    & \inl(a) \Rightarrow \inr(a); \\
+    & \inl(b) \Rightarrow \inl(b) 
+  \end{aligned}  \right\}    & (c_{\mathbb{I}_e})\\
+  & = \text{case }  \text{case } \inl(c)\,
+  \left\{
+    \begin{aligned}
+    &\inl(x) \Rightarrow x \text{ to} *. \, \inr(d) ;\\
+  \,& \inr(y) \Rightarrow y \text{ to} *. \,  \text{dis}(\inr(d)) \text{ to} *. \inr(*)
+  \end{aligned} 
+  \right\} \left\{ \begin{aligned}
+    &  \ldots; \\
+    & \ldots
+  \end{aligned}  \right\} & (\beta_{case}^{inl})\\
+  & \triangleq \textbf{Negation}(\textbf{Conjunction} (\inl(c), \inr(d))) \\
+  \end{split}
+\end{equation*}
+
 \end{proof}
 
-The remaining properties can be proven through similar reasoning. 
+The remaining properties such can be proven through similar reasoning. 
 
 
 \subsection{Metric equational system}
