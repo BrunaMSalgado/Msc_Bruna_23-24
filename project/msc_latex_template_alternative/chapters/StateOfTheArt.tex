@@ -794,22 +794,22 @@ The remaining $\beta$ e $\eta$ equations follow similar reasoning.
 The following example demonstrates how these equations can be used in practice.
 
 \begin{example} \label{ex:eq_contex_gen}
-  For instance, consider a program that receives a tensor of terms, where the first component is $*$, and discards it. Such a program can be simplified to the term corresponding to the second component of the tensor. In other words, we will show that the $\lambda$-term
+ For instance, consider a program that receives a tensor of terms whose second component is $*$ and discards it. This program can be simplified to the term corresponding to the first component of the tensor. In other words, we will show that the $\lambda$-term
 \[
- - \vljud \big(\lambda z : \typeI \otimes \typeA.\, \text{pm } z \text{ to } x \otimes y.\, x \text{ to } *.\, y\big)\, (* \otimes v) : \typeA
+ - \vljud \big(\lambda z : \typeA \otimes \typeI.\, \text{pm } z \text{ to } x \otimes y.\, y \text{ to } *.\, x\big)\, (v \otimes *) : \typeA
 \]
 can be simplified to $v : \typeA$.
 
 Applying equation $\beta$ , we have:
 \begin{equation*}
   \begin{split}
- - \triangleright \big(\lambda z : \typeI \otimes \typeA. \, \text{pm } z \text{ to } x \otimes y. \, x \text{ to } *.\, y \big) \, (* \otimes  v) 
-&= \text{pm }  * \otimes \, w \text{ to } x \otimes y. \, x \text{ to } *.\, y  : \typeA. 
+ - \triangleright \big(\lambda z : \typeA \otimes \typeI. \, \text{pm } z \text{ to } x \otimes y. \, y \text{ to } *.\, x \big) \, (v \otimes  *) 
+&= \text{pm }  v \otimes \, * \text{ to } x \otimes y. \, y \text{ to } *.\, x  : \typeA. 
  \end{split}
 \end{equation*}
 Next, applying  equation $\beta_{\otimes_e}$, it follows:
 \begin{align*}
-\text{pm }  * \otimes \, v \text{ to } x \otimes y. \, x \text{ to } *.\, y  
+\text{pm }  v \otimes \, * \text{ to } x \otimes y. \, y \text{ to } *.\, x  
 =   * \text{ to } *.\, v: \typeA
 \end{align*}
 Finally, applying  equation $\beta_{\typeI_e}$, we have:
@@ -861,12 +861,13 @@ That is, \( [s] \) is the set of all elements that are considered “the same”
 
 
 \begin{definition} \label{def:linear_lambda_theory}
-  Consider a pair $(G, \Sigma)$, where $G$ is a set of ground types and $\Sigma$ is a set of sorted operation symbols. A \emph{$\lambda$-theory} is a triple $((G, \Sigma), Ax)$, where $Ax$ is a set of equations-in-context over $\lambda$-terms constructed from $(G, \Sigma)$. The elements of $Ax$ are called the \emph{axioms} of the theory.
+  Consider a pair $(G, \Sigma)$, where $G$ is a set of ground types and $\Sigma$ is a set of sorted operation symbols. A \emph{ linear $\lambda$-theory} is a triple $((G, \Sigma), Ax)$, where $Ax$ is a set of equations-in-context over $\lambda$-terms constructed from $(G, \Sigma)$. The elements of $Ax$ are called the \emph{axioms} of the theory.
 \end{definition}
-
 
  Let $Th(Ax)$ denote the smallest be the smallest
  congruence that containing $Ax$, the equations presented in \autoref{fig:equations-linear-lambda}, and closed under exchange and substitution (\autoref{lem:exh_and_sub}). The elements of $Th(Ax)$ are called the \emph{theorems} of the theory.
+
+ We will often denote the triple $((G, \Sigma), Ax)$ by $T$ when referring to a  linear $\lambda$-theory.
 
  For instance recall \autoref{ex:eq_contex_gen}: 
  $$ - \vljud \big(\lambda z : \typeI \otimes \typeA.\, \text{pm } z \text{ to } x \otimes y.\, x \text{ to } *.\, y\big)\, (* \otimes v)=  v : \typeA $$
@@ -1147,7 +1148,7 @@ We will explicitly prove one of the equalities below; the others follow by simil
 
 \begin{equation*}
   \begin{split}
-  & \textbf{Disjunction} (\textbf{Negation} (\inl(c)), \textbf{Negation}, (\inl(d))) \\ 
+  & \textbf{Disjunction} (\textbf{Negation} (\inl(c)), \textbf{Negation}, (\inr(d))) \\ 
   & \triangleq \text{case }  \, 
     \text{case } \inl(c)  
     \left\{ \begin{aligned}
@@ -1189,8 +1190,8 @@ The remaining properties such can be proven through similar reasoning.
 
 \subsection{Metric equational system}
 
-\emph{Metric equations} \cite{mardare2016quantitative,mardare2017axiomatizability} are a strong candidate for reasoning about approximate program equivalence. These equations take the form of \gls{metric-equation}, where  $\epsilon$ is a non-negative rational representing the ``maximum distance" between the two terms $t$ and $s$. The metric equational system for affine lambda calculus is depicted in \autoref{fig:metric deductive system}. 
-Strictly speaking, the equations $\Gamma \triangleright v = w : A$ in \autoref{fig:equations-linear-lambda}, which in this setting abbreviate $\Gamma \triangleright w =_0 v : A$, are also part of the metric equational system.
+\emph{Metric equations} \cite{mardare2016quantitative,mardare2017axiomatizability} are a strong candidate for reasoning about approximate program equivalence. These equations take the form of \gls{metric-equation}, meaning they are  \emph{at most} at a distance $\varepsilon$ from each other. The metric equational system for linear lambda calculus is depicted in \autoref{fig:metric deductive system}. 
+Note that the equations $\Gamma \triangleright v = w : A$ in \autoref{fig:equations-linear-lambda}, which in this setting abbreviate $\Gamma \triangleright w =_0 v : A$, are also part of the metric equational system.
 
 
 \begin{figure} [H]
@@ -1290,15 +1291,7 @@ $\begin{array}{c}
 \end{array}
 $
 \end{minipage}
-\hspace{95pt}
-\begin{minipage}[t]{0.3\textwidth}
-$\begin{array}{c}
-    v =_{q} w    \\
-    \hline
-  \text{dis}(v) =_{q} \text{dis}(w)
-\end{array}
-$ \end{minipage}
-\hspace{-35pt}
+\hspace{195pt}
 \begin{minipage}[t]{0.3\textwidth}
   $\begin{array}{c}
       v=_{q} w \quad v'=_{r} w' \\
@@ -1340,59 +1333,65 @@ $ \end{minipage}
 \label{fig:metric deductive system}
 \end{figure}
 
-Here, $\text{perm} (\Gamma)$ denotes the set of possible permutions of context $\Gamma$. The rules (refl), (trans), and (sym)  generalize the properties of reflexivity, transitivity, and symmetry of equality.  Rule (weak) asserts that if two terms are at a maximum distance $q$ from each other, then they are also separated by any $r \geq q$. Rule (arch) states that if $v =_r w$ for all approximations $r$ of $q$, then it necessarily follows that $v =_q w$. The rule  (join) expresses that if several maximum distances between two terms are known, the actual maximum distance between them is the minimum of these distances. In particular, it is always the
- case that $v =_{\infty} w$.  The rule that follows conveys that if the maximum distance between two terms $v$ and $w$ is $q$, and the maximum distance between terms $v'$ and $w'$ is $r$, then the maximum distance between the tensor products $v \otimes v'$ and $w \otimes w'$ is $q + r$. The remaining rules follow similar reasoning.
+Here, $\text{perm} (\Gamma)$ denotes the set of possible permutations of context $\Gamma$. 
+The rules (refl), (trans), and (sym)  generalize the properties of reflexivity, transitivity, and symmetry of equality. 
+The rule (weak) asserts that if two terms are at most at a distance $q$ from each other, then they are also at most at a distance $r$ for any $r \geq q$. Rule (arch) states that if $v =_r w$ for all approximations $r$ of $q$, then it necessarily follows that $v =_q w$. 
+The rule  (join) expresses that if several maximum distances between two terms are known, then one can safely assume the minimum of these distances. In particular, it is always the case that $v =_{\infty} w$.  
+Rule (sym) conveys that if the maximum distance between two terms $v$ and $w$ is $q$, and the maximum distance between terms $v'$ and $w'$ is $r$, then the maximum distance between the tensor products $v \otimes v'$ and $w \otimes w'$ is $q + r$, \ie, the distances compound additively. The remaining rules follow similar reasoning.
 
 % dizer o que é perm
 
 
 \begin{example} \label{ex:metric_eqs}
-  To ilustrate the usefulness of these equations, consider the program $P$ that recieves a tensor product, swaps its elements and then applies a function $f: \typeA \to \typeD \in \Sigma $ to the new second element of the tensor  pair:
+  To ilustrate the usefulness of these equations, consider the program $P$ that receives a tensor product, swaps its elements and then applies a function $f: \typeA \to \typeD \in \Sigma $ to the new second element of the tensor pair:
 \begin{equation*}
 \begin{split}
-& P = x : \mathbb{A},  y : \mathbb{B} \triangleright \text{pm} \hspace{3 pt} x \otimes y\hspace{3 pt} \text{to} \hspace{3 pt} a \otimes b. \hspace{1pt} b \otimes f(a) : \mathbb{B} \otimes \mathbb{D} &
+& \textbf{SwapTensorf} \triangleq x : \mathbb{A},  y : \mathbb{B} \triangleright \text{pm} \hspace{3 pt} x \otimes y\hspace{3 pt} \text{to} \hspace{3 pt} a \otimes b. \hspace{1pt} b \otimes f(a) : \mathbb{B} \otimes \mathbb{D} &
 \end{split}
 \end{equation*}
-Let $ f^{\epsilon} $ be an erroneous implementation of $ f $. The program above is thus rewritten as:
+Let $ f^{\varepsilon} $ be an erroneous implementation of $ f $. The program above is thus rewritten as:
 \begin{equation*}
   \begin{split}
-  & P^{\epsilon} = x : \mathbb{A},  y : \mathbb{B} \triangleright \text{pm} \hspace{3 pt} x \otimes y\hspace{3 pt} \text{to} \hspace{3 pt} a \otimes b. \hspace{1pt} b \otimes f(a)^{\epsilon}  : \mathbb{B} \otimes \mathbb{D} &
+  & \textbf{SwapTensorf}^{\varepsilon} \triangleq  x : \mathbb{A},  y : \mathbb{B} \triangleright \text{pm} \hspace{3 pt} x \otimes y\hspace{3 pt} \text{to} \hspace{3 pt} a \otimes b. \hspace{1pt} b \otimes f(a)^{\varepsilon}  : \mathbb{B} \otimes \mathbb{D} &
   \end{split}
   \end{equation*}
-Consider we can postulate the axiom $f^{\epsilon}(a) =_{\epsilon} f(a)$. Then, it is possible to show that $P^{\epsilon} =_{\epsilon} P $ using our metric equational system. The prove is as follows. The types and contexts are omitted for brevity as no ambiguity arises.
+Consider we  have the axiom $f^{\varepsilon}(a) =_{\varepsilon} f(a)$. Then it is possible to show that $\textbf{SwapTensorf}^{\varepsilon} =_{\varepsilon} \textbf{SwapTensorf} $ using our metric equational system. The proof is as follows. The types and contexts are omitted for brevity as no ambiguity arises.
 \begin{equation*}
   \begin{split}
-  1 \hspace{10 pt} & f(a)^{\epsilon} =_{\epsilon} f(a) \\
+  1 \hspace{10 pt} & f(a)^{\varepsilon} =_{\varepsilon} f(a) \\
   2 \hspace{10 pt} &  b =_{0} b & {(\text{refl})} \\
-  3 \hspace{10 pt} & b \otimes f(a)^{\epsilon}  =_{\epsilon} b \otimes f(a)  & \text{($1,2,\otimes_i$)} \\
+  3 \hspace{10 pt} & b \otimes f(a)^{\varepsilon}  =_{\varepsilon} b \otimes f(a)  & \text{($1,2,\otimes_i$)} \\
   4 \hspace{10 pt} &   x \otimes y =_{0}  x \otimes y  &{(\text{refl})}  \\
-  5\hspace{10 pt}& \text{pm} \hspace{3 pt} x \otimes y\hspace{3 pt} \text{to} \hspace{3 pt} a \otimes b. \hspace{1pt} b \otimes f(a)^{\epsilon} =_{\epsilon} \text{pm} \hspace{3 pt} x \otimes y\hspace{3 pt} \text{to} \hspace{3 pt} a \otimes b. \hspace{1pt} b \otimes f(a) & \hspace{10pt} \text{($3,4,\otimes_e$)}
+  5\hspace{10 pt}& \text{pm} \hspace{3 pt} x \otimes y\hspace{3 pt} \text{to} \hspace{3 pt} a \otimes b. \hspace{1pt} b \otimes f(a)^{\varepsilon} =_{\varepsilon} \text{pm} \hspace{3 pt} x \otimes y\hspace{3 pt} \text{to} \hspace{3 pt} a \otimes b. \hspace{1pt} b \otimes f(a) & \hspace{10pt} \text{($3,4,\otimes_e$)}
   \end{split}
   \end{equation*}
 \end{example}
 
-
-Note that without a metric equation for conditionals, we cannot, for instance, reason about approximate equivalence in programs such as  $\textbf{Conjunction}$, discussed in the previous subsubsection. For example, it would be interesting to know whether, given that \( v' =_{\varepsilon} \inl_{\typeI}(*) \), it follows that
+Note that without a metric equation for conditionals, we cannot, for instance, reason about approximate equivalence in programs such as  $\textbf{Conjunction}$, discussed in the previous subsubsection. For example, it would be interesting to know whether, given that \( v' =_{\varepsilon} \inl_{\typeI}(*) \), it follows that.
 \[
-\textbf{Conjunction}[v/v', w/w'] =_{\varepsilon} \textbf{Conjunction}[\inl_{\typeI}(*)/v', w/w'].
+\textbf{Conjunction}(v, w) =_{\varepsilon} \textbf{Conjunction}(\inl_{\typeI}(*), w).
 \]
+This question will be addressed in the next chapter.
 
 
 \begin{definition} \label{def:metric_lambda_theory}
-  Consider a tuple \( (G, \Sigma) \), where \( G \) is a class of ground types and \( \Sigma \) is a class of sorted operation symbols of the form \( f : A_1, \ldots, A_n \to A \) with \( n \geq 1 \). A \emph{metric $\lambda$-theory} is a tuple \( ((G, \Sigma), Ax) \), where \( Ax \) is a class of \emph{metric equations-in-context} over  $\lambda$-terms constructed from \( (G, \Sigma) \).
+  Consider a tuple \( (G, \Sigma) \), where \( G \) is a set of ground types and \( \Sigma \) is a set of sorted operation symbols of the form \( f : A_1, \ldots, A_n \to A \) with \( n \geq 1 \). A \emph{metric $\lambda$-theory} is a tuple \( ((G, \Sigma), Ax) \), where \( Ax \) is a set of \emph{metric equations-in-context} over  $\lambda$-terms constructed from \( (G, \Sigma) \).
 \end{definition}
 
 The elements of \( Ax \) are called the \emph{axioms} of the theory. Let \( Th(Ax) \) denote the smallest class that contains \( Ax \) and is closed under the rules presented in \autoref{fig:equations-linear-lambda} (i.e., the classical equational system) and \autoref{fig:metric deductive system}. The elements of \( Th(Ax) \) are called the \emph{theorems} of the theory.
 
-For instance, in \autoref{ex:metric_eqs}, $\textbf{Conjunction}[v/v', w/w'] =_{\varepsilon} \textbf{Conjunction}[\inl_{\typeI}(*)/v', w/w']$ is a theorem.
+For instance, in \autoref{ex:metric_eqs}, $\textbf{SwapTensorf} =_{\varepsilon} \textbf{SwapTensorf}^\varepsilon$ is a theorem.
 
 
 
 \section{Category theory} \label{sec:catgories}
 
 
-Category theory originated as an effort to connect and unify two distinct areas of mathematics.  The goal was to study and classify specific geometric structures—such as topological spaces, manifolds, and bundles—by associating them with corresponding algebraic structures like groups, rings, and abelian groups. It became clear that a language was needed to connect geometric and algebraic objects—one not explicitly tailored to geometry or algebra. Only a language of such generality could allow meaningful discussion across both fields.  This is the birth of category theory.
-Described as "a language about nothing, and therefore about everything," category theory provides a highly general way of discussing mathematical concepts.  It was invented by Samuel Eilenberg and Saunders MacLane \cite{eilenbergGeneralTheoryNatural1945}. They organized various mathematical structures into categories called geometric others algebraic. To connect these categories, they defined functors, which map objects and morphisms from one category to another, much like functions do. They further introduced natural transformations, which provide a way to compare functors, translating the results of one functor into those of another. \cite{yanofskyMonoidalCategoryTheory2024}
+Category theory originated as an effort to connect and unify two distinct areas of mathematics.  The goal was to study and classify specific geometric structures—such as topological spaces, manifolds, and bundles—by associating them with corresponding algebraic structures like groups, rings, and abelian groups. It became clear that a language was needed to connect geometric and algebraic objects—one not explicitly tailored to geometry or algebra. Only a language of such generality could allow meaningful discussion across both fields.  This is the birth of category theory.
+Described as ``a language about nothing, and therefore about everything'' category theory provides a highly general way of discussing mathematical concepts.  It was invented by Samuel Eilenberg and Saunders MacLane \cite{eilenbergGeneralTheoryNatural1945}. They organized various mathematical structures into categories called geometric and algebraic. To connect these categories, they defined functors, which map objects and morphisms from one category to another, much like functions do. They further introduced natural transformations, which provide a way to compare functors, translating the results of one functor into those of anothers. \cite{yanofskyMonoidalCategoryTheory2024}
+
+ As previously mentioned, in light os its deep connection with lambda calculus and its capacity to encompass multiple ``perspectives'', thereby broadening the applicability of results, we adopt a categorical interpretation.
+
 
 
 \subsection{Categories}
@@ -1401,18 +1400,18 @@ Described as "a language about nothing, and therefore about everything," categor
    A \emph{category} $\catC$ consists of
    \begin{itemize}
     \item a collection of objects $A, B, C, \ldots$, denoted $|\catC|$ or $\text{Obj}(\catC)$;
-    \item a collection of morphisms $f, g, \ldots $, usually denoted $\catC(A,B)$, $\mathrm{Hom}_{\catC}(A,B)$, or $\mathrm{Hom}(A,B)$ if there is no ambiguity. 
+    \item for every two pairs of objects $A$ and $B$, a collection of morphisms $f, g, \ldots $, usually denoted $\catC(A,B)$, $\mathrm{Hom}_{\catC}(A,B)$, or $\mathrm{Hom}(A,B)$ if there is no ambiguity. 
    \end{itemize}
     The collection for morphisms has the following structure:
     \begin{itemize}
-      \item Each morphism has a specified domain and codomain; the notation $ f : A \to B $ indicates that $ f $ is a morphism from object $ A $ to object $ B $.  
+      \item Each morphism has a specified domain($A$) and codomain($B$) and the notation $ f : A \to B $ indicates that $ f $ is a morphism from object $ A $ to object $ B $.  
        \item Every object $ A $ has an identity morphism $ \id_A : A \to A $.  
-      \item For any pair of morphisms $ f : A \to B $ and $ g : B \to C $, where the codomain of $ f $ matches the domain of $ g $, there exists a composite morphism $ g \circ f : X \to Z $. We will also write $g \circ f$ as $f \cdot g$ or simply $f g$.
+      \item For any pair of morphisms $ f : A \to B $ and $ g : B \to C $, there exists a composite morphism $ g \circ f : X \to Z $. We will also write $g \circ f$ as $f \cdot g$ or simply $f g$.
     \end{itemize}
 
      The composition is required to satisfy the two following laws: if $f : A \to B, g : B \to C,$ and $h:C \to D$ are morphisms, then
      \begin{itemize}
-      \item  $f \circ \id_a = f = \id_b \circ f$;
+      \item  $f \circ \id_A = f = \id_B \circ f$;
       \item  $  (f \circ g) \circ h = f \circ (g \circ h) $.
      \end{itemize}
 \end{definition}
@@ -1423,7 +1422,7 @@ Described as "a language about nothing, and therefore about everything," categor
 %Sets
 
 \begin{example}
- $\catSet$ is the category whose objects are sets and whose  morphisms are functions between them. Given a function \(f: A \to B\), it assigns to each element \(a \in A\) a unique image \(f(a) \in B\). 
+ $\catSet$ is the category whose objects are sets and whose  morphisms are functions between them. Given a function \(f: A \to B\), it assigns to each element \(a \in A\) a unique element \(f(a) \in B\). 
  For any two functions \(f: A \to B\) and \(g: B \to C\), their composition is defined by
 $$
 (g \circ f)(a) = g(f(a)) \quad \text{for all } a \in A.
@@ -1447,7 +1446,7 @@ f \circ \id_A = f \quad \text{and} \quad \id_B \circ f = f
 \]
 for any function \(f: A \to B\).
 
-Therefore, \(\mathbf{Set}\), with sets as objects and functions as morphisms, satisfies the axioms of a category.
+Therefore, \(\catSet\), with sets as objects and functions as morphisms, satisfies the axioms of a category.
 \end{example}
 
 Another common type of example consists of categories of sets equipped with additional structure, along with functions that preserve that structure.
@@ -1464,6 +1463,10 @@ A \emph{partially ordered set} or \emph{partial order} is a set $A$ equipped wit
 
 \begin{example}
 The set of real numbers \(\mathbb{R}\), equipped with the usual ordering \(\leq\), forms a poset. Moreover, it is \emph{linearly ordered} (or \emph{totally ordered}), since for any \(x, y \in \mathbb{R}\), either \(x \leq y\) or \(y \leq x\) holds.
+\end{example}
+
+\begin{example}
+  Each partially ordered set naturally defines a category. Let \( (P, \leq) \) be a poset. We define a category \( \catfont{B(P, \leq)} \), often denoted simply by \( \catfont{B(P)} \) or even \( \catfont{P} \), where the objects are the elements of \( P \), and there is a unique morphism \( p \to q \) if and only if \( p \leq q \). The reflexivity of the order \( \leq \) ensures the existence of identity morphisms, while transitivity guarantees that morphisms compose appropriately. Moreover, since there is at most one morphism between any two objects, composition is trivially associative. 
 \end{example}
 
 \begin{definition}
@@ -1492,14 +1495,13 @@ so it follows that
 
 \end{example}
 
-\begin{example}
-  Each partially ordered set naturally defines a category. Let \( (P, \leq) \) be a poset. We define a category \( \catfont{B(P, \leq)} \), often denoted simply by \( \catfont{B(P)} \) or even \( \catfont{P} \), where the objects are the elements of \( P \), and there is a unique morphism \( p \to q \) if and only if \( p \leq q \). The reflexivity of the order \( \leq \) ensures the existence of identity morphisms, while transitivity guarantees that morphisms compose appropriately. Moreover, since there is at most one morphism between any two objects, composition is trivially associative. 
-\end{example}
+
 
 \begin{example}
  $\catVect$ is the category of finite complex vector spaces and linear mappings.
 \end{example}
 
+\begin{comment}
 \begin{example}
 Given a functional programming language $L$, we can define a category $\catCompFunc$.  In this category, the objects represent the data types of the language \( L \), and the morphisms correspond to computable functions or programs. A function is considered \emph{computable} if a computer program is capable of executing that function.
 
@@ -1507,6 +1509,7 @@ The composition of morphisms is defined as follows: given two morphisms \( f \co
 
 Additionally, the identity morphism \( \id_X \colon X \to X \) represents the ``identity program," which returns its input without making any changes (i.e., it "does nothing").
 \end{example}
+\end{comment}
 
 
 \begin{definition} 
@@ -1518,7 +1521,7 @@ In this case, $f^{-1}$ is called the \emph{inverse} of $f$, and it is unique. If
 $A \cong B.$
 \end{definition}
 
-One of the central ideas in category theory is \emph{duality}. Simply put, for a given definition of a structure, there is often a corresponding dual concept obtained by reversing the directions of all the arrows. 
+One of the central ideas in category theory is \emph{duality}. Simply put, for a given definition of a structure, there is often a corresponding dual concept obtained by reversing the directions of all the morphisms. 
 
 \begin{definition} 
 Let \(\catC\) be a category. The \emph{opposite category}, denoted \(\catC^{\mathrm{op}}\), is defined as follows:
@@ -1549,10 +1552,9 @@ Thus, \(\catC^{\mathrm{op}}\) reverses the direction of morphisms and compositio
 \begin{definition}
   A subcategory \( \catD \) of a category \( \catC \) is a category such that 
   \begin{itemize}
-    \item All the objects of \( \catD \) are objects of \( \catC \), and all the morphisms of \( \catD \) are morphisms of \( \catC \) (that is, \( \catD_0 \subseteq \catC_0 \) and \( \catD_1 \subseteq \catC_1 \)).
-    \item The domain and codomain of any morphism in \( \catD \) are the same as in \( \catC \) (in other words, the domain and codomain maps for \( \catD \) are the restrictions of those for \( \catC \)).
-    \item  It follows that for any objects \( A \) and \( B \) in \( \catD \), we have \( \mathrm{Hom}_{\catD}(A, B) \subseteq \mathrm{Hom}_{\catC}(A, B) \). If \( A \) is an object of \( \catD \), then its identity morphism \( \mathrm{id}_A \) in \( \catC \) also belongs to \( \catD \).
-    \item If \( f: A \to B \) and \( g: B \to C \) are morphisms in \( \catD \), then the composite \( g \circ f \), as defined in \( \catC \), is also in \( \catD \), and coincides with the composite in \( \catD \).
+    \item All the objects of \( \catD \) are objects of \( \catC \);
+    \item  For any objects \( A \) and \( B \) in \( \catD \), we have \( \mathrm{Hom}_{\catD}(A, B) \subseteq \mathrm{Hom}_{\catC}(A, B) \).
+    \item The indentities in $\catD$ are those of $\catC$ and the composition in $\catD$ is the respective restriction relative to $\catC$.
   \end{itemize}
   
 \end{definition}
@@ -1582,10 +1584,10 @@ A category is called \emph{locally small} if, for every pair of objects, the cor
 
 \subsection{Products and coproducts}
 
- A category frequently possesses more intricate structure than a mere collection of objects and their morphisms. The existence of particular relationships among certain objects and morphisms can can make some objects have important properties.
+ A category frequently possesses a more intricate structure than a mere collection of objects and their morphisms. The existence of particular relationships among certain objects and morphisms can give some objects important properties.
 
-It should be noted that a diagram is said to commute if, for every pair of objects $X$ and $Y$ in the diagram, all directed paths from 
-$X$ to $Y$ yield equal morphisms.
+A diagram is said to commute if, for every pair of objects $A$ and $B$ in the diagram, all directed paths from 
+$A$ to $B$ yield equal morphisms.
 
 \begin{definition}
   An object \( 0 \) in a category \( \catC \) is called an \emph{initial object} if for every object \( A \in \catC  \), there exists a unique morphism  $f: 0 \to A $.
@@ -1598,7 +1600,7 @@ $X$ to $Y$ yield equal morphisms.
 
 \begin{example}
 In the category \( \catSet \), the empty set \( \emptyset \) is an initial object, since for any set \( S \), there exists a unique function$f : \emptyset \to S.$
-This function is unique because there are no elements in \( \emptyset \) to map.
+This function is unique because there are no elements in \( \emptyset \) to map to.
 
 Any singleton set, such as \( \{*\} \) or \( \{a\} \), is a terminal object in this category. For any set \( S \), there exists a unique function $f : S \to \{*\}$,
 which maps every element of \( S \) to the sole element of the singleton set
@@ -1612,9 +1614,9 @@ which maps every element of \( S \) to the sole element of the singleton set
 
 
 
-\begin{definition} [\emph{Product}]
+\begin{definition}
   Consider a category $\catC$.  We say that it has (binary) products if for any
-objects $A$ and $B$ in $\catC$ there also exists an object $A \times B$
+objects $A$ and $B$ in $\catC$ there also exists an object $A \times B$ in
 $\catC$ with morphisms $\pi_A : A \times B \to A$ and $\pi_B :  A \times B \to  B$
 that satisfy a certain universal property: specifically for every two morphisms
 $f  : C \to A$ and $g : C \to B$ there exists a \emph{unique} morphism $\langle f,g \rangle :
@@ -1638,8 +1640,7 @@ C \to A \times B $ called \emph{pairing} that makes the diagram below commute.
 \end{definition}
 
   \begin{definition}
-Let \( A \times B \) be a product of objects \( A \) and \( B \), and let \( A' \times B' \) be a product of objects \( A' \) and \( A' \) in a category $\catC$. Suppose we are given morphisms \( f : A \to A' \) and \( g : B \to B' \). 
-
+Let \( A \times B \) be a product of objects \( A \) and \( B \), and let \( A' \times B' \) be a product of objects \( A' \) and \( B' \) in a category $\catC$. Suppose we are given morphisms \( f : A \to A' \) and \( g : B \to B' \). 
 Then there exists a unique morphism
 \[
 f \times g : a \times b \to a' \times b'
@@ -1670,10 +1671,8 @@ f \times g = \langle f \circ \pi_A,\, g \circ \pi_B \rangle.
 \end{definition}
 
 
-
-
 \begin{theorem} 
-  Let \( A \times B \) be the product of objects \( A \) and \( B \) in a category $\catC$. For any object $C$ and morphisms \( f : C \to A \) and \( g : C \to B \) are morphisms, it holds that:
+  Let \( A \times B \) be the product of objects \( A \) and \( B \) in a category $\catC$. For any object $C$ and morphisms \( f : C \to A \), \( g : C \to B \), \( h : D \to C \) are morphisms, it holds that:
 \[
 \langle f \circ h,\, g \circ h \rangle = \langle f, g \rangle \circ h.
 \]
@@ -1683,8 +1682,7 @@ f \times g = \langle f \circ \pi_A,\, g \circ \pi_B \rangle.
 
   The universal property of the product induces a unique morphism \( \langle f, g \rangle : C \to A \times B \) such that
 $\pi_A \circ \langle f, g \rangle = f \quad \text{and} \quad \pi_B \circ \langle f, g \rangle = g.$
-
-Now, let \( h : D \to C \) be another morphism. Then the compositions \( f \circ h : D \to A \) and \( g \circ h : D \to B \) also induce a unique morphism \( \langle f \circ h,\, g \circ h \rangle : D \to A \times B \) by the universal property of the product. As a result, by the universal property of the produt the following diagram commutes.
+Now, let \( h : D \to C \) be another morphism. Then the compositions \( f \circ h : D \to A \) and \( g \circ h : D \to B \) also induce a unique morphism \( \langle f \circ h,\, g \circ h \rangle : D \to A \times B \) by the universal property of the product. As a result, the following diagram commutes by the universal property of the product.
 
 \[
 \begin{tikzpicture}
@@ -1699,8 +1697,8 @@ Now, let \( h : D \to C \) be another morphism. Then the compositions \( f \circ
     (m-1-2) edge  node [right] {$h$} (m-2-2)
     (m-1-2) edge  node [left] {$f \circ h$} (m-4-1)
     (m-1-2) edge  node [right] {$g \circ h$} (m-4-3)
-    (m-1-2) edge [bend left=-20] node [left] {$\langle f \circ h,g \circ h \rangle$} (m-3-2)
-    (m-2-2) edge  node [right] {$\langle f,g \rangle$} (m-3-2)
+    (m-1-2) edge [dotted] [bend left=-20] node [left] {$\langle f \circ h,g \circ h \rangle$} (m-3-2)
+    (m-2-2) edge [dotted]  node [right] {$\langle f,g \rangle$} (m-3-2)
     (m-2-2) edge  node [right] {$f$} (m-4-1)
     (m-2-2) edge  node [right] {$g$} (m-4-3)
     (m-3-2) edge  node [below=0.1cm] {$\pi_A$} (m-4-1)
@@ -1718,7 +1716,7 @@ Now, let \( h : D \to C \) be another morphism. Then the compositions \( f \circ
 % exemplos
 
 \begin{example}
-In the category $\catSet$, the product of two sets $A$ and $B$ is given by their Cartesian product, denoted
+In the category $\catSet$, the product of two sets $A$ and $B$ is given by their Cartesian product, denoted as
 \[
 A \times B = \{(a, b) \mid a \in A,\ b \in B\}.
 \]
@@ -1748,7 +1746,6 @@ x \leq p \times q.
 This operation \( p \times q \) corresponds to what is commonly known as the \emph{greatest lower bound} or \emph{meet}, and is typically denoted by \( p \wedge q \).
 \end{example}
 
-\todo[inline,size=\normalsize]{Maybe tirar este exemplo} 
 
 \begin{example}
   In the category $\catVect$, the product of two vector spaces $V$ and $W$ corresponds to their direct sum, denoted by $V \oplus W$.
@@ -1767,9 +1764,8 @@ is defined by
 \end{example}
 
 
-The \emph{coproduct} is the dual of the \emph{product}—it is obtained by reversing all the morphisms in the definition of a product. Consequently, a product in a category $\catC$ corresponds to a coproduct in the opposite category $\catCop$.
+The \emph{coproduct} is the dual of the \emph{product}—it is obtained by reversing all the morphisms in the definition of a product. Consequently, a product in a category $\catC$ corresponds to a coproduct in the opposite category $\catCop$. More explicitly,
 
-  
 \begin{definition}
 Consider a category $\catC$.  We say that it has (binary) coproducts if for any
 objects $A$ and $B$ in $\catC$ there also exists an object $A \oplus B$ in
@@ -1796,19 +1792,18 @@ A \oplus B \to C$ known as \emph{co-pairing} that makes the diagram below commut
 \end{definition}
 
   \begin{definition}
-Let \( A \oplus B \) be a coproduct of objects \( A \) and \( B \), and let \( A' \times B' \) be a coproduct of objects \( A' \) and \( A' \) in a category $\catC$. Suppose we are given morphisms \( f : A \to A' \) and \( g : B \to B' \). 
-
+Let \( A \oplus B \) be a coproduct of objects \( A \) and \( B \), and let \( A' \oplus B' \) be a coproduct of objects \( A' \) and \( A' \) in a category $\catC$. Suppose we are given morphisms \( f : A \to A' \) and \( g : B \to B' \). 
 Then there exists a unique morphism
 \[
-f \times g : a \times b \to a' \times b'
+f \oplus g : A \oplus B \to A' \oplus B'
 \]
 such that the following diagram commutes.
 \[
 \begin{tikzpicture}
   \matrix (m) [matrix of math nodes,row sep=4em,column sep=7em,minimum width=2em]
   {
-   A  & A \times B & B \\
-    A'  & A' \times B' & B' \\
+   A  & A \oplus B & B \\
+    A'  & A' \oplus B' & B' \\
   };
   \path[-stealth]
     (m-1-1) edge  node [below] {$\inl$} (m-1-2)
@@ -1835,35 +1830,11 @@ f \oplus g = [\inl \circ f,\, \inr \circ g].
 \end{theorem}
 
 \begin{proof}
- By the universal property of the coprodut the following diagram commutes.
-
-\[
-\begin{tikzpicture}
-  \matrix (m) [matrix of math nodes,row sep=3em,column sep=4em,minimum width=8em]
-  {
-    & D &  \\
-    & C &  \\
-     & A \oplus B &\\
-    A &  & B\\
-  };
-  \path[-stealth]
-    (m-2-2) edge  node [right] {$h$} (m-1-2)
-    (m-4-1) edge  node [left] {$h \circ f$} (m-1-2)
-    (m-4-3) edge  node [right] {$h \circ c$} (m-1-2)
-    (m-3-2) edge [bend left=20] node [left] {$[h \circ f,h \circ g]$} (m-1-2)
-    (m-3-2) edge  node [right] {$[f,g]$} (m-2-2)
-    (m-4-1) edge  node [right] {$f$} (m-2-2)
-    (m-4-3) edge  node [right] {$g$} (m-2-2)
-    (m-4-1) edge  node [below=0.1cm] {$\inl$} (m-3-2)
-    (m-4-3) edge  node [below=0.1cm] {$\inr$} (m-3-2)
-    ;
-\end{tikzpicture}
-\]
-
+This result is a direct consequence of the duality with products.
 \end{proof}
 
 \begin{proposition} \cite[Proposition 3.12]{awodeyCategoryTheory2010} 
-  Coproducts are unique up to isomorphism. Alternatively, this can be formulated as follows: let \((C, \inl: A \to C, \inr: B \to C)\) and \((C', \inl': A \to C', \inr': B \to C')\) be two coproducts of objects \(A\) and \(B\) in a category. Then there exists a unique isomorphism \(\varphi: C \to C'\) such that
+  Coproducts are unique up to isomorphism. Explicitly, this can be formulated as follows: let \((C, \inl: A \to C, \inr: B \to C)\) and \((C', \inl': A \to C', \inr': B \to C')\) be two coproducts of objects \(A\) and \(B\) in a category. Then there exists a unique isomorphism \(\varphi: C \to C'\) such that
 \[
 \varphi \cdot \inl = \inl' \quad \text{and} \quad \varphi \cdot \inr = \inr'.
 \]
@@ -1876,7 +1847,7 @@ A \oplus B = \{(a, 1) \mid a \in A\} \cup \{(b, 2) \mid b \in B\}.
 \]
 The canonical coproduct injections are defined by
 \[
-i_1(a) = (a, 1), \quad i_2(b) = (b, 2).
+\inl(a) = (a, 1), \quad \inr(b) = (b, 2).
 \]
 Given any set \(C\) and functions \(f: A \to C\) and \(g: B \to C\), the copairing \([f, g]: A \oplus B \to C\) is defined by
 \[
@@ -1892,7 +1863,7 @@ g(x) & \text{if } \delta = 2.
   Let $(P, \leq)$ be a partial order and $\catfont{P}$ be its associated category.  
 Consider a coproduct of elements \( p \oplus q \in P \). Then, by definition, there must exist injections satisfying
 \[
-p \leq p + q \quad \text{and} \quad q \leq p + q.
+p \leq p \oplus q \quad \text{and} \quad q \leq p \oplus q.
 \]
 Furthermore, for any element \( z \in P \), if
 \[
@@ -1900,23 +1871,22 @@ p \leq z \quad \text{and} \quad q \leq z,
 \]
 then it follows that
 \[
-p + q \leq z.
+p \oplus q \leq z.
 \]
 This operation \( p + q \) corresponds to what is commonly known as the \emph{least upper bound} or \emph{join}, and is typically denoted by \( p \vee q \).
 \end{example}
 
-\todo[inline,size=\normalsize]{Maybe tirar este exemplo} 
 
 \begin{example}
-  In $\catVect$, the coproduct coincides with the product. In such cases, this structure is called a \emph{biproduct}. 
-  In both  $\catVect$. the injection maps are the linear maps
+  In $\catVect$ the coproduct coincides with the product. In such cases, this structure is called a \emph{biproduct}. 
+  In  $\catVect$ the injection maps are the linear maps
 \[
 \inl: V \to  V \oplus W, \quad  \inl(v)= (v,0),
 \]
 \[
 \inr : W \to V \oplus W, \quad \inr(w) = (0,w).
 \]
-Given any vector space $U$ and linear maps $f: V \to U$ and $g: W \to U$, the unique map $\langle f, g\rangle : V \oplus W \to U$
+Given any vector space $U$ and linear maps $f: V \to U$ and $g: W \to U$, the unique map $[ f, g] : V \oplus W \to U$
 is defined by
 \[
 [f, g] (v,w) = f(v)+ g(w).
@@ -1928,7 +1898,7 @@ is defined by
 \subsection{Functors}
   
 
-Although categories are interesting on their own, the real strength of category theory lies in understanding how categories relate to one another. Just as functions express relationships between sets, functors play a similar role for categories. A functor maps each object in one category to an object in another category, and it does the same for morphisms, preserving the structure of the relationships.
+Although categories are already interesting on their own, the real strength of category theory lies in understanding how categories relate to one another. Just as functions express relationships between sets, functors play a similar role for categories. A functor maps each object in one category to an object in another category, and it does the same for morphisms, preserving the structure of composition.
 
 \begin{definition}
   Let $\catC$ and $\catD$ be two categories. A \emph{functor} $F: \catC \to \catD$ consists of a mapping that assigns to each object $A$ in $\catC$ an object $FA$ in $\catD$, and to each morphism $f \in \mathrm{Hom}_{\catC}(A, B)$ a morphism $Ff \in \mathrm{Hom}_{\catD}(FA, FB)$, in such a way that the following two conditions are satisfied for all objects $A, B, C$ in $\catC$ and all morphisms $f \in \mathrm{Hom}_{\catC}(A,B)$ and $g \in \mathrm{Hom}_{\catC}(B,C)$:
@@ -1940,9 +1910,7 @@ A functor $F: \catC \to \catD$ is said to be \emph{full} if, for all objects $A$
 \[
 F_{A,B}: \mathrm{Hom}_{\catC}(A, B) \longrightarrow \mathrm{Hom}_{\catD}(FA, FB), \quad f \mapsto Ff,
 \]
-is surjective. The functor is called \emph{faithful} if each $F_{A,B}$ is injective, and \emph{fully faithful} if each $F_{A,B}$ is bijective.
-
-A \emph{full embedding} is a functor that is fully faithful and, in addition, injective on objects.
+is surjective. The functor is called \emph{faithful} if each $F_{A,B}$ is injective, and \emph{fully faithful} if each $F_{A,B}$ is bijective. A \emph{full embedding} is a functor that is fully faithful and, in addition, injective on objects.
 \end{definition}
 
 \begin {example}
@@ -1951,16 +1919,19 @@ which is defined on objects by $\id_{\catC}(A) = A$ for every object $A$ in $\ca
 \end{example}
 
 \begin{example}
-  Consider the natural numbers $\mathbb{N}$ as partial order category. There is a functor $(-) + 5 : \mathbb{N} \to \mathbb{N}$
-that maps each object $m \in \mathbb{N}$ to $m + 5$. This defines a functor because it preserves morphisms: if $m \leq m'$, then $m + 5 \leq m' + 5$. Moreover, the identity morphisms are preserved, since $(\id_m) + 5 = \id_{m+5}$.
+  Consider the natural numbers $\mathbb{N}$ as a partial order category. There is a functor $(-) + 5 : \mathbb{N} \to \mathbb{N}$
+that maps each object $m \in \mathbb{N}$ to $m + 5$. This defines a functor because it preserves morphisms: if $m \leq m'$, then $m + 5 \leq m' + 5$. Moreover, the identity morphisms are trivially preserved.
 \end{example}
 
 \begin{example}
   Consider the set of real numbers $\mathbb{R}$ and the set of integers $\mathbb{Z}$, each regarded as a partial order category. In this context, there exists a functor $\mathrm{Floor} : \mathbb{R} \to \mathbb{Z} $ that assigns to each real number $r \in \mathbb{R}$ the greatest integer less than or equal to $r$, denoted $\lfloor r \rfloor$. For instance, $\lfloor 6.2 \rfloor = 6$ and $\lfloor -1.66 \rfloor = -2$. 
 
 Similarly, there exists a \emph{ceiling functor} $\mathrm{Ceil} : \mathbb{R} \to \mathbb{Z}$ that maps each real number $r$ to the least integer greater than or equal to $r$, denoted $\lceil r \rceil$.
+\end{example}
 
 
+\begin{example}
+   Let $\catP$ and $\catP'$ be partial order categories. Any functor $F \colon \catP \to \catP'$ corresponds precisely to a monotone function between the underlying posets.
 \end{example}
 
 
@@ -1969,22 +1940,22 @@ Similarly, there exists a \emph{ceiling functor} $\mathrm{Ceil} : \mathbb{R} \to
 $F : \catC \times \catD \to \catE$
 is simply a functor from the product category $\catC \times \catD$ to $\catE$. In particular, $F$ is a rule that assigns:
 \begin{itemize}
-    \item to every object $A \in \catC$ and $B \in \catD$, an object $F(A, B) \in \catE$;
-    \item to every morphism $f : A \to A'$ in $\catC$ and $g : B \to B'$ in $\catD$, a morphism
+    \item to every objects $A \in \catC$ and $B \in \catD$, an object $F(A, B) \in \catE$;
+    \item to every morphisms $f : A \to A'$ in $\catC$ and $g : B \to B'$ in $\catD$, a morphism
     $F(f, g) : F(A, B) \to F(A', B') \in \catE.$
 \end{itemize}
 
 These assignments must satisfy the following two requirements:
 
 \begin{itemize}
-    \item Respect for composition:  
+    \item \emph{Respect for composition}:  
     For morphisms $f : A \to A'$, $f' : A' \to A''$ in $\catC$ and $g : B \to B'$, $g' : B' \to B''$ in $\catD$, it should hold that
     \[
     F(f' \circ f,\, g' \circ g) = F(f', g') \circ F(f, g),
     \]
     where the $\circ$ on the right-hand side is composition in $\catE$.
 
-    \item Respect for identities:  
+    \item \emph{Respect for identities}:  
     For all objects $A \in \catC$ and $B \in \catD$, it should hold that
     \[
     F(\id_A, \id_B) = \id_{F(A, B)},
@@ -1992,7 +1963,7 @@ These assignments must satisfy the following two requirements:
     where $\id_A$ and $\id_B$ are the identity morphisms in $\catC$ and $\catD$, respectively, and $\id_{F(A, B)}$ is the identity morphism in $\catE$.
 \end{itemize}
 
-Many times, rather than writing the name of the bifunctor before the input, like $F(A, B)$, we write the bifunctor as an operation between the inputs, for example, $a \mathbin{\Box} b$. If we use this notation, the condition
+Many times, rather than writing the name of the bifunctor before the input, like $F(A, B)$, we write the bifunctor in infix notation, for example, $a \mathbin{\Box} b$. When we use this notation, the condition
 \[
 F(f' \circ f,\, g' \circ g) = F(f', g') \circ F(f, g)
 \]
@@ -2003,7 +1974,8 @@ becomes
 \end{definition}
 
 \subsection{Natural Tranformations}
-A \emph{natural transformation} is a morphism between functors. It provides a way of relating two functors that have the same domain and codomain. Intuitively, if we consider two functors $F, G : \catC \to \catD$ as different ways of assigning images of the category $\catC$ into the category $\catD$, then a natural transformation $\eta : F \Rightarrow G$ is a coherent way of transforming the image of $F$ into the image of $G$.
+If category theory is about morphisms, then morphisms between functors should also be a natural concept. These are called \emph{natural transformations},  and provide a way of relating two functors that have the same domain and codomain. Intuitively, if we consider two functors $F, G : \catC \to \catD$ as different ways of assigning images of the category $\catC$ into the category $\catD$, then a natural transformation $\eta : F \Rightarrow G$ is a coherent way of transforming the image of $F$ into the image of $G$.
+
 
 \begin{definition}
   Let $\catC$ and $\catD$ be categories, and let $F, G : \catC \to \catD$ be functors. A \emph{natural transformation} $\eta : F \Rightarrow G$ is a family of morphisms in $\catD$,
@@ -2017,7 +1989,7 @@ indexed by the objects of $\catC$, such that for every morphism $f : A \to A'$ i
   \matrix (m) [matrix of math nodes,row sep=4em,column sep=7em,minimum width=2em]
   {
    FA  & GA  \\
-    FA'  & GA' \times B'  \\
+    FA'  & GA'  \\
   };
   \path[-stealth]
     (m-1-1) edge  node [above] {$\eta_A$} (m-1-2)
@@ -2094,10 +2066,10 @@ whose component at a set \(S\), \(\mathrm{Reverse}_S\), maps each list to its re
 
 \subsection{Equivalence of Categories}
 
-In category theory, the concept of isomorphism between categories can be quite strict - is is not often it arises in a non-trivial manner. So, we weaken the notion of isomorphism and come to the concept of an \emph{equivalence of categories}.
+In category theory, the concept of isomorphism between categories can be quite strict.
+A more forgiving notion is an \emph{equivalence of categories}.
 
 If \( F: \catC \to \catD \) is an isomorphism of categories, then for every object \( B \in \catD \), there exists a \emph{unique} object \( A \in \catC \) such that \( F(A) = B \). This expresses the idea that \( \catC \) and \( \catD \) are structurally identical.
-
 An \emph{equivalence of categories} relaxes this requirement. For every object \( B \in \catD \), there exists an object \( A \in \catC \) such that \( F(A) \) is not necessarily equal to \( B \), but is \emph{isomorphic} to \( B \). 
 
 \begin{definition}
@@ -2105,7 +2077,7 @@ An \emph{equivalence of categories} relaxes this requirement. For every object \
 \( F: \catC \to \catD \) and \( G: \catD\to \catC \) such that 
 \( G \circ F \cong \id_{\catC} \) and \( F \circ G \cong \id_{\catD} \). 
 The functors \( F \) and \( G \) are called \emph{quasi-inverses}, and we write \( \catC \simeq \catD \).
-This means that for every \( A \in \catC \), there is a \( B \in \catD \) with \( G(B) \cong A \), 
+This entails that for every \( A \in \catC \), there is a \( B \in \catD \) with \( G(B) \cong A \), 
 and for every \( B \in \catD \), there is an \( A \in \catC \) with \( F(A) \cong B \).
 \end{definition}
 
@@ -2119,28 +2091,16 @@ More precisely, there is a unique functor \( ! : \mathbf{2}_I \to \mathbf{1} \),
 \end{example}
 
 \subsection{Adjoints}
-If we further weaken the notion of an equivalence of categories, we we arrive at the concept of an \emph{adjunction}. A central idea in category theory is that \emph{the weaker the assumptions we impose, the more mathematical phenomena we can capture}. This principle explains why adjunctions are among category theory's most important structures.
+If we further weaken the notion of an equivalence of categories, we arrive at the concept of an \emph{adjunction}. 
 
 \begin{definition}
-  An adjunction between categories $\catC$ and $\catD$ is given by a quadruple 
-$(L, R, \eta, \epsilon)$, where $L : \catC \to \catD$ and 
-$R : \catD \to \catC$ are functors, and 
-$\eta : \id_{\catC} \Rightarrow R L$ and 
-$\epsilon : L R \Rightarrow \id_{\catD}$ are natural transformations such that
-\[
-(\eta R) \circ (R \epsilon) = \id_R \quad \text{and} \quad (L \eta) \circ (\epsilon L) = \id_L.
-\]
-One says that $R$ is right adjoint to $L$, or that $L$ is left adjoint to $R$, and one calls 
-$\eta$ the \emph{unit} and $\epsilon$ the \emph{counit} of the adjunction.  Such an adjunction is denoted by $L \dashv R$, where the turn of the symbol $\dashv$ always points to the left adjoint.
-
-An adjunction between categories can be characterized in multiple equivalent ways. It follows one of the alternative formulations. 
-
-Given categories \(\catC\) and \(\catD\), a pair of functors \(L: \catC \to \catD\) and \(R: \catD \to \catC \) form an \emph{adjunction} \(L \dashv R\) if there exists a natural isomorphism:
+  Given categories \(\catC\) and \(\catD\), a pair of functors \(L: \catC \to \catD\) and \(R: \catD \to \catC \) form an \emph{adjunction} \(L \dashv R\) if there exists a natural isomorphism:
 \[
 \mathrm{Hom}_{\catD}(L(A), B) 
 \xlongrightarrow{\quad \Phi_{A,B} \quad}
 \mathrm{Hom}_{\catC}(A, R(B)).
 \]
+One says that $R$ is right adjoint to $L$, or that $L$ is left adjoint to $R$. Such an adjunction is denoted by $L \dashv R$, where the turn of the symbol $\dashv$ always points to the left adjoint.
 
 \end{definition}
 
@@ -2182,7 +2142,7 @@ which expresses the inequality $r \leq \lceil r \rceil$ for all $r \in \mathbb{R
   Let \( F: \catC \to \catD \) and \( G:  \catD \to  \catE \) be functors. It is said that \( G \)  \emph{preserves coproducts} if  whenever $ L $ is a coproduct of \( F \), then \( G(L) \) is a coproduct of \( G \circ F \).
 \end{definition}
 
-\begin{theorem}
+\begin{theorem} \cite[Section 4.6]{yanofskyMonoidalCategoryTheory2024}
  Left adjoints preserve coproducts.
 \end{theorem}
 
@@ -2231,7 +2191,7 @@ A similar argument applies to multiplication: if $m \leq m'$ and $n \leq n'$, th
 \end{comment}
 
 \begin{definition}
-  A \emph{monoidal category} consists of a category $\catC$ equipped with a bifunctor $\otimes : \catC \times \catC \to \catC$
+ A \emph{monoidal category} consists of a category $\catC$ equipped with a bifunctor $\otimes : \catC \times \catC \to \catC$
 called \emph{tensor product} and a distinguished object $I \in \catC$, called \emph{unit} together with natural isomorphisms
 \[
 \alpha_{A,B,C} : A \otimes (B \otimes C) \rightarrow (A \otimes B) \otimes C,
@@ -2239,8 +2199,7 @@ called \emph{tensor product} and a distinguished object $I \in \catC$, called \e
 \[
 \lambda_A :\mathbb{I}\otimes A \rightarrow A, \quad \rho_A : A \otimes\mathbb{I}\rightarrow A,
 \]
-known as \emph{reassociator}, \emph{left unitor},and \emph{right unitor}, respectively.
-
+known as \emph{associator}, \emph{left unitor}, and \emph{right unitor}, respectively. We will omit the subscripts when no ambiguity arises.
 Moreover, these natural isomorphisms are required to make the following coherence diagrams commute.
 \[
 \begin{tikzpicture}
@@ -2306,23 +2265,7 @@ equipped with a natural isomorphism $\sw : A \otimes B \rightarrow B \otimes A$ 
 
 
 \[
-\begin{minipage}{0.45\textwidth}
-\centering
-\begin{tikzpicture}
-  \matrix (m) [matrix of math nodes,row sep=3em,column sep=3em,minimum width=1em]
-  {
-    A \otimes B &   & B \otimes A  \\
-     & A \otimes B & \\
-  };
-  \path[-stealth]
-    (m-1-1) edge  node [above] {$\sw_{A,B}$} (m-1-3)
-    (m-1-3) edge  node [right=0.15cm] {$\sw_{B,A}$} (m-2-2);
-  \draw[double equal sign distance] (m-1-1) -- (m-2-2);
-\end{tikzpicture}
-\end{minipage}
-\quad \quad \
-\begin{minipage}{0.45\textwidth}
-\centering
+\hspace{110pt}
 \begin{tikzpicture}
   \matrix (m) [matrix of math nodes,row sep=3em,column sep=3em,minimum width=1em]
   {
@@ -2334,10 +2277,9 @@ equipped with a natural isomorphism $\sw : A \otimes B \rightarrow B \otimes A$ 
     (m-1-1) edge  node [left] {$\rho_A$} (m-2-2)
     (m-1-3) edge  node [right=0.15cm] {$\lambda_A$} (m-2-2);
 \end{tikzpicture}
-\end{minipage}
 \]
 
-$$
+\hspace{60pt}
 \begin{tikzpicture}
   \matrix (m) [matrix of math nodes,row sep=3em,column sep=4em,minimum width=1em]
   {
@@ -2353,7 +2295,7 @@ $$
     (m-1-1) edge  node [right] {$\id \otimes \sw$} (m-2-1)
     ;
 \end{tikzpicture}
-$$
+
 
 \end{definition}
 
@@ -2377,18 +2319,14 @@ $$
 \end{definition}
 
 
-\begin{definition}
-        The \emph{terminal map to the unit object} (of a monoidal category) is the unique mapping form each object to the monoidal unit and is represented by $!$.
-\end{definition}
-
 
 \begin{example}
-Examples of monoidal closed categories with coproducts include $\catSet$ and $\catVect$. In $\catSet$, the tensor product is the cartesian product, the monoidal unit is the singleton set, the coproduct is the disjoint union, and the internal hom consists of all functions between sets. For $\catVect$, the tensor product is the standard tensor product of complex vector spaces, the field of complex number $\mathbb{C}$, the coproduct is the direct sum, and the internal hom is the space of complex linear maps. %Similarly, in $\catBan$ the tensor product is the projective tensor product, the monoidal unit is $\mathbb{R}$, the coproduct is the direct sum equipped with the $L_1$-norm, and the internal hom consists of all functions between sets corresponds to space of short (linear) maps equiped with the operator norm.
+Examples of monoidal closed categories with coproducts include $\catSet$ and $\catVect$. In $\catSet$, the tensor product is the cartesian product, the monoidal unit is the singleton set, the coproduct is the disjoint union, and the internal hom consists of all functions between sets. For $\catVect$, the tensor product is the standard tensor product of complex vector spaces, the unit is the field of complex numbers $\mathbb{C}$, the coproduct is the direct sum, and the internal hom is the space of complex linear maps. %Similarly, in $\catBan$ the tensor product is the projective tensor product, the monoidal unit is $\mathbb{R}$, the coproduct is the direct sum equipped with the $L_1$-norm, and the internal hom consists of all functions between sets corresponds to space of short (linear) maps equiped with the operator norm.
 \end{example}
 
 
-\begin{theorem}[\emph{Coherence Theorem for Symmetric Monoidal Categories}]
-Any diagram in a symmetric monoidal category constructed only from associators $\alpha$, unitors $\lambda$, $\rho$, the symmetry $\sw$, and inverses and their composition and tensor product necessarily commutes.
+\begin{theorem}[\emph{Coherence Theorem for Symmetric Monoidal Categories}] \cite[Section 6.2]{yanofskyMonoidalCategoryTheory2024}
+Any diagram in a symmetric monoidal category constructed only from associators $\alpha$, unitors $\lambda$, $\rho$, the symmetry $\sw$, and inverses and their composition and tensor product necessarily commutes if the two underlying permutations are the same.
 \end{theorem}
 
 
@@ -2407,51 +2345,57 @@ Any diagram in a symmetric monoidal category constructed only from associators $
 
 \section{Semantics} \label{sec: Lambda Calculus:Interpretation}
 
-\todo[inline,size=\normalsize]{Sets, sub, exchange, soundness and completeness, conds, diagrama a explicar}
 
 Up to this point, we have discussed $\lambda$-calculus in abstract terms: we explored which programs can be written, but we have not yet assigned them any meaning. This process—assigning meaning to syntactic expressions—is known as the \emph{interpretation} or \emph{semantics} of the language. In fact, the word ``semantics'' comes from the Greek word for ``meaning''.
 
-There are different kinds of semantics, in particular, \emph{denotational semantics} interprets terms as mathematical objects. This is done by defining a function that maps syntactic entities (such as types and terms) to semantic entities (such as sets and elements). This mapping is called the \emph{interpretation function}, typically denoted by $\sem{-}$. Thus, given a term $v$, we write $\sem{v}$ to denote its meaning under a specific interpretation.
+There are different kinds of semantics, in particular, \emph{denotational semantics} interprets terms as mathematical objects. This is done by defining a function that maps syntactic entities (such as types and terms) to semantic entities (such as sets and functions). This mapping is called the \emph{interpretation function}, typically denoted by $\sem{-}$. Thus, given a term $v$, we write $\sem{v}$ to denote its meaning under a specific interpretation.
 
-Naturally, this raises important questions: what guarantees do we have that the interpretation of terms respects the classical equations of the calculus? This leads us to the notions of \emph{soundness} and \emph{completeness}.
+Naturally, this raises important questions: what guarantees that the interpretation of terms respects calculus's classical equations? This leads us to the notions of \emph{soundness} and \emph{completeness}.
 
 With respect to a given class of interpretations:
 \begin{itemize}
   \item \emph{Soundness} is the property 
   \[
-  M = N \;\Rightarrow\; \llbracket M \rrbracket = \llbracket N \rrbracket
+  v = w \;\Rightarrow\; \llbracket v \rrbracket = \llbracket w \rrbracket
   \quad \text{for all interpretations in the class.}
   \]
   That is, if two terms are provably equal, then they are interpreted as equal.
   
   \item \emph{Completeness} is the property 
   \[
-  \llbracket M \rrbracket = \llbracket N \rrbracket
-  \;\Rightarrow\; M = N
+  \llbracket v \rrbracket = \llbracket w \rrbracket
+  \;\Rightarrow\; v = w
   \quad \text{for all interpretations in the class.}
   \]
   That is, if two terms are interpreted as equal, then they are provably equal.
 \end{itemize}
 
 Soundness ensures that our equations are \emph{correct}—all derivable equations are semantically valid. Completeness ensures that our equations are \emph{sufficient}—we can derive all semantically valid equations.
-
 We note that, in the case of the metric equations, the underlying idea is similar, although soundness and completeness are defined differently.
 
 \vspace{20pt}
 
-In order to define the interpretation of judgments $\Gamma \triangleright v: \mathbb{A}$, it is necessary to establish some notation first. Let $\catC$ be a symmetric monoidal category and $A$, $B$ and $C$ be objects of this category. For all morphisms $f: A \otimes B \xrightarrow{} C$, the morphism $\overline{f} : A \xrightarrow{} (B \multimap C)$ denotes the corresponding curried version. Moreover, there is the application morphism, $\text{app}: (A \multimap B) \otimes A \rightarrow B$.  
+In order to define the interpretation of judgments $\Gamma \triangleright v: \mathbb{A}$, it is necessary to establish some notation first. Let $\catC$ be a symmetric monoidal closed category and $A$, $B$ and $C$ be objects of this category. 
 
-For all ground types $X \in G$  the interpretation of $[\![X]\!]$  is postulated  to be an object of $\catC$. Types are interpreted inductively using the unit $\mathbb{I}$, the tensor $\otimes$, the coproduct $\oplus$, and the linear map $\multimap$. Given a non-empty context $\Gamma=\Gamma',x: \mathbb{A}$, its interpretation is defined by $[\![\Gamma',x: \mathbb{A}]\!] = [\![\Gamma']\!] \otimes [\![\mathbb{A}]\!]$ if $\Gamma'$ is non-empty and $[\![\Gamma',x: \mathbb{A}]\!] = [\![\mathbb{A}]\!]$ otherwise. The empty context $-$ is interpreted as $[\![-]\!] = \mathbb{I}$. Given $A_{1}, . . . ,A_{n} \in \catC$, the $n$-tensor $(\ldots (A_1 \otimes A_2) \otimes \ldots ) \otimes A_{n}$ is denoted as $X_1 \otimes \ldots \otimes A_{n}$, and similarly for morphisms. 
+Recall that in a closed monoidal category $\catC$, we have a natural isomorphism:
+\[
+\mathrm{Hom}_{\catC}(A \otimes B, C) \cong \mathrm{Hom}_{\catC}(A, B \multimap C).
+\]
+This isomorphism is known as \emph{currying}. For each morphism $f \colon A \otimes B \to C$, its \emph{curried form} $\overline{f} \colon A \to (B \multimap C)$ is the morphism corresponding to $f$ under this isomorphism.
+The inverse operation, called \emph{application} or \emph{evaluation}, is given by the \emph{application morphism} $\text{app}_{B,C} \colon (B \multimap C) \otimes B \to C$.
 
 
-\subsection{Classical Semantics}
+For all ground types $X \in G$  the interpretation of $[\![X]\!]$  is postulated  to be an object of $\catC$. Types are interpreted inductively using the unit $\mathbb{I}$, the tensor $\otimes$, the coproduct $\oplus$, and the linear map $\multimap$. Given a non-empty context $\Gamma=\Gamma',x: \mathbb{A}$, its interpretation is defined by $[\![\Gamma',x: \mathbb{A}]\!] = [\![\Gamma']\!] \otimes [\![\mathbb{A}]\!]$ if $\Gamma'$ is non-empty and $[\![\Gamma',x: \mathbb{A}]\!] = [\![\mathbb{A}]\!]$ otherwise. The empty context $-$ is interpreted as $[\![-]\!] = \mathbb{I}$. Given $A_{1}, . . . ,A_{n} \in \catC$, the $n$-tensor $(\ldots (A_1 \otimes A_2) \otimes \ldots ) \otimes A_{n}$ is denoted as $A_1 \otimes \ldots \otimes A_{n}$, and similarly for morphisms. 
 
-``Housekeeping" morphisms are employed to handle interactions between context interpretation and the vectorial model. Given $\Gamma_{1}, \ldots, \Gamma_{n}$, the morphism that splits $[\![\Gamma_{1}, \ldots, \Gamma_{n}]\!]$ into $[\![\Gamma_{1}]\!] \otimes \ldots \otimes [\![\Gamma_{n}]\!]  $ is denoted by $\text{sp}_{\Gamma_1;\ldots;\Gamma_n}: [\![\Gamma_{1}, \ldots, \Gamma_{n}]\!] \xrightarrow{} [\![\Gamma_{1}]\!] \otimes \ldots \otimes [\![\Gamma_{n}]\!] $. For $n=1$, $\text{sp}_{\Gamma_1} = \text{id}$.
-Let $\Gamma_1$ and $\Gamma_2$ be two contexts, $\text{sp}_{\Gamma_1, \Gamma_2} \rightarrow \Gamma_1\otimes \Gamma_2$ is defined as:
+
+\subsection{Semantics}
+
+``Housekeeping" morphisms are employed to handle interactions between context interpretation and the symmetric monoidal struture of $\catC$. Given $\Gamma_{1}, \ldots, \Gamma_{n}$, the morphism that splits $[\![\Gamma_{1}, \ldots, \Gamma_{n}]\!]$ into $[\![\Gamma_{1}]\!] \otimes \ldots \otimes [\![\Gamma_{n}]\!]  $ is denoted by $\text{sp}_{\Gamma_1;\ldots;\Gamma_n}: [\![\Gamma_{1}, \ldots, \Gamma_{n}]\!] \xrightarrow{} [\![\Gamma_{1}]\!] \otimes \ldots \otimes [\![\Gamma_{n}]\!] $. For $n=1$, $\text{sp}_{\Gamma_1} = \text{id}$.
+Let $\Gamma_1$ and $\Gamma_2$ be two contexts, $\text{sp}_{\Gamma_1, \Gamma_2}: \sem{ \Gamma_1\otimes \Gamma_2} \rightarrow \sem{\Gamma_1}\otimes \sem{\Gamma_2}$ is defined as:
 \begin{equation*}
   \text{sp}_{-; \Gamma_2} = \lambda^{-1} \hspace{1cm} \text{sp}_{\Gamma_1; -} = \rho^{-1} \hspace{1cm} \text{sp}_{\Gamma_1;x:\mathbb{A}} = \id \hspace{1cm} \text{sp}_{\Gamma_1; \Delta, x: \mathbb{A}} = \alpha \cdot (\text{sp}_{\Gamma_1; \Delta} \otimes \id)
 \end{equation*}
-For $n>2$, $\text{sp}_{\Gamma_1;\ldots;\Gamma_n}$ is is defined recursively based on the previous definition, using induction on $n$:
+For $n>2$, $\text{sp}_{\Gamma_1;\ldots;\Gamma_n}: \sem{\Gamma_1;\ldots;\Gamma_n} \to \sem{\Gamma_1} \otimes \ldots \otimes \sem{\Gamma_n} $ is is defined recursively based on the previous definition, using induction on $n$:
 \begin{equation*}
   \text{sp}_{\Gamma_1;\ldots;\Gamma_n} = (\text{sp}_{\Gamma_1;\ldots;\Gamma_{n-1}} \otimes \id )\cdot \text{sp}_{\Gamma_1, \ldots, \Gamma_{n-1} ;\Gamma_n}
 \end{equation*}
@@ -2464,7 +2408,7 @@ On the other hand, $\text{jn}_{\Gamma_1;\ldots;\Gamma_n}$ denotes the inverse of
 The shuffling morphism $\text{sh}_{E}: [\![E]\!] \xrightarrow{} [\![\Gamma_1, \ldots, \Gamma_n ]\!]$ is defined as a suitable composition of exchange morphisms.
 
 
-For every operation symbol $f: \mathbb{A}_{1}, \ldots, \mathbb{A}_{n} \xrightarrow{} \mathbb{A}$ it is assumed the existence of an morphism $[\![f]\!]: [\![\mathbb{A}_{1}]\!] \otimes \ldots \otimes [\![\mathbb{A}_{n}]\!] \xrightarrow{}  [\![\mathbb{A}]\!] $.
+For every operation symbol $f: \mathbb{A}_{1}, \ldots, \mathbb{A}_{n} \xrightarrow{} \mathbb{A}$ it is assumed the existence of a morphism $[\![f]\!]: [\![\mathbb{A}_{1}]\!] \otimes \ldots \otimes [\![\mathbb{A}_{n}]\!] \xrightarrow{}  [\![\mathbb{A}]\!] $.
 The interpretation of judgments is defined by induction over derivations according to the rules in \autoref{fig:denotational_sem}.
 \vspace{-7pt}
 \begin{figure} [H]
@@ -2479,25 +2423,25 @@ $\begin{array}{c}
   [\![E \triangleright f( v_{1},\ldots,v_{n}): \mathbb{A} ]\!] = [\![ f]\!] \cdot (m_{1}\otimes \ldots \otimes m_{n}) \cdot \text{sp}_{\Gamma_1;\ldots;\Gamma_n}\cdot \text{sh}_{E}
 \end{array}
 $
-\end{minipage}
-\hspace{208pt}
+\end{minipage} \\
+&
 \begin{minipage}[t]{0.3\textwidth}
 $\begin{array}{c}
       \\
     \hline
   [\![ x:\mathbb{A} \triangleright x:\mathbb{A}]\!] = \id_{[\![\mathbb{A} ]\!]}
 \end{array}
-$ \end{minipage} \\
-&
+$ \end{minipage} 
+\hspace{220pt}
 \begin{minipage}[t]{0.3\textwidth}
 $\begin{array}{c}
      \\  
     \hline
-   [\![ - \triangleright *: \mathbb{I}]\!] = \id_{[\![\mathbb{I} ]\!]}
+   [\![ - \triangleright *: \mathbb{I}]\!] = \id_{[\![\mathbb{I} ]\!]} 
 \end{array}
 $
-\end{minipage}
-\hspace{-34pt}
+\end{minipage}\\
+&
 \begin{minipage}[t]{0.3\textwidth}
 $\begin{array}{c}
       [\![\Gamma \triangleright v: \mathbb{A} \otimes \mathbb{B} ]\!]=m  \quad [\![\Delta,x: \mathbb{A}, y: \mathbb{B}  \triangleright w: \mathbb{D} ]\!] =n  \quad E \in \text{Sf}(\Gamma;\Delta)\\
@@ -2539,15 +2483,7 @@ $\begin{array}{c}
   [\![ E \triangleright v\,w: \mathbb{B} ]\!] = \text{app} \cdot (m \otimes n) \cdot \text{sp}_{\Gamma;\Delta} \cdot \text{sh}_{E}
 \end{array}
 $ \end{minipage}
-\hspace{190 pt} %[\![ ]\!]
-\begin{minipage}[t]{0.3\textwidth}
-$\begin{array}{c}
-     [\![\Gamma \triangleright v: \mathbb{A}]\!]  = f \\
-    \hline
-   [\![ \Gamma \triangleright \text{dis}(v):  \mathbb{I} ]\!] = ! \cdot f
-\end{array}
-$
-\end{minipage} \\[5pt]
+ \\[5pt]
 &\hspace{5pt}
   %
   \begin{prooftree}
@@ -2597,14 +2533,13 @@ The following diagrams are useful for a clearer understanding of the interpretat
      &&& \xrightarrow{\hspace{3pt}n\hspace{3pt}} \llbracket \mathbb{D} \rrbracket \\
     & \hspace{-20pt}\llbracket \otimes_i \rrbracket : & [\![E]\!] & \xrightarrow{\hspace{2pt}\text{sh}_{E}\hspace{2pt}}   [\![\Gamma,\Delta ]\!]   \xrightarrow{\hspace{1pt}\text{sp}_{\Gamma;\Delta}\hspace{1pt}}  [\![\Gamma ]\!] \otimes [\![\Delta ]\!]  \xrightarrow{\hspace{2pt} m \hspace{1pt} \otimes \hspace{1pt} n \hspace{2pt}} [\![\mathbb{A} ]\!] \otimes [\![\mathbb{B} ]\!] \\
     &\hspace{-20pt}\llbracket \mathbb{I}_e \rrbracket :  & [\![E]\!] & \xrightarrow{\hspace{2pt}\text{sh}_{E}\hspace{2pt}}   [\![\Gamma,\Delta ]\!]   \xrightarrow{\hspace{1pt}\text{sp}_{\Gamma;\Delta}\hspace{1pt}}  [\![\Gamma ]\!] \otimes [\![\Delta ]\!] \xrightarrow{ m \hspace{1pt} \otimes \hspace{1pt} \id} [\![\mathbb{I} ]\!]\otimes [\![\Delta ]\!] \xrightarrow{\hspace{2pt} \lambda \hspace{3pt}} [\![\Delta ]\!]  \xrightarrow{\hspace{2pt} n \hspace{3pt}}  \llbracket \mathbb{A} \rrbracket   \\
-    &\hspace{-20pt}\llbracket \multimap_i \rrbracket : & \llbracket \Gamma \rrbracket \otimes \llbracket \mathbb{A} \rrbracket & \xrightarrow{\hspace{2pt} \overline{m \cdot \text{jn}_{\Gamma;\mathbb{A}}}  \hspace{2pt}}  \llbracket \mathbb{A} \rrbracket \multimap \llbracket \mathbb{B} \rrbracket  \hspace{60pt} (\llbracket \Gamma \rrbracket \otimes \llbracket \mathbb{A} \rrbracket  \xrightarrow{\hspace{2pt} \text{jn}_{\Gamma; \mathbb{A}} \hspace{2pt}} \llbracket \Gamma, \mathbb{A} \rrbracket  \xrightarrow{\hspace{2pt} m \hspace{2pt}}  \llbracket \mathbb{B} \rrbracket )\\
-    &\hspace{-20pt}\llbracket \multimap_e \rrbracket : & [\![E]\!] & \xrightarrow{\hspace{2pt}\text{sh}_{E}\hspace{2pt}}   [\![\Gamma,\Delta ]\!]   \xrightarrow{\hspace{1pt}\text{sp}_{\Gamma;\Delta}\hspace{1pt}}  [\![\Gamma ]\!] \otimes [\![\Delta ]\!]  \xrightarrow{\hspace{2pt} m \hspace{1pt} \otimes \hspace{1pt} n \hspace{2pt}} \llbracket \mathbb{A} \rrbracket \multimap \llbracket \mathbb{B} \rrbracket \otimes \llbracket \mathbb{A} \rrbracket  \xrightarrow{\hspace{2pt} \text{app} \hspace{2pt}} \llbracket \mathbb{B} \rrbracket \\
-    & \hspace{-20pt} \llbracket \text{dis} \rrbracket : & [\![\Gamma]\!] & \xrightarrow{\hspace{2pt} f \hspace{2pt}} \llbracket \mathbb{A} \rrbracket \xrightarrow{\hspace{2pt} \text{!} \hspace{2pt}} \llbracket \mathbb{I} \rrbracket\\
+    &\hspace{-20pt}\llbracket \multimap_i \rrbracket : & \llbracket \Gamma \rrbracket  & \xrightarrow{\hspace{2pt} \overline{m \cdot \text{jn}_{\Gamma;\mathbb{A}}}  \hspace{2pt}}  \llbracket \mathbb{A} \rrbracket \multimap \llbracket \mathbb{B} \rrbracket  \hspace{60pt} (\llbracket \Gamma \rrbracket \otimes \llbracket \mathbb{A} \rrbracket  \xrightarrow{\hspace{2pt} \text{jn}_{\Gamma; \mathbb{A}} \hspace{2pt}} \llbracket \Gamma, \mathbb{A} \rrbracket  \xrightarrow{\hspace{2pt} m \hspace{2pt}}  \llbracket \mathbb{B} \rrbracket )\\
+    &\hspace{-20pt}\llbracket \multimap_e \rrbracket : & [\![E]\!] & \xrightarrow{\hspace{2pt}\text{sh}_{E}\hspace{2pt}}   [\![\Gamma,\Delta ]\!]   \xrightarrow{\hspace{1pt}\text{sp}_{\Gamma;\Delta}\hspace{1pt}}  [\![\Gamma ]\!] \otimes [\![\Delta ]\!]  \xrightarrow{\hspace{2pt} m \hspace{1pt} \otimes \hspace{1pt} n \hspace{2pt}} (\llbracket \mathbb{A} \rrbracket \multimap \llbracket \mathbb{B} \rrbracket) \otimes \llbracket \mathbb{A} \rrbracket  \xrightarrow{\hspace{2pt} \text{app} \hspace{2pt}} \llbracket \mathbb{B} \rrbracket \\
     & \hspace{-20pt}\llbracket \text{inl} \rrbracket : & [\![\Gamma]\!] & \xrightarrow{\hspace{2pt} m \hspace{2pt}} \llbracket \mathbb{A} \rrbracket \xrightarrow{\hspace{2pt}\inl \hspace{2pt}} \llbracket \typeA \oplus \typeB \rrbracket\\
     &\hspace{-20pt}\llbracket \text{inr} \rrbracket : & [\![\Gamma]\!] & \xrightarrow{\hspace{2pt} m \hspace{2pt}} \llbracket \mathbb{B} \rrbracket \xrightarrow{\hspace{2pt}\inr \hspace{2pt}} \llbracket \typeA \oplus \typeB \rrbracket\\
     &\hspace{-20pt}\llbracket \text{case} \rrbracket : & [\![E]\!] & \xrightarrow{\hspace{2pt}\text{sh}_{E}\hspace{2pt}}   [\![\Gamma,\Delta ]\!]   \xrightarrow{\hspace{1pt}\text{sp}_{\Gamma;\Delta}\hspace{1pt}}  [\![\Gamma ]\!] \otimes [\![\Delta ]\!] \xrightarrow{ b \hspace{1pt} \otimes \hspace{1pt} \id} ([\![\mathbb{A} ]\!] \oplus[\![\mathbb{B} ]\!]) \otimes [\![\Delta ]\!]   \\
      & &  &\xrightarrow{\hspace{2pt}\dist\hspace{1pt}} \left([\![\mathbb{A} ]\!] \otimes [\![\Delta ]\!]\right) \oplus \left([\![\mathbb{B} ]\!] \otimes [\![\Delta ]\!]\right)  \\
-     & & &  \xrightarrow{\hspace{1pt}\text{jn}_{\Delta;\typeA}\comp \sw \,\oplus  \, \text{jn}_{\Delta;\typeB}\comp \sw\hspace{1pt}}  \left([\![ \Delta,\mathbb{A}]\!]\right) \oplus \left([\![\Delta, \mathbb{B} ]\!]\right) \xrightarrow{\hspace{2pt}[p,q]\hspace{2pt}} \llbracket \mathbb{D} \rrbracket \\
+     & & &  \xrightarrow{\hspace{1pt}\text{jn}_{\Delta;\typeA}\comp \sw \,\oplus  \, \text{jn}_{\Delta;\typeB}\comp \sw\hspace{1pt}} [\![ \Delta,\mathbb{A}]\!]\oplus [\![\Delta, \mathbb{B} ]\!]\xrightarrow{\hspace{2pt}[p,q]\hspace{2pt}} \llbracket \mathbb{D} \rrbracket \\
 \end{align*} 
 
 
@@ -2612,19 +2547,27 @@ Regarding the interpretation of the exhange and substitution properties, we have
 
 \begin{lemma} \label{lem:sub_exch}
   For any judgements $\Gamma, x: \mathbb{A}, y: \mathbb{B}, \Delta \triangleright v : \mathbb{D}$, $\Gamma, x: \mathbb{A} \triangleright v: \mathbb{B}$, and $\Delta \triangleright w: \mathbb{A}$, the following holds:
+\end{lemma}
+\vspace{-30pt}
 \begin{equation*}
 \begin{split}
   \llbracket \Gamma, x: \mathbb{A}, y: \mathbb{B}, \Delta \triangleright v : \mathbb{D} \rrbracket & = \llbracket \Gamma,  y: \mathbb{B}, x: \mathbb{A}, \Delta \triangleright v : \mathbb{D} \rrbracket \cdot \text{exch}_{\Gamma, \underline{x: \mathbb{A}, y: \mathbb{B}}, \Delta}\\
   \llbracket \Gamma,\Delta \triangleright v[w/x]: \mathbb{B} \rrbracket & = \llbracket \Gamma, x: \mathbb{A} \triangleright v: \mathbb{B} \rrbracket \cdot \text{jn}_{\Gamma;\mathbb{A}} \cdot (\id \otimes \llbracket \Delta \triangleright w: \mathbb{A} \rrbracket ) \cdot \text{sp}_{\Gamma; \Delta} 
 \end{split}
 \end{equation*}
-\end{lemma}
 
 
 \begin{proof}
   This lemma is proved in \cite[Lemma 2.2]{dahlqvist2023syntactic} for the lambda calculus without conditionals, so we only need to address the conditional cases.
 \todo[inline,size=\normalsize]{Passar para aqui as provas qd elas estiverem vistas} 
 \end{proof}
+
+\begin{definition} [Models of linear \(\lambda\)-theories]
+Consider a linear \(\lambda\)-theory \(((G, \Sigma), Ax)\) and a symmetric monoidal closed category with coproducts \(\catC\). 
+Suppose that for each \(X \in G\), we have an interpretation \(\llbracket X \rrbracket\), which is an object of \(\catC\), 
+and analogously for the operation symbols in \(\Sigma\). 
+This interpretation structure is a \emph{model} of the theory if all axioms in \(Ax\) are satisfied by the interpretation.
+\end{definition}
 
 
 
@@ -2636,57 +2579,50 @@ $\llbracket \Gamma \vljud v : A  \rrbracket = \llbracket  \Gamma \vljud w : \typ
 \end{theorem}
 
 \begin{proof}
-  Given the theorem is already proven in \cite[Theorem 2.3]{dahlqvist2023syntactic} for the lambda calculus without conditionals, it suffices to consider the cases involving conditionals.
+  Since the theorem is already proven in \cite[Theorem 2.3]{dahlqvist2023syntactic} for the lambda calculus without conditionals, it suffices to consider the cases involving conditionals.
   \todo[inline,size=\normalsize]{Passar para aqui as provas qd elas estiverem vistas} 
 \end{proof}
 
-\begin{definition} [Models of linear \(\lambda\)-theories]
-Consider a linear \(\lambda\)-theory \(((G, \Sigma), Ax)\) and a symmetric monoidal closed category with coproducts \(\catC\). 
-Suppose that for each \(X \in G\), we have an interpretation \(\llbracket X \rrbracket\), which is an object of \(\catC\), 
-and analogously for the operation symbols in \(\Sigma\). 
-This interpretation structure is a \emph{model} of the theory if all axioms in \(Ax\) are satisfied by the interpretation.
-\end{definition}
+
 
 \begin{theorem}[Completeness] \label{thm:completeness_classical}
-Consider a linear $\lambda$-theory $\mathscr{T}$. Then an equation 
+Consider a linear $\lambda$-theory $T$. Then an equation 
 $\Gamma \vljud v = w : \typeA$
-is a theorem of $\mathscr{T}$ if and only if it is satisfied by all models of the theory.
+is a theorem of $T$ if and only if it is satisfied by all models of the theory.
 \end{theorem}
 
  \begin{proof}
-   This theorem is proved in \cite[Lemma 2.6]{dahlqvist2023syntactic} for the lambda calculus without conditionals, so we only need to address the conditional cases.
+   This theorem is proved in \cite[Lemma 2.6]{dahlqvist2023syntactic} for the lambda calculus without conditionals, so we only need to address the cases involving conditionals.
 \todo[inline,size=\normalsize]{Passar para aqui as provas qd elas estiverem vistas} 
  \end{proof}
 
 
 \begin{example}
-  We now illustrate how the programs presented in Examples \ref{example:prog_swap}, \ref{example:prog_Dis2nd}, and \ref{example:prog_Dis1stor2nd}, with slight modifications, are interpreted in $\catSet$.
-   To this effect, we consider a type $N$ representing set of natural numbers, along with a family of operations $\{n : \typeI \to \emph{N} \mid n \in \mathbb{N}\}$, each mapping the monoidal unit to a corresponding natural number $n$. In $\catSet$ have $\sem{\typeI}= \{*\}$, and define $\sem{N} = \mathbb{N}$, and  $\sem{n} = \{*\} \to \mathbb{N}, \, * \mapsto n.$ 
+  We now illustrate how the programs presented in Examples \ref{example:prog_swap} and \ref{example:prog_Dis2nd}, with slight modifications, are interpreted in $\catSet$.
+   To this effect, we consider a type $N$ representing the set of natural numbers, along with a family of operations $\{n : \typeI \to \emph{N} \mid n \in \mathbb{N}\}$, each mapping the monoidal unit to a corresponding natural number $n$.
+   We consider yet another operation $\text{dis}$ that marks elements of of type $N$ as discardable, $\text{dis}: N \to \typeI $.
+  In $\catSet$ we have $\sem{\typeI}= \{*\}$, define $\sem{N} = \mathbb{N}$,   $\sem{n} = \{*\} \to \mathbb{N}, \, * \mapsto n,$ and $\sem{\text{dis}}=!$ where $!$ denotes the terminal map. 
    Consider the following $\lambda$-term:
    \begin{equation*}
    \begin{split}
-    &   x : N \otimes N \triangleright \text{pm} \hspace{3 pt} x \hspace{3 pt} \text{to} \hspace{3 pt} a \otimes b. \hspace{1pt} b \otimes a \, [1(*)\otimes 2 (*)/x]: N \otimes N 
+    &   x : N \otimes N \triangleright \text{pm} \hspace{3 pt} x \hspace{3 pt} \text{to} \hspace{3 pt} a \otimes b. \hspace{1pt} b \otimes a : N \otimes N 
   \end{split}
   \end{equation*}
-
-   Attending to \autoref{fig:denotational_sem} this program is interpreted as follows:
+  
+   Attending to \autoref{fig:denotational_sem} and the coherence theorem for symmetric monoidal categories this program is interpreted as follows:
    \begin{align*}
-   & \hspace{-30pt} \sem{ \text{pm} \hspace{3 pt} x \hspace{3 pt} \text{to} \hspace{3 pt} a \otimes b. \hspace{1pt} b \otimes a \, [1(*)\otimes 2 (*)/x]} \\
-   & \hspace{-30pt} = \sem{\text{pm} \hspace{3 pt} x \hspace{3 pt} \text{to} \hspace{3 pt} a \otimes b. \hspace{1pt} b \otimes a} \cdot \jn \cdot \left( \id \otimes \sem{1(*)\otimes 2 (*)} \right) \cdot \spt & (\text{\autoref{lem:sub_exch}})\\
-   & \hspace{-30pt} = \sem{b \otimes a} \cdot \jn \cdot \alpha \cdot \sw \cdot \left( \sem{x} \otimes \id\right) \cdot \spt \cdot \sh \cdot \lambda \cdot ( \id \otimes (\sem{1(*)} \otimes \sem{2(*)}   & (\otimes_e, \otimes_i) \\
-   & \hspace{-20pt} \cdot \spt \cdot \sh))  \cdot \lambda^{-1} \\
-   & \hspace{-30pt} = \sem{b} \otimes \sem{a} \cdot \spt \cdot \sh \cdot (\lambda \otimes \id) \cdot \alpha \cdot \sw \cdot \rho^{-1} \cdot \lambda \cdot (\id \otimes ( 1 \cdot \sem{*} \cdot \spt \cdot \sh \, \otimes  & (\otimes_i, \text{hyp}, \\
-   & \hspace{-14pt}   2 \cdot \sem{*} \cdot \spt \cdot \sh \cdot \lambda^{-1}))  \cdot \lambda^{-1}  &  \text{ax}) \\
-   & \hspace{-30pt} = \sw \cdot \lambda \cdot (\id \otimes ( 1 \otimes 2 \cdot \lambda^{-1} )) \cdot \lambda^{-1} & (\text{hyp}, \typeI_i, \text{coh}) \\
-   & \hspace{-30pt} = 2 \otimes 1 \cdot \rho^{-1}  & (\text{nat}, \text{coh}) 
+   &  \sem{ \text{pm} \hspace{3 pt} x \hspace{3 pt} \text{to} \hspace{3 pt} a \otimes b. \hspace{1pt} b \otimes a } \\
+   & \triangleq \sem{b \otimes a} \cdot \jn \cdot \alpha \cdot \sw \cdot \left( \sem{x} \otimes \id\right) \cdot \spt_{N \otimes N;-}   \\
+   & = \sw \cdot \spt_{N;N} \cdot \jn_{\typeI; N; N} \cdot \alpha \cdot \sw_{N \otimes N;\typeI} \cdot \spt_{N \otimes N;-} \\
+   & = \sw  & ( \text{coherence theorem}) 
    \end{align*}
 
    Next, consider the  $\lambda$-terms below.
 
    \begin{equation*}
     \begin{split}
-    & \textbf{Dis2nd} \triangleq - \triangleright \lambda x: N \otimes N. \text{pm} \hspace{3 pt} x \hspace{3 pt} \text{to} \hspace{3 pt} a \otimes b. \hspace{1 pt} \text{dis}(b) \hspace{3 pt} \text{ to } *.a: N \otimes N \multimap N \\
-    & \textbf{Dis2nd} \,(1 (*) \otimes 2(*)) \\
+    & \textbf{Dis2nd} \triangleq - \triangleright \lambda x: N \otimes \typeI. \text{pm} \hspace{3 pt} x \hspace{3 pt} \text{to} \hspace{3 pt} a \otimes b. \hspace{1 pt} b \hspace{3 pt} \text{ to } *.a: N \otimes N \multimap N \\
+    & \textbf{Dis2nd} \,(1 (*) \otimes *) \\
     \end{split}
    \end{equation*}
 
@@ -2702,39 +2638,30 @@ is a theorem of $\mathscr{T}$ if and only if it is satisfied by all models of th
   & \textbf{Dis1stOR2nd} \, (1 (*) \otimes 2(*)) : N 
     \end{comment}
 
-  In this case, we will ``cheat'' slightly by first using the equations in \autoref{fig:equations-linear-lambda} to simplify the term. We note that here we will not explicitly  illustrate the interpretation of the \text{case} statement, because in~$\catSet$, any term of type~$\typeA \otimes \typeA$, for any type~$\typeA$, corresponds to an injection ($\text{inl}(v)$ or $\text{inr}(v)$). As a result, we can ``escape'' any \text{case} statement by  applying the equations~$\beta_{case}^{inl}$ and~$\beta_{case}^{inr}$.
-
-
-   %In this case, we will ``cheat'' slightly by first using the equations in \autoref{fig:equations-linear-lambda} to simplify the term. However, to explicitly illustrate the interpretation of the \text{case} statement---and because in~$\catSet$, any term of type~$\typeA \otimes \typeA$, for any type~$\typeA$, corresponds to an injection ($\text{inl}(v)$ or $\text{inr}(v)$)---we will avoid applying the equations~$\beta_{case}^{inl}$ and~$\beta_{case}^{inr}$.
-   
-   Applying the $\beta$ equation we have 
+  In this case, we will coordinate the use of the equational system with the semantics, thus illustrating the synergy that both create. First, applying equations $\beta$ and $\beta_{\otimes_e}$ we have:
    \begin{equation*}
     \begin{split}
-    \textbf{Dis2nd} \,(1 (*) \otimes 2(*)) & = \textbf{Dis2nd} \,[1 (*) \otimes 2(*)/x] \\
-    & = \text{pm} \hspace{3 pt}  1 (*) \otimes 2(*) \hspace{3 pt} \text{to} \hspace{3 pt} a \otimes b. \hspace{1 pt} \text{dis}(b) \hspace{3 pt} \text{ to } *.a
+    \textbf{Dis2nd} \,(1 (*) \otimes 2(*)) & \triangleq \textbf{Dis2nd} \,[1 (*) \otimes 2(*)/x] \\
+    & = \text{pm} \hspace{3 pt}  1 (*) \otimes 2(*) \hspace{3 pt} \text{to} \hspace{3 pt} a \otimes b. \hspace{1 pt} \text{dis}(b) \hspace{3 pt} \text{ to } *.a \\
+    & = \text{dis}(2(*)) \hspace{3 pt} \text{ to } *. 1 (*) 
 \end{split}
    \end{equation*}
     The resulting program is interpreted as follows:
     \begin{align*}
-   & \hspace{-30pt} \sem{ \text{pm} \hspace{3 pt}  1 (*) \otimes 2(*) \hspace{3 pt} \text{to} \hspace{3 pt} a \otimes b. \hspace{1 pt} \text{dis}(b) \hspace{3 pt} \text{ to } *.a} \\
-   & \hspace{-30pt} = \sem{\text{dis}(b) \hspace{3 pt} \text{ to } *.a} \cdot \jn \cdot \alpha \cdot \sw \cdot \left( \sem{1 (*) \otimes 2(*)} \otimes \id\right) \cdot \spt \cdot \sh   & (\otimes_e) \\
-   & \hspace{-30pt} = \sem{a} \cdot \lambda \cdot (\sem{\text{dis}(b)} \otimes \id) \cdot \spt \cdot \sh \cdot (\lambda \otimes \id) \cdot \alpha \cdot \sw \cdot (  (\sem{1(*)} \otimes \sem{2(*)}     & (\typeI_e, \otimes_i) \\
-   & \hspace{-20pt} \cdot \spt \cdot \sh)\otimes \id) \cdot  \lambda^{-1}  \\
-   & \hspace{-30pt} = \lambda \cdot (! \cdot \sem{b} \otimes \id) \cdot \sw \cdot   (\lambda \otimes \id)  \cdot \alpha \cdot \sw \cdot (( 1 \cdot \sem{*} \cdot \spt \cdot \sh \, \otimes 2 \cdot \sem{*} \cdot \spt  & (\text{hyp},\text{dis},  \text{ax})\\
-   &  \hspace{-14pt}    \cdot \sh \cdot \lambda^{-1})\otimes \id) \cdot \lambda^{-1} \\
-    & \hspace{-30pt} = \lambda \cdot (! \otimes \id) \cdot \sw \cdot \rho \cdot (( 1  \, \otimes 2 \cdot \lambda^{-1}  ) \otimes \id) \cdot \lambda^{-1}  & (\text{hyp},\typeI_i,\text{coh})\\
-   & \hspace{-30pt} =\lambda \cdot (! \otimes \id) \cdot  2  \, \otimes 1 \cdot \rho^{-1}   & (\text{nat}, \text{coh}) 
+   &  \sem{ \text{dis}(2(*)) \hspace{3 pt} \text{ to } *. 1 (*)} \\
+    & = \llbracket 1(*) \rrbracket \cdot \lambda \cdot \sem{\text{dis}(2(*))} \otimes \id \cdot  \lambda^{-1}  \\
+   &  =  \llbracket 1(*) \rrbracket \cdot \lambda \cdot (! \cdot \llbracket 2(*) \rrbracket \otimes \id) \cdot \lambda^{-1} \\
+   &  =  \llbracket 1(*) \rrbracket \cdot \lambda \cdot (! \cdot \otimes \id) \cdot \lambda^{-1} \\
+   & = \llbracket 1(*) \rrbracket \cdot   \lambda \cdot  \id \cdot  \lambda^{-1} \\
+   & =  \llbracket 1(*) \rrbracket 
    \end{align*}
 
-   The diagram below illustrates the resulting interpretation.
-   \begin{align*}
-   & \hspace{-40pt} & \{*\} & \xrightarrow{\hspace{2pt}\rho^{-1}\hspace{2pt}}    \{(*,*)\}  \xrightarrow{2  \, \otimes 1}   \{(2,1)\}     \xrightarrow{(! \otimes \id)} \{(*,1)\} \xrightarrow{\hspace{2pt}\lambda \hspace{2pt}} \{1\}
-   \end{align*}
+   
 \end{example}
 
 
 \subsection{Semantics of metric equations} \label{subsec:semantics_metric}
- We will now turn our attention to the semantics of the metric equations. First, we recall the definition of a metric space.
+ We will now turn our attention to the semantics of the metric equations. First, we recall the definitions of a metric space and of the category of metric spaces.
 
  \begin{definition} \label{def:metric_space}
     A \emph{metric space} is a pair $(X, d)$ where $X$ is a set and $d: X \times X \to [0, \infty]$ is a function known as \emph{distance} satisfying:
@@ -2743,9 +2670,17 @@ is a theorem of $\mathscr{T}$ if and only if it is satisfied by all models of th
         \item $d(x, y) = d(y, x)$,
         \item $d(x, z) \leq d(x, y) + d(y, z)$ for all $x, y, z \in X$.
     \end{enumerate}
+    A \emph{pseudometric space} satisfies the same axioms, except that the first condition condition is weakened: \(d(x, y) = 0\) may hold even when \(x \neq y\).
+  \end{definition}
+
+  \begin{definition}
+    $\catMet$ denotes the category whose objects are metric spaces and whose morphisms are non-expansive maps, \ie, functions that do not increase the distance between points. More precisely, for two metric spaces $(X, d_X)$ and $(Y, d_Y)$, a morphism $f: (X, d_X) \to (Y, d_Y)$ is a function $f: X \to Y$ such that
+$$
+d_Y(f(x), f(y)) \leq d_X(x, y) \quad \text{for all } x, y \in X.
+$$
   \end{definition}
  
- Here, we equip each hom-set $\catC(A, B)$ of a category $\catC$ with a metric $d_{A,B}$, and impose that both composition and precomposition are non-expansive. That is, for all morphisms $f,f_1, f_2 \in \catC(A, B)$ and any $g, g_1, g_2 \in \catC(B, C)$, the following inequalities holds:
+ Here, we equip each hom-set $\catC(A, B)$ of a category $\catC$ with a metric $d_{A,B}$, and impose that both postcomposition and precomposition are non-expansive. That is, for all morphisms $f,f_1, f_2 \in \catC(A, B)$ and any $g, g_1, g_2 \in \catC(B, C)$, the following inequalities holds:
 $$
 d_{A,C}(g \circ f_1, g \circ f_2) \leq d_{A,B}(f_1, f_2) \hspace{40pt} d_{A,C}(g_1 \circ f, g_2 \circ f) \leq d_{B,C}(g_1, g_2).
 $$
@@ -2754,80 +2689,43 @@ Note that, given the triangle inequality, we have:
   d_{A,C}(g_1 \circ f_1, g_2 \circ f_2) \leq  d_{A,C}(g_1 \circ f_1, g_1 \circ f_2) + d_{A,C}(g_1 \circ f_2, g_2 \circ f_2) \leq  d_{A,B}(f_1, f_2) +   d_{B,C}(g_1, g_2).
 \end{equation*}
 
-This is known as \emph{enriching} the category $\catC$ \emph{over metric spaces}. 
+This is known as \emph{enriching} the category $\catC$ \emph{over metric spaces}. Accordingly, we often refer to such a category as being \emph{enriched over metric spaces}, or simply as a $\catMet$-category.
 
-In this context, \emph{soundness} and \emph{completeness} concepts are extended to emcompass not only the classical equations but also the metric equations. Note that the $=$ in classical equations can be written as $=_0$. As a result, in this setting we define 
-
-\begin{itemize}
-  \item \emph{Soundness} is the property 
-  \[
-  M =_{\varepsilon} N \;\Rightarrow\;  d (\llbracket N \rrbracket, \llbracket M \rrbracket) \leq \varepsilon
-  \quad \text{for all interpretations in the class.}
-  \]
-  That is, if two terms are provably at a maximum distance $_{\varepsilon}$, so are there respective interpretations
-  \item \emph{Completeness} is the property 
-  \[
-  d (\llbracket N \rrbracket, \llbracket M \rrbracket) \leq \varepsilon
-  \;\Rightarrow\;  M =_{\varepsilon} N 
-  \quad \text{for all interpretations in the class.}
-  \]
-  That is, if $_{\varepsilon}$ is the maximum distance between the interpretation of two programs, then they are provably at a maximum distance $_{\varepsilon}$.
-\end{itemize}
-
-
-
-In this context, the notions of \emph{soundness} and \emph{completeness} are extended to encompass not only classical equations but also \emph{metric equations}. Note that classical equations, written as $M = N$, can be viewed as a special case of metric equations where the distance is zero, \ie, $M =_0 N$. We define:
-
-\begin{itemize}
-  \item \emph{Soundness} is the property 
-  \[
-  M =_{\varepsilon} N \;\Rightarrow\; d\big(\llbracket M \rrbracket, \llbracket N \rrbracket\big) \leq \varepsilon
-  \quad \text{for all interpretations in the class.}
-  \]
-  That is, if two terms are provably within a distance $\varepsilon$, then so are their interpretations.
-
-  \item \emph{Completeness} is the property 
-  \[
-  d\big(\llbracket M \rrbracket, \llbracket N \rrbracket\big) \leq \varepsilon \;\Rightarrow\; M =_{\varepsilon} N
-  \quad \text{for all interpretations in the class.}
-  \]
-  That is, if the interpretations of two terms are within a distance $\varepsilon$, then the terms are provably at most a distance $\varepsilon$ apart.
-\end{itemize}
-
-\vspace{20pt}
-
-\todo[inline,size=\normalsize]{Esta parte acho que vai ficar um pouco dúbia, melhor confirmar com prof. Renato.} 
-\todo[inline,size=\normalsize]{O que fazer com a def de adjunção -> theorem 4.2 artigo} 
-
-\begin{definition}
-    $\catMet$ denotes the category whose objects are metric spaces and whose morphisms are non-expansive maps, \ie, functions that do not increase the distance between points. More precisely, for two metric spaces $(X, d_X)$ and $(Y, d_Y)$, a morphism $f: (X, d_X) \to (Y, d_Y)$ is a function $f: X \to Y$ such that
-$$
-d_Y(f(x), f(y)) \leq d_X(x, y) \quad \text{for all } x, y \in X.
-$$
-  \end{definition}
-
-\begin{definition} \label{def:monoidal_closed_met_cat}
-A \emph{$\catMet$-category} $\catC$ is a category in which each hom-set $\catC(A, B)$ is equipped with a metric $d_{A,B}$, such that for all morphisms $f_1, f_2 \in \catC(A, B)$ and $g_1, g_2 \in \catC(B, C)$, the following inequality holds:
-\[
-  d_{A,C}(g_1 \circ f_1, g_2 \circ f_2) \leq d_{A,B}(f_1, f_2) + d_{B,C}(g_1, g_2).
-\]
-
-A \emph{symmetric monoidal $\catMet$-category} $\catC$ is a category that is both symmetric monoidal and a $\catMet$-category, such that for all morphisms $f_1, f_2 \in \catC(A, B)$ and $g_1, g_2 \in \catC(C, D)$, we have:
+Following the same principle, we require that the tensor product be non-expansive, \ie, 
 \[
   d_{A \otimes C, B \otimes D}(f_1 \otimes g_1, f_2 \otimes g_2) \leq d_{A,B}(f_1, f_2) + d_{C,D}(g_1, g_2).
 \]
+In the literature, such a tensor product is typically referred to as a \emph{functor enriched over metric spaces}, or simply a $\catMet$\emph{-functor}.
+Similarly, we require the currying functor $A \multimap (-) \colon \catC \to \catC$ to be non-expansive.
 
-A \emph{symmetric monoidal closed $\catMet$-category} $\catC$ is a category that is both symmetric monoidal closed and a symmetric monoidal $\catMet$-category, such that for all objects $A$, $B$, and $C$, there exists a $\catMet$-isomorphism
+
+Coproducts are not discussed in this context (for now), as they relate to the interpretation of the metric equation for conditionals, which will be the subject of the next chapter.
+
+\vspace{5pt}
+
+In this context, \emph{soundness} and \emph{completeness} concepts are extended to encompass not only the classical equations but also the metric equations. Recall classical equations $v=w$ can be written as $v=_0w$. As a result, in this metric setting, we define 
+
+\begin{itemize}  
+  \item \emph{Soundness} as the property 
 \[
-  \catC(B \otimes A, C ) \cong \catC(C, A \multimap B)
+ M =_{\varepsilon} N \;\Rightarrow\; d (\llbracket N \rrbracket, \llbracket M \rrbracket) \leq \varepsilon
+\quad \text{for all interpretations in the class.}
 \]
-natural in $B$ and $C$.
+ That is, if two terms are provably at a maximum distance $_{\varepsilon}$, so are their respective interpretations
+\item \emph{Completeness} as the property 
+\[
+ d (\llbracket N \rrbracket, \llbracket M \rrbracket) \leq \varepsilon
+\;\Rightarrow\; M =_{\varepsilon} N 
+\quad \text{for all interpretations in the class.}
+\]
+ That is, if ${\varepsilon}$ is the maximum distance between the interpretations of two programs, then they are provably at a maximum distance ${\varepsilon}$.
+\end{itemize}
+
+
+\begin{definition} \label{def:model_metric_no_cond}
+ Consider a metric $\lambda$-theory $((G,\Sigma),Ax)$ and a symmetric monoidal closed $\catMet$-category $\catC$, in which both the tensor product and the internal hom-functor (currying) are non-expansive. Suppose that for each $X \in G$ we have an interpretation $\llbracket X \rrbracket$ as a $\catC$-object and analogously for the operation symbols. This interpretation structure is a model of the theory if all axioms in $Ax$ are satisfied by the interpretation.
 \end{definition}
 
-
-\begin{theorem}\cite[Theorem 4.2]{dahlqvist2023syntactic} 
-Let $\catC$ be a category that is both monoidal closed and a symmetric monoidal $\catMet$- category, and suppose that for all objects $X \in \catC$, the functor $X \multimap - : \catC \to \catC$ is non-expansive. Then $\catC$ is a \emph{symmetric monoidal closed $\catMet$-category}.
-\end{theorem}
 
 
 \begin{theorem} [Soundness] \cite[Theorem 3.14]{dahlqvist2023syntactic}  \label{thm:soundness_metric_no_cond}
@@ -2835,21 +2733,24 @@ Let $\catC$ be a category that is both monoidal closed and a symmetric monoidal 
 \end{theorem}
 
 
-\begin{definition} \label{def:model_metric_no_cond}
-  Consider a metric $\lambda$-theory $((G,\Sigma),Ax)$ and a symmetric monoidal closed $\catMet$-category $\catC$. Suppose that for each $X \in G$ we have an interpretation $\llbracket X \rrbracket$ as a $\catC$-object and analogously for the operation symbols. This interpretation structure is a model of the theory if all axioms in $Ax$ are satisfied by the interpretation.
-\end{definition}
+Next, we will provide a proof sketch of the completeness result in \cite{dahlqvist2023syntactic} so the reader gets a general feeling of what it requires.
+
+For two types $\typeA$ and $\typeB$ of a metric $\lambda$-theory $T$, consider the set $(\texttt{Values}\typeA,\typeB)$ of values $v$ such that $x : \typeA \vljud v : \typeB$. We equip $\texttt{Values}(\typeA,\typeB)$ with the function $d :\texttt{Values}(\typeA,\typeB) \times \texttt{Values}(\typeA,\typeB) \rightarrow [0, \infty]$ defined by,
+$$d(v,w)=\inf{\{q \, \vert \, v=_q w \text{ is a theorem of } T \}}.$$
 
 
-For two types $\typeA$ and $\typeB$ of a metric $\lambda$-theory $\mathscr{T}$, consider the class \texttt{Values}$(\typeA,\typeB)$ of values $v$ such that $x : \typeA \vljud v : \typeB$. We equip $\texttt{Values}(\typeA,\typeB)$ with the function $d :\texttt{Values}(\typeA,\typeB) \times \texttt{Values}(\typeA,\typeB) \rightarrow \mathbb{Q}^{+}_0$ defined by,
-$$d(v,w)=\inf{\{q \, \vert \, v=_q w \text{ is a theorem of } \mathscr{T} \}}.$$
+Given that the equations $\Gamma \vljud v = w : \typeA$ are abbreviations of $\Gamma \vljud v =_0 w : \typeA$, $\texttt{Values}((\typeA,\typeB), d)$ is a pseudometric space, \ie, it allows distinct terms to have distance zero. Consequently, we quotient this space by the relation $\sim$ (identifying elements at distance zero) to obtain a metric space, denoted by $(\texttt{Values}(\typeA, \typeB), d)/{\sim}$, which is a $\catMet$-category.
+
+Completeness arises from constructing the syntactic category $\catSyn(T)$ of the underlying  theory
+$T$ and then showing that provability of $\Gamma \vljud v =_q w : \typeA$
+ in $T$ is equivalent to $d(\sem{v},\sem{w}) \geq q$ in the category
+  $\catfont{Syn}(T)$. We use the category (\texttt{Values}$(\typeA,\typeB),d)$/$\sim$ to this end.  Note that the quotienting process identifies all terms $x : \typeA \triangleright v : \typeB$ and $x : \typeA \triangleright w : \typeB$ such that $v =_0 w$ and $w =_0 v$. This relation includes the equations-in-context from \autoref{fig:equations-linear-lambda}. Then, the next step is to prove that this quotienting procedure is compatible with the term formation rules of the extended calculus. To this effect, one generally uses the fact that $\otimes$ distributes over suprema. This yields the desired category $\catfont{Syn}(T)$ which will correspond to a symmetric monoidal closed $\catMet$-category $\catC$, in which both the tensor product and the internal currying are non-expansive. The final step is to show that if an equation $\Gamma \vljud v =_q v' : \typeA$ with $q \in [0, \infty]$ is satisfied by Syn$(T)$, then it is a theorem of the linear metric $\lambda$-theory. Which follows from the strictly greater relation and rules (join), (weak), and (arch).
 
 
-Given that the equations $\Gamma \vljud v = w : \typeA$ are abbreviations of $\Gamma \vljud v =_0 w : \typeA$, $\texttt{Values}((\typeA,\typeB), d)$ is a pseudometric category, \ie, it allows distinct terms to have distance zero. Consequently, we quotient this category by the relation $\sim$ (identifying elements at distance zero) to obtain a separated category, denoted by $(\texttt{Values}(\typeA, \typeB), d)/{\sim}$, which is a $\catMet$-category.
 
-We say that a theory $\mathscr{T}$ is \emph{varietal} if $(\texttt{Values}(\typeA, \typeB), d)/{\sim}$ is a small $\catMet$-category for all types $\typeA$ and $\typeB$. For the remainder of this work, we restrict our attention to varietal theories and locally small categories.
 
 \begin{theorem}[Completeness] \cite[Theorem 3.16]{dahlqvist2023syntactic} \label{thm:completeness_metric_no_cond}
-Consider a varietal metric $\lambda$-theory. A metric equation in context
+Consider a  metric $\lambda$-theory. A metric equation in context
 $\Gamma \vljud v =_{q} w : \typeA$
 is a theorem if and only if it holds in all models of the theory.
 \end{theorem}

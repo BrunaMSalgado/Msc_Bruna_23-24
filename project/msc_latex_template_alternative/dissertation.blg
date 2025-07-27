@@ -5,12 +5,14 @@ Reallocating 'name_of_file' (item size: 1) to 6 items.
 The style file: unsrt.bst
 Reallocating 'name_of_file' (item size: 1) to 13 items.
 Database file #1: dissertation.bib
+Warning--entry type for "yanofskyMonoidalCategoryTheory2024" isn't style-file defined
+--line 833 of file dissertation.bib
 Warning--entry type for "choNeumannAlgebrasForm2016" isn't style-file defined
---line 1294 of file dissertation.bib
+--line 1288 of file dissertation.bib
 Warning--entry type for "ferreiraProblemaDecisaoMaquina" isn't style-file defined
---line 1469 of file dissertation.bib
+--line 1463 of file dissertation.bib
 Warning--entry type for "westerbaanCategoryNeumannAlgebras2019" isn't style-file defined
---line 1683 of file dissertation.bib
+--line 1677 of file dissertation.bib
 Warning--empty year in franzenGodelsTheorem2008
 Warning--empty journal in thrun2002robotic
 Warning--empty booktitle in Church2008
@@ -20,34 +22,34 @@ Warning--empty journal in heisenbergUeberQuantentheoretischeUmdeutung1925
 Warning--empty journal in bornZurQuantenmechanik1925
 You've used 125 entries,
             1791 wiz_defined-function locations,
-            1171 strings with 24578 characters,
-and the built_in function-call counts, 27444 in all, are:
-= -- 2485
+            1171 strings with 24599 characters,
+and the built_in function-call counts, 27416 in all, are:
+= -- 2481
 > -- 1062
 < -- 28
 + -- 410
 - -- 285
-* -- 1593
-:= -- 4193
-add.period$ -- 388
+* -- 1591
+:= -- 4187
+add.period$ -- 387
 call.type$ -- 125
-change.case$ -- 81
+change.case$ -- 82
 chr.to.int$ -- 0
 cite$ -- 132
-duplicate$ -- 1405
-empty$ -- 2842
+duplicate$ -- 1400
+empty$ -- 2841
 format.name$ -- 285
-if$ -- 6323
+if$ -- 6316
 int.to.chr$ -- 0
 int.to.str$ -- 125
-missing$ -- 162
-newline$ -- 623
+missing$ -- 160
+newline$ -- 622
 num.names$ -- 137
 pop$ -- 500
 preamble$ -- 1
 purify$ -- 0
 quote$ -- 0
-skip$ -- 647
+skip$ -- 649
 stack$ -- 0
 substring$ -- 1504
 swap$ -- 350
@@ -58,5 +60,5 @@ type$ -- 0
 warning$ -- 7
 while$ -- 254
 width$ -- 128
-write$ -- 1341
-(There were 10 warnings)
+write$ -- 1339
+(There were 11 warnings)
