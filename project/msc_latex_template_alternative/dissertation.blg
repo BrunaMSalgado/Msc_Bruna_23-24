@@ -14,51 +14,52 @@ Warning--entry type for "ferreiraProblemaDecisaoMaquina" isn't style-file define
 Warning--entry type for "westerbaanCategoryNeumannAlgebras2019" isn't style-file defined
 --line 1677 of file dissertation.bib
 Warning--empty year in franzenGodelsTheorem2008
+Warning--empty journal in STUBBE201495
 Warning--empty journal in thrun2002robotic
 Warning--empty booktitle in Church2008
 Warning--empty author and editor in InfiniteDimensionalAnalysis2006
 Warning--empty year in InfiniteDimensionalAnalysis2006
 Warning--empty journal in heisenbergUeberQuantentheoretischeUmdeutung1925
 Warning--empty journal in bornZurQuantenmechanik1925
-You've used 125 entries,
+You've used 126 entries,
             1791 wiz_defined-function locations,
-            1171 strings with 24599 characters,
-and the built_in function-call counts, 27416 in all, are:
-= -- 2481
-> -- 1062
+            1177 strings with 24694 characters,
+and the built_in function-call counts, 27623 in all, are:
+= -- 2502
+> -- 1066
 < -- 28
-+ -- 410
-- -- 285
-* -- 1591
-:= -- 4187
-add.period$ -- 387
-call.type$ -- 125
-change.case$ -- 82
++ -- 412
+- -- 286
+* -- 1604
+:= -- 4219
+add.period$ -- 390
+call.type$ -- 126
+change.case$ -- 83
 chr.to.int$ -- 0
-cite$ -- 132
-duplicate$ -- 1400
-empty$ -- 2841
-format.name$ -- 285
-if$ -- 6316
+cite$ -- 134
+duplicate$ -- 1409
+empty$ -- 2863
+format.name$ -- 286
+if$ -- 6360
 int.to.chr$ -- 0
-int.to.str$ -- 125
-missing$ -- 160
-newline$ -- 622
-num.names$ -- 137
-pop$ -- 500
+int.to.str$ -- 126
+missing$ -- 161
+newline$ -- 627
+num.names$ -- 138
+pop$ -- 503
 preamble$ -- 1
 purify$ -- 0
 quote$ -- 0
-skip$ -- 649
+skip$ -- 652
 stack$ -- 0
-substring$ -- 1504
+substring$ -- 1526
 swap$ -- 350
 text.length$ -- 28
 text.prefix$ -- 0
 top$ -- 0
 type$ -- 0
-warning$ -- 7
-while$ -- 254
-width$ -- 128
-write$ -- 1339
-(There were 11 warnings)
+warning$ -- 8
+while$ -- 257
+width$ -- 129
+write$ -- 1349
+(There were 12 warnings)

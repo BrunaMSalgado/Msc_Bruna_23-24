@@ -97,7 +97,7 @@
 
 %The metric lambda calculus incorporates a metric equational system, enabling reasoning about approximate program equivalence.
 
-This chapter introduces the metric lambda calculus as presented in \cite{dahlqvist2023syntactic}, drawing also from \cite{mackieLanguageAutonomous1993,croleCategoriesTypes1994,selinger2013lecture}.  After some intuitions about (metric) lambda calculus, the chapter overviews its syntax, metric equational system, and interpretation. Since the interpretation is categorical, the chapter also includes an exposition of the definitions and results from category theory, drawing from  \cite{yanofskyMonoidalCategoryTheory2024,barrCategoryTheoryComputing1990,maclane13}. Our presentation on lambda calculus will involve conditionals; and in this regard, we will include proofs of results that are folklore, but whose proof we could not find in the literature. Finally, we illustrate the usefulness of the classical equational system by using it as a bridge to connect a certain type to Boolean algebra. It is worth noting that as the main goal of this chapter is to introduce all be backgound on lambda calculus we will need, we introduce contitionals, but the respective metric equation will only the introduced in the subsequent chapter, given it is a contrbution. 
+This chapter introduces the metric lambda calculus as presented in \cite{dahlqvist2023syntactic}, drawing also from \cite{mackieLanguageAutonomous1993,croleCategoriesTypes1994,selinger2013lecture}.  After some intuitions about (metric) lambda calculus, the chapter overviews its syntax, metric equational system, and interpretation. Since the interpretation is categorical, the chapter also includes an exposition of the definitions and results from category theory, drawing from  \cite{yanofskyMonoidalCategoryTheory2024,barrCategoryTheoryComputing1990,maclane13}. Our presentation on lambda calculus will involve conditionals; and in this regard, we will include proofs of results that are folklore, but whose proof we could not find in the literature. Finally, we illustrate the usefulness of the (metric) equational system by using it as a bridge to connect a certain type to Boolean algebra. It is worth noting that as the main goal of this chapter is to introduce all be backgound on lambda calculus we will need, we introduce contitionals, but the respective metric equation will only the introduced in the subsequent chapter, given it is a contrbution. 
 For a more detailed study of lambda calculus theory, the reader is referred to \eg \cite{barendregt1984lambda}. It is worth noting that this chapter includes minor contributions such as the proofs of results on conditionals that are folklore and the preliminar study about Booleans.
 
  
@@ -754,6 +754,11 @@ of a shuffle either $\Gamma$ is of the form $\Gamma_1, x: \typeA$ or $\Delta$ is
 of the form $\Delta_1, x : \typeA$. The first case follows directly and the second case
 is a corollary of the exchange rule.
 \end{proof}
+
+\begin{convention}
+  Given programs  $\textbf{A} \triangleq \Gamma, x:\typeA \vljud v:\typeB$ and $\textbf{B} \triangleq \Delta \vljud w:\typeA$, we will often abuse notation by writing $\Gamma,\Delta \triangleright \textbf{A} [\textbf{B}/x]:\typeB$ to mean $\Gamma,\Delta \triangleq v[w/x]:\typeB$. Variants such as simply writing $\textbf{A}[\textbf{B}/x]$ to refer to the term $v[w/x]$ will also be used.
+\end{convention}
+
  
 
 
@@ -925,6 +930,15 @@ Moreover, negation can be expressed by the following program:
   \right\}
 \end{align*}
 
+To simplify notation, given terms $\Gamma \vljud v::\typeI \oplus \typeI$ and $\Delta \vljud  w:\typeI \oplus \typeI$, we define:
+\begin{equation}
+  \begin{split}
+    &\Gamma, \Delta  \vljud \textbf{Conjunction}\,(v,w) \triangleq \Gamma, \Delta  \vljud \textbf{Conjunction}\,(a,b) [v/a, w/b] \\
+    & \Gamma, \Delta  \vljud \textbf{Disjunction}\,(v,w) \triangleq \Gamma, \Delta  \vljud \textbf{Disjunction}\,(a,b) [v/a, w/b] \\
+     &\Gamma \vljud \textbf{Negation}\,(a) \triangleq \Gamma \vljud \textbf{Negation}\,(a) [v/a]
+  \end{split}
+\end{equation}
+
  This result will enable us to verify that the programs we define satisfy the desired properties in a systematic and straightforward manner.
 
 
@@ -962,15 +976,15 @@ Using the $\beta$-equation we have
 Next, considering the equations above and  $\eta_{case}$ we reason as follows:
 \begin{equation*}
 \begin{split}
- v &= \text{case } x'  
+ v &= \text{case } x  
     \left\{ \begin{aligned}
-    \inl_{\typeI}(y) \Rightarrow v\,[\text{inl}(y)/x] ;  
-    \inl_{\typeI}(z) \Rightarrow v\,[\text{inr}(z)/x]
+    \inl(y) \Rightarrow v\,[\text{inl}(y)/x] ;  
+    \inl(z) \Rightarrow v\,[\text{inr}(z)/x]
   \end{aligned}  \right\} & (\eta_{case})\\
-  & = \text{case } x'  
+  & = \text{case } x  
     \left\{ \begin{aligned}
-    \inl_{\typeI}(y) \Rightarrow w\,[\text{inl}(y)/x] ;  
-    \inl_{\typeI}(z) \Rightarrow w\,[\text{inr}(z)/x]
+    \inl(y) \Rightarrow w\,[\text{inl}(y)/x] ;  
+    \inl(z) \Rightarrow w\,[\text{inr}(z)/x]
   \end{aligned}  \right\} = w & (\text{\autoref{eq:beta_red}},\eta_{case})
 \end{split}
 \end{equation*}
@@ -989,24 +1003,24 @@ Next, we will show that the programs we have defined verify certain properties o
       \left\{
       \begin{aligned}
       & \Gamma \vljud \textbf{Conjunction} \, (\inl(*),v) = v  \\
-      & \Gamma \vljud \textbf{Conjunction} \, (\inr(*), v) = \inr(*)
+      & \Gamma \vljud \textbf{Conjunction} \, (\inr(*), v) = \text{dis}(v) \text{ to} *. \inr(*)
       \end{aligned}
       \right.
       \]
   \end{lemma}
 
   \begin{proof}
-    These properties follow from the equations $\beta_{case}^{inl}$, $\beta_{case}^{inr}$, $\beta_{\mathbb{I}_{e}}$, $\eta_{\mathbb{I}_{e}}$, and $ax_\text{dis}$.
+    These properties follow from the equations $\beta_{case}^{inl}$, $\beta_{case}^{inr}$, and $\beta_{\mathbb{I}_{e}}$.
 
     \begin{equation*}
     \begin{split}
       & \textbf{Conjunction} \, (\inl(*),v) \\
       & \triangleq  \text{case } \inl(*)\,
-  \{\inl(x) \Rightarrow x \text{ to} *. \, w' ;
+  \{\inl(x) \Rightarrow x \text{ to} *. \, v ;
   \, \inr(y) \Rightarrow y \text{ to} *. \,  \text{dis}(w') \text{ to} *. \inr(*)
   \} \\
-  & = * \text{ to} *. \, w' & (\beta_{case}^{inl}) \\
-  & = w' & (\beta_{\mathbb{I}_{e}}) 
+  & = * \text{ to} *. \,v & (\beta_{case}^{inl}) \\
+  & = v & (\beta_{\mathbb{I}_{e}}) 
     \end{split}
     \end{equation*}
 
@@ -1028,8 +1042,7 @@ Next, we will show that the programs we have defined verify certain properties o
   &\inr(y) \Rightarrow y \text{ to} *. \,  \text{dis}(\inl(z)) \text{ to} *. \inr(*) \end{aligned} 
   \right\} \\
   & \hspace{-22pt}  =  *  \text{ to} *. \,  \text{dis}(\inl(z)) \text{ to} *. \inr(*) & (\beta_{case}^{inr}) \\
-  & \hspace{-22pt}  =  *  \text{ to} *. \, z \text{  to} *. \inr(*) & (ax_\text{dis}, \beta_{case}^{inl}) \\
-  & \hspace{-22pt}  =  \inr(*) & (\beta_{\mathbb{I}_{e}},\eta_{\mathbb{I}_{e}}) \\
+  & \hspace{-22pt}  =   \text{dis}(\inl(z)) \text{ to} *. \inr(*) & (\beta_{\mathbb{I}_{e}}) \\
     \end{align*}
       The second equation is obtained through similar reasoning.
   \end{proof}
@@ -1040,8 +1053,8 @@ Next, we will show that the programs we have defined verify certain properties o
 
 \begin{proposition} \label{lem:comm}
   %The conjunction, disjunction, and negation of Boolean values satisfy the standard properties of classical logic. In particular, conjunction and disjunction are commutative, associative, idempotent, and distributive with respect to each other. Negation follows the double negation property and De Morgan's laws.
-  The conjunction of two terms is commutative , \ie,
- $$ \textbf{Conjunction} \, (v,w) = \textbf{Conjunction} \, (w,v)  $$ 
+  The conjunction of two terms is commutative , \ie, for $ \Gamma \vljud v: \typeI \oplus \typeI$ and $ \Delta \vljud w: \typeI \oplus \typeI$ 
+ $$  \Gamma, \Delta \triangleright \textbf{Conjunction} \, (v,w) = \textbf{Conjunction} \, (w,v)  $$ 
 \end{proposition}
 
 
@@ -1114,8 +1127,8 @@ We present the explicit proof for $\text{inl}(c)$; the proof for  $\text{inl}(d)
 
 
 \begin{lemma} \label{lem:dneg}
-  The double negation of a term $w$ is equivalent to that term, \ie, 
-  $$\textbf{Negation} (\textbf{Negation} (v) ) = v.$$
+  The double negation of a term $w$ is equivalent to that term, \ie, for $ \Gamma \vljud v: \typeI \oplus \typeI$
+  $$ \Gamma \vljud \textbf{Negation} (\textbf{Negation} (v) ) = v.$$
 \end{lemma}
 
 \begin{proof}
@@ -1136,8 +1149,8 @@ We present the explicit proof for $\text{inl}(c)$; the proof for  $\text{inl}(d)
 \end{proof}
 
 \begin{lemma} \label{lem:dmorgan} 
-  De Morgan's laws hold for terms  $v: \typeI \oplus \typeI$ and $w: \typeI \oplus \typeI$, \ie, 
-  $$\textbf{Disjunction} (\textbf{Negation} (v) , \textbf{Negation} (w)) =  \textbf{Negation}(\textbf{Conjunction} (v, w)) $$ 
+  De Morgan's laws hold for terms  $v: \typeI \oplus \typeI$ and $w: \typeI \oplus \typeI$, \ie, for $ \Gamma \vljud v: \typeI \oplus \typeI$ and $ \Delta \vljud w: \typeI \oplus \typeI$ 
+  $$  \Gamma, \Delta \triangleright \textbf{Disjunction} (\textbf{Negation} (v) , \textbf{Negation} (w)) =  \textbf{Negation}(\textbf{Conjunction} (v, w)) $$ 
 \end{lemma}
 
 \begin{proof}
@@ -1367,12 +1380,6 @@ Consider we  have the axiom $f^{\varepsilon}(a) =_{\varepsilon} f(a)$. Then it i
   \end{equation*}
 \end{example}
 
-Note that without a metric equation for conditionals, we cannot, for instance, reason about approximate equivalence in programs such as  $\textbf{Conjunction}$, discussed in the previous subsubsection. For example, it would be interesting to know whether, given that \( v' =_{\varepsilon} \inl_{\typeI}(*) \), it follows that.
-\[
-\textbf{Conjunction}(v, w) =_{\varepsilon} \textbf{Conjunction}(\inl_{\typeI}(*), w).
-\]
-This question will be addressed in the next chapter.
-
 
 \begin{definition} \label{def:metric_lambda_theory}
   Consider a tuple \( (G, \Sigma) \), where \( G \) is a set of ground types and \( \Sigma \) is a set of sorted operation symbols of the form \( f : A_1, \ldots, A_n \to A \) with \( n \geq 1 \). A \emph{metric $\lambda$-theory} is a tuple \( ((G, \Sigma), Ax) \), where \( Ax \) is a set of \emph{metric equations-in-context} over  $\lambda$-terms constructed from \( (G, \Sigma) \).
@@ -1383,6 +1390,41 @@ The elements of \( Ax \) are called the \emph{axioms} of the theory. Let \( Th(A
 For instance, in \autoref{ex:metric_eqs}, $\textbf{SwapTensorf} =_{\varepsilon} \textbf{SwapTensorf}^\varepsilon$ is a theorem.
 
 
+
+
+\subsection{Interlude: Booleans - Part 2}
+
+%Although we do not have an explicit equation for conditionals, we can stil  reason about approximate equivalence between them using the substitution rule.
+
+
+We can now use the extended system to explore the booleans introduced in  \Cref{subsec:interlude_bool}. For instance, given axioms
+
+$$ \Gamma \triangleright v =_{\varepsilon} v' \quad \text{and} \quad \Delta \triangleright w =_{\delta} w', $$
+we can ask whether
+$$ \textbf{Conjunction} [v, w] =_{\varepsilon + \delta}  \textbf{Conjunction} [v', w'], $$
+which indeed follows from a double application of the substitution rule. An analogous reasoning applies to $\textbf{Conjunction} [v, w]$ and $\textbf{Negation} [w]$.
+
+These derivations we have just established are interesting, for they hint at ``quantitative laws'' for the boolean connectives. For example, previously we have established that
+\[
+      \left\{
+      \begin{aligned}
+      & \Gamma \vljud \textbf{Conjunction} \, (\inl(*),w) = w  \\
+      & \Gamma \vljud \textbf{Conjunction} \, (\inr(*), w) = \text{dis}(w) \text{ to} *. \inr(*).
+      \end{aligned}
+      \right.
+      \]
+
+Now we can assume the existence of a truth value $- \triangleright v: \typeI \oplus \typeI$ between ``true'' and ``false'', \ie,
+$\inr(*) =_{\epsilon} v  =_{\delta} \inl(*)$
+and derive the quantitative laws
+\[
+      \left\{
+      \begin{aligned}
+      & \Gamma \vljud \textbf{Conjunction} \, (v,w) =_{\delta} w  \\
+      & \Gamma \vljud \textbf{Conjunction} \, (v, w) =_{\epsilon} \text{dis}(w) \text{ to} *. \inr(*).
+      \end{aligned}
+      \right.
+      \]
 
 \section{Category theory} \label{sec:catgories}
 
@@ -1892,6 +1934,25 @@ is defined by
 [f, g] (v,w) = f(v)+ g(w).
 \]
 \end{example}
+
+
+Up until how we have only discussed binary products/coproducts. However, we can also define \emph{ternary products}\(A_1 \times A_2 \times A_3\) with an analogous universal property. That is, there exist three projection morphisms
+$\pi_i : A_1 \times A_2 \times A_3 \to A_i \quad \text{for } i = 1, 2, 3,$
+and for any object \(B\) and morphisms \(f_i : B \to A_i\), there exists a unique morphism 
+$\langle f_1, f_2, f_3 \rangle  : B \to A_1 \times A_2 \times A_3$ 
+such that \(\pi_i \cdot \langle f_1, f_2, f_3 \rangle = f_i\) for each \(i = 1, 2, 3\). Such a condition can be formulated for any number of factors and if a category has binary products, then it has all finite products, \ie any finite number $n \geq 1$ of factors. 
+Any object $A$ is the unary product of $A$ with itself one time. Observe also that a terminal object is a ``nullary'' product, that is, a product of no objects: given no objects, there exists an object $\mathbf{1}$ with no projectors, and for any other object $A$, there exists a unique arrow $!: A \to \mathbf{1}$ making no additional diagrams commute. One can also define the product of a family of objects \((C_i)_{i \in I}\) indexed by a set \(I\), as an object $\prod_{i \in I} C_i$
+together with a family of projection morphisms
+\[
+\pi_i : \prod_{j \in I} C_j \to C_i \quad \text{for each } i \in I,
+\]
+such that for every object \(A\) and every family of morphisms \((f_i : A \to C_i)_{i \in I}\), there exists a unique morphism $u : A \to \prod_{i \in I} C_i$ such that $\pi_i \cdot u = f_i \quad \text{for all } i \in I$.
+ 
+Reversing all arrows in the definitions above yields the notion of \emph{finite coproducts} and the \emph{coproduct} of a family of objects $(C_i)_{i \in I}$.
+
+\begin{definition}
+A category \(\catC\) is said to have \emph{all small products} if every  set of objects in \(\catC\) has a product.
+\end{definition}
 
 
 
@@ -2729,7 +2790,7 @@ In this context, \emph{soundness} and \emph{completeness} concepts are extended 
 
 
 \begin{theorem} [Soundness] \cite[Theorem 3.14]{dahlqvist2023syntactic}  \label{thm:soundness_metric_no_cond}
-  The rules in Figures \ref{fig:equations-linear-lambda} and \ref{fig:metric deductive system} are sound for a  symmetric monoidal closed $\catMet$-category  $\catC$ over metric spaces. Specifically, if $\Gamma \vljud v =_{q} w : \typeA $ results from the rules in Figures \ref{fig:equations-linear-lambda} and \ref{fig:metric deductive system} then $q \geq d( \llbracket \Gamma  \vljud v : \typeA \rrbracket, \llbracket\Gamma \vljud w : \typeA \rrbracket)$.
+  The rules in Figures \ref{fig:equations-linear-lambda} and \ref{fig:metric deductive system} are sound for a  symmetric monoidal closed $\catMet$-category  $\catC$, in which both the tensor product and the internal hom-functor (currying) are non-expansive. Specifically, if $\Gamma \vljud v =_{q} w : \typeA $ results from the rules in Figures \ref{fig:equations-linear-lambda} and \ref{fig:metric deductive system} then $q \geq d( \llbracket \Gamma  \vljud v : \typeA \rrbracket, \llbracket\Gamma \vljud w : \typeA \rrbracket)$.
 \end{theorem}
 
 
