@@ -46,9 +46,7 @@ Our system for conditionals is presented in \autoref{fig:metric conditionals}.
 \end{figure}
 
 
-\todo[inline,size=\normalsize]{Porque é que queremos as eqs metricas das injeções se são redundantes?}
-
-Firstly, we observe that our equational system encompasses both \autoref{fig:metric conditionals} and \autoref{fig:metric deductive system}. Consequently, the $\inl$ and $\inr$ equations are redundant, as they can be derived from the substitution rule in \autoref{fig:metric deductive system}. Moreover, note that, strictly speaking, we can always use substitution to reason about case statements; however, the introduced equation provides a tighter bound.
+Firstly, we observe that our equational system encompasses both \autoref{fig:metric conditionals} and \autoref{fig:metric deductive system}. Consequently, the $\inl$ and $\inr$ equations are redundant, as they can be derived from the substitution rule in \autoref{fig:metric deductive system}. Nevertheless, we have chosen to include them explicitly to emphasize that the injections preserve (\ie, do not increase) the distance between terms. Moreover, note that, strictly speaking, we can always use substitution to reason about case statements; however, the introduced equation provides a tighter bound.
 
  Intuitively, the equation for the case statement provides a bound for the worst-case scenario: the only branch executed (either $w$ or $u$) is the one that is at the greatest distance from its counterpart ($w'$ or $u'$, respectively). Therefore, the maximum distance between the two branches is taken as the bound.   
 
@@ -134,7 +132,7 @@ In this category, the coproduct is defined as in $\catSet$. The distance functio
     \todo[inline,size=\normalsize]{Não estou a perceber o problema de $ (a,b) \in A \oplus B$? Nós usamos $A \otimes B$ acima tb, não podemos usar $(a,b)$?}
     \begin{align*}
       & d_{A \oplus B, C}([f_1, g_1], [f_2, g_2]) \\
-      &  =  \sup \{ d_{A\oplus B} ([f_1, g_1] (a,b), [f_2, g_2] (a,b)) \,\vert \, (a,b) \in A \oplus B \} \\
+      &  =  \sup \{ d_{A\oplus B} ([f_1, g_1] (x), [f_2, g_2] (x)) \,\vert \, x \in A \oplus B \} \\
       & =  \sup \{ \{ d_{A\oplus B} ([f_1, g_1] (\inl(a)), [f_2, g_2] (\inl(a))) \,\vert \, a \in A \}    \\
       & \hspace{15pt} \cup \{d_{A\oplus B} ([f_1, g_1] (\inr(b)), [f_2, g_2] (\inr(b))) \,\vert \, b \in B\}\} \\
       & = \sup \{ \{ d_{A}(f_1 (a), f_2 (a)) \,\vert \, a \in A \} \cup  \{d_{B}(g_1 (b), g_2 (b)) \,\vert \, b \in B \}\} \\
@@ -144,7 +142,7 @@ In this category, the coproduct is defined as in $\catSet$. The distance functio
 \end{proof}
 
 
-\begin{definition}
+\begin{definition} \label{def:model_metric_cond}
   Consider a metric $\lambda$-theory $((G,\Sigma),Ax)$ and a symmetric monoidal closed $\catMet$-category with binary coproducts $\catC$, in which both the tensor product and the currying are non-expansive. Suppose that for each $X \in G$ we have an interpretation $\llbracket X \rrbracket$ as a $\catC$-object and analogously for the operation symbols. This interpretation structure is a model of the theory if all axioms in $Ax$ are satisfied by the interpretation.
 \end{definition}
 
@@ -386,16 +384,15 @@ If $\catC$ is a $\catMet$-category, one may define a metric on the morphims of i
 \[
 [(f,(\phi_i)_{i \in I'}),\ (g,(\psi_i)_{i \in I''})] \quad \text{and} \quad [(f',(\phi_i')_{i \in I'}),\ (g',(\psi_i')_{i \in I''})]
 \]
-as morphisms $(h,(\xi_i)_{i \in I})$ and $(h',(\xi_i')_{i \in I})$ from $A \oplus B$ to $C$, where $I = I' \cup I''$. For instance, the indexing function $h$ underlying $(\xi_i)_{i \in I}$ is defined as
+as morphisms $(h,(\xi_i)_{i \in I})$ and $(h',(\xi_i')_{i \in I})$ from $A \oplus B$ to $C$, where $I = I' \cup I''$. Specifically, the indexing function $h$ underlying $(\xi_i)_{i \in I}$ is defined as
 \[
 h(i) =
 \begin{cases}
 f(i) & \text{if } i \in I', \\
-g(i) & \text{if } i \in I''.
+g(i) & \text{if } i \in I'',
 \end{cases}
 \]
-Then, we have:
-
+the copairing of $f$ and $g$ in $\catSet$. Then, we have:
   \begin{align*}
     &d([\Phi, \Psi],[\Phi', \Psi'])  \\
     &= d ( \xi, \xi') = \sup\{d'(\xi_i, \xi'_i) \;\vert\; i \in I' \cup I'' \} \\

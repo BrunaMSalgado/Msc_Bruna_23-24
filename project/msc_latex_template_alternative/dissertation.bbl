@@ -145,21 +145,6 @@ Roy~L. Crole.
 Peter Selinger.
 \newblock Lecture notes on the lambda calculus, 2013.
 
-\bibitem{yanofskyMonoidalCategoryTheory2024}
-Noson~S. Yanofsky.
-\newblock Monoidal {{Category Theory}}: {{Unifying Concepts}} in
-  {{Mathematics}}, {{Physics}}, and {{Computing}} ({Lecture} {Slides}), 2024.
-
-\bibitem{barrCategoryTheoryComputing1990}
-Michael Barr and Charles Wells.
-\newblock {\em Category {{Theory}} for {{Computing Science}}}.
-\newblock Prentice Hall, 1990.
-
-\bibitem{maclane13}
-Saunders Mac~Lane.
-\newblock {\em Categories for the working mathematician}, volume~5.
-\newblock Springer Science \& Business Media, 2013.
-
 \bibitem{barendregt1984lambda}
 Hendrik~P Barendregt et~al.
 \newblock {\em The lambda calculus}, volume~3.
@@ -175,18 +160,6 @@ Fredrik Dahlqvist and Renato Neves.
 \newblock A complete v-equational system for graded lambda-calculus.
 \newblock {\em Electronic Notes in Theoretical Informatics and Computer
   Science}, 3, 2023.
-
-\bibitem{eilenbergGeneralTheoryNatural1945}
-Samuel Eilenberg and Saunders MacLane.
-\newblock General {{Theory}} of {{Natural Equivalences}}.
-\newblock {\em Transactions of the American Mathematical Society},
-  58(2):231--294, 1945.
-
-\bibitem{awodeyCategoryTheory2010}
-Steve Awodey and Steve Awodey.
-\newblock {\em Category {{Theory}}}.
-\newblock Oxford {{Logic Guides}}. Oxford University Press, second edition,
-  second edition edition, 2010.
 
 \bibitem{gierzContinuousLatticesDomains2003}
 G.~Gierz, K.~H. Hofmann, K.~Keimel, J.~D. Lawson, M.~Mislove, and D.~S. Scott.
@@ -287,6 +260,12 @@ Fredrik Dahlqvist, Alexandra Silva, and Dexter Kozen.
 Vladimir~I. Bogachev.
 \newblock {\em Measure {{Theory}}}.
 \newblock Springer, 2007.
+
+\bibitem{goubault-larrecqNonHausdorffTopologyDomain2013}
+Jean Goubault-Larrecq.
+\newblock {\em Non-{{Hausdorff Topology}} and {{Domain Theory}}: {{Selected
+  Topics}} in {{Point-Set Topology}}}.
+\newblock New {{Mathematical Monographs}}. Cambridge University Press, 2013.
 
 \bibitem{athreyaMeasureTheoryProbability2006}
 Krishna~B. Athreya and Soumendra~N. Lahiri.
@@ -529,12 +508,6 @@ Steven Roman.
   {{Texts}} in {{Mathematics}}}.
 \newblock Springer, 1992.
 
-\bibitem{goubault-larrecqNonHausdorffTopologyDomain2013}
-Jean Goubault-Larrecq.
-\newblock {\em Non-{{Hausdorff Topology}} and {{Domain Theory}}: {{Selected
-  Topics}} in {{Point-Set Topology}}}.
-\newblock New {{Mathematical Monographs}}. Cambridge University Press, 2013.
-
 \bibitem{heisenbergUeberQuantentheoretischeUmdeutung1925}
 W.~Heisenberg.
 \newblock Über quantentheoretische umdeutung kinematischer und mechanischer
@@ -710,5 +683,22 @@ Vittorio Giovannetti, Seth Lloyd, and Lorenzo Maccone.
 Sisi Zhou.
 \newblock Limits of noisy quantum metrology with restricted quantum controls.
 \newblock {\em Phys. Rev. Lett.}, 133:170801, Oct 2024.
+
+\bibitem{eilenbergGeneralTheoryNatural1945}
+Samuel Eilenberg and Saunders MacLane.
+\newblock General {{Theory}} of {{Natural Equivalences}}.
+\newblock {\em Transactions of the American Mathematical Society},
+  58(2):231--294, 1945.
+
+\bibitem{yanofskyMonoidalCategoryTheory2024}
+Noson~S. Yanofsky.
+\newblock Monoidal {{Category Theory}}: {{Unifying Concepts}} in
+  {{Mathematics}}, {{Physics}}, and {{Computing}} ({Lecture} {Slides}), 2024.
+
+\bibitem{awodeyCategoryTheory2010}
+Steve Awodey and Steve Awodey.
+\newblock {\em Category {{Theory}}}.
+\newblock Oxford {{Logic Guides}}. Oxford University Press, second edition,
+  second edition edition, 2010.
 
 \end{thebibliography}
