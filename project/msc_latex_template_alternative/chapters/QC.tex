@@ -1308,17 +1308,65 @@ Let $\mathcal{H}$ be a finite-dimensional Hilbert space, and let $\varphi$ be a 
 We call $v_\varphi$ the \emph{Riesz vector} for $\varphi$ and denote it by $v_\varphi$.\\
 \end{theorem}
 
-\todo[inline,size=\normalsize]{Colocar reparo das notas}
 
 Using the Riesz representation theorem, we can define a map 
 $\phi^* : V^* \to V$
-by setting \(\phi*(\varphi) = v_\varphi\), where \(v_\varphi\) is the Riesz vector corresponding to \(\varphi \in V^*\). Since the Riesz representation is unique, \(\phi^*\) is well-defined \cite{romanAdvancedLinearAlgebra1992}. 
+by setting \(\phi^*(\varphi) = v_\varphi\), where \(v_\varphi\) is the Riesz vector corresponding to \(\varphi \in V^*\). Since the Riesz representation is unique, \(\phi^*\) is well-defined \cite{romanAdvancedLinearAlgebra1992}. 
+
+\todo[inline,size=\normalsize]{Alternativa 1}
 
 Let $\sigma= n_1, \ldots, n_s$. For $\phi: \mathcal{M}_\sigma^* \to \mathcal{M}_\sigma $, by the Riesz representation theorem, we have
-$$ \varphi(\ket{j} \bra{i})= \langle \ket{j} \bra{i},  v_\varphi  \rangle = \sum_{k=1}^s \langle \ket{j_k} \bra{i_k},  v_{\varphi,k}  \rangle = \sum_{k=1}^s  \tr \left( \ket{i_k} \bra{j_k} \cdot   v_{\varphi,k} \right) =  v_{\varphi,p_k,q_k} $$
+\[ \varphi(\ket{j} \bra{i})= \langle \ket{j} \bra{i},  v_\varphi  \rangle. \]
+
+Since $\mathcal{M}_\sigma$ is a direct sum, the Riesz vector $v_\varphi$ also decomposes:
+\[
+v_\varphi = (v_{\varphi,1}, \ldots, v_{\varphi,s}),
+\]
+with $v_{\varphi,k} \in \mathbb{C}^{n_k \times n_k}$.
+
+Using the definition of inner product for matrices, we have
+\[
+\langle \ket{j_k}\bra{i_k}, v_{\varphi,k} \rangle = \tr(\ket{i_k}\bra{j_k} \cdot v_{\varphi,k}) =  (v_{\varphi,k})_{i_k, j_k} ,
+\]
+where $(v_{\varphi,k})_{p_k, q_k}$ denotes the entry in the $i_k$-th row and $j_k$-th column of $v_{\varphi,k}$. Hence,
+\[
+\varphi(\ket{j}\bra{i}) = \sum_{k=1}^s \langle \ket{j_k} \bra{i_k},  v_{\varphi,k}  \rangle = \sum_{k=1}^s  \tr \left( \ket{i_k} \bra{j_k} \cdot   v_{\varphi,k} \right) =  (v_{\varphi,k})_{i_k, j_k} \equiv (v_{\varphi})_{i,j}.
+\]
+When evaluated on basis elements $\ket{j}\bra{i}$, only the $k$-th component of $v_\varphi$ contributes (since the basis is orthonormal).
+
+
+As a result, we obtain
+\[
+\phi^*(\varphi) = \sum_{i,j} \varphi(\ket{j}\bra{i}) \cdot \ket{i}\bra{j}
+= \sum_{i,j} (v_{\varphi})_{i,j} \cdot \ket{i}\bra{j}
+= v_\varphi.
+\]
+
+\todo[inline,size=\normalsize]{Alternativa 2}
+
+
+
+ Consider a linear map $\phi: \BoundOp{\HilbH} \to \BoundOp{\HilbK}$. Since it is well known that we can identify $\BoundOp{\HilbH}$ with the matrix algebra $\mathcal{M}_{n}$, where $n = \dim(\HilbH)$, the map $\phi$ can be equivalently represented as $\phi:\mathcal{M}_{n} \to \mathcal{M}_{m}$, where $m = \dim(\HilbK)$.
+ 
+ Consequently, by the Riesz representation theorem, and the definitions of trace and  inner product for matrices we have:
+\[ \varphi(\ket{j} \bra{i})= \langle \ket{j} \bra{i},  v_\varphi  \rangle =  \tr(\ket{i}\bra{j} \cdot v_{\varphi}) =  (v_{\varphi})_{i, j}, \]
+
+where $(v_{\varphi})_{i, j}$ denotes the entry in the $i$-th row and $j$-th column of $v_{\varphi}$. 
+
+As a result, we obtain
+\[
+\phi^*(\varphi) = \sum_{i,j} \varphi(\ket{j}\bra{i}) \cdot \ket{i}\bra{j}
+= \sum_{i,j} (v_{\varphi})_{i,j} \cdot \ket{i}\bra{j}
+= v_\varphi.
+\]
+
+
+\begin{comment}
+$$= \sum_{k=1}^s \langle \ket{j_k} \bra{i_k},  v_{\varphi,k}  \rangle = \sum_{k=1}^s  \tr \left( \ket{i_k} \bra{j_k} \cdot   v_{\varphi,k} \right) =  v_{\varphi,p_k,q_k} $$
 where the subscript \(k\) refers to the \(k\)-th component of the vector \(v_\varphi\), and \(v_{\varphi, p_k, q_k}\) denotes the entry in the \(p_k\)-th column and \(q_k\)-th row of the matrix \(v_{\varphi,k}\). Note that when the set of orthonormal basis states of \(\mathbb{C}^{n_1} \oplus \ldots \oplus \mathbb{C}^{n_s}\) is decomposed by its components, all but one of the components are zero vectors this is the one we designate by $k$ in the last step.
 
 As a result $\phi^*(\varphi) =  \sum_{ij} \varphi(\ket{j}\bra{i}) \cdot \ket{i} \bra{j} = \sum_{ij}  v_{\varphi,p_k,q_k} \cdot  \ket{i} \bra{j}  = v_{\varphi}$.
+\end{comment}
 
 
 \begin{definition}\label{def:uni_cont}
