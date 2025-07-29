@@ -44,13 +44,11 @@ Finally, the last section provides a few illustrative examples in the setting of
 
 
 
-It is impossible to present the theory of quantum computation without introducing some concepts of theory of Hilbert spaces and operators. This section provides a brief overview of the aspects of Hilbert spaces that are most pertinent to the study of quantum computation. 
+It is impossible to present the theory of quantum computation without introducing some concepts of theory of Hilbert spaces and operators. This section briefly overwiews of the aspects of Hilbert spaces that are most pertinent to the study of quantum computation. 
 
-\begin{center}
-\fbox{\parbox{0.95\textwidth}{
-In this section and the one that follows, vector spaces are assumed to be finite-dimensional, unless otherwise stated.
-}}
-\end{center}
+\begin{convention}
+  In this section and the one that follows, vector spaces are assumed to be finite-dimensional, unless otherwise stated.
+\end{convention}
 
 
 
@@ -188,10 +186,10 @@ The matrix whose entries are the values $A_{ij}$ is said to form a \emph{matrix 
 \subsection{Inner product}
 %When refering to the vector product in an arbitrary vector space, the notation \gls{inner-product} will be used.
 
-\todo[inline,size=\normalsize]{A linearidade é no segundo ou no primeiro argumentos, é que uns livros usam no primeiro e outros no segundo?} 
+
 
 \begin{definition} \label{def:inner_product}
-An \emph{inner product}~\gls{inner-product} on a vector space $V$ is a function from a mapping $V\times V$ to the field of scalars, $\langle \cdot, \cdot \rangle : V \times V \rightarrow \mathcal{F}$,  that satisfies the following properties for all $v, w, w_1, \ldots, w_n \in V$ and $\alpha_1, \ldots, \alpha_n \in \mathcal{F}$
+An \emph{inner product}~\gls{inner-product} on a vector space $V$ is a function from a mapping $V\times V$ to the field of scalars, $\langle \cdot, \cdot \rangle : V \times V \rightarrow \mathbb{C}$,  that satisfies the following properties for all $v, w, w_1, \ldots, w_n \in V$ and $\alpha_1, \ldots, \alpha_n \in \mathbb{C}.$
 
 \begin{enumerate}
   \item Linearity in the second argument,$$ \left\langle v, \sum_{i=1}^n \alpha_i w_i\right\rangle = \sum_{i=1}^n \alpha_i \langle v, w_i\rangle. $$
@@ -200,11 +198,13 @@ An \emph{inner product}~\gls{inner-product} on a vector space $V$ is a function 
 \end{enumerate}
 \end{definition}
 
-
-For instance, the inner product $ \langle v, w \rangle$ of two vectors $ v = (\alpha_1, \ldots, \alpha_n ),w = (\beta_1, \ldots, \beta_n) \in \mathbb{C}^{n}$ is defined as
+\begin{example}
+  For instance, the inner product $ \langle v, w \rangle$ of two vectors $ v = (\alpha_1, \ldots, \alpha_n ),w = (\beta_1, \ldots, \beta_n) \in \mathbb{C}^{n}$ is defined as
 \begin{equation*}
   \langle v, w \rangle = \sum_{i} \overline{\alpha}_i \beta_i. 
 \end{equation*}
+\end{example}
+
 
 Every inner product space is a normed space, where the norm of a vector $v \in V$ is defined as $\|v\| = \sqrt{\langle v, v \rangle}$.
 
@@ -216,16 +216,20 @@ Every inner product space is a normed space, where the norm of a vector $v \in V
 
 The letters \gls{hilbertspaces} will often be used to refer to Hilbert spaces.
 
-
+\begin{definition} \label{def:positive}
+  \emph{Positive (semidefinite) operators}. A square operator $A\in \mathcal{B}(\HilbH)$ is \emph{positive}, denoted $A \geq 0$, if $\langle v, Av \rangle \geq 0$ for all $v \in  \mathcal{B}(\HilbH)$.    
+  %sum ->p.163 theory of quantum information
+\end{definition}
 
 
 
 \subsection{Trace}
 
+
 \begin{definition} \label{def:trace} 
-  Let $\mathcal{H}$ be an Hilbert space and $ T \in \mathcal{B}(\mathcal{H})$ a positive operator (\autoref{def:positive}). The trace of $T$ is defined as 
+  Let $\mathcal{H}$ be an Hilbert space and $ A \in \mathcal{B}(\mathcal{H})$ a positive operator (\autoref{def:positive}). The trace of $A$ is defined as 
 \[
-\text{Tr}(T) := \sum_i \langle T v_i, v_i \rangle \in [0, \infty],
+\text{Tr}(A) := \sum_i \langle A v_i, v_i \rangle \in [0, \infty],
 \]
 where $\{v_i\}$ is an orthonormal basis for $\mathcal{H}$.
 \end{definition}
@@ -236,7 +240,7 @@ The trace is \emph{linear}, $\text{Tr}(A + B) = \text{Tr}(A)+\text{Tr}(B), \text
 The trace of a square matrix can alternatively be defined as follows.
 
 \begin{definition}
-  The trace of a square matrix $A\in \mathbb{C}^{n\times n}$ defined to be the sum of its diagonal elements,
+  The trace of a square matrix $A\in \mathbb{C}^{n\times n}$ is defined to be the sum of its diagonal elements,
 \begin{equation*}
   \text{Tr}(A)= \sum_{i} A_{ii}.
 \end{equation*}
@@ -323,11 +327,6 @@ The following classes of operators are of particular interest in quantum informa
   \emph{Hermitian operators.} A square operator $A \in \mathcal{B}(\HilbH)$ is \emph{hermitian}  if $A = A^{\dagger}$. Every Hermitian operator is a normal operator.
 \end {definition}
 
-\begin{definition} \label{def:positive}
-  \emph{Positive (semidefinite) operators}. A square operator $A\in \mathcal{B}(\HilbH)$ is \emph{positive}, denoted $A \geq 0$, if $\langle v, Av \rangle \geq 0$ for all $v \in  \mathcal{B}(\HilbH)$.   Positive matrices are hermitian, and consequently, by the spectral decomposition, have diagonal representation $A =  \sum_i \lambda_i v_i v_i^{\dag}$, with non-negative eigenvalues $\lambda_i$. 
-
-  %sum ->p.163 theory of quantum information
-\end{definition}
 
 \begin{definition}
   \emph{Unitary operators.} A square operator $U \in  \mathcal{B}(\HilbH)$ is \emph{unitary} if $U^{\dagger}U = UU^{\dagger} = \id$. The letter \gls{unitary} will often be used to refer to unitary
@@ -335,8 +334,8 @@ The following classes of operators are of particular interest in quantum informa
 \end{definition}
 Geometrically, unitary operators are important because they preserve inner products between vectors, $\langle U v, U w \rangle = \langle v, w \rangle$  for any two vectors $v$ and $w$. 
 
-\begin{definition}
-  \emph{Density operator}. Positive  trace class operators of trace 1 are called \emph{density operators}.  By convention, such operators are denoted by the lowercase Greek letter \gls{density-matrix}, often accompanied by subscripts.
+\begin{definition} \label{def:density_op}
+  A \emph{density operator} is a positive (semidefinite) operator with unit trace. By convention, density operators are denoted by the lowercase Greek letter \gls{density-matrix}, often accompanied with subscripts or primes to indicate the system or state, $\eg$, $\rho_A$, $\rho'$, etc.
 \end{definition}
 
 \begin{definition}
@@ -346,6 +345,8 @@ Geometrically, unitary operators are important because they preserve inner produ
 \begin{definition}
   \emph{Projectors}. A positive operator $P \in \BoundOp{\HilbH}$ is a projector if $P^2 = P$.
 \end{definition}
+
+
 
 
 
@@ -362,6 +363,9 @@ Using this last result any function $f:\mathbb{C} \xrightarrow{} \mathbb{C}$, ca
     f(A) = \sum_{i} f(\lambda_{i})v_{i}v_{i}^{\dag}
 \end {equation}
 where $A = \sum_{i} \lambda_{i}v_{i}v_{i}^{\dag}$ is the spectral decomposition of $A$.
+
+
+Positive operators are hermitian, and consequently, by the spectral decomposition, have diagonal representation $A =  \sum_i \lambda_i v_i v_i^{\dag}$, with non-negative eigenvalues $\lambda_i$.
 
 
 
@@ -421,22 +425,24 @@ The inner product in $\HilbH \oplus \HilbK$ is defined as follows:
   \langle (v_1, w_1), (v_2, w_2) \rangle = \langle v_1, v_2 \rangle + \langle w_1, w_2 \rangle.
 \end{equation*}
 
+The notation $(-)^{\oplus n}$ will be used to denote the direct sum of a vector space with itself $n$ times.
+
 
 
 \begin{definition} \label{def:tensor_prod_fin_hilb}
-Consider two finite dimensinal Hilbert spaces $\HilbH$ and $\HilbK$ with respective basis $v=(v_1, \ldots , v_n)$ and $w=(w_1, \ldots , w_m)$.  Then $\HilbH \otimes \HilbK$  is an $mn$ dimensional vector space and $v \otimes w$ corresponds to the vector
+Consider two finite dimensinal Hilbert spaces $\HilbH$ and $\HilbK$ with respective basis $v=(\alpha_1, \ldots , \alpha_n)$ and $w=(\beta_1, \ldots , \alpha_m)$.  Then $\HilbH \otimes \HilbK$ is an $mn$ dimensional vector space and $v \otimes w$ corresponds to the vector
 \[
-(v_1 w_1, \ldots, v_1 w_m, \ldots, v_n w_1, \ldots, v_n w_m),
+(\alpha_1 \beta_1, \ldots, \alpha_1 \beta_m, \ldots, \alpha_n \beta_1, \ldots, \alpha_n \beta_m),
 \]
-which is a basis for  $\HilbH \otimes \HilbK$.  The tensor product of two elements $v = \sum_i \alpha_i v_i$ and w = $\sum_j b_j  w_j$ is:
+which is a basis for  $\HilbH \otimes \HilbK$.  The tensor product of two elements $v = \sum_i \alpha_i v_i$ and  $w=\sum_j \beta_j  w_j$ is:
 \begin{equation*}
-  v \otimes w = \sum_{i,j} \alpha_i b_j \cdot v_i \otimes w_j.
+ v \otimes w = \sum_{i,j} \alpha_i \beta_j \cdot v_i \otimes w_j.
 \end{equation*}
  The inner product in $V \otimes W$ is defined as follows 
 \begin{equation*}
-  \langle v_1 \otimes w_1, v_2 \otimes w_2 \rangle = \langle v_1, v_2 \rangle \langle w_1, w_2 \rangle.
+  \langle v_1 \otimes w_1, v_2 \otimes w_2 \rangle = \langle v_1, v_2 \rangle \langle w_1, w_2 \rangle,
 \end{equation*}
-This is definition is known as the \emph{Kronecker product}.
+extending to all vectors by linearity.
 \end{definition}
 
 \begin{comment}
@@ -471,13 +477,14 @@ A_{n1} B & A_{n2} B & \cdots & A_{nn} B
 \end{bmatrix}
 \end{equation*}
 
-In this representation, each block $A_{ij} B$ is a $p \times q$ submatrix whose entries are proportional to $B$, with overall proportionality constant $A_{ij}$.
+In this representation, each block $A_{ij} B$ is a $p \times q$ submatrix 
+obtained by scaling the entire matrix $B$ by the scalar $A_{ij}$.
 
 
 For example the tensor product of the matrices $A= \left(\begin{smallmatrix}
     1 & 2 \\
     3 & 4
-  \end{smallmatrix}\right) $ and $A=\id $ is
+  \end{smallmatrix}\right) $ and $B=\id $ is
 \begin{equation} \label{eq:pauli_tensor}
 A \otimes B =
 \begin{bmatrix}
@@ -533,30 +540,32 @@ In this section we only consider finite dimensional Hilbert spaces.
   \begin{equation*} \label{eq:trace_norm_matrix_tr}
     \lVert A \rVert_{1} = \text{Tr} \sqrt{A^{\dagger}A}
   \end{equation*}
-  This norm is also  known as the Schatten 1-norm. The trace norm induces a metric on the set of density matrices which is defined by $d(\rho, \sigma) = \lVert \rho -\sigma\rVert_{1}$.
+  This norm is also  known as the Schatten 1-norm. The trace norm induces a metric on the set of density matrices which is defined by $d(\rho, \rho') = \lVert \rho - \rho'\rVert$.
 \end{definition}
 
 \subsection{Infinite-dimensional Hilbert Spaces}
 In this subsection we lift the restriction to finite-dimensional Hilbert spaces.
-
-\autoref{def:inner_product} extends naturally to infinite-dimensional vector spaces, as stated, and the same applies to \autoref{def:trace}.
+The definition of inner product
+(\autoref{def:inner_product}) extends naturally to infinite-dimensional vector spaces, as stated, and the same applies to the definition of trace (\autoref{def:trace}).
 
 \begin{definition}
   A \emph{Hilbert space} $\mathcal{H}$ is an inner product space that is complete with respect to the norm induced by the inner product.
 \end{definition}
 
-
+\begin{comment}
 \begin{definition}
   A Hilbert space \( \mathcal{H} \) is called \emph{separable} if it has a countable orthonormal basis.
 \end{definition}
+\end{comment}
+
 
 \begin{definition}
-  Let $\mathcal{H}$ be an Hilbert space. An operator $A \in \mathcal{B}(\HilbH) $ is \emph{trace class} if $\text{Tr}(|A|) < \infty$, where $|A|= \left(\overline{A}A \right)^{1/2}$.  We denote by $\mathcal{T} (\HilbH)$ the set of trace class operators on $\mathcal{H}$.
+  Let $\mathcal{H}$ be a Hilbert space. An operator $A \in \mathcal{B}(\HilbH) $ is \emph{trace class} if $\text{Tr}(|A|) < \infty$, where $|A|= \left(\overline{A }A \right)^{1/2}$.  We denote by $\mathcal{T} (\HilbH)$ the set of trace class operators on $\mathcal{H}$.
 \end{definition}
 If $\mathcal{H}$ is infinite-dimensional, the set $\mathcal{T}(\mathcal{H})$ forms a proper subset of $\mathcal{B}(\mathcal{H})$. In the finite-dimensional case, however, the two spaces coincide and can be identified with one another.
 
 \begin{definition}
-  Let \( \mathcal{H} \)and \( \mathcal{K} \) be Hilbert spaces. We denote by \gls{hilb_tensor} the Hilbert space tensor product, obtained by completing \( \mathcal{H}  \otimes \mathcal{K} \) equipped with the standard inner product
+  Let \( \mathcal{H} \)and \( \mathcal{K} \) be Hilbert spaces. We denote by \gls{hilb_tensor} the Hilbert space tensor product that is obtained by completing \( \mathcal{H}  \otimes \mathcal{K} \) w.r.t. the standard inner product
 \[
 \langle w_1 \otimes v_1,\, w_2 \otimes v_2 \rangle = \langle w_1, v_2 \rangle \cdot \langle w_1, v_2 \rangle.
 \] 
@@ -601,10 +610,13 @@ Let \( x = (x_1, x_2, \dots, x_n) \in \mathbb{C}^n \) . The \( L^\infty \), \gls
 
 \section{Quantum Computing Preliminaries} \label{sec:Quantum Computing Preliminaries}
 
-The basic unit of information in quantum computation is a \emph{quantum bit} or \emph{qubit} \cite{perdrix2008quantum}. Just as classical bit, which can be in one of two states, 0 or 1, a qubit also has a state. Qubits are represented using \emph{Dirac notation},  where the ket symbol \gls{ket} is used to denote a quantum state $\psi$. The corresponding bra symbol \gls{bra} is used to denote the conjugate transpose of the state $\psi$. In this setting, the inner product of two states $\ket{\psi}$ and $\ket{\phi}$ is denoted \gls{innerproduct} and is the same as $\bra{\psi} \ket{\phi}$. %The outer product of two states $\ket{\psi}$ and $\ket{\phi}$ is denoted $\ket{\psi}\bra{\phi}$.
+The basic unit of information in quantum computation is a \emph{quantum bit} or \emph{qubit} \cite{perdrix2008quantum}. While a classical bit can be in one of two states, a qubit can be in one of a continuum of states. Qubits are represented using \emph{Dirac notation},  where the ket symbol \gls{ket} denotes a quantum state $\psi$. The corresponding bra symbol \gls{bra} denotes the conjugate transpose of the state $\psi$. In this setting, the inner product of two states $\ket{\psi}$ and $\ket{\phi}$ is denoted \gls{innerproduct} and is the same as $\bra{\psi} \ket{\phi}$. The outer product of two states $\ket{\psi} \in \HilbH$ and $\ket{\phi} \in  \HilbK$ is the linear operator $\ket{\psi}\bra{\phi} : \HilbK \to \HilbH$, defined by
+\begin{equation*} \label{eq:outer-product}
+(\ket{\psi}\bra{\phi})(\ket{\phi'}) = \ket{\psi} \langle \phi | \phi' \rangle = \langle \phi | \phi' \rangle \ket{\psi}.
+\end{equation*}
 
 \begin{definition}
-  Each isolated physical system is associated with a Hilbert space, known as the system's \emph{state space}. The system's state is fully characterized by a \emph{state vector}, which is a unit vector within this state space.
+  Each isolated quantum system is associated with a Hilbert space, known as the system's \emph{state space}. The system's state is fully characterized by a \emph{state vector}, which is a unit vector within this state space.
 \end{definition}
 
 \subsection{The 2-Dimensional Hilbert Space} \label{subsec:hilb2D}
@@ -619,19 +631,22 @@ The basic unit of information in quantum computation is a \emph{quantum bit} or 
 \end{definition}
 
 \begin{definition}
-  Unlike classical bits, a qubit is not restricted to the basis states \( \ket{0} \) and \( \ket{1} \). It can exist in a linear combination of these states, known as a \emph{superposition}. A general qubit state can be written as
+  Unlike classical bits, a qubit is not restricted to the basis states \( \ket{0} \) and \( \ket{1} \). It can be in a linear combination of these states, known as a \emph{superposition}. A general qubit state can be written as
   \[
   \ket{\psi} = \alpha \ket{0} + \beta \ket{1},
   \]
   where \( \alpha, \beta \in \mathbb{C} \) are called \emph{amplitudes}, and must satisfy the normalization condition \( |\alpha|^2 + |\beta|^2 = 1 \). The values \( |\alpha|^2 \) and \( |\beta|^2 \) represent the probabilities of measuring the qubit in the states \( \ket{0} \) and \( \ket{1} \), respectively.
 \end{definition}
 
+%\ie the act of observing a system to extract information collapsing it to the basis states
+
+  Informally, a \emph{measurement} (in the computational basis) of a single qubit is an (irreversible) process that projects the qubit state onto \( \ket{0} \) with probability \( |\alpha|^2 \), or \( \ket{1} \) with probability \( |\beta|^2 \), yielding the classical outcome \( 0 \) or \( 1 \), respectively.
 
   Any normalized qubit state \( \ket{\psi} \) can be written (up to a global phase) as
   \[
   \ket{\psi} = e^{i \gamma} \left(\cos\left(\frac{\theta}{2}\right) \ket{0} + e^{i\phi}\sin\left(\frac{\theta}{2}\right)\ket{1}\right),
   \]
-  where \( \theta, \phi, \gamma \in \mathbb{R} \). The global phase factor \( e^{i \gamma} \) has no observable effect on the outcome of measurements and is often disregarded. Thus, the state is usually represented as:
+  where \( \theta, \phi, \gamma \in \mathbb{R} \). The global phase factor \( e^{i \gamma} \) has no observable effect on the outcome of measurements  and is often disregarded. Thus, the state is usually represented as:
   \begin{equation} \label{eq:qubit3}
   \ket{\psi} = \cos\left(\frac{\theta}{2}\right) \ket{0} + e^{i\phi}\sin\left(\frac{\theta}{2}\right)\ket{1}.
   \end{equation}
@@ -648,7 +663,7 @@ The basic unit of information in quantum computation is a \emph{quantum bit} or 
   \label{fig:bloch_sphere}
 \end{figure}
 
-The distance between two quantum states $\ket{\psi}$ and $\ket{\psi'}$ is their Euclidean distance in the Bloch sphere \cite{wallman2016noise,nielsen2010quantum}. 
+The (trace) distance between two quantum states $\ket{\psi}$ and $\ket{\psi'}$, $\tracenorm{\ket{\psi}-\ket{\psi'}}$, is their Euclidean distance in the Bloch sphere \cite{nielsen2010quantum}. 
 
 There are infinite points in the Bloch sphere, which might suggest the possibility of encoding an infinite amount of information in the infinite binary expansion of the angle $\theta$. However, when a qubit is measured, it collapses to one of the basis states, so only one bit of information can be extracted from a qubit. To accurately determine the amplitudes $\alpha$ and $\beta$, an infinite number of identical qubit copies would need to be measured. Nevertheless, it is still conceptually valid to think of these amplitudes as ``hidden information''. One could say that quantum computation is the art of manipulating this hidden information using phenomena such as interference and superposition to perform tasks that would be impossible or inefficient with classical computers.
 
@@ -664,7 +679,7 @@ There are infinite points in the Bloch sphere, which might suggest the possibili
   \ket{\psi} = \alpha_{00}\ket{00} + \alpha_{01}\ket{01} + \alpha_{10}\ket{10} + \alpha_{11}\ket{11}.
 \end{equation*}
 \end{definition}
-It should be noted that unfortunately, no simple generalization of the Bloch sphere known for multiple qubits.
+It should be noted that unfortunately, no simple generalization of the Bloch sphere is known for multiple qubits.
 
 %falta n-fold
 %ir ao tensor e acrecentar os operadores que mapeiam operadores
@@ -672,7 +687,7 @@ It should be noted that unfortunately, no simple generalization of the Bloch sph
 \subsubsection{Entanglement}
 
 \begin{definition}
-  An interesting aspect of multi-qubit states is the phenomenon of \emph{entanglement}. This term means strong intrinsic correlations between two (or more) particles when the quantum state of each of them cannot be described independently of the state of the other, \text{i.e.} cannot be written as a product of states of the individual qubits. Measuring one qubit of the entangled pair affects the state of the other qubit. This must happen even if the particles are far apart.
+  An interesting aspect of multi-qubit states is the phenomenon of \emph{entanglement}. This term indicates strong intrinsic correlations between two (or more) particles when the quantum state of each of them cannot be described independently of the state of the other (\ie, it cannot be written as a product of states of the individual qubits). Measuring one qubit of the entangled pair affects the state of the other qubit. This must happen even if the particles are far apart.
 \end{definition}
 
 In order to better understand this concept, consider the follow \emph{Bell state} or \emph{EPR pair}:
@@ -680,7 +695,7 @@ In order to better understand this concept, consider the follow \emph{Bell state
   \ket{\Phi^{+}} = \frac{1}{\sqrt{2}}(\ket{00} + \ket{11}).
 \end{equation*}
 
-Upon measuring the first qubit, there are two possible outcomes: $0$ with probability $1/2$ and $1$ with probability $1/2$. If the first qubit is measured to be $0$, the second qubit will also be $0$ with probability 1. If the first qubit is measured to be $1$, the second qubit will also be $1$ with probability 1. Therefore, the measurement outcomes are correlated.
+Upon measuring the first qubit, there are two possible outcomes: $0$ with probability $1/2$ and $1$ with probability $1/2$. Remarkably, if the first qubit is measured to be $0$, the second qubit will also be $0$ with probability 1; and if the first qubit is measured to be $1$, the second qubit will also be $1$ with probability 1. Therefore, the measurement outcomes are correlated.
 
 These correlations prompted Einstein, Podolsky, and Rosen to publish a paper \cite{einstein1935can} questioning the completeness of quantum mechanics in 1935. The EPR paradox presented a dilemma: the existence of entanglement (\text{i.e.}, correlations that persist regardless of distance) versus local realism and hidden variables. Einstein argued that if two objects, which have interacted in the past but are now separated, exhibit perfect correlation, they must possess a set of properties determined before their separation. These properties would persist in each object, dictating the outcomes of measurements on both sides. Einstein believed that the strong correlations predicted by quantum mechanics necessitate the existence of additional properties not accounted for by the quantum formalism that determine the measurement results. Therefore, he argued that quantum mechanics might require supplementation, as it may not represent a complete or ultimate description of reality.
 
@@ -751,11 +766,16 @@ When the Pauli matrices are exponentiated, they result in three valuable classes
 
 \begin{example}
   
-There are also multi-qubit gates, such as the \emph{controlled-not} gate, denoted \gls{cnot}, which leaves the states $\ket{00}$ and  $\ket{01}$ unchanged, and maps $\ket{10}$ and $\ket{11}$ to each other:
+There are also multi-qubit gates, such as the \emph{controlled-not} gate, denoted \gls{cnot}, in which the state of the first qubit determines whether the \( X \) gate is applied to the second qubit. The first qubit is called the \emph{control qubit}, and the second is the \emph{target qubit}. The gate is defined by the following matrix:
 \begin{equation*}
-  \textit{CNOT} = \begin{pmatrix} 1 & 0 & 0 & 0\\ 0 & 1 & 0 & 0\\ 0 & 0 & 0 & 1\\ 0 & 0 & 1 & 0 \end{pmatrix}.
+  \textit{CNOT} = \begin{pmatrix}
+    1 & 0 & 0 & 0 \\
+    0 & 1 & 0 & 0 \\
+    0 & 0 & 0 & 1 \\
+    0 & 0 & 1 & 0
+  \end{pmatrix}.
 \end{equation*}
-In this case, as the state of the first qubit determines if the $X$ gate is applied to the second qubit, the first qubit is called the \emph{control qubit} and the second qubit the \emph{target qubit}. 
+In this case, the states \( \ket{00} \) and \( \ket{01} \) remain unchanged, while \( \ket{10} \) and \( \ket{11} \) are mapped to each other.
 
 There is an ``extension" of the controlled-not gate, the controlled-$U$ gate, where $U$ is a unitary gate acting on a single qubit. This gate applies the gate $U$ to the target qubit if the control qubit is in state $\ket{1}$ and does nothing otherwise. It is defined as:
 \begin{align*}
@@ -769,7 +789,7 @@ It should be noted that no completely closed systems exist in the universe. Neve
 
 
 
-\subsection{Measurements}
+\subsection{Measurements} \label{subsec:Measurements}
 
 % decidir se e como por M0 e M1
 
@@ -814,11 +834,11 @@ A quantum state $\ket{\psi}$ is said to be a \emph{pure state} if it is complete
 \end{definition}
 
 \begin{definition}
-A state that is a probabilistic mixture of pure states is designated a \emph{mixed state}. A mixed state $\sum_i \alpha_i \ket{\psi_i}$ can be represented by a density operator $\rho= \sum_i |\alpha_i|^{2}\ket{\psi_i}\bra{\psi_i}$. Note that $|\alpha_i|^{2}$ is the probability of the system being in state $\ket{\psi_i}$.
+A state that is a probabilistic mixture of pure states is designated a \emph{mixed state}. A mixed state can be represented by a density operator $\rho= \sum_i |p_i|^{2}\ket{\psi_i}\bra{\psi_i}$, where $|p_i|^{2}$ is the probability of the system being in state $\ket{\psi_i}$.
 \end{definition} 
 
 \begin{definition}[Unitary Evolution of a Density Operator]
-  When a unitary operator \( U \) is applied to a quantum state described by a density matrix \( \rho \), the resulting state is given by $ \rho' = U \rho U^\dagger.$
+  When a unitary operator \( U \) is applied to a mixed quantum state described by a density matrix \( \rho \), the resulting state is given by $ \rho' = U \rho U^\dagger.$
 \end{definition}
 
 \begin{definition}[Measurement of a Density Operator]
@@ -835,10 +855,22 @@ A state that is a probabilistic mixture of pure states is designated a \emph{mix
 \begin{equation} \label{eq:bloch_vector_0}
   \rho = \frac{1}{2}(\id + r_{x}\sigma_{x} + r_{y}\sigma_{y} + r_{z}\sigma_{z}),
 \end{equation}
-where $r = (r_x, r_y, r_z)$ is a real three-dimensional vector such that $\| r \|_2 \leq 1$. This vector is known as the \emph{Bloch vector for the state} $\rho$. Since $\rho$ is Hermitian. $r_x, r_y$ and $r_z$ are always real.  The inverse map of \autoref{eq:bloch_vector_0} is
+where $r = (r_x, r_y, r_z)$ is a real three-dimensional vector such that $\| r \|_2 \leq 1$. This vector is known as the \emph{Bloch vector for the state} $\rho$. Since $\rho$ is Hermitian, $r_x, r_y$ and $r_z$ are always real.  
+
+To derive the inverse map \( r_\mu = \text{Tr}(\rho \sigma_\mu) \), consider the properties of Pauli matrices:
+\[
+\text{Tr}(\sigma_\mu) = 0, \quad \text{Tr}(\sigma_\mu \sigma_\nu) = 2 \delta_{\mu \nu}.
+\]
+
+Consequently,
+\[
+\text{Tr}(\rho \sigma_\mu) = \frac{1}{2} \sum_{\nu} r_\nu \text{Tr}(\sigma_\nu \sigma_\mu) = \frac{1}{2} \cdot 2 r_\mu = r_\mu.
+\]
+
+Thus, the inverse map of \autoref{eq:bloch_vector_0} is
 \begin{equation}
   \label{eq:Bloch_vector}
-  r_{\mu} = \text{Tr}(\rho \sigma_{\mu})
+  r_{\mu} = \text{Tr}(\rho \sigma_{\mu}).
   \end{equation} 
 \end{definition}
 
@@ -850,7 +882,21 @@ where $r = (r_x, r_y, r_z)$ is a real three-dimensional vector such that $\| r \
 Density operators are particularly well-suited for describing individual subsystems of a composite quantum system. This type of description is provided by the \emph{reduced density operator}
 
 \begin{definition}
-Let \( \ket{a_1}, \ket{a_2} \) be vectors in the Hilbert space of system \( A \), and \( \ket{b_1}, \ket{b_2} \) vectors in the Hilbert space of system \( B \). The \emph{partial trace over} \( B \) is defined by:
+Consider Hilbert spaces $\mathcal{H}_A$ and $\mathcal{H}_B$ of systems $A$ and $B$, respectively. The \emph{partial trace over $B$},$\tr_B \colon \mathcal{T}(\mathcal{H}_A \otimes \mathcal{H}_B) \to \mathcal{T}(\mathcal{H}_A)$,
+is defined by
+\[
+\tr_B = \text{id}_{\mathcal{T}(\mathcal{H}_A)} \otimes \tr.
+\]
+Similarly, the \emph{partial trace over $B$} corresponds to the map \(
+\tr_A \colon \mathcal{T}(\mathcal{H}_A \otimes \mathcal{H}_B) \to \mathcal{T}(\mathcal{H}_B),
+\)
+defined by 
+\[
+\tr_B = \tr \otimes \text{id}_{\mathcal{T}(\mathcal{H}_B)}.
+\]
+\end{definition}
+
+\begin{comment}
 \begin{align*}
   \text{Tr}_{B}(\ket{a_1}\bra{a_2} \otimes \ket{b_1}\bra{b_2}) & =\ket{a_1}\bra{a_2}\text{Tr}(\ket{b_1}\bra{b_2}) \\
   & = \ket{a_1}\bra{a_2}  \sum_{\mu} \bra{\mu} \ket{b_1}\bra{b_2} \ket{\mu} \\
@@ -865,21 +911,18 @@ In certain situations it is more advantageous to consider the reduced density op
 \end{equation*}
 where $\{\ket{\mu}\}$, span the state space of $B$ and act only in the state space of $B$. 
 \end{definition}
+\end{comment}
 
 \begin{definition}
-Given physical systems $A$ and $B$ whose composite system is given by the density operator $\rho_{AB}$, the \emph{reduced density operator} for subsystem $A$ is $$\rho_{A} = \text{Tr}_{B}(\rho_{AB}).$$ 
-
-Note that, by linearly, the partial trace of $\rho_{AB} = \sum_{ijkl} p_{ijkl} \ket{a_i} \bra{a_j}  \otimes \ket{b_k} \bra{b_l}$ is
-\begin{align*}
-  \text{Tr}_{B}(\rho_{AB}) &= \sum_{ijkl} p_{ijkl} \text{Tr}_{B}\left(\ket{a_i}\bra{a_j} \otimes \ket{b_k} \bra{b_l}\right) \\
-  & = \sum_{ijkl} p_{ijkl} \ket{a_i}\bra{a_j}  \sum_{\mu} \braket{b_l}{\mu} \braket{\mu}{b_k}= \sum_{ijkl} p_{ijkl} \ket{a_i}\bra{a_j}   \braket{b_l}{b_k} 
-\end{align*} 
-
+Given physical systems $A$ and $B$ whose composite system is given by the density operator $\rho_{AB}$, the \emph{reduced density operator} for subsystem $A$ is $\rho_{A} = \text{Tr}_{B}(\rho_{AB}).$
 Similarly, the \emph{reduced density operator for subsystem} $B$ is $\rho_{B} = \text{Tr}_{A}(\rho_{AB})$.
 \end{definition}
 
+Recall that in this section we restrict ourselves to the finite-dimensional setting, where the set of trace class operators on $\HilbH$, $\TraceOp{\HilbH}$, can be identified with the set of bounded operators on $\HilbH$, $\BoundOp{\HilbH}$.
+Nevertheless, we use the notation $\TraceOp{\HilbH}$, as it reflects the natural setting of the density operator formalism --- a density operator must be trace-class, even in the infinite-dimensional case \cite{heinosaariMathematicalLanguageQuantum2011}.
 
 
+%to emphasize that a density operator must be trace-class (the infinite-dimensional extension of the definition of density operator(\autoref{def:density_op}) requires it to be trace-class). 
 
  %\begin{align*}
  %\text{Tr}_{B}(\ket{a}\bra{b} \otimes \ket{c}\bra{d}) & =\ket{i}\bra{j} \text{Tr}(\ket{k}\bra{l}) \\
@@ -920,9 +963,15 @@ Thus far, only two types of quantum operations have been discussed: unitary oper
 \end{definition}
 
 \begin{definition}
-  The tensor product of two super-operators $\Phi: \TraceOp{\HilbH_1} \rightarrow \TraceOp{\HilbK_1} $ and $\Psi : \TraceOp{\HilbH_2} \rightarrow \TraceOp{\HilbK_2}$ is an operator $ \Phi \otimes \Psi:  \TraceOp{\HilbH_1} \otimes \TraceOp{\HilbK_1} \rightarrow \TraceOp{\HilbH_2} \otimes \TraceOp{\HilbK_2}$ defined by the equation:
+  The tensor product of two super-operators 
+  $\Phi: \TraceOp{\HilbH_1} \rightarrow \TraceOp{\HilbK_1} $ 
+  and
+  $\Psi : \TraceOp{\HilbH_2} \rightarrow \TraceOp{\HilbK_2}$ 
+  is an operator 
+  $ \Phi \otimes \Psi:  \TraceOp{\HilbH_1 \otimes \HilbK_1} \rightarrow \TraceOp{\HilbH_2 \otimes \HilbK_2}$ 
+  defined by the equation:
 \begin{equation*}
-  (P \otimes Q)(A \otimes B) = P (A) \otimes Q(B).
+  (\Phi \otimes \Psi)(A \otimes B) = \Phi (A) \otimes \Psi(B).
 \end{equation*}
 \end{definition}
 
@@ -937,7 +986,9 @@ $\Phi \otimes \id_{\mathcal{T}(\HilbK)}$ on $\mathcal{T}(\mathcal{H}_1 \otimes \
 
 Since density matrices are positive, any physically allowed transformation must be represented by a positive operator. Nonetheless, this is not sufficient on its own: since one can always extend the space $\mathbb{C}^{n \times n}$ to  $\mathbb{C}^{n \times n} \otimes \mathbb{C}^{m \times m} $ by adjoining a new quantum system, any physically allowed transformation must be completely positive. Finally, since the trace of a density matrix is always $1$, any physically allowed transformation must be trace-preserving. A \acrfull{cptp} operator is traditionally called a \emph{quantum channel}.
 
-It is sometimes convenient to relax the trace-preserving condition to a trace-non-increasing one, resulting in what is known as a \emph{quantum operation}.
+
+It is sometimes convenient to relax the trace-preserving condition to a trace-non-increasing condition, resulting in what is known as a \emph{quantum operation}. This accounts for phenomena such as \emph{qubit leakage} (the unintended loss of quantum information from computational basis states, $\ket{0}$ and $\ket{1}$, into higher-energy non-computational states, e.g., $\ket{2}$, $\ket{3}$, breaking the idealized two-level qubit assumption) and operations such as \emph{postselection} (a technique in quantum algorithms where operations are conditioned on measurement outcomes, often leading to non-trace-preserving maps) \cite{Yu_trace_non_inc}.
+
 
 
 
@@ -951,7 +1002,7 @@ It is sometimes convenient to relax the trace-preserving condition to a trace-no
 
 Assume that there is a quantum system $S$ of interest which is a subsystem of a larger system which also includes an environment $E$. These systems have a joint unitary evolution described by a unitary operator $U$ acting on the composite system, $U (\rho_{SE} )= U \rho_{SE} U^{\dag}$. 
 
-Given that density matrices are positve operators, the density operator of the environment $\rho_E$ initially can be written as 
+Given that density matrices are positve operators, and therefore Hermitian with non-negative eigenvalues, the density operator of the environment $\rho_E$ initially can be written as 
 \begin{equation*}
   \rho_E = \sum_{i} p_{i} \ket{i} \bra{i}
 \end{equation*}
@@ -995,12 +1046,12 @@ This last equality corresponds to an Kraus operator sum representation, where th
 
 \subsection{Norms on quantum channels}
 \begin{definition} \label{def:trace_norm_superoperator}
-  The trace norm of a super-operator $Q:\Phi: \TraceOp{\HilbH} \rightarrow \TraceOp{\HilbK}$ is defined as:
+  The trace norm of a super-operator $\Phi: \TraceOp{\HilbH} \rightarrow \TraceOp{\HilbK}$ is defined as:
   \begin{equation*} 
-    \lVert Q \rVert_{1} =  \max\{\lVert Q \hspace{1pt} A \rVert_{1}   \mid  \lVert A \rVert_{1}=1\}, 
+    \lVert \Phi \rVert_{1} =  \sup\{\lVert \Phi \hspace{1pt} A \rVert_{1}   \mid  \lVert A \rVert_{1}=1\}, 
   \end{equation*}
 \end{definition}
-where $A \in \TraceOp{\HilbH}$
+where $A \in \TraceOp{\HilbH}$.
 
 %\begin{theorem} \label{thm:Russo–Dye} \cite[Theorem 3.39]{watrous2018theory}
   %Let $Q: \mathbb{C}^{n \times n} \rightarrow \mathbb{C}^{m \times m}$ be a positive super-operator and $u \in \mathbb{C}^{n}$. It holds that 
@@ -1045,18 +1096,18 @@ Since the diamond norm is generally difficult to compute, we will rely on the fo
 \begin{theorem} \label{thm:russo_dye}
 Let \(\Phi \in \mathcal{T}(\HilbH) \to \mathcal{T}(\HilbK)\) be a positive map. Then it holds that
 \[
-\tracenorm{\Phi}= \max \{ \operatorname{Tr} \left( \Phi(vv^*) \right) \, \vert \, \euclideannorm{v}=1 \}.
+\tracenorm{\Phi}= \sup \{ \operatorname{Tr} \left( \Phi(vv^*) \right) \, \vert \, \euclideannorm{v}=1, v\in \HilbH  \}.
 \]
 \end{theorem}
 
-\begin{proposition} \label{prop:diamond_submult}
+\begin{proposition} \cite[Proposition 3.48]{watrous2018theory} \label{prop:diamond_submult}
   For all maps \(\Phi \in \mathcal{T}(\HilbH) \to \mathcal{T}(\HilbK)\) and \(\Psi \in \mathcal{T}(\HilbK) \to \mathcal{T}(\HilbL)\), it holds that
   \begin{align*}
-    \diamondnorm{\Psi \Phi} \leq  \diamondnorm{\Psi} \diamondnorm{\Phi} 
+    \diamondnorm{\Psi \Phi} \leq  \diamondnorm{\Psi} \diamondnorm{\Phi}. 
   \end{align*}
 \end{proposition}
 
-\begin{theorem}\label{thm:diamond_tensor_comp}
+\begin{theorem} \cite[Theorem 3.49]{watrous2018theory}\label{thm:diamond_tensor_comp}
   Let $\Phi \in \mathcal{T}(\HilbH_1) \to \mathcal{T}(\HilbK_1)$ and \(\Psi \in \mathcal{T}(\HilbH_2) \to \mathcal{T}(\HilbK_2)\) be maps. Then it holds that
 \[
 \diamondnorm{\Phi \otimes \Psi} = \diamondnorm{\Phi}\diamondnorm{\Phi}
@@ -1066,11 +1117,11 @@ Let \(\Phi \in \mathcal{T}(\HilbH) \to \mathcal{T}(\HilbK)\) be a positive map. 
 \begin{theorem} \cite[Theorem 3.55]{watrous2018theory} \label{theorem:diamond_iso}
   Let  $ n \leq m$, let $V_0,V_1: \TraceOp{\HilbH,\HilbK}$ be isometries, and define CPTP operators $\Phi_0,\Phi_1:\TraceOp{\HilbH} \to \TraceOp{\HilbK}$ as
 \[
-\phi_0(\rho) = V_0 \rho V_0^\dag \quad \text{and} \quad \phi_1(\rho) = V_1 \rho V_1^\dag
+\Phi_0(\rho) = V_0 \rho V_0^\dag \quad \text{and} \quad \Phi_1(\rho) = V_1 \rho V_1^\dag
 \]
 for all $\rho \in \TraceOp{\HilbH}$. There exists a unit vector $u \in \HilbH $ such that
 \[
-\tracenorm{\phi_0(uu^\dag) - \phi_1(uu^\dag)} = \diamondnorm{\phi_0 - \phi_1}.
+\tracenorm{\Phi_0(uu^\dag) - \Phi_1(uu^\dag)} = \diamondnorm{\Phi_0 - \Phi_1}.
 \]
 \end{theorem}
 
@@ -1107,7 +1158,7 @@ Wires in parallel represent the tensor product of the respective qubits. For ins
  \end{quantikz}
 \end{figure}
 
-The single bit gates presented in \Cref{subsec:unitary-operators} are represented as a box with the symbom of the gate inside. For example, the Hadamard gate is represented as
+The single bit gates presented in \Cref{subsec:unitary-operators} are represented as a box with the symboL of the gate inside. For example, the Hadamard gate is represented as
 \begin{figure} [H]
   \centering
   \begin{quantikz} [column sep=0.5cm, row sep=0.8cm] 
@@ -1144,7 +1195,7 @@ An arbitrary unitary operator acting on $n$ qubits is represented as a box actin
 
 CPTP maps are depicted as boxes containing the corresponding map symbols.
 
-The measurement operation is representes by a ``meter'' symbol. Given that output of a measurement is a classical bit, the wire representing the output of a measurement is a classical wire, representes by a double line. 
+The measurement operation is representes by a ``meter'' symbol. Given that output of a measurement is a classical bit, the wire representing the output of a measurement is a classical wire, represented by a double line. 
 
 \begin{figure} [H]
   \centering
@@ -1158,6 +1209,31 @@ The measurement operation is representes by a ``meter'' symbol. Given that outpu
 \subsection{No-cloning theorem}
 The no-cloning theorem states that it is impossible to duplicate an unknown quantum bit \cite{wootters1982single}. In this subsection, an elementary proof of this theorem will be presented.
 
+Suppose that there exists a cloning machine, $C$, that produces a clone (a duplicate) of any unknown state. It recieves a qubit $\ket{\psi}$ and some standard pure state $\ket{s}$ as input and returns the state $\ket{\psi} \otimes \ket{\psi}$.
+
+takes one state as input and returns two of the same kind. The second is a duplicate of the first in the sense that no experiment could distinguish between them. Hence, the action of a clonning machine can be written as
+\[
+|\psi\rangle \otimes |s\rangle \mapsto |\psi\rangle \otimes |\psi\rangle
+\]
+for all states $|\psi\rangle$.
+
+However, due to its violation of linearity, this kind of transformation is not a valid quantum operation. Namely, let $|\psi\rangle = \sum_i \alpha_i \ket{\psi_i}$ be a mixed state. Then:
+\begin{equation*}
+C \left( \sum_i \alpha_i |\psi_i\rangle \right) \otimes |s\rangle 
+=
+ \left( \sum_i \alpha_i |\psi_i\rangle \right) \otimes  \left( \sum_i \alpha_i |\psi_i\rangle \right)  =  \sum_{i,j} \alpha_i \alpha_j |\psi_i\rangle \otimes |\psi_j\rangle,
+\end{equation*}
+but assuming linearity of the cloning transformation, we would get:
+\begin{equation*}
+ C \left( \sum_i \alpha_i |\psi_i\rangle \right)  \otimes |s\rangle =  \sum_i \alpha_i C \left(|\psi_i\rangle \right)
+=
+\sum_i \alpha_i \left( |\psi_i\rangle \otimes |\psi_i\rangle \right).
+\end{equation*}
+
+These two expressions generally do not coincide. For instance, let $\{|\psi_i\rangle\}$ be a set of orthogonal pure states. In this case, the coefficients $\alpha_i \alpha_j $ and $\alpha_i$ correspond exactly to the eigenvalues of the final states in the equations above. Since $ \alpha_i \alpha_j < \alpha_i$ for all $\alpha_j< 1$, the two resulting states are distinct.
+
+
+\begin{comment}
 Suppose that there exists a unitary operator $U$ that recieves a qubit $\ket{\psi}$ and some standard pure state $\ket{s}$ as input and oututs the state $\ket{\psi} \otimes \ket{\psi}$. The action of $U$ can be written as
 \begin{equation*}
   U \left(\ket{\psi} \otimes \ket{s} \right) = \ket{\psi} \otimes \ket{\psi}
@@ -1174,6 +1250,7 @@ Given that unitary operators preserve inner products, the following equality sho
 \end{equation*}
 
 This equation is only satisfied if $\braket{\psi_0}{\psi_1} = 0$ or $\braket{\psi_0}{\psi_1} = 1$. The first case implies that $\ket{\psi_0}$ and $\ket{\psi_1}$ are orthogonal, and the second case implies that they are in the same state. Therefore, it is only possible to clone orthogonal states. These are the states perfectly distinguishable by measurement and thus are equivalent to copying classical information. For instance, it is impossible to the clone qubits $\psi_0 = \ket{0}$ and $\psi_1 = \ket{-}$, since they are not orthogonal.
+\end{comment}
 
 It should be noted that this principle is upheld by the type system outlined in \autoref{fig:typing_rules_linear}, which does not allow the repeated use of a variable (seen as a quantum resource).
 
@@ -1182,9 +1259,7 @@ It should be noted that this principle is upheld by the type system outlined in 
 
 \section{Functional Analysis}
 
-\todo[inline,size=\normalsize]{Passar primeios conceitos para a parte de probabilistic programming por causa dos Borel sets lá? }
-
-In this section, we are no longer restricted to finite dimensional vector spaces; the term ``vector space" now also encompasses infinite-dimensional ones. Here, we introduce topological concepts and results that will be necessary for the next two sections.
+In this section, we are no longer restricted to finite dimensional vector spaces; the term ``vector space" now also encompasses infinite-dimensional ones. Due to this, we introduce topological concepts and results that will be necessary for the next two sections.
 
 
 Topology is the abstract mathematical study of concepts like convergence and approximation, generalizing familiar notions from calculus and analysis. 
@@ -1220,6 +1295,10 @@ Standard examples of topologies are presented below:
 \end{example}
 
 \begin{definition}
+A \emph{neighborhood} of a point \( s \in S \) in a topological space $(S, \tau)$ is any subset \( N \subseteq S  \) that contains \( s \) in its interior. In this case, \( s \) is called an \emph{interior point} of \( N \). 
+\end{definition}
+
+\begin{definition}
   The \emph{norm topology} induced by a norm $\|\cdot\|$ is the metrizable topology generated by the metric $d(x, y) = \|x - y\|$.
 \end{definition}
 
@@ -1233,16 +1312,37 @@ v_n \to n \ \text{in } V \ \Rightarrow \ f(v_n) \to f(v) \ \text{in } W.
 \end{definition}
 More generally, continuity may be defined as follows:
 \begin{definition}
-  Let $(V, \tau_V)$ and $(Y, \tau_Y)$ be topological spaces. A map $f \colon V \to W$ is \emph{continuous} if and only if for every open subset $A \subseteq W$, the preimage $f^{-1}(A)$ is open in $V$.
+  Let $(S_1, \tau_1)$ and $(S_2, \tau_2)$ be topological spaces. A map $f \colon S_1 \to S_2$ is \emph{continuous} if and only if for every open subset $A \subseteq S_2$, the preimage $f^{-1}(A)$ is open in $S_1$.
 \end{definition}
-The theorem below presents continuity in a more intuitive way:
+
+\begin{definition}
+A net in a set $S$ is a function $s \colon D \to S$, where $D$ is a directed set. The directed set $D$ is called the \emph{index set} of the net and the members of $D$ are \emph{indexes}.
+\end{definition}
+
+\begin{definition}
+  Let \( S_1 \) and \( S_2 \) be two topological spaces, and let \( s_1 \) be a point in \( S_1 \).  
+A map \( f : S_1 \to S_2 \) is said to be \emph{continuous at} \( s_1 \) if and only if, for every open neighborhood \( S_1 \) of \( f(s_1) \), there exists an open neighborhood \( N \) of \( s_1 \) such that  
+\[
+\{f(n) \, |\, n \in N \} \subseteq S_1.
+\]
+\end{definition}
+
+
+
+
+The proposition and theorem below present continuity in a more intuitive way:
+\begin{proposition} \cite[Theorem 2.27]{guide2006infinite}
+  Let \( S_1 \) and \( S_2 \) be two topological spaces. A map \( f : S_1 \to S_2 \) is continuous if and only if it is continuous at every point \( s_1 \in S_2 \).
+\end{proposition}
+
 \begin{theorem} \cite[Theorem 2.28]{guide2006infinite} \label{def:continuidade_top}
-  Let $f \colon V \to W$ be a function between topological spaces, and let $v \in V$. The following statements are equivalent:
+  Let $f \colon S_1 \to S_2$ be a function between topological spaces, and let $s_1 \in S_2$. The following statements are equivalent:
 \begin{enumerate}
-    \item The function $f$ is continuous at $v$.
-    \item For every net $(v_\alpha)$ in $V$ converging to $v$, the net $(f(v_\alpha))$ converges to $f(v)$ in $W$.
+    \item The function $f$ is continuous at $s$.
+    \item For every net $(s_\alpha)$ in $S_1$ converging to $s$, the net $(f(s_\alpha))$ converges to $f(s)$ in $S_2$.
 \end{enumerate}
 \end{theorem}
+
 
 
 %\begin{definition}

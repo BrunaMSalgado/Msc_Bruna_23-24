@@ -21,45 +21,45 @@ Warning--empty author and editor in InfiniteDimensionalAnalysis2006
 Warning--empty year in InfiniteDimensionalAnalysis2006
 Warning--empty journal in heisenbergUeberQuantentheoretischeUmdeutung1925
 Warning--empty journal in bornZurQuantenmechanik1925
-You've used 124 entries,
+You've used 125 entries,
             1791 wiz_defined-function locations,
-            1169 strings with 24484 characters,
-and the built_in function-call counts, 27302 in all, are:
-= -- 2476
-> -- 1054
+            1176 strings with 24605 characters,
+and the built_in function-call counts, 27517 in all, are:
+= -- 2495
+> -- 1062
 < -- 27
-+ -- 407
-- -- 283
-* -- 1593
-:= -- 4169
-add.period$ -- 384
-call.type$ -- 124
-change.case$ -- 83
++ -- 410
+- -- 285
+* -- 1609
+:= -- 4204
+add.period$ -- 387
+call.type$ -- 125
+change.case$ -- 84
 chr.to.int$ -- 0
-cite$ -- 132
-duplicate$ -- 1389
-empty$ -- 2825
-format.name$ -- 283
-if$ -- 6284
+cite$ -- 133
+duplicate$ -- 1398
+empty$ -- 2847
+format.name$ -- 285
+if$ -- 6331
 int.to.chr$ -- 0
-int.to.str$ -- 124
-missing$ -- 157
-newline$ -- 617
-num.names$ -- 136
-pop$ -- 490
+int.to.str$ -- 125
+missing$ -- 158
+newline$ -- 622
+num.names$ -- 137
+pop$ -- 491
 preamble$ -- 1
 purify$ -- 0
 quote$ -- 0
-skip$ -- 646
+skip$ -- 650
 stack$ -- 0
-substring$ -- 1526
-swap$ -- 347
+substring$ -- 1544
+swap$ -- 348
 text.length$ -- 27
 text.prefix$ -- 0
 top$ -- 0
 type$ -- 0
 warning$ -- 8
-while$ -- 255
-width$ -- 127
-write$ -- 1328
+while$ -- 257
+width$ -- 128
+write$ -- 1339
 (There were 12 warnings)
