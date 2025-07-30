@@ -1,4 +1,4 @@
-This is XeTeX, Version 3.141592653-2.6-0.999995 (MiKTeX 24.1) (preloaded format=xelatex 2024.7.31)  29 JUL 2025 22:14
+This is XeTeX, Version 3.141592653-2.6-0.999995 (MiKTeX 24.1) (preloaded format=xelatex 2024.7.31)  30 JUL 2025 03:26
 entering extended mode
  restricted \write18 enabled.
  file:line:error style messages enabled.
@@ -1958,10 +1958,6 @@ File: images/bloch_sphere.jpg Graphic file (type bmp)
 Underfull \vbox (badness 10000) has occurred while \output is active []
 
  [80] [81] [82] [83] [84] [85]
-Overfull \hbox (20.54402pt too wide) in paragraph at lines 957--958
-[]\TU/SourceSansPro(0)/b/n/12 Definition 5.2.21. []\TU/SourceSansPro(0)/m/n/12 Operators that map operators to other opertors are known as \TU/SourceSansPro(0)/m/it/12 super-operators\TU/SourceSansPro(0)/m/n/12 . 
- []
-
 
 Package glossaries-extra Warning: Base acronym command \acrfull should not be used with new abbreviation definitions. Use \glsxtrfull instead on input line 987.
 
@@ -1999,168 +1995,176 @@ Underfull \hbox (badness 10000) in paragraph at lines 1407--1409
 [95]
 
 Package hyperref Warning: Token not allowed in a PDF string (Unicode):
-(hyperref)                removing `math shift' on input line 1502.
+(hyperref)                removing `math shift' on input line 1526.
 
 
 Package hyperref Warning: Token not allowed in a PDF string (Unicode):
-(hyperref)                removing `superscript' on input line 1502.
+(hyperref)                removing `superscript' on input line 1526.
 
 [96]
 
 Package hyperref Warning: Token not allowed in a PDF string (Unicode):
-(hyperref)                removing `math shift' on input line 1522.
+(hyperref)                removing `math shift' on input line 1546.
 
 
 Package hyperref Warning: Token not allowed in a PDF string (Unicode):
-(hyperref)                removing `superscript' on input line 1522.
+(hyperref)                removing `superscript' on input line 1546.
 
 [97]
 
-Package glossaries-extra Warning: Base acronym command \acrshort should not be used with new abbreviation definitions. Use \glsxtrshort instead on input line 1573.
+Package glossaries-extra Warning: Base acronym command \acrshort should not be used with new abbreviation definitions. Use \glsxtrshort instead on input line 1597.
 
 
-Overfull \hbox (14.47125pt too wide) in paragraph at lines 1573--1574
+Overfull \hbox (14.47125pt too wide) in paragraph at lines 1597--1598
 \TU/SourceSansPro(0)/m/n/12 A multiplicative involutive linear map is called a $\OMS/cmsy/m/n/12 ^^C$\TU/SourceSansPro(0)/m/n/12 -\TU/SourceSansPro(0)/m/it/12 homomorphism \TU/SourceSansPro(0)/m/n/12 and a unital $\OMS/cmsy/m/n/12 ^^C$\TU/SourceSansPro(0)/m/n/12 -\TU/SourceSansPro(0)/m/it/12 homomorphism
  []
 
 [98]
-Overfull \hbox (27.29063pt too wide) in paragraph at lines 1623--1625
+Overfull \hbox (27.29063pt too wide) in paragraph at lines 1647--1649
 []\TU/SourceSansPro(0)/m/n/12 In the context of the proposition above, the norm is determined via the identification $\OMS/cmsy/m/n/12 M[]\OT1/cmr/m/n/12 (\OMS/cmsy/m/n/12 B\OT1/cmr/m/n/12 (\OMS/cmsy/m/n/12 H\OT1/cmr/m/n/12 )) =
  []
 
 [99]
-Overfull \hbox (5.76pt too wide) in paragraph at lines 1656--1657
+Overfull \hbox (5.76pt too wide) in paragraph at lines 1677--1678
 []\TU/SourceSansPro(0)/m/n/12 We now proceed to demonstrate the equivalence between this definition and [][]Definition 5.4.11[][][].
  []
 
-[100]
-Overfull \hbox (78.94804pt too wide) in paragraph at lines 1699--1700
+
+Overfull \hbox (78.94804pt too wide) in paragraph at lines 1720--1721
  [][] 
  []
 
 
-Overfull \hbox (85.60909pt too wide) in paragraph at lines 1723--1724
+Underfull \vbox (badness 10000) has occurred while \output is active []
+
+ [100]
+Overfull \hbox (85.60909pt too wide) in paragraph at lines 1744--1745
  [][] 
  []
 
 [101]
 
 Package hyperref Warning: Token not allowed in a PDF string (Unicode):
-(hyperref)                removing `math shift' on input line 1807.
+(hyperref)                removing `math shift' on input line 1828.
 
 
 Package hyperref Warning: Token not allowed in a PDF string (Unicode):
-(hyperref)                removing `superscript' on input line 1807.
+(hyperref)                removing `superscript' on input line 1828.
 
 [102] [103] [104] [105] [106]
-Overfull \hbox (7.35475pt too wide) in paragraph at lines 2080--2083
-\TU/SourceSansPro(0)/m/n/12 mark of the following connection between the two categories: the full subcategory of $[][]$
+Overfull \hbox (14.39474pt too wide) in paragraph at lines 2098--2101
+\TU/SourceSansPro(0)/m/n/12 highlight the following connection between the two categories: the full subcategory of $[][]$
  []
 
 [107]
-Overfull \hbox (8.49039pt too wide) in paragraph at lines 2096--2099
+Overfull \hbox (8.49039pt too wide) in paragraph at lines 2116--2120
 []\TU/SourceSansPro(0)/m/n/12 A natural candidate for interpreting quantum programs with coproducts is the category $[][]$,
  []
 
-[108] [109] [110] [111] [112]
-Overfull \hbox (1.93526pt too wide) detected at line 2319
+[108]
+Overfull \hbox (3.63197pt too wide) in paragraph at lines 2151--2152
+\TU/SourceSansPro(0)/m/n/12 to include all completely positive maps), further restricted to trace-nonincreasing morphisms. 
+ []
+
+[109] [110]
+Overfull \hbox (1.93526pt too wide) detected at line 2357
 []
  []
 
-[113]
-Overfull \hbox (24.49908pt too wide) in paragraph at lines 2393--2394
+[111] [112]
+Overfull \hbox (24.49908pt too wide) in paragraph at lines 2431--2432
  [][] 
  []
 
 
-Underfull \vbox (badness 1137) has occurred while \output is active []
-
- [114]
-Overfull \hbox (9.64581pt too wide) detected at line 2445
+Overfull \hbox (9.64581pt too wide) detected at line 2483
 []\OT1/cmr/m/n/12 (\OML/cmm/m/it/12 ^^^\OT1/cmr/m/n/12 (\OML/cmm/m/it/12 T\OT1/cmr/m/n/12 ) \OMS/cmsy/m/n/12 ^^A \OML/cmm/m/it/12 S\OT1/cmr/m/n/12 ) = [] [] = \OML/cmm/m/it/12 x \OMS/cmsy/m/n/12 ^^A \OML/cmm/m/it/12 a \OT1/cmr/m/n/12 + \OML/cmm/m/it/12 y \OMS/cmsy/m/n/12 ^^A \OML/cmm/m/it/12 d \OT1/cmr/m/n/12 = [] [] = [](\OML/cmm/m/it/12 T \OMS/cmsy/m/n/12 ^^A \OML/cmm/m/it/12 ^^^[]\OT1/cmr/m/n/12 (\OML/cmm/m/it/12 S\OT1/cmr/m/n/12 ))\OML/cmm/m/it/12 :
  []
 
 
-Overfull \hbox (9.30476pt too wide) detected at line 2468
+Overfull \hbox (9.30476pt too wide) detected at line 2506
 []\OT1/cmr/m/n/12 (\OML/cmm/m/it/12 ^^^\OT1/cmr/m/n/12 (\OML/cmm/m/it/12 T\OT1/cmr/m/n/12 ) \OMS/cmsy/m/n/12 ^^A \OML/cmm/m/it/12 S\OT1/cmr/m/n/12 ) = [] [] = \OML/cmm/m/it/12 x \OMS/cmsy/m/n/12 ^^A \OML/cmm/m/it/12 a \OT1/cmr/m/n/12 + \OML/cmm/m/it/12 y \OMS/cmsy/m/n/12 ^^A \OML/cmm/m/it/12 b \OT1/cmr/m/n/12 = [] [] = [](\OML/cmm/m/it/12 T \OMS/cmsy/m/n/12 ^^A \OML/cmm/m/it/12 ^^^[]\OT1/cmr/m/n/12 (\OML/cmm/m/it/12 S\OT1/cmr/m/n/12 ))\OML/cmm/m/it/12 :
  []
 
-[115] [116] [117]
-Overfull \hbox (3.2933pt too wide) in paragraph at lines 2679--2681
+[113] [114] [115]
+Overfull \hbox (3.2933pt too wide) in paragraph at lines 2717--2719
 \TU/SourceSansPro(0)/m/n/12 composition. Given these operadors are normal completely positive subunital by [][]Corol-
  []
 
-[118] [119]
-Overfull \hbox (5.74608pt too wide) detected at line 2822
+[116] [117] [118]
+Overfull \hbox (5.74608pt too wide) detected at line 2860
 []
  []
 
-[120] [121]
-Overfull \hbox (4.628pt too wide) in paragraph at lines 2856--2862
+[119]
+Overfull \hbox (4.628pt too wide) in paragraph at lines 2894--2900
 \TU/SourceSansPro(0)/m/n/12 While orthogonal states can be perfectly distinguished, the same does not apply to nonorthog-
  []
 
 
-Overfull \hbox (1.42001pt too wide) in paragraph at lines 2865--2871
+Overfull \hbox (1.42001pt too wide) in paragraph at lines 2903--2909
 \TU/SourceSansPro(0)/m/n/12 the optimal measurement can be interpreted as a unitary transformation applied to the quan-
  []
 
-
-Overfull \hbox (34.40985pt too wide) in paragraph at lines 2893--2900
+[120]
+Overfull \hbox (34.40985pt too wide) in paragraph at lines 2931--2938
 []\TU/SourceSansPro(0)/m/n/12 As in the previous example, we assume the hardware’s native gate set consists of $\OMS/cmsy/m/n/12 f\OML/cmm/m/it/12 U[]; U[]; U[]; []\OMS/cmsy/m/n/12 g$\TU/SourceSansPro(0)/m/n/12 ,
  []
 
-[122]
-Overfull \hbox (2.29962pt too wide) in paragraph at lines 2928--2929
+
+Overfull \hbox (2.29962pt too wide) in paragraph at lines 2966--2967
 \TU/SourceSansPro(0)/m/n/12 scribed above, denoted $\OML/cmm/m/it/12 U[]$\TU/SourceSansPro(0)/m/n/12 , using our deductive metric system, we have $\OML/cmm/m/it/12 U \OT1/cmr/m/n/12 =[] \OML/cmm/m/it/12 U[]$\TU/SourceSansPro(0)/m/n/12 .
  []
 
-[123]
+[121]
 LaTeX Font Info:    Font shape `TU/SourceSansPro(0)/m/sc' will be
-(Font)              scaled to size 12.0pt on input line 2978.
+(Font)              scaled to size 12.0pt on input line 3016.
 
-Underfull \vbox (badness 1184) has occurred while \output is active []
+Underfull \vbox (badness 10000) has occurred while \output is active []
 
- [124]
-Overfull \hbox (8.03279pt too wide) in paragraph at lines 3029--3032
+ [122]
+Overfull \hbox (8.03279pt too wide) in paragraph at lines 3067--3070
 \TU/SourceSansPro(0)/m/n/12 bound $[][] \OMS/cmsy/m/n/12 ^^T []\OML/cmm/m/it/12 ^^O$\TU/SourceSansPro(0)/m/n/12 . The Hadamard gate, $\OML/cmm/m/it/12 H$\TU/SourceSansPro(0)/m/n/12 , is the composition $\OML/cmm/m/it/12 U[]\OT1/cmr/m/n/12 (\OML/cmm/m/it/12 ^^Y\OT1/cmr/m/n/12 /2\OML/cmm/m/it/12 ; \OT1/cmr/m/n/12 0\OML/cmm/m/it/12 ; \OT1/cmr/m/n/12 0) \OMS/cmsy/m/n/12 ^^A
  []
 
-[125]
-Overfull \hbox (47.65775pt too wide) in paragraph at lines 3078--3079
+[123] [124]
+Overfull \hbox (47.65775pt too wide) in paragraph at lines 3116--3117
 []\TU/SourceSansPro(0)/m/n/12 Designating the \TU/SourceSansPro(0)/b/n/12 Correction \TU/SourceSansPro(0)/m/n/12 block with the imperfect implementations of $\OML/cmm/m/it/12 X$ \TU/SourceSansPro(0)/m/n/12 and $\OML/cmm/m/it/12 Z$ \TU/SourceSansPro(0)/m/n/12 by $[][]$,
  []
 
-[126] [127]
-Overfull \hbox (3.30096pt too wide) detected at line 3149
+[125]
+Overfull \hbox (3.30096pt too wide) detected at line 3187
 []
  []
 
-[128] [129]
-Overfull \hbox (0.26416pt too wide) detected at line 3239
+[126] [127]
+Overfull \hbox (0.26416pt too wide) detected at line 3277
  $[][]$ 
  []
 
-[130] [131]
-Overfull \hbox (3.29597pt too wide) detected at line 3332
+
+Underfull \vbox (badness 10000) has occurred while \output is active []
+
+ [128] [129] [130]
+Overfull \hbox (3.29597pt too wide) detected at line 3370
+[]
+ []
+
+[131]
+Overfull \hbox (27.71379pt too wide) detected at line 3403
 []
  []
 
 [132]
-Overfull \hbox (27.71379pt too wide) detected at line 3365
-[]
- []
-
-[133]
-Overfull \hbox (36.82828pt too wide) in paragraph at lines 3424--3425
+Overfull \hbox (36.82828pt too wide) in paragraph at lines 3462--3463
 []\TU/SourceSansPro(0)/m/n/12 Finally, denoting by $[][]$ the program resulting from replacing \TU/SourceSansPro(0)/b/n/12 StepQWalk \TU/SourceSansPro(0)/m/n/12 with $[][]$
  []
 
-) (chapters/ConclusionsAndFutureWork.tex [134]
-Chapter 6.
-) (dissertation.bbl [135
+) (chapters/ConclusionsAndFutureWork.tex [133] [134
 
-] [136
+]
+Chapter 6.
+) (dissertation.bbl [135] [136
 
 ] [137] [138] [139] [140] [141] [142] [143]
 Underfull \hbox (badness 1571) in paragraph at lines 528--532
@@ -2173,7 +2177,7 @@ Underfull \hbox (badness 1072) in paragraph at lines 549--552
  []
 
 [145]
-Underfull \hbox (badness 1221) in paragraph at lines 626--630
+Underfull \hbox (badness 1221) in paragraph at lines 633--637
 \TU/SourceSansPro(0)/m/n/12 quantum computation using teleportation and single-qubit operations.  \TU/SourceSansPro(0)/m/it/12 Nature\TU/SourceSansPro(0)/m/n/12 ,
  []
 
@@ -2220,12 +2224,12 @@ Package rerunfilecheck Info: File `dissertation.out' has not changed.
 (rerunfilecheck)             Checksum: C3AF7A3175504292E1CD4D7495BED511;13077.
  ) 
 Here is how much of TeX's memory you used:
- 55946 strings out of 409673
- 1177068 string characters out of 5774704
- 1988630 words of memory out of 5000000
- 77075 multiletter control sequences out of 15000+600000
+ 55953 strings out of 409673
+ 1177301 string characters out of 5774704
+ 1990630 words of memory out of 5000000
+ 77082 multiletter control sequences out of 15000+600000
  579599 words of font info for 174 fonts, out of 8000000 for 9000
  1348 hyphenation exceptions out of 8191
  121i,36n,121p,2536b,1501s stack positions out of 10000i,1000n,20000p,200000b,200000s
 
-Output written on dissertation.xdv (192 pages, 3093212 bytes).
+Output written on dissertation.xdv (192 pages, 3089220 bytes).
