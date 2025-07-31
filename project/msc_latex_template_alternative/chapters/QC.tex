@@ -560,7 +560,7 @@ The definition of inner product
 
 
 \begin{definition}
-  Let $\mathcal{H}$ be a Hilbert space. An operator $A \in \mathcal{B}(\HilbH) $ is \emph{trace class} if $\text{Tr}(|A|) < \infty$, where $|A|= \left(\overline{A }A \right)^{1/2}$.  We denote by $\mathcal{T} (\HilbH)$ the set of trace class operators on $\mathcal{H}$.
+  Let $\mathcal{H}$ be a Hilbert space. An operator $A \in \mathcal{B}(\HilbH) $ is \emph{trace class} if $\text{Tr}(|A|) < \infty$, where $|A|= \left(A^\dag A \right)^{1/2}$.  We denote by $\mathcal{T} (\HilbH)$ the set of trace class operators on $\mathcal{H}$.
 \end{definition}
 If $\mathcal{H}$ is infinite-dimensional, the set $\mathcal{T}(\mathcal{H})$ forms a proper subset of $\mathcal{B}(\mathcal{H})$. In the finite-dimensional case, however, the two spaces coincide and can be identified with one another.
 
@@ -2116,10 +2116,9 @@ The category $\catCPTP$ is the category whose objects are natural numbers $n \ge
 A natural candidate for interpreting quantum programs with coproducts is the category $\catCPTP^+$, obtained via the coproduct cocompletion of $\catCPTP$. However, for $\catCPTP^+$ to serve as a suitable model for quantum computation, its morphisms should be able to express the measurement operation, \ie, an operation mapping a density matrix $\rho \in \mathcal{M}_2$ to a classical bit $b \in \mathbb{C} \oplus \mathbb{C}$. 
 Unfortunately, this is not the case. 
 If such a measurement were to exist, it would correspond to a morphism $\Phi \colon 2 \to 1 \oplus 1$, where $\oplus$ is the coproduct, allowing us to reason about it within our metric equational system. Simultaneously, we should be able to ``decompose'' $\Phi$ into two projection maps $\pi_1 \colon 2 \to 1$ and $\pi_2 \colon 2 \to 1$.  Now, recall that in $\catCPTP^+$, a morphism consists of a pair $(f, (\phi_i)_{i \in I})$, where: $f \colon I \to J$ is a function between index sets, and
- $(\phi_i)_{i \in I}$ is a family of $\catCPTP$-morphisms $\phi_i \colon A_i \to B_{f(i)}$. Because $f$ is a function, the category does not support morphisms of the form $(f,\phi_i \colon A \to C_i)_{i \in I}$ when $I$ has more than one element. As a result,  we cannot express measurements in $\catCPTP^+$. We could consider introducing measurements via a ``product completion,'' but a similar problem would arise for the injections. In the category we consider next, we do not actually have binary products, but we do have binary coproducts and the two ``projection maps'' that were missing in $\catCPTP^+$.
- 
-
-In the category we examine next, binary products are not present. Nevertheless, we do have binary coproducts as well as the “projection maps” that were missing in $\catCPTP^+$.
+ $(\phi_i)_{i \in I}$ is a family of $\catCPTP$-morphisms $\phi_i \colon A_i \to B_{f(i)}$. Because $f$ is a function, the category does not support morphisms of the form $(f,\phi_i \colon A \to C_i)_{i \in I}$ when $I$ has more than one element. As a result,  we cannot express measurements in $\catCPTP^+$. We could consider introducing measurements via a ``product completion,'' but a similar problem would arise for the injections. 
+This suggests that \( + \) should be a biproduct. Nonetheless, as we will see, not all morphisms of the biproduct are necessary: the coproduct structure together with the projections suffices.
+%In the category we consider next does not have products. Nevertheless, we do have binary coproducts as well as the ``projection maps” that were missing in $\catCPTP^+$.
 
 \begin{comment}
 Recall that in $\catCPTP^+$, a morphism consists of a pair $(f, (\phi_i)_{i \in I})$, where: $f \colon I \to J$ is a function between index sets, and
@@ -2153,28 +2152,43 @@ Given this negative result, we will shift our focus to a category that is known 
 
 %Trace-non increasing  maps are used here instead of strictly trace-preserving maps to account for possible non-termination in programs, particularly since the language  QPL includes while loops.
 
-Every signature $\sigma$, is associated with a complex vector space   
+Every signature $\sigma$ is associated with a complex vector space   
 $\mathcal{M}_\sigma \coloneqq \SqMatrix{n_1} \oplus \cdots \oplus \SqMatrix{n_s}$
 
 This space consists of matrix vectors 
 $$A = \begin{pmatrix} A_1 \\ \vdots \\ A_n \end{pmatrix}$$
-where the signature $\sigma$ specifies both the number of matrices, $s$,  and their respective dimensions, $n_i \times n_i$. The elements of $\mathcal{M}_\sigma$ are represented uppercase letters such as $A$, $B$, etc.
+where the signature $\sigma$ specifies both the number of matrices, $s$,  and their respective dimensions, $n_i \times n_i$. The elements of $\mathcal{M}_\sigma$ are represented uppercase letters such as $A$, $B$, etc.
 We also establish that $\mathbb{C}^\sigma \coloneqq \mathbb{C}^{n_1} \oplus \cdots \oplus \mathbb{C}^{n_s}$.
 
-Note that attending to the definition of trace, for $A = \begin{pmatrix} A_1 & \ldots & A_n \end{pmatrix}^T$, we have $\tr(A) = \sum_{i=1}^n \tr(A_i).$
+Note that the definition of trace induces a generalized notion of trace applicable to elements of $\mathcal{M}_\sigma$. Specifically, for $A = \begin{pmatrix} A_1 & \ldots & A_n \end{pmatrix}^T$, we have $\tr(A) = \sum_{i=1}^n \tr(A_i).$
  
 
-\begin{definition} \label{def:biproduct} \emph{Product and Coproduct}
-  The biproduct is given by the direct sum $\oplus$. Consequently, $\sigma \oplus \sigma'$ represents the concatenation of signatures. The co-pairing map $[\Phi, \Psi]: \sigma \oplus \sigma' \to \tau$ is defined as  $[\Phi, \Psi](A, B) = \Phi(A) + \Psi(B)$, and the pairing map $\langle \Phi, \Psi \rangle: \sigma \to \tau \oplus \tau'$ is given by  $\langle \Phi, \Psi \rangle(A) = (\Phi(A), \Psi(A))$.
+\begin{definition} \label{def:biproduct} [\emph{Coproduct}]
+Concatenation $ \sigma \oplus \sigma'$ of signatures $\sigma$ and $\sigma'$ yields coproducts in $\catQ$. The co-pairing map $[\Phi, \Psi]: \sigma \oplus \sigma' \to \tau$ is defined as  $[\Phi, \Psi](A, B) = \Phi(A) + \Psi(B)$, where addition uses the fact that the codomain is always a direct sum of vector spaces.
 \end{definition}
 
-\begin{definition} \label{def:tensor} \emph{Tensor Product }
+\begin{remark}
+  The category $\catQ$ does not have finite products. To see this, observe that the diagonal morphism 
+\[
+\langle \mathrm{id}, \mathrm{id} \rangle \colon \tau \to \tau \oplus \tau
+\] 
+is not trace-nonincreasing and hence is not a valid morphism. 
+However, $\catQ$ does contain the two projection morphisms 
+\[
+\pi_1 \colon \sigma \oplus \sigma \to \sigma' \quad \text{and} \quad \pi_2 \colon \sigma \oplus \sigma \to \sigma'.
+\] 
+
+\end{remark}
+
+\begin{definition} \label{def:tensor} [\emph{Tensor Product }]
   For signatures $\sigma = n_1, \ldots, n_s $ and $\tau= m_1, \ldots, m_t $, the tensor product of $\sigma$ and $\tau$ is defined as $\sigma \otimes \tau = n_1 m_1, \ldots ,n_1 m_t, \ldots, n_s m_1,...,n_s m_t$. 
-  The morphism part of the tensor product follows the definition in the category of vector spaces. If $\Phi: \sigma \rightarrow \tau$ and $\Psi: \sigma' \rightarrow  \tau'$, then their tensor product $\Psi \otimes \Phi: \sigma \otimes \sigma' \rightarrow  \tau \otimes \tau' $ is defined on a basis element $A \otimes B$ by  
-$$
-(\Phi \otimes \Psi)(A \otimes B) = \Phi(A) \otimes \Psi(B),
-$$
-and extends to arbitrary elements by linearity. More concretly, the tensor product $\Phi \otimes \Psi$ is the Kronecker product of their matrices representation, \ie,
+  The morphism part of the tensor product follows the definition in the category of vector spaces. If $\Phi: \sigma \rightarrow \tau$ and $\Psi: \sigma' \rightarrow  \tau'$, then their tensor product $\Psi \otimes \Phi: \sigma \otimes \sigma' \rightarrow  \tau \otimes \tau' $ is 
+  %defined on a basis element $A \otimes B$ by  
+%$$
+%(\Phi \otimes \Psi)(A \otimes B) = \Phi(A) \otimes \Psi(B),
+%$$
+%and extends to arbitrary elements by linearity. More concretly, the tensor product $\Phi \otimes \Psi$ is 
+the Kronecker product of their matrices representation, \ie,
 \begin{align*}
   \Phi \otimes \Psi = 
   \begin{pmatrix}
@@ -2193,7 +2207,7 @@ and extends to arbitrary elements by linearity. More concretly, the tensor produ
 \end{definition}
 
 
-The category $\catQ$ is a distributive symmetric monoidal category with (finite) biproducts. However, this category is not closed \cite{selinger2004b}.
+The category $\catQ$ is a distributive symmetric monoidal category with binary coproducts. However, this category is not closed \cite{selinger2004b}.
 
 %to the following metrics: $d(\langle \phi, \psi \rangle, \langle \phi', \psi' \rangle ) = \sup \{ d(\phi, \phi' ), d(\psi, \psi') \}$ and $d(\langle \phi, \psi \rangle, \langle \phi', \psi' \rangle ) = d(\phi, \phi' ) +  d(\psi, \psi') $.
 
@@ -2267,18 +2281,34 @@ Consequently this norm is not fit either.
 \end{comment}
 
 
-Given that our attempts to consider a simpler metric were not fruitful, we now turn our attention to the diamond norm (\autoref{def:diamond_norm}). First, note the following inclusions, given signatures $\sigma$ and $\tau$:
-\[
-\SqMatrix{n_1} \oplus \cdots \oplus \SqMatrix{n_s} 
-\xhookrightarrow{\text{inc}} 
-\TraceOp{\mathbb{C}_{n_1} \oplus \cdots \oplus \mathbb{C}_{n_s}}, 
-\quad \text{and} \quad 
-\SqMatrix{\sigma \otimes \tau} 
-\xhookrightarrow{\text{inc}} 
-\TraceOp{\mathbb{C}_{\sigma} \otimes \mathbb{C}_{\tau}},
-\]
-where the second inclusion arises from the fact that $\dist = \id$, and thus $\mathbb{C}_{\sigma} \otimes \mathbb{C}_{\tau} = \mathbb{C}_{\sigma \otimes \tau}$.
+%Given that our attempts to consider a simpler metric were not fruitful, we now turn our attention to the diamond norm (\autoref{def:diamond_norm}). 
+\todo[inline,size=\normalsize]{Nota para mim mesma ir definir $\bigoplus_i A_i$ na secção de espaços de Hilbert}
 
+First, given signatures $\sigma: n_1, \ldots, n_s$ and $\tau:m_1, \ldots, m_t$,  note the following inclusion:
+\begin{equation*}
+  \begin{split}
+\SqMatrix{n_1} \oplus \cdots \oplus \SqMatrix{n_s} 
+& \xhookrightarrow{\iota_\sigma} 
+\TraceOp{\mathbb{C}_{n_1} \oplus \cdots \oplus \mathbb{C}_{n_s}}
+\quad  \\
+(A_1, \ldots, A_s) &\mapsto \bigoplus_i A_i  
+  \end{split}
+\end{equation*}
+%(A_1 \otimes B_1, \ldots, A_n \otimes B_t) \mapsto i_{\sigma} \otimes \xhookrightarrow{\text{i_{\sigma \otimes \tau}} 
+
+Then, we define $\iota_{(\sigma \otimes \tau)'}:\SqMatrix{\sigma \otimes \tau} \to \TraceOp{\mathbb{C}_{\sigma} \otimes \mathbb{C}_{\tau}}$ as $\iota_{(\sigma \otimes \tau)'}= (\dist')^{-1} \cdot \iota_{(\sigma \otimes \tau)} $, where 
+$$(\dist')^{-1}(a)$$
+
+\todo[inline,size=\normalsize]{Voltar aqui depois.}
+
+
+
+
+%Note that given the identification $\dist = \id$, we have $i_{\sigma \otimes \tau}= i_{\sigma} \otimes i_{\tau}$.
+%that $i_{\sigma \otimes \tau}: \SqMatrix{\sigma \otimes \tau} \to \TraceOp{\mathbb{C}_{\sigma} \otimes \mathbb{C}_{\tau}}$, as $i_{\sigma \otimes \tau}= i_{\sigma} \otimes i_{\tau}$.
+
+%where the second inclusion arises from the fact that $\dist = \id$, and thus $\mathbb{C}_{\sigma} \otimes \mathbb{C}_{\tau} = \mathbb{C}_{\sigma \otimes \tau}$.
+\begin{comment}
 Let us denote by $\mathcal{LS}(\HilbH, \HilbK)$ the vector space of linear maps from $\TraceOp{\HilbH}$ to $\TraceOp{\HilbK}$. Given signatures $\sigma, \sigma', \tau, \tau'$ and super-operators $\Phi \colon \sigma \to \tau$, $\Psi \colon \sigma' \to \tau'$, we have:
 \[
 \Phi: \SqMatrix{\sigma} \to \SqMatrix{\tau} \in \mathcal{LS}(\mathbb{C}_{\sigma}, \mathbb{C}_{\tau})
@@ -2287,7 +2317,9 @@ Let us denote by $\mathcal{LS}(\HilbH, \HilbK)$ the vector space of linear maps 
 \]
 
 With these inclusions established, it is now clear that we can use the diamond norm on $\catQ$'s morphisms.
+\end{comment}
 
+With these inclusions established, we can now define a 
 
 \begin{proposition} \label{prop:Q_dist}
   For all $\Phi, \Phi' \in \catQ(\sigma,\mu)  $ and $\Psi, \Psi' \in \catQ(\tau,\mu) $, it holds that
@@ -2349,10 +2381,10 @@ The inequality in Proposition \ref{prop:Q_dist} follows from the linearity of th
 
   Next, to prove that  $\diamondnorm{\Phi-\Phi'} + \diamondnorm{\Psi-\Psi'} \geq \diamondnorm{\Psi \otimes \Phi-\Psi' \otimes \Phi'} $, we calculate
   \begin{align*}
-      & \hspace{-30pt} \|\Psi - \Psi'\| + \|\Phi - \Phi'\| \\
+      & \hspace{-30pt} \diamondnorm{\Psi - \Psi'} + \diamondnorm{\Phi - \Phi'} \\
       & \hspace{-30pt} \geq \diamondnorm{\id \otimes \left(\Psi-\Psi'\right)} + \diamondnorm{\id \otimes \left(\Phi-\Phi'\right)} & (\text{\autoref{thm:diamond_tensor_comp} and \autoref{cor:gen_diamond_cptp_norm} })  \\
       &\hspace{-30pt} =  \diamondnorm{\id \otimes \Psi- \id \otimes\Psi'} + \diamondnorm{\id \otimes \Phi- \id \otimes\Phi'} \\
-      &\hspace{-30pt} \geq \diamondnorm{\left( \id \otimes \Psi \right) \cdot \left( \Phi \otimes \id \right)} -  \diamondnorm{\left( \id \otimes \Psi' \right) \cdot \left( \Phi' \otimes \id \right)} & (\catQ \text{ is a} \mathsf{Met}\text{-category}) \\
+      &\hspace{-30pt} \geq \diamondnorm{\left( \id \otimes \Psi \right) \cdot \left( \Phi \otimes \id \right) -  \left( \id \otimes \Psi' \right) \cdot \left( \Phi' \otimes \id \right)} & (\catQ \text{ is a} \mathsf{Met}\text{-category}) \\
       &\hspace{-30pt} = \diamondnorm{\Psi \otimes \Phi - \Psi' \otimes \Phi'}
   \end{align*}
 
@@ -2369,18 +2401,17 @@ The inequality in Proposition \ref{prop:Q_dist} follows from the linearity of th
 
 \subsection{Heisenberg's picture} \label{subsec:w*_cats}
 
-In the previous quantum model, we considered the Schr\"odinger picture---that is, morphisms between quantum states (\ie, density operators). In~\cite{choSemanticsQuantumProgramming2016}, the author presents a model in the Heisenberg picture, where maps are between observables (\ie, self-adjoint operators), which can be seen as an infinite-dimensional extension of Selinger’s model. This model is given by the category $\WstarCPSUop$, the opposite of the category $\WstarCPSU$ whose objects are W$^*$-algebras and morphisms are completely positive subunital maps between them. It is shown that Selinger’s category $\catQ$ is equivalent (up to categorical equivalence) to the finite-dimensional subcategory of $\WstarCPSUop$,$\FdWstarCPSUop$.
+In the previous quantum model, we considered the Schr\"odinger picture---that is, morphisms between quantum states (\ie, density operators). In~\cite{choSemanticsQuantumProgramming2016}, the author presents a model in the Heisenberg picture, where maps are between observables (\ie, self-adjoint operators), which can be seen as an infinite-dimensional extension of Selinger’s model. This model is given by the category $\WstarCPSUop$, the opposite of the category $\WstarCPSU$ whose objects are W$^*$-algebras and morphisms are completely positive subunital maps between them. It is shown that Selinger’s category $\catQ$ is equivalent (up to categorical equivalence) to the finite-dimensional subcategory of $\WstarCPSUop$,$\FdWstarCPSUop$ \cite{choSemanticsQuantumProgramming2016}. Now, we will prove that $\WstarCPSUop$ is a model of our lambda calculus.
 
 
 
-\todo[inline,size=\normalsize]{Ver com professor Renato o que vai primeiro: provas norma or Q vs W*cpsu -> depende de \autoref{pro:cp_compatible}: uma vez que os isomorfismos são isómetricos temos temos $\norm{\SqMatrix{o}(\Phi)} = \norm{\id_{\mathcal{T}(\HilbH)} \otimes \Phi}$, e portanto automaticamente temos modelo pela realação de $\leq$ com a trace-norm.}
 
 
 
 \subsubsection{$\catQ$ and $\FdWstarCPSUop$}
 
 
-\todo[inline,size=\normalsize]{De acordo com a decisão acima ver o que digo sobre a norma}
+\todo[inline,size=\normalsize]{Vai passar para o Apêndice}
 
 
 In \cite{choSemanticsQuantumProgramming2016}, the author established an equivalence of categories  
@@ -2431,6 +2462,8 @@ Another, perhaps more useful, way to describe the relationship between $\Phi$ an
 \end{tikzpicture}
 \end{minipage}
 \]
+
+\begin{comment}
 
 \begin{example}
   We now illustrate the aforementioned correspondence for specific operators $\phi$.
@@ -2603,8 +2636,12 @@ Another, perhaps more useful, way to describe the relationship between $\Phi$ an
 
   \end{enumerate}
 \end{example}
-
-
+\end{comment}
+In other words, the map $\phi^* : \mathcal{B}(\mathcal{K}) \to \mathcal{B}(\mathcal{H})$ can be defined as
+\[
+\phi^*(A) = \sum_{i,j} \operatorname{tr}\left(A \cdot \phi(\ket{j}\bra{i})\right) \cdot \ket{i}\bra{j},
+\]
+where \( i \) and \( j \) range over an orthonormal basis of \( \mathcal{H} \). 
 
 
 \vspace{10pt}
@@ -2612,16 +2649,17 @@ Another, perhaps more useful, way to describe the relationship between $\Phi$ an
 \subsubsection{$\WstarCPSUop$ forms a first-oder model}
 
 
-\todo[inline,size=\normalsize]{Fiquei um pouco em dúvida sobre onde meter isto}
+
 
 We start with some considerations on the choice of norm for morphisms in $\WstarCPSU$. The norm on morphisms between $C^*$-algebras
-faces  an issue analogous to the trace norm in the context of quantum operations:  there exists a positive unital isometry \( \Phi \colon \mathscr{A} \to \mathscr{A} \) such that the induced map
+faces  an issue analogous to the trace norm in the context of quantum operations:  there exists a positive unital isometry \( \Phi \colon \mathscr{A} \to \mathscr{A} \) such that 
 \[
-\Phi \odot \mathrm{id}_\mathscr{A} \colon \mathscr{A} \odot \mathscr{A} \to \mathscr{A} \odot \mathscr{A}
+\opnorm{\Phi \odot \mathrm{id}_\mathscr{A} \colon \mathscr{A} \odot \mathscr{A} \to \mathscr{A} \odot \mathscr{A}} = \infty,
 \]
-is unbounded \cite[Prop. 3.5.2]{brownCalgebrasFinitedimensionalApproximations}.
+$\ie$ the map $\Phi \odot \mathrm{id}_{\mathscr{A}}$ is unbounded under the usual operator norm 
+\cite[Prop.~3.5.2]{brownCalgebrasFinitedimensionalApproximations}.
 
-Due to these limitations, the \emph{completely bounded norm} becomes the natural choice for studying maps between $C^*$-algebras \cite{effrosOperatorSpaces2000,paulsenCompletelyBoundedMaps2003}.Given a map \( \Phi \colon \mathscr{A} \to \mathscr{B} \), this norm is defined as
+Due to these limitations, the \emph{completely bounded norm} becomes the natural choice for studying maps between $C^*$-algebras \cite{effrosOperatorSpaces2000,paulsenCompletelyBoundedMaps2003}. Given a map \( \Phi \colon \mathscr{A} \to \mathscr{B} \), this norm is defined as
 \[
 \cbnorm{\Phi} = \sup_n \left\| \MnMatrix{\Phi} \right\|,
 \]
@@ -2631,14 +2669,24 @@ and can alternatively be expressed as
 \]
 where the supremum ranges over all $C^*$-algebras \( \mathscr{C} \) \cite[Introduction, p.~4]{pisierTensorProductsCAlgebras2020}.
 
-In the context of $W^*$-algebras, since we are concerned with tensor product of $W^*$-algebras, we introduce a similar norm---one which, to the author's knowledge, has not previously appeared in the literature.
+In the context of $W^*$-algebras, since we are concerned with the tensor product of $W^*$-algebras, we introduce a similar norm
+---which, to the best of our knowledge, has not been previously studied in the literature.
 \begin{definition} \label{def:wcb_nor}
 The \emph{$W^*$ completely bounded norm} is defined as follows,
   \[ \wcbnorm{\Phi} = \sup_{\mathscr{M}} \norm{\id_{\mathscr{M}} \overline{\otimes} \Phi}, \]
 where the supremum ranges over all $W^*$-algebras \( \mathscr{M} \).
 \end{definition}
 
-In this work, our focus is limited to showing that the metric induced by this norm makes $\WstarCPSUop$ into a first-order model. In future work, we hope to establish a connection between this norm and the completely bounded norm, as well as to derive further results that simplify the computation of distances between morphisms.
+
+We begin by motivating the use of this norm through its relationship with the completely bounded norm.
+
+
+We have established that either this norm coincides with the completely bounded norm, or that the completely bounded norm is not suitable in this setting. Note that even if the two norms turn out to be equivalent, the use of this norm remains relevant, as it simplifies the demonstrations involved.
+
+\todo[inline,size=\normalsize]{Nota: Arranjar contra-exemplos é um pouco dificil, porque a norma do tensor das w*algebras, por si, só é dificil de trabalhar.} 
+
+
+%In this work, our focus is limited to showing that the metric induced by this norm makes $\WstarCPSUop$ into a first-order model. In future work, we aim to explore more deeply the relationship between this norm and the completely bounded norm, as well as to establish additional results that simplify distance computations between morphisms.
 
 We now establish some results, so we can infer that $\WstarCPSUop$ is a (first-oder) model.
 
@@ -2722,7 +2770,6 @@ which follows direcly from the definition of the norm \autoref{def:wcb_nor} give
 
 \end{proof}
 
-\todo[inline,size=\normalsize]{Não sei se seria útil dizer que para a cb norm nós conseguimos provar que a categoria é met com coprodutos (ver notas p.29/30), a incognita é o tensor.}
 
 
 \begin{comment}
@@ -3330,6 +3377,9 @@ Consequently, we postulate the following axiom:
 
 \end{example}
 
+\begin{comment}
+
+
 \subsection{Quantum walk}
 
 \begin{example}[Discrete-time quantum walks on a circle]
@@ -3466,6 +3516,9 @@ Finally, denoting by $\textbf{StepOrHalt}^{\epsilon}$ the program resulting from
 
   
 \end{example}
+
+
+\end{comment}
 
 
 % discrete-time quantum walks on a circle
