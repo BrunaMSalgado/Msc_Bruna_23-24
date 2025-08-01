@@ -1858,7 +1858,11 @@ One of the most important examples of a $W^*$-algebra is $\BoundOp{\HilbH}$, the
 \end{proposition}
 
 \begin{example}
-   For a Hilbert space $\mathcal{H}$, $\mathcal{B}(\mathcal{H})$ is a $W^*$-algebra. 
+   The following are examples of $W^*$-algebras.
+  \begin{enumerate}
+    \item For a Hilbert space $\mathcal{H}$, $\mathcal{B}(\mathcal{H})$ is a $W^*$-algebra (see the Proposition immediately above).
+    \item  $\SqMatrix{n} \cong \BoundOp{\mathbb{C}^n}$ is a $W^*$-algebra. Its predual is itself $\SqMatrix{n} \cong \TraceOp{\mathbb{C}^n}$ equipped with the trace norm.
+  \end{enumerate}
 \end{example}
 
 \begin{remark}
@@ -1929,7 +1933,7 @@ for some normal positive maps $\varphi_1: \mathscr{M} \to \mathbb{C}$, $\varphi_
 \begin{definition}
   The tensor product norm on $\mathscr{M} \odot \mathscr{N}$ is the norm  given by
 \[
-\|t\| = \sup \{ w(t^*t)^{\frac{1}{2}} \mid \omega(1) \leq 1 \},
+\wnorm{t} = \sup \{ w(t^*t)^{\frac{1}{2}} \mid \omega(1) \leq 1 \},
 \]
 where $\omega$ ranges over all basic functionals.
 \end{definition}
@@ -1953,7 +1957,7 @@ A bilinear map $\beta\colon \mathscr{M}  \times \mathscr{N} \to \mathscr{T}$ bet
 The following theorem establishes a universal property analogous to \autoref{def:Algebraic_Tensor_Product}, but for the $W^*$-tensor product rather than the algebraic case. Later, in \Cref{subsec:w*_cats},  we will make use of this result for proving that $\WstarCPSU$ is a first-order model.
 
 \begin{theorem} \cite[Theorem 112 XI]{westerbaanCategoryNeumannAlgebras2019} \label{thm:beta_alg_eq_beta_gamma}
-A tensor product $\gamma\colon \mathscr{M} \times \mathscr{N} \to \mathscr{T}$ of $W^*$-algebras $\mathscr{M}$ and $\mathscr{N}$ satisfies the following universal property: for every normal bounded bilinear map $\beta\colon  \mathscr{M} \times  \mathscr{N} \to \mathscr{O}$ into a von Neumann algebra $\mathscr{O}$, there exists a unique ultraweakly continuous map $\beta_\gamma\colon \mathscr{T} \to \mathscr{O}$ such that $\beta_\gamma \circ \gamma = \beta$. Moreover, $ \norm{\beta_\gamma} = \norm{\beta_\odot}$, where $
+A tensor product $\gamma\colon \mathscr{M} \times \mathscr{N} \to \mathscr{T}$ of $W^*$-algebras $\mathscr{M}$ and $\mathscr{N}$ satisfies the following universal property: for every normal bounded bilinear map $\beta\colon  \mathscr{M} \times  \mathscr{N} \to \mathscr{O}$ into a von Neumann algebra $\mathscr{O}$, there exists a unique ultraweakly continuous map $\beta_\gamma\colon \mathscr{T} \to \mathscr{O}$ such that $\beta_\gamma \circ \gamma = \beta$. Moreover, $ \opnorm{\beta_\gamma} = \opnorm{\beta_\odot}$, where $
 \beta_\odot\colon  \mathscr{M} \odot  \mathscr{N} \to \mathscr{O}.
 $
 \end{theorem}
@@ -1983,18 +1987,31 @@ Moreover \( f \overline{\otimes} g \) is (sub)unital if \( f \) and \( g \) are 
 
 \begin{proposition} \cite[Proof 115 III] {westerbaanCategoryNeumannAlgebras2019} \label{prop:norm_beta_alg}
   Let  $\mathscr{M}$ and $\mathscr{N}$ be $W^*$-algebras.
-  Given normal completely positive maps $f:\mathscr{M} \to \mathscr{T}$ and $g:\mathscr{N} \to \mathscr{T}$. We may take $ f \, \overline{\otimes} \, g = \beta_{\bar{\otimes}}$ as in the theorem \autoref{thm:beta_alg_eq_beta_gamma}. Moreover, $\norm{\beta_\odot(s)} \leq \norm{f}\norm{g}\norm{s}$, given an element $s\in \mathscr{M} \overline{\otimes} \mathscr{N}$.
+  Given normal completely positive maps $f:\mathscr{M} \to \mathscr{T}$ and $g:\mathscr{N} \to \mathscr{T}$. We may take $ f \, \overline{\otimes} \, g = \beta_{\bar{\otimes}}$ as in the theorem \autoref{thm:beta_alg_eq_beta_gamma}. Moreover, $\wnorm{\beta_\odot(s)} \leq \opnorm{f}\opnorm{g}\wnorm{s}$, given an element $s\in \mathscr{M} \overline{\otimes} \mathscr{N}$.
 \end{proposition}
 
 
 \begin{proposition} \cite[Exercise 116 III]{westerbaanCategoryNeumannAlgebras2019} \label{prop:norm_tensor_w_mult}
-   Let \( \mathscr{M}\ \) and \( \mathscr{N}\ \) be \( W^* \)-algebras, $\norm{m\overline{\otimes} n}= \norm{m}\norm{n}$ for all $m \in \mathscr{M}$ and  $n \in \mathscr{N}$.
+   Let \( \mathscr{M}\ \) and \( \mathscr{N}\ \) be \( W^* \)-algebras, $\wnorm{m\,\overline{\otimes} \, n}= \norm{m}\norm{n}$ for all $m \in \mathscr{M}$ and  $n \in \mathscr{N}$.
+\end{proposition}
+
+\begin{proposition} \cite[Corollary 119 IV]{westerbaanCategoryNeumannAlgebras2019} 
+  \label{prop:assoc_nmiu}
+   There is a unique normal $\ast$-isomorphism
+\[
+\alpha_{\mathscr{M},\mathscr{N},\mathscr{T}} : \mathscr{M} \otimes (\mathscr{N} \otimes \mathscr{T}) \longrightarrow (\mathscr{M} \otimes \mathscr{N} ) \otimes \mathscr{T},
+\]
+called an \emph{associator}, with
+\[
+\alpha_{\mathscr{M},\mathscr{N},\mathscr{T}}(m \otimes (m \otimes o)) = (m \otimes m) \otimes o
+\]
+for all \( m \in \mathscr{M} \), \( n \in \mathscr{N} \), \( o \in \mathscr{T} \).
 \end{proposition}
 
 
 \begin{proposition} \cite[Exercise 119 IVc]{westerbaanCategoryNeumannAlgebras2019} \label{prop:swap_nmiu}
   Let $\mathscr{M}$ and $\mathscr{N}$ be $W^*$-algebras.
-There exists a unique normal $\ast$-isomorphism (nmiu-isomorphism)
+There exists a unique normal $\ast$-isomorphism
 \[
     \sw_{\mathscr{M},\mathscr{N}} \colon \mathscr{M} \overline{\otimes} \mathscr{N} \to \mathscr{N} \overline{\otimes} \mathscr{M},
     \]
@@ -2411,7 +2428,7 @@ In the previous quantum model, we considered the Schr\"odinger picture---that is
 \subsubsection{$\catQ$ and $\FdWstarCPSUop$}
 
 
-\todo[inline,size=\normalsize]{Vai passar para o Apêndice}
+\todo[inline,size=\normalsize]{Vai passar para o Trabalho futuro}
 
 
 In \cite{choSemanticsQuantumProgramming2016}, the author established an equivalence of categories  
@@ -2659,69 +2676,167 @@ faces  an issue analogous to the trace norm in the context of quantum operations
 $\ie$ the map $\Phi \odot \mathrm{id}_{\mathscr{A}}$ is unbounded under the usual operator norm 
 \cite[Prop.~3.5.2]{brownCalgebrasFinitedimensionalApproximations}.
 
-Due to these limitations, the \emph{completely bounded norm} becomes the natural choice for studying maps between $C^*$-algebras \cite{effrosOperatorSpaces2000,paulsenCompletelyBoundedMaps2003}. Given a map \( \Phi \colon \mathscr{A} \to \mathscr{B} \), this norm is defined as
+Due to these limitations, the \emph{completely bounded norm} becomes the natural choice for studying maps between $C^*$-algebras \cite{effrosOperatorSpaces2000,paulsenCompletelyBoundedMaps2003}. 
+
+\begin{definition} \label{def:cb_norm}
+Given a map \( \Phi \colon \mathscr{A} \to \mathscr{B} \), the completely bounded norm is defined as
 \[
-\cbnorm{\Phi} = \sup_n \left\| \MnMatrix{\Phi} \right\|,
+\cbnorm{\Phi} = \sup_n \opnorm{\MnMatrix{\Phi}},
 \]
 and can alternatively be expressed as
 \[
-\cbnorm{\Phi} = \sup_{\mathscr{C}} \left\| \id_{\mathscr{C}} \widecheck{\otimes} \Phi \right\|,
+\cbnorm{\Phi} = \sup_{\mathscr{C}} \opnorm{\id_{\mathscr{C}} \widecheck{\otimes} \Phi } = \sup_{n} \opnorm{\id_{\SqMatrix{n}} \widecheck{\otimes} \Phi },
 \]
-where the supremum ranges over all $C^*$-algebras \( \mathscr{C} \) \cite[Introduction, p.~4]{pisierTensorProductsCAlgebras2020}.
+where the supremum ranges over all $C^*$-algebras \( \mathscr{C} \) \cite[Introduction, p.~4]{pisierTensorProductsCAlgebras2020}. A map $\Phi$ is said to be \emph{completely bounded} if $\cbnorm{\Phi}$ is finite.
+\end{definition} 
 
-In the context of $W^*$-algebras, since we are concerned with the tensor product of $W^*$-algebras, we introduce a similar norm
+In the context of $W^*$-algebras, since we are concerned with the tensor product of $W^*$-algebras, $\overline{\otimes}$, we introduce a similar norm
 ---which, to the best of our knowledge, has not been previously studied in the literature.
 \begin{definition} \label{def:wcb_nor}
-The \emph{$W^*$ completely bounded norm} is defined as follows,
-  \[ \wcbnorm{\Phi} = \sup_{\mathscr{M}} \norm{\id_{\mathscr{M}} \overline{\otimes} \Phi}, \]
-where the supremum ranges over all $W^*$-algebras \( \mathscr{M} \).
+  Let $\Phi:\mathscr{N}_1 \to \mathscr{N}_2$ be a normal map between $W^*$-algebras. The \emph{$W^*$ completely bounded norm} is defined as follows,
+  \[ \wcbnorm{\Phi} = \sup_{\mathscr{M}} \opnorm{\id_{\mathscr{M}} \overline{\otimes} \Phi}, \]
+where the supremum ranges over all $W^*$-algebras \( \mathscr{M} \). $\Phi$ is said to be \emph{$W^*$-completely bounded} if $\wcbnorm{\Phi}$ is finite.
 \end{definition}
 
+\todo[inline,size=\normalsize]{Eu sei que a motivação não é a melhor mas, arranjar exemplos é deficil} 
 
-We begin by motivating the use of this norm through its relationship with the completely bounded norm.
+Our motivation for the use of this norm, beyond the fact that it satisfies the requirements for making \( \WstarCPSUop \) a model, has to do with the fact that it significantly simplifies calculations, since we are not handling two different tensor products, \( \widecheck{\otimes} \) and \( \overline{\otimes} \), simultaneously. Moreover, if it turns out that the completely bounded norm satisfies \( \cbnorm{\id \overline{\otimes} \Phi} \) for a normal map \( \Phi \) between \( W^* \)-algebras, then the remaining results required for the completely bounded norm to give rise to a model of the metric lambda calculus follow from the inequality
+$
+\cbnorm{\Phi} \leq \wcbnorm{\Phi}
+$
+(as shown in \autoref{prop:cb_leq_wcb}). We now establish a few results of the $W^*$ completely bounded norm, so we can infer that $\WstarCPSUop$ is a (first-oder) model of our metric lambda calculus.
 
 
-We have established that either this norm coincides with the completely bounded norm, or that the completely bounded norm is not suitable in this setting. Note that even if the two norms turn out to be equivalent, the use of this norm remains relevant, as it simplifies the demonstrations involved.
+%We begin by motivating the use of this norm through its relationship with the completely bounded norm. To that end, we present a few preliminary results.
 
-\todo[inline,size=\normalsize]{Nota: Arranjar contra-exemplos é um pouco dificil, porque a norma do tensor das w*algebras, por si, só é dificil de trabalhar.} 
+\begin{proposition} \label{prop:opnorm_min_leq_wopnorm}
+ Given completely bounded normal maps $\Phi:\mathscr{M}_1 \to \mathscr{N}_1 $ and $\Psi:\mathscr{M}_2 \to \mathscr{N}_2$ between $W^*$ algebras, it holds that:
+ \[\opnorm{\Phi \widecheck{\otimes} \Psi} \leq \opnorm{\Phi \overline{\otimes} \Psi}. \]
+\end{proposition}
+
+\begin{proof}
+  Given Propositions \ref{prop:sakai_tensor_min} and \ref{prop:norm_tensor_w_mult}, we have that 
+  \[\minnorm{m} \leq \wnorm{m}  \quad \text{for all } m \in \mathscr{M}_1\widecheck{\otimes} \mathscr{M}_2.\]
+
+   Thus, in order to prove that the above proposition holds, it suffices to prove that for all $ m \in \mathscr{M}_1\widecheck{\otimes} \mathscr{M}_2$, $\Phi \, \widecheck{\otimes} \, \Psi (m) = \Phi \, \overline{\otimes} \, \Psi (m)$.
+
+   Moreover, given that for any completely bounded maps \(\Phi\) and \(\Psi\) between \(C^*\)-algebras,  $\cbnorm{\Phi \widecheck{\otimes} \Psi} = \cbnorm{\Phi} \cbnorm{\Psi}$ (\cite[Theorem 12.3]{paulsenCompletelyBoundedMaps2003}), and \(\cbnorm{\Phi} \geq \opnorm{\Phi}\), it follows that \(\Phi \odot \Psi\) is Lipschitz continuous and therefore uniformly continuous.
 
 
-%In this work, our focus is limited to showing that the metric induced by this norm makes $\WstarCPSUop$ into a first-order model. In future work, we aim to explore more deeply the relationship between this norm and the completely bounded norm, as well as to establish additional results that simplify distance computations between morphisms.
+\begin{figure} [H] 
+    \centering
+    \begin{center}
+        \includegraphics[width=1.0\textwidth]{images/Diagrama.png}
+    \end{center}
+\end{figure}
 
-We now establish some results, so we can infer that $\WstarCPSUop$ is a (first-oder) model.
+In the third diagram, we reason as follows:
+from the first diagram above, we obtain $ \widecheck{T} \cdot \iota_1 = T =  \overline{T} \cdot \iota_2$, then, given that $\iota_2 = \iota_3 \cdot \iota_1$, we have  $ \widecheck{T} \cdot \iota_1 =  \overline{T} \cdot \iota_3 \cdot \iota_1$, from where if follows that $\overline{T} \circ \iota_3 = \widecheck{T}$.
+
+
+We note that since \cite{sakaiCAlgebrasWAlgebras1998} and \cite{takesakiTheoryOperatorAlgebras1979} employ the standard completion, we may assume it satisfies the usual properties. 
+
+\end{proof}
+
+%$\cbnorm{\id \overline{\otimes} \Phi} =  \sup_{n} \opnorm{\id_{\SqMatrix{n}} \widecheck{\otimes} \id \overline{\otimes} \Phi} $
+
+
+\todo[inline,size=\normalsize]{Ou Corolário ?}
+
+\begin{proposition} \label{prop:cb_leq_wcb}
+ Given a completely bounded normal map $\Phi:\mathscr{N}_1 \to \mathscr{N}_1 $, between $W^*$ algebras, it holds that:
+ \[\cbnorm{\Phi} \leq \wcbnorm{\Phi}. \]
+\end{proposition}
+
+\begin{proof}
+  This follows from \autoref{prop:opnorm_min_leq_wopnorm}, the definition of both norms (\autoref{def:cb_norm}, \autoref{def:wcb_nor}), the definition of \emph{supremum} as the least upper bound, and the fact that $\SqMatrix{n}$ is a $W^*$-algebra. We reason as follows,
+\begin{equation*}
+  \begin{split}
+  \cbnorm{\Phi} & = \sup_{n} \opnorm{\id_{\SqMatrix{n}} \widecheck{\otimes} \Phi } \\
+   & \leq \sup_{n} \opnorm{\id_{\SqMatrix{n}} \overline{\otimes} \Phi } & (\text{\autoref{prop:opnorm_min_leq_wopnorm}}) \\
+   & \leq \sup_{\mathscr{M}} \opnorm{\id_{\mathscr{M}} \overline{\otimes} \Phi } = \wcbnorm{\Phi}.
+    \end{split}
+\end{equation*}
+\end{proof}
+
+\begin{comment}
+\begin{corollary} \label{cor:cn_phi_leq_tensorid}
+  Let $\Phi$ be a completely bounded normal map, it holds that,
+  \[ \cbnorm{\id \overline{\otimes} \Phi}  \geq \cbnorm{\Phi}  \]
+\end{corollary}
+
+\begin{proof}
+ With the previous result in hand, we have that 
+\begin{equation}
+  \begin{split}
+    \cbnorm{\id \overline{\otimes} \Phi} = \sup_{n} \opnorm{\id_{\SqMatrix{n}} \widecheck{\otimes} \, (\id \overline{\otimes} \Phi)} \geq \sup_{n} \opnorm{\id_{\SqMatrix{n}} \widecheck{\otimes} \, (\id \widecheck{\otimes} \Phi)} = \cbnorm{ \Phi} 
+  \end{split}
+\end{equation}
+\end{proof}
+\end{comment}
+
 
 \begin{proposition} \label{prop:cb_tensor_mult}
   Given normal completely positive maps  $\Phi$ and $\Psi$ between $W^*$-algebras, it holds that
   \[
-  \norm{\phi \,\bar{\otimes} \, \psi} \leq \norm{\Phi} \norm{\Psi}.
+  \opnorm{\phi \,\bar{\otimes} \, \psi} \leq \norm{\Phi} \norm{\Psi}.
 \]
 \end{proposition}
 
 \begin{proof}
-It follows directly from Theorem \ref{thm:beta_alg_eq_beta_gamma} and Proposition
-\ref{prop:norm_beta_alg}.
+It follows directly from \autoref{thm:beta_alg_eq_beta_gamma} and 
+\autoref{prop:norm_beta_alg}.
 \end{proof}
 
 \begin{corollary} \label{cor:cbnorm_tensor_leq_norm}
    Given a normal completely positive subunital map  $\Phi$ between $W^*$-algebras, it holds that
    \[
-  \wcbnorm{\Phi} \leq \norm{\Phi}.
+  \wcbnorm{\Phi} =\opnorm{\Phi}.
 \]
 \end{corollary}
 
+\begin{proof}
+  It follows from the proposition above and the definition of $W^*$ completely bounded norm (\autoref{def:wcb_nor}) that $\wcbnorm{\Phi} \leq \opnorm{\Phi}$. The inverse inequality follows from \autoref{prop:cb_leq_wcb} and the fact that $\|\phi\| = \|\phi\|_{\text{cb}}$ \cite[Exercise 11.5 (iii)]{pisierIntroductionOperatorSpace2003}.
+\end{proof}
+
+\begin{proposition} \label{prop:w*cb_submult}
+  The $W^*$-completely bounded norm is submultiplicative with respect to composition for completely bounded normal maps between $W^*$-algebras. That is, given $W^*$-completely bounded normal maps $\Phi$ and $\Psi$ between $W^*$-algebras, we have:
+  \[
+    \wcbnorm{\Phi \cdot \Psi} \leq \wcbnorm{\Phi} \, \wcbnorm{\Psi}.
+  \]
+\end{proposition}
+
+\begin{proof}
+  It follows directly from the submultiplicativity of the operator norm (\autoref{lemma:op_norm_submult}), the
+ definition of \emph{supremum} as the least upper bound, the definition of $W^*$ completely bounded norm,and the following property:
+ for any two subsets $A$ and $B$ of only positive elements of an ordered field $\mathcal{F}$, let 
+   $AB = \{ a \cdot b \, \mid \, a \in A, y \in B\},$
+ it holds that $\sup A \cdot \sup B = \sup AB$
+  \cite[Chapter 2, Section 8-9]{zakon2011mathematical}. Given the submultiplicativity of the operator norm, we have that each 
+  \[a \in \{ \opnorm{ \id_{\mathscr{M}} \, \overline{\otimes} \, \Phi \cdot \Psi} \, \mid \, \mathscr{M} \text{ is a $W^*$ algebra} \} \] 
+ has an upper bound 
+  \[ b \in \{ \opnorm{ \id_{\mathscr{M}_1} \, \overline{\otimes} \, \Phi}   \opnorm{ \id_{\mathscr{M}_2} \, \overline{\otimes} \, \Psi}  \, \mid \, \mathscr{M_1}, \mathscr{M}_2 \text{ are $W^*$ algebras} \}.\]
+ So, it follows from the definition of \emph{supremum} that,
+  \[\sup_{\mathscr{M}} \{ \opnorm{ \id_{\mathscr{M}} \, \overline{\otimes} \, \Phi \cdot \Psi}\} \leq \sup_{\mathscr{M}_1, \mathscr{M}_2}   \{ \opnorm{ \id_{\mathscr{M}_1} \, \overline{\otimes} \, \Phi}   \opnorm{ \id_{\mathscr{M}_2} \, \overline{\otimes} \, \Psi} \} \]
+ Consequently, applying the property stated at the beginning of the proof, it holds that,
+ \[
+    \wcbnorm{\Phi \cdot \Psi} \leq \wcbnorm{\Phi} \, \wcbnorm{\Psi}.
+  \]
+\end{proof}
+
 \begin{proposition} \label{prop:cbnorm_id_otimes_phi}
-   Given a normal map $\Phi$ between $W^*$-algebras, it holds that
+   Given a $W^*$ completely bounded normal map $\Phi$ between $W^*$-algebras, it holds that
   \[
   \wcbnorm{\Phi \,\bar{\otimes} \, \id} \leq \wcbnorm{\Phi} \quad \text{and} \quad  \wcbnorm{\id\,\bar{\otimes} \, \Phi} \leq \wcbnorm{\Phi} .
 \]
 \end{proposition}
 
 \begin{proof}
-  It is straightforward that the $W^*$ completely bounded norm is submultiplicative with respect to composition. As a result, 
+  Given we just proved that the $W^*$ completely bounded norm is submultiplicative with respect to composition for $W^*$ completely bounded normal maps, it holds that
   \[
   \wcbnorm{\Phi \,\bar{\otimes} \, \id} = \wcbnorm{\sw \cdot (\id \,\bar{\otimes} \,\Phi)} \leq \wcbnorm{\sw} \wcbnorm{\id \,\bar{\otimes} \,\Phi}
   \]
-By \autoref{prop:swap_nmiu} and \autoref{prop:miu_cp}, it follows that $\sw$ is a completely positive normal map and therefore by \autoref{prop:cbnorm_id_otimes_phi} and \autoref{prop:HomShortIsoIso}, we obtain
+By \autoref{prop:swap_nmiu} and \autoref{prop:miu_cp}, it follows that $\sw$ is a normal $\ast$-isomorphism, and, therefore, a completely positive normal map and an isometry (with respect to the operator norm). As a result, by \autoref{cor:cbnorm_tensor_leq_norm} and \autoref{prop:HomShortIsoIso}, we obtain $\wcbnorm{\sw} = \opnorm{\sw}=1$. Consequently, 
 \[
   \wcbnorm{\Phi \,\bar{\otimes} \, \id}  \leq \wcbnorm{\id \,\bar{\otimes} \,\Phi}
 \]
@@ -2729,15 +2844,37 @@ At last, we need to prove that
 \[
   \wcbnorm{\Phi \,\bar{\otimes} \, \id} \leq \wcbnorm{\Phi},
 \]  
-which follows direcly from the definition of the norm \autoref{def:wcb_nor} given the tensor product of $W^*$-algebras is itself a $W^*$-algebra \cite[Definition 5.1]{takesakiTheoryOperatorAlgebras1979}.
+which follows direcly from the definition of the norm (\autoref{def:wcb_nor}) and the fact that the associator, $\alpha$, is an isometry with respect to the operator norm (\autoref{prop:assoc_nmiu}). 
+
+%given the tensor product of $W^*$-algebras is itself a $W^*$-algebra \cite[Definition 5.1]{takesakiTheoryOperatorAlgebras1979}.
 \end{proof}
 
+
+
+\begin{comment}
+We have established that either this norm coincides with the completely bounded norm, or the completely bounded norm is not suitable in this setting setting, since otherwise, there would exist a normal operator $\Phi$ between $W^*$-algebras and some $n \in \mathbb{N}$ such that
+$
+\cbnorm{\id_{\SqMatrix{n}} \overline{\otimes} \Phi} \geq \cbnorm{\Phi}.
+$
+Note that even if the two norms turn out to be equivalent, the use of this norm remains relevant, as it simplifies the demonstrations involved.
+\end{comment}
+
+
+
+%In this work, our focus is limited to showing that the metric induced by this norm makes $\WstarCPSUop$ into a first-order model. In future work, we aim to explore more deeply the relationship between this norm and the completely bounded norm, as well as to establish additional results that simplify distance computations between morphisms.
+
+
+
+
+
 \begin{proposition} \label{prop:product_cb}
-    Given  maps  $\Phi: \mathscr{M} \to \mathscr{N}$ and $\Psi: \mathscr{M} \to \mathscr{T}$ between $W^*$-algebras, it holds that
+    Given $W^*$ completely bounded normal maps  $\Phi: \mathscr{M} \to \mathscr{N}$ and $\Psi: \mathscr{M} \to \mathscr{T}$ between $W^*$-algebras, it holds that
   \[
   \wcbnorm{\langle \Phi, \Psi \rangle} \leq \max \{\wcbnorm{\Phi}, \wcbnorm{\Psi}\}.
 \]
 \end{proposition}
+
+\todo[inline,size=\normalsize]{Eu aqui só estou relutante em adotar a sua reformulação pelo seguinte motivo: nas provas anteriores}
 
 \begin{proof}
   By \autoref{thm:beta_alg_eq_beta_gamma}, \autoref{thm:w*_tensor_distributes_product}, and \autoref{def:c*_direct_sum} we have
@@ -2750,6 +2887,18 @@ which follows direcly from the definition of the norm \autoref{def:wcb_nor} give
     & \hspace{-25pt} = \max \{  \sup_{\mathscr{S}} \id \, \overline{\otimes} \, \Phi, \sup_{\mathscr{S}} \id \, \overline{\otimes} \, \Psi  \}  & (\text{Thm. \ref{thm:beta_alg_eq_beta_gamma}}) \\
     &  \hspace{-25pt}\leq  \max \{  \wcbnorm{\id \, \overline{\otimes} \, \Phi} , \wcbnorm{\id \, \overline{\otimes} \, \Psi}  \}
   \end{align*} 
+
+  \begin{comment}
+  \begin{align*}
+    & \hspace{-25pt} \wcbnorm{\langle \Phi, \Psi \rangle}  = \norm{\id \, \overline{\otimes} \, \langle \Phi, \Psi \rangle} \\
+    & \hspace{-25pt} = \norm{\id  \odot \langle \Phi, \Psi \rangle} & (\text{Thm. \ref{thm:beta_alg_eq_beta_gamma}}) \\
+    & \hspace{-25pt} = \sup_{s_i} \left\{ \norm{\id \odot \langle \Phi, \Psi \rangle \left(\sum_i s_i \otimes (m_i \otimes n_i)\right) } \Bigg| \norm{\sum_i s_i \otimes (m_i, n_i)}  = 1 \right\} \\
+    & \hspace{-25pt} = \sup_{s_i} \left\{ \norm{ \sum_i( s_i \otimes \Phi(m_i), s_i \otimes \Phi(n_i) ) } \Bigg| \norm{\sum_i (s_i \otimes m_i, s_i \otimes n_i)}  = 1 \right\} & (\text{Thm. \ref{thm:w*_tensor_distributes_product}})\\
+    & \hspace{-25pt} =  \sup_{\mathscr{S}}\left\{ \max \{\norm{\id_\mathscr{S} \odot \Phi},\norm{\id_\mathscr{S} \odot \Psi} \} \right\} & (\text{Def. \ref{def:c*_direct_sum}})\\
+    & \hspace{-25pt} = \max \{  \sup_{\mathscr{S}} \id \, \overline{\otimes} \, \Phi, \sup_{\mathscr{S}} \id \, \overline{\otimes} \, \Psi  \}  & (\text{Thm. \ref{thm:beta_alg_eq_beta_gamma}}) \\
+    &  \hspace{-25pt}\leq  \max \{  \wcbnorm{\id \, \overline{\otimes} \, \Phi} , \wcbnorm{\id \, \overline{\otimes} \, \Psi}  \}
+  \end{align*} 
+   \end{comment}
 \end{proof}
 
 
@@ -2763,7 +2912,7 @@ which follows direcly from the definition of the norm \autoref{def:wcb_nor} give
   Firstly, note that the copairing in $\WstarCPSUop$ corresponds to the pairing in $\WstarCPSU$. As a result, by proof of \autoref{prop:Q_monoidal} and the definition of  symmetric monoidal $\catMet$-category, we need to prove that for any normal completely subunital maps $\Phi,\Phi',\Psi,\Psi' $ between $W^*$-algebras:
   \begin{enumerate}
     \item $\wcbnorm{(\Phi - \Phi')\Psi} \leq \wcbnorm{\Phi - \Phi'}  $ and  $\wcbnorm{\Phi'(\Psi - \Psi')} \leq \wcbnorm{\Psi - \Psi'}$. 
-     It is straightforward that the $W^*$ completely bounded norm is submultiplicative with respect to composition. Given these operadors are normal completely positive subunital by \autoref{cor:cbnorm_tensor_leq_norm} and \autoref{prop:subunital_short} the inequalities hold.
+     Given these operadors are normal completely positive subunital and the $W^*$ completely bounded norm is submultiplicative with respect to composition for such maps, by \autoref{cor:cbnorm_tensor_leq_norm} and \autoref{prop:subunital_short} the inequalities hold.
      \item $\wcbnorm{\Phi \,\bar{\otimes} \, \id} \leq \wcbnorm{\Phi} \quad \text{and} \quad  \wcbnorm{\id\,\bar{\otimes} \, \Phi} \leq \wcbnorm{\Phi}$. It follows directly from \autoref{prop:cbnorm_id_otimes_phi}.
      \item $\wcbnorm{\langle \Phi - \Phi' , \Psi- \Psi' \rangle} \leq \max \{\wcbnorm{ \Phi - \Phi'}, \wcbnorm{\Psi- \Psi'}\}$. It follows directly from \autoref{prop:product_cb}.
   \end{enumerate}

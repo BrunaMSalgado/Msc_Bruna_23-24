@@ -1,4 +1,4 @@
-This is XeTeX, Version 3.141592653-2.6-0.999995 (MiKTeX 24.1) (preloaded format=xelatex 2024.7.31)  31 JUL 2025 21:04
+This is XeTeX, Version 3.141592653-2.6-0.999995 (MiKTeX 24.1) (preloaded format=xelatex 2024.7.31)  1 AUG 2025 22:09
 entering extended mode
  restricted \write18 enabled.
  file:line:error style messages enabled.
@@ -1254,19 +1254,7 @@ Package: accents 2006/05/12 v1.4 Math Accent Tools
 \cc@code=\count429
 \cc@group=\count430
 \cc@skewchar=\count431
-) (C:\Users\mona_\AppData\Local\Programs\MiKTeX\tex/latex/tikz-cd\tikz-cd.sty
-Package: tikz-cd 2021/05/04 v1.0 Commutative diagrams with TikZ
- (C:\Users\mona_\AppData\Local\Programs\MiKTeX\tex/latex/tikz-cd\tikzlibrarycd.code.tex (C:\Users\mona_\AppData\Local\Programs\MiKTeX\tex/generic/pgf/frontendlayer/tikz/libraries\tikzlibrarymatrix.code.tex
-File: tikzlibrarymatrix.code.tex 2023-01-15 v3.1.10 (3.1.10)
-) (C:\Users\mona_\AppData\Local\Programs\MiKTeX\tex/generic/pgf/frontendlayer/tikz/libraries\tikzlibraryquotes.code.tex
-File: tikzlibraryquotes.code.tex 2023-01-15 v3.1.10 (3.1.10)
-) (C:\Users\mona_\AppData\Local\Programs\MiKTeX\tex/generic/pgf/libraries\pgflibraryarrows.meta.code.tex
-File: pgflibraryarrows.meta.code.tex 2023-01-15 v3.1.10 (3.1.10)
-\pgfarrowinset=\dimen353
-\pgfarrowlength=\dimen354
-\pgfarrowwidth=\dimen355
-\pgfarrowlinewidth=\dimen356
-))) (C:\Users\mona_\AppData\Local\Programs\MiKTeX\tex/latex/quantikz\quantikz.sty
+) (C:\Users\mona_\AppData\Local\Programs\MiKTeX\tex/latex/quantikz\quantikz.sty
 Package: quantikz 2023/05/24 typeset quantum circuit diagrams
  (C:\Users\mona_\AppData\Local\Programs\MiKTeX\tex/latex/quantikz\tikzlibraryquantikz2.code.tex (C:\Users\mona_\AppData\Local\Programs\MiKTeX\tex/latex/xargs\xargs.sty
 Package: xargs 2008/03/22 v1.1  extended macro definitions  (mpg)
@@ -1278,7 +1266,17 @@ Package: xargs 2008/03/22 v1.1  extended macro definitions  (mpg)
 \xs_countb=\count434
 )
 Package: xstring 2023/08/22 v1.86 String manipulations (CT)
-) (C:\Users\mona_\AppData\Local\Programs\MiKTeX\tex/generic/pgf/frontendlayer/tikz/libraries\tikzlibrarydecorations.pathreplacing.code.tex (C:\Users\mona_\AppData\Local\Programs\MiKTeX\tex/generic/pgf/frontendlayer/tikz/libraries\tikzlibrarydecorations.code.tex (C:\Users\mona_\AppData\Local\Programs\MiKTeX\tex/generic/pgf/modules\pgfmoduledecorations.code.tex
+) (C:\Users\mona_\AppData\Local\Programs\MiKTeX\tex/latex/tikz-cd\tikzlibrarycd.code.tex (C:\Users\mona_\AppData\Local\Programs\MiKTeX\tex/generic/pgf/frontendlayer/tikz/libraries\tikzlibrarymatrix.code.tex
+File: tikzlibrarymatrix.code.tex 2023-01-15 v3.1.10 (3.1.10)
+) (C:\Users\mona_\AppData\Local\Programs\MiKTeX\tex/generic/pgf/frontendlayer/tikz/libraries\tikzlibraryquotes.code.tex
+File: tikzlibraryquotes.code.tex 2023-01-15 v3.1.10 (3.1.10)
+) (C:\Users\mona_\AppData\Local\Programs\MiKTeX\tex/generic/pgf/libraries\pgflibraryarrows.meta.code.tex
+File: pgflibraryarrows.meta.code.tex 2023-01-15 v3.1.10 (3.1.10)
+\pgfarrowinset=\dimen353
+\pgfarrowlength=\dimen354
+\pgfarrowwidth=\dimen355
+\pgfarrowlinewidth=\dimen356
+)) (C:\Users\mona_\AppData\Local\Programs\MiKTeX\tex/generic/pgf/frontendlayer/tikz/libraries\tikzlibrarydecorations.pathreplacing.code.tex (C:\Users\mona_\AppData\Local\Programs\MiKTeX\tex/generic/pgf/frontendlayer/tikz/libraries\tikzlibrarydecorations.code.tex (C:\Users\mona_\AppData\Local\Programs\MiKTeX\tex/generic/pgf/modules\pgfmoduledecorations.code.tex
 \pgfdecoratedcompleteddistance=\dimen357
 \pgfdecoratedremainingdistance=\dimen358
 \pgfdecoratedinputsegmentcompleteddistance=\dimen359
@@ -1365,6 +1363,8 @@ File: dvipsnam.def 2016/06/17 v3.0m Driver-dependent file (DPC,SPQR)
 Package: todonotes 2024/01/05 v1.1.7 Todonotes source and documentation.
 Package: todonotes 2024/01/05
 \c@@todonotes@numberoftodonotes=\count442
+) (C:\Users\mona_\AppData\Local\Programs\MiKTeX\tex/latex/tikz-cd\tikz-cd.sty
+Package: tikz-cd 2021/05/04 v1.0 Commutative diagrams with TikZ
 ) (macros.tex)
 \symmathx=\mathgroup8
 \c@theorem=\count443
@@ -2052,139 +2052,148 @@ Package hyperref Warning: Token not allowed in a PDF string (Unicode):
 Package hyperref Warning: Token not allowed in a PDF string (Unicode):
 (hyperref)                removing `superscript' on input line 1828.
 
-[102] [103] [104] [105] [106]
-Overfull \hbox (14.39474pt too wide) in paragraph at lines 2098--2101
+[102] [103] [104] [105] [106] [107]
+Overfull \hbox (14.39474pt too wide) in paragraph at lines 2115--2118
 \TU/SourceSansPro(0)/m/n/12 highlight the following connection between the two categories: the full subcategory of $[][]$
  []
 
-[107]
-Overfull \hbox (8.49039pt too wide) in paragraph at lines 2116--2122
+
+Overfull \hbox (8.49039pt too wide) in paragraph at lines 2133--2139
 []\TU/SourceSansPro(0)/m/n/12 A natural candidate for interpreting quantum programs with coproducts is the category $[][]$,
  []
 
 [108]
-Overfull \hbox (3.63197pt too wide) in paragraph at lines 2150--2151
+Overfull \hbox (3.63197pt too wide) in paragraph at lines 2167--2168
 \TU/SourceSansPro(0)/m/n/12 to include all completely positive maps), further restricted to trace-nonincreasing morphisms. 
  []
 
-[109] [110] [111]
-Overfull \hbox (24.49908pt too wide) in paragraph at lines 2462--2463
+[109] [110] [111] [112]
+Overfull \hbox (24.49908pt too wide) in paragraph at lines 2479--2480
  [][] 
  []
 
-[112]
-Overfull \hbox (4.13385pt too wide) in paragraph at lines 2672--2674
+[113]
+Overfull \hbox (4.13385pt too wide) in paragraph at lines 2693--2695
 []\TU/SourceSansPro(0)/m/n/12 In the context of $\OML/cmm/m/it/12 W[]$\TU/SourceSansPro(0)/m/n/12 -algebras, since we are concerned with the tensor product of $\OML/cmm/m/it/12 W[]$\TU/SourceSansPro(0)/m/n/12 -algebras,
  []
 
-[113] [114]
-Overfull \hbox (3.2933pt too wide) in paragraph at lines 2765--2767
-\TU/SourceSansPro(0)/m/n/12 composition. Given these operadors are normal completely positive subunital by [][]Corol-
+[114]
+Overfull \hbox (29.61473pt too wide) in paragraph at lines 2723--2724
+[]\TU/SourceSansPro(0)/m/n/12 Moreover, given that for any completely bounded maps $\OT1/cmr/m/n/12 ^^H$ \TU/SourceSansPro(0)/m/n/12 and $\OT1/cmr/m/n/12 ^^I$ \TU/SourceSansPro(0)/m/n/12 between $\OML/cmm/m/it/12 C[]$\TU/SourceSansPro(0)/m/n/12 -algebras, $[][] \OT1/cmr/m/n/12 =
  []
 
-[115] [116]
-Overfull \hbox (5.74608pt too wide) detected at line 2907
+File: images/Diagrama.png Graphic file (type bmp)
+<images/Diagrama.png>
+[115]
+Missing character: There is no 1 in font rsfs10!
+[116] [117]
+Overfull \hbox (5.668pt too wide) in paragraph at lines 2914--2916
+\TU/SourceSansPro(0)/m/n/12 norm is submultiplicative with respect to composition for such maps, by [][]Corollary 5.5.16[][][]
+ []
+
+[118] [119]
+Overfull \hbox (5.74608pt too wide) detected at line 3056
 []
  []
 
-[117]
-Overfull \hbox (4.628pt too wide) in paragraph at lines 2941--2947
+[120]
+Overfull \hbox (4.628pt too wide) in paragraph at lines 3090--3096
 \TU/SourceSansPro(0)/m/n/12 While orthogonal states can be perfectly distinguished, the same does not apply to nonorthog-
  []
 
-[118]
-Overfull \hbox (1.42001pt too wide) in paragraph at lines 2950--2956
+[121]
+Overfull \hbox (1.42001pt too wide) in paragraph at lines 3099--3105
 \TU/SourceSansPro(0)/m/n/12 the optimal measurement can be interpreted as a unitary transformation applied to the quan-
  []
 
 
-Overfull \hbox (34.40985pt too wide) in paragraph at lines 2978--2985
+Overfull \hbox (34.40985pt too wide) in paragraph at lines 3127--3134
 []\TU/SourceSansPro(0)/m/n/12 As in the previous example, we assume the hardware’s native gate set consists of $\OMS/cmsy/m/n/12 f\OML/cmm/m/it/12 U[]; U[]; U[]; []\OMS/cmsy/m/n/12 g$\TU/SourceSansPro(0)/m/n/12 ,
  []
 
-[119]
-Overfull \hbox (2.29962pt too wide) in paragraph at lines 3013--3014
+[122]
+Overfull \hbox (2.29962pt too wide) in paragraph at lines 3162--3163
 \TU/SourceSansPro(0)/m/n/12 scribed above, denoted $\OML/cmm/m/it/12 U[]$\TU/SourceSansPro(0)/m/n/12 , using our deductive metric system, we have $\OML/cmm/m/it/12 U \OT1/cmr/m/n/12 =[] \OML/cmm/m/it/12 U[]$\TU/SourceSansPro(0)/m/n/12 .
  []
 
-[120]
+[123]
 LaTeX Font Info:    Font shape `TU/SourceSansPro(0)/m/sc' will be
-(Font)              scaled to size 12.0pt on input line 3063.
+(Font)              scaled to size 12.0pt on input line 3212.
 
 Underfull \vbox (badness 7308) has occurred while \output is active []
 
- [121]
-Overfull \hbox (8.03279pt too wide) in paragraph at lines 3114--3117
+ [124]
+Overfull \hbox (8.03279pt too wide) in paragraph at lines 3263--3266
 \TU/SourceSansPro(0)/m/n/12 bound $[][] \OMS/cmsy/m/n/12 ^^T []\OML/cmm/m/it/12 ^^O$\TU/SourceSansPro(0)/m/n/12 . The Hadamard gate, $\OML/cmm/m/it/12 H$\TU/SourceSansPro(0)/m/n/12 , is the composition $\OML/cmm/m/it/12 U[]\OT1/cmr/m/n/12 (\OML/cmm/m/it/12 ^^Y\OT1/cmr/m/n/12 /2\OML/cmm/m/it/12 ; \OT1/cmr/m/n/12 0\OML/cmm/m/it/12 ; \OT1/cmr/m/n/12 0) \OMS/cmsy/m/n/12 ^^A
  []
 
-[122]
-Overfull \hbox (47.65775pt too wide) in paragraph at lines 3163--3164
+[125]
+Overfull \hbox (47.65775pt too wide) in paragraph at lines 3312--3313
 []\TU/SourceSansPro(0)/m/n/12 Designating the \TU/SourceSansPro(0)/b/n/12 Correction \TU/SourceSansPro(0)/m/n/12 block with the imperfect implementations of $\OML/cmm/m/it/12 X$ \TU/SourceSansPro(0)/m/n/12 and $\OML/cmm/m/it/12 Z$ \TU/SourceSansPro(0)/m/n/12 by $[][]$,
  []
 
-[123] [124]
-Overfull \hbox (3.30096pt too wide) detected at line 3234
+[126] [127]
+Overfull \hbox (3.30096pt too wide) detected at line 3383
 []
  []
 
-[125] [126]
-Overfull \hbox (0.26416pt too wide) detected at line 3324
+[128] [129]
+Overfull \hbox (0.26416pt too wide) detected at line 3473
  $[][]$ 
  []
 
-[127]) (chapters/ConclusionsAndFutureWork.tex [128]
+[130]) (chapters/ConclusionsAndFutureWork.tex [131] [132
+
+]
 Chapter 6.
 
 Underfull \vbox (badness 10000) has occurred while \output is active []
 
- [129
+ [133]) (dissertation.bbl [134] [135
 
-]) (dissertation.bbl [130] [131
-
-] [132] [133] [134] [135] [136] [137]
+] [136] [137] [138] [139] [140] [141]
 Underfull \hbox (badness 1571) in paragraph at lines 528--532
 \TU/SourceSansPro(0)/m/it/12 Nachrichten von der Gesellschaft der Wissenschaften zu Göttingen, Mathematisch-
  []
 
-[138]
+[142]
 Underfull \hbox (badness 1072) in paragraph at lines 549--552
 []\TU/SourceSansPro(0)/m/n/12 Michael Keyl.  Fundamentals of quantum information theory.  \TU/SourceSansPro(0)/m/it/12 Physics Reports\TU/SourceSansPro(0)/m/n/12 ,
  []
 
-[139]
-Underfull \hbox (badness 1221) in paragraph at lines 633--637
+[143]
+Underfull \hbox (badness 1221) in paragraph at lines 644--648
 \TU/SourceSansPro(0)/m/n/12 quantum computation using teleportation and single-qubit operations.  \TU/SourceSansPro(0)/m/it/12 Nature\TU/SourceSansPro(0)/m/n/12 ,
  []
 
-[140]) [141] [142
+[144]) [145] [146
 
 ]
 runsystem(makeindex dissertation.idx)...executed safely (allowed).
 
- (dissertation.ind) [143
+ (dissertation.ind) [147
 
-] [144] (appendices/Math.tex
+] [148] (appendices/Math.tex
 Appendix A.
 Missing character: There is no ; in font nullfont!
-[145
+[149
 
-] [146] [147] [148]
+] [150] [151] [152]
 Missing character: There is no ; in font nullfont!
-[149]
+[153]
 Missing character: There is no ; in font nullfont!
 
 Underfull \vbox (badness 7631) has occurred while \output is active []
 
- [150] [151]
+ [154] [155]
 Missing character: There is no ; in font nullfont!
 Missing character: There is no ; in font nullfont!
-[152] [153] [154] [155] [156] [157] [158]
+[156] [157] [158] [159] [160] [161] [162]
 Overfull \hbox (28.93152pt too wide) in paragraph at lines 914--915
  [][] 
  []
 
-[159]) (covers/BackCover.tex [160] [161
+[163]) (covers/BackCover.tex [164] [165
 
 ]
 Overfull \hbox (22.37988pt too wide) in paragraph at lines 11--13
@@ -2200,12 +2209,12 @@ Package rerunfilecheck Info: File `dissertation.out' has not changed.
 (rerunfilecheck)             Checksum: 77F83ECE2BF394BF11B5120A41600093;12952.
  ) 
 Here is how much of TeX's memory you used:
- 55953 strings out of 409673
- 1177301 string characters out of 5774704
+ 55983 strings out of 409673
+ 1178027 string characters out of 5774704
  1989630 words of memory out of 5000000
- 77082 multiletter control sequences out of 15000+600000
+ 77111 multiletter control sequences out of 15000+600000
  579599 words of font info for 174 fonts, out of 8000000 for 9000
  1348 hyphenation exceptions out of 8191
- 121i,36n,121p,2536b,1501s stack positions out of 10000i,1000n,20000p,200000b,200000s
+ 121i,36n,121p,2536b,1499s stack positions out of 10000i,1000n,20000p,200000b,200000s
 
-Output written on dissertation.xdv (186 pages, 3029928 bytes).
+Output written on dissertation.xdv (190 pages, 3078072 bytes).
