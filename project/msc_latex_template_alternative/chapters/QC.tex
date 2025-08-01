@@ -2832,14 +2832,19 @@ It follows directly from \autoref{thm:beta_alg_eq_beta_gamma} and
 \end{proposition}
 
 \begin{proof}
+  \begin{comment}
   Given we just proved that the $W^*$ completely bounded norm is submultiplicative with respect to composition for $W^*$ completely bounded normal maps, it holds that
   \[
   \wcbnorm{\Phi \,\bar{\otimes} \, \id} = \wcbnorm{\sw \cdot (\id \,\bar{\otimes} \,\Phi)} \leq \wcbnorm{\sw} \wcbnorm{\id \,\bar{\otimes} \,\Phi}
   \]
-By \autoref{prop:swap_nmiu} and \autoref{prop:miu_cp}, it follows that $\sw$ is a normal $\ast$-isomorphism, and, therefore, a completely positive normal map and an isometry (with respect to the operator norm). As a result, by \autoref{cor:cbnorm_tensor_leq_norm} and \autoref{prop:HomShortIsoIso}, we obtain $\wcbnorm{\sw} = \opnorm{\sw}=1$. Consequently, 
-\[
-  \wcbnorm{\Phi \,\bar{\otimes} \, \id}  \leq \wcbnorm{\id \,\bar{\otimes} \,\Phi}
-\]
+By \autoref{prop:swap_nmiu} and \autoref{prop:miu_cp}, it follows that $\sw$ is a normal $\ast$-isomorphism, and, therefore, a completely positive normal map and an isometry (with respect to the operator norm). As a result, by \autoref{cor:cbnorm_tensor_leq_norm} and \autoref{prop:HomShortIsoIso}, we obtain $\wcbnorm{\sw} = \opnorm{\sw}=1$. 
+\end{comment}
+By \autoref{prop:swap_nmiu} it follows that $\sw$ is a normal $\ast$-isomorphism, and, therefore, an isometry (with respect to the operator norm). As a result,
+\begin{align*}
+  \wcbnorm{\Phi \,\bar{\otimes} \, \id} &= \sup_{\mathscr{M}} \opnorm{ \id_\mathscr{M} \, \overline{\otimes} \, \Phi \,\bar{\otimes} \, \id} \\
+  & =  \sup_{\mathscr{M}} \opnorm{ \id_\mathscr{M} \, \overline{\otimes} \,  \sw \cdot (\id \,\bar{\otimes} \,\Phi)} \\
+& = \sup_{\mathscr{M}} \opnorm{\id_\mathscr{M} \, \overline{\otimes} \,  \id \,\bar{\otimes} \,\Phi}  = \wcbnorm{\id \,\bar{\otimes} \,\Phi}. 
+\end{align*}
 At last, we need to prove that
 \[
   \wcbnorm{\Phi \,\bar{\otimes} \, \id} \leq \wcbnorm{\Phi},
@@ -2868,27 +2873,26 @@ Note that even if the two norms turn out to be equivalent, the use of this norm 
 
 
 \begin{proposition} \label{prop:product_cb}
-    Given $W^*$ completely bounded normal maps  $\Phi: \mathscr{M} \to \mathscr{N}$ and $\Psi: \mathscr{M} \to \mathscr{T}$ between $W^*$-algebras, it holds that
+    Given $W^*$ completely bounded normal maps  $\Phi: \mathscr{M} \to \mathscr{N}_1$ and $\Psi: \mathscr{M} \to \mathscr{N}_2$ between $W^*$-algebras, it holds that
   \[
   \wcbnorm{\langle \Phi, \Psi \rangle} \leq \max \{\wcbnorm{\Phi}, \wcbnorm{\Psi}\}.
 \]
 \end{proposition}
 
-\todo[inline,size=\normalsize]{Eu aqui só estou relutante em adotar a sua reformulação pelo seguinte motivo: nas provas anteriores}
+
 
 \begin{proof}
-  By \autoref{thm:beta_alg_eq_beta_gamma}, \autoref{thm:w*_tensor_distributes_product}, and \autoref{def:c*_direct_sum} we have
+  By \autoref{thm:w*_tensor_distributes_product}  and \autoref{def:c*_direct_sum} we have
   \begin{align*}
-    & \hspace{-25pt} \wcbnorm{\langle \Phi, \Psi \rangle}  = \norm{\id \, \overline{\otimes} \, \langle \Phi, \Psi \rangle} \\
-    & \hspace{-25pt} = \norm{\id  \odot \langle \Phi, \Psi \rangle} & (\text{Thm. \ref{thm:beta_alg_eq_beta_gamma}}) \\
-    & \hspace{-25pt} = \sup_{s_i} \left\{ \norm{\id \odot \langle \Phi, \Psi \rangle \left(\sum_i s_i \otimes (m_i \otimes n_i)\right) } \Bigg| \norm{\sum_i s_i \otimes (m_i, n_i)}  = 1 \right\} \\
-    & \hspace{-25pt} = \sup_{s_i} \left\{ \norm{ \sum_i( s_i \otimes \Phi(m_i), s_i \otimes \Phi(n_i) ) } \Bigg| \norm{\sum_i (s_i \otimes m_i, s_i \otimes n_i)}  = 1 \right\} & (\text{Thm. \ref{thm:w*_tensor_distributes_product}})\\
-    & \hspace{-25pt} =  \sup_{\mathscr{S}}\left\{ \max \{\norm{\id_\mathscr{S} \odot \Phi},\norm{\id_\mathscr{S} \odot \Psi} \} \right\} & (\text{Def. \ref{def:c*_direct_sum}})\\
-    & \hspace{-25pt} = \max \{  \sup_{\mathscr{S}} \id \, \overline{\otimes} \, \Phi, \sup_{\mathscr{S}} \id \, \overline{\otimes} \, \Psi  \}  & (\text{Thm. \ref{thm:beta_alg_eq_beta_gamma}}) \\
-    &  \hspace{-25pt}\leq  \max \{  \wcbnorm{\id \, \overline{\otimes} \, \Phi} , \wcbnorm{\id \, \overline{\otimes} \, \Psi}  \}
+    &  \wcbnorm{\langle \Phi, \Psi \rangle}  = \sup_{\mathscr{T}} \opnorm{\id \, \overline{\otimes} \, \langle \Phi, \Psi \rangle} \\
+    & \leq \sup_{\mathscr{T}} \opnorm{ \dist \cdot \id_\mathscr{T} \, \overline{\otimes} \, \langle \Phi, \Psi \rangle} & (\text{\autoref{thm:w*_tensor_distributes_product}}) \\
+    &  \leq \sup_{\mathscr{T}} \opnorm{ \langle \id_\mathscr{T}\overline{\otimes} \Phi,\id_\mathscr{T}\overline{\otimes} \Phi  \rangle} &  \\
+    & = \max \{ \sup_{\mathscr{T}} \opnorm{ \id_\mathscr{T}\overline{\otimes} \Phi}, \sup_{\mathscr{T}} \opnorm{ \id_\mathscr{T}\overline{\otimes} \Psi} \} & (\text{\autoref{def:c*_direct_sum}}) \\
+    & \leq  \max \{  \wcbnorm{ \Phi} , \wcbnorm{\Psi}. \}
   \end{align*} 
 
   \begin{comment}
+    By \autoref{thm:beta_alg_eq_beta_gamma}, \autoref{thm:w*_tensor_distributes_product}, and \autoref{def:c*_direct_sum} we have
   \begin{align*}
     & \hspace{-25pt} \wcbnorm{\langle \Phi, \Psi \rangle}  = \norm{\id \, \overline{\otimes} \, \langle \Phi, \Psi \rangle} \\
     & \hspace{-25pt} = \norm{\id  \odot \langle \Phi, \Psi \rangle} & (\text{Thm. \ref{thm:beta_alg_eq_beta_gamma}}) \\
