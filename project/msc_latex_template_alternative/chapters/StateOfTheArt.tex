@@ -291,9 +291,9 @@ Given terms $v$ and $w$, the substitution $ v[w/x]$ is defined below.
   \{\inl(y) \Rightarrow p; 
   \hspace{35pt} &=  \text{case } v [w/x]     
    && \text{if $y \in FV(w)$, $z \in FV(w),$}   \\ 
-  \inr(z) \Rightarrow  q  \})[w/x]&  \hspace{12pt} \{\inl(y) \Rightarrow  p\{y'/y\} \{z'/z\} && \text{and $y',z'$ are fresh} \\
+  \inr(z) \Rightarrow  q  \})[w/x]&  \hspace{12pt} \{\inl(y') \Rightarrow  p\{y'/y\} \{z'/z\} && \text{and $y',z'$ are fresh} \\
   &  \hspace{16pt}[w/x]; \\
-   & \hspace{16pt}  \inr(z) \Rightarrow q\{y'/y\}  
+   & \hspace{16pt}  \inr(z') \Rightarrow q\{y'/y\}  
    &&  \\
   & \hspace{16pt} \{z'/z\}[w/x] \} \\
 \end{align*}
@@ -715,8 +715,8 @@ $\Delta = \Delta'$. The proof then follows by induction.
 
 \begin{lemma}[Exchange and Substitution]
 \label{lem:exh_and_sub} 
-For every judgement $\Gamma,x: \typeA, y: \typeB, \Delta \vljud v: \typeD$ the
-judgement $\Gamma, y:\typeB, x:\typeA, \Delta \vljud v:
+For every judgement $\Gamma,x: \typeA, y: \typeB, \Delta \, \vljud \, v: \typeD$ the
+judgement $\Gamma, y:\typeB, x:\typeA, \Delta \, \vljud \, v:
 \typeD$ is derivable. Not only this, given judgements  $\Gamma,x:\typeA \vljud
 v: \typeB$ and $\Delta \vljud w: \typeA$ the judgement $\Gamma, \Delta \vljud
 v[w/x]: \typeB$ is also derivable.
@@ -764,7 +764,7 @@ is a corollary of the exchange rule.
 
 
 \subsection{Equations-in-context}
-\todo[inline, size=\normalsize]{Ver historia de reduções vs eqs}
+
 The simply typed lambda calculus is a formal language that captures operations like the application of a function to an argument and the elimination of variables. To express these operations, there is a set of equations which fall into two primary categories: the $\beta$\emph{-equations}, which intuitively perform operations and enforce the intended meaning of the term, and $\eta$\emph{-equations}, which simplify terms by exploiting extensionality. 
 There is also a secondary class of equations known as \emph{commuting conversions}, which serve to disambiguate terms that, while equivalent, have different representations.
 As a result, affine $\lambda$-calculus comes equipped with the so-called equations-in-context \gls{equation-in-context}, which are often abbreviated as $v = w : \mathbb{A}$, or simply $v = w$ when the type is clear from context. These equations are illustrated in \autoref{fig:equations-linear-lambda}.
@@ -1051,8 +1051,8 @@ Next, we will show that the programs we have defined verify certain properties o
      \[
       \left\{
       \begin{aligned}
-      &   \textbf{Conjunction} \, (\inr(*), \inl(z)) = \inr(*)  \\
-      & \textbf{Conjunction} \, (\inr(*), \inr(z)) = \inr(*)
+      &   \textbf{Conjunction} \, (\inr(*), \inl(z)) = \text{dis}(\inl(z)) \text{ to} *. \inr(*) \\
+      & \textbf{Conjunction} \, (\inr(*), \inr(z)) = \text{dis}(\inl(z)) \text{ to} *. \inr(*)
       \end{aligned}
       \right.
       \]
@@ -1084,7 +1084,7 @@ Next, we will show that the programs we have defined verify certain properties o
 
 
 \begin{proof}
- Once again, by the extensionality of copairing, it suffices to prove the equality for the four base cases:
+ Once again, by the extensionality of the copairing, it suffices to prove the equality for the four base cases:
  \[
       \left\{
       \begin{aligned}
@@ -1120,33 +1120,12 @@ We will explicitly prove the second equality below; the others follow by similar
 \end{align*}
 \end{proof}
 
-\todo[inline]{Isto vai sair daqui e ir para a prova de soundeness classica}
+
 
 %To address the double negation property and De~Morgan's laws, we begin by establishing a key equality known as the \emph{syntactic fusion law}.
 
 
-\begin{proposition} [\emph{Syntactic fusion law}]
-  The following equality holds:
-  \begin{equation*}
-   v \left[ \left(\text{case } a \,\{\inl_{\typeB}(x) \Rightarrow w ; \, \inr_{\typeA}(y) \Rightarrow u\}\right)  / z \right]  =  \text{case } a \,\{\inl_{\typeB}(x) \Rightarrow v[w/z] ; \, \inr_{\typeA}(y) \Rightarrow v[u/z]\}.
-  \end{equation*}
-\end{proposition}
 
-  \begin{proof}
-    
-This equality follows from the extensionality of copairing and equations  $\beta_{\text{case}}^{\text{inl}}$, and $\beta_{\text{case}}^{\text{inr}}$. 
-By the extensionality of copairing, it suffices to prove the equility for  $\text{inl}(b)$ and $\text{inl}(b)$.
-We present the explicit proof for $\text{inl}(c)$; the proof for  $\text{inl}(d)$ follows similar reasoning.
-
-\begin{equation*}
-\begin{split}
-  & v \left[ \left(\text{case } \text{inl}(b) \,\{\inl(x) \Rightarrow w ; \, \inr(y) \Rightarrow u\}\right)  / z \right] & \\
-  & =  v [w[b/x]\,/z] & (\beta_{\text{case}}^{\text{inl}})\\
-  & =   v [[w/z]\,[b/x]]    \\
-   & =  \text{case } \text{inl}(b) \,\{\inl_{\typeB}(x) \Rightarrow v[w/z] ; \, \inr_{\typeA}(y) \Rightarrow v[u/z]\}   & (\beta_{\text{case}}^{\text{inl}})
-\end{split}
-\end{equation*}
-  \end{proof}
 
 
 \begin{lemma} \label{lem:dneg}
@@ -1155,7 +1134,7 @@ We present the explicit proof for $\text{inl}(c)$; the proof for  $\text{inl}(d)
 \end{lemma}
 
 \begin{proof}
-  By the extensionality of copairing, it suffices to prove the equality for the base cases, \ie, the injections. This follows directly from the equations \(\beta_{case}^{inl}\) and \(\beta_{case}^{inr}\). Once again, we will prove one of the resulting equalities explicitly; the other follows by similar reasoning.
+  By the extensionality of the copairing, it suffices to prove the equality for the base cases, \ie, the injections. This follows directly from the equations \(\beta_{case}^{inl}\) and \(\beta_{case}^{inr}\). Once again, we will prove one of the resulting equalities explicitly; the other follows by similar reasoning.
   
     \begin{equation*}
     \begin{split}
@@ -1178,7 +1157,7 @@ We present the explicit proof for $\text{inl}(c)$; the proof for  $\text{inl}(d)
 
 \begin{proof}
 
-  Once again, by the extensionality of copairing, it suffices to prove the equality for the four base cases. The corresponding equalities follow from the equations 
+  Once again, by the extensionality of the copairing, it suffices to prove the equality for the four base cases. The corresponding equalities follow from the equations 
 \(\beta_{case}^{inl}\), \(\beta_{case}^{inr}\) and \(c_{\mathbb{I}_e}\). 
 We will explicitly prove one of the equalities below; the others follow by similar reasoning.
 
@@ -1665,7 +1644,7 @@ The following diagrams are useful for a clearer understanding of the interpretat
 
 Regarding the interpretation of the exhange and substitution properties, we have the following lemma.
 
-\begin{lemma} \label{lem:sub_exch}
+\begin{lemma} \label{lem:sub_exch} 
   For any judgements $\Gamma, x: \mathbb{A}, y: \mathbb{B}, \Delta \triangleright v : \mathbb{D}$, $\Gamma, x: \mathbb{A} \triangleright v: \mathbb{B}$, and $\Delta \triangleright w: \mathbb{A}$, the following holds:
 \end{lemma}
 \vspace{-30pt}
@@ -1679,7 +1658,112 @@ Regarding the interpretation of the exhange and substitution properties, we have
 
 \begin{proof}
   This lemma is proved in \cite[Lemma 2.2]{dahlqvist2023syntactic} for the lambda calculus without conditionals, so we only need to address the conditional cases.
-\todo[inline,size=\normalsize]{Passar para aqui as provas qd elas estiverem vistas} 
+
+  We begin with the exchange property. The rules involving injections are
+  straightforward. As for the rule~$\text{case}$, we distinguish between
+  the scenarios where both variables ($x : \typeA$ and $y : \typeB$) are in
+  $\Gamma$, both are in $\Delta$, or they are distributed across $\Gamma$ and
+  $\Delta$. We begin with the first case. 
+  \begin{align*}
+    & \sem{\Gamma,x, y, \Delta \vljud \text{case }  v\,  \{\text{inl} (a) \Rightarrow w ;\, \text{inr} (b) \Rightarrow u\}} \\ 
+    &\triangleq   [\sem{w}  , \sem{u}] \comp (\text{jn}
+    \comp \sw \oplus \text{jn} \comp \sw) \comp \dist 
+    \comp (\sem{ v} \otimes \id)  
+    \comp \text{sp} 
+    \comp \text{sh}
+    & \\
+    & =  [\sem{w},\sem{u}] \comp (\text{jn}
+    \comp \sw \oplus \text{jn} \comp \sw)  \comp \dist 
+    \comp (\sem{v} \comp\, \text{exch}
+    \otimes \id) \comp \text{sp} 
+    \comp \text{sh}
+    & \text{(Induction)}\\
+    &  =  \dots  \comp (\sem{v} \otimes \id) 
+          \comp (\text{exch} \otimes \text{id}) \comp \text{sp} \comp  \text{sh} & \\
+    & = \dots \comp (\sem{v} \otimes \id) \comp \text{sp}
+          \comp \text{sh}  
+          \comp \text{exch} 
+    & {\text{(Coherence)}} \\
+    & \triangleq \sem{\Gamma,y, x, \Delta \vljud \text{case } v\,  \{\text{inl} (a) \Rightarrow w ;\, \text{inr} (b) \Rightarrow u\}} 
+    \comp \text{exch}
+  \end{align*}
+Let us now focus on the second case, \ie\ both variables live in $\Delta$.
+
+\begin{align*}
+  & \hspace{-30pt} \sem{\Gamma,x, y, \Delta \vljud \text{case } \, v\, \{\text{inl} (a) \Rightarrow w ;\, \text{inr} (b) \Rightarrow u\}} \\
+  & \hspace{-30pt} \triangleq  [\sem{w} ,\sem{u}]\comp (\text{jn}
+  \comp \sw \oplus \text{jn} \comp \sw) 
+  \comp \dist \comp (\sem{v} \otimes \id) \comp 
+  \text{sp}_{} 
+  \comp \text{sh}_{}  \\
+  & \hspace{-30pt} = [\sem{ w }  \comp \text{exch}, \sem{u}\comp \text{exch}] \comp (\text{jn}\comp \sw \oplus \text{jn} \comp \sw) \comp \dist \comp (\sem{v} \otimes \id) \comp\text{sp} \comp \text{sh}
+  & \text{(Induction)}\\
+  &\hspace{-30pt} = [\sem{ w }, \sem{u}] 
+  \comp (\text{exch} \oplus \text{exch}) 
+  \comp (\text{jn}\comp \sw \oplus \text{jn} \comp \sw) 
+  \comp \ldots
+  & \text{(Coproduct laws)}
+  \\
+  & \hspace{-30pt} = [\sem{ w }, \sem{u}] 
+  \comp (\text{jn}\comp \sw \oplus \text{jn} \comp \sw) 
+  \comp (\id \otimes \text{exch} \oplus \id \otimes \text{exch})
+  \comp \dist \comp \ldots
+  & \text{(Coherence)}
+  \\
+  & \hspace{-30pt} = \ldots 
+  \comp \dist 
+  \comp (\id \otimes \text{exch}) \comp (\sem{v} \otimes \id) \comp\text{sp} \comp \text{sh} 
+  & \text{(Naturality)}
+  \\
+  & \hspace{-30pt} = \ldots
+  \comp \dist 
+  \comp (\sem{v} \otimes \id) \comp\text{sp} \comp \text{sh} 
+  \comp \text{exch}
+  & \text{(Coherence)}
+  \\
+  & \hspace{-30pt} \triangleq \sem{\Gamma,y, x, \Delta \vljud \text{case } v\,  \{\text{inl} (a) \Rightarrow w ;\, \text{inr} (b) \Rightarrow u\}} 
+  \comp \text{exch}_{}
+\end{align*}
+
+The proof the for the third case follows directly from the coherence theorem
+for symmetric monoidal categories.
+
+Regarding the substitution rule, once again the cases involving the injections follow directly by induction on the derivation tree. For the rule (case), we distinguish between the scenarios where the variable $x$ is in $\Gamma$ or in $\Delta$. We start with the first case.
+\begin{align*}
+  & \hspace{-30pt} [\![E, Z \vljud \text{case } v \,  \{\text{inl} (a) \Rightarrow w ;\, \text{inr} (b) \Rightarrow u\} [t/x]]\!] \\
+  & \hspace{-30pt} \triangleq \left[[\![ w ]\!] ,[\![ u ]\!]\right] \comp (\text{jn}\comp \sw \oplus \text{jn} \comp \sw) \comp \dist \comp  ([\![ v [t/x] ]\!]   \otimes \text{id})  \comp \text{sp} \comp \text{sh} \\
+  & \hspace{-30pt} = \left[[\![ w ]\!] ,[\![ u ]\!]\right] \comp (\text{jn} \comp \sw \oplus \text{jn} \comp \sw)  \comp \dist \comp (([\![ v]\!]  \comp \text{jn} \comp (\text{id} \otimes [\![  t ]\!] ) \comp \text{sp} )\otimes \text{id})  \comp \text{sp} \comp \text{sh} & {\text{(Induction)}} \\
+  & \hspace{-30pt} =  \ldots  \comp ([\![ v]\!] \otimes \text{id}) \comp (\text{jn} \comp (\text{id} \otimes [\![  t ]\!] ) \comp \text{sp} \otimes \text{id})  \comp \text{sp}\comp \text{sh}\\
+  & \hspace{-30pt} = \ldots \comp ([\![ v]\!] \otimes \text{id})  \comp (\text{jn} \comp (\text{id} \otimes [\![  t ]\!] ) \comp \text{sp} \otimes \text{id})  \comp \text{sp} \comp \text{sh} \comp \text{jn} \comp \text{sp} &  \\
+  & \hspace{-30pt} = \ldots  \comp ([\![ v]\!] \otimes \text{id}) \comp (\text{jn}\comp \text{sp} \otimes   \id) \comp \text{sp}   \comp \text{sh} \comp \text{jn}\comp (\text{id} \otimes [\![ t ]\!] ) \comp \text{sp}  & {(\text{Naturality})}   \\
+  & \hspace{-30pt} = \ldots  \comp ([\![ v]\!] \otimes \text{id}) \comp \text{sp}  \comp \text{sh}  \comp  \text{jn} \comp (\text{id} \otimes [\![ t ]\!] ) \comp \text{sp}  & {(\text{Coherence})}   \\
+  & \hspace{-30pt} \triangleq \, [\![E,  x \vljud \text{case } v\,  \{\text{inl} (x) \Rightarrow w ;\, \text{inr} (y) \Rightarrow u\}]\!]  \comp  \text{jn} \comp (\text{id} \otimes [\![ t ]\!] ) \comp \text{sp}
+\end{align*}
+
+  With respect to the second case, \ie, $x$ lives in $\Delta$, we have: 
+  \begin{align*}
+  &\hspace{-30pt} [\![E, Z \vljud \text{case } v \,  \{\text{inl} (a) \Rightarrow w ;\, \text{inr} (b) \Rightarrow u\} [t/x]]\!] \\
+  & \hspace{-30pt} \triangleq \left[[\![ \Delta  , Z ,  a \vljud w[t/x] ]\!] ,[\![ \Delta, Z, b \vljud u[t/x]  ]\!] \right] \comp (\text{jn}\comp \sw \oplus \text{jn} \comp \sw) \comp \dist  \comp ([\![ v ]\!]   \otimes \text{id})     \\
+  &  \hspace{-20pt} \comp \text{sp} \comp \text{sh}  \\
+  & \hspace{-30pt} =  \left[[\![ \Delta  ,   a, Z \vljud w[t/x] ]\!] ,[\![ \Delta, b, Z \vljud u[t/x]  ]\!] \right] \comp ( \text{exch} \comp \text{jn}\comp \sw \oplus  \text{exch} \comp \text{jn} \comp \sw)   \comp \ldots   & {(\text{Exch., Cop.})} \\
+  & \hspace{-30pt} =   \left[[\![w ]\!] \comp  \text{jn} \comp (\text{id} \otimes [\![t]\!] ) \comp \text{sp}  ,[\![ u]\!] \comp \text{jn} \comp (\text{id} \otimes [\![t]\!] ) \comp \text{sp} \right] \comp (\text{exch} \comp \text{jn} \comp \sw  \oplus \text{exch}  & {\text{(Induction)}}  \\
+  & \hspace{-20pt} \comp\text{jn} \comp \sw ) \comp \ldots \\
+  & \hspace{-30pt} =  \left[[\![w ]\!] ,[\![ u]\!] \right] \comp \big(\text{exch} \comp \text{jn} \comp \sw \comp (\text{id} \otimes  \text{jn} ) \comp (\text{id} \otimes [\![t]\!]) \comp  (\text{id} \otimes \text{sp} ) \oplus \text{exch} \comp \text{jn} \comp \sw   & {(\text{Naturality,}} \\
+  & \hspace{-30pt} \hspace{10pt} \comp (\text{id} \otimes  \text{jn} ) \comp (\text{id} \otimes [\![t]\!]) \comp  (\text{id} \otimes \text{sp} ) \big)\comp  \ldots & {\text{Cop. laws})} \\
+  %& \hspace{-30pt} =  \ldots \comp \big(\ldots  \comp (\text{id} \otimes  (\text{jn} \comp \text{id} \otimes [\![t]\!] \comp \text{sp}) ) \oplus  \ldots  \comp (\text{id} \otimes  (\text{jn}\comp \text{id} \otimes [\![t]\!] \comp \text{sp}) )\big) \comp \dist \comp \ldots &  \\
+  & \hspace{-30pt} = [[\![ \Delta  , x ,  a \vljud w]\!] , [\![ \Delta  , x ,  b \vljud u]\!]]  \comp \big(\text{jn} \comp \sw \comp (\text{id} \otimes  (\text{jn} \comp \id \otimes [\![t]\!]  \comp \text{sp}))  \oplus \text{jn} \comp  \sw      & {(\text{Exchange, }}  \\
+  & \hspace{-30pt} \hspace{10pt} \comp (\text{id} \otimes  (\text{jn} \comp \text{id} \otimes [\![t]\!] \comp \text{sp}) )\big) \comp \dist \ldots  & { \text{Cop. laws})}\\
+  & \hspace{-30pt} = \ldots \comp  (\text{jn} \comp \sw \oplus \text{jn} \comp \sw)  \comp \dist \comp ( \text{id} \otimes (\text{jn} \cdot (\text{id} \otimes [\![t]\!]) \cdot \text{sp} ) ) \comp ([\![v]\!] \otimes \text{id})  & {(\text{Cop. laws,}}  \\
+  & \hspace{-20pt} \comp \text{sp} \comp \text{sh} & {\text{Naturality})} \\
+  & \hspace{-30pt} =  \ldots \comp \dist \comp  ([\![v]\!] \otimes \text{id})  \comp ( \text{id} \otimes (\text{jn} \comp  (\text{id} \otimes [\![t]\!]) \cdot \text{sp} ) ) \comp \text{sp}\comp \text{sh} \comp \text{jn}  \comp \text{sp}    & \\
+  & \hspace{-30pt} = \ldots \comp \dist \comp  ([\![v]\!] \otimes \text{id})  \comp ( \id \otimes \text{jn} \comp \text{sp}) \comp \text{sp}  \comp \text{sh}    \comp \text{jn} \comp (\text{id} \otimes [\![ t ]\!] ) \comp \text{sp} & {(\text{Naturality})}   \\
+  & \hspace{-30pt} =  \ldots  \comp \dist   \comp ([\![v  ]\!] \otimes \text{id}) \comp \text{sp} \comp \text{sh} \comp \text{jn} \comp (\text{id} \otimes [\![ t ]\!] ) \comp \text{sp}  & {(\text{Coherence})}     \\ 
+  & \hspace{-30pt} \triangleq  [\![E,  x\vljud \text{case } v\,  \{\text{inl} (a) \Rightarrow w ;\, \text{inr} (b) \Rightarrow u\}]\!] \comp \text{jn} \comp (\text{id} \otimes [\![ t ]\!] ) \comp \text{sp}
+\end{align*}
+
+
+
+
 \end{proof}
 
 \begin{definition} [Models of linear \(\lambda\)-theories]
@@ -1699,23 +1783,215 @@ $\llbracket \Gamma \vljud v : A  \rrbracket = \llbracket  \Gamma \vljud w : \typ
 \end{theorem}
 
 \begin{proof}
-  Since the theorem is already proven in \cite[Theorem 2.3]{dahlqvist2023syntactic} for the lambda calculus without conditionals, it suffices to consider the cases involving conditionals.
-  \todo[inline,size=\normalsize]{Passar para aqui as provas qd elas estiverem vistas} 
+  Since the theorem is already proven in \cite[Theorem 2.3]{dahlqvist2023syntactic} for the lambda calculus without conditionals, it suffices to consider the cases involving conditionals. 
+  
+  The soundeness of the equations for conditionals follow from \autoref{lem:sub_exch}, the coherence theorem for symmetric monoidal categories, naturality,  the bifunctoriality of the tensor product, and the universal property of the coproduct.   
+  We will provide a complete proof for the $\beta_{case}^{inl}$ and $\eta_{case}$ equations, noting that the proof for the $\beta_{case}^{inr}$ equation follows analogously from the first. For the $\beta_{case}^{inl}$ equation, we reason as follows:
+  \begin{align*}
+    & \hspace{-30pt}  \llbracket \Delta,\Gamma \vljud  \text{case }  \text{inl}(v)\, \{\text{inl} (x) \Rightarrow w ;\, \text{inr} (y) \Rightarrow u\} \rrbracket \\
+    & \hspace{-30pt}  \triangleq  [\llbracket w\rrbracket,\llbracket u \rrbracket] \comp (\text{jn} \comp \sw \oplus \text{jn} \comp \sw  ) \comp \dist \comp \sw \comp (\inl \comp \llbracket  v \rrbracket \otimes \text{id}) \comp \text{sp} \comp \text{sh} \\
+    & \hspace{-30pt} =  \ldots \comp \dist \comp (\inl \otimes \text{id}  ) \comp ( \llbracket  v \rrbracket \otimes \text{id}) \comp \text{sp} \comp \text{sh}  \\
+    & \hspace{-30pt} =  \ldots \comp \dist \comp [\inl \otimes \id, \inr \otimes \id] \comp \inl  \comp ( \llbracket  v \rrbracket \otimes \text{id}) \comp \text{sp} \comp \text{sh}  &(\text{Coproduct laws})\\
+    & \hspace{-30pt} =  [\llbracket w\rrbracket,\llbracket u \rrbracket] \comp (\text{jn} \comp \sw \oplus \text{jn} \comp \sw )  \comp \inl  \comp ( \llbracket  v \rrbracket \otimes \text{id}) \comp \text{sp} \comp \text{sh} \\
+    & \hspace{-30pt}  = \llbracket  w \rrbracket\comp \text{jn} \comp   \sw \comp(\llbracket v \rrbracket \otimes  \text{id}) \comp \text{sp} \comp \text{sh} & {\text{(Coproduct laws)}} \\
+    &\hspace{-30pt}  =  \llbracket  w \rrbracket\comp \text{jn} \comp(  \text{id}\otimes \llbracket v \rrbracket ) \comp   \sw \comp \text{sp} \comp \text{sh} & {\text{(Naturality)}} \\
+    &\hspace{-30pt}  = \llbracket w \rrbracket \comp \text{jn} \comp( \text{id} \otimes \llbracket v \rrbracket) \comp \text{sp} & {\text{(Coherence)}}\\
+    & \hspace{-30pt}  = \llbracket w[v/x]  \rrbracket  & {\text{(\autoref{lem:sub_exch})}}
+    \end{align*}
+  Regarding the $\eta_{case}$ equation, we have:
+\begin{align*}
+  &  \hspace{-30pt} \llbracket \Delta,\Gamma \vljud \text{case } v\, \{\text{inl}_{\typeB} (y) \Rightarrow w [ \text{inl}_{\typeB}(y)/x] ;\, \text{inr} (z) \Rightarrow w [ \text{inr}(z)/x]\}: \typeD\rrbracket \\
+  &  \hspace{-30pt} \triangleq  [\llbracket  w [ \text{inl}(y)/x] \rrbracket, \llbracket  w [ \text{inr}(z)/x] \rrbracket] \comp (\text{jn} \comp \sw \oplus \text{jn} \comp \sw  ) \comp \dist \comp (\llbracket v\rrbracket \otimes \text{id}) \\
+  &  \hspace{-20pt} \comp  \text{sp} \comp \text{sh}  \\
+  &  \hspace{-30pt} = \llbracket w \rrbracket \comp [\text{jn} \comp (\text{id} \otimes\inl \comp  \llbracket y \rrbracket) \comp \text{sp} \comp \text{jn} \comp \sw , 
+   \text{jn}\comp (\text{id} \otimes\inr  \comp \llbracket z \rrbracket)  \comp \text{sp} \comp \text{jn} \comp \sw  ] \comp \ldots  & {\text{(Lem. \ref{lem:sub_exch},}} \\
+  &  & {\text{Cop. laws)}}  \\
+  &  \hspace{-30pt} =  \llbracket w \rrbracket \comp \text{jn} \comp [ (\text{id} \otimes\inl)  \comp \sw  ,   (\text{id} \otimes\inr) \comp \sw  ] \comp \ldots  & {\text{(Cop. laws})}   \\
+  &  \hspace{-30pt} = \llbracket w \rrbracket \comp \text{jn} \comp   \sw \comp  [\inl \otimes \text{id} , \inr \otimes \text{id}] \comp \dist   \comp (\llbracket v \rrbracket \otimes \text{id})  \comp  \text{sp}\comp \text{sh}  & {\text{(Naturality, }}  \\
+  &  \hspace{-30pt} \hspace{10pt} & {\text{Cop. laws})}   \\
+  %& = \llbracket w \rrbracket \comp \text{jn}_{\Delta;\typeA \oplus \typeB} \comp \comp \sw \text{id}   \comp (\llbracket v \oplus \typeB\rrbracket \otimes \text{id})  \comp  \text{sp}_{\Gamma;\Delta} \comp \text{sh}_{\Delta;\Gamma}  \\
+  &  \hspace{-30pt} = \llbracket w \rrbracket \comp \text{jn} \comp ( \text{id} \otimes \llbracket v \rrbracket )  \comp  \sw  \comp  \text{sp} \comp \text{sh} & {\text{(Naturality)}}\\
+  &   \hspace{-30pt} = \llbracket w \rrbracket \comp \text{jn} \comp ( \text{id} \otimes \llbracket v \rrbracket )  \comp  \text{sp} & {\text{(Coherence)}}\\
+  &  \hspace{-30pt} \triangleq \llbracket w[v/x] : \typeD \rrbracket & (\text{Lem. \ref{lem:sub_exch}})
+\end{align*}
+
+
+
 \end{proof}
 
 
 
 \begin{theorem}[Completeness] \label{thm:completeness_classical}
 Consider a linear $\lambda$-theory $T$. Then an equation 
-$\Gamma \vljud v = w : \typeA$
+$\Gamma \, \vljud \, v = w : \typeA$
 is a theorem of $T$ if and only if it is satisfied by all models of the theory.
 \end{theorem}
 
  \begin{proof}
+   Completeness arises from constructing the syntactic category $\catSyn(T)$ of a $\lambda$-theory $T$. The syntactic category of $T$ has as objects the types of $T$ and as morphisms $A \rightarrow B$ the equivalence classes (w.r.t. provability) of terms $v$ for which we can derive $x : \typeA \vljud v : \typeB$.
    This theorem is proved in \cite[Lemma 2.6]{dahlqvist2023syntactic} for the lambda calculus without conditionals, so we only need to address the cases involving conditionals.
-\todo[inline,size=\normalsize]{Passar para aqui as provas qd elas estiverem vistas} 
+
+   By employing the equations $\beta_{case}^{inl}$, $\beta_{case}^{inr}$, and $\eta_{case}$  in \autoref{fig:equations-linear-lambda}, we show that the universal property of the coproduct is satisfied in $\catSyn(T)$.  We note that the distributivity follows from the category being closed.
+
+   In the syntactic category, the coproduct $[p , q]$ can be seen as the equivalence
+  class 
+ \begin{equation*}
+  \left[z:\typeA \oplus\typeB \vljud \text{case } z\,\{\inl_{\typeB}(x) \Rightarrow p ; \, \inr_{\typeA}(y) \Rightarrow q\}: \typeD\right].
+ \end{equation*}
+
+ The proof of the coproduct diagram comutes follow directly from the equations $\beta_{case}^{inl}$ and $\beta_{case}^{inr}$ in \autoref{fig:equations-linear-lambda}, and substituition (\autoref{lem:exh_and_sub}). Specifically, for the left triangle in the coproduct diagram, we have that:
+  \begin{align*}
+    & \left[\text{case } z\,\{\inl(x) \Rightarrow p ; \, \inr(y) \Rightarrow q\}\right] \comp \left[ \inl(x)\right]  \\
+    = & \left[ \text{case } \inl(x) \,\{\inl(a) \Rightarrow p[a/x] ; \, \inr(b) \Rightarrow q[b/y]\} \right] & (\text{\autoref{lem:exh_and_sub} })  \\
+    = &   \left[ p[a/x][x/a]  \right]& (\beta_{\text{case}}^{\text{inl}}) \\
+    = & \left[ p \right] \\
+  \end{align*}
+  The proof for the right triangle in the coproduct diagram is analogous.
+
+  Regarding the unicity of the coproduct, the key aspect of the proof lies in proving that the following equality holds: 
+  $$\left[z:\typeA \oplus \typeB \vljud  \text{case } z \,\{\inl(x) \Rightarrow m[\inl(x)/ z] ; \, \inr(y) \Rightarrow m[\inr(x)/ z]\} : \typeD \right] = [z:\typeA \oplus \typeB \vljud m: \typeD].$$ 
+  This equality follows direct from the $\eta_{case}$ equation. With this equality at hand, unicity is automatically proven, given that considering any morphism $m'$ from $\typeA \oplus \typeB$ to $\typeD$ and the coproduct diagram, we have that 
+  \[\left[ m'[ \inl(x)/z] \right]  = \left[p \right]   \] 
+  and
+   \[\left[ m'[\inr(y)/z] \right] = \left[ q\right].\] 
+  As a result, 
+  \begin{align*}
+    \left[ m'\right]& = \left[  \text{case } z \,\{\inl(x) \Rightarrow m'[\inl(x)/ z] ; \, \inr(y) \Rightarrow m'[\inr(x)/ z]\}\right]\\
+    & = \left[\text{case } z \,\{\inl(x) \Rightarrow p ; \, \inr(y) \Rightarrow q\}\right]. 
+  \end{align*}
+  
+
+
+  \begin{comment}
+  Se eu sei que [ t . i1 , t . i2 ] = t
+
+
+então a unicidade é automaticamente provada
+
+Porque assumindo que temos dois morfismos t e s tal que t . i1 = f = s .i1 e t . i2 = g = s . i2
+
+automaticamente t = s
+
+
+t = [ t . i1, t . i2 ] = [f ,g] = [ s . i1 , s . i2] = s
+  \end{comment}
+
+
+ 
+
+
  \end{proof}
 
+ \begin{remark}
+  Although in higher-order lambda calculus the distributive property follows directly from the fact that the syntactic category is closed, this is not the case for first-order lambda calculus, where the category is not required to be closed. Nevertheless, we will show that the distributive morphism is an isomorphism in $\catSyn(T)$, thereby establishing completeness for first-order lambda calculus. Note that our treatment of first-order $\lambda$-calculus implicitly assumes that the underlying categories of the models are distributive.
+ \end{remark}
+
+ \begin{proposition}
+  Consider a first-oder linear $\lambda$-theory $T$. Then an equation 
+$\Gamma \, \vljud \, v = w : \typeA$
+is a theorem of $T$ if and only if it is satisfied by all first-order models of the theory.
+ \end{proposition}
+
+ \begin{proof}
+
+  In the syntatic category the distributive property, $\dist$, corresponds to the class 
+  \begin{align*}
+    \big[z:(\typeA \otimes \mathbb{\typeB}) \otimes \mathbb{\typeD} \vljud \text{pm } z \text{ to } x \otimes d. \text{ case } x\,\{ &\inl_{\typeB}(a) \Rightarrow \inl_{\typeB \otimes \typeD}(a \otimes d); \\
+    & \inr_{\typeA}(b) \Rightarrow \inr_{\typeA \otimes \typeD}(b \otimes d/z')\} \\
+    & \hspace{45pt}: (\typeA \otimes \typeD) \oplus (\typeB \otimes \typeD) \big].
+  \end{align*} 
+  The fact that the distributivity morphism is an isomorphism follows by
+  proving that the distributivity morphism  is a copairing (by reasoning similar to the previous case), together with the well-known categorical result that coproducts are unique up to isomorphism (\autoref{prop:cop_unique_iso}). We note that there is an additional step consisting of verifying that \(\dist\) satisfies the identities
+\[
+\dist \cdot \inl' = \inl \quad \text{and} \quad \dist \cdot \inr' = \inr,
+\]
+where $\inl', \inr'$ are the injections of this distributivity morphism. This is immediate once it is established that \(\dist\) a copairing.
+
+This reduces to proving that the class
+ \begin{align*}
+    \big[z:(\typeA \otimes \mathbb{\typeB}) \otimes \mathbb{\typeD} \vljud \text{pm } z \text{ to } x \otimes d. \text{ case } x\,\{ &\inl_{\typeB}(a) \Rightarrow p[a \otimes d/z']; \\
+    & \inr_{\typeA}(b) \Rightarrow q [b \otimes d/z']\}: \typeE \big],
+  \end{align*} 
+equipped with the injections
+ \begin{align*}
+    & \left[ x: \typeA \otimes \typeD \vljud\text{pm }x \text{ to } a\otimes d. \, \inl_{\typeB}(a) \otimes d : (\typeA \oplus \typeB) \otimes \typeD   \right],\\
+    & \left[ x: \typeB \otimes \typeD \vljud\text{pm }x \text{ to } b\otimes d. \, \inr_{\typeA}(b) \otimes d : (\typeA \oplus \typeB) \otimes \typeD   \right]
+  \end{align*}
+is a copairing, $[p,q]$.
+
+The proof of the coproduct diagram comutes follows  from equations $\eta_{\otimes_e}$, $\beta_{\otimes_e}$, $\beta_{\text{case}}^{\text{inl}}$, and  $\beta_{\text{case}}^{\text{inr}}$. Specifically, for the left triangle in the coproduct diagram, we have:
+  \begin{align*}
+    &  \hspace{-30pt} \left[\text{pm } z \text{ to } x \otimes d. \text{ case } x\, \left\{ \begin{aligned}
+      & \inl(a) \Rightarrow p[a \otimes d/z'];\\
+      & \inr(b) \Rightarrow q [b \otimes b/z']
+    \end{aligned}
+      \right\}
+      \right] \comp \left[\text{pm }x \text{ to } a\otimes d. \, \inl(a) \otimes d \right]  \\
+    &  \hspace{-30pt}  = \left[ \text{pm } (\text{pm }x \text{ to } a\otimes d. \, \inl(a) \otimes d ) \text{ to } x' \otimes d' . \, \text{ case } x'\, \left\{ \begin{aligned}
+      & \inl(a') \Rightarrow p[a' \otimes d'/z'];\\
+      & \inr(b) \Rightarrow q [b \otimes d'/z']
+    \end{aligned} \right\} \right] \\
+    &   \hspace{-30pt} = \left[ \text{pm } \inl(a) \otimes d  \text{ to } x' \otimes d [x/ a \otimes d]. \, \text{ case } x'\, \left\{ \begin{aligned}
+      & \inl(a') \Rightarrow p[a' \otimes d/z'];\\
+      & \inr(b) \Rightarrow q [b \otimes d'/z']
+    \end{aligned} \right\} \right] & (\eta_{\otimes_e})  \\
+     &   \hspace{-30pt} = \left[\text{ case } \inl(a)\, \left\{ \begin{aligned}
+      & \inl(a') \Rightarrow p[a' \otimes d/z'];\\
+      & \inr(b) \Rightarrow q [b \otimes d/z']
+    \end{aligned} \right\} [x/ a \otimes d] \right] & (\beta_{\otimes_e})  \\
+    &   \hspace{-30pt} = \left[ p \, [a \otimes d/z'] [x/ a \otimes d] \right]& (\beta_{\text{case}}^{\text{inl}}) \\
+       & \hspace{-30pt} = \left[ p \right]
+  \end{align*}
+  The proof for the right triangle in the coproduct diagram is analogous.
+
+  To prove unicity, we first establish that the following equality, known  as the \emph{syntactic fusion law}, holds:
+  \begin{equation*}
+   v \left[ \left(\text{case } a \,\{\inl_{\typeB}(x) \Rightarrow w ; \, \inr_{\typeA}(y) \Rightarrow u\}\right)  / z \right]  =  \text{case } a \,\{\inl_{\typeB}(x) \Rightarrow v[w/z] ; \, \inr_{\typeA}(y) \Rightarrow v[u/z]\}.
+  \end{equation*}
+This equality follows from the extensionality of the copairing and equations  $\beta_{\text{case}}^{\text{inl}}$, and $\beta_{\text{case}}^{\text{inr}}$. 
+By the extensionality of the copairing, it suffices to prove the equility for  $\text{inl}(b)$ and $\text{inr}(c)$.
+We present the explicit proof for $\text{inl}(b)$; the proof for  $\text{inr}(c)$ follows similar reasoning.
+\begin{equation*}
+\begin{split}
+  & v \left[ \left(\text{case } \text{inl}(b) \,\{\inl(x) \Rightarrow w ; \, \inr(y) \Rightarrow u\}\right)  / z \right] & \\
+  & =  v [w[b/x]\,/z] & (\beta_{\text{case}}^{\text{inl}})\\
+  & =   v [[w/z]\,[b/x]]    \\
+   & =  \text{case } \text{inl}(b) \,\{\inl(x) \Rightarrow v[w/z] ; \, \inr(y) \Rightarrow v[u/z]\}   & (\beta_{\text{case}}^{\text{inl}})
+\end{split}
+\end{equation*}
+
+Next, to establish that this morphism is unique, we establish that given any morphism $m$ from $(\typeA \otimes \typeB) \otimes \typeD $ to $\typeE$, $z: (\typeA \otimes \typeB) \otimes \typeD \vljud m : \typeE $ , we have
+  \begin{align*}
+   & \hspace{-30pt} \left[\text{pm } z \text{ to } x \otimes d. \text{ case } a\, \left\{ \begin{aligned}
+      & \inl(a) \Rightarrow m[\inl(a) \otimes d/z];\\
+      & \inr(b) \Rightarrow m [\inr(b) \otimes d/z]
+    \end{aligned}
+      \right\}
+      \right] \\
+    & \hspace{-30pt} =   \left[ \text{pm } z \text{ to } x \otimes d. \, m \left[\text{case } x\, \left\{ \begin{aligned}
+      & \inl(a) \Rightarrow \inl(a) \otimes d;\\
+      & \inr(b) \Rightarrow \inr(b) \otimes d
+    \end{aligned}  \right\}/z \right] \right]& (\text{syntactically fusion law}) \\
+    & \hspace{-30pt} = \left[ \text{pm } z \text{ to } x \otimes d. \, m \left[\text{case } x\, \left\{ \begin{aligned}
+      & \inl(a) \Rightarrow y \otimes d \, [\inl(a)/y];\\
+      & \inr(b) \Rightarrow  y \otimes d \, [\inr(b)/y]
+    \end{aligned}  \right\}/z \right] \right] &  \\
+    & \hspace{-30pt} =  \left[\text{pm } z \text{ to } x \otimes d. \, m \left[ y \otimes d \, [x/y] \,/z \right]  \right]& (\eta_{\text{case}})  \\ 
+    & \hspace{-30pt} = \left[ m[x \otimes d/z][z/x\otimes d]\right]  & (\eta_{\otimes_e}) \\
+    & \hspace{-30pt} = [m]
+  \end{align*}
+
+  Finally, observe that,
+  \begin{align*}
+    & \left[m [\text{pm } x \text{ to } a\otimes d. \, \inl(a) \otimes d/ z]  \right] \\
+    & =  \left[ \text{pm }x \text{ to } a\otimes d. m[\inl(a) \otimes d/ z] \right] & (c_{\otimes_e})\\
+    & =  \left[ m[\inl(a) \otimes d/ z] [a \otimes d/ x] \right] & (\eta_{\otimes_e})
+  \end{align*}
+  Similarly we obtain $\left[m [\text{pm } x \text{ to } b\otimes d. \, \inr(b) \otimes d/ z]  \right] = \left[m [ \, \inr(b) \otimes d/ z] [b \otimes d/ x]  \right]. $
+
+ 
+
+ \end{proof}
 
 \begin{example}
   We now illustrate how the programs presented in Examples \ref{example:prog_swap} and \ref{example:prog_Dis2nd}, with slight modifications, are interpreted in $\catSet$.
