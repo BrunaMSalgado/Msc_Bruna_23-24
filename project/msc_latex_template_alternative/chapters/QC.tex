@@ -946,12 +946,13 @@ Nevertheless, we use the notation $\TraceOp{\HilbH}$, as it reflects the natural
 
 % Fazer secção chamada quantum chanels e falar de super operadores e cptp maps, normas, kraus operators
 
-Thus far, only two types of quantum operations have been discussed: unitary operators, which describe the evolution of a closed quantum system, and measurements, which describe the act of observing a quantum system. Now, a new type of quantum operation that accounts for the more realistic notion of interaction between a quantum system and an environment will be introduced. Nonetheless, it is necessary to first introduce a few key concepts.
+Thus far, only two types of quantum operations have been discussed: unitary operators, which describe the evolution of a closed quantum system, and measurements, which describe the act of observing a quantum system. Now, a new type of quantum operation that accounts for the more realistic notion of interaction between a quantum system and an environment will be introduced. Nonetheless, it is necessary to first introduce a few key concepts. 
 
 
-
+\vspace{5pt}
 %the evolution of a quantum system has been described by unitary operators. However, in practice, quantum systems are not isolated, and they interact with their environment. This interaction is described by a \emph{quantum channel}, which is a completely positive trace-preserving (CPTP) linear map. A quantum channel is a generalization of a unitary operator that allows for the description of the evolution of a quantum system under the influence of an environment.
 
+In this perspective, we focus on quantum states, represented by density operators. Consequently, we are also interested in \emph{state transformers}---operators that map density operators to density operators.
 
 \begin{definition}
  Operators that map operators to other operators are known as \emph{super-operators}. 
@@ -1263,7 +1264,7 @@ In this section, we are no longer restricted to finite-dimensional vector spaces
 
 
 Topology is the abstract mathematical study of concepts like convergence and approximation, among other things, generalizing familiar notions from calculus and analysis. 
-Note that, for instance, in a metric space, a sequence $\{x_n\}$ with $n \in \mathbb{N}$ converges to a point $x$ if the distance $d(x_n, x)$ tends to zero; that is, for every $\varepsilon > 0$, there exists $n_0$ such that $d(x_n, x) < \varepsilon$ for all $n \geq n_0$. However, metric spaces are not sufficient to describe all types of convergence.  An example is the pointwise convergence of all real-valued functions on the interval $[0, 1]$. In fact, there is no metric on the space of all real functions on the interval $[0,1]$ for which one can define a distance function $d(f_n, f)$ such that $d(f_n, f) \to 0$ if and only if $f_n(x) \to f(x)$ for every $x \in [0, 1]$. 
+Note that, for instance, in a metric space, a sequence $\{x_n\}$ with $n \in \mathbb{N}$ converges to a point $x$ if the distance $d(x_n, x)$ tends to zero; that is, for every $\varepsilon > 0$, there exists $n_0$ such that $d(x_n, x) < \varepsilon$ for all $n \geq n_0$. However, metric spaces are not sufficient to describe all types of convergence.  An example is the pointwise convergence of all real-valued functions on the interval $[0, 1]$. In fact, there is no metric on the space of all real functions on the interval $[0,1]$ for which one can define a distance function $d(f_n, f)$ such that $d(f_n, f) \to 0$ if and only if $f_n(x) \to f(x)$ for every $x \in [0, 1]$ \cite{guide2006infinite}. 
 A foundational idea in topology is that of a \emph{neighborhood}—a collection of points considered ``sufficiently close'' to a given point. From this arises the concept of \emph{open sets}, which are sets that serve as neighborhoods for all their points. The collection of all such open sets defines a \emph{topology}, and a set equipped with a topology becomes a \emph{topological space}. This framework introduces some subtleties: for example, traditional sequences are often inadequate for capturing convergence, requiring the more general notion of \emph{nets}, which are indexed over broader structures than the natural numbers.
 
 \begin{definition}
@@ -1645,14 +1646,13 @@ Let \( \Phi: \mathscr{A} \to \mathscr{B} \) be a positive map between \( C^* \)-
 \end{proposition}
 
 In the context of the proposition above, the norm is determined via the identification $\mathcal{M}_n(\BoundOp{\HilbH}) =\BoundOp{\HilbH^{\oplus n}}$
-\cite[Exercises~1.1 and~1.2]{paulsenCompletelyBoundedMaps2003}. That is, considering a faithful representation \((\HilbH, \pi)\) of \(\MnMatrix{\mathscr{A}}\), and given \((A_{ij}) \in \MnMatrix{\mathscr{A}}\), we have
+\cite[Exercises~1.1 and~1.2]{paulsenCompletelyBoundedMaps2003}. That is, given a faithful representation \((\HilbH, \pi)\) of \(\MnMatrix{\mathscr{A}}\)---where \(\pi\) is an isometry by \autoref{prop:HomShortIsoIso}---we have, for \((A_{ij}) \in \MnMatrix{\mathscr{A}}\),
 \[
-\norm{(A_{ij})} = \norm{\pi(A_{ij})} = \opnorm{\pi(A_{ij})} = \sup\{ \norm{\pi(A_{ij})(v)} \mid \euclideannorm{v} = 1, v \in \BoundOp{\HilbH^{\oplus n}} \}.
+\norm{(A_{ij})} \triangleq \opnorm{\pi(A_{ij})} = \sup\{ \norm{\pi(A_{ij})(v)} \mid \euclideannorm{v} = 1, v \in \HilbH^{\oplus n} \}.
 \]
-Note that, by \autoref{prop:HomShortIsoIso}, \(\pi\) is an isometry.
+
 
 These matrices are important because they are used to define complete positivity in this setting.
-\todo[inline,size=\normalsize]{Falar cb?}
 
 \begin{definition} \label{def:completely_positive_map_c*}
   Let \( \Phi : \mathscr{A} \to \mathscr{B} \) be a linear map between \( C^* \)-algebras. For each \( n \in \mathbb{N} \), \( \Phi \) induces a linear map
@@ -2978,26 +2978,25 @@ Note that $\|\cdot\|_{\text{cb}}$ is a norm on the space of completely bounded m
 We now illustrate the use of (first-order) $\lambda$-calculus with conditionals for describing quantum
 programs. To this effect, we first consider a type $\mathtt{qbit}$ of qubits, the
 basic unit of information in quantum computation. We then regard $\typeI \oplus
-\typeI$ to be the type of bits. Next we propound the following
-basic quantum operations:  the conversion of a bit into a qubit, $q : \typeI
-\oplus \typeI  \to \mathtt{qbit}$, the measurement of a qubit,
+\typeI$ to be the type of bits. Next, we propound the following
+basic quantum operations:  the conversion of a bit into a qubit, $q : \typeI
+\oplus \typeI  \to \mathtt{qbit}$, the measurement of a qubit,
 $\emph{meas}:\mathtt{qbit} \to \typeI \oplus \typeI$, and pre-determined sets of
-operations on $n$-qubits, $\emph{U}:\mathtt{qbit},\ldots,\mathtt{qbit} \to
-\mathtt{qbit}^{\otimes n}$ and $\emph{CPTP}:\mathtt{qbit},\ldots,\mathtt{qbit} \to
-\mathtt{qbit}^{\otimes n}$ . The former includes unitary operations, as the Hadamard
+operations on $n$-qubits, $\emph{U},\emph{CPTP}:\mathtt{qbit},\ldots,\mathtt{qbit} \to
+\mathtt{qbit}^{\otimes n}$. The former includes unitary operations, as the Hadamard
 gate $H : \mathtt{qbit} \to \mathtt{qbit}$, the not-gate $X : \mathtt{qbit} \to
 \mathtt{qbit}$, and the cnot-gate $CNOT : \mathtt{qbit},\mathtt{qbit} \to
-\mathtt{qbit}^{\otimes 2}$, and the  latterr set included operations such as the dephasing with probability $p$, $D_p : \mathtt{qbit},\mathtt{qbit} \to
+\mathtt{qbit}^{\otimes 2}$, and the latter set includes operations such as dephasing with probability $p$, $D_p : \mathtt{qbit},\mathtt{qbit} \to
 \mathtt{qbit}^{\otimes 2}$. We consider as well a pre-determined set of quantum
-states $\ket{\psi} : \typeI \to \mathtt{qbit}$.  
+states $\ket{\psi} : \typeI \to \mathtt{qbit}$.  
 
 $\catQ$ forms a model of the metric $\lambda$-theory for quantum computation via the following interpretation: $\sem{\typeI}= \mathbb{C} \ni  1$, 
-$\sem{\mathtt{qbit} \hspace{1pt}}= \mathbb{C}^2$, 
+$\sem{\mathtt{qbit} \hspace{1pt}}= \mathbb{C}^{2\times2}$, 
 $\sem{\emph{q} \hspace{1pt}}((a,b)) = \big(\begin{smallmatrix}
   a & 0\\
   0 & b
 \end{smallmatrix}\big)$, 
-for $\psi \in \{0, 1\}$ we define $\sem{\ket{\psi}} (1)= \ket{\psi} \bra{\psi}$,
+ $\sem{\ket{\psi}} (1)= \ket{\psi} \bra{\psi}$,
 $\sem{\emph{meas} \hspace{1pt}} (\rho)= (\text{Tr} (M_{0} \rho M_{0}^{\dag}), \text{Tr} (M_{1} \rho M_{1}^{\dag}))$, 
 for unitary operations $U$ we define $\sem{U}= U \rho U^{\dag}$. 
 For completely positive trace-preserving operators $\emph{CPTP}$, defined as $\emph{CPTP} (\rho) = \sum_i K_i \rho K_i^{\dag}$, we define  $\sem{\emph{CPTP}} = \emph{CPTP}(\rho)$.
@@ -3015,7 +3014,7 @@ More generally, tossing a coin (whether ``fair'' or ``unfair'') can be described
   &\textbf{CoinToss} = - \vljud \emph{meas} (R_{y,\theta} (\ket{0})): \typeI \oplus \typeI
 \end{align*}
 
-When running a quantum program on a real quantum computer, the quantum circuits are mapped to the hardware's native quantum gates during compilation. For instance consider 2020 IBM's native quantum gate set $U_1,U_2,U_3,CX$ where
+When running a quantum program on a real quantum computer, the quantum circuits are mapped to the hardware's native quantum gates during compilation. For instance consider 2020 IBM's native quantum gate set $U_1,U_2,U_3,CX$ \cite{December2020Product} where
 
   \begin{align*}
     U_1(\lambda) &= 

@@ -448,6 +448,8 @@ For positive measures, this reduces to \( \mu(S) \), and for probability measure
 
 The following alternative definition is useful to compute the total variation norm between measures.
 
+  \begin{comment}
+
 \begin{theorem} \cite[Theorem 3.1.1]{bogachevMeasureTheory2007}
   Let \( \mu \) be a measure on a measurable space \( (S, \mathcal{B}) \). Then, there exist disjoint sets \( S^-, S^+ \in \mathcal{A} \) such that $S^- \cup S^+ = S$
 and for all \( B \in \mathcal{B} \), one has
@@ -493,6 +495,23 @@ for all \( B \in \mathcal{B} \).
     \end{align*}
      \end{definition}
 \end{comment}
+
+\begin{definition}
+  Let \( \mu \) be a measure on a measurable space \( (S, \mathcal{B}) \). The measures \( \mu^+ \) and \( \mu^- \) are defined as follows:
+\[
+\mu^+(B) \triangleq \sup\{ \mu(B_i) : B_i \subset B,\ B_i \in \mathcal{B} \},
+\]
+\[
+\mu^-(B) \triangleq \sup\{ -\mu(B_i) : B_i \subset B,\ B_i \in \mathcal{B} \},
+\]
+for all \( B \in \mathcal{B} \).
+  
+\end{definition}
+
+\begin{proposition}  \cite[Section 3.1]{bogachevMeasureTheory2007}
+   For a measure \( \mu \), it holds that:
+   \[\norm{\mu} = \mu^{+}(S) + \mu^{-}(S).\] 
+\end{proposition}
 
  
 
