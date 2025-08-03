@@ -1,67 +1,71 @@
 This is BibTeX, Version 0.99d
 Capacity: max_strings=200000, hash_size=200000, hash_prime=170003
 The top-level auxiliary file: dissertation.aux
-Reallocating 'name_of_file' (item size: 1) to 6 items.
-The style file: unsrt.bst
+Reallocating 'name_of_file' (item size: 1) to 9 items.
+The style file: plainurl.bst
 Reallocating 'name_of_file' (item size: 1) to 13 items.
+Reallocating 'glb_str_end' (item size: 4) to 20 items.
+Reallocating 'glb_str_ptr' (item size: 4) to 20 items.
+Reallocating 'global_strs' (item size: 1) to 4000000 items.
+Reallocating 'singl_function' (item size: 4) to 100 items.
+Reallocating 'singl_function' (item size: 4) to 100 items.
 Database file #1: dissertation.bib
 Warning--entry type for "yanofskyMonoidalCategoryTheory2024" isn't style-file defined
---line 839 of file dissertation.bib
+--line 828 of file dissertation.bib
 Warning--entry type for "choNeumannAlgebrasForm2016" isn't style-file defined
---line 1294 of file dissertation.bib
+--line 1266 of file dissertation.bib
 Warning--entry type for "ferreiraProblemaDecisaoMaquina" isn't style-file defined
---line 1469 of file dissertation.bib
+--line 1440 of file dissertation.bib
 Warning--entry type for "westerbaanCategoryNeumannAlgebras2019" isn't style-file defined
---line 1683 of file dissertation.bib
+--line 1646 of file dissertation.bib
 Warning--entry type for "December2020Product" isn't style-file defined
---line 1916 of file dissertation.bib
+--line 1870 of file dissertation.bib
+Warning--empty journal in bornZurQuantenmechanik1925
 Warning--empty year in franzenGodelsTheorem2008
+Warning--empty booktitle in Church2008
+Warning--empty journal in heisenbergUeberQuantentheoretischeUmdeutung1925
 Warning--empty journal in STUBBE201495
 Warning--empty journal in thrun2002robotic
-Warning--empty booktitle in Church2008
-Warning--empty author and editor in InfiniteDimensionalAnalysis2006
-Warning--empty year in InfiniteDimensionalAnalysis2006
-Warning--empty journal in heisenbergUeberQuantentheoretischeUmdeutung1925
-Warning--empty journal in bornZurQuantenmechanik1925
-You've used 129 entries,
-            1791 wiz_defined-function locations,
-            1191 strings with 25103 characters,
-and the built_in function-call counts, 28092 in all, are:
-= -- 2542
-> -- 1079
+Warning--empty journal in Wang_2011
+You've used 128 entries,
+            2943 wiz_defined-function locations,
+            1435 strings with 28059 characters,
+and the built_in function-call counts, 56599 in all, are:
+= -- 5952
+> -- 1952
 < -- 28
-+ -- 418
-- -- 289
-* -- 1628
-:= -- 4286
-add.period$ -- 398
-call.type$ -- 129
-change.case$ -- 85
++ -- 718
+- -- 568
+* -- 2968
+:= -- 7950
+add.period$ -- 454
+call.type$ -- 128
+change.case$ -- 615
 chr.to.int$ -- 0
-cite$ -- 137
-duplicate$ -- 1434
-empty$ -- 2923
-format.name$ -- 289
-if$ -- 6471
+cite$ -- 135
+duplicate$ -- 1683
+empty$ -- 5438
+format.name$ -- 568
+if$ -- 14846
 int.to.chr$ -- 0
-int.to.str$ -- 129
-missing$ -- 164
-newline$ -- 640
-num.names$ -- 140
-pop$ -- 515
+int.to.str$ -- 128
+missing$ -- 163
+newline$ -- 694
+num.names$ -- 269
+pop$ -- 1430
 preamble$ -- 1
-purify$ -- 0
+purify$ -- 530
 quote$ -- 0
-skip$ -- 665
+skip$ -- 4031
 stack$ -- 0
-substring$ -- 1544
-swap$ -- 354
-text.length$ -- 28
+substring$ -- 2312
+swap$ -- 468
+text.length$ -- 134
 text.prefix$ -- 0
 top$ -- 0
-type$ -- 0
-warning$ -- 8
-while$ -- 260
-width$ -- 132
-write$ -- 1376
-(There were 13 warnings)
+type$ -- 422
+warning$ -- 7
+while$ -- 389
+width$ -- 131
+write$ -- 1487
+(There were 12 warnings)

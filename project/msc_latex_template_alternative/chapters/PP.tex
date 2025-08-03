@@ -12,7 +12,7 @@ setting that, for instance, allows copying.
 %
 In \cite{dahlqvist2023syntactic}, the authors reason about approximate equivalence in the probabilistic setting using the \emph{operator norm}. The latter induces a metric on the space of probabilistic programs (which are interpreted as short maps between Banach spaces).
 
-This chapter begins with an introduction of Banach spaces based on \cite{rudin91functional,InfiniteDimensionalAnalysis2006, ryanIntroductionTensorProducts2013}. We then show that $\catBan$, the category of Banach spaces and short maps, is a model of our metric lambda calculus (\autoref{def:model_metric_cond}). The next section introduces the fundamentals of measure theory, a key component in defining the semantics of probabilistic programs, drawing inspiration primarily from \cite{dahlqvistSemanticsProbabilisticProgramming2020a, bogachevMeasureTheory2007,InfiniteDimensionalAnalysis2006}.  
+This chapter begins with an introduction of Banach spaces based on \cite{rudin91functional,guide2006infinite, ryanIntroductionTensorProducts2013}. We then show that $\catBan$, the category of Banach spaces and short maps, is a model of our metric lambda calculus (\autoref{def:model_metric_cond}). The next section introduces the fundamentals of measure theory, a key component in defining the semantics of probabilistic programs, drawing inspiration primarily from \cite{dahlqvistSemanticsProbabilisticProgramming2020a, bogachevMeasureTheory2007,guide2006infinite}.  
 Finally, using our calculus, we study approximate equivalence in the context of a random walk on the real line.
 
 
@@ -52,7 +52,7 @@ Let \( V \) and \( W \) be normed vector spaces, and let \( T: V \rightarrow W \
 If \( \opnorm{T} < \infty \) we say that \( T \) is a \emph{bounded operator}; otherwise, if \( \opnorm{T} = \infty \) we say that \( T \) is \emph{unbounded}. We denote by \gls{boundedoperators} the vector space of all bounded linear operators from \( V \) to \( W \), and we write  \gls{boundedoperatorsVV} for \( \mathcal{B}(V, V) \).
 \end{definition}
 
-\begin{lemma} \cite[Lemma 6.4]{InfiniteDimensionalAnalysis2006} \label{lemma:op_norm_submult} %inf_dim_anal
+\begin{lemma} \cite[Lemma 6.4]{guide2006infinite} \label{lemma:op_norm_submult} %inf_dim_anal
 Let \( T: V \rightarrow W \) be a bounded linear operator between normed spaces. Then the following statements hold:
 \begin{enumerate}
   \item For every \( v \in V \), we have \( 

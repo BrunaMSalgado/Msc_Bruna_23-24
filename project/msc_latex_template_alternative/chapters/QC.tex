@@ -28,7 +28,7 @@ integrated in the calculus via the so-called diamond norm, which induces a metri
 \vspace{20pt}
 
 The first two sections of this chapter present  mathematical and quantum computing preliminaries necessary for understanding the theory of quantum computation. This introduction to quantum computing draws primarily from \cite{nielsen2010quantum,watrous2018theory}, while the mathematical foundations are also based on \cite{heinosaariMathematicalLanguageQuantum2011,conwayCourseFunctionalAnalysis2007,conwayCourseOperatorTheory2000}.
-The next section introduces core concepts from functional analysis that are essential for understanding \( W^* \)-algebras, based on \cite{rudin91functional,InfiniteDimensionalAnalysis2006}. This is followed by a section presenting the fundamentals of \( W^* \)-algebras, drawing primarily from \cite{sakaiCAlgebrasWAlgebras1998,takesakiTheoryOperatorAlgebras1979,westerbaanCategoryNeumannAlgebras2019}.
+The next section introduces core concepts from functional analysis that are essential for understanding \( W^* \)-algebras, based on \cite{rudin91functional,guide2006infinite}. This is followed by a section presenting the fundamentals of \( W^* \)-algebras, drawing primarily from \cite{sakaiCAlgebrasWAlgebras1998,takesakiTheoryOperatorAlgebras1979,westerbaanCategoryNeumannAlgebras2019}.
 We then show that both Selinger’s category 
 $\catQ$ of quantum operations (i.e., completely positive, trace-nonincreasing super-operators) \cite{selinger2004towards}, and Cho’s category 
 $\WstarCPSUop$, the opposite category of \( W^* \)-algebras with normal, completely positive, subunital maps \cite{choSemanticsQuantumProgramming2016}, are first-order models of our calculus.
@@ -2988,7 +2988,7 @@ gate $H : \mathtt{qbit} \to \mathtt{qbit}$, the not-gate $X : \mathtt{qbit} \to
 \mathtt{qbit}$, and the cnot-gate $CNOT : \mathtt{qbit},\mathtt{qbit} \to
 \mathtt{qbit}^{\otimes 2}$, and the latter set includes operations such as dephasing with probability $p$, $D_p : \mathtt{qbit},\mathtt{qbit} \to
 \mathtt{qbit}^{\otimes 2}$. We consider as well a pre-determined set of quantum
-states $\ket{\psi} : \typeI \to \mathtt{qbit}$.  
+states $\ket{\psi} : \typeI \to \mathtt{qbit}$ and a discard operation $\text{disc}: \mathtt{qbit} \to \typeI$.  
 
 $\catQ$ forms a model of the metric $\lambda$-theory for quantum computation via the following interpretation: $\sem{\typeI}= \mathbb{C} \ni  1$, 
 $\sem{\mathtt{qbit} \hspace{1pt}}= \mathbb{C}^{2\times2}$, 
@@ -2997,8 +2997,8 @@ $\sem{\emph{q} \hspace{1pt}}((a,b)) = \big(\begin{smallmatrix}
   0 & b
 \end{smallmatrix}\big)$, 
  $\sem{\ket{\psi}} (1)= \ket{\psi} \bra{\psi}$,
-$\sem{\emph{meas} \hspace{1pt}} (\rho)= (\text{Tr} (M_{0} \rho M_{0}^{\dag}), \text{Tr} (M_{1} \rho M_{1}^{\dag}))$, 
-for unitary operations $U$ we define $\sem{U}= U \rho U^{\dag}$. 
+$\sem{\emph{meas} \hspace{1pt}} (\rho)= (\text{Tr} (M_{0} \rho M_{0}^{\dag}), \text{Tr} (M_{1} \rho M_{1}^{\dag}))$, and $\sem{\text{disc}} (\rho)= \tr (\rho)$.
+For unitary operations $U$ we define $\sem{U}= U \rho U^{\dag}$.
 For completely positive trace-preserving operators $\emph{CPTP}$, defined as $\emph{CPTP} (\rho) = \sum_i K_i \rho K_i^{\dag}$, we define  $\sem{\emph{CPTP}} = \emph{CPTP}(\rho)$.
 
 Let us now apply this machinery to two well-known problems in quantum computation
@@ -3082,31 +3082,30 @@ The first inequality arises from both functions $\cos$ and $\sin$ being Lipschit
     \diamondnorm{R_{y, \theta}- R_{y, \theta + \epsilon} } \leq 3 \epsilon
   \end{align*}
 
-Using our metric deductive system, we can easily conclude that $\textbf{CoinToss} =_{3 \epsilon} \textbf{CoinToss}^{\epsilon}$, where $\textbf{CoinToss}^{\epsilon}$ is the the judgement that results from replacing $R_{y, \theta}$ by $U^{R_{y, \theta + \epsilon}}$.
+Using our metric deductive system, we can easily conclude that $\textbf{CoinToss} =_{3 \epsilon} \textbf{CoinToss}^{\epsilon}$, where $\textbf{CoinToss}^{\epsilon}$ is the the judgement that results from replacing $R_{y, \theta}$ by $R_{y, \theta + \epsilon}$.
 
 \end{example}
 
 
 \begin{example}[Quantum state discrimination] \label{ex:quantum_state_discrimination_syntax}
-
 Quantum state discrimination is a pivotal challenge in 
- quantum theory of communications \cite{barnett2009qinfo,watrous2018theory} and  quantum cryptography \cite{Gisin02qcripto}. 
+ quantum communications \cite{barnett2009qinfo,watrous2018theory} and quantum cryptography \cite{Gisin02qcripto}. 
 While orthogonal states can be perfectly distinguished, the same does not apply
 to nonorthogonal states. In fact, even when the set of possible nonorthogonal
 states is known, determining the optimal discrimination strategy is considered
 a nontrivial problem.
 
-The problem of quantum state discrimination can be naturally introduced through its connection with quantum communication. Consider two parties, Alice and Bob, who want to communicate with each other using a quantum channel. Alice chooses a state from a known set $\{\ket{\psi_i}\}$, each occurring with a known probability $p_i$ and sends it to Bob through the channel. Bob, who knows both the set of possible states and their associated probabilities, performs a suitable measurement to determine which state Alice sent. This scenario defines the quantum state discrimination problem: how to optimally distinguish between a known set of quantum states, each prepared with a known prior probability $p_i$.
+The problem of quantum state discrimination can be naturally introduced through its connection with quantum communication. Consider two parties, Alice and Bob, who want to communicate with each other using a quantum channel. Alice chooses a state from a known set $\{\ket{\psi_i}\}$, each occurring with a known probability $p_i$, and sends it to Bob through the channel. Bob, who knows both the set of possible states and their associated probabilities, performs a suitable measurement to determine which state Alice sent. This scenario defines the quantum state discrimination problem: how to optimally distinguish between a known set of quantum states, each prepared with a known prior probability $p_i$.
 
 When distinguishing between two pure states, the optimal measurement known as the \emph{Helstrom measurement} is given by a projective measurement
-\cite{barnett2009qinfo}.  When operating within the computational basis, a
+\cite{barnett2009qinfo}.  When operating within the computational basis, a
 projective measurement can be understood as the application of a unitary
-operator followed by a subsequent measurement in the computational basis. Thus
+operator followed by a subsequent measurement in the computational basis. Thus,
 the optimal measurement can be interpreted as a unitary transformation applied
 to the quantum state, followed by a measurement in the computational basis. 
 
 We will now show how to describe this discrimination task in
-$\lambda$-calculus.  Consider two pure states $\ket{\psi_0}$ and
+$\lambda$-calculus.  Consider two pure states $\ket{\psi_0}$ and
 $\ket{\psi_1}$, prepared \emph{a priori} with probabilities $p_0$ and $p_1 = 1-p_0$,
 respectively. Consider as well an operation $U : \mathtt{qbit} \to \mathtt{qbit}$ which
 corresponds to the basis-change associated with the optimal measurement.
@@ -3126,7 +3125,7 @@ U = e^{i\alpha} R_{z,\beta} R_{y,\gamma} R_{z,\delta},
 for appropriate choices of angles $\alpha$, $\beta$, $\gamma$ and $\delta$.
 
 
-As in the previous example, we assume the hardware's native gate set consists of $\{U_1, U_2, U_3, \text{CNOT}\}$, and the quantum circuit is compiled into these gates.  
+As in the previous example, we assume the hardware's native gate set consists of $\{U_1, U_2, U_3,$ $ \text{CNOT}\}$, and the quantum circuit is compiled into these gates.  
 As previously noted, the $R_y(\theta)$ gate can be implemented as $U_3(\theta, 0, 0)$.  
 Similarly, the $R_z(\lambda)$ gate is equivalent to $U_1(\lambda)$ up to a global phase factor $e^{-i\lambda/2}$, consequently, it can be directly implemented using this gate.  
 We will also consider that the gates $U_1$ and $U_3$ are affected by errors $\epsilon_1$ and $\epsilon_2$, respectively. 
@@ -3146,24 +3145,32 @@ The corresponding Bloch vector is then
 \]
 Consequently, applying the same reasoning as in the previous example, it follows that
 \begin{align*}
-  & \hspace{-15pt} \tracenorm{U_1(\lambda) \ket{\psi}\bra{\psi} U_1(\lambda)^\dag - U_1(\lambda + \epsilon) \ket{\psi}\bra{\psi}U_1(\lambda + \epsilon)^\dag } \\
-  & \hspace{-15pt} = \euclideannorm{\left(\sin(\alpha) \left( \cos(\beta + \lambda) -  \cos(\beta + \lambda + \epsilon) \right),\sin(\alpha) \left( \sin(\beta + \lambda) -  \sin(\beta + \lambda + \epsilon) \right),0 \right)} \\
-  & \hspace{-15pt}\leq \euclideannorm{\left( \cos(\beta + \lambda) -  \cos(\beta + \lambda + \epsilon) , \sin(\beta + \lambda) -  \sin(\beta + \lambda + \epsilon) ,0 \right)} \\
-  & \hspace{-15pt} \leq \euclideannorm{\left( \epsilon, \epsilon ,0 \right)} \\
-  & \hspace{-15pt} = \sqrt{2}\epsilon 
+  & \hspace{-15pt} \tracenorm{U_1(\lambda) \ket{\psi}\bra{\psi} U_1(\lambda)^\dag - U_1(\lambda + \epsilon_1) \ket{\psi}\bra{\psi}U_1(\lambda + \epsilon_1)^\dag } \\
+  & \hspace{-15pt} = \euclideannorm{\left(\sin(\alpha) \left( \cos(\beta + \lambda) -  \cos(\beta + \lambda + \epsilon_1) \right),\sin(\alpha) \left( \sin(\beta + \lambda) -  \sin(\beta + \lambda + \epsilon_1) \right),0 \right)} \\
+  & \hspace{-15pt}\leq \euclideannorm{\left( \cos(\beta + \lambda) -  \cos(\beta + \lambda + \epsilon_1) , \sin(\beta + \lambda) -  \sin(\beta + \lambda + \epsilon_1) ,0 \right)} \\
+  & \hspace{-15pt} \leq \euclideannorm{\left( \epsilon_1, \epsilon_1 ,0 \right)} \\
+  & \hspace{-15pt} = \sqrt{2}\epsilon_1 
 \end{align*} 
 
 Attending to \autoref{theorem:diamond_iso}, it follows that
   \begin{align*}
-    \diamondnorm{U_1(\lambda)- U_1(\lambda + \epsilon) } \leq \sqrt{2} \epsilon
+    \diamondnorm{U_1(\lambda)- U_1(\lambda + \epsilon_1) } \leq \sqrt{2} \epsilon_1.
   \end{align*}
 
-  
+Given the erroneous $R_y$ gate is bounded by $3 \epsilon_2$, we observe that the $R_y$ gate amplifies errors more significantly than the $R_z$ gate for errors of the same magnitude.
 
 
-As a result, considering the $\lambda$-term \textbf{HMeasure} and the erroneous implementation of $U$ described above, denoted $U^{\epsilon_1, \epsilon_2}$, using our deductive metric system, we have $U =_{\sqrt{2}\epsilon_1+ 3\epsilon_2} U^{\epsilon_1, \epsilon_2}$. Therefore, we deduce $\textbf{HMeasure} =_{\sqrt{2}\epsilon_1+ 3\epsilon_2} \textbf{HMeasure}^{\epsilon_1, \epsilon_2}$, where $\textbf{HMeasure}^{\epsilon_1, \epsilon_2}$ is the the judgement that results from replacing $U$ by $U^{\epsilon_1, \epsilon_2}$. Moreover, considering the erroneous implementation of the $R_y$ gate also afecting the \textbf{CoinToss} term, as discussed in the previous example, we deduce that 
+As a result, considering the $\lambda$-term \textbf{HMeasure} and the erroneous implementation of $U$ described above, denoted $U^{\epsilon_1, \epsilon_2}$, using our deductive metric system, we have $U =_{\sqrt{2}\epsilon_1+ 3\epsilon_2} U^{\epsilon_1, \epsilon_2}$. This equation implies that if $\epsilon_1 = \epsilon_2$, the erroneous $U_3$ gate contributes more than twice as much as the erroneous $U_1$ gate to the bound on the total distance between the ideal and erroneous unitary.
+
+Next, we deduce $\textbf{HMeasure} =_{\sqrt{2}\epsilon_1+ 3\epsilon_2} \textbf{HMeasure}^{\epsilon_1, \epsilon_2}$, where $\textbf{HMeasure}^{\epsilon_1, \epsilon_2}$ is the the judgement that results from replacing $U$ by $U^{\epsilon_1, \epsilon_2}$.
+Moreover, considering the erroneous implementation of the $R_y$ gate also afecting the \textbf{CoinToss} term, as discussed in the previous example, we deduce that 
 $$\textbf{Discrimination} =_{\sqrt{2}\epsilon_1+6\epsilon_2} \textbf{Discrimination}^{\epsilon_1,\epsilon_2}, $$
 where $\textbf{Discrimination}^{\epsilon_1,\epsilon_2}$ denotes the judgement that results from replacing $\textbf{HMeasure}$ by $\textbf{HMeasure}^{\epsilon_1, \epsilon_2}$ and $\textbf{CoinToss}$ by  $\textbf{CoinToss}^{\epsilon_2}$.
+
+Observe that the distance between the ideal and erroneous quantum state discrimination tends to $0$ as $\epsilon_1$ and $\epsilon_2$ tend to zero, as expected. 
+Additionally, since an erroneous $U_3$ gate affects both \textbf{HMeasure} and \textbf{CoinToss}, we find that when $\epsilon_1$ and $\epsilon_2$ are of equal magnitude, the erroneous $U_3$ contributes more than four times as much as the erroneous $U_1$ to the bound on the total distance between the ideal and erroneous unitary.
+
+
 
 \end{example}
 
@@ -3262,8 +3269,8 @@ teleportation procedure in $\lambda$-calculus as follows:
 
  Following the approach of previous examples, we analyze erroneous implementations of the gates $U_1$ and $U_3$ within the hardware’s native gate set. Additionally, we consider the action of both dephasing and amplitude damping channels. Furthermore, we account for an adversarial agent that applies a bit-flip operation immediately prior to measurement with probability $ p = 0.5 $.  
 
-    Here, we consider imperfect implementations of the gates $U_1$ and $U_3$, given by $ U_1(\lambda) $ and $ U_3(\theta, \phi + \epsilon_2, \lambda + \epsilon_3)$, respectively. 
-    Recall from the previous example that we established the bound $\diamondnorm{U_1(\lambda)- U_1(\lambda + \epsilon) } \leq \sqrt{2} \epsilon$.
+    Here, we consider imperfect implementations of the gates $U_1$ and $U_3$, given by $ U_1(\lambda + \epsilon_1) $ and $ U_3(\theta, \phi + \epsilon_2, \lambda + \epsilon_3)$, respectively. 
+    Recall from the previous example that we established the bound $\diamondnorm{U_1(\lambda)- U_1(\lambda + \epsilon_1) } \leq \sqrt{2} \epsilon_1$.
      The Hadamard gate, $H$, is the composition $U_3(\pi/2, 0, 0)\cdot U_1(\pi)$. We calculate,
     \begin{align*}
       &\tracenorm{U_3(\pi/2, 0, 0) \ket{\psi}\bra{\psi}U_3(\pi/2, 0, 0)^\dag - U_3(\pi/2, \epsilon_2, \epsilon_3)  \ket{\psi}\bra{\psi}U_3(\pi/2, \epsilon_2, \epsilon_3)^\dag} \\
@@ -3280,6 +3287,7 @@ teleportation procedure in $\lambda$-calculus as follows:
     \begin{align*}
       \diamondnorm{U_3(\pi/2, 0, 0)- U_3(\pi/2, \epsilon_2, \epsilon_3) } \leq 3 \epsilon_2 +  2\epsilon_3 + |\epsilon_2-\epsilon_3|
     \end{align*}
+
     
     As a result, denoting the imperfect implementation of the Hadamard gate as $H^{\epsilon_1 ,\epsilon_2, \epsilon_3}$, we have 
     \begin{align} \label{eq:h_error_telepor}
@@ -3287,13 +3295,23 @@ teleportation procedure in $\lambda$-calculus as follows:
     \end{align}
  
 
-    The gate $X$ can be implemented as $U_3(\pi, \psi, 0)$. We compute,
+    The gate $X$ can be implemented as $U_3(\pi, 0, \pi)$. We compute,
     \begin{align*}
       &\tracenorm{U_3(\pi, 0 , \pi) \ket{\psi}\bra{\psi}U_3(\pi,0,\pi)^\dag - U_3(\pi,\epsilon_2,\pi+\epsilon_3)  \ket{\psi}\bra{\psi}U_3(\pi,\epsilon_2,\pi+\epsilon_3)^\dag}  \\
       & =\euclideannorm{( \sin(\alpha) (\cos(\beta)+\cos(\beta + \epsilon_3-\epsilon_2)), \sin(\alpha) (\sin(\beta + \epsilon_3-\epsilon_2)-\sin(\beta)),0 )} \\
       &  \leq \euclideannorm{(|\epsilon_3-\epsilon_2|, |\epsilon_3-\epsilon_2|,0 )} \\
       & = \sqrt{2} |\epsilon_3-\epsilon_2|
     \end{align*}
+
+   Recall that the gate $U_3$ is defined as
+\begin{align*}
+    U_3(\theta, \phi, \lambda) &= 
+    \begin{pmatrix}
+        \cos(\theta/2) & -e^{i\lambda}\sin(\theta/2) \\
+        e^{i\phi}\sin(\theta/2) & e^{i(\phi+\lambda)}\cos(\theta/2)
+    \end{pmatrix}.
+\end{align*}
+Thus, when $\epsilon_2 = \epsilon_3 = \epsilon$, the unitaries $U_3(\pi, 0, \pi)$ and $U_3(\pi, \epsilon_2, \pi + \epsilon_3)$ differ only by a global phase factor $e^{i\epsilon}$. Therefore, it is reasonable for the distance between $X$ and its erroneous version to tend to $0$ as $|\epsilon_3 - \epsilon_2|$ tends to $0$.
 
     Considering \autoref{theorem:diamond_iso}, it holds that
     \begin{align*}
@@ -3307,26 +3325,31 @@ teleportation procedure in $\lambda$-calculus as follows:
   
 
     Finally, the gate $Z$ corresponds to $U_1(\pi)$, therefore, denoting the erroneous implementation of the $X$ gate as $X^{\epsilon_1}$, we postulate the following axiom
-    \begin{align} \label{eq:Correction_error_telepor}
+    \begin{align} \label{eq:z_error_telepor}
       Z =_{\sqrt{2} \epsilon_1} Z^{\epsilon_1}.
     \end{align}
 
-    Designating the \textbf{Correction} block with the imperfect implementations of $X$ and $Z$ by $\textbf{Correction}^{\epsilon_1, \epsilon_2, \epsilon_3}$, in light of the axioms in equations \eqref{eq:x_error_telepor} and \eqref{eq:x_error_telepor} and our metric deductive system we have that
+    Designating the \textbf{Correction} block with the imperfect implementations of $X$ and $Z$ by $\textbf{Correction}^{\epsilon_1, \epsilon_2, \epsilon_3}$, in light of the axioms in equations \eqref{eq:x_error_telepor} and \eqref{eq:z_error_telepor} and our metric deductive system we have that
     \begin{align} \label{eq:z_error_telepor}
       \textbf{Correction} =_{\sqrt{2} \left(\epsilon_1 +|\epsilon_3-\epsilon_2| \right)} \textbf{Correction}^{\epsilon_1, \epsilon_2, \epsilon_3}.
     \end{align}
 
 
+    We observe, as expected and in light of our previous remark regarding the bound on the distance between $X$ and its erroneous version, that when both the error of the $U_1$ gate, $\epsilon_1$, and the absolute difference between the errors of the $U_1$ gate, $|\epsilon_3 - \epsilon_2|$, tend to $0$, the distance between the \textbf{Correction} Bloch and $\textbf{Correction}^{\epsilon_1, \epsilon_2, \epsilon_3}$ also tends to $0$. 
+    Moreover, note that when $\epsilon_1 = |\epsilon_2 + \epsilon_3|$, both gates contribute equally to the bound on the distance between \textbf{Correction} and its erroneous version.
+
+    \vspace{5pt}
+
      \textbf{Dephasing channel}
 
-     Realistic quantum systems are never isolated, but are immersed in the surrounding environment and interact continuously with it. Decoherence can be seen as the consequence of that  `openness' of quantum systems to their  environments .  To study decoherence in a quantum channel within the presented metric deductive system, one can consider the application of a dephasing channel in the quantum teleportation protocol with a certain probability $p$.
-     
+     Realistic quantum systems are never isolated, but are immersed in the surrounding environment and interact continuously with it. Decoherence can be seen as the consequence of that  `openness' of quantum systems to their environments.  To study decoherence in a quantum channel within the presented metric deductive system, one can consider applying a dephasing channel in the quantum teleportation protocol with a certain probability $p$.
+
      The Kraus operators of the dephasing channel with probability $p$ are expressed as:
      \begin{equation*}
           D_{0}= \frac{\sqrt{2-p}}{\sqrt{2}} I,  D_{1}= \frac{\sqrt{p}}{\sqrt{2}} Z
      \end{equation*}
      
-     Considering a density operator $\rho=|\alpha|^{2} \ket{0} \bra{0} + \alpha \overline{\beta} \ket{0} \bra{1}+ \overline{\alpha} \beta \ket{1} \bra{0} + |\beta|^{2} \ket{1} \bra{1}$, using these Kraus operators, it is possible to easily verify  that after applying the dephasing channel with probability $p$, the resulting operator $\rho'$ is given by: 
+     Considering a density operator $\rho=|\alpha|^{2} \ket{0} \bra{0} + \alpha \overline{\beta} \ket{0} \bra{1}+ \overline{\alpha} \beta \ket{1} \bra{0} + |\beta|^{2} \ket{1} \bra{1}$. Using these Kraus operators, it is possible to easily verify  that after applying the dephasing channel with probability $p$, the resulting operator $\rho'$ is given by: 
      \begin{equation*} 
           \rho' = D_p(\rho)= D_{0} \rho D_{0}^{\dag} + D_{1} \rho D_{1}^{\dag} = |\alpha|^{2} \ket{0} \bra{0} +  (1-p) \alpha \overline{\beta} \ket{0} \bra{1}+  (1-p) \overline{\alpha}  \beta \ket{1} \bra{0} + |\beta|^{2} \ket{1} \bra{1}
      \end{equation*}
@@ -3353,6 +3376,8 @@ teleportation procedure in $\lambda$-calculus as follows:
       \begin{align} \label{eq:dephasing_telepor}
          \id =_{\sqrt{2p}}  D_p  .
       \end{align}
+      
+      Note that the bound on the distance is directly proportional to the probability of \emph{dephasing}, $p$, as expected.
 
      If a dephasing channel acts on the first qubit of the EPR state, we are interested in reasoning about the following judgements:
      \begin{align*}
@@ -3368,6 +3393,10 @@ teleportation procedure in $\lambda$-calculus as follows:
     \textbf{EPR} =_{\sqrt{2}\epsilon_1 + 3 \epsilon_2 + 2\epsilon_3 + |\epsilon_2-\epsilon_3| + \sqrt{2p}} \textbf{EPR}^{\epsilon_1,\epsilon_2, \epsilon_3,p}
    \end{align}
 
+    Once again, we observe that, as expected,  when the errors of gates $U_1$ and  $U_2$ , as well as the probability of dephasing $p$ tend to $0$, so does the distance between \textbf{EPR} and $\textbf{EPR}^{\epsilon_1,\epsilon_2, \epsilon_3,p}$. Additionally, we note that when $\epsilon_1 = \epsilon_2$, $\epsilon_1 = \epsilon_3$, or $\epsilon_1 = |\epsilon_2 - \epsilon_3|$, the gate $U_3$ consistently dominates the bound on the distance between \textbf{EPR} and $\textbf{EPR}^{\epsilon_1,\epsilon_2,\epsilon_3,p}$.
+
+
+    \vspace{5pt}
 
      \textbf{Amplitude Dephasing channel}
 
