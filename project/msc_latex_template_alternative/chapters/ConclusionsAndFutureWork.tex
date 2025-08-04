@@ -2,9 +2,27 @@
 
 %quantain
 
-This work focuses specifically on the metric quantale. A natural direction for future research would be to generalize the metric equations and the associated results of soundness and completeness to other quantales, such as the Boolean, ultrametric, and Gödel quantales.
+\textbf{Generalizing to quantales}
 
-In the case of the Boolean quantale, the relevant equations are labelled by $\{0,1\}$. The judgement $\Gamma \vljud v =_{1} w : \typeA$ can be  treated as an inequation $\Gamma \leq v =_{1} w : \typeA$, whereas $\Gamma \vljud v =_{0} w : \typeA$ corresponds to a trivial equation---that is, one that always holds. In this context, it would be interesting to explore, for instance, affine Boolean $\lambda$-theories in the setting of real-time computation, particularly in scenarios where the exact timing difference between two programs is irrelevant---what matters is simply whether one program finishes before the other~\cite{dahlqvist2023syntactic}. For the ultrametric quantale, one could investigate ultrametric $\lambda$-theories~\cite{dahlqvist2023syntactic} within computational paradigms such as the guarded $\lambda$-calculus~\cite{guarded_ultrametric} and functional reactive programming~\cite{Ultrametric_reactive}. Finally, the Gödel quantale, which underlies fuzzy logic~\cite{deneckeGaloisConnectionsApplications2004}, gives rise to what we refer to as \emph{fuzzy inequations}.
+
+This work can be generalized to other quantales, such as the Boolean, ultrametric, and Gödel quantales. Indeed, initial steps in this direction have already been established in \cite{bmql25}.   Readers unfamiliar with quantales may also consult \cite{STUBBE201495} for an accessible introduction to the concept.
+This generalization also explains why in the equational system that we introduced, we chose to use the expression \( q + \sup\{r, s\} \) rather than \( \sup\{q + r, q + s\} \), given that these are equal.
+
+The fact is that at the level of arbitrary quantales they need not to be the same. For instance, consider the quantale \(\mathcal{P}(\Sigma^*)\), where \(\Sigma\) is a finite non-empty set of symbols, \ie, the powerset of all finite lists over \(\Sigma\) \cite{STUBBE201495}. In this quantale, the associative operation \(\otimes\) and the infimum/meet are defined as follows:
+\[ I \otimes J =  \{ i \mathbin{+\!+} j \,|\, i \in I, j \in J \} \quad \text{and} \quad \inf \{ I, J\} = I \cap  J  \]
+where \(I, J \in \mathcal{P}(\Sigma^*)\) and \(\mathbin{+\!+}\) denotes list concatenation.
+Consider the sets $X = \{\varepsilon, a\}$, $Y = \{a\}$, and $Z = \{aa\}$, where $\varepsilon$ denotes the empty string over $\Sigma$ (i.e., for any $s \in \Sigma^*$, we have $\varepsilon \mathbin{+\!+} s = s = s \mathbin{+\!+} \varepsilon$). Then:
+\begin{align*}
+  & X \otimes \inf\{Y, Z\} = X \otimes \emptyset = \emptyset, \\
+  &\inf\{X \otimes Y,\, X \otimes Z\} =  \{a, aa\} \cap \{aa, aaa\} = \{aa\}.
+\end{align*}
+Consequently, $X \otimes \inf\{Y,Z\} \neq  \inf\{X \otimes Y, X \otimes Z \}.$
+
+Moreover, it becomes clear after inspecting the soundness proof that it is the expression \( q + \sup\{r, s\} \) that arises naturally. 
+
+%This work focuses specifically on the metric quantale. A natural direction for future research would be to generalize the metric equations and the associated results of soundness and completeness to other quantales, such as the Boolean, ultrametric, and Gödel quantales.
+
+With respect to relevant $\lambda$-theories in this setting, consider, for example, the Boolean quantale, where equations are labelled by elements of $\{0,1\}$. The judgement $\Gamma \vljud v =_{1} w : \typeA$ can be interpreted as an inequation $\Gamma \leq v =_{1} w : \typeA$, whereas $\Gamma \vljud v =_{0} w : \typeA$ corresponds to a trivial equation, that is, one that always holds.  In this context, it would be interesting to explore, for instance, Boolean $\lambda$-theories in the setting of real-time computation, particularly in scenarios where the exact timing difference between two programs is irrelevant---what matters is simply whether one program finishes before the other~\cite{dahlqvist2023syntactic}. For the ultrametric quantale, one could investigate ultrametric $\lambda$-theories within computational paradigms such as the guarded $\lambda$-calculus~\cite{guarded_ultrametric} and functional reactive programming~\cite{Ultrametric_reactive}. Finally, the Gödel quantale, which underlies fuzzy logic~\cite{deneckeGaloisConnectionsApplications2004}, gives rise to what we refer to as \emph{fuzzy inequations}.
 
 
 
@@ -17,16 +35,76 @@ In the case of the Boolean quantale, the relevant equations are labelled by $\{0
 
 % Estender parte quantica para higher order
 
+\textbf{Closing quantum (first-order) categories}
 
-Another possible direction stems from the fact that the quantum categories discussed in \autoref{sec:quantum_cats} are not closed. In \cite{dahlqvist2023syntactic}, the authors used general results from category theory to address a similar issue in the category $\catCPTP$. A natural next step would be to extend such a construction for $\catQ$ and $\WstarCPSUop$.
+Another possible direction stems from the fact that as previously mentioned the quantum categories discussed in \Cref{sec:quantum_cats} are not closed. In \cite{dahlqvist2023syntactic}, the authors used general results from category theory to address a similar issue in the category $\catCPTP$. A natural next step would be to extend such a construction for $\catQ$ and $\WstarCPSUop$.
 
 %Speaking of $\WstarCPSUop$, it would be useful to establish a connection between the introduced norm and the completely bounded norm, along with some properties, so that we could, for instance, reason about quantum walks on a line \cite{venegasQuantumWalksComprehensive2012}.
 
-In this work, our focus is limited to showing that the metric induced by this norm makes $\WstarCPSUop$ into a first-order model. In future work, we aim to explore more deeply the relationship between this norm and the completely bounded norm, as well as to establish additional results that simplify distance computations between morphisms. That would, for instance, allows us to reason about quantum walks on a line \cite{venegasQuantumWalksComprehensive2012}.
+\textbf{The completely bounded norm and the $W^*$ completely bounded norm}
+
+In this work, our focus is limited to showing that the metric induced by the $W^*$ completely bounded norm makes $\WstarCPSUop$ into a first-order model. However, as previously noted, another norm---the completely bounded norm---is widely used in the context of $C^*$-algebras and comes equipped with already restablished results that could simplify distance computations between programs.  A natural next step would be to determine whether the completely bounded norm itself constitutes a suitable metric, \ie, if it satisfies $\cbnorm{\id \overline{\otimes} \Phi} \leq \cbnorm{\Phi}$, for any completely bounded normal map $\Phi$ between $W^*$-algebras. Moreover, we aim as well as to establish additional results regarding the $W^*$ completely bounded norm that simplify distance computations between morphisms. That would, for instance, allows us to reason about quantum walks on a line \cite{venegasQuantumWalksComprehensive2012}.
+
+\textbf{Another metric on $\catQ$}
+
+
+
+In \cite{choSemanticsQuantumProgramming2016}, the author established an equivalence of categories  
+$\catQ \simeq \FdWstarCPSU^{\mathrm{op}}$.  
+
+Using this equivalence, we aim to induce an alternative norm on $\catQ$ by assigning to each superoperator $\Phi \in \catQ$ the norm of its corresponding map $\Phi^* \in \FdWstarCPSU^{\mathrm{op}}$. This approach mirrors the construction we presented in \Cref{subsec:shodinger}.
+
+Now we describe how to obtain  $\Phi^*$ from $\Phi$. 
+Recall that for a Hilbert space \( \mathcal{H} \), \( \mathcal{B}(\mathcal{H}) \), \ie, the set of bounded operators on \( \mathcal{H} \), is a \( W^* \)-algebra with the predual \( \mathcal{T}(\mathcal{H}) \).
+A quantum channel (resp. quantum operator) $\Phi: \mathcal{T}(\mathcal{H})  \to \mathcal{T}(\mathcal{K})$ defines a linear mapping 
+$\Phi^*: \mathcal{B}(\mathcal{K}) \to \mathcal{B}(\mathcal{H})$ completely positive and unital (resp. subunital) \cite[Proposition 5.1,]{choSemanticsQuantumProgramming2016}. These maps are related in the following way:
+\begin{equation*}
+\tr\left[\Phi(T) \cdot S\right] = \tr \left[T \cdot \Phi^*(S)\right]
+\end{equation*}
+which holds for all trace-class operators $T \in \mathcal{T}(\mathcal{H})$ and all bounded operators $S \in \mathcal{B}(\mathcal{K})$.
+Intuitively, this means that observing the transformed state $\Phi(T)$ w.r.t. experiment $S$ is the same as observing the original state $S$ w.r.t. the transformed state $\Phi^*(S)$.
+%The expectation value of the observable \( S \) on the output state \( \Phi(T) \) equals the expectation of the evolved observable \( \Phi^*(S) \) on the original state \( T \).
+
+A more explicit way of describing the relationship between $\Phi$ and $\Phi^*$ in the finite-dimensional setting---where all trace-class operators are bounded and we have the identification \( \mathcal{B}(\mathcal{H}) = \mathcal{T}(\mathcal{H}) \)---is given by the diagram below:
+
+\[
+\hspace{-50pt}
+\begin{minipage}{0.45\textwidth}
+\centering
+\begin{tikzpicture}
+  \matrix (m) [matrix of math nodes,row sep=3em,column sep=2em,minimum width=1em]
+  { 
+    \mathcal{T}(\mathcal{H}) \\
+     \mathcal{T}(\mathcal{K})  \\
+  };
+  \path[-stealth]
+    (m-1-1) edge  node [right] {$\Phi$} (m-2-1);
+\end{tikzpicture}
+\end{minipage}
+\hspace{-50pt}
+\begin{minipage}{0.45\textwidth}
+\centering
+\begin{tikzpicture}
+  \matrix (m) [matrix of math nodes,row sep=3em,column sep=12em,minimum width=1em]
+  {
+  \mathcal{T}(\mathcal{H})^*&  \mathcal{B}(\mathcal{H})  \\
+   \mathcal{T}(\mathcal{K})^* &  \mathcal{B}(\mathcal{K}) \\
+  };
+  \path[-stealth]
+    (m-1-1) edge  node [above] {$\varphi \mapsto \sum_{ij} \varphi(\ket{j}\bra{i}) \cdot \ket{i} \bra{j}  $} (m-1-2)
+    (m-2-2) edge [dotted]  node [right] {$\Phi^*$} (m-1-2)
+    (m-2-2) edge  node [below] {$ A \mapsto (B \mapsto \tr(AB)) $} (m-2-1)
+    (m-2-1) edge  node [right] {$ \varphi \mapsto \varphi \cdot \Phi $} (m-1-1)
+    ;
+\end{tikzpicture}
+\end{minipage}
+\]
 
 
 
 % Graded cenas
+
+\textbf{Quantum graded $\lambda$-calculus}
 
   \cite{dahlqvistCompleteVEquationalSystem2023} extends  \cite{dahlqvist2023syntactic} by introducing a sound and complete $\mathcal{V}$- equation system ---which includes the metric quantale--- for a$\lambda$-calculus with graded modal types, allowing multiple uses of the same resource. Since this work does not consider quantum computation, a natural next step would be to explore categorical models suited for this setting. Such an extension would enable us to reason about approximate equivalence in various scenarios, such as discriminating between two known states given $n$ copies of an unknown state \cite{Multiple_copy_two_state_discrimination}, or estimating an unknown parameter across $n$ copies of quantum channels in quantum metrology \cite{Giovannetti_Quantum_Metrology, Zhou_Limits_Noisy_Quantum_Metrology}.
 

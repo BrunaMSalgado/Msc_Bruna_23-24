@@ -450,24 +450,6 @@ Note that this metric does not always make the category enriched with binary cop
 
 
 
-\section{Discussion: generalizing to quantales}
 
-\todo[inline,size=\normalsize]{Que referencia é que dou para o artigo se ele (ainda) não está em lado nenhum?}
-
-
-This work can be generalized to other quantales. Indeed, initial steps in this direction have already been established in \textbf{[BMQL25]}.   Readers unfamiliar with quantales may also consult \cite{STUBBE201495} for an accessible introduction to the concept.
-This generalization also explains why in the equational system that we introduced, we chose to use the expression \( q + \sup\{r, s\} \) rather than \( \sup\{q + r, q + s\} \), given that these are equal.
-
-The fact is that at the level of arbitrary quantales they need not to be the same. For instance, consider the quantale \(\mathcal{P}(\Sigma^*)\), where \(\Sigma\) is a finite non-empty set of symbols (\ie, the powerset of all finite lists over \(\Sigma\)) \cite{STUBBE201495}. In this quantale, the associative operation \(\otimes\) and the infimum/meet are defined as follows:
-\[ I \otimes J =  \{ i \mathbin{+\!+} j \,|\, i \in I, j \in J \} \quad \text{and} \quad \inf \{ I, J\} = I \cap  J  \]
-where \(I, J \in \mathcal{P}(\Sigma^*)\) and \(\mathbin{+\!+}\) denotes list concatenation.
-Consider the sets $X = \{\varepsilon, a\}$, $Y = \{a\}$, and $Z = \{aa\}$, where $\varepsilon$ denotes the empty string over $\Sigma$ (i.e., for any $s \in \Sigma^*$, we have $\varepsilon \mathbin{+\!+} s = s = s \mathbin{+\!+} \varepsilon$). Then:
-\begin{align*}
-  & X \otimes \inf\{Y, Z\} = X \otimes \emptyset = \emptyset, \\
-  &\inf\{X \otimes Y,\, X \otimes Z\} =  \{a, aa\} \cap \{aa, aaa\} = \{aa\}.
-\end{align*}
-Consequently, $X \otimes \inf\{Y,Z\} \neq  \inf\{X \otimes Y, X \otimes Z \}.$
-
-Moreover, it becomes clear after inspecting the soundness proof that it is the expression \( q + \sup\{r, s\} \) that arises naturally. 
 
 %STUBBE201495

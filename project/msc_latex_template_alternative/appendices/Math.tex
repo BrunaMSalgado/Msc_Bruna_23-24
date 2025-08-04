@@ -1007,3 +1007,334 @@ Examples of monoidal closed categories with coproducts include $\catSet$ and $\c
 Any diagram in a symmetric monoidal category constructed only from associators $\alpha$, unitors $\lambda$, $\rho$, the symmetry $\sw$, and inverses and their composition and tensor product necessarily commutes if the two underlying permutations are the same.
 \end{theorem}
 
+
+\section{Banach spaces}
+
+%Before introducing the category of Banach spaces and proving it is a model, we first introduce some preliminary concepts in this setting. 
+
+%The letters \gls{vectorspaces} will often be used to refer to vector spaces and $\gls{field}$ denotes the field of scalars of a vector space.
+
+
+%\subsection{Normed spaces}
+
+\begin{definition} \label{def:norm}
+  A \emph{norm} $\|\cdot\|$ is a function that associates an element of a vector space $V$ with a non-negative real number, such that the following properties hold:
+  \begin{enumerate}
+    \item Positive definiteness: $\|v\| \geq 0$ for all $v \in V$, with $\|v\| = 0$ if and only if $v = 0$;
+    \item Positive scalability: $\|av\| = |\alpha|\|v\|$ for all $v \in V$  $\alpha \in \mathcal{F}$;
+    \item The triangle inequality: $\|v + w\| \leq \|v\| + \|w\|$ for all $v, w \in V$.
+  \end{enumerate}
+\end{definition}
+
+\begin{definition} \label{def:normed_space}
+A vector space together with a norm is called a \emph{normed vector space}.
+\end{definition}
+
+
+Every normed space may be regarded as a metric space (\autoref{def:metric_space}), in which the
+distance, $d(v,w)$, between vectors $v$ and $w$ is $\|v-w\|$ .
+
+\begin{definition} \label{def:op_norm}
+Let \( V \) and \( W \) be normed vector spaces, and let \( T: V \rightarrow W \) be a linear operator. The \emph{operator norm}, denoted by $\|\cdot\|_{\text{op}}$, is defined as
+\[
+\opnorm{T}= \sup \{ \norm{T(v)} : v \in V, \, \norm{v} = 1 \}.
+\]
+If \( \opnorm{T} < \infty \) we say that \( T \) is a \emph{bounded operator}; otherwise, if \( \opnorm{T} = \infty \) we say that \( T \) is \emph{unbounded}. 
+\end{definition}
+
+\begin{lemma} \cite[Lemma 6.4]{guide2006infinite} \label{lemma:op_norm_submult} %inf_dim_anal
+Let \( T: V \rightarrow W \) be a bounded linear operator between normed spaces. Then the following statements hold:
+\begin{enumerate}
+  \item For every \( v \in V \), we have \( 
+  \norm{T(v)} \leq \opnorm{T} \cdot \norm{v}.\)
+  \item The operator \( T \) is continuous (w.r.t the metric) if and only if it is bounded.
+\end{enumerate}
+\end{lemma}
+
+
+
+
+\begin{definition}
+  Let \( V \) and \( W \) be normed vector spaces, and let \( T: V \rightarrow W \) be a linear operator. $T$ is called a \emph{short map} if $\opnorm{T} \leq 1$.
+\end{definition}
+
+
+
+%\subsection{Banach spaces}
+
+
+\begin{definition} (\emph{Cauchy sequence})
+  Suppose $ d $ is a metric on a set $ X $. A sequence $ \{x_n\} \subset X $ is called a \emph{Cauchy sequence} if, for every $ \varepsilon > 0 $, there exists an integer $N \in \mathbb{N} $ such that $ d(x_m, x_n) < \varepsilon $ for all $ m, n > N $.  The metric \( d \) is said to be \emph{complete} if every Cauchy sequence in \( X \) converges to a point in \( X \)
+\end{definition}
+
+\begin{definition}
+  A \emph{Banach space} is a normed vector space that is complete with respect to the metric induced by its norm. In other words, every Cauchy sequence in the space must converge to a limit within the space.
+\end{definition}
+
+
+\section{Topology}
+
+%Due to this, we will introduce topological concepts and results necessary for the next two sections.
+
+
+Topology is the abstract mathematical study of concepts like convergence and approximation, among other things, generalizing familiar notions from calculus and analysis. 
+Note that, for instance, in a metric space, a sequence $\{x_n\}$ with $n \in \mathbb{N}$ converges to a point $x$ if the distance $d(x_n, x)$ tends to zero; that is, for every $\varepsilon > 0$, there exists $n_0$ such that $d(x_n, x) < \varepsilon$ for all $n \geq n_0$. However, metric spaces are not sufficient to describe all types of convergence.  An example is the pointwise convergence of all real-valued functions on the interval $[0, 1]$. In fact, there is no metric on the space of all real functions on the interval $[0,1]$ for which one can define a distance function $d(f_n, f)$ such that $d(f_n, f) \to 0$ if and only if $f_n(x) \to f(x)$ for every $x \in [0, 1]$ \cite{guide2006infinite}. 
+A foundational idea in topology is that of a \emph{neighborhood}—a collection of points considered ``sufficiently close'' to a given point. From this arises the concept of \emph{open sets}, which are sets that serve as neighborhoods for all their points. The collection of all such open sets defines a \emph{topology}, and a set equipped with a topology becomes a \emph{topological space}. This framework introduces some subtleties: for example, traditional sequences are often inadequate for capturing convergence, requiring the more general notion of \emph{nets}, which are indexed over broader structures than the natural numbers.
+
+\begin{definition}
+  A \emph{topology} $\tau$ on a set $S$ is a collection of subsets of $S$ satisfying the following properties:
+\begin{enumerate}
+    \item $\varnothing \in \tau$ and $S \in \tau$.
+    \item $\tau$ is closed under finite intersections: if $U_1, U_2, \dots, U_n \in \tau$, then $\bigcap_{i=1}^n U_i \in \tau$.
+    \item $\tau$ is closed under arbitrary unions: if $\{U_\alpha\}_{\alpha \in A} \subseteq \tau$, then $\bigcup_{\alpha \in A} U_\alpha \in \tau$.
+\end{enumerate}
+
+A nonempty set $S$ equipped with a topology $\tau$ is called a \emph{topological space}, and is denoted by $(S, \tau)$ (or simply $S$ when no ambiguity arises). A member of $\tau$ is called an \emph{open set} in $S$. The complement of an open set is a \emph{closed set}. 
+
+A set \( S \) can have many different topologies.  
+The family of all topologies on \( S \) is partially ordered by set inclusion.  
+If \( \tau_1 \subset \tau_2 \), that is, if every \( \tau_1 \)-open set is also \( \tau_2 \)-open,  
+then we say that \( \tau_1 \) is \emph{weaker} or \emph{coarser} than \( \tau_2 \),  
+and that \( \tau_2 \) is \emph{stronger} or \emph{finer} than \( \tau_1 \).
+\end{definition}
+
+\begin{example}
+Standard examples of topologies are presented below:
+\begin{enumerate}
+    \item \emph{Trivial (or indiscrete) topology:} On a set $S$, the trivial topology consists only of the sets $\varnothing$ and $S$. These are also the only closed sets.
+    
+    \item \emph{Discrete topology:} The discrete topology on a set $S$ consists of all possible subsets of $S$. In this topology, every set is both open and closed.
+    
+    \item \emph{Standard topology on $\mathbb{R}$:} The metric $d(v, w) = |v - w|$ on $\mathbb{R}$ induces a topology where open sets are unions of open intervals. This is known as the standard topology on $\mathbb{R}$.
+\end{enumerate}
+\end{example}
+
+\begin{definition}
+A \emph{neighborhood} of a point \( s \in S \) in a topological space $(S, \tau)$ is any subset \( N \subseteq S  \) that contains \( s \) in its interior. In this case, \( s \) is called an \emph{interior point} of \( N \). 
+\end{definition}
+
+\begin{definition}
+  The \emph{norm topology} induced by a norm $\|\cdot\|$ is the topology generated by the metric $d(v, w) = \|v - w\|$.
+\end{definition}
+
+Topology is about convergence and also about continuity. Consider a  map $f \colon V \to W$, the idea behind continuity is that if we move $v \in V$ only slightly, then $f(v)$ should change by a small amount as well. The less we move $v$, the less $f(v)$ should change. We begin, with a more intuitive definition restricted to the setting of metric spaces.
+
+\begin{definition}
+Let $(V,d_V)$ and $(W,d_W)$ be metric spaces. A mapping $f \colon V \to W$ is \emph{sequentially continuous} if for every convergent sequence $(x_n)_{n\in\mathbb{N}}$ in $V$ with $v_n \to v$, the image sequence $(f(v_n))_{n\in\mathbb{N}}$ converges to $f(v)$ in $W$. That is,
+\[
+v_n \to n \ \text{in } V \ \Rightarrow \ f(v_n) \to f(v) \ \text{in } W.
+\]
+\end{definition}
+More generally, continuity may be defined as follows:
+\begin{definition}
+  Let $(S_1, \tau_1)$ and $(S_2, \tau_2)$ be topological spaces. A map $f \colon S_1 \to S_2$ is \emph{continuous} if and only if for every open subset $N \subseteq S_2$, the preimage $f^{-1}(N)$ is open in $S_1$.
+\end{definition}
+
+\begin{definition}
+A net in a set $S$ is a function $s \colon D \to S$, where $D$ is a directed set. The directed set $D$ is called the \emph{index set} of the net and the members of $D$ are \emph{indexes}.
+\end{definition}
+
+\begin{definition}
+  Let \( S_1 \) and \( S_2 \) be two topological spaces, and let \( s_1 \) be a point in \( S_1 \).  
+A map \( f : S_1 \to S_2 \) is said to be \emph{continuous at} \( s_1 \) if and only if, for every open neighborhood \( S_1 \) of \( f(s_1) \), there exists an open neighborhood \( N \) of \( s_1 \) such that  
+$
+\{f(n) \, |\, n \in N \} \subseteq N.
+$
+\end{definition}
+
+
+
+
+The proposition and theorem below present continuity in a more intuitive way:
+\begin{proposition} \cite[Theorem 2.27]{guide2006infinite}
+  Let \( S_1 \) and \( S_2 \) be two topological spaces. A map \( f : S_1 \to S_2 \) is continuous if and only if it is continuous at every point \( s_1 \in S_2 \).
+\end{proposition}
+
+\begin{theorem} \cite[Theorem 2.28]{guide2006infinite} \label{def:continuidade_top}
+  Let $f \colon S_1 \to S_2$ be a function between topological spaces, and let $s_1 \in S_2$. The following statements are equivalent:
+\begin{enumerate}
+    \item The function $f$ is continuous at $s$.
+    \item For every net $(s_\alpha)$ in $S_1$ converging to $s$, the net $(f(s_\alpha))$ converges to $f(s)$ in $S_2$.
+\end{enumerate}
+\end{theorem}
+
+
+
+%\begin{definition}
+%A \emph{neighborhood} of a point $x$ is any set $S$ such that $x$ is contained in $V$. In this case, we say that $x$ is an \emph{interior point} of $V$.
+%\end{definition}
+
+\begin{definition}
+A \emph{topological vector space} is a vector space \( V \) equipped with a linear topology \( \tau \) such that:
+\begin{enumerate}
+    \item every singleton \( \{v\} \subset V \) is a closed set, and
+    \item the vector space operations (addition and scalar multiplication) are continuous with respect to \( \tau \).  That is, the addition map \( (x, y) \mapsto x + y \), from the Cartesian product \( V \times V \) into \( V, \) is continuous, and the scalar multiplication map \( (r, x) \mapsto r x \), from \( \mathcal{F} \times V \) into \( V, \) is also continuous.
+\end{enumerate}
+
+\end{definition}
+
+\begin{definition}
+  Let $V$ be a vector space. 
+  Linear maps from $V$ to its scalar field are called \emph{linear functionals}. The set of all continuous linear functionals on $V$ forms a vector space, called the \emph{(topological) dual space} of $ V $, and is denoted by  $V^*$. It is common to designate elements of the dual space  $V^*$  by \( v^* \).  %and to write $\langle v, v^* \rangle $in place of \( v^*(v) \).
+\end{definition}
+
+%norma espaço dual
+
+
+\begin{theorem} \cite[Theorem 4.3]{rudin91functional} %funcanl-Rudin
+Let \( V \) be a normed vector space. For each \( v^* \in V^* \), define its norm by
+\[
+\|v^*\| := \sup \left\{ | v^*(v) | : \|v\| = 1 \right\}.
+\]
+This defines a norm on \( V^* \) under which \( V^* \) is a Banach space. Moreover, for every \( v \in V \), we have
+\[
+\|v\| = \sup \left\{ | v^*(v) | : \|v^*\| = 1 \right\}.
+\]
+As a consequence, the map \( v^* \mapsto v^*(v)  \) defines a bounded linear functional on \( V^* \), and its norm equals \( \|v\| \).
+\end{theorem}
+
+\begin{definition} \label{def:weak*_top}
+Let \( V \) be a vector space. The \emph{weak\(^*\)-topology} on the dual space \( V^* \) is the coarsest topology that makes all evaluation maps
+\[
+v^* \mapsto v^*(v) 
+\]
+continuous for every \( v \in V \).
+\end{definition}
+
+
+
+
+The following concepts and results are used in \Cref{subsec:w*_cats} and \Cref{ch:future_work}.
+
+\begin{proposition} \cite[Proposition 2.3.10]{pedersenAnalysisNow1989}
+  Let $V$ and $W$ be bounded vector spaces and let \( f : V \to W \) be a bounded linear map. Then its dual \( f^* : V^* \to W^* \), defined by
+\[
+f^*(\varphi) = \varphi \circ f,
+\]
+is also a bounded linear map.
+\end{proposition}
+
+
+\begin{theorem} \cite[Theorem 9.15]{romanAdvancedLinearAlgebra1992}
+Let $\mathcal{H}$ be a finite-dimensional Hilbert space, and let $\varphi$ be a linear functional on $\HilbH^*$. Then there exists a unique vector $v_\varphi \in \HilbH$ such that
+\[
+\varphi(w) = \langle w, v_\varphi \rangle \quad \text{for all } w \in  \HilbH.
+\]
+We call $v_\varphi$ the \emph{Riesz vector} for $\varphi$ and denote it by $v_\varphi$.\\
+\end{theorem}
+
+
+Using the Riesz representation theorem, we can define a map 
+$\phi^* : V^* \to V$
+by setting \(\phi^*(\varphi) = v_\varphi\), where \(v_\varphi\) is the Riesz vector corresponding to \(\varphi \in V^*\). Since the Riesz representation is unique, \(\phi^*\) is well-defined \cite{romanAdvancedLinearAlgebra1992}. 
+
+\begin{comment}
+
+\begin{proposition}
+  A $\phi^*: \BoundOp{\HilbH}^* \to \BoundOp{\HilbK}$,  is defined as $\phi^*(\varphi) = \sum_{i,j} \varphi(\ket{j}\bra{i}) \cdot \ket{i}\bra{j}.$
+\end{proposition}
+
+\todo[inline,size=\normalsize]{Alternativa 1}
+
+
+\begin{proof}
+  
+\end{proof}
+
+
+
+ Consider a linear map $\phi: \BoundOp{\HilbH} \to \BoundOp{\HilbK}$. Since it is well known that we can identify $\BoundOp{\HilbH}$ with the matrix algebra $\mathcal{M}_{n}$, where $n = \dim(\HilbH)$, the map $\phi$ can be equivalently represented as $\phi:\mathcal{M}_{n} \to \mathcal{M}_{m}$, where $m = \dim(\HilbK)$.
+ 
+ Consequently, by the Riesz representation theorem, and the definitions of trace and  inner product for matrices we have:
+\[ \varphi(\ket{j} \bra{i})= \langle \ket{j} \bra{i},  v_\varphi  \rangle =  \tr(\ket{i}\bra{j} \cdot v_{\varphi}) =  (v_{\varphi})_{i, j}, \]
+
+where $(v_{\varphi})_{i, j}$ denotes the entry in the $i$-th row and $j$-th column of $v_{\varphi}$. 
+
+As a result, we obtain
+\[
+\phi^*(\varphi) = \sum_{i,j} \varphi(\ket{j}\bra{i}) \cdot \ket{i}\bra{j}
+= \sum_{i,j} (v_{\varphi})_{i,j} \cdot \ket{i}\bra{j}
+= v_\varphi.
+\]
+
+\todo[inline,size=\normalsize]{Alternativa 2: Mudar a assinatura de $\phi^*$ para as matrizes e assim temos}
+
+By the Riesz representation theorem, and the definitions of trace and  inner product for matrices we have:
+\[ \varphi(\ket{j} \bra{i})= \langle \ket{j} \bra{i},  v_\varphi  \rangle =  \tr(\ket{i}\bra{j} \cdot v_{\varphi}) =  (v_{\varphi})_{i, j}, \]
+
+where $(v_{\varphi})_{i, j}$ denotes the entry in the $i$-th row and $j$-th column of $v_{\varphi}$. 
+
+As a result, we obtain
+\[
+\phi^*(\varphi) = \sum_{i,j} \varphi(\ket{j}\bra{i}) \cdot \ket{i}\bra{j}
+= \sum_{i,j} (v_{\varphi})_{i,j} \cdot \ket{i}\bra{j}
+= v_\varphi.
+\]
+\end{comment}
+
+
+
+\begin{comment}
+Let $\sigma= n_1, \ldots, n_s$. For $\phi: \mathcal{M}_\sigma^* \to \mathcal{M}_\sigma $, by the Riesz representation theorem, we have
+\[ \varphi(\ket{j} \bra{i})= \langle \ket{j} \bra{i},  v_\varphi  \rangle. \]
+
+Since $\mathcal{M}_\sigma$ is a direct sum, the Riesz vector $v_\varphi$ also decomposes:
+\[
+v_\varphi = (v_{\varphi,1}, \ldots, v_{\varphi,s}),
+\]
+with $v_{\varphi,k} \in \mathbb{C}^{n_k \times n_k}$.
+
+Using the definition of inner product for matrices, we have
+\[
+\langle \ket{j_k}\bra{i_k}, v_{\varphi,k} \rangle = \tr(\ket{i_k}\bra{j_k} \cdot v_{\varphi,k}) =  (v_{\varphi,k})_{i_k, j_k} ,
+\]
+where $(v_{\varphi,k})_{p_k, q_k}$ denotes the entry in the $i_k$-th row and $j_k$-th column of $v_{\varphi,k}$. Hence,
+\[
+\varphi(\ket{j}\bra{i}) = \sum_{k=1}^s \langle \ket{j_k} \bra{i_k},  v_{\varphi,k}  \rangle = \sum_{k=1}^s  \tr \left( \ket{i_k} \bra{j_k} \cdot   v_{\varphi,k} \right) =  (v_{\varphi,k})_{i_k, j_k} \equiv (v_{\varphi})_{i,j}.
+\]
+When evaluated on basis elements $\ket{j}\bra{i}$, only the $k$-th component of $v_\varphi$ contributes (since the basis is orthonormal).
+
+
+As a result, we obtain
+\[
+\phi^*(\varphi) = \sum_{i,j} \varphi(\ket{j}\bra{i}) \cdot \ket{i}\bra{j}
+= \sum_{i,j} (v_{\varphi})_{i,j} \cdot \ket{i}\bra{j}
+= v_\varphi.
+\]
+\end{comment}
+
+
+
+
+
+
+
+\begin{definition}\label{def:uni_cont}
+  A function \( f : (V, d) \to (W, d') \) between two metric spaces is said to be \emph{uniformly continuous} if for every \( \varepsilon > 0 \) there exists some \( \delta > 0 \) (depending only on \( \varepsilon \)) such that  
+\[
+d(x, y) < \delta \quad \Rightarrow \quad d'(f(x), f(y)) < \varepsilon
+\]
+for all \( x, y \in X \).  
+Any uniformly continuous function is continuous.  
+An important property of uniformly continuous functions is that they map Cauchy sequences into Cauchy sequences \cite{guide2006infinite}. 
+\end{definition}
+
+%\todo[inline,size=\normalsize]{Em principio estas 2 coisas vão sair}
+
+\begin{definition} \label{def:lip_uni_cont}
+  A function \( f : (V, d_V) \to (W, d_W) \) between metric spaces is said to be \emph{Lipschitz continuous} if there exists a real number \( c \geq 0 \) such that for every \( v_1, v_2 \in V \),
+\[
+d_W(f(v_1), f(v_2)) \leq c \cdot d_V(v_1, v_2).
+\]
+The number \( c \) is called a \emph{Lipschitz constant} for \( f \).  
+Clearly, every Lipschitz continuous function is uniformly continuous  \cite{guide2006infinite}.
+\end{definition}
+
+\begin{lemma} \cite[Lemma 7.3.19]{goubault-larrecqNonHausdorffTopologyDomain2013}  \label{lem:completion_unique}
+Let \( A \) be a dense subset of a topological space \( V \), and let  
+\( f: A \to W \) be a continuous map into a metric space \( W \).  
+Then \( f \) has at most one continuous extension \( g: V \to W \), \ie, one such that $f$ and $g$ coincide on $A$.  
+This continuous extension \( g \) exists if \( (V,d_V) \) is a metric space, \( (W,d_W) \) is a complete metric space, and \( f \) is uniformly continuous from \( (A,d_V) \) to \( (W,d_W) \). 
+\end{lemma}
+
+

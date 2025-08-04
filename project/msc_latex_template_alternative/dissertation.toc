@@ -36,72 +36,71 @@
 \contentsline {subsubsection}{Lattice Theory Preliminaries}{50}{section.3.3}%
 \contentsline {subsubsection}{Soundeness and Completeness}{51}{lemma.3.3.5}%
 \contentsline {section}{\numberline {3.4}Coproduct cocompletion}{54}{section.3.4}%
-\contentsline {section}{\numberline {3.5}Discussion: generalizing to quantales}{56}{section.3.5}%
-\contentsline {part}{II\hspace {1em}Applications}{59}{part.2}%
-\contentsline {chapter}{\numberline {4}Probabilistic Programming}{61}{chapter.4}%
-\contentsline {section}{\numberline {4.1}Banach spaces}{62}{section.4.1}%
-\contentsline {section}{\numberline {4.2}The category Ban}{64}{section.4.2}%
-\contentsline {section}{\numberline {4.3}Measure theory}{65}{section.4.3}%
-\contentsline {subsection}{\numberline {4.3.1}What is measure theory?}{65}{subsection.4.3.1}%
-\contentsline {subsection}{\numberline {4.3.2}Measurable spaces and measures}{66}{subsection.4.3.2}%
-\contentsline {subsection}{\numberline {4.3.3}Spaces of Measures}{69}{subsection.4.3.3}%
-\contentsline {section}{\numberline {4.4}Case-study : Random Walk}{70}{section.4.4}%
-\contentsline {chapter}{\numberline {5}Quantum computation}{75}{chapter.5}%
-\contentsline {paragraph}{Quantum computing and the need for quantitative reasoning.}{75}{chapter.5}%
-\contentsline {section}{\numberline {5.1}Hilbert Spaces}{78}{section.5.1}%
-\contentsline {subsection}{\numberline {5.1.1}Inner product}{78}{subsection.5.1.1}%
-\contentsline {subsection}{\numberline {5.1.2}Trace}{79}{subsection.5.1.2}%
-\contentsline {subsection}{\numberline {5.1.3}Important classes of operators}{79}{subsection.5.1.3}%
-\contentsline {subsection}{\numberline {5.1.4}Spectral theorem}{80}{subsection.5.1.4}%
-\contentsline {subsection}{\numberline {5.1.5}Tensor Products and Direct Sums of Hilbert Spaces}{80}{subsection.5.1.5}%
-\contentsline {subsection}{\numberline {5.1.6}Useful norms }{82}{subsection.5.1.6}%
-\contentsline {subsection}{\numberline {5.1.7}Infinite-dimensional Hilbert Spaces}{82}{subsection.5.1.7}%
-\contentsline {section}{\numberline {5.2}Quantum Computing Preliminaries}{83}{section.5.2}%
-\contentsline {subsection}{\numberline {5.2.1}The 2-Dimensional Hilbert Space}{83}{subsection.5.2.1}%
-\contentsline {subsection}{\numberline {5.2.2}Multi-qubit States}{85}{subsection.5.2.2}%
-\contentsline {subsubsection}{Entanglement}{85}{definition.5.2.4}%
-\contentsline {subsection}{\numberline {5.2.3}Unitary operators}{87}{subsection.5.2.3}%
-\contentsline {subsubsection}{Pauli Matrices}{87}{subsection.5.2.3}%
-\contentsline {subsubsection}{Unitary operators}{87}{definition.5.2.6}%
-\contentsline {subsection}{\numberline {5.2.4}Measurements}{89}{subsection.5.2.4}%
-\contentsline {subsection}{\numberline {5.2.5}Density operators}{90}{subsection.5.2.5}%
-\contentsline {subsubsection}{Reduced density operator}{91}{equation.5.2.5}%
-\contentsline {subsection}{\numberline {5.2.6}Quantum Channels}{92}{subsection.5.2.6}%
-\contentsline {subsubsection}{Kraus operator sum representation}{93}{definition.5.2.25}%
-\contentsline {subsubsection}{Non-selective measurements}{94}{definition.5.2.26}%
-\contentsline {subsection}{\numberline {5.2.7}Norms on quantum channels}{94}{subsection.5.2.7}%
-\contentsline {subsection}{\numberline {5.2.8}Quantum circuits}{95}{subsection.5.2.8}%
-\contentsline {subsection}{\numberline {5.2.9}No-cloning theorem}{97}{subsection.5.2.9}%
-\contentsline {section}{\numberline {5.3}Functional Analysis}{97}{section.5.3}%
-\contentsline {section}{\numberline {5.4}\( W^* \)-Algebras}{103}{section.5.4}%
-\contentsline {subsection}{\numberline {5.4.1}\( C^* \)-Algebras}{103}{subsection.5.4.1}%
-\contentsline {subsubsection}{Maps between $C^*$-Algebras}{104}{remark.5.4.2}%
-\contentsline {subsubsection}{Representations of $C^*$-Algebras}{105}{proposition.5.4.6}%
-\contentsline {subsubsection}{Matrices over $C^*$-Algebras}{105}{theorem.5.4.8}%
-\contentsline {subsubsection}{Direct sums of $C^*$-Algebras}{107}{proposition.5.4.13}%
-\contentsline {subsubsection}{Tensor products of $C^*$-Algebras}{108}{definition.5.4.14}%
-\contentsline {subsection}{\numberline {5.4.2}\( W^* \)-Algebras}{108}{subsection.5.4.2}%
-\contentsline {subsubsection}{Basics of \( W^* \)-Algebras}{108}{subsection.5.4.2}%
-\contentsline {subsubsection}{Direct Sums of $W^*$-Algebras}{109}{definition.5.4.23}%
-\contentsline {subsubsection}{Tensor products of $W^*$-Algebras}{110}{proposition.5.4.24}%
-\contentsline {subsubsection}{Distributivity}{113}{proposition.5.4.36}%
-\contentsline {section}{\numberline {5.5}Categories for (first-order) quantum computation}{113}{section.5.5}%
-\contentsline {subsection}{\numberline {5.5.1}Schrödinger's picture}{114}{subsection.5.5.1}%
-\contentsline {subsection}{\numberline {5.5.2}Heisenberg's picture}{118}{subsection.5.5.2}%
-\contentsline {subsubsection}{$\mathsf {Q}$ and $\left (\mathsf {FdW^*_{CPSU}}\right )^{\mathsf {op}}$}{118}{subsection.5.5.2}%
-\contentsline {subsubsection}{$\left (\mathsf {W^*_{CPSU}}\right )^{\mathsf {op}}$ forms a first-oder model}{119}{section*.34}%
-\contentsline {section}{\numberline {5.6}Examples}{124}{section.5.6}%
-\contentsline {subsection}{\numberline {5.6.1}Quantum state discrimination}{125}{subsection.5.6.1}%
-\contentsline {subsection}{\numberline {5.6.2}Quantum teleportation protocol}{129}{subsection.5.6.2}%
-\contentsline {chapter}{\numberline {6}Future work}{139}{chapter.6}%
-\contentsline {part}{III\hspace {1em}Appendices}{153}{part.3}%
-\contentsline {chapter}{\numberline {A}Mathematical backgound}{155}{appendix.A}%
-\contentsline {section}{\numberline {A.1}Equivalence Relations and Quotients in Sets}{155}{section.A.1}%
-\contentsline {section}{\numberline {A.2}Category theory}{156}{section.A.2}%
-\contentsline {subsection}{\numberline {A.2.1}Categories}{156}{subsection.A.2.1}%
-\contentsline {subsection}{\numberline {A.2.2}Products and coproducts}{159}{subsection.A.2.2}%
-\contentsline {subsection}{\numberline {A.2.3}Functors}{164}{subsection.A.2.3}%
-\contentsline {subsection}{\numberline {A.2.4}Natural Tranformations}{166}{subsection.A.2.4}%
-\contentsline {subsection}{\numberline {A.2.5}Equivalence of Categories}{167}{subsection.A.2.5}%
-\contentsline {subsection}{\numberline {A.2.6}Adjoints}{168}{subsection.A.2.6}%
-\contentsline {subsection}{\numberline {A.2.7}Monoidal categories}{169}{subsection.A.2.7}%
+\contentsline {part}{II\hspace {1em}Applications}{57}{part.2}%
+\contentsline {chapter}{\numberline {4}Probabilistic Programming}{59}{chapter.4}%
+\contentsline {section}{\numberline {4.1}Tensor Product in Banach spaces}{60}{section.4.1}%
+\contentsline {section}{\numberline {4.2}The category Ban}{61}{section.4.2}%
+\contentsline {section}{\numberline {4.3}Measure theory}{62}{section.4.3}%
+\contentsline {subsection}{\numberline {4.3.1}What is measure theory?}{62}{subsection.4.3.1}%
+\contentsline {subsection}{\numberline {4.3.2}Measurable spaces and measures}{64}{subsection.4.3.2}%
+\contentsline {subsection}{\numberline {4.3.3}Spaces of Measures}{67}{subsection.4.3.3}%
+\contentsline {section}{\numberline {4.4}Case-study : Random Walk}{67}{section.4.4}%
+\contentsline {chapter}{\numberline {5}Quantum computation}{73}{chapter.5}%
+\contentsline {paragraph}{Quantum computing and the need for quantitative reasoning.}{73}{chapter.5}%
+\contentsline {section}{\numberline {5.1}Hilbert Spaces}{76}{section.5.1}%
+\contentsline {subsection}{\numberline {5.1.1}Inner product}{76}{subsection.5.1.1}%
+\contentsline {subsection}{\numberline {5.1.2}Trace}{77}{subsection.5.1.2}%
+\contentsline {subsection}{\numberline {5.1.3}Important classes of operators}{77}{subsection.5.1.3}%
+\contentsline {subsection}{\numberline {5.1.4}Spectral theorem}{78}{subsection.5.1.4}%
+\contentsline {subsection}{\numberline {5.1.5}Tensor Products and Direct Sums of Hilbert Spaces}{78}{subsection.5.1.5}%
+\contentsline {subsection}{\numberline {5.1.6}Useful norms }{80}{subsection.5.1.6}%
+\contentsline {subsection}{\numberline {5.1.7}Infinite-dimensional Hilbert Spaces}{80}{subsection.5.1.7}%
+\contentsline {section}{\numberline {5.2}Quantum Computing Preliminaries}{81}{section.5.2}%
+\contentsline {subsection}{\numberline {5.2.1}The 2-Dimensional Hilbert Space}{81}{subsection.5.2.1}%
+\contentsline {subsection}{\numberline {5.2.2}Multi-qubit States}{83}{subsection.5.2.2}%
+\contentsline {subsubsection}{Entanglement}{83}{definition.5.2.4}%
+\contentsline {subsection}{\numberline {5.2.3}Unitary operators}{85}{subsection.5.2.3}%
+\contentsline {subsubsection}{Pauli Matrices}{85}{subsection.5.2.3}%
+\contentsline {subsubsection}{Unitary operators}{85}{definition.5.2.6}%
+\contentsline {subsection}{\numberline {5.2.4}Measurements}{87}{subsection.5.2.4}%
+\contentsline {subsection}{\numberline {5.2.5}Density operators}{88}{subsection.5.2.5}%
+\contentsline {subsubsection}{Reduced density operator}{89}{equation.5.2.5}%
+\contentsline {subsection}{\numberline {5.2.6}Quantum Channels}{90}{subsection.5.2.6}%
+\contentsline {subsubsection}{Kraus operator sum representation}{91}{definition.5.2.25}%
+\contentsline {subsubsection}{Non-selective measurements}{92}{definition.5.2.26}%
+\contentsline {subsection}{\numberline {5.2.7}Norms on quantum channels}{92}{subsection.5.2.7}%
+\contentsline {subsection}{\numberline {5.2.8}Quantum circuits}{93}{subsection.5.2.8}%
+\contentsline {subsection}{\numberline {5.2.9}No-cloning theorem}{95}{subsection.5.2.9}%
+\contentsline {section}{\numberline {5.3}\( W^* \)-Algebras}{95}{section.5.3}%
+\contentsline {subsection}{\numberline {5.3.1}\( C^* \)-Algebras}{96}{subsection.5.3.1}%
+\contentsline {subsubsection}{Maps between $C^*$-Algebras}{97}{remark.5.3.2}%
+\contentsline {subsubsection}{Representations of $C^*$-Algebras}{97}{proposition.5.3.6}%
+\contentsline {subsubsection}{Matrices over $C^*$-Algebras}{98}{theorem.5.3.8}%
+\contentsline {subsubsection}{Direct sums of $C^*$-Algebras}{100}{proposition.5.3.13}%
+\contentsline {subsubsection}{Tensor products of $C^*$-Algebras}{101}{definition.5.3.14}%
+\contentsline {subsection}{\numberline {5.3.2}\( W^* \)-Algebras}{101}{subsection.5.3.2}%
+\contentsline {subsubsection}{Basics of \( W^* \)-Algebras}{101}{subsection.5.3.2}%
+\contentsline {subsubsection}{Direct Sums of $W^*$-Algebras}{102}{definition.5.3.23}%
+\contentsline {subsubsection}{Tensor products of $W^*$-Algebras}{103}{proposition.5.3.24}%
+\contentsline {subsubsection}{Distributivity}{106}{proposition.5.3.36}%
+\contentsline {section}{\numberline {5.4}Categories for (first-order) quantum computation}{106}{section.5.4}%
+\contentsline {subsection}{\numberline {5.4.1}Schrödinger's picture}{107}{subsection.5.4.1}%
+\contentsline {subsection}{\numberline {5.4.2}Heisenberg's picture}{111}{subsection.5.4.2}%
+\contentsline {subsubsection}{$\left (\mathsf {W^*_{CPSU}}\right )^{\mathsf {op}}$ forms a first-oder model}{112}{subsection.5.4.2}%
+\contentsline {section}{\numberline {5.5}Examples}{117}{section.5.5}%
+\contentsline {subsection}{\numberline {5.5.1}Quantum state discrimination}{117}{subsection.5.5.1}%
+\contentsline {subsection}{\numberline {5.5.2}Quantum teleportation protocol}{122}{subsection.5.5.2}%
+\contentsline {chapter}{\numberline {6}Future work}{131}{chapter.6}%
+\contentsline {part}{III\hspace {1em}Appendices}{147}{part.3}%
+\contentsline {chapter}{\numberline {A}Mathematical backgound}{149}{appendix.A}%
+\contentsline {section}{\numberline {A.1}Equivalence Relations and Quotients in Sets}{149}{section.A.1}%
+\contentsline {section}{\numberline {A.2}Category theory}{150}{section.A.2}%
+\contentsline {subsection}{\numberline {A.2.1}Categories}{150}{subsection.A.2.1}%
+\contentsline {subsection}{\numberline {A.2.2}Products and coproducts}{153}{subsection.A.2.2}%
+\contentsline {subsection}{\numberline {A.2.3}Functors}{158}{subsection.A.2.3}%
+\contentsline {subsection}{\numberline {A.2.4}Natural Tranformations}{160}{subsection.A.2.4}%
+\contentsline {subsection}{\numberline {A.2.5}Equivalence of Categories}{161}{subsection.A.2.5}%
+\contentsline {subsection}{\numberline {A.2.6}Adjoints}{162}{subsection.A.2.6}%
+\contentsline {subsection}{\numberline {A.2.7}Monoidal categories}{163}{subsection.A.2.7}%
+\contentsline {section}{\numberline {A.3}Banach spaces}{164}{section.A.3}%
+\contentsline {section}{\numberline {A.4}Topology}{165}{section.A.4}%
