@@ -2738,11 +2738,11 @@ Designating $U_3(\theta, \phi, \lambda) \ket{\psi} = a \ket{0} + b \ket{1}$, one
   \hspace{-25pt} & = \cos^2(\alpha/2) \cos^2(\theta/2) - 2 \cos(\beta + \lambda) \cos(\alpha/2) \cos(\theta/2)  \sin(\alpha/2)\sin(\theta/2)  \\
   \hspace{-25pt} & \hspace{10pt} + \sin(\alpha/2)^2 \sin^2(\theta/2) \\
   \hspace{-25pt} & = \cos^2(\alpha/2) \cos^2(\theta/2) + \sin^2(\alpha/2) \sin^2(\theta/2)  - 1/2 \cos(\beta + \lambda) \sin(\alpha)\sin(\theta) \\
-  \hspace{-25pt} & = \cos^2((\theta+\alpha)/2)+(1-\cos(\beta + \lambda))\sin(\alpha)\sin(\theta) -1 \\
+  \hspace{-25pt} & = \cos^2((\theta+\alpha)/2)+ (1/2) (1-\cos(\beta + \lambda))\sin(\alpha)\sin(\theta)  \\
   \hspace{-25pt} a^*b & = \left(\cos(\alpha/2) \cos(\theta/2) - e^{-i (\lambda + \beta)}  \sin(\alpha/2)\sin(\theta/2) \right) \big(e^{i \phi}\cos(\alpha/2)\sin(\theta/2) \\
   \hspace{-25pt} & \hspace{10pt}  + e^{i (\beta + \lambda + \phi)} \sin(\alpha/2) \cos(\theta/2 ) \big) \\
   \hspace{-25pt} & = (1/2) \big( e^{i \phi} \cos^2(\alpha/2) \sin(\theta) + e^{i (\beta + \lambda + \phi)} \sin(\alpha) \cos^2(\theta/2) - e^{-i (\beta + \lambda -\phi)} \sin(\alpha) \sin^2(\theta/2) \\
-  \hspace{-25pt} & \hspace{10pt}  - e^{i \phi} \sin^2(\alpha/2) \cos(\theta/2)  \big) \\
+  \hspace{-25pt} & \hspace{10pt}  - e^{i \phi} \sin^2(\alpha/2) \sin(\theta/2)  \big) \\
   \hspace{-25pt} & = (1/2) \left( e^{i \phi}\cos(\alpha) \sin(\theta) +  \sin(\alpha) \left(e^{i (\beta + \lambda + \phi)} \cos^2(\theta/2) - e^{-i (\beta + \lambda - \phi)} \sin^2(\theta/2)\right)  \right)
 \end{align*}
 Then, we calculate the vector Bloch of $U_3(\theta, \phi, \lambda) \ket{\psi}$,
@@ -2757,21 +2757,23 @@ As a result, we have,
 \begin{align*}
   & \tracenorm{U_3(\theta, 0, 0) \ket{\psi}\bra{\psi} U_3(\theta, 0, 0)^\dag - U_3(\theta + \epsilon, 0, 0) \ket{\psi}\bra{\psi}U_3(\theta+\epsilon, 0, 0)^\dag } \\
   & = \lVert ( \cos(\alpha) (\sin(\theta) - \sin(\theta + \epsilon)) +  \sin(\alpha) \cos{\beta} \left(\cos(\theta) - \cos(\theta + \epsilon) \right) , 0,\\
-  & \hspace{20pt} 2 (\cos^2((\theta+\alpha)/2) - \cos^2((\theta+ \epsilon+\alpha)/2))+\cos(\beta) \sin(\alpha)(\sin(\theta) - \sin(\theta+\epsilon)) )\rVert_2 \\
+  & \hspace{20pt} 2 (\cos^2((\theta+\alpha)/2) - \cos^2((\theta+ \epsilon+\alpha)/2))+\sin(\alpha)(\sin(\theta) - \sin(\theta+\epsilon)) \\
+  & \hspace{20pt} (1-\cos(\beta)))  \rVert_2 \\
   %& \leq \lVert  (\sin(\theta) - \sin(\theta + \epsilon) + \cos(\theta) - \cos(\theta + \epsilon),0, \\
   %&  \hspace{20pt}  2 (\cos^2((\theta+\alpha)/2) - \cos^2((\theta+ \epsilon+\alpha)/2))+(\sin(\theta) - \sin(\theta+\epsilon))) \rVert_2   \\
-  &  \leq \euclideannorm{( \cos(\alpha)\epsilon + \sin(\alpha)\cos(\beta) \epsilon, 0, 2\epsilon + \sin(\alpha)\cos(\beta) \epsilon)} \\
-  & = \sqrt{\epsilon^2(\cos^2(\alpha) + 2\sin^2(\alpha)\cos^2(\beta)+\sin(2\alpha)\cos(\beta) + 2\sin(\alpha)\cos(\beta) + 4 )} \\
-  &\leq \epsilon \sqrt{(1 + \sin^2(\alpha) +\sin(2\alpha) + 2\sin(\alpha) + 4 )} \\
-  & \leq \epsilon \sqrt{(1 + 4 + 4 )} = 3 \epsilon
+  &  \leq \euclideannorm{( \cos(\alpha)\epsilon + \sin(\alpha)\cos(\beta) \epsilon, 0, 2\epsilon + \sin(\alpha)(1-\cos(\beta))\epsilon)} \\
+  & = \sqrt{\epsilon^2\big(\cos^2(\alpha) +\sin(2\alpha)\cos(\beta) +  \sin^2(\alpha)\cos^2(\beta)+ 4 + 4 (\sin(\alpha) (1-\cos(\beta))) } \\
+  & \hspace{20pt} \overline{ + \sin^2(\alpha) (1 - 2\cos(\beta)+ \cos^2(\beta))\big)} \\
+  &= \epsilon \sqrt{ 1 + 4 \sin(\alpha)+4+ 2 \cos^2(\beta) \sin^2(\alpha) \cos(\beta)(\sin(2\alpha)-4\sin(\alpha)-2\sin^2(\alpha))} \\
+  & \leq \epsilon \sqrt{(9+2+6 )} = \sqrt{17}  \epsilon
 \end{align*}
 
 The first inequality arises from both functions $\cos$ and $\sin$ being Lipschitz continuous. Attending to \autoref{theorem:diamond_iso}, it follows that
   \begin{align*}
-    \diamondnorm{R_{y, \theta}- R_{y, \theta + \epsilon} } \leq 3 \epsilon
+    \diamondnorm{R_{y, \theta}- R_{y, \theta + \epsilon} } \leq \sqrt{17} \epsilon
   \end{align*}
 
-Using our metric deductive system, we can easily conclude that $\textbf{CoinToss} =_{3 \epsilon} \textbf{CoinToss}^{\epsilon}$, where $\textbf{CoinToss}^{\epsilon}$ is the the judgement that results from replacing $R_{y, \theta}$ by $R_{y, \theta + \epsilon}$.
+Using our metric deductive system, we can easily conclude that $\textbf{CoinToss} =_{\sqrt{17}  \epsilon} \textbf{CoinToss}^{\epsilon}$, where $\textbf{CoinToss}^{\epsilon}$ is the the judgement that results from replacing $R_{y, \theta}$ by $R_{y, \theta + \epsilon}$.
 
 \end{example}
 
@@ -2849,15 +2851,15 @@ Attending to \autoref{theorem:diamond_iso}, it follows that
 Given the erroneous $R_y$ gate is bounded by $3 \epsilon_2$, we observe that the $R_y$ gate amplifies errors more significantly than the $R_z$ gate for errors of the same magnitude.
 
 
-As a result, considering the $\lambda$-term \textbf{HMeasure} and the erroneous implementation of $U$ described above, denoted $U^{\epsilon_1, \epsilon_2}$, using our deductive metric system, we have $U =_{\sqrt{2}\epsilon_1+ 3\epsilon_2} U^{\epsilon_1, \epsilon_2}$. This equation implies that if $\epsilon_1 = \epsilon_2$, the erroneous $U_3$ gate contributes more than twice as much as the erroneous $U_1$ gate to the upper bound on the total distance between the ideal and erroneous unitary.
+As a result, considering the $\lambda$-term \textbf{HMeasure} and the erroneous implementation of $U$ described above, denoted $U^{\epsilon_1, \epsilon_2}$, using our deductive metric system, we have $U =_{\sqrt{2}\epsilon_1+ \sqrt{17} \epsilon_2} U^{\epsilon_1, \epsilon_2}$. This equation implies that if $\epsilon_1 = \epsilon_2$, the erroneous $U_3$ gate contributes almost thrice  as much as the erroneous $U_1$ gate to the upper bound on the total distance between the ideal and erroneous unitary.
 
-Next, we deduce $\textbf{HMeasure} =_{\sqrt{2}\epsilon_1+ 3\epsilon_2} \textbf{HMeasure}^{\epsilon_1, \epsilon_2}$, where $\textbf{HMeasure}^{\epsilon_1, \epsilon_2}$ is the the judgement that results from replacing $U$ by $U^{\epsilon_1, \epsilon_2}$.
+Next, we deduce $\textbf{HMeasure} =_{\sqrt{2}\epsilon_1+  \sqrt{17}\epsilon_2} \textbf{HMeasure}^{\epsilon_1, \epsilon_2}$, where $\textbf{HMeasure}^{\epsilon_1, \epsilon_2}$ is the the judgement that results from replacing $U$ by $U^{\epsilon_1, \epsilon_2}$.
 Moreover, considering the erroneous implementation of the $R_y$ gate also afecting the \textbf{CoinToss} term, as discussed in the previous example, we deduce that 
-$$\textbf{Discrimination} =_{\sqrt{2}\epsilon_1+6\epsilon_2} \textbf{Discrimination}^{\epsilon_1,\epsilon_2}, $$
+$$\textbf{Discrimination} =_{\sqrt{2}\epsilon_1+2 \sqrt{17}\epsilon_2} \textbf{Discrimination}^{\epsilon_1,\epsilon_2}, $$
 where $\textbf{Discrimination}^{\epsilon_1,\epsilon_2}$ denotes the judgement that results from replacing $\textbf{HMeasure}$ by $\textbf{HMeasure}^{\epsilon_1, \epsilon_2}$ and $\textbf{CoinToss}$ by  $\textbf{CoinToss}^{\epsilon_2}$.
 
 Observe that the distance between the ideal and erroneous quantum state discrimination tends to $0$ as $\epsilon_1$ and $\epsilon_2$ tend to zero, as expected. 
-Additionally, since an erroneous $U_3$ gate affects both \textbf{HMeasure} and \textbf{CoinToss}, we find that when $\epsilon_1$ and $\epsilon_2$ are of equal magnitude, the erroneous $U_3$ contributes more than four times as much as the erroneous $U_1$ to the upper bound on the total distance between the ideal and erroneous unitary.
+Additionally, since an erroneous $U_3$ gate affects both \textbf{HMeasure} and \textbf{CoinToss}, we find that when $\epsilon_1$ and $\epsilon_2$ are of equal magnitude, the erroneous $U_3$ contributes almost six times as much as the erroneous $U_1$ to the upper bound on the total distance between the ideal and erroneous unitary.
 
 
 
