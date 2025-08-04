@@ -1,0 +1,118 @@
+
+Dear Renato
+
+We are glad to inform you that your paper
+
+"On the additive structure of quantalic lambda-calculus"
+
+has been accepted for presentation to BMQL. You will soon receive instructions on how to submit the final version of your paper to the chairs.
+
+Remember that the early bird discount for registration at CONFEST ends on July 26, 2025.
+
+Best regards,
+Giovanni and Florence.
+
+SUBMISSION: 6
+TITLE: On the additive structure of quantalic lambda-calculus
+
+----------------------- REVIEW 1 ---------------------
+
+SUBMISSION: 6
+TITLE: On the additive structure of quantalic lambda-calculus
+AUTHORS: Bruna Salgado and Renato Neves
+
+----------- Overall evaluation -----------
+SCORE: 1 (weak accept)
+----- TEXT:
+Summary
+=======
+
+This contribution builds on previous work by the second author and F. Dahlqvist [7,8] on a quantalic linear lambda-calculus, i.e. one with a notion of "distance" between terms with distances from fixed quantale V. In [7,8] the disjunction type (and an associated "case" operator) was missing from the language. The authors now extend the previous lambda-calculus by disjunction and add suitable V-equations to the existing system of beta- and eta-rules from [7,8]. They give a categorical semantics of the language over V-enriched autonomous categories with *coproducts*, which interpret the disjunction, and argue that the soundness and completeness result of [7,8] generalizes: two V-equations are provable in the V-equational theory of the quantalic linear lambda-calculus with disjunction iff they have the same interpretation in all categorical models. Two examples from probabilistic programming, approximation of predicates and random walks, are discussed using the relation between
+V-equational and categorical semantics.
+
+
+Evaluation
+==========
+
+The paper makes a natural step towards a fully fledged quantalic linear lambda-calculus, and in doing so gives an interesting application of quantitative equational reasoning beyond the usual setting of metric or fuzzy relations valued in real numbers. This makes the paper fit ideally into the scope of BMQL. Concerning the paper itself, everything looks technically solid, but I would have wished for a more self-contained presentation. Currently, the reader is essentially required to look up definitions from [7,8] to fully understand the development. I understand that this is somewhat unavoidable due to the page limit, but a bit more background and intuition would be appreciated. For instance, in Figure 2, can you explain why the distance between case terms should be q\otimes (r\wedge s)?
+
+Due to the very terse presentation my evaluation is a "weak accept", but I think the paper would make a nice contribution to BMQL.
+
+
+Minor
+-----
+
+* l. 99. Do you mean k <= a(x,x)?
+
+* l. 107: Please recall what the "metric quantale" is.
+
+
+----------------------- REVIEW 2 ---------------------
+
+SUBMISSION: 6
+TITLE: On the additive structure of quantalic lambda-calculus
+AUTHORS: Bruna Salgado and Renato Neves
+
+----------- Overall evaluation -----------
+SCORE: 1 (weak accept)
+----- TEXT:
+Summary: The paper start of the works [7,8] on quantitative equations on linear lambda-calculus:
+- linear lambda-terms are equipped with quantitative equations (the equations are indexed by an arbitrary quantale V). Axioms of the forms t=_e u (e in V, t, u are terms), plus closure under application, under lambda-abstraction...
+- The models of these theory are V-Cat enriched star-autonomous category (with additional constraint on tensor, arrow wrt the enrichment)
+- There is a completeness result (under some conditions on V): the provable equation (from axioms + construction rules) are exactly the one that hold in all models.
+
+In this paper, the author extend the setting above to a lambda-calculus with coproducts (or sum types) in the type system, and accordingly a case construct in the terms.
+- The first part of the paper extend the completeness result to sum types. Besides its autonomus structure, the category V-Cat has also cartesian products, which allows to take as models for the quantalic lambda-calculus with some types all models as before, that additionnally have binary coproducts enriched over the cartesian structure of V-Cat.
+- The second part of the paper look at a quantalic lambda-theory designed to represent a probabilistic higher-order language. More precisely, a type real is added, and as well as primitives (m_i:() -> Real)_[i \in I}, and (p_j:Real -> Bool)_{j \in J}, where Bool = () + () is the usual way for building the bool type from a unit type and sum types. The primitives m are designed to be interpreted as measures over reals, and the p as measurable predicates over reals. A canonic model for this probabilistic meaning is the model of Banach Spaces, enriched over the quantale V of metric spaces. The paper illustrates how their quantitative equations allow to express e.g. convergence sequences of probabilistic lambda-terms.
+
+Evaluation: I found the paper very interesting (especially the part of probabilistic programming), and in the scope of the workshop.
+
+************************************************************
+Major Question:
+About Example 10: I have the following problem with the example there (specifically, with the soundness of the axiomatic): let us fix \epsilon >0 (intuitively, \epsilon very small). So I obtain an m such that for every m >= n, p_{q_m} {=_\epsilon} p (I note p for p_{1/2.\sqrt (2)})
+Now, suppose I take r in the open interval (q_n, 1/2\sqrt(2)). I can suppose I have a primitive m_r:() -> real, that I interpret as \dirac{r}.
+If I understand correctly the quantalic lambda-calculus, I should have:
+p_{q_m}(m_r()) =_{e} p(m_r()).
+But semantically, I should have p_{q_m}(m_r()) = "false"=(0,1), and p(m_r()) = "true"=(1,0). Doesn't it contradicts the soundness result ?
+
+Less technically, I have the impression that the convergence induced semantically on predicates should be t (seen as functions Meas(Real) -> [|Bool|]) should be the uniform convergence, while the p_{q_n} -> p only for pointwise convergence.
+
+*****************************************************************
+Remarks:
+* I was slightly confused by the name "quantalic lambda-calculus", because I originally assumed that it means that quantale elements appeared (in some shape) in the lambda-terms themselves.
+* Definition 2: is it true that a lattice with a base is always continuous ?
+* Definition 3: Is is really k <= a(x1,x2) ? Isn't it a(x1,x1) ? Moreover, since we supposed V to be integral, k is the top element, so it should imply k = a(x1,x1) ?
+
+* After the definition 6, it could be useful to give an example of a V-\Lambda theory.
+* Theorem 8: " A V-equation-in-context is a theorem iff (...) " -> I don't think that what is "a theorem" has been previously defined.
+* p 5: "note that if one drops the well-known archimedean rule" -> I think it would be useful to recall it.
+* section 4: it could be useful to say that [|I|] = [0,1].
+* section 4: it could be also useful to say that all Markov kernels Real -> Real are morphisms Meas(Real) -> Meas(Real) (this way, it would give a more agreeable syntax to define morphisms). I conjecture that there are morphisms in  Meas(Real) -> Meas(Real) than aren't kernels: is it the case ?
+* section 4, p7: What does it exactly means that the axiomatic is sound ? I assumed it was that the V-equations hold in the model of Banach space. Is it so ?
+
+
+----------------------- REVIEW 3 ---------------------
+
+SUBMISSION: 6
+TITLE: On the additive structure of quantalic lambda-calculus
+AUTHORS: Bruna Salgado and Renato Neves
+
+----------- Overall evaluation -----------
+SCORE: 2 (accept)
+----- TEXT:
+SUMMARY
+
+The manuscript extends previous work on a quantalic generalisation of linear lambda-calculi by accommodationg additive disjunction, interpreted via coproducts. Motivated by challenges in reasoning about higher-order programs, the authors develop a sound and complete extension to the quantalic equational system, along the lines of recent results by the second author with Dahlqvist [7,8]. The proposed framework supports reasoning in enriched co-Cartesian categories and remains approximately complete, even without the problematic Archimedean rule. Applications include a case study about probabilistic programming in higher-order settings.
+
+EVALUATION
+
+From a purely technical perspective, what the authors do is not particularly difficult. However, the fact that additive disjunction can be captured very smoothly is worth noting and is a witness to the framework's robustness. I would advise the authors, during their presentation, to focus on the following points, which are only sketched out in the manuscript:
++ First of, clarifying why managing co-products is traditionally difficult in a metric framework.
++ Secondly, clarifying why analysing the case study would be impossible without an fully fledged treatment of co-products. (E.g., couldn't we simply work with a domain for Booleans? Why?)
+
+MINOR POINTS
+
+Line 56: Typing contexts seem to be *ordered* sequences of variable declarations. Why is this necessary/desireable?
+Line 136: "In case the theory is symmetric, then we change" -> "In case the theory is symmetric, we change"
+Line 195: Please recall what $\mathbb{I}$ is.
+Line 226: What's $n$?
