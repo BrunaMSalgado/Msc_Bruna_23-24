@@ -2155,7 +2155,7 @@ The inequality in Proposition \ref{prop:Q_dist} follows from the linearity of th
 
 \subsection{Heisenberg's picture} \label{subsec:w*_cats}
 
-In the previous quantum model, we considered the Schr\"odinger picture---that is, morphisms between quantum states (\ie, density operators). In~\cite{choSemanticsQuantumProgramming2016}, the author presents a model in the Heisenberg picture, where maps are between observables (\ie, self-adjoint operators), which can be seen as an infinite-dimensional extension of Selinger’s model. This model is given by the category $\WstarCPSUop$, the opposite of the category $\WstarCPSU$ whose objects are W$^*$-algebras and morphisms are completely positive subunital maps between them. It is shown that Selinger’s category $\catQ$ is equivalent (up to categorical equivalence) to the finite-dimensional subcategory of $\WstarCPSUop$,$\FdWstarCPSUop$ \cite{choSemanticsQuantumProgramming2016}. Now, we will prove that $\WstarCPSUop$ is a model of our lambda calculus.
+In the previous quantum model, we considered Schr\"odinger's picture---that is, morphisms between quantum states (\ie, density operators). In~\cite{choSemanticsQuantumProgramming2016}, the author presents a model in the Heisenberg picture, where maps are between observables (\ie, self-adjoint operators), which can be seen as an infinite-dimensional extension of Selinger’s model. This model is given by the category $\WstarCPSUop$, the opposite of the category $\WstarCPSU$ whose objects are W$^*$-algebras and morphisms are completely positive subunital maps between them. It is shown that Selinger’s category $\catQ$ is equivalent (up to categorical equivalence) to the finite-dimensional subcategory of $\WstarCPSUop$, $\FdWstarCPSUop$ \cite{choSemanticsQuantumProgramming2016}. Now, we will prove that $\WstarCPSUop$ is a model of our lambda calculus.
 
 
 
@@ -2746,13 +2746,13 @@ Designating $U_3(\theta, \phi, \lambda) \ket{\psi} = a \ket{0} + b \ket{1}$, one
   \hspace{-25pt} & = (1/2) \left( e^{i \phi}\cos(\alpha) \sin(\theta) +  \sin(\alpha) \left(e^{i (\beta + \lambda + \phi)} \cos^2(\theta/2) - e^{-i (\beta + \lambda - \phi)} \sin^2(\theta/2)\right)  \right)
 \end{align*}
 Then, we calculate the vector Bloch of $U_3(\theta, \phi, \lambda) \ket{\psi}$,
-\begin{align*}
-  &x = 2 \text{Im} \left( a^{*}b \right) =   \cos(\phi) \cos(\alpha) \sin(\theta) +  \sin(\alpha) \big(\cos{(\beta + \lambda + \phi)} \cos^2(\theta/2) \\
-  & \hspace{10pt} - \cos{(\beta + \lambda - \phi)} \sin^2(\theta/2)\big)  \\
-  &y = 2 \text{Re} \left( a^{*}b \right) = \sin(\phi) \cos(\alpha) \sin(\theta) +  \sin(\alpha) \big(\sin{(\beta + \lambda + \phi)} \cos^2(\theta/2) \\
-  & \hspace{10pt} + \sin{(\beta + \lambda - \phi)} \sin^2(\theta/2)\big) \\
-  & z = 2 aa^* -1 = 2 \cos^2((\theta+\alpha)/2)+(1-\cos(\beta + \lambda))\sin(\alpha)\sin(\theta) -1
-\end{align*}
+\begin{align} \label{eq:coord_u3}
+  &x = 2 \text{Im} \left( a^{*}b \right) =   \cos(\phi) \cos(\alpha) \sin(\theta) +  \sin(\alpha) \big(\cos{(\beta + \lambda + \phi)} \cos^2(\theta/2) \notag\\
+  & \hspace{10pt} - \cos{(\beta + \lambda - \phi)} \sin^2(\theta/2)\big) \notag \\
+  &y = 2 \text{Re} \left( a^{*}b \right) = \sin(\phi) \cos(\alpha) \sin(\theta) +  \sin(\alpha) \big(\sin{(\beta + \lambda + \phi)} \cos^2(\theta/2)  \\
+  & \hspace{10pt} + \sin{(\beta + \lambda - \phi)} \sin^2(\theta/2)\big) \notag \\
+  & z = 2 aa^* -1 = 2 \cos^2((\theta+\alpha)/2)+(1-\cos(\beta + \lambda))\sin(\alpha)\sin(\theta) -1 \notag
+\end{align}
 As a result, we have,
 \begin{align*}
   & \tracenorm{U_3(\theta, 0, 0) \ket{\psi}\bra{\psi} U_3(\theta, 0, 0)^\dag - U_3(\theta + \epsilon, 0, 0) \ket{\psi}\bra{\psi}U_3(\theta+\epsilon, 0, 0)^\dag } \\
@@ -2962,7 +2962,7 @@ teleportation procedure in $\lambda$-calculus as follows:
 
     Here, we consider imperfect implementations of the gates $U_1$ and $U_3$, given by $ U_1(\lambda + \epsilon_1) $ and $ U_3(\theta, \phi + \epsilon_2, \lambda + \epsilon_3)$, respectively. 
     Recall from the previous example that we established the upper bound $\diamondnorm{U_1(\lambda)- U_1(\lambda + \epsilon_1) } \leq \sqrt{2} \epsilon_1$.
-     The Hadamard gate, $H$, is the composition $U_3(\pi/2, 0, 0)\cdot U_1(\pi)$. We calculate,
+     The Hadamard gate, $H$, is the composition $U_3(\pi/2, 0, 0)\cdot U_1(\pi)$. Recall \autoref{eq:coord_u3}, we calculate,
     \begin{align*}
       &\tracenorm{U_3(\pi/2, 0, 0) \ket{\psi}\bra{\psi}U_3(\pi/2, 0, 0)^\dag - U_3(\pi/2, \epsilon_2, \epsilon_3)  \ket{\psi}\bra{\psi}U_3(\pi/2, \epsilon_2, \epsilon_3)^\dag} \\
       & = \lVert (\cos(\alpha)( 1-\cos{\epsilon_2}) + \sin(\alpha)( 1/2(\cos(\beta + \epsilon_2 + \epsilon_3)-\cos(\beta - \epsilon_2 + \epsilon_3))), \\
@@ -2986,10 +2986,10 @@ teleportation procedure in $\lambda$-calculus as follows:
     \end{align}
  
 
-    The gate $X$ can be implemented as $U_3(\pi, 0, \pi)$. We compute,
+    The gate $X$ can be implemented as $U_3(\pi, 0, \pi)$. Given \autoref{eq:coord_u3}, we compute,
     \begin{align*}
       &\tracenorm{U_3(\pi, 0 , \pi) \ket{\psi}\bra{\psi}U_3(\pi,0,\pi)^\dag - U_3(\pi,\epsilon_2,\pi+\epsilon_3)  \ket{\psi}\bra{\psi}U_3(\pi,\epsilon_2,\pi+\epsilon_3)^\dag}  \\
-      & =\euclideannorm{( \sin(\alpha) (\cos(\beta)+\cos(\beta + \epsilon_3-\epsilon_2)), \sin(\alpha) (\sin(\beta + \epsilon_3-\epsilon_2)-\sin(\beta)),0 )} \\
+      & =\euclideannorm{( \sin(\alpha) (\cos(\beta + \epsilon_3-\epsilon_2)-\cos(\beta)), \sin(\alpha) (\sin(\beta)-\sin(\beta + \epsilon_3-\epsilon_2)),0 )} \\
       &  \leq \euclideannorm{(|\epsilon_3-\epsilon_2|, |\epsilon_3-\epsilon_2|,0 )} \\
       & = \sqrt{2} |\epsilon_3-\epsilon_2|
     \end{align*}
@@ -3002,7 +3002,7 @@ teleportation procedure in $\lambda$-calculus as follows:
         e^{i\phi}\sin(\theta/2) & e^{i(\phi+\lambda)}\cos(\theta/2)
     \end{pmatrix}.
 \end{align*}
-Thus, when $\epsilon_2 = \epsilon_3 = \epsilon$, the unitaries $U_3(\pi, 0, \pi)$ and $U_3(\pi, \epsilon_2, \pi + \epsilon_3)$ differ only by a global phase factor $e^{i\epsilon}$. Therefore, it is reasonable for the distance between $X$ and its erroneous version to tend to $0$ as $|\epsilon_3 - \epsilon_2|$ tends to $0$.
+Thus, when $\epsilon_2 = \epsilon_3 = \epsilon$, the unitaries $U_3(\pi, 0, \pi)$ and $U_3(\pi, \epsilon_2, \pi + \epsilon_3)$ differ only by a global phase factor $e^{i\epsilon}$. Therefore, it is reasonable for the distance between $X$ and its erroneous version to tend to $0$ as $|\epsilon_3 - \epsilon_2|$ converges to $0$.
 
     Considering \autoref{theorem:diamond_iso}, it holds that
     \begin{align*}
@@ -3026,7 +3026,7 @@ Thus, when $\epsilon_2 = \epsilon_3 = \epsilon$, the unitaries $U_3(\pi, 0, \pi)
     \end{align}
 
 
-    We observe, as expected and in light of our previous remark regarding the upper bound on the distance between $X$ and its erroneous version, that when both the error of the $U_1$ gate, $\epsilon_1$, and the absolute difference between the errors of the $U_1$ gate, $|\epsilon_3 - \epsilon_2|$, tend to $0$, the distance between the \textbf{Correction} Bloch and $\textbf{Correction}^{\epsilon_1, \epsilon_2, \epsilon_3}$ also tends to $0$. 
+    We observe, as expected and in light of our previous remark regarding the upper bound on the distance between $X$ and its erroneous version, that when both the error of the $U_1$ gate, $\epsilon_1$, and the absolute difference between the errors of the $U_1$ gate, $|\epsilon_3 - \epsilon_2|$, tend to $0$, the distance between  \textbf{Correction}  and $\textbf{Correction}^{\epsilon_1, \epsilon_2, \epsilon_3}$ also tends to $0$. 
     Moreover, note that when $\epsilon_1 = |\epsilon_2 + \epsilon_3|$, both gates contribute equally to the upper bound on the distance between \textbf{Correction} and its erroneous version.
 
     \vspace{5pt}
@@ -3105,19 +3105,19 @@ Applying these Kraus operators an arbitray density operator $\rho=|\alpha|^{2} \
 \end{align*}
 
 Once again, we will add identity gates to the ideal program to simplify the calculations, as a result it is necessary to compute the trace norm of the diference between the identity applied to the density operator $\rho = \ket{\psi} \bra{\psi}$ and the amplitude damping channel applied to $\rho$.
-First, attending to the definition of trace norm for matrices and \autoref{eq:apply_f_diag}, we calculate, 
+Attending to the definition of trace norm for matrices and \autoref{eq:apply_f_diag}, we calculate, 
 \begin{align*}
   & \tracenorm{ \id(\rho) - A_{\gamma}(\rho)} \\
   & =    \Big\lVert  |\alpha|^{2} \ket{0} \ket{0} + \alpha \overline{\beta} \ket{0} \ket{1} + \overline{\alpha} \beta \ket{1} \ket{0} + |\beta|^{2} \ket{1} \ket{1}  - \big((|\alpha|^{2} + \gamma |\beta|^{2}) \ket{0}\bra{0} \\ 
   & \hspace{10pt}  +  \sqrt{1-\gamma} \hspace{1pt} \alpha \overline{\beta} \ket{0}\bra{1} + \sqrt{1-\gamma} \hspace{1pt} \overline{\alpha} \beta \ket{1}\bra{0} + (1-\gamma) |\beta|^{2} \ket{1}\bra{1}\big) \Big\rVert_1 \\
-   & = \tracenorm{\gamma |\beta|^{2} \ket{0} \bra{0} + (1-\sqrt{1-\gamma}) (\alpha \overline{\beta} \ket{0} \bra{1} + \overline{\alpha} \beta \ket{1} \bra{0}) - \gamma |\beta|^{2} \ket{1} \bra{1}} \\
-   & = \tr \left( \sqrt{\left( \gamma |\beta|^{2} \ket{0} \bra{0} + (1-\sqrt{1-\gamma}) (\alpha \overline{\beta} \ket{0} \bra{1} + \overline{\alpha} \beta \ket{1} \bra{0}) - \gamma |\beta|^{2} \ket{1} \bra{1}  \right)^2}\right) \\
+   & = \tracenorm{ \gamma |\beta|^{2} \ket{1} \bra{1} + (1-\sqrt{1-\gamma}) (\alpha \overline{\beta} \ket{0} \bra{1} + \overline{\alpha} \beta \ket{1} \bra{0}) - \gamma |\beta|^{2} \ket{0} \bra{0}} \\
+   & = \tr \left( \sqrt{\left( \gamma |\beta|^{2} \ket{1} \bra{1} + (1-\sqrt{1-\gamma}) (\alpha \overline{\beta} \ket{0} \bra{1} + \overline{\alpha} \beta \ket{1} \bra{0}) - \gamma |\beta|^{2} \ket{0} \bra{0}  \right)^2}\right) \\
    & = \tr \left( \sqrt{\left( (1-\sqrt{1-\gamma})^{2} |\alpha|^{2}|\beta|^{2} + \gamma^{2} |\beta|^{4} \right) (\ket{0} \bra{0} + \ket{1} \bra{1} ) } \right) \\
    & = 2 \cdot \sqrt{  (1-\sqrt{1-\gamma})^{2} |\alpha|^{2}|\beta|^{2} + \gamma^{2} |\beta|^{4}} \\
    & \leq 2 \gamma
 \end{align*}
 This final step follows because the expression attains its maximum when 
-$|\alpha|=0 $ and $|\beta|=0.$
+ $|\beta|=1$.
 
 Attending to Theorem \ref{theorem:diamond_cptp_id}, it holds that
 \begin{align*}
@@ -3207,11 +3207,11 @@ Considering $X$ as $U$, we compute
   & \hspace{10pt} \overline{+(|\beta|^2 -|\alpha|^2 )\ket{1}\bra{1}   \big)^2\Big)}\\
   &  = (1/2) \tr \left( \sqrt{\left( ((|\alpha|^2 -|\beta|^2 )^2 + (\alpha \overline{\beta}-\overline{\alpha} \beta)(\overline{\alpha} \beta-\alpha \overline{\beta}))  (\ket{0}\bra{0} + \ket{1}\bra{1})  \right)}\right)  \\
   &  = (1/2) \tr \left( \sqrt{\left( ((|\alpha|^2 -|\beta|^2 )^2 + 2|\alpha|^2|\beta|^2 - (\overline{\alpha})^{2}\beta^2 -  (\overline{\beta})^{2}\alpha^2 )  (\ket{0}\bra{0} + \ket{1}\bra{1})  \right)}\right) \\
-  &  = (1/2) \tr \left( \sqrt{\left( (|\alpha|^4+ |\beta|^4 - 2 \text{Re}(\alpha \beta) )  (\ket{0}\bra{0} + \ket{1}\bra{1})  \right)}\right) \\
-  & =  \sqrt{|\alpha|^4+ |\beta|^4 - 2 \text{Re}(\alpha \beta)} \\
+  &  = (1/2) \tr \left( \sqrt{\left( (|\alpha|^4+ |\beta|^4 - 2 \text{Re}((\alpha\overline{\beta})^2 ) )  (\ket{0}\bra{0} + \ket{1}\bra{1})  \right)}\right) \\
+  & =  \sqrt{|\alpha|^4+ |\beta|^4 - 2 \text{Re}\left((\alpha\overline{\beta})^2 \right)} \\
   & \leq 1
 \end{align*}
-This last step holds because the expression is maximized when the imaginary part of $\alpha$ or $\beta$ is $1$.
+This last step holds because the expression is maximized when either $|\alpha|$ or $|\beta|$ are equal to one.
 
 Considering Theorem \ref{theorem:diamond_cptp_id}, it holds that
 \begin{align*}
