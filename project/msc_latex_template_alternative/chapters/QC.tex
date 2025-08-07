@@ -429,6 +429,8 @@ The notation $(-)^{\oplus n}$ will be used to denote the direct sum of a vector 
 
 
 
+
+
 \begin{definition} \label{def:tensor_prod_fin_hilb}
 Consider two finite dimensinal Hilbert spaces $\HilbH$ and $\HilbK$ with respective basis $v=(\alpha_1, \ldots , \alpha_n)$ and $w=(\beta_1, \ldots , \alpha_m)$.  Then $\HilbH \otimes \HilbK$ is an $mn$ dimensional vector space and $v \otimes w$ corresponds to the vector
 \[
@@ -851,7 +853,7 @@ A state that is a probabilistic mixture of pure states is designated a \emph{mix
 
 
 \begin{definition}
-  In \autoref{subsec:hilb2D} it was shown how to determine the cartesian coordenates of a pure state in the Bloch sphere from the state vector. For an arbitrary $2 \times 2$ density matrix, the following holds
+  In \Cref{subsec:hilb2D} it was shown how to determine the cartesian coordenates of a pure state in the Bloch sphere from the state vector. For an arbitrary $2 \times 2$ density matrix, the following holds
 \begin{equation} \label{eq:bloch_vector_0}
   \rho = \frac{1}{2}(\id + r_{x}\sigma_{x} + r_{y}\sigma_{y} + r_{z}\sigma_{z}),
 \end{equation}
@@ -960,7 +962,12 @@ In this perspective, we focus on quantum states, represented by density operator
 
 
 \begin{definition} \label{def:positive_superoperator}
-  A super-operator $\Phi: \TraceOp{\HilbH} \to \TraceOp{\HilbK} $ is called \emph{positive} if it sends positive operators to positive operators, \textit{i.e.} $A \geq 0 \Rightarrow{} Q A \geq 0$.
+  A super-operator $\Phi: \TraceOp{\HilbH} \to \TraceOp{\HilbK} $ is called \emph{positive} if it sends positive operators to positive operators, \textit{i.e.} $A \geq 0 \Rightarrow{} \Phi A \geq 0$.
+\end{definition}
+
+
+\begin{definition}
+  A superoperator $ \Phi : \mathcal{T}(\HilbH_1) \to \mathcal{T}(\HilbH_2)$ is \emph{hermitian-preserving} if it sends hermitian operators to hermitian operators, \textit{i.e.} $A = A^\dag \Rightarrow{} (\Phi(A))^\dag = \Phi(A)$.
 \end{definition}
 
 \begin{definition}
@@ -977,9 +984,10 @@ In this perspective, we focus on quantum states, represented by density operator
 \end{definition}
 
 \begin{definition} \label{def:completely_positive_superoperator}
-  A linear mapping $ \Phi : \mathcal{T}(\HilbH_1) \to \mathcal{T}(\HilbH_2)$ is \emph{completely positive} if the mapping 
+  A superoperator $ \Phi : \mathcal{T}(\HilbH_1) \to \mathcal{T}(\HilbH_2)$ is \emph{completely positive} if the mapping 
 $\Phi \otimes \id_{\mathcal{T}(\HilbK)}$ on $\mathcal{T}(\mathcal{H}_1 \otimes \HilbK) \to \mathcal{T}(\HilbH_2 \otimes \HilbK) $ is positive for any Hilbert space $\HilbK$.
 \end{definition}
+
 
 \begin{definition} \label{def:trace_preserving_superoperator}
   A super-operator $\Phi$ is called \emph{trace-preserving} (resp. \emph{trace-nonincreasing}) if $\text{Tr} \hspace{2pt} (\Phi A)= \text{Tr} (A) $ (resp. ($\text{Tr} \hspace{2pt} (\Phi A)\leq \text{Tr} (A)$)).
@@ -989,6 +997,8 @@ Since density matrices are positive, any physically allowed transformation must 
 
 
 It is sometimes convenient to relax the trace-preserving condition to a trace-non-increasing condition, resulting in what is known as a \emph{quantum operation}. This accounts for phenomena such as \emph{qubit leakage} (the unintended loss of quantum information from computational basis states, $\ket{0}$ and $\ket{1}$, into higher-energy non-computational states, e.g., $\ket{2}$, $\ket{3}$, breaking the idealized two-level qubit assumption) and operations such as \emph{postselection} (a technique in quantum algorithms where operations are conditioned on measurement outcomes, often leading to non-trace-preserving maps) \cite{Yu_trace_non_inc}.
+
+
 
 
 
@@ -1026,8 +1036,24 @@ Considering that initially both systems are completely decoupled, the initial st
 where the set of operators $\{\text{K}_{\mu i}\}$ is designated \emph{Kraus operators} and $\text{K}_{\mu i} = \sqrt{p_{i}} \bra{\mu} U \ket{i}$. Note that $\{\ket{\mu}\}$ and $\{\ket{i}\}$, act only in the state space of $E$. 
 
 \begin{definition}
-  The equation $ \rho_{S}' = \sum_{\mu i} \text{K}_{\mu i} \rho_{S} \text{K}_{\mu i}^{\dag} $ is called an \emph{\acrfull{osr}}. An OSR can be thought of as a quantum channel that maps $\rho_{S}$ to $\sum_{\mu i} \text{K}_{\mu i} \rho_{S} \text{K}_{\mu i}^{\dag}$, given this map is CPTP \cite{lidar2019lecture, watrous2018theory}. 
+  The equation $ \rho_{S}' = \sum_{\mu i} \text{K}_{\mu i} \rho_{S} \text{K}_{\mu i}^{\dag} $ is called an \emph{\acrfull{osr}}. An OSR can be thought of as a quantum channel that maps $\rho_{S}$ to $\sum_{\mu i} \text{K}_{\mu i} \rho_{S} \text{K}_{\mu i}^{\dag}$, given this map is CPTP [Section V-VI,Chapter 8.2.3] \cite{lidar2019lecture,nielsen2010quantum}. 
 \end{definition}
+
+
+In the definition above, the condition $\sum_{\mu} K_{\mu} K_{\mu}^{\dag} = I$ is implicit \cite{lidar2019lecture,nielsen2010quantum}. However, following the convention in \cite{watrous2018theory}, we will refer to any operator $\Phi: \BoundOp{H} \to \BoundOp{K}$ expressible in the form  
+\[
+\Phi(A) = \sum_i K_i A K_i^\dag,  
+\]  
+where $K_i \in \BoundOp{H,K}$, as a \emph{Kraus representation}---regardless of whether the Kraus operators $\{K_i\}$ satisfy the normalization condition. The following property will be useful in this context.
+\begin{theorem} \cite[Theorem 2.22 ]{watrous2018theory}
+  Let $\Phi:\TraceOp{H,K}$ be a nonzero superoperator. The following statements are equivalent:
+  \begin{enumerate}
+    \item  $\Phi$ is completely positive.
+    \item  $\Phi$ admits a Kraus representation.
+  \end{enumerate}
+\end{theorem}
+
+
 
 
 
@@ -1040,10 +1066,16 @@ In the previously presented formalism to represent all the possible outcomes of 
 \begin{definition}
 A \emph{non-selective measurement} is a quantum measurement in which the post-measurement state of the system is then given by the weighted sum over all possible outcomes:
 \[
-\rho = \sum_m p(m) \rho_m = \sum_m M_m \rho M_m^{\dag}.
+\rho = \sum_m p_m \rho_m = \sum_m M_m \rho M_m^{\dag}.
 \]
 This last equality corresponds to an Kraus operator sum representation, where the set of Kraus operators is $\{M_{m}\}$.
 \end{definition}
+
+In the case of measurements in the computational basis, these correspond to what are known as \emph{quantum-to-classical} channels, i.e., channels $\Phi: \mathcal{B}(\mathcal{H}) \to \mathcal{B}(\mathcal{H})$ satisfying $\Phi = \Delta   \Phi$, where $\Delta$ is the completely dephasing channel defined by
+\[
+    \Delta(\rho) = \sum_i (\bra{i} \rho \ket{i})  \ket{i}\bra{i},
+\]
+with $\{\ket{i}\}$ being an orthonormal basis for $\mathcal{H}$ \cite[Proposition 2.36]{watrous2018theory}.
 
 \subsection{Norms on quantum channels}
 \begin{definition} \label{def:trace_norm_superoperator}
@@ -1053,6 +1085,8 @@ This last equality corresponds to an Kraus operator sum representation, where th
   \end{equation*}
 \end{definition}
 where $A \in \TraceOp{\HilbH}$.
+
+
 
 %\begin{theorem} \label{thm:Russo–Dye} \cite[Theorem 3.39]{watrous2018theory}
   %Let $Q: \mathbb{C}^{n \times n} \rightarrow \mathbb{C}^{m \times m}$ be a positive super-operator and $u \in \mathbb{C}^{n}$. It holds that 
@@ -1091,7 +1125,7 @@ Unfortunately, this norm is not stable under tensoring , given that the inequati
 %consequence, composition of programs is valid.
 
 
-Since the diamond norm is generally difficult to compute, we will rely on the following properties:
+The following properties will be usefull in \Cref{subsec:shodinger}.
 
 
 \begin{theorem} \label{thm:russo_dye}
@@ -1101,8 +1135,16 @@ Let \(\Phi \in \mathcal{T}(\HilbH) \to \mathcal{T}(\HilbK)\) be a positive map. 
 \]
 \end{theorem}
 
+\begin{theorem} \cite[Theorem 3.46]{watrous2018theory} \label{thm_diamond_otimes_id}
+  Let \(\Phi : \mathcal{T}(\HilbH) \to \mathcal{T}(\HilbK)\) be a map. Then
+\[
+\tracenorm{\Phi \otimes \id_{\mathcal{T}(\HilbL)}} \leq \diamondnorm{\Phi},
+\]
+with equality holding under the assumption that $\dim(\HilbH) \geq \dim(\HilbL)$.
+\end{theorem}
+
 \begin{proposition} \cite[Proposition 3.48]{watrous2018theory} \label{prop:diamond_submult}
-  For all maps \(\Phi \in \mathcal{T}(\HilbH) \to \mathcal{T}(\HilbK)\) and \(\Psi \in \mathcal{T}(\HilbK) \to \mathcal{T}(\HilbL)\), it holds that
+  For all maps \(\Phi : \mathcal{T}(\HilbH) \to \mathcal{T}(\HilbK)\) and \(\Psi \in \mathcal{T}(\HilbK) \to \mathcal{T}(\HilbL)\), it holds that
   \begin{align*}
     \diamondnorm{\Psi \Phi} \leq  \diamondnorm{\Psi} \diamondnorm{\Phi}. 
   \end{align*}
@@ -1114,6 +1156,17 @@ Let \(\Phi \in \mathcal{T}(\HilbH) \to \mathcal{T}(\HilbK)\) be a positive map. 
 \diamondnorm{\Phi \otimes \Psi} = \diamondnorm{\Phi}\diamondnorm{\Phi}
 \]
 \end{theorem}
+
+
+
+\begin{theorem} \cite[Theorem 3.51]{watrous2018theory}
+  Let $\Phi:  \mathcal{T}(\HilbH) \to \mathcal{T}(\HilbK)$ be a Hermitian-preserving map. Then it holds that
+\[
+\diamondnorm{\Phi} = \max \tracenorm{(\Phi \otimes \id)(vv^*) \, \mid \, \euclideannorm{v} =1 , v\in \mathcal{T}(\HilbH) }.
+\]
+\end{theorem}
+
+Moreover, since the diamond norm is generally difficult to compute, we will rely on the following properties:
 
 \begin{theorem} \cite[Theorem 3.55]{watrous2018theory} \label{theorem:diamond_iso}
   Let  $ n \leq m$, let $V_0,V_1: \TraceOp{\HilbH,\HilbK}$ be isometries, and define CPTP operators $\Phi_0,\Phi_1:\TraceOp{\HilbH} \to \TraceOp{\HilbK}$ as
@@ -1523,7 +1576,7 @@ with operations defined coordinatewise and norm given by
 \quad a \in \mathscr{A}_1 \odot \mathscr{A}_2,
 \]
 where $\pi_1$ and $\pi_2$ run over all  representations of $\mathscr{A}_1$ and $\mathscr{A}_2$, respectively. The subscript $\min$  will be ommited unless ambiguity arises.
-The completion $A_1 \widehat{\otimes} A_2$ is called the \emph{injective $C^*$-tensor product} of $A_1$ and $A_2$. The injective  $C^*$-norm (respectively, $C^*$-tensor product) is also referred to as the \emph{spatial} (or \emph{spatial}) $C^*$-norm (respectively, $C^*$-tensor product).
+The completion \gls{min_tensor} is called the \emph{injective $C^*$-tensor product} of $A_1$ and $A_2$. The injective  $C^*$-norm (respectively, $C^*$-tensor product) is also referred to as the \emph{spatial} (or \emph{spatial}) $C^*$-norm (respectively, $C^*$-tensor product).
 \end{definition}
 
 \begin{proposition} \cite[Proposition 1.22.7]{sakaiCAlgebrasWAlgebras1998} \label{prop:sakai_tensor_min}
@@ -1656,7 +1709,7 @@ From now on, we will refer to a bilinear map that is multiplicative, involution 
 
     \item The product functionals \( \gamma(\sigma, \tau) \) of normal positive functionals \( \sigma \) and \( \tau \) form a \emph{faithful collection} of normal positive functionals on \( \mathscr{T} \) (\ie, \( t \in \mathscr{T}_+ \) is zero iff \( \gamma(\sigma, \tau)(t) = 0 \) for all such functionals).
 
-We will usually designate this bilinear map by $\overline{\otimes}$.
+%We will usually designate this bilinear map by $\overline{\otimes}$.
 \end{enumerate}
 \end{definition}
 
@@ -1705,7 +1758,7 @@ $
 \end{proposition}
 
 Since the tensor product is unique up to unique normal miu-isomorphism, we may fix a choice and denote it by 
-$\overline{\otimes} \colon \mathscr{M} \times \mathscr{N} \to \mathscr{M} \mathbin{\overline{\otimes}} \mathscr{N}.$
+$\overline{\otimes} \colon \mathscr{M} \times \gls{w*_tensor}.$
 
 The results that follow will be useful for demonstrating that $\WstarCPSU$ is a first-order model in \Cref{subsec:w*_cats}.
 
@@ -2351,7 +2404,7 @@ where \( i \) and \( j \) range over an orthonormal basis of \( \mathcal{H} \).
 
 \vspace{10pt}
 
-\subsubsection{$\WstarCPSUop$ forms a first-oder model}
+\%subsubsection{$\WstarCPSUop$ forms a first-oder model}
 
 
 
@@ -2388,7 +2441,7 @@ where the supremum ranges over all $W^*$-algebras \( \mathscr{M} \). $\Phi$ is s
 
 \todo[inline,size=\normalsize]{Eu sei que a motivação não é a melhor mas, arranjar exemplos é deficil} 
 
-Our motivation for the use of this norm instead of the completely bounded norm, beyond the fact that it satisfies the requirements for making \( \WstarCPSUop \) a model, has to do with the fact that it significantly simplifies calculations, since we are not handling two different tensor products, \( \widecheck{\otimes} \) and \( \overline{\otimes} \), simultaneously. Moreover, if it turns out that the completely bounded norm satisfies \( \cbnorm{\id \overline{\otimes} \Phi} \) for a normal map \( \Phi \) between \( W^* \)-algebras, then the remaining results required for the completely bounded norm to give rise to a model of the metric lambda calculus follow from the inequality
+Our motivation for the use of this norm instead of the completely bounded norm, beyond the fact that it satisfies the requirements for making \( \WstarCPSUop \) a model, has to do with the fact that it significantly simplifies calculations, since we are not handling two different tensor products, \( \widecheck{\otimes} \) and \( \overline{\otimes} \), simultaneously. %Moreover, if it turns out that the completely bounded norm satisfies \( \cbnorm{\id \overline{\otimes} \Phi} \) for a normal map \( \Phi \) between \( W^* \)-algebras, then the remaining results required for the completely bounded norm to give rise to a model of the metric lambda calculus follow from the inequality
 $
 \cbnorm{\Phi} \leq \wcbnorm{\Phi}
 $
@@ -2663,6 +2716,8 @@ Note that $\|\cdot\|_{\text{cb}}$ is a norm on the space of completely bounded m
 
 
 \section{Examples}
+
+\todo[inline,size=\normalsize]{Mudar interpretação de bit}
 
 We now illustrate the use of (first-order) $\lambda$-calculus with conditionals for describing quantum
 programs. To this effect, we first consider a type $\mathtt{qbit}$ of qubits, the
