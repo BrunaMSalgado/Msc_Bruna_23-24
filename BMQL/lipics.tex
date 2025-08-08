@@ -60,7 +60,7 @@
 
 \ccsdesc[500]{Theory of computation~Logic}
 
-\keywords{Categorical logic, $\lambda$-calculus, probabilistic programming} %TODO mandatory; please add comma-separated list of keywords
+\keywords{Categorical logic, lambda-calculus, probabilistic programming} %TODO mandatory; please add comma-separated list of keywords
 
 \category{} %optional, e.g. invited paper
 
@@ -119,17 +119,17 @@ illustrate its use in probabilistic programming.
 \label{sec:intro}
 
 Previous work~\cite{dahlqvist22,dahlqvist2023syntactic} introduced a quantalic
-generalisation of linear $\lambda$-calculus -- \ie\ the exponential-free
-\emph{multiplicative} fragment of linear logic. Here we start
-investigating the incorporation of \emph{additive} structure to this body of
-work. Specifically our focus is on the \emph{additive disjunction operator}
-$\oplus$ which is typically interpreted via coproducts and gives rise to case
-statements (\ie\ conditionals). Our motivation for it is highly practical: in
-trying to reason quantitatively about higher-order programs we often fell short
-when these involved conditionals. Of course applications involving $\oplus$ are
-broader than this, and typically fit in the more general pattern of reasoning
+generalisation of linear $\lambda$-calculus, the exponential-free
+\emph{multiplicative} fragment of linear logic. Here we start investigating the
+incorporation of \emph{additive} structure to this body of work. Specifically
+our focus is on the \emph{additive disjunction operator} $\oplus$ which is
+typically interpreted via coproducts and gives rise to case statements (\ie\
+conditionals). Our motivation for it is highly practical: in trying to reason
+quantitatively about (higher-order) programs we often fell short when these
+involved conditionals. Of course applications involving $\oplus$ are broader
+than this, and typically fit in the more general pattern of reasoning
 quantitatively about co-Cartesian categories enriched over so-called
-generalised metric spaces~\cite{paseka00}.
+`generalised metric spaces'~\cite{paseka00}.
 
 Remarkably a number of important results already considered additive structure
 in the quantalic setting, even if sometimes implicitly.
@@ -146,25 +146,16 @@ counterpart. Among other things, this removes the obstacles discussed
 in~\cite{lago22}.
 
 
-%However, none of these approaches reason about distances within a quantitative
-%equational system. In this regard, our work is more closely related to the
-%framework of metric universal algebra developed
-%in~\cite{mardare2016quantitative, mardare2017axiomatizability}. More recently,
-%\cite{PDFQuantitativeMonoidal2025} proposed a quantitative framework for
-%diagrammatic calculi, in which one can axiomatise notions of distance between
-%string diagrams using $\mathcal{V}$-quantitative equations.
-
-In this note we extend the quantalic equational system
+To be precise, in this note we extend the quantalic equational system
 of~\cite{dahlqvist22,dahlqvist2023syntactic} to encompass the additive
 disjunction operator. We show that the extension is sound. We also show that
-the continuity properties assumed from the quantale
-in~\cite{dahlqvist22,dahlqvist2023syntactic} are key for achieving
-completeness. We show furthermore that even if the well-known Archimedean rule
-(often problematic) is dropped one still retains `approximate completeness'. We
-briefly illustrate our extended framework at work for 
+when certain continuity properties (of the underlying quantale) are adopted it
+is complete. We show furthermore that even if the well-known
+Archimedean rule (often problematic) is dropped one still achieves `approximate
+completeness'. We briefly illustrate our extended framework in the setting of
 probabilistic programming~\cite{dahlqvist19,barthe20}. We will focus
 specifically on reasoning about Cauchy sequences of higher-order programs --
-thus emphasising the emergent shift from ``seeing program semantics as the
+thus highlighting the emergent shift from ``seeing program semantics as the
 science of program equivalence''~\cite{lago22} to more flexible, quantitative
 perspectives, involving functional analysis and beyond.
 
@@ -191,8 +182,8 @@ perspectives, involving functional analysis and beyond.
 
 The extension of linear $\lambda$-calculus
 in~\cite{dahlqvist22,dahlqvist2023syntactic} with additive disjunction is quite
-simple. The grammar of types now includes the construct $\typeA \oplus \typeA$
-and the judgement formation rules are extended with those in
+simple. The grammar of types now includes the type construct $\typeA \oplus
+\typeA$ and the judgement formation rules are extended with those in
 \autoref{fig:typing_rules_cond}. 
 
 \begin{figure}[H]
@@ -233,76 +224,78 @@ and the judgement formation rules are extended with those in
 It is laborious but straightforward to prove that the extended calculus
 inherits desirable features from the original calculus. Most notably it
 inherits the \emph{unique derivation}, \emph{substitution}, and \emph{exchange}
-properties.  These are key in our framework and rely on a shuffling mechanism
-whose details can be consulted
-in~\cite{dahlqvist22,dahlqvist2023syntactic,shulman19}. The mechanism can
-actually be briefly glanced in  rule (case), where we stipulate that context
-$E$ is a \emph{shuffle} of the contexts $\Gamma$ and $\Delta$: in other words,
-it must be a permutation of the variables in $\Gamma,\Delta$ that preserves
-their relative order in $\Gamma$ and in $\Delta$.
+properties (where as usual the latter allows to change the order of variables
+in contexts).  These rely on a shuffling mechanism whose details can be
+consulted in~\cite{dahlqvist22,dahlqvist2023syntactic,shulman19}. The mechanism
+can actually be briefly glanced at in  rule (case), where we stipulate that
+context $E$ is a \emph{shuffle} of the contexts $\Gamma$ and $\Delta$: in other
+words, it must be a permutation of the variables in $\Gamma,\Delta$ that
+preserves their relative order in $\Gamma$ and in $\Delta$.
 
 
-In order to extend the quantalic equational system
-in~\cite{dahlqvist22,dahlqvist2023syntactic} with additive disjunction we
-introduce notation, definitions, and some basic properties about quantales.
-Thus let $\mathcal{V}$ denote a commutative and unital quantale, $\otimes :
-\mathcal{V} \times \mathcal{V} \to \mathcal{V}$ denote the corresponding binary
-operation, and $k$ its unit~\cite{paseka00}.  The following (domain-theoretic)
-definitions will be essential in formulating our `approximate completeness'
-result, among other things.
+Next, in order to extend the quantalic equational system
+in~\cite{dahlqvist22,dahlqvist2023syntactic} with additive disjunction we will
+need preliminaries.  Thus let $\mathcal{V}$ denote a commutative and unital
+quantale, $\otimes : \mathcal{V} \times \mathcal{V} \to \mathcal{V}$ the
+corresponding binary operation, and $k$ its unit~\cite{paseka00}.  The
+following (domain-theoretic) definitions will be essential for formulating our
+`approximate completeness' result. 
 \begin{definition}
 	Consider a complete lattice $L$.  For every $x, y \in L$ we say that
 	$y$ is \emph{way-below} $x$ (in symbols, $y \ll x$) if for every
 	subset $X \subseteq L$ whenever $x \leq \bigvee X$ there exists a
-	\emph{finite} subset $A \subseteq X$ such that $y \leq \bigvee A$.
+	\emph{finite} subset $F \subseteq X$ such that $y \leq \bigvee F$.
 	The lattice $L$ is called \emph{continuous} iff for every $x \in L$,
 	\begin{flalign*}
 		x = \bigvee \{ y  \mid y \in L\ \text{and} \ y \ll x \}
 	\end{flalign*}
-\end{definition}
-
-\begin{definition}
-	Let $L$ be a complete lattice. A \emph{basis} $B$ of $L$ is a subset
+        Let $L$ be a complete lattice. A \emph{basis} $B$ of $L$ is a subset
 	$B \subseteq L$ such that for every $x \in L$ the set
 	$B \cap \{ y \mid y \in L\ \text{and} \ y \ll x \}$ is directed and
 	has $x$ as the least upper bound.
 \end{definition}
-We assume that the underlying lattice of $\mathcal{V}$ is continuous and has a
-basis $B \ni k$ closed under finite joins and the multiplication of the
-quantale $\otimes$. As detailed in~\cite{dahlqvist22,dahlqvist2023syntactic},
-these assumptions allow us to work \emph{only} with a specified subset of the
-elements of the quantale which may be easier to handle in a specific context.
-We also assume that $\mathcal{V}$ is \emph{integral}, \ie\ that the unit $k$ is
-the top element of $\mathcal{V}$, a common assumption in quantale
-theory~\cite{velebil19}. 
-
-Finally our extended quantalic system crucially relies on the following
+Our extended quantalic system then crucially relies on the following
 observations.  Since every quantale $\mathcal{V}$ is a cocomplete category
 (specifically a complete sup-lattice) it will be complete as well~\cite[Section
-12]{cats}, in other words it has all infima. We will thus assume that the basis
-$B$ is closed under binary infima.  Several examples of quantales that satisfy
-these constraints are presented and discussed
-in~\cite{dahlqvist22,dahlqvist2023syntactic}.  Here we mention only the case of
-the metric quantale for we use it in our illustration of probabilistic
-programming.  Next, as previously mentioned the assumption that $\mathcal{V}$
-is continuous will play a key rôle in (approximate) completeness. The key point
-is that the continuity of $\mathcal{V}$ entails that for every $x \in
-\mathcal{V}$ the operation,
+12]{cats}, in other words it has all infima. Also if $\mathcal{V}$ is
+continuous then for every $x \in \mathcal{V}$ the operation,
 \[
         x \wedge (-) : \mathcal{V} \to \mathcal{V}
 \]
-is continuous, \ie\ it preserves directed
-suprema~\cite[Proposition I-1.8]{gierz03}.
+is continuous as well, \ie\ it preserves directed suprema~\cite[Proposition
+I-1.8]{gierz03}.  As mentioned before the assumption that $\mathcal{V}$ is
+continuous will play a key rôle in (approximate) completeness.
 
-We are ready to present our quantalic, equational system extended with the
+In this note's remainder, we will assume that the underlying lattice of
+$\mathcal{V}$ is continuous and has a basis $B \ni k$ closed under finite
+joins/meets and the multiplication of the quantale $\otimes$. As detailed
+in~\cite{dahlqvist22,dahlqvist2023syntactic}, these assumptions allow us to
+work \emph{only} with a specified subset of the elements of the quantale which
+may be easier to handle in a specific context.  We also assume that
+$\mathcal{V}$ is \emph{integral}, \ie\ that the unit $k$ is the top element of
+$\mathcal{V}$, a common assumption in quantale theory~\cite{velebil19}.
+Several examples of quantales that satisfy these constraints are presented and
+discussed in~\cite{dahlqvist22,dahlqvist2023syntactic}.  Here we only briefly
+mention the case of the metric quantale for we use it in our illustration of
+probabilistic programming: in a nutshell, $\mathcal{V}$ is the set $[0,\infty]$
+with the non-negative rational numbers forming a basis; the operation $\otimes$
+is addition and the underlying order $\leq$ of $\mathcal{V}$ is
+$\geq_{[0,\infty]}$.
+
+We are ready to present our quantalic equational system extended with the
 additive disjunction operator.  In the original system equations are labelled
 by elements $q \in B \subseteq \mathcal{V}$ of the quantale and classical
 equations $v = w$ are represented by $v =_k w$ together with $w =_k v$. The
-main difference is that the extended system now incorporates the rules
-presented in Figure~\ref{fig:equations-in-context-cond}. The equations on top
-of the dotted line are those already known for additive disjunction in the
-classical setting (see for example~\cite{croleCategoriesTypes1994}). The ones
-on the bottom are new and serve as a form of `quantalic congruence'. 
+only difference is that the extended system now incorporates the rules in
+Figure~\ref{fig:equations-in-context-cond}. The equations on top of the dotted
+line are those already known for additive disjunction in the classical setting
+(see for example~\cite{croleCategoriesTypes1994}). The ones on the bottom are
+new and serve as a form of `quantalic congruence'. For example the expression
+$q \otimes (r \wedge s)$ between case statements encodes a form of `worst-case'
+assumption. We take the `worst' value w.r.t. $\{r, s\}$ to reflect the
+possibility of taking the branch in which the two respective terms
+`differ' the most. Such value then compounds with $q$ to reflect the
+`difference' between the tests $v$ and $v'$.
 
 Observe that whilst the original quantalic system makes use of the quantale's
 linear structure (\ie\ $\otimes$), the extended version now also make use of
@@ -312,14 +305,14 @@ corresponding categorical semantics, which we detail in the following section.
     \begin{equation*}
             \hspace{30pt}
         \begin{split}
-          &(\beta_{case}^{inl}) \hspace{3pt} \text{case } 
+          &\text{case } 
           \inl_{\typeB}(v)\, \{ \inl_{\typeB} (x) \Rightarrow w  
           ;\, \inr_{\typeA} (y) 
           \Rightarrow u\}= w[v/x]
           %
           \\
           %
-          &(\beta_{case}^{inr}) \hspace{3pt} \text{case } 
+          &\text{case } 
           \inr_{\typeA}(v)\, \{ \inl_{\typeB} (x) \Rightarrow w 
           ;\, \inr_{\typeA} (y) 
           \Rightarrow u\}= u[v/y]
@@ -327,7 +320,7 @@ corresponding categorical semantics, which we detail in the following section.
           \\
           %
           %
-          & (\eta_{case}) \hspace{3pt} \text{case } v\, \{\text{inl}_{\typeB} (y) \Rightarrow w [ \text{inl}_{\typeB}(y)/x] ;\, \text{inr}_{\typeA} (z) \Rightarrow w [ \text{inr}_{\typeA}(z)/x]\} = w[v/x] 
+          & \text{case } v\, \{\text{inl}_{\typeB} (y) \Rightarrow w [ \text{inl}_{\typeB}(y)/x] ;\, \text{inr}_{\typeA} (z) \Rightarrow w [ \text{inr}_{\typeA}(z)/x]\} = w[v/x] 
         \end{split}
     \end{equation*}
     %
@@ -342,7 +335,7 @@ corresponding categorical semantics, which we detail in the following section.
             \hspace{40pt}
             \begin{prooftree}
                     \hypo{ v =_q w}
-                    \infer1[]{\inr_\typeA(v) =_q \inl_\typeA(w)}
+                    \infer1[]{\inr_\typeA(v) =_q \inr_\typeA(w)}
             \end{prooftree}
     \end{equation*}
     \begin{equation*}
@@ -376,7 +369,7 @@ which we briefly detail next.
   \times X \to \mathcal{V}$ is a function (\ie\ a $\mathcal{V}$-relation) that
   satisfies:
   \begin{flalign*}
-    k \leq a(x_1,x_2) \qquad \text{ and }  \qquad
+    k \leq a(x_1,x_1) \qquad \text{ and }  \qquad
     a(x_1,x_2) \otimes a(x_2,x_3) \leq a(x_1,x_3) \hspace{2cm}
     (x_1,x_2,x_3 \in X)
   \end{flalign*}
@@ -729,7 +722,7 @@ examples.
         which will converge to $0$ as $\delta$ tends to $0$.
 \end{example}
 
-\section{Current and future work}
+\section{Current}
 
 We are currently exploring the application of our framework to three other
 computational paradigms that we find to be particularly enticing.  Namely,
@@ -740,9 +733,6 @@ quantale (as in the probabilitic example) the third case involves the so-called
 ultrametric quantale. For all three cases we are currently in the process of
 identifiying and/or building models that fit the requirements demanded from our
 framework.
-
-We are also exploring the hypothesis of obtaining a `concrete completeness'
-result for our quantalic equational system.
 
 %\subsection{Probabilistic computation}
 %
