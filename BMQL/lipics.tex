@@ -270,12 +270,14 @@ that $\mathcal{V}$ is \emph{integral}, \ie\ that the unit $k$ is the top
 element of $\mathcal{V}$, a common assumption in quantale
 theory~\cite{velebil19}.  Several examples of quantales that satisfy these
 constraints are presented and discussed
-in~\cite{dahlqvist22,dahlqvist2023syntactic}.  Here we mention briefly the
-case of the metric quantale, for we use it in our illustration of probabilistic
-programming: in a nutshell, $\mathcal{V}$ is the set $[0,\infty]$ with the
-non-negative rational numbers forming a basis; the operation $\otimes$ is
-addition and the underlying order $\leq$ of $\mathcal{V}$ is
-$\geq_{[0,\infty]}$.
+in~\cite{dahlqvist22,dahlqvist2023syntactic}.  Here we mention briefly the case
+of the metric quantale, for we use it in our illustration of probabilistic
+programming: in a nutshell, $\mathcal{V}$ is the set $[0,\infty]$ and a basis
+is given by the non-negative rational numbers with infinity; the operation
+$\otimes$ is addition, the underlying order $\leq$ of $\mathcal{V}$ is
+$\geq_{[0,\infty]}$, and the relation $\ll$ is the strictly greater $>$
+relation with $\infty > \infty$ (thus note that in this setting the top element
+is actually $0$ and $\infty$ is the least element).
 
 We are ready to present our quantalic equational system extended with the
 additive disjunction operator.  In the original system, equations are labelled
@@ -352,9 +354,9 @@ corresponding categorical semantics, which we detail in the following section.
 
 \section{Categorical semantics}
 
-Note that the terms of the calculus detailed in the previous section are
-interpreted standardly in any symmetric monoidal closed (\ie\ autonomous)
-category with binary coproducts. See a complete account for example
+The terms of the calculus detailed in the previous section are interpreted
+standardly in any symmetric monoidal closed (\ie\ autonomous) category with
+binary coproducts. See a complete account for example
 in~\cite{croleCategoriesTypes1994}.  The interpretation of
 $\mathcal{V}$-equations on the other hand requires a series of preliminaries
 which we briefly detail next.
@@ -505,7 +507,7 @@ consequently, rule (weak) (\cite[Figure 4]{dahlqvist2023syntactic}) provides $v
 (\cite[Figure 4]{dahlqvist2023syntactic}) we deduce that $v =_q v'$ is part of
 the theory.
 \end{proof}
-Whilst extremely useful the well-known Archimedean rule
+Whilst extremely useful, the well-known Archimedean rule
 (see~\cite{dahlqvist22,dahlqvist2023syntactic,mardare2016quantitative}) (arch)
 has the drawback of involving infinitely many premisses. It is thus often
 desirable to drop it, for computational reasons. The following result tells that
@@ -520,7 +522,7 @@ such rule can be dropped while retaining a weaker form of completeness.
 \end{theorem}
 
 \begin{proof}
-Amounts to a slight tweaking of the last paragraph of the previous proof.
+One just needs to remove the last sentence of the previous proof.
 \end{proof}
 \section{A brief illustration with probabilistic programming}
 \label{sec:ex}
@@ -532,26 +534,28 @@ line.  Our illustration will be grounded on a standard probabilistic model,
 namely the category $\Ban$ of Banach spaces and linear
 contractions~\cite{dahlqvist19}. As discussed
 in~\cite{dahlqvist22,dahlqvist2023syntactic} this category has a
-$\Met$-enriched autonomous structure and it is well-known that it has binary
-coproducts given by the direct sum equipped with the $\ell_1$ norm. Thus in
-order to fit $\Ban$ in our framework we only need to show that its coproduct
-structure is enriched over the Cartesian structure of $\Met$. We detail this in
-the appendix (Section~\ref{sec:back}) where we also recall some basic facts
-about measure theory.
+$\Met$-enriched autonomous structure, and it is well-known that it has binary
+coproducts given by the direct sum $\oplus$ equipped with the $\ell_1$ norm.
+Thus in order to fit $\Ban$ in our framework we only need to show that its
+coproduct structure is enriched over the Cartesian structure of $\Met$. We
+detail this in the appendix (Section~\ref{sec:back}) where we also recall some
+basic facts about measure theory.
 
-We proceed by presenting a metric $\lambda$-theory on which to reason about
-predicates and random walks, as previously discussed. Our (only) ground type
-will be $\mathtt{real}$ to represent measures over real numbers, \ie\ we set
-$\sem{\mathtt{real}}$ to be the space of measures over the real line.
-Concerning operations we take a pre-determined set of predicates $p :
-\mathtt{real} \to \typeI \oplus \typeI$ whose interpretation takes the form
-$\sem{p}(\mu) = (\mu(U), \mu(\overline{U}))$ for some measurable subset of $U
-\subseteq \Reals$. Intuitively $U \subseteq \Reals$ corresponds to the subspace
-in which the predicate is supposed to hold. We also take a pre-determined set
-of actions $a : \typeI \to (\typeA \multimap \typeA)$ and a pre-determined set
-of measures $m : \typeI \to \mathtt{real}$ whose interpretation takes no
-particular form.  Finally we consider addition $+ : \mathtt{real},\mathtt{real}
-\to \mathtt{real}$ whose interpretation is given by $\mu \otimes \nu \mapsto
+We proceed by presenting a metric $\lambda$-theory
+(Definition~\ref{defn:theory}) on which to reason about predicates and random
+walks, as previously discussed. Our only ground type will be $\mathtt{real}$ to
+represent measures over real numbers -- \ie\ we set $\sem{\mathtt{real}}$ to be
+the space $\Measu(\Reals)$ of measures over the real line. Recall that the
+monoidal unit of $\Ban$ is $\Reals$. Concerning operations we take a
+pre-determined set of predicates $p : \mathtt{real} \to \typeI \oplus \typeI$
+whose interpretation takes the form $\sem{p}(\mu) = (\mu(U), \mu(\overline{U}))
+\in \Reals \oplus \Reals$ for some measurable subset of $U \subseteq \Reals$.
+Intuitively $U \subseteq \Reals$ corresponds to the subspace in which the
+predicate is supposed to hold. We also take a pre-determined set of actions $a
+: \typeI \to (\typeA \multimap \typeA)$ and a pre-determined set of measures $m
+: \typeI \to \mathtt{real}$ whose interpretation takes no particular form.
+Finally we consider addition $+ : \mathtt{real},\mathtt{real} \to
+\mathtt{real}$ whose interpretation is given by $\mu \otimes \nu \mapsto
 +_\ast(\mu \otimes \nu)$ where $+_\ast$ is the pushforward measure construction
 of $+$ (see further details in~\cite{dahlqvist22,dahlqvist2023syntactic}).
 Next, given a measure $m$ and actions $a,b$ consider the following `abstract'
@@ -561,51 +565,51 @@ Bernoulli trial,
         \vljud \underbrace{ \text{case } p(m(\ast)) \text{ of } \inl(x) \Rightarrow a(x) ; 
         \inr(y) \Rightarrow b(y)}_{\mathtt{bern}(p)} : \typeA \multimap \typeA
 \]
-Note that if the metric equation $p_1(x) =_\epsilon p_2(x)$ holds for two
-predicates $p_1, p_2 : \mathtt{real} \to \typeI \oplus \typeI$ then
-$\mathtt{bern}(\lambda x. p_1(x)) =_\epsilon \mathtt{bern}(\lambda x.  p_2(x))$
-must hold as well (as per our equational system). Such is useful to approximate
-Bernoulli trials that may be hard to compute as illustrated by the following
-examples.
-\begin{example}[Predicates as limits of Cauchy sequences]
-        Consider the predicate,
+Note that if the metric equation $p_1(m(\ast)) =_\epsilon p_2(m(\ast))$ holds
+for two predicates $p_1, p_2 : \mathtt{real} \to \typeI \oplus \typeI$ then the
+equation $\mathtt{bern}(\lambda x. p_1(x)) =_\epsilon \mathtt{bern}(\lambda x.
+p_2(x))$ must hold as well (as per our equational system). Such is useful to
+approximate Bernoulli trials that may be hard to compute as illustrated by the
+following examples.
+\begin{example}[Predicates and Cauchy sequences]
+        Take a measure $m$ and the predicate,
         \[
                 x : \mathtt{real} \vljud
                 p_{\frac{1}{2}\sqrt{2}}(x) : \typeI \oplus \typeI
         \]
         that returns true if $x < \frac{1}{2}\sqrt{2}$ and false otherwise.
         Given the irrationality of $\frac{1}{2}\sqrt{2}$ it is natural to
-        consider successive approximations $x : \mathtt{real}\vljud p_{q_n}(x)
-        :  \typeI \oplus \typeI$ $(n \in \Nats)$ of this predicate in which the
+        consider successive approximations $(-) \vljud p_{q_n}(m(\ast))
+        :  \typeI \oplus \typeI$ $(n \in \Nats)$ in which the
         condition $x < \frac{1}{2}{\sqrt{2}}$ is replaced by $x < q_n$ for
         $q_n$ a rational number. We show next how our framework makes this idea
         precise. Take a sequence of rational numbers $(q_n)_{n \in \Nats}$ that
         converges to $\frac{1}{2}\sqrt{2}$ from below. We then postulate as
-        axioms in our deductive system that $(p_{q_n}(x))_{n \in \Nats}$ is a
+        axioms in our deductive system that $(p_{q_n}(m(\ast)))_{n \in \Nats}$ is a
         Cauchy sequence and furthermore that it converges to $p_{\frac{1}{2}
-        \sqrt{2}}(x)$.  Such is asserted precisely by setting,
+        \sqrt{2}}(m(\ast))$.  Such is asserted precisely by setting,
         \begin{equation}
                 \label{eq:sound}
                 \begin{cases}
-                \forall \epsilon > 0. \, \exists m \in \Nats.
-                \, \forall n \geq m. \, p_{q_n}(x) =_\epsilon p_{q_{n+1}} (x)
+                \forall \epsilon > 0. \, \exists k \in \Nats.
+                \, \forall n \geq k. \, p_{q_n}(m(\ast)) =_\epsilon p_{q_{n+1}} (m(\ast))
                 & \text{(Cauchy sequence)}
                 \\
-                \forall \epsilon > 0. \, \exists m \in \Nats.
-                \, \forall n \geq m. \, p_{q_n}(x) 
-                =_\epsilon p_{\frac{1}{2} \sqrt{2}} (x)
+                \forall \epsilon > 0. \, \exists k \in \Nats.
+                \, \forall n \geq k. \, p_{q_n}(m(\ast)) 
+                =_\epsilon p_{\frac{1}{2} \sqrt{2}} (m(\ast))
                 & \text{(Convergence)}
                 \end{cases}
         \end{equation}
-        for appropriate choices of $m$ (which in our context is irrelevant to
-        detail). The next step is to prove that this axiomatics is sound which
-        is detailed in the appendix. In the next example we capitalise on such
-        predicate approximations, now formulated precisely, to reason about
-        approximations of random walks.
+        for appropriate choices of $k$ (which in our context is irrelevant to
+        detail). The next step is to prove that this axiomatics is sound, \ie\
+        that such equations hold in $\Ban$, which is detailed in the appendix.
+        In the next example we capitalise on such approximations, now
+        formulated precisely, to reason about approximations of random walks.
         \end{example}
 
 \begin{example}[Random walk approximations] 
-        Let us consider the $\lambda$-term,
+        We now consider the $\lambda$-term,
         \[
                 (-) \vljud \underbrace{\lambda x_1. \, \dots \, x_k. \, y. \,
                 x_1 (\dots (x_k(y)) \dots)}_{\mathtt{sequence_k}}
@@ -617,10 +621,10 @@ examples.
         p(x)) : \typeA \multimap \typeA$ which intuitively represents an
         \emph{abstract random walk of $k$-steps}. In order to keep our notation
         simple we abbreviate this last term to $\mathtt{rwalk}(\lambda x. \,
-        p(x))$. Now, it follows from our system that if $p_1(x) =_\epsilon
-        p_2(x)$ for two predicates $p_1$ and $p_2$ then,
+        p(x))$. Now, it follows from our system that if $p_1(m(\ast)) =_\epsilon
+        p_2(m(\ast))$ for two predicates $p_1$ and $p_2$ and a measure $m$ then,
         \[
-                \mathtt{rwalk}(\lambda x. p_1(x)) =_{n \cdot \epsilon}
+                \mathtt{rwalk}(\lambda x. p_1(x)) =_{k \cdot \epsilon}
                 \mathtt{rwalk}(\lambda x. p_2(x)) 
         \]
         In particular, from the previous example we deduce that $\mathtt{rwalk}
@@ -696,13 +700,13 @@ examples.
         walk that involves action $c$ we deduce from the framework the metric
         equation,
         \[
-                \mathtt{rwalk}(\lambda x. p(x)) =_{2n \cdot \frac{\delta}{1 + \delta}}
+                \mathtt{rwalk}(\lambda x. p(x)) =_{2k \cdot \frac{\delta}{1 + \delta}}
                 \mathtt{rwalk'}(\lambda x. p(x)) 
         \]
         which will converge to $0$ as $\delta$ tends to $0$.
 \end{example}
 
-\section{Current}
+\section{Current work}
 
 We are currently exploring the application of our framework to three other
 computational paradigms that we find to be particularly enticing.  Namely,
