@@ -1006,12 +1006,12 @@ total variation norm,
 In our probabilistic illustration we axiomatised that $\mathtt{bern}(\lambda x.
 \, p_{q_n}(x))_{n \in \Nats}$ is a Cauchy sequence that furthermore converges
 to $\mathtt{bern}(\lambda x. \, p_{\frac{1}{2}\sqrt{2}}(x))$. We show next that
-this axiomatics is sound.
-        \begin{align*}
-                \sem{p_{\frac{1}{2} \sqrt{2}}(x)}(\mu)
+this axiomatics is sound, via the following reasoning.
+        \begin{flalign*}
+                & \sem{p_{\frac{1}{2} \sqrt{2}}(x)}(\mu)
+                \\
                 & = \left (\mu \left (-\infty, \frac{1}{2} \sqrt{2} \right ), 
                 \mu(X) - \mu \left (-\infty, \frac{1}{2}\sqrt{2} \right ) \right )
-                &
                 \\
                 & = \left (\mu \left (\bigcup_{n \in \Nats} 
                         \left (-\infty, q_n \right )\right ), 
@@ -1046,25 +1046,27 @@ this axiomatics is sound.
                 & = \lim_{n \to \infty}
                 \sem{p_{q_n}(x)}(\mu)
                 &
-        \end{align*}
+        \end{flalign*}
 Finally a useful fact about computing norms is that $\norm{\mu} = \mu^{+}(X) +
 \mu^{-}(X)$ where $\mu^{+}$ and $\mu^{-}$ are the positive and negative parts
 of $\mu$ respectively (see details in~\cite[Section 8.2. and Section
 10.10]{aliprantis06}). We use this to compute the norm of $\mathtt{unif}(0,1) -
 \mathtt{unif}(0,1+\delta)$, as required in the main text. First,
-\begin{align*}
+\begin{flalign*}
         & \norm{ \mathtt{unif}(0,1) - \mathtt{unif}(0,1+\delta) }
+        &
         \\
         & =
         (\mathtt{unif}(0,1) - \mathtt{unif}(0,1+\delta))^+ (\Reals)
         +
         (\mathtt{unif}(0,1) - \mathtt{unif}(0,1+\delta))^- (\Reals)
-        \end{align*}
+\end{flalign*}
         and proceed by computing the left-hand side of the addition,
-        \begin{align*} 
+\begin{flalign*} 
         & (\mathtt{unif}(0,1) - \mathtt{unif}(0,1+\delta))^+ (\Reals)
+        &
         \\
-        &  = 
+        & = 
         \sup \{ \mathtt{unif}(0,1)(U) - \mathtt{unif}(0,1 + \delta)(U)
         \mid U \subseteq \Reals \}
         \\
@@ -1082,7 +1084,7 @@ of $\mu$ respectively (see details in~\cite[Section 8.2. and Section
         \mid U \subseteq \Reals \right \}
         \\
         & = 1 - \frac{1}{1+\delta} 
-        \end{align*}
+\end{flalign*}
         It follows from an analogous reasoning the right-hand side of the
         addition will be $\frac{\delta}{1 + \delta}$ and therefore the norm
         will be $2 \cdot {\frac{\delta}{1 + \delta}}$.
