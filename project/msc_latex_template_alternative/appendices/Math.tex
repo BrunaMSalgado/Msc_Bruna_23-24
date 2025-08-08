@@ -229,6 +229,8 @@ A category is called \emph{locally small} if, for every pair of objects, the cor
 \end{definition}
 
 
+
+
 % Partial order
 %Vect
 %Banach spaces and short maps
@@ -241,7 +243,7 @@ A category is called \emph{locally small} if, for every pair of objects, the cor
 %c_op
 %iso
 
-\subsection{Products and coproducts}
+\subsection{Products, Coproducts, and Other Properties of Objects and Arrows}
 
  A category frequently possesses a more intricate structure than a mere collection of objects and their morphisms. The existence of particular relationships among certain objects and morphisms can give some objects important properties.
 
@@ -269,6 +271,28 @@ which maps every element of \( S \) to the sole element of the singleton set
   Let $(P, \leq)$ be a partial order and $\catfont{P}$ be its associated
  category.
   Here, the initial object is the \emph{bottom element}—an element that is less than or equal to every other element in $P$. The terminal object in $\catP$ is the \emph{top element}—an element that is greater than or equal to every other element in $P$.
+\end{example}
+
+\begin{definition}
+   An arrow $f : A \to A$ in a category $\catC$ is \emph{idempotent} if $f\circ f = f$.  An idempotent is said to \emph{split} if there is an object $B$ and functions $g : A \to B$ and $h : B \to  A$ for which $h \circ g =f$ and $g \circ h=\id_B$.  In this case, the pair \( (g, h) \) is called a \emph{splitting} of the idempotent \( f \).
+\end{definition}
+
+\begin{example}
+  In $\catSet$, consider the function $f : \mathbb{R} \to \mathbb{R}$ defined by
+\[
+f(x) = 
+\begin{cases}
+x, & \text{if } x \geq 0, \\
+0, & \text{if } x < 0.
+\end{cases}
+\]
+Then $f \circ f = f$, so $f$ is idempotent.
+
+Define $B = [0, \infty)$, and let
+\[
+g : \mathbb{R} \to B, \quad g(x) = \max(x, 0), \quad \text{and} \quad h : B \to \mathbb{R}, \quad h(x) = x.
+\]
+Then $h \circ g = f$ and $g \circ h = \id_B$, so $f$ splits.
 \end{example}
 
 
@@ -1008,6 +1032,9 @@ Any diagram in a symmetric monoidal category constructed only from associators $
 \end{theorem}
 
 
+
+
+
 \section{Banach spaces}
 
 %Before introducing the category of Banach spaces and proving it is a model, we first introduce some preliminary concepts in this setting. 
@@ -1227,6 +1254,24 @@ We call $v_\varphi$ the \emph{Riesz vector} for $\varphi$ and denote it by $v_\v
 Using the Riesz representation theorem, we can define a map 
 $\phi^* : V^* \to V$
 by setting \(\phi^*(\varphi) = v_\varphi\), where \(v_\varphi\) is the Riesz vector corresponding to \(\varphi \in V^*\). Since the Riesz representation is unique, \(\phi^*\) is well-defined \cite{romanAdvancedLinearAlgebra1992}. 
+
+\begin{proposition}
+  A map $\phi^*: \mathcal{M}_{n}^* \to \mathcal{M}_{n}$,  is defined as $\phi^*(\varphi) = \sum_{i,j} \varphi(\ket{j}\bra{i}) \cdot \ket{i}\bra{j}.$
+\end{proposition}
+
+\begin{proof}
+  By the Riesz representation theorem, and the definitions of trace and  inner product for matrices we have:
+\[ \varphi(\ket{j} \bra{i})= \langle \ket{j} \bra{i},  v_\varphi  \rangle =  \tr(\ket{i}\bra{j} \cdot v_{\varphi}) =  (v_{\varphi})_{i, j}, \]
+
+where $(v_{\varphi})_{i, j}$ denotes the entry in the $i$-th row and $j$-th column of $v_{\varphi}$. 
+
+As a result, we obtain
+\[
+\phi^*(\varphi) = \sum_{i,j} \varphi(\ket{j}\bra{i}) \cdot \ket{i}\bra{j}
+= \sum_{i,j} (v_{\varphi})_{i,j} \cdot \ket{i}\bra{j}
+= v_\varphi.
+\]
+\end{proof}
 
 \begin{comment}
 

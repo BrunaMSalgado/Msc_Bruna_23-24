@@ -24,49 +24,48 @@ Warning--empty journal in bornZurQuantenmechanik1925
 Warning--empty year in franzenGodelsTheorem2008
 Warning--empty booktitle in Church2008
 Warning--empty journal in heisenbergUeberQuantentheoretischeUmdeutung1925
-Warning--empty year in kreyszigIntroductoryFunctionalAnalysis2007
 Warning--empty journal in STUBBE201495
 Warning--empty journal in thrun2002robotic
 Warning--empty journal in Wang_2011
-You've used 130 entries,
+You've used 129 entries,
             2943 wiz_defined-function locations,
-            1447 strings with 28391 characters,
-and the built_in function-call counts, 57334 in all, are:
-= -- 6028
-> -- 1974
-< -- 28
-+ -- 726
-- -- 574
-* -- 2998
-:= -- 8050
-add.period$ -- 462
-call.type$ -- 130
-change.case$ -- 623
+            1443 strings with 28242 characters,
+and the built_in function-call counts, 56848 in all, are:
+= -- 5977
+> -- 1965
+< -- 27
++ -- 723
+- -- 572
+* -- 2976
+:= -- 7990
+add.period$ -- 459
+call.type$ -- 129
+change.case$ -- 619
 chr.to.int$ -- 0
-cite$ -- 138
-duplicate$ -- 1704
-empty$ -- 5518
-format.name$ -- 574
-if$ -- 15047
+cite$ -- 136
+duplicate$ -- 1684
+empty$ -- 5471
+format.name$ -- 572
+if$ -- 14914
 int.to.chr$ -- 0
-int.to.str$ -- 130
-missing$ -- 165
-newline$ -- 706
-num.names$ -- 273
-pop$ -- 1459
+int.to.str$ -- 129
+missing$ -- 164
+newline$ -- 701
+num.names$ -- 271
+pop$ -- 1448
 preamble$ -- 1
-purify$ -- 537
+purify$ -- 534
 quote$ -- 0
-skip$ -- 4085
+skip$ -- 4046
 stack$ -- 0
-substring$ -- 2324
-swap$ -- 472
-text.length$ -- 136
+substring$ -- 2291
+swap$ -- 462
+text.length$ -- 135
 text.prefix$ -- 0
 top$ -- 0
-type$ -- 428
-warning$ -- 8
-while$ -- 393
-width$ -- 133
-write$ -- 1510
-(There were 13 warnings)
+type$ -- 424
+warning$ -- 7
+while$ -- 389
+width$ -- 132
+write$ -- 1500
+(There were 12 warnings)

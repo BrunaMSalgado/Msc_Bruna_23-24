@@ -45,53 +45,198 @@ Another possible direction stems from the fact that as previously mentioned the 
 
 In this work, our focus is limited to showing that the metric induced by the $W^*$ completely bounded norm makes $\WstarCPSUop$ into a first-order model. However, as previously noted, another norm---the completely bounded norm---is widely used in the context of $C^*$-algebras and comes equipped with already restablished results that could simplify distance computations between programs.  A natural next step would be to determine whether the completely bounded norm itself constitutes a suitable metric, \ie, if it satisfies $\cbnorm{\id \overline{\otimes} \Phi} \leq \cbnorm{\Phi}$, for any completely bounded normal map $\Phi$ between $W^*$-algebras. Moreover, we aim as well as to establish additional results regarding the $W^*$ completely bounded norm that simplify distance computations between morphisms. That would, for instance, allows us to reason about quantum walks on a line \cite{venegasQuantumWalksComprehensive2012}.
 
-\textbf{Another metric on $\catQ$}
+\textbf{A metric on Selinger's $\catQ$ by an embedding into $\mathcal{K}(\catCPS)$}
+As previoulsy mentioned  in \cite{selinger2004towards} Selinger introduced a first-order functional quantum language, QPL, whose denotation semantics is given by the distributive symmetric monoidal $\catQ$.  Here, Selinger works with \emph{vectors} (\ie, direct sums) of square matrices, and extending of the standard notions of \emph{positivity} and \emph{trace} to matrix tuples.
 
+Given a tuple of matrices 
+\[
+A = (A_1, \ldots, A_s) \in \mathcal{M}^{n_1} \oplus \cdots \oplus \mathcal{M}^{n_s},
+\]
+we say that $A$ is \emph{positive} if each matrix $A_i$ is positive. The \emph{trace} of such a tuple is then defined as the sum of the traces of its components:
+\[
+\tr(A) = \sum_i \tr(A_i).
+\]
+
+\begin{definition} \label{def:catQ}
+The category $\catQ$ is defined as follows:
+\begin{itemize}
+  \item An object is a signature $\sigma= n_1, \ldots, n_s$. We denote these signatures by the Greek letters $\sigma, \tau$ and $\mu$ and each signature $\sigma$ is associated with the complex vector space
+  \[
+  \mathcal{M}_\sigma \coloneqq \mathcal{M}_{n_1} \oplus \cdots \oplus \mathcal{M}_{n_s}.
+  \]
+  
+  \item  For signatures $\sigma = (n_1, \ldots, n_s)$ and $\tau = (m_1, \ldots, m_t)$, a morphism $\Phi: \sigma \to \tau$ is a linear map $\Phi: \mathcal{M}_\sigma \to \mathcal{M}_\tau$ satisfying:
+    \begin{enumerate}
+        \item \emph{Complete positivity:} For every signature $\mu$, the extended map
+        \[
+        \mathrm{id}_{\mu} \otimes \Phi: \mathcal{M}_{\mu \otimes \sigma} \to \mathcal{M}_{\mu \otimes \tau}
+        \]
+        preserves positivity (maps positive tuples to positive tuples).
+        
+        \item It is \emph{trace non-increasing:}
+        \(
+        \tr(\Phi(A)) \leq \tr(A),
+        \)
+        for all positive  $A \in \mathcal{M}_\sigma$.
+    \end{enumerate}
+\end{itemize}
+\end{definition}
+
+
+Another direction for future work would be to define a functor 
+\( F \colon \catQ \to \mathcal{K}(\catCPS) \) 
+and use it to induce a norm on the morphisms \(\Phi\) in \(\catQ\) via 
+\( \|\Phi\| \coloneqq \diamondnorm{F(\Phi)}, \) 
+taking advantage of the fact that \(\mathcal{K}(\catCPS)\) is a model of our calculus.
+
+\begin{comment}
+In this work Selinger works with vectors (direct sums) of square matrices, and so he extends the definitions of positivity and trace in this setting. As a result given a tuple of matrices $A=(A_1, \ldots, A_n)\in \mathcal{M}^{n_1} \oplus \ldots \oplus \ldots \mathcal{M}^{n_s}$, $A$ is said to be \emph{positive} if each $A_i$ is positive and we define the trace of a matrix tuple to be the sum of the traces of its components $\tr(A)= \sum_i \tr(A_i)$.
+
+
+\begin{definition} \label{def:catQ}
+  The category $\catQ$ is defined as 
+  \begin{itemize}
+    \item An object is a signature $\sigma= n_1, \ldots, n_s$. We denote these signatures by the Greek letters $\sigma, \tau$ and $\mu$.
+    \item  Every signature $\sigma$ is associated with a complex vector space   
+$\mathcal{M}_\sigma \coloneqq \SqMatrix{n_1} \oplus \cdots \oplus \SqMatrix{n_s}$ and so given signatures  $\sigma = n_1, \ldots, n_s $ and $\tau= m_1, \ldots, m_t $, a morphism from $\sigma$ to $\tau$ is quantum operation $\Phi: \mathcal{M}_{\sigma} \to \mathcal{M}_{\tau} $ as defined by Selinger, \ie,  if the map \( \mathrm{id}_{\sigma'} \otimes F \colon \mathcal{M}_{\sigma' \otimes \sigma} \to \mathcal{M}_{\sigma' \otimes \sigma} \) is positive (maps positive tuples of matrices to positive tupled of matrices) for all signatures \( \sigma' \) and and satisfies the following trace condition:
+\[
+\tr(F(A)) \leq \tr(A), \quad \text{for all positive } A \in V_\sigma.
+\]
+    
+    %More concretely, $ij$-component of $\Phi$ is given by the function $\Phi_{ij} = \pi_{j} \comp \Phi \comp \mathrm{in}_{i} : \mathcal{M}_{n_i} \rightarrow \mathcal{M}_{n_j} $, where $\mathrm{in}_{i}$ is the injection of  $\mathcal{M}_{n_i}$ into the input space of $\Phi$ and  $\pi_{j}$ is the projection onto the $j$-th component.
+  \end{itemize}
+\end{definition}
+\end{comment}
+
+
+
+
+
+
+%Trace-non increasing  maps are used here instead of strictly trace-preserving maps to account for possible non-termination in programs, particularly since the language  QPL includes while loops.
+
+\begin{comment}
+
+  \begin{remark}
+  $\catQ$ corresponds to the finite biproduct completion of $\catCP$ (which extends $\catCPTP$ to include all completely positive maps),  further restricted to trace-nonincreasing morphisms. 
+\end{remark}
+
+Every signature $\sigma$ is associated with a complex vector space   
+$\mathcal{M}_\sigma \coloneqq \SqMatrix{n_1} \oplus \cdots \oplus \SqMatrix{n_s}$
+
+This space consists of matrix vectors 
+$$A = \begin{pmatrix} A_1 \\ \vdots \\ A_n \end{pmatrix}$$
+where the signature $\sigma$ specifies both the number of matrices, $s$,  and their respective dimensions, $n_i \times n_i$. The elements of $\mathcal{M}_\sigma$ are represented uppercase letters such as $A$, $B$, etc.
+We also establish that $\mathbb{C}^\sigma \coloneqq \mathbb{C}^{n_1} \oplus \cdots \oplus \mathbb{C}^{n_s}$.
+
+Note that the definition of trace induces a generalized notion of trace applicable to elements of $\mathcal{M}_\sigma$. Specifically, for $A = \begin{pmatrix} A_1 & \ldots & A_n \end{pmatrix}^T$, we have $\tr(A) = \sum_{i=1}^n \tr(A_i).$
+ 
+
+\begin{definition} \label{def:biproduct} [\emph{Coproduct}]
+Concatenation $ \sigma \oplus \sigma'$ of signatures $\sigma$ and $\sigma'$ yields coproducts in $\catQ$. The co-pairing map $[\Phi, \Psi]: \sigma \oplus \sigma' \to \tau$ is defined as  $[\Phi, \Psi](A, B) = \Phi(A) + \Psi(B)$, where addition uses the fact that the codomain is always a direct sum of vector spaces.
+\end{definition}
+
+\begin{remark}
+  The category $\catQ$ does not have finite products. To see this, observe that the diagonal morphism 
+\[
+\langle \mathrm{id}, \mathrm{id} \rangle \colon \tau \to \tau \oplus \tau
+\] 
+is not trace-nonincreasing and hence is not a valid morphism. 
+However, $\catQ$ does contain the two projection morphisms 
+\[
+\pi_1 \colon \sigma \oplus \sigma \to \sigma' \quad \text{and} \quad \pi_2 \colon \sigma \oplus \sigma \to \sigma'.
+\] 
+
+\end{remark}
+
+\begin{definition} \label{def:tensor} [\emph{Tensor Product }]
+  For signatures $\sigma = n_1, \ldots, n_s $ and $\tau= m_1, \ldots, m_t $, the tensor product of $\sigma$ and $\tau$ is defined as $\sigma \otimes \tau = n_1 m_1, \ldots ,n_1 m_t, \ldots, n_s m_1,...,n_s m_t$. 
+  The morphism part of the tensor product follows the definition in the category of vector spaces. If $\Phi: \sigma \rightarrow \tau$ and $\Psi: \sigma' \rightarrow  \tau'$, then their tensor product $\Psi \otimes \Phi: \sigma \otimes \sigma' \rightarrow  \tau \otimes \tau' $ is 
+  %defined on a basis element $A \otimes B$ by  
+%$$
+%(\Phi \otimes \Psi)(A \otimes B) = \Phi(A) \otimes \Psi(B),
+%$$
+%and extends to arbitrary elements by linearity. More concretly, the tensor product $\Phi \otimes \Psi$ is 
+the Kronecker product of their matrices representation, \ie,
+\begin{align*}
+  \Phi \otimes \Psi = 
+  \begin{pmatrix}
+  \Phi_{11} \otimes \Psi_{11} & \ldots & \Phi_{11} \otimes \Psi_{s'1} & \ldots   & \Phi_{s1} \otimes \Psi_{11} & \ldots & \Phi_{s1} \otimes \Psi_{s'1} \\
+  \vdots & & & & & & \vdots \\
+  \Phi_{1t} \otimes \Psi_{1t'} & \ldots & \Phi_{1t} \otimes \Psi_{s't'} & \ldots   & \Phi_{st} \otimes \Psi_{1t'} & \ldots & \Phi_{st} \otimes \Psi_{s't'}
+\end{pmatrix}
+\end{align*}
+
+
+
+ Moreover, $\dist$ is an identity map:
+  \[ (\sigma \oplus \sigma') \otimes \tau = (\sigma \otimes \tau ) \oplus (\sigma' \otimes \tau ) \]
+
+  
+\end{definition}
+
+
+The category $\catQ$ is a distributive symmetric monoidal category with binary coproducts. However, this category is not closed \cite{selinger2004b}.
+
+\end{comment}
+
+\textbf{A metric on $\catQ$ by $W*$-algebras}
 
 
 In \cite{choSemanticsQuantumProgramming2016}, the author established an equivalence of categories  
-$\catQ \simeq \FdWstarCPSU^{\mathrm{op}}$.  
+$\catQ \simeq (\FdWstarCPSU)^{\mathrm{op}}$.  
 
-Using this equivalence, we aim to induce an alternative norm on $\catQ$ by assigning to each superoperator $\Phi \in \catQ$ the norm of its corresponding map $\Phi^* \in \FdWstarCPSU^{\mathrm{op}}$. This approach mirrors the construction we presented in \Cref{subsec:shodinger}.
+Using this equivalence, along the same lines as above, we aim to induce an alternative norm on $\catQ$ by assigning to each superoperator $\Phi \in \catQ$ the norm of its corresponding map $\Phi^* \in (\FdWstarCPSU)^{\mathrm{op}}$. %This approach mirrors the construction we presented in \Cref{subsec:shodinger}.
 
 Now we describe how to obtain  $\Phi^*$ from $\Phi$. 
 Recall that for a Hilbert space \( \mathcal{H} \), \( \mathcal{B}(\mathcal{H}) \), \ie, the set of bounded operators on \( \mathcal{H} \), is a \( W^* \)-algebra with the predual \( \mathcal{T}(\mathcal{H}) \).
-A quantum channel (resp. quantum operator) $\Phi: \mathcal{T}(\mathcal{H})  \to \mathcal{T}(\mathcal{K})$ defines a linear mapping 
-$\Phi^*: \mathcal{B}(\mathcal{K}) \to \mathcal{B}(\mathcal{H})$ completely positive and unital (resp. subunital) \cite[Proposition 5.1,]{choSemanticsQuantumProgramming2016}. These maps are related in the following way:
+A quantum channel (resp. quantum operatoration) $\Phi_i: \mathcal{T}(\mathcal{H})  \to \mathcal{T}(\mathcal{K})$ defines a linear mapping 
+$\Phi_i^*: \mathcal{B}(\mathcal{K}) \to \mathcal{B}(\mathcal{H})$ completely positive and unital (resp. subunital) \cite[Proposition 5.1,]{choSemanticsQuantumProgramming2016}. These maps are related in the following way:
 \begin{equation*}
-\tr\left[\Phi(T) \cdot S\right] = \tr \left[T \cdot \Phi^*(S)\right]
+\tr\left[\Phi_i(T) \cdot S\right] = \tr \left[T \cdot \Phi_i^*(S)\right]
 \end{equation*}
 which holds for all trace-class operators $T \in \mathcal{T}(\mathcal{H})$ and all bounded operators $S \in \mathcal{B}(\mathcal{K})$.
-Intuitively, this means that observing the transformed state $\Phi(T)$ w.r.t. experiment $S$ is the same as observing the original state $S$ w.r.t. the transformed state $\Phi^*(S)$.
+Intuitively, this means that observing the transformed state $\Phi_i(T)$ w.r.t. experiment $S$ is the same as observing the original state $S$ w.r.t. the transformed state $\Phi_i^*(S)$.
+The maps 
+\( \Phi :  \bigoplus_i M_{n_i} \to \bigoplus_j M_{m_j} \in \catQ \quad \text{and} \quad \Phi^* : \bigoplus_j M_{m_j} \to \bigoplus_i M_{n_i} \in \WstarCPSU \)
+are also related via (extended) trace:
+\[
+\tr \left( \Phi(A) \cdot B \right) = \operatorname{tr} \left( A \cdot \Phi^*(B) \right)
+\]
+for \(A \in \bigoplus_i M_{n_i}\) and \(B \in \bigoplus_j M_{m_j}\). Here, the trace is defined as the sum of traces of coordinates and the multiplication is coordinatewise:
+\[
+(A_1, \ldots, A_n) \cdot (A'_1, \ldots,A'_n ) = (A_1 \cdot A'_1, \ldots, A_n \cdot A'_n).
+\]
+
 %The expectation value of the observable \( S \) on the output state \( \Phi(T) \) equals the expectation of the evolved observable \( \Phi^*(S) \) on the original state \( T \).
 
-A more explicit way of describing the relationship between $\Phi$ and $\Phi^*$ in the finite-dimensional setting---where all trace-class operators are bounded and we have the identification \( \mathcal{B}(\mathcal{H}) = \mathcal{T}(\mathcal{H}) \)---is given by the diagram below:
+A more explicit way of describing the relationship between $\Phi$ and $\Phi^*$ in the finite-dimensional setting is given by the diagram below:
 
 \[
-\hspace{-50pt}
+\hspace{-110pt}
 \begin{minipage}{0.45\textwidth}
 \centering
 \begin{tikzpicture}
   \matrix (m) [matrix of math nodes,row sep=3em,column sep=2em,minimum width=1em]
   { 
-    \mathcal{T}(\mathcal{H}) \\
-     \mathcal{T}(\mathcal{K})  \\
+    \bigoplus_i M_{n_i} \\
+     \bigoplus_j M_{n_j}   \\
   };
   \path[-stealth]
     (m-1-1) edge  node [right] {$\Phi$} (m-2-1);
 \end{tikzpicture}
 \end{minipage}
-\hspace{-50pt}
+\hspace{-60pt}
 \begin{minipage}{0.45\textwidth}
 \centering
 \begin{tikzpicture}
-  \matrix (m) [matrix of math nodes,row sep=3em,column sep=12em,minimum width=1em]
+  \matrix (m) [matrix of math nodes,row sep=3em,column sep=23em,minimum width=1em]
   {
-  \mathcal{T}(\mathcal{H})^*&  \mathcal{B}(\mathcal{H})  \\
-   \mathcal{T}(\mathcal{K})^* &  \mathcal{B}(\mathcal{K}) \\
+  (\bigoplus_i M_{n_i})^*&  \bigoplus_i M_{n_i} \\
+   (\bigoplus_j M_{n_j})^* &  \bigoplus_j M_{n_j} \\
   };
   \path[-stealth]
-    (m-1-1) edge  node [above] {$\varphi \mapsto \sum_{ij} \varphi(\ket{j}\bra{i}) \cdot \ket{i} \bra{j}  $} (m-1-2)
+    (m-1-1) edge  node [above] {$\varphi \mapsto \left(\sum_{ij} \varphi_1(\ket{j}\bra{i}) \cdot \ket{i} \bra{j}, \ldots, \sum_{ij} \varphi_n(\ket{j}\bra{i}) \cdot \ket{i} \bra{j}\right)   $} (m-1-2)
     (m-2-2) edge [dotted]  node [right] {$\Phi^*$} (m-1-2)
     (m-2-2) edge  node [below] {$ A \mapsto (B \mapsto \tr(AB)) $} (m-2-1)
     (m-2-1) edge  node [right] {$ \varphi \mapsto \varphi \cdot \Phi $} (m-1-1)
@@ -99,8 +244,9 @@ A more explicit way of describing the relationship between $\Phi$ and $\Phi^*$ i
 \end{tikzpicture}
 \end{minipage}
 \]
+where $\varphi \in (\bigoplus_i M_{n_i})^*$ is defined as $\varphi(v_1, \ldots, v_n)= \sum_i^n \varphi_i(v_i).$
 
-
+\vspace{3pt}
 
 % Graded cenas
 

@@ -1112,7 +1112,6 @@ where $A \in \TraceOp{\HilbH}$.
 
 
 Unfortunately, this norm is not stable under tensoring , given that the inequation $ \lVert \Phi \otimes I_{\TraceOp{\HilbH}} \rVert_{1} \geq \lVert \Phi \rVert_{1}$ does not hold \cite{watrous2018theory}. As a result, the diamond norm, which is based on the trace norm, is used instead in the context of quantum channels. 
-
 \begin{definition} \label{def:diamond_norm}
   Given a super-operator $\Phi: \TraceOp{\HilbH} \to \TraceOp{\HilbK}$, the diamond norm, \gls{diamond-norm}, is defined as:
   \begin{equation*}  \label{eq:diamond_distance}
@@ -1134,6 +1133,28 @@ Let \(\Phi \in \mathcal{T}(\HilbH) \to \mathcal{T}(\HilbK)\) be a positive map. 
 \tracenorm{\Phi}= \sup \{ \operatorname{Tr} \left( \Phi(vv^*) \right) \, \vert \, \euclideannorm{v}=1, v\in \HilbH  \}.
 \]
 \end{theorem}
+
+\begin{corollary} \label{cor:gen_diamond_cptp_norm}
+   Let  $\Phi:  \TraceOp{\HilbH} \to \TraceOp{\HilbK}$ be a quantum operation, it holds that:
+    \begin{equation*}
+      \diamondnorm{\Phi} \leq 1.
+    \end{equation*}
+  \end{corollary}
+ 
+
+  \begin{proof}
+    Given that $\Phi$ is a  quantum operation, if follows that $ \Phi \otimes  \id_{\TraceOp{\HilbH}}$ is a positive trace-nonincreasing super-operator. Let $\Psi = \Phi \otimes \id$, it holds that,
+    \begin{align*}
+      & \hspace{-20pt} \diamondnorm{\Phi} =\tracenorm{\Psi}\\
+      &  \hspace{-20pt} = \max \left\{\tr \left( \Psi (u u^\dag)\right) \, \vert \, \euclideannorm{u}=1 \right\}  & \left(\text{\autoref{thm:russo_dye}}\right)\\
+      & \hspace{-20pt} = \max \left\{ \sum_i \sum_j \tr \left( \Psi_{ij} (u_i u_i^\dag)\right) \Bigm|  \euclideannorm{\begin{pmatrix} u_1, \ldots, u_s^2 \end{pmatrix}^T}=1 \right\} \\
+      &  \hspace{-20pt} \leq \max \left\{ \sum_i \tr \left( u_i u_i^\dag \right) \Biggm| \sqrt{\sum_i \euclideannorm{u_i}^2}=1 \right\}   & (\Psi \text{ is trace-nonincreasing}) \\
+      &  \hspace{-20pt} = 1
+    \end{align*}
+    % isto é verdade porque tr(u_iu_i^\dag ) =  \\ u_i\\^2 . consideremos u_i= (a_1,...,a_n), tr(ui)= |a_1|^2+...+ |a_n|^2 e \\ u_i\\ = \sqrt(|a_1|^2+...+ |a_n|^2)
+  \end{proof}
+
+
 
 \begin{theorem} \cite[Theorem 3.46]{watrous2018theory} \label{thm_diamond_otimes_id}
   Let \(\Phi : \mathcal{T}(\HilbH) \to \mathcal{T}(\HilbK)\) be a map. Then
@@ -1910,23 +1931,90 @@ We highlight the following connection between the two categories: the full subca
 
 \subsection{Schrödinger's picture} \label{subsec:shodinger}
 
-We begin by presenting the category $\catCPTP$ of completely positive trace-preserving maps, which was shown in \cite{dahlqvist2023syntactic} to form a symmetric monoidal $\catMet$-category. In this section \gls{square_matrix} will denote the vector space of complex $n\times n$ matrices.
+The category $\catCPTP$ of quantum channels was shown in \cite{dahlqvist2023syntactic} to form a symmetric monoidal $\catMet$-category. We begin by presenting the more general symmetric monoidal category $\catCPS$ of quantum operations, which can similarly be shown to be a symmetric monoidal $\catMet$-category. Throughout this section, \gls{square_matrix} will denote the vector space of complex $n \times n$ matrices.
+
+%We begin by presenting the category $\catCPS$ of completely positive trace-nonincreasing maps, and asserting that it is a a symmetric monoidal $\catMet$-category, 
+%which was shown in \cite{dahlqvist2023syntactic} to form a symmetric monoidal $\catMet$-category. In this section \gls{square_matrix} will denote the vector space of complex $n\times n$ matrices.
 
 %In \cite{dahlqvist2023syntactic} showed that the $\catCPTP$ of completely positive trace-preserving maps is a symmetric monoidal category enriched over metric spaces \cite{dahlqvist2023syntactic}.
 
-
-
-\begin{definition} \label{ex:cat_cptp}
-The category $\catCPTP$ is the category whose objects are natural numbers $n \geq 1$ and whose morphisms $n \rightarrow m$ are quantum channels $\mathcal{M}_n \rightarrow \mathcal{M}_m$.
+\begin{definition} \label{ex:cat_cps}
+The category $\catCPS$ is the category whose objects are natural numbers $n \geq 1$ and whose morphisms $n \rightarrow m$ are quantum operations $\mathcal{M}_n \rightarrow \mathcal{M}_m$.
 \end{definition}
 
+The following proposition establishes that $\catCPS$ is a first-order $\lambda$-calculus model without conditionals drawing from \cite{dahlqvist2023syntactic}.
 
-A natural candidate for interpreting quantum programs with coproducts is the category $\catCPTP^+$, obtained via the coproduct cocompletion of $\catCPTP$. However, for $\catCPTP^+$ to serve as a suitable model for quantum computation, its morphisms should be able to express the measurement operation, \ie, an operation mapping a density matrix $\rho \in \mathcal{M}_2$ to a classical bit $b \in \mathbb{C} \oplus \mathbb{C}$. 
-Unfortunately, this is not the case. 
+
+\begin{proposition} \label{prop:Q_monoidal} 
+  The category $\catCPS$ is a symmetric monoidal $\catMet$-category in which the tensor product is non-expansive.
+\end{proposition}
+
+
+\begin{proof}
+  Here we follow the same reasoning as \cite[Proof of  Proposition 4.1, Section 4.3]{dahlqvist2023syntactic}.
+
+  First, we establish that $\catCPS$ is $\catMet$-enriched. By unpacking the relevant definitions, this reduces to proving the following: for all $\catQ$-morphisms $\Phi, \Phi' : n \to m$ and $\Psi, \Psi' : m \to o$ the inequation $\diamondnorm{\Phi-\Phi'} + \diamondnorm{\Psi-\Psi'} \geq \diamondnorm{\Psi\Phi-\Psi'\Phi'} $ holds. 
+  We proceed as follows:
+\begin{align*}
+  & \diamondnorm{\Phi - \Phi'} + \diamondnorm{\Psi - \Psi'} \\
+&\geq \diamondnorm{(\Phi - \Phi')\Psi} +  \diamondnorm{\Phi'(\Psi - \Psi')}  & (\text{\autoref{prop:diamond_submult}}, \text{ and \autoref{cor:gen_diamond_cptp_norm}}) \\
+& = \diamondnorm{\Phi \Psi- \Phi' \Psi} +  \diamondnorm{\Phi'\Psi - \Phi' \Psi'} \\
+& \geq  \diamondnorm{\Phi \Psi- \Phi' \Psi + \Phi'\Psi - \Phi' \Psi' }  & \{ \text{Triangle inequality} \} \\
+&= \diamondnorm{\Psi\Phi-\Psi'\Phi'}.
+\end{align*}
+
+  Next, to prove that  $\diamondnorm{\Phi-\Phi'} + \diamondnorm{\Psi-\Psi'} \geq \diamondnorm{\Psi \otimes \Phi-\Psi' \otimes \Phi'} $, we calculate
+  \begin{align*}
+      & \hspace{-30pt} \diamondnorm{\Psi - \Psi'} + \diamondnorm{\Phi - \Phi'} \\
+      & \hspace{-30pt} \geq \diamondnorm{\id \otimes \left(\Psi-\Psi'\right)} + \diamondnorm{\id \otimes \left(\Phi-\Phi'\right)} & (\text{\autoref{thm:diamond_tensor_comp} and \autoref{cor:gen_diamond_cptp_norm} })  \\
+      &\hspace{-30pt} =  \diamondnorm{\id \otimes \Psi- \id \otimes\Psi'} + \diamondnorm{\id \otimes \Phi- \id \otimes\Phi'} \\
+      &\hspace{-30pt} \geq \diamondnorm{\left( \id \otimes \Psi \right) \cdot \left( \Phi \otimes \id \right) -  \left( \id \otimes \Psi' \right) \cdot \left( \Phi' \otimes \id \right)} & (\catCPS \text{ is a } \mathsf{Met}\text{-category}) \\
+      &\hspace{-30pt} = \diamondnorm{\Psi \otimes \Phi - \Psi' \otimes \Phi'}
+  \end{align*}
+
+\end{proof}
+
+
+Since, unfortunately $\catCPS$ it does meet the pre-requisite of having coproducts,
+a natural candidate for interpreting quantum programs with coproducts is the category $\catCPS^+$, obtained via the coproduct cocompletion of $\catCPS$. However, for $\catCPS^+$ to serve as a suitable model for quantum computation, its morphisms should be able to express the measurement operation, \ie, an operation mapping a density matrix $
+\rho=\left(\begin{smallmatrix}
+    a & c \\
+    d & b
+  \end{smallmatrix}\right)
+  \in \mathcal{M}_2$ to a classical bit $(a,d) \in \mathbb{C} \oplus \mathbb{C}$. 
+Unfortunately, this is not the case, since $\catCPS^+(2, 1+1)$ consists of an operation $\Phi: 2 \to 1$ followed by a left or right injection. Consequently, we cannot access both measurement outcomes simultaneously. We could consider introducing measurements via a ``product completion,'' but a similar problem would arise for the coproduct given $\catCPS^+(1+1, 2)$ consists of a left or right projection followed by and operation $\Phi: 1 \to 2$ . This suggests that \( + \) should be a biproduct. However, as observed in \cite{selinger2004towards}, not all morphisms of the biproduct are required: the coproduct structure together with its projection morphisms suffices. 
+\begin{comment}
 If such a measurement were to exist, it would correspond to a morphism $\Phi \colon 2 \to 1 \oplus 1$, where $\oplus$ is the coproduct, allowing us to reason about it within our metric equational system. Simultaneously, we should be able to ``decompose'' $\Phi$ into two projection maps $\pi_1 \colon 2 \to 1$ and $\pi_2 \colon 2 \to 1$.  Now, recall that in $\catCPTP^+$, a morphism consists of a pair $(f, (\phi_i)_{i \in I})$, where: $f \colon I \to J$ is a function between index sets, and
  $(\phi_i)_{i \in I}$ is a family of $\catCPTP$-morphisms $\phi_i \colon A_i \to B_{f(i)}$. Because $f$ is a function, the category does not support morphisms of the form $(f,\phi_i \colon A \to C_i)_{i \in I}$ when $I$ has more than one element. As a result,  we cannot express measurements in $\catCPTP^+$. We could consider introducing measurements via a ``product completion,'' but a similar problem would arise for the injections. 
-This suggests that \( + \) should be a biproduct. Nonetheless, as we will see, not all morphisms of the biproduct are necessary: the coproduct structure together with the projections suffices.
+\end{comment}
+%Nonetheless, as we will see, not all morphisms of the biproduct are necessary: the coproduct structure together with the projections suffices.
 %In the category we consider next does not have products. Nevertheless, we do have binary coproducts as well as the ``projection maps” that were missing in $\catCPTP^+$.
+
+We will see next that what we need is not a biproduct completion but rather an \emph{idempotent completion}, \ie, creating a new category where all idempotent morphisms split. This is done via the Karoubi envelope which formally adds these splittings to the category \cite{borceuxHandbookCategoricalAlgebra1994}.
+
+\begin{definition}
+  For any category $\catC$, its \emph{Karoubi envelope} (or \emph{idempotent completion}), denoted $\mathcal{K}(\catC)$, is the category whose objects
+ are pairs $(A, e_A)$, where $X$ is an object in $\catC$ and $e_A \colon A \to A$ is an idempotent morphism in $\catC$, \ie, $e_A \cdot e_A = e_A$.
+A morphism $f \colon (A, e_A) \to (B, e_B)$ in $\mathcal{K}(\catC)$ is a morphism $ A \to B$ in $\catC$ such that $f \circ e_A = f = e_B \circ f$.
+The identity morphism on an object $(A, e_A)$ is $e_A \colon A \to A$. Composition of morphisms is inherited from $\catC$: if $f \colon (A, e_A) \to (B, e_B)$ and $g \colon (B, e_B) \to (C, e_C)$ are morphisms in $\mathcal{K}(\catC)$, then $g \circ f$ is defined as their composition in $\catC$.
+\end{definition}
+The idea is that both the coproducts and the measurement operation, in a sense, ``live hidden'' within the category and what is required is to ``draw them out'' in a suitable way. By adding splittings of idempotents, we effectively construct direct sums,  and then carve coproducts and measurements out of them.
+\begin{definition}
+        The Karoubi envelope $\Kar{\catCPS}$ of $\catCPS$ has as objects pairs $(n,
+        P)$ with $P : \Complex^{n \times n} \to \Complex^{n \times n}$ an
+        idempotent quantum operation. A morphism $\Phi : (n,
+        P) \to (m,Q)$ in $\Kar{\catCPS}$ is a $\catCPS$-morphism $n \to m$  such that
+        $Q \comp \Phi \comp P = \Phi$. The identity of $(n ,P)$ is precisely
+        $P$ and composition is inherited from $\catCPS$.
+\end{definition}
+
+%The idea is that in $\catCPS$ idempotents correspond to projections, and
+
+%Thelatter however in some sense ``live hidden'' in the category and what is required is to ``draw them out" in a suitable way. Our strategy for achieving this is based on the observation that while $\CPTP$ does not have coproducts it has enough projections (\ie\ idempotents) to carve coproducts out of them. Technically this is obtained via the so-called Karoubi envelope $\Kar{-}$~\cite{borceux94} construction (also known as the idempotent splitcompletion).
+
+%Note that in $\catCPS$, the idempotent quantum operations correspond precisely to projections. Consequently, by adding splittings of idempotents, we effectively construct direct sums (in the linear algebra sense). These direct sums will be shown to correspond to coproducts, and also give rise to the measurement operation.
+
+
 
 \begin{comment}
 Recall that in $\catCPTP^+$, a morphism consists of a pair $(f, (\phi_i)_{i \in I})$, where: $f \colon I \to J$ is a function between index sets, and
@@ -1936,86 +2024,7 @@ Recall that in $\catCPTP^+$, a morphism consists of a pair $(f, (\phi_i)_{i \in 
 Given this negative result, we will shift our focus to a category that is known to possess both products (and therefore supports measures) and coproducts: Selinger’s QPL model, the category~$\catQ$ \cite{selinger2004towards}.
 \end{comment}
 
-\begin{definition} \label{def:catQ}
-  The category $\catQ$ is defined as 
-  \begin{itemize}
-    \item An object is a signature $\sigma= n_1, \ldots, n_s$. We denote these signatures by the Greek letters $\sigma, \tau$ and $\mu$.
-    \item  Given signatures  $\sigma = n_1, \ldots, n_s $ and $\tau= m_1, \ldots, m_t $, a morphism $\Phi \in \sigma \to \tau $ is a matrix
-    $$\begin{pmatrix}
-      \Phi_{11} & \ldots & \Phi_{s1}, \\
-      \vdots & \ddots  & \vdots \\
-      \Phi_{1t} & \ldots & \Phi_{ts} \\
-    \end{pmatrix}$$
-    of arrows $\Phi_{ij}: \mathcal{M}_{n_i} \rightarrow \mathcal{M}_{m_j}$ in $\catCP$ which is trace-nonincreasing, \ie, the following condition holds:
-    $$ \sum_j \sum_i \tr \left(\Phi_{ij} (A_i)\right)   \leq  \sum_i \tr \left(A_i\right) $$
-   for all positive $A_i \in \mathcal{M}_{n_i}$.
 
-    %More concretely, $ij$-component of $\Phi$ is given by the function $\Phi_{ij} = \pi_{j} \comp \Phi \comp \mathrm{in}_{i} : \mathcal{M}_{n_i} \rightarrow \mathcal{M}_{n_j} $, where $\mathrm{in}_{i}$ is the injection of  $\mathcal{M}_{n_i}$ into the input space of $\Phi$ and  $\pi_{j}$ is the projection onto the $j$-th component.
-  \end{itemize}
-\end{definition}
-
-\begin{remark}
-  $\catQ$ corresponds to the finite biproduct completion of $\catCP$ (which extends $\catCPTP$ to include all completely positive maps),  further restricted to trace-nonincreasing morphisms. 
-\end{remark}
-
-%Trace-non increasing  maps are used here instead of strictly trace-preserving maps to account for possible non-termination in programs, particularly since the language  QPL includes while loops.
-
-Every signature $\sigma$ is associated with a complex vector space   
-$\mathcal{M}_\sigma \coloneqq \SqMatrix{n_1} \oplus \cdots \oplus \SqMatrix{n_s}$
-
-This space consists of matrix vectors 
-$$A = \begin{pmatrix} A_1 \\ \vdots \\ A_n \end{pmatrix}$$
-where the signature $\sigma$ specifies both the number of matrices, $s$,  and their respective dimensions, $n_i \times n_i$. The elements of $\mathcal{M}_\sigma$ are represented uppercase letters such as $A$, $B$, etc.
-We also establish that $\mathbb{C}^\sigma \coloneqq \mathbb{C}^{n_1} \oplus \cdots \oplus \mathbb{C}^{n_s}$.
-
-Note that the definition of trace induces a generalized notion of trace applicable to elements of $\mathcal{M}_\sigma$. Specifically, for $A = \begin{pmatrix} A_1 & \ldots & A_n \end{pmatrix}^T$, we have $\tr(A) = \sum_{i=1}^n \tr(A_i).$
- 
-
-\begin{definition} \label{def:biproduct} [\emph{Coproduct}]
-Concatenation $ \sigma \oplus \sigma'$ of signatures $\sigma$ and $\sigma'$ yields coproducts in $\catQ$. The co-pairing map $[\Phi, \Psi]: \sigma \oplus \sigma' \to \tau$ is defined as  $[\Phi, \Psi](A, B) = \Phi(A) + \Psi(B)$, where addition uses the fact that the codomain is always a direct sum of vector spaces.
-\end{definition}
-
-\begin{remark}
-  The category $\catQ$ does not have finite products. To see this, observe that the diagonal morphism 
-\[
-\langle \mathrm{id}, \mathrm{id} \rangle \colon \tau \to \tau \oplus \tau
-\] 
-is not trace-nonincreasing and hence is not a valid morphism. 
-However, $\catQ$ does contain the two projection morphisms 
-\[
-\pi_1 \colon \sigma \oplus \sigma \to \sigma' \quad \text{and} \quad \pi_2 \colon \sigma \oplus \sigma \to \sigma'.
-\] 
-
-\end{remark}
-
-\begin{definition} \label{def:tensor} [\emph{Tensor Product }]
-  For signatures $\sigma = n_1, \ldots, n_s $ and $\tau= m_1, \ldots, m_t $, the tensor product of $\sigma$ and $\tau$ is defined as $\sigma \otimes \tau = n_1 m_1, \ldots ,n_1 m_t, \ldots, n_s m_1,...,n_s m_t$. 
-  The morphism part of the tensor product follows the definition in the category of vector spaces. If $\Phi: \sigma \rightarrow \tau$ and $\Psi: \sigma' \rightarrow  \tau'$, then their tensor product $\Psi \otimes \Phi: \sigma \otimes \sigma' \rightarrow  \tau \otimes \tau' $ is 
-  %defined on a basis element $A \otimes B$ by  
-%$$
-%(\Phi \otimes \Psi)(A \otimes B) = \Phi(A) \otimes \Psi(B),
-%$$
-%and extends to arbitrary elements by linearity. More concretly, the tensor product $\Phi \otimes \Psi$ is 
-the Kronecker product of their matrices representation, \ie,
-\begin{align*}
-  \Phi \otimes \Psi = 
-  \begin{pmatrix}
-  \Phi_{11} \otimes \Psi_{11} & \ldots & \Phi_{11} \otimes \Psi_{s'1} & \ldots   & \Phi_{s1} \otimes \Psi_{11} & \ldots & \Phi_{s1} \otimes \Psi_{s'1} \\
-  \vdots & & & & & & \vdots \\
-  \Phi_{1t} \otimes \Psi_{1t'} & \ldots & \Phi_{1t} \otimes \Psi_{s't'} & \ldots   & \Phi_{st} \otimes \Psi_{1t'} & \ldots & \Phi_{st} \otimes \Psi_{s't'}
-\end{pmatrix}
-\end{align*}
-
-
-
- Moreover, $\dist$ is an identity map:
-  \[ (\sigma \oplus \sigma') \otimes \tau = (\sigma \otimes \tau ) \oplus (\sigma' \otimes \tau ) \]
-
-  
-\end{definition}
-
-
-The category $\catQ$ is a distributive symmetric monoidal category with binary coproducts. However, this category is not closed \cite{selinger2004b}.
 
 %to the following metrics: $d(\langle \phi, \psi \rangle, \langle \phi', \psi' \rangle ) = \sup \{ d(\phi, \phi' ), d(\psi, \psi') \}$ and $d(\langle \phi, \psi \rangle, \langle \phi', \psi' \rangle ) = d(\phi, \phi' ) +  d(\psi, \psi') $.
 
@@ -2090,23 +2099,7 @@ Consequently this norm is not fit either.
 
 
 %Given that our attempts to consider a simpler metric were not fruitful, we now turn our attention to the diamond norm (\autoref{def:diamond_norm}). 
-\todo[inline,size=\normalsize]{Nota para mim mesma ir definir $\bigoplus_i A_i$ na secção de espaços de Hilbert}
 
-First, given signatures $\sigma: n_1, \ldots, n_s$ and $\tau:m_1, \ldots, m_t$,  note the following inclusion:
-\begin{equation*}
-  \begin{split}
-\SqMatrix{n_1} \oplus \cdots \oplus \SqMatrix{n_s} 
-& \xhookrightarrow{\iota_\sigma} 
-\TraceOp{\mathbb{C}_{n_1} \oplus \cdots \oplus \mathbb{C}_{n_s}}
-\quad  \\
-(A_1, \ldots, A_s) &\mapsto \bigoplus_i A_i  
-  \end{split}
-\end{equation*}
-%(A_1 \otimes B_1, \ldots, A_n \otimes B_t) \mapsto i_{\sigma} \otimes \xhookrightarrow{\text{i_{\sigma \otimes \tau}} 
-
-
-
-\todo[inline,size=\normalsize]{Voltar aqui depois.}
 
 
 
@@ -2126,12 +2119,13 @@ Let us denote by $\mathcal{LS}(\HilbH, \HilbK)$ the vector space of linear maps 
 With these inclusions established, it is now clear that we can use the diamond norm on $\catQ$'s morphisms.
 \end{comment}
 
-With these inclusions established, we can now define a 
 
+\begin{comment}
 \begin{proposition} \label{prop:Q_dist}
   For all $\Phi, \Phi' \in \catQ(\sigma,\mu)  $ and $\Psi, \Psi' \in \catQ(\tau,\mu) $, it holds that
   $$ \diamondnorm{[\Phi-\Phi',\Psi-\Psi']} \leq \sup\{\Phi-\Phi',  \Psi-\Psi' \}.$$
 \end{proposition}
+
 
 \begin{proof}
   Attending to the definition of the diamond norm, the fact that $\dist$ is an identity  and \autoref{lem_op_max_trace} we compute:
@@ -2165,45 +2159,20 @@ The inequality in Proposition \ref{prop:Q_dist} follows from the linearity of th
     
     
   \end{proof}
+\end{comment}
 
   
 
-\begin{proposition} \label{prop:Q_monoidal} 
-  The category $\catQ$ a symmetric monoidal $\catMet$-category.
-\end{proposition}
-
-
-\begin{proof}
-  Here we follow the same reasoning as \cite[Proof of  Proposition 4.1]{dahlqvist2023syntactic}.
-
-  First, we establish that $\catQ$ is $\catMet$-enriched. By unpacking the relevant definitions, this reduces to proving the following: for all $\catQ$-morphisms $\Phi, \Phi' : \sigma \to \tau$ and $\Psi, \Psi' : \tau \to \mu$ the inequation $\diamondnorm{\Phi-\Phi'} + \diamondnorm{\Psi-\Psi'} \geq \diamondnorm{\Psi\Phi-\Psi'\Phi'} $ holds. 
-  We proceed as follows:
-\begin{align*}
-  & \diamondnorm{\Phi - \Phi'} + \diamondnorm{\Psi - \Psi'} \\
-&\geq \diamondnorm{(\Phi - \Phi')\Psi} +  \diamondnorm{\Phi'(\Psi - \Psi')}  & (\text{\autoref{prop:diamond_submult}}, \text{ and \autoref{cor:gen_diamond_cptp_norm}}) \\
-& = \diamondnorm{\Phi \Psi- \Phi' \Psi} +  \diamondnorm{\Phi'\Psi - \Phi' \Psi'} \\
-& \geq  \diamondnorm{\Phi \Psi- \Phi' \Psi + \Phi'\Psi - \Phi' \Psi' }  & \{ \text{Triangle inequality} \} \\
-&= \diamondnorm{\Psi\Phi-\Psi'\Phi'}.
-\end{align*}
-
-  Next, to prove that  $\diamondnorm{\Phi-\Phi'} + \diamondnorm{\Psi-\Psi'} \geq \diamondnorm{\Psi \otimes \Phi-\Psi' \otimes \Phi'} $, we calculate
-  \begin{align*}
-      & \hspace{-30pt} \diamondnorm{\Psi - \Psi'} + \diamondnorm{\Phi - \Phi'} \\
-      & \hspace{-30pt} \geq \diamondnorm{\id \otimes \left(\Psi-\Psi'\right)} + \diamondnorm{\id \otimes \left(\Phi-\Phi'\right)} & (\text{\autoref{thm:diamond_tensor_comp} and \autoref{cor:gen_diamond_cptp_norm} })  \\
-      &\hspace{-30pt} =  \diamondnorm{\id \otimes \Psi- \id \otimes\Psi'} + \diamondnorm{\id \otimes \Phi- \id \otimes\Phi'} \\
-      &\hspace{-30pt} \geq \diamondnorm{\left( \id \otimes \Psi \right) \cdot \left( \Phi \otimes \id \right) -  \left( \id \otimes \Psi' \right) \cdot \left( \Phi' \otimes \id \right)} & (\catQ \text{ is a} \mathsf{Met}\text{-category}) \\
-      &\hspace{-30pt} = \diamondnorm{\Psi \otimes \Phi - \Psi' \otimes \Phi'}
-  \end{align*}
-
-\end{proof}
-
+\begin{comment}
 \begin{theorem}
   $\catQ$ is a distributive symmetric monoidal $\catMet$-category. 
 \end{theorem}
 
+
 \begin{proof}
   It follows directly from \autoref{prop:Q_dist} and  \autoref{prop:Q_monoidal}.
 \end{proof}
+\end{comment}
 
 
 \subsection{Heisenberg's picture} \label{subsec:w*_cats}
@@ -2717,10 +2686,9 @@ Note that $\|\cdot\|_{\text{cb}}$ is a norm on the space of completely bounded m
 
 \section{Examples}
 
-\todo[inline,size=\normalsize]{Mudar interpretação de bit}
 
 We now illustrate the use of (first-order) $\lambda$-calculus with conditionals for describing quantum
-programs. To this effect, we first consider a type $\mathtt{qbit}$ of qubits, the
+programs. To this effect, we consider a type $\mathtt{qbit}$ of qubits, the
 basic unit of information in quantum computation. We then regard $\typeI \oplus
 \typeI$ to be the type of bits. Next, we propound the following
 basic quantum operations:  the conversion of a bit into a qubit, $q : \typeI
@@ -2734,14 +2702,14 @@ gate $H : \mathtt{qbit} \to \mathtt{qbit}$, the not-gate $X : \mathtt{qbit} \to
 \mathtt{qbit}^{\otimes 2}$. We consider as well a pre-determined set of quantum
 states $\ket{\psi} : \typeI \to \mathtt{qbit}$ and a discard operation $\text{disc}: \mathtt{qbit} \to \typeI$.  
 
-$\catQ$ forms a model of the metric $\lambda$-theory for quantum computation via the following interpretation: $\sem{\typeI}= \mathbb{C} \ni  1$, 
-$\sem{\mathtt{qbit} \hspace{1pt}}= \mathbb{C}^{2\times2}$, 
+$\catQ$ forms a model of the metric $\lambda$-theory for quantum computation via the following interpretation: $\sem{\typeI}= \left(\mathbb{C} \ni  1, \id\right)$, 
+$\sem{\mathtt{qbit} \hspace{1pt}}= \left(\mathbb{C}^{2\times2}, \id\right)$, 
 $\sem{\emph{q} \hspace{1pt}}((a,b)) = \big(\begin{smallmatrix}
   a & 0\\
   0 & b
 \end{smallmatrix}\big)$, 
  $\sem{\ket{\psi}} (1)= \ket{\psi} \bra{\psi}$,
-$\sem{\emph{meas} \hspace{1pt}} (\rho)= (\text{Tr} (M_{0} \rho M_{0}^{\dag}), \text{Tr} (M_{1} \rho M_{1}^{\dag}))$, and $\sem{\text{disc}} (\rho)= \tr (\rho)$.
+$\sem{\emph{meas} \hspace{1pt}} (\rho)= \id \oplus \id (\rho)$, and $\sem{\text{disc}} (\rho)= \tr (\rho)$.
 For unitary operations $U$ we define $\sem{U}= U \rho U^{\dag}$.
 For completely positive trace-preserving operators $\emph{CPTP}$, defined as $\emph{CPTP} (\rho) = \sum_i K_i \rho K_i^{\dag}$, we define  $\sem{\emph{CPTP}} = \emph{CPTP}(\rho)$.
 
