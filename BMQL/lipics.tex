@@ -380,9 +380,9 @@ the full subcategory of $\VCat$ whose objects are symmetric. Every
 $\mathcal{V}$-category carries a natural order defined by $x_1 \leq x_2$
 whenever $k \leq a(x_1,x_2)$. A $\mathcal{V}$-category is called
 \emph{separated} if its natural order is anti-symmetric. We denote by $\VCatSe$
-the full subcategory of $\VCat$ whose objects are separated. Note that when
-$\mathcal{V}$ is the metric quantale $\VCatSS$ is the category $\Met$ of metric
-spaces and non-expansive maps.  The categories $\VCat$, $\VCatSe$ and $\VCatSS$
+the full subcategory of $\VCat$ whose objects are separated. When
+$\mathcal{V}$ is the metric quantale, $\VCatSS$ is the category $\Met$ of metric
+spaces and non-expansive maps.  The categories $\VCat$, $\VCatSe$, and $\VCatSS$
 are autonomous whenever the quantale $\mathcal{V}$ is integral (see details
 in~\cite{dahlqvist22,dahlqvist2023syntactic}).  Such gives rise to the
 following particular notion of enriched category. 
@@ -395,24 +395,24 @@ following particular notion of enriched category.
   notions of enriched autonomous category by replacing $\VCat$ (as basis of
   enrichment) with $\VCatSe$ and $\VCatSS$.
 \end{definition}
-Interestingly the category $\VCat$ and the aforementioned variants also have
-products, given precisely by the quantale's Cartesian structure (\ie\ infima).
-This means that $\VCat$ provides an additional basis of enrichment via products
--- and this is what we will recur to in the interpretation of the extended
-quantalic system. More specifically we will assume that the categories involved
-in the interpretation have binary coproducts enriched over the Cartesian
-structure of $\VCat$ rather than the autonomous structure. An abundance of
-examples of such categories is given by the following proposition, which we
-prove in the appendix (Section~\ref{sec:proof}).
+The category $\VCat$ and the aforementioned variants also have products, given
+precisely by the quantale's Cartesian structure (\ie\ infima).  This means that
+$\VCat$ provides an additional basis of enrichment via products -- and this is
+what we will recur to in the interpretation of the extended quantalic system.
+Specifically we will assume that the categories involved in the interpretation
+have binary coproducts enriched over the Cartesian structure of $\VCat$ (rather
+than the monoidal structure). An abundance of examples of such categories is
+given by the following proposition, which we prove in the appendix
+(Section~\ref{sec:proof}).
 
 \begin{proposition}
         \label{prop:vcat}
         The categories $\VCat$, $\VCatSe$, and $\VCatSS$   have binary
         coproducts enriched over their Cartesian structure.
 \end{proposition}
-Our next step is to present soundness and completeness w.r.t.  the
-interpretation structures just described. We start by recalling the notion of
-(symmetric) $\mathcal{V}\lambda$-theory and corresponding models.
+Next we present soundness and completeness for the interpretation structures
+just described. We start with the notion of (symmetric)
+$\mathcal{V}\lambda$-theory.
 
 \begin{definition}[$\mathcal{V} \lambda$-theories]\label{defn:theory}
   Consider a tuple $(G,\Sigma)$ consisting of a set $G$ of ground types and a
@@ -420,30 +420,32 @@ interpretation structures just described. We start by recalling the notion of
   \lambda$-theory} $((G,\Sigma),Ax)$ is a triple such that $Ax$ is a set of
   $\mathcal{V}$-equations-in-context over $\lambda$-terms built from
   $(G,\Sigma)$. The theory is called symmetric if it also contains the symmetry
-  rule (see details in~\cite{dahlqvist22,dahlqvist2023syntactic}).
+  rule (see details in~\cite{dahlqvist22,dahlqvist2023syntactic}).  Elements of
+  $Ax$ will be called axioms and equations derivable from the equational system
+  and $Ax$ will be called theorems.
 \end{definition}
 
 \begin{definition}[Models of $\mathcal{V} \lambda$-theories]\label{defn:model}
         Consider a $\mathcal{V}\lambda$-theory $((G,\Sigma),Ax)$ and a
-        $\VCatSe$-enriched autonomous category $\catC$ with
-        binary coproducts enriched over the Cartesian structure of $\VCatSe$.
-        Suppose also that for each $X \in G$ we have an interpretation
-        $\sem{X}$ as a $\catC$-object and analogously for the operation
-        symbols.  This interpretation structure is a model of the theory if all
-        axioms in $Ax$ are satisfied by the interpretation. In case the theory
-        is symmetric then we change the basis of enrichment from $\VCatSe$ to
-        $\VCatSS$ (see details in~\cite{dahlqvist22,dahlqvist2023syntactic}).
+        $\VCatSe$-enriched autonomous category $\catC$ with binary coproducts
+        enriched over the Cartesian structure of $\VCatSe$.  Suppose also that
+        for each $X \in G$ we have an interpretation $\sem{X}$ as a
+        $\catC$-object and analogously for the operation symbols.  This
+        interpretation structure is a model of the theory if all axioms in $Ax$
+        are satisfied by the interpretation. In case the theory is symmetric we
+        change the basis of enrichment from $\VCatSe$ to $\VCatSS$ (see details
+        in~\cite{dahlqvist22,dahlqvist2023syntactic}).
 \end{definition}
 Take an interpretation structure as per the previous definition.  We say that a
 $\mathcal{V}$-equation $\Gamma \vljud v =_q w : \typeA$ holds in the
-interpretation if $q \leq a(\sem{\Gamma \vljud v : \typeA}, \sem{\Gamma \vljud
-w : \typeA})$ where $a : \catC(\sem{\Gamma},\sem{\typeA}) \times
-\catC(\sem{\Gamma},\sem{\typeA}) \to \mathcal{V}$ is the underlying function of
-the $\mathcal{V}$-category $\catC(\sem{\Gamma},\sem{\typeA})$.
+interpretation if $q \leq a(\sem{v}, \sem{w})$ where $a :
+\catC(\sem{\Gamma},\sem{\typeA}) \times \catC(\sem{\Gamma},\sem{\typeA}) \to
+\mathcal{V}$ is the underlying function of the $\mathcal{V}$-category
+$\catC(\sem{\Gamma},\sem{\typeA})$.
 
 
 \begin{theorem}[Soundness and Completeness]
-        Consider a $\mathcal{V}\lambda$-theory $T$.  A
+        Consider a $\mathcal{V}\lambda$-theory $\mathscr{T}$.  A
         $\mathcal{V}$-equation-in-context is a theorem iff it holds in all
         models of the theory.
 \end{theorem}
@@ -463,80 +465,63 @@ the $\mathcal{V}$-category $\catC(\sem{\Gamma},\sem{\typeA})$.
 
         Completeness on the other hand is based on the idea of a
         Lindenbaum-Tarski algebra. Concretely we build the syntactic category
-        $\catfont{Syn}(T)$ (also known as term model) of the underlying  theory
-        $T$ and then show that provability of $\Gamma \vljud v =_q w : \typeA$
-        in $T$ is equivalent to $a(\sem{v},\sem{w}) \geq q$ in the category
-        $\catfont{Syn}(T)$. Thus for two types $\typeA$ and $\typeB$, let
-        \textbf{Values}$(\typeA,\typeB)$ be the set of $\lambda$-terms $v$ such
-        that $x : \typeA \vljud v : \typeB$. We equip
-        $\textbf{Values}(\typeA,\typeB)$ with the $\mathcal{V}$-relation $a$ defined by,
+        $\catfont{Syn}(\mathscr{T})$ (also known as term model) of the
+        underlying  theory $\mathscr{T}$ and then show that provability of
+        $\Gamma \vljud v =_q w : \typeA$ in $\mathscr{T}$ is equivalent to
+        $a(\sem{v},\sem{w}) \geq q$ in the category
+        $\catfont{Syn}(\mathscr{T})$. Thus for two types $\typeA$ and $\typeB$,
+        let \textbf{Values}$(\typeA,\typeB)$ be the set of $\lambda$-terms $v$
+        such that $x : \typeA \vljud v : \typeB$. We equip
+        $\textbf{Values}(\typeA,\typeB)$ with the $\mathcal{V}$-relation $a$
+        defined by,
         \[
                         a(x : \typeA \vljud v : \typeB, y : \typeA \vljud  w : \typeB)
                         =\sup {\{q \, \vert \,
-                        v=_q w[x/y] \text{ is a theorem of } T \}}
+                        v=_q w[x/y] \text{ is a theorem of } \mathscr{T} \}}
         \]
         It is easy to see that \textbf{Values}$((\typeA,\typeB),a)$ is a
         $\mathcal{V}$-category. We then quotient it into a separated
         $\mathcal{V}$-category via the construction detailed
         in~\cite{dahlqvist22,dahlqvist2023syntactic}. The next step is to prove
         that this quotienting procedure is compatible with the term formation
-        rules of the extended calculus. To this effect, in general one uses the fact
-        that $\otimes$ distributes over suprema and the case of additive
+        rules of the extended calculus. To this effect, in general one uses the
+        fact that $\otimes$ distributes over suprema and the case of additive
         disjunction additionally requires the fact that $q \wedge (-)$
-        distributes over directed suprema for every $q \in \mathcal{V}$. This yields the
-        desired category $\catfont{Syn}(T)$ which will respect
-        Definition~\ref{defn:enr_aut} and moreover possess binary coproducts
-        enriched over the Cartesian structure of $\VCatSe$ (resp. $\VCatSS$).
+        distributes over directed suprema for every $q \in \mathcal{V}$. This
+        yields the desired category $\catfont{Syn}(\mathscr{T})$ which will
+        respect Definition~\ref{defn:enr_aut} and moreover possess binary
+        coproducts enriched over the Cartesian structure of $\VCatSe$ (resp.
+        $\VCatSS$).
 
 The final step is to show that if an equation $\Gamma \vljud v =_q v' : \typeA$
-holds in $\catfont{Syn}(T)$ then it is a theorem of $T$. By
+holds in $\catfont{Syn}(\mathscr{T})$ then it is a theorem of $\mathscr{T}$. By
 assumption $a([v],[v']) = a(v,v') =  \sup{ \{r \mid v =_r v'\}} \geq q$. It
 follows from the definition of the way-below relation that for all $x \in B$
-with $x \ll q$ there exists a finite set $A \subseteq \{r \, \vert \, v =_r
-v'\}$ such that $x \leq \sup A$. Then by an application of rule (join)
-(\cite[Figure 4]{dahlqvist2023syntactic}) we obtain $v =_{\sup A } v'$, and
+with $x \ll q$ there exists a finite set $F \subseteq \{r \, \vert \, v =_r
+v'\}$ such that $x \leq \sup F$. Then by an application of rule (join)
+(\cite[Figure 4]{dahlqvist2023syntactic}) we obtain $v =_{\sup F} v'$, and
 consequently, rule (weak) (\cite[Figure 4]{dahlqvist2023syntactic}) provides $v
 =_x v'$ for all $x \ll q$. Finally by an application of rule (arch)
 (\cite[Figure 4]{dahlqvist2023syntactic}) we deduce that $v =_q v'$ is part of
 the theory.
-
-
 \end{proof}
-%\begin{proof}
-%  Regarding the rules in Figure \ref{fig:equations-in-context-cond}, attending to the fact that an equation $\Gamma \vljud v=w: \typeA$ abbreviates the metric equation $\Gamma \vljud v =_0 w: \typeA$, and given that the rules in Figure \ref{fig:equations-in-context-cond} are sound for distributive symmetric monoidal closed categories, we have that $0 \leq d( \llbracket \Gamma \vljud v : \typeA \rrbracket, \llbracket\Gamma \vljud w : \typeA \rrbracket)$. 
-%
-% Regarding the rule in Figure \ref{fig:metric conditionals}, it follows from the fact that $\catC$ is  $\catMet$-enriched and $\otimes$ and $[ \cdot , \cdot ]$ are $\catMet$-functors. We reason as follows:
-%  \begin{align*}
-%    & d( \llbracket  \text{ case } v \, \{\text{inl}_{\typeB}  (x) \Rightarrow w ; \, \text{inr}_{\typeA} (y) \Rightarrow u\}  \rrbracket, \llbracket \text{ case } v' \, \{\text{inl}_{\typeB}  (x) \Rightarrow w' ; \, \text{inr}_{\typeA} (y) \Rightarrow u'\} \rrbracket)  \\
-%    & = d( [\llbracket w\rrbracket ,\llbracket u\rrbracket] \comp (\text{jn}_{\Delta;\typeA}\comp \sw \oplus \text{jn}_{\Delta;\typeB}\comp \sw) \comp \dist \comp (\llbracket v\rrbracket \otimes \text{id}) \comp \text{sp}_{\Gamma;\Delta} \comp \text{sh}_{E}, \\
-%    & \hspace{10pt} [\llbracket w'\rrbracket ,\llbracket u'\rrbracket] \comp (\text{jn}_{\Delta;\typeA}\comp \sw \oplus \text{jn}_{\Delta;\typeB}\comp \sw) \comp \dist \comp (\llbracket v'\rrbracket \otimes \text{id}) \comp \text{sp}_{\Gamma;\Delta} \comp \text{sh}_{E})\\
-%    & \leq d( [\llbracket w\rrbracket ,\llbracket u\rrbracket] \comp (\text{jn}_{\Delta;\typeA}\comp \sw \oplus \text{jn}_{\Delta;\typeB}\comp \sw) \comp \dist \comp (\llbracket v\rrbracket \otimes \text{id}),  [\llbracket w'\rrbracket ,\llbracket u'\rrbracket] \comp (\text{jn}_{\Delta;\typeA}\comp \sw \, \oplus \\
-%    & \hspace{10pt} \text{jn}_{\Delta;\typeB}\comp \sw) \comp \dist \comp (\llbracket v'\rrbracket \otimes \text{id}) )\\
-%    & \leq d(\llbracket v\rrbracket \otimes \text{id}, \llbracket v'\rrbracket \otimes \text{id}) +  d( [\llbracket w\rrbracket ,\llbracket u\rrbracket] \comp (\text{jn}_{\Delta;\typeA}\comp \sw \oplus \text{jn}_{\Delta;\typeB}\comp \sw) \comp \dist,  [\llbracket w'\rrbracket ,\llbracket u'\rrbracket] \\
-%    & \hspace{10pt} \comp (\text{jn}_{\Delta;\typeA}\comp \sw \oplus \text{jn}_{\Delta;\typeB}\comp \sw) \comp \dist) \\
-%    & \leq q +  d( [\llbracket w\rrbracket ,\llbracket u\rrbracket] \comp (\text{jn}_{\Delta;\typeA}\comp \sw \oplus \text{jn}_{\Delta;\typeB}\comp \sw) \comp \dist,  [\llbracket w'\rrbracket ,\llbracket u'\rrbracket] \comp (\text{jn}_{\Delta;\typeA}\comp \sw \oplus \text{jn}_{\Delta;\typeB}\comp \sw)  \\
-%    & \hspace{10pt} \comp \dist)\\
-%    & \leq q +  d( [\llbracket w\rrbracket ,\llbracket u\rrbracket],  [\llbracket w'\rrbracket ,\llbracket u'\rrbracket]) \\
-%    & \leq q + \sup(d( \llbracket w\rrbracket , \llbracket w' \rrbracket), d( \llbracket u\rrbracket , \llbracket u' \rrbracket)) \\
-%    & \leq q + \sup(r, s) \\
-%  \end{align*}
-%  The second step follows from the fact that $\text{sp}_{\Gamma;\Delta} \comp \text{sh}_{E}$  is a morphism in $\catC$  and that $\catC$ is $\catMet$-enriched.  The third and fifth step follow from an analogous reasoning. The fourth step follows from the premises of the rule in question and from the metric equation regarding tensors. The sixth step follows from the fact that $[ \cdot , \cdot ]$ is a $\catMet$-functor and $\catC$  is $\catMet$-enriched. Finally, the last step follows from the premise of the rule in question.
-%
-%\end{proof}
-Note that if one drops the well-known Archimedean rule
-(see~\cite{dahlqvist22,dahlqvist2023syntactic,mardare2016quantitative}) the
-following result can still be obtained just by slightly tweaking the last
-paragraph of the previous proof.
-
+Whilst extremely useful the well-known Archimedean rule
+(see~\cite{dahlqvist22,dahlqvist2023syntactic,mardare2016quantitative}) (arch)
+has the drawback of involving infinitely many premisses. It is thus often
+desirable to drop it, for computational reasons. The following result tells that
+such rule can be dropped while retaining a weaker form of completeness.
 \begin{theorem}[Approximate completeness]
-        Let us consider a $\mathcal{V}\lambda$-theory $T$.  If a
-        $\mathcal{V}$-equation $\Gamma \vljud v =_q w : \typeA$ holds in all
+        Consider a $\mathcal{V}\lambda$-theory $\mathscr{T}$.  If 
+        $\Gamma \vljud v =_q w : \typeA$ holds in all
         models of the theory then for all approximations $r \ll q$ with $r \in
         B$ we have $\Gamma \vljud v =_r w : \typeA$ as a theorem. In particular
         if $q$ is compact (\ie\ $q \ll q$) we have $\Gamma \vljud v =_q w :
         \typeA$.
 \end{theorem}
 
+\begin{proof}
+Amounts to a slight tweaking of the last paragraph of the previous proof.
+\end{proof}
 \section{A brief illustration with probabilistic programming}
 \label{sec:ex}
 
