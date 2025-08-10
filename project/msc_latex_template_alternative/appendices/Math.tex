@@ -451,17 +451,17 @@ The \emph{coproduct} is the dual of the \emph{product}—it is obtained by rever
 
 \begin{definition}
 Consider a category $\catC$.  We say that it has (binary) coproducts if for any
-objects $A$ and $B$ in $\catC$ there also exists an object $A \oplus B$ in
-$\catC$ with morphisms $\inl : A \to A \oplus B$ and $\inr : B \to A \oplus B$
+objects $A$ and $B$ in $\catC$ there also exists an object $A + B$ in
+$\catC$ with morphisms $\inl : A \to A + B$ and $\inr : B \to A + B$
 that satisfy a certain universal property: specifically for every two morphisms
 $f  : A \to C$ and $g : B \to C$ there exists a \emph{unique} morphism $[f,g] :
-A \oplus B \to C$ known as \emph{co-pairing} that makes the diagram below commute.
+A + B \to C$ known as \emph{co-pairing} that makes the diagram below commute.
 \[
 \begin{tikzpicture}
   \matrix (m) [matrix of math nodes,row sep=4em,column sep=7em,minimum width=2em]
   {
    & C &  \\
-    A  & A \oplus B & B\\
+    A  & A + B & B\\
   };
   \path[-stealth]
     (m-2-1) edge  node [above] {$f$} (m-1-2)
@@ -475,18 +475,18 @@ A \oplus B \to C$ known as \emph{co-pairing} that makes the diagram below commut
 \end{definition}
 
   \begin{definition}
-Let \( A \oplus B \) be a coproduct of objects \( A \) and \( B \), and let \( A' \oplus B' \) be a coproduct of objects \( A' \) and \( A' \) in a category $\catC$. Suppose we are given morphisms \( f : A \to A' \) and \( g : B \to B' \). 
+Let \( A + B \) be a coproduct of objects \( A \) and \( B \), and let \( A' + B' \) be a coproduct of objects \( A' \) and \( A' \) in a category $\catC$. Suppose we are given morphisms \( f : A \to A' \) and \( g : B \to B' \). 
 Then there exists a unique morphism
 \[
-f \oplus g : A \oplus B \to A' \oplus B'
+f + g : A + B \to A' + B'
 \]
 such that the following diagram commutes.
 \[
 \begin{tikzpicture}
   \matrix (m) [matrix of math nodes,row sep=4em,column sep=7em,minimum width=2em]
   {
-   A  & A \oplus B & B \\
-    A'  & A' \oplus B' & B' \\
+   A  & A + B & B \\
+    A'  & A' + B' & B' \\
   };
   \path[-stealth]
     (m-1-1) edge  node [below] {$\inl$} (m-1-2)
@@ -495,18 +495,18 @@ such that the following diagram commutes.
     (m-1-3) edge  node [right] {$g$} (m-2-3)
     (m-2-1) edge  node [below] {$\inl$} (m-2-2)
     (m-2-3) edge  node [below] {$\inr$} (m-2-2)
-    (m-1-2) edge [dotted]  node [right] {$ f\oplus g$} (m-2-2);
+    (m-1-2) edge [dotted]  node [right] {$ f+ g$} (m-2-2);
     ;
 \end{tikzpicture}
 \]
-This induced morphism \( f \oplus g \) is called the \emph{coproduct of the morphisms} \( f \) and \( g \), and it is given explicitly by
+This induced morphism \( f + g \) is called the \emph{coproduct of the morphisms} \( f \) and \( g \), and it is given explicitly by
 \[
-f \oplus g = [\inl \circ f,\, \inr \circ g].
+f + g = [\inl \circ f,\, \inr \circ g].
 \]
 \end{definition}
 
 \begin{theorem} 
-  Let \( A \oplus B \) be the product of objects \( A \) and \( B \) in a category $\catC$. For any object $C$ and morphisms \( f : A \to C \) and \( g : B \to C \) are morphisms, it holds that:
+  Let \( A + B \) be the product of objects \( A \) and \( B \) in a category $\catC$. For any object $C$ and morphisms \( f : A \to C \) and \( g : B \to C \) are morphisms, it holds that:
 \[
 [h \circ f,\, h \circ g]  =  h \circ [f,g].
 \]
@@ -524,15 +524,15 @@ This result is a direct consequence of the duality with products.
 \end{proposition}
 
 \begin{example}
-  In the category $\catSet$, the coproduct \( A \oplus B \) of two sets is their disjoint union, which can be constructed as
+  In the category $\catSet$, the coproduct \( A + B \) of two sets is their disjoint union, which can be constructed as
 \[
-A \oplus B = \{(a, 1) \mid a \in A\} \cup \{(b, 2) \mid b \in B\}.
+A + B = \{(a, 1) \mid a \in A\} \cup \{(b, 2) \mid b \in B\}.
 \]
 The canonical coproduct injections are defined by
 \[
 \inl(a) = (a, 1), \quad \inr(b) = (b, 2).
 \]
-Given any set \(C\) and functions \(f: A \to C\) and \(g: B \to C\), the copairing \([f, g]: A \oplus B \to C\) is defined by
+Given any set \(C\) and functions \(f: A \to C\) and \(g: B \to C\), the copairing \([f, g]: A + B \to C\) is defined by
 \[
 [f, g](x, \delta) = 
 \begin{cases}
@@ -544,9 +544,9 @@ g(x) & \text{if } \delta = 2.
 
 \begin{example}
   Let $(P, \leq)$ be a partial order and $\catfont{P}$ be its associated category.  
-Consider a coproduct of elements \( p \oplus q \in P \). Then, by definition, there must exist injections satisfying
+Consider a coproduct of elements \( p + q \in P \). Then, by definition, there must exist injections satisfying
 \[
-p \leq p \oplus q \quad \text{and} \quad q \leq p \oplus q.
+p \leq p + q \quad \text{and} \quad q \leq p + q.
 \]
 Furthermore, for any element \( z \in P \), if
 \[
@@ -554,14 +554,14 @@ p \leq z \quad \text{and} \quad q \leq z,
 \]
 then it follows that
 \[
-p \oplus q \leq z.
+p + q \leq z.
 \]
 This operation \( p + q \) corresponds to what is commonly known as the \emph{least upper bound} or \emph{join}, and is typically denoted by \( p \vee q \).
 \end{example}
 
 
 \begin{example}
-  In $\catVect$ the coproduct coincides with the product. In such cases, this structure is called a \emph{biproduct}. 
+  In $\catVect$ the coproduct coincides with the product. In such cases, this structure is called a \emph{biproduct}, and denoted by $\oplus$. 
   In  $\catVect$ the injection maps are the linear maps
 \[
 \inl: V \to  V \oplus W, \quad  \inl(v)= (v,0),
@@ -1013,7 +1013,7 @@ equipped with a natural isomorphism $\sw : A \otimes B \rightarrow B \otimes A$ 
         functor $- \otimes A$ preserves coproducts. Explicitly
         this means that the morphism,
         \[
-                [\inl \otimes \id, \inr \otimes \id] : B \otimes A \oplus C \otimes                     A \to (B \oplus C) \otimes A
+                [\inl \otimes \id, \inr \otimes \id] : B \otimes A + C \otimes                     A \to (B + C) \otimes A
         \]
         is actually an isomorphism. We will denote the respective inverse
         by $\dist$. Note that if $\catC$ is monoidal closed then it is automatically
