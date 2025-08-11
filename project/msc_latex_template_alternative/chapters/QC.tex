@@ -1348,7 +1348,7 @@ It should be noted that this principle is upheld by the type system outlined in 
 
 \section{\( W^* \)-Algebras}
 
-In this section, we are no longer restricted to finite-dimensional vector spaces; the term ``vector space" now also encompasses infinite-dimensional ones. 
+In this section, we are no longer restricted to finite-dimensional vector spaces; \ie, the term ``vector space" now also encompasses infinite-dimensional ones. 
 
 \begin{comment}
 We would like to focus instead on the
@@ -1360,10 +1360,10 @@ We would like to focus instead on the
 \end{comment}
 
 
- While quantum theory is traditionally formulated in terms of Hilbert spaces, there is also a more abstract and general formulation using operator algebras. This perspective traces back to Heisenberg’s work on the spectral lines of the hydrogen atom in 1925, where he realized that observable quantities in quantum systems, such as the position of an electron in a hydrogen atom, are better represented by infinite arrays of complex numbers \cite{heisenbergUeberQuantentheoretischeUmdeutung1925}. Born and Jordan subsequently recognized that these arrays should follow the rules of matrix multiplication \cite{bornZurQuantenmechanik1925}. To address the mathematical challenges posed by infinite matrices, Von Neumann formalized these ideas using operators on Hilbert spaces, more concretely, \emph{Von Neumann} algebras \cite{neumann1927wahrscheinlichkeitstheoretischer}. This gave rise to the study of operator algebras, which are now applied in various domains in quantum theory, including quantum statistical mechanics \cite{bratteliOperatorAlgebrasQuantum1987}, quantum field theory \cite{arakiMathematicalTheoryQuantum1999,haagAlgebraicApproachQuantum1964}, and quantum information theory \cite{keylFundamentalsQuantumInformation2002}. We refer to the abstract characterization of von Neumann algebras as $W^*$-algebras, although the terms are often used interchangeably in the literature.
+ While quantum theory is traditionally formulated in terms of Hilbert spaces, there is also a more abstract and general formulation using operator algebras. This perspective traces back to Heisenberg’s work on the spectral lines of the hydrogen atom in 1925, where he realized that observable quantities in quantum systems, such as the position of an electron in a hydrogen atom, are better represented by infinite arrays of complex numbers \cite{heisenbergUeberQuantentheoretischeUmdeutung1925}. Born and Jordan subsequently recognized that these arrays should follow the rules of matrix multiplication \cite{bornZurQuantenmechanik1925}. To address the mathematical challenges posed by ``infinite matrices'', Von Neumann formalized these ideas using operators on Hilbert spaces, more concretely, \emph{Von Neumann} algebras \cite{neumann1927wahrscheinlichkeitstheoretischer}. This gave rise to the study of operator algebras, which are now applied in various domains in quantum theory, including quantum statistical mechanics \cite{bratteliOperatorAlgebrasQuantum1987}, quantum field theory \cite{arakiMathematicalTheoryQuantum1999,haagAlgebraicApproachQuantum1964}, and quantum information theory \cite{keylFundamentalsQuantumInformation2002}. We refer to the abstract characterization of von Neumann algebras as $W^*$-algebras, although the terms are often used interchangeably in the literature.
 
 
- While $C^*$-algebras can also model quantum computing, $W^*$-algebras may be more suitable for this purpose. For instance, whereas $C^*$-algebras correspond to noncommutative geometry \cite{connesNoncommutativeGeometry1995}, $W^*$-algebras can be viewed as noncommutative analogues of measure theory or probability, aligning with the probabilistic nature of quantum \cite{hamhalterQuantumMeasureTheory2003,HansQuantumProbabilityQuantumInformationTheory10}. Moreover, there is previous work in this setting: in \cite{choSemanticsQuantumProgramming2016} it is shown that Selinger’s category $\catQ$ corresponds (up to categorical equivalence) to the finite-dimensional subcategory of $\WstarCPSUop$.
+ While $C^*$-algebras can also model quantum computing, $W^*$-algebras ere more suitable for this purpose. For instance, whereas $C^*$-algebras correspond to noncommutative geometry \cite{connesNoncommutativeGeometry1995}, $W^*$-algebras can be viewed as noncommutative analogues of measure theory or probability, aligning with the probabilistic nature of quantum physics \cite{hamhalterQuantumMeasureTheory2003,HansQuantumProbabilityQuantumInformationTheory10}. Moreover, there is previous work in this setting: in \cite{choSemanticsQuantumProgramming2016} it is shown that Selinger’s category $\catQ$ corresponds (up to categorical equivalence) to the finite-dimensional subcategory of $\WstarCPSUop$.
   
   
 Since it is impossible to introduce \( W^* \)-algebras without first covering \( C^* \)-algebras, this section presents the key concepts and results of both, laying the groundwork for \Cref{subsec:w*_cats}.
@@ -1405,7 +1405,7 @@ We consider only linear maps, hence the term ``map'' will always mean a linear m
 
 \begin{definition}
   Let $ \mathscr{A}$ be a \( C^* \)-algebra. An element $x$ of $ \mathscr{A}$ is  positive if there exists an $y \in  \mathscr{A}$ such that $x = y^* y$.
-  We denote the set of positive elements of $ \mathscr{A}$ by $ \mathscr{A}_+$.
+  We denote the set of positive elements of $ \mathscr{A}$ by $ \gls{pos_c*}$.
   %A linear map \( f:  \mathscr{A} \to  \mathscr{B} \) between \( C^* \)-algebras is called \emph{positive} if it maps positive elements of $ \mathscr{A}$ to positive elements of $ \mathscr{B}$.  
 \end{definition}
 
@@ -1419,7 +1419,7 @@ We consider only linear maps, hence the term ``map'' will always mean a linear m
     \item \emph{subunital} if $1-\Phi(1)$ is positive;
     \item \emph{positive} if $\Phi(a)$ is positive for every positive $a \in \mathscr{A} $.
 \end{enumerate}
-A multiplicative involutive linear map is called a \(*\)-\emph{homomorphism} and a unital \(*\)-\emph{homomorphism} is also known as a \acrshort{miu}-map. A bijective \(*\)-homomorphism is called a \(*\)-isomorphism.
+A multiplicative, involutive, linear map is called a \(*\)-\emph{homomorphism} and a unital \(*\)-\emph{homomorphism} is also known as a \acrshort{miu}-map. A bijective \(*\)-homomorphism is called a \(*\)-isomorphism.
 \end{definition}
 
 \begin{proposition} \cite[Theorem 1.5.7]{pedersenCalgebrasTheirAutomorphism1979} \label{prop:HomShortIsoIso}
@@ -1481,7 +1481,7 @@ These matrices are important because they are used to define complete positivity
 \begin{definition} \label{def:completely_positive_map_c*}
   Let \( \Phi : \mathscr{A} \to \mathscr{B} \) be a linear map between \( C^* \)-algebras. For each \( n \in \mathbb{N} \), \( \Phi \) induces a linear map
 \[
-\MnMatrix{\Phi} :\MnMatrix{\mathscr{A}} \to \MnMatrix{\mathscr{B}}, \quad \MnMatrix{\Phi}\big[ x_{ij} \big] := \big[ f(x_{ij}) \big].
+\MnMatrix{\Phi} :\MnMatrix{\mathscr{A}} \to \MnMatrix{\mathscr{B}}, \quad \MnMatrix{\Phi}\big[ x_{ij} \big] := \big[ \Phi(x_{ij}) \big].
 \]
 The map \( \Phi \) is said to be \emph{\( n \)-positive} if \(\MnMatrix{\Phi} \) is positive, and \emph{completely positive} if \( \MnMatrix{\Phi} \) is positive for all \( n \in \mathbb{N} \).
 \end{definition}
@@ -1491,7 +1491,7 @@ We have previously a definition of complete positivity in the setting of bounded
 
 \begin{proposition} \label{pro:cp_compatible}
   The definitions of completely positivity presented (\autoref{def:completely_positive_superoperator} and \autoref{def:completely_positive_map_c*}) are equivalent for maps 
-  $$\Phi: \BoundOp{\HilbH \otimes \HilbK_1 } \to \BoundOp{\HilbH \otimes \HilbK_2}, $$
+  $$\Phi: \BoundOp{\HilbH \otimes_2 \HilbK_1 } \to \BoundOp{\HilbH \otimes_2 \HilbK_2}, $$
 where $\HilbH, \HilbK_1,\HilbK_2$ are finite-dimensional.
 \end{proposition}
 
@@ -1608,7 +1608,7 @@ with operations defined coordinatewise and norm given by
 \|a\|_{\min} = \sup \left\{ \|(\pi_1 \odot \pi_2)(a)\| \right\},
 \quad a \in \mathscr{A}_1 \odot \mathscr{A}_2,
 \]
-where $\pi_1$ and $\pi_2$ run over all  representations of $\mathscr{A}_1$ and $\mathscr{A}_2$, respectively. The subscript $\min$  will be ommited unless ambiguity arises.
+where $\pi_1$ and $\pi_2$ run over all  representations of $\mathscr{A}_1$ and $\mathscr{A}_2$, respectively. The subscript $\min$  will be omitted unless ambiguity arises.
 The completion \gls{min_tensor} is called the \emph{injective $C^*$-tensor product} of $A_1$ and $A_2$. The injective  $C^*$-norm (respectively, $C^*$-tensor product) is also referred to as the \emph{spatial} (or \emph{spatial}) $C^*$-norm (respectively, $C^*$-tensor product).
 \end{definition}
 
@@ -1666,7 +1666,12 @@ A \( W^* \)-algebra is a \( C^* \)-algebra \( \mathscr{M} \) that admits a predu
 
 
 \begin{definition}
-  The weak\(^*\) topology on \(  \mathscr{M} \) induced by the predual is referred to as the \emph{ultraweak topology}. A linear map between \( W^* \)-algebras 
+  The weak\(^*\) topology on \(  \mathscr{M} \) induced by the predual $V$, which is the coarsest (weakest) topology  that makes all functions
+\(
+V^*\to \mathbb{C}, \,
+\quad v^* \mapsto v^*(v)
+\)
+continuous for each \( v \in V \), is referred to as the \emph{ultraweak topology}. A linear map between \( W^* \)-algebras 
 is said to be \emph{normal} if it is ultraweakly continuous.
 We denote the set of normal functionals on \(  \mathscr{M} \) by \(  \mathscr{M}_* \); it is standard that \(  \mathscr{M}_* \) is a predual of \(  \mathscr{M} \).
 \end{definition}
@@ -1682,11 +1687,14 @@ One of the most important examples of a $W^*$-algebra is $\BoundOp{\HilbH}$, the
 \end{proposition}
 
 \begin{example}
+  \begin{comment}
    The following are examples of $W^*$-algebras.
   \begin{enumerate}
     \item For a Hilbert space $\mathcal{H}$, $\mathcal{B}(\mathcal{H})$ is a $W^*$-algebra (see the Proposition immediately above).
     \item  $\SqMatrix{n} \cong \BoundOp{\mathbb{C}^n}$ is a $W^*$-algebra. Its predual is itself $\SqMatrix{n} \cong \TraceOp{\mathbb{C}^n}$ equipped with the trace norm.
   \end{enumerate}
+  \end{comment}
+  For a Hilbert space $\mathcal{H}$, $\mathcal{B}(\mathcal{H})$ is a $W^*$-algebra (see the Proposition immediately above).
 \end{example}
 
 \begin{remark}
@@ -1713,6 +1721,8 @@ Moreover, this makes \( \bigoplus_i \mathscr{M}_i \) the categorical product of 
 
 
 \subsubsection{Tensor products of $W^*$-Algebras}
+\todo[inline,size=\normalsize]{Justificação: We adopt this definition because we will primarily use its properties to prove that the category is a symmetric monoidal $\catMet$-category with binary coproducts, in which the tensor product is nonexpansive?}
+
 Here we adopt the definition of the spatial tensor product of $W^*$-algebras from \cite{westerbaanCategoryNeumannAlgebras2019}, rather than the more common approach based on ultraweak completion of the spatial tensor product of $C^*$-algebras (\autoref{def:min_tensor_c*}) as in \cite{takesakiTheoryOperatorAlgebras1979,sakaiCAlgebrasWAlgebras1998}. 
 The approach in \cite{westerbaanCategoryNeumannAlgebras2019} is more abstract, not resorting to representations on Hilbert spaces. Nevertheless, the author proves that the standard one is a particular realization of his definition  \cite[Theorem 111 VII]{westerbaanCategoryNeumannAlgebras2019}.
 
@@ -1732,15 +1742,15 @@ From now on, we will refer to a bilinear map that is multiplicative, involution 
   A miu-bilinear map \( \gamma: \mathscr{M} \times \mathscr{N} \to \mathscr{T} \) between $W^*$-algebras is called a \emph{tensor product of \( \mathscr{M} \) and \( \mathscr{N} \)} when it satisfies the following three conditions:
 
 \begin{enumerate}
-    \item The range of \( \gamma \) generates \( \mathscr{T} \), meaning that the linear span of the image of \( \gamma \) is ultraweakly dense in \( \mathscr{T} \). This implies that for all \( f \in \mathscr{M}_* \) and \( g \in \mathscr{N}_* \), there exists \emph{at most one} \( h \in \mathscr{T}_* \) such that
+    \item The range of \( \gamma \) generates \( \mathscr{T} \), meaning that the linear span of the image of \( \gamma \) is ultraweakly dense in \( \mathscr{T} \). This implies that for all \( f \in \mathscr{M}_* \) and \(\Psi:\in \mathscr{N}_* \), there exists \emph{at most one} \( h \in \mathscr{T}_* \) such that
     \[
-    h(\gamma(n, m)) = f(n) g(m) \quad \text{for all } n \in \mathscr{M}, \, m \in \mathscr{N}.
+    h(\gamma(n, m)) = \Phi(n) g(m) \quad \text{for all } n \in \mathscr{M}, \, m \in \mathscr{N}.
     \]
-    We call such an \( h \) the \emph{product functional} for \( f \) and \( g \), and denote it by \( \gamma(f, g) \) (when it exists).
+    We call such an \( h \) the \emph{product functional} for \( f \) and \(\Psi:\), and denote it by \( \gamma(f, g) \) (when it exists).
 
-    \item For all normal positive functionals \( \sigma: \mathscr{M} \to \mathbb{C} \) and \( \tau: \mathscr{N} \to \mathbb{C} \), the product functional \( \gamma(\sigma, \tau): \mathscr{T} \to \mathbb{C} \) exists and is positive.
+    \item For all normal positive functionals \( \varphi_1: \mathscr{M} \to \mathbb{C} \) and \(  \varphi_2: \mathscr{N} \to \mathbb{C} \), the product functional \( \gamma( \varphi_1,  \varphi_2): \mathscr{T} \to \mathbb{C} \) exists and is positive.
 
-    \item The product functionals \( \gamma(\sigma, \tau) \) of normal positive functionals \( \sigma \) and \( \tau \) form a \emph{faithful collection} of normal positive functionals on \( \mathscr{T} \) (\ie, \( t \in \mathscr{T}_+ \) is zero iff \( \gamma(\sigma, \tau)(t) = 0 \) for all such functionals).
+    \item The product functionals \( \gamma( \varphi_1,  \varphi_2) \) of normal positive functionals \( \varphi_1 \) and \( \varphi_2\) form a \emph{faithful collection} of normal positive functionals on \( \mathscr{T} \) (\ie, \( t \in \mathscr{T}_+ \) is zero iff \( \gamma(\varphi_1, \varphi_2)(t) = 0 \) for all such functionals).
 
 %We will usually designate this bilinear map by $\overline{\otimes}$.
 \end{enumerate}
@@ -1791,27 +1801,27 @@ $
 \end{proposition}
 
 Since the tensor product is unique up to unique normal miu-isomorphism, we may fix a choice and denote it by 
-$\overline{\otimes} \colon \mathscr{M} \times \gls{w*_tensor}.$
+$\overline{\otimes} \colon \mathscr{M} \times \mathscr{N} \to \gls{w*_tensor}.$
 
 The results that follow will be useful for demonstrating that $\WstarCPSU$ is a first-order model in \Cref{subsec:w*_cats}.
 
 
 \begin{proposition} \cite[Proposition 115 II]{westerbaanCategoryNeumannAlgebras2019} \label{prop:mapa_tensor_w_u_ncpsu}
-Given normal completely positive  maps \( f : \mathscr{M} \to \mathscr{T} \) and \( g : \mathscr{N} \to \mathcal{S} \) between $W^*$-algebras, there exists a unique normal completely positive map
+Given normal completely positive  maps \( \Phi: \mathscr{M}_1 \to \mathscr{N}_1 \) and \( \Psi: \mathscr{M}_2 \to \mathscr{N}_2 \) between $W^*$-algebras, there exists a unique normal completely positive map
 \[
-f \overline{\otimes} g: \mathscr{M} \,\overline{\otimes}\, \mathscr{N} \to \mathscr{T} \,\overline{\otimes}\, \mathscr{S}
+\Phi\,\overline{\otimes} \, \Psi: \mathscr{M}_1 \,\overline{\otimes}\, \mathscr{M}_2 \to \mathscr{N}_1 \,\overline{\otimes}\, \mathscr{N}_2
 \]
 such that
 \[
-(f \overline{\otimes} g)(m \otimes n) = f(m) \otimes g(n)
-\quad \text{for all } m \in \mathscr{M},\; n \in \mathscr{N}.
+(\Phi \, \overline{\otimes} \, \Psi)(m \otimes n) = \Phi(m) \otimes\Psi(n)
+\quad \text{for all } m \in \mathscr{M}_1,\; n \in \mathscr{M}_2.
 \]
-Moreover \( f \overline{\otimes} g \) is (sub)unital if \( f \) and \( g \) are (sub)unital.
+Moreover \(\Phi\, \overline{\otimes}\, \Psi\) is (sub)unital if \(\Phi\) and \(\Psi\) are (sub)unital.
 \end{proposition}
 
 \begin{proposition} \cite[Proof 115 III] {westerbaanCategoryNeumannAlgebras2019} \label{prop:norm_beta_alg}
   Let  $\mathscr{M}$ and $\mathscr{N}$ be $W^*$-algebras.
-  Given normal completely positive maps $f:\mathscr{M} \to \mathscr{T}$ and $g:\mathscr{N} \to \mathscr{T}$. We may take $ f \, \overline{\otimes} \, g = \beta_{\bar{\otimes}}$ as in the theorem \autoref{thm:beta_alg_eq_beta_gamma}. Moreover, $\wnorm{\beta_\odot(s)} \leq \opnorm{f}\opnorm{g}\wnorm{s}$, given an element $s\in \mathscr{M} \overline{\otimes} \mathscr{N}$.
+  Given normal completely positive maps $\Phi:\mathscr{M} \to \mathscr{T}$ and $\Psi:\mathscr{N} \to \mathscr{T}$. We may take $\Phi\, \overline{\otimes} \,\Psi:= \beta_{\bar{\otimes}}$ as in the theorem \autoref{thm:beta_alg_eq_beta_gamma}. Moreover, $\wnorm{\beta_\odot(s)} \leq \opnorm{\Phi}\opnorm{\Psi}\wnorm{s}$, given an element $s\in \mathscr{M} \overline{\otimes} \mathscr{N}$.
 \end{proposition}
 
 
@@ -1823,7 +1833,7 @@ Moreover \( f \overline{\otimes} g \) is (sub)unital if \( f \) and \( g \) are 
   \label{prop:assoc_nmiu}
    There is a unique normal $\ast$-isomorphism
 \[
-\alpha_{\mathscr{M},\mathscr{N},\mathscr{T}} : \mathscr{M} \otimes (\mathscr{N} \otimes \mathscr{T}) \longrightarrow (\mathscr{M} \otimes \mathscr{N} ) \otimes \mathscr{T},
+\alpha_{\mathscr{M},\mathscr{N},\mathscr{T}} : \mathscr{M}\, \overline{\otimes} \, (\mathscr{N} \,\overline{\otimes} \,\mathscr{T}) \longrightarrow (\mathscr{M} \, \overline{\otimes} \, \mathscr{N} ) \, \overline{\otimes} \, \mathscr{T},
 \]
 called an \emph{associator}, with
 \[
@@ -1848,6 +1858,8 @@ There exists a unique normal $\ast$-isomorphism
 
 \subsubsection{Distributivity}
 
+\todo[inline,size=\normalsize]{Esclarecer: $\dist$ é necessariamente $*$-iso? }
+
 \begin{proposition}\cite[Proposition 117 III] {westerbaanCategoryNeumannAlgebras2019} \label{prop:w*_product_disct_tensor}
   Given $W^*$-algebras \( \mathscr{M} \) and \( (\mathscr{N}_i)_{i \in I} \), we have a natural isomorphism
 \[
@@ -1871,9 +1883,9 @@ The category $\WstarCPSUop$ is a distributive symmetric monoidal category.
 The following result will be useful for demonstrating that $\WstarCPSU$ is a first-order model in \Cref{subsec:w*_cats}.
 
 \begin{theorem} \cite[Theorem 3.2]{choSemanticsQuantumProgramming2016} \label{thm:w*_tensor_distributes_product}
-  Let \( \mathscr{A}, \mathscr{B}, \mathscr{C} \) be \(W^*\)-algebras. Then the canonical map
+  Let \( \mathscr{M}, \mathscr{N}, \mathscr{T} \) be \(W^*\)-algebras. Then the canonical map
 \[
- \langle \id \overline{\otimes} \pi_1, \id \overline{\otimes} \pi_1 \rangle : \mathscr{A} \overline{\otimes} (\mathscr{B} \times \mathscr{C}) \to (\mathscr{A} \overline{\otimes} \mathscr{B}) \times (\mathscr{A} \overline{\otimes} \mathscr{C})
+ \langle \id \, \overline{\otimes} \, \pi_1, \id \, \overline{\otimes} \, \pi_1 \rangle : \mathscr{M} \, \overline{\otimes} \, (\mathscr{N} \oplus \mathscr{T}) \to (\mathscr{M} \, \overline{\otimes} \, \mathscr{N}) \oplus (\mathscr{M} \, \overline{\otimes} \, \mathscr{T})
 \]
 is a unital $*$-isomorphism, and therefore, isometric.
 \end{theorem}
@@ -2580,10 +2592,7 @@ The inequality in Proposition \ref{prop:Q_dist} follows from the linearity of th
 
 \subsection{Heisenberg's picture} \label{subsec:w*_cats}
 
-In the previous quantum model, we considered Schr\"odinger's picture---that is, morphisms between quantum states (\ie, density operators). In~\cite{choSemanticsQuantumProgramming2016}, the author presents a model in the Heisenberg picture, where maps are between observables (\ie, self-adjoint operators), which can be seen as an infinite-dimensional extension of Selinger’s model. This model is given by the category $\WstarCPSUop$, the opposite of the category $\WstarCPSU$ whose objects are W$^*$-algebras and morphisms are completely positive subunital maps between them. It is shown that Selinger’s category $\catQ$ is equivalent (up to categorical equivalence) to the finite-dimensional subcategory of $\WstarCPSUop$, $\FdWstarCPSUop$ \cite{choSemanticsQuantumProgramming2016}. Now, we will prove that $\WstarCPSUop$ is a model of our lambda calculus.
-
-
-
+In the previous quantum model, we considered Schr\"odinger's picture---that is, morphisms between quantum states (\ie, density operators). In~\cite{choSemanticsQuantumProgramming2016}, the author presents a model in the Heisenberg picture, where maps are between observables (\ie, self-adjoint operators), which can be seen as an infinite-dimensional extension of Selinger’s model. This model is given by the category $\WstarCPSUop$, the opposite of the category $\WstarCPSU$ whose objects are W$^*$-algebras and morphisms are completely positive subunital maps between them. It is shown that Selinger’s category $\catQ$ is equivalent to the finite-dimensional subcategory of $\WstarCPSUop$, $\FdWstarCPSUop$ \cite{choSemanticsQuantumProgramming2016}. Now, we will prove that $\WstarCPSUop$ is a model of our first-order lambda calculus.
 
 
 
@@ -2767,6 +2776,8 @@ In the previous quantum model, we considered Schr\"odinger's picture---that is, 
   \end{enumerate}
 \end{example}
 \end{comment}
+
+\begin{comment}
 In other words, the map $\phi^* : \mathcal{B}(\mathcal{K}) \to \mathcal{B}(\mathcal{H})$ can be defined as
 \[
 \phi^*(A) = \sum_{i,j} \operatorname{tr}\left(A \cdot \phi(\ket{j}\bra{i})\right) \cdot \ket{i}\bra{j},
@@ -2778,7 +2789,7 @@ where \( i \) and \( j \) range over an orthonormal basis of \( \mathcal{H} \).
 
 \%subsubsection{$\WstarCPSUop$ forms a first-oder model}
 
-
+\end{comment}
 
 
 We start with some considerations on the choice of norm for morphisms in $\WstarCPSU$. The norm on morphisms between $C^*$-algebras
@@ -2787,9 +2798,7 @@ faces  an issue analogous to the trace norm in the context of quantum operations
 \opnorm{\Phi \odot \mathrm{id}_\mathscr{A} \colon \mathscr{A} \odot \mathscr{A} \to \mathscr{A} \odot \mathscr{A}} = \infty,
 \]
 $\ie$ the map $\Phi \odot \mathrm{id}_{\mathscr{A}}$ is unbounded under the usual operator norm 
-\cite[Prop.~3.5.2]{brownCalgebrasFinitedimensionalApproximations}.
-
-Due to these limitations, the \emph{completely bounded norm} becomes the natural choice for studying maps between $C^*$-algebras \cite{effrosOperatorSpaces2000,paulsenCompletelyBoundedMaps2003}. 
+\cite[Prop.~3.5.2]{brownCalgebrasFinitedimensionalApproximations}. Due to these limitations, the \emph{completely bounded norm} becomes the natural choice for studying maps between $C^*$-algebras \cite{effrosOperatorSpaces2000,paulsenCompletelyBoundedMaps2003}. 
 
 \begin{definition} \label{def:cb_norm}
 Given a map \( \Phi \colon \mathscr{A} \to \mathscr{B} \), the completely bounded norm is defined as
@@ -2811,12 +2820,34 @@ In the context of $W^*$-algebras, since we are concerned with the tensor product
 where the supremum ranges over all $W^*$-algebras \( \mathscr{M} \). $\Phi$ is said to be \emph{$W^*$-completely bounded} if $\wcbnorm{\Phi}$ is finite.
 \end{definition}
 
-\todo[inline,size=\normalsize]{Eu sei que a motivação não é a melhor mas, arranjar exemplos é dificil} 
+Note that, in the definition above, positive definiteness is direct. 
+Positive scalability and the triangle inequality (see \autoref{def:norm}) 
+follow, respectively, from the following properties of \emph{supremum} (see \cite[Chapter 2, Section 8-9]{zakon2011mathematical}):
+\todo[inline,size=\normalsize]{Notação para incluir o infinito?}
+\begin{enumerate}
+  \item Let $\alpha \in \mathbb{R}$ and for any non-empty $A \subset \mathbb{R}$, let \(\alpha A = \{\, \alpha \cdot a \mid a \in A \,\}
+\).
+If $\alpha \geq 0$, then
+\[
+\sup(\alpha A) := \alpha \, \sup A.
+\]
+ \item For any two non-empy subsets $A, B \subset \mathbb{R}$,  
+let 
+\(
+A + B := \{\, a + b \mid a \in A, \ b \in B \,\}.
+\)
+It holds that
+\[
+\sup(A + B) = \sup A + \sup B .
+\]
+\end{enumerate}
 
+\todo[inline,size=\normalsize]{Again motivação: acho que não vai ser pela completa positividade, pois esta está associada ao tensor espacial das C* algebras. Ao mesmo tempo temos que a norma de mapas cp corresponde à sua op norm } 
+ 
 Our motivation for the use of this norm instead of the completely bounded norm, beyond the fact that it satisfies the requirements for making \( \WstarCPSUop \) a model, has to do with the fact that it significantly simplifies calculations, since we are not handling two different tensor products, \( \widecheck{\otimes} \) and \( \overline{\otimes} \), simultaneously. %Moreover, if it turns out that the completely bounded norm satisfies \( \cbnorm{\id \overline{\otimes} \Phi} \) for a normal map \( \Phi \) between \( W^* \)-algebras, then the remaining results required for the completely bounded norm to give rise to a model of the metric lambda calculus follow from the inequality
-$
-\cbnorm{\Phi} \leq \wcbnorm{\Phi}
-$
+%$
+%\cbnorm{\Phi} \leq \wcbnorm{\Phi}
+%$
 (\autoref{prop:cb_leq_wcb}). We now establish a few results of the $W^*$ completely bounded norm, so we can infer that $\WstarCPSUop$ is a (first-oder) model of our metric lambda calculus.
 
 
@@ -2831,9 +2862,24 @@ $
   Given Propositions \ref{prop:sakai_tensor_min} and \ref{prop:norm_tensor_w_mult}, we have that 
   \[\minnorm{m} \leq \wnorm{m}  \quad \text{for all } m \in \mathscr{M}_1\widecheck{\otimes} \mathscr{M}_2.\]
 
-   Thus, in order to prove that the above proposition holds, it suffices to prove that for all $ m \in \mathscr{M}_1\widecheck{\otimes} \mathscr{M}_2$, $\Phi \, \widecheck{\otimes} \, \Psi (m) = \Phi \, \overline{\otimes} \, \Psi (m)$.
+   %Thus, in order to prove that the above proposition holds, 
+   Thus, in order to prove that the inequation 
+    \[ \sup \{ \minnorm{\Phi \, \widecheck{\otimes} \, \Psi (m)} \, | \, \norm{m}=1 \}  \leq  \sup \{ \wnorm{\Phi \, \overline{\otimes}  \, \Psi (m)} \, | \, \norm{m}=1 \}  \]
+   holds, it suffices to prove that for all $ m \in \mathscr{M}_1\widecheck{\otimes} \mathscr{M}_2$, $\Phi \, \widecheck{\otimes} \, \Psi (m) = \Phi \, \overline{\otimes} \, \Psi (m)$.
 
+Given that $\Phi$ and $\Psi$ are completely bounded maps, 
+$\Phi \,\widecheck{\otimes}\, \Psi$ is also completely bounded 
+\cite[Theorem~12.3]{paulsenCompletelyBoundedMaps2003}. 
+Moreover, since for any completely bounded map $\Phi'$ between $C^*$-algebras we have 
+$\cbnorm{\Phi'} \geq \opnorm{\Phi'}$ \cite[Exercise~3.1]{paulsenCompletelyBoundedMaps2003}, 
+it follows that $\opnorm{\Phi \,\widecheck{\otimes}\, \Psi}$ is finite, and hence 
+$\Phi \odot \Psi$ is Lipschitz continuous, and therefore uniformly continuous.
+
+
+
+\begin{comment}
    Moreover, given that for any completely bounded maps \(\Phi\) and \(\Psi\) between \(C^*\)-algebras,  $\cbnorm{\Phi \widecheck{\otimes} \Psi} = \cbnorm{\Phi} \cbnorm{\Psi}$ (\cite[Theorem 12.3]{paulsenCompletelyBoundedMaps2003}), and \(\cbnorm{\Phi} \geq \opnorm{\Phi}\), it follows that \(\Phi \odot \Psi\) is Lipschitz continuous and therefore uniformly continuous.
+\end{comment}
 
 
 \begin{figure} [H] 
@@ -2854,12 +2900,10 @@ We note that since \cite{sakaiCAlgebrasWAlgebras1998} and \cite{takesakiTheoryOp
 %$\cbnorm{\id \overline{\otimes} \Phi} =  \sup_{n} \opnorm{\id_{\SqMatrix{n}} \widecheck{\otimes} \id \overline{\otimes} \Phi} $
 
 
-\todo[inline,size=\normalsize]{Ou Corolário ?}
-
-\begin{proposition} \label{prop:cb_leq_wcb}
+\begin{corollary} \label{prop:cb_leq_wcb}
  Given a completely bounded normal map $\Phi:\mathscr{N}_1 \to \mathscr{N}_1 $, between $W^*$ algebras, it holds that:
  \[\cbnorm{\Phi} \leq \wcbnorm{\Phi}. \]
-\end{proposition}
+\end{corollary}
 
 \begin{proof}
   This follows from \autoref{prop:opnorm_min_leq_wopnorm}, the definition of both norms (\autoref{def:cb_norm}, \autoref{def:wcb_nor}), the definition of \emph{supremum} as the least upper bound, and the fact that $\SqMatrix{n}$ is a $W^*$-algebra. We reason as follows,
@@ -2892,7 +2936,7 @@ We note that since \cite{sakaiCAlgebrasWAlgebras1998} and \cite{takesakiTheoryOp
 \begin{proposition} \label{prop:cb_tensor_mult}
   Given normal completely positive maps  $\Phi$ and $\Psi$ between $W^*$-algebras, it holds that
   \[
-  \opnorm{\phi \,\bar{\otimes} \, \psi} \leq \norm{\Phi} \norm{\Psi}.
+  \opnorm{\Phi \,\bar{\otimes} \, \Psi} \leq \opnorm{\Phi} \opnorm{\Psi}.
 \]
 \end{proposition}
 
@@ -2902,14 +2946,14 @@ It follows directly from \autoref{thm:beta_alg_eq_beta_gamma} and
 \end{proof}
 
 \begin{corollary} \label{cor:cbnorm_tensor_leq_norm}
-   Given a normal completely positive subunital map  $\Phi$ between $W^*$-algebras, it holds that
+   Given a normal completely positive map  $\Phi$ between $W^*$-algebras, it holds that
    \[
   \wcbnorm{\Phi} =\opnorm{\Phi}.
 \]
 \end{corollary}
 
 \begin{proof}
-  It follows from the proposition above and the definition of $W^*$ completely bounded norm (\autoref{def:wcb_nor}) that $\wcbnorm{\Phi} \leq \opnorm{\Phi}$. The inverse inequality follows from \autoref{prop:cb_leq_wcb} and the fact that $\|\phi\| = \|\phi\|_{\text{cb}}$ \cite[Exercise 11.5 (iii)]{pisierIntroductionOperatorSpace2003}.
+  It follows from \autoref{prop:cb_tensor_mult} and the definition of $W^*$ completely bounded norm (\autoref{def:wcb_nor}) that $\wcbnorm{\Phi} \leq \opnorm{\Phi}$. The inverse inequality follows from \autoref{prop:cb_leq_wcb} and the fact that $\|\Phi\| = \|\Phi\|_{\text{cb}}$ \cite[Exercise 11.5 (iii)]{pisierIntroductionOperatorSpace2003}.
 \end{proof}
 
 \begin{proposition} \label{prop:w*cb_submult}
@@ -2920,6 +2964,19 @@ It follows directly from \autoref{thm:beta_alg_eq_beta_gamma} and
 \end{proposition}
 
 \begin{proof}
+  We reason as follows:
+  \begin{equation*}
+  \begin{split}
+   & \cbnorm{\Phi \cdot \Psi}  \\
+  & = \sup_{\mathscr{M}} \{ \opnorm{\id_\mathscr{M} \, \overline{\otimes} \, (\Phi \cdot \Psi)}\ \} \\
+  & \leq \sup_{\mathscr{M}} \{ \opnorm{\id_\mathscr{M} \, \overline{\otimes} \, \Phi }\ \cdot  \opnorm{\id_\mathscr{M} \, \overline{\otimes} \,  \Psi}\ \} & (\text{submultiplicativity of} \opnorm{\cdot}  w.r.t composition) \\
+  & \leq \sup_{\mathscr{M}_1, \mathscr{M}_2} \{ \opnorm{\id_{\mathscr{M}_1} \, \overline{\otimes} \, \Phi }\  \cdot  \opnorm{\id_{\mathscr{M}_2}\, \overline{\otimes} \,  \Psi}\ \} & (A \subset B \implies \sup A \leq \sup B) \\
+  & = \sup_{\mathscr{M}_1} \{ \opnorm{\id_{\mathscr{M}_1} \, \overline{\otimes} \, \Phi }\ \} \cdot \sup_{\mathscr{M}_2}, \{ \opnorm{\id_{\mathscr{M}_2}\, \overline{\otimes} \,  \Psi}\ \} & (\cdot \text{  distributes over  } \sup)  \\
+    & = \cbnorm{\Phi} \cdot  \cbnorm{\Psi} 
+  \end{split}
+  \end{equation*}
+
+  \begin{comment}
   It follows directly from the submultiplicativity of the operator norm (\autoref{lemma:op_norm_submult}), the
  definition of \emph{supremum} as the least upper bound, the definition of $W^*$ completely bounded norm,and the following property:
  for any two subsets $A$ and $B$ of only positive elements of an ordered field $\mathcal{F}$, let 
@@ -2935,6 +2992,7 @@ It follows directly from \autoref{thm:beta_alg_eq_beta_gamma} and
  \[
     \wcbnorm{\Phi \cdot \Psi} \leq \wcbnorm{\Phi} \, \wcbnorm{\Psi}.
   \]
+  \end{comment}
 \end{proof}
 
 \begin{proposition} \label{prop:cbnorm_id_otimes_phi}
@@ -2952,15 +3010,26 @@ It follows directly from \autoref{thm:beta_alg_eq_beta_gamma} and
   \]
 By \autoref{prop:swap_nmiu} and \autoref{prop:miu_cp}, it follows that $\sw$ is a normal $\ast$-isomorphism, and, therefore, a completely positive normal map and an isometry (with respect to the operator norm). As a result, by \autoref{cor:cbnorm_tensor_leq_norm} and \autoref{prop:HomShortIsoIso}, we obtain $\wcbnorm{\sw} = \opnorm{\sw}=1$. 
 \end{comment}
-By \autoref{prop:swap_nmiu} it follows that $\sw$ is a normal $\ast$-isomorphism, and, therefore, an isometry (with respect to the operator norm). As a result,
+
+By \autoref{prop:swap_nmiu} and \autoref{prop:miu_cp}, it follows that $\sw$ is a normal $\ast$-isomorphism, and, therefore, a completely positive normal map and an isometry (with respect to the operator norm).As a result, by \autoref{cor:cbnorm_tensor_leq_norm}, we obtain $\wcbnorm{\sw} = \opnorm{\sw}=1$. Thus, 
+\begin{align*}
+  & \wcbnorm{\Phi \,\bar{\otimes} \, \id}  \\
+  & = \wcbnorm{\sw} \wcbnorm{\Phi \,\bar{\otimes} \, \id}   \\
+  & \leq \wcbnorm{ \sw \cdot \Phi \,\bar{\otimes} \, \id}  & (\wcbnorm{\cdot} \text{ is submultiplicative  w.r.t composition}) \\
+& = \wcbnorm{\id \,\bar{\otimes} \,\Phi}. 
+\end{align*}
+%versão antiga-nova
+\begin{comment}
+  By \autoref{prop:swap_nmiu} it follows that $\sw$ is a normal $\ast$-isomorphism, and, therefore, an isometry (with respect to the operator norm). As a result,
 \begin{align*}
   \wcbnorm{\Phi \,\bar{\otimes} \, \id} &= \sup_{\mathscr{M}} \opnorm{ \id_\mathscr{M} \, \overline{\otimes} \, \Phi \,\bar{\otimes} \, \id} \\
   & =  \sup_{\mathscr{M}} \opnorm{ \id_\mathscr{M} \, \overline{\otimes} \,  \sw \cdot (\id \,\bar{\otimes} \,\Phi)} \\
 & = \sup_{\mathscr{M}} \opnorm{\id_\mathscr{M} \, \overline{\otimes} \,  \id \,\bar{\otimes} \,\Phi}  = \wcbnorm{\id \,\bar{\otimes} \,\Phi}. 
 \end{align*}
+\end{comment}
 At last, we need to prove that
 \[
-  \wcbnorm{\Phi \,\bar{\otimes} \, \id} \leq \wcbnorm{\Phi},
+  \wcbnorm{ \id \,\overline{\otimes} \, \Phi} \leq \wcbnorm{\Phi},
 \]  
 which follows direcly from the definition of the norm (\autoref{def:wcb_nor}) and the fact that the associator, $\alpha$, is an isometry with respect to the operator norm (\autoref{prop:assoc_nmiu}). 
 
@@ -2997,11 +3066,12 @@ Note that even if the two norms turn out to be equivalent, the use of this norm 
 \begin{proof}
   By \autoref{thm:w*_tensor_distributes_product}  and \autoref{def:c*_direct_sum} we have
   \begin{align*}
-    &  \wcbnorm{\langle \Phi, \Psi \rangle}  = \sup_{\mathscr{T}} \opnorm{\id \, \overline{\otimes} \, \langle \Phi, \Psi \rangle} \\
-    & \leq \sup_{\mathscr{T}} \opnorm{ \dist \cdot \id_\mathscr{T} \, \overline{\otimes} \, \langle \Phi, \Psi \rangle} & (\text{\autoref{thm:w*_tensor_distributes_product}}) \\
+    &  \wcbnorm{\langle \Phi, \Psi \rangle}  = \sup_{\mathscr{T}} \opnorm{\id_{\mathscr{T}} \, \overline{\otimes} \, \langle \Phi, \Psi \rangle} \\
+    & =  \sup_{\mathscr{T}}  \{ \opnorm{\dist} \opnorm{ \id_\mathscr{T} \, \overline{\otimes} \, \langle \Phi, \Psi \rangle} \} & (\text{\autoref{thm:w*_tensor_distributes_product}}) \\
+    & \leq \sup_{\mathscr{T}} \opnorm{ \dist \cdot \id_\mathscr{T} \, \overline{\otimes} \, \langle \Phi, \Psi \rangle} & (\opnorm{\cdot }\text{ is submultiplicative w.r.t composition}) \\
     &  \leq \sup_{\mathscr{T}} \opnorm{ \langle \id_\mathscr{T}\overline{\otimes} \Phi,\id_\mathscr{T}\overline{\otimes} \Phi  \rangle} &  \\
     & = \max \{ \sup_{\mathscr{T}} \opnorm{ \id_\mathscr{T}\overline{\otimes} \Phi}, \sup_{\mathscr{T}} \opnorm{ \id_\mathscr{T}\overline{\otimes} \Psi} \} & (\text{\autoref{def:c*_direct_sum}}) \\
-    & \leq  \max \{  \wcbnorm{ \Phi} , \wcbnorm{\Psi}. \}
+    & \leq  \max \{  \wcbnorm{ \Phi} , \wcbnorm{\Psi}\}.
   \end{align*} 
 
   \begin{comment}
@@ -3021,7 +3091,7 @@ Note that even if the two norms turn out to be equivalent, the use of this norm 
 
 
 \begin{theorem}
-  $\WstarCPSUop$ is a distributive symmetric monoidal $\catMet$-category. 
+  $\WstarCPSUop$ is a symmetric monoidal $\catMet$-category with binary coproducts in which the tensor product is non-expansive. 
 \end{theorem}
 
 \begin{proof}
