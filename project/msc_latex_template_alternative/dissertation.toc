@@ -21,8 +21,8 @@
 \contentsline {subsection}{\numberline {2.2.8}Equations-in-context}{22}{subsection.2.2.8}%
 \contentsline {subsection}{\numberline {2.2.9}Interlude: Booleans - Part 1}{24}{subsection.2.2.9}%
 \contentsline {subsubsection}{Boolean operators}{24}{subsection.2.2.9}%
-\contentsline {subsubsection}{Extensionality of the copairing}{25}{equation.2.2}%
-\contentsline {subsubsection}{Properties}{25}{equation.2.3}%
+\contentsline {subsubsection}{Extensionality of the copairing}{25}{equation.2.2.2}%
+\contentsline {subsubsection}{Properties}{25}{equation.2.2.3}%
 \contentsline {subsection}{\numberline {2.2.10}Metric equational system}{28}{subsection.2.2.10}%
 \contentsline {subsection}{\numberline {2.2.11}Interlude: Booleans - Part 2}{30}{subsection.2.2.11}%
 \contentsline {section}{\numberline {2.3}Semantics}{31}{section.2.3}%
@@ -64,19 +64,11 @@
 \contentsline {subsubsection}{Unitary operators}{85}{definition.5.2.6}%
 \contentsline {subsection}{\numberline {5.2.4}Measurements}{87}{subsection.5.2.4}%
 \contentsline {subsection}{\numberline {5.2.5}Density operators}{88}{subsection.5.2.5}%
-<<<<<<< HEAD
-\contentsline {subsubsection}{Reduced density operator}{89}{equation.5.5}%
-\contentsline {subsection}{\numberline {5.2.6}Quantum Channels}{90}{subsection.5.2.6}%
-\contentsline {subsubsection}{Kraus operator sum representation}{91}{definition.5.2.26}%
-\contentsline {subsubsection}{Non-selective measurements}{92}{Item.29}%
-\contentsline {subsection}{\numberline {5.2.7}Norms on quantum channels}{93}{subsection.5.2.7}%
-=======
 \contentsline {subsubsection}{Reduced density operator}{89}{equation.5.2.5}%
 \contentsline {subsection}{\numberline {5.2.6}Quantum Channels and Operations}{90}{subsection.5.2.6}%
 \contentsline {subsubsection}{Kraus operator sum representation}{91}{Item.29}%
 \contentsline {subsubsection}{Non-selective measurements}{92}{Item.31}%
 \contentsline {subsection}{\numberline {5.2.7}Norms on quantum operations}{93}{subsection.5.2.7}%
->>>>>>> 91f11a7d5e003b2a61ee145da6daf8ba7f9174b7
 \contentsline {subsection}{\numberline {5.2.8}Quantum circuits}{95}{subsection.5.2.8}%
 \contentsline {subsection}{\numberline {5.2.9}No-cloning theorem}{96}{subsection.5.2.9}%
 \contentsline {section}{\numberline {5.3}\( W^* \)-Algebras}{97}{section.5.3}%
