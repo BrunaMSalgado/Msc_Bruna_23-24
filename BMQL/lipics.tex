@@ -276,7 +276,7 @@ programming: in a nutshell, $\mathcal{V}$ is the set $[0,\infty]$ and a basis
 is given by the non-negative rational numbers with infinity; the operation
 $\otimes$ is addition, the underlying order $\leq$ of $\mathcal{V}$ is
 $\geq_{[0,\infty]}$, and the relation $\ll$ is the strictly greater $>$
-relation with $\infty > \infty$ (thus note that in this setting the top element
+relation with $\infty > \infty$ (thus note that in this setting the top element $k$
 is actually $0$ and $\infty$ is the least element).
 
 We are ready to present our quantalic equational system extended with the
@@ -293,6 +293,10 @@ assumption: intuitively we take the `worst' value w.r.t. $\{r, s\}$ to reflect
 the possibility of taking the branch in which the two respective terms `differ'
 the most -- such value then compounds with $q$ to reflect the `difference'
 between the tests $v$ and $v'$.
+
+In the metric setting an equation $v =_q w$ reads as ``the two terms are
+\emph{at most} at distance $q$ of each other'' and the expression $q \otimes (r
+\wedge s)$ instantiates to $q + (r \vee s)$.
 
 Observe that whilst the original quantalic system makes use of the quantale's
 linear structure (\ie\ $\otimes$), the extended version now also make use of
