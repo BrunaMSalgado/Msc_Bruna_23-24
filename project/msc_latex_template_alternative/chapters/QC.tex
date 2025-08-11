@@ -944,7 +944,7 @@ Nevertheless, we use the notation $\TraceOp{\HilbH}$, as it reflects the natural
 
 
 
-\subsection{Quantum Channels} \label{subsec:quantum_channels}
+\subsection{Quantum Channels and Operations} \label{subsec:quantum_channels}
 
 % Fazer secção chamada quantum chanels e falar de super operadores e cptp maps, normas, kraus operators
 
@@ -967,7 +967,7 @@ In this perspective, we focus on quantum states, represented by density operator
 
 
 \begin{definition}
-  A superoperator $ \Phi : \mathcal{T}(\HilbH_1) \to \mathcal{T}(\HilbH_2)$ is \emph{hermitian-preserving} if it sends hermitian operators to hermitian operators, \textit{i.e.} $A = A^\dag \Rightarrow{} (\Phi(A))^\dag = \Phi(A)$.
+  A superoperator $ \Phi : \mathcal{T}(\HilbH) \to \mathcal{T}(\HilbK)$ is \emph{hermitian-preserving} if it sends hermitian operators to hermitian operators, \textit{i.e.} $A = A^\dag \Rightarrow{} (\Phi(A))^\dag = \Phi(A)$.
 \end{definition}
 
 \begin{definition}
@@ -999,11 +999,18 @@ Since density matrices are positive, any physically allowed transformation must 
 It is sometimes convenient to relax the trace-preserving condition to a trace-non-increasing condition, resulting in what is known as a \emph{quantum operation}. This accounts for phenomena such as \emph{qubit leakage} (the unintended loss of quantum information from computational basis states, $\ket{0}$ and $\ket{1}$, into higher-energy non-computational states, e.g., $\ket{2}$, $\ket{3}$, breaking the idealized two-level qubit assumption) and operations such as \emph{postselection} (a technique in quantum algorithms where operations are conditioned on measurement outcomes, often leading to non-trace-preserving maps) \cite{Yu_trace_non_inc}.
 
 
+The following property will be useless later on.
 
-
-
-
-
+\begin{theorem} \cite[Theorem 2.25]{watrous2018theory} \label{thm:sub_pos_hem-pres}
+  Let \(\Phi \in \TraceOp{H} \to \TraceOp{K}\) be a map. The following statements are equivalent:
+\begin{enumerate}
+    \item \(\Phi\) is Hermitian preserving.
+    \item There exist positive maps \(\Phi_0, \Phi_1:  \TraceOp{H} \to \TraceOp{K}\) for which
+    \(
+        \Phi = \Phi_0 - \Phi_1.
+    \)
+\end{enumerate}
+\end{theorem}
 
 
 
@@ -1036,7 +1043,7 @@ Considering that initially both systems are completely decoupled, the initial st
 where the set of operators $\{\text{K}_{\mu i}\}$ is designated \emph{Kraus operators} and $\text{K}_{\mu i} = \sqrt{p_{i}} \bra{\mu} U \ket{i}$. Note that $\{\ket{\mu}\}$ and $\{\ket{i}\}$, act only in the state space of $E$. 
 
 \begin{definition}
-  The equation $ \rho_{S}' = \sum_{\mu i} \text{K}_{\mu i} \rho_{S} \text{K}_{\mu i}^{\dag} $ is called an \emph{\acrfull{osr}}. An OSR can be thought of as a quantum channel that maps $\rho_{S}$ to $\sum_{\mu i} \text{K}_{\mu i} \rho_{S} \text{K}_{\mu i}^{\dag}$, given this map is CPTP [Section V-VI,Chapter 8.2.3] \cite{lidar2019lecture,nielsen2010quantum}. 
+  The equation $ \rho_{S}' = \sum_{\mu i} \text{K}_{\mu i} \rho_{S} \text{K}_{\mu i}^{\dag} $ is called an \emph{\acrfull{osr}}. An OSR can be thought of as a quantum channel that maps $\rho_{S}$ to $\sum_{\mu i} \text{K}_{\mu i} \rho_{S} \text{K}_{\mu i}^{\dag}$, given this map is CPTP ([Section V-VI] \cite{lidar2019lecture}, \cite[Chapter 8.2.3]{nielsen2010quantum}). 
 \end{definition}
 
 
@@ -1044,14 +1051,19 @@ In the definition above, the condition $\sum_{\mu} K_{\mu} K_{\mu}^{\dag} = I$ i
 \[
 \Phi(A) = \sum_i K_i A K_i^\dag,  
 \]  
-where $K_i \in \BoundOp{H,K}$, as a \emph{Kraus representation}---regardless of whether the Kraus operators $\{K_i\}$ satisfy the normalization condition. The following property will be useful in this context.
-\begin{theorem} \cite[Theorem 2.22 ]{watrous2018theory}
+where $K_i \in \BoundOp{H,K}$, as a \emph{Kraus representation}---regardless of whether the Kraus operators $\{K_i\}$ satisfy the normalization condition. 
+
+The following property will be useful in this context.
+
+\begin{theorem} \cite[Theorem 2.22 ]{watrous2018theory} \label{thm:cp_kraus}
   Let $\Phi:\TraceOp{H,K}$ be a nonzero superoperator. The following statements are equivalent:
   \begin{enumerate}
     \item  $\Phi$ is completely positive.
     \item  $\Phi$ admits a Kraus representation.
   \end{enumerate}
 \end{theorem}
+
+In particular, a quantum operation $\Phi$ can always be expressed as $\Phi(\rho) = \sum_i K_i \rho K_i^\dag$,  with operators $K_i$ satisfying $\sum_i K_i K_i^\dag \leq I$, \ie, $I - \sum_i K_i^\dagger K_i$ is positive ~\cite[Theorem~8.1]{nielsen2010quantum}.
 
 
 
@@ -1077,7 +1089,7 @@ In the case of measurements in the computational basis, these correspond to what
 \]
 with $\{\ket{i}\}$ being an orthonormal basis for $\mathcal{H}$ \cite[Proposition 2.36]{watrous2018theory}.
 
-\subsection{Norms on quantum channels}
+\subsection{Norms on quantum operations}
 \begin{definition} \label{def:trace_norm_superoperator}
   The trace norm of a super-operator $\Phi: \TraceOp{\HilbH} \rightarrow \TraceOp{\HilbK}$ is defined as:
   \begin{equation*} 
@@ -1111,7 +1123,7 @@ where $A \in \TraceOp{\HilbH}$.
 %\end{proposition}
 
 
-Unfortunately, this norm is not stable under tensoring , given that the inequation $ \lVert \Phi \otimes I_{\TraceOp{\HilbH}} \rVert_{1} \geq \lVert \Phi \rVert_{1}$ does not hold \cite{watrous2018theory}. As a result, the diamond norm, which is based on the trace norm, is used instead in the context of quantum channels. 
+Unfortunately, this norm is not stable under tensoring , given that the inequation $ \lVert \Phi \otimes I_{\TraceOp{\HilbH}} \rVert_{1} \geq \lVert \Phi \rVert_{1}$ does not hold \cite{watrous2018theory}. As a result, the diamond norm, which is based on the trace norm, is used instead in the context of quantum operations. 
 \begin{definition} \label{def:diamond_norm}
   Given a super-operator $\Phi: \TraceOp{\HilbH} \to \TraceOp{\HilbK}$, the diamond norm, \gls{diamond-norm}, is defined as:
   \begin{equation*}  \label{eq:diamond_distance}
@@ -1180,7 +1192,7 @@ with equality holding under the assumption that $\dim(\HilbH) \geq \dim(\HilbL)$
 
 
 
-\begin{theorem} \cite[Theorem 3.51]{watrous2018theory}
+\begin{theorem} \cite[Theorem 3.51]{watrous2018theory} \label{thm_hem-pres_vv*}
   Let $\Phi:  \mathcal{T}(\HilbH) \to \mathcal{T}(\HilbK)$ be a Hermitian-preserving map. Then it holds that
 \[
 \diamondnorm{\Phi} = \max \tracenorm{(\Phi \otimes \id)(vv^*) \, \mid \, \euclideannorm{v} =1 , v\in \mathcal{T}(\HilbH) }.
@@ -2008,9 +2020,400 @@ The idea is that both the coproducts and the measurement operation, in a sense, 
         $P$ and composition is inherited from $\catCPS$.
 \end{definition}
 
-%The idea is that in $\catCPS$ idempotents correspond to projections, and
 
-%Thelatter however in some sense ``live hidden'' in the category and what is required is to ``draw them out" in a suitable way. Our strategy for achieving this is based on the observation that while $\CPTP$ does not have coproducts it has enough projections (\ie\ idempotents) to carve coproducts out of them. Technically this is obtained via the so-called Karoubi envelope $\Kar{-}$~\cite{borceux94} construction (also known as the idempotent splitcompletion).
+%With the following proposition we establish that $\Kar{\catCPS}$ is a symmetric monoidal $\catMet$-category in which the tensor product is non-expansive.
+
+
+The following result will be useful to show that the category $\Kar{\catCPS}$ inherits relevant structure from $\catCPS$. 
+
+\begin{proposition} \cite[Proposition 6.5.9]{borceuxHandbookCategoricalAlgebra1994a} \label{prop:kar_monoidal}
+  Let $\catC$ be a symmetric monoidal category. Then its Karoubi envelope $\catC$ inherits a canonical symmetric monoidal structure.
+\end{proposition}
+
+With this result in hand, we can now establish the following proposition.
+
+\begin{proposition} \label{prop:kar_monoidal_met}
+  $\Kar{\catCPS}$ is a symmetric monoidal $\catMet$-category in which the tensor product is non-expansive.
+\end{proposition}
+
+\begin{proof}
+ First, since $\catCPS$ is already a $\catMet$-category $\Kar{\catCPS}$ becomes
+a $\catMet$-category as well, by stipulating the metric in $\Kar{\catCPS}(n,m)$ to be
+the respective restriction of the metric in $\catCPS(n,m)$. 
+Second, $\Kar{\catCPS}$inherits symmetric monoidal structure from $\catCPS$ (\autoref{prop:kar_monoidal}), where in particular the tensor of
+$(n,P) \otimes (m,Q)$ will be $(n m , P \otimes Q)$ and the tensoring of
+morphisms is as in $\catCPS$. The category $\Kar{\catCPS}$ is thus even a
+symmetric monoidal $\catMet$-category in which the tensor product is non-expansive. 
+\end{proof}
+
+In order to prove that $\Kar{\catCPS}$ is a model of our framework, it remains to show that it has binary coproducts, it is distributive, and the copairing satisfies the inequality in \autoref{def:met_cop_cat}.
+
+Recall that $\Kar{\catCPS}$ is the idempotent split completion of $\catCPS$.  We will now show that the former has binary coproducts, in particular that these are precisely splits relative to a certain kind of idempotent (\ie, projection).
+Interestingly, we begin by establishing the copairing as a $\catCPS$-morphism, which we then use to define binary coproducts. 
+
+Take a quantum operation $\Phi : n \to m$ and consider $[\Phi
+,0] : n+o \to m$ defined by,
+\[
+ \begin{pmatrix}
+         A & B 
+         \\
+         C & D
+ \end{pmatrix} 
+ \quad
+ \longmapsto 
+ \quad
+ \Phi(A)
+\]
+By an appeal to Kraus' representation theorem (\autoref{thm:cp_kraus}) one easily shows that this map is completely positive, as detailed next.  
+\begin{align*}
+        [\Phi, 0]
+        \begin{pmatrix}
+         A & B 
+         \\
+         C & D
+        \end{pmatrix} 
+        & =
+        \Phi(A)
+        \\
+        &
+        = 
+        \sum_i M_i A M^\dagger_i
+        & (\text{\autoref{thm:cp_kraus}} \big )
+        \\
+        &
+        = \sum_i 
+        \begin{pmatrix}
+        M_i & 0 
+        \end{pmatrix} 
+        \begin{pmatrix}
+        A & B
+         \\
+        C & D
+        \end{pmatrix} 
+        \begin{pmatrix}
+        M_i^\dagger \\
+        0 
+        \end{pmatrix} 
+\end{align*}
+
+Observe the existence of an analogous operator $[0,\Phi] : o + n \to m$.
+Recall as well that Kraus' representation theorem entails that the addition of
+completely-positive operators will also be completely positive.
+This means that
+given quantum operations $\Phi : n \to m$ and $\Psi : o \to m$ their
+``co-pairing'',
+\[
+        [\Phi, \Psi] := [\Phi, 0] + [0, \Psi]
+\]
+will be completely positive as well. Moreover, it is trace-nonincreasing, since subtracting the sum of the corresponding Kraus operators from the block identity matrix results in a positive operator, as it corresponds to a block-diagonal with positive operators on the diagonal. Consider as well the quantum operations $e_l : n \to n +m$ and
+$e_r : m \to n + m$,
+\[
+        A \quad \longmapsto \quad
+        \begin{pmatrix}
+                A & 0 
+                \\
+                0 & 0
+        \end{pmatrix}
+        \qquad
+        \qquad
+        D \quad \longmapsto \quad
+        \begin{pmatrix}
+                0 & 0 
+                \\
+                0 & D
+        \end{pmatrix}
+\]
+which have Kraus' operators $\begin{pmatrix} I \\ 0 \end{pmatrix}$ and
+$\begin{pmatrix} 0 \\ I \end{pmatrix}$ respectively.  
+
+We now define the ``direct sum'' of quantum operations $\Phi \oplus \Psi$.
+\begin{definition}
+  Given quantum operations $\Phi: m \to o$ and $\Psi: n \to p$ we define $\Phi
+\oplus \Psi: m + n \to p+o$ as $\Phi
+\oplus \Psi = [e_1 \comp \Phi, e_2 \comp \Psi]$.
+\end{definition}
+
+Observe that $\Phi \oplus \Psi$ is a quantum operation by
+construction. In fact,  the operator $\Phi \oplus \Psi$ is a particular case of a
+ quantum-to-classical channel , and
+specifically $\id \oplus \id$ is a block matrix generalisation of the
+completely dephasing channel $\Delta$ (\Cref{subsec:quantum_channels}). The crucial
+observation then is that idempotents of the form $P \oplus Q$ give rise to
+coproducts in $\Kar{\catCPS}$, as we will show in the following proposition.
+
+
+\begin{proposition} \label{prop:K(cps)_bin_cop}
+        The category $\Kar{\catCPS}$ has binary coproducts. For objects $(n,P)$ and $(m,Q)$, their coproduct $(n,P) + (m,Q)$ is given by the object $(n+m,\, P \oplus Q)$.  The co-pairing map $[\Phi, \Psi]: m \oplus n \to o$ is defined as  above, $[\Phi, \Psi] := [\Phi, 0] + [0, \Psi]$. The injections $\inl$ and $\inr$ are defined as $\inl := (P \oplus Q)
+        \comp e_l \comp P$ and $\inr := (P \oplus Q) \comp e_r \comp Q$.
+\end{proposition}
+
+
+\begin{proof}
+         Given $\Kar{\catCPS}$-morphisms $\Phi : (n, P) \to (o, R)$ and $\Psi : (m, Q)
+        \to (o,R)$ it follows from
+        straightforward calculations that its copairing is a $\Kar{\catCPS}$-morphism.
+        %note to myself:calculations above+phi anf psi $\Kar{\catCPS}$-morphisms + linearity
+
+        The fact that $[\Phi,\Psi] \comp \inl = \Phi$ follows from the
+        idempotency of $P$ and the fact that $\Phi \comp P = \Phi$. The same
+        reasoning applies to $[\Phi,\Psi] \comp \inr = \Psi$. In order to prove
+        unicity consider a suitably typed operator $\Omega$ such that $\Omega
+        \comp \inl = \Phi$ and $\Omega \comp \inr = \Psi$. Then we reason,
+        \begin{align*}
+        \Omega
+        \begin{pmatrix}
+         A & B 
+         \\
+         C & D
+        \end{pmatrix} 
+        & =
+        \Omega
+        \begin{pmatrix}
+         P(A) & 0 
+         \\
+         0 & Q(D)
+        \end{pmatrix} 
+        & ( \text{$\Omega$ is a $\Kar{\catCPS}$-morphism} \big )
+        \\
+        & =
+        \Omega
+        (\inl(A) + \inr(D))
+        \\
+        & = 
+        \Omega
+        (\inl(A)) + \Omega(\inr(D))
+        \\
+        & = 
+        \Phi(A) + \Psi(D)
+        \\
+        &
+        = 
+        [\Phi,\Psi]
+        \begin{pmatrix}
+         A & B 
+         \\
+         C & D
+        \end{pmatrix} 
+\end{align*}
+\end{proof}
+
+\begin{proposition} \label{prop:kar_dist}
+        The category $\Kar{\catCPS}$ is strictly distributive.
+\end{proposition}
+
+\begin{proof}
+Take objects $(n,P)$, $(m,Q)$, $(o,R)$, and note that the following equations
+are sound.
+\[
+        \begin{cases}
+                \big ((n,P) + (m,Q) \big ) \otimes (o,R) = (no + mo, (P
+                \oplus Q) \otimes R)
+                \\
+                \big (n,P) \otimes (o,R) + (m,Q) \otimes (o,R) = (no + mo, 
+                        (P \otimes R) \oplus (Q \otimes R))
+        \end{cases}
+\]
+They tell that the two relevant composite objects are the same if $(P \oplus Q)
+\otimes R = (P \otimes R) \oplus (Q \otimes R)$ -- and thus we reason,
+        \begin{equation*}
+        \begin{split}
+        & (P \oplus Q) \otimes R
+        \begin{pmatrix}
+         A \otimes B & C \otimes D
+         \\
+         E \otimes F & G \otimes H
+        \end{pmatrix} \\
+        & =
+        (P \oplus Q) \otimes R
+        \left (
+        \begin{pmatrix}
+         A &  0
+         \\
+         0 & 0  
+        \end{pmatrix} 
+        \otimes B
+        +
+        \begin{pmatrix}
+        0  & C
+         \\
+        0 & 0
+        \end{pmatrix} 
+        \otimes D
+        +
+        \begin{pmatrix}
+         0 & 0
+         \\
+         E & 0 
+        \end{pmatrix} 
+        \otimes F
+        +
+        \begin{pmatrix}
+         0 & 0
+         \\
+         0 & G 
+        \end{pmatrix} 
+        \otimes H
+        \right )
+        \\
+        & =
+        \begin{pmatrix}
+         P(A) &  0
+         \\
+         0 & 0  
+        \end{pmatrix} 
+        \otimes R(B)
+        +
+        \begin{pmatrix}
+         0 & 0
+         \\
+         0 & Q(G)
+        \end{pmatrix} 
+        \otimes R(H)
+        \\
+        & = 
+        \begin{pmatrix}
+         P(A) \otimes R(B) &  0
+         \\
+         0 & Q(G) \otimes R(H)
+        \end{pmatrix} 
+        \\
+        &
+        = 
+        (P \otimes R) \oplus (Q \otimes R)
+        \begin{pmatrix}
+         A \otimes B & C \otimes D
+         \\
+         E \otimes F & G \otimes H
+        \end{pmatrix} 
+      \end{split}
+        \end{equation*}
+        which establishes an equality between the two composite objects.  The
+        final step is to prove that the equation $[\inl \otimes \id, \inr
+        \otimes \id] = \id$ holds which by unicity reduces to the equations,
+        \[
+                \begin{cases}
+                        \inl \otimes \id = \inl \\
+                        \inr \otimes \id = \inr
+                \end{cases}
+        \]
+        whose proof is direct.
+        %Note to myself: vem das linhas 3 e 4 das eqs acima
+\end{proof}
+
+Our next step is to tell how the co-pairing defined above for $\Kar{\catCPS}$
+interacts with the diamond norm. This is our basis for
+establishing $\Kar{\catCPS}$ is a symmetric monoidal $\catMet$-category with binary coproducts, as desired.
+
+\begin{proposition} \label{prop:op_ineq_cop_vv*}
+The following equation holds for all hermitian-preserving superoperators $\Phi: \SqMatrix{n} \to \SqMatrix{o}$ and $\Psi:\SqMatrix{m} \to \SqMatrix{o}$ and vectors $v\in \SqMatrix{n}$
+  \[\sup \{ \tracenorm{\Phi},\tracenorm{\Psi} \} \geq \max \{ \tracenorm{[\Phi,\Psi] (vv^*)} \, | \, \euclideannorm{v}=1\}. \]
+\end{proposition}
+
+\begin{proof}
+  With the key observation that when \(\|v\| = 1\), \(vv^\dagger\) is a density operator \cite[Eq.~2.12]{watrous2018theory} and hence positive, we proceed as follows.
+\begin{equation*}
+\begin{split}
+         &\max \{ \tracenorm{[\Phi,\Psi] (vv^*)} \, | \, \euclideannorm{v}=1\} \\
+        & =
+        \max \left \{ \norm{\Phi(A) + \Psi(D)}_1 \mid 
+                \left \lVert
+                      \begin{pmatrix}
+                              A & B
+                              \\
+                              C & D
+                      \end{pmatrix}
+                \right \rVert_1 = 1 
+        \right \} & (\euclideannorm{v}=1 \implies \tracenorm{vv^\dag}=1 )
+        \\
+        & \leq
+        \sup \left \{ \norm{\Phi(A) + \Psi(D)}_1 \mid 
+                \left \lVert
+                      \begin{pmatrix}
+                              A & 0
+                              \\
+                              0 & D
+                      \end{pmatrix}
+                \right \rVert_1 = 1 
+        \right \}
+        & ( \text{$\norm{\id \oplus \id} = 1$} )
+        \\
+        & =
+        \sup \left \{ \norm{\Phi(A) + \Psi(D)}_1 \mid 
+                \norm{A}_1 + \norm{D}_1 = 1
+        \right \}
+        &  
+         \left(\left(\begin{smallmatrix}
+    A & 0 \\
+    0 & D
+  \end{smallmatrix}\right) \text{is positive} \right)
+        \\
+        & \leq
+        \sup \left \{ \norm{\Phi(A)}_1 + \norm{\Psi(D)}_1 \mid 
+                \norm{A}_1 + \norm{D}_1 = 1
+        \right \}
+        & 
+        \\
+        & =
+        \sup \big \{ \norm{A}_1\norm{\Phi((1/ \norm{A}_1) A)}_1 \\
+        & \hspace{10pt}+ 
+                \norm{D}_1\norm{\Psi((1 / \norm{D}_1)D)}_1 \mid 
+                \norm{A}_1 + \norm{D}_1 = 1
+        \big \}
+        & 
+        \\
+        & \leq
+        \sup \big \{ \sup \{ \norm{\Phi((1/ \norm{A}_1) A)}_1 \\
+        & \hspace{10pt} + 
+                \norm{\Psi((1 / \norm{D}_1)D)}_1 \} \mid 
+                \norm{A}_1 + \norm{D}_1 = 1
+        \big \}
+        & 
+        \\
+        &
+        \leq \sup \{ \norm{\Phi},\norm{\Psi} \} 
+\end{split}
+\end{equation*}
+\end{proof}
+With this property, we have all the means to show that $\Kar{\catCPS}$ is a symmetric monoidal $\catMet$-category with binary coproducts.
+
+\begin{proposition} \label{prop:kar_bin_cop_met}
+  For all quantum operations $\Phi, \Phi': n \to o  $ and $\Phi, \Phi': m \to o $, it holds that
+  \[ \diamondnorm{[\Phi-\Phi',\Psi-\Psi']} \leq \sup\{\diamondnorm{\Phi-\Phi'},  \diamondnorm{\Psi-\Psi'} \}.\]
+\end{proposition}
+
+\begin{proof}
+  We reason as follows:
+  \begin{equation*}
+  \begin{split}
+        & \diamondnorm{[\Phi-\Phi' ,\Psi-\Psi']} \\
+        & =
+        \tracenorm{[\Phi,\Psi] \otimes \id_{n+m} - [\Phi',\Psi'] \otimes \id_{n+m} }
+        \\
+        & = 
+        \tracenorm{[\Phi \otimes \id_{n+m},\Psi \otimes \id_{n+m}] - [\Phi' \otimes \id_{n+m},\Psi' \otimes \id_{n+m}] } & (\text{\autoref{prop:kar_dist}})
+        \\
+        & \leq \max \{ \tracenorm{[(\Phi - \Psi) \otimes \id_{n+m} ,(\Psi - \Psi') \otimes \id_{n+m}] (vv^*)} \, | \, \euclideannorm{v}=1\}  & (\text{Thm. \ref{thm:sub_pos_hem-pres}, \ref{thm_hem-pres_vv*}})\\
+        & \leq
+        \sup \{ \tracenorm{\Phi \otimes \id_{n+m}}, \tracenorm{\Psi \otimes \id_{n+m}} \} & (\text{\autoref{prop:op_ineq_cop_vv*}})
+        \\
+        & =
+        \sup \{ \norm{\Phi}_\diamond, \norm{\Psi}_\diamond \} & (\text{\autoref{thm_diamond_otimes_id}})
+\end{split}
+\end{equation*}
+\end{proof}
+
+\begin{theorem} 
+  The category $\Kar{\catCPS}$ is a  symmetric monoidal $\catMet$-category with binary coproducts in which  the tensor product is non-expansive.
+\end{theorem}
+
+\begin{proof}
+  It follows directly from \autoref{prop:kar_monoidal_met} and \autoref{prop:kar_bin_cop_met}.
+\end{proof}
+
+%(vv^dag)
+
+%note to myself:f is a K(CPS) morphism means that  f P =f e neste caso P= P \oplusQ 
+
 
 %Note that in $\catCPS$, the idempotent quantum operations correspond precisely to projections. Consequently, by adding splittings of idempotents, we effectively construct direct sums (in the linear algebra sense). These direct sums will be shown to correspond to coproducts, and also give rise to the measurement operation.
 
@@ -2408,7 +2811,7 @@ In the context of $W^*$-algebras, since we are concerned with the tensor product
 where the supremum ranges over all $W^*$-algebras \( \mathscr{M} \). $\Phi$ is said to be \emph{$W^*$-completely bounded} if $\wcbnorm{\Phi}$ is finite.
 \end{definition}
 
-\todo[inline,size=\normalsize]{Eu sei que a motivação não é a melhor mas, arranjar exemplos é deficil} 
+\todo[inline,size=\normalsize]{Eu sei que a motivação não é a melhor mas, arranjar exemplos é dificil} 
 
 Our motivation for the use of this norm instead of the completely bounded norm, beyond the fact that it satisfies the requirements for making \( \WstarCPSUop \) a model, has to do with the fact that it significantly simplifies calculations, since we are not handling two different tensor products, \( \widecheck{\otimes} \) and \( \overline{\otimes} \), simultaneously. %Moreover, if it turns out that the completely bounded norm satisfies \( \cbnorm{\id \overline{\otimes} \Phi} \) for a normal map \( \Phi \) between \( W^* \)-algebras, then the remaining results required for the completely bounded norm to give rise to a model of the metric lambda calculus follow from the inequality
 $

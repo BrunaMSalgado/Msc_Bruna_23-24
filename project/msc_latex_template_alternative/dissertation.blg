@@ -27,45 +27,45 @@ Warning--empty journal in heisenbergUeberQuantentheoretischeUmdeutung1925
 Warning--empty journal in STUBBE201495
 Warning--empty journal in thrun2002robotic
 Warning--empty journal in Wang_2011
-You've used 129 entries,
+You've used 130 entries,
             2943 wiz_defined-function locations,
-            1443 strings with 28242 characters,
-and the built_in function-call counts, 56848 in all, are:
-= -- 5977
-> -- 1965
-< -- 27
-+ -- 723
-- -- 572
-* -- 2976
-:= -- 7990
-add.period$ -- 459
-call.type$ -- 129
-change.case$ -- 619
+            1447 strings with 28418 characters,
+and the built_in function-call counts, 57234 in all, are:
+= -- 6018
+> -- 1973
+< -- 28
++ -- 726
+- -- 574
+* -- 2998
+:= -- 8042
+add.period$ -- 463
+call.type$ -- 130
+change.case$ -- 622
 chr.to.int$ -- 0
-cite$ -- 136
-duplicate$ -- 1684
-empty$ -- 5471
-format.name$ -- 572
-if$ -- 14914
+cite$ -- 137
+duplicate$ -- 1697
+empty$ -- 5512
+format.name$ -- 574
+if$ -- 15018
 int.to.chr$ -- 0
-int.to.str$ -- 129
-missing$ -- 164
-newline$ -- 701
-num.names$ -- 271
-pop$ -- 1448
+int.to.str$ -- 130
+missing$ -- 166
+newline$ -- 707
+num.names$ -- 273
+pop$ -- 1460
 preamble$ -- 1
-purify$ -- 534
+purify$ -- 537
 quote$ -- 0
-skip$ -- 4046
+skip$ -- 4075
 stack$ -- 0
-substring$ -- 2291
-swap$ -- 462
-text.length$ -- 135
+substring$ -- 2298
+swap$ -- 467
+text.length$ -- 138
 text.prefix$ -- 0
 top$ -- 0
-type$ -- 424
+type$ -- 426
 warning$ -- 7
-while$ -- 389
-width$ -- 132
-write$ -- 1500
+while$ -- 391
+width$ -- 133
+write$ -- 1513
 (There were 12 warnings)

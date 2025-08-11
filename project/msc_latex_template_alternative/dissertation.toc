@@ -64,42 +64,50 @@
 \contentsline {subsubsection}{Unitary operators}{85}{definition.5.2.6}%
 \contentsline {subsection}{\numberline {5.2.4}Measurements}{87}{subsection.5.2.4}%
 \contentsline {subsection}{\numberline {5.2.5}Density operators}{88}{subsection.5.2.5}%
+<<<<<<< HEAD
 \contentsline {subsubsection}{Reduced density operator}{89}{equation.5.5}%
 \contentsline {subsection}{\numberline {5.2.6}Quantum Channels}{90}{subsection.5.2.6}%
 \contentsline {subsubsection}{Kraus operator sum representation}{91}{definition.5.2.26}%
 \contentsline {subsubsection}{Non-selective measurements}{92}{Item.29}%
 \contentsline {subsection}{\numberline {5.2.7}Norms on quantum channels}{93}{subsection.5.2.7}%
+=======
+\contentsline {subsubsection}{Reduced density operator}{89}{equation.5.2.5}%
+\contentsline {subsection}{\numberline {5.2.6}Quantum Channels and Operations}{90}{subsection.5.2.6}%
+\contentsline {subsubsection}{Kraus operator sum representation}{91}{Item.29}%
+\contentsline {subsubsection}{Non-selective measurements}{92}{Item.31}%
+\contentsline {subsection}{\numberline {5.2.7}Norms on quantum operations}{93}{subsection.5.2.7}%
+>>>>>>> 91f11a7d5e003b2a61ee145da6daf8ba7f9174b7
 \contentsline {subsection}{\numberline {5.2.8}Quantum circuits}{95}{subsection.5.2.8}%
 \contentsline {subsection}{\numberline {5.2.9}No-cloning theorem}{96}{subsection.5.2.9}%
 \contentsline {section}{\numberline {5.3}\( W^* \)-Algebras}{97}{section.5.3}%
 \contentsline {subsection}{\numberline {5.3.1}\( C^* \)-Algebras}{98}{subsection.5.3.1}%
-\contentsline {subsubsection}{Maps between $C^*$-Algebras}{98}{remark.5.3.2}%
+\contentsline {subsubsection}{Maps between $C^*$-Algebras}{99}{remark.5.3.2}%
 \contentsline {subsubsection}{Representations of $C^*$-Algebras}{99}{proposition.5.3.6}%
 \contentsline {subsubsection}{Matrices over $C^*$-Algebras}{99}{theorem.5.3.8}%
 \contentsline {subsubsection}{Direct sums of $C^*$-Algebras}{102}{proposition.5.3.13}%
-\contentsline {subsubsection}{Tensor products of $C^*$-Algebras}{102}{definition.5.3.14}%
+\contentsline {subsubsection}{Tensor products of $C^*$-Algebras}{103}{definition.5.3.14}%
 \contentsline {subsection}{\numberline {5.3.2}\( W^* \)-Algebras}{103}{subsection.5.3.2}%
 \contentsline {subsubsection}{Basics of \( W^* \)-Algebras}{103}{subsection.5.3.2}%
 \contentsline {subsubsection}{Direct Sums of $W^*$-Algebras}{104}{definition.5.3.23}%
-\contentsline {subsubsection}{Tensor products of $W^*$-Algebras}{104}{proposition.5.3.24}%
-\contentsline {subsubsection}{Distributivity}{107}{proposition.5.3.36}%
+\contentsline {subsubsection}{Tensor products of $W^*$-Algebras}{105}{proposition.5.3.24}%
+\contentsline {subsubsection}{Distributivity}{108}{proposition.5.3.36}%
 \contentsline {section}{\numberline {5.4}Categories for (first-order) quantum computation}{108}{section.5.4}%
 \contentsline {subsection}{\numberline {5.4.1}Schrödinger's picture}{109}{subsection.5.4.1}%
-\contentsline {subsection}{\numberline {5.4.2}Heisenberg's picture}{111}{subsection.5.4.2}%
-\contentsline {section}{\numberline {5.5}Examples}{116}{section.5.5}%
-\contentsline {subsection}{\numberline {5.5.1}Quantum state discrimination}{117}{subsection.5.5.1}%
-\contentsline {subsection}{\numberline {5.5.2}Quantum teleportation protocol}{121}{subsection.5.5.2}%
-\contentsline {chapter}{\numberline {6}Future work}{131}{chapter.6}%
-\contentsline {part}{III\hspace {1em}Appendices}{147}{part.3}%
-\contentsline {chapter}{\numberline {A}Mathematical backgound}{149}{appendix.A}%
-\contentsline {section}{\numberline {A.1}Equivalence Relations and Quotients in Sets}{149}{section.A.1}%
-\contentsline {section}{\numberline {A.2}Category theory}{150}{section.A.2}%
-\contentsline {subsection}{\numberline {A.2.1}Categories}{150}{subsection.A.2.1}%
-\contentsline {subsection}{\numberline {A.2.2}Products, Coproducts, and Other Properties of Objects and Arrows}{153}{subsection.A.2.2}%
-\contentsline {subsection}{\numberline {A.2.3}Functors}{158}{subsection.A.2.3}%
-\contentsline {subsection}{\numberline {A.2.4}Natural Tranformations}{160}{subsection.A.2.4}%
-\contentsline {subsection}{\numberline {A.2.5}Equivalence of Categories}{161}{subsection.A.2.5}%
-\contentsline {subsection}{\numberline {A.2.6}Adjoints}{162}{subsection.A.2.6}%
-\contentsline {subsection}{\numberline {A.2.7}Monoidal categories}{163}{subsection.A.2.7}%
-\contentsline {section}{\numberline {A.3}Banach spaces}{164}{section.A.3}%
-\contentsline {section}{\numberline {A.4}Topology}{165}{section.A.4}%
+\contentsline {subsection}{\numberline {5.4.2}Heisenberg's picture}{116}{subsection.5.4.2}%
+\contentsline {section}{\numberline {5.5}Examples}{121}{section.5.5}%
+\contentsline {subsection}{\numberline {5.5.1}Quantum state discrimination}{122}{subsection.5.5.1}%
+\contentsline {subsection}{\numberline {5.5.2}Quantum teleportation protocol}{126}{subsection.5.5.2}%
+\contentsline {chapter}{\numberline {6}Future work}{137}{chapter.6}%
+\contentsline {part}{III\hspace {1em}Appendices}{153}{part.3}%
+\contentsline {chapter}{\numberline {A}Mathematical backgound}{155}{appendix.A}%
+\contentsline {section}{\numberline {A.1}Equivalence Relations and Quotients in Sets}{155}{section.A.1}%
+\contentsline {section}{\numberline {A.2}Category theory}{156}{section.A.2}%
+\contentsline {subsection}{\numberline {A.2.1}Categories}{156}{subsection.A.2.1}%
+\contentsline {subsection}{\numberline {A.2.2}Products, Coproducts, and Other Properties of Objects and Arrows}{159}{subsection.A.2.2}%
+\contentsline {subsection}{\numberline {A.2.3}Functors}{164}{subsection.A.2.3}%
+\contentsline {subsection}{\numberline {A.2.4}Natural Tranformations}{166}{subsection.A.2.4}%
+\contentsline {subsection}{\numberline {A.2.5}Equivalence of Categories}{167}{subsection.A.2.5}%
+\contentsline {subsection}{\numberline {A.2.6}Adjoints}{168}{subsection.A.2.6}%
+\contentsline {subsection}{\numberline {A.2.7}Monoidal categories}{169}{subsection.A.2.7}%
+\contentsline {section}{\numberline {A.3}Banach spaces}{170}{section.A.3}%
+\contentsline {section}{\numberline {A.4}Topology}{171}{section.A.4}%

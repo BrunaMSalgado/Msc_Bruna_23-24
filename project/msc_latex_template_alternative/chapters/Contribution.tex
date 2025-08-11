@@ -113,28 +113,28 @@ We present the category of metric spaces as an example of \autoref{def:met_cop_c
 \begin{proof}
   By~\cite[Example 3.8]{dahlqvist2023syntactic}, the category $\catMet$ is a symmetric monoidal closed $\catMet$-category. As a result, it suffices to show that for all morphisms \( f_1, f_2 \in \catMet(A, C) \) and \( g_1, g_2 \in \catMet(B, C) \), the following inequality holds:
 \[
-  d_{A \oplus B, C}([f_1, g_1], [f_2, g_2]) \leq \sup \{d_{A,C}(f_1, f_2), d_{B,C}(g_1, g_2)\}.
+  d_{A + B, C}([f_1, g_1], [f_2, g_2]) \leq \sup \{d_{A,C}(f_1, f_2), d_{B,C}(g_1, g_2)\}.
 \]
 
-In this category, the coproduct is defined as in $\catSet$. The distance function $d$ on the coproduct $A \oplus B$ is given by:
+In this category, the coproduct is defined as in $\catSet$. The distance function $d$ on the coproduct $A + B$ is given by:
    \[
     \begin{cases}
-    d_{A \oplus B}(\inl(a_1),\inl(x_2)) = d_A(a_1,a_2) \\
-    d_{A \oplus B}(\inr(b_1),\inr(b_2)) = d_B(b_1,b_2) \\
-    d_{A \oplus B}(\inl(a), \inr(b)) = 
-    d_{A \oplus B}(\inr(b), \inl(a))  = \infty
+    d_{A + B}(\inl(a_1),\inl(x_2)) = d_A(a_1,a_2) \\
+    d_{A + B}(\inr(b_1),\inr(b_2)) = d_B(b_1,b_2) \\
+    d_{A + B}(\inl(a), \inr(b)) = 
+    d_{A + B}(\inr(b), \inl(a))  = \infty
     \end{cases}
     \]
 
     The co-pairing is defined as in $\catfont{Set}$. The inequality we aim to prove follows directly from the fact that, given two morphisms  $f,g\in \catMet(A, B)$ the distance between them is defined as 
   \[ \sup \{ d_A (f a, g a) \,\vert \, a \in A \} ,\] 
     together with \autoref{lem:sup_union}. For  \( f_1, f_2 \in \catMet(A, C) \) and \( g_1, g_2 \in \catMet(B, C) \), we calculate:
-    \todo[inline,size=\normalsize]{Não estou a perceber o problema de $ (a,b) \in A \oplus B$? Nós usamos $A \otimes B$ acima tb, não podemos usar $(a,b)$?}
+    \todo[inline,size=\normalsize]{Não estou a perceber o problema de $ (a,b) \in A + B$? Nós usamos $A \otimes B$ acima tb, não podemos usar $(a,b)$?}
     \begin{align*}
-      & d_{A \oplus B, C}([f_1, g_1], [f_2, g_2]) \\
-      &  =  \sup \{ d_{A\oplus B} ([f_1, g_1] (x), [f_2, g_2] (x)) \,\vert \, x \in A \oplus B \} \\
-      & =  \sup \{ \{ d_{A\oplus B} ([f_1, g_1] (\inl(a)), [f_2, g_2] (\inl(a))) \,\vert \, a \in A \}    \\
-      & \hspace{15pt} \cup \{d_{A\oplus B} ([f_1, g_1] (\inr(b)), [f_2, g_2] (\inr(b))) \,\vert \, b \in B\}\} \\
+      & d_{A + B, C}([f_1, g_1], [f_2, g_2]) \\
+      &  =  \sup \{ d_{A+ B} ([f_1, g_1] (x), [f_2, g_2] (x)) \,\vert \, x \in A + B \} \\
+      & =  \sup \{ \{ d_{A+ B} ([f_1, g_1] (\inl(a)), [f_2, g_2] (\inl(a))) \,\vert \, a \in A \}    \\
+      & \hspace{15pt} \cup \{d_{A+ B} ([f_1, g_1] (\inr(b)), [f_2, g_2] (\inr(b))) \,\vert \, b \in B\}\} \\
       & = \sup \{ \{ d_{A}(f_1 (a), f_2 (a)) \,\vert \, a \in A \} \cup  \{d_{B}(g_1 (b), g_2 (b)) \,\vert \, b \in B \}\} \\
       & = \sup   \{ \sup \{ d_{A}(f_1 (a), f_2 (a)) \,\vert \, a \in A \}, \sup\{d_{B}(g_1 (b), g_2 (b)) \,\vert \, b \in B \}\} \\
       &=  \sup \{d_{A,C}(f_1, f_2), d_{B,C}(g_1, g_2)\}. 
