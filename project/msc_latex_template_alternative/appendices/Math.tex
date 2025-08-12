@@ -1062,11 +1062,13 @@ Every normed space may be regarded as a metric space (\autoref{def:metric_space}
 distance, $d(v,w)$, between vectors $v$ and $w$ is $\|v-w\|$ .
 
 \begin{definition} \label{def:op_norm}
-Let \( V \) and \( W \) be normed vector spaces, and let \( T: V \rightarrow W \) be a linear operator. The \emph{operator norm}, denoted by $\|\cdot\|_{\text{op}}$, is defined as
+Let \( V \) and \( W \) be normed vector spaces, and let \( T: V \to W \) be a linear operator. The $\|T\|_{\text{op}}$ is defined as the nonnegative extended real number
 \[
-\opnorm{T}= \sup \{ \norm{T(v)} : v \in V, \, \norm{v} = 1 \}.
+\|T\|_{\text{op}} = \sup \big\{ \|T(v)\|_W \mid v \in V, \, \|v\|_V = 1 \big\}.
 \]
-If \( \opnorm{T} < \infty \) we say that \( T \) is a \emph{bounded operator}; otherwise, if \( \opnorm{T} = \infty \) we say that \( T \) is \emph{unbounded}. 
+If \( \|T\|_{\text{op}} < \infty \), we say that \( T \) is a \emph{bounded operator}; otherwise, if \( \|T\|_{\text{op}} = \infty \), we say that \( T \) is \emph{unbounded}. 
+
+The function \( \|\cdot\|_{\text{op}} \), when restricted to the space of bounded linear operators, is called the \emph{operator norm}.
 \end{definition}
 
 \begin{lemma} \cite[Lemma 6.4]{guide2006infinite} \label{lemma:op_norm_submult} %inf_dim_anal
@@ -1230,7 +1232,7 @@ continuous for every \( v \in V \).
 
 
 
-
+\begin{comment}
 The following concepts and results are used in \Cref{subsec:w*_cats} and \Cref{ch:future_work}.
 
 \begin{proposition} \cite[Proposition 2.3.10]{pedersenAnalysisNow1989}
@@ -1272,6 +1274,7 @@ As a result, we obtain
 = v_\varphi.
 \]
 \end{proof}
+\end{comment}
 
 \begin{comment}
 
@@ -1353,7 +1356,7 @@ As a result, we obtain
 
 
 
-
+\begin{comment}
 \begin{definition}\label{def:uni_cont}
   A function \( f : (V, d) \to (W, d') \) between two metric spaces is said to be \emph{uniformly continuous} if for every \( \varepsilon > 0 \) there exists some \( \delta > 0 \) (depending only on \( \varepsilon \)) such that  
 \[
@@ -1381,5 +1384,6 @@ Let \( A \) be a dense subset of a topological space \( V \), and let
 Then \( f \) has at most one continuous extension \( g: V \to W \), \ie, one such that $f$ and $g$ coincide on $A$.  
 This continuous extension \( g \) exists if \( (V,d_V) \) is a metric space, \( (W,d_W) \) is a complete metric space, and \( f \) is uniformly continuous from \( (A,d_V) \) to \( (W,d_W) \). 
 \end{lemma}
+\end{comment}
 
 

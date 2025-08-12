@@ -15,14 +15,14 @@ In September 1928, David Hilbert presented his vision for the foundations of mat
 \noindent \textbf{ Gödel’s Incompleteness Theorems} However, this vision was shattered by Kurt Gödel’s Incompleteness Theorems (1931) \cite{Godel}, which showed that no set of mathematical rules powerful enough to handle basic arithmetic could ever be both complete (answering every question) and consistent (free of contradictions) at the same time. 
 
 \noindent \textbf{ Gödel’s Completeness Theorems} 
-Interestingly, in his doctoral thesis, Gödel proved a foundational result in logic: first-order predicate logic---a formal system used to express statements involving quantifiers like ``for all'' and ``there exists''---is \emph{complete}~\cite{godelVollstandigkeitAxiomeLogischen1930}. It is important to note that the term ``completeness'' here differs from its use in Gödel’s later Incompleteness Theorems.
+Interestingly, in his doctoral thesis, Gödel proved a foundational result in logic: first-order predicate logic---a formal system used to express statements involving quantifiers like ``for all'' and ``there exists''---is \emph{complete}~\cite{godelVollstandigkeitAxiomeLogischen1930}. It is important to note that the term ``completeness'' here differs from its use in Gödel’s Incompleteness Theorems.
 Before exploring this notion of completeness, it is helpful to introduce a few core concepts. \emph{Syntax} refers to the formal symbols and inference rules used to construct well-formed statements, while \emph{semantics} concerns the meaning assigned to these statements through interpretations. A \emph{model} of a first-order system is a mathematical structure in which the axioms (or rules) hold true under a given interpretation.
 With these notions in place, we can now turn to Gödel’s result, known as the \emph{Completeness Theorem}. This theorem states that  if a statement holds in every possible model of a theory, then it can also be \emph{syntactically} proven using the system’s formal rules. In other words, completeness is the property that all universally valid statements are provable within the system.  The converse also holds: any statement provable syntactically must hold true in all models. This is known as \emph{soundness} \cite{franzenGodelsTheorem2008}.
  
 
 
 \noindent \textbf{Entscheidungsproblem}
-We have just introduced two of the main  pillars of this thesis ---
+We have just introduced two of the main  pillars of this thesis  (which are closely tied to its principal results) ---
 soundness and completeness. We now introduce a third,  deeply tied to Hilbert's ambitious vision for mathematics. Recall that Hilbert not only sought a complete and consistent foundation for mathematics, but also believed in the possibility of an entirely \emph{mechanical} method to resolve any mathematical problem---a process requiring no intuition or creative insight. In 1928, he formulated the Entscheidungsproblem (German for “decision problem”), which sought an \emph{effective method} (also called a mechanical procedure or algorithm)  to determine the truth or falsity of any mathematical statement \cite{hilbert1928}.  A method or procedure is effective if:
 \begin{enumerate}
 \item it can be described by a finite number of exact instructions;
@@ -37,12 +37,12 @@ The algorithms that children learn to perform basic arithmetic operations are ex
 \noindent \textbf{Alonzo Church and the $\lambda$-calculus enter the scene}
 Remarkably, it was Alonzo Church—using $\lambda$-\textit{calculus}—who first addressed Hilbert’s \emph{Entscheidungsproblem}. This brings us to the third central theme of this dissertation: $\lambda$-\textit{calculus}. In 1936, Alonzo Church published a solution to the \emph{Entscheidungsproblem}, proving that no universal algorithmic method could decide the truth of all mathematical statements~\cite{church1936}. Today, this result is often referred to as \emph{Church’s Theorem}. In the same work, he provided a mathematically precise notion of an effective method. He proposed that a function is effectively computable if and only if it can be written as a lambda term. This equivalence provided the first rigorous mathematical criterion for computability.
 
-This calculus played an important role in functional programming, influencing the design of languages like LISP, Pascal, and GEDANKEN—many of which incorporate $\lambda$-calculus-inspired features, either explicitly or implicitly. Furthermore, $\lambda$-calculus may be employed to prove properties of programming language (such as: a well-formed program will not crash) and as a tool in the construction of compilers \cite{jonesImplementationFunctionalProgramming}.
+This calculus played an important role in functional programming, influencing the design of languages like LISP, Pascal, and GEDANKEN—many of which incorporate $\lambda$-calculus-inspired features, either explicitly or implicitly. Furthermore, $\lambda$-calculus may be employed to prove properties of programming languages (such as: a well-formed program will not crash) and as a tool in the construction of compilers \cite{jonesImplementationFunctionalProgramming}.
 
 The idea that such important aspects of modern computer science emerged from foundational questions in mathematics is nothing short of extraordinary.
 
 \noindent \textbf{A note on Turing's work}
-Around the same time, another researcher—unaware of Church’s work—was independently addressing the same problem: Alan Turing, now widely regarded as the father of computer science. He introduced the concept of a universal machine, now known as the \emph{Turing Machine}. While Turing’s model is groundbreaking in its own right, it is largely orthogonal to this dissertation, as it is more closely associated with automata theory than with the syntax and semantics of programming languages.
+Around the same time, another researcher—unaware of Church’s work— independently addressed the Entscheidungsproblem: Alan Turing, now widely regarded as the father of computer science. He introduced the concept of a universal machine, now known as the \emph{Turing Machine}, and proved that his definition of computability aligned with Church’s. While Turing’s model is groundbreaking in its own right, it is largely orthogonal to this dissertation, as it is more closely associated with automata theory than with the syntax and semantics of programming languages.
 
 %In science, credit typically goes to the first person to prove a result. Yet Turing’s 1937 paper, On Computable Numbers, with an Application to the Entscheidungsproblem, was groundbreaking in its own right. In it, he introduced the concept of a universal machine and demonstrated that any function computable by a human following a systematic procedure could also be computed by a Turing machine \cite{turingComputableNumbersApplication1937}. Moreover, Turing proved that his definition of computability aligned with Church’s.
 
@@ -53,12 +53,12 @@ Around the same time, another researcher—unaware of Church’s work—was inde
 
 \subsection*{ $\lambda$-calculus}
 \noindent \textbf{$\lambda$-calculus and functions}
-The $\lambda$-calculus is a formal language that captures a key feature of higher-order functional languages: treating functions as ``first-class citizens'' that can be passed as arguments. Here, functions are expressed as \emph{abstractions} of the form $\lambda x.\,f(x)$, with application denoted by juxtaposing the abstraction with its argument. For example, the expression $f(2)$, where $f(x) = x + 1$, is written as $(\lambda x.\,x + 1)(2)$.
+The $\lambda$-calculus is a formal language that captures a key feature of higher-order functional languages: treating functions as ``first-class citizens'' that can be passed as arguments. Here, functions are expressed as \emph{abstractions} of the form $\lambda x.\,f(x)$, with application denoted by juxtaposing the abstraction with its argument. For example, the expression $f(2)$, where $f(x) = x + 1$, is written as $(\lambda x.\,x + 1)(2)$. 
+Although $\lambda$-calculus is a powerful tool, it has a few shortcomings. For example, it allows a function to be applied to itself, as in $(\lambda x.\,x\,x)(\lambda x.\,x\,x)$, leading to non-termination. To address such issues, Church introduced the \emph{simply typed $\lambda$-calculus} \cite{churchFormulationSimpleTheory1940}, which prevents self-referential paradoxes.
 
 
-
-\noindent \textbf{Typed-lambda calculus}
-In this work, we use the typed $\lambda$-calculus, a variant where each term is ``labeled'' by a syntactic object called a \emph{type}. Types serve as a mechanism for ensuring that programs are meaningful. In contrast, the untyped version allows, for example, a function to be applied to itself, as in $(\lambda x.\,x\,x)(\lambda x.\,x\,x)$, leading to non-termination. It also allows nonsensical operations, such as applying a boolean to a number or a function to a string.
+\noindent \textbf{Typed $\lambda$-calculus}
+In our work, we use the typed $\lambda$-calculus, a variant where each term is ``labeled'' by a syntactic object called a \emph{type}. Types act as a safeguard against self-referential paradoxes while simultaneously enabling a deep correspondence with logic.
 
 
 \noindent \textbf{$\lambda$-calculus and logic} 
@@ -72,12 +72,12 @@ We previously mentioned that one of our main results pertains to soundness and c
 
 \noindent \textbf{Semantics:$\lambda$-calculus and category theory} In this work, we interpret programs as mathematical objects, particularly those arising in category theory. But why choose a categorical interpretation over other alternatives?
 
-Consider an ancient Indian parable: six blind men encounter an elephant for the first time. Each man touches a different part of the animal—the side, tusk, trunk, leg, ear, or tail—and draws a conclusion based solely on that limited experience. One describes it as a spear (the tusk), another as a snake (the trunk), and another as a fan (the ear). Each is convinced of his own interpretation and dismisses the others as incorrect. None of them realise that they are each experiencing only a part of the same elephant, and that their individual descriptions are incomplete. In some versions of the story, the men stop arguing, begin listening to one another, and collaborate to form a more accurate understanding of the whole elephant. 
+Consider an ancient indian parable: six blind men encounter an elephant for the first time. Each man touches a different part of the animal—the side, tusk, trunk, leg, ear, or tail—and draws a conclusion based solely on that limited experience. One describes it as a spear (the tusk), another as a snake (the trunk), and another as a fan (the ear). Each is convinced of his own interpretation and dismisses the others as incorrect. None of them realise that they are each experiencing only a part of the same elephant, and that their individual descriptions are incomplete. In some versions of the story, the men stop arguing, begin listening to one another, and collaborate to form a more accurate understanding of the whole elephant. 
 
-Category theory plays a similar role in computer science. Each category embodies a distinct perspective ---a "part of the elephant" --- capturing a specific computational paradigm. Adopting a categorical approach allows us to generalize our results across diverse computational paradigms.
+Category theory plays a similar role in computer science. Each category embodies a distinct perspective ---a ``part of the elephant" --- capturing a specific computational paradigm. Adopting a categorical approach allows us to generalize our results across diverse computational paradigms.
 
 
-However, there is a deeper reason for using category theory in this setting: it is intimately connected to the $\lambda$-calculus. First, it should be noted that $\lambda$-calculus is a type theory --- and here lies the twist: categories themselves can be viewed as type theories. The objects may be regarded as types (of sorts), and the arrows as functions between those types. In this sense, a category may be thought of as a type theory stripped of its syntax. With this perspective in mind, in the 1970s, Joachim Lambek established a correspondence between cartesian closed categories and the $\lambda$-calculus \cite{lambek1980lambda}. That is, types correspond to objects, and programs correspond to arrows in such categories. This correspondence extends further to logic, under the so-called Curry–Howard–Lambek correspondence, where formulas correspond to types and proofs to arrows.  Later, Lambek and Dana Scott independently observed that C-monoids (\ie categories equipped with products, exponentials, and a single non-terminal object) correspond to the untyped $\lambda$-calculus \cite{lambekscott988}.
+However, there is a deeper reason for using category theory in this setting: it is intimately connected to the $\lambda$-calculus. First, it should be noted that $\lambda$-calculus is a type theory --- and here lies the twist: categories themselves can be viewed as type theories. The objects may be regarded as types (of sorts), and the arrows as functions between those types. In this sense, a category may be thought of as a type theory. With this perspective in mind, in the 1970s, Joachim Lambek established a correspondence between cartesian closed categories and the $\lambda$-calculus \cite{lambek1980lambda}. That is, types correspond to objects, and terms correspond to arrows in such categories. This correspondence extends further to logic, under the so-called Curry–Howard–Lambek correspondence, where formulas correspond to types and proofs to arrows.  Later, Lambek and Dana Scott independently observed that C-monoids (\ie categories equipped with products, exponentials, and a single non-terminal object) correspond to the untyped $\lambda$-calculus \cite{lambekscott988}.
 
 
 
@@ -92,31 +92,54 @@ However, there is a deeper reason for using category theory in this setting: it 
 
 \subsection*{Going quantitative}
 
+\textbf{Quantitative $\lambda$-calculus}
 Beyond its foundational aspects, this calculus incorporates extensions for modeling side effects, including probabilistic or non-deterministic behaviors and shared memory. In this work, we are concerned with a version of $\lambda$-calculus that allows us to reason about approximate equivalence of programs, referred to as \emph{metric }$\lambda$\emph{-calculus}. The metric lambda calculus integrates notions of
-approximation into the equational system of linear lambda calculus, a variant of lambda calculus that restricts each variable to being exactly once.
+approximation into the equational system of linear lambda calculus, a variant of lambda calculus that restricts each variable to being used exactly once.
 
-Program equivalence and its underlying theories traditionally rely on a binary notion of equivalence: two programs are either equivalent or not \cite{winskel93}. While this dichotomy is often sufficient for classical programming, it proves too coarse-grained for other computational paradigms. For instance, in various programming paradigms, interaction with the physical environment calls for notions of approximate program equivalence. 
-
-
-To address this, \cite{dahlqvistInternalLanguage2022,dahlqvist2023syntactic} incorporate a notion of approximate equivalence into the equational system of the affine $\lambda$-calculus by introducing, among other elements, \emph{metric equations} \cite{mardare2016quantitative, mardare2017axiomatizability}. These are equations of the form $t =_{\varepsilon} s$, where $\varepsilon$ is a non-negative real number representing the ``maximum distance'' between terms $t$ and $s$. Here we begin exploring the incorporation of a metric equation for the case statements (\ie\ conditionals). Our motivation for it is highly practical: in trying to reason quantitatively about higher-order programs, we often fell short when these involved conditionals.
-
-Quantitative logics offer a way forward, extending beyond  $\lambda$-calculus. They reflect a broader effort to move beyond rigid binary concepts, such as equality and bisimulation, and toward more flexible frameworks better suited to real-world computation.
-
-Other works in the spirit of this dissertation include \cite{mardare2016quantitative, mardare2017axiomatizability, mio24, jurka24}, which explore (generalized) metric universal algebras. In simple terms, a universal algebra is a set equipped with any number of operations, further defined by axioms typically expressed as identities or equational laws. In a (generalized) metric universal algebra, these axioms are relaxed into (generalized) metric equations rather than strict equalities. In the higher-order setting, \cite{lago22}, following the framework introduced by Mardare \cite{mardare2016quantitative}, investigates the problem of defining quantitative algebras that are capable of interpreting terms in higher-order calculi.
+Program equivalence and its underlying theories traditionally rely on a binary notion of equivalence: two programs are either equivalent or not \cite{winskel93}. While this dichotomy is often sufficient for classical programming, it proves too coarse-grained for other computational paradigms. In quantum computing, for example, noise, such as decoherence, affects hardware \cite{watrous2018theory,nielsen2010quantum,preskill2018quantum}, making it unrealistic to expect an idealized quantum algorithm to run perfectly on a quantum device; only an approximation can be observed. 
 
 
-Probabilistic programs are quite ubiquitous: they control autonomous systems, verify security protocols, and implement randomized algorithms for solving computationally intractable problems. At their core, they aim to democratize probabilistic modeling by providing programmers with expressive, high-level abstractions for machine learning and statistical reasoning \cite{bartheFoundationsProbabilisticProgramming2020}. In this context, concerns such as developing more eco-friendly programs and algorithms could greatly benefit from a quantitative approach.
+To address this, \cite{dahlqvistInternalLanguage2022,dahlqvist2023syntactic} incorporate a notion of approximate equivalence into the equational system of the linear $\lambda$-calculus by introducing, among other elements, \emph{metric equations} \cite{mardare2016quantitative, mardare2017axiomatizability}. These are equations of the form $t =_{\varepsilon} s$, where $\varepsilon$ is a non-negative real number representing the ``maximum distance'' between terms $t$ and $s$. Here we begin exploring the incorporation of a metric equational system for the case statements (\ie\ conditionals). Our motivation for it is highly practical: in trying to reason quantitatively about higher-order programs, we often fell short when these involved conditionals.
+
+\textbf{Related work}
+Quantitative logics offer a way forward, extending beyond  $\lambda$-calculus\cite{caoQuantitativeLogicSoft2010, fanQuantitativeLogicSoft2017}. They reflect a broader effort to move beyond rigid binary concepts, such as equality and bisimulation, and toward more flexible frameworks better suited to real-world computation.
+
+Other works in the spirit of this dissertation include \cite{mardare2016quantitative, mardare2017axiomatizability, mio24, jurka24}, which explore (generalized) metric universal algebras. In simple terms, an algebra is a set equipped with a number of operations, subjected to axioms expressed as equations. In a (generalized) metric algebra, these axioms are relaxed into (generalized) metric equations rather than strict equalities. In the higher-order setting, \cite{lago22}, following the framework introduced by Mardare \cite{mardare2016quantitative}, investigates the problem of defining quantitative algebras that are capable of interpreting terms in higher-order calculi. 
+
+
+\subsection*{Probabilistic Programming and Quantum Computation }
+
+\textbf{Probabilistic programming}
+Probabilistic programs are quite ubiquitous: they control autonomous systems, verify security protocols, and implement randomized algorithms for solving computationally intractable problems. At their core, they aim to democratize probabilistic modeling by providing programmers with expressive, high-level abstractions for statistical reasoning \cite{bartheFoundationsProbabilisticProgramming2020}. 
+Within this context, because computers inherently operate on finite representations, exact implementation of probability distributions is infeasible, necessitating appropriate notions of approximate equivalence. As an illustrative example of this challenge, this dissertation addresses random walk approximations.
 
 %Probabilistic programs offer a structured approach to drawing statistical conclusions from uncertain data or real-world observations. They generalize probabilistic graphical models beyond the capabilities of Bayesian networks and are expected to have broader applications in machine intelligence. These programs are are employed across various domains. They control autonomous systems, verify security protocols, and implement randomized algorithms for solving computationally intractable problems. As a result, they are becoming increasingly central to AI development. At their core, they aim to democratize probabilistic modeling by providing programmers with expressive, high-level abstractions for machine learning and statistical reasoning \cite{bartheFoundationsProbabilisticProgramming2020}. 
 
 
 
 
+\textbf{Quantum computation}
+Quantum computing explores the principles of quantum mechanics to process information. It was first proposed in the 1980s as a means to improve the computational modeling of quantum physical systems. However, it was not until 1994 that the field gained significant attention when Peter Shor introduced an algorithm that, if implemented on a quantum computer, could pose a significant threat to the security of confidential data transmitted over the Internet \cite{shor1994algorithms}.
+While these results are revolutionary, they remain theoretical, as no quantum computers can realise them in practice.
+ On the near horizon are  \acrfull{nisq}  computers. These devices are highly susceptible to noise and errors, which calls for quantitative reasoning. In this context, we reason, for instance, about the introduction of dephasing in the quantum teleportation protocol. 
+     
+
+%\cite{shor1994algorithms}
 
 
-\subsection*{Quantum Computation}
+%%While these results were very exciting in the 1990s, they were only of theoretical interest: no one knew of a method to build a computer out of quantum systems. Today, nearly 25 years later, progress in creating and controlling bits of quantum information, or “qubits," has advanced to the point that a number of research groups have demonstrated small
 
-In 1994, Peter Shor demonstrated that a quantum computer with sufficiently many qubits could pose a significant threat to the security of confidential data transmitted over the Internet \cite{shor1994algorithms}. This breakthrough spurred widespread interest in quantum computing. Nevertheless, \acrfull{nisq}  computers are expected to operate with severely limited hardware resources. Precisely controlling qubits in these systems comes at a high cost, is susceptible to errors, and faces scarcity challenges. Therefore, quantitative reasoning is indispensable for the design, optimization, and assessment of NISQ computing. 
+
+
+
+%Conversely, we know that classical computers can simulate, by their computations, the evolution of any quantum system ... with one reservation: no classical process will allow one to prepare separated systems whose correlations break the Bell inequality. It appears from this that the EPR–Bell correlations are the quintessential quantum-mechanical property (Feynman 1982)
+
+%QUANTUM computer operates on the principles of quantum mechanics and utilizes the properties of quantum (microscopic) particles, i.e., superposition and entanglement, to perform computation. In contrast to classical computers, where information is stored in bits that can only be either 0 or 1
+
+%Quantum mechanics, the subfield of physics that describes the behav- ior of very small particles, provides the basis for a new paradigm of computing. Quantum computing (QC) was first proposed in the 1980s as a way to improve computational modeling of the behavior of very small ("quantum") physical systems. Interest in the field grew in the 1990s with the introduction of Shor's algorithm, which, if implemented on a quantum computer, would exponentially speed up an important class of cryptanalysis and potentially threaten some of the cryptographic methods used to protect government and civilian communications and stored data. In fact, quantum computers are the only known model for computing that could offer exponential speedup over today's computers.1
+%While these results were very exciting in the 1990s, they were only of theoretical interest: no one knew of a method to build a computer out of quantum systems. Today, nearly 25 years later, progress in creating and controlling bits of quantum information, or “qubits," has advanced to the point that a number of research groups have demonstrated small
+
+%In 1994, Peter Shor demonstrated that a quantum computer with sufficiently many qubits could pose a significant threat to the security of confidential data transmitted over the Internet \cite{shor1994algorithms}. This breakthrough spurred widespread interest in quantum computing. Nevertheless, \acrfull{nisq}  computers are expected to operate with severely limited hardware resources. Precisely controlling qubits in these systems comes at a high cost, is susceptible to errors, and faces scarcity challenges. Therefore, quantitative reasoning is indispensable for the design, optimization, and assessment of NISQ computing. 
 
 
 %While holding immense promise, this paradigm encounters challenges in the \acrfull{nisq} era, namely quantum decoherence which restricts the reliable execution of quantum circuits \cite{preskill2018quantum}. Consequently, it is unreasonable to expect that the idealized quantum algorithm will run perfectly on a quantum device, instead only a mere approximation will be observed, which suggests the development of appropriate notions of approximate program equivalence.
@@ -127,38 +150,38 @@ In 1994, Peter Shor demonstrated that a quantum computer with sufficiently many 
 
 \section{Contributions}
 
-Our contributions fall into three categories: syntactic, semantic, and  concerned with the connection between the two.
+Our contributions fall into three categories: syntax, semantics, and  syntax-semantics.
 
-\subsection*{Syntatic}
+\subsection*{Syntax}
 
-We build on the work of \cite{dahlqvist2023syntactic} by introducing a metric equation for conditionals.  Next, to illustrate the utility of the metric equation introduced, we present a simple example: a metric version of the copairing's extensionality. 
-Moreover, we illustrate the usefulness of our(metric) equational system by using it as a bridge to connect a certain type to Boolean algebra.
+We build on the work of \cite{dahlqvist2023syntactic} by introducing a metric equation for conditionals.  We also illustrate the utility of this metric equation introduced, via a simple example: a metric version of the copairing's extensionality. 
+Moreover, we illustrate the usefulness of the metric equational system in \cite{dahlqvist2023syntactic} by using it as a bridge between our type system and Boolean algebra.
 %s: reasoning about approximate equivalence between boolean terms (\ie terms of type $ \typeI \oplus \typeI $), and the extensionality of copairing.
 
 
-\subsection*{Semantic}
+\subsection*{Semantics}
 
-Returning to our earlier elephant parable, we study various “perspectives” by proving that the corresponding categories are indeed models suitable for reasoning about approximate equivalence using this equation:
+Returning to our earlier elephant parable, we study various ``perspectives” by proving that the following categories are indeed models suitable for reasoning about approximate equivalence using this equation:
 \begin{itemize}
 \item The category of metric spaces $\catMet$;
-\item Cocompletion of a $\catMet$-category $\catC$;
+\item Cocompletion of a category $\catC$ enriched over metric spaces;
 \item Category $ \catBan $ of Banach spaces and short maps;
-\item  \( \Kar{\catCPS} \), the idempotent completion of the category of quantum operationts (\ie, completely positive, trace nonincreasing superoperators) \cite{selinger2004towards}, and Cho’s \( \WstarCPSUop \), the opposite category of \( \WstarCPSU \), the category of W$^*$-algebras and normal, completely positive, subunital maps~\cite{choSemanticsQuantumProgramming2016}.
+\item  \( \Kar{\catCPS} \), the idempotent completion of the category of quantum operations (\ie, completely positive, trace nonincreasing superoperators) \cite{selinger2004towards}, and Cho’s \( \WstarCPSUop \), the opposite category of \( \WstarCPSU \), the category of W$^*$-algebras and normal, completely positive, subunital maps~\cite{choSemanticsQuantumProgramming2016}.
 \end{itemize}
-This demonstrates that our work is applicable across several domains. For the last two quantum models, we restrict our attention to the first-order fragment of the $\lambda$-calculus, noting that extensions to higher-order are possible using more advanced categorical tools, as in \cite{dahlqvist2023syntactic}.
+This demonstrates that our work is applicable across several domains. For the last two quantum models, we restrict our attention to the first-order fragment of the $\lambda$-calculus, noting that extensions to the higher-order setting are possible using more advanced categorical tools, as in \cite{dahlqvist2023syntactic}.
 
-We investigate two computational paradigms in greater detail: probabilistic (via $\catBan$) and quantum computation (via $\Kar{\catCPS}$ and $\WstarCPSUop$). In the probabilistic setting, we use a random walk to reason about approximate equivalence. In the quantum setting, we explore two examples: quantum state discrimination and quantum teleportation.
+As applications of our work, we investigate two computational paradigms in greater detail: probabilistic (via $\catBan$) and quantum computation (via $\Kar{\catCPS}$ and $\WstarCPSUop$). In the probabilistic setting, we use a random walk to reason about approximate equivalence. In the quantum setting, we explore two examples: quantum state discrimination and quantum teleportation.
  
 
 %In this context, we show that the category of metric spaces and the cocompletion of a $\catMet$-category $\catC$ satisfy the requirements for a model suitable for reasoning about approximate equivalence using this equation.
 
 %Next, we explore two computational paradigms in greater detail: probabilistic and quantum computation. For the former, we prove that the category $ \catBan $ of Banach spaces and short maps constitutes a model in this setting, and use a random walk as an illustrative example. For the latter, we consider a restriction of $\lambda$-calculus to first order, knowing that later they can be extended to higher-oder using more advanced categorical machinery as in \cite{dahlqvist2023syntactic}.  That beeing said, we consider two categorical models: Selinger’s \( \catQ \), the category of quantum operationts (\ie, completely positive, trace-nonincreasing superoperators) \cite{selinger2004towards}, and Cho’s \( \WstarCPSUop \), the opposite category of W$^*$-algebras and normal, completely positive, subunital maps~\cite{choSemanticsQuantumProgramming2016}. We show that both are first-order models. Finally, we use quantum state discrimination, quantum teleportation, and quantum random walks as illustrative examples in this setting.
 
-\subsection*{Connection between syntax and semantics}
-We prove that the metric equation introduced is sound and complete. Soundness ensures that if a metric equation $t =_{\varepsilon} s$ can be derived in the calculus, then the distance between the interpretations of $t$ and $s$ is at most $\varepsilon$. Completeness guarantees that if $\varepsilon$ is the maximum distance between the interpretations of two programs, then we can derive $t =_{\varepsilon} s$ in the calculus. 
+\subsection*{Syntax-semantics}
+We prove that our extended metric equational system is sound and complete. Soundness ensures that if a metric equation $t =_{\varepsilon} s$ can be derived in the calculus, then the distance between all interpretations of $t$ and $s$ is at most $\varepsilon$. Completeness guarantees the converse.
 
 \vspace{10pt}
-Across all these areas, we also prove several folklore results about conditionals, such as soundness and completeness, that, to our knowledge, are missing from the literature.
+AAcross all these areas, we also prove several folklore results about conditionals that, to our knowledge, are missing from the literature.
 
 
 %for enriched symmetric monoidal closed categories with binary copr0ducts over metric spaces.
@@ -166,13 +189,13 @@ Across all these areas, we also prove several folklore results about conditional
 
 \section{Document Structure}
 
-\Cref{ch:metriclambda} introduces (metric) $\lambda$-calculus along with its categorical interpretation. One advantage of working with a metric equational system is the ability to reason syntactically about approximate equivalence. We leverage this idea in an interlude on booleans (i.e., terms of type $\typeI \oplus \typeI$) to illustrate the usefulness of the classical equational system. Additionally, we also prove several folklore results about conditionals, that, to our knowledge, are missing from the literature.
-  In \Cref{ch:conditionals}, we introduce a metric equation for conditionals, prove its soundness and completeness, and present a few models in this setting, along with a few illustrative syntactic examples. Then, in \Cref{ch:pp} and \Cref{ch:qc}, we focus on reasoning about higher-order probabilistic and first-order quantum programs, respectively, respectively, including both the necessary background and illustrative examples for each domain.
+\Cref{ch:metriclambda} introduces (metric) $\lambda$-calculus along with its categorical interpretation. One advantage of working with a (metric) equational system is the ability to reason syntactically about approximate equivalence. We illustrate this idea in an interlude on booleans. Additionally, we prove several folklore results about conditionals that, to our knowledge, are missing from the literature.
+ In \Cref{ch:conditionals}, we introduce a metric equation for conditionals, prove soundness and completeness of the resulting system, and present a few models in this setting, along with an illustrative syntactic example. 
+ Then, in \Cref{ch:pp} and \Cref{ch:qc}, we focus on reasoning about higher-order probabilistic and first-order quantum programs, respectively, including both the necessary background and illustrative examples for each domain.
  The thesis concludes with directions for future work in \Cref{ch:future_work}. 
-It is assumed that the reader is familiar with the basics of category theory, Banach spaces, and topology. For a more detailed study, the reader may consult \cite{awodeyCategoryTheory2010} for category theory, \cite[Chapters~1--2]{kreyszigIntroductoryFunctionalAnalysis2007} for Banach spaces, and \cite[Chapters~2~and~5]{guide2006infinite} for topology. Alternatively, an overview of the relevant concepts and results from these areas is provided in \Cref{ch:math_back}.
+The reader is assumed to be familiar with the basics of category theory, Banach spaces, and topology. For a more detailed study, the reader may consult \cite{awodeyCategoryTheory2010} for category theory, \cite[Chapters~1--2]{kreyszigIntroductoryFunctionalAnalysis2007} for Banach spaces, and \cite[Chapters~2~and~5]{guide2006infinite} for topology. Alternatively, an overview of these areas' relevant concepts and results is provided in \Cref{ch:math_back}.
 
 %An overview of the categorical concepts and results employed in this thesis is provided in \Cref{ch:math_back}. 
 
-Although this work uses knowledge across multiple areas, the author's engagement with them is mostly limited to the scope of this thesis.
 
 

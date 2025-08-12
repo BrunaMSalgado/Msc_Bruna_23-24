@@ -131,6 +131,14 @@ A~Robert Calderbank and Peter~W Shor.
 \newblock Good quantum error-correcting codes exist.
 \newblock {\em Physical Review A}, 54(2):1098, 1996.
 
+\bibitem{caoQuantitativeLogicSoft2010}
+Bing-yuan Cao, Guo-jun Wang, Shui-li Chen, and Si-zong Guo, editors.
+\newblock {\em Quantitative {{Logic}} and {{Soft Computing}} 2010: {{Volume}}
+  2}, volume~82 of {\em Advances in {{Intelligent}} and {{Soft Computing}}}.
+\newblock Springer, 2010.
+\newblock \href {https://doi.org/10.1007/978-3-642-15660-1}
+  {\path{doi:10.1007/978-3-642-15660-1}}.
+
 \bibitem{choSemanticsQuantumProgramming2016}
 Kenta Cho.
 \newblock Semantics for a {{Quantum Programming Language}} by {{Operator
@@ -152,6 +160,13 @@ Frederic~T Chong, Diana Franklin, and Margaret Martonosi.
 \newblock Programming languages and compiler design for realistic quantum
   hardware.
 \newblock {\em Nature}, 549(7671):180--187, 2017.
+
+\bibitem{churchFormulationSimpleTheory1940}
+Alonzo Church.
+\newblock A {{Formulation}} of the {{Simple Theory}} of {{Types}}.
+\newblock 5(2):56--68.
+\newblock \href {https://arxiv.org/abs/2266170} {\path{arXiv:2266170}}, \href
+  {https://doi.org/10.2307/2266170} {\path{doi:10.2307/2266170}}.
 
 \bibitem{church1936}
 Alonzo Church.
@@ -290,6 +305,18 @@ Albert Einstein, Boris Podolsky, and Nathan Rosen.
   complete?
 \newblock {\em Physical review}, 47(10):777, 1935.
 
+\bibitem{fanQuantitativeLogicSoft2017}
+Tai-He Fan, Shui-Li Chen, San-Min Wang, and Yong-Ming Li, editors.
+\newblock {\em Quantitative {{Logic}} and {{Soft Computing}} 2016:
+  {{Proceedings}} of the 4th {{International Conference}} on {{Quantitative
+  Logic}} and {{Soft Computing}} ({{QLSC2016}}) Held at {{Hangzhou}},
+  {{China}}, 14-17 {{October}}, 2016}, volume 510 of {\em Advances in
+  {{Intelligent Systems}} and {{Computing}}}.
+\newblock Springer International Publishing, 2017.
+\newblock URL: \url{http://link.springer.com/10.1007/978-3-319-46206-6}, \href
+  {https://doi.org/10.1007/978-3-319-46206-6}
+  {\path{doi:10.1007/978-3-319-46206-6}}.
+
 \bibitem{ferreiraProblemaDecisaoMaquina}
 Fernando Ferreira.
 \newblock O problema da decisão e a máquina universal de turing.
@@ -361,14 +388,6 @@ Daniel Gottesman and Isaac~L Chuang.
 \newblock Demonstrating the viability of universal quantum computation using
   teleportation and single-qubit operations.
 \newblock {\em Nature}, 402(6760):390--393, 1999.
-
-\bibitem{goubault-larrecqNonHausdorffTopologyDomain2013}
-Jean Goubault-Larrecq.
-\newblock {\em Non-{{Hausdorff Topology}} and {{Domain Theory}}: {{Selected
-  Topics}} in {{Point-Set Topology}}}.
-\newblock New {{Mathematical Monographs}}. Cambridge University Press, 2013.
-\newblock \href {https://doi.org/10.1017/CBO9781139524438}
-  {\path{doi:10.1017/CBO9781139524438}}.
 
 \bibitem{godelVollstandigkeitAxiomeLogischen1930}
 Kurt Gödel.
@@ -587,14 +606,6 @@ Judea Pearl.
 \newblock \href {https://arxiv.org/abs/mn2jBQAAQBAJ}
   {\path{arXiv:mn2jBQAAQBAJ}}.
 
-\bibitem{pedersenAnalysisNow1989}
-Gert~K. Pedersen.
-\newblock {\em Analysis {{Now}}}, volume 118 of {\em Graduate {{Texts}} in
-  {{Mathematics}}}.
-\newblock Springer, 1989.
-\newblock \href {https://doi.org/10.1007/978-1-4612-1007-8}
-  {\path{doi:10.1007/978-1-4612-1007-8}}.
-
 \bibitem{pedersenCalgebrasTheirAutomorphism1979}
 Gert~Kjaergård Pedersen.
 \newblock {\em C*-Algebras and {{Their Automorphism Groups}}}.
@@ -605,14 +616,6 @@ Simon Perdrix.
 \newblock Quantum entanglement analysis based on abstract interpretation.
 \newblock In {\em International Static Analysis Symposium}, pages 270--282.
   Springer, 2008.
-
-\bibitem{pisierIntroductionOperatorSpace2003}
-Gilles Pisier.
-\newblock {\em Introduction to {{Operator Space Theory}}}.
-\newblock London {{Mathematical Society Lecture Note Series}}. Cambridge
-  University Press, 2003.
-\newblock \href {https://doi.org/10.1017/CBO9781107360235}
-  {\path{doi:10.1017/CBO9781107360235}}.
 
 \bibitem{pisierTensorProductsCAlgebras2020}
 Gilles Pisier.
@@ -627,14 +630,6 @@ Gilles Pisier.
 John Preskill.
 \newblock Quantum computing in the nisq era and beyond.
 \newblock {\em Quantum}, 2:79, 2018.
-
-\bibitem{romanAdvancedLinearAlgebra1992}
-Steven Roman.
-\newblock {\em Advanced {{Linear Algebra}}}, volume 135 of {\em Graduate
-  {{Texts}} in {{Mathematics}}}.
-\newblock Springer, 1992.
-\newblock \href {https://doi.org/10.1007/978-1-4757-2178-2}
-  {\path{doi:10.1007/978-1-4757-2178-2}}.
 
 \bibitem{rudin91functional}
 Walter Rudin.
@@ -658,7 +653,8 @@ Shôichirô Sakai.
 Bruna Salgado and Renato Neves.
 \newblock On the additive structure of quantalic $\lambda$-calculus.
 \newblock BMQL 2025, 2025.
-\newblock URL: \url{https://bmql25.cs.aau.dk/}.
+\newblock URL:
+  \url{https://bmql25.cs.aau.dk/wp-content/uploads/2025/08/Salgado-Neves-bmql25.pdf}.
 
 \bibitem{salles2008experimental}
 Alejo Salles, Fernando de~Melo, MP~Almeida, Malena Hor-Meyll, SP~Walborn,
