@@ -30,7 +30,7 @@
 \contentsline {subsection}{\numberline {2.3.2}Semantics of metric equations}{42}{subsection.2.3.2}%
 \contentsline {chapter}{\numberline {3}A Metric Equational System for Conditionals}{47}{chapter.3}%
 \contentsline {section}{\numberline {3.1}System}{47}{section.3.1}%
-\contentsline {subsection}{\numberline {3.1.1}Extensionality of the copairing}{48}{subsection.3.1.1}%
+\contentsline {subsubsection}{Metric Copairing's Extensionality}{48}{figure.caption.17}%
 \contentsline {section}{\numberline {3.2}Interpretation}{48}{section.3.2}%
 \contentsline {section}{\numberline {3.3}Soundeness and Completeness}{50}{section.3.3}%
 \contentsline {subsubsection}{Lattice Theory Preliminaries}{50}{section.3.3}%
@@ -64,10 +64,10 @@
 \contentsline {subsubsection}{Unitary operators}{85}{definition.5.2.6}%
 \contentsline {subsection}{\numberline {5.2.4}Measurements}{87}{subsection.5.2.4}%
 \contentsline {subsection}{\numberline {5.2.5}Density operators}{88}{subsection.5.2.5}%
-\contentsline {subsubsection}{Reduced density operator}{89}{equation.5.2.5}%
+\contentsline {subsubsection}{Reduced density operator}{89}{equation.5.2.4}%
 \contentsline {subsection}{\numberline {5.2.6}Quantum Channels and Operations}{90}{subsection.5.2.6}%
 \contentsline {subsubsection}{Kraus operator sum representation}{91}{Item.29}%
-\contentsline {subsubsection}{Non-selective measurements}{92}{Item.31}%
+\contentsline {subsubsection}{Non-selective measurements}{93}{Item.31}%
 \contentsline {subsection}{\numberline {5.2.7}Norms on quantum operations}{93}{subsection.5.2.7}%
 \contentsline {subsection}{\numberline {5.2.8}Quantum circuits}{95}{subsection.5.2.8}%
 \contentsline {subsection}{\numberline {5.2.9}No-cloning theorem}{96}{subsection.5.2.9}%
@@ -76,19 +76,19 @@
 \contentsline {subsubsection}{Maps between $C^*$-Algebras}{99}{remark.5.3.2}%
 \contentsline {subsubsection}{Representations of $C^*$-Algebras}{99}{proposition.5.3.6}%
 \contentsline {subsubsection}{Matrices over $C^*$-Algebras}{99}{theorem.5.3.8}%
-\contentsline {subsubsection}{Direct sums of $C^*$-Algebras}{102}{proposition.5.3.13}%
+\contentsline {subsubsection}{Direct sums of $C^*$-Algebras}{103}{proposition.5.3.13}%
 \contentsline {subsubsection}{Tensor products of $C^*$-Algebras}{103}{definition.5.3.14}%
 \contentsline {subsection}{\numberline {5.3.2}\( W^* \)-Algebras}{103}{subsection.5.3.2}%
 \contentsline {subsubsection}{Basics of \( W^* \)-Algebras}{103}{subsection.5.3.2}%
 \contentsline {subsubsection}{Direct Sums of $W^*$-Algebras}{104}{definition.5.3.22}%
 \contentsline {subsubsection}{Tensor products of $W^*$-Algebras}{104}{proposition.5.3.23}%
-\contentsline {subsubsection}{Distributivity}{107}{proposition.5.3.34}%
+\contentsline {subsubsection}{Distributivity}{108}{proposition.5.3.35}%
 \contentsline {section}{\numberline {5.4}Categories for (first-order) quantum computation}{108}{section.5.4}%
 \contentsline {subsection}{\numberline {5.4.1}Schrödinger's picture}{109}{subsection.5.4.1}%
-\contentsline {subsection}{\numberline {5.4.2}Heisenberg's picture}{115}{subsection.5.4.2}%
-\contentsline {section}{\numberline {5.5}Examples}{119}{section.5.5}%
+\contentsline {subsection}{\numberline {5.4.2}Heisenberg's picture}{116}{subsection.5.4.2}%
+\contentsline {section}{\numberline {5.5}Examples}{120}{section.5.5}%
 \contentsline {subsection}{\numberline {5.5.1}Quantum state discrimination}{120}{subsection.5.5.1}%
-\contentsline {subsection}{\numberline {5.5.2}Quantum teleportation protocol}{124}{subsection.5.5.2}%
+\contentsline {subsection}{\numberline {5.5.2}Quantum teleportation protocol}{125}{subsection.5.5.2}%
 \contentsline {chapter}{\numberline {6}Future work}{135}{chapter.6}%
 \contentsline {part}{III\hspace {1em}Appendices}{151}{part.3}%
 \contentsline {chapter}{\numberline {A}Mathematical backgound}{153}{appendix.A}%

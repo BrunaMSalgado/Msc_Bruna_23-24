@@ -3,7 +3,7 @@
 A metric equational system for the conditionals would be extremely helpful for reasoning about approximate equivalence in the setting of programming and beyond.
 In this chapter, we address this gap by introducing such a system and corresponding models, and we then establish a soundness and completeness result in the same style as before. Additionally, we illustrate our system at work via a small example: a metric version of copairing's extensionality. 
 %Additionally, we illustrate our system at work via two small examples: reasoning about approximate equivalence between boolean terms (i.e., terms of type $\typeI \oplus \typeI$) and a metric version of copairing's extensionality. 
-Next, we introduce different models of our equational system. These include the category of metric spaces and all categories arising from a $\catMet$-enriched version of coproduct cocompletion. We conclude the chapter with a brief discussion about our system.
+Next, we introduce different models of our equational system. These include the category of metric spaces and all categories arising from a $\catMet$-enriched version of coproduct cocompletion. %We conclude the chapter with a brief discussion about our system.
 
 
 
@@ -54,13 +54,13 @@ Additionally, observe that while the original metric system gives the operation 
 
 
 \vspace{5pt}
-Recall \autoref{def:metric_lambda_theory} where we presented the notion of metria $\lambda$-theory. Now, we extend the set of theorems \( Th(Ax) \) to denote the smallest set that contains \( Ax \) and is closed under the rules presented in \autoref{fig:equations-linear-lambda}, \autoref{fig:metric deductive system}, and \autoref{fig:metric conditionals}.
+Recall \autoref{def:metric_lambda_theory} where we presented the notion of a metric $\lambda$-theory. Now, we extend the set of theorems \( Th(Ax) \) to denote the smallest set that contains \( Ax \) and is closed under the rules presented in \autoref{fig:equations-linear-lambda}, \autoref{fig:metric deductive system}, and \autoref{fig:metric conditionals}.
 
 
 %Recall bla, note that in this case using the case metric equation and the substitution rule we obtain the same final equation - this is because in this case we have only one program $w$ which is erroenous, the case equation is trully benefitial in cases where we have diferent programs with diferent errors in both branches- here with substitution the error would be added instead of summed.
 
 
-\subsection{Extensionality of the copairing}
+\subsubsection{Metric Copairing's Extensionality}
 
 We establish  a metric version of copairing extensionality. Just as the classical extensionality principle for copairings served as the foundation for demonstrating that terms of type $\typeI \oplus \typeI$ satisfy certain axioms of a Boolean algebra, our metric copairing extensionality will play an analogous role in metric-based reasoning.
 
@@ -72,9 +72,8 @@ Assume that
 &(\lambda x.w)\, \text{inr}(z) =_{\varepsilon_2}(\lambda x.w)\, \text{inr}(z)
 \end{aligned}
 \right.
-\implies \lambda x.v = \lambda x.w
 \]
-Following the same reasoning as before in \Cref{subsec:interlude_bool} and applying the metric equation for condicionals we obtain:
+Following the same reasoning as before in \Cref{subsec:interlude_bool} and applying the metric equation for conditionals we obtain:
 \begin{equation*}
 \begin{split}
   &v =  \text{case } x  
@@ -82,14 +81,14 @@ Following the same reasoning as before in \Cref{subsec:interlude_bool} and apply
     \inl(y) \Rightarrow v\,[\text{inl}(y)/x] ;  
     \inl(z) \Rightarrow v\,[\text{inr}(z)/x]
   \end{aligned}  \right\} & (\eta_{case})\\
-  &=_{\max \{\varepsilon_1,\varepsilon_2\}} \text{case } x  
+  &=_{\sup \{\varepsilon_1,\varepsilon_2\}} \text{case } x  
     \left\{ \begin{aligned}
     \inl(y) \Rightarrow w\,[\text{inl}(y)/x] ;  
     \inl(z) \Rightarrow w\,[\text{inr}(z)/x]
   \end{aligned}  \right\} = w & (\text{\autoref{fig:metric conditionals}},\eta_{case})
 \end{split}
 \end{equation*}
-As a result, we have $v =_{\max \{\varepsilon_1,\varepsilon_2\}} w$ and derive $\lambda x.v =_{\max \{\varepsilon_1,\varepsilon_2\}} \lambda x.w$ using the metric equational system-
+As a result, we have $v =_{\sup \{\varepsilon_1,\varepsilon_2\}} w$ and derive $\lambda x.v =_{\sup \{\varepsilon_1,\varepsilon_2\}} \lambda x.w$ using the our metric equational system.
 
 \section{Interpretation}
 
@@ -119,7 +118,7 @@ We present the category of metric spaces as an example of \autoref{def:met_cop_c
 In this category, the coproduct is defined as in $\catSet$. The distance function $d$ on the coproduct $A + B$ is given by:
    \[
     \begin{cases}
-    d_{A + B}(\inl(a_1),\inl(x_2)) = d_A(a_1,a_2) \\
+    d_{A + B}(\inl(a_1),\inl(a_2)) = d_A(a_1,a_2) \\
     d_{A + B}(\inr(b_1),\inr(b_2)) = d_B(b_1,b_2) \\
     d_{A + B}(\inl(a), \inr(b)) = 
     d_{A + B}(\inr(b), \inl(a))  = \infty
@@ -188,7 +187,7 @@ This property characterizes the \emph{way-below relation} in the metric quantale
 \end{definition}
 
 \begin{definition}
-  A lattice $L$ is called \emph{meet continuous} if it is directed complete, \ie a dcpo, and satisfies the condition
+  A lattice $L$ is called \emph{meet continuous} if it is directed complete, \ie, a dcpo, and satisfies the condition
   \[
     \inf\{ x, \sup D \} = \sup \{ \inf \{x, d\} \mid d \in D\} 
   \]
@@ -200,7 +199,7 @@ This property characterizes the \emph{way-below relation} in the metric quantale
 \end{lemma}
 
 \begin{proof}
-  Follows from \cite{dahlqvist2023syntactic}  and  \cite[Proposition I-1.8]{gierzContinuousLatticesDomains2003}
+  Follows from \cite[Section 3]{dahlqvist2023syntactic}  and  \cite[Proposition I-1.8]{gierzContinuousLatticesDomains2003}
 \end{proof}
 
 Note that, since the order is reversed in this quantale, suprema in general lattices correspond to infima here, and vice versa.
@@ -267,9 +266,9 @@ is a theorem if and only if it holds in all models of the theory.
   $\catfont{Syn}(T)$. We use the category (\texttt{Values}$(\typeA,\typeB),d)$/$\sim$ to this end.  Note that the quotienting process identifies all terms $x : \typeA \triangleright v : \typeB$ and $x : \typeA \triangleright w : \typeB$ such that $v =_0 w$ and $w =_0 v$. This relation includes the equations-in-context from \autoref{fig:equations-linear-lambda}.
      Then, we remark that all sets of the form $\{ q \mid v =_q w \}$ are directed: they are non-empty, since by rule~(join) we always have at least $v =_{\infty} w$, and again by~(join), every finite subset of $\{ q \mid v =_q w \}$ has a lower bound in the set. This will be useful for applying \autoref{lem:meet_continuos}.
    
-   Next, we need to prove that the copairing is well defined in ($\catSyn(T))$, \ie, for any $v, v', w, w'$ if $v\sim v'$ and $w\sim w'$, then $[v,w] \sim [v',w']$. 
+   Next, we need to prove that the copairing is well defined in ($\catSyn(T))$, \ie, for any $v, v', w, w'$, if $v\sim v'$ and $w\sim w'$, then $[v,w] \sim [v',w']$. 
 
-   This is equivalent to demonstrating the following implication:
+   This is equivalent to demonstrating that following implication holds:
    \begin{align*}
     \begin{cases}
       \inf \{ q \, \vert \, v=_q w \} \leq 0 \\
@@ -307,7 +306,6 @@ With the equality above, we have
 
   Thus, we obtain a category $\catSyn(T)$ with binary coproducts.
  The next step is to prove the required non-expansivity law concerning copairing. To this effect, we reason as follows:
-
   \begin{align*}
     & \sup{\{d([v],[w]),d([v'],[w']) \}}  \\
     & = \sup{\{d(v,w),d(v',w') \}} \\
@@ -337,7 +335,6 @@ The idea behind the coproduct completion of a category $\catC$ is to create a ne
 
 
 If $\catC$ is a $\catMet$-category, one may define a metric on the morphims of its coproduct cocompletion $\catCcop$ as follows:
-
 \begin{equation*}
   d(\Phi, \Psi) = \sup \left\{ d'(\phi_i, \psi_i) \;\middle\vert\; i \in I \right\},\text{ where } 
   d'(\phi_i, \psi_i) 

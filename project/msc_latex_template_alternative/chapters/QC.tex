@@ -16,7 +16,7 @@ To reconcile quantum computation with NISQ computers, quantum compilers perform 
 As previously noted, Shor's algorithm has played a pivotal role in sparking heightened interest within the scientific community towards quantum computing research. Several quantum programming languages have surfaced over the past 25 years \cite{zhao2020quantum,serrano2022quantum}. Among them, we highlight Selinger's and Valirion's work. In 2004, Selinger introduced a first-order functional language for quantum computation, QPL, along with its denotational semantics \cite{selinger2004towards}. Building on this, Selinger and Valiron later developed a higher-order functional language for quantum computation—commonly referred to as a quantum lambda calculus. They first presented a version with classical control and its operational semantics in \cite{selinger2006lambda}. This was followed by a denotational semantics for a fragment of the language in \cite{selinger2008fully}. In subsequent work, they extended the quantum lambda calculus to include recursion and infinite types, along with its operational semantics \cite{selinger2009quantum}. Later, they proposed an alternative approach to its denotational semantics \cite{selinger2014}.
 
 
-These works adopt Schr\"odinger's picture, in which quantum programs are interpreted as maps between quantum states (\ie, density operators). In contrast, \cite{choSemanticsQuantumProgramming2016, choNeumannAlgebrasForm2016} consider Heisenberg's picture, in which programs are modeled as maps between observables (\ie, self-adjoint operators). Particularly, \cite{choSemanticsQuantumProgramming2016} presents a model based on $W^*$-algebras, which can be viewed as an infinite-dimensional extension of \cite{selinger2004towards}. Moreover, \cite{choSemanticsQuantumProgramming2016} presents a model of Selinger and Valiron’s quantum lambda calculus \cite{selinger2006lambda, selinger2008linear, selinger2009quantum}, also based on $W^*$-algebras, and proves the model's adequacy.
+These works adopt Schr\"odinger's picture, in which quantum programs are interpreted as maps between quantum states (\ie, density operators). In contrast, \cite{choSemanticsQuantumProgramming2016, choNeumannAlgebrasForm2016} consider Heisenberg's picture, in which programs are modeled as maps between observables (\ie, self-adjoint operators). Particularly, \cite{choSemanticsQuantumProgramming2016} presents a model based on $W^*$-algebras, which can be viewed as an infinite-dimensional extension of \cite{selinger2004towards}. Moreover, \cite{choNeumannAlgebrasForm2016} presents a model of Selinger and Valiron’s quantum lambda calculus \cite{selinger2006lambda, selinger2008linear, selinger2009quantum}, also based on $W^*$-algebras, and proves the model's adequacy.
 
 
 Most of the current research on algorithms and programming languages assumes that addressing the challenge of noise during program execution will be resolved either by the hardware or through the implementation of fault-tolerant protocols designed independently of any specific application \cite{chong2017programming}. As previously stated, this assumption is not realistic in the NISQ era. Nonetheless, there have been efforts to address the challenge of approximate program equivalence in the quantum setting. For example, \cite{hung2019quantitative} and \cite{tao2021gleipnir} reason about the issue of noise in a quantum while-language by developing a deductive system to determine how similar a quantum program is from its idealised, noise-free version. The former introduces the ($Q$,$\lambda$)-diamond norm, which analyzes the output error given that the input quantum state satisfies some quantum predicate $Q$ to degree $\lambda$. However, it does not specify any practical method for obtaining non-trivial quantum predicates. In fact, the methods used in \cite{hung2019quantitative} cannot produce any post conditions other than $(I,0)$ (\textit{i.e.}, the identity matrix $I$ to degree 0, analogous to a ``true” predicate) for large quantum programs. The latter specifically addresses and delves into this aspect.  
@@ -28,15 +28,12 @@ integrated in the calculus via the so-called diamond norm, which induces a metri
 \vspace{20pt}
 
 The first two sections of this chapter present  mathematical and quantum computing preliminaries necessary for understanding the theory of quantum computation. This introduction to quantum computing draws primarily from \cite{nielsen2010quantum,watrous2018theory}, while the mathematical foundations are also based on \cite{heinosaariMathematicalLanguageQuantum2011,conwayCourseFunctionalAnalysis2007,conwayCourseOperatorTheory2000}.
-The next section introduces core concepts from functional analysis that are essential for understanding \( W^* \)-algebras, based on \cite{rudin91functional,guide2006infinite}. This is followed by a section presenting the fundamentals of \( W^* \)-algebras, drawing primarily from \cite{sakaiCAlgebrasWAlgebras1998,takesakiTheoryOperatorAlgebras1979,westerbaanCategoryNeumannAlgebras2019}.
-We then show that both Selinger’s category 
-$\catQ$ of quantum operations (i.e., completely positive, trace-nonincreasing super-operators) \cite{selinger2004towards}, and Cho’s category 
-$\WstarCPSUop$, the opposite category of \( W^* \)-algebras with normal, completely positive, subunital maps \cite{choSemanticsQuantumProgramming2016}, are first-order models of our calculus.
+%The next section introduces core concepts from functional analysis that are essential for understanding \( W^* \)-algebras, based on \cite{rudin91functional,guide2006infinite}. 
+The next section presents the fundamentals of \( W^* \)-algebras, drawing primarily from \cite{sakaiCAlgebrasWAlgebras1998,takesakiTheoryOperatorAlgebras1979,westerbaanCategoryNeumannAlgebras2019}.
+We then show that both \( \Kar{\catCPS} \), the idempotent completion of the category of quantum operations 
+ (i.e., completely positive, trace-nonincreasing super-operators), and
+$\WstarCPSUop$, the opposite category of \( W^* \)-algebras with normal, completely positive, subunital maps \cite{westerbaanCategoryNeumannAlgebras2019,choSemanticsQuantumProgramming2016}, are first-order models of our calculus.
 Finally, the last section provides a few illustrative examples in the setting of quantum information.
-
-
-
-
 
 
 
@@ -189,7 +186,7 @@ The matrix whose entries are the values $A_{ij}$ is said to form a \emph{matrix 
 
 
 \begin{definition} \label{def:inner_product}
-An \emph{inner product}~\gls{inner-product} on a vector space $V$ is a function from a mapping $V\times V$ to the field of scalars, $\langle \cdot, \cdot \rangle : V \times V \rightarrow \mathbb{C}$,  that satisfies the following properties for all $v, w, w_1, \ldots, w_n \in V$ and $\alpha_1, \ldots, \alpha_n \in \mathbb{C}.$
+An \emph{inner product}~\gls{inner-product} on a complex vector space $V$ is a function from a mapping $V\times V$ to $\mathbb{C}$, $\langle \cdot, \cdot \rangle : V \times V \rightarrow \mathbb{C}$,  that satisfies the following properties for all $v, w, w_1, \ldots, w_n \in V$ and $\alpha_1, \ldots, \alpha_n \in \mathbb{C}.$
 
 \begin{enumerate}
   \item Linearity in the second argument,$$ \left\langle v, \sum_{i=1}^n \alpha_i w_i\right\rangle = \sum_{i=1}^n \alpha_i \langle v, w_i\rangle. $$
@@ -355,7 +352,7 @@ Geometrically, unitary operators are important because they preserve inner produ
 \subsection{Spectral theorem}
 
 \begin{theorem}  \cite[Corollary 1.4]{watrous2018theory}
-  Let $\mathcal{H}$ be a Hilbert space. Every normal operator $A \in \mathcal{L}(\mathcal{H})$ can be expressed as a linear combination $\sum_{i=1}^n \lambda_{i}v_{i}v_{i}^{\dag}$ where the set $\{v_{1}, \ldots , v_{n}\}$ is an orthonormal basis on $\mathcal{H}$.
+  Let $\mathcal{H}$ be a Hilbert space. Every normal operator $A \in \mathcal{B}(\mathcal{H})$ can be expressed as a linear combination $\sum_{i=1}^n \lambda_{i}v_{i}v_{i}^{\dag}$ where the set $\{v_{1}, \ldots , v_{n}\}$ is an orthonormal basis on $\mathcal{H}$.
 \end{theorem}
 
 Using this last result any function $f:\mathbb{C} \xrightarrow{} \mathbb{C}$, can be extended to normal operators via,
@@ -425,7 +422,7 @@ The inner product in $\HilbH \oplus \HilbK$ is defined as follows:
   \langle (v_1, w_1), (v_2, w_2) \rangle = \langle v_1, v_2 \rangle + \langle w_1, w_2 \rangle.
 \end{equation*}
 
-The notation $(-)^{\oplus n}$ will be used to denote the direct sum of a vector space with itself $n$ times.
+The notation $\gls{n-fold-oplus}$ will be used to denote the direct sum of a vector space with itself $n$ times.
 
 
 
@@ -463,7 +460,7 @@ Considering vector spaces $V, W, R$, the following equalities hold:
 \begin{equation*}
   (A \otimes B)(v \otimes w) = Av \otimes Bw.
 \end{equation*}
-The definition of $A \otimes B$ is extended to all elements of $\HilbH \otimes \HilbK$ in the natural way to ensure linearity of the tensor product operator. That is,
+The definition of $A \otimes B$ is extended to all elements of $\HilbH \otimes \HilbK$ in the natural way, to ensure linearity of the tensor product operator. That is,
 \begin{equation*} \label{eq:linear_tensor_operator}
 (A \otimes B) \left( \sum_i \alpha_i\, v_i \otimes w_i \right)
 = \sum_i \alpha_i\, (A v_i \otimes B w_i).
@@ -491,7 +488,7 @@ For example the tensor product of the matrices $A= \left(\begin{smallmatrix}
 A \otimes B =
 \begin{bmatrix}
 1 \cdot \id & 2 \cdot \id \\
-3 \cdot \id & 0 \cdot \id
+3 \cdot \id & 4 \cdot \id
 \end{bmatrix}
 =
 \begin{bmatrix}
@@ -527,7 +524,7 @@ The notation \gls{n-fold-tensor}  will be used to  denote the tensor product of 
 
 
 \subsection{Useful norms }
-In this section we only consider finite dimensional Hilbert spaces.
+
 
 \begin{definition} \label{eq:euclidean_distance}
   The \emph{euclidean norm}, \gls{euclidean-norm}, of a vector $v \in \HilbH $ is defined as:
@@ -542,7 +539,7 @@ In this section we only consider finite dimensional Hilbert spaces.
   \begin{equation*} \label{eq:trace_norm_matrix_tr}
     \lVert A \rVert_{1} = \text{Tr} \sqrt{A^{\dagger}A}
   \end{equation*}
-  This norm is also  known as the Schatten 1-norm. The trace norm induces a metric on the set of density matrices which is defined by $d(\rho, \rho') = \lVert \rho - \rho'\rVert$.
+  This norm is also  known as the Schatten 1-norm. The trace norm induces a metric on the set of density matrices which is defined by $d(\rho, \rho') = \lVert \rho - \rho'\rVert_1$.
 \end{definition}
 
 \subsection{Infinite-dimensional Hilbert Spaces}
@@ -654,7 +651,7 @@ The basic unit of information in quantum computation is a \emph{quantum bit} or 
   \end{equation}
 %\end{definition}
 %\begin{definition} \label{def:boch_sphere_state}
-  The above parametrization defines a point on the unit sphere in \( \mathbb{R}^3 \), known as the \emph{Bloch sphere}. The angles \( \theta \) and \( \phi \) represent the polar and azimuthal angles, respectively. Each pure qubit state corresponds to a point on this sphere, with associated \emph{Bloch vector} given by
+  The above parametrization defines a point on the unit sphere in \( \mathbb{R}^3 \), known as the \emph{Bloch sphere}. The angles \( \theta \) and \( \phi \) represent the polar and azimuthal angles, respectively. Each pure qubit state corresponds to a point on this sphere, with an associated \emph{Bloch vector} given by
   $(\cos \phi \sin \theta, \sin \phi \sin \theta, \cos \theta).$
 
  
@@ -738,7 +735,7 @@ Matrices $\sigma_x$ and $\sigma_z$ will also be referred to as \gls{x} and \gls{
 
 \subsubsection{Unitary operators}
 \begin{definition}
-  \emph{Closed systems}, \text{i.e.}, systems that do not interact with other systems evolve according to unitary operators. In quantum computation, these unitary operators are also known as \emph{gates}. For a  state $\ket{\psi}$, a \emph{unitary operator} $U$ describes an evolution from $\ket{\psi}$ to $ U\ket{\psi}$.
+  \emph{Closed systems}, \text{i.e.}, systems that do not interact with other systems evolve according to \emph{unitary operators}. In quantum computation, these unitary operators are also known as \emph{gates}. For a  state $\ket{\psi}$, a unitary operator $U$ describes an \emph{evolution} from $\ket{\psi}$ to $ U\ket{\psi}$.
 \end{definition}
 
 \begin{example}
@@ -832,11 +829,11 @@ Until now the state vector formalism was used. However there is an alternative f
 %\subsubsection{General properties}
 
 \begin{definition}
-A quantum state $\ket{\psi}$ is said to be a \emph{pure state} if it is completely known, \ie if it can be written as a ket. In this case, the state can be written in the density operator formalism as $\rho = \ket{\psi}\bra{\psi}$. 
+A quantum state $\ket{\psi}$ is said to be a \emph{pure state} if it is completely known, \ie, if it can be written as a ket. In this case, the state can be written in the density operator formalism as $\rho = \ket{\psi}\bra{\psi}$. 
 \end{definition}
 
 \begin{definition}
-A state that is a probabilistic mixture of pure states is designated a \emph{mixed state}. A mixed state can be represented by a density operator $\rho= \sum_i |p_i|^{2}\ket{\psi_i}\bra{\psi_i}$, where $|p_i|^{2}$ is the probability of the system being in state $\ket{\psi_i}$.
+A state that is a probabilistic mixture of pure states is designated a \emph{mixed state}. A mixed state can be represented by a density operator $\rho= \sum_i p_i\ket{\psi_i}\bra{\psi_i}$, where $p_i$ is the probability of the system being in state $\ket{\psi_i}$.
 \end{definition} 
 
 \begin{definition}[Unitary Evolution of a Density Operator]
@@ -859,7 +856,7 @@ A state that is a probabilistic mixture of pure states is designated a \emph{mix
 \end{equation}
 where $r = (r_x, r_y, r_z)$ is a real three-dimensional vector such that $\| r \|_2 \leq 1$. This vector is known as the \emph{Bloch vector for the state} $\rho$. Since $\rho$ is Hermitian, $r_x, r_y$ and $r_z$ are always real.  
 
-To derive the inverse map \( r_\mu = \text{Tr}(\rho \sigma_\mu) \), consider the properties of Pauli matrices:
+To derive the inverse map \( r_\mu = \text{Tr}(\rho \sigma_\mu) \), consider the following properties of Pauli matrices:
 \[
 \text{Tr}(\sigma_\mu) = 0, \quad \text{Tr}(\sigma_\mu \sigma_\nu) = 2 \delta_{\mu \nu}.
 \]
@@ -870,31 +867,31 @@ Consequently,
 \]
 
 Thus, the inverse map of \autoref{eq:bloch_vector_0} is
-\begin{equation}
+\begin{equation*}
   \label{eq:Bloch_vector}
   r_{\mu} = \text{Tr}(\rho \sigma_{\mu}).
-  \end{equation} 
+  \end{equation*} 
 \end{definition}
 
 
-  Note that given that the trace is linear and matrix multiplication distributes over matrix addition, the cartesian coordinates of an operator consisting of the sum or subtraction of density operators can also be determined by \autoref{eq:Bloch_vector}.
+  %Note that given that the trace is linear and matrix multiplication distributes over matrix addition, the cartesian coordinates of an operator consisting of the sum or subtraction of density operators can also be determined by \autoref{eq:Bloch_vector}.
 
 \subsubsection{Reduced density operator}
 
-Density operators are particularly well-suited for describing individual subsystems of a composite quantum system. This type of description is provided by the \emph{reduced density operator}
+Density operators are particularly well-suited for describing individual subsystems of a composite quantum system. This type of description is provided by the \emph{reduced density operator}.
 
 \begin{definition}
-Consider Hilbert spaces $\mathcal{H}_A$ and $\mathcal{H}_B$ of systems $A$ and $B$, respectively. The \emph{partial trace over $B$},$\tr_B \colon \mathcal{T}(\mathcal{H}_A \otimes \mathcal{H}_B) \to \mathcal{T}(\mathcal{H}_A)$,
-is defined by
+Consider Hilbert spaces $\mathcal{H}_A$ and $\mathcal{H}_B$ of systems $A$ and $B$, respectively. The \emph{partial trace over $B$}, $\tr_B \colon \mathcal{T}(\mathcal{H}_A \otimes \mathcal{H}_B) \to \mathcal{T}(\mathcal{H}_A)$,
+is defined as
 \[
-\tr_B = \text{id}_{\mathcal{T}(\mathcal{H}_A)} \otimes \tr.
+\tr_B := \text{id}_{\mathcal{T}(\mathcal{H}_A)} \otimes \tr.
 \]
-Similarly, the \emph{partial trace over $B$} corresponds to the map \(
+Similarly, the \emph{partial trace over $A$} corresponds to the map \(
 \tr_A \colon \mathcal{T}(\mathcal{H}_A \otimes \mathcal{H}_B) \to \mathcal{T}(\mathcal{H}_B),
 \)
-defined by 
+defined as 
 \[
-\tr_B = \tr \otimes \text{id}_{\mathcal{T}(\mathcal{H}_B)}.
+\tr_A := \tr \otimes \text{id}_{\mathcal{T}(\mathcal{H}_B)}.
 \]
 \end{definition}
 
@@ -962,12 +959,13 @@ In this perspective, we focus on quantum states, represented by density operator
 
 
 \begin{definition} \label{def:positive_superoperator}
-  A super-operator $\Phi: \TraceOp{\HilbH} \to \TraceOp{\HilbK} $ is called \emph{positive} if it sends positive operators to positive operators, \textit{i.e.} $A \geq 0 \Rightarrow{} \Phi A \geq 0$.
+  A super-operator $\Phi: \TraceOp{\HilbH} \to \TraceOp{\HilbK} $ is called \emph{positive} (denoted $\Phi \geq 0$) if it sends positive operators to positive operators, \textit{i.e.} $A \geq 0 \Rightarrow{} \Phi (A) \geq 0$, for all $A \geq 0  \in \TraceOp{\HilbH}.$ 
 \end{definition}
 
 
+
 \begin{definition}
-  A superoperator $ \Phi : \mathcal{T}(\HilbH) \to \mathcal{T}(\HilbK)$ is \emph{hermitian-preserving} if it sends hermitian operators to hermitian operators, \textit{i.e.} $A = A^\dag \Rightarrow{} (\Phi(A))^\dag = \Phi(A)$.
+  A super-operator $ \Phi : \mathcal{T}(\HilbH) \to \mathcal{T}(\HilbK)$ is \emph{hermitian-preserving} if it sends hermitian operators to hermitian operators, \textit{i.e.} $A = A^\dag \Rightarrow{} (\Phi(A))^\dag = \Phi(A)$, for all hermitan operators $A  \in \TraceOp{\HilbH}.$
 \end{definition}
 
 \begin{definition}
@@ -984,8 +982,8 @@ In this perspective, we focus on quantum states, represented by density operator
 \end{definition}
 
 \begin{definition} \label{def:completely_positive_superoperator}
-  A superoperator $ \Phi : \mathcal{T}(\HilbH_1) \to \mathcal{T}(\HilbH_2)$ is \emph{completely positive} if the mapping 
-$\Phi \otimes \id_{\mathcal{T}(\HilbK)}$ on $\mathcal{T}(\mathcal{H}_1 \otimes \HilbK) \to \mathcal{T}(\HilbH_2 \otimes \HilbK) $ is positive for any Hilbert space $\HilbK$.
+  A super-operator $ \Phi : \mathcal{T}(\HilbH_1) \to \mathcal{T}(\HilbH_2)$ is \emph{completely positive} if the super-operator
+$\Phi \otimes \id_{\mathcal{T}(\HilbK)}: \mathcal{T}(\mathcal{H}_1 \otimes \HilbK) \to \mathcal{T}(\HilbH_2 \otimes \HilbK) $ is positive for any Hilbert space $\HilbK$.
 \end{definition}
 
 
@@ -999,10 +997,11 @@ Since density matrices are positive, any physically allowed transformation must 
 It is sometimes convenient to relax the trace-preserving condition to a trace-non-increasing condition, resulting in what is known as a \emph{quantum operation}. This accounts for phenomena such as \emph{qubit leakage} (the unintended loss of quantum information from computational basis states, $\ket{0}$ and $\ket{1}$, into higher-energy non-computational states, e.g., $\ket{2}$, $\ket{3}$, breaking the idealized two-level qubit assumption) and operations such as \emph{postselection} (a technique in quantum algorithms where operations are conditioned on measurement outcomes, often leading to non-trace-preserving maps) \cite{Yu_trace_non_inc}.
 
 
-The following property will be useless later on.
+
+The following property will be helpful later on.
 
 \begin{theorem} \cite[Theorem 2.25]{watrous2018theory} \label{thm:sub_pos_hem-pres}
-  Let \(\Phi \in \TraceOp{H} \to \TraceOp{K}\) be a map. The following statements are equivalent:
+  Let \(\Phi \in \TraceOp{H} \to \TraceOp{K}\) be a super-operator. The following statements are equivalent:
 \begin{enumerate}
     \item \(\Phi\) is Hermitian preserving.
     \item There exist positive maps \(\Phi_0, \Phi_1:  \TraceOp{H} \to \TraceOp{K}\) for which
@@ -1038,16 +1037,16 @@ Considering that initially both systems are completely decoupled, the initial st
 \begin{align*} 
   \rho_{S}' = & \sum_{\mu} \bra{\mu} U \rho_{S} \otimes \sum_{i} p_{i} \ket{i} \bra{i} U^{\dag} \ket{\mu} \\
   = & \sum_{\mu i}  \sqrt{p_{i}} \bra{\mu} U \ket{i} \rho_{S} \sqrt{p_{i}} \bra{i} U^{\dag} \ket{\mu}  \\ 
-  = & \sum_{\mu i} \text{K}_{\mu i} \rho_{S} \text{K}_{\mu i}^{\dag}
+  = & \sum_{\mu i} K_{\mu i} \rho_{S} K_{\mu i}^{\dag}
 \end{align*}
-where the set of operators $\{\text{K}_{\mu i}\}$ is designated \emph{Kraus operators} and $\text{K}_{\mu i} = \sqrt{p_{i}} \bra{\mu} U \ket{i}$. Note that $\{\ket{\mu}\}$ and $\{\ket{i}\}$, act only in the state space of $E$. 
+where the set of operators $\{K_{\mu i}\}$ is designated \emph{Kraus operators} and $K_{\mu i} = \sqrt{p_{i}} \bra{\mu} U \ket{i}$. Note that $\{\ket{\mu}\}$ and $\{\ket{i}\}$, act only in the state space of $E$. 
 
 \begin{definition}
-  The equation $ \rho_{S}' = \sum_{\mu i} \text{K}_{\mu i} \rho_{S} \text{K}_{\mu i}^{\dag} $ is called an \emph{\acrfull{osr}}. An OSR can be thought of as a quantum channel that maps $\rho_{S}$ to $\sum_{\mu i} \text{K}_{\mu i} \rho_{S} \text{K}_{\mu i}^{\dag}$, given this map is CPTP ([Section V-VI] \cite{lidar2019lecture}, \cite[Chapter 8.2.3]{nielsen2010quantum}). 
+  The equation $ \rho_{S}' = \sum_{\mu i} K_{\mu i} \rho_{S} K_{\mu i}^{\dag} $ is called an \emph{\acrfull{osr}}. An OSR can be thought of as a quantum channel that maps $\rho_{S}$ to $\sum_{\mu i} K_{\mu i} \rho_{S} K_{\mu i}^{\dag}$, given this map is CPTP ([Section V-VI] \cite{lidar2019lecture}, \cite[Chapter 8.2.3]{nielsen2010quantum}). 
 \end{definition}
 
 
-In the definition above, the condition $\sum_{\mu} K_{\mu} K_{\mu}^{\dag} = I$ is implicit \cite{lidar2019lecture,nielsen2010quantum}. However, following the convention in \cite{watrous2018theory}, we will refer to any operator $\Phi: \BoundOp{H} \to \BoundOp{K}$ expressible in the form  
+In the definition above, the condition $\sum_{\mu} K_{\mu} K_{\mu}^{\dag} = I$ is implicit \cite{lidar2019lecture,nielsen2010quantum}. However, following the convention in \cite{watrous2018theory}, we will refer to any operator $\Phi: \BoundOp{\HilbH} \to \BoundOp{\HilbK}$ expressible in the form  
 \[
 \Phi(A) = \sum_i K_i A K_i^\dag,  
 \]  
@@ -1056,7 +1055,7 @@ where $K_i \in \BoundOp{H,K}$, as a \emph{Kraus representation}---regardless of 
 The following property will be useful in this context.
 
 \begin{theorem} \cite[Theorem 2.22 ]{watrous2018theory} \label{thm:cp_kraus}
-  Let $\Phi:\TraceOp{H,K}$ be a nonzero superoperator. The following statements are equivalent:
+  Let $\Phi:\TraceOp{H,K}$ be super-operator. The following statements are equivalent:
   \begin{enumerate}
     \item  $\Phi$ is completely positive.
     \item  $\Phi$ admits a Kraus representation.
@@ -1083,10 +1082,10 @@ A \emph{non-selective measurement} is a quantum measurement in which the post-me
 This last equality corresponds to an Kraus operator sum representation, where the set of Kraus operators is $\{M_{m}\}$.
 \end{definition}
 
-In the case of measurements in the computational basis, these correspond to what are known as \emph{quantum-to-classical} channels, i.e., channels $\Phi: \mathcal{B}(\mathcal{H}) \to \mathcal{B}(\mathcal{H})$ satisfying $\Phi = \Delta   \Phi$, where $\Delta$ is the completely dephasing channel defined by
-\[
-    \Delta(\rho) = \sum_i (\bra{i} \rho \ket{i})  \ket{i}\bra{i},
-\]
+In the case of measurements in the computational basis, these correspond to what are known as \emph{quantum-to-classical} channels, i.e., channels $\Phi: \mathcal{T}(\mathcal{H}) \to \mathcal{T}(\mathcal{H})$ satisfying $\Phi = \Delta   \Phi$, where $\Delta$ is the completely dephasing channel defined by
+\begin{equation} \label{eq:CDeph}
+  \Delta(\rho) = \sum_i (\bra{i} \rho \ket{i})  \ket{i}\bra{i},
+\end{equation}
 with $\{\ket{i}\}$ being an orthonormal basis for $\mathcal{H}$ \cite[Proposition 2.36]{watrous2018theory}.
 
 \subsection{Norms on quantum operations}
@@ -1123,7 +1122,7 @@ where $A \in \TraceOp{\HilbH}$.
 %\end{proposition}
 
 
-Unfortunately, this norm is not stable under tensoring , given that the inequation $ \lVert \Phi \otimes I_{\TraceOp{\HilbH}} \rVert_{1} \geq \lVert \Phi \rVert_{1}$ does not hold \cite{watrous2018theory}. As a result, the diamond norm, which is based on the trace norm, is used instead in the context of quantum operations. 
+Unfortunately, this norm is not stable under tensoring , given that the inequation $ \lVert \Phi \otimes I_{\TraceOp{\HilbH}} \rVert_{1} \leq \lVert \Phi \rVert_{1}$ does not hold \cite{watrous2018theory}. As a result, the diamond norm, which is based on the trace norm, is used instead in the context of quantum operations. 
 \begin{definition} \label{def:diamond_norm}
   Given a super-operator $\Phi: \TraceOp{\HilbH} \to \TraceOp{\HilbK}$, the diamond norm, \gls{diamond-norm}, is defined as:
   \begin{equation*}  \label{eq:diamond_distance}
@@ -1136,11 +1135,11 @@ Unfortunately, this norm is not stable under tensoring , given that the inequati
 %consequence, composition of programs is valid.
 
 
-The following properties will be usefull in \Cref{subsec:shodinger}.
+The following properties will be useful in \Cref{subsec:shodinger}.
 
 
 \begin{theorem} \label{thm:russo_dye}
-Let \(\Phi \in \mathcal{T}(\HilbH) \to \mathcal{T}(\HilbK)\) be a positive map. Then it holds that
+Let \(\Phi : \mathcal{T}(\HilbH) \to \mathcal{T}(\HilbK)\) be a positive map. Then it holds that
 \[
 \tracenorm{\Phi}= \sup \{ \operatorname{Tr} \left( \Phi(vv^*) \right) \, \vert \, \euclideannorm{v}=1, v\in \HilbH  \}.
 \]
@@ -1169,7 +1168,7 @@ Let \(\Phi \in \mathcal{T}(\HilbH) \to \mathcal{T}(\HilbK)\) be a positive map. 
 
 
 \begin{theorem} \cite[Theorem 3.46]{watrous2018theory} \label{thm_diamond_otimes_id}
-  Let \(\Phi : \mathcal{T}(\HilbH) \to \mathcal{T}(\HilbK)\) be a map. Then
+  Let \(\Phi : \mathcal{T}(\HilbH) \to \mathcal{T}(\HilbK)\) be a super-operator. Then
 \[
 \tracenorm{\Phi \otimes \id_{\mathcal{T}(\HilbL)}} \leq \diamondnorm{\Phi},
 \]
@@ -1177,14 +1176,14 @@ with equality holding under the assumption that $\dim(\HilbH) \geq \dim(\HilbL)$
 \end{theorem}
 
 \begin{proposition} \cite[Proposition 3.48]{watrous2018theory} \label{prop:diamond_submult}
-  For all maps \(\Phi : \mathcal{T}(\HilbH) \to \mathcal{T}(\HilbK)\) and \(\Psi \in \mathcal{T}(\HilbK) \to \mathcal{T}(\HilbL)\), it holds that
+  For all super-operators \(\Phi : \mathcal{T}(\HilbH) \to \mathcal{T}(\HilbK)\) and \(\Psi \in \mathcal{T}(\HilbK) \to \mathcal{T}(\HilbL)\), it holds that
   \begin{align*}
     \diamondnorm{\Psi \Phi} \leq  \diamondnorm{\Psi} \diamondnorm{\Phi}. 
   \end{align*}
 \end{proposition}
 
 \begin{theorem} \cite[Theorem 3.49]{watrous2018theory}\label{thm:diamond_tensor_comp}
-  Let $\Phi \in \mathcal{T}(\HilbH_1) \to \mathcal{T}(\HilbK_1)$ and \(\Psi \in \mathcal{T}(\HilbH_2) \to \mathcal{T}(\HilbK_2)\) be maps. Then it holds that
+  Let $\Phi : \mathcal{T}(\HilbH_1) \to \mathcal{T}(\HilbK_1)$ and \(\Psi: \mathcal{T}(\HilbH_2) \to \mathcal{T}(\HilbK_2)\) be super-operators. Then it holds that
 \[
 \diamondnorm{\Phi \otimes \Psi} = \diamondnorm{\Phi}\diamondnorm{\Phi}
 \]
@@ -1202,7 +1201,7 @@ with equality holding under the assumption that $\dim(\HilbH) \geq \dim(\HilbL)$
 Moreover, since the diamond norm is generally difficult to compute, we will rely on the following properties:
 
 \begin{theorem} \cite[Theorem 3.55]{watrous2018theory} \label{theorem:diamond_iso}
-  Let  $ n \leq m$, let $V_0,V_1: \TraceOp{\HilbH,\HilbK}$ be isometries, and define CPTP operators $\Phi_0,\Phi_1:\TraceOp{\HilbH} \to \TraceOp{\HilbK}$ as
+  Let  $ n \leq m$, let $V_0,V_1 \in \TraceOp{\HilbH,\HilbK}$ be isometries, and define CPTP operators $\Phi_0,\Phi_1:\TraceOp{\HilbH} \to \TraceOp{\HilbK}$ as
 \[
 \Phi_0(\rho) = V_0 \rho V_0^\dag \quad \text{and} \quad \Phi_1(\rho) = V_1 \rho V_1^\dag
 \]
@@ -1245,7 +1244,7 @@ Wires in parallel represent the tensor product of the respective qubits. For ins
  \end{quantikz}
 \end{figure}
 
-The single bit gates presented in \Cref{subsec:unitary-operators} are represented as a box with the symboL of the gate inside. For example, the Hadamard gate is represented as
+The single bit gates presented in \Cref{subsec:unitary-operators} are represented as a box with the symbol of the gate inside. For example, the Hadamard gate is represented as
 \begin{figure} [H]
   \centering
   \begin{quantikz} [column sep=0.5cm, row sep=0.8cm] 
@@ -1312,7 +1311,7 @@ C \left( \sum_i \alpha_i |\psi_i\rangle \right) \otimes |s\rangle
 \end{equation*}
 but assuming linearity of the cloning transformation, we would get:
 \begin{equation*}
- C \left( \sum_i \alpha_i |\psi_i\rangle \right)  \otimes |s\rangle =  \sum_i \alpha_i C \left(|\psi_i\rangle \right)
+ C \left( \sum_i \alpha_i |\psi_i\rangle \right)  \otimes |s\rangle =  \sum_i \alpha_i \, C \left(|\psi_i\rangle \right)
 =
 \sum_i \alpha_i \left( |\psi_i\rangle \otimes |\psi_i\rangle \right).
 \end{equation*}
@@ -1363,9 +1362,8 @@ We would like to focus instead on the
  While quantum theory is traditionally formulated in terms of Hilbert spaces, there is also a more abstract and general formulation using operator algebras. This perspective traces back to Heisenberg’s work on the spectral lines of the hydrogen atom in 1925, where he realized that observable quantities in quantum systems, such as the position of an electron in a hydrogen atom, are better represented by infinite arrays of complex numbers \cite{heisenbergUeberQuantentheoretischeUmdeutung1925}. Born and Jordan subsequently recognized that these arrays should follow the rules of matrix multiplication \cite{bornZurQuantenmechanik1925}. To address the mathematical challenges posed by ``infinite matrices'', Von Neumann formalized these ideas using operators on Hilbert spaces, more concretely, \emph{Von Neumann} algebras \cite{neumann1927wahrscheinlichkeitstheoretischer}. This gave rise to the study of operator algebras, which are now applied in various domains in quantum theory, including quantum statistical mechanics \cite{bratteliOperatorAlgebrasQuantum1987}, quantum field theory \cite{arakiMathematicalTheoryQuantum1999,haagAlgebraicApproachQuantum1964}, and quantum information theory \cite{keylFundamentalsQuantumInformation2002}. We refer to the abstract characterization of von Neumann algebras as $W^*$-algebras, although the terms are often used interchangeably in the literature.
 
 
- While $C^*$-algebras can also model quantum computing, $W^*$-algebras ere more suitable for this purpose. For instance, whereas $C^*$-algebras correspond to noncommutative geometry \cite{connesNoncommutativeGeometry1995}, $W^*$-algebras can be viewed as noncommutative analogues of measure theory or probability, aligning with the probabilistic nature of quantum physics \cite{hamhalterQuantumMeasureTheory2003,HansQuantumProbabilityQuantumInformationTheory10}. Moreover, there is previous work in this setting: in \cite{choSemanticsQuantumProgramming2016} it is shown that Selinger’s category $\catQ$ corresponds (up to categorical equivalence) to the finite-dimensional subcategory of $\WstarCPSUop$.
-  
-  
+  While $C^*$-algebras can also model quantum computing, $W^*$-algebras are more suitable for this purpose. For instance, whereas $C^*$-algebras correspond to noncommutative geometry \cite{connesNoncommutativeGeometry1995}, $W^*$-algebras can be viewed as noncommutative analogues of measure theory or probability, aligning with the probabilistic nature of quantum physics \cite{hamhalterQuantumMeasureTheory2003,HansQuantumProbabilityQuantumInformationTheory10}. Moreover, there is previous work in this setting: in \cite{choSemanticsQuantumProgramming2016} it is shown that Selinger’s category $\catQ$ corresponds (up to categorical equivalence) to the finite-dimensional subcategory of $\WstarCPSUop$.
+
 Since it is impossible to introduce \( W^* \)-algebras without first covering \( C^* \)-algebras, this section presents the key concepts and results of both, laying the groundwork for \Cref{subsec:w*_cats}.
 
 \subsection{\( C^* \)-Algebras}
@@ -1378,9 +1376,9 @@ Uppercase letters in math script, \gls{c*_alg}, will typically denote $C^*$-alge
 \begin{enumerate}
     \item a binary operation, called \emph{multiplication} (and denoted as such), which is associative and linear in both coordinates;
     \item an element \( 1 \), called the \emph{unit}, such that \( 1 \cdot a = a = a \cdot 1 \) for all \( a \in \mathscr{A} \);
-    \item a unary operation \( (\cdot)^* \), called \emph{involution}, such that for all \( a, b \in \mathscr{A} \) and \( \lambda \in \mathbb{C} \),
+    \item a unary operation \( (\cdot)^* \), called \emph{involution}, such that for all \( a, b \in \mathscr{A} \) and \( \alpha \in \mathbb{C} \),
     \[
-    (a^*)^* = a, \quad (ab)^* = b^* a^*, \quad (\lambda a)^* = \overline{\lambda} a^*, \quad \text{and} \quad (a + b)^* = a^* + b^*;
+    (a^*)^* = a, \quad (ab)^* = b^* a^*, \quad (\alpha a)^* = \overline{\alpha} a^*, \quad \text{and} \quad (a + b)^* = a^* + b^*;
     \]
     \item a complete norm \( \|\cdot\| \) such that \( \| ab \| \leq \|a\| \cdot \|b\| \) for all \( a, b \in \mathscr{A} \), and
     \[
@@ -1455,7 +1453,7 @@ Let \( \Phi: \mathscr{A} \to \mathscr{B} \) be a positive map between \( C^* \)-
     
     \item \emph{Multiplication} is matrix multiplication:
     \[
-    (a_{ij}) (b_{ij}) := \left[ \sum_k a_{ik} b_{kj} \right]
+    (a_{ij}) (b_{ij}) := \left( \sum_k a_{ik} b_{kj} \right)
     \]
     
     \item \emph{Involution} is given by the conjugate transpose:
@@ -1502,7 +1500,7 @@ These matrices are important because they are used to define complete positivity
 The map \( \Phi \) is said to be \emph{\( n \)-positive} if \(\MnMatrix{\Phi} \) is positive, and \emph{completely positive} if \( \MnMatrix{\Phi} \) is positive for all \( n \in \mathbb{N} \).
 \end{definition}
 
-We have previously a definition of complete positivity in the setting of bounded/trace-class operators over finite dimensional Hilbert spaces (\autoref{def:completely_positive_superoperator}). Given $\BoundOp{\HilbH}$ is an example of a $C^*$-algebra, we will check that the definitions are equivalent.
+We have previously presented a definition of complete positivity in the setting of bounded/trace-class operators over finite-dimensional Hilbert spaces (\autoref{def:completely_positive_superoperator}). Given $\BoundOp{\HilbH}$ is an example of a $C^*$-algebra, we will check that the definitions are equivalent in the aforementioned setting.
 
 
 \begin{proposition} \label{pro:cp_compatible}
@@ -1514,24 +1512,25 @@ where $\HilbH, \HilbK_1,\HilbK_2$ are finite-dimensional.
 \begin{proof}
   We begin by observing that the composition of positive maps is positive, and that the map which swaps tensor factors is itself positive \cite{watrous2018theory}. Therefore, \autoref{def:completely_positive_superoperator} is equivalent to the one obtained by replacing \( \Phi \otimes \id_{\mathcal{B}(\HilbH)} \) with \( \id_{\mathcal{B}(\HilbH)} \otimes \Phi \). 
 
-  We now proceed to demonstrate the equivalence between this definition and \autoref{def:completely_positive_map_c*}. Here we note the isometric isomorphisms $\mathcal{M}_n \otimes \mathcal{M}_m \cong \mathcal{M}_{nm}$, $\mathcal{B}(\HilbH)\cong \SqMatrix{n}$ \cite{watrous2018theory} with $\text{dim}(\HilbH)=n$ and $\mathcal{M}_n(\BoundOp{\HilbH})\cong \mathcal{M}_n \otimes \BoundOp{\HilbH}$ \cite[Corollary 8.1.3]{effrosOperatorSpaces2000}. It is straightforward that the first two isomorphisms are positive. Now, regarding the third isomorphism, consider that $[a_{i,j}] \in \mathcal{M}_n(\BoundOp{\HilbH})$ is positive, \ie $[a_{i,j}] = [b_{i,j}]^* [b_{i,j}] $. Note that
-  \begin{align*}
-     [b_{i,j}]^* [b_{i,j}] = [b_{i,j}^*] [b_{i,j}] = \left[  \left(\sum_k b_{k,i}^* b_{k,j} \right)_{i,j} \right],
-  \end{align*}
+ We now proceed to demonstrate the equivalence between this definition and \autoref{def:completely_positive_map_c*}. Let \gls{square_matrix} denote the vector space of complex $n \times n$ matrices.
+ Here we note the isometric isomorphisms $\mathcal{M}_n \otimes \mathcal{M}_m \cong \mathcal{M}_{nm}$, $\mathcal{B}(\HilbH)\cong \SqMatrix{n}$ with $\text{dim}(\HilbH)=n$ \cite{watrous2018theory},  and $\mathcal{M}_n(\BoundOp{\HilbH})\cong \mathcal{M}_n \otimes \BoundOp{\HilbH}$ \cite[Corollary 8.1.3]{effrosOperatorSpaces2000}. It is straightforward that the first two isomorphisms are positive. Now, regarding the third isomorphism, consider that $(a_{i,j}) \in \mathcal{M}_n(\BoundOp{\HilbH})$ is positive, \ie $(a_{i,j}) = (b_{i,j})^* (b_{i,j}) $. Note that
+  \begin{align*}
+     (b_{i,j})^* (b_{i,j}) = (b_{i,j}^*) (b_{i,j}) = \left(  \left(\sum_k b_{k,i}^* b_{k,j} \right)_{i,j} \right),
+  \end{align*}
 \ie, the $(i,j)$-th entry of the resulting matrix is the sum $\sum_k b_{k,i}^* b_{k,j}$.
-The isomorphism $i:\mathcal{M}_n(\BoundOp{\HilbH}) \to \mathcal{M}_n \otimes \BoundOp{\HilbH}$ is defined as $i([a_{i,j}]) = \sum_{i,j}  \ket{i}\bra{j} \otimes a_{ij} $,
-where $\{ \ket{i}\bra{j} \}_{i,j=1}^n  $ denotes any orthonormal basis for \( \mathcal{M}_n \).
-As a result, $b \coloneqq i([b_{i,j}]) = \sum_{i,j}  \ket{i}\bra{j} \otimes b_{ij}$ and $b^* \coloneqq i([b_{i,j}^*]) = \sum_{i,j}  \ket{i}\bra{j} \otimes b_{ij}^*$.
+The isomorphism $i:\mathcal{M}_n(\BoundOp{\HilbH}) \to \mathcal{M}_n \otimes \BoundOp{\HilbH}$ is defined as $i\big((a_{i,j})\big) = \sum_{i,j}  \ket{i}\bra{j} \otimes a_{ij} $,
+where $\{ \ket{i}\bra{j} \}_{i,j=1}^n  $ denotes any orthonormal basis for \( \mathcal{M}_n \).
+As a result, $b \coloneqq i\big((b_{i,j})\big) = \sum_{i,j}  \ket{i}\bra{j} \otimes b_{ij}$ and $b^* \coloneqq \left(\sum_{i,j}  \ket{i}\bra{j} \otimes b_{ij}\right)^* = \sum_{j,i}  \ket{j}\bra{i} \otimes b_{ij}^*$.
 Next, we calculate:
 \begin{align*}
-  b^*b &= \left( \sum_{i,j}  \ket{j}\bra{i} \otimes b_{ij}^* \right)  \left( \sum_{i,j}  \ket{i}\bra{j} \otimes b_{ij} \right) \\
-  & = \sum_{i,k,l,j} \ket{i}\bra{k} \ket{l}\bra{j} \otimes  b_{k,i}^* b_{l,j} \\
-  & = \sum_{i,k,l,j} \ket{i}\bra{j} \otimes \left(\sum_{k} b_{k,i}^* b_{k,j}\right)  & ( \ket{i}\bra{k} \ket{l}\bra{j} = \delta_{kl} \ket{i}\bra{j}) \\
-  & = i([b_{i,j}]^* [b_{i,j}]),
+ b^*b &= \left( \sum_{i,j}  \ket{j}\bra{i} \otimes b_{ij}^* \right)  \left( \sum_{i,j}  \ket{i}\bra{j} \otimes b_{ij} \right) \\
+ & = \sum_{i,k,l,j} \ket{i}\bra{k} \ket{l}\bra{j} \otimes b_{k,i}^* b_{l,j} \\
+  & = \sum_{i,k,l,j} \ket{i}\bra{j} \otimes \left(\sum_{k} b_{k,i}^* b_{k,j}\right)  & ( \ket{i}\bra{k} \ket{l}\bra{j} = \delta_{kl} \ket{i}\bra{j}) \\
+  & = i\big((b_{i,j})^* (b_{i,j})\big),
 \end{align*} 
 thereby demonstrating that $i$ is positive.
 
-The equivalence of definitions \ref{def:completely_positive_superoperator} and \ref{def:completely_positive_map_c*}, follows from the fact that the two diagrams below commute and the composition of positive maps is positive. For the first we assume that $\id_{\mathcal{T}(\HilbH)} \otimes \Phi$ is positive for all finite dimensional $\mathcal{H}$, and for the second that $\SqMatrix{n}(\Phi)$ is positive for all $m \in \mathbb{N}$. 
+The equivalence of definitions \ref{def:completely_positive_superoperator} and \ref{def:completely_positive_map_c*} follows from the fact that the two diagrams below commute and the composition of positive maps is positive. In the first, we assume that $\id_{\mathcal{T}(\HilbH)} \otimes \Phi$ is positive for all finite-dimensional $\mathcal{H}$, and for the second that $\SqMatrix{n}(\Phi)$ is positive for all $n \in \mathbb{N}$. 
 
 %[a_{i,j}] \mapsto \sum_{i,j}  \ket{i}\bra{j} \otimes a_{ij}
 
@@ -1625,7 +1624,7 @@ with operations defined coordinatewise and norm given by
 \quad a \in \mathscr{A}_1 \odot \mathscr{A}_2,
 \]
 where $\pi_1$ and $\pi_2$ run over all  representations of $\mathscr{A}_1$ and $\mathscr{A}_2$, respectively. The subscript $\min$  will be omitted unless ambiguity arises.
-The completion \gls{min_tensor} is called the \emph{injective $C^*$-tensor product} of $A_1$ and $A_2$. The injective  $C^*$-norm (respectively, $C^*$-tensor product) is also referred to as the \emph{spatial} (or \emph{spatial}) $C^*$-norm (respectively, $C^*$-tensor product).
+The completion \gls{min_tensor} is called the \emph{injective $C^*$-tensor product} of $A_1$ and $A_2$. The injective  $C^*$-norm (respectively, $C^*$-tensor product) is also referred to as the \emph{spatial}  $C^*$-norm (respectively, $C^*$-tensor product).
 \end{definition}
 
 \begin{comment}
@@ -1717,7 +1716,7 @@ One of the most important examples of a $W^*$-algebra is $\BoundOp{\HilbH}$, the
 \end{example}
 
 \begin{remark}
-  While $W^*$-algebras and von Neumann algebras are often used interchangeably (\eg, in \cite{westerbaanCategoryNeumannAlgebras2019}), the latter typically denotes concrete ultraweakly closed $C^*$-subalgebras of $\mathcal{B}(\mathcal{H})$.
+  While the terms $W^*$-algebras and von Neumann algebras are often used interchangeably (\eg, in \cite{westerbaanCategoryNeumannAlgebras2019}), the latter typically denotes concrete ultraweakly closed $C^*$-subalgebras of $\mathcal{B}(\mathcal{H})$.
 \end{remark}
 
 \begin{definition}
@@ -1741,7 +1740,7 @@ Moreover, this makes \( \bigoplus_i \mathscr{M}_i \) the categorical product of 
 
 \subsubsection{Tensor products of $W^*$-Algebras}
 
-Here we adopt the definition of the spatial tensor product of $W^*$-algebras from \cite{westerbaanCategoryNeumannAlgebras2019}, rather than the more common approach based on ultraweak completion of the spatial tensor product of $C^*$-algebras (\autoref{def:min_tensor_c*}) as in \cite{takesakiTheoryOperatorAlgebras1979,sakaiCAlgebrasWAlgebras1998}. We adopt this definition because we will primarily use its properties to prove that the category is a symmetric monoidal $\catMet$-category with binary coproducts, in which the tensor product is nonexpansive.
+Here we adopt the definition of the spatial tensor product of $W^*$-algebras from \cite{westerbaanCategoryNeumannAlgebras2019}, rather than the more common approach based on ultraweak completion of the spatial tensor product of $C^*$-algebras (\autoref{def:min_tensor_c*}) as in \cite{takesakiTheoryOperatorAlgebras1979,sakaiCAlgebrasWAlgebras1998}. We adopt this definition because we will primarily use its properties to prove that $\WstarCPSUop$ is a symmetric monoidal $\catMet$-category with binary coproducts, in which the tensor product is nonexpansive.
 The approach in \cite{westerbaanCategoryNeumannAlgebras2019} is more abstract, not resorting to representations on Hilbert spaces. Nevertheless, the author proves that the standard one is a particular realization of his definition  \cite[Theorem 111 VII]{westerbaanCategoryNeumannAlgebras2019}.
 
 
@@ -1760,11 +1759,11 @@ From now on, we will refer to a bilinear map that is multiplicative, involution 
   A miu-bilinear map \( \gamma: \mathscr{M} \times \mathscr{N} \to \mathscr{T} \) between $W^*$-algebras is called a \emph{tensor product of \( \mathscr{M} \) and \( \mathscr{N} \)} when it satisfies the following three conditions:
 
 \begin{enumerate}
-    \item The range of \( \gamma \) generates \( \mathscr{T} \), meaning that the linear span of the image of \( \gamma \) is ultraweakly dense in \( \mathscr{T} \). This implies that for all \( f \in \mathscr{M}_* \) and \(\Psi:\in \mathscr{N}_* \), there exists \emph{at most one} \( h \in \mathscr{T}_* \) such that
+    \item The range of \( \gamma \) generates \( \mathscr{T} \), meaning that the linear span of the image of \( \gamma \) is ultraweakly dense in \( \mathscr{T} \). This implies that for all \( f \in \mathscr{M}_* \) and \(g \in \mathscr{N}_* \), there exists \emph{at most one} \( h \in \mathscr{T}_* \) such that
     \[
-    h(\gamma(n, m)) = \Phi(n) g(m) \quad \text{for all } n \in \mathscr{M}, \, m \in \mathscr{N}.
+    h(\gamma(n, m)) = f(n) g(m) \quad \text{for all } n \in \mathscr{M}, \, m \in \mathscr{N}.
     \]
-    We call such an \( h \) the \emph{product functional} for \( f \) and \(\Psi:\), and denote it by \( \gamma(f, g) \) (when it exists).
+    We call such an \( h \) the \emph{product functional} for \( f \) and \(g\), and denote it by \( \gamma(f, g) \) (when it exists).
 
     \item For all normal positive functionals \( \varphi_1: \mathscr{M} \to \mathbb{C} \) and \(  \varphi_2: \mathscr{N} \to \mathbb{C} \), the product functional \( \gamma( \varphi_1,  \varphi_2): \mathscr{T} \to \mathbb{C} \) exists and is positive.
 
@@ -1799,17 +1798,18 @@ that makes all operator norm limits of simple functionals continuous.
 
 Next, we recall the algebraic tensor product from \autoref{def:Algebraic_Tensor_Product} and introduce the notation \( \beta_{\odot} \) for the unique linear map \( V \odot W \to R \) induced by the universal property of the tensor product.
 
+\begin{definition}
 A bilinear map $\beta\colon \mathscr{M}  \times \mathscr{N} \to \mathscr{T}$ between $W^*$-algebras is:
 \begin{enumerate}
     \item \emph{bounded} when the unique extension $\beta_\odot\colon \mathscr{M} \odot \mathscr{N} \to \mathscr{T}$ is bounded;
     \item \emph{normal} when $\beta_\odot$ is continuous with respect to the ultraweak tensor product topology on $\mathscr{M} \odot \mathscr{N}$ and the ultraweak topology on $\mathscr{T}$.
 \end{enumerate}
-
+\end{definition}
 
 The following theorem establishes a universal property analogous to \autoref{def:Algebraic_Tensor_Product}, but for the $W^*$-tensor product rather than the algebraic case. Later, in \Cref{subsec:w*_cats},  we will make use of this result for proving that $\WstarCPSU$ is a first-order model.
 
 \begin{theorem} \cite[Theorem 112 XI]{westerbaanCategoryNeumannAlgebras2019} \label{thm:beta_alg_eq_beta_gamma}
-A tensor product $\gamma\colon \mathscr{M} \times \mathscr{N} \to \mathscr{T}$ of $W^*$-algebras $\mathscr{M}$ and $\mathscr{N}$ satisfies the following universal property: for every normal bounded bilinear map $\beta\colon  \mathscr{M} \times  \mathscr{N} \to \mathscr{O}$ into a von Neumann algebra $\mathscr{O}$, there exists a unique ultraweakly continuous map $\beta_\gamma\colon \mathscr{T} \to \mathscr{O}$ such that $\beta_\gamma \circ \gamma = \beta$. Moreover, $ \opnorm{\beta_\gamma} = \opnorm{\beta_\odot}$, where $
+A tensor product $\gamma\colon \mathscr{M} \times \mathscr{N} \to \mathscr{T}$ of $W^*$-algebras $\mathscr{M}$ and $\mathscr{N}$ satisfies the following universal property: for every normal bounded bilinear map $\beta\colon  \mathscr{M} \times  \mathscr{N} \to \mathscr{O}$ into $W^*$-algebra $\mathscr{O}$, there exists a unique ultraweakly continuous map $\beta_\gamma\colon \mathscr{T} \to \mathscr{O}$ such that $\beta_\gamma \circ \gamma = \beta$. Moreover, $ \opnorm{\beta_\gamma} = \opnorm{\beta_\odot}$, where $
 \beta_\odot\colon  \mathscr{M} \odot  \mathscr{N} \to \mathscr{O}.
 $
 \end{theorem}
@@ -1840,7 +1840,7 @@ Moreover \(\Phi\, \overline{\otimes}\, \Psi\) is (sub)unital if \(\Phi\) and \(\
 
 \begin{proposition} \cite[Proof 115 III] {westerbaanCategoryNeumannAlgebras2019} \label{prop:norm_beta_alg}
   Let  $\mathscr{M}$ and $\mathscr{N}$ be $W^*$-algebras.
-  Given normal completely positive maps $\Phi:\mathscr{M} \to \mathscr{T}$ and $\Psi:\mathscr{N} \to \mathscr{T}$. We may take $\Phi\, \overline{\otimes} \,\Psi:= \beta_{\bar{\otimes}}$ as in the theorem \autoref{thm:beta_alg_eq_beta_gamma}. Moreover, $\wnorm{\beta_\odot(s)} \leq \opnorm{\Phi}\opnorm{\Psi}\wnorm{s}$, given an element $s\in \mathscr{M} \overline{\otimes} \mathscr{N}$.
+  Given normal completely positive maps $\Phi:\mathscr{M} \to \mathscr{T}$ and $\Psi:\mathscr{N} \to \mathscr{T}$. We may take $\Phi\, \overline{\otimes} \,\Psi:= \beta_{\bar{\otimes}}$ as in the theorem \autoref{thm:beta_alg_eq_beta_gamma}. It holds that, $\wnorm{\beta_\odot(s)} \leq \opnorm{\Phi}\opnorm{\Psi}\wnorm{s}$, given an element $s\in \mathscr{M} \overline{\otimes} \mathscr{N}$.
 \end{proposition}
 
 
@@ -1970,14 +1970,14 @@ A perhaps surprising point is that the categories that ``naturally arise'' in qu
 %An alternative approach was explored in \cite{dahlqvist2023syntactic}, using linear $\lambda$-calculus as basis. A notion of approximate equivalence is then integrated in the calculus via the so-called diamond norm, which induces a metric on the space of quantum programs (seen semantically as completely positive trace-preserving super-operators) \cite{watrous2018theory}. 
 
 
-We divide this section into two parts, each corresponding to a different formulation of quantum theory. In the first part, we consider Schr\"odinger's picture, where quantum programs are interpreted as maps between quantum states (\ie, density operators). Here, we study Selinger's category~$\catQ$ \cite{selinger2004towards}.
-In the second part, we adopt Heisenberg's picture, in which programs are modeled as maps between observables (\ie, self-adjoint operators). In this setting, we explore Cho's category~$\WstarCPSUop$, the opposite of the category~$\WstarCPSU$, whose objects are \( W^* \)-algebras and morphisms are completely positive subunital maps between them. 
-We highlight the following connection between the two categories: the full subcategory of $\WstarCPSUop$ consisting of finite-dimensional \( W^* \) algebras is equivalent to~$\catQ$ \cite{choSemanticsQuantumProgramming2016}.
+We divide this section into two parts, each corresponding to a different formulation of quantum theory. In the first part, we consider Schr\"odinger's picture, where quantum programs are interpreted as maps between quantum states (\ie, density operators). Here, we study $\Kar{\catCPS}$, the idempotent completion of the category of quantum operations  .
+In the second part, we adopt Heisenberg's picture, in which programs are modeled as maps between observables (\ie, self-adjoint operators). In this setting, we explore $\WstarCPSUop$, the opposite of the category~$\WstarCPSU$, whose objects are \( W^* \)-algebras and morphisms are completely positive subunital maps between them. 
+%We highlight the following connection between the two categories: the full subcategory of $\WstarCPSUop$ consisting of finite-dimensional \( W^* \) algebras is equivalent to~$\catQ$ \cite{choSemanticsQuantumProgramming2016}.
 
 
 \subsection{Schrödinger's picture} \label{subsec:shodinger}
 
-The category $\catCPTP$ of quantum channels was shown in \cite{dahlqvist2023syntactic} to form a symmetric monoidal $\catMet$-category. We begin by presenting the more general symmetric monoidal category $\catCPS$ of quantum operations, which can similarly be shown to be a symmetric monoidal $\catMet$-category. Throughout this section, \gls{square_matrix} will denote the vector space of complex $n \times n$ matrices.
+The category $\catCPTP$ of quantum channels was shown in \cite{dahlqvist2023syntactic} to form a symmetric monoidal $\catMet$-category. We begin by presenting the more general symmetric monoidal category $\catCPS$ of quantum operations, which can similarly be shown to be a symmetric monoidal $\catMet$-category. 
 
 %We begin by presenting the category $\catCPS$ of completely positive trace-nonincreasing maps, and asserting that it is a a symmetric monoidal $\catMet$-category, 
 %which was shown in \cite{dahlqvist2023syntactic} to form a symmetric monoidal $\catMet$-category. In this section \gls{square_matrix} will denote the vector space of complex $n\times n$ matrices.
@@ -1999,7 +1999,7 @@ The following proposition establishes that $\catCPS$ is a first-order $\lambda$-
 \begin{proof}
   Here we follow the same reasoning as \cite[Proof of  Proposition 4.1, Section 4.3]{dahlqvist2023syntactic}.
 
-  First, we establish that $\catCPS$ is $\catMet$-enriched. By unpacking the relevant definitions, this reduces to proving the following: for all $\catQ$-morphisms $\Phi, \Phi' : n \to m$ and $\Psi, \Psi' : m \to o$ the inequation $\diamondnorm{\Phi-\Phi'} + \diamondnorm{\Psi-\Psi'} \geq \diamondnorm{\Psi\Phi-\Psi'\Phi'} $ holds. 
+  First, we establish that $\catCPS$ is $\catMet$-enriched. By unpacking the relevant definitions, this reduces to proving the following: for all $\catCPS$-morphisms $\Phi, \Phi' : n \to m$ and $\Psi, \Psi' : m \to o$ the inequation $\diamondnorm{\Phi-\Phi'} + \diamondnorm{\Psi-\Psi'} \geq \diamondnorm{\Psi\Phi-\Psi'\Phi'} $ holds. 
   We proceed as follows:
 \begin{align*}
   & \diamondnorm{\Phi - \Phi'} + \diamondnorm{\Psi - \Psi'} \\
@@ -2028,7 +2028,7 @@ a natural candidate for interpreting quantum programs with coproducts is the cat
     d & b
   \end{smallmatrix}\right)
   \in \mathcal{M}_2$ to a classical bit $(a,d) \in \mathbb{C} \oplus \mathbb{C}$. 
-Unfortunately, this is not the case, since $\catCPS^+(2, 1+1)$ consists of an operation $\Phi: 2 \to 1$ followed by a left or right injection. Consequently, we cannot access both measurement outcomes simultaneously. We could consider introducing measurements via a ``product completion,'' but a similar problem would arise for the coproduct given $\catCPS^+(1+1, 2)$ consists of a left or right projection followed by and operation $\Phi: 1 \to 2$ . This suggests that \( + \) should be a biproduct. However, as observed in \cite{selinger2004towards}, not all morphisms of the biproduct are required: the coproduct structure together with its projection morphisms suffices. 
+Unfortunately, this is not the case, since $\catCPS^+(2, 1+1)$ consists of operations $\Phi: 2 \to 1$ followed by a left or right injection. Consequently, we cannot access both measurement outcomes simultaneously. We could consider introducing measurements via a ``product completion''. However, a similar problem would arise for the coproduct given $\catCPS^+(1+1, 2)$ consists of operations corresponding to a left or right projection followed by an operation $\Phi: 1 \to 2$. This suggests that \( + \) should be a biproduct. However, as observed in \cite{selinger2004towards}, not all morphisms of the biproduct are required: the coproduct structure and its projection morphisms suffice. 
 \begin{comment}
 If such a measurement were to exist, it would correspond to a morphism $\Phi \colon 2 \to 1 \oplus 1$, where $\oplus$ is the coproduct, allowing us to reason about it within our metric equational system. Simultaneously, we should be able to ``decompose'' $\Phi$ into two projection maps $\pi_1 \colon 2 \to 1$ and $\pi_2 \colon 2 \to 1$.  Now, recall that in $\catCPTP^+$, a morphism consists of a pair $(f, (\phi_i)_{i \in I})$, where: $f \colon I \to J$ is a function between index sets, and
  $(\phi_i)_{i \in I}$ is a family of $\catCPTP$-morphisms $\phi_i \colon A_i \to B_{f(i)}$. Because $f$ is a function, the category does not support morphisms of the form $(f,\phi_i \colon A \to C_i)_{i \in I}$ when $I$ has more than one element. As a result,  we cannot express measurements in $\catCPTP^+$. We could consider introducing measurements via a ``product completion,'' but a similar problem would arise for the injections. 
@@ -2040,7 +2040,7 @@ We will see next that what we need is not a biproduct completion but rather an \
 
 \begin{definition}
   For any category $\catC$, its \emph{Karoubi envelope} (or \emph{idempotent completion}), denoted $\mathcal{K}(\catC)$, is the category whose objects
- are pairs $(A, e_A)$, where $X$ is an object in $\catC$ and $e_A \colon A \to A$ is an idempotent morphism in $\catC$, \ie, $e_A \cdot e_A = e_A$.
+ are pairs $(A, e_A)$, where $A$ is an object in $\catC$ and $e_A \colon A \to A$ is an idempotent morphism in $\catC$, \ie, $e_A \cdot e_A = e_A$.
 A morphism $f \colon (A, e_A) \to (B, e_B)$ in $\mathcal{K}(\catC)$ is a morphism $ A \to B$ in $\catC$ such that $f \circ e_A = f = e_B \circ f$.
 The identity morphism on an object $(A, e_A)$ is $e_A \colon A \to A$. Composition of morphisms is inherited from $\catC$: if $f \colon (A, e_A) \to (B, e_B)$ and $g \colon (B, e_B) \to (C, e_C)$ are morphisms in $\mathcal{K}(\catC)$, then $g \circ f$ is defined as their composition in $\catC$.
 \end{definition}
@@ -2071,7 +2071,7 @@ With this result in hand, we can now establish the following proposition.
 \end{proposition}
 
 \begin{proof}
- First, since $\catCPS$ is already a $\catMet$-category $\Kar{\catCPS}$ becomes
+ First, since $\catCPS$ is already a $\catMet$-category $\Kar{\catCPS}$, becomes
 a $\catMet$-category as well, by stipulating the metric in $\Kar{\catCPS}(n,m)$ to be
 the respective restriction of the metric in $\catCPS(n,m)$. 
 Second, $\Kar{\catCPS}$inherits symmetric monoidal structure from $\catCPS$ (\autoref{prop:kar_monoidal}), where in particular the tensor of
@@ -2139,7 +2139,7 @@ given quantum operations $\Phi : n \to m$ and $\Psi : o \to m$ their
 \[
         [\Phi, \Psi] := [\Phi, 0] + [0, \Psi]
 \]
-will be completely positive as well. Moreover, it is trace-nonincreasing, since subtracting the sum of the corresponding Kraus operators from the block identity matrix results in a positive operator, as it corresponds to a block-diagonal with positive operators on the diagonal. Consider as well the quantum operations $e_l : n \to n +m$ and
+will be completely positive as well. Moreover, it is trace-nonincreasing, since subtracting the sum of the corresponding Kraus operators from the block identity matrix results in a positive operator, as it corresponds to a block-diagonal matrix with positive operators on the diagonal. Consider as well the quantum operations $e_l : n \to n +m$ and
 $e_r : m \to n + m$,
 \[
         A \quad \longmapsto \quad
@@ -2160,18 +2160,18 @@ $e_r : m \to n + m$,
 which have Kraus' operators $\begin{pmatrix} I \\ 0 \end{pmatrix}$ and
 $\begin{pmatrix} 0 \\ I \end{pmatrix}$ respectively.  
 
-We now define the ``direct sum'' of quantum operations $\Phi \oplus \Psi$.
+We now define the ``direct sum'' of quantum operations.
 \begin{definition}
-  Given quantum operations $\Phi: m \to o$ and $\Psi: n \to p$ we define $\Phi
-\oplus \Psi: m + n \to p+o$ as $\Phi
-\oplus \Psi = [e_1 \comp \Phi, e_2 \comp \Psi]$.
+  Given quantum operations $\Phi: n \to o$ and $\Psi: m \to p$ we define $\Phi
+\oplus \Psi: n + m \to o+p$ as $\Phi
+\oplus \Psi := [e_1 \comp \Phi, e_2 \comp \Psi]$.
 \end{definition}
 
 Observe that $\Phi \oplus \Psi$ is a quantum operation by
 construction. In fact,  the operator $\Phi \oplus \Psi$ is a particular case of a
  quantum-to-classical channel , and
 specifically $\id \oplus \id$ is a block matrix generalisation of the
-completely dephasing channel $\Delta$ (\Cref{subsec:quantum_channels}). The crucial
+completely dephasing channel $\Delta$ (\autoref{eq:CDeph}). The crucial
 observation then is that idempotents of the form $P \oplus Q$ give rise to
 coproducts in $\Kar{\catCPS}$, as we will show in the following proposition.
 
@@ -2396,19 +2396,19 @@ The following equation holds for all hermitian-preserving superoperators $\Phi: 
         & 
         \\
         & \leq
-        \sup \big \{ \sup \{ \norm{\Phi((1/ \norm{A}_1) A)}_1 \\
-        & \hspace{10pt} + 
-                \norm{\Psi((1 / \norm{D}_1)D)}_1 \} \mid 
-                \norm{A}_1 + \norm{D}_1 = 1
+        \sup \big \{ \sup \{ \norm{\Phi(A)}_1 | \,  \norm{A}_1 = 1  \},  \\
+        & \hspace{42pt}
+                \sup \{ \norm{\Phi(D)}_1 | \,  \norm{D}_1 = 1 \}
         \big \}
         & 
         \\
         &
-        \leq \sup \{ \norm{\Phi},\norm{\Psi} \} 
+        = \sup \{ \norm{\Phi},\norm{\Psi} \} 
 \end{split}
 \end{equation*}
 \end{proof}
 With this property, we have all the means to show that $\Kar{\catCPS}$ is a symmetric monoidal $\catMet$-category with binary coproducts.
+
 
 \begin{proposition} \label{prop:kar_bin_cop_met}
   For all quantum operations $\Phi, \Phi': n \to o  $ and $\Phi, \Phi': m \to o $, it holds that
@@ -2430,7 +2430,7 @@ With this property, we have all the means to show that $\Kar{\catCPS}$ is a symm
         & \leq
         \sup \{ \tracenorm{\Phi \otimes \id_{n+m}}, \tracenorm{\Psi \otimes \id_{n+m}} \} & (\text{\autoref{prop:op_ineq_cop_vv*}})
         \\
-        & =
+        & \leq
         \sup \{ \norm{\Phi}_\diamond, \norm{\Psi}_\diamond \} & (\text{\autoref{thm_diamond_otimes_id}})
 \end{split}
 \end{equation*}
@@ -2827,6 +2827,7 @@ Given a map \( \Phi \colon \mathscr{A} \to \mathscr{B} \), define
 \[
 \cbnorm{\Phi} \coloneqq \sup_{n} \opnorm{\MnMatrix{\Phi}}.
 \]
+$\Phi$ is said to be \emph{completely bounded} if $\wcbnorm{\Phi}$ is finite.
 When restricted to the space of completed bounded operators, the map \( \gls{cb_norm} \) is called the \emph{completely bounded norm}.  
 It can equivalently be written as
 \[
@@ -2993,8 +2994,8 @@ It follows directly from \autoref{thm:beta_alg_eq_beta_gamma} and
    & \cbnorm{\Phi \cdot \Psi}  \\
   & = \sup_{\mathscr{M}} \{ \opnorm{\id_\mathscr{M} \, \overline{\otimes} \, (\Phi \cdot \Psi)}\ \} \\
   & \leq \sup_{\mathscr{M}} \{ \opnorm{\id_\mathscr{M} \, \overline{\otimes} \, \Phi }\ \cdot  \opnorm{\id_\mathscr{M} \, \overline{\otimes} \,  \Psi}\ \} & (\text{submultiplicativity of} \opnorm{\cdot}  \text{w.r.t composition}) \\
-  & \leq \sup_{\mathscr{M}_1, \mathscr{M}_2} \{ \opnorm{\id_{\mathscr{M}_1} \, \overline{\otimes} \, \Phi }\  \cdot  \opnorm{\id_{\mathscr{M}_2}\, \overline{\otimes} \,  \Psi}\ \} & (A \subset B \implies \sup A \leq \sup B) \\
-  & = \sup_{\mathscr{M}_1} \{ \opnorm{\id_{\mathscr{M}_1} \, \overline{\otimes} \, \Phi }\ \} \cdot \sup_{\mathscr{M}_2}, \{ \opnorm{\id_{\mathscr{M}_2}\, \overline{\otimes} \,  \Psi}\ \} & (\cdot \text{  distributes over  } \sup)  \\
+  & = \sup_{\mathscr{M}} \{ \opnorm{\id_{\mathscr{M}} \, \overline{\otimes} \, \Phi }\ \} \cdot \sup_{\mathscr{M}}, \{ \opnorm{\id_{\mathscr{M}}\, \overline{\otimes} \,  \Psi}\ \} & (\text{ }\cdot \text{  distributes over  } \sup)  \\
+  & \leq \sup_{\mathscr{M}_1} \{ \opnorm{\id_{\mathscr{M}_1} \, \overline{\otimes} \, \Phi }\ \} \cdot \sup_{\mathscr{M}_2}, \{ \opnorm{\id_{\mathscr{M}_2}\, \overline{\otimes} \,  \Psi}\ \}& (A \subset B \implies \sup A \leq \sup B) \\
     & = \cbnorm{\Phi} \cdot  \cbnorm{\Psi} 
   \end{split}
   \end{equation*}
@@ -3198,9 +3199,12 @@ gate $H : \mathtt{qbit} \to \mathtt{qbit}$, the not-gate $X : \mathtt{qbit} \to
 \mathtt{qbit}^{\otimes 2}$. We consider as well a pre-determined set of quantum
 states $\ket{\psi} : \typeI \to \mathtt{qbit}$ and a discard operation $\text{disc}: \mathtt{qbit} \to \typeI$.  
 
-$\catQ$ forms a model of the metric $\lambda$-theory for quantum computation via the following interpretation: $\sem{\typeI}= \left(\mathbb{C} \ni  1, \id\right)$, 
-$\sem{\mathtt{qbit} \hspace{1pt}}= \left(\mathbb{C}^{2\times2}, \id\right)$, 
-$\sem{\emph{q} \hspace{1pt}}((a,b)) = \big(\begin{smallmatrix}
+$\Kar{\catCPS}$ forms a model of the metric $\lambda$-theory for quantum computation via the following interpretation: $\sem{\typeI}= \left( 1, \id\right)$, 
+$\sem{\mathtt{qbit} \hspace{1pt}}= \left(2, \id\right)$, 
+$\sem{\emph{q} \hspace{1pt}}\left(\big(\begin{smallmatrix}
+  a & 0\\
+  0 & b
+\end{smallmatrix}\big)\right) = \big(\begin{smallmatrix}
   a & 0\\
   0 & b
 \end{smallmatrix}\big)$, 

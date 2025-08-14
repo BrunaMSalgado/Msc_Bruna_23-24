@@ -12,7 +12,7 @@ setting that, for instance, allows copying.
 %
 In \cite{dahlqvist2023syntactic}, the authors reason about approximate equivalence in the probabilistic setting using the \emph{operator norm}. The latter induces a metric on the space of probabilistic programs (which are interpreted as short maps between Banach spaces).
 
-This chapter begins with an introduction of Banach spaces based on \cite{rudin91functional,guide2006infinite, ryanIntroductionTensorProducts2013}. We then show that $\catBan$, the category of Banach spaces and short maps, is a model of our metric lambda calculus (\autoref{def:model_metric_cond}). The next section introduces the fundamentals of measure theory, a key component in defining the semantics of probabilistic programs, drawing inspiration primarily from \cite{dahlqvistSemanticsProbabilisticProgramming2020a, bogachevMeasureTheory2007,guide2006infinite}.  
+This chapter begins with an introduction to tensor products of Banach spaces based on \cite{ryanIntroductionTensorProducts2013}. We then show that $\catBan$, the category of Banach spaces and short maps, is a model of our metric lambda calculus (\autoref{def:model_metric_cond}). The next section introduces the fundamentals of measure theory, a key component in defining the semantics of probabilistic programs, drawing inspiration primarily from \cite{dahlqvistSemanticsProbabilisticProgramming2020a, bogachevMeasureTheory2007,guide2006infinite}.  
 Finally, using our calculus, we study approximate equivalence in the context of a random walk on the real line.
 
 
@@ -23,7 +23,7 @@ Finally, using our calculus, we study approximate equivalence in the context of 
 
 Before introducing the category of Banach spaces and proving it is a model, we first establish some notation and define the tensor product in this context, as it is less familiar than the standard basics of Banach space theory.
 
-First, we establish some notation. The letters \gls{vectorspaces} will often be used to refer to vector spaces and $\gls{field}$ represents the field of scalars of a vector space.  We denote by \gls{boundedoperators} the vector space of all bounded linear operators from \( V \) to \( V \), and we write  \gls{boundedoperatorsVV} for \( \mathcal{B}(V, V) \). The corresponding operator norm is denoted by \gls{op-norm}.
+First, we establish some notation. The letters \gls{vectorspaces} will often refer to vector spaces, and $\gls{field}$ represents the field of scalars of a vector space.  We denote by \gls{boundedoperators} the vector space of all bounded linear operators from \( V \) to \( V \), and we write  \gls{boundedoperatorsVV} for \( \mathcal{B}(V, V) \). The corresponding operator norm is denoted by \gls{op-norm}.
 
 
 
@@ -120,7 +120,7 @@ for all choices of \( u_1 \in V_1, \dots, u_n \in V_n \).
 %\end{proposition}
 
 \begin{definition} \cite[Chapter 2.1]{ryanIntroductionTensorProducts2013}
-  Let \( V \) and \( W \) be Banach spaces. The \emph{projective tensor product} of \( V \) and \( W \), denoted  $ V \widehat{\otimes}_\pi W$, is the Cauchy  completion of the algebraic tensor product \( V \otimes W \) with respect to the projective norm \( \projnorm{\cdot} \).
+  Let \( V \) and \( W \) be Banach spaces. The \emph{projective tensor product} of \( V \) and \( W \), denoted  $ V \widehat{\otimes}_\pi W$, is the Cauchy  completion of the algebraic tensor product \( V \odot W \) with respect to the projective norm \( \projnorm{\cdot} \).
 \end{definition}
 
 %(\cite[Chapter 7.3]{goubault-larrecqNonHausdorffTopologyDomain2013}) 
@@ -144,13 +144,13 @@ Let \( x = (x_1, x_2, \dots, x_n) \in \mathbb{C}^n \). The \( L^1 \) norm, \gls{
 \end{comment}
 
 \begin{definition}
-  The category $\catBan$ is the category of Banach spaces and short maps. It has a (symmetric) monoidal structure  where the tensor product is the projective tensor $\widehat{\otimes}_\pi$.
-  The (binary) coproduct of two Banach spaces $V,W$ is given by their direct sum equipped with the norm $\norm{(v,w)} = \norm{v} + \norm{w}$.  
+  The category $\catBan$ is the category of Banach spaces and short maps. It has a symmetric monoidal structure where the tensor product is the projective tensor $\widehat{\otimes}_\pi$.
+ The binary coproduct of two Banach spaces $V, W$ is given by their direct sum equipped with the norm $\norm{(v,w)} = \norm{v} + \norm{w}$.
 \end{definition}
 
 
 \begin{lemma} \label{lem_op_max_trace}
-  Let $V$, $W$ and $U$ be Banach spaces. Let $ T: V \to U$ and $ S: W \to U$ be short maps. Then, it holds that 
+  Let $V$, $W$ and $R$ be Banach spaces. Let $ T: V \to R$ and $ S: W \to R$ be short maps. Then, it holds that 
   $$ \opnorm{[T, S]} \leq \sup \{\opnorm{T},\opnorm{S}\}$$
 \end{lemma}
 
@@ -195,7 +195,7 @@ In this work, we only consider finite measures; hence, the term ``measure" impli
 
 \subsection{What is measure theory?}
 
-Throughout history, mathematicians sought to extend the ideas of length, area, and volume. The most effective known way to generalizing these concepts is through the idea of a measure. Abstractly, a measure is a function defined on subsets of a set with additive properties mirroring length, area, and volume.
+Throughout history, mathematicians sought to extend the ideas of length, area, and volume. The most effective known way to generalize these concepts is through the idea of a measure. Abstractly, a measure is a function defined on subsets of a set with additive properties mirroring length, area, and volume.
 
 We begin with a simple example inspired by \cite{athreyaMeasureTheoryProbability2006} to develop an intuition for the concepts of measure and measure space.
 Imagine an open field $S$ covered in snow after a storm. Suppose we wish to measure the amount of snow accumulated in as many field regions as possible.
@@ -208,11 +208,11 @@ For this framework to make sense, it is reasonable to require that $ \mathcal{B}
 
 \subsubsection*{Properties of $\mathcal{B}$:}
 \begin{enumerate}
-    \item If $A \in B$, then the complement $A^c \in \mathcal{B}$ (\ie, if we can measure the snow on a set $A$, and we know the total amount on $S$, then we can determine the snow on the remaining part $A^c$).
+    \item If $A \in B$, then  $A^c \in \mathcal{B}$ (\ie, if we can measure the snow on a set $A$, and we know the total amount on $S$, then we can determine the snow on the remaining part $A^c$).
     \item If $A_1, A_2 \in \mathcal{B}$, then \(A_1 \cup A_2 \in \mathcal{B}\)  
     (\ie, if we can measure the snow on two regions \(A_1\) and \(A_2\), we should also be able to measure it on their union).
     \item If $\{A_n\}_{n \geq 1} \subset \mathcal{B}$ is an increasing sequence, \ie, $A_n \subset A_{n+1}$ for all $n$, then $\bigcup_{n=1}^{\infty} A_n \in \mathcal{B}$  
-    \\(\ie, if each set in a increasing sequence of regions is measurable, then their limit—the union—should also be measurable).
+    \\(\ie, if each set in a increasing sequence of regions is measurable, then their limit, the union, should also be measurable).
     \item The collection $\mathcal{B}$ contains a base class $C$ of simple, well-behaved sets (\eg, triangles, rectangles, circles) for which measurement is initially defined.
 \end{enumerate}
 
@@ -278,7 +278,7 @@ A collection $\mathcal{B}$ of subsets of $S$ satisfying the above conditions for
  
 % lebesgue measure
 
- One of the most important measures is the Lebesgue measure on the real line (\ie, the length in $\mathbb{R}$), $\lambda$, and its generalizations to $\mathbb{R}^n$,  $\lambda_n$.  It is characterized as the unique measure on the Borel sets whose value on every interval is its length. That is, for any interval $[a, b] \subset \mathbb{R}$,
+ One of the most important measures is the Lebesgue measure on the real line (\ie, the length in $\mathbb{R}$), $\lambda$, and its generalizations to $\mathbb{R}^n$,  $\lambda_n$.  It is characterized as the unique measure on the Borel sets whose value on every interval is its length, \ie, for any interval $[a, b] \subset \mathbb{R}$,
 $
 \lambda([a, b]) = b - a.$ The Lebesgue measure, enjoys the properties listed in the theorem below.
 \begin{theorem} \cite[Theorem 1.7.3]{bogachevMeasureTheory2007}\label{thm:props_lebesgue_meas}
@@ -326,7 +326,7 @@ $$
 $$
 \sum_{i=0}^n f(s_i) \mu(B_i),
 $$
-where $\{B_0, \dots, B_n\}$ forms a measurable partition of $S$, and within each $B_i$, the variation of $f$ does not exceed $(M - m)/n$. Here, $s_i \in B_i$ for each $i$, and the limit is taken over increasingly refined partitions. 
+where $\{B_0, \dots, B_n\}$ is a measurable partition of $S$, and within each $B_i$, the variation of $f$ does not exceed $(M - m)/n$. Here, $s_i \in B_i$ for each $i$, and the limit is taken over increasingly finer partitions. 
 \end{definition}
 
 
@@ -448,7 +448,7 @@ for all \( B \in \mathcal{B} \).
      \end{definition}
 \end{comment}
 
-\begin{definition}
+\begin{definition} \label{def:mu+_mu-}
   Let \( \mu \) be a measure on a measurable space \( (S, \mathcal{B}) \). The measures \( \mu^+ \) and \( \mu^- \) are defined as follows:
 \[
 \mu^+(B) \triangleq \sup\{ \mu(B_i) : B_i \subset B,\ B_i \in \mathcal{B} \},
@@ -578,7 +578,8 @@ Observe that we can put an upper bound between the terms $\mathtt{unif}(0,1)(\as
         \\
         & \hspace{-15pt} = 1 - \frac{1}{1+\delta} 
         \end{align*}
-        The first two steps use the countable additivity of measurements; the third follows from the second property in \autoref{thm:props_lebesgue_meas}; the fourth step follows from the definition of \emph{supremum}.
+        The first follows from \autoref{def:mu+_mu-};
+        the second step uses the countable additivity of measures; the third follows from the second property in \autoref{thm:props_lebesgue_meas}; the fourth step follows from the definition of \emph{supremum}.
 
         It follows from an analogous reasoning the right-hand side of the
         addition will be $\frac{\delta}{1 + \delta}$ and therefore the norm
@@ -617,7 +618,7 @@ Then as our final step we proceed
                ; 
                \inr(y) \Rightarrow jr^{\delta}  \}
         \end{align*}
-        Thus if $\textbf{rwalk}$ is the random walk that
+        Thus, if $\textbf{rwalk}$ is the random walk that
         involves jump $jl$ and $ \emph{CoinToss}_p$  and $\textbf{rwalk'}$ the random
         walk that involves jump $jl^\delta$ and $ \emph{CoinToss}_q$ we deduce from the framework the metric
         equation,
@@ -625,7 +626,7 @@ Then as our final step we proceed
                 \textbf{rwalk} =_{2n \cdot \left(|p-q|+ \frac{\delta}{1 + \delta}\right)}
                 \textbf{rwalk'} 
         \]
-        which will converge to $0$ as $\delta$ and $|p-q|$ tends to $0$.
+        which will converge to $0$ as $\delta$ and $|p-q|$ tend to $0$.
 
   
 The same reasoning applies to alternative interpretations of $jl$ and $jr$. For example, consider:
@@ -634,7 +635,7 @@ The same reasoning applies to alternative interpretations of $jl$ and $jr$. For 
                         \hspace{1cm}
                         \sem{jr}(1) =\mu \mapsto +_\ast \left(\mu \otimes_{\text{meas}} \sum_{i=1}^n p_i\cdot \delta_{x_i}\right).
         \]
-Operationally, this means that $jl$ performs a jump to the left, landing at position $-x_i$ with probability $p_i$, and $jl$ behaves analogously, jumping to $x_i$ with the same probabilities. Now, consider another jump $jl^{q_i}$ whose interpretation corresponds to that of $jl$ except for the fact that $\sum_{i=1}^n p_i\cdot \delta_{-x_i}$ is replaced with $ \sum_{i=1}^n  q_i\cdot \delta_{-x_i}$.
+Operationally, this means that $jl$ performs a jump to the left, landing at position $-x_i$ with probability $p_i$, and $jl$ behaves analogously, jumping to $x_i$ with the same probability $p_i$. Now, consider another jump $jl^{q_i}$ whose interpretation corresponds to that of $jl$ except for the fact that $\sum_{i=1}^n p_i\cdot \delta_{-x_i}$ is replaced with $ \sum_{i=1}^n  q_i\cdot \delta_{-x_i}$.
 Given \autoref{def:tvnorm}, we compute,
     \begin{align*}
       &\norm{ \sum_i p_i \delta_{-x_i} - \sum_i q_i \delta_{-x_i}}  \\
@@ -650,9 +651,9 @@ we observe that the supremum is achieved when each Dirac mass is placed in a dis
 Applying the same reasoning as above, if $\textbf{rwalk}$ is the random walk with  $jl$ and $ \emph{CoinToss}_p$  and $\textbf{rwalk'}$ the random walk with $jl^{q_i}$ and $ \emph{CoinToss}_q$ , we obtain 
  \[
                 \textbf{rwalk} =_{n \cdot \left(2 |p-q|+ \sum_i |p_i-q_i|\right)}
-                \textbf{rwalk'}. 
+                \textbf{rwalk'}, 
         \]
-
+which converges to $0$ as $|p - q|$ and $|p_i - q_i|$ tend to $0$ for all $1 \leq i \leq n$.
 
         
 \end{example}

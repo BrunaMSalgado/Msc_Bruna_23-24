@@ -24,6 +24,8 @@ Alain Aspect, Jean Dalibard, and G{\'e}rard Roger.
 \newblock Experimental test of bell's inequalities using time-varying
   analyzers.
 \newblock {\em Physical review letters}, 49(25):1804, 1982.
+\newblock \href {https://doi.org/10.1103/PhysRevLett.49.1804}
+  {\path{doi:10.1103/PhysRevLett.49.1804}}.
 
 \bibitem{athreyaMeasureTheoryProbability2006}
 Krishna~B. Athreya and Soumendra~N. Lahiri.
@@ -54,9 +56,11 @@ Gilles Barthe, Joost-Pieter Katoen, and Alexandra Silva, editors.
   {\path{doi:10.1017/9781108770750}}.
 
 \bibitem{bell1964einstein}
-John~S Bell.
+J.~S. Bell.
 \newblock On the einstein podolsky rosen paradox.
-\newblock {\em Physics Physique Fizika}, 1(3):195, 1964.
+\newblock {\em Physics Physique Fizika}, 1:195--200, Nov 1964.
+\newblock \href {https://doi.org/10.1103/PhysicsPhysiqueFizika.1.195}
+  {\path{doi:10.1103/PhysicsPhysiqueFizika.1.195}}.
 
 \bibitem{bennett1993teleporting}
 Charles~H Bennett, Gilles Brassard, Claude Cr{\'e}peau, Richard Jozsa, Asher
@@ -64,6 +68,8 @@ Charles~H Bennett, Gilles Brassard, Claude Cr{\'e}peau, Richard Jozsa, Asher
 \newblock Teleporting an unknown quantum state via dual classical and
   einstein-podolsky-rosen channels.
 \newblock {\em Physical review letters}, 70(13):1895, 1993.
+\newblock \href {https://doi.org/10.1103/PhysRevLett.70.1895}
+  {\path{doi:10.1103/PhysRevLett.70.1895}}.
 
 \bibitem{guarded_ultrametric}
 Lars Birkedal, Jan Schwinghammer, and Kristian Støvring.
@@ -114,6 +120,8 @@ H-J Briegel, Wolfgang D{\"u}r, Juan~I Cirac, and Peter Zoller.
 \newblock Quantum repeaters: the role of imperfect local operations in quantum
   communication.
 \newblock {\em Physical Review Letters}, 81(26):5932, 1998.
+\newblock \href {https://doi.org/10.1103/PhysRevLett.81.5932}
+  {\path{doi:10.1103/PhysRevLett.81.5932}}.
 
 \bibitem{brownCalgebrasFinitedimensionalApproximations}
 Nathanial~Patrick Brown and Narutaka Ozawa.
@@ -125,11 +133,15 @@ Lukas Burgholzer and Robert Wille.
 \newblock Advanced equivalence checking for quantum circuits.
 \newblock {\em IEEE Transactions on Computer-Aided Design of Integrated
   Circuits and Systems}, 40(9):1810--1824, 2020.
+\newblock \href {https://doi.org/10.1109/TCAD.2020.3032630}
+  {\path{doi:10.1109/TCAD.2020.3032630}}.
 
 \bibitem{calderbank1996good}
 A~Robert Calderbank and Peter~W Shor.
 \newblock Good quantum error-correcting codes exist.
 \newblock {\em Physical Review A}, 54(2):1098, 1996.
+\newblock \href {https://doi.org/10.1103/PhysRevA.54.1098}
+  {\path{doi:10.1103/PhysRevA.54.1098}}.
 
 \bibitem{caoQuantitativeLogicSoft2010}
 Bing-yuan Cao, Guo-jun Wang, Shui-li Chen, and Si-zong Guo, editors.
@@ -160,13 +172,8 @@ Frederic~T Chong, Diana Franklin, and Margaret Martonosi.
 \newblock Programming languages and compiler design for realistic quantum
   hardware.
 \newblock {\em Nature}, 549(7671):180--187, 2017.
-
-\bibitem{churchFormulationSimpleTheory1940}
-Alonzo Church.
-\newblock A {{Formulation}} of the {{Simple Theory}} of {{Types}}.
-\newblock 5(2):56--68.
-\newblock \href {https://arxiv.org/abs/2266170} {\path{arXiv:2266170}}, \href
-  {https://doi.org/10.2307/2266170} {\path{doi:10.2307/2266170}}.
+\newblock \href {https://doi.org/10.1038/nature23459}
+  {\path{doi:10.1038/nature23459}}.
 
 \bibitem{church1936}
 Alonzo Church.
@@ -174,6 +181,12 @@ Alonzo Church.
 \newblock {\em American Journal of Mathematics}, 58(2):345--363, 1936.
 \newblock \href {https://arxiv.org/abs/2371045} {\path{arXiv:2371045}}, \href
   {https://doi.org/10.2307/2371045} {\path{doi:10.2307/2371045}}.
+
+\bibitem{churchFormulationSimpleTheory1940}
+Alonzo Church.
+\newblock A {{Formulation}} of the {{Simple Theory}} of {{Types}}.
+\newblock 5(2):56--68, 1940.
+\newblock \href {https://doi.org/10.2307/2266170} {\path{doi:10.2307/2266170}}.
 
 \bibitem{connesNoncommutativeGeometry1995}
 Alain Connes.
@@ -229,12 +242,6 @@ Fredrik Dahlqvist and Renato Neves.
 \newblock \href {https://doi.org/10.4230/LIPIcs.CSL.2022.16}
   {\path{doi:10.4230/LIPIcs.CSL.2022.16}}.
 
-\bibitem{dahlqvist2023complete}
-Fredrik Dahlqvist and Renato Neves.
-\newblock A complete v-equational system for graded lambda-calculus.
-\newblock {\em Electronic Notes in Theoretical Informatics and Computer
-  Science}, 3, 2023.
-
 \bibitem{dahlqvistCompleteVEquationalSystem2023}
 Fredrik Dahlqvist and Renato Neves.
 \newblock A {{Complete V-Equational System}} for {{Graded}}
@@ -271,8 +278,9 @@ B.~A. Davey and H.~A. Priestley.
 
 \bibitem{de1956computability}
 Karel De~Leeuw, Edward~F Moore, Claude~E Shannon, and Norman Shapiro.
-\newblock Computability by probabilistic machines.
-\newblock {\em Automata studies}, 34:183--198, 1956.
+\newblock Computability by probabilistic machines. automata studies.
+\newblock {\em The Journal of Symbolic Logic}, 34:183--198, 1956.
+\newblock \href {https://doi.org/10.2307/2270759} {\path{doi:10.2307/2270759}}.
 
 \bibitem{deneckeGaloisConnectionsApplications2004}
 K.~Denecke, M.~Erné, and S.~L. Wismath, editors.
@@ -304,6 +312,8 @@ Albert Einstein, Boris Podolsky, and Nathan Rosen.
 \newblock Can quantum-mechanical description of physical reality be considered
   complete?
 \newblock {\em Physical review}, 47(10):777, 1935.
+\newblock \href {https://doi.org/10.1103/PhysRev.47.777}
+  {\path{doi:10.1103/PhysRev.47.777}}.
 
 \bibitem{fanQuantitativeLogicSoft2017}
 Tai-He Fan, Shui-Li Chen, San-Min Wang, and Yong-Ming Li, editors.
@@ -327,11 +337,15 @@ Fernando Ferreira.
 Richard~P. Feynman.
 \newblock Simulating physics with computers.
 \newblock {\em International Journal of Theoretical Physics}, 21(6-7), 1982.
+\newblock \href {https://doi.org/10.1007/BF02650179}
+  {\path{doi:10.1007/BF02650179}}.
 
 \bibitem{fowler2012surface}
 Austin~G Fowler, Matteo Mariantoni, John~M Martinis, and Andrew~N Cleland.
 \newblock Surface codes: Towards practical large-scale quantum computation.
 \newblock {\em Physical Review A}, 86(3):032324, 2012.
+\newblock \href {https://doi.org/10.1103/PhysRevA.86.032324}
+  {\path{doi:10.1103/PhysRevA.86.032324}}.
 
 \bibitem{franzenGodelsTheorem2008}
 Torkel Franzén.
@@ -414,6 +428,8 @@ Jan Hamhalter.
 Aram~W Harrow, Benjamin Recht, and Isaac~L Chuang.
 \newblock Efficient discrete approximations of quantum gates.
 \newblock {\em Journal of Mathematical Physics}, 43(9):4445--4451, 2002.
+\newblock \href {https://doi.org/10.1063/1.1495899}
+  {\path{doi:10.1063/1.1495899}}.
 
 \bibitem{heinosaariMathematicalLanguageQuantum2011}
 Teiko Heinosaari and Mário Ziman.
@@ -442,6 +458,7 @@ Shih-Han Hung, Kesha Hietala, Shaopeng Zhu, Mingsheng Ying, Michael Hicks, and
 \newblock Quantitative robustness analysis of quantum programs.
 \newblock {\em Proceedings of the ACM on Programming Languages}, 3(POPL):1--29,
   2019.
+\newblock \href {https://doi.org/10.1145/3290344} {\path{doi:10.1145/3290344}}.
 
 \bibitem{jonesImplementationFunctionalProgramming}
 Simon~Peyton Jones.
@@ -466,6 +483,8 @@ Michael Keyl.
 H~Jeff Kimble.
 \newblock The quantum internet.
 \newblock {\em Nature}, 453(7198):1023--1030, 2008.
+\newblock \href {https://doi.org/10.1038/nature07127}
+  {\path{doi:10.1038/nature07127}}.
 
 \bibitem{kreyszigIntroductoryFunctionalAnalysis2007}
 Kreyszig.
@@ -533,12 +552,16 @@ Radu Mardare, Prakash Panangaden, and Gordon Plotkin.
 \newblock Quantitative algebraic reasoning.
 \newblock In {\em Proceedings of the 31st Annual ACM/IEEE Symposium on Logic in
   Computer Science}, pages 700--709, 2016.
+\newblock \href {https://doi.org/10.1145/2933575.2934518}
+  {\path{doi:10.1145/2933575.2934518}}.
 
 \bibitem{mardare2017axiomatizability}
 Radu Mardare, Prakash Panangaden, and Gordon Plotkin.
 \newblock On the axiomatizability of quantitative algebras.
 \newblock In {\em 2017 32nd Annual ACM/IEEE Symposium on Logic in Computer
   Science (LICS)}, pages 1--12. IEEE, 2017.
+\newblock \href {https://doi.org/10.1109/LICS.2017.8005102}
+  {\path{doi:10.1109/LICS.2017.8005102}}.
 
 \bibitem{mio24}
 Matteo Mio, Ralph Sarkis, and Valeria Vignudelli.
@@ -560,7 +583,9 @@ Prakash Murali, Jonathan~M Baker, Ali Javadi-Abhari, Frederic~T Chong, and
   computers.
 \newblock In {\em Proceedings of the twenty-fourth international conference on
   architectural support for programming languages and operating systems}, pages
-  1015--1029, 2019.
+  1015--1029. Association for Computing Machinery, 2019.
+\newblock \href {https://doi.org/10.1145/3297858.3304075}
+  {\path{doi:10.1145/3297858.3304075}}.
 
 \bibitem{neumann1927wahrscheinlichkeitstheoretischer}
 J~von Neumann.
@@ -589,6 +614,8 @@ Jian-Wei Pan, Dik Bouwmeester, Harald Weinfurter, and Anton Zeilinger.
 \newblock Experimental entanglement swapping: entangling photons that never
   interacted.
 \newblock {\em Physical review letters}, 80(18):3891, 1998.
+\newblock \href {https://doi.org/10.1103/PhysRevLett.80.3891}
+  {\path{doi:10.1103/PhysRevLett.80.3891}}.
 
 \bibitem{paulsenCompletelyBoundedMaps2003}
 Vern Paulsen.
@@ -616,6 +643,8 @@ Simon Perdrix.
 \newblock Quantum entanglement analysis based on abstract interpretation.
 \newblock In {\em International Static Analysis Symposium}, pages 270--282.
   Springer, 2008.
+\newblock \href {https://doi.org/10.1007/978-3-540-69166-2_18}
+  {\path{doi:10.1007/978-3-540-69166-2_18}}.
 
 \bibitem{pisierTensorProductsCAlgebras2020}
 Gilles Pisier.
@@ -630,6 +659,8 @@ Gilles Pisier.
 John Preskill.
 \newblock Quantum computing in the nisq era and beyond.
 \newblock {\em Quantum}, 2:79, 2018.
+\newblock \href {https://doi.org/10.22331/q-2018-08-06-79}
+  {\path{doi:10.22331/q-2018-08-06-79}}.
 
 \bibitem{rudin91functional}
 Walter Rudin.
@@ -662,12 +693,16 @@ Alejo Salles, Fernando de~Melo, MP~Almeida, Malena Hor-Meyll, SP~Walborn,
 \newblock Experimental investigation of the dynamics of entanglement: Sudden
   death, complementarity, and continuous monitoring of the environment.
 \newblock {\em Physical Review A}, 78(2):022322, 2008.
+\newblock \href {https://doi.org/10.1103/PhysRevA.78.022322}
+  {\path{doi:10.1103/PhysRevA.78.022322}}.
 
 \bibitem{selinger2004towards}
 Peter Selinger.
 \newblock Towards a quantum programming language.
 \newblock {\em Mathematical Structures in Computer Science}, 14(4):527--586,
   2004.
+\newblock \href {https://doi.org/10.1017/S0960129504004256}
+  {\path{doi:10.1017/S0960129504004256}}.
 
 \bibitem{selinger2013lecture}
 Peter Selinger.
@@ -679,6 +714,8 @@ Peter Selinger and Beno{\^\i}t Valiron.
 \newblock A lambda calculus for quantum computation with classical control.
 \newblock {\em Mathematical Structures in Computer Science}, 16(3):527--552,
   2006.
+\newblock \href {https://doi.org/10.1007/11417170_26}
+  {\path{doi:10.1007/11417170_26}}.
 
 \bibitem{selinger2008linear}
 Peter Selinger and Beno{\^\i}t Valiron.
@@ -686,12 +723,16 @@ Peter Selinger and Beno{\^\i}t Valiron.
   calculus.
 \newblock In {\em International Conference on Foundations of Software Science
   and Computational Structures}, pages 81--96. Springer, 2008.
+\newblock \href {https://doi.org/10.1007/978-3-540-78499-9_7}
+  {\path{doi:10.1007/978-3-540-78499-9_7}}.
 
 \bibitem{selinger2008fully}
 Peter Selinger and Beno{\^\i}t Valiron.
 \newblock On a fully abstract model for a quantum linear functional language.
 \newblock {\em Electronic Notes in Theoretical Computer Science}, 210:123--137,
   2008.
+\newblock \href {https://doi.org/10.1016/j.entcs.2008.04.022}
+  {\path{doi:10.1016/j.entcs.2008.04.022}}.
 
 \bibitem{selinger2009quantum}
 Peter Selinger, Beno{\i}t Valiron, et~al.
@@ -705,6 +746,7 @@ Manuel~A Serrano, Jose~A Cruz-Lemus, Ricardo Perez-Castillo, and Mario
 \newblock Quantum software components and platforms: Overview and quality
   assessment.
 \newblock {\em ACM Computing Surveys}, 55(8):1--31, 2022.
+\newblock \href {https://doi.org/10.1145/3548679} {\path{doi:10.1145/3548679}}.
 
 \bibitem{Yu_trace_non_inc}
 Yu~Shi and Edo Waks.
@@ -719,16 +761,22 @@ Peter~W Shor.
   factoring.
 \newblock In {\em Proceedings 35th annual symposium on foundations of computer
   science}, pages 124--134. Ieee, 1994.
+\newblock \href {https://doi.org/10.1109/SFCS.1994.365700}
+  {\path{doi:10.1109/SFCS.1994.365700}}.
 
 \bibitem{shulman2019practical}
 Michael Shulman.
 \newblock A practical type theory for symmetric monoidal categories.
 \newblock {\em Theory and Applications of Categories}, 37(5):863--907, 2021.
+\newblock \href {https://doi.org/10.48550/arXiv.1911.00818}
+  {\path{doi:10.48550/arXiv.1911.00818}}.
 
 \bibitem{steane1996error}
 Andrew~M Steane.
 \newblock Error correcting codes in quantum theory.
 \newblock {\em Physical Review Letters}, 77(5):793, 1996.
+\newblock \href {https://doi.org/10.1103/PhysRevLett.77.793}
+  {\path{doi:10.1103/PhysRevLett.77.793}}.
 
 \bibitem{STUBBE201495}
 Isar Stubbe.
@@ -750,6 +798,8 @@ Runzhou Tao, Yunong Shi, Jianan Yao, John Hui, Frederic~T Chong, and Ronghui
 \newblock Gleipnir: toward practical error analysis for quantum programs.
 \newblock In {\em Proceedings of the 42nd ACM SIGPLAN International Conference
   on Programming Language Design and Implementation}, pages 48--64, 2021.
+\newblock \href {https://doi.org/10.1145/3453483.3454029}
+  {\path{doi:10.1145/3453483.3454029}}.
 
 \bibitem{thrun2002robotic}
 Sebastian Thrun et~al.
@@ -762,6 +812,8 @@ Wolfgang Tittel, J{\"u}rgen Brendel, Bernard Gisin, Thomas Herzog, Hugo
 \newblock Experimental demonstration of quantum correlations over more than 10
   km.
 \newblock {\em Physical Review A}, 57(5):3229, 1998.
+\newblock \href {https://doi.org/10.1103/PhysRevA.57.3229}
+  {\path{doi:10.1103/PhysRevA.57.3229}}.
 
 \bibitem{Anglican2015}
 David Tolpin, Jan-Willem van~de Meent, and Frank Wood.
@@ -769,6 +821,8 @@ David Tolpin, Jan-Willem van~de Meent, and Frank Wood.
 \newblock In {\em Machine Learning and Knowledge Discovery in Databases:
   European Conference, ECML PKDD 2015, Porto, Portugal, September 7-11, 2015,
   Proceedings, Part III 15}, pages 308--311. Springer, 2015.
+\newblock \href {https://doi.org/10.1007/978-3-319-23461-8_36}
+  {\path{doi:10.1007/978-3-319-23461-8_36}}.
 
 \bibitem{venegasQuantumWalksComprehensive2012}
 Salvador~Elías Venegas-Andraca.
@@ -782,6 +836,8 @@ Joel~J Wallman and Joseph Emerson.
 \newblock Noise tailoring for scalable quantum computation via randomized
   compiling.
 \newblock {\em Physical Review A}, 94(5):052325, 2016.
+\newblock \href {https://doi.org/10.1103/PhysRevA.94.052325}
+  {\path{doi:10.1103/PhysRevA.94.052325}}.
 
 \bibitem{Wang_2011}
 Jing Wang, Li~Jiang, Han Zhang, Hanzhuang Zhang, and Liquan Zhang.
@@ -811,6 +867,8 @@ Glynn Winskel.
 William~K Wootters and Wojciech~H Zurek.
 \newblock A single quantum cannot be cloned.
 \newblock {\em Nature}, 299(5886):802--803, 1982.
+\newblock \href {https://doi.org/10.1038/299802a0}
+  {\path{doi:10.1038/299802a0}}.
 
 \bibitem{yanofskyMonoidalCategoryTheory2024}
 Noson~S. Yanofsky.
@@ -822,6 +880,8 @@ Juan Yin, Yuan Cao, Yu-Huai Li, Sheng-Kai Liao, Liang Zhang, Ji-Gang Ren,
   Wen-Qi Cai, Wei-Yue Liu, Bo~Li, Hui Dai, et~al.
 \newblock Satellite-based entanglement distribution over 1200 kilometers.
 \newblock {\em Science}, 356(6343):1140--1144, 2017.
+\newblock \href {https://doi.org/10.1126/science.aan3211}
+  {\path{doi:10.1126/science.aan3211}}.
 
 \bibitem{Godel}
 Richard Zach.
@@ -841,7 +901,9 @@ Elias Zakon.
 \bibitem{zhao2020quantum}
 Jianjun Zhao.
 \newblock Quantum software engineering: Landscapes and horizons.
-\newblock {\em arXiv preprint arXiv:2007.07047}, 2020.
+\newblock {\em arXiv preprint}, 2020.
+\newblock \href {https://doi.org/10.48550/arXiv.2007.07047}
+  {\path{doi:10.48550/arXiv.2007.07047}}.
 
 \bibitem{Zhou_Limits_Noisy_Quantum_Metrology}
 Sisi Zhou.

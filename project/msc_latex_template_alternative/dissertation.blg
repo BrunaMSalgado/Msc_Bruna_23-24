@@ -11,63 +11,62 @@ Reallocating 'singl_function' (item size: 4) to 100 items.
 Reallocating 'singl_function' (item size: 4) to 100 items.
 Database file #1: dissertation.bib
 Warning--entry type for "yanofskyMonoidalCategoryTheory2024" isn't style-file defined
---line 831 of file dissertation.bib
+--line 867 of file dissertation.bib
 Warning--entry type for "choNeumannAlgebrasForm2016" isn't style-file defined
---line 1269 of file dissertation.bib
+--line 1307 of file dissertation.bib
 Warning--entry type for "ferreiraProblemaDecisaoMaquina" isn't style-file defined
---line 1443 of file dissertation.bib
+--line 1482 of file dissertation.bib
 Warning--entry type for "westerbaanCategoryNeumannAlgebras2019" isn't style-file defined
---line 1649 of file dissertation.bib
+--line 1686 of file dissertation.bib
 Warning--entry type for "December2020Product" isn't style-file defined
---line 1873 of file dissertation.bib
+--line 1910 of file dissertation.bib
 Warning--empty journal in bornZurQuantenmechanik1925
 Warning--empty journal in churchFormulationSimpleTheory1940
-Warning--empty year in churchFormulationSimpleTheory1940
 Warning--empty year in franzenGodelsTheorem2008
 Warning--empty booktitle in Church2008
 Warning--empty journal in heisenbergUeberQuantentheoretischeUmdeutung1925
 Warning--empty journal in STUBBE201495
 Warning--empty journal in thrun2002robotic
 Warning--empty journal in Wang_2011
-You've used 129 entries,
+You've used 128 entries,
             2943 wiz_defined-function locations,
-            1446 strings with 28736 characters,
-and the built_in function-call counts, 57161 in all, are:
-= -- 5999
-> -- 2000
+            1480 strings with 29506 characters,
+and the built_in function-call counts, 58437 in all, are:
+= -- 6264
+> -- 1985
 < -- 28
-+ -- 736
-- -- 584
-* -- 3034
-:= -- 8033
-add.period$ -- 457
-call.type$ -- 129
-change.case$ -- 626
++ -- 730
+- -- 580
+* -- 3269
+:= -- 8168
+add.period$ -- 491
+call.type$ -- 128
+change.case$ -- 621
 chr.to.int$ -- 0
-cite$ -- 138
-duplicate$ -- 1688
-empty$ -- 5482
-format.name$ -- 584
-if$ -- 14967
+cite$ -- 136
+duplicate$ -- 1678
+empty$ -- 5524
+format.name$ -- 580
+if$ -- 15246
 int.to.chr$ -- 0
-int.to.str$ -- 129
-missing$ -- 161
-newline$ -- 701
-num.names$ -- 273
-pop$ -- 1454
+int.to.str$ -- 128
+missing$ -- 160
+newline$ -- 732
+num.names$ -- 271
+pop$ -- 1443
 preamble$ -- 1
-purify$ -- 540
+purify$ -- 536
 quote$ -- 0
-skip$ -- 4047
+skip$ -- 4090
 stack$ -- 0
-substring$ -- 2311
-swap$ -- 465
-text.length$ -- 136
+substring$ -- 2393
+swap$ -- 534
+text.length$ -- 208
 text.prefix$ -- 0
 top$ -- 0
-type$ -- 426
-warning$ -- 9
-while$ -- 391
-width$ -- 132
-write$ -- 1500
-(There were 14 warnings)
+type$ -- 422
+warning$ -- 8
+while$ -- 390
+width$ -- 131
+write$ -- 1562
+(There were 13 warnings)

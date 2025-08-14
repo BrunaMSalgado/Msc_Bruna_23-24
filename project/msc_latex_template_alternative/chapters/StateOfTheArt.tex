@@ -695,7 +695,7 @@ The calculus defined in \autoref{fig:typing_rules_linear} possesses several desi
 \end{theorem}
 
 \begin{proof}
-Since these properties are established in \cite[Theorem 2.3]{dahlqvist2023complete} for the lambda calculus without conditionals,  it suffices to consider the cases involving conditionals.
+Since these properties are established in \cite[Theorem 2.3]{dahlqvistCompleteVEquationalSystem2023} for the lambda calculus without conditionals,  it suffices to consider the cases involving conditionals.
 It follows in all three cases from induction over the length of judgement derivation
 trees. 
 
@@ -1759,7 +1759,12 @@ Regarding the substitution rule, once again the cases involving the injections f
   & \hspace{-30pt} =  \left[[\![ \Delta  ,   a, Z \vljud w[t/x] ]\!] ,[\![ \Delta, b, Z \vljud u[t/x]  ]\!] \right] \comp ( \text{exch} \comp \text{jn}\comp \sw \oplus  \text{exch} \comp \text{jn} \comp \sw)   \comp \ldots   & {(\text{Exch., Cop.})} \\
   & \hspace{-30pt} =   \left[[\![w ]\!] \comp  \text{jn} \comp (\id \otimes [\![t]\!] ) \comp \text{sp}  ,[\![ u]\!] \comp \text{jn} \comp (\id \otimes [\![t]\!] ) \comp \text{sp} \right] \comp (\text{exch} \comp \text{jn} \comp \sw  \oplus \text{exch}  & {\text{(Induction)}}  \\
   & \hspace{-20pt} \comp\text{jn} \comp \sw ) \comp \ldots \\
-  & \hspace{-30pt} =  \left[[\![w ]\!] ,[\![ u]\!] \right] \comp \big(\text{exch} \comp \text{jn} \comp \sw \comp (\id \otimes  \text{jn} ) \comp (\id \otimes [\![t]\!]) \comp  (\id \otimes \text{sp} ) \oplus \text{exch} \comp \text{jn} \comp \sw   & {(\text{Naturality,}} \\
+  & \hspace{-30pt} =  \big[[\![w ]\!] \comp \text{exch} \comp  \text{jn} \comp \sw \comp (\id \otimes \text{jn}) \cdot (\sw \otimes \id) \comp (\id \otimes \text{sp} ) \comp (\id \otimes [\![t]\!] ) \comp \text{sp}  ,  & (\text{Coherence})\\ 
+  & \hspace{-10pt}  [\![u ]\!] \comp \text{exch} \comp  \text{jn} \comp \sw \comp (\id \otimes \text{jn}) \cdot (\sw \otimes \id) \comp (\id \otimes \text{sp} ) \comp (\id \otimes [\![t]\!] ) \comp \text{sp} \big]  \cdot \ldots \\
+  & \hspace{-30pt} =  \big[[\![w ]\!] \comp \text{exch} \comp  \text{jn} \comp \sw  \comp (\id \otimes \text{jn}) \comp (\id \otimes [\![t]\!] ) \cdot (\sw \otimes \id) \comp (\id \otimes \text{sp} )  \comp \text{sp}  ,  & (\text{Naturality})\\ 
+  & \hspace{-10pt}  [\![u ]\!] \comp \text{exch} \comp  \text{jn} \comp \sw \comp (\id \otimes \text{jn}) \comp (\id \otimes [\![t]\!] ) \cdot (\sw \otimes \id) \comp (\id \otimes \text{sp} ) \comp \text{sp} \big]  \cdot \ldots \\
+  & \hspace{-20pt} \comp  ( \text{exch} \comp \text{jn}\comp \sw \oplus  \text{exch} \comp \text{jn} \comp \sw)   \comp \ldots  \\
+  & \hspace{-30pt} =  \left[[\![w ]\!] ,[\![ u]\!] \right] \comp \big(\text{exch} \comp \text{jn} \comp \sw \comp (\id \otimes  \text{jn} ) \comp (\id \otimes [\![t]\!]) \comp  (\id \otimes \text{sp} ) \oplus \text{exch} \comp \text{jn} \comp \sw   & {(\text{Coherence},} \\
   & \hspace{-30pt} \hspace{10pt} \comp (\id \otimes  \text{jn} ) \comp (\id \otimes [\![t]\!]) \comp  (\id \otimes \text{sp} ) \big)\comp  \ldots & {\text{Cop. laws})} \\
   %& \hspace{-30pt} =  \ldots \comp \big(\ldots  \comp (\id \otimes  (\text{jn} \comp \id \otimes [\![t]\!] \comp \text{sp}) ) \oplus  \ldots  \comp (\id \otimes  (\text{jn}\comp \id \otimes [\![t]\!] \comp \text{sp}) )\big) \comp \dist \comp \ldots &  \\
   & \hspace{-30pt} = [[\![ \Delta  , x ,  a \vljud w]\!] , [\![ \Delta  , x ,  b \vljud u]\!]]  \comp \big(\text{jn} \comp \sw \comp (\id \otimes  (\text{jn} \comp \id \otimes [\![t]\!]  \comp \text{sp}))  \oplus \text{jn} \comp  \sw      & {(\text{Exchange, }}  \\
@@ -2110,7 +2115,7 @@ Coproducts are not discussed in this context (for now), as they relate to the in
 
 \vspace{5pt}
 
-In this context, \emph{soundness} and \emph{completeness} concepts are extended to encompass not only the classical equations but also the metric equations. Recall classical equations $v=w$ can be written as $v=_0w$. As a result, in this metric setting, we define 
+In this context, \emph{soundness} and \emph{completeness} concepts are extended to encompass not only the classical equations but also the metric equations. Recall that classical equations $v=w$ can be written as $v=_0w$. As a result, in this metric setting, we define 
 
 \begin{itemize}  
   \item \emph{Soundness} as the property 
@@ -2118,7 +2123,7 @@ In this context, \emph{soundness} and \emph{completeness} concepts are extended 
  M =_{\varepsilon} N \;\Rightarrow\; d (\llbracket N \rrbracket, \llbracket M \rrbracket) \leq \varepsilon
 \quad \text{for all interpretations in the class.}
 \]
- That is, if two terms are provably at a maximum distance $_{\varepsilon}$, so are their respective interpretations
+ That is, if two terms are provably at a maximum distance ${\varepsilon}$, so are their respective interpretations
 \item \emph{Completeness} as the property 
 \[
  d (\llbracket N \rrbracket, \llbracket M \rrbracket) \leq \varepsilon
@@ -2142,16 +2147,16 @@ In this context, \emph{soundness} and \emph{completeness} concepts are extended 
 
 Next, we will provide a proof sketch of the completeness result in \cite{dahlqvist2023syntactic} so the reader gets a general feeling of what it requires.
 
-For two types $\typeA$ and $\typeB$ of a metric $\lambda$-theory $T$, consider the set $(\texttt{Values}\typeA,\typeB)$ of values $v$ such that $x : \typeA \vljud v : \typeB$. We equip $\texttt{Values}(\typeA,\typeB)$ with the function $d :\texttt{Values}(\typeA,\typeB) \times \texttt{Values}(\typeA,\typeB) \rightarrow [0, \infty]$ defined by,
+For two types $\typeA$ and $\typeB$ of a metric $\lambda$-theory $T$, consider the set $\texttt{Values}(\typeA,\typeB)$ of values $v$ such that $x : \typeA \vljud v : \typeB$. We equip $\texttt{Values}(\typeA,\typeB)$ with the function $d :\texttt{Values}(\typeA,\typeB) \times \texttt{Values}(\typeA,\typeB) \rightarrow [0, \infty]$ defined by,
 $$d(v,w)=\inf{\{q \, \vert \, v=_q w \text{ is a theorem of } T \}}.$$
 
 
 Given that the equations $\Gamma \vljud v = w : \typeA$ are abbreviations of $\Gamma \vljud v =_0 w : \typeA$, $\texttt{Values}((\typeA,\typeB), d)$ is a pseudometric space, \ie, it allows distinct terms to have distance zero. Consequently, we quotient this space by the relation $\sim$ (identifying elements at distance zero) to obtain a metric space, denoted by $(\texttt{Values}(\typeA, \typeB), d)/{\sim}$, which is a $\catMet$-category.
 
 Completeness arises from constructing the syntactic category $\catSyn(T)$ of the underlying  theory
-$T$ and then showing that provability of $\Gamma \vljud v =_q w : \typeA$
+$T$ and then showing that provability of $\Gamma \, \vljud \, v =_q w : \typeA$
  in $T$ is equivalent to $d(\sem{v},\sem{w}) \geq q$ in the category
-  $\catfont{Syn}(T)$. We use the category (\texttt{Values}$(\typeA,\typeB),d)$/$\sim$ to this end.  Note that the quotienting process identifies all terms $x : \typeA \triangleright v : \typeB$ and $x : \typeA \triangleright w : \typeB$ such that $v =_0 w$ and $w =_0 v$. This relation includes the equations-in-context from \autoref{fig:equations-linear-lambda}. Then, the next step is to prove that this quotienting procedure is compatible with the term formation rules of the extended calculus. To this effect, one generally uses the fact that $\otimes$ distributes over suprema. This yields the desired category $\catfont{Syn}(T)$ which will correspond to a symmetric monoidal closed $\catMet$-category $\catC$, in which both the tensor product and the internal currying are non-expansive. The final step is to show that if an equation $\Gamma \vljud v =_q v' : \typeA$ with $q \in [0, \infty]$ is satisfied by Syn$(T)$, then it is a theorem of the linear metric $\lambda$-theory. Which follows from the strictly greater relation and rules (join), (weak), and (arch).
+  $\catfont{Syn}(T)$. We use the category (\texttt{Values}$(\typeA,\typeB),d)$/$\sim$ to this end.  Note that the quotienting process identifies all terms $x : \typeA \triangleright v : \typeB$ and $x : \typeA \triangleright w : \typeB$ such that $v =_0 w$ and $w =_0 v$. This relation includes the equations-in-context from \autoref{fig:equations-linear-lambda}. Then, the next step is to prove that this quotienting procedure is compatible with the term formation rules of the extended calculus. To this effect, one generally uses the fact that $+$ distributes over suprema. This yields the desired category $\catfont{Syn}(T)$ which will correspond to a symmetric monoidal closed $\catMet$-category $\catC$, in which both the tensor product and the internal currying are non-expansive. The final step is to show that if an equation $\Gamma \vljud v =_q v' : \typeA$ with $q \in [0, \infty]$ is satisfied by Syn$(T)$, then it is a theorem of the linear metric $\lambda$-theory. Which follows from the strictly greater relation and rules (join), (weak), and (arch).
 
 
 
