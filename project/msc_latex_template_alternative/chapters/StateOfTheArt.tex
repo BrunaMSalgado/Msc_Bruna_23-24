@@ -99,7 +99,9 @@
 
 This chapter introduces the metric lambda calculus as presented in \cite{dahlqvist2023syntactic}, drawing also from \cite{mackieLanguageAutonomous1993,croleCategoriesTypes1994,selinger2013lecture}.  After some intuitions about (metric) lambda calculus, the chapter overviews its syntax, metric equational system, and interpretation. %Since the interpretation is categorical, the chapter also includes an exposition of the definitions and results from category theory, drawing from  \cite{yanofskyMonoidalCategoryTheory2024,barrCategoryTheoryComputing1990,maclane13}. 
 Our presentation on lambda calculus will involve conditionals; and in this regard, we will include proofs of results that are folklore, but whose proof we could not find in the literature. Finally, we illustrate the usefulness of the (metric) equational system by using it as a bridge to connect a certain type to Boolean algebra.  
-For a more detailed study of lambda calculus theory, the reader is referred to \eg \cite{barendregt1984lambda}. It is worth noting that this chapter includes minor contributions such as the proofs of results on conditionals that are folklore, but whose proof we could not find in the literature and the preliminary study about Booleans.
+For a more detailed study of lambda calculus theory, the reader is referred to, \eg, \cite{barendregt1984lambda}. 
+
+%It is worth noting that this chapter includes minor contributions such as the proofs of results on conditionals that are folklore, but whose proof we could not find in the literature and the preliminary study about Booleans.
 
  
 %We then illustrate the use of the language for describing quantum and probabilistic programs.
@@ -129,7 +131,7 @@ As mentioned above,  within  the ``functions as rule'' paradigm, is not
 always necessary to specify the domain and codomain of a function in advance. For instance, the identity function $f: x \mapsto x$, can have any set $X$ as its domain and codomain, provided that the domain and codomain are the same. In this case, one says that $f$ has type $X \rightarrow{} X$. This flexibility regarding domains and codomains enables operations on functions that are not possible in ordinary mathematics. For instance, if $f = \lambda x.x$ is the identity function, then one has that $f(x) = x$ for any $x$. In particular, by substituting $f$ for $x$, one obtains $f(f) = (\lambda x.x)(f) = f$. Note that the equation $f(f) = f$ is not valid in conventional mathematics, as it is not permissible, due to set-theoretic constraints, for a function to belong to its own domain.
 
 However, this remarkable feature of the lambda calculus can also lead to complications. 
-As previously mentioned, applying a function to itself, as in the term $(\lambda x.\,x\,x)(\lambda x.\,x\,x)$, results in non-termination. 
+As previously mentioned, applying a function to itself, as in the term $(\lambda x.\,x\,x)(\lambda x.\,x\,x)$, can result in non-termination. 
 The typed variant of the lambda calculus, known as the \emph{simply-typed lambda calculus}, addresses this issue by assigning a type to every expression. 
 Here, a function may only be applied to an argument if the argument's type is the same as the function's expected domain. Consequently, terms such as $f(f)$ are not allowed, even if $f$ represents the identity function.
 
@@ -140,20 +142,11 @@ Here, a function may only be applied to an argument if the argument's type is th
 
 \section{Syntax}
 
-\subsection{Type system}
-
-As previously mentioned, this work focuses on the simply-typed lambda calculus, where each lambda term is assigned a \emph{type}. Unlike sets, types are \emph{syntactic} objects, meaning they can be discussed independently of their elements. One can conceptualize types as names or labels for a set. Let $G$ represent a set of ground types. The \acrfull{bnf} grammar of types for affine lambda calculus is as follows:
-\begin{equation} \label{eq:grammartypes}
-\centering
-\hspace{95pt} \mathbb{A} ::= X \in G \hspace{3 pt} \vert \hspace{3 pt} \mathbb{I}  \hspace{3 pt}  \vert \hspace{3 pt} \mathbb{A}  \otimes  \mathbb{A} \hspace{3 pt}  \vert \hspace{3 pt} \mathbb{A}  \oplus  \mathbb{A} \hspace{3 pt} \vert  \hspace{3 pt}  \mathbb{A} \multimap  \mathbb{A}
-\end{equation}
-Note that this is an inductive definition. Ground types can be such things as booleans, integers, and so forth. The type $\mathbb{I}$ is the so-called unit. The type $\mathbb{A} \otimes \mathbb{A}$ corresponds to the tensor of two types. The type $\mathbb{A} \oplus \mathbb{A}$ can be seen as the coproduct/disjunction of two types. Finally, the type $\mathbb{A} \multimap \mathbb{A}$, for instance, in a set-theoretical perspective, can be seen as the type of functions from one type to another.
-
 
 \subsection{(Raw)Terms}
 
 
-The expressions of the lambda calculus are called lambda terms. In the simply-typed lambda calculus, each lambda term is assigned a type. The terms without the specification of a type are called \emph{raw lambda terms}. The grammar of raw lambda terms is given by the BNF below.
+The expressions of the lambda calculus are called lambda terms. In the simply-typed lambda calculus, each lambda term is assigned a type. The terms without the specification of a type are called \emph{raw lambda terms}. The grammar of raw lambda terms is given by the \acrfull{bnf} below.
 \begin{equation*} \label{eq:grammarlambda}
 \begin{split}
  v\hspace{10 pt} ::= \hspace{10 pt}& x \hspace{3 pt} \vert \hspace{3 pt} f(v_1, \ldots, v_n) \hspace{3 pt} \vert \hspace{3 pt} *  \hspace{3 pt} \vert \hspace{3 pt} (\lambda x. v )\hspace{3 pt} \vert \hspace{3 pt} v\,w \hspace{3 pt}  \vert \hspace{3 pt} v \otimes w \hspace{3 pt} \vert
@@ -161,8 +154,8 @@ The expressions of the lambda calculus are called lambda terms. In the simply-ty
  \\& \text{ case } v \,   \{\text{inl} (x) \Rightarrow w ; \, \text{inr} (y) \Rightarrow u\}
 \end{split}
 \end{equation*}
-
-Here $x$ ranges over an infinite set of variables, and $f \in \Sigma$, where  $\Sigma$ corresponds to a set of sorted operation symbols. The expression $f(v_1, \ldots, v_n)$ corresponds to the application of the function $f$ to the arguments $v_1, \ldots, v_n$. The symbol $*$ is the unit. The term $(\lambda x. v )$ is the lambda abstraction term, representing a function that takes an argument of type $x$ and returns the value $v$. The term $v \,w$ is the application term, which applies the function $v$ to the argument $w$.  The term $v \otimes w$ is the tensor product of $v$ and $w$. The term $\text{pm} \hspace{3 pt} v \hspace{3 pt} \text{to} \hspace{3 pt} x \otimes y. w$ is the pattern-matching construct that deconstructs a tensor product into components $x$ and $y$. The term $v \text{ to } *.w$ is used to discard a variable $v$ (of the unit type). The terms $\text{inl}(v)$ and $\text{inr}(v)$ represent the left and right injections of $v$, respectively. Intuitively, the case statement executes $w$ when $v$ is a left injection, and $u$ when $v$ is a right injection, and a ``mixture'' of both otherwise.
+Note that this is an inductive definition.
+Here $x$ ranges over an infinite set of variables, and $f \in \Sigma$, where  $\Sigma$ corresponds to a set of sorted operation symbols. The expression $f(v_1, \ldots, v_n)$ corresponds to the application of the function $f$ to the arguments $v_1, \ldots, v_n$. The symbol $*$ is the unit. The term $(\lambda x. v )$ is the lambda abstraction term, representing a function that takes an argument $x$ and returns the value $v$. The term $v \,w$ is the application term, which applies the function $v$ to the argument $w$.  The term $v \otimes w$ is the tensor product of $v$ and $w$. The term $\text{pm} \hspace{3 pt} v \hspace{3 pt} \text{to} \hspace{3 pt} x \otimes y. w$ is the pattern-matching construct that deconstructs a tensor product into components $x$ and $y$. The term $v \text{ to } *.w$ is used to discard a variable $v$ (of the unit type). The terms $\text{inl}(v)$ and $\text{inr}(v)$ represent the left and right injections of $v$, respectively. Intuitively, the case statement executes $w$ when $v$ is a left injection, and $u$ when $v$ is a right injection, and a ``mixture'' of both otherwise.
 
 \begin{convention}
    \begin{itemize}
@@ -190,6 +183,22 @@ Here $x$ ranges over an infinite set of variables, and $f \in \Sigma$, where  $
 An occurrence of a variable $x$ within a term of the form $\lambda x.v$ is referred to as a \emph{bound} variable.  Similarly, the variables $x$ and $y$ in the term $\text{pm} \hspace{3 pt} v \hspace{3 pt} \text{to} \hspace{3 pt} x \otimes y. w$ are also bound. A variable occurrence that is not bound is said to be \emph{free}. For example, in the term $\lambda x.xy$, the variable $y$ is free, whereas the variable $x$ is bound.  
 
 The set of free variables of a term $v$ is denoted by \gls{fv}, and is defined inductively as follows:
+\begin{equation*}
+\begin{split}
+&FV(x) = \{x\}, &&  FV(*) = \emptyset,  \\
+&FV(f(v_1, \ldots, v_n)), = FV(v_1) \cup \ldots \cup FV(v_n)&& FV(\lambda x: \mathbb{A}. v) = FV(v) \backslash \{x\}, \\
+&FV(v w) = FV(v) \cup FV(w), && FV(v \otimes w) = FV(v) \cup FV(w), \\
+& FV(\text{pm} \hspace{3 pt} v \hspace{3 pt} \text{to} \hspace{3 pt} x \otimes y. w), = FV(v) \cup (FV(w)  \backslash \{x,y\}) &&  FV(\text{inl}_\typeB (v)) =  FV(\text{inr}_\typeA (v)) = FV(v)\\
+&FV(v \text{ to } *.w) = FV(v) \cup FV(w)  &&   \\
+\end{split}
+\end{equation*}
+\vspace{-18pt}
+\vspace{1pt}
+\begin{equation*}
+  \begin{split}
+& \hspace{-30pt} FV(\text{case } v \,   \{\text{inl}_{\typeB} (x) \Rightarrow w ; \, \text{inr}_{\typeA} (y) \Rightarrow u\}) = FV(v) \cup  (FV(w) \backslash \{x\}) \cup (FV(u)\backslash \{y\}).
+\end{split}
+\end{equation*}
 
 \begin{comment}
 \begin{equation*}
@@ -203,23 +212,6 @@ FV(v \text{ to } *.w) &= FV(v) \cup FV(w)  &  FV(\text{inl}_\typeB) &=  FV(v). \
 \end{equation*}
 \end{comment}
 
-\begin{equation*}
-\begin{split}
-&FV(x) = \{x\}, &&  FV(*) = \emptyset,  \\
-&FV(f(v_1, \ldots, v_n)), = FV(v_1) \cup \ldots \cup FV(v_n)&& FV(\lambda x: \mathbb{A}. v) = FV(v) \backslash \{x\}, \\
-&FV(v w) = FV(v) \cup FV(w), && FV(v \otimes w) = FV(v) \cup FV(w), \\
-& FV(\text{pm} \hspace{3 pt} v \hspace{3 pt} \text{to} \hspace{3 pt} x \otimes y. w), = FV(v) \cup (FV(w)  \backslash \{x,y\}) &&  FV(\text{inl}_\typeB (v)) =  FV(\text{inr}_\typeA (v)) = FV(v)\\
-&FV(v \text{ to } *.w) = FV(v) \cup FV(w)  &&   \\
-\end{split}
-\end{equation*}
-\vspace{-20pt}
-\vspace{1pt}
-\begin{equation*}
-  \begin{split}
-& \hspace{-30pt} FV(\text{case } v \,   \{\text{inl}_{\typeB} (x) \Rightarrow w ; \, \text{inr}_{\typeA} (y) \Rightarrow u\}) = FV(v) \cup  (FV(w) \backslash \{x\}) \cup (FV(u)\backslash \{y\}).
-\end{split}
-\end{equation*}
-
 
 \subsection{$\alpha$-equivalence}
 
@@ -228,7 +220,7 @@ FV(v \text{ to } *.w) &= FV(v) \cup FV(w)  &  FV(\text{inl}_\typeB) &=  FV(v). \
 A natural notion of equivalence should stem from the fact that terms that differ only in the names of their bound variables represent the same program. For instance, the functions $\lambda x.x $ and $\lambda y.y$ have the same input-output behavior, despite being represented by different lambda terms. The equivalence we are referring to is called $\alpha$\emph{-equivalence}.
 
 \begin{definition} [$\alpha$-renaming]
-  The $\alpha$-equivalence is an equivalence relation on lambda terms that is used to, among other things, rename bound variables (se will see that such is crucial in defining crucial operations in lambda-calculus). To rename a variable $x$ as $y$ in a term $v$, denoted by $v\{y/x\}$, is to replace all occurrences of $x$ in $v$ by $y$. Two terms $v$ and $w$ are $\alpha$-equivalent, written $=_{\alpha}$, if one can be derived from the other by a series of changes of bound variables.
+  The $\alpha$-equivalence is an equivalence relation on lambda terms that is used to, among other things, rename bound variables (se will see that such is essential in defining crucial operations in lambda-calculus). To rename a variable $x$ as $y$ in a term $v$, denoted by $v\{y/x\}$, is to replace all occurrences of $x$ in $v$ by $y$. Two terms $v$ and $w$ are $\alpha$-equivalent, written $=_{\alpha}$, if one can be derived from the other by a series of changes of bound variables.
 \end{definition}
 
 \begin{convention}
@@ -251,25 +243,25 @@ The assumption that the set of variables is infinite ensures that a fresh variab
 Given terms $v$ and $w$, the substitution $ v[w/x]$ is defined below. 
 \begin{align*}
    \hspace{-23pt}  x[w/x] &= w \\
-   \hspace{-23pt}  y[w/x] &= y && \text{ if $x \neq y$}, \\
-  \hspace{-23pt}   *[w/x] &=   * ,\\
-  \hspace{-23pt}  (\lambda x. v)[w/x] &=  \lambda x. v,  \\
-  \hspace{-23pt}  (\lambda y. v)[w/x] &=  \lambda y: \mathbb{B}. v[w/x],  &&\text{ if $x \neq y$ and $y \notin FV(w)$}  \\
-   \hspace{-23pt}  \lambda y. v[w/x] &=  \lambda y': \mathbb{B}. v\{y'/y\}[w/y],  &&\text{ if $x \neq y$, $y \in FV(w),$}  \\
+   \hspace{-23pt}  y[w/x] &= y && \text{ if $x \neq y$} \\
+  \hspace{-23pt}   *[w/x] &=   * \\
+  \hspace{-23pt}  (\lambda x. v)[w/x] &=  \lambda x. v  \\
+  \hspace{-23pt}  (\lambda y. v)[w/x] &=  \lambda y. v[w/x]  &&\text{ if $x \neq y$ and $y \notin FV(w)$}  \\
+   \hspace{-23pt}  \lambda y. v[w/x] &=  \lambda y'. v\{y'/y\}[w/y] &&\text{ if $x \neq y$, $y \in FV(w)$,}  \\
    \hspace{-23pt}& && \text{and $y'$ is fresh}\\
    \hspace{-23pt} (v \, u) [w/x] &= v [w/x] \, u [w/x] \\
    \hspace{-23pt}  (f(v_1, \ldots, v_n))[w/x] & = f(v_1[w/x], \ldots, v_n[w/x]) \\
    \hspace{-23pt}  (v \otimes u)[w/x] & = (v[w/x] \otimes u[w/x]) \\
-   \hspace{-23pt} (\text{pm} \hspace{3 pt} v \hspace{3 pt} \text{to} \hspace{3 pt} y \otimes z. u)[w/x] &= \text{pm} \hspace{3 pt} v[w/x] \hspace{3 pt} \text{to} \hspace{3 pt} y \otimes z. u [w/x],  &&   \text{if $y \notin FV(w)$, $z \notin FV(w)$} \\
+   \hspace{-23pt} (\text{pm} \hspace{3 pt} v \hspace{3 pt} \text{to} \hspace{3 pt} y \otimes z. u)[w/x] &= \text{pm} \hspace{3 pt} v[w/x] \hspace{3 pt} \text{to} \hspace{3 pt} y \otimes z. u [w/x]  &&   \text{if $y \notin FV(w)$, $z \notin FV(w)$} \\
    \hspace{-23pt} (\text{pm} \hspace{3 pt} v \hspace{3 pt} \text{to} \hspace{3 pt} y \otimes z. u)[w/x] &= \text{pm} \hspace{3 pt} v [w/x] \hspace{3 pt} \text{to} \hspace{3 pt} y' \otimes z.  &&  \text{if $y \in FV(w)$, $z \notin FV(w)$,  } \\
-   \hspace{-23pt}  &  \hspace{16pt} u \{ y'/y\} [w/x], && \text{and $y'$ is fresh}\\
+   \hspace{-23pt}  &  \hspace{16pt} u \{ y'/y\} [w/x] && \text{and $y'$ is fresh}\\
    \hspace{-23pt} (\text{pm} \hspace{3 pt} v \hspace{3 pt} \text{to} \hspace{3 pt} y \otimes z. u)[w/x] &= \text{pm} \hspace{3 pt} v [w/x] \hspace{3 pt} \text{to} \hspace{3 pt} y \otimes z'.   &&  \text{if $y \notin FV(w)$, $z \in FV(w)$,} \\
-    \hspace{-23pt}& \hspace{16pt} u \{ z'/z\} [w/x], && \text{and $z'$ is fresh}\\
+    \hspace{-23pt}& \hspace{16pt} u \{ z'/z\} [w/x] && \text{and $z'$ is fresh}\\
    \hspace{-23pt} (\text{pm} \hspace{3 pt} v \hspace{3 pt} \text{to} \hspace{3 pt} y \otimes z. u)[w/x] &= \text{pm} \hspace{3 pt} v [w/x] \hspace{3 pt} \text{to} \hspace{3 pt} y' \otimes z'. &&  \text{if $y \in FV(w)$, $z \in FV(w)$,} \\
-   \hspace{-23pt}& \hspace{16pt} u \{ y'/y\} \{ z'/z\} [w/x], && \text{and $y',z'$ are fresh}\\
+   \hspace{-23pt}& \hspace{16pt} u \{ y'/y\} \{ z'/z\} [w/x] && \text{and $y',z'$ are fresh}\\
    \hspace{-23pt} (v \hspace{3 pt} \text{to} \hspace{3 pt} *.u)[w/x] &=  v[w/x] \hspace{3 pt} \text{to} \hspace{3 pt} *.u[w/x] && \\
-    \hspace{-23pt}(\text{inl}(v))[w/x] &= \text{inl}(v[w/x]),\\
-  \hspace{-23pt}(\text{inr}(v))[w/x] &= \text{inr}(v[w/x]),\\
+    \hspace{-23pt}(\text{inl}(v))[w/x] &= \text{inl}(v[w/x])\\
+  \hspace{-23pt}(\text{inr}(v))[w/x] &= \text{inr}(v[w/x])\\
   \hspace{-23pt} \text{case } v \,  
   \left\{
     \begin{aligned} 
@@ -284,20 +276,31 @@ Given terms $v$ and $w$, the substitution $ v[w/x]$ is defined below.
     &\inr(z) \Rightarrow  \\ 
     & q[w/x]
   \end{aligned}  
-  \right\}, && \text{if $y \notin FV(w)$, $z \notin FV(w)$}
+  \right\} && \text{if $y \notin FV(w)$, $z \notin FV(w)$}
 \\ 
 & (\ldots) \\
- \hspace{-23pt} (\text{case } v \,  
-  \{\inl(y) \Rightarrow p; 
-  \hspace{35pt} &=  \text{case } v [w/x]     
-   && \text{if $y \in FV(w)$, $z \in FV(w),$}   \\ 
-  \inr(z) \Rightarrow  q  \})[w/x]&  \hspace{12pt} \{\inl(y') \Rightarrow  p\{y'/y\} \{z'/z\} && \text{and $y',z'$ are fresh} \\
-  &  \hspace{16pt}[w/x]; \\
-   & \hspace{16pt}  \inr(z') \Rightarrow q\{y'/y\}  
-   &&  \\
-  & \hspace{16pt} \{z'/z\}[w/x] \} \\
+ \hspace{-23pt}     & \hspace{16pt}  \text{case } v [w/x]  && \\
+   \hspace{-23pt} \text{case } v \left\{
+    \begin{aligned} 
+    &\inl(y) \Rightarrow p; \\
+    &\inr(z) \Rightarrow  q  \\ 
+  \end{aligned}  
+  \right\}[w/x] &= \left\{ 
+    \begin{aligned}
+    &\inl(y') \Rightarrow  p\{y'/y\}
+    \\
+    &  \{z'/z\}[w/x]; \\
+    &\inr(z') \Rightarrow q\{y'/y\} \\
+      & \{z'/z\}[w/x]
+  \end{aligned}
+  \right\} && \begin{aligned}
+   & \text{if $y \in FV(w)$, $z \in FV(w),$} \\ 
+  & \text{and $y',z'$ are fresh}
+  \end{aligned} 
 \end{align*}
 \end{definition}
+
+
 \begin{comment}
   \hspace{-23pt}\text{In the next two cases, }\Gamma,x: \mathbb{A}  \in \text{Sf}(&\Gamma_1,\Gamma_2), \Gamma_1 \triangleright v \text{, } \Gamma_2, y: \mathbb{D}\triangleright a   \text{, and } \\
    & \hspace{-66pt} \Gamma_2, z: \mathbb{E}\triangleright b  \\
@@ -329,7 +332,17 @@ Given terms $v$ and $w$, the substitution $ v[w/x]$ is defined below.
   \right\}  &  (\text{ if } x: \mathbb{A} \in \Gamma_2) \\
      \end{comment}
 
-The sequential substitutions $v[w_1/x_1] \ldots [w_n/x_n]$ are writen as $v[w_1/x_1, \ldots ,w_n/x_n]$.
+%The sequential substitutions $v[w_1/x_1] \ldots [w_n/x_n]$ are writen as $v[w_1/x_1, \ldots ,w_n/x_n]$.
+
+
+\subsection{Type system}
+
+As previously mentioned, this work focuses on the simply-typed lambda calculus, where each lambda term is assigned a \emph{type}. Unlike sets, types are \emph{syntactic} objects, meaning they can be discussed independently of their elements. One can conceptualize types as names or labels for a set. Let $G$ represent a set of ground types. The BNF grammar of types for affine lambda calculus is as follows:
+\begin{equation*} \label{eq:grammartypes}
+\centering
+\hspace{95pt} \mathbb{A} ::= X \in G \hspace{3 pt} \vert \hspace{3 pt} \mathbb{I}  \hspace{3 pt}  \vert \hspace{3 pt} \mathbb{A}  \otimes  \mathbb{A} \hspace{3 pt}  \vert \hspace{3 pt} \mathbb{A}  \oplus  \mathbb{A} \hspace{3 pt} \vert  \hspace{3 pt}  \mathbb{A} \multimap  \mathbb{A}
+\end{equation*}
+ Ground types can be such things as booleans, integers, and so forth. The type $\mathbb{I}$ is the so-called unit. The type $\mathbb{A} \otimes \mathbb{A}$ corresponds to the tensor of two types. The type $\mathbb{A} \oplus \mathbb{A}$ can be seen as the coproduct/disjunction of two types. Finally, the type $\mathbb{A} \multimap \mathbb{A}$, for instance, in a set-theoretical perspective, can be seen as the type of functions from one type to another.
 
 
 \subsection{Typing rules}
@@ -339,7 +352,7 @@ To prevent the formation of nonsensical terms within the context of lambda calcu
 Typing rules are formulated using \emph{typing judgments}. A typing judgment is an expression of the form $x_{1}: \mathbb{A}_{1}, \ldots, x_{n}: \mathbb{A}_{n} \hspace{1pt} \triangleright \hspace{1pt} v: \mathbb{A}$ (where $n \geq 1$), which asserts that the term $v$ is a well-typed term of type $\mathbb{A}$ under the assumption that each variable $x_{i}$ has type $\mathbb{A}_{i}$, for $1 \leq i \leq n$. The list $x_{1}: \mathbb{A}_{1}, \ldots, x_{n}: \mathbb{A}_{n}$ of typed variables is called the \emph{typing context} of the judgment, and it might be empty.  Each variable $x_i$ (where $1 \leq i \leq n$) must occur at most once in $x_1, \ldots, x_n$. Typing contexts are denoted by Greek letters \gls{typingcontexts}, and from now on, when referring to an abstract judgment, the notation \gls{judgement} will be employed.
 The empty context is denoted by $-$. Note that in the linear lambda calculus, when different contexts appear sequenced (\eg $\Gamma, \Delta, \ldots$) they do not share variables amongst themselves. In other words, the typing system is linear: every variable is used exactly once.
 
-There are certain typing rules that are not explicitly stated and whose validity follows the existing rules of the system. These are called \emph{admissible rules}.
+There are certain typing rules that are not explicitly stated and whose validity follows from the existing rules of the system. These are called \emph{admissible rules}.
 The concept of \emph{shuffling} is employed to construct a linear typing system that ensures the admissibility of the exchange rule (which allows reordering variables within the same context) and enables unambiguous reference to judgment's interpretation denoted $[\![ \Gamma \triangleright v: \mathbb{A} ]\!]$.  Shuffling is defined as a permutation of typed variables in a sequence of contexts, $\Gamma_1, \ldots, \Gamma_n$, preserving the relative order of variables within each $\Gamma_i$ \cite{shulman2019practical}. For instance, if $\Gamma_1=x:\mathbb{A}, y:\mathbb{B}$ and $\Gamma_2=z:\mathbb{D}$, then $z:\mathbb{D}, x:\mathbb{A}, y:\mathbb{B}$ is a valid shuffle of $\Gamma_1, \Gamma_2$. On the other hand, $y:\mathbb{B}, x:\mathbb{A}, z:\mathbb{D}$ is not a shuffle because it alters the occurrence order of $x$ and $y$ in $\Gamma_1$. The set of shuffles based on $\Gamma_1, \ldots, \Gamma_n$ is denoted as $\text{Sf} (\Gamma_1; \ldots; \Gamma_n)$. A valid typing derivation is constructed using the inductive rules shown in \autoref{fig:typing_rules_linear}.
 %An admissible rule is not explicitly included in the formal definition of the type theory, but it can be proven valid using the fact that whenever one has derivations of its premises it is possible to construct a derivation of its conclusion.
 %an admissible rule is one that is not asserted as part of the specification of the type theory, but for which we can prove after the fact that whenever we have derivations of its premises we can construct a derivation of its conclusion — usually by inductively traversing and modifying the given derivations of its premises. 
@@ -545,10 +558,10 @@ To prove that this program is well-typed one can write the following typing deri
 Next, consider the following program which can be seen as the distributive property:
 \begin{equation*}
   \begin{split}
-    z:(\typeA \oplus \mathbb{\typeB}) \otimes \mathbb{\typeD} \vljud \text{pm } z \text{ to } a \otimes b. \text{ case } a\,\left\{ 
+    z:(\typeA \oplus \mathbb{\typeB}) \otimes \mathbb{\typeD} \vljud \text{pm } z \text{ to } x \otimes d. \text{ case } x\,\left\{ 
       \begin{aligned}
-    &\inl_{\typeB}(x) \Rightarrow \inl_{\typeB \otimes \typeD}(x \otimes b); \\
-    & \inr_{\typeA}(y) \Rightarrow \inr_{\typeA \otimes \typeD} (y \otimes b)
+    &\inl_{\typeB}(a) \Rightarrow \inl_{\typeB \otimes \typeD}(a \otimes d); \\
+    & \inr_{\typeA}(b) \Rightarrow \inr_{\typeA \otimes \typeD} (b \otimes d)
       \end{aligned}
     \right\}: (\typeA \otimes \typeD) \oplus (\typeB \otimes \typeD)
 \end{split}
@@ -557,28 +570,28 @@ Next, consider the following program which can be seen as the distributive prope
 To prove that this program is well-typed, we reason as follows:
 \begin{equation*}
 \begin{split}
-1  \hspace{10 pt} & x : \mathbb{A}  \triangleright x : \mathbb{A}  & {(\text{hyp})} \\
-2  \hspace{10 pt} & b : \mathbb{D}  \triangleright x : \mathbb{D}  & {(\text{hyp})} \\
-3  \hspace{10 pt} & b : \mathbb{D}, x : \mathbb{A}  \triangleright \inl_{\typeB \otimes \typeD}(x \otimes b): (\typeA \otimes \typeD) \oplus (\typeB \otimes \typeD)  & {(1,2,\text{inl})} \\
-4  \hspace{10 pt} & y : \mathbb{B}  \triangleright x : \mathbb{B}  & {(\text{hyp})} \\
-5  \hspace{10 pt} & b : \mathbb{D},y : \mathbb{B}  \triangleright \inr_{\typeA \otimes \typeD}(x \otimes b): (\typeA \otimes \typeD) \oplus (\typeB \otimes \typeD)  & {(2,4,\text{inr})} \\
-6  \hspace{10 pt} & a : \mathbb{A} \oplus \mathbb{B} \triangleright a : \mathbb{A} \otimes \mathbb{B}  \hspace{10 pt} & {(\text{hyp})} \\ 
-7 \hspace{10 pt} &    a: \mathbb{\typeA \oplus \typeB},  b: \mathbb{D} \triangleright \, 
-\text{case } a \,  
+1  \hspace{10 pt} & a : \mathbb{A}  \triangleright x : \mathbb{A}  & {(\text{hyp})} \\
+2  \hspace{10 pt} & d : \mathbb{D}  \triangleright x : \mathbb{D}  & {(\text{hyp})} \\
+3  \hspace{10 pt} & d : \mathbb{D}, a : \mathbb{A}  \triangleright \inl_{\typeB \otimes \typeD}(a \otimes d): (\typeA \otimes \typeD) \oplus (\typeB \otimes \typeD)  & {(1,2,\text{inl})} \\
+4  \hspace{10 pt} & b : \mathbb{B}  \triangleright  b: \mathbb{B}  & {(\text{hyp})} \\
+5  \hspace{10 pt} & d : \mathbb{D},b : \mathbb{B}  \triangleright \inr_{\typeA \otimes \typeD}(b \otimes d): (\typeA \otimes \typeD) \oplus (\typeB \otimes \typeD)  & {(2,4,\text{inr})} \\
+6  \hspace{10 pt} & x : \mathbb{A} \oplus \mathbb{B} \triangleright x : \mathbb{A} \otimes \mathbb{B}  \hspace{10 pt} & {(\text{hyp})} \\ 
+7 \hspace{10 pt} &    x: \mathbb{\typeA \oplus \typeB},  d: \mathbb{D} \triangleright \, 
+\text{case } x \,  
   \left\{
     \begin{aligned} 
-    &\inl_{\typeB}(x) \Rightarrow \inl_{\typeB \otimes \typeD}(x \otimes b); \\
-    &\inr_{\typeB}(y) \Rightarrow \inr_{\typeA \otimes \typeD}(x \otimes b)   \\ 
+    &\inl_{\typeB}(a) \Rightarrow \inl_{\typeB \otimes \typeD}(a \otimes d); \\
+    &\inr_{\typeB}(b) \Rightarrow \inr_{\typeA \otimes \typeD}(b \otimes d)   \\ 
   \end{aligned}  
   \right\}: (\typeA \otimes \typeD) \oplus (\typeB \otimes \typeD)  & \text{($6,3,5,\text{case}$)} \\
   8 \hspace{10 pt} & z : \mathbb{(A \oplus B) \otimes D} \triangleright z : \mathbb{(A \oplus B) \otimes D}  \hspace{10 pt} & {(\text{hyp})} \\
-9 \hspace{10 pt} &  z:(\typeA \oplus \mathbb{\typeB}) \otimes \mathbb{\typeD} \vljud \text{pm } z \text{ to } a \otimes b. \text{ case } a\,\left\{ \ldots
+9 \hspace{10 pt} &  z:(\typeA \oplus \mathbb{\typeB}) \otimes \mathbb{\typeD} \vljud \text{pm } z \text{ to } x \otimes d. \text{ case } x\,\left\{ \ldots
     \right\}: (\typeA \otimes \typeD) \oplus (\typeB \otimes \typeD) & \text{($8,7,\otimes_{e}$)} \\
 \end{split}
 \end{equation*}
 
 
-It should be noted that there are two distinct conventions for typing terms. One is the Church-style typing, in which all subterms are explicitly typed. This is the convention we adopt. The other is the Curry-style typing, where only the outermost term is assigned a type, and the types of subterms are left implicit.  For instance, consider the Curry-style typing judgment:
+It should be noted that there are two distinct conventions for typing terms. One is the Church-style typing, in which all subterms are explicitly typed. This is the convention we adopt. The other is the Curry-style typing, where only the outermost term is assigned a type, and the types of subterms are left implicit.  For instance, consider the following Curry-style typing judgment:
 \[
 x : \typeA \triangleright (\lambda f.\,x)(\lambda y.\,y) : \typeA.
 \]
@@ -892,8 +905,8 @@ which takes an element \( s \in S \) to its equivalence class \( [s] \), has the
   Consider a pair $(G, \Sigma)$, where $G$ is a set of ground types and $\Sigma$ is a set of sorted operation symbols. A \emph{ linear $\lambda$-theory} is a triple $((G, \Sigma), Ax)$, where $Ax$ is a set of equations-in-context over $\lambda$-terms constructed from $(G, \Sigma)$. The elements of $Ax$ are called the \emph{axioms} of the theory.
 \end{definition}
 
- Let $Th(Ax)$ denote the smallest be the smallest
- congruence that containing $Ax$, the equations presented in \autoref{fig:equations-linear-lambda}, and closed under exchange and substitution (\autoref{lem:exh_and_sub}). The elements of $Th(Ax)$ are called the \emph{theorems} of the theory.
+ Let $Th(Ax)$ denote the smallest
+ congruence  containing $Ax$, the equations presented in \autoref{fig:equations-linear-lambda}, and closed under exchange and substitution (\autoref{lem:exh_and_sub}). The elements of $Th(Ax)$ are called the \emph{theorems} of the theory.
 
  We will often denote the triple $((G, \Sigma), Ax)$ by $T$ when referring to a  linear $\lambda$-theory.
 
@@ -915,8 +928,8 @@ The type $\typeI \oplus \typeI$ can be used to represent truth-values, in which 
 As a part of our $\lambda$-theory we consider an operation $\text{dis}: \typeI \oplus \typeI \to \typeI$ which discards its input, accompanied by the following axiom which we will denote by $ax_\text{dis}$,
 \[\text{dis}(v) = \text{case } v \left\{
     \begin{aligned} 
-    &\inl_{\typeI}(x) \Rightarrow \inl_{\typeI}(x) ; \\
-    &\inr_{\typeI}(y) \Rightarrow  \inr_{\typeI}(y)  \\ 
+    &\inl_{\typeI}(x) \Rightarrow x ; \\
+    &\inr_{\typeI}(y) \Rightarrow  y  \\ 
   \end{aligned}  
   \right\} . \]
 
@@ -933,7 +946,7 @@ Given variables $a : \typeI \oplus \typeI$ and $b : \typeI \oplus \typeI$, their
 \end{align*}
 
 \begin{align*}
-  & \hspace{-25pt}\textbf{Disjunction}\,(a,b) \triangleq v:\typeI \oplus \typeI, w:\typeI \oplus \typeI \vljud \text{case } a\,
+  & \hspace{-25pt}\textbf{Disjunction}\,(a,b) \triangleq a:\typeI \oplus \typeI, b:\typeI \oplus \typeI \vljud \text{case } a\,
 \left\{
     \begin{aligned} 
     &\inl_{\typeI}(x) \Rightarrow  x\text{ to} *. \,  \text{dis}(b) \text{ to} *. \inl_{\typeI}(*) ; \\
@@ -947,13 +960,13 @@ Moreover, negation can be expressed by the following program:
   & \hspace{-25pt}\textbf{Negation}\,(a) \triangleq a:\typeI \oplus \typeI \vljud \text{case } a\,
 \left\{
     \begin{aligned} 
-    &\inl_{\typeI}(x) \Rightarrow x ; \\
-    &\inr_{\typeI}(y) \Rightarrow  y  \\ 
+    &\inl_{\typeI}(x) \Rightarrow \inr_{\typeI}(x) ; \\
+    &\inr_{\typeI}(y) \Rightarrow  \inl_{\typeI}(y)  \\ 
   \end{aligned}  
   \right\}
 \end{align*}
 
-To simplify notation, given terms $\Gamma \vljud v::\typeI \oplus \typeI$ and $\Delta \vljud  w:\typeI \oplus \typeI$, we define:
+To simplify notation, given terms $\Gamma \vljud v:\typeI \oplus \typeI$ and $\Delta \vljud  w:\typeI \oplus \typeI$, we define:
 \begin{equation}
   \begin{split}
     &\Gamma, \Delta  \vljud \textbf{Conjunction}\,(v,w) \triangleq \Gamma, \Delta  \vljud \textbf{Conjunction}\,(a,b) [v/a, w/b] \\
@@ -962,13 +975,14 @@ To simplify notation, given terms $\Gamma \vljud v::\typeI \oplus \typeI$ and $\
   \end{split}
 \end{equation}
 
- This result will enable us to verify that the programs we define satisfy the desired properties in a systematic and straightforward manner.
+ The following property will enable us to verify that the programs we defined above satisfy the desired properties in a systematic and straightforward manner.
 
 
 
 \subsubsection{Extensionality of the copairing}
 
-A $\lambda$-abstraction that receives inputs of a disjunctive type is determined by what it does to inputs ``from the left and from the right'', \ie,
+\begin{proposition}
+  A $\lambda$-abstraction that receives inputs of a disjunctive type is determined by what it does to inputs ``from the left and from the right'', \ie,
 \[
 \left\{
 \begin{aligned}
@@ -978,9 +992,11 @@ A $\lambda$-abstraction that receives inputs of a disjunctive type is determined
 \right.
 \implies \lambda x.v = \lambda x.w
 \]
+\end{proposition}
 
-The proof is as follows:
 
+\begin{proof}
+  
 Using the $\beta$-equation we have
 \begin{equation} \label{eq:beta_red}
   \left\{
@@ -989,7 +1005,7 @@ Using the $\beta$-equation we have
 &(\lambda x.v)\, \text{inr}(z) =(\lambda x.w)\, \text{inr}(z)
 \end{aligned}
 \right.
-= \left\{
+\iff  \left\{
 \begin{aligned}
 &v\,[\text{inl}(y)/x]  = w\, [\text{inl}(y)/x] \\
 &v\,[\text{inr}(z)/x]  = w\, [\text{inr}(z)/x] 
@@ -1012,7 +1028,7 @@ Next, considering the equations above and  $\eta_{case}$ we reason as follows:
 \end{split}
 \end{equation*}
 Finally, we derive $ \lambda x.v = \lambda x.w$ from the conjunture.
-
+\end{proof}
 
 \vspace{5pt}
 
@@ -1047,7 +1063,7 @@ Next, we will show that the programs we have defined verify certain properties o
     \end{split}
     \end{equation*}
 
-    For the second equality, by the extensionality of the coparing we need to prove that 
+    For the second equality, by the extensionality of the coparing it suffices to prove that 
      \[
       \left\{
       \begin{aligned}
@@ -1071,7 +1087,7 @@ Next, we will show that the programs we have defined verify certain properties o
   \end{proof}
 
 
-  Note that the idempotency property of conjunction, --- that is, $ \textbf{Conjunction} \, (\inl(*), \inl(*)) = \inl(*)$ and  $ \textbf{Conjunction} \, (\inr(*), \inr(*)) = \inr(*)$ ---   follows directly from the equalities above.
+  Note that the idempotency property of conjunction, --- that is, $ \textbf{Conjunction} \, (\inl(*), \inl(*)) = \inl(*)$ and  $ \textbf{Conjunction} \, (\inr(*), \inr(*)) = \inr(*)$ ---   follows directly from the lemma above, and equations $ax_\text{dis}$, $\beta_{case}^{inr}$, and $\beta_{\mathbb{I}_{e}}$.
 
 
 \begin{proposition} \label{lem:comm}
@@ -1099,7 +1115,6 @@ Next, we will show that the programs we have defined verify certain properties o
 These equalities follow from the equations 
 \(\beta_{case}^{inl}\), \(\beta_{case}^{inr}\), \(\eta_{\mathbb{I}_e}\), and \(ax_\text{dis}\). 
 We will explicitly prove the second equality below; the others follow by similar reasoning.
-  
   \begin{align*}
      &   \textbf{Conjunction} \, (\inl(c), \inr(d)) \\
      &  \triangleq \text{case } \inl(c)\,
@@ -1129,13 +1144,12 @@ We will explicitly prove the second equality below; the others follow by similar
 
 
 \begin{lemma} \label{lem:dneg}
-  The double negation of a term $w$ is equivalent to that term, \ie, for $ \Gamma \vljud v: \typeI \oplus \typeI$
+  The double negation of a term $v$ is equivalent to $v$ itself, \ie, for $ \Gamma \vljud v: \typeI \oplus \typeI$
   $$ \Gamma \vljud \textbf{Negation} (\textbf{Negation} (v) ) = v.$$
 \end{lemma}
 
 \begin{proof}
   By the extensionality of the copairing, it suffices to prove the equality for the base cases, \ie, the injections. This follows directly from the equations \(\beta_{case}^{inl}\) and \(\beta_{case}^{inr}\). Once again, we will prove one of the resulting equalities explicitly; the other follows by similar reasoning.
-  
     \begin{equation*}
     \begin{split}
        &\textbf{Negation} (\textbf{Negation} (\inl(z)) )  \\
@@ -1151,19 +1165,17 @@ We will explicitly prove the second equality below; the others follow by similar
 \end{proof}
 
 \begin{lemma} \label{lem:dmorgan} 
-  De Morgan's laws hold for terms  $v: \typeI \oplus \typeI$ and $w: \typeI \oplus \typeI$, \ie, for $ \Gamma \vljud v: \typeI \oplus \typeI$ and $ \Delta \vljud w: \typeI \oplus \typeI$ 
+  De Morgan's laws hold for terms  $v: \typeI \oplus \typeI$ and $w: \typeI \oplus \typeI$, \ie, for $ \Gamma \vljud v: \typeI \oplus \typeI$ and $ \Delta \vljud w: \typeI \oplus \typeI$,
   $$  \Gamma, \Delta \triangleright \textbf{Disjunction} (\textbf{Negation} (v) , \textbf{Negation} (w)) =  \textbf{Negation}(\textbf{Conjunction} (v, w)) $$ 
 \end{lemma}
 
 \begin{proof}
-
   Once again, by the extensionality of the copairing, it suffices to prove the equality for the four base cases. The corresponding equalities follow from the equations 
 \(\beta_{case}^{inl}\), \(\beta_{case}^{inr}\) and \(c_{\mathbb{I}_e}\). 
 We will explicitly prove one of the equalities below; the others follow by similar reasoning.
-
 \begin{equation*}
   \begin{split}
-  & \textbf{Disjunction} (\textbf{Negation} (\inl(c)), \textbf{Negation}, (\inr(d))) \\ 
+  & \textbf{Disjunction} (\textbf{Negation} (\inl(c)), \textbf{Negation} (\inr(d))) \\ 
   & \triangleq \text{case }  \, 
     \text{case } \inl(c)  
     \left\{ \begin{aligned}
@@ -1172,17 +1184,17 @@ We will explicitly prove one of the equalities below; the others follow by simil
   \end{aligned}  \right\}  
    \left\{ \begin{aligned}
     & \inl(x) \Rightarrow  \ldots ; \\
-    & \inl(y) \Rightarrow  \ldots
+    & \inl(y) \Rightarrow  y \text{ to } *. \, \textbf{Negation} (\inr(d))
    \end{aligned} \right\} \\
    &  =  c \text{ to} *. \, \text{case } \inr(d)  
     \left\{ \begin{aligned}
-    & \inl(x) \Rightarrow \inr(a); \\
-    & \inl(y) \Rightarrow \inl(b) 
+    & \inl(x) \Rightarrow \inr(x); \\
+    & \inl(y) \Rightarrow \inl(y) 
   \end{aligned}  \right\}   & (\beta_{case}^{inl},\beta_{case}^{inr}) \\
   & =  \text{case } c \text{ to} *. \inr(d)  
     \left\{ \begin{aligned}
-    & \inl(a) \Rightarrow \inr(a); \\
-    & \inl(b) \Rightarrow \inl(b) 
+    & \inl(x) \Rightarrow \inr(x); \\
+    & \inl(y) \Rightarrow \inl(y) 
   \end{aligned}  \right\}    & (c_{\mathbb{I}_e})\\
   & = \text{case }  \text{case } \inl(c)\,
   \left\{
@@ -1205,8 +1217,8 @@ The remaining properties such can be proven through similar reasoning.
 
 \subsection{Metric equational system}
 
-\emph{Metric equations} \cite{mardare2016quantitative,mardare2017axiomatizability} are a strong candidate for reasoning about approximate program equivalence. These equations take the form of \gls{metric-equation}, meaning they are  \emph{at most} at a distance $\varepsilon$ from each other. The metric equational system for linear lambda calculus is depicted in \autoref{fig:metric deductive system}. 
-Note that the equations $\Gamma \triangleright v = w : A$ in \autoref{fig:equations-linear-lambda}, which in this setting abbreviate $\Gamma \triangleright w =_0 v : A$, are also part of the metric equational system.
+\emph{Metric equations} \cite{mardare2016quantitative,mardare2017axiomatizability} are a strong candidate for reasoning about approximate program equivalence. These equations take the form of \gls{metric-equation}, meaning  terms $v$ and $w$ are  \emph{at most} at a distance $\varepsilon$ from each other. The metric equational system for linear lambda calculus is depicted in \autoref{fig:metric deductive system}. 
+Note that the equations $\Gamma \, \triangleright \, v = w : \typeA$ in \autoref{fig:equations-linear-lambda}, which in this setting abbreviate $\Gamma \triangleright w =_0 v : \typeA$, are also part of the metric equational system.
 
 
 \begin{figure} [H]
@@ -1351,14 +1363,14 @@ $ \end{minipage}
 Here, $\text{perm} (\Gamma)$ denotes the set of possible permutations of context $\Gamma$. 
 The rules (refl), (trans), and (sym)  generalize the properties of reflexivity, transitivity, and symmetry of equality. 
 The rule (weak) asserts that if two terms are at most at a distance $q$ from each other, then they are also at most at a distance $r$ for any $r \geq q$. Rule (arch) states that if $v =_r w$ for all approximations $r$ of $q$, then it necessarily follows that $v =_q w$. 
-The rule  (join) expresses that if several maximum distances between two terms are known, then one can safely assume the minimum of these distances. In particular, it is always the case that $v =_{\infty} w$.  
-Rule (sym) conveys that if the maximum distance between two terms $v$ and $w$ is $q$, and the maximum distance between terms $v'$ and $w'$ is $r$, then the maximum distance between the tensor products $v \otimes v'$ and $w \otimes w'$ is $q + r$, \ie, the distances compound additively. The remaining rules follow similar reasoning.
+The rule  (join) expresses that if several maximum distances between two terms are known, then one can safely assume the minimum of these distances. In particular, it is always the case that $v =_{\infty} w$. 
+The rule that follows conveys that if the maximum distance between two terms $v$ and $w$ is $q$, and the maximum distance between terms $v'$ and $w'$ is $r$, then the maximum distance between the tensor products $v \otimes v'$ and $w \otimes w'$ is $q + r$, \ie, the distances compound additively. The remaining rules follow similar reasoning.
 
 % dizer o que é perm
 
 
 \begin{example} \label{ex:metric_eqs}
-  To ilustrate the usefulness of these equations, consider the program $P$ that receives a tensor product, swaps its elements and then applies a function $f: \typeA \to \typeD \in \Sigma $ to the new second element of the tensor pair:
+  To ilustrate the usefulness of these equations, consider the program $\textbf{SwapTensorf}$ that receives a tensor product, swaps its elements and then applies a function $f: \typeA \to \typeD \in \Sigma $ to the new second element of the tensor pair:
 \begin{equation*}
 \begin{split}
 & \textbf{SwapTensorf} \triangleq x : \mathbb{A},  y : \mathbb{B} \triangleright \text{pm} \hspace{3 pt} x \otimes y\hspace{3 pt} \text{to} \hspace{3 pt} a \otimes b. \hspace{1pt} b \otimes f(a) : \mathbb{B} \otimes \mathbb{D} &
@@ -1370,7 +1382,7 @@ Let $ f^{\varepsilon} $ be an erroneous implementation of $ f $. The program abo
   & \textbf{SwapTensorf}^{\varepsilon} \triangleq  x : \mathbb{A},  y : \mathbb{B} \triangleright \text{pm} \hspace{3 pt} x \otimes y\hspace{3 pt} \text{to} \hspace{3 pt} a \otimes b. \hspace{1pt} b \otimes f(a)^{\varepsilon}  : \mathbb{B} \otimes \mathbb{D} &
   \end{split}
   \end{equation*}
-Consider we  have the axiom $f^{\varepsilon}(a) =_{\varepsilon} f(a)$. Then it is possible to show that $\textbf{SwapTensorf}^{\varepsilon} =_{\varepsilon} \textbf{SwapTensorf} $ using our metric equational system. The proof is as follows. The types and contexts are omitted for brevity as no ambiguity arises.
+Consider we  have the axiom $f(a) =_{\varepsilon} f^{\varepsilon}(a)$. Then, it is possible to show that $\textbf{SwapTensorf} =_{\varepsilon} \textbf{SwapTensorf}^{\varepsilon} $ using our metric equational system. The proof is as follows. %The types and contexts are omitted for brevity as no ambiguity arises.
 \begin{equation*}
   \begin{split}
   1 \hspace{10 pt} & f(a)^{\varepsilon} =_{\varepsilon} f(a) \\
@@ -1400,11 +1412,10 @@ For instance, in \autoref{ex:metric_eqs}, $\textbf{SwapTensorf} =_{\varepsilon} 
 
 
 We can now use the extended system to explore the booleans introduced in  \Cref{subsec:interlude_bool}. For instance, given axioms
-
 $$ \Gamma \triangleright v =_{\varepsilon} v' \quad \text{and} \quad \Delta \triangleright w =_{\delta} w', $$
 we can ask whether
-$$ \textbf{Conjunction} [v, w] =_{\varepsilon + \delta}  \textbf{Conjunction} [v', w'], $$
-which indeed follows from a double application of the substitution rule. An analogous reasoning applies to $\textbf{Conjunction} [v, w]$ and $\textbf{Negation} [w]$.
+$$ \textbf{Conjunction} [v, w] =_{\varepsilon + \delta}  \textbf{Conjunction} [v', w'] $$
+holds, which indeed follows from a double application of the substitution rule. An analogous reasoning applies to $\textbf{Conjunction} [v, w]$ and $\textbf{Negation} [w]$.
 
 These derivations we have just established are interesting, for they hint at ``quantitative laws'' for the boolean connectives. For example, previously we have established that
 \[
@@ -1484,12 +1495,12 @@ This isomorphism is known as \emph{currying}. For each morphism $f \colon A \oti
 The inverse operation, called \emph{application} or \emph{evaluation}, is given by the \emph{application morphism} $\text{app}_{B,C} \colon (B \multimap C) \otimes B \to C$.
 
 
-For all ground types $X \in G$  the interpretation of $[\![X]\!]$  is postulated  to be an object of $\catC$. Types are interpreted inductively using the unit $\mathbb{I}$, the tensor $\otimes$, the coproduct $\oplus$, and the linear map $\multimap$. Given a non-empty context $\Gamma=\Gamma',x: \mathbb{A}$, its interpretation is defined by $[\![\Gamma',x: \mathbb{A}]\!] = [\![\Gamma']\!] \otimes [\![\mathbb{A}]\!]$ if $\Gamma'$ is non-empty and $[\![\Gamma',x: \mathbb{A}]\!] = [\![\mathbb{A}]\!]$ otherwise. The empty context $-$ is interpreted as $[\![-]\!] = \mathbb{I}$. Given $A_{1}, . . . ,A_{n} \in \catC$, the $n$-tensor $(\ldots (A_1 \otimes A_2) \otimes \ldots ) \otimes A_{n}$ is denoted as $A_1 \otimes \ldots \otimes A_{n}$, and similarly for morphisms. 
+For all ground types $X \in G$  the interpretation of $[\![X]\!]$  is postulated  to be an object of $\catC$. Types are interpreted inductively using the unit $\mathbb{I}$, the tensor $\otimes$, the coproduct $\oplus$, and the linear map $\multimap$. Given a non-empty context $\Gamma=\Gamma',x: \mathbb{A}$, its interpretation is defined by $[\![\Gamma',x: \mathbb{A}]\!] = [\![\Gamma']\!] \otimes [\![\mathbb{A}]\!]$ if $\Gamma'$ is non-empty and $[\![\Gamma',x: \mathbb{A}]\!] = [\![\mathbb{A}]\!]$ otherwise. The empty context $-$ is interpreted as $[\![-]\!] = \mathbb{I}$. Given $A_{1}, . . . ,A_{n} \in \catC$, the $n$-tensor $((A_1 \otimes A_2) \otimes \ldots ) \otimes A_{n}$ is denoted as $A_1 \otimes \ldots \otimes A_{n}$, and similarly for morphisms. 
 
 
 \subsection{Semantics}
 
-``Housekeeping" morphisms are employed to handle interactions between context interpretation and the symmetric monoidal struture of $\catC$. Given $\Gamma_{1}, \ldots, \Gamma_{n}$, the morphism that splits $[\![\Gamma_{1}, \ldots, \Gamma_{n}]\!]$ into $[\![\Gamma_{1}]\!] \otimes \ldots \otimes [\![\Gamma_{n}]\!]  $ is denoted by $\text{sp}_{\Gamma_1;\ldots;\Gamma_n}: [\![\Gamma_{1}, \ldots, \Gamma_{n}]\!] \xrightarrow{} [\![\Gamma_{1}]\!] \otimes \ldots \otimes [\![\Gamma_{n}]\!] $. For $n=1$, $\text{sp}_{\Gamma_1} = \text{id}$.
+``Housekeeping" morphisms are employed to handle interactions between context interpretation and the symmetric monoidal struture of $\catC$. Given $\Gamma_{1}, \ldots, \Gamma_{n}$, the morphism that splits $[\![\Gamma_{1}, \ldots, \Gamma_{n}]\!]$ into $[\![\Gamma_{1}]\!] \otimes \ldots \otimes [\![\Gamma_{n}]\!]  $ is denoted by $\text{sp}_{\Gamma_1;\ldots;\Gamma_n}: [\![\Gamma_{1}, \ldots, \Gamma_{n}]\!] \xrightarrow{} [\![\Gamma_{1}]\!] \otimes \ldots \otimes [\![\Gamma_{n}]\!] $. For $n=1$, $\text{sp}_{\Gamma_1} = \id$.
 Let $\Gamma_1$ and $\Gamma_2$ be two contexts, $\text{sp}_{\Gamma_1, \Gamma_2}: \sem{ \Gamma_1\otimes \Gamma_2} \rightarrow \sem{\Gamma_1}\otimes \sem{\Gamma_2}$ is defined as:
 \begin{equation*}
   \text{sp}_{-; \Gamma_2} = \lambda^{-1} \hspace{1cm} \text{sp}_{\Gamma_1; -} = \rho^{-1} \hspace{1cm} \text{sp}_{\Gamma_1;x:\mathbb{A}} = \id \hspace{1cm} \text{sp}_{\Gamma_1; \Delta, x: \mathbb{A}} = \alpha \cdot (\text{sp}_{\Gamma_1; \Delta} \otimes \id)
@@ -1608,7 +1619,7 @@ $\begin{array}{c}
     \hline
   [\![E \vljud \text{case } v\,  \{\text{inl}_{\typeB} (x) \Rightarrow w ;\, \text{inr}_{\typeA} (y) \Rightarrow u\}: \typeD ]\!] =   [p,q] \comp (\text{jn}_{\Delta;\typeA}\comp \sw \oplus \text{jn}_{\Delta;\typeB}\comp \sw) 
  \comp \dist \comp  
- \\[-5pt] \hspace{160pt}  (b \otimes \text{id}) \comp \text{sp}_{\Gamma;\Delta} \comp \text{sh}_{E} 
+ \\[-5pt] \hspace{160pt}  (b \otimes \id) \comp \text{sp}_{\Gamma;\Delta} \comp \text{sh}_{E} 
 \end{array}
 $
 \end{minipage} \\
@@ -1679,7 +1690,7 @@ Regarding the interpretation of the exhange and substitution properties, we have
     \comp \text{sh}
     & \text{(Induction)}\\
     &  =  \dots  \comp (\sem{v} \otimes \id) 
-          \comp (\text{exch} \otimes \text{id}) \comp \text{sp} \comp  \text{sh} & \\
+          \comp (\text{exch} \otimes \id) \comp \text{sp} \comp  \text{sh} & \\
     & = \dots \comp (\sem{v} \otimes \id) \comp \text{sp}
           \comp \text{sh}  
           \comp \text{exch} 
@@ -1731,34 +1742,34 @@ for symmetric monoidal categories.
 Regarding the substitution rule, once again the cases involving the injections follow directly by induction on the derivation tree. For the rule (case), we distinguish between the scenarios where the variable $x$ is in $\Gamma$ or in $\Delta$. We start with the first case.
 \begin{align*}
   & \hspace{-30pt} [\![E, Z \vljud \text{case } v \,  \{\text{inl} (a) \Rightarrow w ;\, \text{inr} (b) \Rightarrow u\} [t/x]]\!] \\
-  & \hspace{-30pt} \triangleq \left[[\![ w ]\!] ,[\![ u ]\!]\right] \comp (\text{jn}\comp \sw \oplus \text{jn} \comp \sw) \comp \dist \comp  ([\![ v [t/x] ]\!]   \otimes \text{id})  \comp \text{sp} \comp \text{sh} \\
-  & \hspace{-30pt} = \left[[\![ w ]\!] ,[\![ u ]\!]\right] \comp (\text{jn} \comp \sw \oplus \text{jn} \comp \sw)  \comp \dist \comp (([\![ v]\!]  \comp \text{jn} \comp (\text{id} \otimes [\![  t ]\!] ) \comp \text{sp} )\otimes \text{id})  \comp \text{sp} \comp \text{sh} & {\text{(Induction)}} \\
-  & \hspace{-30pt} =  \ldots  \comp ([\![ v]\!] \otimes \text{id}) \comp (\text{jn} \comp (\text{id} \otimes [\![  t ]\!] ) \comp \text{sp} \otimes \text{id})  \comp \text{sp}\comp \text{sh}\\
-  & \hspace{-30pt} = \ldots \comp ([\![ v]\!] \otimes \text{id})  \comp (\text{jn} \comp (\text{id} \otimes [\![  t ]\!] ) \comp \text{sp} \otimes \text{id})  \comp \text{sp} \comp \text{sh} \comp \text{jn} \comp \text{sp} &  \\
-  & \hspace{-30pt} = \ldots  \comp ([\![ v]\!] \otimes \text{id}) \comp (\text{jn}\comp \text{sp} \otimes   \id) \comp \text{sp}   \comp \text{sh} \comp \text{jn}\comp (\text{id} \otimes [\![ t ]\!] ) \comp \text{sp}  & {(\text{Naturality})}   \\
-  & \hspace{-30pt} = \ldots  \comp ([\![ v]\!] \otimes \text{id}) \comp \text{sp}  \comp \text{sh}  \comp  \text{jn} \comp (\text{id} \otimes [\![ t ]\!] ) \comp \text{sp}  & {(\text{Coherence})}   \\
-  & \hspace{-30pt} \triangleq \, [\![E,  x \vljud \text{case } v\,  \{\text{inl} (x) \Rightarrow w ;\, \text{inr} (y) \Rightarrow u\}]\!]  \comp  \text{jn} \comp (\text{id} \otimes [\![ t ]\!] ) \comp \text{sp}
+  & \hspace{-30pt} \triangleq \left[[\![ w ]\!] ,[\![ u ]\!]\right] \comp (\text{jn}\comp \sw \oplus \text{jn} \comp \sw) \comp \dist \comp  ([\![ v [t/x] ]\!]   \otimes \id)  \comp \text{sp} \comp \text{sh} \\
+  & \hspace{-30pt} = \left[[\![ w ]\!] ,[\![ u ]\!]\right] \comp (\text{jn} \comp \sw \oplus \text{jn} \comp \sw)  \comp \dist \comp (([\![ v]\!]  \comp \text{jn} \comp (\id \otimes [\![  t ]\!] ) \comp \text{sp} )\otimes \id)  \comp \text{sp} \comp \text{sh} & {\text{(Induction)}} \\
+  & \hspace{-30pt} =  \ldots  \comp ([\![ v]\!] \otimes \id) \comp (\text{jn} \comp (\id \otimes [\![  t ]\!] ) \comp \text{sp} \otimes \id)  \comp \text{sp}\comp \text{sh}\\
+  & \hspace{-30pt} = \ldots \comp ([\![ v]\!] \otimes \id)  \comp (\text{jn} \comp (\id \otimes [\![  t ]\!] ) \comp \text{sp} \otimes \id)  \comp \text{sp} \comp \text{sh} \comp \text{jn} \comp \text{sp} &  \\
+  & \hspace{-30pt} = \ldots  \comp ([\![ v]\!] \otimes \id) \comp (\text{jn}\comp \text{sp} \otimes   \id) \comp \text{sp}   \comp \text{sh} \comp \text{jn}\comp (\id \otimes [\![ t ]\!] ) \comp \text{sp}  & {(\text{Naturality})}   \\
+  & \hspace{-30pt} = \ldots  \comp ([\![ v]\!] \otimes \id) \comp \text{sp}  \comp \text{sh}  \comp  \text{jn} \comp (\id \otimes [\![ t ]\!] ) \comp \text{sp}  & {(\text{Coherence})}   \\
+  & \hspace{-30pt} \triangleq \, [\![E,  x \vljud \text{case } v\,  \{\text{inl} (x) \Rightarrow w ;\, \text{inr} (y) \Rightarrow u\}]\!]  \comp  \text{jn} \comp (\id \otimes [\![ t ]\!] ) \comp \text{sp}
 \end{align*}
 
   With respect to the second case, \ie, $x$ lives in $\Delta$, we have: 
   \begin{align*}
   &\hspace{-30pt} [\![E, Z \vljud \text{case } v \,  \{\text{inl} (a) \Rightarrow w ;\, \text{inr} (b) \Rightarrow u\} [t/x]]\!] \\
-  & \hspace{-30pt} \triangleq \left[[\![ \Delta  , Z ,  a \vljud w[t/x] ]\!] ,[\![ \Delta, Z, b \vljud u[t/x]  ]\!] \right] \comp (\text{jn}\comp \sw \oplus \text{jn} \comp \sw) \comp \dist  \comp ([\![ v ]\!]   \otimes \text{id})     \\
+  & \hspace{-30pt} \triangleq \left[[\![ \Delta  , Z ,  a \vljud w[t/x] ]\!] ,[\![ \Delta, Z, b \vljud u[t/x]  ]\!] \right] \comp (\text{jn}\comp \sw \oplus \text{jn} \comp \sw) \comp \dist  \comp ([\![ v ]\!]   \otimes \id)     \\
   &  \hspace{-20pt} \comp \text{sp} \comp \text{sh}  \\
   & \hspace{-30pt} =  \left[[\![ \Delta  ,   a, Z \vljud w[t/x] ]\!] ,[\![ \Delta, b, Z \vljud u[t/x]  ]\!] \right] \comp ( \text{exch} \comp \text{jn}\comp \sw \oplus  \text{exch} \comp \text{jn} \comp \sw)   \comp \ldots   & {(\text{Exch., Cop.})} \\
-  & \hspace{-30pt} =   \left[[\![w ]\!] \comp  \text{jn} \comp (\text{id} \otimes [\![t]\!] ) \comp \text{sp}  ,[\![ u]\!] \comp \text{jn} \comp (\text{id} \otimes [\![t]\!] ) \comp \text{sp} \right] \comp (\text{exch} \comp \text{jn} \comp \sw  \oplus \text{exch}  & {\text{(Induction)}}  \\
+  & \hspace{-30pt} =   \left[[\![w ]\!] \comp  \text{jn} \comp (\id \otimes [\![t]\!] ) \comp \text{sp}  ,[\![ u]\!] \comp \text{jn} \comp (\id \otimes [\![t]\!] ) \comp \text{sp} \right] \comp (\text{exch} \comp \text{jn} \comp \sw  \oplus \text{exch}  & {\text{(Induction)}}  \\
   & \hspace{-20pt} \comp\text{jn} \comp \sw ) \comp \ldots \\
-  & \hspace{-30pt} =  \left[[\![w ]\!] ,[\![ u]\!] \right] \comp \big(\text{exch} \comp \text{jn} \comp \sw \comp (\text{id} \otimes  \text{jn} ) \comp (\text{id} \otimes [\![t]\!]) \comp  (\text{id} \otimes \text{sp} ) \oplus \text{exch} \comp \text{jn} \comp \sw   & {(\text{Naturality,}} \\
-  & \hspace{-30pt} \hspace{10pt} \comp (\text{id} \otimes  \text{jn} ) \comp (\text{id} \otimes [\![t]\!]) \comp  (\text{id} \otimes \text{sp} ) \big)\comp  \ldots & {\text{Cop. laws})} \\
-  %& \hspace{-30pt} =  \ldots \comp \big(\ldots  \comp (\text{id} \otimes  (\text{jn} \comp \text{id} \otimes [\![t]\!] \comp \text{sp}) ) \oplus  \ldots  \comp (\text{id} \otimes  (\text{jn}\comp \text{id} \otimes [\![t]\!] \comp \text{sp}) )\big) \comp \dist \comp \ldots &  \\
-  & \hspace{-30pt} = [[\![ \Delta  , x ,  a \vljud w]\!] , [\![ \Delta  , x ,  b \vljud u]\!]]  \comp \big(\text{jn} \comp \sw \comp (\text{id} \otimes  (\text{jn} \comp \id \otimes [\![t]\!]  \comp \text{sp}))  \oplus \text{jn} \comp  \sw      & {(\text{Exchange, }}  \\
-  & \hspace{-30pt} \hspace{10pt} \comp (\text{id} \otimes  (\text{jn} \comp \text{id} \otimes [\![t]\!] \comp \text{sp}) )\big) \comp \dist \ldots  & { \text{Cop. laws})}\\
-  & \hspace{-30pt} = \ldots \comp  (\text{jn} \comp \sw \oplus \text{jn} \comp \sw)  \comp \dist \comp ( \text{id} \otimes (\text{jn} \cdot (\text{id} \otimes [\![t]\!]) \cdot \text{sp} ) ) \comp ([\![v]\!] \otimes \text{id})  & {(\text{Cop. laws,}}  \\
+  & \hspace{-30pt} =  \left[[\![w ]\!] ,[\![ u]\!] \right] \comp \big(\text{exch} \comp \text{jn} \comp \sw \comp (\id \otimes  \text{jn} ) \comp (\id \otimes [\![t]\!]) \comp  (\id \otimes \text{sp} ) \oplus \text{exch} \comp \text{jn} \comp \sw   & {(\text{Naturality,}} \\
+  & \hspace{-30pt} \hspace{10pt} \comp (\id \otimes  \text{jn} ) \comp (\id \otimes [\![t]\!]) \comp  (\id \otimes \text{sp} ) \big)\comp  \ldots & {\text{Cop. laws})} \\
+  %& \hspace{-30pt} =  \ldots \comp \big(\ldots  \comp (\id \otimes  (\text{jn} \comp \id \otimes [\![t]\!] \comp \text{sp}) ) \oplus  \ldots  \comp (\id \otimes  (\text{jn}\comp \id \otimes [\![t]\!] \comp \text{sp}) )\big) \comp \dist \comp \ldots &  \\
+  & \hspace{-30pt} = [[\![ \Delta  , x ,  a \vljud w]\!] , [\![ \Delta  , x ,  b \vljud u]\!]]  \comp \big(\text{jn} \comp \sw \comp (\id \otimes  (\text{jn} \comp \id \otimes [\![t]\!]  \comp \text{sp}))  \oplus \text{jn} \comp  \sw      & {(\text{Exchange, }}  \\
+  & \hspace{-30pt} \hspace{10pt} \comp (\id \otimes  (\text{jn} \comp \id \otimes [\![t]\!] \comp \text{sp}) )\big) \comp \dist \ldots  & { \text{Cop. laws})}\\
+  & \hspace{-30pt} = \ldots \comp  (\text{jn} \comp \sw \oplus \text{jn} \comp \sw)  \comp \dist \comp ( \id \otimes (\text{jn} \cdot (\id \otimes [\![t]\!]) \cdot \text{sp} ) ) \comp ([\![v]\!] \otimes \id)  & {(\text{Cop. laws,}}  \\
   & \hspace{-20pt} \comp \text{sp} \comp \text{sh} & {\text{Naturality})} \\
-  & \hspace{-30pt} =  \ldots \comp \dist \comp  ([\![v]\!] \otimes \text{id})  \comp ( \text{id} \otimes (\text{jn} \comp  (\text{id} \otimes [\![t]\!]) \cdot \text{sp} ) ) \comp \text{sp}\comp \text{sh} \comp \text{jn}  \comp \text{sp}    & \\
-  & \hspace{-30pt} = \ldots \comp \dist \comp  ([\![v]\!] \otimes \text{id})  \comp ( \id \otimes \text{jn} \comp \text{sp}) \comp \text{sp}  \comp \text{sh}    \comp \text{jn} \comp (\text{id} \otimes [\![ t ]\!] ) \comp \text{sp} & {(\text{Naturality})}   \\
-  & \hspace{-30pt} =  \ldots  \comp \dist   \comp ([\![v  ]\!] \otimes \text{id}) \comp \text{sp} \comp \text{sh} \comp \text{jn} \comp (\text{id} \otimes [\![ t ]\!] ) \comp \text{sp}  & {(\text{Coherence})}     \\ 
-  & \hspace{-30pt} \triangleq  [\![E,  x\vljud \text{case } v\,  \{\text{inl} (a) \Rightarrow w ;\, \text{inr} (b) \Rightarrow u\}]\!] \comp \text{jn} \comp (\text{id} \otimes [\![ t ]\!] ) \comp \text{sp}
+  & \hspace{-30pt} =  \ldots \comp \dist \comp  ([\![v]\!] \otimes \id)  \comp ( \id \otimes (\text{jn} \comp  (\id \otimes [\![t]\!]) \cdot \text{sp} ) ) \comp \text{sp}\comp \text{sh} \comp \text{jn}  \comp \text{sp}    & \\
+  & \hspace{-30pt} = \ldots \comp \dist \comp  ([\![v]\!] \otimes \id)  \comp ( \id \otimes \text{jn} \comp \text{sp}) \comp \text{sp}  \comp \text{sh}    \comp \text{jn} \comp (\id \otimes [\![ t ]\!] ) \comp \text{sp} & {(\text{Naturality})}   \\
+  & \hspace{-30pt} =  \ldots  \comp \dist   \comp ([\![v  ]\!] \otimes \id) \comp \text{sp} \comp \text{sh} \comp \text{jn} \comp (\id \otimes [\![ t ]\!] ) \comp \text{sp}  & {(\text{Coherence})}     \\ 
+  & \hspace{-30pt} \triangleq  [\![E,  x\vljud \text{case } v\,  \{\text{inl} (a) \Rightarrow w ;\, \text{inr} (b) \Rightarrow u\}]\!] \comp \text{jn} \comp (\id \otimes [\![ t ]\!] ) \comp \text{sp}
 \end{align*}
 
 
@@ -1785,33 +1796,33 @@ $\llbracket \Gamma \vljud v : A  \rrbracket = \llbracket  \Gamma \vljud w : \typ
 \begin{proof}
   Since the theorem is already proven in \cite[Theorem 2.3]{dahlqvist2023syntactic} for the lambda calculus without conditionals, it suffices to consider the cases involving conditionals. 
   
-  The soundeness of the equations for conditionals follow from \autoref{lem:sub_exch}, the coherence theorem for symmetric monoidal categories, naturality,  the bifunctoriality of the tensor product, and the universal property of the coproduct.   
+  The soundeness of the equations for conditionals follow from \autoref{lem:sub_exch}, the coherence theorem for symmetric monoidal categories, naturality, and the universal property of the coproduct.   
   We will provide a complete proof for the $\beta_{case}^{inl}$ and $\eta_{case}$ equations, noting that the proof for the $\beta_{case}^{inr}$ equation follows analogously from the first. For the $\beta_{case}^{inl}$ equation, we reason as follows:
   \begin{align*}
     & \hspace{-30pt}  \llbracket \Delta,\Gamma \vljud  \text{case }  \text{inl}(v)\, \{\text{inl} (x) \Rightarrow w ;\, \text{inr} (y) \Rightarrow u\} \rrbracket \\
-    & \hspace{-30pt}  \triangleq  [\llbracket w\rrbracket,\llbracket u \rrbracket] \comp (\text{jn} \comp \sw \oplus \text{jn} \comp \sw  ) \comp \dist \comp \sw \comp (\inl \comp \llbracket  v \rrbracket \otimes \text{id}) \comp \text{sp} \comp \text{sh} \\
-    & \hspace{-30pt} =  \ldots \comp \dist \comp (\inl \otimes \text{id}  ) \comp ( \llbracket  v \rrbracket \otimes \text{id}) \comp \text{sp} \comp \text{sh}  \\
-    & \hspace{-30pt} =  \ldots \comp \dist \comp [\inl \otimes \id, \inr \otimes \id] \comp \inl  \comp ( \llbracket  v \rrbracket \otimes \text{id}) \comp \text{sp} \comp \text{sh}  &(\text{Coproduct laws})\\
-    & \hspace{-30pt} =  [\llbracket w\rrbracket,\llbracket u \rrbracket] \comp (\text{jn} \comp \sw \oplus \text{jn} \comp \sw )  \comp \inl  \comp ( \llbracket  v \rrbracket \otimes \text{id}) \comp \text{sp} \comp \text{sh} \\
-    & \hspace{-30pt}  = \llbracket  w \rrbracket\comp \text{jn} \comp   \sw \comp(\llbracket v \rrbracket \otimes  \text{id}) \comp \text{sp} \comp \text{sh} & {\text{(Coproduct laws)}} \\
-    &\hspace{-30pt}  =  \llbracket  w \rrbracket\comp \text{jn} \comp(  \text{id}\otimes \llbracket v \rrbracket ) \comp   \sw \comp \text{sp} \comp \text{sh} & {\text{(Naturality)}} \\
-    &\hspace{-30pt}  = \llbracket w \rrbracket \comp \text{jn} \comp( \text{id} \otimes \llbracket v \rrbracket) \comp \text{sp} & {\text{(Coherence)}}\\
+    & \hspace{-30pt}  \triangleq  [\llbracket w\rrbracket,\llbracket u \rrbracket] \comp (\text{jn} \comp \sw \oplus \text{jn} \comp \sw  ) \comp \dist \comp \sw \comp (\inl \comp \llbracket  v \rrbracket \otimes \id) \comp \text{sp} \comp \text{sh} \\
+    & \hspace{-30pt} =  \ldots \comp \dist \comp (\inl \otimes \id  ) \comp ( \llbracket  v \rrbracket \otimes \id) \comp \text{sp} \comp \text{sh}  \\
+    & \hspace{-30pt} =  \ldots \comp \dist \comp [\inl \otimes \id, \inr \otimes \id] \comp \inl  \comp ( \llbracket  v \rrbracket \otimes \id) \comp \text{sp} \comp \text{sh}  &(\text{Coproduct laws})\\
+    & \hspace{-30pt} =  [\llbracket w\rrbracket,\llbracket u \rrbracket] \comp (\text{jn} \comp \sw \oplus \text{jn} \comp \sw )  \comp \inl  \comp ( \llbracket  v \rrbracket \otimes \id) \comp \text{sp} \comp \text{sh} \\
+    & \hspace{-30pt}  = \llbracket  w \rrbracket\comp \text{jn} \comp   \sw \comp(\llbracket v \rrbracket \otimes  \id) \comp \text{sp} \comp \text{sh} & {\text{(Coproduct laws)}} \\
+    &\hspace{-30pt}  =  \llbracket  w \rrbracket\comp \text{jn} \comp(  \id\otimes \llbracket v \rrbracket ) \comp   \sw \comp \text{sp} \comp \text{sh} & {\text{(Naturality)}} \\
+    &\hspace{-30pt}  = \llbracket w \rrbracket \comp \text{jn} \comp( \id \otimes \llbracket v \rrbracket) \comp \text{sp} & {\text{(Coherence)}}\\
     & \hspace{-30pt}  = \llbracket w[v/x]  \rrbracket  & {\text{(\autoref{lem:sub_exch})}}
     \end{align*}
   Regarding the $\eta_{case}$ equation, we have:
 \begin{align*}
   &  \hspace{-30pt} \llbracket \Delta,\Gamma \vljud \text{case } v\, \{\text{inl}_{\typeB} (y) \Rightarrow w [ \text{inl}_{\typeB}(y)/x] ;\, \text{inr} (z) \Rightarrow w [ \text{inr}(z)/x]\}: \typeD\rrbracket \\
-  &  \hspace{-30pt} \triangleq  [\llbracket  w [ \text{inl}(y)/x] \rrbracket, \llbracket  w [ \text{inr}(z)/x] \rrbracket] \comp (\text{jn} \comp \sw \oplus \text{jn} \comp \sw  ) \comp \dist \comp (\llbracket v\rrbracket \otimes \text{id}) \\
+  &  \hspace{-30pt} \triangleq  [\llbracket  w [ \text{inl}(y)/x] \rrbracket, \llbracket  w [ \text{inr}(z)/x] \rrbracket] \comp (\text{jn} \comp \sw \oplus \text{jn} \comp \sw  ) \comp \dist \comp (\llbracket v\rrbracket \otimes \id) \\
   &  \hspace{-20pt} \comp  \text{sp} \comp \text{sh}  \\
-  &  \hspace{-30pt} = \llbracket w \rrbracket \comp [\text{jn} \comp (\text{id} \otimes\inl \comp  \llbracket y \rrbracket) \comp \text{sp} \comp \text{jn} \comp \sw , 
-   \text{jn}\comp (\text{id} \otimes\inr  \comp \llbracket z \rrbracket)  \comp \text{sp} \comp \text{jn} \comp \sw  ] \comp \ldots  & {\text{(Lem. \ref{lem:sub_exch},}} \\
+  &  \hspace{-30pt} = \llbracket w \rrbracket \comp [\text{jn} \comp (\id \otimes\inl \comp  \llbracket y \rrbracket) \comp \text{sp} \comp \text{jn} \comp \sw , 
+   \text{jn}\comp (\id \otimes\inr  \comp \llbracket z \rrbracket)  \comp \text{sp} \comp \text{jn} \comp \sw  ] \comp \ldots  & {\text{(Lem. \ref{lem:sub_exch},}} \\
   &  & {\text{Cop. laws)}}  \\
-  &  \hspace{-30pt} =  \llbracket w \rrbracket \comp \text{jn} \comp [ (\text{id} \otimes\inl)  \comp \sw  ,   (\text{id} \otimes\inr) \comp \sw  ] \comp \ldots  & {\text{(Cop. laws})}   \\
-  &  \hspace{-30pt} = \llbracket w \rrbracket \comp \text{jn} \comp   \sw \comp  [\inl \otimes \text{id} , \inr \otimes \text{id}] \comp \dist   \comp (\llbracket v \rrbracket \otimes \text{id})  \comp  \text{sp}\comp \text{sh}  & {\text{(Naturality, }}  \\
+  &  \hspace{-30pt} =  \llbracket w \rrbracket \comp \text{jn} \comp [ (\id \otimes\inl)  \comp \sw  ,   (\id \otimes\inr) \comp \sw  ] \comp \ldots  & {\text{(Cop. laws})}   \\
+  &  \hspace{-30pt} = \llbracket w \rrbracket \comp \text{jn} \comp   \sw \comp  [\inl \otimes \id , \inr \otimes \id] \comp \dist   \comp (\llbracket v \rrbracket \otimes \id)  \comp  \text{sp}\comp \text{sh}  & {\text{(Naturality, }}  \\
   &  \hspace{-30pt} \hspace{10pt} & {\text{Cop. laws})}   \\
-  %& = \llbracket w \rrbracket \comp \text{jn}_{\Delta;\typeA \oplus \typeB} \comp \comp \sw \text{id}   \comp (\llbracket v \oplus \typeB\rrbracket \otimes \text{id})  \comp  \text{sp}_{\Gamma;\Delta} \comp \text{sh}_{\Delta;\Gamma}  \\
-  &  \hspace{-30pt} = \llbracket w \rrbracket \comp \text{jn} \comp ( \text{id} \otimes \llbracket v \rrbracket )  \comp  \sw  \comp  \text{sp} \comp \text{sh} & {\text{(Naturality)}}\\
-  &   \hspace{-30pt} = \llbracket w \rrbracket \comp \text{jn} \comp ( \text{id} \otimes \llbracket v \rrbracket )  \comp  \text{sp} & {\text{(Coherence)}}\\
+  %& = \llbracket w \rrbracket \comp \text{jn}_{\Delta;\typeA \oplus \typeB} \comp \comp \sw \id   \comp (\llbracket v \oplus \typeB\rrbracket \otimes \id)  \comp  \text{sp}_{\Gamma;\Delta} \comp \text{sh}_{\Delta;\Gamma}  \\
+  &  \hspace{-30pt} = \llbracket w \rrbracket \comp \text{jn} \comp ( \id \otimes \llbracket v \rrbracket )  \comp  \sw  \comp  \text{sp} \comp \text{sh} & {\text{(Naturality)}}\\
+  &   \hspace{-30pt} = \llbracket w \rrbracket \comp \text{jn} \comp ( \id \otimes \llbracket v \rrbracket )  \comp  \text{sp} & {\text{(Coherence)}}\\
   &  \hspace{-30pt} \triangleq \llbracket w[v/x] : \typeD \rrbracket & (\text{Lem. \ref{lem:sub_exch}})
 \end{align*}
 
@@ -1849,7 +1860,7 @@ is a theorem of $T$ if and only if it is satisfied by all models of the theory.
   The proof for the right triangle in the coproduct diagram is analogous.
 
   Regarding the unicity of the coproduct, the key aspect of the proof lies in proving that the following equality holds: 
-  $$\left[z:\typeA \oplus \typeB \vljud  \text{case } z \,\{\inl(x) \Rightarrow m[\inl(x)/ z] ; \, \inr(y) \Rightarrow m[\inr(x)/ z]\} : \typeD \right] = [z:\typeA \oplus \typeB \vljud m: \typeD].$$ 
+  $$\left[z:\typeA \oplus \typeB \vljud  \text{case } z \,\{\inl(x) \Rightarrow m[\inl(x)/ z] ; \, \inr(y) \Rightarrow m[\inr(y)/ z]\} : \typeD \right] = [z:\typeA \oplus \typeB \, \vljud \,m: \typeD].$$ 
   This equality follows direct from the $\eta_{case}$ equation. With this equality at hand, unicity is automatically proven, given that considering any morphism $m'$ from $\typeA \oplus \typeB$ to $\typeD$ and the coproduct diagram, we have that 
   \[\left[ m'[ \inl(x)/z] \right]  = \left[p \right]   \] 
   and
@@ -1896,7 +1907,7 @@ is a theorem of $T$ if and only if it is satisfied by all first-order models of 
 
   In the syntatic category the distributive property, $\dist$, corresponds to the class 
   \begin{align*}
-    \big[z:(\typeA \otimes \mathbb{\typeB}) \otimes \mathbb{\typeD} \vljud \text{pm } z \text{ to } x \otimes d. \text{ case } x\,\{ &\inl_{\typeB}(a) \Rightarrow \inl_{\typeB \otimes \typeD}(a \otimes d); \\
+    \big[z:(\typeA \oplus \mathbb{\typeB}) \otimes \mathbb{\typeD} \vljud \text{pm } z \text{ to } x \otimes d. \text{ case } x\,\{ &\inl_{\typeB}(a) \Rightarrow \inl_{\typeB \otimes \typeD}(a \otimes d); \\
     & \inr_{\typeA}(b) \Rightarrow \inr_{\typeA \otimes \typeD}(b \otimes d/z')\} \\
     & \hspace{45pt}: (\typeA \otimes \typeD) \oplus (\typeB \otimes \typeD) \big].
   \end{align*} 
@@ -1931,8 +1942,8 @@ The proof of the coproduct diagram comutes follows  from equations $\eta_{\otime
       & \inl(a') \Rightarrow p[a' \otimes d'/z'];\\
       & \inr(b) \Rightarrow q [b \otimes d'/z']
     \end{aligned} \right\} \right] \\
-    &   \hspace{-30pt} = \left[ \text{pm } \inl(a) \otimes d  \text{ to } x' \otimes d [x/ a \otimes d]. \, \text{ case } x'\, \left\{ \begin{aligned}
-      & \inl(a') \Rightarrow p[a' \otimes d/z'];\\
+    &   \hspace{-30pt} = \left[ \text{pm } \inl(a) \otimes d  \text{ to } x' \otimes d' [x/ a \otimes d]. \, \text{ case } x'\, \left\{ \begin{aligned}
+      & \inl(a') \Rightarrow p[a' \otimes d'/z'];\\
       & \inr(b) \Rightarrow q [b \otimes d'/z']
     \end{aligned} \right\} \right] & (\eta_{\otimes_e})  \\
      &   \hspace{-30pt} = \left[\text{ case } \inl(a)\, \left\{ \begin{aligned}
@@ -1997,7 +2008,7 @@ Next, to establish that this morphism is unique, we establish that given any mor
   We now illustrate how the programs presented in Examples \ref{example:prog_swap} and \ref{example:prog_Dis2nd}, with slight modifications, are interpreted in $\catSet$.
    To this effect, we consider a type $N$ representing the set of natural numbers, along with a family of operations $\{n : \typeI \to \emph{N} \mid n \in \mathbb{N}\}$, each mapping the monoidal unit to a corresponding natural number $n$.
    We consider yet another operation $\text{dis}$ that marks elements of of type $N$ as discardable, $\text{dis}: N \to \typeI $.
-  In $\catSet$ we have $\sem{\typeI}= \{*\}$, define $\sem{N} = \mathbb{N}$,   $\sem{n} = \{*\} \to \mathbb{N}, \, * \mapsto n,$ and $\sem{\text{dis}}=!$ where $!$ denotes the terminal map. 
+  In $\catSet$ we have $\sem{\typeI}= \{*\}$, and define $\sem{N} = \mathbb{N}$,   $\sem{n} = \{*\} \to \mathbb{N}, \, * \mapsto n,$ and $\sem{\text{dis}}=!$, where $!$ denotes the terminal map. 
    Consider the following $\lambda$-term:
    \begin{equation*}
    \begin{split}
@@ -2047,7 +2058,7 @@ Next, to establish that this morphism is unique, we establish that given any mor
    &  \sem{ \text{dis}(2(*)) \hspace{3 pt} \text{ to } *. 1 (*)} \\
     & = \llbracket 1(*) \rrbracket \cdot \lambda \cdot \sem{\text{dis}(2(*))} \otimes \id \cdot  \lambda^{-1}  \\
    &  =  \llbracket 1(*) \rrbracket \cdot \lambda \cdot (! \cdot \llbracket 2(*) \rrbracket \otimes \id) \cdot \lambda^{-1} \\
-   &  =  \llbracket 1(*) \rrbracket \cdot \lambda \cdot (! \cdot \otimes \id) \cdot \lambda^{-1} \\
+   &  =  \llbracket 1(*) \rrbracket \cdot \lambda \cdot (!  \otimes \id) \cdot \lambda^{-1} \\
    & = \llbracket 1(*) \rrbracket \cdot   \lambda \cdot  \id \cdot  \lambda^{-1} \\
    & =  \llbracket 1(*) \rrbracket 
    \end{align*}

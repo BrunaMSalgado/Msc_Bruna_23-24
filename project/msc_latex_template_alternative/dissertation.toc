@@ -11,18 +11,18 @@
 \contentsline {chapter}{\numberline {2}Metric Lambda Calculus}{11}{chapter.2}%
 \contentsline {section}{\numberline {2.1}A first look at lambda Calculus}{11}{section.2.1}%
 \contentsline {section}{\numberline {2.2}Syntax}{13}{section.2.2}%
-\contentsline {subsection}{\numberline {2.2.1}Type system}{13}{subsection.2.2.1}%
-\contentsline {subsection}{\numberline {2.2.2}(Raw)Terms}{13}{subsection.2.2.2}%
-\contentsline {subsection}{\numberline {2.2.3}Free and Bound Variables}{14}{subsection.2.2.3}%
-\contentsline {subsection}{\numberline {2.2.4}$\alpha $-equivalence}{15}{subsection.2.2.4}%
-\contentsline {subsection}{\numberline {2.2.5}Substitution}{15}{subsection.2.2.5}%
+\contentsline {subsection}{\numberline {2.2.1}(Raw)Terms}{13}{subsection.2.2.1}%
+\contentsline {subsection}{\numberline {2.2.2}Free and Bound Variables}{14}{subsection.2.2.2}%
+\contentsline {subsection}{\numberline {2.2.3}$\alpha $-equivalence}{14}{subsection.2.2.3}%
+\contentsline {subsection}{\numberline {2.2.4}Substitution}{15}{subsection.2.2.4}%
+\contentsline {subsection}{\numberline {2.2.5}Type system}{16}{subsection.2.2.5}%
 \contentsline {subsection}{\numberline {2.2.6}Typing rules}{17}{subsection.2.2.6}%
 \contentsline {subsection}{\numberline {2.2.7}Properties}{20}{subsection.2.2.7}%
 \contentsline {subsection}{\numberline {2.2.8}Equations-in-context}{22}{subsection.2.2.8}%
 \contentsline {subsection}{\numberline {2.2.9}Interlude: Booleans - Part 1}{24}{subsection.2.2.9}%
 \contentsline {subsubsection}{Boolean operators}{24}{subsection.2.2.9}%
-\contentsline {subsubsection}{Extensionality of the copairing}{25}{equation.2.2.2}%
-\contentsline {subsubsection}{Properties}{25}{equation.2.2.3}%
+\contentsline {subsubsection}{Extensionality of the copairing}{25}{equation.2.2.1}%
+\contentsline {subsubsection}{Properties}{25}{equation.2.2.2}%
 \contentsline {subsection}{\numberline {2.2.10}Metric equational system}{28}{subsection.2.2.10}%
 \contentsline {subsection}{\numberline {2.2.11}Interlude: Booleans - Part 2}{30}{subsection.2.2.11}%
 \contentsline {section}{\numberline {2.3}Semantics}{31}{section.2.3}%

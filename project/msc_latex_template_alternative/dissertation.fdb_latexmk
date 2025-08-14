@@ -1,24 +1,24 @@
 # Fdb version 4
-["bibtex dissertation"] 1755036619.13897 "dissertation.aux" "dissertation.bbl" "dissertation" 1755037517.52231 0
+["bibtex dissertation"] 1755129007.18609 "dissertation.aux" "dissertation.bbl" "dissertation" 1755134022.36779 0
   "./dissertation.bib" 1755027981 61160 7ed8341e1bfd26209211463371a56b5f ""
   "C:/Users/mona_/AppData/Local/Programs/MiKTeX/bibtex/bst/urlbst/plainurl.bst" 1675594511 33495 46cfb45e24a877059f9f7e142c7fc61c ""
-  "dissertation.aux" 1755037515 56154 8f999002993fb42b9ed781cedaa4ccd0 "xelatex"
+  "dissertation.aux" 1755134020 56182 270b411d4fa12e1a4af03379ff568f7d "xelatex"
   (generated)
   "dissertation.bbl"
   "dissertation.blg"
   (rewritten before read)
-["makeindex dissertation.idx"] 1754954572.02801 "dissertation.idx" "dissertation.ind" "dissertation" 1755037517.52201 0
-  "dissertation.idx" 1755037509 0 d41d8cd98f00b204e9800998ecf8427e "xelatex"
+["makeindex dissertation.idx"] 1754954572.02801 "dissertation.idx" "dissertation.ind" "dissertation" 1755134022.3675 0
+  "dissertation.idx" 1755134014 0 d41d8cd98f00b204e9800998ecf8427e "xelatex"
   (generated)
   "dissertation.ilg"
   "dissertation.ind"
   (rewritten before read)
-["xdvipdfmx"] 1755037516.49214 "dissertation.xdv" "dissertation.pdf" "dissertation" 1755037517.53778 0
-  "dissertation.xdv" 1755037515 3271208 8ef7670461367cc6a309529e76588eba "xelatex"
+["xdvipdfmx"] 1755134021.32735 "dissertation.xdv" "dissertation.pdf" "dissertation" 1755134022.38205 0
+  "dissertation.xdv" 1755134020 3271556 0e66c17c396db0eae21a5d898766a556 "xelatex"
   (generated)
   "dissertation.pdf"
   (rewritten before read)
-["xelatex"] 1755037506.27544 "c:/Users/mona_/OneDrive/Ambiente de Trabalho/Universidade/Tese/Msc-Bruna/project/msc_latex_template_alternative/dissertation.tex" "dissertation.xdv" "dissertation" 1755037517.52265 0
+["xelatex"] 1755134011.78058 "c:/Users/mona_/OneDrive/Ambiente de Trabalho/Universidade/Tese/Msc-Bruna/project/msc_latex_template_alternative/dissertation.tex" "dissertation.xdv" "dissertation" 1755134022.36812 0
   "C:/Users/mona_/AppData/Local/MiKTeX/fonts/tfm/public/mathabx/mathx10.tfm" 1745760675 1520 88530e4e46ef1e4a7103f014512c50d2 ""
   "C:/Users/mona_/AppData/Local/MiKTeX/fonts/tfm/public/rsfs/rsfs10.tfm" 1713966647 688 37338d6ab346c2f1466b29e195316aa4 ""
   "C:/Users/mona_/AppData/Local/MiKTeX/fonts/tfm/public/rsfs/rsfs5.tfm" 1713966649 684 3a51bd4fd9600428d5264cf25f04bb9a ""
@@ -326,23 +326,23 @@
   "C:/Users/mona_/AppData/Local/Programs/MiKTeX/tex/latex/xkeyval/xkeyval.sty" 1656236919 4937 4ce600ce9bd4ec84d0250eb6892fcf4f ""
   "C:/Users/mona_/AppData/Local/Programs/MiKTeX/tex/latex/xstring/xstring.sty" 1693735632 123 a302f2c651a95033260db60e51527ae8 ""
   "appendices/Math.tex" 1755017690 66630 b72be33aad31611f66a3a51bb6da232d ""
-  "c:/Users/mona_/OneDrive/Ambiente de Trabalho/Universidade/Tese/Msc-Bruna/project/msc_latex_template_alternative/dissertation.tex" 1754938609 33492 8df936380210edb2c3db14cf8aeb31e8 ""
+  "c:/Users/mona_/OneDrive/Ambiente de Trabalho/Universidade/Tese/Msc-Bruna/project/msc_latex_template_alternative/dissertation.tex" 1755128614 33723 565fa292772e43135f4415aaf72d2a44 ""
   "chapters/ConclusionsAndFutureWork.tex" 1755028491 18605 587b9794bb02c94db919539a194d2853 ""
   "chapters/Contribution.tex" 1754937945 29732 b377db45ef7055a80846424669065a0e ""
-  "chapters/Introduction.tex" 1755037504 27494 b192a518ddf6f4ad505d110800426800 ""
+  "chapters/Introduction.tex" 1755100990 27512 dace2efbada244010472edf293b2b0e0 ""
   "chapters/PP.tex" 1755016461 38987 5c1901c13a1ec9e0f3a8630f81af0df2 ""
-  "chapters/QC.tex" 1755022297 258521 f135254ab079187c486425d1b58387f9 ""
-  "chapters/StateOfTheArt.tex" 1754321840 135183 faab54529710a3e8a226ea202eff5285 ""
+  "chapters/QC.tex" 1755091131 258519 5ee99396b24a635b2be13a3dae9deda5 ""
+  "chapters/StateOfTheArt.tex" 1755134010 135085 0641f228d115bbb708232267ec13bc96 ""
   "covers/BackCover.tex" 1753276704 557 44953ade06fe2c03794daee2a356d427 ""
   "covers/Covers.tex" 1724924034 800 779cd207d3ea79312a48243187c9a6b2 ""
-  "dissertation.aux" 1755037515 56154 8f999002993fb42b9ed781cedaa4ccd0 "xelatex"
-  "dissertation.bbl" 1755036619 34564 b1f80c068d2d5c8a40bd2ec84ba682c8 "bibtex dissertation"
-  "dissertation.ind" 1755037513 0 d41d8cd98f00b204e9800998ecf8427e "makeindex dissertation.idx"
-  "dissertation.lof" 1755037515 1066 fbe8fc85bf0ac23b14ed684f1e4ff2c1 "xelatex"
-  "dissertation.out" 1755037515 13183 b6356e460d47bffd0b2d90e5deaee519 "xelatex"
+  "dissertation.aux" 1755134020 56182 270b411d4fa12e1a4af03379ff568f7d "xelatex"
+  "dissertation.bbl" 1755129007 34564 b1f80c068d2d5c8a40bd2ec84ba682c8 "bibtex dissertation"
+  "dissertation.ind" 1755134019 0 d41d8cd98f00b204e9800998ecf8427e "makeindex dissertation.idx"
+  "dissertation.lof" 1755134020 1066 fbe8fc85bf0ac23b14ed684f1e4ff2c1 "xelatex"
+  "dissertation.out" 1755134020 13183 004b7d3ab9287aa8ed782dcae05d3e2c "xelatex"
   "dissertation.sty" 1754243718 4126 97814ba2d6b3865a1e59d08e397e6e3e ""
-  "dissertation.tex" 1754938609 33492 8df936380210edb2c3db14cf8aeb31e8 ""
-  "dissertation.toc" 1755037515 8779 ab69415e7006ed99c4c5adbb43da62ed "xelatex"
+  "dissertation.tex" 1755128614 33723 565fa292772e43135f4415aaf72d2a44 ""
+  "dissertation.toc" 1755134020 8779 d2be2a5ea5d2ca7f00482ef6bbd2d6c6 "xelatex"
   "images/CCBY.png" 1707388022 5980 a81089c221076f7922e56e2bb2a7629e ""
   "images/bloch_sphere.jpg" 1724278918 30247 1ef4f284fa41a71332efad34588d639c ""
   "images/logos/EE.jpg" 1707388022 82672 748220d139e54b1e0414268246e91e11 ""
@@ -350,7 +350,7 @@
   "images/logosB/EE.jpg" 1707388022 51930 49f534d966582e8f9944c4f1f07103df ""
   "images/logosB/UM.jpg" 1707388022 45901 87f23cf88023f8d9a2bb87397de06f08 ""
   "macros.tex" 1754681175 9446 6bf5704b09f4b824ba7f9183bfcdbf79 ""
-  "preamble/Abstract.tex" 1755016289 5250 27781271c8df1208b7f8ab7581edd8c7 ""
+  "preamble/Abstract.tex" 1755090577 5254 633e46f5dbef5e2c88227672cb5d0f24 ""
   "preamble/Acknowledgements.tex" 1755023723 1282 0d86277450b007dcf6b45eb7053f5375 ""
   "preamble/Copyright.tex" 1726672818 1423 05f82d5141102fcca9687943cfbdab2f ""
   "preamble/StatementofIntegrity.tex" 1707388022 493 e5351f69158f77df4240abc7cbaa2389 ""
