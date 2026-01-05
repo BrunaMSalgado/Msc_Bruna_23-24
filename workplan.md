@@ -33,3 +33,5 @@ Workplan
 1. Present the interpretation of the equational system via monoidal closed
    categories with coproducts and enriched over metric spaces
 2. Prove soundness (and completeness?) (Theorem 3.13, MFPS paper)
+
+teste
