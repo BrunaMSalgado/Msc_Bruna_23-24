@@ -1,0 +1,104 @@
+\documentclass[submission,copyright,creativecommons]{eptcs}
+\providecommand{\event}{LSFA 2026} % Name of the event you are submitting to
+
+\usepackage{iftex}
+
+\ifpdf
+  \usepackage{underscore}         % Only needed if you use pdflatex.
+  \usepackage[T1]{fontenc}        % Recommended with pdflatex
+\else
+  \usepackage{breakurl}           % Not needed if you use pdflatex only.
+\fi
+
+\title{On the Additive Structure of Quantalic $\lambda$-Calculus}
+\author{Renato Neves
+\institute{University of Minho and INESC-TEC, Portugal}
+\email{nevrenato@di.uminho.pt}
+\and
+Bruna Salgado
+\institute{University of Minho and INESC-TEC, Portugal}
+\email{...}
+}
+\def\titlerunning{On the Additive Structure of Quantalic $\lambda$-Calculus}
+\def\authorrunning{Renato Neves and Bruna Salgado}
+\begin{document}
+\maketitle
+
+\input{macros}
+\begin{abstract}
+Motivated by the lack of methods for reasoning about `case' statements
+quantitatively, we introduce \emph{quantalic linear $\lambda$-calculus} with an
+additive disjunction operator $\oplus$.  We show that the extended equational
+system is sound, and moreover if certain continuity properties (of the
+underlying quantale) are adopted that it is (approximately) complete as well. 
+
+We explore different models of the extended calculus, with focus on
+probabilistic and quantum programming.  While in the former case we mainly
+involve a certain category of Banach spaces, in the latter we recur to the
+so-called Karoubi envelope and an enriched reflection between categories of
+presheaves.
+\end{abstract}
+
+\section{Introduction}
+Previous work~\cite{dahlqvist22,dahlqvist2023syntactic} introduced a quantalic
+generalisation of linear $\lambda$-calculus, the \emph{exponential-free,
+multiplicative fragment} of linear logic. Here we investigate the incorporation
+of \emph{additive} structure to this body of work. Our focus is specifically on
+the \emph{additive disjunction operator} $\oplus$, which is typically
+interpreted via coproducts and gives rise to `case' statements (\ie\
+conditionals). Our motivation comes from practice: in trying to reason
+quantitatively about (higher-order) programs we often fell short when these
+involved conditionals. Of course, as explained below, applications involving
+$\oplus$ are broader than this, and fit in the more general pattern of
+reasoning quantitatively about co-Cartesian categories enriched over so-called
+`\emph{generalised metric spaces}'~\cite{paseka00}.
+
+A number of important results already considered additive structure
+in the quantalic setting, even if sometimes implicitly.
+References~\cite{mardare2016quantitative,mardare2017axiomatizability,mio24,jurka24}
+for example are framed in the setting of universal algebra and therefore
+involve additive conjunction (\ie\ $\&$), typically interpreted via categorical
+products.  In the higher-order setting, \cite{lago22} enforces additive
+conjunction to be left adjoint to implication (interpreted via
+Cartesian-closedness), with a series of negative results emerging from this.
+Our work is orthogonal to these in that we study the dual of $\&$ (\ie\
+$\oplus$) and furthermore we assume the left adjoint of implication to be
+multiplicative conjunction (\ie\ $\otimes$) instead of the additive
+counterpart. Among other things, this removes the obstacles discussed
+in~\cite{lago22}.
+
+
+Concretely, we extend the quantalic equational system
+of~\cite{dahlqvist22,dahlqvist2023syntactic} with the additive disjunction
+operator. We show that the extension is sound and complete if certain
+\emph{continuity} properties (of the underlying quantale) are adopted.  We also
+show that if one drops the well-known \emph{Archimedean
+rule}~\cite{mardare2016quantitative,mardare2017axiomatizability} (which
+involves infinitely many premisses and is thus problematic) `approximate
+completeness' (in the spirit of~\cite{dahlqvist2023syntactic}) is still
+retained.
+
+Next, we explore different models of the extended calculus, with focus on
+probabilistic~\cite{dahlqvist19,barthe20} and quantum
+programming~\cite{selinger2004towards,malherbe13}, two rapidly emerging
+computational paradigms. In the former case we will involve the category of
+Banach spaces and linear
+contractions~\cite{dahlqvist19,dahlqvist2023syntactic}, and illustrate how the
+extended framework can be used to reason about Cauchy sequences of
+(higher-order) programs -- highlighting the emergent shift from ``seeing
+program semantics as the science of program equivalence''~\cite{lago22} to more
+flexible, quantitative perspectives, involving functional analysis and beyond.
+The quantum case will rely more heavily on categorical machinery: starting with
+a certain, enriched quantum category we adopt its \emph{Karoubi
+envelope}~\cite{borceux94} to take conditionals into account. Then, in order to
+accomodate higher-order structure, we propound a \emph{reflective} subcategory
+of the envelope's category of (enriched) presheaves. Remarkably, we also
+present a constructive description of the involved reflection by relying on a
+\emph{first-order, additive} version of our quantalic calculus (similar in
+spirit to the description presented in~\cite{fu22} for the non-enriched
+setting).
+
+
+\bibliographystyle{eptcs}
+\bibliography{biblio}
+\end{document}
