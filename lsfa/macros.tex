@@ -2,3 +2,34 @@
 \newcommand{\ie}{\emph{i.e.}}
 \newcommand{\eg}{\emph{e.g.}}
 
+%% Types
+\newcommand{\typefont}[1]{\mathbb{#1}}
+\newcommand{\typeOne}{1}
+\newcommand{\typeTwo}{2}
+\newcommand{\typeA}{\typefont{A}}
+\newcommand{\typeB}{\typefont{B}}
+\newcommand{\typeC}{\typefont{C}}
+\newcommand{\typeV}{\typefont{V}}
+\newcommand{\typeD}{\typefont{D}}
+\newcommand{\typeE}{\typefont{E}}
+\newcommand{\typeF}{\typefont{F}}
+\newcommand{\typeI}{\typefont{I}}
+
+%% Sequents
+\newcommand{\vljud}{\, \triangleright \,}
+\newcommand{\Shuff}{\mathrm{Sf}}
+\newcommand{\rulename}[1]{(\textbf{#1})}
+\newcommand{\ielim}[2]{#1 \> \> \mathtt{to} \, \ast. \> \> #2}
+\newcommand{\telim}[2]{\mathtt{pm} \> \> #1 \> \> \mathtt{to} \> \> x \otimes y. \> \> #2}
+\newcommand{\celim}[3]{\mathtt{case} \> \> #1 \> \> \{ \dintrol{x} \Rightarrow #2 ; \>\> 
+\dintror{y} \Rightarrow #3 \}  }
+\newcommand{\dintrol}[1]{\mathtt{inl}_\typeB (#1)}
+\newcommand{\dintror}[1]{\mathtt{inr}_\typeA (#1)}
+%% Colimits
+\newcommand{\colim}{\mathrm{colim}}
+\newcommand{\inl}{\mathrm{inl}}
+\newcommand{\inr}{\mathrm{inr}}
+
+%% Semantics
+\newcommand{\sem}[1]{\left \llbracket #1 \right \rrbracket}
+\newcommand{\prog}[1]{\mathtt{#1}}

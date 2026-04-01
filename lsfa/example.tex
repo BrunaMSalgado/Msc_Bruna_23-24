@@ -2,6 +2,20 @@
 \providecommand{\event}{LSFA 2026} % Name of the event you are submitting to
 
 \usepackage{iftex}
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage{amsfonts}
+\usepackage{ebproof}
+\usepackage{stmaryrd}
+\usepackage{subcaption}
+\usepackage{graphicx}
+%% Theorems (Renato)
+\newtheorem{definition}{Definition}[section]  % or [subsection] if preferred
+\newtheorem{example}{Example}[section]
+\newtheorem{theorem}{Theorem}[section]
+\newtheorem{lemma}{Lemma}[section]
+\newtheorem{proposition}{Proposition}[section]
+\newtheorem{corollary}{Corollary}[section]
 
 \ifpdf
   \usepackage{underscore}         % Only needed if you use pdflatex.
@@ -97,6 +111,320 @@ present a constructive description of the involved reflection by relying on a
 \emph{first-order, additive} version of our quantalic calculus (similar in
 spirit to the description presented in~\cite{fu22} for the non-enriched
 setting).
+
+\section{Quantalic $\lambda$-calculus with additive disjunction }
+\label{sec:internal}
+In this section we briefly recall linear $\lambda$-calculus, which can
+be regarded as a term assignment system for the exponential free,
+multiplicative fragment of \emph{intuitionistic linear logic}. Then we
+recall that it is sound and complete w.r.t. autonomous categories, and
+also that it is an internal language for such categories. We
+mention only what is needed to present
+our results, the interested reader will find a more detailed
+exposition in~\cite{mackie93,benton92,maietti05}. Let
+us start by fixing a \emph{class} $G$ of ground types.  The grammar of
+types for linear $\lambda$-calculus is given by: \vspace{-1.85pt}
+\[
+  \typeA ::=  X \in G \mid \typeI \mid 
+  \typeA \otimes \typeA \mid \typeA \multimap \typeA
+\] 
+We also fix a class $\Sigma$ of sorted operation symbols
+$f : \typeA_1,\dots,\typeA_n \to \typeA$ with $n \geq 1$.  As usual,
+we use Greek letters $\Gamma,\Delta, E,\dots$ to denote \emph{typing
+  contexts}, \ie lists $x_1 : \typeA_1,\dots,x_n : \typeA_n$ of typed
+variables such that each variable $x_i$ occurs at most once in
+$x_1,\dots,x_n$.
+
+We will use the notion of a shuffle for building a linear typing
+system such that the \emph{exchange rule} is admissible and each
+judgement $\Gamma \vljud v : \typeA$ (details about these below) has a
+\emph{unique derivation} -- this will allow us to refer to a
+judgement's denotation $\sem{\Gamma \vljud v : \typeA}$ unambiguously.
+By shuffle we mean a permutation of typed variables in a context
+sequence $\Gamma_1,\dots,\Gamma_n$ such that for all $i \leq n$ the
+relative order of the variables in $\Gamma_i$ is
+preserved~\cite{shulman19}. For example, if
+$\Gamma_1 = x : \typeA, y : \typeB$ and $\Gamma_2 = z : \typeC$ then
+$z : \typeC, x : \typeA, y : \typeB$ is a shuffle but
+$y : \typeB, x : \typeA, z : \typeC$ is \emph{not}, because we changed
+the order in which $x$ and $y$ appear in $\Gamma_1$.  As explained
+in~\cite{shulman19} (and also in the proof of
+Lemma~\ref{lem:unique}), such a restriction on relative orders is
+crucial for judgements having unique derivations.  We denote by
+$\Shuff(\Gamma_1;\dots;\Gamma_n)$ the set of shuffles on
+$\Gamma_1,\dots,\Gamma_n$.
+
+
+
+
+The extension of linear $\lambda$-calculus
+in~\cite{dahlqvist22,dahlqvist2023syntactic} with additive disjunction is quite
+simple. The grammar of types now includes the type construct $\typeA \oplus
+\typeA$ and the judgement formation rules are extended with those in
+\autoref{fig:typing_rules_cond}. 
+
+It is laborious but straightforward to prove that the extended calculus
+inherits desirable features from the original calculus. Most notably it
+inherits the \emph{unique derivation}, \emph{substitution}, and \emph{exchange}
+properties (where as usual the latter allows to change the order of variables
+in contexts).  These rely on a shuffling mechanism whose details can be
+consulted in~\cite{dahlqvist22,dahlqvist2023syntactic,shulman19}. The mechanism
+can actually be briefly glanced at in  rule (case), where we stipulate that
+context $E$ is a \emph{shuffle} of the contexts $\Gamma$ and $\Delta$: in other
+words it is a permutation of the variables in $\Gamma,\Delta$ that
+preserves their relative order in $\Gamma$ and in $\Delta$.
+
+\begin{theorem}\label{thm:properties}
+        The calculus defined by the rules of \ref{fig:lang} enjoys the
+        following properties:
+	\begin{enumerate}
+                \item (Unique typing) For any two judgements $\Gamma \vljud v :
+                        \typeA$ and $\Gamma \vljud v : \typeA'$, we have
+                        $\typeA = \typeA'$; \label{i:unique_type}
+                \item (Unique derivation) Every judgement $\Gamma \vljud v :
+                        \typeA$ has a unique derivation; \label{i:unique_der}
+                \item (Exchange) For every judgement $\Gamma, x : \typeA, y :
+                        \typeB, \Delta \vljud v : \typeC$ \label{i:exch} we can
+                        derive $\Gamma, y : \typeB, x : \typeA, \Delta \vljud v
+                        : \typeC$; 
+                \item (Substitution) For all judgements $\Gamma, x : \typeA
+                        \vljud v : \typeB$ and $\Delta \vljud w : \typeA$ we
+                        can derive $\Gamma,\Delta \vljud v[w/x] : \typeB$.
+                        \label{i:subst} 
+	\end{enumerate}
+\end{theorem}
+
+
+
+\begin{figure}[h]
+    %%
+    \begin{equation*}
+            \begin{prooftree}
+                    \infer0[\rulename{hyp}]{ x : \typeA  \vljud x : \typeA}
+            \end{prooftree}
+            %
+            \hspace{2cm}
+            %
+            \begin{prooftree}
+                    \hypo{\Gamma_i \vljud t_i : \typeA}
+                    \hypo{f \in \typeA_1, \dots , \typeA_n \to \typeA \in \Sigma}
+                    \hypo{E \in \Shuff(\Gamma_1; \dots ; \Gamma_n)}
+                    \infer3[\rulename{ax}]{E \vljud f(t_1,\dots,t_n) : \typeA}
+            \end{prooftree}
+    \end{equation*}
+    %%
+    %%
+    \vspace{0.25cm}
+    %%
+    %%
+    \begin{equation*}
+            \begin{prooftree}
+                    \infer0[\rulename{$\typeI_i$}]{ \vljud \ast : \typeI}
+            \end{prooftree}
+            %
+            \hspace{3cm}
+            %
+            \begin{prooftree}
+                    \hypo{\Gamma \vljud t : \typeI}
+                    \hypo{\Delta \vljud s : \typeA}
+                    \hypo{E \in \Shuff(\Gamma; \Delta)}
+                    \infer3[\rulename{$\typeI_e$}]{
+                    E \vljud \ielim{t}{s} : \typeA}
+            \end{prooftree}
+    \end{equation*}
+    %%
+    %%
+    \vspace{0.25cm}
+    %%
+    %%
+    \begin{equation*}
+            \begin{prooftree}
+                    \hypo{\Gamma \vljud t : \typeA}
+                    \hypo{\Delta \vljud s : \typeB}
+                    \hypo{E \in \Shuff(\Gamma;\Delta)}
+                    \infer3[\rulename{$\otimes_i$}]{E \vljud t \otimes s : 
+                                \typeA \otimes \typeB}
+            \end{prooftree}
+            %
+            \hspace{0.4cm}
+            %
+            \begin{prooftree}
+                    \hypo{\Gamma \vljud t : \typeA \otimes \typeB}
+                    \hypo{\Delta, x : \typeA, y : \typeB \vljud s : \typeC}
+                    \hypo{E \in \Shuff(\Gamma; \Delta)}
+                    \infer3[\rulename{$\otimes_e$}]{
+                    E \vljud \telim{t}{s} : \typeA}
+            \end{prooftree}
+    \end{equation*}
+    %%
+    %%
+    \vspace{0.25cm}
+    %%
+    %%
+    \begin{equation*}
+            \begin{prooftree}
+                    \hypo{\Gamma, x : \typeA \vljud t : \typeB}
+                    \infer1[\rulename{$\multimap_i$}]{
+                        \Gamma \vljud \lambda x : 
+                        \typeA. \> t : \typeA \multimap \typeB}
+            \end{prooftree}
+            %
+            \hspace{2cm}
+            %
+            \begin{prooftree}
+                    \hypo{\Gamma \vljud t : \typeA \multimap \typeB}
+                    \hypo{\Delta \vljud s : \typeA}
+                    \hypo{E \in \Shuff(\Gamma; \Delta)}
+                    \infer3[\rulename{$\multimap_e$}]{
+                    E \vljud t \>  s : \typeB}
+            \end{prooftree}
+    \end{equation*}
+    %%
+    %%
+
+    \vspace{0.25cm}
+
+    \dotfill
+
+    %%
+    %%
+    \begin{equation*}
+    \begin{prooftree}
+        \hypo{\Gamma \vljud t: \typeA}
+        \infer1[\rulename{$\oplus_i$}]{\Gamma \vljud \dintrol{t}: \typeA \oplus \typeB}
+    \end{prooftree}
+    %
+    \hspace{4cm}
+    %
+    \begin{prooftree}
+        \hypo{\Gamma \vljud t: \typeB}
+        \infer1[\rulename{$\oplus_i$}]{\Gamma \vljud \dintror{t}: \typeA \oplus \typeB}
+    \end{prooftree} 
+    %
+    \end{equation*}
+    %%
+    %%
+    \vspace{0.25cm}
+    %%
+    %%
+    \begin{equation*}
+    %
+    \begin{prooftree}
+        \hypo{\Gamma \vljud t: \typeA \oplus \typeB}
+        \hypo{\Delta, x: \typeA \vljud s: \typeC}
+        \hypo{\Delta, y: \typeB \vljud u: \typeC}
+        \hypo{E \in \Shuff(\Gamma; \Delta)}
+        \infer4[\rulename{$\oplus_e$}]{E \vljud \celim{t}{s}{u} : \typeC}
+    \end{prooftree}
+    %
+    \end{equation*}
+    \caption{Judgement formation rules for linear $\lambda$-calculus with additive
+    disjunction.}
+    \label{fig:typing_rules_cond}
+\end{figure}
+  \begin{figure}[h!]
+    \begin{equation*}
+            \hspace{30pt}
+        \begin{split}
+          &\text{case } 
+          \inl_{\typeB}(v)\, \{ \inl_{\typeB} (x) \Rightarrow w  
+          ;\, \inr_{\typeA} (y) 
+          \Rightarrow u\}= w[v/x]
+          %
+          \\
+          %
+          &\text{case } 
+          \inr_{\typeA}(v)\, \{ \inl_{\typeB} (x) \Rightarrow w 
+          ;\, \inr_{\typeA} (y) 
+          \Rightarrow u\}= u[v/y]
+          %
+          \\
+          %
+          %
+          & \text{case } v\, \{\text{inl}_{\typeB} (y) \Rightarrow w [ \text{inl}_{\typeB}(y)/x] ;\, \text{inr}_{\typeA} (z) \Rightarrow w [ \text{inr}_{\typeA}(z)/x]\} = w[v/x] 
+        \end{split}
+    \end{equation*}
+    %
+    \noindent\dotfill{}
+    %
+    \begin{equation*}
+            \hspace{75pt}
+            \begin{prooftree}
+                    \hypo{ v =_q w}
+                    \infer1[]{\inl_\typeB(v) =_q \inl_\typeB(w)}
+            \end{prooftree}
+            \hspace{40pt}
+            \begin{prooftree}
+                    \hypo{ v =_q w}
+                    \infer1[]{\inr_\typeA(v) =_q \inr_\typeA(w)}
+            \end{prooftree}
+    \end{equation*}
+    \begin{equation*}
+    \hspace{20pt}
+   \begin{prooftree}
+      \hypo{ v =_{q} v' }
+      \hypo{w=_{r} w'}
+      \hypo{u=_{s}u'}
+      \infer3[]{\text{ case } v \,   \{\inl_\typeB (x) \Rightarrow w ; \, \inr_\typeA (y) 
+              \Rightarrow u\} 
+      =_{q\otimes(r \wedge s)} 
+      \text{ case } v' 
+      \,  \{\inl_\typeB (x) \Rightarrow w' ; \,\inr_\typeA (y) \Rightarrow u'\} }
+  \end{prooftree}
+    \end{equation*}
+    \caption{Quantalic equational system for additive disjunction.}
+    \label{fig:equations-in-context-cond}
+    \end{figure}
+
+As detailed in~\cite{benton92,mackie93,maietti05}, linear
+$\lambda$-calculus comes equipped with a class of equations
+(Fig.~\ref{fig:eqs}), specifically \emph{equations-in-context}
+$\Gamma \vljud v = w : \typeA$, that corresponds to the axiomatics of
+autonomous categories.  As usual, we omit the context and typing
+information of the equations in Fig.~\ref{fig:eqs}, which can be
+reconstructed in the usual way. 
+\begin{figure*}[h!]
+  \begin{subfigure}[large]{0.6\textwidth}
+  \scalebox{1.12}{  
+  \begin{tabular}{r c l}
+    $\prog{pm}\ v \otimes w\ \prog{to}\ x \otimes y.\ u$ &
+    $=$ & $u[v/x,w/y]$ \\
+    $\prog{pm}\ v\ \prog{to}\ x \otimes y.\
+    u[x \otimes y / z]$ &
+    $=$ & $u[v/z]$ \\
+    $\ast\ \prog{to}\ \ast.\ v$ & $=$ & $v$ \\
+    $v\ \prog{to}\ \ast.\ w[\ast/ z]$ & $=$ & $w[v/z]$
+  \end{tabular}}
+  \vspace{-3pt}
+  \caption{Monoidal structure}
+  \end{subfigure}
+  \vspace{0.2cm}
+  \begin{subfigure}{0.3\textwidth}
+  \scalebox{1.12}{  
+  \begin{tabular}{r c l}
+      $(\lambda x : \typeA .\ v)\ w$ &$=$& $v[w/x]$ \\
+      $\lambda x : \typeA . (v\ x)$ &$=$& $v$
+  \end{tabular}}
+  \caption{Higher-order structure}
+  \end{subfigure}
+  \begin{subfigure}{0.7\textwidth}
+  \scalebox{1.12}{
+  \begin{tabular}{r c l}
+    $u[v\ \prog{to} \ast.\ w/z]$ &$=$& $v\ \prog{to}\ \ast.\
+    u[w/z]$ \\
+    $u[\prog{pm}\ v\ \prog{to}\ x \otimes y.\ w/z]$
+    &$=$& $\prog{pm}\ v\ \prog{to}\ x \otimes y.\ u[w/z]$
+  \end{tabular}}
+  \caption{Commuting conversions}
+  \end{subfigure}
+  \caption{Equations corresponding to the axiomatics of autonomous
+    categories.}
+  \label{fig:eqs}
+  \vspace{-7pt}
+\end{figure*}
+
+
+
 
 
 \bibliographystyle{eptcs}
