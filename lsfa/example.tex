@@ -322,31 +322,89 @@ preserves their relative order in $\Gamma$ and in $\Delta$.
     disjunction.}
     \label{fig:typing_rules_cond}
 \end{figure}
+As detailed in~\cite{benton92,mackie93,maietti05}, linear
+$\lambda$-calculus comes equipped with a class of equations
+(Fig.~\ref{fig:eqs}), specifically \emph{equations-in-context}
+$\Gamma \vljud v = w : \typeA$, that corresponds to the axiomatics of
+autonomous categories.  As usual, we omit the context and typing
+information of the equations in Fig.~\ref{fig:eqs}, which can be
+reconstructed in the usual way. 
+\begin{figure*}[h!]
+  \begin{subfigure}[large]{0.6\textwidth}
+  \begin{tabular}{r c l}
+        $\telim{t \otimes s}{u}$ &
+        $=$ & $u[t/x,s/y]$ \\
+        %%
+        $\telim{t}{u[x \otimes y / z]}$ &
+        $=$ & $u[t/z]$ \\
+        %%
+        $\ielim{\ast}{t}$ & $=$ & $t$ \\
+        %%
+        $\ielim{t}{u[\ast/ z]}$ & $=$ & $u[t/z]$
+  \end{tabular}
+  \caption{Monoidal structure}
+  \end{subfigure}
+  %%
+  \vspace{0.5cm}
+  %%
+  \begin{subfigure}{0.3\textwidth}
+  \begin{tabular}{r c l}
+        $(\lambda x : \typeA .\ t)\ s$ &$=$& $t[s/x]$ \\
+        %%
+        $\lambda x : \typeA. \> (t\ x)$ &$=$& $t$
+  \end{tabular}
+  \caption{Higher-order structure}
+  \end{subfigure}
+  %%
+  %%
+  \begin{subfigure}{1\textwidth}
+  \centering
+  \begin{tabular}{r c l}
+        $u[\ielim{t}{w}/z]$ &$=$& $\ielim{t}{u[w/z]}$ \\
+        %%
+        $u[\telim{t}{w}/z]$ &$=$& $\telim{t}{u[w/z]}$
+  \end{tabular}
+  \caption{Commuting conversions}
+  \end{subfigure}
+  %%
+  %%
+  \begin{subfigure}{1\textwidth}
+  \vspace{0.25cm}
+  
+  \dotfill
+
+  \vspace{0.25cm}
+
+  \centering
+  \begin{tabular}{r c l}
+          $\celim{\dintrol{t}}{s}{u}$
+          & $=$
+          &
+          $s[t/x]$
+          %%
+          \\
+          %%
+          $\celim{\dintror{t}}{s}{u}$
+          & $=$
+          &
+          $u[t/x]$
+          %%
+          \\
+          %%
+          $\celim{t}{s[\dintrol{y}/x]}{s[\dintror{z}/x]}$
+          & $=$
+          &
+          $s[t/x]$
+  \end{tabular}
+  \caption{co-Cartesian structure}
+  \end{subfigure}
+  \caption{Equations corresponding to the axiomatics of co-Cartesian autonomous categories.}
+  \label{fig:eqs}
+\end{figure*}
+
+\section{temp}
+
   \begin{figure}[h!]
-    \begin{equation*}
-            \hspace{30pt}
-        \begin{split}
-          &\text{case } 
-          \inl_{\typeB}(v)\, \{ \inl_{\typeB} (x) \Rightarrow w  
-          ;\, \inr_{\typeA} (y) 
-          \Rightarrow u\}= w[v/x]
-          %
-          \\
-          %
-          &\text{case } 
-          \inr_{\typeA}(v)\, \{ \inl_{\typeB} (x) \Rightarrow w 
-          ;\, \inr_{\typeA} (y) 
-          \Rightarrow u\}= u[v/y]
-          %
-          \\
-          %
-          %
-          & \text{case } v\, \{\text{inl}_{\typeB} (y) \Rightarrow w [ \text{inl}_{\typeB}(y)/x] ;\, \text{inr}_{\typeA} (z) \Rightarrow w [ \text{inr}_{\typeA}(z)/x]\} = w[v/x] 
-        \end{split}
-    \end{equation*}
-    %
-    \noindent\dotfill{}
-    %
     \begin{equation*}
             \hspace{75pt}
             \begin{prooftree}
@@ -375,55 +433,6 @@ preserves their relative order in $\Gamma$ and in $\Delta$.
     \caption{Quantalic equational system for additive disjunction.}
     \label{fig:equations-in-context-cond}
     \end{figure}
-
-As detailed in~\cite{benton92,mackie93,maietti05}, linear
-$\lambda$-calculus comes equipped with a class of equations
-(Fig.~\ref{fig:eqs}), specifically \emph{equations-in-context}
-$\Gamma \vljud v = w : \typeA$, that corresponds to the axiomatics of
-autonomous categories.  As usual, we omit the context and typing
-information of the equations in Fig.~\ref{fig:eqs}, which can be
-reconstructed in the usual way. 
-\begin{figure*}[h!]
-  \begin{subfigure}[large]{0.6\textwidth}
-  \scalebox{1.12}{  
-  \begin{tabular}{r c l}
-    $\prog{pm}\ v \otimes w\ \prog{to}\ x \otimes y.\ u$ &
-    $=$ & $u[v/x,w/y]$ \\
-    $\prog{pm}\ v\ \prog{to}\ x \otimes y.\
-    u[x \otimes y / z]$ &
-    $=$ & $u[v/z]$ \\
-    $\ast\ \prog{to}\ \ast.\ v$ & $=$ & $v$ \\
-    $v\ \prog{to}\ \ast.\ w[\ast/ z]$ & $=$ & $w[v/z]$
-  \end{tabular}}
-  \vspace{-3pt}
-  \caption{Monoidal structure}
-  \end{subfigure}
-  \vspace{0.2cm}
-  \begin{subfigure}{0.3\textwidth}
-  \scalebox{1.12}{  
-  \begin{tabular}{r c l}
-      $(\lambda x : \typeA .\ v)\ w$ &$=$& $v[w/x]$ \\
-      $\lambda x : \typeA . (v\ x)$ &$=$& $v$
-  \end{tabular}}
-  \caption{Higher-order structure}
-  \end{subfigure}
-  \begin{subfigure}{0.7\textwidth}
-  \scalebox{1.12}{
-  \begin{tabular}{r c l}
-    $u[v\ \prog{to} \ast.\ w/z]$ &$=$& $v\ \prog{to}\ \ast.\
-    u[w/z]$ \\
-    $u[\prog{pm}\ v\ \prog{to}\ x \otimes y.\ w/z]$
-    &$=$& $\prog{pm}\ v\ \prog{to}\ x \otimes y.\ u[w/z]$
-  \end{tabular}}
-  \caption{Commuting conversions}
-  \end{subfigure}
-  \caption{Equations corresponding to the axiomatics of autonomous
-    categories.}
-  \label{fig:eqs}
-  \vspace{-7pt}
-\end{figure*}
-
-
 
 
 
