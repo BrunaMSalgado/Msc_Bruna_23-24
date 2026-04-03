@@ -2,6 +2,7 @@
 \providecommand{\event}{LSFA 2026} % Name of the event you are submitting to
 
 \usepackage{iftex}
+\usepackage{amsthm}
 \usepackage{amsmath}
 \usepackage{amssymb}
 \usepackage{amsfonts}
@@ -114,88 +115,38 @@ setting).
 
 \section{Quantalic $\lambda$-calculus with additive disjunction }
 \label{sec:internal}
-In this section we briefly recall linear $\lambda$-calculus, which can
-be regarded as a term assignment system for the exponential free,
-multiplicative fragment of \emph{intuitionistic linear logic}. Then we
-recall that it is sound and complete w.r.t. autonomous categories, and
-also that it is an internal language for such categories. We
-mention only what is needed to present
-our results, the interested reader will find a more detailed
-exposition in~\cite{mackie93,benton92,maietti05}. Let
-us start by fixing a \emph{class} $G$ of ground types.  The grammar of
-types for linear $\lambda$-calculus is given by: \vspace{-1.85pt}
+In this section we briefly recall linear $\lambda$-calculus with additive
+disjunction and respective categorical semantics. We follow previous
+presentations of the calculus~\cite{mackie93,benton92,maietti05} except for the
+fact that we involve the notion of a \emph{shuffle}~\cite{shulman19}. As
+explained below, the latter ensures the \emph{unique derivation property} which
+in turn allows us to refer to a judgment's denotation unambiguously.
+
+First, let us start by fixing a set $G$ of ground types.  The grammar of types
+for linear $\lambda$-calculus with additive disjunction is given by,
 \[
   \typeA ::=  X \in G \mid \typeI \mid 
-  \typeA \otimes \typeA \mid \typeA \multimap \typeA
+  \typeA \otimes \typeA \mid \typeA \multimap \typeA \mid \typeA \oplus \typeA
 \] 
-We also fix a class $\Sigma$ of sorted operation symbols
-$f : \typeA_1,\dots,\typeA_n \to \typeA$ with $n \geq 1$.  As usual,
-we use Greek letters $\Gamma,\Delta, E,\dots$ to denote \emph{typing
-  contexts}, \ie lists $x_1 : \typeA_1,\dots,x_n : \typeA_n$ of typed
-variables such that each variable $x_i$ occurs at most once in
-$x_1,\dots,x_n$.
+We use Greek letters $\Gamma,\Delta, E,\dots$ to denote \emph{typing contexts},
+\ie\ lists $x_1 : \typeA_1,\dots,x_n : \typeA_n$ of typed variables such that
+each variable $x_i$ occurs at most once in $x_1,\dots,x_n$. Next, a shuffle is
+a permutation of typed variables in a context sequence
+$\Gamma_1,\dots,\Gamma_n$ such that for all $i \leq n$ the relative order of
+the variables in $\Gamma_i$ is preserved~\cite{shulman19}. For example, if
+$\Gamma_1 = x : \typeA, y : \typeB$ and $\Gamma_2 = z : \typeC$ then $z :
+\typeC, x : \typeA, y : \typeB$ is a shuffle but $y : \typeB, x : \typeA, z :
+\typeC$ is \emph{not} -- because we changed the order in which $x$ and $y$ appear
+in $\Gamma_1$.  We denote by $\Shuff(\Gamma_1;\dots;\Gamma_n)$ the set of
+shuffles on $\Gamma_1,\dots,\Gamma_n$.  As explained
+in~\cite{shulman19,dahlqvist22,dahlqvist23b} such a restriction on relative
+orders is crucial for judgements having unique derivations. 
 
-We will use the notion of a shuffle for building a linear typing
-system such that the \emph{exchange rule} is admissible and each
-judgement $\Gamma \vljud v : \typeA$ (details about these below) has a
-\emph{unique derivation} -- this will allow us to refer to a
-judgement's denotation $\sem{\Gamma \vljud v : \typeA}$ unambiguously.
-By shuffle we mean a permutation of typed variables in a context
-sequence $\Gamma_1,\dots,\Gamma_n$ such that for all $i \leq n$ the
-relative order of the variables in $\Gamma_i$ is
-preserved~\cite{shulman19}. For example, if
-$\Gamma_1 = x : \typeA, y : \typeB$ and $\Gamma_2 = z : \typeC$ then
-$z : \typeC, x : \typeA, y : \typeB$ is a shuffle but
-$y : \typeB, x : \typeA, z : \typeC$ is \emph{not}, because we changed
-the order in which $x$ and $y$ appear in $\Gamma_1$.  As explained
-in~\cite{shulman19} (and also in the proof of
-Lemma~\ref{lem:unique}), such a restriction on relative orders is
-crucial for judgements having unique derivations.  We denote by
-$\Shuff(\Gamma_1;\dots;\Gamma_n)$ the set of shuffles on
-$\Gamma_1,\dots,\Gamma_n$.
-
-
-
-
-The extension of linear $\lambda$-calculus
-in~\cite{dahlqvist22,dahlqvist2023syntactic} with additive disjunction is quite
-simple. The grammar of types now includes the type construct $\typeA \oplus
-\typeA$ and the judgement formation rules are extended with those in
-\autoref{fig:typing_rules_cond}. 
-
-It is laborious but straightforward to prove that the extended calculus
-inherits desirable features from the original calculus. Most notably it
-inherits the \emph{unique derivation}, \emph{substitution}, and \emph{exchange}
-properties (where as usual the latter allows to change the order of variables
-in contexts).  These rely on a shuffling mechanism whose details can be
-consulted in~\cite{dahlqvist22,dahlqvist2023syntactic,shulman19}. The mechanism
-can actually be briefly glanced at in  rule (case), where we stipulate that
-context $E$ is a \emph{shuffle} of the contexts $\Gamma$ and $\Delta$: in other
-words it is a permutation of the variables in $\Gamma,\Delta$ that
-preserves their relative order in $\Gamma$ and in $\Delta$.
-
-\begin{theorem}\label{thm:properties}
-        The calculus defined by the rules of \ref{fig:lang} enjoys the
-        following properties:
-	\begin{enumerate}
-                \item (Unique typing) For any two judgements $\Gamma \vljud v :
-                        \typeA$ and $\Gamma \vljud v : \typeA'$, we have
-                        $\typeA = \typeA'$; \label{i:unique_type}
-                \item (Unique derivation) Every judgement $\Gamma \vljud v :
-                        \typeA$ has a unique derivation; \label{i:unique_der}
-                \item (Exchange) For every judgement $\Gamma, x : \typeA, y :
-                        \typeB, \Delta \vljud v : \typeC$ \label{i:exch} we can
-                        derive $\Gamma, y : \typeB, x : \typeA, \Delta \vljud v
-                        : \typeC$; 
-                \item (Substitution) For all judgements $\Gamma, x : \typeA
-                        \vljud v : \typeB$ and $\Delta \vljud w : \typeA$ we
-                        can derive $\Gamma,\Delta \vljud v[w/x] : \typeB$.
-                        \label{i:subst} 
-	\end{enumerate}
-\end{theorem}
-
-
-
+Let us then fix a set $\Sigma$ of sorted operation symbols $f :
+\typeA_1,\dots,\typeA_n \to \typeA$ with $n \geq 1$. The judgement formation
+rules of the calculus is given by Figure~\ref{fig:typing_rules_cond} (which, in
+a nutshell, conservatively extend the calculus in~\cite{dahlqvist22,dahlqvist23}
+with additive disjunction). 
 \begin{figure}[h]
     %%
     \begin{equation*}
@@ -322,13 +273,48 @@ preserves their relative order in $\Gamma$ and in $\Delta$.
     disjunction.}
     \label{fig:typing_rules_cond}
 \end{figure}
-As detailed in~\cite{benton92,mackie93,maietti05}, linear
-$\lambda$-calculus comes equipped with a class of equations
-(Fig.~\ref{fig:eqs}), specifically \emph{equations-in-context}
-$\Gamma \vljud v = w : \typeA$, that corresponds to the axiomatics of
-autonomous categories.  As usual, we omit the context and typing
-information of the equations in Fig.~\ref{fig:eqs}, which can be
-reconstructed in the usual way. 
+It is straightforward to prove that the extended calculus inherits desirable
+features from the original calculus. Most notably it inherits the \emph{unique
+derivation}, \emph{substitution}, and \emph{exchange} properties, which rely on
+the aforementioned shuffling mechanism. 
+
+\begin{theorem}\label{thm:properties}
+        The calculus defined by the rules in Figure~\ref{fig:typing_rules_cond}
+        enjoys the following properties:
+	\begin{enumerate}
+                \item (Unique typing) For any two judgements $\Gamma \vljud v :
+                        \typeA$ and $\Gamma \vljud v : \typeA'$, we have
+                        $\typeA = \typeA'$; \label{i:unique_type}
+                \item (Unique derivation) Every judgement $\Gamma \vljud v :
+                        \typeA$ has a unique derivation; \label{i:unique_der}
+                \item (Exchange) For every judgement $\Gamma, x : \typeA, y :
+                        \typeB, \Delta \vljud v : \typeC$ \label{i:exch} we can
+                        derive $\Gamma, y : \typeB, x : \typeA, \Delta \vljud v
+                        : \typeC$; 
+                \item (Substitution) For all judgements $\Gamma, x : \typeA
+                        \vljud v : \typeB$ and $\Delta \vljud w : \typeA$ we
+                        can derive $\Gamma,\Delta \vljud v[w/x] : \typeB$.
+                        \label{i:subst} 
+	\end{enumerate}
+\end{theorem}
+
+\begin{proof}
+        Reference~\cite{dahlqvist23b} already proves these properties for the
+        calculus with no disjunction, essentially by relying on induction over
+        the depth of judgement derivation trees. Thus here we only need to
+        address the three rules that concern conditionals. It turns out that
+        these three cases follow analogously to the cases presented
+        in~\cite{dahlqvist23b}, so we omit proof details.
+\end{proof}
+
+\noindent
+Linear $\lambda$-calculus with additive disjunction comes equipped with a class
+of equations (Figure~\ref{fig:eqs}), \ie\ \emph{equations-in-context} $\Gamma
+\vljud v = w : \typeA$, which correspond to the axiomatics of co-Cartesian
+autonomous categories. In order to keep our notation lightweight, our
+presentation of these equations omits the underlying context and typing
+information, which can be reconstructed in the usual way. 
+
 \begin{figure*}[h!]
   \begin{subfigure}[large]{0.6\textwidth}
   \begin{tabular}{r c l}
